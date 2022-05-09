@@ -15,7 +15,6 @@
 import CustomInput from "@/components/CustomInput.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import { checkMail, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
-import SelfProxy from "@/proxy/SelfProxy";
 import GetVerity from "@/views/common/proxy/GetVerityProxy";
 import Component from "vue-class-component";
 import LoginProxy from "../../proxy/LoginProxy";
@@ -40,8 +39,7 @@ export default class AccountForget extends AbstractView {
     }
 
     private onSubmit() {
-        const selfProxy: SelfProxy = this.getProxy(SelfProxy);
-        selfProxy.api_user_reset_password(this.form);
+        this.myProxy.api_user_reset_password();
     }
 }
 </script>

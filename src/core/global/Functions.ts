@@ -292,9 +292,9 @@ export function checkMail(value: string): boolean {
     return Regx.test(value);
 }
 /**验证验证码是否合法 */
-export function checkVerifyVode(value:string): boolean {
-    const Regx = /^[0-9]*$/;
-    return value.length == 4  && Regx.test(value);
+export function checkVerifyVode(value: string): boolean {
+    // const Regx = /^[0-9]*$/;
+    return value.length >=4 && value.length <= 6; //  && Regx.test(value);
 }
 
 // /**

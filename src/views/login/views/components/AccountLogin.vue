@@ -36,7 +36,6 @@
 import CustomInput from "@/components/CustomInput.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import { checkMail, checkUserPassword } from "@/core/global/Functions";
-import SelfProxy from "@/proxy/SelfProxy";
 import Component from "vue-class-component";
 import LoginProxy from "../../proxy/LoginProxy";
 @Component({
@@ -54,8 +53,7 @@ export default class AccountLogin extends AbstractView {
     }
 
     private onLogin() {
-        const selfProxy: SelfProxy = this.getProxy(SelfProxy);
-        selfProxy.api_user_login(this.form);
+        this.myProxy.api_user_login();
     }
 
     private goForget() {

@@ -31,28 +31,6 @@ export default class SelfProxy extends AbstractProxy {
         this.userInfo.user_id = 0;
     }
 
-    /**--账号--注册*/
-    api_user_register(data: any) {
-        const { invite_user_id, email, password, password_confirm, email_code, bsc_address } = data;
-        this.sendNotification(net.HttpType.api_user_register, {
-            invite_user_id,
-            email,
-            password: core.MD5.createInstance().hex_md5(password),
-            password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
-            email_code,
-            uuid: core.device,
-            bsc_address,
-        });
-    }
-    /**--账号--登入*/
-    api_user_login(data: any) {
-        const { username, password } = data;
-        window.localStorage.setItem("username", username);
-        this.sendNotification(net.HttpType.api_user_login, {
-            username,
-            password: core.MD5.createInstance().hex_md5(password),
-        });
-    }
     /**--账号--登出*/
     api_user_logout() {
         this.sendNotification(net.HttpType.api_user_logout);
@@ -64,16 +42,6 @@ export default class SelfProxy extends AbstractProxy {
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             password_old: core.MD5.createInstance().hex_md5(password_old),
             user_id: this.userInfo.user_id,
-        });
-    }
-    /**--账号--重置密码*/
-    // TODO
-    api_user_reset_password({ email, password, password_confirm, email_code }: any) {
-        this.sendNotification(net.HttpType.api_user_reset_password, {
-            email,
-            password: core.MD5.createInstance().hex_md5(password),
-            password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
-            email_code,
         });
     }
     /**--会员资料--获取用户基本信息*/

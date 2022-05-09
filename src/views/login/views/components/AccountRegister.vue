@@ -75,7 +75,7 @@ export default class AccountRegister extends AbstractView {
     }
 
     private onRegister(){
-
+        this.myProxy.api_user_register();
     }
 }
 </script>

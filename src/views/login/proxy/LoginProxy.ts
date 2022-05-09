@@ -61,4 +61,38 @@ export default class LoginProxy extends AbstractProxy {
     hideRegister() {
         this.registerData.bShow = false;
     }
+
+    /**--账号--登入*/
+    api_user_login() {
+        const { username, password } = this.loginData.form;
+        window.localStorage.setItem("username", username);
+        this.sendNotification(net.HttpType.api_user_login, {
+            username,
+            password: core.MD5.createInstance().hex_md5(password),
+        });
+    }
+
+    /**--账号--注册*/
+    api_user_register() {
+        const { invite_user_id, email, password, password_confirm, email_code } = this.registerData.form;
+        this.sendNotification(net.HttpType.api_user_register, {
+            invite_user_id,
+            email,
+            password: core.MD5.createInstance().hex_md5(password),
+            password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
+            email_code,
+            uuid: core.device,
+        });
+    }
+
+    /**--账号--重置密码*/
+    api_user_reset_password() {
+        const { email, password, password_confirm, email_code } = this.forgetData.form;
+        this.sendNotification(net.HttpType.api_user_reset_password, {
+            email,
+            password: core.MD5.createInstance().hex_md5(password),
+            password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
+            email_code,
+        });
+    }
 }

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "target": "es6",
+    "declaration": true,
+    "sourceMap": false,
+    "removeComments": false,
+    "outFile": "./core.js",
+    "lib": [
+      "es6",
+      "dom",
+      "es2015.promise"
+  ]
+  },
+  "include": [
+    "src",
+    "libs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

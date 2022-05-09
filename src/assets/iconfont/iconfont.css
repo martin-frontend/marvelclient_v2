@@ -1,0 +1,653 @@
+@font-face {
+    font-family: "iconfont";
+    /* Project id 2876876 */
+    src: url(iconfont.woff2) format("woff2"),
+        url(iconfont.woff) format("woff"),
+        url(iconfont.ttf) format("truetype");
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dasai:before {
+    content: "\e7e8";
+}
+
+.icon-calculator:before {
+    content: "\e758";
+}
+
+.icon-Arrow-up-down:before {
+    content: "\e7dd";
+}
+
+.icon-Arrow-Down2:before {
+    content: "\e7de";
+}
+
+.icon-Arrow-right-left-2-Filled:before {
+    content: "\e7df";
+}
+
+.icon-Sync-retry:before {
+    content: "\e7e0";
+}
+
+.icon-Document:before {
+    content: "\e7e1";
+}
+
+.icon-yiwen:before {
+    content: "\e7e2";
+}
+
+.icon-icon-dianzi:before {
+    content: "\e7dc";
+}
+
+.icon-J9-bi:before {
+    content: "\e7d8";
+}
+
+.icon-icon-home:before {
+    content: "\e7d5";
+}
+
+.icon-icon-fengcai:before {
+    content: "\e7d6";
+}
+
+.icon-icon-qukuail:before {
+    content: "\e7d7";
+}
+
+.icon-icon-tiyu:before {
+    content: "\e7d9";
+}
+
+.icon-icon-xima:before {
+    content: "\e7da";
+}
+
+.icon-icon-zhenren:before {
+    content: "\e7db";
+}
+
+.icon-a-icon-changePassword1:before {
+    content: "\e7d4";
+}
+
+.icon-a-icon-bindemail:before {
+    content: "\e7d2";
+}
+
+.icon-icon-google:before {
+    content: "\e7d3";
+}
+
+.icon-a-icon-bindphone:before {
+    content: "\e7d1";
+}
+
+.icon-Arrow-Left:before {
+    content: "\e7c7";
+}
+
+.icon-Close-shuru:before {
+    content: "\e7c8";
+}
+
+.icon-icon-mail:before {
+    content: "\e7c9";
+}
+
+.icon-icon-password:before {
+    content: "\e7ca";
+}
+
+.icon-a-icon-verificationcode:before {
+    content: "\e7cb";
+}
+
+.icon-iPadiphone:before {
+    content: "\e7cc";
+}
+
+.icon-a-StyleFilled2:before {
+    content: "\e7cd";
+}
+
+.icon-a-StyleFilled1:before {
+    content: "\e7ce";
+}
+
+.icon-a-StyleOutlined2:before {
+    content: "\e7cf";
+}
+
+.icon-yonghuming:before {
+    content: "\e7d0";
+}
+
+.icon-guanbi-Filled:before {
+    content: "\e7c6";
+}
+
+.icon-Arrow-Down-Filled:before {
+    content: "\e7c4";
+}
+
+.icon-chevron-up-Filled:before {
+    content: "\e7c5";
+}
+
+.icon-cainilike:before {
+    content: "\e7c3";
+}
+
+.icon-fiter-dzyx:before {
+    content: "\e7c1";
+}
+
+.icon-Hot-dzyx:before {
+    content: "\e7c2";
+}
+
+.icon-slot:before {
+    content: "\e757";
+}
+
+.icon-home:before {
+    content: "\e74b";
+}
+
+.icon-icon1:before {
+    content: "\e74c";
+}
+
+.icon-lottery1:before {
+    content: "\e74d";
+}
+
+.icon-card:before {
+    content: "\e74e";
+}
+
+.icon-J9:before {
+    content: "\e74f";
+}
+
+.icon-cricket:before {
+    content: "\e750";
+}
+
+.icon-fishing1:before {
+    content: "\e751";
+}
+
+.icon-lg:before {
+    content: "\e752";
+}
+
+.icon-sport:before {
+    content: "\e753";
+}
+
+.icon-vip:before {
+    content: "\e754";
+}
+
+.icon-promo:before {
+    content: "\e755";
+}
+
+.icon-poker:before {
+    content: "\e756";
+}
+
+.icon-J9comlogo:before {
+    content: "\e60c";
+}
+
+.icon-PP:before {
+    content: "\e7a7";
+}
+
+.icon-PT:before {
+    content: "\e7a6";
+}
+
+.icon-TTG:before {
+    content: "\e7a5";
+}
+
+.icon-youhui:before {
+    content: "\e607";
+}
+
+.icon-hot:before {
+    content: "\e7a4";
+}
+
+.icon-chakan:before {
+    content: "\e7a1";
+}
+
+.icon-Close1:before {
+    content: "\e7a2";
+}
+
+.icon-yingcang1:before {
+    content: "\e7a3";
+}
+
+.icon-Information-circle-1:before {
+    content: "\e79c";
+}
+
+.icon-Zalo:before {
+    content: "\e79b";
+}
+
+.icon-File:before {
+    content: "\e74a";
+}
+
+.icon-a-TermsnRules:before {
+    content: "\e794";
+}
+
+.icon-Help:before {
+    content: "\e791";
+}
+
+.icon-Responsibility:before {
+    content: "\e792";
+}
+
+.icon-a-ContactUs:before {
+    content: "\e793";
+}
+
+.icon-icon:before {
+    content: "\e749";
+}
+
+.icon-carbox:before {
+    content: "\e790";
+}
+
+.icon-Vectorpc:before {
+    content: "\e78d";
+}
+
+.icon-VectorH5:before {
+    content: "\e78e";
+}
+
+.icon-jiaoyijilu:before {
+    content: "\e606";
+}
+
+.icon-LIVE:before {
+    content: "\e78b";
+}
+
+.icon-Calendar:before {
+    content: "\e60b";
+}
+
+.icon-Copy:before {
+    content: "\e60a";
+}
+
+.icon-add:before {
+    content: "\e609";
+}
+
+.icon-Outlined1:before {
+    content: "\e78a";
+}
+
+.icon-yoplay:before {
+    content: "\e748";
+}
+
+.icon-quanbuyouxi:before {
+    content: "\e735";
+}
+
+.icon-puke:before {
+    content: "\e738";
+}
+
+.icon-like:before {
+    content: "\e739";
+}
+
+.icon-yinduyouxi:before {
+    content: "\e73a";
+}
+
+.icon-youxijingxuan:before {
+    content: "\e73b";
+}
+
+.icon-shishitouzhu:before {
+    content: "\e73c";
+}
+
+.icon-banqiu:before {
+    content: "\e73d";
+}
+
+.icon-popular:before {
+    content: "\e746";
+}
+
+.icon-zhenrenqipai:before {
+    content: "\e747";
+}
+
+.icon-bangdan:before {
+    content: "\e76b";
+}
+
+.icon-guanbi:before {
+    content: "\e76a";
+}
+
+.icon-Expand:before {
+    content: "\e769";
+}
+
+.icon-Chat:before {
+    content: "\e767";
+}
+
+.icon-ETH1:before {
+    content: "\e764";
+}
+
+.icon-BTC1:before {
+    content: "\e765";
+}
+
+.icon-USDT1:before {
+    content: "\e766";
+}
+
+.icon-black-1:before {
+    content: "\e763";
+}
+
+.icon-xiangshang:before {
+    content: "\e761";
+}
+
+.icon-xiangxia:before {
+    content: "\e762";
+}
+
+.icon-World1:before {
+    content: "\e745";
+}
+
+.icon-EVO:before {
+    content: "\e73e";
+}
+
+.icon-AG:before {
+    content: "\e73f";
+}
+
+.icon-PNG:before {
+    content: "\e740";
+}
+
+.icon-BG:before {
+    content: "\e741";
+}
+
+.icon-MG:before {
+    content: "\e742";
+}
+
+.icon-PS:before {
+    content: "\e743";
+}
+
+.icon-SABA:before {
+    content: "\e744";
+}
+
+.icon-Information-circle1:before {
+    content: "\e72a";
+}
+
+.icon-Lock:before {
+    content: "\e729";
+}
+
+.icon-Information-circle:before {
+    content: "\e727";
+}
+
+.icon-Pluseellipse:before {
+    content: "\e714";
+}
+
+.icon-World:before {
+    content: "\e713";
+}
+
+.icon-Bell:before {
+    content: "\e70f";
+}
+
+.icon-Box-fav:before {
+    content: "\e710";
+}
+
+.icon-Chat-1:before {
+    content: "\e711";
+}
+
+.icon-safety:before {
+    content: "\e712";
+}
+
+.icon-Document-history:before {
+    content: "\e70e";
+}
+
+.icon-meun:before {
+    content: "\e605";
+}
+
+.icon-Outlined:before {
+    content: "\e709";
+}
+
+.icon-control:before {
+    content: "\e70a";
+}
+
+.icon-chevron-right1:before {
+    content: "\e70c";
+}
+
+.icon-Chevron-Left1:before {
+    content: "\e70d";
+}
+
+.icon-sports:before {
+    content: "\e72f";
+}
+
+.icon-Blockchain:before {
+    content: "\e730";
+}
+
+.icon-casino:before {
+    content: "\e731";
+}
+
+.icon-new:before {
+    content: "\e732";
+}
+
+.icon-lottery:before {
+    content: "\e733";
+}
+
+.icon-fishing:before {
+    content: "\e734";
+}
+
+.icon-slots:before {
+    content: "\e736";
+}
+
+.icon-Flame:before {
+    content: "\e70b";
+}
+
+.icon-chevron-right:before {
+    content: "\e707";
+}
+
+.icon-Chevron-Left:before {
+    content: "\e708";
+}
+
+.icon-Magnifier:before {
+    content: "\e706";
+}
+
+.icon-Arrow-Down1:before {
+    content: "\e704";
+}
+
+.icon-chevron-up1:before {
+    content: "\e705";
+}
+
+.icon-BTC:before {
+    content: "\e701";
+}
+
+.icon-ETH:before {
+    content: "\e702";
+}
+
+.icon-USDT:before {
+    content: "\e703";
+}
+
+.icon-Filter:before {
+    content: "\e6ff";
+}
+
+.icon-Style3:before {
+    content: "\e700";
+}
+
+.icon-Alarm:before {
+    content: "\e6fe";
+}
+
+.icon-a-StyleOutlineddefuben2:before {
+    content: "\e6f6";
+}
+
+.icon-a-StyleOutlineddefuben:before {
+    content: "\e6f7";
+}
+
+.icon-a-StyleOutlined:before {
+    content: "\e6f8";
+}
+
+.icon-a-StyleOutlined-1:before {
+    content: "\e6f9";
+}
+
+.icon-a-Stylebiyan1:before {
+    content: "\e6fa";
+}
+
+.icon-a-StyleFilled:before {
+    content: "\e6fb";
+}
+
+.icon-a-StyleOutlined-11:before {
+    content: "\e6fc";
+}
+
+.icon-a-StyleOutlined1:before {
+    content: "\e6fd";
+}
+
+.icon-chevron-up:before {
+    content: "\e603";
+}
+
+.icon-send:before {
+    content: "\e604";
+}
+
+.icon-Arrow-Down:before {
+    content: "\e602";
+}
+
+.icon-X:before {
+    content: "\e601";
+}
+
+
+.icon-box {
+    display: inline-grid;
+    grid-auto-flow: column;
+    place-items: center;
+    grid-gap: var(--gap);
+    gap: var(--gap);
+    position: relative;
+}
+.icon--vertical {
+    flex-direction: column;
+}
+
+.icon__img {
+    width: 1em;
+    height: 1em;
+    object-fit: cover;
+}
+
+.icon__icon {
+    font-size: 100%;
+    font-style: normal;
+}
+.icon__badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    border-radius: 100px;
+    background: #ff2020ff;
+    color: #fff;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    min-width: 16px;
+    text-align: center;
+    padding: 0 2px;
+    font-style: normal;
+    box-sizing: border-box;
+}

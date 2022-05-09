@@ -1,0 +1,18 @@
+/**
+ * ${description}
+ */
+module net {
+    export class cmd_${pName} extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification) {
+            const body = notification.getBody() || {};
+            const url = getUrl(HttpType.${pName}, body);
+            Http.request(body || {}, url).then(this.response.bind(this));
+        }
+
+        private response(result: core.ResponseVO) {
+            if (result.status === 0) {
+                this.sendNotification(EventType.${pName}, result.data);
+            }
+        }
+    }
+}

@@ -1,7 +1,9 @@
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import router from "@/router";
 import { GetVerityProxy } from "@/views/common/proxy/GetVerityProxy";
 import Message from "@/views/common/proxy/MessageProxy";
+import GamePlayProxy from "@/views/gameplay/proxy/GamePlayProxy";
 import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
 import NotificationName from "./NotificationName";
@@ -22,6 +24,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_vendor_simple,
             net.EventType.api_public_auth_code,
             net.EventType.api_public_email_send,
+            net.EventType.api_vendor_var_ori_product_show_var,
         ];
     }
 
@@ -60,15 +63,22 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_public_auth_code:
                 {
-                    const getVerityPy:GetVerityProxy = this.getProxy(GetVerityProxy);
+                    const getVerityPy: GetVerityProxy = this.getProxy(GetVerityProxy);
                     getVerityPy.auth_image = body;
                 }
                 break;
             case net.EventType.api_public_email_send:
                 {
                     Message.show("发送成功");
-                    const getVerityPy:GetVerityProxy = this.getProxy(GetVerityProxy);
+                    const getVerityPy: GetVerityProxy = this.getProxy(GetVerityProxy);
                     getVerityPy.dialogData.bShow = false;
+                }
+                break;
+            case net.EventType.api_vendor_var_ori_product_show_var:
+                {
+                    const gamePlayProxy: GamePlayProxy = this.getProxy(GamePlayProxy);
+                    gamePlayProxy.url = body.url;
+                    if (router.currentRoute.path != "/gameplay") router.push("/gameplay");
                 }
                 break;
         }

@@ -10,6 +10,16 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "home" */ "../views/home/views/Home.vue"),
     },
     {
+        path: "/gamelist",
+        name: "GameList",
+        component: () => import(/* webpackChunkName: "gamelist" */ "../views/gamelist/views/GameList.vue"),
+    },
+    {
+        path: "/gameplay",
+        name: "GamePlay",
+        component: () => import(/* webpackChunkName: "gameplay" */ "../views/gameplay/views/GamePlay.vue"),
+    },
+    {
         path: "/introduce",
         name: "Introduce",
         component: () => import(/* webpackChunkName: "introduce" */ "../views/introduce/views/Introduce.vue"),

@@ -6,11 +6,11 @@
                 <v-spacer />
                 <v-btn icon @click="onClose"><v-icon>mdi-close</v-icon></v-btn>
             </v-card-title>
-            <v-card-text class="d-flex align-center">
-                <CustomInput type="tel" v-model="dialogData.auth_code" style="width: 300px" />
+            <v-card-text class="d-flex align-center mx-3">
+                <CustomInput type="tel" v-model="dialogData.auth_code" placeholder="请输入验证码" style="width: 270px" />
                 <v-img class="ml-3 rounded" :src="myProxy.auth_image" max-width="140" @click="getVerity"></v-img>
             </v-card-text>
-            <v-card-actions class="mt-5 mx-2">
+            <v-card-actions class="mt-5 mx-5">
                 <v-btn class="rounded-lg" color="#6fa9fa" height="48" block @click="onSend">确定发送</v-btn>
             </v-card-actions>
         </v-card>
@@ -35,11 +35,11 @@ export default class DialogGetVerity extends AbstractView {
         this.dialogData.bShow = false;
     }
 
-    private getVerity(){
+    private getVerity() {
         this.myProxy.api_public_auth_code();
     }
 
-    private onSend(){
+    private onSend() {
         this.myProxy.api_public_email_send();
     }
 }

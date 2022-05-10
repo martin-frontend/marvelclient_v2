@@ -57,6 +57,8 @@
 
 <script lang="ts">
 import AbstractView from "@/core/abstract/AbstractView";
+import GameProxy from "@/proxy/GameProxy";
+import router from "@/router";
 import Component from "vue-class-component";
 import WalletProxy from "../../proxy/WalletProxy";
 @Component
@@ -66,6 +68,10 @@ export default class Wallet extends AbstractView {
 
     private onItemClick(key: string) {
         this.myProxy.selectKey = key;
+        if (router.currentRoute.path == "/gameplay") {
+            const gameProxy: GameProxy = this.getProxy(GameProxy);
+            gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+        }
     }
 }
 </script>

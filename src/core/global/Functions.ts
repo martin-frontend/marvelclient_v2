@@ -294,7 +294,7 @@ export function checkMail(value: string): boolean {
 /**验证验证码是否合法 */
 export function checkVerifyVode(value: string): boolean {
     // const Regx = /^[0-9]*$/;
-    return value.length >=4 && value.length <= 6; //  && Regx.test(value);
+    return value.length >= 4 && value.length <= 6; //  && Regx.test(value);
 }
 
 // /**

@@ -69,6 +69,10 @@ var net;
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api/public/email/send",
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: "api/plat/{plat_id}/game/all/index",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
         /**--钱包--代币转入订单提交*/
@@ -262,6 +266,10 @@ var net;
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api_public_email_send",
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: "api_plat_var_game_all_config",
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: "api_plat_var_game_all_index",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api_plat_var_block_transfer_in_order_account",
         /**--钱包--代币转入订单提交*/
@@ -447,6 +455,8 @@ var net;
         //--新加的
         facade.registerCommand(net.HttpType.api_public_auth_code, net.cmd_api_public_auth_code);
         facade.registerCommand(net.HttpType.api_public_email_send, net.cmd_api_public_email_send);
+        facade.registerCommand(net.HttpType.api_plat_var_game_all_config, net.cmd_api_plat_var_game_all_config);
+        facade.registerCommand(net.HttpType.api_plat_var_game_all_index, net.cmd_api_plat_var_game_all_index);
         //--钱包
         facade.registerCommand(net.HttpType.api_plat_var_block_transfer_in_order_account, net.cmd_api_plat_var_block_transfer_in_order_account);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_in_order_store, net.cmd_api_user_var_block_transfer_in_order_store);
@@ -730,6 +740,50 @@ var net;
         }
     }
     net.cmd_api_plat_var_block_transfer_in_order_account = cmd_api_plat_var_block_transfer_in_order_account;
+})(net || (net = {}));
+/**
+ * 获取所有游戏的查询配置
+ */
+var net;
+/**
+ * 获取所有游戏的查询配置
+ */
+(function (net) {
+    class cmd_api_plat_var_game_all_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_game_all_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_game_all_config, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_game_all_config = cmd_api_plat_var_game_all_config;
+})(net || (net = {}));
+/**
+ * 所有游戏的查询
+ */
+var net;
+/**
+ * 所有游戏的查询
+ */
+(function (net) {
+    class cmd_api_plat_var_game_all_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_game_all_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_game_all_index, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_game_all_index = cmd_api_plat_var_game_all_index;
 })(net || (net = {}));
 /**
  * 配置数据 枚举

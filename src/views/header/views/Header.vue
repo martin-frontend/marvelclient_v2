@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar height="156" color="accent" elevation="0" app>
+    <v-app-bar height="156" color="accent" elevation="0" :app="routerPath != '/gameplay'">
         <v-container class="ma-auto pa-0">
             <div class="d-none d-md-flex align-center" style="height: 96px">
                 <v-img src="@/assets/header/j9logo.svg" max-width="236" min-width="236" height="56" class="mr-5"></v-img>

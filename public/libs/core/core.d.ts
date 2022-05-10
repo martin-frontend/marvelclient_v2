@@ -15,6 +15,10 @@ declare module net {
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: string;
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -208,6 +212,10 @@ declare module net {
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: string;
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -458,6 +466,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_block_transfer_in_order_account extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取所有游戏的查询配置
+ */
+declare module net {
+    class cmd_api_plat_var_game_all_config extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 所有游戏的查询
+ */
+declare module net {
+    class cmd_api_plat_var_game_all_index extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

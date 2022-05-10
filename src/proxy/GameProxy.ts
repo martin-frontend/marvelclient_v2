@@ -1,6 +1,8 @@
+import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
+import WalletProxy from "@/views/header/proxy/WalletProxy";
 
-export default class GameProxy extends puremvc.Proxy {
+export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
@@ -27,6 +29,8 @@ export default class GameProxy extends puremvc.Proxy {
         256: "mdi-cards-playing",
         512: "mdi-cards-playing",
     };
+    /**当前正在玩的游戏 */
+    currGame:any;
 
     /**
      * 大厅菜单
@@ -80,12 +84,15 @@ export default class GameProxy extends puremvc.Proxy {
     }
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
     api_vendor_var_ori_product_show_var(data: core.VendorVO | core.VendorProductVO) {
+        this.currGame = data;
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
+        const walletProxy:WalletProxy = this.getProxy(WalletProxy);
         this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, {
             user_id: core.user_id,
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
+            coin_name_unique: walletProxy.selectKey
         });
     }
 }

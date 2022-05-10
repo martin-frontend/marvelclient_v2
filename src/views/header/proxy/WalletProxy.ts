@@ -19,6 +19,5 @@ export default class WalletProxy extends AbstractProxy{
         this.gold_info = data;
         const keys = Object.keys(data);
         if (this.selectKey == "") this.selectKey = keys[0];
-        console.log(">>>>>>setGoldInfo")
     }
 }

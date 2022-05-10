@@ -9,6 +9,10 @@ module net {
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api/public/email/send",
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: "api/plat/{plat_id}/game/all/index",
 
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
@@ -218,6 +222,10 @@ module net {
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api_public_email_send",
+        /**--新加的--获取所有游戏的查询配置*/
+        api_plat_var_game_all_config: "api_plat_var_game_all_config",
+        /**--新加的--所有游戏的查询*/
+        api_plat_var_game_all_index: "api_plat_var_game_all_index",
 
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api_plat_var_block_transfer_in_order_account",
@@ -418,6 +426,8 @@ module net {
         //--新加的
         facade.registerCommand(HttpType.api_public_auth_code, cmd_api_public_auth_code);
         facade.registerCommand(HttpType.api_public_email_send, cmd_api_public_email_send);
+        facade.registerCommand(HttpType.api_plat_var_game_all_config, cmd_api_plat_var_game_all_config);
+        facade.registerCommand(HttpType.api_plat_var_game_all_index, cmd_api_plat_var_game_all_index);
         //--钱包
         facade.registerCommand(HttpType.api_plat_var_block_transfer_in_order_account, cmd_api_plat_var_block_transfer_in_order_account);
         facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_store, cmd_api_user_var_block_transfer_in_order_store);

@@ -64,11 +64,13 @@ const opts = {
                 success: "#4CAF50",
                 warning: "#85AFF9",
 
+                colorTitleBg: "#1d2a43", //used
                 colorInfo: "#50607f", //used
                 colorBlue: "#9db1d8", //used
                 colorPanelBg: "#121E36", //used
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
+                colorSelectBg: "#2C3D5C" //used
             },
         },
         dark: true,

@@ -191,6 +191,8 @@ module net {
         api_user_var_coin_recharge_confirm: "api/user/{user_id}/coin_recharge/confirm",
         /**--商城--充值记录*/
         api_user_var_recharge_list: "api/user/{user_id}/recharge/list",
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: "api/user/{user_id}/recharge/address",
 
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
@@ -404,6 +406,8 @@ module net {
         api_user_var_coin_recharge_confirm: "api_user_var_coin_recharge_confirm",
         /**--商城--充值记录*/
         api_user_var_recharge_list: "api_user_var_recharge_list",
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: "api_user_var_recharge_address",
 
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
@@ -524,6 +528,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_recharge_create, cmd_api_user_var_recharge_create);
         facade.registerCommand(HttpType.api_user_var_coin_recharge_confirm, cmd_api_user_var_coin_recharge_confirm);
         facade.registerCommand(HttpType.api_user_var_recharge_list, cmd_api_user_var_recharge_list);
+        facade.registerCommand(HttpType.api_user_var_recharge_address, cmd_api_user_var_recharge_address);
         //--其它
         facade.registerCommand(HttpType.api_plat_var_game_config, cmd_api_plat_var_game_config);
         facade.registerCommand(HttpType.api_plat_fag_index, cmd_api_plat_fag_index);

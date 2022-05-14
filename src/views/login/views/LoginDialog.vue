@@ -1,7 +1,7 @@
 <template>
-    <v-dialog width="854" v-model="loginData.bShow" overlay-opacity="0.6">
+    <v-dialog width="854" v-model="loginData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly">
         <v-card color="colorPanelBg" class="d-flex">
-            <Advertise :height="562" />
+            <Advertise :height="562" class="d-none d-md-flex" />
             <v-card color="transparent" width="488">
                 <v-card-title class="d-flex justify-end pb-0">
                     <v-btn icon @click="onClose">
@@ -25,6 +25,7 @@ import AccountLogin from "./components/AccountLogin.vue";
 import Advertise from "./components/Advertise.vue";
 import BlurUtil from "@/core/global/BlurUtil";
 import LoginMediator from "../mediator/LoginMediator";
+import dialog_message from "@/views/dialog_message";
 @Component({
     components: {
         AccountLogin,
@@ -52,6 +53,7 @@ export default class LoginDialog extends AbstractView {
         } else {
             this.loginData.bShow = false;
         }
+        dialog_message.info("xxxxxx")
     }
 }
 </script>

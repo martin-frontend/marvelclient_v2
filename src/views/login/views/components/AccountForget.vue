@@ -1,6 +1,6 @@
 <template>
     <v-card-text class="px-10 mt-5">
-        <div class="mt-n5 mb-8 ml-2 font-weight-medium colorBlue--text text-16">密码找回</div>
+        <div class="mt-n12 mb-8 ml-2 font-weight-medium colorBlue--text text-16">密码找回</div>
         <CustomInput class="mb-10" icon="mdi-email" placeholder="请输入邮箱" v-model="form.email">
             <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.email)" @click="getCode">获取验证码</v-btn>
         </CustomInput>

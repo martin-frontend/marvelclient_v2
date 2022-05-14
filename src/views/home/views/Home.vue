@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import GameSlideGroup from "@/components/GameSlideGroup.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import GameProxy from "@/proxy/GameProxy";
+import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
 import Component from "vue-class-component";
 import Activity from "./components/Activity.vue";
 import Advertise from "./components/Advertise.vue";

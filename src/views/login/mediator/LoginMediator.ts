@@ -1,6 +1,6 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import SelfProxy from "@/proxy/SelfProxy";
-import Message from "@/views/common/proxy/MessageProxy";
+// import Message from "@/views/common/proxy/MessageProxy";
 import LoginProxy from "../proxy/LoginProxy";
 
 export default class LoginMediator extends AbstractMediator {
@@ -17,17 +17,17 @@ export default class LoginMediator extends AbstractMediator {
         const loginProxy: LoginProxy = this.getProxy(LoginProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_login:
-                Message.show("登录成功");
+                // Message.show("登录成功");
                 loginProxy.hideLogin();
                 this.loginScuess(body);
                 break;
             case net.EventType.api_user_register:
-                Message.show("注册成功");
+                // Message.show("注册成功");
                 loginProxy.hideRegister();
                 this.loginScuess(body);
                 break;
             case net.EventType.api_user_reset_password:
-                Message.show("密码找回成功");
+                // Message.show("密码找回成功");
                 loginProxy.forgetData.bShow = false;
                 loginProxy.hideLogin();
                 break;

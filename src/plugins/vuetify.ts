@@ -2,61 +2,23 @@ import Vue from "vue";
 import Vuetify from "vuetify/lib/framework";
 import "vuetify/dist/vuetify.min.css";
 import VueI18n from "vue-i18n";
+import { getLocale, messages } from "@/lang";
 
-// Vue.use(Vuetify);
+Vue.use(Vuetify);
 Vue.use(VueI18n);
 
-Vue.use(Vuetify, {
-    breakpoint: {
-        thresholds: {
-            md: 1424,
-            lg: 1424,
-            xl: 1424,
-        },
-        scrollbarWidth: 10,
-    },
-});
+const locale = getLocale();
 
-/**简体中文 */
-import zhHans from "vuetify/es5/locale/zh-Hans";
-/**繁体中文 */
-// import zhHant from "vuetify/es5/locale/zh-Hant";
-/**英文 */
-import en from "vuetify/es5/locale/en";
-/**越南文 */
-import vi from "vuetify/es5/locale/vi";
-
-import zhLocal from "../lang/zhHans";
-import viLocal from "../lang/vi";
-import enLocal from "../lang/en";
-
-// 创建 VueI18n 实例
 const i18n = new VueI18n({
-    locale: "zhHans",
-    messages: {
-        zhHans: {
-            // ...zhHans,
-            ...zhLocal,
-        },
-        en: {
-            // ...en,
-            ...enLocal,
-        },
-        vi: {
-            // ...vi,
-            ...viLocal,
-        },
-    },
+    locale: locale,
+    messages,
 });
 
 const opts = {
-    // lang: {
-        // t: <any>((key: any, ...params: any[]) => i18n.t(key, params)),
-    // },
     theme: {
         themes: {
             dark: {
-                primary: "#FFAF1A", //used
+                primary: "#4c5d7f", //used
                 secondary: "#e3bc80", //used
                 accent: "#1D2A43", //used
                 error: "#EF413A",
@@ -64,13 +26,16 @@ const opts = {
                 success: "#4CAF50",
                 warning: "#85AFF9",
 
+                colorYellow: "#FFAF1A",
                 colorTitleBg: "#1d2a43", //used
                 colorInfo: "#50607f", //used
                 colorBlue: "#9db1d8", //used
                 colorPanelBg: "#121E36", //used
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
-                colorSelectBg: "#2C3D5C" //used
+                colorSelectBg: "#2C3D5C", //used
+
+                colorText1: "#4c5d7f",
             },
         },
         dark: true,

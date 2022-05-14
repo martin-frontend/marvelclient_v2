@@ -1,6 +1,6 @@
 <template>
     <v-card width="224" height="280" class="rounded-lg card-gap" @click="goGamePlay">
-        <v-img class="game-icon" :src="getIcon(item)">
+        <v-img class="game-icon" width="224" height="280" :src="getIcon(item)">
             <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
             <div class="vendor-title">{{ item.vendor_name }}</div>
             <div class="egame__item__mask">

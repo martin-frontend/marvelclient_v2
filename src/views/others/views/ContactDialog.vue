@@ -20,7 +20,7 @@ import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import ContactProxy from "../proxy/ContactProxy";
 @Component
-export default class Contact extends AbstractView {
+export default class ContactDialog extends AbstractView {
     private myProxy: ContactProxy = this.getProxy(ContactProxy);
     private dialogData = this.myProxy.dialogData;
 

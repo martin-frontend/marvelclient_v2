@@ -237,6 +237,8 @@ var net;
         api_user_var_coin_recharge_confirm: "api/user/{user_id}/coin_recharge/confirm",
         /**--商城--充值记录*/
         api_user_var_recharge_list: "api/user/{user_id}/recharge/list",
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: "api/user/{user_id}/recharge/address",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
         /**--其它--常见问题*/
@@ -434,6 +436,8 @@ var net;
         api_user_var_coin_recharge_confirm: "api_user_var_coin_recharge_confirm",
         /**--商城--充值记录*/
         api_user_var_recharge_list: "api_user_var_recharge_list",
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: "api_user_var_recharge_address",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
         /**--其它--常见问题*/
@@ -553,6 +557,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_recharge_create, net.cmd_api_user_var_recharge_create);
         facade.registerCommand(net.HttpType.api_user_var_coin_recharge_confirm, net.cmd_api_user_var_coin_recharge_confirm);
         facade.registerCommand(net.HttpType.api_user_var_recharge_list, net.cmd_api_user_var_recharge_list);
+        facade.registerCommand(net.HttpType.api_user_var_recharge_address, net.cmd_api_user_var_recharge_address);
         //--其它
         facade.registerCommand(net.HttpType.api_plat_var_game_config, net.cmd_api_plat_var_game_config);
         facade.registerCommand(net.HttpType.api_plat_fag_index, net.cmd_api_plat_fag_index);
@@ -2368,6 +2373,28 @@ var net;
         }
     }
     net.cmd_api_user_var_receive_agent_bonus_var = cmd_api_user_var_receive_agent_bonus_var;
+})(net || (net = {}));
+/**
+ * 获取数字货币充值地址
+ */
+var net;
+/**
+ * 获取数字货币充值地址
+ */
+(function (net) {
+    class cmd_api_user_var_recharge_address extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_recharge_address, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_recharge_address, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_recharge_address = cmd_api_user_var_recharge_address;
 })(net || (net = {}));
 /**
  * 创建订单

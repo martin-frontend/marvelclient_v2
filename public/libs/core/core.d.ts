@@ -183,6 +183,8 @@ declare module net {
         api_user_var_coin_recharge_confirm: string;
         /**--商城--充值记录*/
         api_user_var_recharge_list: string;
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
         /**--其它--常见问题*/
@@ -380,6 +382,8 @@ declare module net {
         api_user_var_coin_recharge_confirm: string;
         /**--商城--充值记录*/
         api_user_var_recharge_list: string;
+        /**--商城--获取数字货币充值地址*/
+        api_user_var_recharge_address: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
         /**--其它--常见问题*/
@@ -1132,6 +1136,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_receive_agent_bonus_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取数字货币充值地址
+ */
+declare module net {
+    class cmd_api_user_var_recharge_address extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

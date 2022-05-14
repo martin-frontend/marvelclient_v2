@@ -46,7 +46,7 @@
             </div>
         </v-menu>
 
-        <v-btn class="btn-topup d-none d-md-flex rounded-pill black--text mr-3" height="38" color="#ffb01b">
+        <v-btn class="btn-topup d-none d-md-flex rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
             <div class="mx-1 text-16">充值</div>
         </v-btn>
         <v-btn class="btn-topup-min d-flex d-md-none rounded-pill black--text mr-3" height="24" max-width="48" x-small color="#ffb01b">
@@ -61,6 +61,7 @@ import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import Component from "vue-class-component";
 import WalletProxy from "../../proxy/WalletProxy";
+import dialog_recharge from "@/views/dialog_recharge";
 @Component
 export default class Wallet extends AbstractView {
     private myProxy: WalletProxy = this.getProxy(WalletProxy);
@@ -72,6 +73,10 @@ export default class Wallet extends AbstractView {
             const gameProxy: GameProxy = this.getProxy(GameProxy);
             gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
         }
+    }
+
+    private onCoinIn(){
+        dialog_recharge.show();
     }
 }
 </script>

@@ -130,6 +130,7 @@ import ScrollUtil from "@/core/global/ScrollUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import Wallet from "./components/Wallet.vue";
 import User from "./components/User.vue";
+import dialog_login from "@/views/dialog_login";
 
 @Component({
     components: {
@@ -177,8 +178,7 @@ export default class Header extends AbstractView {
     }
 
     private handlerLogin() {
-        const loginProxy: LoginProxy = this.getProxy(LoginProxy);
-        loginProxy.showLogin();
+        dialog_login.show();
     }
     private handlerRegister() {
         const loginProxy: LoginProxy = this.getProxy(LoginProxy);

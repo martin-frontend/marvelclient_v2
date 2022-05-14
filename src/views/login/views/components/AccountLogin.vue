@@ -1,6 +1,6 @@
 <template>
     <v-card-text class="px-10 mt-5">
-        <div class="mt-n5 mb-8 ml-2 font-weight-medium colorBlue--text text-16">账号登录</div>
+        <div class="mt-n12 mb-8 ml-2 font-weight-medium colorBlue--text text-16">账号登录</div>
         <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入邮箱" v-model="form.username" />
         <CustomInput icon="mdi-lock" placeholder="请输入密码(6~12位)" type="password" v-model="form.password" />
         <div class="password-operate">

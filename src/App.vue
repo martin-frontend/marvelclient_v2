@@ -8,11 +8,13 @@
             <Footer />
         </div>
         <!-- 其它全局弹窗页 -->
-        <DialogMessage />
+        <!-- <DialogMessage />
         <DialogMessageBox />
         <DialogGetVerity />
-        <Service />
-        <Contact />
+        <ServiceDialog />
+        <ContactDialog /> -->
+
+        <div id="dialog_container"></div>
     </v-app>
 </template>
 
@@ -21,21 +23,21 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import Header from "@/views/header/views/Header.vue";
 import Footer from "./views/footer/views/Footer.vue";
-import Service from "./views/others/views/Service.vue";
-import Contact from "./views/others/views/Contact.vue";
-import DialogMessage from "./views/common/view/DialogMessage.vue";
-import DialogMessageBox from "./views/common/view/DialogMessageBox.vue";
-import DialogGetVerity from "./views/common/view/DialogGetVerity.vue";
+// import ServiceDialog from "./views/others/views/ServiceDialog.vue";
+// import ContactDialog from "./views/others/views/ContactDialog.vue";
+// import DialogMessage from "./views/common/view/DialogMessage.vue";
+// import DialogMessageBox from "./views/common/view/DialogMessageBox.vue";
+// import DialogGetVerity from "./views/common/view/DialogGetVerity.vue";
 
 @Component({
     components: {
-        DialogMessage,
-        DialogMessageBox,
-        DialogGetVerity,
+        // DialogMessage,
+        // DialogMessageBox,
+        // DialogGetVerity,
         Header,
         Footer,
-        Service,
-        Contact,
+        // ServiceDialog,
+        // ContactDialog,
     },
 })
 export default class APP extends Vue {}

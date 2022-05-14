@@ -7,8 +7,8 @@
             </v-card-title>
             <v-card-text class="text-subtitle-1 px-0 pt-10 pb-5 text-center">{{ dialogData.message }}</v-card-text>
             <v-card-actions class="d-flex justify-space-around pa-0 py-2">
-                <v-btn large width="100" v-if="dialogData.bConfirm" plain color="primary" outlined @click="close"> 取消 </v-btn>
-                <v-btn large width="100" color="primary" @click="submit"> 确定 </v-btn>
+                <v-btn large width="100" v-if="dialogData.bConfirm" plain color="colorYellow" outlined @click="close"> 取消 </v-btn>
+                <v-btn large width="100" color="colorYellow" @click="submit"> 确定 </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>

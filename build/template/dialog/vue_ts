@@ -1,0 +1,29 @@
+import AbstractView from "@/core/abstract/AbstractView";
+import BlurUtil from "@/core/global/BlurUtil";
+import CopyUtil from "@/core/global/CopyUtil";
+import { Watch } from "vue-property-decorator";
+import ${className}Mediator from "../mediator/${className}Mediator";
+import ${className}Proxy from "../proxy/${className}Proxy";
+
+export default class ${className} extends AbstractView {
+    myProxy: ${className}Proxy = this.getProxy(${className}Proxy);
+    pageData = this.myProxy.pageData;
+
+    constructor() {
+        super(${className}Mediator);
+    }
+
+    onClose() {
+        this.pageData.bShow = false;
+    }
+
+    @Watch("pageData.bShow")
+    onWatchShow() {
+        BlurUtil(this.pageData.bShow);
+        if (this.pageData.bShow) {
+            //如果是列表，使用以下数据，否则删除
+            this.myProxy.resetQuery();
+            this.myProxy.api_xxx();
+        }
+    }
+}

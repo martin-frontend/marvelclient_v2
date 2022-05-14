@@ -1,7 +1,7 @@
 <template>
     <div class="mt-8">
         <div class="text-16 mb-2 ml-2 mr-4 d-flex align-center">
-            <v-icon class="mr-1" color="primary">{{ gameProxy.categoryIcon[data.category] }}</v-icon>
+            <v-icon class="mr-1" color="colorYellow">{{ gameProxy.categoryIcon[data.category] }}</v-icon>
             <div>{{ data.category_name }}</div>
             <v-spacer />
             <v-btn

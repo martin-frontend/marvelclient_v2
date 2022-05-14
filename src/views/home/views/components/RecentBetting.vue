@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-16 mb-2 ml-2 mr-4 d-flex">
-            <div class="icon-box iconfont icon-bangdan icon__icon primary--text text-22 mr-1"></div>
+            <div class="icon-box iconfont icon-bangdan icon__icon colorYellow--text text-22 mr-1"></div>
             <div class="text-title">近期投注</div>
         </div>
         <div class="RecentBetting-container">

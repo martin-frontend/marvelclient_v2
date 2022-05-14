@@ -36,6 +36,7 @@
     "tests/**/*.tsx",
     "public/libs/puremvc/puremvc.d.ts",
     "public/libs/core/core.d.ts",
+    "public/libs/qrcode/qrcode.d.ts",
     "src/shims-vue.d.ts"
   ],
   "exclude": [

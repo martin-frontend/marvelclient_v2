@@ -1,0 +1,13 @@
+<v-card width="224" height="280" class="rounded-lg card-gap" @click="goGamePlay">
+    <v-img class="game-icon" width="224" height="280" :src="getIcon(item)">
+        <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
+        <div class="vendor-title">{{ item.vendor_name }}</div>
+        <div class="egame__item__mask">
+            <div class="egame__item__play-icon">
+                <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                    <div class="icon-chevron-right icon__icon mt-n1"></div>
+                </div>
+            </div>
+        </div>
+    </v-img>
+</v-card>

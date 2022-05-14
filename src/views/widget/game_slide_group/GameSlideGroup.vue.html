@@ -1,0 +1,24 @@
+<div class="mt-8">
+    <div class="text-16 mb-2 ml-2 mr-4 d-flex align-center">
+        <v-icon class="mr-1" color="colorYellow">{{ gameProxy.categoryIcon[data.category] }}</v-icon>
+        <div>{{ data.category_name }}</div>
+        <v-spacer />
+        <v-btn
+            v-if="bShowAll"
+            class="text-12 mr-16 rounded-pill"
+            color="rgba(243, 231, 231, 0.098)"
+            width="78"
+            height="24"
+            @click="onShowAll"
+        >
+            查看全部
+        </v-btn>
+    </div>
+    <v-sheet max-width="1430" class="mx-auto" color="transparent">
+        <v-slide-group show-arrows>
+            <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
+                <GameItem :item="item" />
+            </v-slide-item>
+        </v-slide-group>
+    </v-sheet>
+</div>

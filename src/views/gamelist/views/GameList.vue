@@ -28,8 +28,6 @@
 </template>
 
 <script lang="ts">
-import GameItem from "@/components/GameItem.vue";
-import GameSlideGroup from "@/components/GameSlideGroup.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import Component from "vue-class-component";
 import GameSearch from "./components/GameSearch.vue";
@@ -37,6 +35,8 @@ import GameType from "./components/GameType.vue";
 import GameVendorType from "./components/GameVendorType.vue";
 import GameListMediator from "../mediator/GameListMediator";
 import GameListProxy from "../proxy/GameListProxy";
+import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
+import GameItem from "@/views/widget/game_item/GameItem.vue";
 @Component({
     components: {
         GameSlideGroup,

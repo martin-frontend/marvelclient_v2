@@ -13,6 +13,14 @@ export default class DialogGetVerity extends AbstractView {
         super(DialogGetVerityMediator);
     }
 
+    getVerity() {
+        this.myProxy.api_public_auth_code();
+    }
+
+    onSend() {
+        this.myProxy.api_public_email_send();
+    }
+
     onClose() {
         this.pageData.bShow = false;
     }
@@ -20,10 +28,5 @@ export default class DialogGetVerity extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if (this.pageData.bShow) {
-            //如果是列表，使用以下数据，否则删除
-            // this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
-        }
     }
 }

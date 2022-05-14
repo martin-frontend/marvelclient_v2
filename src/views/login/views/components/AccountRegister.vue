@@ -38,11 +38,11 @@
 </template>
 
 <script lang="ts">
-import CustomInput from "@/components/CustomInput.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import { checkMail, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import GetVerity from "@/views/common/proxy/GetVerityProxy";
 import ServiceProxy from "@/views/others/proxy/ServiceProxy";
+import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import Component from "vue-class-component";
 import LoginProxy from "../../proxy/LoginProxy";
 @Component({

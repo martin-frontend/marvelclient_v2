@@ -1,29 +1,21 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
-import DialogLoginProxy from "../proxy/DialogLoginProxy";
+import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
 
-export default class DialogLoginMediator extends AbstractMediator{
+export default class DialogRegisterMediator extends AbstractMediator{
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_login,
-            net.EventType.api_user_reset_password,
-        ];
+        return [net.EventType.api_user_register];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogLoginProxy = getProxy(DialogLoginProxy);
+        const myProxy:DialogRegisterProxy = getProxy(DialogRegisterProxy);
         switch(notification.getName()){
-            case net.EventType.api_user_login:
-                dialog_message.scuess("登录成功");
-                myProxy.hide();
+            case net.EventType.api_user_register:
+                dialog_message.scuess("注册成功");
                 this.loginScuess(body);
-                break;
-            case net.EventType.api_user_reset_password:
-                dialog_message.scuess("密码找回成功");
-                myProxy.hide();
                 break;
         }
     }

@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import CustomInput from "@/components/CustomInput.vue";
 import AbstractView from "@/core/abstract/AbstractView";
+import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import Component from "vue-class-component";
 import { GetVerityProxy } from "../proxy/GetVerityProxy";
 @Component({

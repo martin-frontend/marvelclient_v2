@@ -33,9 +33,9 @@
 </template>
 
 <script lang="ts">
-import CustomInput from "@/components/CustomInput.vue";
 import AbstractView from "@/core/abstract/AbstractView";
 import { checkMail, checkUserPassword } from "@/core/global/Functions";
+import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import Component from "vue-class-component";
 import LoginProxy from "../../proxy/LoginProxy";
 @Component({

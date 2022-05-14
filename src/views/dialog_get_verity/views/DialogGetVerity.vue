@@ -2,9 +2,14 @@
 <style src="./DialogGetVerity.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import CustomInput from "@/views/widget/custom_input/CustomInput";
 import Component from "vue-class-component";
 import DialogGetVerity from "./DialogGetVerity";
 
-@Component
+@Component({
+    components: {
+        CustomInput,
+    },
+})
 export default class extends DialogGetVerity {}
 </script>

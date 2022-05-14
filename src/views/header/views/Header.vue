@@ -111,8 +111,6 @@
                 </button>
             </div>
         </v-container>
-        <LoginDialog />
-        <RegisterDialog />
     </v-app-bar>
 </template>
 
@@ -120,9 +118,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
-import LoginProxy from "@/views/login/proxy/LoginProxy";
-import LoginDialog from "@/views/login/views/LoginDialog.vue";
-import RegisterDialog from "@/views/login/views/RegisterDialog.vue";
 import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
@@ -135,8 +130,6 @@ import dialog_register from "@/views/dialog_register";
 
 @Component({
     components: {
-        LoginDialog,
-        RegisterDialog,
         Wallet,
         User
     },

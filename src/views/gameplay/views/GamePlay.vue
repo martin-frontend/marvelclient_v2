@@ -6,29 +6,29 @@
                 <div class="iconfont icon-Expand"></div>
             </v-btn>
         </v-sheet>
-        <RecentBetting class="mt-4"/>
+        <RecentBetting class="mt-4" />
     </v-container>
 </template>
 
 <script lang="ts">
 import AbstractView from "@/core/abstract/AbstractView";
 import router from "@/router";
-import Message from "@/views/common/proxy/MessageProxy";
+import dialog_message from "@/views/dialog_message";
 import RecentBetting from "@/views/home/views/components/RecentBetting.vue";
 import Component from "vue-class-component";
 import GamePlayProxy from "../proxy/GamePlayProxy";
 @Component({
     components: {
-        RecentBetting
-    }
+        RecentBetting,
+    },
 })
 export default class GamePlay extends AbstractView {
     private myProxy: GamePlayProxy = this.getProxy(GamePlayProxy);
 
-    mounted(){
-        if(this.myProxy.url == ""){
+    mounted() {
+        if (this.myProxy.url == "") {
             router.replace("/");
-        }else{
+        } else {
             window.scrollTo(0, 0);
         }
     }
@@ -37,7 +37,7 @@ export default class GamePlay extends AbstractView {
         const gameFrame = document.getElementById("gameFrame");
         if (gameFrame) {
             gameFrame.requestFullscreen().catch(() => {
-                Message.show("Fullscreen not supported");
+                dialog_message.warn("Fullscreen not supported");
             });
         }
     }

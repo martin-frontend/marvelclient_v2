@@ -53,5 +53,5 @@
     <div class="text-12 mt-3 color-blue">⚠️ 1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。</div>
     <div class="text-12 mb-2 color-blue ml-4">2.兑换手续费1%</div>
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">提交</v-btn>
-    <Overlay :loading="pageData.loading"/>
+    <Overlay v-model="pageData.loading"/>
 </v-card-text>

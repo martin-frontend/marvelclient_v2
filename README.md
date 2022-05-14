@@ -15,15 +15,10 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
+### 自动生成
 ```
-yarn test:unit
+1. yarn gen_dialog xxxx
+    生成一个弹窗
+2. yarn gen_widget xxxx <path>
+    生成一个组件
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

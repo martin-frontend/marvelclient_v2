@@ -3,12 +3,14 @@
 
 <script lang="ts">
 import CustomInput from "@/views/widget/custom_input/CustomInput";
+import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogGetVerity from "./DialogGetVerity";
 
 @Component({
     components: {
         CustomInput,
+        Overlay,
     },
 })
 export default class extends DialogGetVerity {}

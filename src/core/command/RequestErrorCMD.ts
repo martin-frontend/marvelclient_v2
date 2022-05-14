@@ -2,8 +2,8 @@ import SelfProxy from "@/proxy/SelfProxy";
 import GameProxy from "@/proxy/GameProxy";
 // import LobbyProxy from "@/views/Main/game/proxy/LobbyProxy";
 import router from "@/router";
-import Message from "@/views/common/proxy/MessageProxy";
 import GlobalVar from "../global/GlobalVar";
+import dialog_message from "@/views/dialog_message";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
@@ -36,28 +36,28 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 if (core.user_id) {
                     selfProxy.loginout();
                     // lobbyProxy.loginDialog.bShow = true;
-                    Message.show(body.result.msg);
+                    dialog_message.error(body.result.msg)
                     router.push("/").catch((err: any) => err);
                 } else {
                     // net_status.headerLoading = false;
-                    Message.show(body.result.msg);
+                    dialog_message.error(body.result.msg)
                 }
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
-                Message.show(body.result.msg);
+                dialog_message.error(body.result.msg)
                 // selfProxy.api_user_register_auth_code();
             } else if (ERROR_CODE_PHONE.includes(result.status)) {
                 // headerProxy.confirmBind.bShow = true;
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
-                Message.show(body.result.msg);
+                dialog_message.error(body.result.msg)
                 // lobbyProxy.loginDialog.bShow = false;
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
-                Message.show(body.result.msg);
+                dialog_message.error(body.result.msg)
             } else {
                 // net_status.headerLoading = false;
-                Message.show(body.result.msg);
+                dialog_message.error(body.result.msg)
             }
         } else {
-            Message.show(body.result.msg);
+            dialog_message.error(body.result.msg)
         }
     }
 }

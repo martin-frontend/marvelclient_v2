@@ -1,6 +1,27 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import { Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
+import OverlayMediator from "./OverlayMediator";
 
+@Component
 export default class Overlay extends AbstractView {
-    @Prop() loading!:boolean;
+    constructor() {
+        super(OverlayMediator);
+    }
+
+    inputValue = this.getValue;
+
+    @Prop() value!: any;
+    @Watch("value")
+    onValueChange() {
+        this.inputValue = this.value;
+    }
+
+    get getValue() {
+        return this.value ? this.value : false;
+    }
+
+    hide() {
+        this.inputValue = false;
+        this.$emit("input", this.inputValue);
+    }
 }

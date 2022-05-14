@@ -4,7 +4,7 @@ const utils = require("./utils");
 
 const tempPath = path.resolve(__dirname, "template/widget");
 const srcPath = path.resolve(__dirname, "../src");
-const widgetPath = path.resolve(srcPath, "views/widget");
+const widgetPath = path.resolve(srcPath, process.argv[3] || "views/widget");
 
 var moduleName = process.argv[2];
 if (!moduleName) throw "参数错误";
@@ -29,11 +29,11 @@ const className = utils.getClassName(moduleName);
         const wpath = path.resolve(widgetPath, moduleName, `${className}.ts`);
         fs.writeFileSync(wpath, tml);
     })
-    .then(()=>{
+    .then(() => {
         const wpath = path.resolve(widgetPath, moduleName, `${className}.vue.html`);
         fs.writeFileSync(wpath, "");
     })
-    .then(()=>{
+    .then(() => {
         const wpath = path.resolve(widgetPath, moduleName, `${className}.vue.scss`);
         fs.writeFileSync(wpath, "");
-    })
+    });

@@ -155,18 +155,16 @@
 
 <script lang="ts">
 import AbstractView from "@/core/abstract/AbstractView";
-import ContactProxy from "@/views/others/proxy/ContactProxy";
-import ServiceProxy from "@/views/others/proxy/ServiceProxy";
+import dialog_service from "@/views/dialog_service";
+import dialog_contract from "@/views/dialog_contract";
 import Component from "vue-class-component";
 @Component
 export default class Footer extends AbstractView {
     private goService() {
-        const proxy: ServiceProxy = this.getProxy(ServiceProxy);
-        proxy.show();
+        dialog_service.show();
     }
     private goContact() {
-        const proxy: ContactProxy = this.getProxy(ContactProxy);
-        proxy.show();
+        dialog_contract.show();
     }
 }
 </script>

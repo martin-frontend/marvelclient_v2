@@ -4,14 +4,16 @@
 <script lang="ts">
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
+import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogLogin from "./DialogLogin";
 
 @Component({
-    components:{
+    components: {
+        Overlay,
         CustomInput,
-        AdvertiseInLogin
-    }
+        AdvertiseInLogin,
+    },
 })
 export default class extends DialogLogin {}
 </script>

@@ -15,6 +15,7 @@ export default class DialogLoginMediator extends AbstractMediator{
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy:DialogLoginProxy = getProxy(DialogLoginProxy);
+        myProxy.pageData.loading = false;
         switch(notification.getName()){
             case net.EventType.api_user_login:
                 dialog_message.scuess("登录成功");

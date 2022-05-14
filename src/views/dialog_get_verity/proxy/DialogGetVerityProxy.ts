@@ -16,10 +16,12 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
     };
 
     api_public_auth_code() {
+        this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
     }
 
     api_public_email_send() {
+        this.pageData.loading = true;
         this.pageData.form.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_public_email_send, this.pageData.form);
     }

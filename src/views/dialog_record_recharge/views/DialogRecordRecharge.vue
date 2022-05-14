@@ -2,9 +2,14 @@
 <style src="./DialogRecordRecharge.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogRecordRecharge from "./DialogRecordRecharge";
 
-@Component
+@Component({
+    components:{
+        Overlay
+    }
+})
 export default class extends DialogRecordRecharge {}
 </script>

@@ -50,6 +50,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
 
     /**--账号--登入*/
     api_user_login() {
+        this.pageData.loading = true;
         const { username, password } = this.pageData.form;
         window.localStorage.setItem("username", username);
         this.sendNotification(net.HttpType.api_user_login, {
@@ -59,6 +60,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
     }
     /**--账号--重置密码*/
     api_user_reset_password() {
+        this.pageData.loading = true;
         const { email, password, password_confirm, email_code } = this.forgetData.form;
         this.sendNotification(net.HttpType.api_user_reset_password, {
             email,

@@ -11,6 +11,7 @@ export default class DialogGetVerityMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogGetVerityProxy = getProxy(DialogGetVerityProxy);
+        myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;

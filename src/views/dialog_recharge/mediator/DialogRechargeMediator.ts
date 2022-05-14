@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 import getProxy from "@/core/global/getProxy";
-import Message from "@/views/common/proxy/MessageProxy";
+import dialog_message from "@/views/dialog_message";
 
 export default class DialogRechargeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -26,13 +26,12 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_show_var:
                 myProxy.exchangeProxy.gold_info = body.gold_info;
-                // Object.assign(myProxy.exchangeProxy.gold_info, body.gold_info)
                 break;
             case net.EventType.api_user_var_exchange_method_list:
                 myProxy.exchangeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_exchange_create_order:
-                Message.show("创建成功");
+                dialog_message.scuess("创建成功")
                 break;
         }
     }

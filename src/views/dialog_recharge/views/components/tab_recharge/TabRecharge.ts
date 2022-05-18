@@ -1,4 +1,4 @@
-import { CoinIcon } from "@/assets/Assets";
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import CopyUtil from "@/core/global/CopyUtil";
 import getProxy from "@/core/global/getProxy";
@@ -11,7 +11,7 @@ export default class TabRecharge extends AbstractView {
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
 
-    CoinIcon = CoinIcon;
+    CoinIcon = Assets.CoinIcon;
     QRCode = QRCode;
 
     @Watch("pageData.address")

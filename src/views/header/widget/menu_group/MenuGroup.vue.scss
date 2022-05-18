@@ -1,0 +1,21 @@
+@import "@/style/params.scss";
+.item-group-title {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+}
+.box {
+    overflow: hidden;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}

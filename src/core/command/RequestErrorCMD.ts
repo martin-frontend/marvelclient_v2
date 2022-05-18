@@ -1,6 +1,4 @@
 import SelfProxy from "@/proxy/SelfProxy";
-import GameProxy from "@/proxy/GameProxy";
-// import LobbyProxy from "@/views/Main/game/proxy/LobbyProxy";
 import router from "@/router";
 import GlobalVar from "../global/GlobalVar";
 import dialog_message from "@/views/dialog_message";
@@ -9,8 +7,6 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
         const body = notification.getBody();
         const { result } = body;
-        // const net_status = GlobalVar.net_status;
-
         // console.warn(">>>>>>>>>>>>", body);
 
         if (result) {
@@ -27,37 +23,29 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             const ERROR_CODE_REGISTER_FAIL = [1100114, 1100119, 1100117];
 
             const selfProxy: SelfProxy = <any>this.facade.retrieveProxy(SelfProxy.NAME);
-            const gameProxy: GameProxy = <any>this.facade.retrieveProxy(GameProxy.NAME);
-            // const lobbyProxy: LobbyProxy = <any>this.facade.retrieveProxy(LobbyProxy.NAME);
-
-            //
 
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
                 if (core.user_id) {
                     selfProxy.loginout();
-                    // lobbyProxy.loginDialog.bShow = true;
-                    dialog_message.error(body.result.msg)
+                    dialog_message.error(body.result.msg);
                     router.push("/").catch((err: any) => err);
                 } else {
-                    // net_status.headerLoading = false;
-                    dialog_message.error(body.result.msg)
+                    dialog_message.error(body.result.msg);
                 }
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
-                dialog_message.error(body.result.msg)
-                // selfProxy.api_user_register_auth_code();
+                dialog_message.error(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {
-                // headerProxy.confirmBind.bShow = true;
+                // TODO 绑定手机
+                // dialog_message.error(body.result.msg)
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
-                dialog_message.error(body.result.msg)
-                // lobbyProxy.loginDialog.bShow = false;
+                dialog_message.error(body.result.msg);
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
-                dialog_message.error(body.result.msg)
+                dialog_message.error(body.result.msg);
             } else {
-                // net_status.headerLoading = false;
-                dialog_message.error(body.result.msg)
+                dialog_message.error(body.result.msg);
             }
         } else {
-            dialog_message.error(body.result.msg)
+            dialog_message.error(body.result.msg);
         }
     }
 }

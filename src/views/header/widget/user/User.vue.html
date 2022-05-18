@@ -1,0 +1,11 @@
+<v-menu offset-y nudge-bottom="20" nudge-left="190" :close-on-content-click="false" content-class="content-style">
+    <template v-slot:activator="{ on, attrs }">
+        <div v-bind="attrs" v-on="on">
+            <v-sheet class="d-flex align-center rounded-pill ml-4" color="rgba(255, 255, 255, 0.08)" width="100" height="45">
+                <img class="ml-3" src="@/assets/header/avatar.gif" width="32" height="32" alt="" />
+                <div class="icon-box iconfont ml-4 text-19 colorBlue--text font-weight-bold" style="transform: rotate(00deg)"></div>
+            </v-sheet>
+        </div>
+    </template>
+    <UserPanel/>
+</v-menu>

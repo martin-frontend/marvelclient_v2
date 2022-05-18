@@ -1,0 +1,32 @@
+@import "@/style/params.scss";
+::v-deep.v-menu__content {
+    border-radius: 10px !important;
+    width: 177px !important;
+    min-width: 0 !important;
+}
+.btn-topup {
+    position: absolute;
+    margin-top: -41px;
+    margin-left: 179px;
+}
+.btn-topup-min {
+    position: absolute;
+    margin-top: -28px;
+    margin-left: 130px;
+}
+.listbox {
+    background-color: #324466;
+}
+.lisitem {
+    cursor: pointer;
+    width: 177px;
+    height: 82px;
+    padding-left: 15px;
+    margin-top: 1px;
+}
+.listitem-active {
+    background-color: #25324b;
+}
+.lisitem:hover {
+    background-color: #25324b;
+}

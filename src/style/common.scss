@@ -5,9 +5,10 @@
         background-color: #121e36ff;
     }
 }
-@media screen and (min-width: 1430px) {
+@media screen and (min-width: 1460px) {
     .container {
-        max-width: 1430px;
+        // max-width: 1430px;
+        min-width: 1460px;
     }
 }
 .html{

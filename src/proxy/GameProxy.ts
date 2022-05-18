@@ -1,36 +1,14 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
-import WalletProxy from "@/views/header/proxy/WalletProxy";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
-    /**大厅当前选择的分类 */
-    lobbySelect: core.PlatLobbyIndexVO = {
-        category: 1,
-        category_name: "",
-        list: [],
-        index: 0,
-    };
-    /**厂商产品 */
-    vendorProduct: core.VendorProductVO[] = [];
-
-    /**游戏分类图标 */
-    categoryIcon = {
-        1: "mdi-fire",
-        2: "mdi-cards-playing",
-        4: "mdi-cards-playing",
-        8: "mdi-cards-playing",
-        16: "mdi-cards-playing",
-        32: "mdi-cards-playing",
-        64: "mdi-cards-playing",
-        128: "mdi-cards-playing",
-        256: "mdi-cards-playing",
-        512: "mdi-cards-playing",
-    };
     /**当前正在玩的游戏 */
     currGame:any;
+    /**当前选择的钱包类型 */
+    coin_name_unique:string = "";
 
     /**
      * 大厅菜单
@@ -51,48 +29,27 @@ export default class GameProxy extends AbstractProxy {
                 }
             }
             tmp.push(...body.class);
-            this.lobbyIndex.push(...tmp);
+            this.lobbyIndex = tmp;
         } else {
-            this.lobbyIndex.push(...body.class);
+            this.lobbyIndex = body.class;
         }
-        this.setLobbySelect(this.lobbyIndex[0].category);
-    }
-    /**设置当前大厅分类 */
-    setLobbySelect(category: number) {
-        const c = this.lobbyIndex.find((item) => item.category == category);
-        Object.assign(this.lobbySelect, c);
-        this.vendorProduct = [];
-    }
-    /**厂商游戏 */
-    setVendorProduct(data: core.VendorProductVO[]) {
-        this.vendorProduct = data;
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
     }
-    /**--大厅--获取厂商列表*/
-    api_vendor_simple() {
-        this.sendNotification(net.HttpType.api_vendor_simple);
-    }
-    /**--大厅--获取厂商配置游戏菜单（大厅厂商二级游戏菜单）*/
-    api_vendor_var_lobby_simple(data: core.VendorVO) {
-        this.vendorProduct = [];
-        const { vendor_id, list_type, vendor_type } = data;
-        this.sendNotification(net.HttpType.api_vendor_var_lobby_simple, { vendor_id, list_type, vendor_type });
-    }
+
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
     api_vendor_var_ori_product_show_var(data: core.VendorVO | core.VendorProductVO) {
         this.currGame = data;
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
-        const walletProxy:WalletProxy = this.getProxy(WalletProxy);
         this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, {
             user_id: core.user_id,
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
-            coin_name_unique: walletProxy.selectKey
+            coin_name_unique: this.coin_name_unique
         });
     }
 }

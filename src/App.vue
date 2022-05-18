@@ -5,7 +5,8 @@
             <v-main>
                 <router-view />
             </v-main>
-            <Footer />
+            <Footer v-if="!$vuetify.breakpoint.mobile" />
+            <MobileMenu v-else />
         </div>
 
         <div id="dialog_container"></div>
@@ -16,12 +17,14 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import Header from "@/views/header/views/Header.vue";
-import Footer from "./views/footer/views/Footer.vue";
+import Footer from "./views/footer/Footer.vue";
+import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
 
 @Component({
     components: {
         Header,
         Footer,
+        MobileMenu,
     },
 })
 export default class APP extends Vue {}

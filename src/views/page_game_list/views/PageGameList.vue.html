@@ -1,0 +1,27 @@
+<v-container id="gamelist" class="pa-0">
+    <GameSlideGroup v-if="hotGame.category == 1" :data="hotGame" />
+    <v-sheet class="rounded-lg mt-5 d-flex align-center px-3 py-3" color="colorTitleBg" height="80">
+        <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
+        <v-spacer />
+        <GameListSearch />
+        <GameListSelect
+            v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+            :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+            v-model="listQuery.vendor_id"
+        />
+    </v-sheet>
+    <v-card class="d-flex flex-wrap mt-7" color="transparent" flat tile>
+        <div v-for="item of pageData.list" :key="item.vendor_prodcut_id">
+            <GameItem :item="item" />
+        </div>
+    </v-card>
+    <div class="d-flex justify-center" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+        <div class="d-flex flex-column justify-center align-center">
+            <div class="mb-3" style="color: #ffffff66">
+                正显示 {{ pageData.pageInfo.pageTotal }}个游戏中的 {{ pageData.pageInfo.pageSize * pageData.pageInfo.pageCurrent }} 个
+            </div>
+            <v-progress-linear :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100" height="2"></v-progress-linear>
+            <v-btn class="rounded-pill my-5" color="colorBtnBg" width="196" height="40" @click="getMore">加载更多</v-btn>
+        </div>
+    </div>
+</v-container>

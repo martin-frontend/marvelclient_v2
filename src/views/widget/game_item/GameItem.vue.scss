@@ -1,8 +1,10 @@
-.card-gap{
-    margin: 7px;
+.card-gap {
+    margin: 8px;
 }
 .game-icon {
     cursor: pointer;
+    width: 224px;
+    height: 280px;
     .game-title {
         transition: all 0.3s ease-in-out 0s;
         position: absolute;
@@ -34,6 +36,9 @@
         font-size: 18px;
     }
 }
+
+
+
 ::v-deep .v-responsive__content {
     text-align: center;
 }
@@ -61,4 +66,37 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 100px;
     font-size: 48px;
+}
+
+@media screen and (max-width: 900px) {
+    .game-icon {
+        width: 124px;
+        height: 154px;
+        .game-title{
+            font-size: 18px;
+            line-height: 18px;
+            margin-bottom: -10px;
+        }
+        .vendor-title {
+            font-size: 12px;
+            line-height: 12px;
+            margin-bottom: -25px;
+        }
+    }
+    .game-icon:hover {
+        .game-title {
+            font-size: 20px;
+        }
+        .vendor-title {
+            font-size: 13px;
+        }
+    }
+    .egame__item__play-icon {
+        width: 40px;
+        height: 40px;
+        div>div{
+            font-size: 32px;
+        }
+        
+    }
 }

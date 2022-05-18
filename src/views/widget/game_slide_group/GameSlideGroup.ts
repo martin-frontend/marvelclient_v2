@@ -1,11 +1,11 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
-import GameProxy from "@/proxy/GameProxy";
-import router from "@/router";
+import page_game_list from "@/views/page_game_list";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class GameSlideGroup extends AbstractView {
-    gameProxy: GameProxy = this.getProxy(GameProxy);
+    CategoryIcon = Assets.CategoryIcon;
     @Prop() data!: any;
     @Prop() bShowAll!: boolean;
 
@@ -22,6 +22,6 @@ export default class GameSlideGroup extends AbstractView {
     }
 
     onShowAll() {
-        router.replace("/gamelist");
+        page_game_list.show();
     }
 }

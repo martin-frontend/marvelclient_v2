@@ -8,7 +8,8 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "gen_dialog": "node build/gen_dialog.js",
-    "gen_widget": "node build/gen_widget.js"
+    "gen_widget": "node build/gen_widget.js",
+    "gen_page": "node build/gen_page.js"
   },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",

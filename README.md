@@ -21,4 +21,6 @@ yarn build
     生成一个弹窗
 2. yarn gen_widget xxxx <path>
     生成一个组件
+2. yarn gen_page xxxx <path>
+    生成一个路由页面
 ```

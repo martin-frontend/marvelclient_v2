@@ -36,4 +36,7 @@ const className = utils.getClassName(moduleName);
     .then(() => {
         const wpath = path.resolve(widgetPath, moduleName, `${className}.vue.scss`);
         fs.writeFileSync(wpath, "");
+    })
+    .then(() => {
+        console.log("done!");
     });

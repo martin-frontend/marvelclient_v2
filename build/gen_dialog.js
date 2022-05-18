@@ -62,4 +62,7 @@ const className = utils.getClassName(moduleName);
     .then(() => {
         let wpath = path.resolve(srcPath, `views/${moduleName}/views/${className}.vue.scss`);
         fs.writeFileSync(wpath, "");
+    })
+    .then(() => {
+        console.log("done!");
     });

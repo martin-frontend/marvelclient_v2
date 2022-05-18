@@ -1,16 +1,16 @@
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import router from "@/router";
-import GamePlayProxy from "@/views/gameplay/proxy/GamePlayProxy";
+import page_game_play from "@/views/page_game_play";
 import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
+import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
 
-    private selfProxy: SelfProxy = <any>this.facade.retrieveProxy(SelfProxy.NAME);
-    private gameProxy: GameProxy = <any>this.facade.retrieveProxy(GameProxy.NAME);
+    private selfProxy: SelfProxy = getProxy(SelfProxy);
+    private gameProxy:GameProxy = getProxy(GameProxy);
 
     public listNotificationInterests(): string[] {
         return [
@@ -19,7 +19,6 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_game_config,
             net.EventType.api_user_show_var,
             net.EventType.api_plat_var_lobby_index,
-            net.EventType.api_vendor_simple,
             net.EventType.api_vendor_var_ori_product_show_var,
         ];
     }
@@ -35,8 +34,7 @@ export default class NetObserver extends AbstractMediator {
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
-                    this.gameProxy.api_plat_var_lobby_index();
-                    this.gameProxy.api_vendor_simple();
+                    this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -50,19 +48,11 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_show_var:
                 this.selfProxy.setUserInfo(body);
                 break;
-            //大厅菜单
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);
                 break;
-            case net.EventType.api_vendor_simple:
-                // this.gameProxy.setLobbyIndex(body);
-                break;
             case net.EventType.api_vendor_var_ori_product_show_var:
-                {
-                    const gamePlayProxy: GamePlayProxy = this.getProxy(GamePlayProxy);
-                    gamePlayProxy.url = body.url;
-                    if (router.currentRoute.path != "/gameplay") router.push("/gameplay");
-                }
+                page_game_play.show(body.url);
                 break;
         }
     }

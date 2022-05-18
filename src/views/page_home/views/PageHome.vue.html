@@ -1,0 +1,8 @@
+<v-container class="mt-8" :class="$vuetify.breakpoint.mobile?'px-3':''">
+    <Advertise />
+    <Activity />
+    <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
+        <GameSlideGroup :data="item" :name="item.category" :id="item.category" :bShowAll="true"/>
+    </div>
+    <RecentBetting class="mt-8"/>
+</v-container>

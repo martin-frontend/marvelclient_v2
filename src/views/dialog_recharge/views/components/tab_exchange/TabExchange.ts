@@ -1,4 +1,4 @@
-import { CoinIcon } from "@/assets/Assets";
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
@@ -10,7 +10,7 @@ export default class TabExchange extends AbstractView {
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
 
-    CoinIcon = CoinIcon;
+    CoinIcon = Assets.CoinIcon;
 
     @Watch("form.block_network_id")
     onWatchNetwwork() {

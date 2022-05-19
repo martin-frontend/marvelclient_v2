@@ -26,7 +26,7 @@ const opts = {
                 success: "#4CAF50",
                 warning: "#85AFF9",
 
-                colorYellow: "#FFAF1A",
+                colorCoin: "#F3B952", //used
                 colorTitleBg: "#1d2a43", //used
                 colorInfo: "#50607f", //used
                 colorBlue: "#9db1d8", //used
@@ -34,7 +34,8 @@ const opts = {
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used
-
+                colorExtensionBtn: "#3D5081", //used
+                colorReceive: '#5E2E2E', //used
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
             },

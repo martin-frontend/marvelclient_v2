@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
         name: "Introduce",
         component: () => import(/* webpackChunkName: "introduce" */ "../views/introduce/views/Introduce.vue"),
     },
+    {
+        path: "/page_extension",
+        name: "page_extension",
+        component: () => import(/* webpackChunkName: "page_game_play" */ "../views/page_extension/views/PageExtension.vue"),
+    },
 ];
 
 const router = new VueRouter({

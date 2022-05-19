@@ -1,0 +1,11 @@
+.horizontal-gradient-left{
+    background: linear-gradient(to right, #1E2C47, #384F72 );
+}
+.horizontal-gradient-right{
+    background: linear-gradient(to right, #1E2C47, #123564 );
+}
+::v-deep .container {
+    @media (min-width: 1264px){
+        max-width: 1250px;
+    }
+}

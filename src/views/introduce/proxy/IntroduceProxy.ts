@@ -11,6 +11,13 @@ export default class IntroduceProxy extends puremvc.Proxy {
     };
 
     pageImage = {
-        cat: require("@/assets/introduce/CAT@3x.a57017f7.png"),
+        cat: require("@/assets/introduce/CAT@3x.png"),
+        coin: require("@/assets/introduce/coin.png"),
+        FlammingM: require("@/assets/introduce/FlammingM.png"),
+        FlammingP: require("@/assets/introduce/FlammingP.png"),
+        joystick: require("@/assets/introduce/joystick.png"),
+        money: require("@/assets/introduce/money.png"),
+        stuck: require("@/assets/introduce/stuck.png"),
+        wheel: require("@/assets/introduce/wheel.png"),
     };
 }

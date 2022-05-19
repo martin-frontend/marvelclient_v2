@@ -3,6 +3,26 @@
     background: linear-gradient(90deg, #103464 0%, #1D2A43 100%);
 }
 
+.destroy-bg {
+    background-image: url("~@/assets/introduce/FlammingP.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.intro-text {
+    color: #9DB1D8;
+}
+
+.intro-btn {
+    background-color: white;
+    color: #324466;
+}
+
+.intro-btn-hover {
+    background: linear-gradient(90deg, #69b7f8 0%, #6fa7fa 100%), #ffffff;
+}
+
 // .intro-present {
 //     background-image: url("~@/assets/introduce/CAT@3x.a57017f7.png");
 //     background-position: right;

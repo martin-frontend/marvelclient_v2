@@ -31,5 +31,7 @@ module core {
         calc_type: number;
         /**是否需要绑定上级 1 需要 98不需要 */
         is_game_with_parent: {is_open: number};
+        /**支持的币种 */
+        plat_coins: {};
     }
 }

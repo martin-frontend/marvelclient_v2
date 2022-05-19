@@ -8,7 +8,7 @@
         <div class="d-flex mt-3">
             <CustomSelect
                 class="mr-3"
-                :icons="CoinIcon"
+                :icons="plat_coins"
                 :options="pageData.methodList"
                 v-model="form.coin_name_unique"
                 @change="onChange"
@@ -30,9 +30,9 @@
             </div>
             <v-sheet class="d-flex rounded-lg pa-4 mt-4 text-14" color="colorPanelTitleBg">
                 <div class="info-text">
-                    ⚠️ 此地址只接受USDT TRC-20协议充值，存入任何其他货币或协议会造成资金损失并不可追回。最小充值金额为20
-                    USDT，最大充值金额没有限制，如果存款金额不符合充值要求，则充值不会到账。
+                    ⚠️ {{pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain}}
                 </div>
+                <v-spacer/>
                 <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
                     <div ref="qrcode" class="qrcode"></div>
                 </v-sheet>
@@ -44,7 +44,7 @@
         <div class="mr-2 info-text">已支持币种</div>
         <v-img
             class="mr-2"
-            :src="CoinIcon[key]"
+            :src="plat_coins[key].icon"
             max-width="20"
             height="20"
             v-for="(item, key) of pageData.methodList"

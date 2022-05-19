@@ -2,14 +2,16 @@
     <v-card color="colorPanelBg" class="d-flex">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
-            <v-card-title class="d-flex justify-end pb-0">
-                <v-btn icon @click="onClose">
+            <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+                <div class=" ml-2 font-weight-medium white--text text-18">{{forgetData.bShow ? '找回密码' : '登陆'}} </div>
+                <v-spacer/>
+                <v-btn class="mr-2" icon @click="onClose">
                     <v-icon>{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
             <!-- 找回密码 -->
             <v-card-text v-if="forgetData.bShow" class="px-10 mt-5">
-                <div class="mt-n12 mb-8 ml-2 font-weight-medium white--text text-16">找回密码</div>
+                <!-- <div class="mt-n12 mb-8 ml-2 font-weight-medium white--text text-18">找回密码</div> -->
 
                 <div class="d-flex mb-10">
                     <v-btn
@@ -112,10 +114,11 @@
             </v-card-text>
             <!-- 登录 -->
             <v-card-text v-else class="px-10 mt-5">
-                <div class="mt-n12 mb-8 font-weight-medium white--text text-18">登录</div>
+                <!-- <div class="mt-n12 mb-8 font-weight-medium white--text text-18">登录</div> -->
                 <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入帐号/手机号/邮箱" v-model="pageData.form.username" />
                 <CustomInput icon="mdi-lock" placeholder="请输入密码(6~12位)" type="password" v-model="pageData.form.password" />
                 <div class="password-operate">
+
                     <button type="button"><i class="iconfont"></i>记住密码</button>
                     <button type="button" class="user-action-login-forgetpass" @click="goForget">忘记密码?</button>
                 </div>
@@ -123,26 +126,6 @@
                     >登录</v-btn
                 >
                 <div class="tips-box">还没有账户?<button class="tips-box_org" @click="goRegister">去注册</button></div>
-
-                <div class="loginByGoogle mt-10 mb-5">
-                    <div class="d-flex align-center">
-                        <v-divider />
-                        <div class="loginTip">或使用以下方式快速登录</div>
-                        <v-divider />
-                    </div>
-                    <ul class="loginWrap">
-                        <li class="mr-4">
-                            <button class="loginBtn" disabled="">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Google.b3a2db02.svg" alt="" />Google
-                            </button>
-                        </li>
-                        <li>
-                            <button class="loginBtn">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Metamask.7cc94b04.svg" alt="" />Metamask
-                            </button>
-                        </li>
-                    </ul>
-                </div>
             </v-card-text>
         </v-card>
     </v-card>

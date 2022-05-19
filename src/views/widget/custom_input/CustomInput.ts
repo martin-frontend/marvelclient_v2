@@ -6,6 +6,7 @@ export default class CustomInput extends AbstractView {
     @Prop() icon!: string;
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
+    @Prop({ default: 100 }) maxlength!:number
 
     inputValue = this.getValue;
     bShowPassword = true;
@@ -38,5 +39,9 @@ export default class CustomInput extends AbstractView {
 
     onToggle() {
         this.bShowPassword = !this.bShowPassword;
+    }
+
+    οnkeyup(evt:any){
+        console.log(evt);
     }
 }

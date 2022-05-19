@@ -5,7 +5,7 @@
     <div class="d-flex mt-3">
         <CustomSelect
             class="mr-3"
-            :icons="CoinIcon"
+            :icons="plat_coins"
             :options="pageData.methodList"
             v-model="form.coin_name_unique"
             @change="onChange"
@@ -45,7 +45,7 @@
         <v-col>
             <div>余额</div>
             <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
-                <v-img class="mr-2" src="@/assets/icon/coin/icon_usdt.png" max-width="20" height="20"></v-img>
+                <v-img class="mr-2" :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon" max-width="20" height="20"></v-img>
                 <div>{{ balance }}</div>
             </v-sheet>
         </v-col>
@@ -53,5 +53,17 @@
     <div class="text-12 mt-3 color-blue">⚠️ 1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。</div>
     <div class="text-12 mb-2 color-blue ml-4">2.兑换手续费1%</div>
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">提交</v-btn>
+    <v-divider class="mx-5" />
+    <v-card-text class="d-flex justify-end mt-3">
+        <div class="mr-2 info-text">已支持币种</div>
+        <v-img
+            class="mr-2"
+            :src="plat_coins[key].icon"
+            max-width="20"
+            height="20"
+            v-for="(item, key) of pageData.methodList"
+            :key="key"
+        ></v-img>
+    </v-card-text>
     <Overlay v-model="pageData.loading"/>
 </v-card-text>

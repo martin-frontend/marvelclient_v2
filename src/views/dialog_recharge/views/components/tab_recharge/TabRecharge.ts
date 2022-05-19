@@ -1,5 +1,5 @@
-import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import getProxy from "@/core/global/getProxy";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
@@ -11,7 +11,7 @@ export default class TabRecharge extends AbstractView {
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
 
-    CoinIcon = Assets.CoinIcon;
+    plat_coins = GamePlatConfig.config.plat_coins;
     QRCode = QRCode;
 
     @Watch("pageData.address")
@@ -30,6 +30,7 @@ export default class TabRecharge extends AbstractView {
     onChange(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
 
     onCopy() {

@@ -2069,6 +2069,8 @@ declare module core {
         is_game_with_parent: {
             is_open: number;
         };
+        /**支持的币种 */
+        plat_coins: {};
     }
 }
 declare module core {

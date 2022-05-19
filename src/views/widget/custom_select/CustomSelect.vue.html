@@ -9,7 +9,7 @@
                 v-bind="attrs"
                 v-on="on"
             >
-                <v-img v-if="icons" class="mr-2" :src="icons[selectValue]" max-width="20" height="20"></v-img>
+                <v-img v-if="icons" class="mr-2" :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" max-width="20" height="20"></v-img>
                 <div>{{ options[selectValue] && options[selectValue].name }}</div>
                 <v-spacer />
                 <div
@@ -23,7 +23,7 @@
         </template>
         <v-sheet class="rounded-lg py-2" color="colorPanelTitleBg" v-if="options && Object.keys(options).length > 1">
             <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
-                <v-img v-if="icons" class="mr-2" :src="icons[key]" max-width="20" height="20"></v-img>
+                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <div>{{ item.name }}</div>
             </div>
         </v-sheet>

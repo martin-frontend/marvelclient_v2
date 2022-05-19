@@ -9,7 +9,12 @@
                     height="45"
                     v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                 >
-                    <v-img class="ml-2" :src="CoinIcon[gameProxy.coin_name_unique]" max-width="20" max-height="20"></v-img>
+                    <v-img
+                        class="ml-2"
+                        :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
+                        max-width="20"
+                        max-height="20"
+                    ></v-img>
                     <span class="text-16 ml-2">${{ selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
                     <v-spacer />
                     <div class="icon-box iconfont arrow mr-16 text-10" style="transform: rotate(90deg)"></div>
@@ -24,7 +29,7 @@
                 :key="key"
                 @click="onItemClick(key)"
             >
-                <v-img :src="CoinIcon[key]" max-width="48" max-height="48"></v-img>
+                <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="48" max-height="48"></v-img>
                 <div class="ml-3" style="color: rgba(255, 255, 255, 0.8)">
                     <div class="text-16 font-weight-bold">{{ key }}钱包</div>
                     <div>${{ item.sum_money }}</div>

@@ -17,6 +17,8 @@ export default class DialogRechargeMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
+        myProxy.exchangeProxy.pageData.loading = false;
+        myProxy.rechargeProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_var_recharge_method_list:
                 myProxy.rechargeProxy.setData(body);

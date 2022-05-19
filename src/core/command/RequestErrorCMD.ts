@@ -2,6 +2,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
 import GlobalVar from "../global/GlobalVar";
 import dialog_message from "@/views/dialog_message";
+import dialog_message_box from "@/views/dialog_message_box";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
@@ -27,11 +28,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
                 if (core.user_id) {
                     selfProxy.loginout();
-                    dialog_message.error(body.result.msg);
                     router.push("/").catch((err: any) => err);
-                } else {
-                    dialog_message.error(body.result.msg);
                 }
+                dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 dialog_message.error(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {

@@ -3,7 +3,6 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.api_public_area_code();
-        this.api_public_auth_code();
     }
 
     pageData = {

@@ -1,4 +1,4 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card color="colorPanelBg" class="d-flex">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
@@ -40,7 +40,7 @@
 
                 <CustomInput
                     v-if="forgetData.form.type == 2"
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-email"
                     placeholder="请输入邮箱"
                     v-model="forgetData.form.username"
@@ -50,7 +50,7 @@
                     >
                 </CustomInput>
 
-                <CustomInput v-else class="mb-10" icon="mdi-phone" type="tel" placeholder="请输入手机号" v-model="forgetData.form.username">
+                <CustomInput v-else class="mb-6" icon="mdi-phone" type="tel" placeholder="请输入手机号" v-model="forgetData.form.username">
                     <template v-slot:pre>
                         <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
@@ -94,15 +94,15 @@
                 </CustomInput>
 
                 <CustomInput
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-shield-check"
                     placeholder="请输入验证码"
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 />
-                <CustomInput class="mb-10" icon="mdi-lock" placeholder="请输入密码" type="password" v-model="forgetData.form.password" />
+                <CustomInput class="mb-6" icon="mdi-lock" placeholder="请输入密码" type="password" v-model="forgetData.form.password" />
                 <CustomInput
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-lock"
                     placeholder="密码确认"
                     type="password"
@@ -115,7 +115,7 @@
             <!-- 登录 -->
             <v-card-text v-else class="px-10 mt-5">
                 <!-- <div class="mt-n12 mb-8 font-weight-medium white--text text-18">登录</div> -->
-                <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入帐号/手机号/邮箱" v-model="pageData.form.username" />
+                <CustomInput class="mb-6" icon="mdi-account" placeholder="请输入账号/手机号/邮箱" v-model="pageData.form.username" />
                 <CustomInput icon="mdi-lock" placeholder="请输入密码(6~12位)" type="password" v-model="pageData.form.password" />
                 <div class="password-operate">
 

@@ -8,8 +8,8 @@ export default class UserPanel extends AbstractView {
         { id: 0, name: "安全中心", icon: "mdi-shield-check" },
         { id: 1, name: "历史记录", icon: "mdi-clock" },
         { id: 2, name: "消息中心", icon: "mdi-bell" },
-        { id: 3, name: "J9币介绍", icon: "mdi-bell" },
-        { id: 4, name: "J9BC记录", icon: "mdi-bell" },
+        { id: 3, name: "CF币介绍", icon: "mdi-bell" },
+        { id: 4, name: "CFBC记录", icon: "mdi-bell" },
     ];
     activityGroup = {
         title: "优惠活动",

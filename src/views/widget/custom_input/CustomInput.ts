@@ -40,8 +40,4 @@ export default class CustomInput extends AbstractView {
     onToggle() {
         this.bShowPassword = !this.bShowPassword;
     }
-
-    οnkeyup(evt:any){
-        console.log(evt);
-    }
 }

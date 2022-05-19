@@ -1,4 +1,4 @@
-<v-dialog v-model="pageData.bShow" max-width="300">
+<v-dialog v-model="pageData.bShow" max-width="300" persistent>
     <v-card class="rounded-xl" color="colorPanelBg" width="300" height="230">
         <v-card-title class="d-flex align-center gradient-bg">
             <div class=" ml-2 font-weight-medium white--text text-18">{{pageData.category == 0 ? "获取邮箱验证码": "获取短信验证码"}}</div>

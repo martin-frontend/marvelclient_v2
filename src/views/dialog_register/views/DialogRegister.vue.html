@@ -9,13 +9,100 @@
             </v-card-title>
             <v-card-text class="px-10 mt-5">
                 <div class="mt-n12 mb-8 ml-2 font-weight-medium colorBlue--text text-16">账号注册</div>
+
+                <div class="d-flex mb-10">
+                    <v-btn
+                        width="110"
+                        height="40"
+                        class="rounded-pill font-weight-bold mr-2"
+                        elevation="0"
+                        :text="form.register_type != 1"
+                        :color="form.register_type == 1 ? 'colorBtnBg' : 'colorText1'"
+                        @click="onTabClick(1)"
+                    >
+                        账号注册
+                    </v-btn>
+                    <v-btn
+                        width="110"
+                        height="40"
+                        class="rounded-pill font-weight-bold"
+                        elevation="0"
+                        :text="form.register_type != 4"
+                        :color="form.register_type == 4 ? 'colorBtnBg' : 'colorText1'"
+                        @click="onTabClick(4)"
+                    >
+                        手机注册
+                    </v-btn>
+                    <v-btn
+                        width="110"
+                        height="40"
+                        class="rounded-pill font-weight-bold"
+                        elevation="0"
+                        :text="form.register_type != 2"
+                        :color="form.register_type == 2 ? 'colorBtnBg' : 'colorText1'"
+                        @click="onTabClick(2)"
+                    >
+                        邮箱注册
+                    </v-btn>
+                </div>
+
                 <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入推存人（选填）" v-model="form.invite_user_id" />
-                <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入邮箱" v-model="form.email">
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.email)" @click="getCode">获取验证码</v-btn>
+                <CustomInput v-if="form.register_type==1" class="mb-8" icon="mdi-account" placeholder="请输入注册帐号（4-20位）" v-model="form.username" />
+                <CustomInput v-if="form.register_type==2" class="mb-8" icon="mdi-account" placeholder="请输入邮箱" v-model="form.username">
+                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">获取验证码</v-btn>
                 </CustomInput>
+
+                <CustomInput v-if="form.register_type==4" class="mb-8" icon="mdi-phone" type="tel" placeholder="请输入手机号" v-model="form.username">
+                    <template v-slot:pre>
+                        <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
+                                    <div class="colorBtnBg--text mx-2">+{{form.area_code}}</div>
+                                    <div
+                                        class="icon-box iconfont text-18 mr-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div>
+                                    <div class="text-20">|</div>
+                                </div>
+                            </template>
+                            <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" width="400">
+                                <v-text-field
+                                    class="rounded-pill"
+                                    outlined
+                                    dense
+                                    prepend-inner-icon="mdi-database-search-outline"
+                                    hide-details
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></v-text-field>
+
+                                <v-list dense color="colorPanelTitleBg">
+                                    <v-list-item-group>
+                                        <v-list-item v-for="(item, index) of areaCodeList" :key="index" class="colorText2--text" @click="onItemAreaCode(item)">
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                        </v-menu>
+                    </template>
+                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode"
+                        >获取验证码</v-btn
+                    >
+                </CustomInput>
+
+
+                <CustomInput class="mb-8" v-if="form.register_type != 1" icon="mdi-shield-check" placeholder="请输入验证码" v-model="form.verify_code" />
                 <CustomInput class="mb-8" icon="mdi-lock" placeholder="请输入密码" type="password" v-model="form.password" />
                 <CustomInput class="mb-8" icon="mdi-lock" placeholder="确认密码" type="password" v-model="form.password_confirm" />
-                <CustomInput icon="mdi-shield-check" placeholder="请输入验证码" v-model="form.email_code" />
+                <CustomInput v-if="form.register_type == 1" icon="mdi-shield-check" placeholder="请输入验证码" v-model="form.verify_code" >
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="140" @click="getImageVerity"></v-img>
+                </CustomInput>
+
                 <div class="text-13 tips-box mt-1 mb-8">
                     注册即代表您已阅读并同意
                     <button class="tips-box_blue" type="button" @click="goService">《服务协议》</button>

@@ -1,13 +1,13 @@
-<v-dialog v-model="dialogData.bShow" max-width="500">
+<v-dialog v-model="pageData.bShow" max-width="500">
     <v-card class="rounded-xl" color="colorPanelBg" width="500" height="300">
-        <v-card-title class="mb-8">
-            <div class="mt-3 ml-2 font-weight-medium colorBlue--text text-16">获取邮箱验证码</div>
+        <v-card-title class="mb-8 align-center">
+            <div class="mt-3 ml-2 font-weight-medium white--text text-16">{{pageData.category == 0 ? "获取邮箱验证码": "获取短信验证码"}}</div>
             <v-spacer />
             <v-btn icon @click="onClose"><v-icon>mdi-close</v-icon></v-btn>
         </v-card-title>
         <v-card-text class="d-flex align-center mx-3">
-            <CustomInput type="tel" v-model="dialogData.auth_code" placeholder="请输入验证码" style="width: 270px" />
-            <v-img class="ml-3 rounded" :src="myProxy.auth_image" max-width="140" @click="getVerity"></v-img>
+            <CustomInput type="tel" v-model="pageData.form.auth_code" placeholder="请输入验证码" style="width: 270px" />
+            <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="140" @click="getVerity"></v-img>
         </v-card-text>
         <v-card-actions class="mt-5 mx-5">
             <v-btn class="rounded-lg" color="#6fa9fa" height="48" block @click="onSend">确定发送</v-btn>

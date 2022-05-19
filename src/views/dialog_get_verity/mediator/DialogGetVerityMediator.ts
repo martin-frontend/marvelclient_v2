@@ -5,7 +5,7 @@ import dialog_message from "@/views/dialog_message";
 
 export default class DialogGetVerityMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_public_auth_code, net.EventType.api_public_email_send];
+        return [net.EventType.api_public_auth_code, net.EventType.api_public_email_send, net.EventType.api_public_sms_send];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -17,6 +17,7 @@ export default class DialogGetVerityMediator extends AbstractMediator {
                 myProxy.pageData.auth_image = body;
                 break;
             case net.EventType.api_public_email_send:
+            case net.EventType.api_public_sms_send:
                 dialog_message.scuess("发送成功");
                 myProxy.pageData.bShow = false;
                 break;

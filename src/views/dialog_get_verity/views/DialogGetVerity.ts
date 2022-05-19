@@ -18,7 +18,11 @@ export default class DialogGetVerity extends AbstractView {
     }
 
     onSend() {
-        this.myProxy.api_public_email_send();
+        if (this.pageData.category == 0) {
+            this.myProxy.api_public_email_send();
+        } else {
+            this.myProxy.api_public_sms_send();
+        }
     }
 
     onClose() {

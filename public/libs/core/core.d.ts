@@ -15,6 +15,10 @@ declare module net {
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
+        /**--新加的--发送短信*/
+        api_public_sms_send: string;
+        /**--新加的--获取手机区号*/
+        api_public_area_code: string;
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
@@ -214,6 +218,10 @@ declare module net {
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
+        /**--新加的--发送短信*/
+        api_public_sms_send: string;
+        /**--新加的--获取手机区号*/
+        api_public_area_code: string;
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
@@ -538,6 +546,15 @@ declare module net {
     }
 }
 /**
+ * 获取手机区号
+ */
+declare module net {
+    class cmd_api_public_area_code extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 获取验证码图片
  */
 declare module net {
@@ -551,6 +568,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_public_email_send extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 发送短信
+ */
+declare module net {
+    class cmd_api_public_sms_send extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -4,6 +4,8 @@
         "--新加的",
         ["api/public/auth_code",                        "获取验证码图片"],
         ["api/public/email/send",                       "发送邮件"],
+        ["api/public/sms/send",                         "发送短信"],
+        ["api/public/area_code",                        "获取手机区号"],
         ["api/plat/{plat_id}/game/all/config",          "获取所有游戏的查询配置"],
         ["api/plat/{plat_id}/game/all/index",           "所有游戏的查询"],
         

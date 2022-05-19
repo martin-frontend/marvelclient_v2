@@ -4,19 +4,16 @@ import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
 
-export default class DialogLoginMediator extends AbstractMediator{
+export default class DialogLoginMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_login,
-            net.EventType.api_user_reset_password,
-        ];
+        return [net.EventType.api_user_login, net.EventType.api_user_reset_password, net.EventType.api_public_area_code];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogLoginProxy = getProxy(DialogLoginProxy);
+        const myProxy: DialogLoginProxy = getProxy(DialogLoginProxy);
         myProxy.pageData.loading = false;
-        switch(notification.getName()){
+        switch (notification.getName()) {
             case net.EventType.api_user_login:
                 dialog_message.scuess("登录成功");
                 myProxy.hide();
@@ -24,7 +21,10 @@ export default class DialogLoginMediator extends AbstractMediator{
                 break;
             case net.EventType.api_user_reset_password:
                 dialog_message.scuess("密码找回成功");
-                myProxy.hide();
+                myProxy.show();
+                break;
+            case net.EventType.api_public_area_code:
+                myProxy.forgetData.areaCode = body;
                 break;
         }
     }

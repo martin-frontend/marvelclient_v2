@@ -36,6 +36,7 @@ const opts = {
                 colorSelectBg: "#2C3D5C", //used
 
                 colorText1: "#4c5d7f",
+                colorText2: "#96AAD0",
             },
         },
         dark: true,

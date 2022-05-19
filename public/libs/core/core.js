@@ -69,6 +69,10 @@ var net;
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api/public/email/send",
+        /**--新加的--发送短信*/
+        api_public_sms_send: "api/public/sms/send",
+        /**--新加的--获取手机区号*/
+        api_public_area_code: "api/public/area_code",
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
         /**--新加的--所有游戏的查询*/
@@ -268,6 +272,10 @@ var net;
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
         api_public_email_send: "api_public_email_send",
+        /**--新加的--发送短信*/
+        api_public_sms_send: "api_public_sms_send",
+        /**--新加的--获取手机区号*/
+        api_public_area_code: "api_public_area_code",
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: "api_plat_var_game_all_config",
         /**--新加的--所有游戏的查询*/
@@ -459,6 +467,8 @@ var net;
         //--新加的
         facade.registerCommand(net.HttpType.api_public_auth_code, net.cmd_api_public_auth_code);
         facade.registerCommand(net.HttpType.api_public_email_send, net.cmd_api_public_email_send);
+        facade.registerCommand(net.HttpType.api_public_sms_send, net.cmd_api_public_sms_send);
+        facade.registerCommand(net.HttpType.api_public_area_code, net.cmd_api_public_area_code);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_config, net.cmd_api_plat_var_game_all_config);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_index, net.cmd_api_plat_var_game_all_index);
         //--钱包
@@ -901,6 +911,28 @@ var net;
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
 })(net || (net = {}));
 /**
+ * 获取手机区号
+ */
+var net;
+/**
+ * 获取手机区号
+ */
+(function (net) {
+    class cmd_api_public_area_code extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_area_code, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_area_code, result.data);
+            }
+        }
+    }
+    net.cmd_api_public_area_code = cmd_api_public_area_code;
+})(net || (net = {}));
+/**
  * 获取验证码图片
  */
 var net;
@@ -943,6 +975,28 @@ var net;
         }
     }
     net.cmd_api_public_email_send = cmd_api_public_email_send;
+})(net || (net = {}));
+/**
+ * 发送短信
+ */
+var net;
+/**
+ * 发送短信
+ */
+(function (net) {
+    class cmd_api_public_sms_send extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_sms_send, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_sms_send, result.data);
+            }
+        }
+    }
+    net.cmd_api_public_sms_send = cmd_api_public_sms_send;
 })(net || (net = {}));
 /**
  * 收款方式发送短信

@@ -1,11 +1,17 @@
+.intro-intro-md {
+    background-image: url("~@/assets/introduce/CAT@3x.png");
+    background-position: top -40px right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
 .intro-plan {
     background: linear-gradient(90deg, #103464 0%, #1D2A43 100%);
 }
 
-.destroy-bg {
+.intro-destroy {
     background-image: url("~@/assets/introduce/FlammingP.png");
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -23,45 +29,213 @@
     background: linear-gradient(90deg, #69b7f8 0%, #6fa7fa 100%), #ffffff;
 }
 
-// .intro-present {
-//     background-image: url("~@/assets/introduce/CAT@3x.a57017f7.png");
-//     background-position: right;
-//     background-repeat: no-repeat;
-//     background-size: contain;
-//     .text-subtitle-1 {
-//         width: 34vw;
-//     }
-// }
+.intro-how-01-md {
+    background: url("~@/assets/introduce/01P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+.intro-how-02-md {
+    background: url("~@/assets/introduce/02P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+.intro-how-03-md {
+    background: url("~@/assets/introduce/03P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
 
-// .intro-title {
-//     color: #ffffff;
-//     font-size: 26px;
-//     line-height: 24px;
-//     font-weight: bold;
-// }
+.intro-how-01 {
+    background: url("~@/assets/introduce/01M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-02 {
+    background: url("~@/assets/introduce/02M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-03 {
+    background: url("~@/assets/introduce/03M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
 
-// .intro-present {
-    
-//     p:nth-child(1) {
-//         color: #ffffff;
-//         font-size: 26px;
-//         line-height: 24px;
-//         letter-spacing: 0px;
-//         padding-bottom: 16px;
-//         font-weight: bold;
-//     }
-//     p:nth-child(2), p:nth-child(3) {
-//         color: rgba(255, 255, 255, 0.8);
-//         font-size: 16px;
-//         line-height: 32px;
-//         letter-spacing: 0px;
-//         text-align: left;
-//     }
-//     p:nth-child(2) {
-//         padding-bottom: 6px;
-//     }
-// }
+.intro-year-color {
+    color: #8fa1c3;
+}
 
-// .or-sheet {
-//     border-radius: 16px
-// }
+.intro-distext-color {
+    color: #50607F;
+}
+
+.chartWrap {
+    overflow: hidden;
+    height: 330px;
+    // width: 956px;
+    // max-width: 956px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgBox {
+    position: relative;
+    width: 420px;
+    height: 330px;
+    background: url("~@/assets/introduce/wheel.png") no-repeat center;
+    background-size: contain;
+    padding: 10px 40px;
+    box-sizing: border-box;
+}
+.img2Wrap {
+    position: absolute;
+    top: 35px;
+    left: 56px;
+    width: 260px;
+}
+.img3Wrap {
+    position: absolute;
+    top: 30px;
+    left: 51px;
+    width: 270px;
+}
+.img2 {
+    width: 100%;
+    transition-duration: 1s;
+    -webkit-animation: rotate 5s linear infinite;
+    animation: rotate 5s linear infinite;
+}
+.img3 {
+    width: 100%;
+    transition-duration: 1s;
+    -webkit-animation: rotate 5s linear infinite;
+    animation: rotate 5s linear infinite;
+}
+.Text10B {
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    width: 290px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Text10B span:nth-child(1) {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 24px;
+}
+.Text10B span:nth-child(2) {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 24px;
+}
+.Text10B span:nth-child(2).zh {
+    font-size: 16px;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes rotate {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(359deg);
+    }
+}
+@-o-keyframes rotate {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(359deg);
+    }
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.textWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 535px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    padding: 15px 0;
+    left: -15px;
+    li {
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        span {
+            border-radius: 8px;
+            height: 28px;
+            line-height: 28px;
+            width: 64px;
+            text-align: center;
+            margin-right: 16px;
+            font-family: "Montserrat-ExtraBold";
+            font-size: 14px;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+        span.bg1 {
+            background: rgba(114, 226, 96, 0.2);
+            color: #72e260;
+        }
+        span.bg2 {
+            background: rgba(226, 96, 96, 0.2);
+            color: #e26060;
+        }
+        span.bg3 {
+            background: rgba(226, 174, 96, 0.2);
+            color: #e2ae60;
+        }
+        span.bg4 {
+            background: rgba(96, 164, 226, 0.2);
+            color: #60a4e2;
+        }
+        span.bg5 {
+            background: rgba(200, 96, 226, 0.2);
+            color: #c860e2;
+        }
+        strong {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0px;
+            text-align: left;
+            font-weight: normal;
+        }
+    }
+}

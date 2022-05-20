@@ -7,6 +7,9 @@ function show() {
     DialogMount(DialogRecharge);
     const proxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     proxy.show();
+    proxy.pageData.tabIndex = 0;
+    proxy.exchangeProxy.pageData.form.account = "";
+    proxy.exchangeProxy.pageData.form.amount = "";
 }
 
 export default { show };

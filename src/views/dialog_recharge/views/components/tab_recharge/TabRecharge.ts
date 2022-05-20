@@ -16,20 +16,17 @@ export default class TabRecharge extends AbstractView {
 
     @Watch("pageData.address")
     onWatchAddress() {
-        if (this.pageData.address != "") {
-            const div: any = this.$refs.qrcode;
-            div.innerHTML = "";
-            new this.QRCode(div, this.pageData.address);
-        }
-    }
-    @Watch("form.block_network_id")
-    onWatchNetWork() {
-        this.myProxy.rechargeProxy.api_user_var_recharge_address();
+        const div: any = this.$refs.qrcode;
+        div.innerHTML = "";
+        new this.QRCode(div, this.pageData.address);
     }
 
-    onChange(value: any) {
+    onChange1(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.myProxy.rechargeProxy.api_user_var_recharge_address();
+    }
+    onChange2(value: any) {
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
 

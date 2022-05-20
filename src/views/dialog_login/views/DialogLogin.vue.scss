@@ -31,3 +31,13 @@
 ::v-deep.v-text-field--outlined fieldset {
     color: #314361 !important;
 }
+
+::v-deep.v-input--dense{
+    margin:0 !important;
+    padding:0 !important;
+}
+::v-deep.v-input .v-label{
+    font-size: 14px;
+    margin-left: -8px;
+    color: #4C5D7F;
+}

@@ -11,12 +11,13 @@
                 :icons="plat_coins"
                 :options="pageData.methodList"
                 v-model="form.coin_name_unique"
-                @change="onChange"
+                @change="onChange1"
             />
             <CustomSelect
                 v-if="pageData.methodList[form.coin_name_unique]"
                 :options="pageData.methodList[form.coin_name_unique].options"
                 v-model="form.block_network_id"
+                @change="onChange2"
             />
         </div>
         <v-card color="transparent">

@@ -3,16 +3,14 @@
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
             <v-card-title class="d-flex justify-end pb-0 gradient-bg">
-                <div class=" ml-2 font-weight-medium white--text text-18">{{forgetData.bShow ? '找回密码' : '登陆'}} </div>
-                <v-spacer/>
+                <div class="ml-2 font-weight-medium white--text text-18">{{forgetData.bShow ? '找回密码' : '登陆'}}</div>
+                <v-spacer />
                 <v-btn class="mr-2" icon @click="onClose">
                     <v-icon>{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
             <!-- 找回密码 -->
             <v-card-text v-if="forgetData.bShow" class="px-10 mt-5">
-                <!-- <div class="mt-n12 mb-8 ml-2 font-weight-medium white--text text-18">找回密码</div> -->
-
                 <div class="d-flex mb-10">
                     <v-btn
                         width="110"
@@ -78,7 +76,12 @@
 
                                 <v-list dense color="colorPanelTitleBg">
                                     <v-list-item-group>
-                                        <v-list-item v-for="(item, index) of areaCodeList" :key="index" class="colorText2--text" @click="onItemAreaCode(item)">
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="colorText2--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
                                             <div>{{item.name}}</div>
                                             <v-spacer />
                                             <div>+{{item.area_code}}</div>
@@ -114,13 +117,12 @@
             </v-card-text>
             <!-- 登录 -->
             <v-card-text v-else class="px-10 mt-5">
-                <!-- <div class="mt-n12 mb-8 font-weight-medium white--text text-18">登录</div> -->
                 <CustomInput class="mb-6" icon="mdi-account" placeholder="请输入账号/手机号/邮箱" v-model="pageData.form.username" />
                 <CustomInput icon="mdi-lock" placeholder="请输入密码(6~12位)" type="password" v-model="pageData.form.password" />
                 <div class="password-operate">
-
-                    <button type="button"><i class="iconfont"></i>记住密码</button>
-                    <button type="button" class="user-action-login-forgetpass" @click="goForget">忘记密码?</button>
+                    <!-- <button type="button"><i class="iconfont"></i>记住密码</button> -->
+                    <v-checkbox v-model="pageData.remember" label="记住密码" color="colorText1" dense hide-details></v-checkbox>
+                    <div class="text-14 mt-1 cursor-pointer" @click="goForget">忘记密码？</div>
                 </div>
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedLogin" block @click="onSubmitLogin"
                     >登录</v-btn

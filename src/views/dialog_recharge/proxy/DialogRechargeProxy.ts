@@ -63,6 +63,7 @@ export class RechargeProxy extends puremvc.Proxy {
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
+        this.pageData.address = "";
     }
 }
 

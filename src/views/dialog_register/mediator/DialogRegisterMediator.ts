@@ -6,7 +6,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_register, net.EventType.api_public_auth_code, net.EventType.api_public_area_code];
+        return [net.EventType.api_user_register, net.EventType.api_public_auth_code, net.EventType.api_public_area_code, net.EventType.REQUEST_ERROR];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -24,6 +24,11 @@ export default class DialogRegisterMediator extends AbstractMediator {
                 break;
             case net.EventType.api_public_area_code:
                 myProxy.pageData.areaCode = body;
+                break;
+            case net.EventType.REQUEST_ERROR:
+                if(body.url == net.HttpType.api_user_register){
+                    myProxy.api_public_auth_code();
+                }
                 break;
         }
     }

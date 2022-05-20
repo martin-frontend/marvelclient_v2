@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 export default class DialogLoginProxy extends puremvc.Proxy {
     static NAME = "DialogLoginProxy";
 
@@ -12,6 +13,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             username: "",
             password: "",
         },
+        remember: false,
     };
 
     /**找回密码 */
@@ -24,7 +26,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
             verify_code: "",
-            type: 2,  // 2：邮箱  4：手机
+            type: 2, // 2：邮箱  4：手机
         },
         // {icon:string, name:string,area_code:number}
         areaCode: <any>[],
@@ -42,13 +44,17 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password_confirm: "",
             verify_code: "",
         });
+        const user = Cookies.get("username");
+        const pwd = Cookies.get("password");
+        if (user && pwd) {
+            this.pageData.form.username = user;
+            this.pageData.form.password = pwd;
+            this.pageData.remember = true;
+        }
+        console.log("this.pageData.form: ", this.pageData.form);
     }
 
     show() {
-        Object.assign(this.pageData.form, {
-            username: "",
-            password: "",
-        });
         this.forgetData.bShow = false;
         this.pageData.bShow = true;
     }
@@ -67,6 +73,13 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             username,
             password: core.MD5.createInstance().hex_md5(password),
         });
+        if (this.pageData.remember) {
+            Cookies.set("username", username, { expires: 7 });
+            Cookies.set("password", password, { expires: 7 });
+        }else{
+            Cookies.remove("username");
+            Cookies.remove("password");
+        }
     }
     /**--账号--重置密码*/
     api_user_reset_password() {
@@ -77,7 +90,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             verify_code,
-            type
+            type,
         });
     }
     /**获取手机区号 */

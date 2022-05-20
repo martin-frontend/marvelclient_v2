@@ -6,7 +6,7 @@ export default class CustomInput extends AbstractView {
     @Prop() icon!: string;
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
-    @Prop({ default: 100 }) maxlength!:number
+    @Prop({ default: 100 }) maxlength!: number;
 
     inputValue = this.getValue;
     bShowPassword = true;
@@ -18,6 +18,10 @@ export default class CustomInput extends AbstractView {
     }
 
     onInput(value: any) {
+        if (this.type == "password") {
+            this.inputValue = this.inputValue.replace(/[\u4e00-\u9fa5]/g, "");
+            this.inputValue = this.inputValue.replace(/\s*/g,"");
+        }
         this.$emit("input", this.inputValue);
     }
 

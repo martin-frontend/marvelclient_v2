@@ -35,7 +35,7 @@ const opts = {
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used
                 colorExtensionBtn: "#3D5081", //used
-                colorReceive: '#5E2E2E', //used
+                colorReceive: "#5E2E2E", //used
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
             },

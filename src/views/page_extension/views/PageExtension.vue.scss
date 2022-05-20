@@ -9,11 +9,25 @@
     background: linear-gradient(to right, #1E2C47, #123564 );
 }
 ::v-deep .container {
-
     @media (min-width: 1264px){
         max-width: 1250px;
     }
     @media (min-width: 1904px){
         max-width: 1785px;
+    }
+}
+// 等级
+.level_col {
+    position: relative;
+    .level_icon {
+        position: absolute;
+        left: 5px;
+        top: 0px;
+        max-width: 20px;
+        @media (min-width: 600px){
+            left: 15px;
+            top: -5px;
+            max-width: 30px;
+        }
     }
 }

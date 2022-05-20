@@ -32,6 +32,7 @@ const opts = {
                 colorBlue: "#9db1d8", //used
                 colorPanelBg: "#121E36", //used
                 colorPanelBg2: "#16233F", //used
+                colorPanelBg3: "#12294A", //used
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used

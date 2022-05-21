@@ -1,16 +1,16 @@
-<div style="width: 100%">
+<v-sheet :width="width">
     <v-menu offset-y nudge-bottom="5">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
                 class="d-flex align-center rounded-lg pl-4"
                 width="100%"
-                height="41"
+                :height="height"
                 color="colorPanelTitleBg"
                 v-bind="attrs"
                 v-on="on"
             >
                 <v-img v-if="icons" class="mr-2" :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" max-width="20" height="20"></v-img>
-                <div>{{ options[selectValue] && options[selectValue].name }}</div>
+                <div class="text-truncate">{{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}</div>
                 <v-spacer />
                 <div
                     v-if="options && Object.keys(options).length > 1"
@@ -24,8 +24,8 @@
         <v-sheet class="rounded-lg py-2" color="colorPanelTitleBg" v-if="options && Object.keys(options).length > 1">
             <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
-                <div>{{ item.name }}</div>
+                <div>{{ item.name || item }}</div>
             </div>
         </v-sheet>
     </v-menu>
-</div>
+</v-sheet>

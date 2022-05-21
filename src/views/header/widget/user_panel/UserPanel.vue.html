@@ -3,7 +3,7 @@
     <div class="mx-auto mt-2 text-16 font-weight-medium">{{userInfo.nick_name}}</div>
 
     <v-sheet class="rounded-lg mt-3 py-1" color="#24314A">
-        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />

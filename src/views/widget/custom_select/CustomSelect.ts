@@ -5,6 +5,8 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 export default class CustomSelect extends AbstractView {
     @Prop() options!: any;
     @Prop() icons!: any;
+    @Prop({ default: "100%" }) width!: string;
+    @Prop({ default: "41" }) height!: string;
 
     private selectValue = this.getValue;
 

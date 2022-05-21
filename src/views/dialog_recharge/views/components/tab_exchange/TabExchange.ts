@@ -40,14 +40,14 @@ export default class TabExchange extends AbstractView {
 
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+            return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         }
         return "0.00";
     }
 
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         } else {
             this.form.amount = "0.00";
         }

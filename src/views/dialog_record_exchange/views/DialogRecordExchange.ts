@@ -37,4 +37,9 @@ export default class DialogRecordExchange extends AbstractView {
             this.myProxy.api_user_var_exchange_order_list();
         }
     }
+
+    onPageChange(val:any){
+        this.pageData.listQuery.page_count = val;
+        this.myProxy.api_user_var_exchange_order_list();
+    }
 }

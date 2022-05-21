@@ -1,0 +1,21 @@
+.listitem {
+    div {
+        min-width: 140px;
+        max-width: 140px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+}
+.listbox {
+    max-height: 450px;
+    min-height: 450px;
+    overflow-y: scroll;
+}

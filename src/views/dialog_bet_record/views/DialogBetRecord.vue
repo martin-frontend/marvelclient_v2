@@ -5,9 +5,11 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogBetRecord from "./DialogBetRecord";
+import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 
 @Component({
     components: {
+        CustomSelect,
         Overlay
     }
 })

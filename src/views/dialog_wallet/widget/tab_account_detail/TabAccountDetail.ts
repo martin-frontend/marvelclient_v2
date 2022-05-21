@@ -14,20 +14,22 @@ export default class TabAccountDetail extends AbstractView {
 
     commonIcon = Assets.commonIcon;
 
-    TIME_TYPE = Constant.TIME_TYPE;
+    get timeOptions() {
+        return Constant.TIME_TYPE;
+    }
 
-    get user_gold_log_type(){
+    get coinOptions() {
+        const keys = Object.keys(GamePlatConfig.config.plat_coins);
+        keys.unshift("全部币种");
+        return keys;
+    }
+
+    get typeOptions() {
         const types = {
             0: "全部类型"
         }
         Object.assign(types, GamePlatConfig.enums.user_gold_log_type);
         return types;
-    }
-
-    get COIN_TYPE(){
-        const keys = Object.keys(GamePlatConfig.config.plat_coins);
-        keys.unshift("全部币种");
-        return keys;
     }
 
     timeSelect = 0;
@@ -60,7 +62,7 @@ export default class TabAccountDetail extends AbstractView {
         if(this.coinSelect == 0){
             this.listQuery.coin_name_unique = null;
         }else{
-            this.listQuery.coin_name_unique = this.COIN_TYPE[this.coinSelect];
+            this.listQuery.coin_name_unique = this.coinOptions[this.coinSelect];
         }
         this.myProxy.api_user_show_var_gold();
     }
@@ -70,4 +72,8 @@ export default class TabAccountDetail extends AbstractView {
         this.myProxy.api_user_show_var_gold();
     }
     
+    onPageChange(val:any){
+        this.listQuery.page_count = val;
+        this.myProxy.api_user_show_var_gold();
+    }
 }

@@ -38,4 +38,9 @@ export default class DialogRecordRecharge extends AbstractView {
             this.myProxy.api_user_var_recharge_list();
         }
     }
+
+    onPageChange(val:any){
+        this.pageData.listQuery.page_count = val;
+        this.myProxy.api_user_var_recharge_list();
+    }
 }

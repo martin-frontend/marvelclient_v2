@@ -58,6 +58,10 @@ input {
     cursor: pointer;
 }
 
+.scroll-y{
+    overflow-y: scroll;
+}
+
 .gradient-bg {
     height: 70px;
     background-color: #16233b;

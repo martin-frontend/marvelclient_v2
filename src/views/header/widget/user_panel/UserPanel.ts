@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_bet_record from "@/views/dialog_bet_record";
+import dialog_email from "@/views/dialog_email";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
@@ -40,6 +41,9 @@ export default class UserPanel extends AbstractView {
                 break;
             case 2:
                 dialog_bet_record.show();
+                break;
+            case 3:
+                dialog_email.show();
                 break;
         }
     }

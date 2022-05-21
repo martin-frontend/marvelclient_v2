@@ -37,6 +37,7 @@ const opts = {
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
+                colorTextGold: "#F3B952",
             },
         },
         dark: true,

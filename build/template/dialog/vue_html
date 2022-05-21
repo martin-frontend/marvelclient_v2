@@ -4,7 +4,7 @@
             <div class="text-18">${moduleName}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
+                <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
     </v-card>

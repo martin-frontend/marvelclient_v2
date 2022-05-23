@@ -1,7 +1,6 @@
 .listitem {
     div {
-        min-width: 140px;
-        max-width: 140px;
+        width: 120px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -11,6 +10,12 @@
         }
         div > a {
             color: #9db1d8;
+        }
+    }
+    .listitem-140 {
+        width: 140px;
+        div {
+            width: 140px;
         }
     }
 }

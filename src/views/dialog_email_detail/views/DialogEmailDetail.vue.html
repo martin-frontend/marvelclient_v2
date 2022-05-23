@@ -18,7 +18,7 @@
             </v-sheet>
             <div v-if="pageData.data.attachment_status != 1" class="d-flex align-end mt-3 px-2">
                 <div class="d-flex mr-2" v-for="(item, key) of pageData.data.attachment_content" :key="key">
-                    <v-img :src="plat_coins[key].icon" max-width="40" height="40"></v-img>
+                    <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="40" height="40"></v-img>
                     <div class="ml-2">
                         <div>{{key}}</div>
                         <div>{{item}}</div>

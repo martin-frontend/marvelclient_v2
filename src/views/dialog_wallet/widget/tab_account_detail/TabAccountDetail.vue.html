@@ -1,9 +1,8 @@
 <v-card-text class="mt-3 px-5">
-    <div class="d-flex justify-end">
-        <v-spacer />
-        <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
-        <CustomSelect v-model="coinSelect" :options="coinOptions" width="140" class="mx-3" @change="onCoinChange" />
-        <CustomSelect v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
+    <div class="d-flex flex-wrap">
+        <CustomSelect class="mb-2 mr-2" v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+        <CustomSelect class="mb-2 mr-2" v-model="coinSelect" :options="coinOptions" width="140"  @change="onCoinChange" />
+        <CustomSelect class="mb-2 mr-2" v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
     </div>
     <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
         <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -39,6 +38,7 @@
     </v-sheet>
     <v-spacer />
     <v-pagination
+        class="mt-2"
         v-if="pageData.list.length>0"
         v-model="pageData.pageInfo.pageCurrent"
         :length="pageData.pageInfo.pageCount"

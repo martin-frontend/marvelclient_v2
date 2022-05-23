@@ -44,6 +44,7 @@ const opts = {
                 colorText3: "#9BA1AB", //used
                 colorText4: "#85A7DC", //used
                 colorTextGold: "#F3B952",
+                colorDialogInfo: "#FFB01A",
             },
         },
         dark: true,

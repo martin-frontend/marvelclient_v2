@@ -153,13 +153,12 @@
                     <v-hover v-slot="{ hover }">
                         <v-card :color="hover ? '#283c63' : '#25324b'" rounded="xl">
                             <v-card-title>
-                                <v-img contain max-width="24" max-height="24" :src="pageImage.coin"></v-img>
-                                <span class="ml-2">J9BC投注</span>
-                                <v-spacer></v-spacer>
-                                <span class="indigo--text font-weight-bold text--lighten-2 text-body-2">敬请期待</span>
+                                <v-img contain max-width="24" max-height="24" :src="pageImage.stuck"></v-img>
+                                <span class="ml-2">玩家间交易</span>
                             </v-card-title>
                             <v-card-text :class="hover ? 'white--text' : 'intro-text'">
-                                J9BC将会作为网站可用游戏额度，支持多种游戏投注、结算，并支持J9BC作为流通数字货币。
+                                网站即将上线J9BC
+                                Swap系统，为玩家间流通提供一个交易平台。玩家间可在网站内直接交易J9BC，网站也会通过Swap进行J9BC回购销毁。
                             </v-card-text>
                         </v-card>
                     </v-hover>
@@ -168,13 +167,13 @@
                     <v-hover v-slot="{ hover }">
                         <v-card :color="hover ? '#283c63' : '#25324b'" rounded="xl">
                             <v-card-title>
-                                <v-img contain max-width="24" max-height="24" :src="pageImage.money"></v-img>
-                                <span class="ml-2">J9BC回购</span>
+                                <v-img contain max-width="24" max-height="24" :src="pageImage.coin"></v-img>
+                                <span class="ml-2">J9BC投注</span>
                                 <v-spacer></v-spacer>
                                 <span class="indigo--text font-weight-bold text--lighten-2 text-body-2">敬请期待</span>
                             </v-card-title>
                             <v-card-text :class="hover ? 'white--text' : 'intro-text'">
-                                官方将拿出每日奖池分红的50%用于回购，所有回购的J9BC都将被销毁，实现J9BC的稳步升值。
+                                J9BC将会作为网站可用游戏额度，支持多种游戏投注、结算，并支持J9BC作为流通数字货币。
                             </v-card-text>
                         </v-card>
                     </v-hover>
@@ -187,14 +186,11 @@
                     <v-hover v-slot="{ hover }">
                         <v-card :color="hover ? '#283c63' : '#25324b'" rounded="xl">
                             <v-card-title>
-                                <v-img contain max-width="24" max-height="24" :src="pageImage.coin"></v-img>
-                                <span class="ml-2">玩家间交易</span>
-                                <v-spacer></v-spacer>
-                                <span class="indigo--text font-weight-bold text--lighten-2 text-body-2">敬请期待</span>
+                                <v-img contain max-width="24" max-height="24" :src="pageImage.money"></v-img>
+                                <span class="ml-2">J9BC回购</span>
                             </v-card-title>
                             <v-card-text :class="hover ? 'white--text' : 'intro-text'">
-                                网站即将上线J9BC
-                                Swap系统，为玩家间流通提供一个交易平台。玩家间可在网站内直接交易J9BC，网站也会通过Swap进行J9BC回购销毁。
+                                官方将拿出每日奖池分红的50%用于回购，所有回购的J9BC都将被销毁，实现J9BC的稳步升值。
                             </v-card-text>
                         </v-card>
                     </v-hover>

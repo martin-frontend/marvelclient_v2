@@ -49,6 +49,7 @@ const opts = {
                 colorTextGreen: "#69B65E", //used
                 colorTextBlueLight: "#72ABFD", //used
                 colorBorderBlue: "#374F81", //used
+                colorDialogInfo: "#FFB01A",
             },
         },
         dark: true,

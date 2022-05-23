@@ -1,4 +1,4 @@
-<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
             <div class="text-18">绑定上级ID</div>
@@ -7,7 +7,9 @@
                 <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text v-if="forgetData.bShow" class="px-10 mt-5">
+        <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
+            <CustomInput class="mb-3" placeholder="请输入绑定上级ID" v-model="pageData.inviteId" />
+            <div class="ml-5 mb-9 colorDialogInfo--text">确定绑定后无法更改</div>
             <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedForget" block @click="onSubmitForget">确定绑定</v-btn>
         </v-card-text>
     </v-card>

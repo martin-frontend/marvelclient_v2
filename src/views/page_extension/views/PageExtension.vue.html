@@ -2,87 +2,84 @@
     <v-container >
         <v-row no-gutters >
             <v-col cols="12" lg="6" class="pr-lg-2">
-                <v-card :height="$vuetify.breakpoint.mobile? 150 : 90" class="mb-2 rounded-xl horizontal-gradient-left text-body-1 d-flex align-center px-5">
+                <v-card class="mb-2 rounded-xl horizontal-gradient-left text-body-1 d-flex align-center px-5 py-6">
                     <v-row no-gutters class="d-flex flex-row">
-                        <v-col cols="12" md="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-md-0">
-                            <span class="mr-0 mr-md-5 colorText1--text">
+                        <v-col cols="12" sm="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
+                            <span class="mr-0 mr-md-5 colorText3--text">
                                 可领取佣金
                             </span>
                         </v-col>
-                        <v-col cols="12" md="auto" class="d-flex flex-row justify-center justify-md-start align-center  mb-2 mb-md-0">
-                            <v-img class="mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img><span class="text-h5 mr-5 colorCoin--text">10000</span>
+                        <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-2 mb-sm-0">
+                            <v-img class="mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img><span class="text-h5 mr-5 mr-md-1 colorCoin--text">10000</span>
                             <v-img class="mr-1" src="@/assets/extension/lcusd.png" max-width="30" height="30"></v-img>
                             <span class="text-h5 colorCoin--text">10000</span>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="12" md="auto" class="d-flex justify-center justify-md-end">
+                        <v-col cols="12" sm="auto" class="d-flex justify-center justify-md-end">
                             <v-btn width="100" height="40" class="mr-3 rounded-lg text-body-1 colorReceive--text" color="colorCoin" >领取</v-btn>
                             <v-btn width="100" height="40" class="rounded-lg text-body-1" color="colorExtensionBtn">领取记录</v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
-                <v-card :height="$vuetify.breakpoint.mobile? 400 : 270"  min-width="90" class="rounded-xl horizontal-gradient-left down text-body-1 mb-2 mb-lg-0 px-7 py-6">
-                  </v-img>
-                    <div class="d-flex flex-row">
-                        <v-row no-gutters class="d-flex flex-column flex-md-row mb-2">
-                            <v-col col="12" md="5" class="d-flex justify-center justify-md-end">
-                                <span class="text-subtitle-1 colorText1--text">今日预计佣金</span>
-                            </v-col>
-                            <v-col col="12" md="7" class="d-flex flex-row justify-center justify-md-start">
-                                <v-img class="ml-2 mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img>
-                                <span class="text-h5 mr-5">10000</span>
-                                <v-img class="mr-1" src="@/assets/extension/lcusd.png" max-width="30" height="30"></v-img>
-                                <span class="text-h5">10000</span>
-                            </v-col>
-                        </v-row>
-                    </div>
+                <v-card min-width="90" class="rounded-xl horizontal-gradient-left down text-body-1 mb-2 mb-lg-0 px-7 py-6">
+                    <v-row no-gutters class="d-flex flex-column flex-sm-row mb-2">
+                        <v-col col="12" sm="5" class="d-flex justify-center justify-sm-end align-center">
+                            <span class="text-subtitle-1 colorText3--text">今日预计佣金</span>
+                        </v-col>
+                        <v-col col="12" sm="7" class="d-flex flex-row justify-center justify-sm-start">
+                            <v-img class="ml-2 mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img>
+                            <span class="text-h5 mr-5">10000</span>
+                            <v-img class="mr-1" src="@/assets/extension/lcusd.png" max-width="30" height="30"></v-img>
+                            <span class="text-h5">10000</span>
+                        </v-col>
+                    </v-row>
                     <v-row no-gutters>
-                        <v-col cols="12" md="7">
+                        <v-col cols="12" sm="7">
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
-                                <v-col cols="6" md="5"class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText1--text">今日总业绩
+                                <v-col cols="6" sm="5"class="d-flex justify-end">
+                                    <span class="text-subtitle-2 colorText3--text">今日总业绩
                                     </span> 
                                 </v-col>
-                                <v-col cols="6" md="4">
+                                <v-col cols="6" sm="4">
                                     <span class="text-subtitle-1 ml-2">1000000
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
-                                <v-col cols="6" md="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText1--text">今日团队业绩
+                                <v-col cols="6" sm="5" class="d-flex justify-end">
+                                    <span class="text-subtitle-2 colorText3--text">今日团队业绩
                                     </span> 
                                 </v-col>
-                                <v-col cols="6" md="4">
+                                <v-col cols="6" sm="4">
                                     <span class="text-subtitle-1 ml-2">1000000
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
-                                <v-col cols="6" md="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText1--text">今日直属业绩
+                                <v-col cols="6" sm="5" class="d-flex justify-end">
+                                    <span class="text-subtitle-2 colorText3--text">今日直属业绩
                                     </span> 
                                 </v-col>
-                                <v-col cols="6" md="4">
+                                <v-col cols="6" sm="4">
                                     <span class="text-subtitle-1 ml-2">1000000
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2 mb-md-0">
-                                <v-col cols="6" md="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText1--text">每万返佣
+                                <v-col cols="6" sm="5" class="d-flex justify-end">
+                                    <span class="text-subtitle-2 colorText3--text">每万返佣
                                     </span> 
                                 </v-col>
-                                <v-col cols="6" md="4">
+                                <v-col cols="6" sm="4">
                                     <span class="text-subtitle-1 ml-2">180（保底）
                                     </span>
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col cols="12" md="5">
+                        <v-col cols="12" sm="5">
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText1--text d-flex justify-end">直属人数（新增）
+                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end">直属人数（新增）
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
@@ -92,7 +89,7 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText1--text d-flex justify-end">团队人数（新增）
+                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end">团队人数（新增）
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
@@ -102,11 +99,16 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText1--text d-flex justify-end">我的上级
+                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end">
+                                        我的上级
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
-                                    <span class="text-subtitle-1  ml-1">未绑定
+                                    <span class="text-subtitle-1  ml-1">
+                                        未绑定
+                                        <v-btn text height="20" min-width="32" class="text-decoration-underline pa-0 text-subtitle-1" color="colorText4"  @click="handlerBind">
+                                            绑定
+                                        </v-btn>
                                     </span>
                                 </v-col>
                             </v-row>
@@ -120,12 +122,12 @@
                 </v-card>
             </v-col>
             <v-col cols="12" lg="6">
-                <v-card class="rounded-xl horizontal-gradient-right px-2 px-md-7 py-6" :height="$vuetify.breakpoint.mobile? 590 : 368" >
-                    <v-row no-gutters class="d-flex flex-row">
-                        <v-col col="12" md="3">
+                <v-card class="rounded-xl horizontal-gradient-right px-2 px-sm-7 py-6">
+                    <v-row no-gutters class="d-flex flex-column flex-sm-row">
+                        <v-col col="12" sm="3" md="3" lg="3">
                             <v-row no-gutters class="d-flex flex-row flex-md-column align-center">
-                                <v-col col="6" md="12">
-                                    <div class="d-flex justify-center text-subtitle-1 colorText2--text mb-2">好友推荐二维码
+                                <v-col col="6" lg="12">
+                                    <div class="d-flex justify-center text-subtitle-1 colorText4--text mb-2">好友推荐二维码
                                     </div>
                                     <div class="d-flex justify-center">
                                         <v-card height="140" width="140" class="d-flex justify-center align-center rounded-lg mb-2" color="white">
@@ -133,7 +135,7 @@
                                         </v-card>
                                     </div>
                                 </v-col>
-                                <v-col col="6" md="12" class="d-flex flex-column">
+                                <v-col col="6" lg="12" class="d-flex flex-column">
                                     <div class="d-flex justify-center">
                                         <v-btn width="120" height="40" class="rounded-lg text-body-1 mb-2" color="colorExtensionBtn">重新获取
                                         </v-btn>
@@ -145,10 +147,10 @@
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col col="12" md="9" class="colorText2--text  text-subtitle-1 pl-0 pl-md-4">
+                        <v-col col="12" sm="9" md="9" lg="9" class="colorText4--text  text-subtitle-1 pl-0 pl-sm-4">
                             <div class="ml-4 mb-2">好友推荐链接</div>
                             <div>
-                                <v-sheet color="colorPanelBg3 colorText2--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
                                     XXXXXXXXXXXXXXXXXXXXXXXX
                                     <v-btn icon>
                                         <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
@@ -157,16 +159,20 @@
                             </div>
                             <div class="ml-4 mb-2">我的邀请码</div>
                             <div>
-                                <v-sheet color="colorPanelBg3 colorText2--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
                                     XXXXXXXXXXXXXXXXXXXXXXXX
                                     <v-btn icon>
                                         <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
                                     </v-btn>
                                 </v-sheet>
                             </div>
-                            <div>1.  通过以上链接或者二维码的用户既为您的直属代理；</div>
+                            <div>
+                                1.  通过以上链接或者二维码的用户既为您的直属代理；
+                            </div>
                             <div>您的邀请码：</div>
-                            <div>2.  用户注册时填写此邀请码，既可成为您的直属代理</div>
+                            <div>
+                                2.  用户注册时填写此邀请码，既可成为您的直属代理
+                            </div>
                         </v-col>
                     </v-row>
                     <div class="d-flex justify-center justify-md-end">
@@ -178,9 +184,9 @@
         </v-row>
         <div class="px-3 py-5">
             <div class="text-h5 mb-2"> 返佣等级 </div>
-            <div class="text-body-1 colorText1--text mb-5">提升团队业绩可提升返佣等级</div>
+            <div class="text-body-1 colorText3--text mb-5">提升团队业绩可提升返佣等级</div>
             <v-card height="50" class="rounded-xl mb-1 d-flex align-center mb-1" color="colorPanelBg2">
-                <v-row no-gutters class="d-flex flex-row text-body-1 colorText1--text">
+                <v-row no-gutters class="d-flex flex-row text-body-1 colorText3--text">
                     <v-col cols="3" class="d-flex justify-center align-center">
                         等级
                     </v-col>

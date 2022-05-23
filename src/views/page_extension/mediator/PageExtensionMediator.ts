@@ -10,5 +10,6 @@ export default class PageExtensionMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: PageExtensionProxy = getProxy(PageExtensionProxy);
+        // switch(notification.getName()){}
     }
 }

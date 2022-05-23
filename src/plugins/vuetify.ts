@@ -38,8 +38,12 @@ const opts = {
                 colorSelectBg: "#2C3D5C", //used
                 colorExtensionBtn: "#3D5081", //used
                 colorReceive: "#5E2E2E", //used
-                colorText1: "#9BA1AB", //used
-                colorText2: "#85A7DC", //used
+
+                colorText1: "#4c5d7f",
+                colorText2: "#96AAD0",
+                colorText3: "#9BA1AB", //used
+                colorText4: "#85A7DC", //used
+                colorTextGold: "#F3B952",
             },
         },
         dark: true,

@@ -1,3 +1,4 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
@@ -10,6 +11,8 @@ import DialogRecordExchangeProxy from "../proxy/DialogRecordExchangeProxy";
 export default class DialogRecordExchange extends AbstractView {
     myProxy: DialogRecordExchangeProxy = this.getProxy(DialogRecordExchangeProxy);
     pageData = this.myProxy.pageData;
+
+    commonIcon = Assets.commonIcon;
 
     constructor() {
         super(DialogRecordExchangeMediator);
@@ -33,5 +36,10 @@ export default class DialogRecordExchange extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_exchange_order_list();
         }
+    }
+
+    onPageChange(val:any){
+        this.pageData.listQuery.page_count = val;
+        this.myProxy.api_user_var_exchange_order_list();
     }
 }

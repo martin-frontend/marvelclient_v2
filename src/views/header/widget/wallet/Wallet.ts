@@ -1,5 +1,5 @@
-import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -12,7 +12,8 @@ export default class Wallet extends AbstractView {
     selfProxy:SelfProxy = getProxy(SelfProxy);
     gameProxy:GameProxy = getProxy(GameProxy);
 
-    CoinIcon = Assets.CoinIcon;
+    // plat_coins = GamePlatConfig.config.plat_coins;
+    GamePlatConfig = GamePlatConfig;
 
     onItemClick(key: string) {
         this.gameProxy.coin_name_unique = key;

@@ -17,6 +17,13 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
         },
     };
 
+    statusOptions = {
+        0: "待支付",
+        1: "成功",
+        2: "失败",
+        3: "玩家已支付等待确认",
+    };
+
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
             page_count: 1,

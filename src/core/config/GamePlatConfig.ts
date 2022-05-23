@@ -20,6 +20,7 @@ export default class GamePlatConfig {
         promotion_info: { is_open: 1 },
         sign_info: { is_open: 0 },
         vip_info: { is_open: 1 },
+        plat_coins: {},
     };
     /**枚举 */
     static enums: {

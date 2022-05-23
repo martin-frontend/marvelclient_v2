@@ -1,16 +1,16 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card color="colorPanelBg" class="d-flex">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
-            <v-card-title class="d-flex justify-end pb-0">
-                <v-btn icon @click="onClose">
+            <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+                <div class="ml-2 font-weight-medium white--text text-18">{{forgetData.bShow ? '找回密码' : '登录'}}</div>
+                <v-spacer />
+                <v-btn class="mr-2" icon @click="onClose">
                     <v-icon>{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
             <!-- 找回密码 -->
             <v-card-text v-if="forgetData.bShow" class="px-10 mt-5">
-                <div class="mt-n12 mb-8 ml-2 font-weight-medium white--text text-16">找回密码</div>
-
                 <div class="d-flex mb-10">
                     <v-btn
                         width="110"
@@ -38,7 +38,7 @@
 
                 <CustomInput
                     v-if="forgetData.form.type == 2"
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-email"
                     placeholder="请输入邮箱"
                     v-model="forgetData.form.username"
@@ -48,7 +48,7 @@
                     >
                 </CustomInput>
 
-                <CustomInput v-else class="mb-10" icon="mdi-phone" type="tel" placeholder="请输入手机号" v-model="forgetData.form.username">
+                <CustomInput v-else class="mb-6" icon="mdi-phone" type="tel" placeholder="请输入手机号" v-model="forgetData.form.username">
                     <template v-slot:pre>
                         <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
@@ -76,7 +76,12 @@
 
                                 <v-list dense color="colorPanelTitleBg">
                                     <v-list-item-group>
-                                        <v-list-item v-for="(item, index) of areaCodeList" :key="index" class="colorText2--text" @click="onItemAreaCode(item)">
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="colorText2--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
                                             <div>{{item.name}}</div>
                                             <v-spacer />
                                             <div>+{{item.area_code}}</div>
@@ -92,15 +97,15 @@
                 </CustomInput>
 
                 <CustomInput
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-shield-check"
                     placeholder="请输入验证码"
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 />
-                <CustomInput class="mb-10" icon="mdi-lock" placeholder="请输入密码" type="password" v-model="forgetData.form.password" />
+                <CustomInput class="mb-6" icon="mdi-lock" placeholder="请输入密码" type="password" v-model="forgetData.form.password" />
                 <CustomInput
-                    class="mb-10"
+                    class="mb-6"
                     icon="mdi-lock"
                     placeholder="密码确认"
                     type="password"
@@ -112,37 +117,17 @@
             </v-card-text>
             <!-- 登录 -->
             <v-card-text v-else class="px-10 mt-5">
-                <div class="mt-n12 mb-8 font-weight-medium white--text text-18">登录</div>
-                <CustomInput class="mb-8" icon="mdi-account" placeholder="请输入帐号/手机号/邮箱" v-model="pageData.form.username" />
+                <CustomInput class="mb-6" icon="mdi-account" placeholder="请输入账号/手机号/邮箱" v-model="pageData.form.username" />
                 <CustomInput icon="mdi-lock" placeholder="请输入密码(6~12位)" type="password" v-model="pageData.form.password" />
                 <div class="password-operate">
-                    <button type="button"><i class="iconfont"></i>记住密码</button>
-                    <button type="button" class="user-action-login-forgetpass" @click="goForget">忘记密码?</button>
+                    <!-- <button type="button"><i class="iconfont"></i>记住密码</button> -->
+                    <v-checkbox v-model="pageData.remember" label="记住密码" color="colorText1" dense hide-details></v-checkbox>
+                    <div class="text-14 mt-1 cursor-pointer" @click="goForget">忘记密码？</div>
                 </div>
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedLogin" block @click="onSubmitLogin"
                     >登录</v-btn
                 >
                 <div class="tips-box">还没有账户?<button class="tips-box_org" @click="goRegister">去注册</button></div>
-
-                <div class="loginByGoogle mt-10 mb-5">
-                    <div class="d-flex align-center">
-                        <v-divider />
-                        <div class="loginTip">或使用以下方式快速登录</div>
-                        <v-divider />
-                    </div>
-                    <ul class="loginWrap">
-                        <li class="mr-4">
-                            <button class="loginBtn" disabled="">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Google.b3a2db02.svg" alt="" />Google
-                            </button>
-                        </li>
-                        <li>
-                            <button class="loginBtn">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Metamask.7cc94b04.svg" alt="" />Metamask
-                            </button>
-                        </li>
-                    </ul>
-                </div>
             </v-card-text>
         </v-card>
     </v-card>

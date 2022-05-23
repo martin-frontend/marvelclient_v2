@@ -1,10 +1,7 @@
-import DialogMount from "@/core/global/DialogMount";
 import getProxy from "@/core/global/getProxy";
 import DialogMessageProxy from "./proxy/DialogMessageProxy";
-import DialogMessage from "./views/DialogMessage.vue";
 
 function show(message:string, type:number) {
-    DialogMount(DialogMessage);
     const proxy: DialogMessageProxy = getProxy(DialogMessageProxy);
     proxy.pageData.bShow = true;
     proxy.pageData.message = message;

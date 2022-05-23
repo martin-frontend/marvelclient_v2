@@ -7,7 +7,6 @@
 }
 @media screen and (min-width: 1460px) {
     .container {
-        // max-width: 1430px;
         min-width: 1460px;
     }
 }
@@ -57,6 +56,10 @@ input {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.scroll-y{
+    overflow-y: scroll;
 }
 
 .gradient-bg {

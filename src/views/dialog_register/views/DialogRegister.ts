@@ -32,6 +32,7 @@ export default class DialogRegister extends AbstractView {
     }
     onTabClick(type: number) {
         this.pageData.form.register_type = type;
+        this.myProxy.resetForm();
     }
 
     getImageVerity(){
@@ -69,6 +70,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     goLogin() {
+        this.pageData.bShow = false;
         dialog_login.show();
     }
 
@@ -95,5 +97,8 @@ export default class DialogRegister extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if(this.pageData.bShow){
+            this.myProxy.api_public_auth_code();
+        }
     }
 }

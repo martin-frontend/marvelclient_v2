@@ -17,7 +17,7 @@ new Vue({
 
 core.init();
 core.host = "http://api.starsabc.com/";
-core.cdnUrl = "http://api.starsabc.com/";
+core.cdnUrl = "http://sftpuser.starsabc.com/";
 core.plat_id = "30000";
 core.channel_id = "30000001";
 AppFacade.inst.startup();

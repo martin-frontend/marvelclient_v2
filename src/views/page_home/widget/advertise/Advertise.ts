@@ -5,12 +5,12 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 export default class Advertise extends AbstractView {
     listData = [
         {
-            name: "J9 SWAP正式上线",
+            name: "CF SWAP正式上线",
             img_min: require("@/assets/ad/ad1.min.webp"),
             img: require("@/assets/ad/ad1.webp"),
         },
         {
-            name: "寻J9赌神，分亿元J9BC",
+            name: "寻CF赌神，分亿元CFBC",
             img_min: require("@/assets/ad/ad2.min.webp"),
             img: require("@/assets/ad/ad2.webp"),
         },

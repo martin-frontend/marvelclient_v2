@@ -1,3 +1,4 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
@@ -10,6 +11,9 @@ import DialogRecordRechargeProxy from "../proxy/DialogRecordRechargeProxy";
 export default class DialogRecordRecharge extends AbstractView {
     myProxy: DialogRecordRechargeProxy = this.getProxy(DialogRecordRechargeProxy);
     pageData = this.myProxy.pageData;
+    statusOptions = this.myProxy.statusOptions;
+
+    commonIcon = Assets.commonIcon;
 
     constructor() {
         super(DialogRecordRechargeMediator);
@@ -33,5 +37,10 @@ export default class DialogRecordRecharge extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_recharge_list();
         }
+    }
+
+    onPageChange(val:any){
+        this.pageData.listQuery.page_count = val;
+        this.myProxy.api_user_var_recharge_list();
     }
 }

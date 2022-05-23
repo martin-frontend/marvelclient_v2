@@ -1,0 +1,74 @@
+<v-dialog width="850" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">投注记录</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5">
+            <div class="colorText2--text text-16 ml-3 d-flex">
+                <div>总投注额 {{pageData.total_bet_gold}}</div>
+                <div class="ml-5">输赢 {{ (parseFloat(pageData.total_win_gold) < 0 ? "-" : "+") + pageData.total_win_gold}}</div>
+            </div>
+            <v-divider class="mt-2 mb-4" />
+            <div class="d-flex justify-end">
+                <CustomSelect v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
+                <CustomSelect v-model="vendorSelect" :options="vendorOptions" width="140" class="mx-3" @change="onVendorChange" />
+                <CustomSelect v-model="statusSelect" :options="statusOptions" width="140" @change="onStatusChange" />
+                <v-spacer />
+                <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+            </div>
+            <div v-if="pageData.list.length>0" class="listbox">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex flex-wrap listitem">
+                        <div>
+                            <div>订单号</div>
+                            <div class="text-truncate">{{item.order_no}}</div>
+                        </div>
+                        <div>
+                            <div>游戏名称</div>
+                            <div>{{item.vendor_product_name}}</div>
+                        </div>
+                        <div>
+                            <div>投注币种</div>
+                            <div>{{item.coin_name_unique}}</div>
+                        </div>
+                        <div>
+                            <div>投注数量</div>
+                            <div>{{item.bet_gold}}</div>
+                        </div>
+                        <div>
+                            <div>输赢</div>
+                            <div>{{(parseFloat(item.win_gold) < 0 ? "-" : "+") + item.win_gold }}</div>
+                        </div>
+                        <div>
+                            <div>状态</div>
+                            <div>{{statusOptions[item.settlement_status]}}</div>
+                        </div>
+                        <div>
+                            <div>投注时间</div>
+                            <div class="text-truncate">{{item.bet_at}}</div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </div>
+            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
+                <div>
+                    <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
+                    <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                </div>
+            </v-sheet>
+            <v-spacer />
+            <v-pagination
+                v-if="pageData.list.length>0"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                @input="onPageChange"
+            ></v-pagination>
+        </v-card-text>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

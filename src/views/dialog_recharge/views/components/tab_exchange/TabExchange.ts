@@ -1,5 +1,5 @@
-import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
@@ -10,7 +10,7 @@ export default class TabExchange extends AbstractView {
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
 
-    CoinIcon = Assets.CoinIcon;
+    plat_coins = GamePlatConfig.config.plat_coins;
 
     @Watch("form.block_network_id")
     onWatchNetwwork() {
@@ -40,14 +40,14 @@ export default class TabExchange extends AbstractView {
 
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+            return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         }
         return "0.00";
     }
 
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         } else {
             this.form.amount = "0.00";
         }

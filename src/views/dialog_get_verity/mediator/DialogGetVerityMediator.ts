@@ -5,7 +5,12 @@ import dialog_message from "@/views/dialog_message";
 
 export default class DialogGetVerityMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_public_auth_code, net.EventType.api_public_email_send, net.EventType.api_public_sms_send];
+        return [
+            net.EventType.api_public_auth_code,
+            net.EventType.api_public_email_send,
+            net.EventType.api_public_sms_send,
+            core.EventType.REQUEST_ERROR,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -20,6 +25,11 @@ export default class DialogGetVerityMediator extends AbstractMediator {
             case net.EventType.api_public_sms_send:
                 dialog_message.scuess("发送成功");
                 myProxy.pageData.bShow = false;
+                break;
+            case net.EventType.REQUEST_ERROR:
+                if (body.url == net.HttpType.api_public_email_send || body.url == net.HttpType.api_public_sms_send) {
+                    myProxy.api_public_auth_code();
+                }
                 break;
         }
     }

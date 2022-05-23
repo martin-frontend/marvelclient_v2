@@ -6,6 +6,10 @@ const CoinIcon = {
     BNB: require(`@/assets/icon/coin/icon_usdt.png`),
 };
 
+const commonIcon = {
+    nodata: require(`@/assets/nodata.png`),
+}
+
 /**游戏分类图标 */
 const CategoryIcon = {
     1: "mdi-fire",
@@ -20,4 +24,4 @@ const CategoryIcon = {
     512: "mdi-cards-playing",
 };
 
-export default { CoinIcon, CategoryIcon };
+export default { commonIcon, CoinIcon, CategoryIcon };

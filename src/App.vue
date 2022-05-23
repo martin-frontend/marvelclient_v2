@@ -8,7 +8,7 @@
             <Footer v-if="!$vuetify.breakpoint.mobile" />
             <MobileMenu v-else />
         </div>
-
+        <DialogMessage/>
         <div id="dialog_container"></div>
     </v-app>
 </template>
@@ -19,9 +19,11 @@ import Component from "vue-class-component";
 import Header from "@/views/header/views/Header.vue";
 import Footer from "./views/footer/Footer.vue";
 import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
+import DialogMessage from "./views/dialog_message/views/DialogMessage.vue";
 
 @Component({
     components: {
+        DialogMessage,
         Header,
         Footer,
         MobileMenu,

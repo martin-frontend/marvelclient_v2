@@ -1,5 +1,5 @@
-import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import getProxy from "@/core/global/getProxy";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
@@ -11,25 +11,23 @@ export default class TabRecharge extends AbstractView {
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
 
-    CoinIcon = Assets.CoinIcon;
+    plat_coins = GamePlatConfig.config.plat_coins;
     QRCode = QRCode;
 
     @Watch("pageData.address")
     onWatchAddress() {
-        if (this.pageData.address != "") {
-            const div: any = this.$refs.qrcode;
-            div.innerHTML = "";
-            new this.QRCode(div, this.pageData.address);
-        }
-    }
-    @Watch("form.block_network_id")
-    onWatchNetWork() {
-        this.myProxy.rechargeProxy.api_user_var_recharge_address();
+        const div: any = this.$refs.qrcode;
+        div.innerHTML = "";
+        new this.QRCode(div, this.pageData.address);
     }
 
-    onChange(value: any) {
+    onChange1(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.myProxy.rechargeProxy.api_user_var_recharge_address();
+    }
+    onChange2(value: any) {
+        this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
 
     onCopy() {

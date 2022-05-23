@@ -69,7 +69,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight">
+            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+55">
                 <div>
                     <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                     <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
@@ -81,6 +81,7 @@
                 v-if="pageData.list.length>0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
                 @input="onPageChange"
             ></v-pagination>
         </v-card-text>

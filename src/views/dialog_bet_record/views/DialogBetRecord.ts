@@ -121,4 +121,12 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = val;
         this.myProxy.api_user_show_var_bet();
     }
+
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 255;
+        } else {
+            return 368;
+        }
+    }
 }

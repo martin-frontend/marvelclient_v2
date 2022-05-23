@@ -26,8 +26,8 @@ export default class TabAccountDetail extends AbstractView {
 
     get typeOptions() {
         const types = {
-            0: "全部类型"
-        }
+            0: "全部类型",
+        };
         Object.assign(types, GamePlatConfig.enums.user_gold_log_type);
         return types;
     }
@@ -36,8 +36,8 @@ export default class TabAccountDetail extends AbstractView {
     coinSelect = 0;
     typeSelect = 0;
 
-    onTimeChange(){
-        switch(this.timeSelect){
+    onTimeChange() {
+        switch (this.timeSelect) {
             case 0:
                 this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");
                 this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
@@ -58,22 +58,34 @@ export default class TabAccountDetail extends AbstractView {
         this.myProxy.api_user_show_var_gold();
     }
 
-    onCoinChange(){
-        if(this.coinSelect == 0){
+    onCoinChange() {
+        if (this.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
-        }else{
+        } else {
             this.listQuery.coin_name_unique = this.coinOptions[this.coinSelect];
         }
         this.myProxy.api_user_show_var_gold();
     }
 
-    onTypeChange(){
-        this.listQuery.type = this.typeSelect;
+    onTypeChange() {
+        if (this.typeSelect == 0) {
+            this.listQuery.type = 0;
+        } else {
+            this.listQuery.type = this.typeSelect;
+        }
         this.myProxy.api_user_show_var_gold();
     }
-    
-    onPageChange(val:any){
+
+    onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_show_var_gold();
+    }
+
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 255;
+        } else {
+            return 368;
+        }
     }
 }

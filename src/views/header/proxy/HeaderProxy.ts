@@ -15,8 +15,6 @@ export default class HeaderProxy extends puremvc.Proxy {
 
     setLobbyIndex(body: any) {
         this.pageData.lobbyIndex = body.class;
-        console.log(">>>>>>>>>>>>>>>>>>>>")
-        console.log(this.pageData.lobbyIndex);
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/

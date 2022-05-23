@@ -6,6 +6,7 @@ import DialogWallet from "./views/DialogWallet.vue";
 function show() {
     DialogMount(DialogWallet);
     const proxy: DialogWalletProxy = getProxy(DialogWalletProxy);
+    proxy.pageData.tabIndex = 0;
     proxy.pageData.bShow = true;
     proxy.api_user_show_var();
 }

@@ -1,9 +1,3 @@
-.gradient-bg {
-    height: 70px;
-    background-color: #16233b;
-    background-image: linear-gradient(180deg, #24385a 0%, #121e36 70px);
-    text-align: center;
-}
 .listitem {
     div {
         min-width: 150px;
@@ -19,9 +13,4 @@
             color: #9db1d8;
         }
     }
-}
-.listbox {
-    max-height: 450px;
-    min-height: 450px;
-    overflow-y: scroll;
 }

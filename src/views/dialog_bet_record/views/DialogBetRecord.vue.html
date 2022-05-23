@@ -20,7 +20,7 @@
                 <v-spacer />
                 <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
             </div>
-            <div v-if="pageData.list.length>0" class="listbox">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
                 <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div>
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                 </v-sheet>
-            </div>
-            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
+            </v-sheet>
+            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
                 <div>
                     <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                     <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
@@ -65,6 +65,7 @@
                 v-if="pageData.list.length>0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
                 @input="onPageChange"
             ></v-pagination>
         </v-card-text>

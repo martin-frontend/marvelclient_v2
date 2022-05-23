@@ -1,24 +1,19 @@
-<template>
-    <v-container class="pa-0">
-        <Infomation/>
-        <ChartWrap/>
-    </v-container>
-</template>
+<template src="./Introduce.vue.html" lang="html"></template>
+<style src="./Introduce.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-import AbstractView from "@/core/abstract/AbstractView";
 import Component from "vue-class-component";
-import ChartWrap from "./components/ChartWrap.vue";
-import Infomation from "./components/Infomation.vue";
+import Introduce from "./Introduce";
+import Overlay from "@/views/widget/overlay/Overlay.vue";
+
 @Component({
     components: {
-        Infomation,
-        ChartWrap,
-    }
+        Overlay,
+    },
 })
-export default class Introduce extends AbstractView {}
+export default class extends Introduce {
+    mounted() {
+        window.scrollTo(0, 0);
+    }
+}
 </script>
-
-<style lang="scss" scoped>
-@import "@/style/fontsize.scss";
-</style>

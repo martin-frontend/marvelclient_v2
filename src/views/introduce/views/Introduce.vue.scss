@@ -1,54 +1,90 @@
-<template>
-    <div>
-        <v-sheet class="mt-n12" color="transparent">
-            <div class="text-26 font-weight-bold mb-2">产出比例规划</div>
-            <div class="chartWrap">
-                <div class="imgBox">
-                    <div class="img2Wrap">
-                        <img src="@/assets/introduce/line1.png" class="img2" />
-                    </div>
-                    <div class="img3Wrap">
-                        <img src="@/assets/introduce/line2.png" class="img3" />
-                    </div>
-                    <div class="Text10B"><span>10B</span><span class="zh">总产出</span></div>
-                </div>
-                <ul class="textWrap">
-                    <li><span class="bg1">70%</span> <strong>游戏挖矿</strong></li>
-                    <li><span class="bg2 zh">5%</span> <strong>合作伙伴持有并锁仓两年</strong></li>
-                    <li><span class="bg3">10%</span> <strong>空投及社区奖励</strong></li>
-                    <li><span class="bg4">5%</span> <strong>好友推荐奖励</strong></li>
-                    <li><span class="bg5 zh">10%</span> <strong>创始团队持有并锁仓两年</strong></li>
-                    <li></li>
-                </ul>
-            </div>
-        </v-sheet>
-    </div>
-</template>
+.intro-intro-md {
+    background-image: url("~@/assets/introduce/CAT@3x.png");
+    background-position: top -40px right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
-<script lang="ts">
-import AbstractView from "@/core/abstract/AbstractView";
-import Component from "vue-class-component";
-@Component
-export default class ChartWrap extends AbstractView {}
-</script>
+.intro-plan {
+    background: linear-gradient(90deg, #103464 0%, #1D2A43 100%);
+}
 
-<style lang="scss" scoped>
-@import "@/style/fontsize.scss";
+.intro-destroy {
+    background-image: url("~@/assets/introduce/FlammingP.png");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.intro-text {
+    color: #9DB1D8;
+}
+
+.intro-btn {
+    background-color: white;
+    color: #324466;
+}
+
+.intro-btn-hover {
+    background: linear-gradient(90deg, #69b7f8 0%, #6fa7fa 100%), #ffffff;
+}
+
+.intro-how-01-md {
+    background: url("~@/assets/introduce/01P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+.intro-how-02-md {
+    background: url("~@/assets/introduce/02P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+.intro-how-03-md {
+    background: url("~@/assets/introduce/03P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+
+.intro-how-01 {
+    background: url("~@/assets/introduce/01M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-02 {
+    background: url("~@/assets/introduce/02M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-03 {
+    background: url("~@/assets/introduce/03M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+
+.intro-year-color {
+    color: #8fa1c3;
+}
+
+.intro-distext-color {
+    color: #50607F;
+}
+
 .chartWrap {
     overflow: hidden;
     height: 330px;
-    width: 956px;
-    max-width: 956px;
+    // width: 956px;
+    // max-width: 956px;
     border-radius: 16px;
     background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
     display: flex;
     justify-content: space-between;
 }
+
 .imgBox {
     position: relative;
     width: 420px;
     height: 330px;
-    background: url("../../../../assets/introduce/wheel.png") no-repeat center;
+    background: url("~@/assets/introduce/wheel.png") no-repeat center;
     background-size: contain;
     padding: 10px 40px;
     box-sizing: border-box;
@@ -203,4 +239,3 @@ ul {
         }
     }
 }
-</style>

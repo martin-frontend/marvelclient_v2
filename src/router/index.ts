@@ -33,7 +33,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/introduce",
         name: "Introduce",
-        component: () => import(/* webpackChunkName: "introduce" */ "../views/introduce/views/Introduce.vue"),
+        component: () => import(/* webpackChunkName: "introduce" */ "../views/page_introduce/views/Introduce.vue"),
     },
     {
         path: "/page_extension",

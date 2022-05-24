@@ -1,8 +1,23 @@
+$introFontFamily: 'PingFang SC';
+$introIntroText: rgba(255, 255, 255, 0.8);
+$chainMsgLabelColor: #9DB1D8;
+$introChainTextColor: rgba(255, 255, 255, 0.8);
+
 .intro-intro-md {
     background-image: url("~@/assets/introduce/CAT@3x.png");
-    background-position: right bottom;
+    background-position: right top -60px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 516px 350px;
+    font-family: $introFontFamily;
+    color: $introIntroText;
+}
+
+.intro-chain-label {
+    color: $chainMsgLabelColor;
+}
+
+.intro-chain-text {
+    color: $introChainTextColor;
 }
 
 .intro-plan {
@@ -14,13 +29,14 @@
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 173px;
 }
 
 .intro-destroy-md {
     background-image: url("~@/assets/introduce/FlammingP.png");
-    background-position: bottom right;
+    background-position: bottom center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 .intro-text {
@@ -77,20 +93,22 @@
 }
 
 .chartWrap {
-    // overflow: hidden;
-    // height: 330px;
-    // width: 956px;
-    // max-width: 956px;
     border-radius: 16px;
     background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
-    // display: flex;
-    // justify-content: space-between;
+    max-height: 338px;
+}
+
+.chartWrap-md {
+    border-radius: 16px;
+    background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
 }
 
 .imgBox {
     position: relative;
     width: 420px;
     height: 330px;
+    top: -13px;
+    left: -10px;
     background: url("~@/assets/introduce/wheel.png") no-repeat center;
     background-size: contain;
     padding: 10px 40px;
@@ -209,11 +227,12 @@
 }
 
 .textWarp-ct {
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-left: -24px;
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
-    height: 300px;
+    height: 330px;
     li {
         margin-bottom: 72px;
     }

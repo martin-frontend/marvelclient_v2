@@ -5,11 +5,13 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogPerformance from "./DialogPerformance";
+import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 
 @Component({
     components: {
-        Overlay
-    }
+        CustomSelect,
+        Overlay,
+    },
 })
 export default class extends DialogPerformance {}
 </script>

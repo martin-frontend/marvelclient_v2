@@ -1,3 +1,3 @@
 export default class GlobalVar {
-    static lang = "zh_CN";
+    static lang = "en_EN";
 }

@@ -6,9 +6,11 @@ import Component from "vue-class-component";
 import Header from "./Header";
 import Wallet from "../widget/wallet/Wallet.vue";
 import User from "../widget/user/User.vue";
+import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 
 @Component({
     components: {
+        CustomSelect,
         Wallet,
         User,
     },

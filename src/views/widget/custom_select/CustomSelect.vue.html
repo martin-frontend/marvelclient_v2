@@ -1,16 +1,23 @@
-<v-sheet :width="width">
+<v-sheet :width="width" color="transparent">
     <v-menu offset-y nudge-bottom="5">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
                 class="d-flex align-center rounded-lg pl-4"
+                :class="isPill ? 'rounded-pill':''"
                 width="100%"
                 :height="height"
                 color="colorPanelTitleBg"
                 v-bind="attrs"
                 v-on="on"
             >
-                <v-img v-if="icons" class="mr-2" :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" max-width="20" height="20"></v-img>
-                <div class="text-truncate">{{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}</div>
+                <v-img
+                    v-if="icons"
+                    class="mr-2"
+                    :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
+                    max-width="20"
+                    height="20"
+                ></v-img>
+                <div class="text-truncate text-16">{{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}</div>
                 <v-spacer />
                 <div
                     v-if="options && Object.keys(options).length > 1"

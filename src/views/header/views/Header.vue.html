@@ -3,6 +3,17 @@
         <div class="d-flex align-center">
             <div class="font-weight-bold" :class="$vuetify.breakpoint.mobile?'text-24':'text-48'" style="color: #edcc93">CoinFans.com</div>
             <v-spacer />
+            <div v-if="GamePlatConfig.config.language">
+                <CustomSelect
+                    v-model="GlobalVar.lang"
+                    :options="GamePlatConfig.config.language"
+                    :width="155"
+                    :height="45"
+                    :isPill="true"
+                    class="mr-4"
+                />
+            </div>
+
             <v-btn
                 v-if="core.user_id == 0"
                 :small="$vuetify.breakpoint.mobile"
@@ -31,7 +42,7 @@
                 <v-icon>mdi-home</v-icon>
                 <div>首页</div>
             </button>
-            
+
             <button
                 v-if="!$vuetify.breakpoint.mobile"
                 class="nav-button d-none d-md-flex"

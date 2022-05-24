@@ -45,7 +45,7 @@
         <v-divider class="mx-5" />
         <TabMyAssets v-if="pageData.tabIndex == 0" />
         <TabVendorAssets v-if="pageData.tabIndex == 1" />
-        <TabAccountDetail v-if="pageData.tabIndex == 2" />
+        <TabAccountDetail v-show="pageData.tabIndex == 2" />
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

@@ -5,14 +5,14 @@ import VueI18n from "vue-i18n";
 import { getLocale, messages } from "@/lang";
 
 Vue.use(Vuetify);
-Vue.use(VueI18n);
+// Vue.use(VueI18n);
 
-const locale = getLocale();
+// const locale = getLocale();
 
-const i18n = new VueI18n({
-    locale: locale,
-    messages,
-});
+// const i18n = new VueI18n({
+//     locale: locale,
+//     messages,
+// });
 
 const opts = {
     theme: {
@@ -46,4 +46,4 @@ const opts = {
 
 const vuetify = new Vuetify(opts);
 
-export { vuetify, i18n };
+export { vuetify };

@@ -80,7 +80,7 @@
                                 <v-btn width="178" height="42" color="colorCoin" class="rounded-pill">领取奖励</v-btn>
                                 <div class="d-flex justify-md-end btn_group mt-10 mb-4">
                                     <v-btn color="colorExtensionBtn" class="rounded-pill">说明</v-btn>
-                                    <v-btn color="colorExtensionBtn" class="rounded-pill mx-2">奖励记录</v-btn>
+                                    <v-btn color="colorExtensionBtn" class="rounded-pill mx-2" @click="handlerMineRecord">奖励记录</v-btn>
                                     <v-btn color="colorExtensionBtn" class="rounded-pill">投注记录</v-btn>
                                 </div>
                             </v-col>

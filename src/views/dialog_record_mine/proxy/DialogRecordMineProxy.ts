@@ -31,4 +31,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
     }
+    api_xxx() {
+        console.log("...");
+    }
 }

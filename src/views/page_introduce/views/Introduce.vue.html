@@ -2,91 +2,99 @@
     <!-- 介绍 -->
     <v-row class="d-flex justify-center flex-wrap">
         <v-col cols="12" md="8">
-            <v-sheet height="350" color="transparent" class="intro-intro-md">
+            <v-sheet color="transparent" min-height="350" class="mb-4" :class="$vuetify.breakpoint.smAndUp ? 'intro-intro-md' : ''">
                 <v-row>
-                    <v-col cols="8">
+                    <v-col cols="12" sm="7" md="7" lg="8">
                         <v-row>
                             <v-col>
                                 <div class="text-h5 font-weight-bold">J9BC介绍</div>
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col class="text-16">
+                            <v-col class="text-14 text-md-subtitle-1">
                                 J9BC是J9国际（J9.io）基于BSC币安智能链发行的一种数字货币，有去中心化、交易匿名、安全等特性。
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col class="text-16">
+                            <v-col class="text-14 text-md-subtitle-1">
                                 J9BC独创下注挖矿解决方案——用户的每笔投注都会产出一定数量的J9BC，并且所有持有J9BC的玩家都可以从分红池中获得一定比例的网站利润分成。
                             </v-col>
                         </v-row>
                     </v-col>
+                    <v-row v-if="$vuetify.breakpoint.xs" class="mt-n16">
+                        <v-col class="d-flex justify-end">
+                            <v-img max-height="200" max-width="300" position="right" contain :src="pageImage.cat"></v-img>
+                        </v-col>
+                    </v-row>
                 </v-row>
             </v-sheet>
-            <v-sheet class="mt-n16" color="transparent">
-                <div class="text-26 font-weight-bold mb-2">产出比例规划</div>
-                <div class="chartWrap">
-                    <div class="imgBox">
-                        <div class="img2Wrap">
-                            <img :src="pageImage.line1" class="img2" />
+            <v-sheet color="transparent">
+                <div class="text-h5 font-weight-bold my-8">产出比例规划</div>
+                <v-row class="chartWrap">
+                    <v-col cols="12" lg="5">
+                        <div class="imgBox">
+                            <div class="img2Wrap">
+                                <img :src="pageImage.line1" class="img2" />
+                            </div>
+                            <div class="img3Wrap">
+                                <img :src="pageImage.line2" class="img3" />
+                            </div>
+                            <div class="Text10B"><span>10B</span><span class="zh">总产出</span></div>
                         </div>
-                        <div class="img3Wrap">
-                            <img :src="pageImage.line2" class="img3" />
-                        </div>
-                        <div class="Text10B"><span>10B</span><span class="zh">总产出</span></div>
-                    </div>
-                    <ul class="textWrap">
-                        <li><span class="bg1">70%</span> <strong>游戏挖矿</strong></li>
-                        <li><span class="bg2 zh">5%</span> <strong>合作伙伴持有并锁仓两年</strong></li>
-                        <li><span class="bg3">10%</span> <strong>空投及社区奖励</strong></li>
-                        <li><span class="bg4">5%</span> <strong>好友推荐奖励</strong></li>
-                        <li><span class="bg5 zh">10%</span> <strong>创始团队持有并锁仓两年</strong></li>
-                        <li></li>
-                    </ul>
-                </div>
+                    </v-col>
+                    <v-col cols="12" lg="7">
+                        <ul class="textWrap" :class="getTextWrapClass()">
+                            <li><span class="mr-3 rounded-lg text-subtitle-2">70%</span> <strong class="text-subtitle-1">游戏挖矿</strong></li>
+                            <li><span class="mr-3 rounded-lg text-subtitle-2">10%</span> <strong class="text-subtitle-1">空投及社区奖励</strong></li>
+                            <li><span class="mr-3 rounded-lg text-subtitle-2">10%</span> <strong class="text-subtitle-1">创始团队持有并锁仓两年</strong></li>
+                            <li><span class="mr-3 rounded-lg text-subtitle-2">5%</span> <strong class="text-subtitle-1">合作伙伴持有并锁仓两年</strong></li>
+                            <li><span class="mr-3 rounded-lg text-subtitle-2">5%</span> <strong class="text-subtitle-1">好友推荐奖励</strong></li>
+                        </ul>
+                    </v-col>
+                </v-row>
             </v-sheet>
         </v-col>
         <v-col cols="12" md="4">
             <div class="text-h5 font-weight-bold mb-3">链上信息</div>
-            <v-card color="#25324b" class="rounded-lg px-4">
+            <v-card color="#25324b" class="rounded-lg px-1">
                 <v-card-text>
-                    <v-row class="text-16">
-                        <v-col cols="3">Token名称：</v-col>
-                        <v-col class="font-weight-bold">J9 CASINO</v-col>
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>Token名称：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="font-weight-bold">J9 CASINO</v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">合约地址：</v-col>
-                        <v-col class="d-flex font-weight-bold amber--text text--darken-1">
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>合约地址：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="d-flex font-weight-bold amber--text text--darken-1">
                             <span>查看合约信息</span>
                             <v-img class="ml-1" max-width="24" max-height="24" :src="pageImage.externalLink"></v-img>
                         </v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">发行链：</v-col>
-                        <v-col class="font-weight-bold">Binance Smart Chain (BEP20)</v-col>
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>发行链：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="font-weight-bold">Binance Smart Chain (BEP20)</v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">总计发行：</v-col>
-                        <v-col class="font-weight-bold">10,000,000,000 J9BC</v-col>
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>总计发行：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="font-weight-bold">10,000,000,000 J9BC</v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">总计流通：</v-col>
-                        <v-col class="font-weight-bold">163,954,456.076 J9BC</v-col>
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>总计流通：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="font-weight-bold">163,954,456.076 J9BC</v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">总计质押：</v-col>
-                        <v-col class="font-weight-bold">124,329,513.594 J9BC</v-col>
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>总计质押：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="font-weight-bold">124,329,513.594 J9BC</v-col>
                     </v-row>
-                    <v-row class="text-16">
-                        <v-col cols="3">持币地址数：</v-col>
-                        <v-col class="d-flex font-weight-bold">
+                    <v-row no-gutters class="text-14 text-md-subtitle-1 mb-4">
+                        <v-col>持币地址数：</v-col>
+                        <v-col cols="8" md="12" lg="8" class="d-flex font-weight-bold">
                             <span>10,803</span>
                             <v-img class="ml-1" max-width="24" max-height="24" :src="pageImage.externalLink"></v-img>
                         </v-col>
                     </v-row>
                 </v-card-text>
             </v-card>
-            <v-card class="mt-10 pt-2 px-4 intro-destroy" rounded="xl">
+            <v-card class="mt-10 pt-2 px-4" :class="$vuetify.breakpoint.mdAndUp ? 'intro-destroy-md' : 'intro-destroy'" rounded="xl">
                 <v-card-title>
                     <span class="text-subtitle-1">本周销毁: </span>
                     <span class="text-h6 orange--text text--lighten-2 font-weight-bold">2,686,364</span>
@@ -99,7 +107,7 @@
                 </v-card-subtitle>
                 <v-card-text>
                     <v-row>
-                        <v-col cols="6" class="text-caption">
+                        <v-col cols="6" md="8" class="text-caption">
                             玩家质押J9BC所支付的手续费都将转账到黑洞地址，实现J9BC的不断通缩，以支持价格不断上涨。
                         </v-col>
                     </v-row>

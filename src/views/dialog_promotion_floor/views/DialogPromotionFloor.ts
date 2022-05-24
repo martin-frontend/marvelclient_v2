@@ -2,16 +2,16 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
-import DialogBindInviteMediator from "../mediator/DialogBindInviteMediator";
-import DialogBindInviteProxy from "../proxy/DialogBindInviteProxy";
+import DialogPromotionFloorMediator from "../mediator/DialogPromotionFloorMediator";
+import DialogPromotionFloorProxy from "../proxy/DialogPromotionFloorProxy";
 
 @Component
-export default class DialogBindInvite extends AbstractView {
-    myProxy: DialogBindInviteProxy = this.getProxy(DialogBindInviteProxy);
+export default class DialogPromotionFloor extends AbstractView {
+    myProxy: DialogPromotionFloorProxy = this.getProxy(DialogPromotionFloorProxy);
     pageData = this.myProxy.pageData;
 
     constructor() {
-        super(DialogBindInviteMediator);
+        super(DialogPromotionFloorMediator);
     }
 
     onClose() {
@@ -28,12 +28,12 @@ export default class DialogBindInvite extends AbstractView {
         }
     }
 
-    get isCheckedId(): boolean {
-        const { inviteId } = this.pageData;
-        return (this.checkId(inviteId))
+    get isCheckedAmount(): boolean {
+        const { amount } = this.pageData;
+        return (this.checkAmount(amount))
     }
 
-    private checkId(id: any) {
+    private checkAmount(id: any) {
         return id.length > 0 ? true : false
     }
 }

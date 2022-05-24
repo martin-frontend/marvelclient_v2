@@ -6,6 +6,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
         bShow: false,
         //如果是列表，使用以下数据，否则删除
         listQuery: {
+            start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
+            end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
             page_count: 1,
             page_size: 20,
         },
@@ -20,6 +22,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
+            start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
+            end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
             page_count: 1,
             page_size: 20,
         });

@@ -12,6 +12,10 @@ $introChainTextColor: rgba(255, 255, 255, 0.8);
     color: $introIntroText;
 }
 
+.intro-radius {
+    border-radius: 16px;
+}
+
 .intro-chain-label {
     color: $chainMsgLabelColor;
 }
@@ -29,6 +33,7 @@ $introChainTextColor: rgba(255, 255, 255, 0.8);
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 16px;
     height: 173px;
 }
 
@@ -37,6 +42,7 @@ $introChainTextColor: rgba(255, 255, 255, 0.8);
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 16px;
 }
 
 .intro-text {

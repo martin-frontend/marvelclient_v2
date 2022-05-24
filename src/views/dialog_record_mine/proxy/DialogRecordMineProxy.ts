@@ -8,6 +8,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
         listQuery: {
             page_count: 1,
             page_size: 20,
+            user_id: core.user_id,
         },
         list: [],
         pageInfo: {
@@ -31,7 +32,8 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
     }
-    api_xxx() {
-        console.log("...");
+    /**获取用户返水记录 */
+    api_user_var_backwater() {
+        // this.sendNotification(net.HttpType.api_user_var_backwater, this.pageData.listQuery);
     }
 }

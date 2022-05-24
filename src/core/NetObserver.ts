@@ -1,4 +1,5 @@
 import GameProxy from "@/proxy/GameProxy";
+import NoticeProxy from "@/proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_game_play from "@/views/page_game_play";
 import AbstractMediator from "./abstract/AbstractMediator";
@@ -20,6 +21,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_show_var,
             net.EventType.api_plat_var_lobby_index,
             net.EventType.api_vendor_var_ori_product_show_var,
+            net.EventType.api_plat_var_notice_index,
         ];
     }
 
@@ -35,6 +37,8 @@ export default class NetObserver extends AbstractMediator {
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
                     this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
+                    //公告
+                    this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -53,6 +57,12 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 page_game_play.show(body.url);
+                break;
+            case net.EventType.api_plat_var_notice_index:
+                {
+                    const noticeProxy:NoticeProxy = getProxy(NoticeProxy);
+                    noticeProxy.setData(body);
+                }
                 break;
         }
     }

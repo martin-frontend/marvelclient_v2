@@ -1,15 +1,15 @@
 <div class="d-flex">
     <div>
         <v-carousel v-model="selectIndex" cycle height="auto" hide-delimiter-background show-arrows-on-hover :show-arrows="false">
-            <v-carousel-item v-for="item of listData" :key="item.name">
-                <img :src="item.img" width="100%" class="ad-img" />
+            <v-carousel-item v-for="item of noticeProxy.data.listType1" :key="item.name">
+                <img :src="item.img_url" width="100%" class="ad-img" />
             </v-carousel-item>
         </v-carousel>
     </div>
     <ul class="swiper-operation">
-        <li :class="selectIndex == index ? 'active' : ''" v-for="(item, index) of listData" :key="item.name">
+        <li :class="selectIndex == index ? 'active' : ''" v-for="(item, index) of noticeProxy.data.listType1" :key="index">
             <button @click="onItemClick(item)">
-                <img :src="item.img_min" alt="" />
+                <img :src="item.thumbnail_url" alt="" />
                 <p>{{ item.name }}</p>
             </button>
         </li>

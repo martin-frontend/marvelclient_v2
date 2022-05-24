@@ -13,37 +13,7 @@
             </div>
             <div class="listbox">
                 <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key"> -->
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F">
-                    <div class="d-flex listitem">
-                        <div>
-                            <div>时间</div>
-                            <div class="text-truncate">2010-20-10</div>
-                        </div>
-                        <div>
-                            <div>总业绩</div>
-                            <div>999999</div>
-                        </div>
-                        <div>
-                            <div>团队业绩</div>
-                            <div>99999999</div>
-                        </div>
-                        <div>
-                            <div>直属业绩</div>
-                            <div>9000000</div>
-                        </div>
-                        <div>
-                            <div>总佣金</div>
-                            <div>1000000</div>
-                        </div>
-                        <div class="d-flex align-center">
-                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text"
-                             @click="handlerDetail">
-                                查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
-                            </v-btn>
-                        </div>
-                    </div>
-                </v-sheet>
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="n in 4" :key="n">
                     <div class="d-flex listitem">
                         <div>
                             <div>时间</div>

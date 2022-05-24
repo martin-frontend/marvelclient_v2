@@ -1,7 +1,7 @@
 .listitem {
     width: 690px;
     div {
-        width: calc(100% / 6);
+        width: calc(100% / 7);
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -9,10 +9,21 @@
             color: #4c5d7f;
             margin-bottom: 5px;
         }
-        div {
+        div{
             width: 100%;
             > a {
                 color: #9db1d8;
+            }
+        }
+    }
+    &.detail{
+        div {
+            width: calc(100% / 5);
+            div{
+                width: 100%;
+                > a {
+                    color: #9db1d8;
+                }
             }
         }
     }
@@ -20,7 +31,4 @@
 .listbox {
     height: 450px;
     overflow-y: scroll;
-}
-.arrow{
-    margin-bottom: -1px !important;
 }

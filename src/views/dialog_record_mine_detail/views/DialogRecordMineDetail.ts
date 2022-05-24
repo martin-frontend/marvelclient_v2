@@ -2,20 +2,16 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
-import DialogRecordMineMediator from "../mediator/DialogRecordMineMediator";
-import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
-import dialog_record_mine_detail from "@/views/dialog_record_mine_detail";
-import Assets from "@/assets/Assets";
+import DialogRecordMineDetailMediator from "../mediator/DialogRecordMineDetailMediator";
+import DialogRecordMineDetailProxy from "../proxy/DialogRecordMineDetailProxy";
 
 @Component
-export default class DialogRecordMine extends AbstractView {
-    myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);
+export default class DialogRecordMineDetail extends AbstractView {
+    myProxy: DialogRecordMineDetailProxy = this.getProxy(DialogRecordMineDetailProxy);
     pageData = this.myProxy.pageData;
 
-    commonIcon = Assets.commonIcon;
-
     constructor() {
-        super(DialogRecordMineMediator);
+        super(DialogRecordMineDetailMediator);
     }
 
     onClose() {
@@ -32,13 +28,6 @@ export default class DialogRecordMine extends AbstractView {
         }
     }
 
-    handlerDetail() {
-        dialog_record_mine_detail.show();
-    }
-
-    get isShowData() {
-        return this.pageData.list.length === 0 ? true : false;
-    }
     /**分页 */
     onPageChange(val: any) {
         console.log("分页 >>", val);

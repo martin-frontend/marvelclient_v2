@@ -38,7 +38,7 @@ const opts = {
                 colorSelectBg: "#2C3D5C", //used
                 colorExtensionBtn: "#3D5081", //used
                 colorReceive: "#5E2E2E", //used
-                colorBlue2Bg:"#2C3952",
+                colorBlue2Bg: "#2C3952",
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
@@ -49,9 +49,9 @@ const opts = {
                 colorTextPurple: "#A8A8F5", //used
                 colorTextGreen: "#69B65E", //used
                 colorTextBlueLight: "#72ABFD", //used
+                colorTextBlueLight2: "#98ACD3", //used
                 colorBorderBlue: "#374F81", //used
                 colorDialogInfo: "#FFB01A",
-
             },
         },
         dark: true,

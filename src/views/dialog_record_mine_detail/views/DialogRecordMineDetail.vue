@@ -2,55 +2,50 @@
     <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
         <v-card class="rounded-lg" color="colorPanelBg">
             <v-card-title class="gradient-bg">
-                <div class="text-18">奖励记录</div>
+                <div class="text-18">奖励详情</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
                     <v-icon large>mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
-            <!--  -->
             <v-card-text class="px-5">
-                <div class="listbox" v-if="isShowData">
+                <div class="d-flex">
+                    <p class="mb-0 text-body-1 colorText1--text">
+                        结算时间 <span class="colorTextBlueLight2--text mx-2">2020-20-10 23:23:23</span>结算有效流水
+                        <span class="colorTextBlueLight2--text mx-2">10.0000 </span>奖励
+                        <span class="colorTextBlueLight2--text mx-2">100USDT 200LCC</span>
+                    </p>
+                </div>
+                <div class="listbox">
                     <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key"> -->
                     <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2">
                         <div class="d-flex listitem">
                             <div>
-                                <div>结算时间</div>
-                                <div class="text-truncate">2010-20-10</div>
-                            </div>
-                            <div>
-                                <div>结算有效流水</div>
+                                <div>棋牌有效流水</div>
                                 <div>999999.00</div>
                             </div>
                             <div>
-                                <div>团队业绩</div>
-                                <div>99999999.00</div>
+                                <div>USDT返水比例</div>
+                                <div>0.3%</div>
                             </div>
                             <div>
                                 <div>奖励USDT</div>
-                                <div>9000000.00</div>
+                                <div>100000.00</div>
+                            </div>
+                            <div>
+                                <div>LCC返水比例</div>
+                                <div>0.3%</div>
                             </div>
                             <div>
                                 <div>奖励LCC</div>
-                                <div>1000000.00</div>
-                            </div>
-                            <div class="d-flex align-center">
-                                <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail">
-                                    查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
-                                </v-btn>
+                                <div>1000.000</div>
                             </div>
                         </div>
                     </v-sheet>
                 </div>
-                <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
-                    <div>
-                        <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                        <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
-                    </div>
-                </v-sheet>
+
                 <v-spacer />
                 <v-pagination
-                    v-if="isShowData"
                     v-model="pageData.pageInfo.pageCurrent"
                     :length="pageData.pageInfo.pageCount"
                     @input="onPageChange"
@@ -60,17 +55,17 @@
         <Overlay v-model="pageData.loading" />
     </v-dialog>
 </template>
-<style src="./DialogRecordMine.vue.scss" lang="scss" scoped></style>
+<style src="./DialogRecordMineDetail.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import DialogRecordMine from "./DialogRecordMine";
+import DialogRecordMineDetail from "./DialogRecordMineDetail";
 
 @Component({
     components: {
         Overlay,
     },
 })
-export default class extends DialogRecordMine {}
+export default class extends DialogRecordMineDetail {}
 </script>

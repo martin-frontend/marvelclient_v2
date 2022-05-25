@@ -27,11 +27,9 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
 
     setData(data: any) {
         this.pageData.loading = false;
+        console.log("详情..", data);
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
-    }
-    api_xxx() {
-        console.log("...");
     }
 }

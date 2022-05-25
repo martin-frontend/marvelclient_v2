@@ -10,16 +10,17 @@
         <!--  -->
         <v-card-text class="px-5">
             <div class="listbox" v-if="pageData.list.length > 0">
-                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key"> -->
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex listitem">
                         <div>
                             <div>结算时间</div>
-                            <div class="text-truncate">20000</div>
+                            <div class="text-truncate">
+                                {{item.created_at.split(' ')[0]}}
+                            </div>
                         </div>
                         <div>
                             <div>结算有效流水</div>
-                            <div>999999.00</div>
+                            <div>{{item.total_water}}</div>
                         </div>
                         <div>
                             <div>团队业绩</div>
@@ -27,14 +28,14 @@
                         </div>
                         <div>
                             <div>奖励USDT</div>
-                            <div>9000000.00</div>
+                            <div>{{item.total_backwater.USDT}}</div>
                         </div>
                         <div>
                             <div>奖励LCC</div>
-                            <div>1000000.00</div>
+                            <div>{{item.total_backwater.LCC}}</div>
                         </div>
                         <div class="d-flex align-center">
-                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail">
+                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
                                 查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
                             </v-btn>
                         </div>
@@ -48,12 +49,12 @@
                 </div>
             </v-sheet>
             <v-spacer />
-            <!-- <v-pagination
+            <v-pagination
                 v-if="pageData.list.length > 0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 @input="onPageChange"
-            ></v-pagination> -->
+            ></v-pagination>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

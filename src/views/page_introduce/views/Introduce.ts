@@ -13,7 +13,19 @@ export default class Introduce extends AbstractView {
         super(IntroduceMediator);
     }
 
-    handleTest() {
-        // console.log("CLICK!!!", this.pageImage.cat);
+    getTextWrapClass(): string {
+        if (this.$vuetify.breakpoint.width > 1264 && this.$vuetify.breakpoint.width < 1460) {
+            return "textWrap-ctDown";
+        }
+        if (this.$vuetify.breakpoint.md) {
+            return "textWrap-md";
+        }
+        if (this.$vuetify.breakpoint.sm) {
+            return "textWrap-md";
+        }
+        if (this.$vuetify.breakpoint.xs) {
+            return "textWrap-xs";
+        }
+        return "textWarp-ct";
     }
 }

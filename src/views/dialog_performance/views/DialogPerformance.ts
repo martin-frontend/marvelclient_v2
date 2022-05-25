@@ -5,7 +5,7 @@ import Constant from "@/core/global/Constant";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceMediator from "../mediator/DialogPerformanceMediator";
 import DialogPerformanceProxy from "../proxy/DialogPerformanceProxy";
-import dialog_promotion_floor from "@/views/dialog_promotion_floor";
+import dialog_performance_detail from "@/views/dialog_performance_detail";
 
 @Component
 export default class DialogPerformance extends AbstractView {
@@ -26,7 +26,7 @@ export default class DialogPerformance extends AbstractView {
     }
 
     handlerDetail() {
-        dialog_promotion_floor.show();
+        dialog_performance_detail.show();
     }
 
     onClose() {

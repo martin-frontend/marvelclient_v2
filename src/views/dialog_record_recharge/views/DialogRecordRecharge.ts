@@ -43,4 +43,12 @@ export default class DialogRecordRecharge extends AbstractView {
         this.pageData.listQuery.page_count = val;
         this.myProxy.api_user_var_recharge_list();
     }
+
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 255;
+        } else {
+            return 368;
+        }
+    }
 }

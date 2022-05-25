@@ -105,6 +105,8 @@ var net;
         api_user_update_var: "api/user/update/{user_id}",
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: "api/user/bind_mobile/{user_id}",
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: "api/user/bind_email/{user_id}",
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: "api/user/{user_id}/vendor/withdraw",
         /**--会员资料--用户保险箱存取款*/
@@ -308,6 +310,8 @@ var net;
         api_user_update_var: "api_user_update_var",
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: "api_user_bind_mobile_var",
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: "api_user_bind_email_var",
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: "api_user_var_vendor_withdraw",
         /**--会员资料--用户保险箱存取款*/
@@ -488,6 +492,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_show_var, net.cmd_api_user_show_var);
         facade.registerCommand(net.HttpType.api_user_update_var, net.cmd_api_user_update_var);
         facade.registerCommand(net.HttpType.api_user_bind_mobile_var, net.cmd_api_user_bind_mobile_var);
+        facade.registerCommand(net.HttpType.api_user_bind_email_var, net.cmd_api_user_bind_email_var);
         facade.registerCommand(net.HttpType.api_user_var_vendor_withdraw, net.cmd_api_user_var_vendor_withdraw);
         facade.registerCommand(net.HttpType.api_user_update_var_safe_gold, net.cmd_api_user_update_var_safe_gold);
         facade.registerCommand(net.HttpType.api_user_var_gold_transfer, net.cmd_api_user_var_gold_transfer);
@@ -1085,6 +1090,28 @@ var net;
         }
     }
     net.cmd_api_sms_transfer = cmd_api_sms_transfer;
+})(net || (net = {}));
+/**
+ * 用户绑定邮箱
+ */
+var net;
+/**
+ * 用户绑定邮箱
+ */
+(function (net) {
+    class cmd_api_user_bind_email_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_bind_email_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_bind_email_var, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_bind_email_var = cmd_api_user_bind_email_var;
 })(net || (net = {}));
 /**
  * 用户绑定手机

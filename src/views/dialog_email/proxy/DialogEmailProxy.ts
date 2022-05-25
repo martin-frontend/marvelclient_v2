@@ -38,6 +38,7 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         for(const item of this.pageData.list){
             if(item.id == data.id){
                 Object.assign(item, data);
+                item.is_read = true;
             }
         }
     }

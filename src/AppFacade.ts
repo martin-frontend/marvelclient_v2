@@ -5,6 +5,7 @@ import RequestStartCMD from "./core/command/RequestStartCMD";
 import GameConfig from "./core/config/GameConfig";
 import NetObserver from "./core/NetObserver";
 import GameProxy from "./proxy/GameProxy";
+import NoticeProxy from "./proxy/NoticeProxy";
 import SelfProxy from "./proxy/SelfProxy";
 
 export default class AppFacade {
@@ -22,6 +23,7 @@ export default class AppFacade {
     private initProxy() {
         this.facade.registerProxy(new SelfProxy(SelfProxy.NAME));
         this.facade.registerProxy(new GameProxy(GameProxy.NAME));
+        this.facade.registerProxy(new NoticeProxy(NoticeProxy.NAME));
     }
 
     private initCommand() {

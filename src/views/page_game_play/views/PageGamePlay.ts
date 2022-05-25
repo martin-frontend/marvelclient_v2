@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import router from "@/router";
 import dialog_message from "@/views/dialog_message";
 import { Watch, Component } from "vue-property-decorator";
 import PageGamePlayMediator from "../mediator/PageGamePlayMediator";
@@ -20,5 +21,9 @@ export default class PageGamePlay extends AbstractView {
                 dialog_message.warn("Fullscreen not supported");
             });
         }
+    }
+
+    onBack(){
+        router.back();
     }
 }

@@ -1,9 +1,15 @@
 <v-container>
-    <v-sheet class="rounded-lg" color="#192b4d" height="862">
+    <v-sheet class="rounded-lg" color="#192b4d">
+        <div class="d-flex justify-end my-2 mr-3">
+            <v-btn class="my-2 ml-3" icon @click="onFullScreen">
+                <v-icon>mdi-fullscreen</v-icon>
+            </v-btn>
+            <v-btn class="my-2 ml-3" icon @click="onBack">
+                <v-icon>mdi-keyboard-backspace</v-icon>
+            </v-btn>
+        </div>
+
         <iframe id="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
-        <v-btn class="mt-2 ml-3" icon @click="onFullScreen">
-            <v-icon>mdi-fullscreen</v-icon>
-        </v-btn>
     </v-sheet>
     <RecentBetting class="mt-4" />
 </v-container>

@@ -29,6 +29,7 @@
         ["api/user/show/{user_id}",                     "获取用户基本信息"],
         ["api/user/update/{user_id}",                   "修改用户基本信息"],
         ["api/user/bind_mobile/{user_id}",              "用户绑定手机"],
+        ["api/user/bind_email/{user_id}",               "用户绑定邮箱"],
         ["api/user/{user_id}/vendor/withdraw",          "提取用户所有厂商的余额"],
         ["api/user/update/{user_id}/safe_gold",         "用户保险箱存取款"],
         ["api/user/{user_id}/gold_transfer",            "金币划转"],

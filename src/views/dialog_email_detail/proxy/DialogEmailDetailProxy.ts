@@ -21,3 +21,10 @@ export default class DialogEmailDetailProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_mail_var_receive, { user_id: core.user_id, id: this.pageData.data.id });
     }
 }
+
+
+export enum EnumRewardStatus {
+    Empty = 1, //無獎勵
+    UNRECEIVED = 11, //未領取
+    RECEIVED = 21, // 已領取
+}

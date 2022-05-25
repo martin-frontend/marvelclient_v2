@@ -3,6 +3,7 @@ import DialogEmailProxy from "../proxy/DialogEmailProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_email_detail from "@/views/dialog_email_detail";
 import dialog_award from "@/views/dialog_award";
+import dialog_message from "@/views/dialog_message";
 
 export default class DialogEmailMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -32,8 +33,12 @@ export default class DialogEmailMediator extends AbstractMediator {
                 myProxy.api_user_var_mail();
                 break;
             case net.EventType.api_user_var_receiveQuick:
-                dialog_award.show(body.attachment_content);
-                myProxy.api_user_var_mail();
+                if(Object.keys(body.attachment_content).length > 0){
+                    dialog_award.show(body.attachment_content);
+                    myProxy.api_user_var_mail();
+                }else{
+                    dialog_message.info("没有可领取的奖励");
+                }
                 break;
             case net.EventType.api_user_var_destroy_batch:
                 break;

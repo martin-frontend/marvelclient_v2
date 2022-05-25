@@ -4,6 +4,7 @@ import router from "@/router";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_mine from "@/views/page_mine";
 import page_extension from "@/views/page_extension";
+import dialog_activity from "@/views/dialog_activity";
 
 @Component
 export default class Activity extends AbstractView {
@@ -22,5 +23,9 @@ export default class Activity extends AbstractView {
     /**游戏挖矿 */
     goMine() {
         this.isUserLogin && page_mine.show();
+    }
+
+    goActivity(){
+        dialog_activity.show();
     }
 }

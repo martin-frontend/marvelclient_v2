@@ -6,6 +6,8 @@ import dialog_bet_record from "@/views/dialog_bet_record";
 import dialog_email from "@/views/dialog_email";
 import dialog_safety_center from "@/views/dialog_safety_center";
 import dialog_wallet from "@/views/dialog_wallet";
+import page_extension from "@/views/page_extension";
+import page_mine from "@/views/page_mine";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
@@ -44,6 +46,12 @@ export default class UserPanel extends AbstractView {
                 break;
             case 3:
                 dialog_email.show();
+                break;
+            case 10:
+                page_extension.show();
+                break;
+            case 12:
+                page_mine.show();
                 break;
             case 13:
                 dialog_activity.show();

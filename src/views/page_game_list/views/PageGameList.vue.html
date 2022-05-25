@@ -11,7 +11,7 @@
             v-model="listQuery.vendor_id"
         />
     </v-sheet>
-    <v-card class="d-flex flex-wrap mt-7" color="transparent" flat tile>
+    <v-card class="d-flex flex-wrap mt-7 mb-2" color="transparent" flat tile>
         <div v-for="item of pageData.list" :key="item.vendor_prodcut_id">
             <GameItem :item="item" />
         </div>

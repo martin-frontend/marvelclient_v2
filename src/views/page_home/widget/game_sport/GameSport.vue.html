@@ -1,14 +1,38 @@
 <div class="mt-8">
     <div class="text-16 mb-1 ml-2 mr-4 d-flex">
-        <div class="icon-box iconfont icon-slots icon__icon colorYellow--text text-22 mr-1"></div>
-        <div class="text-title">{{ title }}</div>
+        <v-icon class="mr-1" color="colorYellow">{{ CategoryIcon[data.category] }}</v-icon>
+        <div class="text-title">{{ data.category_name }}</div>
+        <v-spacer />
+        <v-btn
+            class="text-12 rounded-pill"
+            color="rgba(243, 231, 231, 0.098)"
+            width="78"
+            height="24"
+            @click="onShowAll"
+        >
+            查看全部
+        </v-btn>
     </div>
-    <v-sheet max-width="1430" class="mx-auto d-flex" color="transparent">
-        <v-card width="704" height="270" class="rounded-lg mr-4">
-            <v-img class="cursor-pointer" src="@/assets/sport/saba.webp"> </v-img>
-        </v-card>
-        <v-card width="704" height="270" class="rounded-lg mr-4">
-            <v-img class="cursor-pointer" src="@/assets/sport/fb.webp"> </v-img>
+    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap" color="transparent">
+        <v-card width="700" color="colorTitleBg" class="rounded-lg mr-3 mb-3" v-for="item of data.list" :key="item.vendor_prodcut_id" @click="goGamePlay(item)">
+            <v-img class="cursor-pointer d-flex align-center " :src="getIcon(item)" lazy-src="@/assets/game/placeholder1.png">
+                <div class="game-icon">
+                    <div class="game-title text-30 font-weight-bold">{{item.vendor_product_name}}</div>
+                    <div class="vendor-title text-18 mt-2">{{item.vendor_name}}</div>
+                </div>
+                <div class="egame__item__mask">
+                    <div class="egame__item__play-icon">
+                        <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                            <div class="icon-chevron-right icon__icon mt-n1"></div>
+                        </div>
+                    </div>
+                </div>
+                <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                    </v-row>
+                </template>
+            </v-img>
         </v-card>
     </v-sheet>
 </div>

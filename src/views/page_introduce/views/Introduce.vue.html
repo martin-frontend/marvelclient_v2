@@ -96,10 +96,10 @@
             </v-card>
             <v-card class="mt-4 pt-2 px-4" :class="$vuetify.breakpoint.mdAndDown ? 'intro-destroy-md' : 'intro-destroy'">
                 <v-card-title>
-                    <span class="text-subtitle-1">本周销毁: </span>
-                    <span class="text-h6 orange--text text--lighten-2 font-weight-bold">2,686,364</span>
-                    <v-chip label color="amber">
-                        <a href="">链上销毁记录</a>
+                    <span class="text-subtitle-1 mr-4">本周销毁: </span>
+                    <span class="text-h6 orange--text text--lighten-2 font-weight-bold mr-2">2,686,364</span>
+                    <v-chip label color="#FFB01A" v-if="!$vuetify.breakpoint.xs">
+                        <a href="#" class="text-12">链上销毁记录</a>
                     </v-chip>
                 </v-card-title>
                 <v-card-subtitle class="text-caption">
@@ -107,11 +107,16 @@
                 </v-card-subtitle>
                 <v-card-text>
                     <v-row>
-                        <v-col cols="6" md="9" class="text-caption">
+                        <v-col :cols="$vuetify.breakpoint.xs ? 8 : 6" md="9" class="text-caption">
                             玩家质押J9BC所支付的手续费都将转账到黑洞地址，实现J9BC的不断通缩，以支持价格不断上涨。
                         </v-col>
                     </v-row>
                 </v-card-text>
+                <v-card-actions v-if="$vuetify.breakpoint.xs">
+                    <v-chip label color="#FFB01A">
+                        <a href="#" class="text-12">链上销毁记录</a>
+                    </v-chip>
+                </v-card-actions>
             </v-card>
         </v-col>
     </v-row>

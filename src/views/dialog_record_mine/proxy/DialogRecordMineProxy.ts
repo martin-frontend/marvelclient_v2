@@ -28,12 +28,19 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
 
     setData(data: any) {
         this.pageData.loading = false;
-        //如果是列表，使用以下数据，否则删除
+        console.warn("data >", data);
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
     }
     /**获取用户返水记录 */
     api_user_var_backwater() {
-        // this.sendNotification(net.HttpType.api_user_var_backwater, this.pageData.listQuery);
+        this.sendNotification(net.HttpType.api_user_var_backwater, this.pageData.listQuery);
+    }
+    /**获取用户返水详情 */
+    api_user_var_backwater_var(backwater_id: any) {
+        this.sendNotification(net.HttpType.api_user_var_backwater_var, {
+            user_id: core.user_id,
+            backwater_id,
+        });
     }
 }

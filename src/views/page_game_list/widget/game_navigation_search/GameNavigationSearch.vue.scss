@@ -1,0 +1,61 @@
+.v-list-item {
+    background: linear-gradient(#24385a, #121e36);
+}
+
+.tabs-active {
+    width: 142px !important;
+    height: 40px !important;
+    font-weight: 400;
+}
+
+.tabs-deactive {
+    color: #4C5D7F !important;
+    cursor: pointer;
+    width: 142px !important;
+    height: 40px !important;
+    font-weight: 400;
+}
+
+.v-tab {
+    padding: 0;
+}
+
+.v-tabs-items {
+    background-color: transparent !important;
+}
+
+.playgame-btn {
+    border-radius: 10px;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.search-nodata {
+    margin-top: 170px;
+}
+
+.search-nodata-text {
+    color: #4C5D7F;
+}
+
+::v-deep .v-input__prepend-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+}
+
+::v-deep .v-input__append-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+}
+
+::v-deep .v-text-field__slot {
+    input::placeholder {
+        font-size: 14px;
+    }
+}

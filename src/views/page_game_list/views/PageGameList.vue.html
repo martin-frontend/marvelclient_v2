@@ -1,5 +1,6 @@
 <v-container id="gamelist" class="pa-0">
     <GameSlideGroup v-if="hotGame.category == 1" :data="hotGame" />
+    <GameNavigationSearch />
     <v-sheet class="rounded-lg mt-5 d-flex align-center px-3 py-3" color="colorTitleBg" height="80">
         <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
         <v-spacer />

@@ -18,9 +18,11 @@ export default class SelfProxy extends AbstractProxy {
         Object.assign(this.userInfo, value);
         core.user_id = <any>this.userInfo.user_id;
 
-        const gameProxy: GameProxy = getProxy(GameProxy);
-        const keys = Object.keys(value.gold_info);
-        if (gameProxy.coin_name_unique == "") gameProxy.coin_name_unique = keys[0];
+        if (value.gold_info) {
+            const gameProxy: GameProxy = getProxy(GameProxy);
+            const keys = Object.keys(value.gold_info);
+            if (gameProxy.coin_name_unique == "") gameProxy.coin_name_unique = keys[0];
+        }
     }
 
     loginout() {

@@ -4,6 +4,7 @@ import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
+import dialog_promotion_floor from "@/views/dialog_promotion_floor";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -12,6 +13,10 @@ export default class DialogDirectly extends AbstractView {
 
     constructor() {
         super(DialogDirectlyMediator);
+    }
+
+    handlerSetting() {
+        dialog_promotion_floor.show();
     }
 
     onClose() {
@@ -26,5 +31,9 @@ export default class DialogDirectly extends AbstractView {
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
         }
+    }
+
+    search() {
+        console.log('click search');
     }
 }

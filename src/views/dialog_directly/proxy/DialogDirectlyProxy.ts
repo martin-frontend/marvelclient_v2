@@ -16,6 +16,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        search: "",
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {

@@ -40,6 +40,7 @@ const opts = {
                 colorExtensionBtn: "#3D5081", //used
                 colorReceive: "#5E2E2E", //used
                 colorBlue2Bg: "#2C3952",
+                colorYellowBg: "#F2A81C",
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

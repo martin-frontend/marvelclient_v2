@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { vuetify, i18n } from "./plugins/vuetify";
+import { vuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
@@ -11,7 +11,7 @@ Vue.config.productionTip = false;
 new Vue({
     router,
     vuetify,
-    i18n,
+    // i18n,
     render: (h) => h(App),
 }).$mount("#app");
 

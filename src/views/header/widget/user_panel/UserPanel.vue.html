@@ -1,8 +1,13 @@
 <v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="288">
     <v-img class="rounded-pill mx-auto" src="@/assets/avatar/Avatar0.png" max-width="56" max-height="56"></v-img>
-    <div class="mx-auto mt-2 text-16 font-weight-medium">{{userInfo.nick_name}}</div>
+    <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer" @click="onCopy(userInfo.user_id)">
+        ID:{{userInfo.user_id}}
+    </div>
+    <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer">
+        VIP {{userInfo.vip_info && userInfo.vip_info.vip_level}}
+    </div>
 
-    <v-sheet class="rounded-lg mt-3 py-1" color="#24314A">
+    <v-sheet class="rounded-lg mt-3 py-1" color="colorPanelTitleBg">
         <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
@@ -11,66 +16,17 @@
         </div>
     </v-sheet>
 
-    <MenuGroup :title="activityGroup.title">
-        <div class="d-flex align-center ml-2 item" v-for="item of activityGroup.list" :key="item.id">
+    <v-sheet class="rounded-lg mt-3 py-1" color="colorPanelTitleBg">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />
+            <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
         </div>
-    </MenuGroup>
-
-    <div class="d-flex flex-wrap mt-2">
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-        <v-img
-            class="ma-1"
-            src="https://hx1web.hstax1tic.com/static/media/glamor-zh.e5b5ba24.png"
-            max-width="124"
-            max-height="64"
-        ></v-img>
-    </div>
-
-    <MenuGroup title="中文简体" :icon="require(`@/assets/icon/lang/icon_zh.png`)">
-        <div class="d-flex align-center ml-2 item1" v-for="item of langGroup" :key="item.id">
-            <v-img :src="item.icon" max-width="15" max-height="15"></v-img>
-            <div class="ml-2">{{ item.name }}</div>
-            <v-spacer />
-            <div class="circle mr-5">
-                <v-img class="img" :src="require(`@/assets/header/icon_xuanzhong.svg`)"></v-img>
-            </div>
-        </div>
-    </MenuGroup>
+    </v-sheet>
 
     <div class="d-flex colorBlue--text mt-3 ml-1 cursor-pointer" @click="onLoginOut">
-        <div>登出</div>
+        <div>退出登录</div>
         <v-spacer />
     </div>
 </v-sheet>

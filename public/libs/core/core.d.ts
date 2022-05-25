@@ -51,6 +51,8 @@ declare module net {
         api_user_update_var: string;
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: string;
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: string;
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: string;
         /**--会员资料--用户保险箱存取款*/
@@ -254,6 +256,8 @@ declare module net {
         api_user_update_var: string;
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: string;
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: string;
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: string;
         /**--会员资料--用户保险箱存取款*/
@@ -613,6 +617,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_sms_transfer extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户绑定邮箱
+ */
+declare module net {
+    class cmd_api_user_bind_email_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2237,6 +2250,7 @@ declare module core {
         plat_id: number;
         name: string;
         type: number;
+        type_position: number;
         app_types: number[];
         start_time: string;
         end_time: string;

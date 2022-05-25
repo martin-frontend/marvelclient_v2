@@ -21,10 +21,10 @@ export default class DialogEmailDetail extends AbstractView {
         this.pageData.bShow = false;
     }
 
-    @Watch("pageData.bShow")
-    onWatchShow() {
-        BlurUtil(this.pageData.bShow);
-    }
+    // @Watch("pageData.bShow")
+    // onWatchShow() {
+    //     BlurUtil(this.pageData.bShow);
+    // }
 
     onReceive(){
         this.myProxy.api_user_var_mail_var_receive();

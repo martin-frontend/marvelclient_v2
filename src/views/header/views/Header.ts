@@ -1,6 +1,8 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
+import GlobalVar from "@/core/global/GlobalVar";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
@@ -18,6 +20,9 @@ export default class Header extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     routerPath = "/";
     core = core;
+
+    GamePlatConfig = GamePlatConfig;
+    GlobalVar = GlobalVar;
 
     constructor() {
         super(HeaderMediator);

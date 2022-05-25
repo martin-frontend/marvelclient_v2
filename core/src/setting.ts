@@ -48,6 +48,8 @@ module net {
         api_user_update_var: "api/user/update/{user_id}",
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: "api/user/bind_mobile/{user_id}",
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: "api/user/bind_email/{user_id}",
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: "api/user/{user_id}/vendor/withdraw",
         /**--会员资料--用户保险箱存取款*/
@@ -267,6 +269,8 @@ module net {
         api_user_update_var: "api_user_update_var",
         /**--会员资料--用户绑定手机*/
         api_user_bind_mobile_var: "api_user_bind_mobile_var",
+        /**--会员资料--用户绑定邮箱*/
+        api_user_bind_email_var: "api_user_bind_email_var",
         /**--会员资料--提取用户所有厂商的余额*/
         api_user_var_vendor_withdraw: "api_user_var_vendor_withdraw",
         /**--会员资料--用户保险箱存取款*/
@@ -459,6 +463,7 @@ module net {
         facade.registerCommand(HttpType.api_user_show_var, cmd_api_user_show_var);
         facade.registerCommand(HttpType.api_user_update_var, cmd_api_user_update_var);
         facade.registerCommand(HttpType.api_user_bind_mobile_var, cmd_api_user_bind_mobile_var);
+        facade.registerCommand(HttpType.api_user_bind_email_var, cmd_api_user_bind_email_var);
         facade.registerCommand(HttpType.api_user_var_vendor_withdraw, cmd_api_user_var_vendor_withdraw);
         facade.registerCommand(HttpType.api_user_update_var_safe_gold, cmd_api_user_update_var_safe_gold);
         facade.registerCommand(HttpType.api_user_var_gold_transfer, cmd_api_user_var_gold_transfer);

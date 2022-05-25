@@ -5,6 +5,7 @@ module core {
         plat_id: number;
         name: string;
         type: number;
+        type_position: number;
         app_types: number[];
         start_time: string;
         end_time: string;
@@ -16,7 +17,7 @@ module core {
         updated_by: string;
         updated_at: string;
 
-        open_mode:number;
+        open_mode: number;
         open_mode_url: string;
     }
 }

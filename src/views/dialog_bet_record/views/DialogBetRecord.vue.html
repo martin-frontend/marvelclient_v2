@@ -1,4 +1,4 @@
-<v-dialog width="850" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="820" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
             <div class="text-18">投注记录</div>
@@ -13,15 +13,14 @@
                 <div class="ml-5">输赢 {{ (parseFloat(pageData.total_win_gold) < 0 ? "-" : "+") + pageData.total_win_gold}}</div>
             </div>
             <v-divider class="mt-2 mb-4" />
-            <div class="d-flex justify-end">
-                <CustomSelect v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
-                <CustomSelect v-model="vendorSelect" :options="vendorOptions" width="140" class="mx-3" @change="onVendorChange" />
-                <CustomSelect v-model="statusSelect" :options="statusOptions" width="140" @change="onStatusChange" />
-                <v-spacer />
-                <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+            <div class="d-flex flex-wrap">
+                <CustomSelect class="mb-2 mr-2" v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
+                <CustomSelect class="mb-2  mr-2" v-model="vendorSelect" :options="vendorOptions" width="140" @change="onVendorChange" />
+                <CustomSelect class="mb-2  mr-2" v-model="statusSelect" :options="statusOptions" width="140" @change="onStatusChange" />
+                <CustomSelect class="mb-2  mr-2" v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
             </div>
-            <div v-if="pageData.list.length>0" class="listbox">
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
+                <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div>
                             <div>订单号</div>
@@ -47,14 +46,14 @@
                             <div>状态</div>
                             <div>{{statusOptions[item.settlement_status]}}</div>
                         </div>
-                        <div>
+                        <div class="listitem-140">
                             <div>投注时间</div>
                             <div class="text-truncate">{{item.bet_at}}</div>
                         </div>
                     </div>
                 </v-sheet>
-            </div>
-            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
+            </v-sheet>
+            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
                 <div>
                     <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                     <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
@@ -65,6 +64,7 @@
                 v-if="pageData.list.length>0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
                 @input="onPageChange"
             ></v-pagination>
         </v-card-text>

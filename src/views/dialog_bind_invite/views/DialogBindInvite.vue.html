@@ -10,7 +10,7 @@
         <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
             <CustomInput class="mb-3" placeholder="请输入绑定上级ID" v-model="pageData.inviteId" />
             <div class="ml-5 mb-9 colorDialogInfo--text">确定绑定后无法更改</div>
-            <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" block @click="onSubmitForget">确定绑定</v-btn>
+            <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" block>确定绑定</v-btn>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading"/>

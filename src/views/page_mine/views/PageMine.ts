@@ -17,16 +17,8 @@ export default class PageMine extends AbstractView {
         super(PageMineMediator);
     }
 
-    get userInfo() {
-        return this.selfProxy.userInfo;
-    }
-
-    get vipInfo() {
-        return this.selfProxy.userInfo.vip_info;
-    }
-
     mounted() {
-        this.selfProxy.api_user_show_var([3, 4, 5, 6]);
+        // this.selfProxy.api_user_show_var([3, 4, 5, 6]);
     }
 
     /**奖励记录 */

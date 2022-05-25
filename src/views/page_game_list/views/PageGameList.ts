@@ -15,14 +15,14 @@ export default class PageGameList extends AbstractView {
     }
 
     @Watch("listQuery.vendor_type")
-    onWatchVendorType(){
+    onWatchVendorType() {
         this.listQuery.vendor_id = 0;
         this.listQuery.page_count = 1;
         this.myProxy.api_plat_var_game_all_index();
     }
 
     @Watch("listQuery.vendor_id")
-    onWatchVendorId(){
+    onWatchVendorId() {
         this.listQuery.page_count = 1;
         this.myProxy.api_plat_var_game_all_index();
     }

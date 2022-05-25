@@ -1,0 +1,17 @@
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">设置保底</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
+            <CustomInput class="mb-3" v-model="pageData.amount" />
+            <div class="ml-5 mb-9 colorDialogInfo--text">每万保底金额0-180</div>
+            <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block>保存设置</v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading"/>
+</v-dialog>

@@ -1,0 +1,24 @@
+.listitem {
+    width: 690px;
+    div {
+        width: calc(100% / 5);
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div {
+            width: 100%;
+            > a {
+                color: #9db1d8;
+            }
+        }
+    }
+}
+.listbox {
+    height: 450px;
+    overflow-y: scroll;
+}
+.arrow{
+    margin-bottom: -1px !important;
+}

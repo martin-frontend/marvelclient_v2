@@ -7,6 +7,7 @@ export default class GameNavigationSearch extends AbstractView {
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
     navigationData = this.myProxy.navigationData;
     tabs: number = 1;
+    searchString: string = "";
 
     @Watch("navigationData.bShow")
     onWatchShow() {
@@ -33,6 +34,7 @@ export default class GameNavigationSearch extends AbstractView {
 
     // 搜尋
     onSearchGame() {
+        console.log("searchString:", this.searchString);
         // this.myProxy.api_user_var_game_search();
     }
 

@@ -2,6 +2,7 @@ $introFontFamily: 'PingFang SC';
 $introIntroText: rgba(255, 255, 255, 0.8);
 $chainMsgLabelColor: #9DB1D8;
 $introChainTextColor: rgba(255, 255, 255, 0.8);
+$waitTextColor: #9DB1D8CC;
 
 .intro-intro-md {
     background-image: url("~@/assets/introduce/CAT@3x.png");
@@ -46,7 +47,12 @@ $introChainTextColor: rgba(255, 255, 255, 0.8);
 }
 
 .intro-text {
-    color: #9DB1D8;
+    color: #9DB1D8 !important;
+}
+
+.intro-wait-text {
+    opacity: 0.6;
+    color: $waitTextColor;
 }
 
 .intro-btn {

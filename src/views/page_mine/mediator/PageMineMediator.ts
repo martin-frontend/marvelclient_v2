@@ -4,7 +4,11 @@ import getProxy from "@/core/global/getProxy";
 
 export default class PageMineMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_show_var, net.EventType.api_user_var_backwater_trial];
+        return [
+            net.EventType.api_user_show_var,
+            net.EventType.api_user_var_backwater_trial,
+            net.EventType.api_user_var_backwater_trial_receive,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -16,6 +20,9 @@ export default class PageMineMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_backwater_trial:
                 myProxy.setTrial(body);
+                break;
+            case net.EventType.api_user_var_backwater_trial_receive:
+                console.warn(body);
                 break;
         }
     }

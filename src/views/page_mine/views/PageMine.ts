@@ -37,6 +37,10 @@ export default class PageMine extends AbstractView {
     handlerBetRecord() {
         dialog_bet_record.show();
     }
+    /**领取奖励 */
+    handlerAward() {
+        this.myProxy.api_user_var_backwater_trial_receive();
+    }
 
     jumpTo(target: string) {
         window.scrollTo({

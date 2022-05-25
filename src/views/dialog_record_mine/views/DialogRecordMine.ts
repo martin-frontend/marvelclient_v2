@@ -32,8 +32,8 @@ export default class DialogRecordMine extends AbstractView {
         }
     }
 
-    handlerDetail() {
-        dialog_record_mine_detail.show();
+    handlerDetail(item: any) {
+        this.myProxy.api_user_var_backwater_var(item.backwater_id);
     }
     /**分页 */
     onPageChange(val: any) {

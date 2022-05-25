@@ -42,100 +42,9 @@ export default class PageGameListProxy extends puremvc.Proxy {
     /**游戏搜索 */
     navigationData = {
         bShow: false,
-        recently: [
-            {
-                id: 2714152,
-                is_collection: 0,
-                updated_at: "2022-05-03 11:06:57",
-                vendor_product_id: 5628,
-                vendor_product_name: "\u70b8\u91d1\u82b1",
-                vendor_id: 97,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "101",
-                status: 1,
-                orientation: 1,
-                vendor_name: "GPQP",
-            },
-            {
-                id: 2714151,
-                is_collection: 0,
-                updated_at: "2022-05-03 11:04:49",
-                vendor_product_id: 5680,
-                vendor_product_name: "21\u70b9",
-                vendor_id: 102,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "600",
-                status: 1,
-                orientation: 1,
-                vendor_name: "KYQP",
-            },
-            {
-                id: 2714150,
-                is_collection: 0,
-                updated_at: "2022-05-03 11:04:06",
-                vendor_product_id: 5771,
-                vendor_product_name: "21\u70b9",
-                vendor_id: 104,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "600",
-                status: 1,
-                orientation: 1,
-                vendor_name: "NWGQP",
-            },
-        ],
-        collection: [
-            {
-                id: 2714344,
-                is_collection: 1,
-                updated_at: "2022-05-23 14:07:13",
-                vendor_product_id: 5773,
-                vendor_product_name: "\u70b8\u91d1\u82b1",
-                vendor_id: 104,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "220",
-                status: 1,
-                orientation: 1,
-                vendor_name: "NWGQP",
-            },
-            {
-                id: 2714152,
-                is_collection: 1,
-                updated_at: "2022-05-03 11:06:57",
-                vendor_product_id: 5628,
-                vendor_product_name: "\u70b8\u91d1\u82b1",
-                vendor_id: 97,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "101",
-                status: 1,
-                orientation: 1,
-                vendor_name: "GPQP",
-            },
-            {
-                id: 2714151,
-                is_collection: 1,
-                updated_at: "2022-05-03 11:04:49",
-                vendor_product_id: 5680,
-                vendor_product_name: "21\u70b9",
-                vendor_id: 102,
-                vendor_type: 2,
-                icon: require(`@/assets/game/designGameIcon.png`),
-                ori_vendor_extend: "{}",
-                ori_product_id: "600",
-                status: 1,
-                orientation: 1,
-                vendor_name: "KYQP",
-            },
-        ],
+        showPage: 1,
+        recently: [],
+        collection: [],
         searchList: [],
         noSearchGameIcon: require(`@/assets/game/noSearchGameData.png`),
     };
@@ -160,6 +69,22 @@ export default class PageGameListProxy extends puremvc.Proxy {
         }
     }
 
+    setGameIndex({ recently, collection }: any) {
+        if (this.navigationData.showPage == 1) {
+            this.navigationData.recently = recently;
+        } else if (this.navigationData.showPage == 0) {
+            this.navigationData.collection = collection;
+        }
+    }
+
+    setGameUpdate(body: any) {
+        this.api_user_var_game_index();
+    }
+
+    setGameSearch(body: any) {
+        this.navigationData.searchList = body;
+    }
+
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
     }
@@ -171,5 +96,41 @@ export default class PageGameListProxy extends puremvc.Proxy {
     api_plat_var_game_all_index() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
+    }
+
+    /**--搜索--搜索游戏*/
+    api_user_var_game_search(gameName: string) {
+        this.sendNotification(net.HttpType.api_user_var_game_search, {
+            user_id: core.user_id,
+            game_name: gameName,
+        });
+    }
+
+    /**--搜索--我的游戏*/
+    api_user_var_game_index() {
+        this.sendNotification(net.HttpType.api_user_var_game_index, {
+            user_id: core.user_id,
+        });
+    }
+
+    /**--搜索--收藏游戏*/
+    api_user_var_game_update_var(item: any) {
+        this.sendNotification(net.HttpType.api_user_var_game_update_var, {
+            user_id: core.user_id,
+            vendor_product_id: item.vendor_product_id,
+            is_collection: item.is_collection.toString(),
+        });
+    }
+
+    /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
+    api_vendor_var_ori_product_show_var(data: core.VendorVO | core.VendorProductVO) {
+        this.pageData.loading = true;
+        const { vendor_id, ori_product_id, ori_vendor_extend } = data;
+        this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, {
+            user_id: core.user_id,
+            vendor_id,
+            ori_product_id,
+            ori_vendor_extend,
+        });
     }
 }

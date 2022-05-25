@@ -1,6 +1,3 @@
-.img-radius {
-    border-top-left-radius: 100px;
-}
 ul {
     display: block;
     list-style-type: disc;
@@ -51,28 +48,23 @@ li:hover {
     margin: 0;
     margin-left: 10px;
     width: 315px;
-    height: 457px;
-}
-.ad-img {
-    max-height: 457px;
-    border-radius: 0px;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
+    min-width: 315px;
+    height: 450px;
 }
 ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
     display: none;
+}
+.imgage{
+    border-radius: 16px 0 0 16px;
 }
 @media screen and (max-width: 1430px) {
     .swiper-operation {
         display: none;
     }
-    .ad-img {
-        max-height: none;
-    }
-    .ad-img {
-        border-radius: 16px;
-    }
     ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
         display: flex;
+    }
+    .imgage{
+        border-radius: 16px;
     }
 }

@@ -157,7 +157,7 @@
         </v-col>
         <v-col cols="12" md="4" class="d-flex flex-column justify-space-between">
             <v-hover v-slot="{ hover }">
-                <v-card class="pa-2 mr-md-4 intro-radius" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
+                <v-card height="100%" class="mb-4 pa-2 mr-md-4 intro-radius" :color="hover ? '#283c63' : '#25324b'">
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.stuck"></v-img>
                         <span class="ml-2">玩家间交易</span>
@@ -169,7 +169,7 @@
                 </v-card>
             </v-hover>
             <v-hover v-slot="{ hover }">
-                <v-card class="pa-2 mr-md-4 intro-radius" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
+                <v-card height="100%" class="pa-2 mr-md-4 intro-radius" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.coin"></v-img>
                         <span class="ml-2">J9BC投注</span>
@@ -184,7 +184,7 @@
         </v-col>
         <v-col cols="12" md="4" class="d-flex flex-column justify-space-between">
             <v-hover v-slot="{ hover }">
-                <v-card class="pa-2 intro-radius" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
+                <v-card height="100%" class="mb-4 pa-2 intro-radius" :color="hover ? '#283c63' : '#25324b'">
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.money"></v-img>
                         <span class="ml-2">J9BC回购</span>
@@ -195,7 +195,7 @@
                 </v-card>
             </v-hover>
             <v-hover v-slot="{ hover }">
-                <v-card class="pa-2 intro-radius" :color="hover ? '#283c63' : '#25324b'">
+                <v-card height="100%" class="pa-2 intro-radius" :color="hover ? '#283c63' : '#25324b'">
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.joystick"></v-img>
                         <span class="ml-2">购买特权NFT</span>
@@ -214,13 +214,13 @@
         <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">如何获得J9BC</v-col>
     </v-row>
     <v-row no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4">
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
-                    class="pa-2 intro-radius mr-md-4"
+                    class="pa-2 intro-radius mr-md-4 d-flex flex-column justify-space-between"
                     :class="$vuetify.breakpoint.mdAndUp ? 'intro-how-01-md' : 'intro-how-01'"
                     :color="hover ? '#283c63' : '#25324b'"
-                    height="220"
+                    height="100%"
                 >
                     <v-card-title>
                         <span class="ml-2">游戏投注挖矿</span>
@@ -243,13 +243,13 @@
                 </v-card>
             </v-hover>
         </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
-                    class="pa-2 intro-radius mr-md-4"
+                    class="pa-2 intro-radius mr-md-4 d-flex flex-column justify-space-between"
                     :class="$vuetify.breakpoint.mdAndUp ? 'intro-how-02-md' : 'intro-how-02'"
                     :color="hover ? '#283c63' : '#25324b'"
-                    height="220"
+                    height="100%"
                 >
                     <v-card-title>
                         <span class="ml-2">定期空投</span>
@@ -272,13 +272,13 @@
                 </v-card>
             </v-hover>
         </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
-                    class="pa-2 intro-radius"
+                    class="pa-2 intro-radius d-flex flex-column justify-space-between"
                     :class="$vuetify.breakpoint.mdAndUp ? 'intro-how-03-md' : 'intro-how-03'"
                     :color="hover ? '#283c63' : '#25324b'"
-                    height="220"
+                    height="100%"
                 >
                     <v-card-title>
                         <span class="ml-2">好友推荐</span>

@@ -10,6 +10,11 @@ import dialog_performance from "@/views/dialog_performance";
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     pageData = this.myProxy.pageData;
+    promotionData = this.myProxy.promotionData;
+    statistics_data = this.myProxy.statistics_data;
+    tableData = this.myProxy.tableData;
+
+    private QRCode = QRCode;
 
     constructor() {
         super(PageExtensionMediator);
@@ -25,5 +30,14 @@ export default class PageExtension extends AbstractView {
 
     handlerPerformance() {
         dialog_performance.show();
+    }
+
+    /**领取奖励 */
+    handlerAward() {
+        this.myProxy.api_user_var_commission_receive();
+    }
+
+    savePhoto() {
+        this.myProxy.savePoster(this.myProxy.link);
     }
 }

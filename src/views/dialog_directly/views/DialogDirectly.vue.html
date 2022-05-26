@@ -11,52 +11,51 @@
             <div class="d-flex justify-space-between">
                 <div class="colorText1--text text-16 ml-3 d-flex align-center">
                     <div class="ml-3 colorTextBlueLight2--text">直属玩家数量</div>
-                    <div class="ml-3 colorDialogInfo--text">100</div>
+                    <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search">
                     <CustomInputButton height="41" placeholder="输入查询ID" button-name="搜索" v-model="pageData.search" @click="search"/>
                 </div>
             </div>
             <div class="listbox">
-                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key"> -->
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="n in 4" :key="n">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex listitem">
                         <div>
                             <div>注册时间</div>
-                            <div class="text-truncate">2010-20-10</div>
+                            <div class="text-truncate">{{ item.binded_at }}</div>
                         </div>
                         <div>
                             <div>用户ID</div>
-                            <div>1008666</div>
+                            <div>{{ item.user_id }}</div>
                         </div>
                         <div>
                             <div>用户昵称</div>
-                            <div>布鲁斯伟恩</div>
+                            <div>{{ item.nick_name }}</div>
                         </div>
                         <div>
                             <div>直属人数</div>
-                            <div>100</div>
+                            <div>{{ item.directly_users }}</div>
                         </div>
                         <div>
                             <div>团队人数</div>
-                            <div>1000</div>
+                            <div>{{ item.group_users }}</div>
                         </div>
                         <div>
                             <div>保底</div>
                             <div><v-btn text height="19" min-width="32" class="text-decoration-underline pa-0 colorBlue--text"
-                                @click="handlerSetting">
+                                @click="handlerSetting(item.promotion_floor)">
                                    设置
                                </v-btn></div>
                         </div>
                     </div>
                 </v-sheet>
+                <v-sheet v-if="pageData.list.length === 0" class="d-flex justify-center align-center" color="transparent" min-height="450">
+                    <div>
+                        <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
+                        <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                    </div>
+                </v-sheet>
             </div>
-            <!-- <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
-                <div>
-                    <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                    <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
-                </div>
-            </v-sheet> -->
             <v-spacer />
             <v-pagination
                 v-if="pageData.list.length>0"

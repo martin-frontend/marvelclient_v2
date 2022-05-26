@@ -6,6 +6,7 @@ import {
 import Utils from "@/core/global/Utils";
 import MyCanvas from "@/core/ui/MyCanvas";
 import CopyUtil from "@/core/global/CopyUtil";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 export default class PageExtensionProxy extends puremvc.Proxy {
     static NAME = "PageExtensionProxy";
@@ -51,11 +52,18 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     btnBind: any = false;
     qrCode: any = "";
 
+    async setLink(url: string) {
+        this.link = url;
+        const imgBase64 = await Utils.generateQrcode(url);
+        this.qrCode = imgBase64;
+    }
+
     setData(data: any) {
         Object.assign(this.statistics_data, data.statistics_data);
         Object.assign(this.promotionData, data);
         this.btnBind = !data.invite_user_id;
         this.promotionData.commission_num = data.commission_info[2].commission_num.USDT
+        this.getCurrentCoin();
     }
 
     /** 写入 返佣等级 */
@@ -74,8 +82,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
                 config["level"] = idx + 1;
             });
         });
-        console.log(this.tableData);
-        console.log(this.tableData.myCommissionNum);
     }
 
     /**表单 数据 */
@@ -95,6 +101,24 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         type: 0,
     };
 
+    /**取目前的主币 奖励币 */
+    getCurrentCoin() {
+        const plat_coins = <any>GamePlatConfig.config.plat_coins;
+        const coinsKey = Object.keys(plat_coins);
+        coinsKey.forEach((key: any) => {
+            if (plat_coins[key].type === 2) {
+                this.pageData.platCoins.mainCoin = plat_coins[key];
+                this.pageData.platCoins.mainCoin.name = key;
+                // this.pageData.platCoins.mainCoin[key].name = key;
+            }
+            if (plat_coins[key].type === 3) {
+                this.pageData.platCoins.rewardCoin = plat_coins[key];
+                this.pageData.platCoins.rewardCoin.name = key;
+                // this.pageData.platCoins.rewardCoin[key].name = key;
+            }
+        });
+    }
+
     /**参数 */
     parameter: any = {
         user_id: core.user_id,
@@ -102,6 +126,11 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     pageData = {
         loading: false,
+        // 当前的主币 奖励币
+        platCoins: <any>{
+            mainCoin: {},
+            rewardCoin: {},
+        },
     };
 
     /**查询数据 */
@@ -136,6 +165,14 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         newWin.document.write(img.outerHTML);
     }
 
+    copy() {
+        CopyUtil(this.link);
+    }
+
+    copyId() {
+        CopyUtil(core.user_id.toString());
+    }
+
     /**领取佣金 */
     api_user_var_commission_receive() {
         this.sendNotification(net.HttpType.api_user_var_commission_receive, {
@@ -158,5 +195,10 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     /**业绩查询--返佣等级*/
     api_user_var_commission_commissionnum() {
         this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, objectRemoveNull({ ...this.parameter }));
+    }
+
+    /**业绩查询--获取推广链接*/
+    api_user_var_short_chain() {
+        this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
     }
 }

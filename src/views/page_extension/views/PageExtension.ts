@@ -5,7 +5,7 @@ import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import dialog_bind_invite from "@/views/dialog_bind_invite";
 import dialog_directly from "@/views/dialog_directly";
 import dialog_performance from "@/views/dialog_performance";
-
+import dialog_message from "@/views/dialog_message";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -18,6 +18,18 @@ export default class PageExtension extends AbstractView {
 
     constructor() {
         super(PageExtensionMediator);
+    }
+
+    destroyed() {
+        super.destroyed();
+        this.myProxy.link = "";
+    }
+
+    @Watch("myProxy.link")
+    private onWatchLink() {
+        const div = this.$refs.qrcode;
+        // @ts-ignore
+        new this.QRCode(div, this.myProxy.link);
     }
 
     handlerBind() {
@@ -34,10 +46,28 @@ export default class PageExtension extends AbstractView {
 
     /**领取奖励 */
     handlerAward() {
+        if (parseFloat(this.promotionData.commission_awaiting_num) == 0) {
+            dialog_message.warn("当前无可领取佣金");
+            return;
+        }
         this.myProxy.api_user_var_commission_receive();
     }
 
     savePhoto() {
         this.myProxy.savePoster(this.myProxy.link);
+    }
+
+    reget() {
+        this.myProxy.api_user_var_short_chain();
+    }
+
+    private copy() {
+        this.myProxy.copy();
+        dialog_message.warn("复制成功");
+    }
+
+    private copyMyId() {
+        this.myProxy.copyId();
+        dialog_message.warn("复制成功");
     }
 }

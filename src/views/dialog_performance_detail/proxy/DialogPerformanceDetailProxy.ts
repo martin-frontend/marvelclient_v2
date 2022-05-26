@@ -18,36 +18,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
             page_size: 20,
         },
         list: <any>[],
-        directList: <any>[
-            {
-                user_id: 100000002, //代理id
-                nick_name: "victor", //昵称
-                group_users: 0, //团队人数
-                new_group_users: 0, //当时团队新增人数
-                water_info: {
-                    "2": {
-                        self_water: "0.00", // 自营流水 默认为"0.00"
-                        group_water: "0.00", // 团队流水
-                        commission_num: {
-                            // 每万返佣
-                            USDT: 0,
-                            LCC: 0,
-                        },
-                        is_promotion_floor: 0, // 是否保底:0-否|1-是
-                    },
-                    "4": {
-                        self_water: "0.00", // 自营流水 默认为"0.00"
-                        group_water: "0.00", // 团队流水
-                        commission_num: {
-                            // 每万返佣
-                            USDT: 0,
-                            LCC: 0,
-                        },
-                        is_promotion_floor: 0, // 是否保底:0-否|1-是
-                    },
-                },
-            },
-        ],
+        directList: <any>[],
         group_users: "0" /**团队用户数 */,
         directly_users: "0" /**直属用户数 */,
         today_directly_users: "0", // 新增直属用户数

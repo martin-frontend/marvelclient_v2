@@ -3,14 +3,25 @@ import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
 import getProxy from "@/core/global/getProxy";
 
 export default class DialogDirectlyMediator extends AbstractMediator {
+    private myProxy: DialogDirectlyProxy = getProxy(DialogDirectlyProxy);
+
+    onRegister() {
+        this.myProxy.enter();
+    }
+
+    onRemove() {
+        this.myProxy.leave();
+    }
     public listNotificationInterests(): string[] {
-        return [];
+        return [net.EventType.api_user_var_agent_direct_list];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy: DialogDirectlyProxy = getProxy(DialogDirectlyProxy);
-        // switch (notification.getName()) {
-        // }
+        switch (notification.getName()) {
+            case net.EventType.api_user_var_agent_direct_list:
+                this.myProxy.setData(body);
+                break;
+        }
     }
 }

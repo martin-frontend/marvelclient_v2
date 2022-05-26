@@ -7,7 +7,7 @@
                     <v-col cols="2">
                         <v-img src="~@/assets/mine/vip_icon.png"></v-img>
                     </v-col>
-                    <v-col cols="10" class="pl-2 d-flex flex-column align-start justify-center text-body-2 text-md-body-1">
+                    <v-col cols="10" class="pl-2 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1 text-no-wrap">
                         <v-sheet width="100%" class="text-h6 text-md-h5 mb-1 d-flex align-center" color="transparent">
                             VIP {{ pageData.vipLevel }}
                             <span class="text-body-2 text-md-body-1 ml-2 colorTextBlueLight--text text-decoration-underline cursop_pointer" @click="jumpTo('#vipLevel')">  查看所有等级</span
@@ -15,13 +15,12 @@
                         </v-sheet>
                         <v-sheet width="100%" color="transparent">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" height="10" class="rounded-xl"></v-progress-linear>
-                            <p class="colorTextBlue--text ma-0 mt-1">
+                            <p class="colorTextBlue--text ma-0 mt-1 ">
                                 距离下一个等级还差<span class="colorCoin--text">
                                     {{ pageData.nextExp }}
                                 </span> 有效流水,USDT充值<span
                                     class="colorCoin--text"
-                                    > {{ pageData.nextUSDT }}</span
-                                >
+                                    > {{ pageData.nextUSDT }}</span>
                             </p>
                         </v-sheet>
                     </v-col>
@@ -30,8 +29,8 @@
                             <v-col cols="12" lg="6" class="pr-1">
                                 <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-4 py-2">
                                     <div class="d-flex">
-                                        <v-img max-width="30" height="30" contain src="~@/assets/mine/usdt_icon.png"></v-img>
-                                        <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2">USDT返水</span>
+                                        <v-img max-width="30" height="30" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
+                                        <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2">{{ pageData.platCoins.mainCoin.name }}返水</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between mt-3">
                                         <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigMain.now }}%</span>
@@ -43,8 +42,8 @@
                             <v-col cols="12" lg="6" class="pr-1">
                                 <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-4 py-2">
                                     <div class="d-flex">
-                                        <v-img max-width="30" height="30" contain src="~@/assets/mine/lcc_icon.png"></v-img>
-                                        <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2">LCC挖矿</span>
+                                        <v-img max-width="30" height="30" contain :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                        <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between mt-3">
                                         <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigReward.now }}%</span>
@@ -69,13 +68,16 @@
                         <v-col cols="12" md="8" class="text-body-2 text-md-body-1 mt-7">
                             <div class="font-weight-light">
                                 <p class="ma-0">今日挖矿待领取收益</p>
-                                <p class="ma-0 colorTextPurple--text">2001-10-10 00:00:00～23:59:59</p>
+                                <p class="ma-0 colorTextPurple--text">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
                             </div>
+                           
                             <div class="d-flex align-center mt-5 mt-md-10 mb-6 elevation='2'">
-                                <v-img max-width="42" height="42" contain src="~@/assets/mine/usdt_big_icon.png"></v-img>
-                                <span class="colorTextGold--text text-h5 text-md-h4 ml-3 mr-7">0.00</span>
-                                <v-img max-width="42" height="42" contain src="~@/assets/mine/lcc_icon.png"></v-img>
-                                <span class="colorTextGold--text text-h5 text-md-h4 ml-3">0.00</span>
+                                 <!-- 主币 -->
+                                <v-img max-width="42" height="42" contain :src="pageData.trial.mainIconSrc"></v-img>
+                                <span class="colorTextGold--text text-h5 text-md-h4 ml-3 mr-7">{{ pageData.trial.main }}</span>
+                                <!-- 奖励币 -->
+                                <v-img max-width="42" height="42" contain :src="pageData.trial.rewardIconSrc"></v-img>
+                                <span class="colorTextGold--text text-h5 text-md-h4 ml-3">{{ pageData.trial.reward }}</span>
                             </div>
                             <v-btn width="178" height="42" color="colorCoin" class="rounded-pill" @click="handlerAward">领取奖励</v-btn>
                             <div class="d-flex justify-md-end btn_group mt-10 mb-4">
@@ -105,9 +107,9 @@
                     <v-img max-width="100%" height="100%" class="mx-2" src="~@/assets/mine/item_bg.png">
                         <div class="d-flex flex-column align-center mt-16 text-body-1">
                             <div class="mt-8 mb-1">VIP {{level}}</div>
-                            <div class="mb-1 colorText3--text">USDT返水</div>
+                            <div class="mb-1 colorText3--text">{{ pageData.platCoins.mainCoin.name }}返水</div>
                             <div class="mb-1 colorCoin--text text-h5">{{(item.backwater_config[2].backwater_rate * 100).toFixed(2)}}%</div>
-                            <div class="mb-1">LCC挖矿</div>
+                            <div class="mb-1 colorText3--text">{{ pageData.platCoins.rewardCoin.name }}挖矿</div>
                             <div class="colorCoin--text text-h5">{{(item.backwater_config[3].backwater_rate * 100).toFixed(2)}}%</div>
                         </div>
                     </v-img>
@@ -123,7 +125,7 @@
         </p>
         <v-row class="mt-2">
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6" max-height="304">
+                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0">
                         <v-img max-width="78" class="mr-4" height="78" contain src="~@/assets/mine/about_01_icon.png"></v-img>
                         <div class="d-flex flex-column">
@@ -137,12 +139,12 @@
                         >
                     </v-card-text>
                     <v-card-actions class="pa-0">
-                        <v-btn width="126" height="42" color="colorBlue2Bg" class="rounded-pill">去投注</v-btn>
+                        <v-btn width="126" height="42" color="colorBlue2Bg" @click="onGoBet" class="rounded-pill">去投注</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6" max-height="304">
+                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0">
                         <v-img max-width="78" class="mr-4" height="78" contain src="~@/assets/mine/about_02_icon.png"></v-img>
                         <div class="d-flex flex-column">
@@ -161,7 +163,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6" height="100%" max-height="304">
+                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0">
                         <v-img max-width="78" class="mr-4" height="78" contain src="~@/assets/mine/about_03_icon.png"></v-img>
                         <div class="d-flex flex-column">

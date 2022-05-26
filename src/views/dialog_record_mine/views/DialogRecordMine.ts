@@ -11,6 +11,7 @@ import Assets from "@/assets/Assets";
 export default class DialogRecordMine extends AbstractView {
     myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);
     pageData = this.myProxy.pageData;
+    listQuery = this.pageData.listQuery;
 
     commonIcon = Assets.commonIcon;
 
@@ -37,8 +38,7 @@ export default class DialogRecordMine extends AbstractView {
     }
     /**分页 */
     onPageChange(val: any) {
-        console.log("分页 >>", val);
-        // this.listQuery.page_count = val;
-        // this.myProxy.api_user_var_mail();
+        this.listQuery.page_count = val;
+        this.myProxy.api_user_var_backwater();
     }
 }

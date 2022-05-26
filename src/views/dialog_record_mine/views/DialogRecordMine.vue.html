@@ -23,12 +23,12 @@
                             <div>{{item.total_water}}</div>
                         </div>
                         <div>
-                            <div>奖励USDT</div>
-                            <div>{{item.total_backwater.USDT}}</div>
+                            <div>奖励{{ Object.keys(item.total_backwater)[0]}}</div>
+                            <div>{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
                         <div>
-                            <div>奖励LCC</div>
-                            <div>{{item.total_backwater.LCC}}</div>
+                            <div>奖励{{ Object.keys(item.total_backwater)[1] }}</div>
+                            <div>{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
                         <div class="d-flex align-center">
                             <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
@@ -49,6 +49,7 @@
                 v-if="pageData.list.length > 0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
                 @input="onPageChange"
             ></v-pagination>
         </v-card-text>

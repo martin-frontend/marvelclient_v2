@@ -9,6 +9,7 @@ import DialogRecordMineDetailProxy from "../proxy/DialogRecordMineDetailProxy";
 export default class DialogRecordMineDetail extends AbstractView {
     myProxy: DialogRecordMineDetailProxy = this.getProxy(DialogRecordMineDetailProxy);
     pageData = this.myProxy.pageData;
+    typeOptions = this.myProxy.typeOptions;
 
     constructor() {
         super(DialogRecordMineDetailMediator);

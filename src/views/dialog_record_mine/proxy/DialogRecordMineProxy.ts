@@ -40,7 +40,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
     api_user_var_backwater_var(backwater_id: any) {
         this.sendNotification(net.HttpType.api_user_var_backwater_var, {
             user_id: core.user_id,
-            backwater_id,
+            id: backwater_id,
         });
     }
 }

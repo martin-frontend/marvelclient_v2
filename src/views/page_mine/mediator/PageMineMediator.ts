@@ -23,6 +23,7 @@ export default class PageMineMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_backwater_trial_receive:
                 console.warn(body);
+                myProxy.api_user_var_backwater_trial();
                 break;
         }
     }

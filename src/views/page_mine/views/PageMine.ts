@@ -5,6 +5,7 @@ import PageMineProxy from "../proxy/PageMineProxy";
 import dialog_record_mine from "@/views/dialog_record_mine";
 import dialog_bet_record from "@/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
+import page_game_list from "@/views/page_game_list";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -15,10 +16,6 @@ export default class PageMine extends AbstractView {
 
     constructor() {
         super(PageMineMediator);
-    }
-
-    mounted() {
-        // this.selfProxy.api_user_show_var([3, 4, 5, 6]);
     }
 
     /**奖励记录 */
@@ -40,5 +37,10 @@ export default class PageMine extends AbstractView {
             top: document.querySelector(target).offsetTop,
             behavior: "smooth",
         });
+    }
+
+    onGoBet() {
+        console.log("onGoBet.............");
+        page_game_list.show();
     }
 }

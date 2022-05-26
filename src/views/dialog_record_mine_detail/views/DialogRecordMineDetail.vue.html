@@ -1,5 +1,5 @@
-<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg" color="colorPanelBg">
+<v-dialog width="730"  v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg" v-if="!pageData.loading">
         <v-card-title class="gradient-bg">
             <div class="text-18">奖励详情</div>
             <v-spacer />
@@ -10,45 +10,47 @@
         <v-card-text class="px-5">
             <div class="d-flex">
                 <p class="mb-0 text-body-1 colorText1--text">
-                    结算时间 <span class="colorTextBlueLight2--text mx-2">2020-20-10 23:23:23</span>结算有效流水
-                    <span class="colorTextBlueLight2--text mx-2">10.0000 </span>奖励
-                    <span class="colorTextBlueLight2--text mx-2">100USDT 200LCC</span>
+                    结算时间 <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>结算有效流水
+                    <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>奖励
+                    <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span>
                 </p>
             </div>
             <div class="listbox">
-                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key"> -->
+               
+                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.data.list" :key="key"> -->
                 <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2">
                     <div class="d-flex listitem">
+                       
                         <div>
                             <div>棋牌有效流水</div>
-                            <div>999999.00</div>
+                            <div>1234</div>
                         </div>
                         <div>
-                            <div>USDT返水比例</div>
-                            <div>0.3%</div>
+                            <div>{{ pageData.data.list.col_2_title }}返水比例</div>
+                            <div>{{ pageData.data.list.col_2 }}%</div>
+                        </div>                                                       
+                        <div>
+                            <div>奖励{{ pageData.data.list.col_3_title }}</div>
+                            <div>{{ pageData.data.list.col_3 }}</div>
                         </div>
                         <div>
-                            <div>奖励USDT</div>
-                            <div>100000.00</div>
+                            <div>{{ pageData.data.list.col_4_title }}返水比例</div>
+                            <div>{{ pageData.data.list.col_4 }}%</div>
                         </div>
                         <div>
-                            <div>LCC返水比例</div>
-                            <div>0.3%</div>
-                        </div>
-                        <div>
-                            <div>奖励LCC</div>
-                            <div>1000.000</div>
+                            <div>奖励{{  pageData.data.list.col_5_title }}</div>
+                            <div>{{  pageData.data.list.col_5 }}</div>
                         </div>
                     </div>
                 </v-sheet>
             </div>
 
             <v-spacer />
-            <v-pagination
+            <!-- <v-pagination
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 @input="onPageChange"
-            ></v-pagination>
+            ></v-pagination> -->
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

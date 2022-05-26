@@ -2,12 +2,13 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
-import GlobalVar from "@/core/global/GlobalVar";
+import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_login from "@/views/dialog_login";
 import dialog_register from "@/views/dialog_register";
+import Cookies from "js-cookie";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
 import HeaderProxy from "../proxy/HeaderProxy";
@@ -20,9 +21,9 @@ export default class Header extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     routerPath = "/";
     core = core;
+    LangUtil = LangUtil;
 
     GamePlatConfig = GamePlatConfig;
-    GlobalVar = GlobalVar;
 
     constructor() {
         super(HeaderMediator);
@@ -64,5 +65,10 @@ export default class Header extends AbstractView {
                 ScrollUtil(anchor.offsetTop);
             }
         }, 100);
+    }
+
+    onLangChange(){
+        Cookies.set("lang", core.lang);
+        location.reload();
     }
 }

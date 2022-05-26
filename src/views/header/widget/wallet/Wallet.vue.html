@@ -3,11 +3,11 @@
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
-                    class="align-center d-flex rounded-pill pr-8"
+                    v-if="$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    class="align-center d-flex rounded-pill ml-2 pr-8"
                     color="colorPanelTitleBg"
-                    width="260"
-                    height="45"
-                    v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    width="190"
+                    height="35"
                 >
                     <v-img
                         class="ml-2"
@@ -17,8 +17,32 @@
                     ></v-img>
                     <span class="text-16 ml-2">${{ selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
                     <v-spacer />
-                    <!-- <div class="icon-box iconfont arrow mr-16 text-10" style="transform: rotate(90deg)"></div> -->
-                    <div class="icon-box iconfont mr-16 text-14 colorText2--text" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                    <div
+                        class="icon-box iconfont mr-8 text-14 colorText2--text"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                    >
+                        
+                    </div>
+                </v-sheet>
+                <v-sheet
+                    class="align-center d-flex rounded-pill pr-8"
+                    color="colorPanelTitleBg"
+                    width="260"
+                    height="45"
+                    v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                >
+                    <v-img
+                        class="ml-2"
+                        :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
+                        max-width="20"
+                        max-height="20"
+                    ></v-img>
+                    <span class="text-16 ml-2">${{ selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
+                    <v-spacer />
+                    <div
+                        class="icon-box iconfont mr-16 text-14 colorText2--text"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                    >
                         
                     </div>
                 </v-sheet>
@@ -41,7 +65,10 @@
         </div>
     </v-menu>
 
-    <v-btn class="btn-topup rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
+    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="btn-topup-mobile rounded-pill black--text mr-3" small color="#ffb01b" @click="onCoinIn">
+        <div>充值</div>
+    </v-btn>
+    <v-btn v-else class="btn-topup rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
         <div class="mx-1 text-16">充值</div>
     </v-btn>
 </div>

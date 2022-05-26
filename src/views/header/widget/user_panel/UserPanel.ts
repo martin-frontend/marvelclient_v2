@@ -1,5 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import CopyUtil from "@/core/global/CopyUtil";
+import LoginEnter from "@/core/global/LoginEnter";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_activity from "@/views/dialog_activity";
 import dialog_bet_record from "@/views/dialog_bet_record";
@@ -37,22 +38,22 @@ export default class UserPanel extends AbstractView {
     onMenuItem(item: any) {
         switch (item.id) {
             case 0:
-                dialog_safety_center.show();
+                LoginEnter(dialog_safety_center.show);
                 break;
             case 1:
-                dialog_wallet.show();
+                LoginEnter(dialog_wallet.show);
                 break;
             case 2:
-                dialog_bet_record.show();
+                LoginEnter(dialog_bet_record.show);
                 break;
             case 3:
-                dialog_email.show();
+                LoginEnter(dialog_email.show);
                 break;
             case 10:
-                page_extension.show();
+                LoginEnter(page_extension.show);
                 break;
             case 12:
-                page_mine.show();
+                LoginEnter(page_mine.show);
                 break;
             case 13:
                 dialog_activity.show();

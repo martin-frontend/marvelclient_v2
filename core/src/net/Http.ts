@@ -9,13 +9,14 @@ module net {
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
 
-            switch(core.lang){
-                case "vi":
-                    data.lang = "vi_VN";
-                    break;
-                default:
-                    data.lang = "zh_CN";
-            }
+            // switch(core.lang){
+            //     case "vi":
+            //         data.lang = "vi_VN";
+            //         break;
+            //     default:
+            //         data.lang = "zh_CN";
+            // }
+            data.lang = core.lang;
 
             if (core.user_id) {
                 data.user_id = core.user_id;

@@ -30,8 +30,14 @@ module core {
         /**返佣设置：1-分类型|2-全部 */
         calc_type: number;
         /**是否需要绑定上级 1 需要 98不需要 */
-        is_game_with_parent: {is_open: number};
+        is_game_with_parent: { is_open: number };
         /**支持的币种 */
-        plat_coins: {};
+        plat_coins: any;
+        /**语言 */
+        language: any;
+        /**主语言 */
+        main_language: string;
+        /**可以注册的类型: 1-用户名注册|2-邮箱注册|4-手机注册 */
+        register_types: number[];
     }
 }

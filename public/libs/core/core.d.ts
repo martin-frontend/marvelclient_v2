@@ -2083,7 +2083,13 @@ declare module core {
             is_open: number;
         };
         /**支持的币种 */
-        plat_coins: {};
+        plat_coins: any;
+        /**语言 */
+        language: any;
+        /**主语言 */
+        main_language: string;
+        /**可以注册的类型: 1-用户名注册|2-邮箱注册|4-手机注册 */
+        register_types: number[];
     }
 }
 declare module core {

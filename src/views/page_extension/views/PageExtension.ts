@@ -12,6 +12,9 @@ export default class PageExtension extends AbstractView {
     pageData = this.myProxy.pageData;
     promotionData = this.myProxy.promotionData;
     statistics_data = this.myProxy.statistics_data;
+    tableData = this.myProxy.tableData;
+
+    private QRCode = QRCode;
 
     constructor() {
         super(PageExtensionMediator);
@@ -32,5 +35,9 @@ export default class PageExtension extends AbstractView {
     /**领取奖励 */
     handlerAward() {
         this.myProxy.api_user_var_commission_receive();
+    }
+
+    savePhoto() {
+        this.myProxy.savePoster(this.myProxy.link);
     }
 }

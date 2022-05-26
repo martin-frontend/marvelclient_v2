@@ -1,21 +1,34 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceDetailMediator from "../mediator/DialogPerformanceDetailMediator";
 import DialogPerformanceDetailProxy from "../proxy/DialogPerformanceDetailProxy";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
     myProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
     pageData = this.myProxy.pageData;
+    parameter = this.myProxy.parameter;
     listQuery = this.pageData.listQuery;
+    categoryType = this.myProxy.categoryIcons;
+
+    commonIcon = Assets.commonIcon;
 
     constructor() {
         super(DialogPerformanceDetailMediator);
     }
 
     onTabClick(cate: number) {
+        if (cate === 1) {
+            // 檢查是否有直屬資料
+            if (this.pageData.directList.length === 0) {
+                dialog_message.warn("无直属详情资料");
+                return;
+            }
+        }
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
     }
@@ -28,6 +41,8 @@ export default class DialogPerformanceDetail extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
+            this.myProxy.api_user_var_commission_commissiondetail();
+            // this.myProxy.api_user_var_commission_directswater();
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();

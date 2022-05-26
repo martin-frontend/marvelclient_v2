@@ -6,12 +6,14 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceMediator from "../mediator/DialogPerformanceMediator";
 import DialogPerformanceProxy from "../proxy/DialogPerformanceProxy";
 import dialog_performance_detail from "@/views/dialog_performance_detail";
+import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 
 @Component
 export default class DialogPerformance extends AbstractView {
+    dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
     myProxy: DialogPerformanceProxy = this.getProxy(DialogPerformanceProxy);
     pageData = this.myProxy.pageData;
-    listQuery = this.pageData.listQuery;
+    // listQuery = this.pageData.listQuery;
 
     commonIcon = Assets.commonIcon;
 
@@ -25,7 +27,8 @@ export default class DialogPerformance extends AbstractView {
         super(DialogPerformanceMediator);
     }
 
-    handlerDetail() {
+    handlerDetail(date: string) {
+        this.dialogPerformanceDetailProxy.parameter.date = date;
         dialog_performance_detail.show();
     }
 
@@ -40,25 +43,28 @@ export default class DialogPerformance extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
+            this.myProxy.onSelectDay(-7);
         }
     }
 
     onTimeChange() {
         switch (this.timeSelect) {
             case 0:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                // this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
+                // this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.myProxy.onSelectDay(-7);
                 break;
             case 1:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                // this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
+                // this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.myProxy.onSelectDay(-30);
                 break;
         }
         // this.myProxy.api_user_show_var_bet();
     }
 
-    onPageChange(val: any) {
-        this.listQuery.page_count = val;
-        // this.myProxy.api_user_show_var_bet();
-    }
+    // onPageChange(val: any) {
+    //     this.listQuery.page_count = val;
+    //     this.myProxy.api_user_show_var_bet();
+    // }
 }

@@ -8,8 +8,8 @@ import DialogPerformanceDetail from "./DialogPerformanceDetail";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogPerformanceDetail {}
 </script>

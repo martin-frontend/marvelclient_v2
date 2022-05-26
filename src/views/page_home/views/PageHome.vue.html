@@ -2,8 +2,14 @@
     <Advertise />
     <Activity />
     <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
-        <GameSlideGroup v-if="item.category != 4 && item.category != 32 && item.category != 64" :data="item"  :bShowAll="true"/>
-        <GameSport v-else :data="item"></GameSport>
+        <GameSlideGroup
+            v-if="item.category != 4 && item.category != 32 && item.category != 64"
+            :data="item"
+            :bShowAll="true"
+            :name="item.category"
+            :id="item.category"
+        />
+        <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
-    <RecentBetting class="mt-8"/>
+    <RecentBetting class="mt-8" />
 </v-container>

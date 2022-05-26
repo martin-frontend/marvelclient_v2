@@ -1,21 +1,30 @@
 import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_message_box from "@/views/dialog_message_box";
 import page_game_play from "@/views/page_game_play";
 import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
 import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
 
+import Vue from "vue";
+import App from "@/App.vue";
+import { vuetify } from "@/plugins/vuetify";
+import router from "@/router";
+import Cookies from "js-cookie";
+import LangConfig from "./config/LangConfig";
+
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
 
     private selfProxy: SelfProxy = getProxy(SelfProxy);
-    private gameProxy:GameProxy = getProxy(GameProxy);
+    private gameProxy: GameProxy = getProxy(GameProxy);
 
     public listNotificationInterests(): string[] {
         return [
             NotificationName.GAME_CONFIG,
+            NotificationName.LANG_CONFIG,
             net.EventType.api_user_logout,
             net.EventType.api_plat_var_game_config,
             net.EventType.api_user_show_var,
@@ -41,12 +50,34 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                 }
                 break;
+            case NotificationName.LANG_CONFIG:
+                {
+                    //@ts-ignore
+                    window["vm"].$mount("#app");
+                }
+                break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
+                dialog_message_box.alert("您的帐号已经退出");
                 break;
             //游戏配置
             case net.EventType.api_plat_var_game_config:
-                GamePlatConfig.init(body);
+                {
+                    GamePlatConfig.init(body);
+                    //确定语言
+                    const userLang = Cookies.get("lang");
+                    if (userLang) {
+                        core.lang = userLang;
+                    } else {
+                        const sysLang = navigator.language.replace("-", "_");
+                        if (GamePlatConfig.config.language[sysLang]) {
+                            core.lang = sysLang;
+                        } else {
+                            core.lang = GamePlatConfig.config.main_language;
+                        }
+                    }
+                    LangConfig.load();
+                }
                 break;
             //用户信息
             case net.EventType.api_user_show_var:
@@ -60,7 +91,7 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_plat_var_notice_index:
                 {
-                    const noticeProxy:NoticeProxy = getProxy(NoticeProxy);
+                    const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
                     noticeProxy.setData(body);
                 }
                 break;

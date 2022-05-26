@@ -1,10 +1,13 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import LoginEnter from "@/core/global/LoginEnter";
 import { Watch, Component } from "vue-property-decorator";
 import PageGameListMediator from "../mediator/PageGameListMediator";
 import PageGameListProxy from "../proxy/PageGameListProxy";
 
 @Component
 export default class PageGameList extends AbstractView {
+    CategoryIcon = Assets.CategoryIcon;
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
     pageData = this.myProxy.pageData;
     hotGame = this.myProxy.hotGame;
@@ -30,5 +33,12 @@ export default class PageGameList extends AbstractView {
     getMore() {
         this.listQuery.page_count++;
         this.myProxy.api_plat_var_game_all_index();
+    }
+
+    showGameSearch(){
+        LoginEnter(()=>{
+            const myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
+            myProxy.navigationData.bShow = true;
+        })
     }
 }

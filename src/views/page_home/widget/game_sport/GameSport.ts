@@ -1,5 +1,6 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import page_game_list from "@/views/page_game_list";
 import { Prop, Watch, Component } from "vue-property-decorator";
@@ -21,9 +22,11 @@ export default class GameSport extends AbstractView {
         }
     }
 
-    goGamePlay(item:any) {
-        const gameProxy: GameProxy = this.getProxy(GameProxy);
-        gameProxy.api_vendor_var_ori_product_show_var(item);
+    goGamePlay(item: any) {
+        LoginEnter(() => {
+            const gameProxy: GameProxy = this.getProxy(GameProxy);
+            gameProxy.api_vendor_var_ori_product_show_var(item);
+        });
     }
 
     onShowAll() {

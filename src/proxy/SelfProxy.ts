@@ -43,4 +43,11 @@ export default class SelfProxy extends AbstractProxy {
             this.sendNotification(net.HttpType.api_user_show_var, { user_id: core.user_id, modules: JSON.stringify(modules) });
         }
     }
+    /**--会员资料--修改用户基本信息*/
+    api_user_update_var(data: any) {
+        this.sendNotification(net.HttpType.api_user_update_var, {
+            ...data,
+            user_id: core.user_id,
+        });
+    }
 }

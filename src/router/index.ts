@@ -49,7 +49,7 @@ const routes: Array<RouteConfig> = [
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
 const originalPush = VueRouter.prototype.push;
-VueRouter.prototype.push = function push(location) {
+VueRouter.prototype.push = function push(location: any) {
     //@ts-ignore
     return originalPush.call(this, location).catch((err: any) => err);
 };

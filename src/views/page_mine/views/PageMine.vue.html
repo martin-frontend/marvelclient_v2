@@ -7,7 +7,7 @@
                     <v-col cols="2">
                         <v-img src="~@/assets/mine/vip_icon.png"></v-img>
                     </v-col>
-                    <v-col cols="10" class="pl-2 d-flex flex-column align-start justify-center text-body-2 text-md-body-1">
+                    <v-col cols="10" class="pl-2 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1 text-no-wrap">
                         <v-sheet width="100%" class="text-h6 text-md-h5 mb-1 d-flex align-center" color="transparent">
                             VIP {{ pageData.vipLevel }}
                             <span class="text-body-2 text-md-body-1 ml-2 colorTextBlueLight--text text-decoration-underline cursop_pointer" @click="jumpTo('#vipLevel')">  查看所有等级</span
@@ -15,13 +15,12 @@
                         </v-sheet>
                         <v-sheet width="100%" color="transparent">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" height="10" class="rounded-xl"></v-progress-linear>
-                            <p class="colorTextBlue--text ma-0 mt-1">
+                            <p class="colorTextBlue--text ma-0 mt-1 ">
                                 距离下一个等级还差<span class="colorCoin--text">
                                     {{ pageData.nextExp }}
                                 </span> 有效流水,USDT充值<span
                                     class="colorCoin--text"
-                                    > {{ pageData.nextUSDT }}</span
-                                >
+                                    > {{ pageData.nextUSDT }}</span>
                             </p>
                         </v-sheet>
                     </v-col>

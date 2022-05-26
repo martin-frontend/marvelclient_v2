@@ -1,4 +1,6 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import getProxy from "@/core/global/getProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 
 export default class PageMineProxy extends puremvc.Proxy {
     static NAME = "PageMineProxy";
@@ -7,6 +9,8 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         // TODO 请求初始数据
         this.api_user_var_backwater_trial();
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
+        selfProxy.api_user_show_var([3, 4, 5, 6]);
     }
 
     pageData = {

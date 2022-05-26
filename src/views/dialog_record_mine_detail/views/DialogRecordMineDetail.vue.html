@@ -15,31 +15,31 @@
                     <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span>
                 </p>
             </div>
-            <div class="listbox">
+            <div class="listbox" v-if="pageData.data.detail.length > 0">
                
-                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.data.list" :key="key"> -->
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
+                <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2"> -->
                     <div class="d-flex listitem">
                        
                         <div>
-                            <div>棋牌有效流水</div>
-                            <div>1234</div>
+                            <div>{{ typeOptions(item.vendor_type) }}有效流水</div>
+                            <div>{{ item.water }}</div>
                         </div>
                         <div>
-                            <div>{{ pageData.data.list.col_2_title }}返水比例</div>
-                            <div>{{ pageData.data.list.col_2 }}%</div>
+                            <div>{{ item.main_coin_name_unique }}返水比例</div>
+                            <div>{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
                         </div>                                                       
                         <div>
-                            <div>奖励{{ pageData.data.list.col_3_title }}</div>
-                            <div>{{ pageData.data.list.col_3 }}</div>
+                            <div>奖励{{ item.main_coin_name_unique }}</div>
+                            <div>{{ item.main_coin_backwater }}</div>
                         </div>
                         <div>
-                            <div>{{ pageData.data.list.col_4_title }}返水比例</div>
-                            <div>{{ pageData.data.list.col_4 }}%</div>
+                            <div>{{ item.reward_coin_name_unique }}返水比例</div>
+                            <div>{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
                         </div>
                         <div>
-                            <div>奖励{{  pageData.data.list.col_5_title }}</div>
-                            <div>{{  pageData.data.list.col_5 }}</div>
+                            <div>奖励{{  item.reward_coin_name_unique }}</div>
+                            <div>{{  item.reward_coin_backwater }}</div>
                         </div>
                     </div>
                 </v-sheet>

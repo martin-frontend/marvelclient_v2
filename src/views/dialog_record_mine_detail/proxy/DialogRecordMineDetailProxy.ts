@@ -16,18 +16,7 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
                 endWater: "",
                 award: "",
             },
-            list: {
-                col_1: "",
-                col_1_title: "",
-                col_2: "",
-                col_2_title: "",
-                col_3: "",
-                col_3_title: "",
-                col_4: "",
-                col_4_title: "",
-                col_5: "",
-                col_5_title: "",
-            },
+            detail: [],
         },
         pageInfo: {
             pageCurrent: 1,
@@ -36,6 +25,21 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
             pageTotal: 9,
         },
     };
+
+    typeOptions(type: number) {
+        const map = <any>{
+            0: "全部类型",
+            2: "棋牌",
+            4: "彩票",
+            8: "捕鱼",
+            16: "电子",
+            32: "真人",
+            64: "体育",
+            128: "电竞",
+        };
+        return map[type];
+    }
+
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
@@ -51,15 +55,7 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
         this.pageData.data.title.award = `${Object.keys(data.total_backwater)[0]} ${
             data.total_backwater[Object.keys(data.total_backwater)[0]]
         }  ${Object.keys(data.total_backwater)[1]} ${data.total_backwater[Object.keys(data.total_backwater)[1]]}`;
-        const detail = data.detail;
-        this.pageData.data.list.col_2_title = detail[0].coin_name_unique;
-        this.pageData.data.list.col_2 = (detail[0].backwater_rate * 100).toFixed(2);
-        this.pageData.data.list.col_3_title = detail[0].coin_name_unique;
-        this.pageData.data.list.col_3 = detail[0].water;
-        this.pageData.data.list.col_4_title = detail[1].coin_name_unique;
-        this.pageData.data.list.col_4 = (detail[1].backwater_rate * 100).toFixed(2);
-        this.pageData.data.list.col_5_title = detail[1].coin_name_unique;
-        this.pageData.data.list.col_5 = detail[1].water;
+        this.pageData.data.detail = data.detail;
 
         this.pageData.loading = false;
     }

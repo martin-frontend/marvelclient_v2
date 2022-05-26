@@ -5,6 +5,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
 
     /**参数 */
     parameter: any = {
+        vendor_type_0: 0, // 全部
         vendor_type_2: 0, // 棋牌
         vendor_type_4: 0, // 彩票
         vendor_type_8: 0, // 捕鱼
@@ -22,7 +23,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
 
     setSelectedFloorData(data: any): void {
         console.log("DialogPromotionFloorProxy setSelectedFloorData", data);
-        this.pageData.amount = data["2"];
+        this.pageData.amount = data["0"];
     }
 
     setData(data: any) {

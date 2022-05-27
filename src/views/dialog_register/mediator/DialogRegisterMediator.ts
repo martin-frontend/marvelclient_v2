@@ -6,7 +6,12 @@ import SelfProxy from "@/proxy/SelfProxy";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_register, net.EventType.api_public_auth_code, net.EventType.api_public_area_code, net.EventType.REQUEST_ERROR];
+        return [
+            net.EventType.api_user_register,
+            net.EventType.api_public_auth_code,
+            net.EventType.api_public_area_code,
+            net.EventType.REQUEST_ERROR,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -15,9 +20,9 @@ export default class DialogRegisterMediator extends AbstractMediator {
         myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_register:
-                dialog_message.scuess("注册成功");
+                dialog_message.success("注册成功");
                 myProxy.pageData.bShow = false;
-                this.loginScuess(body);
+                this.loginSuccess(body);
                 break;
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;
@@ -26,14 +31,14 @@ export default class DialogRegisterMediator extends AbstractMediator {
                 myProxy.pageData.areaCode = body;
                 break;
             case net.EventType.REQUEST_ERROR:
-                if(body.url == net.HttpType.api_user_register){
+                if (body.url == net.HttpType.api_user_register) {
                     myProxy.api_public_auth_code();
                 }
                 break;
         }
     }
 
-    private loginScuess(body: any) {
+    private loginSuccess(body: any) {
         core.token = body.token;
         core.user_id = body.user_id;
 

@@ -17,7 +17,7 @@ export default class DialogWalletMediator extends AbstractMediator {
                 myProxy.pageData.gold_info = body.gold_info;
                 break;
             case net.EventType.api_user_var_vendor_withdraw:
-                dialog_message.scuess("提取成功");
+                dialog_message.success("提取成功");
                 myProxy.api_user_show_var();
                 break;
             case net.EventType.api_user_show_var_gold:

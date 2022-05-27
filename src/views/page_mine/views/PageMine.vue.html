@@ -1,13 +1,13 @@
 <v-container class="page_mine">
     <v-row no-gutters>
-        <v-col cols="12" md="6" lg="5" class="pr-0 pr-md-3 mt-14 mt-md-1 order-2 order-md-1">
+        <v-col cols="12" md="6" lg="5" class="pr-0 pr-md-3 mt-4 mt-md-1 order-2 order-md-1">
             <v-card color="colorTitleBg" class="rounded-xl pa-5 left_bg" width="100%" height="100%">
                 <span class="colorTextBlueLight--text text-h6 text-md-h5 font-weight-thin pl-3">挖矿等级</span>
                 <v-row no-gutters class="mt-3 mt-md-6">
                     <v-col cols="2">
                         <v-img src="~@/assets/mine/vip_icon.png"></v-img>
                     </v-col>
-                    <v-col cols="10" class="pl-2 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
+                    <v-col cols="10" class="pl-2 d-flex px-6 flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
                         <v-sheet width="100%" class="text-h6 text-md-h5 mb-1 d-flex align-center justify-space-between" color="transparent">
                             VIP {{ pageData.vipLevel }}
                             <span class="text-body-2 text-md-body-1 ml-2 colorTextBlueLight--text text-decoration-underline cursop_pointer" @click="jumpTo('#vipLevel')">查看所有等级</span>
@@ -26,8 +26,8 @@
                         </v-sheet>
                     </v-col>
                     <v-col class="d-flex mt-md-16 down_box">
-                        <v-row class="mt-3">
-                            <v-col cols="12" lg="6" class="pr-1">
+                        <v-row class="mt-3 px-6 px-md-0">
+                            <v-col cols="6" md="12" lg="6" class="">
                                 <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-4 py-2 font-weight-thin">
                                     <div class="d-flex">
                                         <v-img max-width="25" height="26" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
@@ -40,8 +40,8 @@
                                     </div>
                                 </v-sheet>
                             </v-col>
-                            <v-col cols="12" lg="6" class="">
-                                <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-4 py-2">
+                            <v-col cols="6" md="12" lg="6" class="">
+                                <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-4 py-2 font-weight-thin">
                                     <div class="d-flex">
                                         <v-img max-width="25" height="26" contain :src="pageData.platCoins.rewardCoin.icon"></v-img>
                                         <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2 font-weight-thin">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
@@ -59,14 +59,14 @@
             </v-card>
         </v-col>
         <v-col cols="12" md="6" lg="7" class="d-flex mt-1  order-1 order-md-2">
-            <v-card class="right_banner pl-4 pr-4 pt-4 pb-0 rounded-xl" width="100%" height="100%">
+            <v-card class="right_banner pl-5 pr-5 pt-4 pb-0 rounded-xl" width="100%" height="100%">
                 <v-card-text class="pa-0">
                     <v-row no-gutters>
-                        <v-col cols="5" md="4">
-                            <span class="colorTextPurple--text text-h6 text-md-h5  pl-3 font-weight-thin">游戏挖矿</span>
+                        <v-col cols="4" md="4">
+                            <span class="colorTextPurple--text text-h6 text-md-h5 pl-3 font-weight-thin">游戏挖矿</span>
                             <v-img class="cat_icon mt-4" max-width="240" height="301" contain src="~@/assets/mine/cat_icon.png"></v-img>
                         </v-col>
-                        <v-col cols="7" md="8" class="text-body-2 text-md-body-1 font-weight-thin">
+                        <v-col cols="8" md="8" class="text-body-2 pl-7 pl-md-0 text-md-body-1 font-weight-thin">
                             <div class="mt-8">
                                 <p class="ma-0">今日挖矿待领取收益</p>
                                 <p class="ma-0 colorTextPurple--text">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
@@ -102,7 +102,7 @@
             个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。
         </p>
 
-        <v-slide-group class="mt-7">
+        <v-slide-group class="mt-7" show-arrows>
             <v-slide-item v-for="(item, level) of pageData.vipConfig" :key="level">
                 <v-card color="transparent" height="260" width="180">
                     <v-img max-width="100%" height="100%" class="mx-2" src="~@/assets/mine/item_bg.png">
@@ -126,58 +126,66 @@
         </p>
         <v-row class="mt-2">
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
-                    <v-card-title class="pa-0">
-                        <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_01_icon.png"></v-img>
-                        <div class="d-flex flex-column">
-                            <span class="text-h5 colorCoin--text mb-2">01</span>
-                            <span class="text-body-1">享受游戏之旅</span>
-                        </div>
-                    </v-card-title>
-                    <v-card-text class="px-0 mt-4">
-                        <span class="text-caption text-md-body-2"
-                            >参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。</span
-                        >
-                    </v-card-text>
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl pa-5 px-8 px-md-5 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
+                    <div>
+                        <v-card-title class="pa-0">
+                            <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_01_icon.png"></v-img>
+                            <div class="d-flex flex-column">
+                                <span class="text-h5 colorCoin--text mb-2">01</span>
+                                <span class="text-body-1">享受游戏之旅</span>
+                            </div>
+                        </v-card-title>
+                        <v-card-text class="px-0 mt-4">
+                            <span class="text-caption text-md-body-2"
+                                >参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。</span
+                            >
+                        </v-card-text>
+                    </div>
                     <v-card-actions class="pa-0">
                         <v-btn width="126" height="42" color="colorBlue2Bg" @click="onGoBet" class="rounded-pill">去投注</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
-                    <v-card-title class="pa-0">
-                        <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_02_icon.png"></v-img>
-                        <div class="d-flex flex-column">
-                            <span class="text-h5 colorCoin--text mb-2">02</span>
-                            <span class="text-body-1">领取个人洗码</span>
-                        </div>
-                    </v-card-title>
-                    <v-card-text class="px-0 mt-4">
-                        <span class="text-caption text-md-body-2"
-                            >个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。</span
-                        >
-                    </v-card-text>
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl pa-5 px-8 px-md-5 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
+                    <div>
+                        <v-card-title class="pa-0">
+                            <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_02_icon.png"></v-img>
+                            <div class="d-flex flex-column">
+                                <span class="text-h5 colorCoin--text mb-2">02</span>
+                                <span class="text-body-1">领取个人洗码</span>
+                            </div>
+                        </v-card-title>
+                        <v-card-text class="px-0 mt-4">
+                            <span class="text-caption text-md-body-2"
+                                >个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。</span
+                            >
+                        </v-card-text>
+                    </div>
                     <v-card-actions class="pa-0">
                         <v-btn width="126" height="42" color="colorBlue2Bg" class="rounded-pill">去领取</v-btn>
                     </v-card-actions>
+                    
                 </v-card>
             </v-col>
             <v-col cols="12" md="4">
-                <v-card width="100%" color="colorPanelBg2" class="rounded-xl pa-4 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
-                    <v-card-title class="pa-0">
-                        <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_03_icon.png"></v-img>
-                        <div class="d-flex flex-column">
-                            <span class="text-h5 colorCoin--text mb-2">03</span>
-                            <span class="text-body-1">自动结算推荐洗码</span>
-                        </div>
-                    </v-card-title>
-                    <v-card-text class="px-0 mt-4">
-                        <span class="text-caption text-md-body-2"
-                            >当你的洗码比例高于好友，每周可以获得好友投注额 x
-                            比例差值的自动洗码，这意味着最高可拿到0.3%推荐洗码（0.9-0.6）。</span
-                        >
-                    </v-card-text>
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl pa-5 px-8 px-md-5 pa-md-6 d-flex flex-column justify-space-between" height="100%" max-height="304">
+                    <div>
+                        <v-card-title class="pa-0">
+                            <v-img max-width="72" class="mr-4" height="72" contain src="~@/assets/mine/about_03_icon.png"></v-img>
+                            <div class="d-flex flex-column">
+                                <span class="text-h5 colorCoin--text mb-2">03</span>
+                                <span class="text-body-1">自动结算推荐洗码</span>
+                            </div>
+                        </v-card-title>
+                        
+                        <v-card-text class="px-0 mt-4">
+                            <span class="text-caption text-md-body-2"
+                                >当你的洗码比例高于好友，每周可以获得好友投注额 x
+                                比例差值的自动洗码，这意味着最高可拿到0.3%推荐洗码（0.9-0.6）。</span
+                            >
+                        </v-card-text>
+                    </div>
                     <v-card-actions> </v-card-actions>
                 </v-card>
             </v-col>

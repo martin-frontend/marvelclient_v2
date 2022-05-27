@@ -166,23 +166,19 @@
                         </v-col>
                         <v-col col="12" sm="9" md="9" lg="9" class="colorText4--text  text-subtitle-1 pl-0 pl-sm-4">
                             <div class="ml-4 mb-2">好友推荐链接</div>
-                            <div>
-                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
-                                    {{ myProxy.link }}
-                                    <v-btn icon @click="copy">
-                                        <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
-                                    </v-btn>
-                                </v-sheet>
-                            </div>
+                            <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                <span class="text-truncate">{{ myProxy.link }}</span>
+                                <v-btn icon @click="copy">
+                                    <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
+                                </v-btn>
+                            </v-sheet>
                             <div class="ml-4 mb-2">我的邀请码</div>
-                            <div>
-                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
-                                    {{ promotionData.user_id }}
-                                    <v-btn icon @click="copyMyId">
-                                        <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
-                                    </v-btn>
-                                </v-sheet>
-                            </div>
+                            <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                {{ promotionData.user_id }}
+                                <v-btn icon @click="copyMyId">
+                                    <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
+                                </v-btn>
+                            </v-sheet>
                             <div class="text-body-1 text-md-body-2">
                                 1.  通过以上链接或者二维码的用户既为您的直属代理；
                             </div>

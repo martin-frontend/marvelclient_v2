@@ -7,6 +7,10 @@ export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     private bindInviteproxy: DialogBindInviteProxy = getProxy(DialogBindInviteProxy);
 
+    protected initViewData(): void {
+        this.myProxy.api_user_var_short_chain()
+    }
+
     /**按日期获取业绩详情 */
     private getDetdail() {
         this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, { user_id: core.user_id });
@@ -37,7 +41,7 @@ export default class PageExtensionMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_update_var:
                 this.bindInviteproxy.hide();
-                dialog_message.scuess("登录成功");
+                dialog_message.success("操作成功");
                 this.getDetdail();
                 break;
         }

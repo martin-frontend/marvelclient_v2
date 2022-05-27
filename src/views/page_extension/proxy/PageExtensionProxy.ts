@@ -47,7 +47,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         group_water_summary: 0,    // 团队业绩
         direct_water_summary: 0,   // 直属业绩
     };
-    is_promotion_statistics_display: any = false;
     link: any = "";
     btnBind: any = false;
     qrCode: any = "";
@@ -70,6 +69,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     setCommissionCommissionnum(body: any) {
         const data: any = JSON.parse(JSON.stringify(body));
         this.tableData.myCommissionNum = data.my_commission_num;
+        this.tableData.is_promotion_num_added = data.is_promotion_num_added
         this.tableData.promotionConfig = JSON.parse(JSON.stringify(data.promotion_config));
         this.tableData.defaultPromotionConfig = JSON.parse(JSON.stringify(data.promotion_config));
         this.tableData.type = data.type;
@@ -98,6 +98,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         },
         promotionConfig: {},
         defaultPromotionConfig: {},
+        is_promotion_num_added: 1,
         type: 0,
     };
 

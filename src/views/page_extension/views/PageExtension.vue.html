@@ -1,11 +1,11 @@
 <div >
-    <v-container >
+    <v-container>
         <v-row no-gutters >
             <v-col cols="12" lg="6" class="pr-lg-2">
                 <v-card class="mb-2 rounded-xl horizontal-gradient-left text-body-1 d-flex align-center px-5 py-6">
                     <v-row no-gutters class="d-flex flex-row">
                         <v-col cols="12" sm="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
-                            <span class="mr-0 mr-md-5 colorText3--text">
+                            <span class="mr-0 mr-md-5 colorText3--text ">
                                 可领取佣金
                             </span>
                         </v-col>
@@ -190,7 +190,7 @@
                         </v-col>
                     </v-row>
                     <div class="d-flex justify-center justify-md-end">
-                        <v-btn width="120" height="40" class="rounded-lg text-body-1 mr-5" color="colorExtensionBtn">推广统计</v-btn>
+                        <v-btn width="120" height="40" class="rounded-lg text-body-1 mr-5" color="colorExtensionBtn" v-if="promotionData.is_promotion_statistics_display">推广统计</v-btn>
                         <v-btn width="120" height="40" class="rounded-lg text-body-1" color="colorExtensionBtn" @click="handlerDirectly">我的直属</v-btn>
                     </div>
                 </v-card>
@@ -201,26 +201,29 @@
             <div class="text-body-1 colorText3--text mb-5">提升团队业绩可提升返佣等级</div>
             <v-card height="50" class="rounded-xl mb-1 d-flex align-center mb-1" color="colorPanelBg2">
                 <v-row no-gutters class="d-flex flex-row text-body-1 colorText3--text">
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
                         等级
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
                         总业绩
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
                         返佣额度(每万)
+                    </v-col>
+                    <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        级差
                     </v-col>
                 </v-row>
             </v-card>
             <v-card height="50" class="rounded-xl mb-1 d-flex align-center" color="colorPanelBg2" v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
                 <v-row no-gutters class="d-flex flex-row text-body-1 ">
-                    <v-col cols="4" class="d-flex justify-center level_col align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center level_col align-center">
                         <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                             <v-img contain src="@/assets/extension/star.png" > </v-img>
                         </span>
                         {{ item.level }}级
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center align-center">
                         <span v-if="item.total_performance / 1000 >= 10000">
                             {{ item.total_performance / 10000000 }}万+
                         </span>
@@ -228,11 +231,17 @@
                             {{ item.total_performance / 1000 }}+
                         </span>
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center align-center">
                         <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
                         <span class="mr-1">{{ item.commission_num.USDT }}</span>
                         <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
                         {{ item.commission_num.LCC }}
+                    </v-col>
+                    <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
+                        <span class="mr-1">{{ item.commission_num_added.USDT }}</span>
+                        <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                        {{ item.commission_num_added.LCC }}
                     </v-col>
                 </v-row>
             </v-card>

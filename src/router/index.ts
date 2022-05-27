@@ -58,9 +58,10 @@ VueRouter.prototype.push = function push(location: any) {
 const router = new VueRouter({
     routes,
 });
-/**没token 重新导向 */
+// /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (!core.token && to.name !== "page_home") {
+    const user_id = window.localStorage.getItem("user_id");
+    if (!user_id && to.name !== "page_home") {
         next("/");
     } else {
         next();

@@ -8,9 +8,6 @@ export default class PageMineProxy extends puremvc.Proxy {
     public onRegister(): void {
         this.pageData.loading = true;
         // TODO 请求初始数据
-        this.api_user_var_backwater_trial();
-        const selfProxy: SelfProxy = getProxy(SelfProxy);
-        selfProxy.api_user_show_var([3, 4, 5, 6]);
     }
 
     pageData = {
@@ -21,6 +18,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         vipLevel: 0, //目前vip等级
         vipNextLevel: 0,
         vipConfig: [], //vip 所有等级
+        vipMaxLevel: 0,
         //主币
         backwaterConfigMain: <any>{
             now: 0,
@@ -73,7 +71,7 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        // console.warn("user info >>>", this.userInfo);
+        console.warn("user info >>>", this.userInfo);
         if (this.userInfo.vip_info) {
             const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
             const vip_info = <any>this.userInfo.vip_info;
@@ -81,6 +79,7 @@ export default class PageMineProxy extends puremvc.Proxy {
 
             this.pageData.nextExp = vip_progress[0].next_vip_level_need_exp - vip_progress[0].user_exp;
             this.pageData.nextUSDT = vip_progress[1].next_vip_level_need_exp - vip_progress[1].user_exp;
+            this.pageData.vipMaxLevel = vip_info.max_vip_level;
 
             this.pageData.vipProgress = (Number(vip_progress[0].user_exp) / Number(vip_progress[0].next_vip_level_need_exp)) * 100;
             this.pageData.vipLevel = vip_info.vip_level;
@@ -125,5 +124,9 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_backwater_trial_receive, {
             user_id: core.user_id,
         });
+    }
+
+    getVipLevel(level: any) {
+        return level + 1 > this.pageData.vipMaxLevel ? this.pageData.vipMaxLevel : level + 1;
     }
 }

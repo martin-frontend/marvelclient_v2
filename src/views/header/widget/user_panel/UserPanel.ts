@@ -33,7 +33,6 @@ export default class UserPanel extends AbstractView {
 
     onLoginOut() {
         this.selfProxy.api_user_logout();
-        router.push("/");
     }
 
     onMenuItem(item: any) {

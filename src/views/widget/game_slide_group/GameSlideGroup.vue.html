@@ -1,10 +1,10 @@
-<div class="mt-8">
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'">
     <div class="text-16 mb-2 ml-2 mr-4 d-flex align-center">
         <v-icon class="mr-1" color="colorYellow">{{ CategoryIcon[data.category] }}</v-icon>
         <div>{{ data.category_name }}</div>
         <v-spacer />
         <v-btn
-            v-if="bShowAll"
+            v-if="bShowAll && !$vuetify.breakpoint.xsOnly"
             class="text-12 rounded-pill"
             color="rgba(243, 231, 231, 0.098)"
             width="78"
@@ -15,7 +15,7 @@
         </v-btn>
     </div>
     <v-sheet max-width="1430" class="mx-auto" color="transparent">
-        <v-slide-group show-arrows>
+        <v-slide-group :show-arrows="!$vuetify.breakpoint.xsOnly">
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
                 <GameItem :item="item" />
             </v-slide-item>

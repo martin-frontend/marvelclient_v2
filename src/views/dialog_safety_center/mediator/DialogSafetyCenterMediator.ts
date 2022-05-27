@@ -22,14 +22,14 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
             case net.EventType.api_user_bind_mobile_var:
             case net.EventType.api_user_bind_email_var:
                 {
-                    dialog_message.scuess("绑定成功");
+                    dialog_message.success("绑定成功");
                     myProxy.pageData.bShow = false;
-                    const selfProxy:SelfProxy = getProxy(SelfProxy);
+                    const selfProxy: SelfProxy = getProxy(SelfProxy);
                     selfProxy.api_user_show_var([2]);
                 }
                 break;
             case net.EventType.api_user_change_password_var:
-                dialog_message.scuess("修改成功");
+                dialog_message.success("修改成功");
                 myProxy.pageData.bShow = false;
                 break;
             case net.EventType.api_public_area_code:

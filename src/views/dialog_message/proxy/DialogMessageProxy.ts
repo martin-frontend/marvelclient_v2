@@ -4,6 +4,6 @@ export default class DialogMessageProxy extends puremvc.Proxy {
     pageData = {
         bShow: false,
         message: "",
-        type: 0, // 0: info 1:scuess 2: warn 3: error
+        type: 0, // 0: info 1:success 2: warn 3: error
     };
 }

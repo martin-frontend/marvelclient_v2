@@ -93,35 +93,18 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
                 self_water: data.commission_info[key].self_water,
                 direct_water: data.commission_info[key].direct_water,
                 group_water: data.commission_info[key].group_water,
-                commission_num: `USDT:${data.commission_info[key].commission_num[`USDT`]}`,
-                total_commission: `USDT:${data.commission_info[key].total_commission[`USDT`]}`,
+                commission_num: `${data.commission_info[key].commission_num[`USDT`]}`,
+                total_commission: `${data.commission_info[key].total_commission[`USDT`]}`,
             });
         });
     }
 
     /**写入 直属详情 */
     setCommissionDirectswater(body: any) {
-        console.log("setCommissionDirectswater:", body);
-        // if (body.length == 0) {
-        //     return false;
-        // }
-        // const data: any = JSON.parse(JSON.stringify(body));
-        // if (data.list.length > 0) {
-        //     const waterInfo = data.list[0].water_info;
-
-        //     Object.keys(waterInfo).forEach((key: any) => {
-        //         this.directlyDetails.list.push({
-        //             group_users: data.list[0].group_users,
-        //             nick_name: data.list[0].nick_name,
-        //             user_id: data.list[0].user_id,
-        //             type: key,
-        //             commission_num: `${waterInfo[key].commission_num} ${waterInfo[key].commission_info == 1 ? "(保)" : ""}`,
-        //             group_water: waterInfo[key].group_water,
-        //             is_promotion_floor: waterInfo[key].is_promotion_floor,
-        //             self_water: waterInfo[key].self_water,
-        //         });
-        //     });
-        // }
+        if (body.list.length > 0) {
+            this.pageData.directList = body.list;
+            Object.assign(this.pageData.pageInfo, body.pageInfo);
+        }
     }
 
     /**--代理推广--按日期获取佣金详情*/

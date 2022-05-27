@@ -1,3 +1,4 @@
+
 .page_mine{
     ::v-deep .v-progress-linear__determinate{
         border-radius: 20px;
@@ -11,9 +12,59 @@
             border-width: 2px;
         }
     }
+    .left_bg{
+        background: url('~@/assets/mine/left_bg.png') no-repeat  center center;
+        background-size:cover;
+    }
     .right_banner{
         background: url('~@/assets/mine/right_bg.png') no-repeat  center center;
         background-size:cover;
+        position: relative;
+        overflow: hidden;
+        &::before{
+            content: url('~@/assets/mine/right_special.png');
+            width: 162px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            @media screen and (max-width: 960px) {
+                display: none;
+            }
+        }
+        .get_award{
+            @media only screen and  (min-width: 960px) and (max-width: 1260px ){
+                position: absolute;
+                bottom: 76px;
+                right: 28px;
+            }
+        }
+        .coins_group{
+            @media only screen and  (min-width: 960px) and (max-width: 1260px ){
+                position: absolute;
+                right: 28px;
+                top: 17%;
+            }
+        }
+        .right_btn_group{
+            @media only screen and  (min-width: 960px) and (max-width: 1260px ){
+                position: absolute;
+                bottom: 16px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+            @media only screen and  (max-width: 960px ){
+                margin-bottom: 30px;
+            }
+        }
+        .cat_icon{
+            @media only screen and  (max-width: 1260px ){
+               
+            }
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+        }   
         ::v-deep .v-btn__content{
             color: #5E2E2E;
         }
@@ -22,28 +73,83 @@
                 color: #fff;
             }
         }
-        .cat_icon{
-            position: absolute;
-            bottom: 0;
-            left: 40px;
-            @media screen and (max-width:959px){
-              left: auto;
-              right: 0;
-            }
-            @media screen and (max-width:606px){
-               position: relative;
-            }
-        }
     }
+   
     
-    .v-slide-group__next,.v-slide-group__prev{
-        display: block !important;
-    }
+    
     .v-card,.v-btn{
         box-shadow: none !important;
     }
     .cursop_pointer{
         cursor: pointer;
+    }
+    .get_award{
+        border: 2px solid #5E2E2E;
+        background-color: #F3B952 !important;
+    }
+    .linear_bg{
+        background: linear-gradient( #1C2647,#25324B);;
+    }
+    #howMine{
+        @media only screen and  (max-width: 960px) {
+            ::v-deep .v-card{
+                display: flex !important;
+                flex-direction: row !important;
+                >div{
+                    width: 70%;
+                }
+                .v-card__actions{
+                    width: 30%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                }
+            }
+           
+
+        }
+    }
+    ::v-deep .v-slide-group__prev {
+        position: absolute;
+        top: -33px;
+        right: 35px;
+        min-width: 0;
+        border-radius: 12pt 0pt 0pt 12pt;
+        width: 32px;
+        height: 24px;
+        i {
+            font-size: 30px;
+        }
+        @media only screen and  (max-width: 960px) {
+            display: none;
+        }
+    }
+    ::v-deep .v-slide-group__next {
+        position: absolute;
+        top: -33px;
+        right: 0;
+        min-width: 0;
+        border-radius: 0pt 12pt 12pt 0pt;
+        width: 32px;
+        height: 24px;
+        i {
+            font-size: 30px;
+        }
+        @media only screen and  (max-width: 960px) {
+            display: none;
+        }
+    }
+    ::v-deep .theme--dark {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            background: rgba(243, 231, 231, 0.098);
+        }
+    }
+    ::v-deep .theme--light {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            background: rgba(243, 231, 231, 0.098);
+        }
     }
 }
 

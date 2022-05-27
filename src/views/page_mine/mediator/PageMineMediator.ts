@@ -1,8 +1,17 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageMineProxy from "../proxy/PageMineProxy";
 import getProxy from "@/core/global/getProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 
 export default class PageMineMediator extends AbstractMediator {
+    private pageMineProxy: PageMineProxy = this.getProxy(PageMineProxy);
+
+    protected initViewData(): void {
+        this.pageMineProxy.api_user_var_backwater_trial();
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
+        selfProxy.api_user_show_var([3, 4, 5, 6]);
+    }
+
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_show_var,

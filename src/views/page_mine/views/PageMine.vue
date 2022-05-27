@@ -1,5 +1,7 @@
 <template src="./PageMine.vue.html" lang="html"></template>
-<style src="./PageMine.vue.scss" lang="scss" scoped></style>
+<style src="./PageMine.vue.scss" lang="scss" scoped>
+@import "@/style/fontsize.scss";
+</style>
 
 <script lang="ts">
 import Component from "vue-class-component";

@@ -12,27 +12,52 @@
             border-width: 2px;
         }
     }
+    .left_bg{
+        background: url('~@/assets/mine/left_bg.png') no-repeat  center center;
+        background-size:cover;
+    }
     .right_banner{
         background: url('~@/assets/mine/right_bg.png') no-repeat  center center;
         background-size:cover;
+        position: relative;
+        overflow: hidden;
+        &::before{
+            content: url('~@/assets/mine/right_special.png');
+            width: 162px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        @media only screen and  (min-width: 960px) and (max-width: 1260px ){
+            .right_btn_group{
+                position: absolute;
+                bottom: 16px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+            .coins_group{
+                position: absolute;
+                right: 28px;
+                top: 17%;
+            }
+            .get_award{
+                position: absolute;
+                bottom: 76px;
+                right: 28px;
+            }
+            .cat_icon{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }   
+        }   
         ::v-deep .v-btn__content{
             color: #5E2E2E;
         }
         .btn_group{
             ::v-deep .v-btn__content{
                 color: #fff;
-            }
-        }
-        .cat_icon{
-            position: absolute;
-            bottom: 0;
-            left: 40px;
-            @media screen and (max-width:959px){
-              left: auto;
-              right: 0;
-            }
-            @media screen and (max-width:606px){
-               position: relative;
             }
         }
     }
@@ -45,6 +70,10 @@
     }
     .cursop_pointer{
         cursor: pointer;
+    }
+    .get_award{
+        border: 2px solid #5E2E2E;
+        background-color: #F3B952 !important;
     }
 }
 

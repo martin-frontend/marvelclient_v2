@@ -42,10 +42,15 @@
                         </div>
                         <div>
                             <div>保底</div>
-                            <div><v-btn text height="19" min-width="32" class="text-decoration-underline pa-0 colorBlue--text"
-                                @click="handlerSetting(item.promotion_floor)">
+                            <div v-if="item.is_promotion_floor === 1">
+                                <a href="#" class="text-16 font-weight-regular" @click="handlerSetting(item)">{{ item.promotion_floor["0"] }}</a>
+                            </div>
+                            <div v-else>
+                                <v-btn text height="19" min-width="32" class="text-decoration-underline pa-0 colorBlue--text"
+                                @click="handlerSetting(item)">
                                    设置
-                               </v-btn></div>
+                               </v-btn>
+                            </div>
                         </div>
                     </div>
                 </v-sheet>
@@ -57,12 +62,12 @@
                 </v-sheet>
             </div>
             <v-spacer />
-            <v-pagination
+            <!-- <v-pagination
                 v-if="pageData.list.length>0"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 @input="onPageChange"
-            ></v-pagination>
+            ></v-pagination> -->
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading"/>

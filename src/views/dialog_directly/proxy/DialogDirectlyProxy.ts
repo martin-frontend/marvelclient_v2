@@ -1,12 +1,16 @@
 import { objectRemoveNull } from "@/core/global/Functions";
+import getProxy from "@/core/global/getProxy";
+import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/DialogPromotionFloorProxy";
+import dialog_promotion_floor from "@/views/dialog_promotion_floor";
 
 export default class DialogDirectlyProxy extends puremvc.Proxy {
+    dialogPromotionFloorProxy: DialogPromotionFloorProxy = getProxy(DialogPromotionFloorProxy);
     static NAME = "DialogDirectlyProxy";
 
     /**参数 */
     parameter: any = {
         user_id: core.user_id,
-        direct_user_id: "",
+        agent_user_id: 0,
         page_size: 20,
         page_count: 1,
         start_date: null,
@@ -54,8 +58,24 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.list = data.list;
     }
 
+    setFloorRangeData(agent_user_id: number, val: number) {
+        this.parameter.agent_user_id = agent_user_id;
+        this.dialogPromotionFloorProxy.setSelectedFloorData(this.parameter.agent_user_id, val);
+        dialog_promotion_floor.show();
+    }
+
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }
+
+    /**--代理推广--直属保底范围查询*/
+    // api_user_var_agent_var_floor_range(agent_user_id: any) {
+    //     this.parameter.agent_user_id = agent_user_id;
+    //     this.dialogPromotionFloorProxy.parameter.agent_user_id = agent_user_id;
+    //     this.sendNotification(net.HttpType.api_user_var_agent_var_floor_range, {
+    //         user_id: core.user_id,
+    //         agent_user_id: agent_user_id,
+    //     });
+    // }
 }

@@ -17,16 +17,14 @@
     <v-sheet class="rounded-lg mt-5 d-flex align-center px-3 py-3" color="colorTitleBg" height="80">
         <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
         <v-spacer />
-        <v-btn class="rounded-pill elevation-0" width="340" height="48" color="colorSelectBg" @click="showGameSearch">
-            <div class="icon-box iconfont icon-Magnifier icon__icon text-20 icon-color"></div>
-            <div class="ml-3 text-16">搜索你喜欢的游戏</div>
-            <v-spacer/>
-        </v-btn>
         <GameListSelect
             v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             v-model="listQuery.vendor_id"
         />
+        <!-- <v-btn class="rounded-circle elevation-0" width="48" height="48" color="colorSelectBg" @click="showGameSearch">
+            <div class="icon-box iconfont icon-Magnifier icon__icon text-20 icon-color"></div>
+        </v-btn> -->
     </v-sheet>
     <v-card class="d-flex flex-wrap mt-7 mb-2" color="transparent" flat tile>
         <div v-for="item of pageData.list" :key="item.vendor_prodcut_id">

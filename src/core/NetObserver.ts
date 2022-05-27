@@ -14,6 +14,7 @@ import { vuetify } from "@/plugins/vuetify";
 import router from "@/router";
 import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
+import OpenLink from "./global/OpenLink";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -87,7 +88,19 @@ export default class NetObserver extends AbstractMediator {
                 this.gameProxy.setLobbyIndex(body);
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
-                page_game_play.show(body.url);
+                {
+                    //如果是移动设备，则在新页面中打开游戏
+                    if (vuetify.framework.breakpoint.mobile) {
+                        dialog_message_box.confirm({
+                            message: "进入游戏",
+                            okFun: () => {
+                                OpenLink(body.url);
+                            },
+                        });
+                    } else {
+                        page_game_play.show(body.url);
+                    }
+                }
                 break;
             case net.EventType.api_plat_var_notice_index:
                 {

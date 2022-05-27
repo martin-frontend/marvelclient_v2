@@ -11,7 +11,7 @@ export default class MobileMenu extends AbstractView {
         { id: 0, name: "首页", icon: "mdi-home", path: "/" },
         { id: 1, name: "大厅", icon: "mdi-home", path: "/page_game_list" },
         { id: 2, name: "挖矿", icon: "mdi-home", path: "/page_mine" },
-        { id: 3, name: "赚钱", icon: "mdi-home", path: "/page_extension" },
+        { id: 3, name: "推广", icon: "mdi-home", path: "/page_extension" },
         { id: 4, name: "分红", icon: "mdi-home" },
     ];
 

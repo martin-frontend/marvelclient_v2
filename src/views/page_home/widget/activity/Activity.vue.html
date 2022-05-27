@@ -1,5 +1,5 @@
-<div class="mt-8 font-weight-bold">
-    <div class="text-18 mb-4 ml-2">热门活动</div>
+<div class=" font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-8'">
+    <div v-if="!$vuetify.breakpoint.mobile" class="text-18 mb-4 ml-2">热门活动</div>
     <div class="d-flex box-container">
 
         <div class="activity1 rounded-lg">

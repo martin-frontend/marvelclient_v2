@@ -40,13 +40,13 @@
                         </div>
                         <div>
                             <div>输赢</div>
-                            <div>{{(parseFloat(item.win_gold) < 0 ? "-" : "+") + item.win_gold }}</div>
+                            <div>{{(parseFloat(item.win_gold) < 0 ? "" : "+") + item.win_gold }}</div>
                         </div>
                         <div>
                             <div>状态</div>
                             <div>{{statusOptions[item.settlement_status]}}</div>
                         </div>
-                        <div class="listitem-140">
+                        <div class="listitem-150">
                             <div>投注时间</div>
                             <div class="text-truncate">{{item.bet_at}}</div>
                         </div>

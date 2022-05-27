@@ -28,7 +28,7 @@
                 </div>
             </v-sheet>
         </template>
-        <v-sheet class="rounded-lg py-2" color="colorPanelTitleBg" v-if="options && Object.keys(options).length > 1">
+        <v-sheet class="rounded-lg py-2 scroll-y" max-height="420" color="colorPanelTitleBg" v-if="options && Object.keys(options).length > 1">
             <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <div>{{ item.name || item }}</div>

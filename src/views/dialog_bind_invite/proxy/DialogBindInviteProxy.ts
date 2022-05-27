@@ -10,4 +10,8 @@ export default class DialogBindInviteProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
     }
+
+    hide() {
+        this.pageData.bShow = false;
+    }
 }

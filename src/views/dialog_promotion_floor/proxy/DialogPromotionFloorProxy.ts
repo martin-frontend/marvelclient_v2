@@ -5,6 +5,8 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
 
     /**参数 */
     parameter: any = {
+        user_id: core.user_id,
+        agent_user_id: 0,
         vendor_type_0: 0, // 全部
         vendor_type_2: 0, // 棋牌
         vendor_type_4: 0, // 彩票
@@ -18,26 +20,32 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        amount: 0,
+        amount: "0",
     };
 
-    setSelectedFloorData(data: any): void {
-        console.log("DialogPromotionFloorProxy setSelectedFloorData", data);
-        this.pageData.amount = data["0"];
+    setSelectedFloorData(agent_user_id: number, val: number): void {
+        this.parameter.agent_user_id = agent_user_id;
+        this.pageData.amount = val.toString();
     }
 
     setData(data: any) {
         this.pageData.loading = false;
-        if (data.status === 0) {
+        if (data) {
             dialog_message.warn("设置成功");
             this.pageData.bShow = false;
         }
     }
 
     amountToParameter(): void {
-        for (const k in this.parameter) {
-            this.parameter[k] = Number(this.pageData.amount);
-        }
+        // 目前只設定全部
+        this.parameter.vendor_type_0 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_2 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_4 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_8 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_16 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_32 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_64 = Number(this.pageData.amount);
+        // this.parameter.vendor_type_128 = Number(this.pageData.amount);
     }
 
     /**--代理推广--设置直属保底*/

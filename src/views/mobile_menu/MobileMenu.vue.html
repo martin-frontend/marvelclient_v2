@@ -1,31 +1,6 @@
-<v-bottom-navigation v-model="value" background-color="colorTitleBg" height="60" app>
-    <v-btn  >
-        <div >首页</div>
-        <v-icon >mdi-home</v-icon>
-    </v-btn>
-
-    <v-btn  >
-        <span >游戏大厅</span>
-        <v-icon >mdi-heart</v-icon>
-    </v-btn>
-
-    <v-btn x- >
-        <span >游戏挖矿</span>
-        <v-icon >mdi-map-marker</v-icon>
-    </v-btn>
-
-    <v-btn  >
-        <span >推广赚钱</span>
-        <v-icon >mdi-map-marker</v-icon>
-    </v-btn>
-
-    <v-btn  >
-        <span >CPC分红</span>
-        <v-icon >mdi-map-marker</v-icon>
-    </v-btn>
-
-    <v-btn  >
-        <span >我的</span>
-        <v-icon >mdi-map-marker</v-icon>
-    </v-btn>
-</v-bottom-navigation>
+<v-footer class="justify-space-between" height="70" color="colorTitleBg" app>
+    <v-sheet class="d-flex flex-column align-center cursor-pointer" width="60" color="transparent" v-for="(item, index) of menuList" :key="index" @click="onItemClick(item)">
+        <v-icon size="30" :color="routerPath == item.path ? 'colorTextGold' : 'colorText2'">{{item.icon}}</v-icon>
+        <div class="text-14 " :class="routerPath == item.path ? 'colorTextGold--text': 'colorText2--text'">{{item.name}}</div>
+    </v-sheet>
+</v-footer>

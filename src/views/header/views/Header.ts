@@ -19,7 +19,7 @@ export default class Header extends AbstractView {
     myProxy: HeaderProxy = getProxy(HeaderProxy);
     pageData = this.myProxy.pageData;
     CategoryIcon = Assets.CategoryIcon;
-    routerPath = "/";
+    routerPath = this.$router.app.$route.path;
     core = core;
     LangUtil = LangUtil;
 
@@ -58,7 +58,7 @@ export default class Header extends AbstractView {
     }
 
     goAnchor(id: string) {
-        this.goHome();
+        if(this.routerPath != "/") this.goHome();
         setTimeout(() => {
             const anchor: any = document.getElementById(id);
             if (anchor) {

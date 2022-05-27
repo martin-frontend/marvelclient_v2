@@ -4,6 +4,7 @@
         <div class="text-title">{{ data.category_name }}</div>
         <v-spacer />
         <v-btn
+            v-if="!$vuetify.breakpoint.xsOnly"
             class="text-12 rounded-pill"
             color="rgba(243, 231, 231, 0.098)"
             width="78"

@@ -2,11 +2,10 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/DialogPromotionFloorProxy";
 import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
-import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/DialogPromotionFloorProxy";
-import dialog_promotion_floor from "@/views/dialog_promotion_floor";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -21,9 +20,9 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerSetting(data: any) {
-        this.dialogPromotionFloorProxy.setSelectedFloorData(data);
-        dialog_promotion_floor.show();
-        console.warn("handlerSetting", data);
+        const agent_user_id = data.user_id;
+        const val = data.promotion_floor["0"];
+        this.myProxy.setFloorRangeData(agent_user_id, val);
     }
 
     onClose() {
@@ -47,7 +46,7 @@ export default class DialogDirectly extends AbstractView {
         this.myProxy.api_user_var_agent_direct_list();
     }
 
-    onPageChange():void {
+    onPageChange(): void {
         this.myProxy.api_user_var_agent_direct_list();
     }
 }

@@ -22,6 +22,6 @@ export default class GameSlideGroup extends AbstractView {
     }
 
     onShowAll() {
-        page_game_list.show();
+        page_game_list.show(this.data.category);
     }
 }

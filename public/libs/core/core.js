@@ -3549,7 +3549,7 @@ var net;
                         else {
                             facde.sendNotification(core.EventType.IO_ERROR, { url, data, e });
                         }
-                        facde.sendNotification(core.EventType.REQUEST_END, { url, data });
+                        facde.sendNotification(core.EventType.REQUEST_END, { url, result: this.response });
                     }
                 };
             });

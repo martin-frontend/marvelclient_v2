@@ -27,3 +27,12 @@
 .search{
     width: 207px;
 }
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+::v-deep .v-btn__content {
+    color: #98ACD3;
+    font-size: 16px;
+    font-weight: 400;
+}

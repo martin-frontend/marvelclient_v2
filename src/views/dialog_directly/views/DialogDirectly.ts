@@ -23,6 +23,7 @@ export default class DialogDirectly extends AbstractView {
     handlerSetting(data: any) {
         this.dialogPromotionFloorProxy.setSelectedFloorData(data);
         dialog_promotion_floor.show();
+        console.warn("handlerSetting", data);
     }
 
     onClose() {

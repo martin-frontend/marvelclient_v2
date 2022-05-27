@@ -1,7 +1,7 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18">我的直属</div>
+            <div class="text-18 font-weight-regular">我的直属</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
@@ -14,7 +14,7 @@
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search">
-                    <CustomInputButton height="41" placeholder="输入查询ID" button-name="搜索" v-model="pageData.search" @click="search"/>
+                    <CustomInputButton height="41" placeholder="输入查询ID" button-name="查询" v-model="pageData.search" @click="search"/>
                 </div>
             </div>
             <div class="listbox">
@@ -22,23 +22,23 @@
                     <div class="d-flex listitem">
                         <div>
                             <div>注册时间</div>
-                            <div class="text-truncate">{{ item.binded_at }}</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at }}</div>
                         </div>
                         <div>
                             <div>用户ID</div>
-                            <div>{{ item.user_id }}</div>
+                            <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
                         </div>
                         <div>
                             <div>用户昵称</div>
-                            <div>{{ item.nick_name }}</div>
+                            <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
                         </div>
                         <div>
                             <div>直属人数</div>
-                            <div>{{ item.directly_users }}</div>
+                            <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
                         </div>
                         <div>
                             <div>团队人数</div>
-                            <div>{{ item.group_users }}</div>
+                            <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
                         </div>
                         <div>
                             <div>保底</div>

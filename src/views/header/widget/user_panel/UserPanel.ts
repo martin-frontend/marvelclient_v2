@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import CopyUtil from "@/core/global/CopyUtil";
 import SelfProxy from "@/proxy/SelfProxy";
+import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";
 import dialog_bet_record from "@/views/dialog_bet_record";
 import dialog_email from "@/views/dialog_email";
@@ -32,6 +33,7 @@ export default class UserPanel extends AbstractView {
 
     onLoginOut() {
         this.selfProxy.api_user_logout();
+        router.push("/");
     }
 
     onMenuItem(item: any) {

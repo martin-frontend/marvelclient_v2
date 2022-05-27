@@ -1,3 +1,4 @@
+import SelfProxy from "@/proxy/SelfProxy";
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 
@@ -57,5 +58,12 @@ VueRouter.prototype.push = function push(location: any) {
 const router = new VueRouter({
     routes,
 });
-
+/**没token 重新导向 */
+router.beforeEach((to: any, from: any, next: any) => {
+    if (!core.token && to.name !== "page_home") {
+        next("/");
+    } else {
+        next();
+    }
+});
 export default router;

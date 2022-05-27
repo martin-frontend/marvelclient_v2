@@ -93,8 +93,8 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
                 self_water: data.commission_info[key].self_water,
                 direct_water: data.commission_info[key].direct_water,
                 group_water: data.commission_info[key].group_water,
-                commission_num: `USDT:${data.commission_info[key].commission_num[`USDT`]}`,
-                total_commission: `USDT:${data.commission_info[key].total_commission[`USDT`]}`,
+                commission_num: `${data.commission_info[key].commission_num[`USDT`]}`,
+                total_commission: `${data.commission_info[key].total_commission[`USDT`]}`,
             });
         });
     }

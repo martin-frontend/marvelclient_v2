@@ -43,21 +43,17 @@ export default class DialogPerformance extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
-            this.myProxy.onSelectDay(-7);
+            this.myProxy.onSelectDay(-6);
         }
     }
 
     onTimeChange() {
         switch (this.timeSelect) {
             case 0:
-                // this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
-                // this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
-                this.myProxy.onSelectDay(-7);
+                this.myProxy.onSelectDay(-6);
                 break;
             case 1:
-                // this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
-                // this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
-                this.myProxy.onSelectDay(-30);
+                this.myProxy.onSelectDay(-29);
                 break;
         }
         // this.myProxy.api_user_show_var_bet();

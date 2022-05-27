@@ -31,3 +31,7 @@
 .listbox {
     overflow-y: scroll;
 }
+::v-deep .v-btn__content {
+    font-size: 16px;
+    font-weight: 400;
+}

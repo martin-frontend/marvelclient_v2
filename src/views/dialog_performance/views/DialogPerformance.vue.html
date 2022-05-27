@@ -1,7 +1,7 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18">业绩查询</div>
+            <div class="text-18 font-weight-regular">业绩查询</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
@@ -16,26 +16,26 @@
                     <div class="d-flex listitem">
                         <div>
                             <div>时间</div>
-                            <div class="text-truncate">{{ item.date }}</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ item.date }}</div>
                         </div>
                         <div>
                             <div>总业绩</div>
-                            <div> ------- </div>
+                            <div class="text-16 font-weight-regular">{{ item.total_water }}</div>
                         </div>
                         <div>
                             <div>团队业绩</div>
-                            <div> ------- </div>
+                            <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
                         </div>
                         <div>
                             <div>直属业绩</div>
-                            <div> ------- </div>
+                            <div class="text-16 font-weight-regular">{{ item.direct_water }}</div>
                         </div>
                         <div>
                             <div>总佣金</div>
-                            <div> ------- </div>
+                            <div class="text-16 font-weight-regular">{{ item.total_commission.USDT }}</div>
                         </div>
                         <div class="d-flex align-center">
-                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item.date)">
+                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text font-weight-regular" @click="handlerDetail(item.date)">
                                 查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
                             </v-btn>
                         </div>

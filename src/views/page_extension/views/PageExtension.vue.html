@@ -10,10 +10,10 @@
                             </span>
                         </v-col>
                         <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-2 mb-sm-0">
-                            <v-img class="mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img><span class="text-h5 mr-5 mr-md-1 colorCoin--text">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img><span class="text-h5 mr-5 mr-md-1 colorCoin--text">
                                 {{ promotionData.commission_awaiting_num.USDT }}
                             </span>
-                            <v-img class="mr-1" src="@/assets/extension/lcusd.png" max-width="30" height="30"></v-img>
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-h5 colorCoin--text">
                                 {{ promotionData.commission_awaiting_num.LCC }}
                             </span>
@@ -31,11 +31,11 @@
                             <span class="text-subtitle-1 colorText3--text">今日预计佣金</span>
                         </v-col>
                         <v-col col="12" sm="7" class="d-flex flex-row justify-center justify-sm-start">
-                            <v-img class="ml-2 mr-1" src="@/assets/extension/coin.png" max-width="30" height="30"></v-img>
+                            <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-h5 mr-5">
                                 {{ statistics_data.total_commission.USDT }}
                             </span>
-                            <v-img class="mr-1" src="@/assets/extension/lcusd.png" max-width="30" height="30"></v-img>
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-h5">
                                 {{ statistics_data.total_commission.LCC }}
                             </span>
@@ -147,13 +147,14 @@
                                     </div>
                                     <div class="d-flex justify-center">
                                         <v-card height="140" width="140" class="d-flex justify-center align-center rounded-lg mb-2" color="white">
-                                            <v-img max-width="120" contain src="@/assets/extension/qrcode.png"></v-img>
+                                            <div ref="qrcode" class="qrcode">
+                                            </div>
                                         </v-card>
                                     </div>
                                 </v-col>
                                 <v-col col="6" lg="12" class="d-flex flex-column">
                                     <div class="d-flex justify-center">
-                                        <v-btn width="120" height="40" class="rounded-lg text-body-1 mb-2" color="colorExtensionBtn">重新获取
+                                        <v-btn width="120" height="40" class="rounded-lg text-body-1 mb-2" color="colorExtensionBtn" @click="reget">重新获取
                                         </v-btn>
                                     </div>
                                     <div class="d-flex justify-center">
@@ -165,27 +166,24 @@
                         </v-col>
                         <v-col col="12" sm="9" md="9" lg="9" class="colorText4--text  text-subtitle-1 pl-0 pl-sm-4">
                             <div class="ml-4 mb-2">好友推荐链接</div>
-                            <div>
-                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
-                                    XXXXXXXXXXXXXXXXXXXXXXXX
-                                    <v-btn icon>
-                                        <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
-                                    </v-btn>
-                                </v-sheet>
-                            </div>
+                            <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                <span class="text-truncate">{{ myProxy.link }}</span>
+                                <v-btn icon @click="copy">
+                                    <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
+                                </v-btn>
+                            </v-sheet>
                             <div class="ml-4 mb-2">我的邀请码</div>
-                            <div>
-                                <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
-                                    XXXXXXXXXXXXXXXXXXXXXXXX
-                                    <v-btn icon>
-                                        <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
-                                    </v-btn>
-                                </v-sheet>
-                            </div>
+                            <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                {{ promotionData.user_id }}
+                                <v-btn icon @click="copyMyId">
+                                    <v-img max-width="30" height="38" src="@/assets/extension/copy.png"></v-img>
+                                </v-btn>
+                            </v-sheet>
                             <div class="text-body-1 text-md-body-2">
                                 1.  通过以上链接或者二维码的用户既为您的直属代理；
                             </div>
-                            <div class="text-body-1 text-md-body-2">您的邀请码：{{ promotionData.user_id }}</div>
+                            <div class="text-body-1 text-md-body-2">您的邀请码：
+                                {{ promotionData.user_id }}</div>
                             <div class="text-body-1 text-md-body-2">
                                 2.  用户注册时填写此邀请码，既可成为您的直属代理
                             </div>

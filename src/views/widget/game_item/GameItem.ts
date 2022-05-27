@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
@@ -22,15 +23,17 @@ export default class GameItem extends AbstractView {
 
     @Watch("$vuetify.breakpoint.mobile")
     onWatchWidth() {
-        if(this.$vuetify.breakpoint.mobile){
-            this.ww = 124, this.hh = 154;
-        }else{
-            this.ww = 224, this.hh = 280;
+        if (this.$vuetify.breakpoint.mobile) {
+            (this.ww = 124), (this.hh = 154);
+        } else {
+            (this.ww = 224), (this.hh = 280);
         }
     }
 
     goGamePlay() {
-        const gameProxy: GameProxy = this.getProxy(GameProxy);
-        gameProxy.api_vendor_var_ori_product_show_var(this.item);
+        LoginEnter(() => {
+            const gameProxy: GameProxy = this.getProxy(GameProxy);
+            gameProxy.api_vendor_var_ori_product_show_var(this.item);
+        });
     }
 }

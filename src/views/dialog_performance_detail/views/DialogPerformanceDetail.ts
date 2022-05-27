@@ -42,7 +42,7 @@ export default class DialogPerformanceDetail extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.api_user_var_commission_commissiondetail();
-            // this.myProxy.api_user_var_commission_directswater();
+            this.myProxy.api_user_var_commission_directswater();
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();

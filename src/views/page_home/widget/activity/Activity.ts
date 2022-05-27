@@ -5,6 +5,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import page_mine from "@/views/page_mine";
 import page_extension from "@/views/page_extension";
 import dialog_activity from "@/views/dialog_activity";
+import LoginEnter from "@/core/global/LoginEnter";
 
 @Component
 export default class Activity extends AbstractView {
@@ -17,12 +18,14 @@ export default class Activity extends AbstractView {
     }
 
     goExtension() {
-        this.isUserLogin && page_extension.show();
+        // this.isUserLogin && page_extension.show();
+        LoginEnter(page_extension.show);
     }
 
     /**游戏挖矿 */
     goMine() {
-        this.isUserLogin && page_mine.show();
+        LoginEnter(page_mine.show);
+        // this.isUserLogin && page_mine.show();
     }
 
     goActivity(){

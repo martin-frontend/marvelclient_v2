@@ -14,7 +14,7 @@
                         </v-sheet>
                         <v-sheet width="100%" color="transparent" class="ml-md-n4">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" height="16" class="rounded-xl"></v-progress-linear>
-                            <p class="white--text ma-0 mt-1 mt-md-3" v-if="pageData.vipLevel <=  pageData.vipNextLevel">
+                            <p class="white--text ma-0 mt-1 mt-md-3" v-if="pageData.vipLevel <  pageData.vipMaxLevel">
                                 距离下一个等级还差  <span class="colorYellowBg--text">{{ pageData.nextExp }}</span> 有效流水
                                 </span>
                             </p>

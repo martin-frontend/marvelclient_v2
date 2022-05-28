@@ -134,6 +134,13 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         },
     };
 
+    questionData = [
+        { question: "什么是个人业績和朋友业績?", answer: "Some content" },
+        { question: "什么是有效投注额?", answer: "Some content" },
+        { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" }
+    ]
+
     /**查询数据 */
     listQuery = {
         user_id: core.user_id,

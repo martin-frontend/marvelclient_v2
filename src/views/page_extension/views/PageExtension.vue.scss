@@ -2,13 +2,25 @@
     background-image: linear-gradient(to right, #1E2C47, #384F72 );
     &.down{
         background-image: url("~@/assets/extension/commission.png"),linear-gradient(to right, #1E2C47, #384F72 );
-        background-position: left bottom;
+        background-position: -6%;
+        height: calc(100% - 96px);
+        @media (max-width: 1426px){
+            background-position: -18%;
+        }
+        @media (max-width: 1264px){
+            background-position: -6% bottom;
+        }
+        @media (max-width: 640px){
+            height: unset;
+        }
     }
 }
 .horizontal-gradient-right{
     background: linear-gradient(to right, #1E2C47, #123564 );
 }
-// 等级
+.level_title{
+    background-image: linear-gradient(to right, #253754, #1D2F4E );
+}
 .level_col {
     position: relative;
     .level_icon {
@@ -24,8 +36,11 @@
     }
 }
 .qrcode {
-    width: 120px;
-    height: 120px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    max-width: 180px;
+    max-height: 180px;
     ::v-deep img {
         width: 100%;
     }

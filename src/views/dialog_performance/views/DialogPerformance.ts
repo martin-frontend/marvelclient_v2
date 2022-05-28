@@ -13,7 +13,6 @@ export default class DialogPerformance extends AbstractView {
     dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
     myProxy: DialogPerformanceProxy = this.getProxy(DialogPerformanceProxy);
     pageData = this.myProxy.pageData;
-    // listQuery = this.pageData.listQuery;
 
     commonIcon = Assets.commonIcon;
 
@@ -40,9 +39,6 @@ export default class DialogPerformance extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            //如果是列表，使用以下数据，否则删除
-            // this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
             this.myProxy.onSelectDay(-6);
         }
     }
@@ -56,11 +52,13 @@ export default class DialogPerformance extends AbstractView {
                 this.myProxy.onSelectDay(-29);
                 break;
         }
-        // this.myProxy.api_user_show_var_bet();
     }
 
-    // onPageChange(val: any) {
-    //     this.listQuery.page_count = val;
-    //     this.myProxy.api_user_show_var_bet();
-    // }
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 155;
+        } else {
+            return 450;
+        }
+    }
 }

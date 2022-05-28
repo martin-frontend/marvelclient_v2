@@ -9,7 +9,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     /**参数 */
     parameter: any = {
-        user_id: core.user_id,
+        user_id: 0,
         agent_user_id: 0,
         page_size: 20,
         page_count: 1,
@@ -25,7 +25,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -36,9 +36,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() {
-        // this.api_user_var_agent_direct_list();
-    }
+    enter() {}
 
     /**离开页面时调用 */
     leave() {}
@@ -66,6 +64,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
+        this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }
 

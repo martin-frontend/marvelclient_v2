@@ -11,7 +11,7 @@
         <v-card-text class="px-5">
             <div class="listbox" v-if="pageData.list.length > 0">
                 <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
-                    <div class="d-flex listitem">
+                    <div class="d-flex flex-wrap listitem">
                         <div>
                             <div>结算时间</div>
                             <div class="text-truncate">
@@ -30,7 +30,7 @@
                             <div>奖励{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div>{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
-                        <div class="d-flex align-center">
+                        <div class="d-flex align-center listitem-110">
                             <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
                                 查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
                             </v-btn>

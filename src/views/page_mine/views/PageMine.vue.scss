@@ -6,6 +6,12 @@
     ::v-deep .v-progress-linear__buffer{
         background: #121E36;
     }
+
+    ::v-deep .v-progress-linear__determinate{
+        height: 8px;
+        top: 4px;
+    }
+
     .down_box{
         .colorBorderBlue{
             background-color: transparent !important;
@@ -45,16 +51,24 @@
                 top: 17%;
             }
         }
+        .game_mine_info{
+            @media only screen and (min-width: 768px) and (max-width: 1024px){
+               padding-left: 11% !important;
+            }
+        }
         .right_btn_group{
             @media only screen and  (min-width: 960px) and (max-width: 1260px ){
                 position: absolute;
-                bottom: 16px;
+                bottom: -4px;
                 left: 0;
-                right: 0;
+                right: 30px;
                 margin: auto;
             }
             @media only screen and  (max-width: 960px ){
                 margin-bottom: 30px;
+            }
+            @media only screen and (min-width: 768px) and (max-width: 1024px){
+                padding-left: 50%;
             }
         }
         .cat_icon{
@@ -63,7 +77,7 @@
             }
             position: absolute;
             bottom: 0;
-            left: 20px;
+            left: 0px;
         }   
         ::v-deep .v-btn__content{
             color: #5E2E2E;
@@ -88,15 +102,16 @@
         background-color: #F3B952 !important;
     }
     .linear_bg{
-        background: linear-gradient( #1C2647,#25324B);;
+        background: linear-gradient( #1C2647,#25324B);
     }
     #howMine{
         @media only screen and  (max-width: 960px) {
             ::v-deep .v-card{
                 display: flex !important;
                 flex-direction: row !important;
-                >div{
-                    width: 70%;
+                align-items: center;
+                >.v-card__text{
+                    width: 100%;
                 }
                 .v-card__actions{
                     width: 30%;
@@ -105,8 +120,6 @@
                     align-items: flex-end;
                 }
             }
-           
-
         }
     }
     ::v-deep .v-slide-group__prev {
@@ -150,6 +163,47 @@
         .v-slide-group__next {
             background: rgba(243, 231, 231, 0.098);
         }
+    }
+
+    /**宽750 以下算H5 */
+    @media only screen and (max-width: 750px) {
+        .font_18{
+            font-size: 18px !important;
+        }
+      
+        .right_banner{
+            overflow: inherit;
+            .game_mine_title{
+                font-size: 18px !important;
+            }
+            &::after{
+                content: url('~@/assets/mine/cat_icon_750.png');
+                height: 142px;
+                width: 134px;
+                position: absolute;
+                left: -52px;
+                top: 20px;
+                transform: scale(.5);
+                
+            }
+            .cat_icon{
+                visibility: hidden;
+            }
+            .right_btn_group{
+                @media only screen and (orientation: landscape){
+                    max-width: 60%;
+                }
+            }
+        }
+        .left_bg{
+            .mine_level_title{
+                font-size: 18px !important;
+            }
+        }
+        .level_box{
+            background: linear-gradient( #16233F,#252B53);
+        }
+       
     }
 }
 

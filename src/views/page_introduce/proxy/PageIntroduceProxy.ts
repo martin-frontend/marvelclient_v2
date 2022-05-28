@@ -1,5 +1,5 @@
-export default class IntroduceProxy extends puremvc.Proxy {
-    static NAME = "IntroduceProxy";
+export default class PageIntroduceProxy extends puremvc.Proxy {
+    static NAME = "PageIntroduceProxy";
 
     public onRegister(): void {
         this.pageData.loading = true;

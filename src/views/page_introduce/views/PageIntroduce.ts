@@ -1,16 +1,16 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import { Watch, Component } from "vue-property-decorator";
-import IntroduceMediator from "../mediator/IntroduceMediator";
-import IntroduceProxy from "../proxy/IntroduceProxy";
+import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
+import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
 
 @Component
-export default class Introduce extends AbstractView {
-    myProxy: IntroduceProxy = this.getProxy(IntroduceProxy);
+export default class PageIntroduce extends AbstractView {
+    myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;
     pageImage = this.myProxy.pageImage;
 
     constructor() {
-        super(IntroduceMediator);
+        super(PageIntroduceMediator);
     }
 
     getTextWrapClass(): string {

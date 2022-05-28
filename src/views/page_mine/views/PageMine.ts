@@ -46,6 +46,10 @@ export default class PageMine extends AbstractView {
                 w: 127,
                 h: 30,
             },
+            leftBgVipIcon: {
+                w: 75,
+                h: 75,
+            },
             howIcon: 65,
             howBtn: {
                 w: 90,

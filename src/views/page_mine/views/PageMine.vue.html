@@ -1,28 +1,29 @@
 <v-container class="page_mine">
     <v-row no-gutters>
         <v-col cols="12" md="6" lg="5" class="mt-4 mt-md-1 pr-md-5 order-2 order-md-1">
-            <v-card color="colorTitleBg" class="rounded-xl pa-md-5 py-5 left_bg" width="100%" height="100%">
-                <span class="colorTextBlueLight--text pt-1 text-h5 font-weight-medium  pl-md-3 px-5 mine_level_title">挖矿等级</span>
+            <v-card color="colorTitleBg" class="rounded-xl py-5 left_bg" width="100%" height="100%">
+                <span class="colorTextBlueLight--text pt-1 text-h5 font-weight-medium  pl-md-3 px-5 mine_level_title pl-md-5">挖矿等级</span>
                 <v-row no-gutters class="mt-3 mt-md-4">
-                    <v-col cols="3" md="2" class="pl-md-2 pl-5 ml-n4 ml-md-n0">
-                        <v-img :max-width="mobileChange('leftBgVipIcon')" contain src="~@/assets/mine/vip_icon.png"></v-img>
+                    <v-col cols="4" md="3" class="pl-md-2 mt-n2 mt-md-n0 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
+                        <v-img :max-width="mobileChange('leftBgVipIcon').w"  contain src="~@/assets/mine/vip_icon.png"></v-img>
                     </v-col>
-                    <v-col cols="9" md="10" class="pl-md-3 mb-3 d-flex px-md-6 flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
-                        <v-sheet width="100%" class="text-h6 text-body-1 text-md-h5 mb-md-1 d-flex align-center justify-space-between" color="transparent">
+                    <v-col cols="8" md="9" class="mb-3 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1 ">
+                        <v-sheet width="100%" class="text-h6 text-body-1 text-md-h5 mb-md-1 d-flex align-center justify-space-between ml-md-n4" color="transparent">
                             VIP {{ pageData.vipLevel }}
                             <span class="text-body-2 text-md-body-1 mt-md-3 mr-0 mr-md-3 colorTextBlueLight--text text-decoration-underline cursop_pointer" @click="jumpTo('#vipLevel')">查看所有等级</span>
                         </v-sheet>
-                        <v-sheet width="100%" color="transparent">
+                        <v-sheet width="100%" color="transparent" class="ml-md-n4">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" height="16" class="rounded-xl"></v-progress-linear>
-                            <p class="white--text ma-0 mt-3" v-if="pageData.nextExp > 0">
+                            <p class="white--text ma-0 mt-1 mt-md-3" v-if="pageData.vipLevel <=  pageData.vipNextLevel">
                                 距离下一个等级还差  <span class="colorYellowBg--text">{{ pageData.nextExp }}</span> 有效流水
                                 </span>
                             </p>
                             <p class="white--text text-body-2 ma-0 mt-1 mt-md-3" v-else>您已经升级早最高等级</p>
                         </v-sheet>
                     </v-col>
+                  
                     <v-col class="d-flex mt-md-16 down_box px-2">
-                        <v-row no-gutters class="mt-3 px-md-6 px-md-0">
+                        <v-row no-gutters class="mt-3 px-md-0">
                             <v-col cols="6" md="12" lg="6" class="pl-0 pr-md-0 pr-lg-1">
                                 <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-2 px-md-4 py-2">
                                     <div class="d-flex align-center align-md-start">
@@ -102,7 +103,7 @@
     <!-- vip 等级 -->
     <v-sheet color="transparent" class="mt-8" id="vipLevel" >
         <span class="text-h6 text-md-h5 ">VIP等级</span>
-        <p class="ma-0 mt-1 text-caption text-body-1 colorText3--text">
+        <p class="ma-0 mt-1 text-caption text-body-1 colorBlue--text">
             个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。
         </p>
 
@@ -146,13 +147,13 @@
     <!-- 如何挖矿 -->
     <v-sheet color="transparent" class="mt-8" id="howMine">
         <span class="text-h6 text-md-h5 ">如何挖矿</span>
-        <p class="ma-0 mt-1 text-caption text-body-1 colorText3--text">
+        <p class="ma-0 mt-1 text-caption text-body-1 colorBlue--text">
             您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。
         </p>
-        <v-row class="mt-2">
+        <v-row class="mt-2" no-gutters>
             <!-- 01 -->
-            <v-col cols="12" md="4" class="how_item">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 px-8 px-md-5 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
+            <v-col cols="12" md="4" class="how_item pr-md-1 mb-2 mb-md-0">
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0 order-1">
                         <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/assets/mine/about_01_icon.png"></v-img>
                         <div class="d-flex flex-column">
@@ -171,8 +172,8 @@
                 </v-card>
             </v-col>
             <!-- 02 -->
-            <v-col cols="12" md="4"  class="how_item">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 px-8 px-md-5 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
+            <v-col cols="12" md="4"  class="how_item pr-md-1 mb-2 mb-md-0">
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0 order-1">
                         <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/assets/mine/about_02_icon.png"></v-img>
                         <div class="d-flex flex-column">
@@ -192,7 +193,7 @@
             </v-col>
             <!-- 03 -->
             <v-col cols="12" md="4"  class="how_item mb-6 mb-md-0">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 px-8 px-md-5 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
+                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" max-height="304">
                     <v-card-title class="pa-0 order-1">
                         <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/assets/mine/about_03_icon.png"></v-img>
                         <div class="d-flex flex-column">

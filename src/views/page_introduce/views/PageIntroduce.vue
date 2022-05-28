@@ -1,9 +1,9 @@
-<template src="./Introduce.vue.html" lang="html"></template>
-<style src="./Introduce.vue.scss" lang="scss" scoped></style>
+<template src="./PageIntroduce.vue.html" lang="html"></template>
+<style src="./PageIntroduce.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Introduce from "./Introduce";
+import PageIntroduce from "./PageIntroduce";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 
 @Component({
@@ -11,7 +11,7 @@ import Overlay from "@/views/widget/overlay/Overlay.vue";
         Overlay,
     },
 })
-export default class extends Introduce {
+export default class extends PageIntroduce {
     mounted() {
         window.scrollTo(0, 0);
     }

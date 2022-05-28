@@ -4,7 +4,10 @@
             <v-icon class="mr-1" color="colorYellow">{{ CategoryIcon[hotGame.category] }}</v-icon>
             <div>{{ hotGame.category_name }}</div>
         </div>
-        <v-sheet max-width="1430" class="mx-auto" color="transparent">
+        <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
+            <GameItem v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
+        </v-sheet>
+        <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
             <v-slide-group show-arrows>
                 <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
                     <GameItem :item="item" />

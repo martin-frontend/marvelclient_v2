@@ -14,7 +14,10 @@
             查看全部
         </v-btn>
     </div>
-    <v-sheet max-width="1430" class="mx-auto" color="transparent">
+    <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
+        <GameItem v-for="item of data.list" :key="item.vendor_prodcut_id" :item="item" />
+    </v-sheet>
+    <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
         <v-slide-group :show-arrows="!$vuetify.breakpoint.xsOnly">
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
                 <GameItem :item="item" />

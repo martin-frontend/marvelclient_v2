@@ -1,21 +1,7 @@
 <v-menu offset-y nudge-bottom="20" nudge-left="190" content-class="content-style">
     <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-            <v-sheet
-                v-if="$vuetify.breakpoint.xsOnly"
-                class="d-flex align-center rounded-pill"
-                color="colorPanelTitleBg"
-                width="70"
-                height="35"
-            >
-                <img class="ml-2" src="@/assets/header/avatar.gif" width="24" height="24" alt="" />
-                <div
-                    class="icon-box iconfont ml-3 text-14 colorText2--text"
-                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
-                >
-                    
-                </div>
-            </v-sheet>
+            <v-btn icon small v-if="$vuetify.breakpoint.xsOnly"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
             <v-sheet v-else class="d-flex align-center rounded-pill ml-4" color="colorPanelTitleBg" width="100" height="45">
                 <img class="ml-3" src="@/assets/header/avatar.gif" width="32" height="32" alt="" />
                 <div

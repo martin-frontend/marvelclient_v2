@@ -1,7 +1,6 @@
 .listitem {
-    width: 634px;
     div {
-        width: calc(100% / 6);
+        min-width: 100px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -9,18 +8,46 @@
             color: #4c5d7f;
             margin-bottom: 5px;
         }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+    .listitem-180 {
+        min-width: 180px;
         div {
-            width: 100%;
-            > a {
-                color: #9db1d8;
-            }
+            min-width: 180px;
+        }
+    }
+    .listitem-50 {
+        min-width: 50px !important;
+        div {
+            min-width: 50px !important;
         }
     }
 }
-.listbox {
-    height: 450px;
-    overflow-y: scroll;
-}
+// .listitem {
+//     width: 634px;
+//     div {
+//         width: calc(100% / 6);
+//         margin-top: 2px;
+//         margin-bottom: 2px;
+//         color: #9db1d8;
+//         div:first-child {
+//             color: #4c5d7f;
+//             margin-bottom: 5px;
+//         }
+//         div {
+//             width: 100%;
+//             > a {
+//                 color: #9db1d8;
+//             }
+//         }
+//     }
+// }
+// .listbox {
+//     height: 450px;
+//     overflow-y: scroll;
+// }
 .arrow{
     margin-bottom: -1px !important;
 }

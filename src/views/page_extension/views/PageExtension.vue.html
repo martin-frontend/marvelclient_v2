@@ -20,8 +20,8 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="12" sm="auto" class="d-flex justify-center justify-md-end">
-                            <v-btn width="100" height="40" class="mr-3 rounded-lg text-body-1 colorReceive--text" color="colorCoin" @click="handlerAward">领取</v-btn>
-                            <v-btn width="100" height="40" class="rounded-lg text-body-1" color="colorExtensionBtn">领取记录</v-btn>
+                            <v-btn width="120" height="40" class="mr-3 rounded-lg text-body-1 colorReceive--text" color="colorCoin" @click="handlerAward">领取</v-btn>
+                            <v-btn width="120" height="40" class="rounded-lg text-body-1" color="colorExtensionBtn">领取记录</v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -160,7 +160,7 @@
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col col="12" sm="9" md="9" lg="9" class="colorText4--text text-subtitle-1 pl-0 pl-sm-4">
+                        <v-col col="12" sm="9" md="9" lg="9" class="colorText4--text text-subtitle-1 pl-0 pl-sm-6">
                             <div class="ml-4 mb-2">推广链接</div>
                             <v-sheet color="colorPanelBg3 colorText4--text" height="46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
                                 <span class="text-truncate">{{ myProxy.link }}</span>
@@ -193,7 +193,7 @@
         <div class="px-3 py-5">
             <div class="text-h5 mb-2 font-weight-medium"> 返佣等级 </div>
             <div class="text-body-1 colorBlue--text mb-5">提升团队业绩可提升返佣等级,每日领取更多返佣奖励</div>
-            <v-card height="50" class="rounded-xl mb-1 d-flex align-center mb-1 level_title">
+            <v-card height="50" class="rounded-xl mb-1 d-flex align-center mb-2 level_title">
                 <v-row no-gutters class="d-flex flex-row text-body-1 colorText5--text">
                     <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
                         等级
@@ -209,7 +209,7 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <v-card height="50" class="rounded-xl mb-1 d-flex align-center" color="colorPanelTitleBg" v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
+            <v-card height="50" class="rounded-xl mb-2 d-flex align-center" color="colorPanelTitleBg" v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
                 <v-row no-gutters class="d-flex flex-row text-body-1 ">
                     <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center level_col align-center">
                         <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
@@ -235,34 +235,6 @@
                 </v-row>
             </v-card>
         </div>
-        <div class="px-3 py-5">
-            <div class="text-h5">常见问题解答 </div>
-            <v-expansion-panels multiple>
-                <v-expansion-panel>
-                    <v-expansion-panel-header>什么是个人业績和朋友业績?</v-expansion-panel-header>
-                        <v-expansion-panel-content>
-                        Some content
-                        </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel>
-                    <v-expansion-panel-header>什么是有效投注额?</v-expansion-panel-header>
-                        <v-expansion-panel-content>
-                        Some content
-                        </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel>
-                    <v-expansion-panel-header>推荐洗码的具体计算方法是什么?</v-expansion-panel-header>
-                        <v-expansion-panel-content>
-                        Some content
-                        </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel>
-                    <v-expansion-panel-header>洗码是否会影响J9BC产出?</v-expansion-panel-header>
-                        <v-expansion-panel-content>
-                        Some content
-                        </v-expansion-panel-content>
-                </v-expansion-panel>
-            </v-expansion-panels>
-        </div>
+        <Question :questions="questionData"></Question>
     </v-container>
 </div>

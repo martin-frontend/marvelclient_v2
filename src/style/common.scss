@@ -65,9 +65,25 @@ input {
     overflow-y: scroll;
 }
 
-.gradient-bg {
+.gradient-bg{
     height: 70px;
     background-color: #16233b;
     background-image: linear-gradient(180deg, #24385a 0%, #121e36 70px);
     text-align: center;
 }
+.v-pagination{
+    li{
+        .v-pagination__item{
+            border: 1px solid #304062 !important;
+            color: #304062 !important;
+            background: transparent !important;
+            width: 32px !important;
+            height: 32px !important;
+        }
+        .v-pagination__item--active, .v-pagination__navigation{
+            background-color: #304062 !important;
+            color: #fff !important;
+        }
+    }
+}
+

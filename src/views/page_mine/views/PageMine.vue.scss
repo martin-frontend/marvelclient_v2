@@ -1,5 +1,8 @@
 
 .page_mine{
+    .font_18{
+        font-size: 18px !important;
+    }
     ::v-deep .v-progress-linear__determinate{
         border-radius: 20px;
     }
@@ -102,6 +105,12 @@
     .linear_bg{
         background: linear-gradient( #1C2647,#25324B);
     }
+    .how_num{
+        font-size: 24px !important;
+    }
+    .how_title{
+        font-size: 18px !important;
+    }
     #howMine{
         @media only screen and  (max-width: 960px) {
             ::v-deep .v-card{
@@ -165,9 +174,7 @@
 
     /**宽750 以下算H5 */
     @media only screen and (max-width: 750px) {
-        .font_18{
-            font-size: 18px !important;
-        }
+        
       
         .right_banner{
             overflow: inherit;
@@ -212,7 +219,12 @@
                 margin-bottom: -12px;
             }
         }
-       
+        .how_num{
+            font-size: 18px !important;
+        }
+        .how_title{
+            font-size: 14px !important;
+        }
     }
 }
 

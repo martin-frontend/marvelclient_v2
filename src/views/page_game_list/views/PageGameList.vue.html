@@ -17,19 +17,21 @@
     </div>
 
     <GameNavigationSearch />
-    <v-sheet class="rounded-lg mt-5 d-flex align-center px-3 py-3" color="colorTitleBg" height="80">
+    <v-sheet
+        class="mt-5 d-flex align-center"
+        :class="$vuetify.breakpoint.mobile ? 'rounded-0 px-2': 'rounded-lg px-5'"
+        color="colorTitleBg"
+        :height="$vuetify.breakpoint.xsOnly ? '60' : '80'"
+    >
         <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
-        <v-spacer />
         <GameListSelect
             v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             v-model="listQuery.vendor_id"
         />
-        <!-- <v-btn class="rounded-circle elevation-0" width="48" height="48" color="colorSelectBg" @click="showGameSearch">
-            <div class="icon-box iconfont icon-Magnifier icon__icon text-20 icon-color"></div>
-        </v-btn> -->
+        <v-btn class="ml-1 rounded-pill" :small="$vuetify.breakpoint.xsOnly" color="colorBtnBg" @click="showGameSearch">搜索</v-btn>
     </v-sheet>
-    <v-card class="d-flex flex-wrap mt-7 mb-2" color="transparent" flat tile>
+    <v-card class="d-flex flex-wrap mt-5 mb-2 justify-center" color="transparent" flat tile>
         <div v-for="item of pageData.list" :key="item.vendor_prodcut_id">
             <GameItem :item="item" />
         </div>

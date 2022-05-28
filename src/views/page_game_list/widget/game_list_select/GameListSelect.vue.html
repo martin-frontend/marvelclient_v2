@@ -1,9 +1,9 @@
 <v-menu offset-y nudge-bottom="5">
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
-            class="rounded-pill d-flex align-center px-5 white--text cursor-pointer ml-5"
+            class="rounded-pill d-flex align-center px-5 white--text cursor-pointer mx-2"
             color="colorSelectBg"
-            height="48"
+            :height="$vuetify.breakpoint.xsOnly ? '36' :'48'"
             width="340"
             v-bind="attrs"
             v-on="on"

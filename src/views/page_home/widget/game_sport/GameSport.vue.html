@@ -23,7 +23,7 @@
             :key="item.vendor_prodcut_id"
             @click="goGamePlay(item)"
         >
-            <v-img class="cursor-pointer d-flex align-center" :src="getIcon(item)">
+            <v-img class="cursor-pointer d-flex align-center" :src="getIcon(item)" lazy-src="@/assets/game/placeholder1.png">
                 <div class="game-icon">
                     <div class="game-title text-30 font-weight-bold">{{item.vendor_product_name}}</div>
                     <div class="vendor-title text-18 mt-2">{{item.vendor_name}}</div>

@@ -4,8 +4,13 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageExtension from "./PageExtension";
+import Question from "@/views/widget/question/Question.vue";
 
-@Component
+@Component({
+    components: {
+        Question,
+    },
+})
 export default class extends PageExtension {
     mounted() {
         window.scrollTo(0, 0);

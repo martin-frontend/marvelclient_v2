@@ -235,58 +235,6 @@
                 </v-row>
             </v-card>
         </div>
-        <div class="px-3 py-5">
-            <div class="text-h5 mb-2 font-weight-medium">常见问题解答</div>
-            <v-row no-gutters class="d-flex flex-row text-body-1 ">
-                <v-col cols="6" class="mb-2 pr-2">
-                    <v-expansion-panels >
-                        <v-expansion-panel>
-                            <v-expansion-panel-header color="colorPanelTitleBg">    
-                                什么是个人业績和朋友业績?    
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content color="colorPanelTitleBg">
-                                Some content
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-                <v-col cols="6" class="mb-2 pr-2">
-                    <v-expansion-panels>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header color="colorPanelTitleBg">
-                                什么是有效投注额?
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content color="colorPanelTitleBg">
-                                Some content
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-                <v-col cols="6" class="mb-2 pr-2">
-                    <v-expansion-panels>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header color="colorPanelTitleBg">
-                                推荐洗码的具体计算方法是什么?
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content color="colorPanelTitleBg">
-                                Some content
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-                <v-col cols="6" class="mb-2 pr-2">
-                    <v-expansion-panels>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header color="colorPanelTitleBg">
-                                洗码是否会影响J9BC产出?
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content color="colorPanelTitleBg">
-                                Some content
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-            </v-row>
-        </div>
+        <Question :questions="questionData"></Question>
     </v-container>
 </div>

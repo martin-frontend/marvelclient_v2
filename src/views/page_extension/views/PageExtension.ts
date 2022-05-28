@@ -13,6 +13,7 @@ export default class PageExtension extends AbstractView {
     promotionData = this.myProxy.promotionData;
     statistics_data = this.myProxy.statistics_data;
     tableData = this.myProxy.tableData;
+    questionData = this.myProxy.questionData;
 
     private QRCode = QRCode;
 

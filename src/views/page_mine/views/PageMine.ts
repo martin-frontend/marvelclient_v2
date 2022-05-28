@@ -6,6 +6,7 @@ import dialog_record_mine from "@/views/dialog_record_mine";
 import dialog_bet_record from "@/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_game_list from "@/views/page_game_list";
+import dialog_message_box from "@/views/dialog_message_box";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -28,7 +29,12 @@ export default class PageMine extends AbstractView {
     }
     /**领取奖励 */
     handlerAward() {
-        this.myProxy.api_user_var_backwater_trial_receive();
+        dialog_message_box.confirm({
+            message: "确定要领取?",
+            okFun: () => {
+                this.myProxy.api_user_var_backwater_trial_receive();
+            },
+        });
     }
 
     jumpTo(target: string) {
@@ -40,7 +46,6 @@ export default class PageMine extends AbstractView {
     }
 
     onGoBet() {
-        console.log("onGoBet.............");
         page_game_list.show();
     }
 }

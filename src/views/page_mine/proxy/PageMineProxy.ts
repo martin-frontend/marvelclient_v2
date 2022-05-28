@@ -77,7 +77,7 @@ export default class PageMineProxy extends puremvc.Proxy {
             const vip_info = <any>this.userInfo.vip_info;
             const vip_config_info = <any>this.userInfo.vip_config_info;
 
-            this.pageData.nextExp = vip_progress[0].next_vip_level_need_exp - vip_progress[0].user_exp;
+            this.pageData.nextExp = <any>(vip_progress[0].next_vip_level_need_exp - vip_progress[0].user_exp).toFixed(2);
             this.pageData.nextUSDT = vip_progress[1].next_vip_level_need_exp - vip_progress[1].user_exp;
             this.pageData.vipMaxLevel = vip_info.max_vip_level;
 
@@ -87,19 +87,25 @@ export default class PageMineProxy extends puremvc.Proxy {
             this.pageData.vipNextLevel =
                 this.pageData.vipLevel + 1 > vip_info.max_vip_level - 1 ? vip_info.max_vip_level - 1 : this.pageData.vipLevel + 1;
             //主币
-            this.pageData.backwaterConfigMain.now = (
-                this.pageData.vipConfig[this.pageData.vipLevel]["backwater_config"][2]["backwater_rate"] * 100
-            ).toFixed(2);
-            this.pageData.backwaterConfigMain.next = (
-                this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][2]["backwater_rate"] * 100
-            ).toFixed(2);
+            this.pageData.backwaterConfigMain.now =
+                this.pageData.vipLevel == 0
+                    ? "0%"
+                    : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+
+            this.pageData.backwaterConfigMain.next =
+                this.pageData.vipLevel == vip_info.max_vip_level
+                    ? "一"
+                    : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
             //奖励币
-            this.pageData.backwaterConfigReward.now = (
-                this.pageData.vipConfig[this.pageData.vipLevel]["backwater_config"][3]["backwater_rate"] * 100
-            ).toFixed(2);
-            this.pageData.backwaterConfigReward.next = (
-                this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][3]["backwater_rate"] * 100
-            ).toFixed(2);
+            this.pageData.backwaterConfigReward.now =
+                this.pageData.vipLevel == 0
+                    ? "0%"
+                    : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
+
+            this.pageData.backwaterConfigReward.next =
+                this.pageData.vipLevel == vip_info.max_vip_level
+                    ? "一"
+                    : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
         }
     }
 

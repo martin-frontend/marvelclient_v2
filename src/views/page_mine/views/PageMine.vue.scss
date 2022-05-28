@@ -6,6 +6,12 @@
     ::v-deep .v-progress-linear__buffer{
         background: #121E36;
     }
+
+    ::v-deep .v-progress-linear__determinate{
+        height: 8px;
+        top: 4px;
+    }
+
     .down_box{
         .colorBorderBlue{
             background-color: transparent !important;
@@ -63,7 +69,7 @@
             }
             position: absolute;
             bottom: 0;
-            left: 20px;
+            left: 0px;
         }   
         ::v-deep .v-btn__content{
             color: #5E2E2E;

@@ -54,6 +54,8 @@ const opts = {
                 colorTextBlueLight2: "#98ACD3", //used
                 colorBorderBlue: "#374F81", //used
                 colorDialogInfo: "#FFB01A",
+                colorPurpleBtn: "#4F5188", //used
+                colorHowBtn: "#3B4B68", //used
             },
         },
         dark: true,

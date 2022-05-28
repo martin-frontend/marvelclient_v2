@@ -20,8 +20,10 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerSetting(data: any) {
+        console.log("handlerSetting", data);
         const agent_user_id = data.user_id;
-        const val = data.promotion_floor["0"];
+        let val: number = 0;
+        if (data.promotion_floor.length > 0) val = data.promotion_floor["0"];
         this.myProxy.setFloorRangeData(agent_user_id, val);
     }
 
@@ -48,5 +50,13 @@ export default class DialogDirectly extends AbstractView {
 
     onPageChange(): void {
         this.myProxy.api_user_var_agent_direct_list();
+    }
+
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 185;
+        } else {
+            return 450;
+        }
     }
 }

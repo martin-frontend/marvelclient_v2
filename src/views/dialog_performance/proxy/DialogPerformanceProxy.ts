@@ -12,13 +12,6 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        //如果是列表，使用以下数据，否则删除
-        // listQuery: {
-        //     start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
-        //     end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
-        //     page_count: 1,
-        //     page_size: 20,
-        // },
         list: [],
         pageInfo: {
             pageCurrent: 1,
@@ -27,15 +20,6 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
             pageTotal: 9,
         },
     };
-    //如果是列表，使用以下数据，否则删除
-    // resetQuery() {
-    //     Object.assign(this.pageData.listQuery, {
-    //         start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
-    //         end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
-    //         page_count: 1,
-    //         page_size: 20,
-    //     });
-    // }
 
     setData(data: any) {
         this.pageData.loading = false;
@@ -46,9 +30,7 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
 
     /** 日期选择 */
     onSelectDay(offset: any = 0) {
-        // console.log("offset", offset);
         if (offset == -1) {
-            // console.log("昨日");
             this.parameter.end_date = dateFormat(getTodayOffset(offset), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
             this.parameter.start_date = dateFormat(getTodayOffset(offset + 1, 1), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
         } else {
@@ -62,7 +44,6 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     /**写入 业绩查询 */
     setCommissionlist(body: any) {
         this.pageData.list = body.list;
-        // this.commissionData.list = JSON.parse(JSON.stringify(body.list));
     }
 
     /**--代理推广--业绩查询*/

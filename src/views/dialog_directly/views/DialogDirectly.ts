@@ -35,9 +35,6 @@ export default class DialogDirectly extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            //如果是列表，使用以下数据，否则删除
-            // this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
             this.myProxy.api_user_var_agent_direct_list();
         }
     }

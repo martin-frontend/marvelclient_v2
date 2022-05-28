@@ -1,5 +1,8 @@
 
 .page_mine{
+    .font_18{
+        font-size: 18px !important;
+    }
     ::v-deep .v-progress-linear__determinate{
         border-radius: 20px;
     }
@@ -88,8 +91,6 @@
             }
         }
     }
-   
-    
     
     .v-card,.v-btn{
         box-shadow: none !important;
@@ -103,6 +104,12 @@
     }
     .linear_bg{
         background: linear-gradient( #1C2647,#25324B);
+    }
+    .how_num{
+        font-size: 24px !important;
+    }
+    .how_title{
+        font-size: 18px !important;
     }
     #howMine{
         @media only screen and  (max-width: 960px) {
@@ -133,7 +140,7 @@
         i {
             font-size: 30px;
         }
-        @media only screen and  (max-width: 960px) {
+        @media only screen and  (max-width: 750px) {
             display: none;
         }
     }
@@ -148,7 +155,7 @@
         i {
             font-size: 30px;
         }
-        @media only screen and  (max-width: 960px) {
+        @media only screen and  (max-width: 750px) {
             display: none;
         }
     }
@@ -167,9 +174,7 @@
 
     /**宽750 以下算H5 */
     @media only screen and (max-width: 750px) {
-        .font_18{
-            font-size: 18px !important;
-        }
+        
       
         .right_banner{
             overflow: inherit;
@@ -203,7 +208,23 @@
         .level_box{
             background: linear-gradient( #16233F,#252B53);
         }
-       
+        #vipLevel{
+            .rounded_customized{
+                border-radius: 15px;
+            }
+        }
+     
+        #howMine{
+            .how_item{
+                margin-bottom: -12px;
+            }
+        }
+        .how_num{
+            font-size: 18px !important;
+        }
+        .how_title{
+            font-size: 14px !important;
+        }
     }
 }
 

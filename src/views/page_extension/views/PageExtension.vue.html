@@ -218,7 +218,8 @@
                         {{ item.level }}级
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center align-center">
-                        {{ item.total_performance }}
+                        <span v-if="item.total_performance >= 10000">{{ item.total_performance }}万</span>
+                        <span v-else>{{ item.total_performance }}</span>
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?3:4"  class="d-flex justify-center align-center">
                         <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>

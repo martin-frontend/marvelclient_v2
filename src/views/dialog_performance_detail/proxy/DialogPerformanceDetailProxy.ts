@@ -103,7 +103,10 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
     setCommissionDirectswater(body: any) {
         if (body.list.length > 0) {
             this.pageData.directList = body.list;
-            Object.assign(this.pageData.pageInfo, body.pageInfo);
+            for (let i = 0; i < 7; i++) {
+                const one = body.list[0];
+                this.pageData.directList.push(one);
+            }
         }
     }
 

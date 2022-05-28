@@ -32,9 +32,9 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "page_game_play" */ "../views/page_game_play/views/PageGamePlay.vue"),
     },
     {
-        path: "/introduce",
-        name: "Introduce",
-        component: () => import(/* webpackChunkName: "introduce" */ "../views/page_introduce/views/Introduce.vue"),
+        path: "/page_introduce",
+        name: "page_introduce",
+        component: () => import(/* webpackChunkName: "introduce" */ "../views/page_introduce/views/PageIntroduce.vue"),
     },
     {
         path: "/page_extension",

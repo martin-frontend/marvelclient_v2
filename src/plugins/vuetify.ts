@@ -37,7 +37,7 @@ const opts = {
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used
-                colorExtensionBtn: "#3D5081", //used
+                colorExtensionBtn: "#37619A", //used
                 colorReceive: "#5E2E2E", //used
                 colorBlue2Bg: "#2C3952",
                 colorYellowBg: "#F2A81C",
@@ -46,6 +46,7 @@ const opts = {
                 colorText2: "#96AAD0",
                 colorText3: "#9BA1AB", //used
                 colorText4: "#85A7DC", //used
+                colorText5: "#9AAED5", //used
                 colorTextGold: "#F3B952",
                 colorTextBlue: "#31486C", //used
                 colorTextPurple: "#A8A8F5", //used

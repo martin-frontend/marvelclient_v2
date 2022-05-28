@@ -23,7 +23,7 @@ export default class DialogDirectly extends AbstractView {
         console.log("handlerSetting", data);
         const agent_user_id = data.user_id;
         let val: number = 0;
-        if (data.promotion_floor.length > 0) val = data.promotion_floor["0"];
+        if (!Array.isArray(data.promotion_floor)) val = data.promotion_floor["0"];
         this.myProxy.setFloorRangeData(agent_user_id, val);
     }
 

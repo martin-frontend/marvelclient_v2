@@ -47,7 +47,7 @@ export default class Header extends AbstractView {
     }
 
     goIntroduce() {
-        router.push("/introduce");
+        router.push("/page_introduce");
     }
 
     handlerLogin() {

@@ -48,4 +48,20 @@ export default class DialogPerformanceDetail extends AbstractView {
             // this.myProxy.api_xxx();
         }
     }
+
+    get listHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 210;
+        } else {
+            return 450;
+        }
+    }
+
+    get directListHeight() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            return this.$vuetify.breakpoint.height - 150;
+        } else {
+            return 450;
+        }
+    }
 }

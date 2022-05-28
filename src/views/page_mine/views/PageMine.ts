@@ -19,6 +19,42 @@ export default class PageMine extends AbstractView {
         super(PageMineMediator);
     }
 
+    mounted() {
+        console.log(this.$vuetify.breakpoint.xsOnly);
+    }
+
+    mobileChange(key: any) {
+        const mapPC = <any>{
+            coinIcon: 42,
+            minRewardBtn: {
+                w: 178,
+                h: 42,
+            },
+            leftBgVipIcon: {
+                w: 75,
+                h: 75,
+            },
+            howIcon: 72,
+            howBtn: {
+                w: 126,
+                h: 42,
+            },
+        };
+        const mapMobile = <any>{
+            coinIcon: 30,
+            minRewardBtn: {
+                w: 127,
+                h: 30,
+            },
+            howIcon: 65,
+            howBtn: {
+                w: 90,
+                h: 30,
+            },
+        };
+        return this.$vuetify.breakpoint.xsOnly ? mapMobile[key] : mapPC[key];
+    }
+
     /**奖励记录 */
     handlerMineRecord() {
         dialog_record_mine.show();

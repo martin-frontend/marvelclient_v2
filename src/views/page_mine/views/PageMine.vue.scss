@@ -88,8 +88,6 @@
             }
         }
     }
-   
-    
     
     .v-card,.v-btn{
         box-shadow: none !important;
@@ -133,7 +131,7 @@
         i {
             font-size: 30px;
         }
-        @media only screen and  (max-width: 960px) {
+        @media only screen and  (max-width: 750px) {
             display: none;
         }
     }
@@ -148,7 +146,7 @@
         i {
             font-size: 30px;
         }
-        @media only screen and  (max-width: 960px) {
+        @media only screen and  (max-width: 750px) {
             display: none;
         }
     }
@@ -202,6 +200,17 @@
         }
         .level_box{
             background: linear-gradient( #16233F,#252B53);
+        }
+        #vipLevel{
+            .rounded_customized{
+                border-radius: 15px;
+            }
+        }
+     
+        #howMine{
+            .how_item{
+                margin-bottom: -12px;
+            }
         }
        
     }

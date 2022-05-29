@@ -20,7 +20,7 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="12" sm="auto" class="d-flex justify-center justify-md-end">
-                            <v-btn width="120" height="40" class="mr-3 rounded-lg text-body-1 colorReceive--text" color="colorCoin" @click="handlerAward">领取</v-btn>
+                            <v-btn width="120" height="40" class="mr-3 rounded-lg text-body-1 colorReceive--text" color="colorCoin" @click="handlerAward" :disabled="promotionData.commission_awaiting_num.USDT == 0 && promotionData.commission_awaiting_num.LCC == 0">领取</v-btn>
                             <v-btn width="120" height="40" class="rounded-lg text-body-1" color="colorExtensionBtn">领取记录</v-btn>
                         </v-col>
                     </v-row>

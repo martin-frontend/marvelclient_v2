@@ -9,7 +9,7 @@
                                 可领取佣金
                             </span>
                         </v-col>
-                        <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-4 mb-sm-2 mb-sm-0">
+                        <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-4  mb-sm-0">
                             <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img><span class="text-h6 text-sm-h5 mr-5 mr-md-1 colorCoin--text">
                                 {{ promotionData.commission_awaiting_num.USDT }}
                             </span>
@@ -27,77 +27,77 @@
                         </v-col>
                     </v-row>
                 </v-card>
-                <v-card min-width="90" class="rounded-xl rounded-sm horizontal-gradient-left down text-body-1  mb-lg-0 px-7 py-6">
-                    <v-row no-gutters class="d-flex flex-column flex-sm-row mb-2">
-                        <v-col col="12" sm="5" class="d-flex justify-center justify-sm-end align-center">
-                            <span class="text-subtitle-1 colorText3--text">今日预计佣金</span>
-                        </v-col>
-                        <v-col col="12" sm="7" class="d-flex flex-row justify-center justify-sm-start">
+                <v-card min-width="90" class="rounded-xl rounded-sm horizontal-gradient-left down text-body-1 mb-lg-0 px-7 py-6">
+                    <v-row no-gutters class="d-flex flex-row mb-2">
+                        <v-col class="d-flex justify-center align-center">
+                            <span class="text-caption text-sm-subtitle-1  colorText3--text">
+                                今日预计佣金</span>
                             <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
-                            <span class="text-h5 mr-5">
+                            <span class="text-body-2 text-sm-h5 mr-5">
                                 {{ statistics_data.total_commission.USDT }}
                             </span>
                             <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
-                            <span class="text-h5">
+                            <span class="text-body-2 text-sm-h5">
                                 {{ statistics_data.total_commission.LCC }}
                             </span>
                         </v-col>
                     </v-row>
                     <v-row no-gutters>
-                        <v-col cols="12" sm="7">
+                        <v-col cols="12" sm="7" offset="3" offset-sm="0">
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
                                 <v-col cols="6" sm="5"class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText3--text">今日总业绩
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text">今日总业绩
                                     </span> 
                                 </v-col>
                                 <v-col cols="6" sm="4">
-                                    <span class="text-subtitle-1 ml-2">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-2">
                                         {{ statistics_data.total_water_summary }}
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
                                 <v-col cols="6" sm="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText3--text">今日团队业绩
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text">今日团队业绩
                                     </span> 
                                 </v-col>
                                 <v-col cols="6" sm="4">
-                                    <span class="text-subtitle-1 ml-2">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-2">
                                         {{ statistics_data.group_water_summary}}
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
                                 <v-col cols="6" sm="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText3--text">今日直属业绩
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text">今日直属业绩
                                     </span> 
                                 </v-col>
                                 <v-col cols="6" sm="4">
-                                    <span class="text-subtitle-1 ml-2">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-2">
                                         {{statistics_data.group_water_summary}}
                                     </span>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2 mb-md-0">
                                 <v-col cols="6" sm="5" class="d-flex justify-end">
-                                    <span class="text-subtitle-2 colorText3--text">每万返佣
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text">每万返佣
                                     </span> 
                                 </v-col>
                                 <v-col cols="6" sm="4">
-                                    <span class="text-subtitle-1 ml-2">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-2">
                                         {{ promotionData.commission_num }}
                                     </span>
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col cols="12" sm="5">
+                        <v-col cols="12" sm="5" offset="3" offset-sm="0">
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end new">直属人数（新增）
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-end new">
+                                        直属人数（新增）
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
-                                    <span class="text-subtitle-1  ml-1">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-1">
                                         {{ promotionData.directly_users }} 
                                         ({{ promotionData.today_directly_users }})
                                     </span>
@@ -105,11 +105,12 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end new">团队人数（新增）
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-end new">
+                                        团队人数（新增）
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
-                                    <span class="text-subtitle-1 ml-1">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-1">
                                         {{ promotionData.group_users }} 
                                         ({{ promotionData.today_group_users }})
                                     </span>
@@ -117,12 +118,12 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                 <v-col cols="6">
-                                    <span class="text-subtitle-2 colorText3--text d-flex justify-end">
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-end">
                                         我的上级
                                     </span> 
                                 </v-col>
                                 <v-col cols="6">
-                                    <span class="text-subtitle-1  ml-1">
+                                    <span class="text-body-2 text-sm-subtitle-1 ml-1">
                                         {{ promotionData.invite_user_id? promotionData.invite_user_id: "未绑定" }}
                                         <v-btn text height="20" min-width="32" class="text-decoration-underline pa-0 text-subtitle-1" color="colorText4" v-if="myProxy.btnBind" @click="handlerBind">
                                             绑定

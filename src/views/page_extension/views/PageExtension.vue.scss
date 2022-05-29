@@ -1,16 +1,24 @@
 .horizontal-gradient-left{
     background-image: linear-gradient(to right, #1E2C47, #384F72 );
     &.down{
-        background-image: url("~@/assets/extension/commission.png"),linear-gradient(to right, #1E2C47, #384F72 );
-        background-position: -6%;
+        background-image: url("~@/assets/extension/commission.png"),
+        linear-gradient(to right, #1E2C47, #384F72 );
+        background-position: -6% bottom;
         height: calc(100% - 96px);
         @media (max-width: 1426px){
-            background-position: -18%;
+            background-position: -20% bottom;
         }
         @media (max-width: 1264px){
             background-position: -6% bottom;
         }
-        @media (max-width: 640px){
+        @media (max-width: 700px){
+            background-position: -14% bottom;
+        }
+        @media (max-width: 400px){
+            background-position: -41% bottom;
+            height: unset;
+        }
+        @media (min-width: 400px) and (max-width: 600px){
             height: unset;
         }
     }
@@ -58,6 +66,9 @@
 }
 .new{
     @media (min-width: 1264px) and (max-width: 1426px){
+        width: 113px;
+    }
+    @media (min-width: 600px) and (max-width: 640px){
         width: 113px;
     }
 }

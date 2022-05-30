@@ -32,7 +32,6 @@ export default class DialogPromotionFloor extends AbstractView {
 
     get isCheckedAmount(): boolean {
         const { amount } = this.pageData;
-        console.warn("type of amount", amount);
         return this.checkAmount(amount);
     }
 

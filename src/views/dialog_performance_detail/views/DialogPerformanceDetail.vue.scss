@@ -1,6 +1,6 @@
 .listitem {
     div {
-        min-width: 90px;
+        width: 90px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -15,7 +15,7 @@
 }
 .listitem-direct {
     div {
-        min-width: 120px;
+        width: 120px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -28,39 +28,6 @@
         }
     }
 }
-// .listitem {
-//     width: 634px;
-//     div {
-//         width: calc(100% / 7);
-//         margin-top: 2px;
-//         margin-bottom: 2px;
-//         color: #9db1d8;
-//         div:first-child {
-//             color: #4c5d7f;
-//             margin-bottom: 5px;
-//         }
-//         div{
-//             width: 100%;
-//             > a {
-//                 color: #9db1d8;
-//             }
-//         }
-//     }
-//     &.detail{
-//         div {
-//             width: calc(100% / 5);
-//             div{
-//                 width: 100%;
-//                 > a {
-//                     color: #9db1d8;
-//                 }
-//             }
-//         }
-//     }
-// }
-// .listbox {
-//     overflow-y: scroll;
-// }
 ::v-deep .v-btn__content {
     font-size: 16px;
     font-weight: 400;

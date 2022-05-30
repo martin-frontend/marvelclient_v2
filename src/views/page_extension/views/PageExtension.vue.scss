@@ -1,7 +1,8 @@
 .horizontal-gradient-left{
     background-image: linear-gradient(to right, #1E2C47, #384F72 );
     &.down{
-        background-image: url("~@/assets/extension/commission.png"),  linear-gradient(to right, #1E2C47, #384F72 );
+        background-image: url("~@/assets/extension/commission@2x.png"),  linear-gradient(to right, #1E2C47, #384F72 );
+        background-size: 240px 281px, 100% 100%;
         background-position: -6% bottom;
         height: calc(100% - 96px);
         @media (max-width: 1426px){
@@ -17,6 +18,7 @@
             background-image: url("~@/assets/extension/commission@0.5x.png"), 
             url("~@/assets/extension/background.png"), linear-gradient(to right, #1E2C47, #384F72 );
             background-position: -24% bottom, right;
+            background-size: unset;
             height: unset;
         }
         @media (min-width: 400px) and (max-width: 600px){

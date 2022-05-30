@@ -23,7 +23,7 @@
                             <v-btn 
                             :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="mr-3 rounded-lg text-body-2 text-sm-body-1 colorReceive--text" color="colorCoin" @click="handlerAward" :disabled="promotionData.commission_awaiting_num.USDT == 0 && promotionData.commission_awaiting_num.LCC == 0">领取</v-btn>
                             <v-btn 
-                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn">领取记录</v-btn>
+                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn" @click="handleRecords">领取记录</v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -194,7 +194,7 @@
                         </v-col>
                     </v-row>
                     <div class="d-flex justify-end mt-2 mt-lg-0">
-                        <v-btn :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg  text-body-2 text-sm-body-1 mr-5" color="colorExtensionBtn" v-if="promotionData.is_promotion_statistics_display">推广统计</v-btn>
+                        <v-btn :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg  text-body-2 text-sm-body-1 mr-5" color="colorExtensionBtn" v-if="false">推广统计</v-btn>
                         <v-btn :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40"  class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn" @click="handlerDirectly">我的直属</v-btn>
                     </div>
                 </v-card>

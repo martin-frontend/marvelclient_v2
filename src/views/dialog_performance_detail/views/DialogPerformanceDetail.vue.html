@@ -1,5 +1,5 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg" color="colorPanelBg">
+    <v-card class="rounded-lg overflow-hidden" color="colorPanelBg">
         <v-card-title class="gradient-bg">
             <div class="text-18 font-weight-regular">业绩详情</div>
             <v-spacer />
@@ -41,8 +41,8 @@
                     <div class="ml-3">总业绩. {{ pageData.statistics_data.total_water_summary }}</div>
                     <div class="ml-3">拥金总额 {{ pageData.statistics_data.total_commission.USDT }}</div>
                 </div>
-                <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
-                    <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="listHeight" class="scroll-y">
+                    <v-sheet class="mt-5 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex flex-wrap listitem">
                             <div>
                                 <div>业绩类型</div>
@@ -82,7 +82,7 @@
                     </div>
                 </v-sheet>
             </div>
-            <v-sheet v-if="listQuery.cate == 1" color="transparent" :height="directListHeight" class="scroll-y">
+            <v-sheet v-if="listQuery.cate == 1" color="#121E36" :height="directListHeight" class="scroll-y">
                 <template v-for="(item, idx) in pageData.directList">
                     <div class="colorText1--text text-16 ml-3 d-flex align-center" :key="'u' + idx">
                         <v-icon class="colorText1--text">mdi-account-circle</v-icon>

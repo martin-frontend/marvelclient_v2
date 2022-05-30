@@ -14,13 +14,19 @@ export default class PageMine extends AbstractView {
     pageData = this.myProxy.pageData;
 
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    private xsOnly = false;
 
     constructor() {
         super(PageMineMediator);
     }
 
     mounted() {
-        console.log(this.$vuetify.breakpoint.xsOnly);
+        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+    }
+
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWAtchXsOnly() {
+        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
     }
 
     mobileChange(key: any) {

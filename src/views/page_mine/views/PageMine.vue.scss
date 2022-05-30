@@ -7,7 +7,11 @@
         right: 50px;
         border-radius: 12pt 0pt 0pt 12pt;
     }
-    
+    // ::v-deep .v-slide-group:not(.v-slide-group--has-affixes) {
+    //     > .v-slide-group__next, .v-slide-group__prev{
+    //         display: flex;
+    //     }
+    // } 
     ::v-deep .v-slide-group__next {
         right: 0;
         border-radius: 0pt 12pt 12pt 0pt;
@@ -15,7 +19,7 @@
     ::v-deep .theme--dark {
         .v-slide-group__prev,
         .v-slide-group__next {
-            top: -33px;
+            top: -43px;
             min-width: 32px;
             width: 32px;
             height: 24px;
@@ -32,7 +36,7 @@
     ::v-deep .theme--light {
         .v-slide-group__prev,
         .v-slide-group__next {
-            top: -33px;
+            top: -43px;
             min-width: 32px;
             width: 32px;
             height: 24px;

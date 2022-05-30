@@ -9,12 +9,79 @@
         </v-card>
         <v-row no-gutters>
             <v-col cols="8" class="pr-sm-3">
-                <v-card class="rounded-lg mb-lg-0 py-4 py-sm-6" color="colorTitleBg" height="100%">
+                <v-card class="rounded-lg mb-lg-0 py-4 py-sm-6 text-sm-subtitle-1" color="colorTitleBg" height="100%">
                     <v-row no-gutters class="fill-height">
                         <v-col cols="3" class="d-flex align-end">
-                            <v-img contain src="~@/assets/bonus/ensure.png"></v-img>
+                            <v-img contain src="~@/assets/bonus/ensure.png">
+                            </v-img>
                         </v-col>
                         <v-col cols="9">
+                            <v-row no-gutters class="my-10">
+                                <v-col cols="6" class="d-flex flex-column fill-height pr-5">
+                                    <div class="colorText6--text">
+                                        CF余额
+                                    </div>
+                                    <div class="text-sm-h5 d-flex align-center justify-space-between">
+                                        <span>10000,000</span>
+                                        <v-btn 
+                                        :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            质押
+                                        </v-btn>
+                                    </div>
+                                </v-col>
+                                <v-col cols="6" class="d-flex flex-column pr-10">
+                                    <div class="colorText6--text">
+                                        可领取分红
+                                    </div>
+                                    <div class="text-sm-h5 d-flex align-center justify-space-between">
+                                        <span class="colorTextGold--text">
+                                            10000,000
+                                            <v-btn icon>
+                                                <v-img max-width="39" src="@/assets/bonus/history@2x.png"></v-img>
+                                            </v-btn>
+                                        </span>
+                                        <v-btn
+                                        :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            领取
+                                        </v-btn>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row no-gutters>
+                                <v-col cols="6" class="d-flex flex-column pr-5">
+                                    <div class="colorText6--text">
+                                        个人质押（占比10.00%）
+                                    </div>
+                                    <div class="text-sm-h5 d-flex align-center justify-space-between">
+                                        <span>
+                                            10000,000
+                                            <v-btn icon>
+                                                <v-img max-width="39" src="@/assets/bonus/history@2x.png"></v-img>
+                                            </v-btn>
+                                        </span>
+                                        <v-btn
+                                        :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            解除质押
+                                        </v-btn>
+                                    </div>
+                                </v-col>
+                                <v-col cols="6" class="d-flex flex-column justify-space-between pr-10">
+                                    <div class="colorText6--text">
+                                        个人累计分红
+                                    </div>
+                                    <div class="text-sm-h5 d-flex align-center justify-space-between">
+                                        <span>$213123</span>
+                                        <v-btn
+                                        :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            查看记录
+                                        </v-btn>
+                                    </div>
+                                </v-col>
+                            </v-row>
                         </v-col>
                     </v-row>
                 </v-card>

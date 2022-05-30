@@ -1,16 +1,25 @@
 .horizontal-gradient-left{
     background-image: linear-gradient(to right, #1E2C47, #384F72 );
     &.down{
-        background-image: url("~@/assets/extension/commission.png"),linear-gradient(to right, #1E2C47, #384F72 );
-        background-position: -6%;
+        background-image: url("~@/assets/extension/commission.png"),  linear-gradient(to right, #1E2C47, #384F72 );
+        background-position: -6% bottom;
         height: calc(100% - 96px);
         @media (max-width: 1426px){
-            background-position: -18%;
+            background-position: -20% bottom;
         }
         @media (max-width: 1264px){
             background-position: -6% bottom;
         }
-        @media (max-width: 640px){
+        @media (max-width: 700px){
+            background-position: -14% bottom;
+        }
+        @media (max-width: 400px){
+            background-image: url("~@/assets/extension/commission@0.5x.png"), 
+            url("~@/assets/extension/background.png"), linear-gradient(to right, #1E2C47, #384F72 );
+            background-position: -24% bottom, right;
+            height: unset;
+        }
+        @media (min-width: 400px) and (max-width: 600px){
             height: unset;
         }
     }
@@ -25,13 +34,18 @@
     position: relative;
     .level_icon {
         position: absolute;
-        left: 5px;
-        top: 0px;
-        max-width: 20px;
-        @media (min-width: 600px){
+        left: 15px;
+        top: -5px;
+        max-width: 30px;
+        @media (max-width: 750px){
             left: 15px;
-            top: -5px;
-            max-width: 30px;
+            top: 3px;
+            max-width: 20px;
+        }
+        @media (max-width: 600px){
+            left: 3px;
+            top: 2px;
+            max-width: 15px;
         }
     }
 }
@@ -44,9 +58,23 @@
     ::v-deep img {
         width: 100%;
     }
+    @media (max-width: 600px){
+        border-radius: 10px;
+        padding: 4px;
+        max-width: 90px;
+        max-height: 90px;
+    }
 }
 .new{
     @media (min-width: 1264px) and (max-width: 1426px){
         width: 113px;
+    }
+    @media (min-width: 600px) and (max-width: 640px){
+        width: 113px;
+    }
+}
+.rounded-sm{
+    @media (max-width: 600px){
+        border-radius: 10px !important;
     }
 }

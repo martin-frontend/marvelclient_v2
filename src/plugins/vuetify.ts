@@ -38,6 +38,7 @@ const opts = {
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used
                 colorExtensionBtn: "#37619A", //used
+                colorBonusBtn: "#6EAAFA", //used
                 colorReceive: "#5E2E2E", //used
                 colorBlue2Bg: "#2C3952",
                 colorYellowBg: "#F2A81C",

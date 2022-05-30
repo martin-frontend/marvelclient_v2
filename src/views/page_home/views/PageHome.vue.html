@@ -11,5 +11,5 @@
         />
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
-    <RecentBetting class="mt-8" />
+    <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
 </v-container>

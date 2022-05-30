@@ -1,4 +1,4 @@
-<div class="mt-8">
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'">
     <div class="text-16 mb-2 ml-2 mr-4 d-flex">
         <v-icon class="mr-1" color="colorYellow">{{ CategoryIcon[data.category] }}</v-icon>
         <div class="text-title">{{ data.category_name }}</div>
@@ -14,9 +14,9 @@
             查看全部
         </v-btn>
     </div>
-    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap" color="transparent">
+    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap pl-2" color="transparent">
         <v-card
-            width="700"
+            :width="height"
             color="colorTitleBg"
             class="rounded-lg mr-3 mb-3 box"
             v-for="item of data.list"

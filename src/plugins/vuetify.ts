@@ -48,6 +48,7 @@ const opts = {
                 colorText4: "#85A7DC", //used
                 colorText5: "#9AAED5", //used
                 colorText6: "#9DB1D8", //used
+                colorText7: "#5F80C1",
                 colorTextGold: "#F3B952",
                 colorTextBlue: "#31486C", //used
                 colorTextPurple: "#A8A8F5", //used

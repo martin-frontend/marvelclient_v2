@@ -11,7 +11,7 @@ export default class Advertise extends AbstractView {
     get height(): number {
         switch (this.$vuetify.breakpoint.name) {
             case "xs":
-                return 150;
+                return 145;
             case "sm":
             case "md":
                 return 350;

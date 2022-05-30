@@ -72,3 +72,11 @@ li:hover {
         border-radius: 16px;
     }
 }
+@media screen and (max-width: 750px) {
+    .imgage{
+        border-radius: 8px;
+    }
+    .box{
+        border-radius: 8px;
+    }
+}

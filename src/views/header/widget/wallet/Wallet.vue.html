@@ -7,7 +7,7 @@
                     class="align-center d-flex rounded-pill ml-2 pr-8"
                     color="colorPanelTitleBg"
                     width="190"
-                    height="35"
+                    height="30"
                 >
                     <v-img
                         class="ml-2"
@@ -65,7 +65,7 @@
         </div>
     </v-menu>
 
-    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="btn-topup-mobile rounded-pill black--text mr-3" small color="#ffb01b" @click="onCoinIn">
+    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="btn-topup-mobile rounded-pill black--text mr-3" x-small color="#ffb01b" @click="onCoinIn">
         <div>充值</div>
     </v-btn>
     <v-btn v-else class="btn-topup rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">

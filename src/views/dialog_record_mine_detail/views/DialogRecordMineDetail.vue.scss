@@ -1,6 +1,6 @@
 .listitem {
     div {
-        width: 126px;
+        width: 123px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -15,7 +15,7 @@
 }
 .listbox {
     height: 450px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .arrow{
     margin-bottom: -1px !important;

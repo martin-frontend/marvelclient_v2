@@ -1,0 +1,91 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg overflow-hidden" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18 font-weight-regular">质押记录</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5">
+            <div>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 0"
+                    :color="listQuery.cate == 0 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(0)"
+                >
+                    <v-icon class="mr-1">mdi-chart-line</v-icon>
+                    质押
+                </v-btn>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 1"
+                    :color="listQuery.cate == 1 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(1)"
+                >
+                    <v-icon class="mr-1">mdi-chart-tree</v-icon>
+                    解除质押
+                </v-btn>
+            </div>
+            <v-divider class="my-3" />
+            <div v-if="listQuery.cate == 0">
+                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="listHeight" class="scroll-y">
+                    <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex flex-wrap listitem">
+                            <div>
+                                <div>时间</div>
+                                <div class="text-truncate text-16 font-weight-regular">{{ item.date }}</div>
+                            </div>
+                            <div>
+                                <div class="ml-8">数量</div>
+                                <div class="d-flex align-center text-16 font-weight-regular">
+                                    <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
+                                    {{ item.amount }}
+                                </div>
+                            </div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
+                    <div>
+                        <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
+                        <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                    </div>
+                </v-sheet>
+            </div>
+            <v-sheet v-if="listQuery.cate == 1" color="#121E36" :height="deListHeight" class="scroll-y">
+                <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.deList" :key="'de' + idx">
+                    <div class="d-flex flex-wrap listitem-de">
+                        <div>
+                            <div>时间</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ item.date }}</div>
+                        </div>
+                        <div class="listitem-180">
+                            <div>类型</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ item.type }}</div>
+                        </div>
+                        <div class="listitem-150">
+                            <div class="ml-8">到账数量</div>
+                            <div class="d-flex align-center text-16 font-weight-regular">
+                                <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
+                                {{ item.amount }}
+                            </div>
+                        </div>
+                    </div>
+                </v-sheet>
+                <v-sheet v-if="pageData.deList.length === 0" class="d-flex justify-center align-center" color="transparent" min-height="450">
+                    <div>
+                        <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
+                        <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

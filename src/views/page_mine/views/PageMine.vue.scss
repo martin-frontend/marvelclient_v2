@@ -3,6 +3,53 @@
     .font_18{
         font-size: 18px !important;
     }
+    ::v-deep .v-slide-group__prev {
+        right: 50px;
+        border-radius: 12pt 0pt 0pt 12pt;
+    }
+    // ::v-deep .v-slide-group:not(.v-slide-group--has-affixes) {
+    //     > .v-slide-group__next, .v-slide-group__prev{
+    //         display: flex;
+    //     }
+    // } 
+    ::v-deep .v-slide-group__next {
+        right: 0;
+        border-radius: 0pt 12pt 12pt 0pt;
+    }
+    ::v-deep .theme--dark {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            top: -43px;
+            min-width: 32px;
+            width: 32px;
+            height: 24px;
+            position: absolute;
+            background: rgba(243, 231, 231, 0.098);
+            i {
+                font-size: 30px;
+            }
+             @media only screen and  (max-width: 750px) {
+                display: none;
+            }
+        }
+    }
+    ::v-deep .theme--light {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            top: -43px;
+            min-width: 32px;
+            width: 32px;
+            height: 24px;
+            position: absolute;
+            background: rgba(243, 231, 231, 0.098);
+            i {
+                font-size: 30px;
+            }
+            @media only screen and  (max-width: 750px) {
+                display: none;
+            }
+        }
+    }
     ::v-deep .v-progress-linear__determinate{
         border-radius: 20px;
     }
@@ -75,9 +122,6 @@
             }
         }
         .cat_icon{
-            @media only screen and  (max-width: 1260px ){
-               
-            }
             position: absolute;
             bottom: 0;
             left: 0px;
@@ -129,48 +173,8 @@
             }
         }
     }
-    ::v-deep .v-slide-group__prev {
-        position: absolute;
-        top: -33px;
-        right: 35px;
-        min-width: 0;
-        border-radius: 12pt 0pt 0pt 12pt;
-        width: 32px;
-        height: 24px;
-        i {
-            font-size: 30px;
-        }
-        @media only screen and  (max-width: 750px) {
-            display: none;
-        }
-    }
-    ::v-deep .v-slide-group__next {
-        position: absolute;
-        top: -33px;
-        right: 0;
-        min-width: 0;
-        border-radius: 0pt 12pt 12pt 0pt;
-        width: 32px;
-        height: 24px;
-        i {
-            font-size: 30px;
-        }
-        @media only screen and  (max-width: 750px) {
-            display: none;
-        }
-    }
-    ::v-deep .theme--dark {
-        .v-slide-group__prev,
-        .v-slide-group__next {
-            background: rgba(243, 231, 231, 0.098);
-        }
-    }
-    ::v-deep .theme--light {
-        .v-slide-group__prev,
-        .v-slide-group__next {
-            background: rgba(243, 231, 231, 0.098);
-        }
-    }
+    
+    
 
     /**宽750 以下算H5 */
     @media only screen and (max-width: 750px) {
@@ -227,4 +231,3 @@
         }
     }
 }
-

@@ -47,12 +47,14 @@ const opts = {
                 colorText3: "#9BA1AB", //used
                 colorText4: "#85A7DC", //used
                 colorText5: "#9AAED5", //used
+                colorText6: "#9DB1D8", //used
                 colorTextGold: "#F3B952",
                 colorTextBlue: "#31486C", //used
                 colorTextPurple: "#A8A8F5", //used
                 colorTextGreen: "#69B65E", //used
                 colorTextBlueLight: "#72ABFD", //used
                 colorTextBlueLight2: "#98ACD3", //used
+                colorTextBlueLight3: "#70A9FA", //used
                 colorBorderBlue: "#374F81", //used
                 colorDialogInfo: "#FFB01A",
                 colorPurpleBtn: "#4F5188", //used

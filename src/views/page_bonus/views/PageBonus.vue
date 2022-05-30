@@ -1,18 +1,17 @@
-<template src="./PageMine.vue.html" lang="html"></template>
-<style src="./PageMine.vue.scss" lang="scss" scoped></style>
+<template src="./PageBonus.vue.html" lang="html"></template>
+<style src="./PageBonus.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";
-import PageMine from "./PageMine";
+import PageBonus from "./PageBonus";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import { Watch } from "vue-property-decorator";
 
 @Component({
     components: {
         Overlay,
     },
 })
-export default class extends PageMine {
+export default class extends PageBonus {
     mounted() {
         window.scrollTo(0, 0);
     }

@@ -11,6 +11,7 @@ import dialog_wallet from "@/views/dialog_wallet";
 import page_extension from "@/views/page_extension";
 import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";
+import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
@@ -52,6 +53,9 @@ export default class UserPanel extends AbstractView {
                 break;
             case 10:
                 LoginEnter(page_extension.show);
+                break;
+            case 11:
+                LoginEnter(page_bonus.show);
                 break;
             case 12:
                 LoginEnter(page_mine.show);

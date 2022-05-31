@@ -200,7 +200,8 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     /**业绩查询--返佣等级*/
     api_user_var_commission_commissionnum() {
-        this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, objectRemoveNull({ ...this.parameter }));
+        // this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, objectRemoveNull({ ...this.parameter }));
+        this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, {user_id: core.user_id});
     }
 
     /**业绩查询--获取推广链接*/

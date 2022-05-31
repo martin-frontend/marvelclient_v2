@@ -1,3 +1,4 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import { Watch, Component } from "vue-property-decorator";
 import PageBonusMediator from "../mediator/PageBonusMediator";
@@ -11,6 +12,9 @@ import dialog_wallet from "@/views/dialog_wallet";
 export default class PageBonus extends AbstractView {
     myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     pageData = this.myProxy.pageData;
+    listQuery = this.pageData.listQuery;
+
+    commonIcon = Assets.commonIcon;
 
     constructor() {
         super(PageBonusMediator);
@@ -42,5 +46,10 @@ export default class PageBonus extends AbstractView {
 
     handleRecords() {
         dialog_wallet.show(2);
+    }
+
+    onTabClick(cate: number) {
+        this.listQuery.cate = cate;
+        this.listQuery.page_count = 1;
     }
 }

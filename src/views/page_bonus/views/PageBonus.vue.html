@@ -368,10 +368,98 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center px-5 py-3 py-sm-6" height="120" id="record">
-            <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium">
-                分红记录
+        <v-card class="mb-2 rounded-lg horizontal-gradient-top px-5 py-3 py-sm-6" id="record">
+            <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-3">
+                <span class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mr-4">分红记录</span>
+                <v-btn
+                    :height="$vuetify.breakpoint.width > 600 ? 40 : 30"
+                    class="rounded-pill mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 0"
+                    :color="listQuery.cate == 0 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(0)"
+                >
+                    <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-web</v-icon>
+                    <span class="text-sm-subtitle-1 text-body-2 font-weight-regular">全站记录</span>
+                </v-btn>
+                <v-btn
+                    :height="$vuetify.breakpoint.width > 600 ? 40 : 30"
+                    class="rounded-pill text-16 font-weight-regular mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 1"
+                    :color="listQuery.cate == 1 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(1)"
+                >
+                    <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-human-handsdown</v-icon>
+                    <span class="text-sm-subtitle-1 text-body-2 font-weight-regular">个人记录</span>
+                </v-btn>
             </div>
+            <v-card-text>
+                <v-sheet color="transparent" v-if="listQuery.cate == 0">
+                    <div class="mb-4 d-flex justify-space-around listitem head">
+                        <div>日期</div>
+                        <div v-if="$vuetify.breakpoint.width > 600">分红人数</div>
+                        <div class="item-200">
+                            <span class="ml-4">质押总数</span>
+                        </div>
+                        <div v-if="$vuetify.breakpoint.width > 600" class="item-130">每100CF分红</div>
+                        <div class="item-130">
+                            <span class="ml-4">总计已派发</span>
+                        </div>
+                    </div>
+                    <div v-for="(item, index) in [0,1,2,3,4,5]" :key="'s' + index">
+                        <div class="d-flex justify-space-around listitem mt-4 mb-2">
+                            <div>05-25</div>
+                            <div v-if="$vuetify.breakpoint.width > 600">10000</div>
+                            <div class="d-flex item-200">
+                                <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
+                                <span>100000,000,000</span>
+                            </div>
+                            <div v-if="$vuetify.breakpoint.width > 600" class="item-130">$0.02</div>
+                            <div class="d-flex item-130">
+                                <v-img class="mr-2" max-width="25" height="25" :src="pageData.coin"></v-img>
+                                $2,000,000
+                            </div>
+                        </div>
+                        <v-divider></v-divider>
+                    </div>
+                </v-sheet>
+                <v-sheet color="transparent" v-if="listQuery.cate == 1">
+                    <div class="mb-4 d-flex justify-space-around listitem head">
+                        <div>
+                            <span class="ml-2">日期</span>
+                        </div>
+                        <div class="item-200">
+                            <span class="ml-10">质押数量</span>
+                        </div>
+                        <div v-if="$vuetify.breakpoint.width > 700">
+                            <span class="ml-1">占比</span>
+                        </div>
+                        <div v-if="$vuetify.breakpoint.width > 700">每100CF分红</div>
+                        <div class="item-150">
+                            <span class="ml-8">已派发</span>
+                        </div>
+                    </div>
+                    <div v-for="(item, index) in [0,1,2,3,4,5]" :key="'s' + index">
+                        <div class="d-flex justify-space-around listitem mt-4 mb-2">
+                            <div>05-25</div>
+                            <div class="d-flex item-200">
+                                <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
+                                <span>100000,000,000</span>
+                            </div>
+                            <div v-if="$vuetify.breakpoint.width > 700">
+                                10％
+                            </div>
+                            <div v-if="$vuetify.breakpoint.width > 700">$0.02</div>
+                            <div class="d-flex item-150">
+                                <v-img class="mr-2" max-width="25" height="25" :src="pageData.coin"></v-img>
+                                $2,000,000
+                            </div>
+                        </div>
+                        <v-divider></v-divider>
+                    </div>
+                </v-sheet>
+            </v-card-text>
         </v-card>
     </v-container>
 </div>

@@ -77,7 +77,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
 
-        this.pageData.nextExp = <any>(vip_progress[0].next_vip_level_need_exp - vip_progress[0].user_exp).toFixed(2);
+        this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
         this.pageData.nextUSDT = vip_progress[1].next_vip_level_need_exp - vip_progress[1].user_exp;
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
 

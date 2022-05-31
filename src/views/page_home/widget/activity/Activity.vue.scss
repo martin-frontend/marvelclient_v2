@@ -26,6 +26,7 @@
     // min-width: 470px;
     height: 230px;
     background: url("~@/assets/activity/cat.png") no-repeat right 10px center, linear-gradient(90deg, #162f60, #1c6396);
+    background-size: contain;
 }
 .activity1:hover, .activity1-min:hover {
     .btn {

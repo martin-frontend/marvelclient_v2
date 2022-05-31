@@ -65,8 +65,7 @@ const router = new VueRouter({
 });
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    const user_id = window.localStorage.getItem("user_id");
-    if (!user_id && to.name !== "page_home") {
+    if (!core.user_id && to.name !== "page_home" && to.name !== "page_game_list" && to.name !== "page_introduce") {
         next("/");
     } else {
         next();

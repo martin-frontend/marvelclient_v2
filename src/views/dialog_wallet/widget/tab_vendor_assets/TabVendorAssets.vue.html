@@ -9,13 +9,13 @@
         <div v-if="!isEmpty">
             <div v-for="(item, key) of pageData.gold_info" :key="key">
                 <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-5 px-5 mb-3" height="40" color="#16233F" v-for="(vendor, index) of item.vendors_detail" :key="index">
-                    <v-sheet class="d-flex align-center justify-center colorText2--text" color="transparent" width="100">
+                    <v-sheet class="d-flex align-center justify-center colorText2--text" color="transparent" min-width="100">
                         <v-img :src="plat_coins[key].icon" max-width="25" height="25"></v-img>
-                        <div class="ml-4">{{key}}</div>
+                        <div class="ml-2">{{key}}</div>
                     </v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" width="100">{{vendor.vendor_name}}</v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" width="100">{{vendor.currency}}</v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" width="100">
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="50"> <div class="text-truncate">{{vendor.vendor_name}}</div></v-sheet>
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="100">{{vendor.currency}}</v-sheet>
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="100">
                         <v-btn color="colorBtnBg" small width="60" @click="onWithdraw(key)">提取</v-btn>
                     </v-sheet>
                 </v-sheet>

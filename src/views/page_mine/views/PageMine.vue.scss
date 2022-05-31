@@ -77,13 +77,17 @@
         background-size:cover;
         position: relative;
         overflow: hidden;
+       
         &::before{
-            content: url('~@/assets/mine/right_special.png');
-            width: 162px;
+            content: '';
+            background: url('~@/assets/mine/right_special.png') no-repeat center center;
+            background-size: contain;
             position: absolute;
+            width: 162px;
+            height: 100%;
             right: 0;
             top: 0;
-            @media screen and (max-width: 960px) {
+            @media screen and (max-width: 1260px) {
                 display: none;
             }
         }

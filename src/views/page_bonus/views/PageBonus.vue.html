@@ -5,7 +5,46 @@
                 CF持币分红
             </div>
         </div>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center px-5 py-3 py-sm-6" height="120">
+        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" height="120">
+            <v-img max-width="211" src="@/assets/bonus/bonus.png" class="mb-2"></v-img>
+            <span>
+                <div class="colorText6--text mb-sm-3">
+                    当前奖池金额
+                </div>
+                <div class="text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
+                    <span>$10000,000,000</span>
+                </div>
+            </span>
+            <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3">
+            </v-img>
+            <span>
+                <div class="colorText6--text mb-sm-3">
+                    总质押数量
+                </div>
+                <div class="text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
+                    <span>$10000,000,000</span>
+                </div>
+            </span>
+            <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3">
+            </v-img>
+            <span>
+                <div class="colorText6--text mb-sm-3">
+                    总计已派发
+                </div>
+                <div class="text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
+                    <span>$10000,000,000</span>
+                </div>
+            </span>
+            <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3">
+            </v-img>
+            <span>
+                <div class="colorText6--text mb-sm-3">
+                    下次分红倒计时
+                </div>
+                <div class="text-sm-h5 d-flex align-center justify-space-between">
+                    <span>00:00:00</span>
+                </div>
+            </span>
         </v-card>
         <v-row no-gutters>
             <v-col cols="8" class="pr-sm-3">
@@ -25,19 +64,19 @@
                                         <span>10000,000</span>
                                         <v-btn 
                                         :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerPledge">
                                             质押
                                         </v-btn>
                                     </div>
                                 </v-col>
-                                <v-col cols="6" class="d-flex flex-column pr-10">
+                                <v-col cols="6" class="d-flex flex-column pr-6">
                                     <div class="colorText6--text">
                                         可领取分红
                                     </div>
                                     <div class="text-sm-h5 d-flex align-center justify-space-between">
                                         <span class="colorTextGold--text">
                                             10000,000
-                                            <v-btn icon>
+                                            <v-btn icon @click="handleRecords">
                                                 <v-img max-width="39" src="@/assets/bonus/history@2x.png"></v-img>
                                             </v-btn>
                                         </span>
@@ -57,18 +96,18 @@
                                     <div class="text-sm-h5 d-flex align-center justify-space-between">
                                         <span>
                                             10000,000
-                                            <v-btn icon>
+                                            <v-btn icon @click="handlerRecords">
                                                 <v-img max-width="39" src="@/assets/bonus/history@2x.png"></v-img>
                                             </v-btn>
                                         </span>
                                         <v-btn
                                         :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerUnpledge">
                                             解除质押
                                         </v-btn>
                                     </div>
                                 </v-col>
-                                <v-col cols="6" class="d-flex flex-column justify-space-between pr-10">
+                                <v-col cols="6" class="d-flex flex-column justify-space-between pr-6">
                                     <div class="colorText6--text">
                                         个人累计分红
                                     </div>
@@ -76,7 +115,7 @@
                                         <span>$213123</span>
                                         <v-btn
                                         :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                        :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="jumpTo('#record')">
                                             查看记录
                                         </v-btn>
                                     </div>
@@ -108,122 +147,174 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="py-5">
+        <div class="px-0 px-sm-3 py-5">
             <div class="text-subtitle-1 text-sm-h5 font-weight-medium">
                 分红数据
             </div>
-            <v-row no-gutters>
-                <v-col cols="8" class="pr-sm-3">
-                    <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" height="100%">
-                        <v-row no-gutters class="fill-height">
-                            <v-col cols="8">
-                                <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-5 pt-4 pt-sm-6">
-                                    近5日分红金额
-                                </div>
-                                <div class="colorText6--text text-sm-subtitle-1">
-                                    随着网站成长，股东质押的CF收益会逐渐增长
-                                </div>
-                            </v-col>
-                            <v-col cols="4" class="d-flex align-end">
-                                <v-img contain src="~@/assets/bonus/man.png"></v-img>
-                            </v-col>
-                        </v-row>
-                    </v-card>
-                </v-col>
-                <v-col cols="4">
-                    <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
-                        <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-5 ml-3">
-                            分红排行榜
-                        </div>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center">
-                                排行
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                用户
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                质押CF数量
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                获得分红
-                            </v-col>
-                        </v-row>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center">
-                                <v-img contain src="@/assets/bonus/gold@2x.png" > </v-img>
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                30**0047
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                100,000.00
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                $123,123.00
-                            </v-col>
-                        </v-row>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center">
-                                <v-img contain src="@/assets/bonus/silver@2x.png" > </v-img>
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                30**0047
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                100,000.00
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                $123,123.00
-                            </v-col>
-                        </v-row>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center">
-                                <v-img contain src="@/assets/bonus/bronze@2x.png" > </v-img>
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                30**0047
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                100,000.00
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                $123,123.00
-                            </v-col>
-                        </v-row>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center white--text text-sm-h5">
-                                4
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                30**0047
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                100,000.00
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                $123,123.00
-                            </v-col>
-                        </v-row>
-                        <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
-                            <v-col cols="2" class="d-flex justify-center align-center white--text text-sm-h5">
-                                5
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                30**0047
-                            </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center">
-                                100,000.00
-                            </v-col>
-                            <v-col cols="3" class="d-flex justify-center align-center">
-                                $123,123.00
-                            </v-col>
-                        </v-row>
-                    </v-card>
-                </v-col>
-            </v-row>
         </div>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center px-5 py-3 py-sm-6" height="120">
+        <v-row no-gutters class="pb-5">
+            <v-col cols="8" class="pr-sm-3">
+                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" height="100%">
+                    <v-row no-gutters class="fill-height">
+                        <v-col cols="8">
+                            <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-5 pt-4 pt-sm-6">
+                                近5日分红金额
+                            </div>
+                            <div class="colorText6--text text-sm-subtitle-1">
+                                随着网站成长，股东质押的CF收益会逐渐增长
+                            </div>
+                            <v-row no-gutters class="colorText6--text daily-height">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-sm-3 mb-sm-3">
+                                    <div class="d-flex justify-center">
+                                        $35,12312
+                                    </div>
+                                    <div class="d-flex justify-center">
+                                        <v-card height="280" width="80" class="gradient-type1 daily-radius">
+                                        </v-card>
+                                    </div>
+                                    <div class="d-flex justify-center">05-21</div>
+                                </v-col>
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-sm-3 mb-sm-3">
+                                    <div class="d-flex justify-center">
+                                        $35,12312
+                                    </div>
+                                    <div class="d-flex justify-center">
+                                        <v-card height="280" width="80" class="gradient-type1 daily-radius">
+                                        </v-card>
+                                    </div>
+                                    <div class="d-flex justify-center">05-21</div>
+                                </v-col>
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-sm-3 mb-sm-3">
+                                    <div class="d-flex justify-center">
+                                        $35,12312
+                                    </div>
+                                    <div class="d-flex justify-center">
+                                        <v-card height="280" width="80" class="gradient-type1 daily-radius">
+                                        </v-card>
+                                    </div>
+                                    <div class="d-flex justify-center">05-21</div>
+                                </v-col>
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-sm-3 mb-sm-3">
+                                    <div class="d-flex justify-center">
+                                        $35,12312
+                                    </div>
+                                    <div class="d-flex justify-center">
+                                        <v-card height="280" width="80" class="gradient-type1 daily-radius">
+                                        </v-card>
+                                    </div>
+                                    <div class="d-flex justify-center">05-21</div>
+                                </v-col>
+                                <v-col cols="2" class="d-flex justify-end flex-column mb-sm-3">
+                                    <div class="d-flex justify-center">
+                                        $35,12312
+                                    </div>
+                                    <div class="d-flex justify-center">
+                                        <v-card height="280" width="80" class="gradient-type2 daily-radius">
+                                        </v-card>
+                                    </div>
+                                    <div class="d-flex justify-center">05-21</div>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="4" class="d-flex align-end">
+                            <v-img contain src="~@/assets/bonus/man.png"></v-img>
+                        </v-col>
+                    </v-row>
+                </v-card>
+            </v-col>
+            <v-col cols="4">
+                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
+                    <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-5 ml-3">
+                        分红排行榜
+                    </div>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            排行
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            用户
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            质押CF数量
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            获得分红
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            <v-img contain src="@/assets/bonus/gold@2x.png" > </v-img>
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            30**0047
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            100,000.00
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            $123,123.00
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            <v-img contain src="@/assets/bonus/silver@2x.png"> </v-img>
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            30**0047
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            100,000.00
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            $123,123.00
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            <v-img contain src="@/assets/bonus/bronze@2x.png"> </v-img>
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            30**0047
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            100,000.00
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            $123,123.00
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center white--text text-sm-h5">
+                            4
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            30**0047
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            100,000.00
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            $123,123.00
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                        <v-col cols="2" class="d-flex justify-center align-center white--text text-sm-h5">
+                            5
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            30**0047
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            100,000.00
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            $123,123.00
+                        </v-col>
+                    </v-row>
+                </v-card>
+            </v-col>
+        </v-row>
+        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center px-5 py-3 py-sm-6" height="120" id="record">
             <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium">
                 分红记录
             </div>

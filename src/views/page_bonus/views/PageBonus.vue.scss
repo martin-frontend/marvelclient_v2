@@ -4,6 +4,18 @@
 .horizontal-gradient{
     background: linear-gradient(to right, #1D2A45, #2A3A78 );
 }
+.gradient-type1{
+    background-image: linear-gradient(to right, #7592FF, #B1BEFF );
+}
+.gradient-type2{
+    background-image: linear-gradient(to right, #70FEFF, #B3DFFF );
+}
+.daily-radius{
+    border-radius: 10px 10px 0px 0px;
+}
 .rank-height{
     height: 55px;
+}
+.daily-height{
+    height: calc(100% - 104px);
 }

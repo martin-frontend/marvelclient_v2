@@ -14,7 +14,11 @@
 .html {
     background-color: #131e36;
 }
-
+@-moz-document url-prefix() { /* Disable scrollbar Firefox */
+    html{
+      scrollbar-width: none;
+    }
+  }
 body {
     font-size: 14px;
     color: #fff;

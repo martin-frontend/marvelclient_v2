@@ -24,6 +24,9 @@ export default class DialogWalletProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        tabAccountDetailData: {
+            typeSelect: 0,
+        },
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {

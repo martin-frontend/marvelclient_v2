@@ -29,9 +29,13 @@ export default class DialogWallet extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
+            if (this.myProxy.pageData.tabAccountDetailData.typeSelect > 0) {
+                this.myProxy.api_user_show_var_gold();
+            } else {
+                this.myProxy.resetQuery();
+            }
+        } else {
+            this.myProxy.pageData.tabAccountDetailData.typeSelect = 0;
         }
     }
 }

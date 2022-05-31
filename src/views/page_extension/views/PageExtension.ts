@@ -47,7 +47,8 @@ export default class PageExtension extends AbstractView {
     }
 
     handleRecords() {
-        dialog_wallet.show(2);
+        // 开启弹窗: 平台钱包/账户明细/推广返佣
+        dialog_wallet.show(2, 15);
     }
 
     /**领取奖励 */

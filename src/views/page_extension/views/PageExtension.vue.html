@@ -228,7 +228,7 @@
                         {{ item.level }}级
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?2:4"  class="d-flex justify-center align-center">
-                        <span v-if="item.total_performance >= 10000">{{ item.total_performance }}万</span>
+                        <span v-if="item.total_performance >= 10000">{{ item.total_performance / 10000 }}万</span>
                         <span v-else>{{ item.total_performance }}</span>
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?4:4"  class="d-flex justify-center align-center">

@@ -13,8 +13,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.pageData.loading = true;
-        this.api_user_var_commission_commissiondetail();
-        this.api_user_var_commission_commissionnum();
     }
 
     /**我的推广 数据 */

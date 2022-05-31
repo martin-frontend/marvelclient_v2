@@ -1,6 +1,6 @@
 .listitem {
     div {
-        width: 90px;
+        width: 310px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -13,9 +13,9 @@
         }
     }
 }
-.listitem-direct {
+.listitem-de {
     div {
-        width: 120px;
+        width: 250px;
         margin-top: 2px;
         margin-bottom: 2px;
         color: #9db1d8;
@@ -25,6 +25,18 @@
         }
         div > a {
             color: #9db1d8;
+        }
+    }
+    .listitem-180 {
+        width: 180px;
+        div {
+            width: 180px;
+        }
+    }
+    .listitem-150 {
+        width: 150px;
+        div {
+            width: 150px;
         }
     }
 }

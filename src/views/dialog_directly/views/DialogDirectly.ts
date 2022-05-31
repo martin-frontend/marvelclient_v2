@@ -20,7 +20,6 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerSetting(data: any) {
-        console.log("handlerSetting", data);
         const agent_user_id = data.user_id;
         let val: number = 0;
         if (!Array.isArray(data.promotion_floor)) val = data.promotion_floor["0"];

@@ -23,7 +23,7 @@
                             <v-btn 
                             :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="mr-3 rounded-lg text-body-2 text-sm-body-1 colorReceive--text" color="colorCoin" @click="handlerAward" :disabled="promotionData.commission_awaiting_num.USDT == 0 && promotionData.commission_awaiting_num.LCC == 0">领取</v-btn>
                             <v-btn 
-                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn">领取记录</v-btn>
+                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn" @click="handleRecords">领取记录</v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -228,7 +228,7 @@
                         {{ item.level }}级
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?2:4"  class="d-flex justify-center align-center">
-                        <span v-if="item.total_performance >= 10000">{{ item.total_performance }}万</span>
+                        <span v-if="item.total_performance >= 10000">{{ item.total_performance / 10000 }}万</span>
                         <span v-else>{{ item.total_performance }}</span>
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?4:4"  class="d-flex justify-center align-center">

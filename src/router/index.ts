@@ -46,6 +46,11 @@ const routes: Array<RouteConfig> = [
         name: "page_mine",
         component: () => import(/* webpackChunkName: "page_mine" */ "../views/page_mine/views/PageMine.vue"),
     },
+    {
+        path: "/page_bonus",
+        name: "page_bonus",
+        component: () => import(/* webpackChunkName: "page_bonus" */ "../views/page_bonus/views/PageBonus.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */

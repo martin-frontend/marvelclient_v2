@@ -11,33 +11,12 @@ export default class TabAccountDetail extends AbstractView {
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    listOptions = this.pageData.listOptions;
 
     commonIcon = Assets.commonIcon;
 
-    get timeOptions() {
-        return Constant.TIME_TYPE;
-    }
-
-    get coinOptions() {
-        const keys = Object.keys(GamePlatConfig.config.plat_coins);
-        keys.unshift("全部币种");
-        return keys;
-    }
-
-    get typeOptions() {
-        const types = {
-            0: "全部类型",
-        };
-        Object.assign(types, GamePlatConfig.enums.user_gold_log_type);
-        return types;
-    }
-
-    timeSelect = 0;
-    coinSelect = 0;
-    typeSelect = 0;
-
     onTimeChange() {
-        switch (this.timeSelect) {
+        switch (this.listOptions.timeSelect) {
             case 0:
                 this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");
                 this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
@@ -59,19 +38,19 @@ export default class TabAccountDetail extends AbstractView {
     }
 
     onCoinChange() {
-        if (this.coinSelect == 0) {
+        if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
-            this.listQuery.coin_name_unique = this.coinOptions[this.coinSelect];
+            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect];
         }
         this.myProxy.api_user_show_var_gold();
     }
 
     onTypeChange() {
-        if (this.typeSelect == 0) {
+        if (this.listOptions.typeSelect == 0) {
             this.listQuery.type = 0;
         } else {
-            this.listQuery.type = this.typeSelect;
+            this.listQuery.type = this.listOptions.typeSelect;
         }
         this.myProxy.api_user_show_var_gold();
     }
@@ -83,7 +62,7 @@ export default class TabAccountDetail extends AbstractView {
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 255;
+            return this.$vuetify.breakpoint.height - 305;
         } else {
             return 368;
         }

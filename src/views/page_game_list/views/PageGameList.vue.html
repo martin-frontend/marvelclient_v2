@@ -42,8 +42,8 @@
             </v-btn
         >
     </v-sheet>
-    <v-card class="d-flex flex-wrap mb-2 justify-space-between" color="transparent" flat tile>
-        <div v-for="item of pageData.list" :key="item.vendor_prodcut_id">
+    <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+        <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
             <GameItem :item="item" />
         </div>
     </v-card>

@@ -47,7 +47,7 @@ export default class PageExtension extends AbstractView {
     }
 
     handleRecords() {
-        dialog_wallet.show(2);
+        dialog_wallet.show(2, 15);
     }
 
     /**领取奖励 */

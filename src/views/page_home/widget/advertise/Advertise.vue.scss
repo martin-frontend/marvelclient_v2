@@ -1,3 +1,7 @@
+.box{
+    background-image: linear-gradient(180deg, #243A5D 0%, #1F2F4B 100%);
+    border-radius: 20px;
+}
 ul {
     display: block;
     list-style-type: disc;
@@ -66,5 +70,13 @@ li:hover {
     }
     .imgage{
         border-radius: 16px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .imgage{
+        border-radius: 8px;
+    }
+    .box{
+        border-radius: 8px;
     }
 }

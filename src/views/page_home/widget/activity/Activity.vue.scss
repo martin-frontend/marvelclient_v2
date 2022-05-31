@@ -2,6 +2,7 @@
     background: linear-gradient(#eef5fe, #89c0fb);
     -webkit-background-clip: text;
     color: transparent;
+    font-family: "Arial Black";
 }
 .skew{
     transform:skewX(-10deg);
@@ -18,7 +19,6 @@
     background-color: white;
     text-align: center;
     color: rgb(50, 68, 102);
-    line-height: 42px;
 }
 .activity1 {
     cursor: pointer;
@@ -27,11 +27,17 @@
     height: 230px;
     background: url("~@/assets/activity/cat.png") no-repeat right 10px center, linear-gradient(90deg, #162f60, #1c6396);
 }
-.activity1:hover {
+.activity1:hover, .activity1-min:hover {
     .btn {
         background-color: #ffaf1a;
         color: white;
     }
+}
+.activity1-min {
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #162f60, #1c6396);
 }
 .activity2 {
     cursor: pointer;
@@ -39,10 +45,17 @@
     // min-width: 470px;
     height: 230px;
     background: url("~@/assets/activity/swap.png") no-repeat right center, linear-gradient(90deg, #0954d9, #68a5f7);
-    .btn-disabled {
-        background-color: #a9a9a9;
-        color: #656565;
-    }
+    
+}
+.btn-disabled {
+    background-color: #a9a9a9;
+    color: #656565;
+}
+.activity2-min {
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #0954d9, #68a5f7);
 }
 .activity3{
     width: 470px;

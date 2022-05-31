@@ -14,6 +14,11 @@ export default class TabAccountDetail extends AbstractView {
 
     commonIcon = Assets.commonIcon;
 
+    @Watch("pageData.tabAccountDetailData.typeSelect")
+    onMyProxyTypeSelect(val: number) {
+        this.typeSelect = val;
+    }
+
     get timeOptions() {
         return Constant.TIME_TYPE;
     }
@@ -34,7 +39,7 @@ export default class TabAccountDetail extends AbstractView {
 
     timeSelect = 0;
     coinSelect = 0;
-    typeSelect = 0;
+    typeSelect = this.pageData.tabAccountDetailData.typeSelect;
 
     onTimeChange() {
         switch (this.timeSelect) {

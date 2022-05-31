@@ -10,6 +10,19 @@ export default class GameSport extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     @Prop() data!: any;
 
+    get height(): number {
+        switch (this.$vuetify.breakpoint.name) {
+            case "sm":
+                return 900;
+            case "md":
+                return 430;
+            case "lg":
+                if (this.$vuetify.breakpoint.width < 1426) return 1185 / 2 - 20;
+                return 696;
+        }
+        return 696;
+    }
+
     getIcon(item: any) {
         if (item.icon.indexOf("http") != -1) {
             return item.icon;

@@ -10,7 +10,7 @@
         <v-card-text class="px-5">
             <div class="colorText2--text text-16 ml-3 d-flex">
                 <div>总投注额 {{pageData.total_bet_gold}}</div>
-                <div class="ml-5">输赢 {{ (parseFloat(pageData.total_win_gold) < 0 ? "-" : "+") + pageData.total_win_gold}}</div>
+                <div class="ml-5">输赢 {{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</div>
             </div>
             <v-divider class="mt-2 mb-4" />
             <div class="d-flex flex-wrap">

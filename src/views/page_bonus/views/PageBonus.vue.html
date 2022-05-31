@@ -394,7 +394,7 @@
                     <span class="text-sm-subtitle-1 text-body-2 font-weight-regular">个人记录</span>
                 </v-btn>
             </div>
-            <v-card-text>
+            <v-card-text :class="$vuetify.breakpoint.width < 600 ? 'pa-0' : ''">
                 <v-sheet color="transparent" v-if="listQuery.cate == 0">
                     <div class="mb-4 d-flex justify-space-around listitem head">
                         <div>日期</div>
@@ -411,12 +411,12 @@
                         <div class="d-flex justify-space-around listitem mt-4 mb-2">
                             <div>05-25</div>
                             <div v-if="$vuetify.breakpoint.width > 600">10000</div>
-                            <div class="d-flex item-200">
+                            <div class="d-flex align-center item-200">
                                 <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
                                 <span>100000,000,000</span>
                             </div>
                             <div v-if="$vuetify.breakpoint.width > 600" class="item-130">$0.02</div>
-                            <div class="d-flex item-130">
+                            <div class="d-flex align-center item-130">
                                 <v-img class="mr-2" max-width="25" height="25" :src="pageData.coin"></v-img>
                                 $2,000,000
                             </div>
@@ -443,7 +443,7 @@
                     <div v-for="(item, index) in [0,1,2,3,4,5]" :key="'s' + index">
                         <div class="d-flex justify-space-around listitem mt-4 mb-2">
                             <div>05-25</div>
-                            <div class="d-flex item-200">
+                            <div class="d-flex align-center item-200">
                                 <v-img class="mr-2" max-width="25" height="25" :src="pageData.lcusd"></v-img>
                                 <span>100000,000,000</span>
                             </div>
@@ -451,7 +451,7 @@
                                 10％
                             </div>
                             <div v-if="$vuetify.breakpoint.width > 700">$0.02</div>
-                            <div class="d-flex item-150">
+                            <div class="d-flex align-center item-150">
                                 <v-img class="mr-2" max-width="25" height="25" :src="pageData.coin"></v-img>
                                 $2,000,000
                             </div>

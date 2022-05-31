@@ -1,5 +1,5 @@
-<v-card class="rounded-lg gap" @click="goGamePlay" color="colorTitleBg">
-    <v-img class="game-icon cursor-pointer" :src="getIcon(item)" lazy-src="@/assets/game/placeholder.png">
+<v-card class="rounded-lg box" @click="goGamePlay" color="colorTitleBg">
+    <v-img class="game-icon cursor-pointer" :src="getIcon(item)">
         <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
         <div class="vendor-title">{{ item.vendor_name }}</div>
         <div class="egame__item__mask">

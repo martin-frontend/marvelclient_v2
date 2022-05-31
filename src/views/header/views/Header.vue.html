@@ -1,13 +1,14 @@
-<v-app-bar :height="$vuetify.breakpoint.xsOnly?100:155" color="colorTitleBg" elevation="0" :app="routerPath != '/page_game_play'">
+<v-app-bar :height="$vuetify.breakpoint.xsOnly?80:155" color="colorTitleBg" elevation="0" :app="routerPath != '/page_game_play'">
     <v-container class="ma-auto px-6 py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center">
-            <div class="font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'text-24':'text-48'" style="color: #edcc93">CoinFans.com</div>
+            <div class="font-weight-bold text-48" style="color: #edcc93">CoinFans.com</div>
             <v-spacer />
             <div v-if="GamePlatConfig.config.language">
                 <CustomSelect
                     v-model="core.lang"
                     :options="GamePlatConfig.config.language"
-                    :width="155"
+                    :icons="GamePlatConfig.config.language"
+                    :width="160"
                     :height="45"
                     :isPill="true"
                     class="mr-4"
@@ -63,22 +64,25 @@
             </button>
         </div>
     </v-container>
-    <v-container v-else>
+    <v-container v-else class="mt-3">
         <div class="d-flex align-center">
-            <div class="font-weight-bold text-24" style="color: #edcc93">CoinFans.com</div>
+            <div class="font-weight-bold text-18" style="color: #edcc93">CoinFans.com</div>
             <v-spacer />
             <div v-if="GamePlatConfig.config.language">
                 <CustomSelect
                     v-model="core.lang"
                     :options="GamePlatConfig.config.language"
-                    :width="155"
-                    :height="35"
+                    :icons="GamePlatConfig.config.language"
+                    :width="130"
+                    :height="30"
+                    fontSize="12"
+                    iconSize="20"
                     :isPill="true"
                     @change="onLangChange"
                 />
             </div>
         </div>
-        <div class="d-flex align-center mt-2">
+        <div class="d-flex align-center mt-1 mb-2">
             <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
                 <span class="px-2">登录</span>
             </v-btn>

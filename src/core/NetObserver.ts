@@ -43,23 +43,7 @@ export default class NetObserver extends AbstractMediator {
                 {
                     //获取平台配置信息
                     this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
-                    //获取用户信息
-                    this.selfProxy.api_user_show_var([2, 3, 6]);
-                    //获取大厅游戏列表
-                    this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
-                    //公告
-                    this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                 }
-                break;
-            case NotificationName.LANG_CONFIG:
-                {
-                    //@ts-ignore
-                    window["vm"].$mount("#app");
-                }
-                break;
-            case net.EventType.api_user_logout:
-                this.selfProxy.loginout();
-                dialog_message_box.alert("您的帐号已经退出");
                 break;
             //游戏配置
             case net.EventType.api_plat_var_game_config:
@@ -79,6 +63,23 @@ export default class NetObserver extends AbstractMediator {
                     }
                     LangConfig.load();
                 }
+                break;
+            case NotificationName.LANG_CONFIG:
+                {
+                    //@ts-ignore
+                    window["vm"].$mount("#app");
+
+                    //获取用户信息
+                    this.selfProxy.api_user_show_var([2, 3, 6]);
+                    //获取大厅游戏列表
+                    this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
+                    //公告
+                    this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
+                }
+                break;
+            case net.EventType.api_user_logout:
+                this.selfProxy.loginout();
+                dialog_message_box.alert("您的帐号已经退出");
                 break;
             //用户信息
             case net.EventType.api_user_show_var:

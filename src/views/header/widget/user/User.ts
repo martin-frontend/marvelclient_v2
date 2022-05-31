@@ -3,5 +3,5 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class User extends AbstractView {
-    
+    drawer = false;
 }

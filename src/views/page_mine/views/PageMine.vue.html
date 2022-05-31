@@ -64,13 +64,14 @@
                             <v-img class="cat_icon mt-4" max-width="280" height="296" contain src="~@/assets/mine/cat_icon.png"></v-img>
                         </v-col>
                         <v-col cols="8" class="text-body-2 ml-n4 pl-0 pl-md-7 pl-md-0 text-md-body-1 game_mine_info">
+                        
                             <div class="mt-8">
                                 <p class="ma-0 text-body-1 colorTextBlueLight--text">今日挖矿待领取收益</p>
                                 <p class="ma-0 text-body-2 text-md-body-1 colorTextPurple--text">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
                             </div>
-                           
+                        
                             <div class="d-flex align-center mt-7 mt-md-11 coins_group elevation='2'">
-                                 <!-- 主币 -->
+                                <!-- 主币 -->
                                 <v-img :max-width="mobileChange('coinIcon')" :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"></v-img>
                                 <span class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 mr-4 mr-md-8 font-weight-medium">{{ pageData.trial.main }}</span>
                                 <!-- 奖励币 -->

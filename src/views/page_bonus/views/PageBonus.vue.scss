@@ -19,3 +19,10 @@
 .daily-height{
     height: calc(100% - 104px);
 }
+.bonus-card{
+    @media (max-width: 1264px){
+        background-color: #172237;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+}

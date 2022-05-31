@@ -4,7 +4,7 @@
         <div :class="$vuetify.breakpoint.xsOnly?'text-12':''">{{ data.category_name }}</div>
         <v-spacer />
         <v-btn
-            v-if="bShowAll && !$vuetify.breakpoint.xsOnly"
+            v-if="bShowAll && !$vuetify.breakpoint.mobile"
             class="text-12 rounded-pill"
             color="rgba(243, 231, 231, 0.098)"
             width="78"
@@ -18,7 +18,7 @@
         <GameItem v-for="item of data.list" :key="item.vendor_prodcut_id" :item="item" />
     </v-sheet>
     <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
-        <v-slide-group :show-arrows="!$vuetify.breakpoint.xsOnly">
+        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile">
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
                 <GameItem :item="item" />
             </v-slide-item>

@@ -15,6 +15,9 @@
 }
 .rank-height{
     height: 55px;
+    @media (max-width: 600px){
+        height: 40px;
+    }
     &.mobile{
         height: 30px;
     }

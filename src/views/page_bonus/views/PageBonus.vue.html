@@ -154,7 +154,7 @@
                                 
                             </v-row> -->
                         </v-col>
-                        <v-row no-gutters class="mx-4 mx-lg-0 mb-10 d-flex flex-column" v-if="!$vuetify.breakpoint.lg">
+                        <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column" v-if="!$vuetify.breakpoint.lg">
                             <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mt-5 mb-3">
                                 规则说明
                             </div>
@@ -203,7 +203,7 @@
                 分红数据
             </div>
         </div>
-        <v-row no-gutters class="pb-5">
+        <v-row no-gutters class="pb-2 pb-sm-5">
             <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
                 <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" height="100%">
                     <v-row no-gutters class="fill-height">
@@ -215,7 +215,7 @@
                                 随着网站成长，股东质押的CF收益会逐渐增长
                             </div>
                             <v-row no-gutters class="colorText6--text daily-height">
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-md-8 mr-lg-3 mb-sm-3">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
                                     <div class="d-flex justify-center">
                                         $35,12312
                                     </div>
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="d-flex justify-center">05-21</div>
                                 </v-col>
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-md-8 mr-lg-3 mb-sm-3">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
                                     <div class="d-flex justify-center">
                                         $35,12312
                                     </div>
@@ -236,7 +236,7 @@
                                     </div>
                                     <div class="d-flex justify-center">05-21</div>
                                 </v-col>
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-md-8 mr-lg-3 mb-sm-3">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
                                     <div class="d-flex justify-center">
                                         $35,12312
                                     </div>
@@ -246,7 +246,7 @@
                                     </div>
                                     <div class="d-flex justify-center">05-21</div>
                                 </v-col>
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-md-8 mr-lg-3 mb-sm-3">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
                                     <div class="d-flex justify-center">
                                         $35,12312
                                     </div>
@@ -295,9 +295,9 @@
                             获得分红
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img max-width="60" contain src="@/assets/bonus/gold@2x.png" > </v-img>
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/gold@2x.png" > </v-img>
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             30**0047
@@ -309,9 +309,9 @@
                             $123,123.00
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img max-width="60" contain src="@/assets/bonus/silver@2x.png"> </v-img>
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/silver@2x.png"> </v-img>
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             30**0047
@@ -323,9 +323,9 @@
                             $123,123.00
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img max-width="60" contain src="@/assets/bonus/bronze@2x.png"> </v-img>
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/bronze@2x.png"> </v-img>
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             30**0047
@@ -337,7 +337,7 @@
                             $123,123.00
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center white--text text-18 text-sm-subtitle-1">
                             4
                         </v-col>
@@ -351,7 +351,7 @@
                             $123,123.00
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-sm-subtitle-1 rank-height">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center white--text text-18 text-sm-subtitle-1">
                             5
                         </v-col>

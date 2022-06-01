@@ -21,7 +21,7 @@
                         <v-spacer></v-spacer>
                         <v-col cols="12" sm="auto" class="d-flex justify-center justify-md-end">
                             <v-btn 
-                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="mr-3 rounded-lg text-body-2 text-sm-body-1 colorReceive--text" color="colorCoin" @click="handlerAward" :disabled="promotionData.commission_awaiting_num.USDT == 0 && promotionData.commission_awaiting_num.LCC == 0">领取</v-btn>
+                            :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="mr-3 rounded-lg text-body-2 text-sm-body-1 colorReceive--text" color="colorCoin" @click="handlerAward" :disabled="promotionData.commission_awaiting_num.USDT == 0 && promotionData.commission_awaiting_num.LCC == 0">领取奖励</v-btn>
                             <v-btn 
                             :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn" @click="handleRecords">领取记录</v-btn>
                         </v-col>
@@ -69,7 +69,7 @@
                             <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
                                 <v-col cols="6" sm="5" class="d-flex justify-end">
                                     <span class="text-caption text-sm-subtitle-2 colorText3--text">今日直属业绩
-                                    </span> 
+                                    </span>
                                 </v-col>
                                 <v-col cols="6" sm="4">
                                     <span class="text-body-2 text-sm-subtitle-1 ml-2">
@@ -118,7 +118,7 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                 <v-col cols="6">
-                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-end">
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-center">
                                         我的上级
                                     </span> 
                                 </v-col>

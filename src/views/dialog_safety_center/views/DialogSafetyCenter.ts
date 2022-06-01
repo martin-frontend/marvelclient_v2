@@ -24,7 +24,7 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
     @Watch("pageData.areaCode")
-    onWatchAreaCode(){
+    onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
     }
 
@@ -49,26 +49,26 @@ export default class DialogSafetyCenter extends AbstractView {
     }
 
     getCode() {
-        if(this.pageData.tabIndex == 0){
+        if (this.pageData.tabIndex == 0) {
             dialog_get_verity.showSmsVerity(1, this.formBindPhone.area_code, this.formBindPhone.mobile);
-        }else{
+        } else {
             dialog_get_verity.showEmailVerity(7, this.formBindEmail.email);
         }
     }
 
-    onAreaCodeInput(){
-        if(this.areaCodeSearch == ""){
+    onAreaCodeInput() {
+        if (this.areaCodeSearch == "") {
             this.areaCodeList = this.pageData.areaCode;
-        }else{
+        } else {
             this.areaCodeList = [];
-            for(const item of this.pageData.areaCode){
-                if(item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch){
+            for (const item of this.pageData.areaCode) {
+                if (item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch) {
                     this.areaCodeList.push(item);
                 }
             }
         }
     }
-    onItemAreaCode(item:any){
+    onItemAreaCode(item: any) {
         this.formBindPhone.area_code = item.area_code;
         this.areaCodeMenu = false;
     }

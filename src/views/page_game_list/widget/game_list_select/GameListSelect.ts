@@ -3,7 +3,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class GameListSelect extends AbstractView {
-    @Prop() options!:any;
+    @Prop() options!: any;
 
     private selectValue = this.getValue;
 

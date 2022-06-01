@@ -14,9 +14,9 @@ export default class DialogWallet extends AbstractView {
         super(DialogWalletMediator);
     }
 
-    onTabClick(tabIndex:number){
+    onTabClick(tabIndex: number) {
         this.pageData.tabIndex = tabIndex;
-        if(tabIndex == 2){
+        if (tabIndex == 2) {
             this.myProxy.api_user_show_var_gold();
         }
     }

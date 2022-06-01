@@ -12,11 +12,11 @@ export default class DialogMessageBox extends AbstractView {
         super(DialogMessageBoxMediator);
     }
 
-    onOK(){
+    onOK() {
         this.myProxy.handlerOK();
     }
 
-    onCancel(){
+    onCancel() {
         this.myProxy.handlerCancel();
     }
 

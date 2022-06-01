@@ -118,7 +118,7 @@
                             </v-row>
                             <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                 <v-col cols="6">
-                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-center">
+                                    <span class="text-caption text-sm-subtitle-2 colorText3--text d-flex justify-end justify-lg-center mobile-superior">
                                         我的上级
                                     </span> 
                                 </v-col>
@@ -133,7 +133,7 @@
                             </v-row>
                         </v-col>
                     </v-row>
-                    <div class="d-flex justify-end">
+                    <div class="d-flex justify-end mt-0 mt-sm-7">
                         <v-btn 
                         :width="$vuetify.breakpoint.xsOnly? 90 : 120" :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-body-2 text-sm-body-1" color="colorExtensionBtn" @click="handlerPerformance">
                             业绩查询
@@ -170,14 +170,14 @@
                         </v-col>
                         <v-col cols="8" class="colorText4--text text-subtitle-1 pl-4 pl-sm-6">
                             <div class="ml-4 mb-2 text-body-2 text-sm-body-1">推广链接</div>
-                            <v-sheet color="colorPanelBg3 colorText4--text" :height="$vuetify.breakpoint.xsOnly? 35 :46"  class="px-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                            <v-sheet color="colorPanelBg3 colorText4--text" :height="$vuetify.breakpoint.xsOnly? 35 :46"  class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2">
                                 <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.link }}</span>
                                 <v-btn icon @click="copy">
                                     <v-img max-width="30" :height="$vuetify.breakpoint.xsOnly? 30 :38" src="@/assets/extension/copy.png"></v-img>
                                 </v-btn>
                             </v-sheet>
                             <div class="ml-4 mb-2 text-body-2 text-sm-body-1">邀请码</div>
-                            <v-sheet color="colorPanelBg3 colorText4--text" :height="$vuetify.breakpoint.xsOnly? 35 :46" class="px-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1">
+                            <v-sheet color="colorPanelBg3 colorText4--text" :height="$vuetify.breakpoint.xsOnly? 35 :46" class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1">
                                 {{ promotionData.user_id }}
                                 <v-btn icon @click="copyMyId">
                                     <v-img max-width="30" :height="$vuetify.breakpoint.xsOnly? 30 :38" src="@/assets/extension/copy.png"></v-img>

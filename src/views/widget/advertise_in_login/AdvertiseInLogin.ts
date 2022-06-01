@@ -6,6 +6,5 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 export default class AdvertiseInLogin extends AbstractView {
     @Prop({ default: 654 }) height!: number;
 
-
     noticeProxy: NoticeProxy = this.getProxy(NoticeProxy);
 }

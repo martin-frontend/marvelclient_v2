@@ -38,4 +38,3 @@ export default class DialogRecharge extends AbstractView {
         BlurUtil(this.pageData.bShow);
     }
 }
-

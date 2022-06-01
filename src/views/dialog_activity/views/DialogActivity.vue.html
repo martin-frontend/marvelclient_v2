@@ -26,7 +26,7 @@
                     </v-sheet>
                 </v-sheet>
             </v-card-text>
-            <v-card-actions class="justify-center">
+            <v-card-actions v-if="pageData.pageInfo.pageCount>1" class="justify-center">
                 <v-pagination
                     v-if="pageData.list.length>0"
                     v-model="pageData.pageInfo.pageCurrent"

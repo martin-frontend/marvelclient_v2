@@ -162,6 +162,21 @@ module net {
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api/user/{user_id}/bonus_all/history",
 
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api/user/{user_id}/deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api/user/{user_id}/withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api/plat/{plat_id}/stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api/user/{user_id}/stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api/plat/{plat_id}/bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api/plat/{plat_id}/bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api/user/{user_id}/stake_draw",
+
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api/user/{plat_id}/exchange/method/list",
         /**--兑换--用户兑换订单*/
@@ -383,6 +398,21 @@ module net {
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api_user_var_bonus_all_history",
 
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api_user_var_deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api_user_var_withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api_plat_var_stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api_user_var_stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api_plat_var_bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api_plat_var_bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api_user_var_stake_draw",
+
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api_user_var_exchange_method_list",
         /**--兑换--用户兑换订单*/
@@ -523,6 +553,14 @@ module net {
         facade.registerCommand(HttpType.api_user_var_bonus_all_receive_var, cmd_api_user_var_bonus_all_receive_var);
         facade.registerCommand(HttpType.api_user_var_bonus_all_direct, cmd_api_user_var_bonus_all_direct);
         facade.registerCommand(HttpType.api_user_var_bonus_all_history, cmd_api_user_var_bonus_all_history);
+        //--分红
+        facade.registerCommand(HttpType.api_user_var_deposit_stake, cmd_api_user_var_deposit_stake);
+        facade.registerCommand(HttpType.api_user_var_withdraw_stake, cmd_api_user_var_withdraw_stake);
+        facade.registerCommand(HttpType.api_plat_var_stake_info, cmd_api_plat_var_stake_info);
+        facade.registerCommand(HttpType.api_user_var_stake_info, cmd_api_user_var_stake_info);
+        facade.registerCommand(HttpType.api_plat_var_bonus_recently, cmd_api_plat_var_bonus_recently);
+        facade.registerCommand(HttpType.api_plat_var_bonus_rank, cmd_api_plat_var_bonus_rank);
+        facade.registerCommand(HttpType.api_user_var_stake_draw, cmd_api_user_var_stake_draw);
         //--兑换
         facade.registerCommand(HttpType.api_user_var_exchange_method_list, cmd_api_user_var_exchange_method_list);
         facade.registerCommand(HttpType.api_user_var_exchange_order_list, cmd_api_user_var_exchange_order_list);

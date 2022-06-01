@@ -9,8 +9,8 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class Wallet extends AbstractView {
-    selfProxy:SelfProxy = getProxy(SelfProxy);
-    gameProxy:GameProxy = getProxy(GameProxy);
+    selfProxy: SelfProxy = getProxy(SelfProxy);
+    gameProxy: GameProxy = getProxy(GameProxy);
 
     // plat_coins = GamePlatConfig.config.plat_coins;
     GamePlatConfig = GamePlatConfig;

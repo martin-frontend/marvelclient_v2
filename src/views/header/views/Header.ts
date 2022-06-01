@@ -58,7 +58,7 @@ export default class Header extends AbstractView {
     }
 
     goAnchor(id: string) {
-        if(this.routerPath != "/") this.goHome();
+        if (this.routerPath != "/") this.goHome();
         setTimeout(() => {
             const anchor: any = document.getElementById(id);
             if (anchor) {
@@ -67,7 +67,7 @@ export default class Header extends AbstractView {
         }, 100);
     }
 
-    onLangChange(){
+    onLangChange() {
         Cookies.set("lang", core.lang);
         location.reload();
     }

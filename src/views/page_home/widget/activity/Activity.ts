@@ -28,7 +28,7 @@ export default class Activity extends AbstractView {
         // this.isUserLogin && page_mine.show();
     }
 
-    goActivity(){
+    goActivity() {
         dialog_activity.show();
     }
 }

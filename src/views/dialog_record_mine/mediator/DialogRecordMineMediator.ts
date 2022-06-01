@@ -12,13 +12,13 @@ export default class DialogRecordMineMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogRecordMineProxy = getProxy(DialogRecordMineProxy);
+        const detailProxy: DialogRecordMineDetailProxy = getProxy(DialogRecordMineDetailProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_backwater:
                 myProxy.setData(body);
                 break;
             case net.EventType.api_user_var_backwater_var:
-                const proxy: DialogRecordMineDetailProxy = getProxy(DialogRecordMineDetailProxy);
-                proxy.pageData.bShow = true;
+                detailProxy.pageData.bShow = true;
                 dialog_record_mine_detail.show(body);
                 break;
         }

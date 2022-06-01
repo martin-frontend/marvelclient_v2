@@ -23,7 +23,7 @@ export default class PageGamePlay extends AbstractView {
         }
     }
 
-    onBack(){
+    onBack() {
         router.back();
     }
 }

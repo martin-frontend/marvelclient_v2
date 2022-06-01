@@ -2,7 +2,7 @@ import getProxy from "@/core/global/getProxy";
 import router from "@/router";
 import PageGamePlayProxy from "./proxy/PageGamePlayProxy";
 
-function show(url:string) {
+function show(url: string) {
     router.push("/page_game_play");
     const proxy: PageGamePlayProxy = getProxy(PageGamePlayProxy);
     proxy.pageData.url = url;

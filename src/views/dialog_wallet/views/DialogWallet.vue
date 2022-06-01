@@ -14,8 +14,8 @@ import TabAccountDetail from "../widget/tab_account_detail/TabAccountDetail.vue"
         TabMyAssets,
         TabVendorAssets,
         TabAccountDetail,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogWallet {}
 </script>

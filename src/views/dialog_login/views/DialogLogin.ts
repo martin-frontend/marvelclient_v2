@@ -16,8 +16,7 @@ export default class DialogLogin extends AbstractView {
 
     areaCodeMenu = false;
     areaCodeSearch = "";
-    areaCodeList:any = [];
-
+    areaCodeList: any = [];
 
     constructor() {
         super(DialogLoginMediator);
@@ -27,7 +26,7 @@ export default class DialogLogin extends AbstractView {
     private checkPhone = checkPhone;
     ///////////////////忘记密码//////////////////////
     @Watch("forgetData.areaCode")
-    onWatchAreaCode(){
+    onWatchAreaCode() {
         this.areaCodeList = this.forgetData.areaCode;
     }
     onTabClick(type: number) {
@@ -44,28 +43,28 @@ export default class DialogLogin extends AbstractView {
     }
 
     getCode() {
-        const {type, username, area_code} = this.forgetData.form;
-        if(this.forgetData.form.type == 2){
+        const { type, username, area_code } = this.forgetData.form;
+        if (this.forgetData.form.type == 2) {
             dialog_get_verity.showEmailVerity(2, this.forgetData.form.username);
-        }else{
+        } else {
             dialog_get_verity.showSmsVerity(2, area_code, username);
         }
     }
 
-    onAreaCodeInput(){
-        if(this.areaCodeSearch == ""){
+    onAreaCodeInput() {
+        if (this.areaCodeSearch == "") {
             this.areaCodeList = this.forgetData.areaCode;
-        }else{
+        } else {
             this.areaCodeList = [];
-            for(const item of this.forgetData.areaCode){
-                if(item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch){
+            for (const item of this.forgetData.areaCode) {
+                if (item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch) {
                     this.areaCodeList.push(item);
                 }
             }
         }
         console.log("this.areaCodeList: ", this.areaCodeList);
     }
-    onItemAreaCode(item:any){
+    onItemAreaCode(item: any) {
         this.forgetData.form.area_code = item.area_code;
         this.areaCodeMenu = false;
     }

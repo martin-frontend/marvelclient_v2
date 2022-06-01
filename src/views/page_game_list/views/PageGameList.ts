@@ -35,10 +35,10 @@ export default class PageGameList extends AbstractView {
         this.myProxy.api_plat_var_game_all_index();
     }
 
-    showGameSearch(){
-        LoginEnter(()=>{
+    showGameSearch() {
+        LoginEnter(() => {
             const myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
             myProxy.navigationData.bShow = true;
-        })
+        });
     }
 }

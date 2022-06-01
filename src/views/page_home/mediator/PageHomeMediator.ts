@@ -5,7 +5,6 @@ import NotificationName from "@/core/NotificationName";
 import GameProxy from "@/proxy/GameProxy";
 
 export default class PageHomeMediator extends AbstractMediator {
-
     public onRegister(): void {
         const gameProxy: GameProxy = getProxy(GameProxy);
         const myProxy: PageHomeProxy = getProxy(PageHomeProxy);

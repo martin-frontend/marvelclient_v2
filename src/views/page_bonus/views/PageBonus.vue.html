@@ -8,41 +8,47 @@
         <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" :height="$vuetify.breakpoint.xsOnly? 220 :120">
             <v-img max-width="211" src="@/assets/bonus/bonus.png" class="mb-2" v-if="$vuetify.breakpoint.lgAndUp"></v-img>
             <v-row no-gutters class="px-6">
-                <v-col cols="6" lg="3" class="d-flex flex-row">
+                <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span>
                         <div class="colorText6--text mb-lg-3 text-caption text-sm-subtitle-1">
                             当前奖池金额
                         </div>
-                        <div class="text-18 text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
-                            <span>$10000,000,000</span>
+                        <div class="text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                            <span>${{ plat_stake_info.bonus_pool_amount }}</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
-                    </v-img>
+                    <div class="d-flex align-center justify-center arrow-width">
+                        <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
+                        </v-img>
+                    </div>
                 </v-col>
-                <v-col cols="6" lg="3" class="d-flex flex-row">
+                <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span>
                         <div class="colorText6--text mb-lg-3 text-caption text-sm-subtitle-1">
                             总质押数量
                         </div>
-                        <div class="text-18 text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
-                            <span>$10000,000,000</span>
+                        <div class="text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                            <span>${{ plat_stake_info.total_stake_amount }}</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
-                    </v-img>
+                    <div class="d-flex align-center justify-center arrow-width">
+                        <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
+                        </v-img>
+                    </div>
                 </v-col>
-                <v-col cols="6" lg="3" class="d-flex flex-row">
+                <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span>
                         <div class="colorText6--text mb-lg-3 text-caption text-sm-subtitle-1">
                             总计已派发
                         </div>
-                        <div class="text-18 text-sm-h5 d-flex align-center justify-space-between mr-sm-3">
-                            <span>$10000,000,000</span>
+                        <div class="text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                            <span>${{ plat_stake_info.total_bonus_amount }}</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
-                    </v-img>
+                    <div class="d-flex align-center justify-center arrow-width">
+                        <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
+                        </v-img>
+                    </div>
                 </v-col>
                 <v-col cols="6" lg="3">
                     <span>

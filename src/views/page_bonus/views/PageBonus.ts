@@ -12,9 +12,8 @@ import dialog_wallet from "@/views/dialog_wallet";
 export default class PageBonus extends AbstractView {
     myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     pageData = this.myProxy.pageData;
+    plat_stake_info = this.myProxy.plat_stake_info;
     listQuery = this.pageData.listQuery;
-
-    commonIcon = Assets.commonIcon;
 
     constructor() {
         super(PageBonusMediator);

@@ -9,7 +9,7 @@
             <div class="d-flex flex-wrap listitem">
                 <div>
                     <div>明细类型</div>
-                    <div class="text-truncate">{{typeOptions[item.type]}}</div>
+                    <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
                 </div>
                 <div>
                     <div>币种</div>
@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <div>日期</div>
-                    <div class="text-truncate">{{item.created_at}}</div>
+                    <div class="text-truncate">{{item.created_at.substr(5)}}</div>
                 </div>
             </div>
         </v-sheet>

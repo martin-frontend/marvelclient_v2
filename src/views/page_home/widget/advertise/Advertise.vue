@@ -7,7 +7,7 @@ import Advertise from "./Advertise";
 
 @Component
 export default class extends Advertise {
-    mounted(){
+    mounted() {
         this.onChange();
     }
 }

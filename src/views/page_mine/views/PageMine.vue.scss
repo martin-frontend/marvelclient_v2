@@ -7,11 +7,6 @@
         right: 50px;
         border-radius: 12pt 0pt 0pt 12pt;
     }
-    // ::v-deep .v-slide-group:not(.v-slide-group--has-affixes) {
-    //     > .v-slide-group__next, .v-slide-group__prev{
-    //         display: flex;
-    //     }
-    // } 
     ::v-deep .v-slide-group__next {
         right: 0;
         border-radius: 0pt 12pt 12pt 0pt;
@@ -60,6 +55,18 @@
     ::v-deep .v-progress-linear__determinate{
         height: 8px;
         top: 4px;
+        transform: scale(0.98);
+        @media only screen and (max-width: 1264px){
+            transform: scale(0.96);
+        }
+    }
+    .top_col_left{
+        width: 100%;
+        max-width: 530px !important;
+    }
+    .top_col_right{
+        width: 100%;
+        max-width: 880px !important;
     }
 
     .down_box{
@@ -164,7 +171,7 @@
             ::v-deep .v-card{
                 display: flex !important;
                 flex-direction: row !important;
-                align-items: center;
+                align-items: flex-start;
                 >.v-card__text{
                     width: 100%;
                 }
@@ -182,8 +189,6 @@
 
     /**宽750 以下算H5 */
     @media only screen and (max-width: 750px) {
-        
-      
         .right_banner{
             overflow: inherit;
             .game_mine_title{
@@ -212,9 +217,21 @@
             .mine_level_title{
                 font-size: 18px !important;
             }
+            .next_group{
+                .next_title{
+                    font-size: 14px !important;
+                }
+                span{
+                    font-size: 18px !important;
+                }
+            }
         }
         .level_box{
             background: linear-gradient( #16233F,#252B53);
+            ::v-deep .v-image__image{
+                transform: scale(0.87);
+            }
+            
         }
         #vipLevel{
             .rounded_customized{

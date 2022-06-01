@@ -8,38 +8,44 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5">
-            <div class="d-flex">
+            <div class="d-flex title_ mb-2">
                 <p class="mb-0 text-body-1 colorText1--text">
-                    结算时间 <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>结算有效流水
-                    <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>奖励
-                    <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span>
+                    <span> 
+                        结算时间 <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>
+                    </span>
+                    <span>
+                        结算有效流水 <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>
+                    </span>
+                    <span>
+                        奖励 <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span>
+                    </span>
                 </p>
             </div>
             <div class="listbox" v-if="pageData.data.detail.length > 0">
                
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
+                <v-sheet class="px-7 py-2 rounded-lg mb-3" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
                 <!-- <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2"> -->
                     <div class="d-flex flex-wrap listitem">
                        
-                        <div>
+                        <div class="item">
                             <div>{{ typeOptions(item.vendor_type) }}有效流水</div>
-                            <div>{{ item.water }}</div>
+                            <div class="text-body-1">{{ item.water }}</div>
                         </div>
-                        <div>
+                        <div class="item">
                             <div>{{ item.main_coin_name_unique }}返水比例</div>
-                            <div>{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                            <div class="text-body-1">{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
                         </div>                                                       
-                        <div>
+                        <div class="item">
                             <div>奖励{{ item.main_coin_name_unique }}</div>
-                            <div>{{ item.main_coin_backwater }}</div>
+                            <div class="text-body-1">{{ item.main_coin_backwater }}</div>
                         </div>
-                        <div>
+                        <div class="item">
                             <div>{{ item.reward_coin_name_unique }}返水比例</div>
-                            <div>{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                            <div class="text-body-1">{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
                         </div>
-                        <div>
+                        <div class="item">
                             <div>奖励{{  item.reward_coin_name_unique }}</div>
-                            <div>{{  item.reward_coin_backwater }}</div>
+                            <div class="text-body-1">{{  item.reward_coin_backwater }}</div>
                         </div>
                     </div>
                 </v-sheet>

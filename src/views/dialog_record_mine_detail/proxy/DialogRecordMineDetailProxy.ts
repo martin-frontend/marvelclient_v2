@@ -56,7 +56,6 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
             data.total_backwater[Object.keys(data.total_backwater)[0]]
         }  ${Object.keys(data.total_backwater)[1]} ${data.total_backwater[Object.keys(data.total_backwater)[1]]}`;
         this.pageData.data.detail = data.detail;
-
         this.pageData.loading = false;
     }
 }

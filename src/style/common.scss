@@ -3,12 +3,13 @@
 .theme--dark {
     &.v-application {
         background-color: #121e36ff;
+        
     }
 }
 
-@media screen and (min-width: 1426px) {
+@media screen and (min-width: 1430px) {
     .container {
-        max-width: 1426px;
+        max-width: 1430px;
     }
 }
 .html {

@@ -25,15 +25,14 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-
     setData(data: any) {
         this.pageData.loading = false;
-        console.warn("data >", data);
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
     }
     /**获取用户返水记录 */
     api_user_var_backwater() {
+        this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_backwater, this.pageData.listQuery);
     }
     /**获取用户返水详情 */

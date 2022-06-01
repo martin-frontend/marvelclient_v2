@@ -6,7 +6,7 @@
             </div>
         </div>
         <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" :height="$vuetify.breakpoint.xsOnly? 220 :120">
-            <v-img max-width="211" src="@/assets/bonus/bonus.png" class="mb-2" v-if="$vuetify.breakpoint.lg"></v-img>
+            <v-img max-width="211" src="@/assets/bonus/bonus.png" class="mb-2" v-if="$vuetify.breakpoint.lgAndUp"></v-img>
             <v-row no-gutters class="px-6">
                 <v-col cols="6" lg="3" class="d-flex flex-row">
                     <span>
@@ -17,7 +17,7 @@
                             <span>$10000,000,000</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lg">
+                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
                     </v-img>
                 </v-col>
                 <v-col cols="6" lg="3" class="d-flex flex-row">
@@ -29,7 +29,7 @@
                             <span>$10000,000,000</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lg">
+                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
                     </v-img>
                 </v-col>
                 <v-col cols="6" lg="3" class="d-flex flex-row">
@@ -41,7 +41,7 @@
                             <span>$10000,000,000</span>
                         </div>
                     </span>
-                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lg">
+                    <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3" v-if="$vuetify.breakpoint.lgAndUp">
                     </v-img>
                 </v-col>
                 <v-col cols="6" lg="3">
@@ -60,7 +60,7 @@
             <v-col cols="12" lg="8" class="pr-lg-3">
                 <v-card class="rounded-lg mb-lg-0 py-lg-6 text-sm-subtitle-1" color="colorTitleBg" height="100%">
                     <v-row no-gutters class="fill-height">
-                        <v-col cols="3" class="d-flex align-end" v-if="$vuetify.breakpoint.lg">
+                        <v-col cols="3" class="d-flex align-end" v-if="$vuetify.breakpoint.lgAndUp">
                             <v-img contain src="~@/assets/bonus/ensure.png">
                             </v-img>
                         </v-col>
@@ -79,7 +79,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerPledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerPledge">
                                                 质押
                                             </v-btn>
                                         </div>
@@ -101,7 +101,7 @@
                                         <div class="d-flex align-center align-lg-end btn-left">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerUnpledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerUnpledge">
                                             解除质押
                                             </v-btn>
                                         </div>
@@ -126,7 +126,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn">
                                             领取
                                             </v-btn>
                                         </div>
@@ -143,7 +143,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="jumpTo('#record')">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="jumpTo('#record')">
                                             查看记录
                                             </v-btn>
                                         </div>
@@ -154,8 +154,8 @@
                                 
                             </v-row> -->
                         </v-col>
-                        <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column" v-if="!$vuetify.breakpoint.lg">
-                            <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mt-5 mb-3">
+                        <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column" v-if="!$vuetify.breakpoint.lgAndUp">
+                            <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
                                 规则说明
                             </div>
                             <div class="text-caption colorText6--text mx-2">
@@ -176,7 +176,7 @@
                     </v-row>
                 </v-card>
             </v-col>
-            <v-col lg="4" v-if="$vuetify.breakpoint.lg">
+            <v-col lg="4" v-if="$vuetify.breakpoint.lgAndUp">
                 <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6 text-sm-subtitle-1" color="colorTitleBg" height="100%">
                     <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium">
                         规则说明
@@ -198,7 +198,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="px-0 px-sm-3 py-2 py-sm-5">
+        <div class="px-0 px-sm-3 py-2 py-sm-4">
             <div class="text-subtitle-1 text-sm-h5 font-weight-medium">
                 分红数据
             </div>
@@ -270,7 +270,7 @@
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col cols="4" class="d-flex align-end" v-if="$vuetify.breakpoint.lg">
+                        <v-col cols="4" class="d-flex align-end" v-if="$vuetify.breakpoint.lgAndUp">
                             <v-img contain src="~@/assets/bonus/man.png"></v-img>
                         </v-col>
                     </v-row>

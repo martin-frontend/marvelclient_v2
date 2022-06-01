@@ -1,19 +1,62 @@
+@import "@/scss/mixin.scss";
+
 .v-list-item {
     background: linear-gradient(#24385a, #121e36);
 }
 
+.text-rwd-18 {
+    font-size: 12px;
+
+    @include xxs {
+        font-size: 14px;
+    }
+    @include sm {
+        font-size: 16px;
+    }
+    @include md {
+        font-size: 18px;
+    }
+}
+
+.text-rwd-16 {
+    font-size: 12px;
+
+    @include xxs {
+        font-size: 14px;
+    }
+    @include sm {
+        font-size: 16px;
+    }
+}
+
 .tabs-active {
-    width: 142px !important;
-    height: 40px !important;
+    width: 90px !important;
+    height: 30px !important;
     font-weight: 400;
+    @include sm {
+        width: 120px !important;
+        height: 36px !important;
+    }
+    @include md {
+        width: 142px !important;
+        height: 40px !important;    
+    }
 }
 
 .tabs-deactive {
     color: #4C5D7F !important;
     cursor: pointer;
-    width: 142px !important;
-    height: 40px !important;
+    width: 90px !important;
+    height: 30px !important;
     font-weight: 400;
+    @include sm {
+        width: 120px !important;
+        height: 36px !important;
+    }
+    @include md {
+        width: 142px !important;
+        height: 40px !important;    
+    }
 }
 
 .v-tab {

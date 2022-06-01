@@ -1,5 +1,5 @@
-.box{
-    background-image: linear-gradient(180deg, #243A5D 0%, #1F2F4B 100%);
+.box {
+    background-image: linear-gradient(180deg, #243a5d 0%, #1f2f4b 100%);
     border-radius: 20px;
 }
 ul {
@@ -58,7 +58,7 @@ li:hover {
 ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
     display: none;
 }
-.imgage{
+.imgage {
     border-radius: 16px 0 0 16px;
 }
 @media screen and (max-width: 1430px) {
@@ -68,15 +68,22 @@ li:hover {
     ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
         display: flex;
     }
-    .imgage{
+    .imgage {
         border-radius: 16px;
     }
 }
 @media screen and (max-width: 750px) {
-    .imgage{
+    .imgage {
         border-radius: 8px;
     }
-    .box{
+    .box {
         border-radius: 8px;
     }
+}
+
+.progress-liner {
+    position: absolute;
+    width:315px;
+    margin-left: -16px;
+    margin-top: 90px;
 }

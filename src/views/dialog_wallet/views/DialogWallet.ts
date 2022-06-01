@@ -28,14 +28,5 @@ export default class DialogWallet extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if (this.pageData.bShow) {
-            if (this.myProxy.pageData.tabAccountDetailData.typeSelect > 0) {
-                this.myProxy.api_user_show_var_gold();
-            } else {
-                this.myProxy.resetQuery();
-            }
-        } else {
-            this.myProxy.pageData.tabAccountDetailData.typeSelect = 0;
-        }
     }
 }

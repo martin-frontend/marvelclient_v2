@@ -6,5 +6,9 @@ import Component from "vue-class-component";
 import Advertise from "./Advertise";
 
 @Component
-export default class extends Advertise {}
+export default class extends Advertise {
+    mounted(){
+        this.onChange();
+    }
+}
 </script>

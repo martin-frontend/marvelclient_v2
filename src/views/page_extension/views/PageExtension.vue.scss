@@ -80,3 +80,8 @@
         border-radius: 10px !important;
     }
 }
+.mobile-superior{
+    @media (max-width: 1264px){
+        margin-right: 35px;;
+    }
+}

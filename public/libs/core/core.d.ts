@@ -157,6 +157,20 @@ declare module net {
         api_user_var_bonus_all_direct: string;
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: string;
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: string;
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: string;
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: string;
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: string;
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: string;
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: string;
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: string;
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: string;
         /**--兑换--用户兑换订单*/
@@ -362,6 +376,20 @@ declare module net {
         api_user_var_bonus_all_direct: string;
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: string;
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: string;
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: string;
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: string;
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: string;
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: string;
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: string;
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: string;
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: string;
         /**--兑换--用户兑换订单*/
@@ -487,6 +515,24 @@ declare module net {
     }
 }
 /**
+ * 昨日分红排行榜
+ */
+declare module net {
+    class cmd_api_plat_var_bonus_rank extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 平台近5日分红金额列表
+ */
+declare module net {
+    class cmd_api_plat_var_bonus_recently extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 获取所有游戏的查询配置
  */
 declare module net {
@@ -545,6 +591,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_notice_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 平台币分红信息
+ */
+declare module net {
+    class cmd_api_plat_var_stake_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -991,6 +1046,15 @@ declare module net {
     }
 }
 /**
+ * 用户质押
+ */
+declare module net {
+    class cmd_api_user_var_deposit_stake extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 批量删除邮件
  */
 declare module net {
@@ -1252,10 +1316,37 @@ declare module net {
     }
 }
 /**
+ * 领取分红
+ */
+declare module net {
+    class cmd_api_user_var_stake_draw extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户币分红信息
+ */
+declare module net {
+    class cmd_api_user_var_stake_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 提取用户所有厂商的余额
  */
 declare module net {
     class cmd_api_user_var_vendor_withdraw extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户手动解质押
+ */
+declare module net {
+    class cmd_api_user_var_withdraw_stake extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

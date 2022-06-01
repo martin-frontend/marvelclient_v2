@@ -97,6 +97,15 @@
         ["api/user/{user_id}/bonus_all/direct",                             "获取下级整盘分红列表"],
         ["api/user/{user_id}/bonus_all/history",                            "获取整盘分红历史记录"],
 
+        "--分红",
+        ["api/user/{user_id}/deposit_stake",         "用户质押"],
+        ["api/user/{user_id}/withdraw_stake",        "用户手动解质押"],
+        ["api/plat/{plat_id}/stake_info",            "平台币分红信息"],
+        ["api/user/{user_id}/stake_info",            "用户币分红信息"],
+        ["api/plat/{plat_id}/bonus_recently",        "平台近5日分红金额列表"],
+        ["api/plat/{plat_id}/bonus_rank",            "昨日分红排行榜"],
+        ["api/user/{user_id}/stake_draw",            "领取分红"],
+
         "--兑换",
         ["api/user/{plat_id}/exchange/method/list",         "兑换方式列表"],
         ["api/user/{user_id}/exchange/order_list",          "用户兑换订单"],

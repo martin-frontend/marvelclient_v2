@@ -79,7 +79,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerPledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerPledge">
                                                 质押
                                             </v-btn>
                                         </div>
@@ -101,7 +101,7 @@
                                         <div class="d-flex align-center align-lg-end btn-left">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="handlerUnpledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerUnpledge">
                                             解除质押
                                             </v-btn>
                                         </div>
@@ -126,7 +126,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn">
                                             领取
                                             </v-btn>
                                         </div>
@@ -143,7 +143,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1" color="colorBonusBtn" @click="jumpTo('#record')">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="jumpTo('#record')">
                                             查看记录
                                             </v-btn>
                                         </div>
@@ -155,7 +155,7 @@
                             </v-row> -->
                         </v-col>
                         <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column" v-if="!$vuetify.breakpoint.lgAndUp">
-                            <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mt-5 mb-3">
+                            <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
                                 规则说明
                             </div>
                             <div class="text-caption colorText6--text mx-2">
@@ -198,7 +198,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="px-0 px-sm-3 py-2 py-sm-5">
+        <div class="px-0 px-sm-3 py-2 py-sm-4">
             <div class="text-subtitle-1 text-sm-h5 font-weight-medium">
                 分红数据
             </div>

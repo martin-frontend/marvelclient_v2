@@ -75,9 +75,14 @@
         width: 113px;
     }
 }
-.rounded-sm{
+.rounded-card{
     @media (max-width: 600px){
         border-radius: 10px !important;
+    }
+}
+.rounded-button{
+    @media (max-width: 600px){
+        border-radius: 5px !important;
     }
 }
 .mobile-superior{

@@ -12,6 +12,9 @@
 }
 .daily-radius{
     border-radius: 10px 10px 0px 0px;
+    @media (max-width: 600px){
+        border-radius: 5px 5px 0px 0px;
+    }
 }
 .rank-height{
     height: 55px;
@@ -35,7 +38,11 @@
 .btn-left{
     margin-left: -22px;
 }
-
+.rounded-button{
+    @media (max-width: 600px){
+        border-radius: 5px !important;
+    }
+}
 .listitem {
     div {
         width: 100px;

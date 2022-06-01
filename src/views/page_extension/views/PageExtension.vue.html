@@ -238,10 +238,14 @@
                         {{ item.commission_num.LCC }}
                     </v-col>
                     <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
-                        <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                        <span class="mr-1">{{ item.commission_num_added.USDT }}</span>
-                        <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                        {{ item.commission_num_added.LCC }}
+                        <span v-if="item.commission_num_added.USDT == 0 && item.commission_num_added.LCC == 0">- 
+                        </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
+                            <span class="mr-1">{{ item.commission_num_added.USDT }}</span>
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
+                            {{ item.commission_num_added.LCC }}
+                        </span>
                     </v-col>
                 </v-row>
             </v-card>

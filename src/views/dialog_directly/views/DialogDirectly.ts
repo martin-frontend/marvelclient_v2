@@ -39,12 +39,14 @@ export default class DialogDirectly extends AbstractView {
     }
 
     search() {
+        this.pageData.loading = true;
         this.myProxy.pageData.list = [];
         this.myProxy.parameter.direct_user_id = this.myProxy.pageData.search;
         this.myProxy.api_user_var_agent_direct_list();
     }
 
     onPageChange(): void {
+        this.pageData.loading = true;
         this.myProxy.api_user_var_agent_direct_list();
     }
 

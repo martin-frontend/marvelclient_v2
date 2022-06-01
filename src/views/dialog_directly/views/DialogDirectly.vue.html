@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5">
-            <div class="d-flex flex-wrap justify-space-between mb-4">
+            <div class="d-flex flex-wrap justify-space-between mb-2">
                 <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
                     <div class="ml-3 colorTextBlueLight2--text">直属玩家数量</div>
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="100%" class="scroll-y">
-                <v-sheet min-height="80" class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet min-height="80" class="mb-2 px-7 py-2 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <v-row no-gutters class="justify-space-between fill-height">
                         <v-col class="listitem d-flex justify-center flex-column" cols="6" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
                             <div class="mb-1">注册时间</div>

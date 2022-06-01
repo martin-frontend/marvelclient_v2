@@ -1,0 +1,35 @@
+$screen-xxs-min: 376px;
+$screen-sm-min: 600px;
+$screen-md-min: 960px;
+$screen-lg-min: 1264px;
+
+@mixin xxs {
+    @media (min-width: #{$screen-xxs-min}) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+ 
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+ 
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+// Custom devices
+@mixin rwd($screen) {
+    @media (min-width: ($screen + 'px')) {
+        @content;
+    }
+}

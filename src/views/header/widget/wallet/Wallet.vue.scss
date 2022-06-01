@@ -19,21 +19,12 @@
     margin-top: -28px;
     margin-left: 130px;
 }
-.listbox {
-    background-color: #324466;
+
+.listitem{
+    color: #96AAD0;
 }
-.lisitem {
-    cursor: pointer;
-    width: 177px;
-    height: 82px;
-    padding-left: 15px;
-    margin-top: 1px;
-}
-.listitem-active {
-    background-color: #25324b;
-}
-.lisitem:hover {
-    background-color: #25324b;
+.listitem:hover {
+    color: white;
 }
 
 .arrow {

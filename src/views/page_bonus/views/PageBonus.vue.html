@@ -87,7 +87,7 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerPledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerPledge" :disabled="user_stake_info.amount == 0">
                                                 质押
                                             </v-btn>
                                         </div>
@@ -109,7 +109,7 @@
                                         <div class="d-flex align-center align-lg-end btn-left">
                                             <v-btn 
                                             :width="$vuetify.breakpoint.xsOnly? 90 : 100" 
-                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerUnpledge">
+                                            :height="$vuetify.breakpoint.xsOnly? 30 :40" class="rounded-lg text-sm-body-1 rounded-button" color="colorBonusBtn" @click="handlerUnpledge" :disabled="user_stake_info.stake_amount == 0">
                                             解除质押
                                             </v-btn>
                                         </div>
@@ -318,7 +318,7 @@
                             </div>
                         </v-col>
                         <v-col cols="3" class="text-truncate d-flex justify-center align-center">
-                            {{ item.username }}
+                            <span class="text-truncate">{{ item.username }}</span>
                         </v-col>
                         <v-col cols="4" class="d-flex justify-center align-center">
                             {{ item.stake_amount }}

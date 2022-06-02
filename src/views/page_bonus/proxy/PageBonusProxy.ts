@@ -73,4 +73,9 @@ export default class PageBonusProxy extends puremvc.Proxy {
     api_plat_var_bonus_rank() {
         this.sendNotification(net.HttpType.api_plat_var_bonus_rank, { plat_id: core.plat_id });
     }
+
+    /**--分红--领取分红*/
+    api_user_var_stake_draw() {
+        this.sendNotification(net.HttpType.api_user_var_stake_draw, { user_id: core.user_id });
+    }
 }

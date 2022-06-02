@@ -52,7 +52,7 @@ export default class PageBonus extends AbstractView {
     }
 
     handleRecords() {
-        dialog_wallet.show(2);
+        dialog_wallet.show(2, 51);
     }
 
     onTabClick(cate: number) {
@@ -69,5 +69,15 @@ export default class PageBonus extends AbstractView {
     getHeight() {
         const maxBonus = Math.max(...this.bonus_recently.map((o: { y: any; }) => o.y))
         const height = "$vuetify.breakpoint.xsOnly? 140 : 280"
+    }
+
+    private iconsPrize: any = {
+        0: require(`@/assets/bonus/gold@2x.png`),
+        1: require(`@/assets/bonus/silver@2x.png`),
+        2: require(`@/assets/bonus/bronze@2x.png`),
+    }
+
+    stakeDraw() {
+        this.myProxy.api_user_var_stake_draw();
     }
 }

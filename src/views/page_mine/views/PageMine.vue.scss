@@ -99,10 +99,15 @@
             }
         }
         .get_award{
+            border: 1px solid #5E2E2E;
+            background-color: #F3B952 !important;
             @media only screen and  (min-width: 960px) and (max-width: 1260px ){
                 position: absolute;
                 bottom: 76px;
                 right: 28px;
+            }
+            ::v-deep .v-btn__content{
+                opacity: 1 !important;
             }
         }
         .coins_group{
@@ -152,10 +157,6 @@
     }
     .cursop_pointer{
         cursor: pointer;
-    }
-    .get_award{
-        border: 2px solid #5E2E2E;
-        background-color: #F3B952 !important;
     }
     .linear_bg{
         background: linear-gradient( #1C2647,#25324B);

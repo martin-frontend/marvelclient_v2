@@ -15,6 +15,7 @@ export default class PageMine extends AbstractView {
 
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     private xsOnly = false;
+    private qData = this.myProxy.questionData
 
     constructor() {
         super(PageMineMediator);

@@ -34,41 +34,41 @@
             </div>
             <v-divider class="my-3" />
             <div v-if="listQuery.cate == 0">
-                <div class="colorText1--text text-16 ml-3 d-flex mb-4">
+                <div class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
                     <div>{{ parameter.date }}</div>
-                    <div class="ml-3">团队人数(新增){{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
-                    <div class="ml-3">直属用户(新增){{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
-                    <div class="ml-3">总业绩. {{ pageData.statistics_data.total_water_summary }}</div>
-                    <div class="ml-3">拥金总额 {{ pageData.statistics_data.total_commission.USDT }}</div>
+                    <div>团队人数(新增){{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
+                    <div>直属用户(新增){{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
+                    <div>总业绩. {{ pageData.statistics_data.total_water_summary }}</div>
+                    <div>拥金总额 {{ pageData.statistics_data.total_commission.USDT }}</div>
                 </div>
-                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="listHeight" class="scroll-y">
-                    <v-sheet class="mt-5 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                        <div class="d-flex flex-wrap listitem">
-                            <div>
+                <v-sheet v-if="pageData.list.length>0" color="#121E36" class="listbox scroll-y">
+                    <v-sheet class="mb-3 px-6 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex flex-wrap justify-space-between listitem">
+                            <div class="item-auto">
                                 <div>业绩类型</div>
                                 <div class="text-truncate text-16 font-weight-regular">{{ categoryType[item.type].label }}业绩</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>总业绩</div>
                                 <div class="text-16 font-weight-regular">{{ item.total_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>自营业绩</div>
                                 <div class="text-16 font-weight-regular">{{ item.self_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>直属业绩</div>
                                 <div class="text-16 font-weight-regular">{{ item.direct_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>团队业绩</div>
                                 <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>每万返佣1</div>
                                 <div class="text-16 font-weight-regular">{{ item.commission_num }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>佣金</div>
                                 <div class="text-16 font-weight-regular">{{ item.total_commission }}</div>
                             </div>
@@ -82,34 +82,38 @@
                     </div>
                 </v-sheet>
             </div>
-            <v-sheet v-if="listQuery.cate == 1" color="#121E36" :height="directListHeight" class="scroll-y">
+            <v-sheet v-if="listQuery.cate == 1" color="#121E36" class="listbox scroll-y">
                 <template v-for="(item, idx) in pageData.directList">
-                    <div class="colorText1--text text-16 ml-3 d-flex align-center" :key="'u' + idx">
-                        <v-icon class="colorText1--text">mdi-account-circle</v-icon>
-                        <div class="ml-2 text-subtitle-2">用户昵称</div>
-                        <div class="ml-3 colorBlue--text">{{ item.nick_name }}</div>
-                        <div class="ml-3 text-subtitle-2">用户ID</div>
-                        <div class="ml-3 colorBlue--text">{{ item.user_id }}</div>
+                    <div class="colorText1--text text-16 ml-3 d-flex flex-wrap align-center listinfo-detail" :key="'u' + idx">
+                        <div class="d-flex align-center">
+                            <v-icon class="colorText1--text">mdi-account-circle</v-icon>
+                            <div class="title text-subtitle-2">用户昵称</div>
+                            <div class="colorBlue--text">{{ item.nick_name }}</div>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="title text-subtitle-2">用户ID</div>
+                            <div class="colorBlue--text">{{ item.user_id }}</div>
+                        </div>
                     </div>
                     <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(val, name) in item.water_info" :key="'s' + name + idx">
-                        <div class="d-flex flex-wrap listitem-direct">
-                            <div>
+                        <div class="d-flex flex-wrap justify-space-between listitem">
+                            <div class="item-auto">
                                 <div>业绩类型</div>
                                 <div class="text-truncate text-16 font-weight-regular">{{ categoryType[name].label }}业绩</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>团队人数</div>
                                 <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>团队业绩</div>
                                 <div class="text-16 font-weight-regular">{{ val.group_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>自营业绩</div>
                                 <div class="text-16 font-weight-regular">{{ val.self_water }}</div>
                             </div>
-                            <div>
+                            <div class="item-auto">
                                 <div>每万返佣</div>
                                 <div class="text-16 font-weight-regular">{{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(保底)" : "" }}</div>
                             </div>

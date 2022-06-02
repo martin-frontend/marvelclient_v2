@@ -50,11 +50,10 @@ export default class DialogDirectly extends AbstractView {
         this.myProxy.api_user_var_agent_direct_list();
     }
 
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 185;
-        } else {
-            return 450;
+    get heightClass() {
+        if (!this.$vuetify.breakpoint.xsOnly) {
+            return "card-height";
         }
+        return "";
     }
 }

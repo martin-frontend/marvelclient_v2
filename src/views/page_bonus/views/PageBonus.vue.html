@@ -79,7 +79,9 @@
                                                 CF余额
                                             </div>
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
-                                                <span>10000,000</span>
+                                                <span>
+                                                    {{ user_stake_info.amount }}
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end">
@@ -97,7 +99,7 @@
                                             </div>
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
                                                 <span>
-                                                    10000,000
+                                                    {{ user_stake_info.stake_amount }}
                                                     <v-btn icon @click="handlerRecords" :max-height="$vuetify.breakpoint.xsOnly? 22 : 28">
                                                         <v-img :max-width="$vuetify.breakpoint.xsOnly? 25 : 39" src="@/assets/bonus/history@2x.png"></v-img>
                                                     </v-btn>
@@ -121,7 +123,7 @@
                                             </div>
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
                                                 <span class="colorTextGold--text">
-                                                    10000,000
+                                                    {{ user_stake_info.stake_bonus_awaiting_num }}
                                                     <v-btn icon @click="handleRecords" :max-height="$vuetify.breakpoint.xsOnly? 22 : 28">
                                                         <v-img 
                                                         :max-width="$vuetify.breakpoint.xsOnly? 25 : 39" src="@/assets/bonus/history@2x.png"></v-img>
@@ -143,7 +145,9 @@
                                                 个人累计分红
                                             </div>
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
-                                                <span>$213123</span>
+                                                <span>
+                                                    {{ user_stake_info.stake_bonus_received_num }}
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end">
@@ -221,18 +225,20 @@
                                 随着网站成长，股东质押的CF收益会逐渐增长
                             </div>
                             <v-row no-gutters class="colorText6--text daily-height">
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
+                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3" v-for="(item, index) of bonus_recently.slice().reverse()" :key="index">
                                     <div class="d-flex justify-center">
-                                        $35,12312
+                                        ${{ item.total_bonus_amount }}
                                     </div>
                                     <div class="d-flex justify-center">
                                         <v-card :height="$vuetify.breakpoint.xsOnly? 140 : 280"
-                                        :width="$vuetify.breakpoint.xsOnly? 40 : 80" class="gradient-type1 daily-radius">
+                                        :width="$vuetify.breakpoint.xsOnly? 40 : 80" class="daily-radius" :class="index != 4 ? 'gradient-type1' : 'gradient-type2'">
                                         </v-card>
                                     </div>
-                                    <div class="d-flex justify-center">05-21</div>
+                                    <div class="d-flex justify-center">
+                                        {{ getDateTime(item.date) }}
+                                    </div>
                                 </v-col>
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
+                                <!-- <v-col cols="2" class="d-flex justify-end flex-column mr-3 mr-sm-5 mr-md-8 mr-lg-3 mb-sm-3">
                                     <div class="d-flex justify-center">
                                         $35,12312
                                     </div>
@@ -273,7 +279,7 @@
                                         </v-card>
                                     </div>
                                     <div class="d-flex justify-center">05-21</div>
-                                </v-col>
+                                </v-col> -->
                             </v-row>
                         </v-col>
                         <v-col cols="4" class="d-flex align-end" v-if="$vuetify.breakpoint.lgAndUp">
@@ -301,9 +307,25 @@
                             获得分红
                         </v-col>
                     </v-row>
-                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list" v-for="(item, index) of bonus_rank" :key="index">
                         <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/gold@2x.png" > </v-img>
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/gold@2x.png">
+                            </v-img>
+                        </v-col>
+                        <v-col cols="3" class="text-truncate d-flex justify-center align-center">
+                            {{ item.username }}
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            {{ item.stake_amount }}
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center">
+                            {{ item.bonus_amount }}
+                        </v-col>
+                    </v-row>
+                    <!-- <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/silver@2x.png">
+                            </v-img>
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             30**0047
@@ -317,21 +339,8 @@
                     </v-row>
                     <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
                         <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/silver@2x.png"> </v-img>
-                        </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center">
-                            30**0047
-                        </v-col>
-                        <v-col cols="4" class="d-flex justify-center align-center">
-                            100,000.00
-                        </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center">
-                            $123,123.00
-                        </v-col>
-                    </v-row>
-                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile-list">
-                        <v-col cols="2" class="d-flex justify-center align-center">
-                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/bronze@2x.png"> </v-img>
+                            <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :60" contain src="@/assets/bonus/bronze@2x.png">
+                            </v-img>
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             30**0047
@@ -370,7 +379,7 @@
                         <v-col cols="3" class="d-flex justify-center align-center">
                             $123,123.00
                         </v-col>
-                    </v-row>
+                    </v-row> -->
                 </v-card>
             </v-col>
         </v-row>

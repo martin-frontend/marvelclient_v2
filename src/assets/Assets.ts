@@ -7,6 +7,7 @@ const CoinIcon = {
 };
 
 const commonIcon = {
+    loading: require(`@/assets/loading.gif`),
     nodata: require(`@/assets/nodata.png`),
 }
 

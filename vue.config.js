@@ -13,4 +13,18 @@ module.exports = {
             return args;
         });
     },
+    pages: {
+        base: {
+            entry: 'src/main.ts',
+            template: 'public/index.html',
+            filename: 'index.html',
+            title: 'CoinFans',
+        },
+        skin01: {
+            entry: 'src/main.ts',
+            template: 'public/skin01.html',
+            filename: 'skin01.html',
+            title: 'skin01',
+        }
+    }
 };

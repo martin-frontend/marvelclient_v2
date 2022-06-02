@@ -5,11 +5,12 @@
 import Component from "vue-class-component";
 import PageMine from "./PageMine";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import { Watch } from "vue-property-decorator";
+import Question from "@/views/widget/question/Question.vue";
 
 @Component({
     components: {
         Overlay,
+        Question
     },
 })
 export default class extends PageMine {

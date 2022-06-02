@@ -1,6 +1,8 @@
 export default class PageBonusProxy extends puremvc.Proxy {
     static NAME = "PageBonusProxy";
 
+    referenceBonusAmount = 50;
+
     public onRegister(): void {
         this.pageData.loading = true;
         // TODO 请求初始数据
@@ -51,6 +53,14 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     setBonusRecently(data: any) {
         this.bonus_recently = data;
+        for (let i = 0; i < this.bonus_recently.length; i++) {
+            if (Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount >= 1) {
+                this.bonus_recently[i].bar = 1;
+            } else {
+                this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount
+            }
+
+        }
         console.log(this.bonus_recently);
     }
 

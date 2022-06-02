@@ -66,9 +66,9 @@ export default class PageBonus extends AbstractView {
         return `${md}`;
     }
 
-    getHeight() {
-        const maxBonus = Math.max(...this.bonus_recently.map((o: { y: any; }) => o.y))
-        const height = "$vuetify.breakpoint.xsOnly? 140 : 280"
+    getHeight(index: any) {
+        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280
+        return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
     }
 
     private iconsPrize: any = {

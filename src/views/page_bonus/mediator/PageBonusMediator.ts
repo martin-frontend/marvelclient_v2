@@ -8,12 +8,16 @@ export default class PageBonusMediator extends AbstractMediator {
     protected initViewData(): void {
         this.myProxy.api_plat_var_stake_info()
         this.myProxy.api_user_var_stake_info();
+        this.myProxy.api_plat_var_bonus_recently();
+        this.myProxy.api_plat_var_bonus_rank();
     }
 
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_plat_var_stake_info,
             net.EventType.api_user_var_stake_info,
+            net.EventType.api_plat_var_bonus_rank,
+            net.EventType.api_plat_var_bonus_recently,
         ];
     }
 
@@ -23,6 +27,15 @@ export default class PageBonusMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_plat_var_stake_info:
                 this.myProxy.setPlatData(body);
+                break;
+            case net.EventType.api_user_var_stake_info:
+                this.myProxy.setUserData(body);
+                break;
+            case net.EventType.api_plat_var_bonus_rank:
+                this.myProxy.setBonusRank(body);
+                break;
+            case net.EventType.api_plat_var_bonus_recently:
+                this.myProxy.setBonusRecently(body);
                 break;
         }
     }

@@ -6,6 +6,7 @@ import page_mine from "@/views/page_mine";
 import page_extension from "@/views/page_extension";
 import dialog_activity from "@/views/dialog_activity";
 import LoginEnter from "@/core/global/LoginEnter";
+import page_bonus from "@/views/page_bonus";
 
 @Component
 export default class Activity extends AbstractView {
@@ -15,6 +16,10 @@ export default class Activity extends AbstractView {
     /**判断登入 */
     get isUserLogin() {
         return this.selfProxy.userInfo.user_id ? true : false;
+    }
+
+    goPageBouns() {
+        LoginEnter(page_bonus.show);
     }
 
     goExtension() {

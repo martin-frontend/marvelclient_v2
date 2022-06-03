@@ -30,7 +30,12 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                     selfProxy.loginout();
                     router.push("/").catch((err: any) => err);
                 }
-                dialog_message_box.alert(body.result.msg);
+                dialog_message_box.alert({
+                    message: body.result.msg,
+                    okFun: ()=>{
+                        location.reload();
+                    }
+                });
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {

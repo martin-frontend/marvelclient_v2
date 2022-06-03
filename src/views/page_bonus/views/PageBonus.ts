@@ -23,6 +23,14 @@ export default class PageBonus extends AbstractView {
         return this.myProxy.bonus_recently;
     }
 
+    get plat_bonus() {
+        return this.myProxy.plat_bonus;
+    }
+
+    get user_bonus() {
+        return this.myProxy.user_bonus;
+    }
+
     constructor() {
         super(PageBonusMediator);
     }
@@ -58,6 +66,11 @@ export default class PageBonus extends AbstractView {
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
+        if (cate == 0) {
+            this.myProxy.api_plat_var_bonus_log();
+        } else {
+            this.myProxy.api_user_var_bonus_log();
+        }
     }
 
     getDateTime(data: any) {

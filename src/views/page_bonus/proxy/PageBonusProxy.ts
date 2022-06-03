@@ -1,3 +1,4 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 export default class PageBonusProxy extends puremvc.Proxy {
     static NAME = "PageBonusProxy";
 
@@ -5,7 +6,6 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.pageData.loading = true;
-        // TODO 请求初始数据
     }
 
     pageData = {
@@ -17,8 +17,10 @@ export default class PageBonusProxy extends puremvc.Proxy {
         },
         listAllSite: [],
         listPerson: [],
-        lcusd: require(`@/assets/extension/lcusd.png`),
-        coin: require("@/assets/extension/coin.png"),
+        platCoins: <any>{
+            mainCoin: {},
+            rewardCoin: {},
+        },
     };
 
     plat_stake_info: any = {
@@ -38,6 +40,8 @@ export default class PageBonusProxy extends puremvc.Proxy {
     }
     bonus_rank: any = [];
     bonus_recently: any = [];
+    plat_bonus: any = [];
+    user_bonus: any = [];
 
     setPlatData(data: any) {
         Object.assign(this.plat_stake_info, data);
@@ -59,9 +63,34 @@ export default class PageBonusProxy extends puremvc.Proxy {
             } else {
                 this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount
             }
-
         }
-        console.log(this.bonus_recently);
+    }
+
+    setPlatBonus(data: any) {
+        this.plat_bonus = data;
+        this.getCurrentCoin();
+    }
+
+    setUserBonus(data: any) {
+        this.user_bonus = data;
+    }
+
+    /**取目前的主币 奖励币 */
+    getCurrentCoin() {
+        const plat_coins = <any>GamePlatConfig.config.plat_coins;
+        const coinsKey = Object.keys(plat_coins);
+        coinsKey.forEach((key: any) => {
+            if (plat_coins[key].type === 2) {
+                this.pageData.platCoins.mainCoin = plat_coins[key];
+                this.pageData.platCoins.mainCoin.name = key;
+                // this.pageData.platCoins.mainCoin[key].name = key;
+            }
+            if (plat_coins[key].type === 3) {
+                this.pageData.platCoins.rewardCoin = plat_coins[key];
+                this.pageData.platCoins.rewardCoin.name = key;
+                // this.pageData.platCoins.rewardCoin[key].name = key;
+            }
+        });
     }
 
     /**--分红--平台币分红信息*/
@@ -87,5 +116,20 @@ export default class PageBonusProxy extends puremvc.Proxy {
     /**--分红--领取分红*/
     api_user_var_stake_draw() {
         this.sendNotification(net.HttpType.api_user_var_stake_draw, { user_id: core.user_id });
+    }
+
+    /**--分红--用户质押记录*/
+    api_user_var_stake_log() {
+        this.sendNotification(net.HttpType.api_user_var_stake_log, { user_id: core.user_id });
+    }
+
+    /**--分红--分红记录-全站记录*/
+    api_plat_var_bonus_log() {
+        this.sendNotification(net.HttpType.api_plat_var_bonus_log, { plat_id: core.plat_id });
+    }
+
+    /**--分红--分红记录-个人纪录*/
+    api_user_var_bonus_log() {
+        this.sendNotification(net.HttpType.api_user_var_bonus_log, { user_id: core.user_id });
     }
 }

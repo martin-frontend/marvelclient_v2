@@ -3,18 +3,18 @@
     <div class="d-flex box-container">
         <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goPageBouns">
-                <div class="text-16">挖CF终身享分红</div>
+                <div class="text-16">挖{{pageData.stakeInfo.coin_name_unique}}终身享分红</div>
                 <div class="text-12">当前分红池:</div>
-                <div class="text-24 font-weight-black gradient-text">$270,207</div>
+                <div class="text-24 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div>
                 <v-sheet class="btn text-14 rounded-pill mt-1 d-flex align-center justify-center" width="90" height="25">领取分红</v-sheet>
             </div>
 
             <div class="activity2-min rounded-lg pa-3">
-                <div class="text-16 ml-2">交易CF币</div>
+                <div class="text-16 ml-2">交易{{pageData.stakeInfo.coin_name_unique}}币</div>
                 <div class="text-12 ml-2">平台定期回购</div>
-                <v-sheet class="skew d-flex align-center rounded ml-1 my-2" color="#FACA4B" width="150" height="25">
+                <v-sheet class="skew d-flex align-center rounded ml-1 my-2" color="#FACA4B" width="130" height="25">
                     <div class="text-14 ml-2">当前价格</div>
-                    <div class="text-14 font-weight-bold ml-2">$0.01</div>
+                    <div class="text-14 font-weight-bold ml-2 price">$0.01</div>
                 </v-sheet>
                 <v-sheet class="btn btn-disabled text-14 rounded-pill d-flex align-center justify-center" width="90" height="25"
                     >暂未开放</v-sheet
@@ -23,20 +23,20 @@
         </div>
 
         <div class="activity1 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageBouns">
-            <div class="text-24 mt-5 ml-5">投注挖CF，终身享分红</div>
+            <div class="text-24 mt-5 ml-5">投注挖{{pageData.stakeInfo.coin_name_unique}}，终身享分红</div>
             <div class="text-16 ml-5 mt-2">当前分红池:</div>
-            <div class="text-48 ml-5 font-weight-black gradient-text">$270,207</div>
+            <div class="text-48 ml-5 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div>
             <v-sheet class="btn text-18 ml-5 mt-2 rounded-pill d-flex align-center justify-center" width="160" height="42"
                 >领取分红</v-sheet
             >
         </div>
 
         <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-24 mt-5 ml-5">交易CF币</div>
+            <div class="text-24 mt-5 ml-5">交易{{pageData.stakeInfo.coin_name_unique}}币</div>
             <div class="text-16 ml-5 mt-2">当前铆钉美元价格，平台定期回购</div>
             <v-sheet class="skew d-flex align-center ml-5 my-4 rounded-lg" color="#FACA4B" width="230" height="50">
                 <div class="text-16 ml-4 mr-2">当前价格</div>
-                <div class="text-28 font-weight-bold">$0.01</div>
+                <div class="text-28 font-weight-bold price">$0.01</div>
             </v-sheet>
             <v-sheet class="btn btn-disabled text-18 ml-5 mt-2 rounded-pill d-flex align-center justify-center" width="160" height="42"
                 >暂未开放</v-sheet

@@ -9,10 +9,11 @@ export default class PageHomeMediator extends AbstractMediator {
         const gameProxy: GameProxy = getProxy(GameProxy);
         const myProxy: PageHomeProxy = getProxy(PageHomeProxy);
         myProxy.pageData.lobbyIndex = gameProxy.lobbyIndex;
+        myProxy.api_plat_var_stake_info();
     }
 
     public listNotificationInterests(): string[] {
-        return [NotificationName.GAME_CONFIG, net.EventType.api_plat_var_lobby_index];
+        return [NotificationName.GAME_CONFIG, net.EventType.api_plat_var_lobby_index, net.EventType.api_plat_var_stake_info];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -21,6 +22,9 @@ export default class PageHomeMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_plat_var_lobby_index:
                 myProxy.setLobbyIndex(body);
+                break;
+            case net.EventType.api_plat_var_stake_info:
+                myProxy.setStakeInfo(body);
                 break;
         }
     }

@@ -11,8 +11,8 @@ export default class DialogManuallyUnstakingProxy extends puremvc.Proxy {
         this.pageData.amount = 0;
     }
 
-    /**--分红--用户质押*/
+    /**--分红--用户手动解质押*/
     api_user_var_withdraw_stake() {
-        this.sendNotification(net.HttpType.api_user_var_withdraw_stake, { amount: this.pageData.amount });
+        this.sendNotification(net.HttpType.api_user_var_withdraw_stake, { amount: this.pageData.amount, user_id: core.user_id });
     }
 }

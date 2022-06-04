@@ -13,6 +13,6 @@ export default class DialogPledgeProxy extends puremvc.Proxy {
 
     /**--分红--用户质押*/
     api_user_var_deposit_stake() {
-        this.sendNotification(net.HttpType.api_user_var_deposit_stake, { amount: this.pageData.amount });
+        this.sendNotification(net.HttpType.api_user_var_deposit_stake, { amount: this.pageData.amount, user_id: core.user_id });
     }
 }

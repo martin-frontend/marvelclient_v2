@@ -225,6 +225,12 @@ var net;
         api_plat_var_bonus_rank: "api/plat/{plat_id}/bonus_rank",
         /**--分红--领取分红*/
         api_user_var_stake_draw: "api/user/{user_id}/stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api/user/{user_id}/stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api/plat/{plat_id}/bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api/user/{user_id}/bonus_log",
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api/user/{plat_id}/exchange/method/list",
         /**--兑换--用户兑换订单*/
@@ -444,6 +450,12 @@ var net;
         api_plat_var_bonus_rank: "api_plat_var_bonus_rank",
         /**--分红--领取分红*/
         api_user_var_stake_draw: "api_user_var_stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api_user_var_stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api_plat_var_bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api_user_var_bonus_log",
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api_user_var_exchange_method_list",
         /**--兑换--用户兑换订单*/
@@ -588,6 +600,9 @@ var net;
         facade.registerCommand(net.HttpType.api_plat_var_bonus_recently, net.cmd_api_plat_var_bonus_recently);
         facade.registerCommand(net.HttpType.api_plat_var_bonus_rank, net.cmd_api_plat_var_bonus_rank);
         facade.registerCommand(net.HttpType.api_user_var_stake_draw, net.cmd_api_user_var_stake_draw);
+        facade.registerCommand(net.HttpType.api_user_var_stake_log, net.cmd_api_user_var_stake_log);
+        facade.registerCommand(net.HttpType.api_plat_var_bonus_log, net.cmd_api_plat_var_bonus_log);
+        facade.registerCommand(net.HttpType.api_user_var_bonus_log, net.cmd_api_user_var_bonus_log);
         //--兑换
         facade.registerCommand(net.HttpType.api_user_var_exchange_method_list, net.cmd_api_user_var_exchange_method_list);
         facade.registerCommand(net.HttpType.api_user_var_exchange_order_list, net.cmd_api_user_var_exchange_order_list);
@@ -796,6 +811,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_block_transfer_in_order_account = cmd_api_plat_var_block_transfer_in_order_account;
+})(net || (net = {}));
+/**
+ * 分红记录-全站记录
+ */
+var net;
+/**
+ * 分红记录-全站记录
+ */
+(function (net) {
+    class cmd_api_plat_var_bonus_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_bonus_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_bonus_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_bonus_log = cmd_api_plat_var_bonus_log;
 })(net || (net = {}));
 /**
  * 昨日分红排行榜
@@ -1964,6 +2001,28 @@ var net;
     net.cmd_api_user_var_bonus_all_statistic = cmd_api_user_var_bonus_all_statistic;
 })(net || (net = {}));
 /**
+ * 分红记录-个人纪录
+ */
+var net;
+/**
+ * 分红记录-个人纪录
+ */
+(function (net) {
+    class cmd_api_user_var_bonus_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_bonus_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_bonus_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_bonus_log = cmd_api_user_var_bonus_log;
+})(net || (net = {}));
+/**
  * 币商充值订单确认转账
  */
 var net;
@@ -2798,6 +2857,28 @@ var net;
         }
     }
     net.cmd_api_user_var_stake_info = cmd_api_user_var_stake_info;
+})(net || (net = {}));
+/**
+ * 用户质押记录
+ */
+var net;
+/**
+ * 用户质押记录
+ */
+(function (net) {
+    class cmd_api_user_var_stake_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_stake_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_stake_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_stake_log = cmd_api_user_var_stake_log;
 })(net || (net = {}));
 /**
  * 提取用户所有厂商的余额

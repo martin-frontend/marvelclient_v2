@@ -8,33 +8,33 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5">
-            <div class="d-flex justify-end mb-4">
+            <div class="d-flex justify-end mb-2">
                 <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                    <div class="d-flex flex-wrap listitem">
-                        <div>
+                <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex flex-wrap justify-space-between listitem">
+                        <div class="item-110">
                             <div>时间</div>
                             <div class="text-truncate text-16 font-weight-regular">{{ item.date }}</div>
                         </div>
-                        <div>
+                        <div class="item-auto">
                             <div>总业绩</div>
                             <div class="text-16 font-weight-regular">{{ item.total_water }}</div>
                         </div>
-                        <div>
+                        <div class="item-auto">
                             <div>团队业绩</div>
                             <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
                         </div>
-                        <div>
+                        <div class="item-auto">
                             <div>直属业绩</div>
                             <div class="text-16 font-weight-regular">{{ item.direct_water }}</div>
                         </div>
-                        <div>
+                        <div class="item-auto">
                             <div>总佣金</div>
                             <div class="text-16 font-weight-regular">{{ item.total_commission.USDT }}</div>
                         </div>
-                        <div class="d-flex align-center listitem-90">
+                        <div class="d-flex align-end justify-end listitem-90">
                             <v-btn text class="text-decoration-underline pa-0 colorBlue--text font-weight-regular" @click="handlerDetail(item.date)">
                                 查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
                             </v-btn>

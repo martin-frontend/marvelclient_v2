@@ -7,11 +7,17 @@ import page_extension from "@/views/page_extension";
 import dialog_activity from "@/views/dialog_activity";
 import LoginEnter from "@/core/global/LoginEnter";
 import page_bonus from "@/views/page_bonus";
+import PageHomeProxy from "../../proxy/PageHomeProxy";
+import { moneyFormat } from "@/core/global/Functions";
 
 @Component
 export default class Activity extends AbstractView {
     //proxy
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    myProxy: PageHomeProxy = this.getProxy(PageHomeProxy);
+    pageData = this.myProxy.pageData;
+
+    moneyFormat = moneyFormat;
 
     /**判断登入 */
     get isUserLogin() {
@@ -23,14 +29,12 @@ export default class Activity extends AbstractView {
     }
 
     goExtension() {
-        // this.isUserLogin && page_extension.show();
         LoginEnter(page_extension.show);
     }
 
     /**游戏挖矿 */
     goMine() {
         LoginEnter(page_mine.show);
-        // this.isUserLogin && page_mine.show();
     }
 
     goActivity() {

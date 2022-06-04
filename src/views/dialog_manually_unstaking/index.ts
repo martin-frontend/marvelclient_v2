@@ -6,6 +6,7 @@ import DialogManuallyUnstaking from "./views/DialogManuallyUnstaking.vue";
 function show() {
     DialogMount(DialogManuallyUnstaking);
     const proxy: DialogManuallyUnstakingProxy = getProxy(DialogManuallyUnstakingProxy);
+    proxy.resetForm();
     proxy.pageData.bShow = true;
 }
 

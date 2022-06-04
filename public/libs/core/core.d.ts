@@ -171,6 +171,12 @@ declare module net {
         api_plat_var_bonus_rank: string;
         /**--分红--领取分红*/
         api_user_var_stake_draw: string;
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: string;
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: string;
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: string;
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: string;
         /**--兑换--用户兑换订单*/
@@ -390,6 +396,12 @@ declare module net {
         api_plat_var_bonus_rank: string;
         /**--分红--领取分红*/
         api_user_var_stake_draw: string;
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: string;
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: string;
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: string;
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: string;
         /**--兑换--用户兑换订单*/
@@ -510,6 +522,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_block_transfer_in_order_account extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 分红记录-全站记录
+ */
+declare module net {
+    class cmd_api_plat_var_bonus_log extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -992,6 +1013,15 @@ declare module net {
     }
 }
 /**
+ * 分红记录-个人纪录
+ */
+declare module net {
+    class cmd_api_user_var_bonus_log extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 币商充值订单确认转账
  */
 declare module net {
@@ -1329,6 +1359,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_stake_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户质押记录
+ */
+declare module net {
+    class cmd_api_user_var_stake_log extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -6,6 +6,7 @@ import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/Dial
 import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -20,10 +21,14 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerSetting(data: any) {
-        const agent_user_id = data.user_id;
-        let val: number = 0;
-        if (!Array.isArray(data.promotion_floor)) val = data.promotion_floor["0"];
-        this.myProxy.setFloorRangeData(agent_user_id, val);
+        if (this.pageData.enable_set_promotion_floor === 1) {
+            const agent_user_id = data.user_id;
+            let val: number = 0;
+            if (!Array.isArray(data.promotion_floor)) val = data.promotion_floor["0"];
+            this.myProxy.setFloorRangeData(agent_user_id, val);
+        } else {
+            dialog_message.warn("无法设置保底");
+        }
     }
 
     onClose() {
@@ -50,11 +55,10 @@ export default class DialogDirectly extends AbstractView {
         this.myProxy.api_user_var_agent_direct_list();
     }
 
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 185;
-        } else {
-            return 450;
+    get heightClass() {
+        if (!this.$vuetify.breakpoint.xsOnly) {
+            return "card-height";
         }
+        return "";
     }
 }

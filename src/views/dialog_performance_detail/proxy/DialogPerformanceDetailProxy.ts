@@ -78,6 +78,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**写入 详情 */
     setCommissionDetail(body: any) {
+        this.pageData.loading = false;
         this.pageData.list = [];
         const data: any = JSON.parse(JSON.stringify(body));
         this.pageData.group_users = data.group_users;
@@ -101,6 +102,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**写入 直属详情 */
     setCommissionDirectswater(body: any) {
+        this.pageData.loading = false;
         if (body.list.length > 0) {
             this.pageData.directList = body.list;
         }
@@ -108,6 +110,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**--代理推广--按日期获取佣金详情*/
     api_user_var_commission_commissiondetail() {
+        this.pageData.loading = true;
         const obj: any = {
             ...this.parameter,
             user_id: core.user_id,
@@ -117,6 +120,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**--代理推广--按日期查询直属代理流水详情*/
     api_user_var_commission_directswater() {
+        this.pageData.loading = true;
         const obj: any = {
             ...this.parameter,
             user_id: core.user_id,

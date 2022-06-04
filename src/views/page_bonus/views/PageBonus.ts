@@ -23,6 +23,14 @@ export default class PageBonus extends AbstractView {
         return this.myProxy.bonus_recently;
     }
 
+    get plat_bonus() {
+        return this.myProxy.plat_bonus;
+    }
+
+    get user_bonus() {
+        return this.myProxy.user_bonus;
+    }
+
     constructor() {
         super(PageBonusMediator);
     }
@@ -52,12 +60,17 @@ export default class PageBonus extends AbstractView {
     }
 
     handleRecords() {
-        dialog_wallet.show(2);
+        dialog_wallet.show(2, 51);
     }
 
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
+        if (cate == 0) {
+            this.myProxy.api_plat_var_bonus_log();
+        } else {
+            this.myProxy.api_user_var_bonus_log();
+        }
     }
 
     getDateTime(data: any) {
@@ -66,8 +79,18 @@ export default class PageBonus extends AbstractView {
         return `${md}`;
     }
 
-    getHeight() {
-        const maxBonus = Math.max(...this.bonus_recently.map((o: { y: any; }) => o.y))
-        const height = "$vuetify.breakpoint.xsOnly? 140 : 280"
+    getHeight(index: any) {
+        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280
+        return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
+    }
+
+    private iconsPrize: any = {
+        0: require(`@/assets/bonus/gold@2x.png`),
+        1: require(`@/assets/bonus/silver@2x.png`),
+        2: require(`@/assets/bonus/bronze@2x.png`),
+    }
+
+    stakeDraw() {
+        this.myProxy.api_user_var_stake_draw();
     }
 }

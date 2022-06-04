@@ -6,6 +6,7 @@ import DialogPledge from "./views/DialogPledge.vue";
 function show() {
     DialogMount(DialogPledge);
     const proxy: DialogPledgeProxy = getProxy(DialogPledgeProxy);
+    proxy.resetForm();
     proxy.pageData.bShow = true;
 }
 

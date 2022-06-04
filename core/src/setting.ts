@@ -176,6 +176,12 @@ module net {
         api_plat_var_bonus_rank: "api/plat/{plat_id}/bonus_rank",
         /**--分红--领取分红*/
         api_user_var_stake_draw: "api/user/{user_id}/stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api/user/{user_id}/stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api/plat/{plat_id}/bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api/user/{user_id}/bonus_log",
 
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api/user/{plat_id}/exchange/method/list",
@@ -412,6 +418,12 @@ module net {
         api_plat_var_bonus_rank: "api_plat_var_bonus_rank",
         /**--分红--领取分红*/
         api_user_var_stake_draw: "api_user_var_stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api_user_var_stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api_plat_var_bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api_user_var_bonus_log",
 
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api_user_var_exchange_method_list",
@@ -561,6 +573,9 @@ module net {
         facade.registerCommand(HttpType.api_plat_var_bonus_recently, cmd_api_plat_var_bonus_recently);
         facade.registerCommand(HttpType.api_plat_var_bonus_rank, cmd_api_plat_var_bonus_rank);
         facade.registerCommand(HttpType.api_user_var_stake_draw, cmd_api_user_var_stake_draw);
+        facade.registerCommand(HttpType.api_user_var_stake_log, cmd_api_user_var_stake_log);
+        facade.registerCommand(HttpType.api_plat_var_bonus_log, cmd_api_plat_var_bonus_log);
+        facade.registerCommand(HttpType.api_user_var_bonus_log, cmd_api_user_var_bonus_log);
         //--兑换
         facade.registerCommand(HttpType.api_user_var_exchange_method_list, cmd_api_user_var_exchange_method_list);
         facade.registerCommand(HttpType.api_user_var_exchange_order_list, cmd_api_user_var_exchange_order_list);

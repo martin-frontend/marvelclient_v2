@@ -15,10 +15,10 @@
             background-position: -14% bottom;
         }
         @media (max-width: 400px){
-            background-image: url("~@/assets/extension/commission@0.5x.png"), 
+            background-image: url("~@/assets/extension/commission@2x.png"), 
             url("~@/assets/extension/background.png"), linear-gradient(to right, #1E2C47, #384F72 );
             background-position: -24% bottom, right;
-            background-size: unset;
+            background-size: 216px 252px, 60% 65%, 100% 100%;
             height: unset;
         }
         @media (min-width: 400px) and (max-width: 600px){
@@ -68,7 +68,7 @@
     }
 }
 .new{
-    @media (min-width: 1264px) and (max-width: 1426px){
+    @media (min-width: 1263px) and (max-width: 1426px){
         width: 113px;
     }
     @media (min-width: 600px) and (max-width: 640px){
@@ -86,7 +86,7 @@
     }
 }
 .mobile-superior{
-    @media (max-width: 1264px){
+    @media (max-width: 1263px){
         margin-right: 35px;;
     }
 }

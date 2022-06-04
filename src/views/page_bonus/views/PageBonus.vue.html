@@ -2,7 +2,7 @@
     <v-container>
         <div class="px-0 px-sm-3 py-2 py-sm-5">
             <div class="text-subtitle-1 text-sm-h5 font-weight-medium"> 
-                CF持币分红
+                {{ plat_stake_info.coin_name_unique }}持币分红
             </div>
         </div>
         <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" :height="$vuetify.breakpoint.xsOnly? 220 :120">
@@ -76,7 +76,7 @@
                                     <div class="bonus-card px-3 px-lg-0 py-2 py-lg-0 pb-lg-10 d-flex flex-row justify-space-between">
                                         <div>
                                             <div class="colorText6--text text-caption text-sm-subtitle-1">
-                                                CF余额
+                                                {{ plat_stake_info.coin_name_unique }}余额
                                             </div>
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
                                                 <span>
@@ -222,7 +222,7 @@
                                 近5日分红金额
                             </div>
                             <div class="colorText6--text text-sm-subtitle-1 mb-2 mb-sm-0">
-                                随着网站成长，股东质押的CF收益会逐渐增长
+                                随着网站成长，股东质押的{{ plat_stake_info.coin_name_unique }}收益会逐渐增长
                             </div>
                             <v-row no-gutters class="colorText6--text daily-height">
                                 <v-col cols="2" class="d-flex justify-end flex-column  mr-lg-3 mb-sm-3" v-for="(item, index) of bonus_recently.slice().reverse()" :key="index" :class="index != 4 ? 'mr-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'">
@@ -301,7 +301,7 @@
                             用户
                         </v-col>
                         <v-col cols="4" class="d-flex justify-center align-center">
-                            质押CF数量
+                            质押{{ plat_stake_info.coin_name_unique }}数量
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center">
                             获得分红
@@ -423,7 +423,7 @@
                         <div class="d-flex align-center item-200">
                             <span class="ml-10">质押总数</span>
                         </div>
-                        <div v-if="$vuetify.breakpoint.width > 600" class="d-flex align-center item-130">每100CF分红</div>
+                        <div v-if="$vuetify.breakpoint.width > 600" class="d-flex align-center item-130">每100{{ plat_stake_info.coin_name_unique }}分红</div>
                         <div class="d-flex align-center item-130">
                             <span class="ml-6">总计已派发</span>
                         </div>
@@ -465,12 +465,12 @@
                         <div v-if="$vuetify.breakpoint.width > 700" class="d-flex align-center">
                             <span class="ml-1">占比</span>
                         </div>
-                        <div v-if="$vuetify.breakpoint.width > 700" class="d-flex align-center">每100CF分红</div>
+                        <div v-if="$vuetify.breakpoint.width > 700" class="d-flex align-center item-130">每100{{ plat_stake_info.coin_name_unique }}分红</div>
                         <div class="d-flex align-center item-150">
                             <span class="ml-8">已派发</span>
                         </div>
                     </div>
-                    <div v-for="(item, index) in user_bonus.list" :key="'s' + index">
+                    <div v-for="(item, index) in user_bonus.list" :key="index">
                         <div class="d-flex justify-space-around listitem mt-sm-4 mt-2 mb-sm-2 mb-1">
                             <div class="d-flex align-center">
                                 {{ getDateTime(item.date) }}

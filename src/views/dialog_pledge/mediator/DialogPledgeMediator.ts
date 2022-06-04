@@ -1,15 +1,22 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogPledgeProxy from "../proxy/DialogPledgeProxy";
 import getProxy from "@/core/global/getProxy";
+import dialog_message_box from "@/views/dialog_message_box";
 
-export default class DialogPledgeMediator extends AbstractMediator{
+export default class DialogPledgeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [];
+        return [
+            net.EventType.api_user_var_deposit_stake,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogPledgeProxy = getProxy(DialogPledgeProxy);
-        // switch(notification.getName()){}
+        const myProxy: DialogPledgeProxy = getProxy(DialogPledgeProxy);
+        switch (notification.getName()) {
+            case net.EventType.api_user_var_deposit_stake:
+                dialog_message_box.alert("质押锁仓成功");
+                break;
+        }
     }
 }

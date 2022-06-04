@@ -16,6 +16,13 @@ export default class PageBonus extends AbstractView {
     plat_stake_info = this.myProxy.plat_stake_info;
     user_stake_info = this.myProxy.user_stake_info;
     listQuery = this.pageData.listQuery;
+
+    private hr: any = "00";
+    private min: any = "00";
+    private sec: any = "00";
+
+    private timer: any = null;
+
     get bonus_rank() {
         return this.myProxy.bonus_rank;
     }
@@ -36,8 +43,15 @@ export default class PageBonus extends AbstractView {
         super(PageBonusMediator);
     }
 
+    mounted() {
+        this.timer = setInterval(() => {
+            this.countdown();
+        }, 1000)
+    }
+
     destroyed() {
         super.destroyed();
+        clearInterval(this.timer)
     }
 
     handlerPledge() {
@@ -98,5 +112,19 @@ export default class PageBonus extends AbstractView {
                 this.myProxy.api_user_var_stake_draw();
             },
         });
+    }
+
+    countdown() {
+        const end = Date.parse(this.myProxy.plat_stake_info.bonus_time);
+        //@ts-ignore
+        const now = Date.parse(new Date());
+        const msec = end - now;
+
+        this.hr = Math.floor(msec / 1000 / 60 / 60);
+        this.min = Math.floor(msec / 1000 / 60 % 60);
+        this.sec = msec / 1000 % 60;
+        this.hr = this.hr > 9 ? this.hr : '0' + this.hr;
+        this.min = this.min > 9 ? this.min : '0' + this.min;
+        this.sec = this.sec > 9 ? this.sec : '0' + this.sec;
     }
 }

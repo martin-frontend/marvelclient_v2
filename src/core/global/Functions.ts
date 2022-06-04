@@ -148,18 +148,18 @@ export function getThisMonthRange() {
 // /**
 //  * 转换成货币格式
 //  */
-// export function moneyFormat(s: any, symbol: string = "¥"): string {
-//     if (!s) s = 0;
-//     s = s.toString();
-//     if (/[^0-9\.]/.test(s)) return "invalid value";
-//     s = s.replace(/^(\d*)$/, "$1.");
-//     s = (s + "00").replace(/(\d*\.\d\d)\d*/, "$1");
-//     s = s.replace(".", ",");
-//     var re = /(\d)(\d{3},)/;
-//     while (re.test(s)) s = s.replace(re, "$1,$2");
-//     s = s.replace(/,(\d\d)$/, ".$1");
-//     return symbol + s.replace(/^\./, "0.");
-// }
+export function moneyFormat(s: any, symbol: string = "$"): string {
+    if (!s) s = 0;
+    s = s.toString();
+    if (/[^0-9\.]/.test(s)) return "invalid value";
+    s = s.replace(/^(\d*)$/, "$1.");
+    s = (s + "00").replace(/(\d*\.\d\d)\d*/, "$1");
+    s = s.replace(".", ",");
+    const re = /(\d)(\d{3},)/;
+    while (re.test(s)) s = s.replace(re, "$1,$2");
+    s = s.replace(/,(\d\d)$/, ".$1");
+    return symbol + s.replace(/^\./, "0.");
+}
 
 // /**
 //  * 获取UUID

@@ -20,11 +20,11 @@ module.exports = {
             filename: 'index.html',
             title: 'CoinFans',
         },
-        skin01: {
-            entry: 'src/main.ts',
-            template: 'public/skin01.html',
-            filename: 'skin01.html',
-            title: 'skin01',
+        skin100: {
+            entry: 'src/_skin100/main.ts',
+            template: 'public/skin100.html',
+            filename: 'skin100.html',
+            title: 'skin100',
         }
     }
 };

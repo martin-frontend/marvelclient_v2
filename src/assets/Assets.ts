@@ -9,7 +9,7 @@ const CoinIcon = {
 const commonIcon = {
     loading: require(`@/assets/loading.gif`),
     nodata: require(`@/assets/nodata.png`),
-}
+};
 
 /**游戏分类图标 */
 const CategoryIcon = {

@@ -10,7 +10,7 @@ import Question from "@/views/widget/question/Question.vue";
 @Component({
     components: {
         Overlay,
-        Question
+        Question,
     },
 })
 export default class extends PageMine {

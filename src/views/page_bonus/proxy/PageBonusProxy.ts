@@ -24,20 +24,20 @@ export default class PageBonusProxy extends puremvc.Proxy {
     };
 
     plat_stake_info: any = {
-        auto_withdraw_stake_time: "",   // 自动解质押时刻
-        bonus_pool_amount: "",          // 当前奖池金额
-        bonus_time: "",                 // 下次分红倒计时间
-        coin_name_unique: "",           // 质押币种
-        total_bonus_amount: "",         // 总计已派发
-        total_stake_amount: "",         // 总质押数量
+        auto_withdraw_stake_time: "", // 自动解质押时刻
+        bonus_pool_amount: "", // 当前奖池金额
+        bonus_time: "", // 下次分红倒计时间
+        coin_name_unique: "", // 质押币种
+        total_bonus_amount: "", // 总计已派发
+        total_stake_amount: "", // 总质押数量
     };
     user_stake_info: any = {
-        amount: "",                    // 质押币余额
-        stake_amount: "",              // 个人质押
-        stake_ratio: "",               // 占比
-        stake_bonus_awaiting_num: "",  // 可领取分红
-        stake_bonus_received_num: ""   // 个人累计分红
-    }
+        amount: "", // 质押币余额
+        stake_amount: "", // 个人质押
+        stake_ratio: "", // 占比
+        stake_bonus_awaiting_num: "", // 可领取分红
+        stake_bonus_received_num: "", // 个人累计分红
+    };
     bonus_rank: any = [];
     bonus_recently: any = [];
     plat_bonus: any = [];
@@ -61,7 +61,7 @@ export default class PageBonusProxy extends puremvc.Proxy {
             if (Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount >= 1) {
                 this.bonus_recently[i].bar = 1;
             } else {
-                this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount
+                this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount;
             }
         }
     }

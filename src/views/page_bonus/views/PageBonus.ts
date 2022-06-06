@@ -46,12 +46,12 @@ export default class PageBonus extends AbstractView {
     mounted() {
         this.timer = setInterval(() => {
             this.countdown();
-        }, 1000)
+        }, 1000);
     }
 
     destroyed() {
         super.destroyed();
-        clearInterval(this.timer)
+        clearInterval(this.timer);
     }
 
     handlerPledge() {
@@ -95,7 +95,7 @@ export default class PageBonus extends AbstractView {
     }
 
     getHeight(index: any) {
-        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280
+        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280;
         return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
     }
 
@@ -103,7 +103,7 @@ export default class PageBonus extends AbstractView {
         0: require(`@/assets/bonus/gold@2x.png`),
         1: require(`@/assets/bonus/silver@2x.png`),
         2: require(`@/assets/bonus/bronze@2x.png`),
-    }
+    };
 
     stakeDraw() {
         dialog_message_box.confirm({
@@ -119,12 +119,15 @@ export default class PageBonus extends AbstractView {
         //@ts-ignore
         const now = Date.parse(new Date());
         const msec = end - now;
+        if (msec == 0) {
+            this.myProxy.api_plat_var_stake_info();
+        }
 
         this.hr = Math.floor(msec / 1000 / 60 / 60);
-        this.min = Math.floor(msec / 1000 / 60 % 60);
-        this.sec = msec / 1000 % 60;
-        this.hr = this.hr > 9 ? this.hr : '0' + this.hr;
-        this.min = this.min > 9 ? this.min : '0' + this.min;
-        this.sec = this.sec > 9 ? this.sec : '0' + this.sec;
+        this.min = Math.floor((msec / 1000 / 60) % 60);
+        this.sec = (msec / 1000) % 60;
+        this.hr = this.hr > 9 ? this.hr : "0" + this.hr;
+        this.min = this.min > 9 ? this.min : "0" + this.min;
+        this.sec = this.sec > 9 ? this.sec : "0" + this.sec;
     }
 }

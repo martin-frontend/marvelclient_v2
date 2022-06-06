@@ -5,9 +5,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 
 export default class DialogPledgeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_var_deposit_stake,
-        ];
+        return [net.EventType.api_user_var_deposit_stake];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

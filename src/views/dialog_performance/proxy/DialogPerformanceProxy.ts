@@ -56,5 +56,4 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
         };
         this.sendNotification(net.HttpType.api_user_var_commission_commissionlist, objectRemoveNull(obj));
     }
-
 }

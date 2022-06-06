@@ -37,7 +37,7 @@ export default class PageHomeProxy extends puremvc.Proxy {
         }
     }
 
-    setStakeInfo(data:any){
+    setStakeInfo(data: any) {
         Object.assign(this.pageData.stakeInfo, data);
     }
 

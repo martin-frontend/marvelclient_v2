@@ -11,7 +11,18 @@ const commonIcon = {
     nodata: require(`@/assets/nodata.png`),
 };
 
-/**游戏分类图标 */
+/**游戏分类图标	
+1	热门
+2	棋牌
+4	彩票
+8	捕鱼
+16	电子
+32	真人
+64	体育电竞
+128	链游
+256	先删除
+512	先删除
+ */
 const CategoryIcon = {
     1: "mdi-fire",
     2: "mdi-cards-playing",

@@ -10,7 +10,7 @@ import page_mine from "../page_mine";
 export default class MobileMenu extends AbstractView {
     menuList = [
         { id: 0, name: "首页", icon: "mdi-home", path: "/" },
-        { id: 1, name: "大厅", icon: "mdi-hoop-house", path: "/page_game_list" },
+        { id: 1, name: "大厅", icon: "mdi-google-controller", path: "/page_game_list" },
         { id: 2, name: "挖矿", icon: "mdi-mine", path: "/page_mine" },
         { id: 3, name: "推广", icon: "mdi-offer", path: "/page_extension" },
         { id: 4, name: "分红", icon: "mdi-poll", path: "/page_bonus" },

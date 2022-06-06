@@ -6,6 +6,7 @@ import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
 
 export default class DialogPledgeMediator extends AbstractMediator {
     private bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
+    private myProxy: DialogPledgeProxy = this.getProxy(DialogPledgeProxy);
 
     public listNotificationInterests(): string[] {
         return [net.EventType.api_user_var_deposit_stake];
@@ -18,6 +19,7 @@ export default class DialogPledgeMediator extends AbstractMediator {
             case net.EventType.api_user_var_deposit_stake:
                 dialog_message_box.alert("质押锁仓成功");
                 this.bonusProxy.api_user_var_stake_info();
+                this.myProxy.pageData.bShow = false;
                 break;
         }
     }

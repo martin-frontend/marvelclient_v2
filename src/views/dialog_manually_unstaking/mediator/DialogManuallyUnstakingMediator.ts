@@ -6,6 +6,7 @@ import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
 
 export default class DialogManuallyUnstakingMediator extends AbstractMediator {
     private bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
+    private myProxy: DialogManuallyUnstakingProxy = this.getProxy(DialogManuallyUnstakingProxy);
 
     public listNotificationInterests(): string[] {
         return [net.EventType.api_user_var_withdraw_stake];
@@ -18,6 +19,7 @@ export default class DialogManuallyUnstakingMediator extends AbstractMediator {
             case net.EventType.api_user_var_withdraw_stake:
                 dialog_message_box.alert("解除质押数量" + body);
                 this.bonusProxy.api_user_var_stake_info();
+                this.myProxy.pageData.bShow = false;
                 break;
         }
     }

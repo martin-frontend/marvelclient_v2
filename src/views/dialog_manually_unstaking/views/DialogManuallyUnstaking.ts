@@ -20,7 +20,7 @@ export default class DialogManuallyUnstaking extends AbstractView {
 
     /**全部 */
     handleMaxVal() {
-        console.log("dialog_pledge handleMaxVal");
+        this.myProxy.pageData.amount = this.pageBonusProxy.user_stake_info.stake_amount;
     }
 
     /**确定质押 */

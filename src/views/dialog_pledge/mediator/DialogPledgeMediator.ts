@@ -19,6 +19,7 @@ export default class DialogPledgeMediator extends AbstractMediator {
             case net.EventType.api_user_var_deposit_stake:
                 dialog_message_box.alert("质押锁仓成功");
                 this.bonusProxy.api_user_var_stake_info();
+                this.bonusProxy.api_plat_var_stake_info();
                 this.myProxy.pageData.bShow = false;
                 break;
         }

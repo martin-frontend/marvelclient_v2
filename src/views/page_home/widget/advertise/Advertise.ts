@@ -37,5 +37,4 @@ export default class Advertise extends AbstractView {
             ease: Linear.easeNone,
         });
     }
-
 }

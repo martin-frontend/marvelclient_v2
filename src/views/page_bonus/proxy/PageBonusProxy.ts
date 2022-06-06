@@ -30,9 +30,9 @@ export default class PageBonusProxy extends puremvc.Proxy {
         coin_name_unique: "", // 质押币种
         total_bonus_amount: "", // 总计已派发
         total_stake_amount: "", // 总质押数量
-        manual_withdraw_stake_fee: "",//手动解除质押手续费
-        auto_withdraw_stake_fee: "",// 自动解除质押手续费
-        bonus_coin_name_unique: "",// 奖励币种
+        manual_withdraw_stake_fee: "", //手动解除质押手续费
+        auto_withdraw_stake_fee: "", // 自动解除质押手续费
+        bonus_coin_name_unique: "", // 奖励币种
     };
     user_stake_info: any = {
         amount: "", // 质押币余额
@@ -60,8 +60,7 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     setBonusRecently(data: any) {
         this.bonus_recently = data;
-        this.referenceBonusAmount = Math.max(...this.bonus_recently.map((o: { total_bonus_amount: any; }) => o.total_bonus_amount));
-
+        this.referenceBonusAmount = Math.max(...this.bonus_recently.map((o: { total_bonus_amount: any }) => o.total_bonus_amount));
 
         for (let i = 0; i < this.bonus_recently.length; i++) {
             if (Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount >= 1) {

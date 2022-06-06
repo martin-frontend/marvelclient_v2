@@ -8,8 +8,8 @@ import Activity from "./Activity";
 
 @Component({
     components: {
-        Money
-    }
+        Money,
+    },
 })
 export default class extends Activity {}
 </script>

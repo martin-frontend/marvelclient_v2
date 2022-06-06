@@ -50,6 +50,7 @@ export default class PageBonusMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_stake_draw:
                 dialog_message_box.alert("成功领取分红" + body);
+                this.myProxy.api_user_var_stake_info();
                 break;
         }
     }

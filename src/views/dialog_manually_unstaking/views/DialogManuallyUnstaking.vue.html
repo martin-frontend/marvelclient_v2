@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text v-if="pageData.bShow" class="px-10 mt-8 text-16 font-weight-regular">
-            <CustomInputButton class="input-btn-text" height="55" placeholder="输入数量" button-name="全部" v-model="pageData.maxVal" @click="handleMaxVal" />
+            <CustomInputButton class="input-btn-text" height="55" placeholder="输入数量" button-name="全部" v-model="pageData.amount" @click="handleMaxVal" />
             <div class="mt-3 ml-4">
                 <span class="white--text mr-2">已质押</span>
                 <span class="colorDialogInfo--text">
@@ -17,7 +17,7 @@
             </div>
             <div class="mt-3 ml-4">
                 <span class="white--text mr-2">手动解除质押手续费</span>
-                <span class="colorDialogInfo--text">5%</span>
+                <span class="colorDialogInfo--text">{{ pageBonusProxy.plat_stake_info.manual_withdraw_stake_fee }}</span>
             </div>
             <v-btn class="confirm-btn rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block @click="handleConfirm">
                 确定质押

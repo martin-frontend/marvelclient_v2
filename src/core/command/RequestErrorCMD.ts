@@ -32,9 +32,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 }
                 dialog_message_box.alert({
                     message: body.result.msg,
-                    okFun: ()=>{
+                    okFun: () => {
                         location.reload();
-                    }
+                    },
                 });
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);

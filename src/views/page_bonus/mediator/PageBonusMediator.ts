@@ -7,7 +7,7 @@ export default class PageBonusMediator extends AbstractMediator {
     private myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
 
     protected initViewData(): void {
-        this.myProxy.api_plat_var_stake_info()
+        this.myProxy.api_plat_var_stake_info();
         this.myProxy.api_user_var_stake_info();
         this.myProxy.api_plat_var_bonus_recently();
         this.myProxy.api_plat_var_bonus_rank();

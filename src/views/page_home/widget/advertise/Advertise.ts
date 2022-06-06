@@ -38,7 +38,4 @@ export default class Advertise extends AbstractView {
         });
     }
 
-    isSafari(){
-        return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-    }
 }

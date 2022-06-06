@@ -1,16 +1,10 @@
-<template>
-    
-</template>
+<template src="./Money.vue.html" lang="html"></template>
+<style src="./Money.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-import AbstractView from '@/core/abstract/AbstractView';
-import Component from 'vue-class-component';
+import Component from "vue-class-component";
+import Money from "./Money";
+
 @Component
-export default class Money extends AbstractView{
-
-}
+export default class extends Money {}
 </script>
-
-<style lang="scss" scoped>
-
-</style>

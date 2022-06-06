@@ -14,7 +14,7 @@
                         </v-sheet>
                         <v-sheet width="100%" color="transparent" class="">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" height="16" class="rounded-xl"></v-progress-linear>
-                            <div class="text-body-2 ma-0 ml-2 mt-1 mt-md-3">
+                            <div class="text-body-2 text-md-body-1 ma-0 ml-2 mt-1 mt-md-3">
                                 <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">您已经升级早最高等级</p>
                                 <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">距离下一个等级还差</span>
                                 <span class="white--text" v-if="pageData.nextExp > 0">
@@ -84,7 +84,7 @@
                                 <span class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium">{{ pageData.trial.reward }}</span>
                             </div>
 
-                            <v-btn :width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorCoin" plain class="rounded-pill get_award mt-2 mt-md-6"  @click="handlerAward">领取奖励</v-btn>
+                            <v-btn :width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorCoin" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6"  @click="handlerAward">领取奖励</v-btn>
                             <div class="d-none d-md-flex justify-md-end btn_group mt-13 mb-6 right_btn_group">
                                 <v-btn color="colorPurpleBtn" height="42" min-width="85" class="rounded-pill text-body-1" @click="jumpTo('#howMine')">
                                     说明
@@ -118,7 +118,7 @@
                 <v-card color="transparent">
                     <v-sheet color="transparent" height="277">
                         <v-img max-width="160" width="160" height="100%" class="mx-2" contain src="~@/assets/mine/item_bg.png">
-                            <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level]"></v-img>
+                            <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
                             <div class="d-flex flex-column mt-n3 align-center pt-2 text-body-1">
                                 <div class="mt-1">VIP {{ myProxy.getVipLevel(level) }}</div>
                                 <div class="mt-1 font-weight-medium colorVipLevelText--text">{{ pageData.platCoins.mainCoin.name }}返水</div>
@@ -135,7 +135,7 @@
             <!-- 手机 -->
             <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="level_box rounded_customized py-2 d-flex justify-space-around mb-1">
                 <div class="d-flex align-center">
-                    <v-img max-width="62" contain :src="vipMap[level]" class="mobile_level_icon"></v-img>
+                    <v-img max-width="62" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                     <span class="text-body-2 font-weight-medium">VIP {{ myProxy.getVipLevel(level) }}</span>
                 </div>
                 <div class="d-flex align-center">

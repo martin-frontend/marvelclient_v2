@@ -6,11 +6,16 @@ import gsap, { Linear, Elastic } from "gsap";
 @Component
 export default class Money extends AbstractView {
     @Prop() value!: any;
+    @Prop({ default: 48 }) fontSize!: number;
+    @Prop({ default: 32 }) itemWidth!: number;
+    @Prop({ default: 72 }) itemHeight!: number;
     money = "$";
 
     mounted() {
-        this.money = moneyFormat(this.value);
-        this.animate();
+        if (this.value != 0) {
+            this.money = moneyFormat(this.value);
+            this.animate();
+        }
     }
 
     @Watch("value")
@@ -21,23 +26,40 @@ export default class Money extends AbstractView {
 
     animate() {
         this.$nextTick(() => {
-            let i = 0;
             //@ts-ignore
-            for (const item of this.$refs.nums) {
+            const divArr: any = Array.from(this.$refs.nums);
+            divArr.sort((a: any, b: any) => {
+                const da = a.getAttribute("idx");
+                const db = b.getAttribute("idx");
+                return parseInt(da) < parseInt(db) ? -1 : 1;
+            });
+
+            const len = divArr.length;
+            for (let i = 0; i < len; i++) {
+                const item = divArr[i];
                 const data = item.getAttribute("data");
                 gsap.fromTo(
                     item,
-                    { y: 360 },
-                    { y: -360, duration: 1, repeat: i, ease: Linear.easeNone, onComplete: this.onCompleteEnd(item, parseInt(data)) }
+                    { y: this.itemHeight * 5 },
+                    {
+                        y: -this.itemHeight * 5,
+                        duration: 1,
+                        repeat: i,
+                        ease: Linear.easeNone,
+                        onComplete: this.onCompleteEnd(item, parseInt(data)),
+                    }
                 );
-                i++;
             }
         });
     }
 
     onCompleteEnd(item: any, data: any) {
         return () => {
-            gsap.fromTo(item, { y: 360 }, { y: 360 - 72 * data, duration: 1, ease: "elastic.out(1, 0.3)" });
+            gsap.fromTo(
+                item,
+                { y: this.itemHeight * 5 },
+                { y: this.itemHeight * 5 - this.itemHeight * data, duration: 1, ease: "elastic.out(1, 0.3)" }
+            );
         };
     }
 

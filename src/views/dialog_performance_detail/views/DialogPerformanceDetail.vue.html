@@ -39,7 +39,7 @@
                     <div>团队人数(新增){{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
                     <div>直属用户(新增){{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
                     <div>总业绩. {{ pageData.statistics_data.total_water_summary }}</div>
-                    <div>拥金总额 {{ pageData.statistics_data.total_commission.USDT }}</div>
+                    <div>佣金总额 {{ pageData.statistics_data.total_commission.USDT }}</div>
                 </div>
                 <v-sheet v-if="pageData.list.length>0" color="#121E36" class="listbox scroll-y">
                     <v-sheet class="mb-3 px-6 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -65,7 +65,7 @@
                                 <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
                             </div>
                             <div class="item-auto">
-                                <div>每万返佣1</div>
+                                <div>每万返佣</div>
                                 <div class="text-16 font-weight-regular">{{ item.commission_num }}</div>
                             </div>
                             <div class="item-auto">

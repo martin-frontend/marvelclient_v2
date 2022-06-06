@@ -25,7 +25,8 @@
         <div class="activity1 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageBouns">
             <div class="text-24 mt-5 ml-5">投注挖{{pageData.stakeInfo.coin_name_unique}}，终身享分红</div>
             <div class="text-16 ml-5 mt-2">当前分红池:</div>
-            <div class="text-48 ml-5 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div>
+            <!-- <div class="text-48 ml-5 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div> -->
+            <Money v-model="pageData.stakeInfo.bonus_pool_amount"/>
             <v-sheet class="btn text-18 ml-5 mt-2 rounded-pill d-flex align-center justify-center" width="160" height="42"
                 >领取分红</v-sheet
             >

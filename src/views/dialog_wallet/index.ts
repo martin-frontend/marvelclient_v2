@@ -13,6 +13,9 @@ function show(tabIdx: number = 0, type?: number) {
             proxy.pageData.listOptions.typeSelect = type;
         }
         proxy.api_user_show_var_gold();
+    } else {
+        proxy.pageData.listQuery.type = 0;
+        proxy.pageData.listOptions.typeSelect = 0;
     }
     proxy.pageData.bShow = true;
     proxy.api_user_show_var();

@@ -3,8 +3,13 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
+import Money from "../money/Money.vue";
 import Activity from "./Activity";
 
-@Component
+@Component({
+    components: {
+        Money
+    }
+})
 export default class extends Activity {}
 </script>

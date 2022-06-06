@@ -119,6 +119,9 @@ export default class PageBonus extends AbstractView {
         //@ts-ignore
         const now = Date.parse(new Date());
         const msec = end - now;
+        if (msec == 0) {
+            this.myProxy.api_plat_var_stake_info()
+        }
 
         this.hr = Math.floor(msec / 1000 / 60 / 60);
         this.min = Math.floor(msec / 1000 / 60 % 60);

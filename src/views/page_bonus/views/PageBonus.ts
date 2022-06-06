@@ -8,6 +8,7 @@ import dialog_manually_unstaking from "@/views/dialog_manually_unstaking";
 import dialog_pledge_records from "@/views/dialog_pledge_records";
 import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class PageBonus extends AbstractView {
@@ -16,6 +17,7 @@ export default class PageBonus extends AbstractView {
     plat_stake_info = this.myProxy.plat_stake_info;
     user_stake_info = this.myProxy.user_stake_info;
     listQuery = this.pageData.listQuery;
+    GamePlatConfig = GamePlatConfig;
 
     private hr: any = "00";
     private min: any = "00";

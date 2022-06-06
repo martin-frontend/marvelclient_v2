@@ -437,7 +437,7 @@
                                 {{ item.stake_count }}
                             </div>
                             <div class="d-flex align-center item-200">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
                                 <span>
                                     {{ item.total_stake_amount }}
                                 </span>
@@ -446,7 +446,7 @@
                                 ${{ item.hundred_bonus }}
                             </div>
                             <div class="d-flex align-center item-130">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
                                 {{ item.total_bonus_amount }}
                             </div>
                         </div>
@@ -476,7 +476,7 @@
                                 {{ getDateTime(item.date) }}
                             </div>
                             <div class="d-flex align-center item-200">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
                                 <span>
                                     {{ item.stake_amount }}
                                 </span>
@@ -488,7 +488,7 @@
                                 ${{ item.hundred_bonus }}
                             </div>
                             <div class="d-flex align-center item-150">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
                                 ${{ item.bonus_amount }}
                             </div>
                         </div>

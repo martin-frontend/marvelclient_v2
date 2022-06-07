@@ -46,6 +46,13 @@ export default class PageBonusProxy extends puremvc.Proxy {
     plat_bonus: any = [];
     user_bonus: any = [];
 
+    questionData = [
+        { question: "什么是个人业績和朋友业績?", answer: "Some content" },
+        { question: "什么是有效投注额?", answer: "Some content" },
+        { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" }
+    ]
+
     setPlatData(data: any) {
         Object.assign(this.plat_stake_info, data);
     }

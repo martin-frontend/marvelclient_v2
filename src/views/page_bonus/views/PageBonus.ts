@@ -17,6 +17,7 @@ export default class PageBonus extends AbstractView {
     plat_stake_info = this.myProxy.plat_stake_info;
     user_stake_info = this.myProxy.user_stake_info;
     listQuery = this.pageData.listQuery;
+    questionData = this.myProxy.questionData;
     GamePlatConfig = GamePlatConfig;
 
     private hr: any = "00";

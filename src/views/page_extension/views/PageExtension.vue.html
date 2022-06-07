@@ -11,11 +11,11 @@
                         </v-col>
                         <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-4  mb-sm-0">
                             <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img><span class="text-h6 text-sm-h5 mr-5 mr-md-1 colorCoin--text font-weight-medium">
-                                {{ promotionData.commission_awaiting_num.USDT }}
+                                {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
                             </span>
                             <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-h6 text-sm-h5 colorCoin--text font-weight-medium">
-                                {{ promotionData.commission_awaiting_num.LCC }}
+                                {{ promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] }}
                             </span>
                         </v-col>
                         <v-spacer></v-spacer>
@@ -34,11 +34,11 @@
                                 今日预计佣金</span>
                             <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-body-2 text-sm-h5 mr-5 font-weight-medium">
-                                {{ statistics_data.total_commission.USDT }}
+                                {{ statistics_data.total_commission[pageData.platCoins.mainCoin.name] }}
                             </span>
                             <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
                             <span class="text-body-2 text-sm-h5 font-weight-medium">
-                                {{ statistics_data.total_commission.LCC }}
+                                {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                             </span>
                         </v-col>
                     </v-row>
@@ -233,18 +233,18 @@
                     </v-col>
                     <v-col :cols="tableData.is_promotion_num_added==1?4:4"  class="d-flex justify-center align-center">
                         <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                        <span class="mr-1">{{ item.commission_num.USDT }}</span>
+                        <span class="mr-1">{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
                         <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                        {{ item.commission_num.LCC }}
+                        {{ item.commission_num[pageData.platCoins.rewardCoin.name] }}
                     </v-col>
                     <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
                         <span v-if="item.commission_num_added.USDT == 0 && item.commission_num_added.LCC == 0">- 
                         </span>
                         <span v-else class="d-flex flex-row align-center">
                             <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                            <span class="mr-1">{{ item.commission_num_added.USDT }}</span>
+                            <span class="mr-1">{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
                             <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>
-                            {{ item.commission_num_added.LCC }}
+                            {{ item.commission_num_added[pageData.platCoins.rewardCoin.name] }}
                         </span>
                     </v-col>
                 </v-row>

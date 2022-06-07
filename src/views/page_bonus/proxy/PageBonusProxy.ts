@@ -43,8 +43,12 @@ export default class PageBonusProxy extends puremvc.Proxy {
     };
     bonus_rank: any = [];
     bonus_recently: any = [];
-    plat_bonus: any = [];
-    user_bonus: any = [];
+    plat_bonus: any = {
+        list: []
+    };
+    user_bonus: any = {
+        list: []
+    };
 
     questionData = [
         { question: "什么是个人业績和朋友业績?", answer: "Some content" },

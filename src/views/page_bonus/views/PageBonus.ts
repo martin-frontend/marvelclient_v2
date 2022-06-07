@@ -20,6 +20,8 @@ export default class PageBonus extends AbstractView {
     questionData = this.myProxy.questionData;
     GamePlatConfig = GamePlatConfig;
 
+    commonIcon = Assets.commonIcon;
+
     private hr: any = "00";
     private min: any = "00";
     private sec: any = "00";

@@ -47,7 +47,7 @@ export default class DialogPledgeRecords extends AbstractView {
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 210;
+            return this.$vuetify.breakpoint.height - 150;
         } else {
             return 450;
         }

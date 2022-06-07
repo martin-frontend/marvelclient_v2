@@ -64,7 +64,7 @@
         <v-card-actions class="mt-auto">
             <v-pagination
                 class="mx-auto mb-2"
-                v-if="pageData.list.length > 0 && pageData.pageInfo.pageCount > 1"
+                v-if="pageData.pageInfo.pageCount > 1"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 @input="onPageChange"

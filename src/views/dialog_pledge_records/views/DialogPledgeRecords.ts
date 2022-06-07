@@ -6,12 +6,17 @@ import dialog_message from "@/views/dialog_message";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPledgeRecordsMediator from "../mediator/DialogPledgeRecordsMediator";
 import DialogPledgeRecordsProxy from "../proxy/DialogPledgeRecordsProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
+import PageBonusProxy from "@/views/page_bonus/proxy/PageBonusProxy";
 
 @Component
 export default class DialogPledgeRecords extends AbstractView {
     myProxy: DialogPledgeRecordsProxy = this.getProxy(DialogPledgeRecordsProxy);
+    bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
+    plat_stake_info = this.bonusProxy.plat_stake_info;
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    GamePlatConfig = GamePlatConfig;
 
     commonIcon = Assets.commonIcon;
 

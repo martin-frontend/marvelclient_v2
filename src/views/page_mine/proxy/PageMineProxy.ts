@@ -107,7 +107,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigMain.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
         // 奖励币
         this.pageData.backwaterConfigReward.now =
             this.pageData.vipLevel == 0
@@ -117,7 +117,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigReward.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
 
         // this.pageData.nextExp = -1123;
         // this.pageData.nextUSDT = -1123;

@@ -70,4 +70,16 @@
         }
     }
 }
+.man{
+    background: url('~@/assets/bonus/man@3x.png') no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    height: 370px;
+    top: 55px;
+    right: 15px;
+    min-width: 320px;
+    @media (max-width: 1429px){
+        right: -30px;
+    }
+}
 

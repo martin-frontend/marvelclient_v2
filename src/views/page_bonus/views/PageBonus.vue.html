@@ -6,7 +6,7 @@
             </div>
         </div>
         <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" :height="$vuetify.breakpoint.xsOnly? 220 :120">
-            <v-img max-width="211" src="@/assets/bonus/bonus@4x.png" class="mb-2" v-if="$vuetify.breakpoint.lgAndUp"></v-img>
+            <v-img max-width="110" contain src="@/assets/bonus/bonus@4x.png" class="mb-2 ml-10" v-if="$vuetify.breakpoint.lgAndUp"></v-img>
             <v-row no-gutters class="px-6">
                 <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span class="stake-width">
@@ -66,8 +66,8 @@
             <v-col cols="12" lg="8" class="pr-lg-3">
                 <v-card class="rounded-lg mb-lg-0 py-lg-6 text-sm-subtitle-1" color="colorTitleBg" height="100%">
                     <v-row no-gutters class="fill-height">
-                        <v-col cols="3" class="d-flex align-end" v-if="$vuetify.breakpoint.lgAndUp">
-                            <v-img contain src="~@/assets/bonus/ensure@4x.png">
+                        <v-col cols="3" class="d-flex align-center justify-center" v-if="$vuetify.breakpoint.lgAndUp">
+                            <v-img max-width="180" contain src="~@/assets/bonus/ensure@4x.png">
                             </v-img>
                         </v-col>
                         <v-col cols="12" lg="9">
@@ -240,8 +240,7 @@
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col cols="4" class="d-flex align-end" v-if="$vuetify.breakpoint.lgAndUp">
-                            <v-img contain src="~@/assets/bonus/man@3x.png"></v-img>
+                        <v-col cols="4" class="d-flex align-end man" v-if="$vuetify.breakpoint.lgAndUp">
                         </v-col>
                     </v-row>
                 </v-card>

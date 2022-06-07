@@ -1,8 +1,4 @@
-import {
-    dateFormat,
-    getTodayOffset,
-    objectRemoveNull,
-} from "@/core/global/Functions";
+import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import Utils from "@/core/global/Utils";
 import MyCanvas from "@/core/ui/MyCanvas";
 import CopyUtil from "@/core/global/CopyUtil";
@@ -39,11 +35,11 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     };
 
     statistics_data: any = {
-        total_commission: {},      // 预计今日总佣金
-        total_water_summary: 0,    // 总业绩
-        self_water_summary: 0,     // 自营业绩
-        group_water_summary: 0,    // 团队业绩
-        direct_water_summary: 0,   // 直属业绩
+        total_commission: {}, // 预计今日总佣金
+        total_water_summary: 0, // 总业绩
+        self_water_summary: 0, // 自营业绩
+        group_water_summary: 0, // 团队业绩
+        direct_water_summary: 0, // 直属业绩
     };
     link: any = "";
     btnBind: any = false;
@@ -59,7 +55,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         Object.assign(this.statistics_data, data.statistics_data);
         Object.assign(this.promotionData, data);
         this.btnBind = !data.invite_user_id;
-        this.promotionData.commission_num = data.commission_info[2].commission_num.USDT
+        this.promotionData.commission_num = data.commission_info[2].commission_num.USDT;
         this.getCurrentCoin();
     }
 
@@ -67,7 +63,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     setCommissionCommissionnum(body: any) {
         const data: any = JSON.parse(JSON.stringify(body));
         this.tableData.myCommissionNum = data.my_commission_num;
-        this.tableData.is_promotion_num_added = data.is_promotion_num_added
+        this.tableData.is_promotion_num_added = data.is_promotion_num_added;
         this.tableData.promotionConfig = JSON.parse(JSON.stringify(data.promotion_config));
         this.tableData.defaultPromotionConfig = JSON.parse(JSON.stringify(data.promotion_config));
         this.tableData.type = data.type;
@@ -136,8 +132,8 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         { question: "什么是个人业績和朋友业績?", answer: "Some content" },
         { question: "什么是有效投注额?", answer: "Some content" },
         { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
-        { question: "洗码是否会影响J9BC产出?", answer: "Some content" }
-    ]
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" },
+    ];
 
     /**查询数据 */
     listQuery = {

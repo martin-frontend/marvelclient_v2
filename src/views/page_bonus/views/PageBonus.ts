@@ -77,7 +77,7 @@ export default class PageBonus extends AbstractView {
             top: document.querySelector(target).offsetTop,
             behavior: "smooth",
         });
-        this.onTabClick(1)
+        this.onTabClick(1);
     }
 
     handleRecords() {

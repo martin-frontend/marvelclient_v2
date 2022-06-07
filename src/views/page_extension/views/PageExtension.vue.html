@@ -238,7 +238,7 @@
                         {{ item.commission_num[pageData.platCoins.rewardCoin.name] }}
                     </v-col>
                     <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
-                        <span v-if="item.commission_num_added.USDT == 0 && item.commission_num_added.LCC == 0">- 
+                        <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0 && item.commission_num_added[pageData.platCoins.rewardCoin.name] == 0">- 
                         </span>
                         <span v-else class="d-flex flex-row align-center">
                             <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" :max-width="$vuetify.breakpoint.xsOnly? 15 : 30" :height="$vuetify.breakpoint.xsOnly? 15 : 30"></v-img>

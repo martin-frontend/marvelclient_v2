@@ -90,6 +90,7 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
+                    this.gameProxy.loading = false;
                     //如果是移动设备，则在新页面中打开游戏
                     if (vuetify.framework.breakpoint.mobile) {
                         dialog_message_box.confirm({

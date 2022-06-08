@@ -46,7 +46,7 @@
             </v-sheet>
             <v-spacer />
             <v-pagination
-                v-if="pageData.pageInfo.pageCount > 1"
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 :total-visible="7"

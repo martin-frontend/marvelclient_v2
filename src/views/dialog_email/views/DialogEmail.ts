@@ -20,7 +20,7 @@ export default class DialogEmail extends AbstractView {
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 255;
+            return this.$vuetify.breakpoint.height - 190;
         } else {
             return 450;
         }
@@ -55,11 +55,11 @@ export default class DialogEmail extends AbstractView {
         this.myProxy.api_user_var_mail_var(item.id);
     }
 
-    onReceiveQuick(){
+    onReceiveQuick() {
         this.myProxy.api_user_var_receiveQuick();
     }
 
-    onDestroyQuick(){
+    onDestroyQuick() {
         this.myProxy.api_user_var_destroy_quick();
     }
 }

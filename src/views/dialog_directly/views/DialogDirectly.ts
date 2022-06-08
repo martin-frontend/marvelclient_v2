@@ -33,6 +33,7 @@ export default class DialogDirectly extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        this.myProxy.resetQuery();
     }
 
     @Watch("pageData.bShow")

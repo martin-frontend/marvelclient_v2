@@ -5,8 +5,8 @@
                 {{ plat_stake_info.coin_name_unique }}持币分红
             </div>
         </div>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex align-center py-3 py-sm-6" :height="$vuetify.breakpoint.xsOnly? 220 :120">
-            <v-img max-width="110" contain src="@/assets/bonus/bonus@4x.png" class="mb-2 ml-10" v-if="$vuetify.breakpoint.lgAndUp"></v-img>
+        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex flex-column flex-sm-row align-center py-3 py-sm-6" :height="$vuetify.breakpoint.mdAndDown? 240 :120">
+            <v-img max-width="110" contain src="@/assets/bonus/bonus@4x.png" class="mb-sm-2 ml-sm-10 mb-2"></v-img>
             <v-row no-gutters class="px-6">
                 <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span class="stake-width">

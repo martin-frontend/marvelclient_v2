@@ -18,6 +18,14 @@ export default class PageExtensionMediator extends AbstractMediator {
         this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, { user_id: core.user_id });
     }
 
+    private isToday(someDate: any) {
+        const today = new Date()
+        const [year, month, day] = someDate.split('-');
+        return Number(day) == today.getDate() &&
+            (Number(month) == (today.getMonth() + 1)) &&
+            Number(year) == today.getFullYear()
+    }
+
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_var_commission_commissiondetail,
@@ -34,7 +42,9 @@ export default class PageExtensionMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
-                this.myProxy.setData(body);
+                if (this.isToday(body.date)) {
+                    this.myProxy.setData(body);
+                }
                 break;
             case net.EventType.api_user_var_commission_commissionnum:
                 this.myProxy.setCommissionCommissionnum(body);

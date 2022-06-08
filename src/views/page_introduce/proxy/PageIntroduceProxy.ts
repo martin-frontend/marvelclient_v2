@@ -8,7 +8,20 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
 
     pageData = {
         loading: false,
+        reward_coin_info: {
+            coin_name: "", // Token名称
+            contract_address: "", // 合约地址
+            block_network_name: "", // 发行链
+            total_supply: "", // 总计发行
+            total_circulate: "", // 总计流通
+            total_stake_amount: "", // 总计质押
+            total_holder: "", // 持币地址数
+        },
     };
+
+    setRewardCoinInfo(data:any){
+        Object.assign(this.pageData.reward_coin_info, data);
+    }
 
     pageImage = {
         cat: require("@/assets/introduce/CAT@3x.png"),
@@ -31,4 +44,8 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
         tickAble: require("@/assets/introduce/Tick-Able.svg"),
         tickDisable: require("@/assets/introduce/Tick-Disable.svg"),
     };
+
+    api_plat_var_reward_coin_info() {
+        this.sendNotification(net.HttpType.api_plat_var_reward_coin_info, {plat_id: core.plat_id});
+    }
 }

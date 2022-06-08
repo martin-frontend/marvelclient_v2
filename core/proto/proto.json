@@ -133,6 +133,9 @@
         ["api/user/{user_id}/coin_recharge/confirm",    "币商充值订单确认转账"],
         ["api/user/{user_id}/recharge/list",            "充值记录"],
         ["api/user/{user_id}/recharge/address",         "获取数字货币充值地址"],
+
+        "--介绍页",
+        ["api/plat/{plat_id}/reward_coin_info",         "奖励币介绍"],
         
         "--其它",
         ["api/plat/{plat_id}/game/config",              "配置数据 枚举"],

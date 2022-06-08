@@ -60,35 +60,35 @@
                 <v-card-text>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">Token名称 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">J9 CASINO</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.coin_name}}</v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">合约地址 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="d-flex font-weight-black amber--text text--darken-1">
+                        <v-col cols="8" md="12" lg="9" class="d-flex font-weight-black amber--text text--darken-1 cursor-pointer" @click="goContractInfo">
                             <span>查看合约信息</span>
                             <v-img class="ml-1" max-width="24" max-height="24" :src="pageImage.externalLink"></v-img>
                         </v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">发行链 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">Binance Smart Chain (BEP20)</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.block_network_name}}</v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计发行 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">10,000,000,000 J9BC</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.total_supply}}</v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计流通 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">163,954,456.076 J9BC</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.total_circulate}}</v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计质押 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">124,329,513.594 J9BC</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.total_stake_amount}}</v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">持币地址数 :</v-col>
                         <v-col cols="8" md="12" lg="9" class="d-flex font-weight-black intro-chain-text">
-                            <span>10,803</span>
+                            <span>{{reward_coin_info.total_holder}}</span>
                             <v-img class="ml-1" max-width="24" max-height="24" :src="pageImage.externalLink"></v-img>
                         </v-col>
                     </v-row>

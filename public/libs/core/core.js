@@ -265,6 +265,8 @@ var net;
         api_user_var_recharge_list: "api/user/{user_id}/recharge/list",
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api/user/{user_id}/recharge/address",
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api/plat/{plat_id}/reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
         /**--其它--常见问题*/
@@ -490,6 +492,8 @@ var net;
         api_user_var_recharge_list: "api_user_var_recharge_list",
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api_user_var_recharge_address",
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api_plat_var_reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
         /**--其它--常见问题*/
@@ -624,6 +628,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_coin_recharge_confirm, net.cmd_api_user_var_coin_recharge_confirm);
         facade.registerCommand(net.HttpType.api_user_var_recharge_list, net.cmd_api_user_var_recharge_list);
         facade.registerCommand(net.HttpType.api_user_var_recharge_address, net.cmd_api_user_var_recharge_address);
+        //--介绍页
+        facade.registerCommand(net.HttpType.api_plat_var_reward_coin_info, net.cmd_api_plat_var_reward_coin_info);
         //--其它
         facade.registerCommand(net.HttpType.api_plat_var_game_config, net.cmd_api_plat_var_game_config);
         facade.registerCommand(net.HttpType.api_plat_fag_index, net.cmd_api_plat_fag_index);
@@ -1031,6 +1037,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
+})(net || (net = {}));
+/**
+ * 奖励币介绍
+ */
+var net;
+/**
+ * 奖励币介绍
+ */
+(function (net) {
+    class cmd_api_plat_var_reward_coin_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_reward_coin_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_reward_coin_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_reward_coin_info = cmd_api_plat_var_reward_coin_info;
 })(net || (net = {}));
 /**
  * 平台币分红信息

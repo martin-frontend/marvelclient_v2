@@ -39,14 +39,14 @@ export default class DialogRecordRecharge extends AbstractView {
         }
     }
 
-    onPageChange(val:any){
+    onPageChange(val: any) {
         this.pageData.listQuery.page_count = val;
         this.myProxy.api_user_var_recharge_list();
     }
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 255;
+            return this.$vuetify.breakpoint.height - 125;
         } else {
             return 368;
         }

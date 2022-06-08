@@ -24,6 +24,7 @@ export default class PageExtensionMediator extends AbstractMediator {
             net.EventType.api_user_var_commission_commissionnum,
             net.EventType.api_user_var_short_chain,
             net.EventType.api_user_update_var,
+            net.EventType.api_user_var_commission_receive,
         ];
     }
 
@@ -45,6 +46,10 @@ export default class PageExtensionMediator extends AbstractMediator {
                 this.bindInviteproxy.hide();
                 dialog_message.success("操作成功");
                 this.getDetdail();
+                break;
+            case net.EventType.api_user_var_commission_receive:
+                this.myProxy.api_user_var_commission_commissiondetail();
+                dialog_message.success("领取成功");
                 break;
         }
     }

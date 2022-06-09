@@ -4,4 +4,8 @@ export default class GlobalVar {
     static scrollStatus = {
         flag: false,
     };
+
+    static HTMLElement = <any>{
+        dom: null
+    }
 }

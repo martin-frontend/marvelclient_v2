@@ -6,6 +6,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
+import FagProxy from "@/proxy/FagProxy";
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -31,6 +32,7 @@ window.onload = function () {
             event.preventDefault();
         }
     });
+
     document.addEventListener("gesturestart", function (event) {
         event.preventDefault();
     });

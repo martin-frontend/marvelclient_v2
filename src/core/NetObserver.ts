@@ -7,6 +7,7 @@ import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
 import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
+import FagProxy from "@/proxy/FagProxy";
 
 import Vue from "vue";
 import App from "@/App.vue";
@@ -22,6 +23,7 @@ export default class NetObserver extends AbstractMediator {
 
     private selfProxy: SelfProxy = getProxy(SelfProxy);
     private gameProxy: GameProxy = getProxy(GameProxy);
+    private fagProxy: FagProxy = getProxy(FagProxy);
 
     public listNotificationInterests(): string[] {
         return [
@@ -33,6 +35,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_lobby_index,
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_plat_var_notice_index,
+            net.EventType.api_plat_fag_index,
         ];
     }
 
@@ -76,6 +79,8 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
                     //公告
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
+                    //常见问题
+                    this.sendNotification(net.HttpType.api_plat_fag_index);
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -110,6 +115,9 @@ export default class NetObserver extends AbstractMediator {
                     const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
                     noticeProxy.setData(body);
                 }
+                break;
+            case net.EventType.api_plat_fag_index:
+                this.fagProxy.setData(body);
                 break;
         }
     }

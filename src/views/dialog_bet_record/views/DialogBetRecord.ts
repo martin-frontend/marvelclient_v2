@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import Constant from "@/core/global/Constant";
 import { handleScroll } from "@/core/global/Functions";
+import GlobalVar from "@/core/global/GlobalVar";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
@@ -14,8 +15,16 @@ export default class DialogBetRecord extends AbstractView {
     myProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
+
+    destroyed() {
+        super.destroyed();
+        GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+        GlobalVar.HTMLElement.dom = null;
+    }
 
     get typeOptions() {
         return {
@@ -72,35 +81,36 @@ export default class DialogBetRecord extends AbstractView {
             this.typeSelect = this.vendorSelect = this.statusSelect = this.timeSelect = 0;
             this.myProxy.resetQuery();
             this.myProxy.api_user_show_var_bet();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
         }
     }
 
     @Watch("pageData.list.length")
     onWatchList() {
         if (this.pageData.list.length > 0) {
+            console.log('handlerScroll');
             this.handlerScroll();
         }
     }
 
+    // 监听手机版scroll 到底加载
+    @Watch("scrollStatus.flag")
+    onScroll() {
+        console.warn("end");
+        if (this.myProxy.pageData.pageInfo.pageCurrent < this.myProxy.pageData.pageInfo.pageCount) {
+            this.myProxy.pageData.listQuery.page_count++;
+            this.myProxy.api_user_show_var_bet();
+        }
+    }
+
     handlerScroll() {
-        try {
-            if (this.$vuetify.breakpoint.xsOnly) {
-                this.$nextTick(() => {
-                    const target = document.querySelector(".table_data") as HTMLElement;
-                    target.removeEventListener("scroll", () => {});
-                    target.addEventListener("scroll", () => {
-                        handleScroll(target)
-                            .then(() => {
-                                // todo call api
-                            })
-                            .catch((err: any) => {
-                                console.error(err);
-                            });
-                    });
-                });
-            }
-        } catch (error) {
-            console.log("-", error);
+        if (this.$vuetify.breakpoint.xsOnly) {
+            this.$nextTick(() => {
+                GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
+                // target.replaceWith(target.cloneNode(true));
+                GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+                GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
+            });
         }
     }
 
@@ -157,7 +167,7 @@ export default class DialogBetRecord extends AbstractView {
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 280;
+            return this.$vuetify.breakpoint.height - 240;
         } else {
             return 368;
         }

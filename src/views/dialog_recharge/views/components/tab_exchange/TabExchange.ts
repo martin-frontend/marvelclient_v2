@@ -2,6 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
 
@@ -56,6 +57,11 @@ export default class TabExchange extends AbstractView {
     }
 
     onSubmit() {
-        this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+        dialog_message_box.confirm({
+            message: "确认提交",
+            okFun: () => {
+                this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+            },
+        });
     }
 }

@@ -18,7 +18,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [],
+        list: <any>[],
         total_bet_gold: "",
         total_water: "",
         total_win_gold: "",
@@ -29,6 +29,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             pageTotal: 9,
         },
         vendors: <any>[],
+        isMobile: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -51,10 +52,17 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
         this.pageData.total_bet_gold = data.total_bet_gold;
         this.pageData.total_water = data.total_water;
         this.pageData.total_win_gold = data.total_win_gold;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
+        console.log(this.pageData.list);
     }
 
     api_vendor_simple() {

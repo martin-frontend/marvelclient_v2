@@ -3,7 +3,7 @@
     margin-bottom: 2px;
     color: #9db1d8;
     @media only screen and (max-width: 750px) {
-        width: calc(100% / 2);
+        width: 100%;
     }
     div:first-child {
         color: #4c5d7f;
@@ -13,8 +13,8 @@
         color: #9db1d8;
     }
 }
-
 .listitem {
+    position: relative;;
     .item-auto {
         width: auto;
         @include com;
@@ -26,6 +26,8 @@
     .listitem-90 {
         width: 90px;
         @media only screen and (max-width: 750px) {
+            position: absolute;
+            bottom: 0px;
             width: 100%;
         }
     }

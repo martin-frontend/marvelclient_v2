@@ -1,3 +1,4 @@
+import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
 
 export default class DialogPromotionFloorProxy extends puremvc.Proxy {
@@ -31,7 +32,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         if (data) {
-            dialog_message.warn("设置成功");
+            dialog_message.warn(LangUtil("设置成功"));
             this.pageData.bShow = false;
         }
     }

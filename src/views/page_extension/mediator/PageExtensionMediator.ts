@@ -3,9 +3,11 @@ import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
 import DialogBindInviteProxy from "@/views/dialog_bind_invite/proxy/DialogBindInviteProxy";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     private bindInviteproxy: DialogBindInviteProxy = getProxy(DialogBindInviteProxy);
+    LangUtil = LangUtil;
 
     protected initViewData(): void {
         this.myProxy.api_user_var_short_chain()
@@ -54,12 +56,12 @@ export default class PageExtensionMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_update_var:
                 this.bindInviteproxy.hide();
-                dialog_message.success("操作成功");
+                dialog_message.success(LangUtil("操作成功"));
                 this.getDetdail();
                 break;
             case net.EventType.api_user_var_commission_receive:
                 this.myProxy.api_user_var_commission_commissiondetail();
-                dialog_message.success("领取成功");
+                dialog_message.success(LangUtil("领取成功"));
                 break;
         }
     }

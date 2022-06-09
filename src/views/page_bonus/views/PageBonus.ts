@@ -115,7 +115,7 @@ export default class PageBonus extends AbstractView {
 
     stakeDraw() {
         dialog_message_box.confirm({
-            message: "确定要领取?",
+            message: LangUtil("确定要领取?"),
             okFun: () => {
                 this.myProxy.api_user_var_stake_draw();
             },

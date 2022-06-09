@@ -3,9 +3,11 @@ import Utils from "@/core/global/Utils";
 import MyCanvas from "@/core/ui/MyCanvas";
 import CopyUtil from "@/core/global/CopyUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class PageExtensionProxy extends puremvc.Proxy {
     static NAME = "PageExtensionProxy";
+    LangUtil = LangUtil;
 
     public onRegister(): void {
         this.pageData.loading = true;
@@ -154,7 +156,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             await myCanvas.drawImage1(bg, 0, 0);
             await myCanvas.drawQrCode(url, 505, 180, 140, 140);
             //推荐人
-            myCanvas.drawText("推荐人:" + core.user_id.toString(), 575, 350, "#ffffff", 14);
+            myCanvas.drawText(LangUtil("推荐人:") + core.user_id.toString(), 575, 350, "#ffffff", 14);
             poster = myCanvas.getData();
         } else {
             const qr = await Utils.generateQrcode(this.link);

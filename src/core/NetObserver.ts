@@ -79,6 +79,8 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
                     //公告
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
+                    //常见问题
+                    this.sendNotification(net.HttpType.api_plat_fag_index);
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -114,9 +116,9 @@ export default class NetObserver extends AbstractMediator {
                     noticeProxy.setData(body);
                 }
                 break;
-            case net.EventType.api_plat_fag_index: {
+            case net.EventType.api_plat_fag_index:
                 this.fagProxy.setData(body);
-            }
+                break;
         }
     }
 }

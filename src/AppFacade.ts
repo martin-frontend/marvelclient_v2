@@ -7,7 +7,6 @@ import NetObserver from "./core/NetObserver";
 import GameProxy from "./proxy/GameProxy";
 import NoticeProxy from "./proxy/NoticeProxy";
 import SelfProxy from "./proxy/SelfProxy";
-import FagProxy from "./proxy/FagProxy";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -25,7 +24,6 @@ export default class AppFacade {
         this.facade.registerProxy(new SelfProxy(SelfProxy.NAME));
         this.facade.registerProxy(new GameProxy(GameProxy.NAME));
         this.facade.registerProxy(new NoticeProxy(NoticeProxy.NAME));
-        this.facade.registerProxy(new FagProxy(FagProxy.NAME));
     }
 
     private initCommand() {

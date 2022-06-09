@@ -26,9 +26,6 @@ window["vm"] = new Vue({
 });
 // .$mount("#app");
 
-const facade = puremvc.Facade.getInstance();
-const fagProxy: FagProxy = <any>facade.retrieveProxy(FagProxy.NAME);
-fagProxy.api_plat_fag_index();
 window.onload = function () {
     document.addEventListener("touchstart", function (event) {
         if (event.touches.length > 1) {

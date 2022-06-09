@@ -6,12 +6,12 @@
         <v-btn
             v-if="bShowAll && !$vuetify.breakpoint.mobile"
             class="text-12 rounded-pill"
+            style="padding:8px"
             color="rgba(243, 231, 231, 0.098)"
-            width="78"
             height="24"
             @click="onShowAll"
         >
-            查看全部
+            {{LangUtil("查看全部")}}
         </v-btn>
     </div>
     <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">

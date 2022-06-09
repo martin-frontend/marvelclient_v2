@@ -133,6 +133,9 @@
         ["api/user/{user_id}/coin_recharge/confirm",    "币商充值订单确认转账"],
         ["api/user/{user_id}/recharge/list",            "充值记录"],
         ["api/user/{user_id}/recharge/address",         "获取数字货币充值地址"],
+
+        "--介绍页",
+        ["api/plat/{plat_id}/reward_coin_info",         "奖励币介绍"],
         
         "--其它",
         ["api/plat/{plat_id}/game/config",              "配置数据 枚举"],
@@ -141,6 +144,8 @@
         ["api/user/{user_id}/messages/index",           "获取未读取的消息列表"],
         ["api/user/{user_id}/messages/show/{id}",       "获取消息详情"],
         ["api/user/{user_id}/beat",                     "用户心跳"],
-        ["api/user/{user_id}/red_dot_tips",             "获取红点提示信息"]
+        ["api/user/{user_id}/red_dot_tips",             "获取红点提示信息"],
+
+        ["api/plat/{plat_id}/recently_bet_info",        "近期投注"]
     ]
 }

@@ -55,8 +55,8 @@ export default class PageMineProxy extends puremvc.Proxy {
         { question: "什么是个人业績和朋友业績?", answer: "Some content" },
         { question: "什么是有效投注额?", answer: "Some content" },
         { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
-        { question: "洗码是否会影响J9BC产出?", answer: "Some content" }
-    ]
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" },
+    ];
 
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
@@ -89,7 +89,10 @@ export default class PageMineProxy extends puremvc.Proxy {
         // USDT充值
         this.pageData.nextUSDT = <any>(Number(vip_progress[1].next_vip_level_need_exp) - Number(vip_progress[1].user_exp)).toFixed(2);
         // 经验条
-        this.pageData.vipProgress = (Number(vip_progress[0].user_exp) / Number(vip_progress[0].next_vip_level_need_exp)) * 100;
+        this.pageData.vipProgress =
+            ((vip_progress[0].user_exp - vip_progress[0].cur_vip_level_need_exp) /
+                (vip_progress[0].next_vip_level_need_exp - vip_progress[0].cur_vip_level_need_exp)) *
+            100;
         // 目前vip等级
         this.pageData.vipLevel = vip_info.vip_level;
         this.pageData.vipConfig = vip_config_info?.vip_config;
@@ -104,7 +107,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigMain.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
         // 奖励币
         this.pageData.backwaterConfigReward.now =
             this.pageData.vipLevel == 0
@@ -114,7 +117,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigReward.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
 
         // this.pageData.nextExp = -1123;
         // this.pageData.nextUSDT = -1123;

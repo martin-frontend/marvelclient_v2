@@ -211,6 +211,8 @@ declare module net {
         api_user_var_recharge_list: string;
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: string;
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
         /**--其它--常见问题*/
@@ -225,6 +227,8 @@ declare module net {
         api_user_var_beat: string;
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: string;
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: string;
     };
     /**事件*/
     var EventType: {
@@ -436,6 +440,8 @@ declare module net {
         api_user_var_recharge_list: string;
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: string;
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
         /**--其它--常见问题*/
@@ -450,6 +456,8 @@ declare module net {
         api_user_var_beat: string;
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: string;
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -612,6 +620,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_notice_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 近期投注
+ */
+declare module net {
+    class cmd_api_plat_var_recently_bet_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 奖励币介绍
+ */
+declare module net {
+    class cmd_api_plat_var_reward_coin_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

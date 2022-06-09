@@ -37,10 +37,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() {}
+    enter() { }
 
     /**离开页面时调用 */
-    leave() {}
+    leave() { }
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -48,6 +48,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
+        this.pageData.search = "";
     }
 
     setData(data: any) {

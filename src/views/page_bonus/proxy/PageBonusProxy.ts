@@ -24,24 +24,38 @@ export default class PageBonusProxy extends puremvc.Proxy {
     };
 
     plat_stake_info: any = {
-        auto_withdraw_stake_time: "",   // 自动解质押时刻
-        bonus_pool_amount: "",          // 当前奖池金额
-        bonus_time: "",                 // 下次分红倒计时间
-        coin_name_unique: "",           // 质押币种
-        total_bonus_amount: "",         // 总计已派发
-        total_stake_amount: "",         // 总质押数量
+        auto_withdraw_stake_time: "", // 自动解质押时刻
+        bonus_pool_amount: "", // 当前奖池金额
+        bonus_time: "", // 下次分红倒计时间
+        coin_name_unique: "", // 质押币种
+        total_bonus_amount: "", // 总计已派发
+        total_stake_amount: "", // 总质押数量
+        manual_withdraw_stake_fee: "", //手动解除质押手续费
+        auto_withdraw_stake_fee: "", // 自动解除质押手续费
+        bonus_coin_name_unique: "", // 奖励币种
     };
     user_stake_info: any = {
-        amount: "",                    // 质押币余额
-        stake_amount: "",              // 个人质押
-        stake_ratio: "",               // 占比
-        stake_bonus_awaiting_num: "",  // 可领取分红
-        stake_bonus_received_num: ""   // 个人累计分红
-    }
+        amount: "", // 质押币余额
+        stake_amount: "", // 个人质押
+        stake_ratio: "", // 占比
+        stake_bonus_awaiting_num: "", // 可领取分红
+        stake_bonus_received_num: "", // 个人累计分红
+    };
     bonus_rank: any = [];
     bonus_recently: any = [];
-    plat_bonus: any = [];
-    user_bonus: any = [];
+    plat_bonus: any = {
+        list: [],
+    };
+    user_bonus: any = {
+        list: [],
+    };
+
+    questionData = [
+        { question: "什么是个人业績和朋友业績?", answer: "Some content" },
+        { question: "什么是有效投注额?", answer: "Some content" },
+        { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" },
+    ];
 
     setPlatData(data: any) {
         Object.assign(this.plat_stake_info, data);
@@ -57,11 +71,13 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     setBonusRecently(data: any) {
         this.bonus_recently = data;
+        this.referenceBonusAmount = Math.max(...this.bonus_recently.map((o: { total_bonus_amount: any }) => o.total_bonus_amount));
+
         for (let i = 0; i < this.bonus_recently.length; i++) {
             if (Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount >= 1) {
                 this.bonus_recently[i].bar = 1;
             } else {
-                this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount
+                this.bonus_recently[i].bar = Number(this.bonus_recently[i].total_bonus_amount) / this.referenceBonusAmount;
             }
         }
     }

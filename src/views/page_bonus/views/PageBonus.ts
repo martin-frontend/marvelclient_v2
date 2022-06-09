@@ -7,6 +7,9 @@ import dialog_pledge from "@/views/dialog_pledge";
 import dialog_manually_unstaking from "@/views/dialog_manually_unstaking";
 import dialog_pledge_records from "@/views/dialog_pledge_records";
 import dialog_wallet from "@/views/dialog_wallet";
+import dialog_message_box from "@/views/dialog_message_box";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class PageBonus extends AbstractView {
@@ -15,6 +18,18 @@ export default class PageBonus extends AbstractView {
     plat_stake_info = this.myProxy.plat_stake_info;
     user_stake_info = this.myProxy.user_stake_info;
     listQuery = this.pageData.listQuery;
+    questionData = this.myProxy.questionData;
+    GamePlatConfig = GamePlatConfig;
+    LangUtil = LangUtil;
+
+    commonIcon = Assets.commonIcon;
+
+    private hr: any = "00";
+    private min: any = "00";
+    private sec: any = "00";
+
+    private timer: any = null;
+
     get bonus_rank() {
         return this.myProxy.bonus_rank;
     }
@@ -35,8 +50,15 @@ export default class PageBonus extends AbstractView {
         super(PageBonusMediator);
     }
 
+    mounted() {
+        this.timer = setInterval(() => {
+            this.countdown();
+        }, 1000);
+    }
+
     destroyed() {
         super.destroyed();
+        clearInterval(this.timer);
     }
 
     handlerPledge() {
@@ -57,6 +79,7 @@ export default class PageBonus extends AbstractView {
             top: document.querySelector(target).offsetTop,
             behavior: "smooth",
         });
+        this.onTabClick(1);
     }
 
     handleRecords() {
@@ -80,7 +103,7 @@ export default class PageBonus extends AbstractView {
     }
 
     getHeight(index: any) {
-        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280
+        const height = this.$vuetify.breakpoint.xsOnly ? 140 : 280;
         return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
     }
 
@@ -88,9 +111,32 @@ export default class PageBonus extends AbstractView {
         0: require(`@/assets/bonus/gold@2x.png`),
         1: require(`@/assets/bonus/silver@2x.png`),
         2: require(`@/assets/bonus/bronze@2x.png`),
-    }
+    };
 
     stakeDraw() {
-        this.myProxy.api_user_var_stake_draw();
+        dialog_message_box.confirm({
+            message: LangUtil("确定要领取?"),
+            okFun: () => {
+                this.myProxy.api_user_var_stake_draw();
+            },
+        });
+    }
+
+    countdown() {
+        const end = Date.parse(this.myProxy.plat_stake_info.bonus_time);
+        //@ts-ignore
+        const now = Date.parse(new Date());
+        const msec = end - now;
+        if (msec == 0) {
+            this.myProxy.api_plat_var_stake_info();
+            this.myProxy.api_user_var_stake_info();
+        }
+
+        this.hr = Math.floor(msec / 1000 / 60 / 60);
+        this.min = Math.floor((msec / 1000 / 60) % 60);
+        this.sec = (msec / 1000) % 60;
+        this.hr = this.hr > 9 ? this.hr : "0" + this.hr;
+        this.min = this.min > 9 ? this.min : "0" + this.min;
+        this.sec = this.sec > 9 ? this.sec : "0" + this.sec;
     }
 }

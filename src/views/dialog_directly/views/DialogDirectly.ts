@@ -7,12 +7,14 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogDirectly extends AbstractView {
     dialogPromotionFloorProxy: DialogPromotionFloorProxy = this.getProxy(DialogPromotionFloorProxy);
     myProxy: DialogDirectlyProxy = this.getProxy(DialogDirectlyProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 
@@ -27,12 +29,13 @@ export default class DialogDirectly extends AbstractView {
             if (!Array.isArray(data.promotion_floor)) val = data.promotion_floor["0"];
             this.myProxy.setFloorRangeData(agent_user_id, val);
         } else {
-            dialog_message.warn("无法设置保底");
+            dialog_message.warn(LangUtil("无法设置保底"));
         }
     }
 
     onClose() {
         this.pageData.bShow = false;
+        this.myProxy.resetQuery();
     }
 
     @Watch("pageData.bShow")

@@ -33,6 +33,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
     /**获取用户返水记录 */
     api_user_var_backwater() {
         this.pageData.loading = true;
+        this.pageData.listQuery.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_backwater, this.pageData.listQuery);
     }
     /**获取用户返水详情 */

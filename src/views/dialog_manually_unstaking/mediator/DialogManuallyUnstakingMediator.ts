@@ -1,15 +1,27 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogManuallyUnstakingProxy from "../proxy/DialogManuallyUnstakingProxy";
 import getProxy from "@/core/global/getProxy";
+import dialog_message_box from "@/views/dialog_message_box";
+import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
 
-export default class DialogManuallyUnstakingMediator extends AbstractMediator{
+export default class DialogManuallyUnstakingMediator extends AbstractMediator {
+    private bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
+    private myProxy: DialogManuallyUnstakingProxy = this.getProxy(DialogManuallyUnstakingProxy);
+
     public listNotificationInterests(): string[] {
-        return [];
+        return [net.EventType.api_user_var_withdraw_stake];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogManuallyUnstakingProxy = getProxy(DialogManuallyUnstakingProxy);
-        // switch(notification.getName()){}
+        const myProxy: DialogManuallyUnstakingProxy = getProxy(DialogManuallyUnstakingProxy);
+        switch (notification.getName()) {
+            case net.EventType.api_user_var_withdraw_stake:
+                dialog_message_box.alert("解除质押数量" + body);
+                this.bonusProxy.api_user_var_stake_info();
+                this.bonusProxy.api_plat_var_stake_info();
+                this.myProxy.pageData.bShow = false;
+                break;
+        }
     }
 }

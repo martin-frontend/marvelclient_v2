@@ -39,12 +39,12 @@
     }
     @include md {
         width: 142px !important;
-        height: 40px !important;    
+        height: 40px !important;
     }
 }
 
 .tabs-deactive {
-    color: #4C5D7F !important;
+    color: #4c5d7f !important;
     cursor: pointer;
     width: 90px !important;
     height: 30px !important;
@@ -55,7 +55,7 @@
     }
     @include md {
         width: 142px !important;
-        height: 40px !important;    
+        height: 40px !important;
     }
 }
 
@@ -78,7 +78,7 @@
 }
 
 .search-nodata-text {
-    color: #4C5D7F;
+    color: #4c5d7f;
 }
 
 ::v-deep .v-input__prepend-inner {
@@ -100,6 +100,13 @@
 ::v-deep .v-text-field__slot {
     input::placeholder {
         font-size: 14px;
-        color: #4C5D7F;
+        color: #4c5d7f;
     }
+}
+.theme--dark.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
+    color: transparent !important;
+}
+.theme--dark.v-tabs .v-tab--active:hover::before,
+.theme--dark.v-tabs .v-tab--active::before {
+    opacity: 0;
 }

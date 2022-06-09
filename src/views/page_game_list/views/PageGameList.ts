@@ -1,5 +1,6 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import LangUtil from "@/core/global/LangUtil";
 import LoginEnter from "@/core/global/LoginEnter";
 import { Watch, Component } from "vue-property-decorator";
 import PageGameListMediator from "../mediator/PageGameListMediator";
@@ -7,6 +8,7 @@ import PageGameListProxy from "../proxy/PageGameListProxy";
 
 @Component
 export default class PageGameList extends AbstractView {
+    LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
     pageData = this.myProxy.pageData;

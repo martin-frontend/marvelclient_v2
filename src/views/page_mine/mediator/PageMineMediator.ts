@@ -2,6 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageMineProxy from "../proxy/PageMineProxy";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_message from "@/views/dialog_message";
 
 export default class PageMineMediator extends AbstractMediator {
     private pageMineProxy: PageMineProxy = this.getProxy(PageMineProxy);
@@ -32,6 +33,7 @@ export default class PageMineMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_backwater_trial_receive:
                 console.warn(body);
+                dialog_message.success("领取成功");
                 myProxy.api_user_var_backwater_trial();
                 break;
         }

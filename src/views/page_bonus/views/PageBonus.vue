@@ -5,10 +5,12 @@
 import Component from "vue-class-component";
 import PageBonus from "./PageBonus";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Question from "@/views/widget/question/Question.vue";
 
 @Component({
     components: {
         Overlay,
+        Question,
     },
 })
 export default class extends PageBonus {

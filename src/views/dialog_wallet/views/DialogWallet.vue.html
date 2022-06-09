@@ -1,13 +1,13 @@
 <v-dialog width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg" >
         <v-card-title class="gradient-bg">
-            <div class="text-18">平台钱包</div>
+            <div class="text-18">{{LangUtil("平台钱包")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="d-flex align-center">
+        <v-card-text class="d-flex align-center padding_bottom">
             <v-btn
                 height="40"
                 class="rounded-pill font-weight-bold mr-2"
@@ -16,7 +16,7 @@
                 :color="pageData.tabIndex == 0 ? 'colorBtnBg' : 'colorText1'"
                 @click="onTabClick(0)"
             >
-                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>我的资产
+                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>{{LangUtil("我的资产")}}
             </v-btn>
             <v-btn
                 height="40"
@@ -26,7 +26,7 @@
                 :color="pageData.tabIndex == 1 ? 'colorBtnBg' : 'colorText1'"
                 @click="onTabClick(1)"
             >
-                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>厂商资产
+                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>{{LangUtil("厂商资产")}}
             </v-btn>
             <v-btn
                 height="40"
@@ -36,7 +36,7 @@
                 :color="pageData.tabIndex == 2 ? 'colorBtnBg' : 'colorText1'"
                 @click="onTabClick(2)"
             >
-                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-database</v-icon>账户明细
+                <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-database</v-icon>{{LangUtil("账户明细")}}
             </v-btn>
         </v-card-text>
         <v-divider class="mx-5" />

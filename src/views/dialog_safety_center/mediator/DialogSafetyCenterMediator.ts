@@ -3,6 +3,7 @@ import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogSafetyCenterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -22,14 +23,14 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
             case net.EventType.api_user_bind_mobile_var:
             case net.EventType.api_user_bind_email_var:
                 {
-                    dialog_message.success("绑定成功");
+                    dialog_message.success(LangUtil("绑定成功"));
                     myProxy.pageData.bShow = false;
                     const selfProxy: SelfProxy = getProxy(SelfProxy);
                     selfProxy.api_user_show_var([2]);
                 }
                 break;
             case net.EventType.api_user_change_password_var:
-                dialog_message.success("修改成功");
+                dialog_message.success(LangUtil("修改成功"));
                 myProxy.pageData.bShow = false;
                 break;
             case net.EventType.api_public_area_code:

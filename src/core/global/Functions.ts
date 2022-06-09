@@ -56,17 +56,19 @@ export function handleScroll() {
     // console.log("watch scroll");
     // 手机横向会少1PX
     const offsetY = 1;
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    //变量windowHeight是可视区的高度
-    const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    const scrollTop = GlobalVar.HTMLElement.dom.scrollTop;
+    //变量clientHeightt是可视区的高度
+    const clientHeight = GlobalVar.HTMLElement.dom.clientHeight;
     //变量scrollHeight是滚动条的总高度
-    const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    const scrollHeight = GlobalVar.HTMLElement.dom.scrollHeight;
     //滚动条到底部的条件
 
-    // if (scrollTop + windowHeight + offsetY >= scrollHeight) {
-    //     // console.log("handleScroll end 你想做的事情");
-    //     GlobalVar.scrollStatus.isEnd = !GlobalVar.scrollStatus.isEnd;
-    // }
+    if (scrollTop + clientHeight + offsetY >= scrollHeight) {
+        console.warn("handleScroll end 你想做的事情");
+        GlobalVar.scrollStatus.flag = !GlobalVar.scrollStatus.flag;
+        console.log(GlobalVar.scrollStatus.flag);
+    }
+
 }
 
 /**

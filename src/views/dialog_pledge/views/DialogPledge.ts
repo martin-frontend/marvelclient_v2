@@ -3,12 +3,14 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPledgeMediator from "../mediator/DialogPledgeMediator";
 import DialogPledgeProxy from "../proxy/DialogPledgeProxy";
 import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogPledge extends AbstractView {
     myProxy: DialogPledgeProxy = this.getProxy(DialogPledgeProxy);
     pageBonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     constructor() {
         super(DialogPledgeMediator);
@@ -20,7 +22,7 @@ export default class DialogPledge extends AbstractView {
 
     /**全部 */
     handleMaxVal() {
-        console.log("dialog_pledge handleMaxVal");
+        this.myProxy.pageData.amount = this.pageBonusProxy.user_stake_info.amount;
     }
 
     /**确定质押 */

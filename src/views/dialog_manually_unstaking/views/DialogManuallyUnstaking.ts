@@ -3,12 +3,14 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogManuallyUnstakingMediator from "../mediator/DialogManuallyUnstakingMediator";
 import DialogManuallyUnstakingProxy from "../proxy/DialogManuallyUnstakingProxy";
 import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogManuallyUnstaking extends AbstractView {
     myProxy: DialogManuallyUnstakingProxy = this.getProxy(DialogManuallyUnstakingProxy);
     pageBonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     constructor() {
         super(DialogManuallyUnstakingMediator);
@@ -20,7 +22,7 @@ export default class DialogManuallyUnstaking extends AbstractView {
 
     /**全部 */
     handleMaxVal() {
-        console.log("dialog_pledge handleMaxVal");
+        this.myProxy.pageData.amount = this.pageBonusProxy.user_stake_info.stake_amount;
     }
 
     /**确定质押 */

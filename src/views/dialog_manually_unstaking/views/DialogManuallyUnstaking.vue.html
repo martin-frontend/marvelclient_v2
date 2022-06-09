@@ -1,26 +1,26 @@
 <v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18 font-weight-regular">手动解除质押</div>
+            <div class="text-18 font-weight-regular">{{LangUtil("手动解除质押")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text v-if="pageData.bShow" class="px-10 mt-8 text-16 font-weight-regular">
-            <CustomInputButton class="input-btn-text" height="55" placeholder="输入数量" button-name="全部" v-model="pageData.maxVal" @click="handleMaxVal" />
+            <CustomInputButton class="input-btn-text" height="55" :placeholder="LangUtil('输入数量')" :button-name="LangUtil('全部')" v-model="pageData.amount" @click="handleMaxVal" />
             <div class="mt-3 ml-4">
-                <span class="white--text mr-2">已质押</span>
+                <span class="white--text mr-2">{{LangUtil("已质押")}}</span>
                 <span class="colorDialogInfo--text">
                     {{ pageBonusProxy.user_stake_info.stake_amount }}
                 </span>
             </div>
             <div class="mt-3 ml-4">
-                <span class="white--text mr-2">手动解除质押手续费</span>
-                <span class="colorDialogInfo--text">5%</span>
+                <span class="white--text mr-2">{{LangUtil("手动解除质押手续费")}}</span>
+                <span class="colorDialogInfo--text">{{ pageBonusProxy.plat_stake_info.manual_withdraw_stake_fee }}</span>
             </div>
             <v-btn class="confirm-btn rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block @click="handleConfirm">
-                确定质押
+                {{LangUtil("确定手动解除质押")}}
             </v-btn>
         </v-card-text>
     </v-card>

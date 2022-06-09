@@ -37,7 +37,6 @@
     .level_icon {
         position: absolute;
         left: 15px;
-        top: -5px;
         max-width: 30px;
         @media (max-width: 750px){
             left: 15px;
@@ -83,10 +82,5 @@
 .rounded-button{
     @media (max-width: 600px){
         border-radius: 5px !important;
-    }
-}
-.mobile-superior{
-    @media (max-width: 1263px){
-        margin-right: 35px;;
     }
 }

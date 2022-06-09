@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
 import DialogDirectlyProxy from "@/views/dialog_directly/proxy/DialogDirectlyProxy";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPromotionFloorMediator from "../mediator/DialogPromotionFloorMediator";
@@ -11,6 +12,7 @@ export default class DialogPromotionFloor extends AbstractView {
     private dialogDirectlyProxy: DialogDirectlyProxy = this.getProxy(DialogDirectlyProxy);
     myProxy: DialogPromotionFloorProxy = this.getProxy(DialogPromotionFloorProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     constructor() {
         super(DialogPromotionFloorMediator);

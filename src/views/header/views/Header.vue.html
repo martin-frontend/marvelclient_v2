@@ -23,7 +23,7 @@
                 class="text-14 black--text"
                 @click="handlerLogin"
             >
-                <span class="px-2">登录</span>
+                <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
             <v-btn
                 v-if="core.user_id == 0"
@@ -32,7 +32,7 @@
                 class="text-14 mx-4 black--text"
                 @click="handlerRegister"
             >
-                <span class="px-2">注册</span>
+                <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <Wallet v-if="core.user_id" />
             <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
@@ -42,7 +42,7 @@
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
             <button v-if="!$vuetify.breakpoint.mobile" class="nav-button" :class="routerPath == '/' ? 'active' : ''" @click="goHome">
                 <v-icon>mdi-home</v-icon>
-                <div>首页</div>
+                <div>{{LangUtil("首页")}}</div>
             </button>
 
             <button
@@ -84,10 +84,10 @@
         </div>
         <div class="d-flex align-center mt-1 mb-2">
             <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
-                <span class="px-2">登录</span>
+                <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
             <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
-                <span class="px-2">注册</span>
+                <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <User v-if="core.user_id" />
             <Wallet v-if="core.user_id" />

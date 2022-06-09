@@ -7,15 +7,18 @@ import dialog_bet_record from "@/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_game_list from "@/views/page_game_list";
 import dialog_message_box from "@/views/dialog_message_box";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class PageMine extends AbstractView {
     myProxy: PageMineProxy = this.getProxy(PageMineProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     private xsOnly = false;
-    private qData = this.myProxy.questionData
+    private qData = this.myProxy.questionData;
+    private progressLinear = 16;
 
     constructor() {
         super(PageMineMediator);
@@ -23,11 +26,17 @@ export default class PageMine extends AbstractView {
 
     mounted() {
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
     }
 
     @Watch("$vuetify.breakpoint.xsOnly")
     onWAtchXsOnly() {
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
+    }
+
+    checkProgress() {
+        this.progressLinear = this.xsOnly ? 10 : 16;
     }
 
     vipMap: any = {
@@ -101,7 +110,7 @@ export default class PageMine extends AbstractView {
     /**领取奖励 */
     handlerAward() {
         dialog_message_box.confirm({
-            message: "确定要领取?",
+            message: LangUtil("确定要领取?"),
             okFun: () => {
                 this.myProxy.api_user_var_backwater_trial_receive();
             },

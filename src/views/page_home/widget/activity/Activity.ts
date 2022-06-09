@@ -9,9 +9,11 @@ import LoginEnter from "@/core/global/LoginEnter";
 import page_bonus from "@/views/page_bonus";
 import PageHomeProxy from "../../proxy/PageHomeProxy";
 import { moneyFormat } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class Activity extends AbstractView {
+    LangUtil = LangUtil;
     //proxy
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     myProxy: PageHomeProxy = this.getProxy(PageHomeProxy);

@@ -4,14 +4,14 @@
             <div>
                 <div class="text-16 line-height-50">CF.com</div>
                 <div class="d-flex">
-                    <div class="mr-4" @click="goContact"><a class="info--text">关于我们</a></div>
-                    <div class="mr-4"><a class="info--text">联系我们</a></div>
-                    <div class="mr-4" @click="goService"><a class="info--text">服务条款</a></div>
+                    <div class="mr-4" @click="goContact"><a class="info--text">{{LangUtil("关于我们")}}</a></div>
+                    <div class="mr-4"><a class="info--text">{{LangUtil("联系我们")}}</a></div>
+                    <div class="mr-4" @click="goService"><a class="info--text">{{LangUtil("服务条款")}}</a></div>
                 </div>
             </div>
             <v-spacer />
             <div>
-                <div class="text-16 line-height-50">游戏提供商</div>
+                <div class="text-16 line-height-50">{{LangUtil("游戏提供商")}}</div>
                 <div class="d-flex mr-2" style="display: grid; gap: 25px; width: 100%">
                     <img src="https://hx1web.hstax1tic.com/static/media/IconEVO.ecebabd5.svg" />
                     <img src="https://hx1web.hstax1tic.com/static/media/IconBG.964e9812.svg" />
@@ -141,12 +141,7 @@
                 </v-menu>
             </div>
         </div> -->
-        <p class="website-info">
-            本网站由Westward Way Tech N.V.公司运营，注册编号：158203，注册地址：Abraham de Veerstraat
-            大街9号，库拉索。本网站经营牌照号：365/JAZ，由库拉索政府授权及监管的Gaming Service
-            Provider颁发。本网站运营相关的管理、支付、及支持服务等事宜，由塞浦路斯Apollo MKT Limited公司提供；公司注册编号：HE
-            418946，注册地址：Strovolou 47, Kyros Tower, 5th floor, Strovolos 2018, 尼克西亚，塞浦路斯。 博彩易上瘾，请注意节制。
-        </p>
-        <p class="all-rights-reserved">COPYRIGHT © 2021 J9集团版权所有。</p>
+        <p class="website-info">{{LangUtil("网页底部信息说明")}}</p>
+        <p class="all-rights-reserved">{{LangUtil("网页底部公司说明")}}</p>
     </v-container>
 </v-footer>

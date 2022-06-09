@@ -13,21 +13,23 @@ import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";
 import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class UserPanel extends AbstractView {
+    LangUtil = LangUtil;
     menuList = [
-        { id: 0, name: "安全中心", icon: "mdi-shield-check" },
-        { id: 1, name: "平台钱包", icon: "mdi-clock" },
-        { id: 2, name: "投注记录", icon: "mdi-bell" },
-        { id: 3, name: "消息中心", icon: "mdi-bell" },
+        { id: 0, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
+        { id: 1, name: LangUtil("平台钱包"), icon: "mdi-clock" },
+        { id: 2, name: LangUtil("投注记录"), icon: "mdi-bell" },
+        { id: 3, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
     menuList1 = [
-        { id: 10, name: "推广赚钱", icon: "mdi-shield-check" },
-        { id: 11, name: "终身分红", icon: "mdi-clock" },
-        { id: 12, name: "游戏挖矿", icon: "mdi-bell" },
-        { id: 13, name: "精彩活动", icon: "mdi-bell" },
-        { id: 14, name: "CF币介绍", icon: "mdi-bell" },
+        { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-shield-check" },
+        { id: 11, name: LangUtil("终身分红"), icon: "mdi-clock" },
+        { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-bell" },
+        { id: 13, name: LangUtil("精彩活动"), icon: "mdi-bell" },
+        { id: 14, name: LangUtil("CF币介绍"), icon: "mdi-bell" },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

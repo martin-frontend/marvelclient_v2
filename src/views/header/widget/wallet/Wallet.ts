@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
@@ -9,6 +10,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class Wallet extends AbstractView {
+    LangUtil = LangUtil;
     selfProxy: SelfProxy = getProxy(SelfProxy);
     gameProxy: GameProxy = getProxy(GameProxy);
 

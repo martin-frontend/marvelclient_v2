@@ -1,11 +1,13 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
 
 @Component
 export default class TabExchange extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;

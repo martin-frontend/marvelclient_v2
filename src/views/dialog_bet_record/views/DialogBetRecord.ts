@@ -3,12 +3,14 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import Constant from "@/core/global/Constant";
 import { handleScroll } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
@@ -17,19 +19,19 @@ export default class DialogBetRecord extends AbstractView {
 
     get typeOptions() {
         return {
-            0: "全部类型",
-            2: "棋牌",
-            4: "彩票",
-            8: "捕鱼",
-            16: "电子",
-            32: "真人",
-            64: "体育",
-            128: "电竞",
+            0: LangUtil("全部类型"),
+            2: LangUtil("棋牌"),
+            4: LangUtil("彩票"),
+            8: LangUtil("捕鱼"),
+            16: LangUtil("电子"),
+            32: LangUtil("真人"),
+            64: LangUtil("体育"),
+            128: LangUtil("电竞"),
         };
     }
 
     get vendorOptions() {
-        const options: any = { 0: "全部厂商" };
+        const options: any = { 0: LangUtil("全部厂商") };
         for (const item of this.pageData.vendors) {
             options[item.vendor_id] = item.vendor_name;
         }
@@ -38,10 +40,10 @@ export default class DialogBetRecord extends AbstractView {
 
     get statusOptions() {
         return {
-            0: "全部状态",
-            1: "未结算",
-            11: "已结算",
-            2: "已取消",
+            0: LangUtil("全部状态"),
+            1: LangUtil("未结算"),
+            11: LangUtil("已结算"),
+            2: LangUtil("已取消"),
         };
     }
 

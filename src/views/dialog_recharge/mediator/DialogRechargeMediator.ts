@@ -2,6 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogRechargeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -33,7 +34,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.exchangeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_exchange_create_order:
-                dialog_message.success("创建成功");
+                dialog_message.success(LangUtil("创建成功"));
                 break;
         }
     }

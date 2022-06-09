@@ -2,12 +2,14 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
 
 @Component
 export default class DialogEmail extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogEmailProxy = this.getProxy(DialogEmailProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;

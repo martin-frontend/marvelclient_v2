@@ -3,6 +3,7 @@ import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -20,7 +21,7 @@ export default class DialogRegisterMediator extends AbstractMediator {
         myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_register:
-                dialog_message.success("注册成功");
+                dialog_message.success(LangUtil("注册成功"));
                 myProxy.pageData.bShow = false;
                 this.loginSuccess(body);
                 break;

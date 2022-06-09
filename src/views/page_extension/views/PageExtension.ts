@@ -8,6 +8,7 @@ import dialog_performance from "@/views/dialog_performance";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
+import LangUtil from "@/core/global/LangUtil";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -16,6 +17,7 @@ export default class PageExtension extends AbstractView {
     statistics_data = this.myProxy.statistics_data;
     tableData = this.myProxy.tableData;
     questionData = this.myProxy.questionData;
+    LangUtil = LangUtil;
 
     private QRCode = QRCode;
 
@@ -55,7 +57,7 @@ export default class PageExtension extends AbstractView {
     /**领取奖励 */
     handlerAward() {
         dialog_message_box.confirm({
-            message: "确定要领取?",
+            message: LangUtil("确定要领取?"),
             okFun: () => {
                 this.myProxy.api_user_var_commission_receive();
             },
@@ -72,11 +74,11 @@ export default class PageExtension extends AbstractView {
 
     private copy() {
         this.myProxy.copy();
-        dialog_message.warn("复制成功");
+        dialog_message.warn(LangUtil("复制成功"));
     }
 
     private copyMyId() {
         this.myProxy.copyId();
-        dialog_message.warn("复制成功");
+        dialog_message.warn(LangUtil("复制成功"));
     }
 }

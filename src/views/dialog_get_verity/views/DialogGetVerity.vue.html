@@ -1,19 +1,20 @@
 <v-dialog v-model="pageData.bShow" max-width="300" persistent>
     <v-card class="rounded-xl" color="colorPanelBg" width="300" height="230">
         <v-card-title class="d-flex align-center gradient-bg">
-            <div class=" ml-2 font-weight-medium white--text text-18">{{pageData.category == 0 ? "获取邮箱验证码": "获取短信验证码"}}</div>
+            <div class="ml-2 font-weight-medium white--text text-18">
+                {{pageData.category == 0 ? LangUtil("获取邮箱验证码"): LangUtil("获取短信验证码")}}
+            </div>
             <v-spacer />
             <v-btn icon large @click="onClose"><v-icon>mdi-close</v-icon></v-btn>
         </v-card-title>
         <v-card-text class="d-flex px-8 mt-2">
-            <CustomInput type="tel" icon="mdi-shield-check" v-model="pageData.form.auth_code" placeholder="请输入验证码" >
+            <CustomInput type="tel" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
                 <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img>
             </CustomInput>
-            
         </v-card-text>
-        <v-card-actions class=" mx-5 mt-2">
-            <v-btn class="rounded-lg" color="#6fa9fa" height="36" small block @click="onSend">确定</v-btn>
+        <v-card-actions class="mx-5 mt-2">
+            <v-btn class="rounded-lg" color="#6fa9fa" height="36" small block @click="onSend">{{LangUtil("确定")}}</v-btn>
         </v-card-actions>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

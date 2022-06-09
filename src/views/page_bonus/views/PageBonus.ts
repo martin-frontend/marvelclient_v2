@@ -9,6 +9,7 @@ import dialog_pledge_records from "@/views/dialog_pledge_records";
 import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class PageBonus extends AbstractView {
@@ -19,6 +20,7 @@ export default class PageBonus extends AbstractView {
     listQuery = this.pageData.listQuery;
     questionData = this.myProxy.questionData;
     GamePlatConfig = GamePlatConfig;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 
@@ -113,7 +115,7 @@ export default class PageBonus extends AbstractView {
 
     stakeDraw() {
         dialog_message_box.confirm({
-            message: "确定要领取?",
+            message: LangUtil("确定要领取?"),
             okFun: () => {
                 this.myProxy.api_user_var_stake_draw();
             },

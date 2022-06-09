@@ -1,7 +1,7 @@
 <v-dialog width="490" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18">消息详情</div>
+            <div class="text-18">{{LangUtil("消息详情")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <v-spacer/>
-                <v-btn v-if="pageData.data.attachment_status == 11" color="colorBtnBg" small @click="onReceive">领取奖励</v-btn>
+                <v-btn v-if="pageData.data.attachment_status == 11" color="colorBtnBg" small @click="onReceive">{{LangUtil("领取奖励")}}</v-btn>
             </div>
             <v-divider class="mt-2"/>
         </v-card-text>

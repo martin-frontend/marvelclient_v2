@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
 import dialog_get_verity from "@/views/dialog_get_verity";
 import dialog_message from "@/views/dialog_message";
 import dialog_register from "@/views/dialog_register";
@@ -10,6 +11,7 @@ import DialogLoginProxy from "../proxy/DialogLoginProxy";
 
 @Component
 export default class DialogLogin extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
     pageData = this.myProxy.pageData;
     forgetData = this.myProxy.forgetData;

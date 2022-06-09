@@ -16,6 +16,7 @@ export default class PageMine extends AbstractView {
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     private xsOnly = false;
     private qData = this.myProxy.questionData;
+    private progressLinear = 16;
 
     constructor() {
         super(PageMineMediator);
@@ -23,11 +24,17 @@ export default class PageMine extends AbstractView {
 
     mounted() {
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
     }
 
     @Watch("$vuetify.breakpoint.xsOnly")
     onWAtchXsOnly() {
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
+    }
+
+    checkProgress() {
+        this.progressLinear = this.xsOnly ? 10 : 16;
     }
 
     vipMap: any = {

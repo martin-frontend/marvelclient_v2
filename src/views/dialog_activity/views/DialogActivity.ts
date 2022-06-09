@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
 import dialog_activity_detail from "@/views/dialog_activity_detail";
 import { Watch, Component } from "vue-property-decorator";
 import DialogActivityMediator from "../mediator/DialogActivityMediator";
@@ -8,6 +9,7 @@ import DialogActivityProxy from "../proxy/DialogActivityProxy";
 
 @Component
 export default class DialogActivity extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogActivityProxy = this.getProxy(DialogActivityProxy);
     pageData = this.myProxy.pageData;
 

@@ -1,3 +1,5 @@
+import LangUtil from "@/core/global/LangUtil";
+
 export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRecordRechargeProxy";
 
@@ -18,10 +20,10 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     };
 
     statusOptions = {
-        0: "待支付",
-        1: "成功",
-        2: "失败",
-        3: "玩家已支付等待确认",
+        0: LangUtil("待支付"),
+        1: LangUtil("成功"),
+        2: LangUtil("失败"),
+        3: LangUtil("玩家已支付等待确认"),
     };
 
     resetQuery() {

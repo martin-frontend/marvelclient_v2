@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import dialog_email_detail from "@/views/dialog_email_detail";
 import dialog_award from "@/views/dialog_award";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogEmailMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -37,7 +38,7 @@ export default class DialogEmailMediator extends AbstractMediator {
                     dialog_award.show(body.attachment_content);
                     myProxy.api_user_var_mail();
                 }else{
-                    dialog_message.info("没有可领取的奖励");
+                    dialog_message.info(LangUtil("没有可领取的奖励"));
                 }
                 break;
             case net.EventType.api_user_var_destroy_batch:

@@ -3,7 +3,7 @@
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card width="100%" color="transparent">
             <v-card-title class="gradient-bg">
-                <div class="text-18">精彩活动</div>
+                <div class="text-18">{{LangUtil("精彩活动")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
                     <v-icon large>mdi-close</v-icon>
@@ -20,9 +20,9 @@
                     >
                         <div class="text-16">
                             <div class="colorText2--text mb-2">{{item.activity_name}}</div>
-                            <div class="colorText1--text">{{item.start_time}} 至 {{item.end_time}}</div>
+                            <div class="colorText1--text">{{item.start_time}} ~ {{item.end_time}}</div>
                         </div>
-                        <v-btn color="colorBtnBg" small @click="onDetail(item)">查看详情</v-btn>
+                        <v-btn color="colorBtnBg" small @click="onDetail(item)">{{LangUtil("查看详情")}}</v-btn>
                     </v-sheet>
                 </v-sheet>
             </v-card-text>

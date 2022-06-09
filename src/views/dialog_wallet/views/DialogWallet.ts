@@ -1,12 +1,14 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogWalletMediator from "../mediator/DialogWalletMediator";
 import DialogWalletProxy from "../proxy/DialogWalletProxy";
 
 @Component
 export default class DialogWallet extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogWalletProxy = this.getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
 

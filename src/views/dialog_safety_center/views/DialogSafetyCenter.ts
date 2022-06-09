@@ -3,6 +3,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { checkMail, checkPhone, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_get_verity from "@/views/dialog_get_verity";
 import { Watch, Component } from "vue-property-decorator";
@@ -11,6 +12,7 @@ import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
 
 @Component
 export default class DialogSafetyCenter extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
     pageData = this.myProxy.pageData;
     formBindPhone = this.pageData.formBindPhone;

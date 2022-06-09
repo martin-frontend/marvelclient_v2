@@ -1,6 +1,7 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import getProxy from "@/core/global/getProxy";
 import router from "@/router";
+import Cookies from "js-cookie";
 import GameProxy from "./GameProxy";
 
 export default class SelfProxy extends AbstractProxy {
@@ -31,6 +32,7 @@ export default class SelfProxy extends AbstractProxy {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("user_id");
         window.localStorage.removeItem("username");
+        window.localStorage.removeItem("coin_name_unique");
         this.userInfo.user_id = 0;
         router.push("/");
     }

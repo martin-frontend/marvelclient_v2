@@ -15,6 +15,7 @@ import router from "@/router";
 import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
+import LangUtil from "./global/LangUtil";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -79,7 +80,7 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert("您的帐号已经退出");
+                dialog_message_box.alert(LangUtil("您的帐号已经退出"));
                 break;
             //用户信息
             case net.EventType.api_user_show_var:
@@ -94,7 +95,7 @@ export default class NetObserver extends AbstractMediator {
                     //如果是移动设备，则在新页面中打开游戏
                     if (vuetify.framework.breakpoint.mobile) {
                         dialog_message_box.confirm({
-                            message: "进入游戏",
+                            message: LangUtil("进入游戏"),
                             okFun: () => {
                                 OpenLink(body.url);
                             },

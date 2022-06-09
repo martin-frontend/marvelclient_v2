@@ -1,8 +1,14 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
+import Cookies from "js-cookie";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
+
+    public onRegister(): void {
+        this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
+    }
+
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     /**当前正在玩的游戏 */
@@ -35,6 +41,11 @@ export default class GameProxy extends AbstractProxy {
         } else {
             this.lobbyIndex = body.class;
         }
+    }
+
+    setCoin(coin_name_unique:string){
+        window.localStorage.setItem("coin_name_unique", coin_name_unique);
+        this.coin_name_unique = coin_name_unique;
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/

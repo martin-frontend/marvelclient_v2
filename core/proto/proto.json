@@ -144,6 +144,8 @@
         ["api/user/{user_id}/messages/index",           "获取未读取的消息列表"],
         ["api/user/{user_id}/messages/show/{id}",       "获取消息详情"],
         ["api/user/{user_id}/beat",                     "用户心跳"],
-        ["api/user/{user_id}/red_dot_tips",             "获取红点提示信息"]
+        ["api/user/{user_id}/red_dot_tips",             "获取红点提示信息"],
+
+        ["api/plat/{plat_id}/recently_bet_info",        "近期投注"]
     ]
 }

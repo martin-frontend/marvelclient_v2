@@ -281,6 +281,8 @@ var net;
         api_user_var_beat: "api/user/{user_id}/beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
     };
     /**事件*/
     net.EventType = {
@@ -508,6 +510,8 @@ var net;
         api_user_var_beat: "api_user_var_beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
     };
     /**注册协议*/
     function initCommand() {
@@ -638,6 +642,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_messages_show_var, net.cmd_api_user_var_messages_show_var);
         facade.registerCommand(net.HttpType.api_user_var_beat, net.cmd_api_user_var_beat);
         facade.registerCommand(net.HttpType.api_user_var_red_dot_tips, net.cmd_api_user_var_red_dot_tips);
+        facade.registerCommand(net.HttpType.api_plat_var_recently_bet_info, net.cmd_api_plat_var_recently_bet_info);
     }
     net.initCommand = initCommand;
     ;
@@ -1037,6 +1042,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
+})(net || (net = {}));
+/**
+ * 近期投注
+ */
+var net;
+/**
+ * 近期投注
+ */
+(function (net) {
+    class cmd_api_plat_var_recently_bet_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_recently_bet_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_recently_bet_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_recently_bet_info = cmd_api_plat_var_recently_bet_info;
 })(net || (net = {}));
 /**
  * 奖励币介绍

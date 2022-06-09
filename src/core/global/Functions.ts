@@ -51,24 +51,24 @@ export function objectRemoveNull(obj: any, except: any[] = [undefined, null, ""]
     return result;
 }
 
-export function handleScroll(target: any) {
+export function handleScroll() {
     //变量scrollTop是滚动条滚动时，距离顶部的距离
     // console.log("watch scroll");
     // 手机横向会少1PX
-    return new Promise((resolve, reject) => {
-        const offsetY = 1;
-        const scrollTop = target.scrollTop;
-        //变量clientHeightt是可视区的高度
-        const clientHeight = target.clientHeight;
-        //变量scrollHeight是滚动条的总高度
-        const scrollHeight = target.scrollHeight;
-        //滚动条到底部的条件
+    const offsetY = 1;
+    const scrollTop = GlobalVar.HTMLElement.dom.scrollTop;
+    //变量clientHeightt是可视区的高度
+    const clientHeight = GlobalVar.HTMLElement.dom.clientHeight;
+    //变量scrollHeight是滚动条的总高度
+    const scrollHeight = GlobalVar.HTMLElement.dom.scrollHeight;
+    //滚动条到底部的条件
 
-        if (scrollTop + clientHeight + offsetY >= scrollHeight) {
-            console.warn("handleScroll end 你想做的事情");
-            resolve("GO~");
-        }
-    });
+    if (scrollTop + clientHeight + offsetY >= scrollHeight) {
+        console.warn("handleScroll end 你想做的事情");
+        GlobalVar.scrollStatus.flag = !GlobalVar.scrollStatus.flag;
+        console.log(GlobalVar.scrollStatus.flag);
+    }
+
 }
 
 /**

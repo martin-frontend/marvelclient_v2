@@ -8,6 +8,7 @@ import DialogPledgeRecordsMediator from "../mediator/DialogPledgeRecordsMediator
 import DialogPledgeRecordsProxy from "../proxy/DialogPledgeRecordsProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PageBonusProxy from "@/views/page_bonus/proxy/PageBonusProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogPledgeRecords extends AbstractView {
@@ -17,6 +18,7 @@ export default class DialogPledgeRecords extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 

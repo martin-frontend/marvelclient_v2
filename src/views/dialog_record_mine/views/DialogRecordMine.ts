@@ -6,12 +6,14 @@ import DialogRecordMineMediator from "../mediator/DialogRecordMineMediator";
 import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
 import dialog_record_mine_detail from "@/views/dialog_record_mine_detail";
 import Assets from "@/assets/Assets";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogRecordMine extends AbstractView {
     myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 

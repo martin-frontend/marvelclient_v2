@@ -6,6 +6,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
+import FagProxy from "@/proxy/FagProxy";
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -25,12 +26,16 @@ window["vm"] = new Vue({
 });
 // .$mount("#app");
 
+const facade = puremvc.Facade.getInstance();
+const fagProxy: FagProxy = <any>facade.retrieveProxy(FagProxy.NAME);
+fagProxy.api_plat_fag_index();
 window.onload = function () {
     document.addEventListener("touchstart", function (event) {
         if (event.touches.length > 1) {
             event.preventDefault();
         }
     });
+
     document.addEventListener("gesturestart", function (event) {
         event.preventDefault();
     });

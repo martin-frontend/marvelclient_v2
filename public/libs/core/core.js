@@ -281,6 +281,8 @@ var net;
         api_user_var_beat: "api/user/{user_id}/beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
+        /**--其它--常见问题数据*/
+        api_plat_fag_index: "api/plat/fag/index",
     };
     /**事件*/
     net.EventType = {
@@ -508,6 +510,8 @@ var net;
         api_user_var_beat: "api_user_var_beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
+        /**--其它--常见问题数据*/
+        api_plat_fag_index: "api_plat_fag_index",
     };
     /**注册协议*/
     function initCommand() {
@@ -638,6 +642,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_messages_show_var, net.cmd_api_user_var_messages_show_var);
         facade.registerCommand(net.HttpType.api_user_var_beat, net.cmd_api_user_var_beat);
         facade.registerCommand(net.HttpType.api_user_var_red_dot_tips, net.cmd_api_user_var_red_dot_tips);
+        facade.registerCommand(net.HttpType.api_plat_fag_index, net.cmd_api_plat_fag_index);
     }
     net.initCommand = initCommand;
     ;

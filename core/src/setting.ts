@@ -4,7 +4,6 @@
 module net {
     /**协议*/
     export var HttpType = {
-
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
@@ -238,6 +237,8 @@ module net {
         api_user_var_beat: "api/user/{user_id}/beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
+        /**--其它--常见问题数据*/
+        api_plat_fag_index: "api/plat/fag/index",
     };
     /**事件*/
     export var EventType = {
@@ -249,7 +250,7 @@ module net {
         REQUEST_ERROR: "REQUEST_ERROR",
         /**IO错误 */
         IO_ERROR: "IO_ERROR",
-        
+
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
@@ -483,6 +484,8 @@ module net {
         api_user_var_beat: "api_user_var_beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
+        /**--其它--常见问题数据*/
+        api_plat_fag_index: "api_plat_fag_index",
     };
     /**注册协议*/
     export function initCommand() {
@@ -495,11 +498,26 @@ module net {
         facade.registerCommand(HttpType.api_plat_var_game_all_config, cmd_api_plat_var_game_all_config);
         facade.registerCommand(HttpType.api_plat_var_game_all_index, cmd_api_plat_var_game_all_index);
         //--钱包
-        facade.registerCommand(HttpType.api_plat_var_block_transfer_in_order_account, cmd_api_plat_var_block_transfer_in_order_account);
-        facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_store, cmd_api_user_var_block_transfer_in_order_store);
-        facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_index, cmd_api_user_var_block_transfer_in_order_index);
-        facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_store, cmd_api_user_var_block_transfer_out_order_store);
-        facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_index, cmd_api_user_var_block_transfer_out_order_index);
+        facade.registerCommand(
+            HttpType.api_plat_var_block_transfer_in_order_account,
+            cmd_api_plat_var_block_transfer_in_order_account
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_block_transfer_in_order_store,
+            cmd_api_user_var_block_transfer_in_order_store
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_block_transfer_in_order_index,
+            cmd_api_user_var_block_transfer_in_order_index
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_block_transfer_out_order_store,
+            cmd_api_user_var_block_transfer_out_order_store
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_block_transfer_out_order_index,
+            cmd_api_user_var_block_transfer_out_order_index
+        );
         //--账号
         facade.registerCommand(HttpType.api_user_register, cmd_api_user_register);
         facade.registerCommand(HttpType.api_user_login, cmd_api_user_login);
@@ -553,15 +571,27 @@ module net {
         facade.registerCommand(HttpType.api_plat_var_notice_index, cmd_api_plat_var_notice_index);
         facade.registerCommand(HttpType.api_plat_var_notice_show_var, cmd_api_plat_var_notice_show_var);
         //--代理推广
-        facade.registerCommand(HttpType.api_user_var_commission_commissionnum, cmd_api_user_var_commission_commissionnum);
+        facade.registerCommand(
+            HttpType.api_user_var_commission_commissionnum,
+            cmd_api_user_var_commission_commissionnum
+        );
         facade.registerCommand(HttpType.api_user_var_agent_direct_list, cmd_api_user_var_agent_direct_list);
-        facade.registerCommand(HttpType.api_user_var_commission_commissiondetail, cmd_api_user_var_commission_commissiondetail);
-        facade.registerCommand(HttpType.api_user_var_commission_commissionlist, cmd_api_user_var_commission_commissionlist);
+        facade.registerCommand(
+            HttpType.api_user_var_commission_commissiondetail,
+            cmd_api_user_var_commission_commissiondetail
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_commission_commissionlist,
+            cmd_api_user_var_commission_commissionlist
+        );
         facade.registerCommand(HttpType.api_user_var_commission_directswater, cmd_api_user_var_commission_directswater);
         facade.registerCommand(HttpType.api_user_var_commission_receive, cmd_api_user_var_commission_receive);
         facade.registerCommand(HttpType.api_user_var_agent_var_floor_range, cmd_api_user_var_agent_var_floor_range);
         facade.registerCommand(HttpType.api_user_var_agent_var_update, cmd_api_user_var_agent_var_update);
-        facade.registerCommand(HttpType.api_user_var_agent_var_statistic_promotion, cmd_api_user_var_agent_var_statistic_promotion);
+        facade.registerCommand(
+            HttpType.api_user_var_agent_var_statistic_promotion,
+            cmd_api_user_var_agent_var_statistic_promotion
+        );
         facade.registerCommand(HttpType.api_user_var_agent_var_direct_list, cmd_api_user_var_agent_var_direct_list);
         facade.registerCommand(HttpType.api_user_var_short_chain, cmd_api_user_var_short_chain);
         facade.registerCommand(HttpType.api_user_var_agent_bonus, cmd_api_user_var_agent_bonus);
@@ -590,8 +620,14 @@ module net {
         //--收款管理
         facade.registerCommand(HttpType.api_user_var_payment_method_index, cmd_api_user_var_payment_method_index);
         facade.registerCommand(HttpType.api_user_var_payment_method_store, cmd_api_user_var_payment_method_store);
-        facade.registerCommand(HttpType.api_user_var_payment_method_bank_list, cmd_api_user_var_payment_method_bank_list);
-        facade.registerCommand(HttpType.api_user_var_payment_method_update_var, cmd_api_user_var_payment_method_update_var);
+        facade.registerCommand(
+            HttpType.api_user_var_payment_method_bank_list,
+            cmd_api_user_var_payment_method_bank_list
+        );
+        facade.registerCommand(
+            HttpType.api_user_var_payment_method_update_var,
+            cmd_api_user_var_payment_method_update_var
+        );
         //--短信
         facade.registerCommand(HttpType.api_sms_send, cmd_api_sms_send);
         facade.registerCommand(HttpType.api_sms_reset_password_sent, cmd_api_sms_reset_password_sent);
@@ -613,6 +649,6 @@ module net {
         facade.registerCommand(HttpType.api_user_var_messages_show_var, cmd_api_user_var_messages_show_var);
         facade.registerCommand(HttpType.api_user_var_beat, cmd_api_user_var_beat);
         facade.registerCommand(HttpType.api_user_var_red_dot_tips, cmd_api_user_var_red_dot_tips);
-    };
-
+        facade.registerCommand(HttpType.api_plat_fag_index, cmd_api_plat_fag_index);
+    }
 }

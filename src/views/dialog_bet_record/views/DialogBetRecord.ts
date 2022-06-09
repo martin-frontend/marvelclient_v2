@@ -2,6 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import Constant from "@/core/global/Constant";
+import { handleScroll } from "@/core/global/Functions";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
@@ -69,6 +70,35 @@ export default class DialogBetRecord extends AbstractView {
             this.typeSelect = this.vendorSelect = this.statusSelect = this.timeSelect = 0;
             this.myProxy.resetQuery();
             this.myProxy.api_user_show_var_bet();
+        }
+    }
+
+    @Watch("pageData.list.length")
+    onWatchList() {
+        if (this.pageData.list.length > 0) {
+            this.handlerScroll();
+        }
+    }
+
+    handlerScroll() {
+        try {
+            if (this.$vuetify.breakpoint.xsOnly) {
+                this.$nextTick(() => {
+                    const target = document.querySelector(".table_data") as HTMLElement;
+                    target.removeEventListener("scroll", () => {});
+                    target.addEventListener("scroll", () => {
+                        handleScroll(target)
+                            .then(() => {
+                                // todo call api
+                            })
+                            .catch((err: any) => {
+                                console.error(err);
+                            });
+                    });
+                });
+            }
+        } catch (error) {
+            console.log("-", error);
         }
     }
 

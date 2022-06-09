@@ -7,12 +7,14 @@ import DialogPerformanceMediator from "../mediator/DialogPerformanceMediator";
 import DialogPerformanceProxy from "../proxy/DialogPerformanceProxy";
 import dialog_performance_detail from "@/views/dialog_performance_detail";
 import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogPerformance extends AbstractView {
     dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
     myProxy: DialogPerformanceProxy = this.getProxy(DialogPerformanceProxy);
     pageData = this.myProxy.pageData;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 

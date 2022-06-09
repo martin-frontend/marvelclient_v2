@@ -2,33 +2,45 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import Constant from "@/core/global/Constant";
+import { handleScroll } from "@/core/global/Functions";
+import GlobalVar from "@/core/global/GlobalVar";
+import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 
+    destroyed() {
+        super.destroyed();
+        GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+        GlobalVar.HTMLElement.dom = null;
+    }
+
     get typeOptions() {
         return {
-            0: "全部类型",
-            2: "棋牌",
-            4: "彩票",
-            8: "捕鱼",
-            16: "电子",
-            32: "真人",
-            64: "体育",
-            128: "电竞",
+            0: LangUtil("全部类型"),
+            2: LangUtil("棋牌"),
+            4: LangUtil("彩票"),
+            8: LangUtil("捕鱼"),
+            16: LangUtil("电子"),
+            32: LangUtil("真人"),
+            64: LangUtil("体育"),
+            128: LangUtil("电竞"),
         };
     }
 
     get vendorOptions() {
-        const options: any = { 0: "全部厂商" };
+        const options: any = { 0: LangUtil("全部厂商") };
         for (const item of this.pageData.vendors) {
             options[item.vendor_id] = item.vendor_name;
         }
@@ -37,10 +49,10 @@ export default class DialogBetRecord extends AbstractView {
 
     get statusOptions() {
         return {
-            0: "全部状态",
-            1: "未结算",
-            11: "已结算",
-            2: "已取消",
+            0: LangUtil("全部状态"),
+            1: LangUtil("未结算"),
+            11: LangUtil("已结算"),
+            2: LangUtil("已取消"),
         };
     }
 
@@ -69,6 +81,36 @@ export default class DialogBetRecord extends AbstractView {
             this.typeSelect = this.vendorSelect = this.statusSelect = this.timeSelect = 0;
             this.myProxy.resetQuery();
             this.myProxy.api_user_show_var_bet();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
+        }
+    }
+
+    @Watch("pageData.list.length")
+    onWatchList() {
+        if (this.pageData.list.length > 0) {
+            console.log('handlerScroll');
+            this.handlerScroll();
+        }
+    }
+
+    // 监听手机版scroll 到底加载
+    @Watch("scrollStatus.flag")
+    onScroll() {
+        console.warn("end");
+        if (this.myProxy.pageData.pageInfo.pageCurrent < this.myProxy.pageData.pageInfo.pageCount) {
+            this.myProxy.pageData.listQuery.page_count++;
+            this.myProxy.api_user_show_var_bet();
+        }
+    }
+
+    handlerScroll() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            this.$nextTick(() => {
+                GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
+                // target.replaceWith(target.cloneNode(true));
+                GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+                GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
+            });
         }
     }
 
@@ -118,14 +160,14 @@ export default class DialogBetRecord extends AbstractView {
         this.myProxy.api_user_show_var_bet();
     }
 
-    onPageChange(val:any){
+    onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_show_var_bet();
     }
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 255;
+            return this.$vuetify.breakpoint.height - 240;
         } else {
             return 368;
         }

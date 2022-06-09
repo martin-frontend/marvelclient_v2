@@ -1,7 +1,7 @@
 <div class="input-text d-flex align-center pr-2" :style="{height: getHeight + 'px'}">
     <input class="ml-3" :placeholder="placeholder" @input="onInput" v-model="inputValue" :maxlength="maxlength" />
-    <v-btn class="mr-2 rounded-lg" color="colorExtensionBtn" width="61" height="30" @click="onClick">
-        {{ getButtonName }}
+    <v-btn class="mr-2 rounded-lg" :color="buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'" width="61" height="30" @click="onClick">
+        <span :class="buttonActive ? 'white--text': ''">{{ getButtonName }}</span>
     </v-btn>
     <div v-if="$slots.default" class="mr-2">
         <slot></slot>

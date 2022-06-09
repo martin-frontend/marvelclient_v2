@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import dialog_record_exchange from "@/views/dialog_record_exchange";
 import dialog_record_recharge from "@/views/dialog_record_recharge";
 import { Component, Watch } from "vue-property-decorator";
@@ -9,6 +10,7 @@ import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 
 @Component
 export default class DialogRecharge extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     pageData = this.myProxy.pageData;
 
@@ -38,4 +40,3 @@ export default class DialogRecharge extends AbstractView {
         BlurUtil(this.pageData.bShow);
     }
 }
-

@@ -1,21 +1,34 @@
-.listitem {
-    div {
-        width: 105px;
-        margin-top: 2px;
-        margin-bottom: 2px;
+@mixin com {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #9db1d8;
+    @media only screen and (max-width: 750px) {
+        width: 100%;
+    }
+    div:first-child {
+        color: #4c5d7f;
+        margin-bottom: 5px;
+    }
+    div > a {
         color: #9db1d8;
-        div:first-child {
-            color: #4c5d7f;
-            margin-bottom: 5px;
-        }
-        div > a {
-            color: #9db1d8;
-        }
+    }
+}
+.listitem {
+    position: relative;;
+    .item-auto {
+        width: auto;
+        @include com;
+    }
+    .item-110 {
+        width: 110px;
+        @include com;
     }
     .listitem-90 {
         width: 90px;
-        div {
-            width: 90px;
+        @media only screen and (max-width: 750px) {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
         }
     }
 }

@@ -51,6 +51,13 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     userInfo: core.UserInfoVO = {};
 
+    questionData = [
+        { question: "什么是个人业績和朋友业績?", answer: "Some content" },
+        { question: "什么是有效投注额?", answer: "Some content" },
+        { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
+        { question: "洗码是否会影响J9BC产出?", answer: "Some content" },
+    ];
+
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
         const plat_coins = <any>GamePlatConfig.config.plat_coins;
@@ -71,22 +78,27 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        // console.warn("user info >>>", this.userInfo);
-        // if (this.userInfo.vip_info) {
+        console.warn("user info >>>", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
-
-        this.pageData.nextExp = <any>(vip_progress[0].next_vip_level_need_exp - vip_progress[0].user_exp).toFixed(2);
-        this.pageData.nextUSDT = vip_progress[1].next_vip_level_need_exp - vip_progress[1].user_exp;
+        // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
-
-        this.pageData.vipProgress = (Number(vip_progress[0].user_exp) / Number(vip_progress[0].next_vip_level_need_exp)) * 100;
+        // 流水等级
+        this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
+        // USDT充值
+        this.pageData.nextUSDT = <any>(Number(vip_progress[1].next_vip_level_need_exp) - Number(vip_progress[1].user_exp)).toFixed(2);
+        // 经验条
+        this.pageData.vipProgress =
+            ((vip_progress[0].user_exp - vip_progress[0].cur_vip_level_need_exp) /
+                (vip_progress[0].next_vip_level_need_exp - vip_progress[0].cur_vip_level_need_exp)) *
+            100;
+        // 目前vip等级
         this.pageData.vipLevel = vip_info.vip_level;
         this.pageData.vipConfig = vip_config_info?.vip_config;
         this.pageData.vipNextLevel =
             this.pageData.vipLevel + 1 > vip_info.max_vip_level - 1 ? vip_info.max_vip_level - 1 : this.pageData.vipLevel + 1;
-        //主币
+        // 主币
         this.pageData.backwaterConfigMain.now =
             this.pageData.vipLevel == 0
                 ? "0%"
@@ -95,8 +107,8 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigMain.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
-        //奖励币
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+        // 奖励币
         this.pageData.backwaterConfigReward.now =
             this.pageData.vipLevel == 0
                 ? "0%"
@@ -105,10 +117,10 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.backwaterConfigReward.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
-        // }
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
 
-        // console.log("vip config >>", this.pageData.vipConfig);
+        // this.pageData.nextExp = -1123;
+        // this.pageData.nextUSDT = -1123;
     }
 
     setTrial(body: any) {

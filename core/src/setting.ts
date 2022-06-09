@@ -162,6 +162,27 @@ module net {
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api/user/{user_id}/bonus_all/history",
 
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api/user/{user_id}/deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api/user/{user_id}/withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api/plat/{plat_id}/stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api/user/{user_id}/stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api/plat/{plat_id}/bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api/plat/{plat_id}/bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api/user/{user_id}/stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api/user/{user_id}/stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api/plat/{plat_id}/bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api/user/{user_id}/bonus_log",
+
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api/user/{plat_id}/exchange/method/list",
         /**--兑换--用户兑换订单*/
@@ -200,6 +221,9 @@ module net {
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api/user/{user_id}/recharge/address",
 
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api/plat/{plat_id}/reward_coin_info",
+
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
         /**--其它--常见问题*/
@@ -214,6 +238,8 @@ module net {
         api_user_var_beat: "api/user/{user_id}/beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
     };
     /**事件*/
     export var EventType = {
@@ -383,6 +409,27 @@ module net {
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api_user_var_bonus_all_history",
 
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api_user_var_deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api_user_var_withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api_plat_var_stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api_user_var_stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api_plat_var_bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api_plat_var_bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api_user_var_stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api_user_var_stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api_plat_var_bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api_user_var_bonus_log",
+
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api_user_var_exchange_method_list",
         /**--兑换--用户兑换订单*/
@@ -421,6 +468,9 @@ module net {
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api_user_var_recharge_address",
 
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api_plat_var_reward_coin_info",
+
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
         /**--其它--常见问题*/
@@ -435,6 +485,8 @@ module net {
         api_user_var_beat: "api_user_var_beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
     };
     /**注册协议*/
     export function initCommand() {
@@ -523,6 +575,17 @@ module net {
         facade.registerCommand(HttpType.api_user_var_bonus_all_receive_var, cmd_api_user_var_bonus_all_receive_var);
         facade.registerCommand(HttpType.api_user_var_bonus_all_direct, cmd_api_user_var_bonus_all_direct);
         facade.registerCommand(HttpType.api_user_var_bonus_all_history, cmd_api_user_var_bonus_all_history);
+        //--分红
+        facade.registerCommand(HttpType.api_user_var_deposit_stake, cmd_api_user_var_deposit_stake);
+        facade.registerCommand(HttpType.api_user_var_withdraw_stake, cmd_api_user_var_withdraw_stake);
+        facade.registerCommand(HttpType.api_plat_var_stake_info, cmd_api_plat_var_stake_info);
+        facade.registerCommand(HttpType.api_user_var_stake_info, cmd_api_user_var_stake_info);
+        facade.registerCommand(HttpType.api_plat_var_bonus_recently, cmd_api_plat_var_bonus_recently);
+        facade.registerCommand(HttpType.api_plat_var_bonus_rank, cmd_api_plat_var_bonus_rank);
+        facade.registerCommand(HttpType.api_user_var_stake_draw, cmd_api_user_var_stake_draw);
+        facade.registerCommand(HttpType.api_user_var_stake_log, cmd_api_user_var_stake_log);
+        facade.registerCommand(HttpType.api_plat_var_bonus_log, cmd_api_plat_var_bonus_log);
+        facade.registerCommand(HttpType.api_user_var_bonus_log, cmd_api_user_var_bonus_log);
         //--兑换
         facade.registerCommand(HttpType.api_user_var_exchange_method_list, cmd_api_user_var_exchange_method_list);
         facade.registerCommand(HttpType.api_user_var_exchange_order_list, cmd_api_user_var_exchange_order_list);
@@ -544,6 +607,8 @@ module net {
         facade.registerCommand(HttpType.api_user_var_coin_recharge_confirm, cmd_api_user_var_coin_recharge_confirm);
         facade.registerCommand(HttpType.api_user_var_recharge_list, cmd_api_user_var_recharge_list);
         facade.registerCommand(HttpType.api_user_var_recharge_address, cmd_api_user_var_recharge_address);
+        //--介绍页
+        facade.registerCommand(HttpType.api_plat_var_reward_coin_info, cmd_api_plat_var_reward_coin_info);
         //--其它
         facade.registerCommand(HttpType.api_plat_var_game_config, cmd_api_plat_var_game_config);
         facade.registerCommand(HttpType.api_plat_fag_index, cmd_api_plat_fag_index);
@@ -552,6 +617,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_messages_show_var, cmd_api_user_var_messages_show_var);
         facade.registerCommand(HttpType.api_user_var_beat, cmd_api_user_var_beat);
         facade.registerCommand(HttpType.api_user_var_red_dot_tips, cmd_api_user_var_red_dot_tips);
+        facade.registerCommand(HttpType.api_plat_var_recently_bet_info, cmd_api_plat_var_recently_bet_info);
     };
 
 }

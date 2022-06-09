@@ -56,17 +56,19 @@ export function handleScroll() {
     // console.log("watch scroll");
     // 手机横向会少1PX
     const offsetY = 1;
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    //变量windowHeight是可视区的高度
-    const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    const scrollTop = GlobalVar.HTMLElement.dom.scrollTop;
+    //变量clientHeightt是可视区的高度
+    const clientHeight = GlobalVar.HTMLElement.dom.clientHeight;
     //变量scrollHeight是滚动条的总高度
-    const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    const scrollHeight = GlobalVar.HTMLElement.dom.scrollHeight;
     //滚动条到底部的条件
 
-    // if (scrollTop + windowHeight + offsetY >= scrollHeight) {
-    //     // console.log("handleScroll end 你想做的事情");
-    //     GlobalVar.scrollStatus.isEnd = !GlobalVar.scrollStatus.isEnd;
-    // }
+    if (scrollTop + clientHeight + offsetY >= scrollHeight) {
+        console.warn("handleScroll end 你想做的事情");
+        GlobalVar.scrollStatus.flag = !GlobalVar.scrollStatus.flag;
+        console.log(GlobalVar.scrollStatus.flag);
+    }
+
 }
 
 /**
@@ -148,18 +150,18 @@ export function getThisMonthRange() {
 // /**
 //  * 转换成货币格式
 //  */
-// export function moneyFormat(s: any, symbol: string = "¥"): string {
-//     if (!s) s = 0;
-//     s = s.toString();
-//     if (/[^0-9\.]/.test(s)) return "invalid value";
-//     s = s.replace(/^(\d*)$/, "$1.");
-//     s = (s + "00").replace(/(\d*\.\d\d)\d*/, "$1");
-//     s = s.replace(".", ",");
-//     var re = /(\d)(\d{3},)/;
-//     while (re.test(s)) s = s.replace(re, "$1,$2");
-//     s = s.replace(/,(\d\d)$/, ".$1");
-//     return symbol + s.replace(/^\./, "0.");
-// }
+export function moneyFormat(s: any, symbol: string = "$"): string {
+    if (!s) s = 0;
+    s = s.toString();
+    if (/[^0-9\.]/.test(s)) return "invalid value";
+    s = s.replace(/^(\d*)$/, "$1.");
+    s = (s + "00").replace(/(\d*\.\d\d)\d*/, "$1");
+    s = s.replace(".", ",");
+    const re = /(\d)(\d{3},)/;
+    while (re.test(s)) s = s.replace(re, "$1,$2");
+    s = s.replace(/,(\d\d)$/, ".$1");
+    return symbol + s.replace(/^\./, "0.");
+}
 
 // /**
 //  * 获取UUID

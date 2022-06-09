@@ -2,6 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogWalletProxy from "../proxy/DialogWalletProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogWalletMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -17,7 +18,7 @@ export default class DialogWalletMediator extends AbstractMediator {
                 myProxy.pageData.gold_info = body.gold_info;
                 break;
             case net.EventType.api_user_var_vendor_withdraw:
-                dialog_message.success("提取成功");
+                dialog_message.success(LangUtil("提取成功"));
                 myProxy.api_user_show_var();
                 break;
             case net.EventType.api_user_show_var_gold:

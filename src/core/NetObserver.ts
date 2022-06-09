@@ -7,6 +7,7 @@ import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
 import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
+import FagProxy from "@/proxy/FagProxy";
 
 import Vue from "vue";
 import App from "@/App.vue";
@@ -15,12 +16,14 @@ import router from "@/router";
 import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
+import LangUtil from "./global/LangUtil";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
 
     private selfProxy: SelfProxy = getProxy(SelfProxy);
     private gameProxy: GameProxy = getProxy(GameProxy);
+    private fagProxy: FagProxy = getProxy(FagProxy);
 
     public listNotificationInterests(): string[] {
         return [
@@ -32,6 +35,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_lobby_index,
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_plat_var_notice_index,
+            net.EventType.api_plat_fag_index,
         ];
     }
 
@@ -75,11 +79,13 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
                     //公告
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
+                    //常见问题
+                    this.sendNotification(net.HttpType.api_plat_fag_index);
                 }
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert("您的帐号已经退出");
+                dialog_message_box.alert(LangUtil("您的帐号已经退出"));
                 break;
             //用户信息
             case net.EventType.api_user_show_var:
@@ -90,10 +96,11 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
+                    this.gameProxy.loading = false;
                     //如果是移动设备，则在新页面中打开游戏
                     if (vuetify.framework.breakpoint.mobile) {
                         dialog_message_box.confirm({
-                            message: "进入游戏",
+                            message: LangUtil("进入游戏"),
                             okFun: () => {
                                 OpenLink(body.url);
                             },
@@ -108,6 +115,9 @@ export default class NetObserver extends AbstractMediator {
                     const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
                     noticeProxy.setData(body);
                 }
+                break;
+            case net.EventType.api_plat_fag_index:
+                this.fagProxy.setData(body);
                 break;
         }
     }

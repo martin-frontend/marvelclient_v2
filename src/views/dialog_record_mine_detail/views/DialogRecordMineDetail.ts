@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogRecordMineDetailMediator from "../mediator/DialogRecordMineDetailMediator";
 import DialogRecordMineDetailProxy from "../proxy/DialogRecordMineDetailProxy";
@@ -10,6 +11,7 @@ export default class DialogRecordMineDetail extends AbstractView {
     myProxy: DialogRecordMineDetailProxy = this.getProxy(DialogRecordMineDetailProxy);
     pageData = this.myProxy.pageData;
     typeOptions = this.myProxy.typeOptions;
+    LangUtil = LangUtil;
 
     constructor() {
         super(DialogRecordMineDetailMediator);

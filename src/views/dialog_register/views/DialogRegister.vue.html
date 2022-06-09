@@ -3,7 +3,7 @@
         <AdvertiseInLogin :height="794" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
             <v-card-title class="d-flex justify-end pb-0 gradient-bg">
-                <div class="ml-2 font-weight-medium white--text text-18">注册</div>
+                <div class="ml-2 font-weight-medium white--text text-18">{{LangUtil("注册")}}</div>
                 <v-spacer />
                 <v-btn class="mr-2" icon @click="onClose">
                     <v-icon large>mdi-close</v-icon>
@@ -12,7 +12,6 @@
             <v-card-text class="px-10 mt-5">
                 <div class="d-flex mb-10">
                     <v-btn
-                        width="110"
                         height="40"
                         class="rounded-pill font-weight-bold mr-2"
                         elevation="0"
@@ -20,10 +19,9 @@
                         :color="form.register_type == 1 ? 'colorBtnBg' : 'colorText1'"
                         @click="onTabClick(1)"
                     >
-                        账号注册
+                        {{LangUtil("账号注册")}}
                     </v-btn>
                     <v-btn
-                        width="110"
                         height="40"
                         class="rounded-pill font-weight-bold"
                         elevation="0"
@@ -31,10 +29,9 @@
                         :color="form.register_type == 4 ? 'colorBtnBg' : 'colorText1'"
                         @click="onTabClick(4)"
                     >
-                        手机注册
+                        {{LangUtil("手机注册")}}
                     </v-btn>
                     <v-btn
-                        width="110"
                         height="40"
                         class="rounded-pill font-weight-bold"
                         elevation="0"
@@ -42,23 +39,35 @@
                         :color="form.register_type == 2 ? 'colorBtnBg' : 'colorText1'"
                         @click="onTabClick(2)"
                     >
-                        邮箱注册
+                        {{LangUtil("邮箱注册")}}
                     </v-btn>
                 </div>
 
-                <CustomInput class="mb-6" icon="mdi-account" placeholder="请输入推存人（选填）" v-model="form.invite_user_id" />
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入推荐人（选填）')"
+                    v-model="form.invite_user_id"
+                />
                 <CustomInput
                     v-if="form.register_type==1"
                     class="mb-6"
                     icon="mdi-account"
-                    placeholder="请输入注册账号（4-20位）"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
                     maxlength="20"
                     v-model="form.username"
                 />
-                <CustomInput v-if="form.register_type==2" class="mb-6" icon="mdi-account" placeholder="请输入邮箱" maxlength="30" v-model="form.username">
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode"
-                        >获取验证码</v-btn
-                    >
+                <CustomInput
+                    v-if="form.register_type==2"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    maxlength="30"
+                    v-model="form.username"
+                >
+                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
+                        {{LangUtil("获取验证码")}}
+                    </v-btn>
                 </CustomInput>
 
                 <CustomInput
@@ -66,7 +75,7 @@
                     class="mb-6"
                     icon="mdi-phone"
                     type="tel"
-                    placeholder="请输入手机号"
+                    :placeholder="LangUtil('请输入手机号')"
                     maxlength="11"
                     v-model="form.username"
                 >
@@ -112,23 +121,23 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode"
-                        >获取验证码</v-btn
-                    >
+                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
+                        {{LangUtil("获取验证码")}}
+                    </v-btn>
                 </CustomInput>
 
                 <CustomInput
                     class="mb-6"
                     v-if="form.register_type != 1"
                     icon="mdi-shield-check"
-                    placeholder="请输入验证码（6位）"
+                    :placeholder="LangUtil('请输入验证码（6位）')"
                     maxlength="6"
                     v-model="form.verify_code"
                 />
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    placeholder="请输入密码（4-20位）"
+                    :placeholder="LangUtil('请输入密码（4-20位）')"
                     maxlength="20"
                     type="password"
                     v-model="form.password"
@@ -136,7 +145,7 @@
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    placeholder="确认密码（4-20位）"
+                    :placeholder="LangUtil('确认密码（4-20位）')"
                     maxlength="20"
                     type="password"
                     v-model="form.password_confirm"
@@ -144,7 +153,7 @@
                 <CustomInput
                     v-if="form.register_type == 1"
                     icon="mdi-shield-check"
-                    placeholder="请输入验证码（4位）"
+                    :placeholder="LangUtil('请输入验证码（4位）')"
                     maxlength="4"
                     v-model="form.verify_code"
                 >
@@ -152,11 +161,11 @@
                 </CustomInput>
 
                 <div class="text-13 tips-box mt-1 mb-8">
-                    注册即代表您已阅读并同意
-                    <button class="tips-box_blue" type="button" @click="goService">《服务协议》</button>
+                    {{LangUtil("注册即代表您已阅读并同意")}}
+                    <button class="tips-box_blue" type="button" @click="goService">{{LangUtil("《服务协议》")}}</button>
                 </div>
-                <v-btn class="rounded-lg" color="#6fa9fa" height="48" :disabled="!isCheck" block @click="onRegister">注册</v-btn>
-                <div class="tips-box">已有账户?<button class="tips-box_org" @click="goLogin">去登录</button></div>
+                <v-btn class="rounded-lg" color="#6fa9fa" height="48" :disabled="!isCheck" block @click="onRegister">{{LangUtil("注册")}}</v-btn>
+                <div class="tips-box">{{LangUtil("已有账户?")}}<button class="tips-box_org" @click="goLogin">{{LangUtil("去登录")}}</button></div>
 
                 <!-- <div class="loginByGoogle mt-5 mb-5">
                     <div class="d-flex align-center">

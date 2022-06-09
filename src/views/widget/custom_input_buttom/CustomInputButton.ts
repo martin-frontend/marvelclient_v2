@@ -10,11 +10,17 @@ export default class CustomInputButton extends AbstractView {
     @Prop() buttonName!: string;
 
     inputValue = this.getValue;
+    buttonActive = false;
 
-    @Prop() value!: any;
+    @Prop({ default: "" }) value!: any;
     @Watch("value")
     onValueChange() {
         this.inputValue = this.value;
+        if (this.inputValue != "") {
+            this.buttonActive = true;
+        } else {
+            this.buttonActive = false;
+        }
     }
 
     onInput(value: any) {

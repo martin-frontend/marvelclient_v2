@@ -4,37 +4,15 @@ export default class DialogPledgeProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        //如果是列表，使用以下数据，否则删除
-        listQuery: {
-            page_count: 1,
-            page_size: 20,
-        },
-        list: [],
-        pageInfo: {
-            pageCurrent: 1,
-            pageCount: 1,
-            pageSize: 20,
-            pageTotal: 9,
-        },
-        maxVal: "0",
+        amount: 0,
     };
-    //如果是列表，使用以下数据，否则删除
-    resetQuery() {
-        Object.assign(this.pageData.listQuery, {
-            page_count: 1,
-            page_size: 20,
-        });
+
+    resetForm() {
+        this.pageData.amount = 0;
     }
 
-    setData(data: any) {
-        this.pageData.loading = false;
-        //如果是列表，使用以下数据，否则删除
-        Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
-    }
-
-    /**API确定质押 */
-    api_user_xxx() {
-        this.pageData.loading = true;
+    /**--分红--用户质押*/
+    api_user_var_deposit_stake() {
+        this.sendNotification(net.HttpType.api_user_var_deposit_stake, { amount: this.pageData.amount, user_id: core.user_id });
     }
 }

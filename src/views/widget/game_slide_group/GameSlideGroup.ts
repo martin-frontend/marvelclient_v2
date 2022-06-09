@@ -1,10 +1,12 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import LangUtil from "@/core/global/LangUtil";
 import page_game_list from "@/views/page_game_list";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class GameSlideGroup extends AbstractView {
+    LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
     @Prop() data!: any;
     @Prop() bShowAll!: boolean;

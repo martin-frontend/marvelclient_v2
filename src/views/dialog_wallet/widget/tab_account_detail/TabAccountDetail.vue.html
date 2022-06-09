@@ -8,24 +8,24 @@
         <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
             <div class="d-flex flex-wrap listitem">
                 <div>
-                    <div>明细类型</div>
-                    <div class="text-truncate">{{typeOptions[item.type]}}</div>
+                    <div>{{LangUtil("明细类型")}}</div>
+                    <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
                 </div>
                 <div>
-                    <div>币种</div>
+                    <div>{{LangUtil("币种")}}</div>
                     <div>{{item.coin_name_unique}}</div>
                 </div>
                 <div>
-                    <div>数量变化</div>
+                    <div>{{LangUtil("数量变化")}}</div>
                     <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
                 </div>
                 <div>
-                    <div>账户余额</div>
+                    <div>{{LangUtil("账户余额")}}</div>
                     <div>{{item.balance}}</div>
                 </div>
                 <div>
-                    <div>日期</div>
-                    <div class="text-truncate">{{item.created_at}}</div>
+                    <div>{{LangUtil("日期")}}</div>
+                    <div class="text-truncate">{{item.created_at.substr(5)}}</div>
                 </div>
             </div>
         </v-sheet>
@@ -33,13 +33,13 @@
     <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
         <div>
             <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-            <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+            <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
         </div>
     </v-sheet>
     <v-spacer />
     <v-pagination
         class="mt-2"
-        v-if="pageData.list.length>0"
+        v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
         v-model="pageData.pageInfo.pageCurrent"
         :length="pageData.pageInfo.pageCount"
         :total-visible="7"

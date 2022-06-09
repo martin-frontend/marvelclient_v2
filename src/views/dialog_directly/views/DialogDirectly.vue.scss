@@ -1,53 +1,29 @@
-.listitem {
-    div {
-        min-width: 100px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        color: #9db1d8;
-        div:first-child {
-            color: #4c5d7f;
-            margin-bottom: 5px;
-        }
-        div > a {
-            color: #9db1d8;
-        }
-    }
-    .listitem-180 {
-        min-width: 180px;
-        div {
-            min-width: 180px;
-        }
-    }
-    .listitem-50 {
-        min-width: 50px !important;
-        div {
-            min-width: 50px !important;
-        }
+@import "@/scss/mixin.scss";
+
+.text-rwd-18 {
+    font-size: 16px;
+    @include sm {
+        font-size: 18px;
     }
 }
-// .listitem {
-//     width: 634px;
-//     div {
-//         width: calc(100% / 6);
-//         margin-top: 2px;
-//         margin-bottom: 2px;
-//         color: #9db1d8;
-//         div:first-child {
-//             color: #4c5d7f;
-//             margin-bottom: 5px;
-//         }
-//         div {
-//             width: 100%;
-//             > a {
-//                 color: #9db1d8;
-//             }
-//         }
-//     }
-// }
-// .listbox {
-//     height: 450px;
-//     overflow-y: scroll;
-// }
+
+.text-rwd-16 {
+    font-size: 14px;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.listitem {
+    color: #9DB1D8;
+    div:first-child {
+        color: #4C5D7F;
+    }
+    div > a {
+        color: #9DB1D8;
+    }
+}
+
 .arrow{
     margin-bottom: -1px !important;
 }
@@ -62,4 +38,8 @@
     color: #98ACD3;
     font-size: 16px;
     font-weight: 400;
+}
+
+.card-height {
+    min-height: 670px;
 }

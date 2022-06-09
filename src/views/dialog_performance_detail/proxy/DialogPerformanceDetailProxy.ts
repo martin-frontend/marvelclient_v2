@@ -1,7 +1,9 @@
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
     static NAME = "DialogPerformanceDetailProxy";
+    LangUtil = LangUtil;
 
     /**参数 */
     parameter: any = {
@@ -38,25 +40,25 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     categoryIcons: any = {
         2: {
-            label: "棋牌",
+            label: LangUtil("棋牌"),
         },
         4: {
-            label: "彩票",
+            label: LangUtil("彩票"),
         },
         8: {
-            label: "捕鱼",
+            label: LangUtil("捕鱼"),
         },
         16: {
-            label: "电子",
+            label: LangUtil("电子"),
         },
         32: {
-            label: "真人",
+            label: LangUtil("真人"),
         },
         64: {
-            label: "体育",
+            label: LangUtil("体育"),
         },
         128: {
-            label: "电竞",
+            label: LangUtil("电竞"),
         },
     };
 
@@ -78,6 +80,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**写入 详情 */
     setCommissionDetail(body: any) {
+        this.pageData.loading = false;
         this.pageData.list = [];
         const data: any = JSON.parse(JSON.stringify(body));
         this.pageData.group_users = data.group_users;
@@ -101,6 +104,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**写入 直属详情 */
     setCommissionDirectswater(body: any) {
+        this.pageData.loading = false;
         if (body.list.length > 0) {
             this.pageData.directList = body.list;
         }
@@ -108,6 +112,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**--代理推广--按日期获取佣金详情*/
     api_user_var_commission_commissiondetail() {
+        this.pageData.loading = true;
         const obj: any = {
             ...this.parameter,
             user_id: core.user_id,
@@ -117,6 +122,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
 
     /**--代理推广--按日期查询直属代理流水详情*/
     api_user_var_commission_directswater() {
+        this.pageData.loading = true;
         const obj: any = {
             ...this.parameter,
             user_id: core.user_id,

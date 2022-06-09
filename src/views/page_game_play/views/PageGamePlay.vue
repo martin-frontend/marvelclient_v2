@@ -9,8 +9,8 @@ import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
 
 @Component({
     components: {
-        RecentBetting
-    }
+        RecentBetting,
+    },
 })
 export default class extends PageGamePlay {
     mounted() {

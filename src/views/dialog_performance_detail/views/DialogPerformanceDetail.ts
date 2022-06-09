@@ -6,6 +6,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceDetailMediator from "../mediator/DialogPerformanceDetailMediator";
 import DialogPerformanceDetailProxy from "../proxy/DialogPerformanceDetailProxy";
 import dialog_message from "@/views/dialog_message";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
@@ -14,6 +15,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     parameter = this.myProxy.parameter;
     listQuery = this.pageData.listQuery;
     categoryType = this.myProxy.categoryIcons;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 
@@ -22,13 +24,6 @@ export default class DialogPerformanceDetail extends AbstractView {
     }
 
     onTabClick(cate: number) {
-        if (cate === 1) {
-            // 檢查是否有直屬資料
-            if (this.pageData.directList.length === 0) {
-                dialog_message.warn("无直属详情资料");
-                return;
-            }
-        }
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
     }
@@ -46,22 +41,6 @@ export default class DialogPerformanceDetail extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
-        }
-    }
-
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 210;
-        } else {
-            return 450;
-        }
-    }
-
-    get directListHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 150;
-        } else {
-            return 450;
         }
     }
 }

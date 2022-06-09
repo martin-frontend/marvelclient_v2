@@ -1,10 +1,12 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
+import LangUtil from "@/core/global/LangUtil";
 import { Component, Watch } from "vue-property-decorator";
 import DialogMessageBoxMediator from "../mediator/DialogMessageBoxMediator";
 import DialogMessageBoxProxy from "../proxy/DialogMessageBoxProxy";
 @Component
 export default class DialogMessageBox extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogMessageBoxProxy = this.getProxy(DialogMessageBoxProxy);
     pageData = this.myProxy.pageData;
 
@@ -12,11 +14,11 @@ export default class DialogMessageBox extends AbstractView {
         super(DialogMessageBoxMediator);
     }
 
-    onOK(){
+    onOK() {
         this.myProxy.handlerOK();
     }
 
-    onCancel(){
+    onCancel() {
         this.myProxy.handlerCancel();
     }
 

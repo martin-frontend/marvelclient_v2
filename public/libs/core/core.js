@@ -211,6 +211,26 @@ var net;
         api_user_var_bonus_all_direct: "api/user/{user_id}/bonus_all/direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api/user/{user_id}/bonus_all/history",
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api/user/{user_id}/deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api/user/{user_id}/withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api/plat/{plat_id}/stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api/user/{user_id}/stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api/plat/{plat_id}/bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api/plat/{plat_id}/bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api/user/{user_id}/stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api/user/{user_id}/stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api/plat/{plat_id}/bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api/user/{user_id}/bonus_log",
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api/user/{plat_id}/exchange/method/list",
         /**--兑换--用户兑换订单*/
@@ -245,6 +265,8 @@ var net;
         api_user_var_recharge_list: "api/user/{user_id}/recharge/list",
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api/user/{user_id}/recharge/address",
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api/plat/{plat_id}/reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
         /**--其它--常见问题*/
@@ -259,6 +281,8 @@ var net;
         api_user_var_beat: "api/user/{user_id}/beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
     };
     /**事件*/
     net.EventType = {
@@ -416,6 +440,26 @@ var net;
         api_user_var_bonus_all_direct: "api_user_var_bonus_all_direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api_user_var_bonus_all_history",
+        /**--分红--用户质押*/
+        api_user_var_deposit_stake: "api_user_var_deposit_stake",
+        /**--分红--用户手动解质押*/
+        api_user_var_withdraw_stake: "api_user_var_withdraw_stake",
+        /**--分红--平台币分红信息*/
+        api_plat_var_stake_info: "api_plat_var_stake_info",
+        /**--分红--用户币分红信息*/
+        api_user_var_stake_info: "api_user_var_stake_info",
+        /**--分红--平台近5日分红金额列表*/
+        api_plat_var_bonus_recently: "api_plat_var_bonus_recently",
+        /**--分红--昨日分红排行榜*/
+        api_plat_var_bonus_rank: "api_plat_var_bonus_rank",
+        /**--分红--领取分红*/
+        api_user_var_stake_draw: "api_user_var_stake_draw",
+        /**--分红--用户质押记录*/
+        api_user_var_stake_log: "api_user_var_stake_log",
+        /**--分红--分红记录-全站记录*/
+        api_plat_var_bonus_log: "api_plat_var_bonus_log",
+        /**--分红--分红记录-个人纪录*/
+        api_user_var_bonus_log: "api_user_var_bonus_log",
         /**--兑换--兑换方式列表*/
         api_user_var_exchange_method_list: "api_user_var_exchange_method_list",
         /**--兑换--用户兑换订单*/
@@ -450,6 +494,8 @@ var net;
         api_user_var_recharge_list: "api_user_var_recharge_list",
         /**--商城--获取数字货币充值地址*/
         api_user_var_recharge_address: "api_user_var_recharge_address",
+        /**--介绍页--奖励币介绍*/
+        api_plat_var_reward_coin_info: "api_plat_var_reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
         /**--其它--常见问题*/
@@ -464,6 +510,8 @@ var net;
         api_user_var_beat: "api_user_var_beat",
         /**--其它--获取红点提示信息*/
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
+        /**--其它--近期投注*/
+        api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
     };
     /**注册协议*/
     function initCommand() {
@@ -552,6 +600,17 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_receive_var, net.cmd_api_user_var_bonus_all_receive_var);
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_direct, net.cmd_api_user_var_bonus_all_direct);
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_history, net.cmd_api_user_var_bonus_all_history);
+        //--分红
+        facade.registerCommand(net.HttpType.api_user_var_deposit_stake, net.cmd_api_user_var_deposit_stake);
+        facade.registerCommand(net.HttpType.api_user_var_withdraw_stake, net.cmd_api_user_var_withdraw_stake);
+        facade.registerCommand(net.HttpType.api_plat_var_stake_info, net.cmd_api_plat_var_stake_info);
+        facade.registerCommand(net.HttpType.api_user_var_stake_info, net.cmd_api_user_var_stake_info);
+        facade.registerCommand(net.HttpType.api_plat_var_bonus_recently, net.cmd_api_plat_var_bonus_recently);
+        facade.registerCommand(net.HttpType.api_plat_var_bonus_rank, net.cmd_api_plat_var_bonus_rank);
+        facade.registerCommand(net.HttpType.api_user_var_stake_draw, net.cmd_api_user_var_stake_draw);
+        facade.registerCommand(net.HttpType.api_user_var_stake_log, net.cmd_api_user_var_stake_log);
+        facade.registerCommand(net.HttpType.api_plat_var_bonus_log, net.cmd_api_plat_var_bonus_log);
+        facade.registerCommand(net.HttpType.api_user_var_bonus_log, net.cmd_api_user_var_bonus_log);
         //--兑换
         facade.registerCommand(net.HttpType.api_user_var_exchange_method_list, net.cmd_api_user_var_exchange_method_list);
         facade.registerCommand(net.HttpType.api_user_var_exchange_order_list, net.cmd_api_user_var_exchange_order_list);
@@ -573,6 +632,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_coin_recharge_confirm, net.cmd_api_user_var_coin_recharge_confirm);
         facade.registerCommand(net.HttpType.api_user_var_recharge_list, net.cmd_api_user_var_recharge_list);
         facade.registerCommand(net.HttpType.api_user_var_recharge_address, net.cmd_api_user_var_recharge_address);
+        //--介绍页
+        facade.registerCommand(net.HttpType.api_plat_var_reward_coin_info, net.cmd_api_plat_var_reward_coin_info);
         //--其它
         facade.registerCommand(net.HttpType.api_plat_var_game_config, net.cmd_api_plat_var_game_config);
         facade.registerCommand(net.HttpType.api_plat_fag_index, net.cmd_api_plat_fag_index);
@@ -581,6 +642,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_messages_show_var, net.cmd_api_user_var_messages_show_var);
         facade.registerCommand(net.HttpType.api_user_var_beat, net.cmd_api_user_var_beat);
         facade.registerCommand(net.HttpType.api_user_var_red_dot_tips, net.cmd_api_user_var_red_dot_tips);
+        facade.registerCommand(net.HttpType.api_plat_var_recently_bet_info, net.cmd_api_plat_var_recently_bet_info);
     }
     net.initCommand = initCommand;
     ;
@@ -762,6 +824,72 @@ var net;
     net.cmd_api_plat_var_block_transfer_in_order_account = cmd_api_plat_var_block_transfer_in_order_account;
 })(net || (net = {}));
 /**
+ * 分红记录-全站记录
+ */
+var net;
+/**
+ * 分红记录-全站记录
+ */
+(function (net) {
+    class cmd_api_plat_var_bonus_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_bonus_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_bonus_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_bonus_log = cmd_api_plat_var_bonus_log;
+})(net || (net = {}));
+/**
+ * 昨日分红排行榜
+ */
+var net;
+/**
+ * 昨日分红排行榜
+ */
+(function (net) {
+    class cmd_api_plat_var_bonus_rank extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_bonus_rank, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_bonus_rank, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_bonus_rank = cmd_api_plat_var_bonus_rank;
+})(net || (net = {}));
+/**
+ * 平台近5日分红金额列表
+ */
+var net;
+/**
+ * 平台近5日分红金额列表
+ */
+(function (net) {
+    class cmd_api_plat_var_bonus_recently extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_bonus_recently, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_bonus_recently, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_bonus_recently = cmd_api_plat_var_bonus_recently;
+})(net || (net = {}));
+/**
  * 获取所有游戏的查询配置
  */
 var net;
@@ -914,6 +1042,72 @@ var net;
         }
     }
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
+})(net || (net = {}));
+/**
+ * 近期投注
+ */
+var net;
+/**
+ * 近期投注
+ */
+(function (net) {
+    class cmd_api_plat_var_recently_bet_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_recently_bet_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_recently_bet_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_recently_bet_info = cmd_api_plat_var_recently_bet_info;
+})(net || (net = {}));
+/**
+ * 奖励币介绍
+ */
+var net;
+/**
+ * 奖励币介绍
+ */
+(function (net) {
+    class cmd_api_plat_var_reward_coin_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_reward_coin_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_reward_coin_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_reward_coin_info = cmd_api_plat_var_reward_coin_info;
+})(net || (net = {}));
+/**
+ * 平台币分红信息
+ */
+var net;
+/**
+ * 平台币分红信息
+ */
+(function (net) {
+    class cmd_api_plat_var_stake_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_stake_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_stake_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_stake_info = cmd_api_plat_var_stake_info;
 })(net || (net = {}));
 /**
  * 获取手机区号
@@ -1862,6 +2056,28 @@ var net;
     net.cmd_api_user_var_bonus_all_statistic = cmd_api_user_var_bonus_all_statistic;
 })(net || (net = {}));
 /**
+ * 分红记录-个人纪录
+ */
+var net;
+/**
+ * 分红记录-个人纪录
+ */
+(function (net) {
+    class cmd_api_user_var_bonus_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_bonus_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_bonus_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_bonus_log = cmd_api_user_var_bonus_log;
+})(net || (net = {}));
+/**
  * 币商充值订单确认转账
  */
 var net;
@@ -1992,6 +2208,28 @@ var net;
         }
     }
     net.cmd_api_user_var_commission_receive = cmd_api_user_var_commission_receive;
+})(net || (net = {}));
+/**
+ * 用户质押
+ */
+var net;
+/**
+ * 用户质押
+ */
+(function (net) {
+    class cmd_api_user_var_deposit_stake extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_deposit_stake, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_deposit_stake, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_deposit_stake = cmd_api_user_var_deposit_stake;
 })(net || (net = {}));
 /**
  * 批量删除邮件
@@ -2632,6 +2870,72 @@ var net;
     net.cmd_api_user_var_sign_store = cmd_api_user_var_sign_store;
 })(net || (net = {}));
 /**
+ * 领取分红
+ */
+var net;
+/**
+ * 领取分红
+ */
+(function (net) {
+    class cmd_api_user_var_stake_draw extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_stake_draw, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_stake_draw, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_stake_draw = cmd_api_user_var_stake_draw;
+})(net || (net = {}));
+/**
+ * 用户币分红信息
+ */
+var net;
+/**
+ * 用户币分红信息
+ */
+(function (net) {
+    class cmd_api_user_var_stake_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_stake_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_stake_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_stake_info = cmd_api_user_var_stake_info;
+})(net || (net = {}));
+/**
+ * 用户质押记录
+ */
+var net;
+/**
+ * 用户质押记录
+ */
+(function (net) {
+    class cmd_api_user_var_stake_log extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_stake_log, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_stake_log, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_stake_log = cmd_api_user_var_stake_log;
+})(net || (net = {}));
+/**
  * 提取用户所有厂商的余额
  */
 var net;
@@ -2652,6 +2956,28 @@ var net;
         }
     }
     net.cmd_api_user_var_vendor_withdraw = cmd_api_user_var_vendor_withdraw;
+})(net || (net = {}));
+/**
+ * 用户手动解质押
+ */
+var net;
+/**
+ * 用户手动解质押
+ */
+(function (net) {
+    class cmd_api_user_var_withdraw_stake extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_withdraw_stake, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_withdraw_stake, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_withdraw_stake = cmd_api_user_var_withdraw_stake;
 })(net || (net = {}));
 /**
  * 获取厂商列表

@@ -1,31 +1,41 @@
 <v-card-text class="mt-3 px-0">
-    <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-5 px-5" height="40" color="#16233F">
-        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" width="100">币种</v-sheet>
-        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" width="100">厂商</v-sheet>
-        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" width="100">金额</v-sheet>
-        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" width="100">操作</v-sheet>
+    <v-sheet class="d-flex align-center justify-space-around rounded-pill mx-5 px-1" height="40" color="#16233F">
+        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("币种")}}</v-sheet>
+        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("厂商")}}</v-sheet>
+        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("金额")}}</v-sheet>
+        <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("操作")}}</v-sheet>
     </v-sheet>
     <v-sheet class="mt-3" color="transparent" min-height="400">
         <div v-if="!isEmpty">
             <div v-for="(item, key) of pageData.gold_info" :key="key">
-                <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-5 px-5 mb-3" height="40" color="#16233F" v-for="(vendor, index) of item.vendors_detail" :key="index">
-                    <v-sheet class="d-flex align-center justify-center colorText2--text" color="transparent" min-width="100">
+                <v-sheet
+                    class="d-flex align-center justify-space-around rounded-pill mx-5 px-1 mb-3"
+                    height="40"
+                    color="#16233F"
+                    v-for="(vendor, index) of item.vendors_detail"
+                    :key="index"
+                >
+                    <v-sheet class="d-flex align-center justify-center colorText2--text" color="transparent" min-width="80" width="150">
                         <v-img :src="plat_coins[key].icon" max-width="25" height="25"></v-img>
-                        <div class="ml-2">{{key}}</div>
+                        <div class="ml-1">{{key}}</div>
                     </v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="50"> <div class="text-truncate">{{vendor.vendor_name}}</div></v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="100">{{vendor.currency}}</v-sheet>
-                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="100">
-                        <v-btn color="colorBtnBg" small width="60" @click="onWithdraw(key)">提取</v-btn>
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="80" width="150">
+                        <div class="text-truncate">{{vendor.vendor_name}}</div></v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="80" width="150"
+                        >{{vendor.currency}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="80" width="150">
+                        <v-btn color="colorBtnBg" small width="60" @click="onWithdraw(key)">{{LangUtil("提取")}}</v-btn>
                     </v-sheet>
                 </v-sheet>
             </div>
         </div>
-        
+
         <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="400">
             <div>
                 <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
             </div>
         </v-sheet>
     </v-sheet>

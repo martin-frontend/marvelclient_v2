@@ -11,11 +11,20 @@
         div > a {
             color: #9db1d8;
         }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
     }
     .listitem-150 {
         width: 150px;
         div {
             width: 150px;
         }
+    }
+}
+@media only screen and (max-width: 750px) {
+    .sclect_box {
+        width: 100%;
+        justify-content: space-between;
     }
 }

@@ -43,16 +43,17 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
 
     /**写入 业绩查询 */
     setCommissionlist(body: any) {
+        this.pageData.loading = false;
         this.pageData.list = body.list;
     }
 
     /**--代理推广--业绩查询*/
     api_user_var_commission_commissionlist() {
+        this.pageData.loading = true;
         const obj: any = {
             ...this.parameter,
             user_id: core.user_id,
         };
         this.sendNotification(net.HttpType.api_user_var_commission_commissionlist, objectRemoveNull(obj));
     }
-
 }

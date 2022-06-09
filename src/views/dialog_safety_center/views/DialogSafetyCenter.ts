@@ -3,6 +3,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { checkMail, checkPhone, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_get_verity from "@/views/dialog_get_verity";
 import { Watch, Component } from "vue-property-decorator";
@@ -11,6 +12,7 @@ import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
 
 @Component
 export default class DialogSafetyCenter extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
     pageData = this.myProxy.pageData;
     formBindPhone = this.pageData.formBindPhone;
@@ -24,7 +26,7 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
     @Watch("pageData.areaCode")
-    onWatchAreaCode(){
+    onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
     }
 
@@ -49,26 +51,26 @@ export default class DialogSafetyCenter extends AbstractView {
     }
 
     getCode() {
-        if(this.pageData.tabIndex == 0){
+        if (this.pageData.tabIndex == 0) {
             dialog_get_verity.showSmsVerity(1, this.formBindPhone.area_code, this.formBindPhone.mobile);
-        }else{
+        } else {
             dialog_get_verity.showEmailVerity(7, this.formBindEmail.email);
         }
     }
 
-    onAreaCodeInput(){
-        if(this.areaCodeSearch == ""){
+    onAreaCodeInput() {
+        if (this.areaCodeSearch == "") {
             this.areaCodeList = this.pageData.areaCode;
-        }else{
+        } else {
             this.areaCodeList = [];
-            for(const item of this.pageData.areaCode){
-                if(item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch){
+            for (const item of this.pageData.areaCode) {
+                if (item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch) {
                     this.areaCodeList.push(item);
                 }
             }
         }
     }
-    onItemAreaCode(item:any){
+    onItemAreaCode(item: any) {
         this.formBindPhone.area_code = item.area_code;
         this.areaCodeMenu = false;
     }

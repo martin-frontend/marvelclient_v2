@@ -7,7 +7,6 @@ function show(data: any) {
     DialogMount(DialogRecordMineDetail);
     const proxy: DialogRecordMineDetailProxy = getProxy(DialogRecordMineDetailProxy);
     proxy.setData(data);
-    proxy.pageData.bShow = true;
 }
 
 export default { show };

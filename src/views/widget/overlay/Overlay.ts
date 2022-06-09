@@ -1,9 +1,11 @@
+import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import OverlayMediator from "./OverlayMediator";
 
 @Component
 export default class Overlay extends AbstractView {
+    commonIcon = Assets.commonIcon;
     constructor() {
         super(OverlayMediator);
     }

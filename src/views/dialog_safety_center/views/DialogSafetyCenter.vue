@@ -12,8 +12,8 @@ import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
     components: {
         AdvertiseInLogin,
         CustomInput,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogSafetyCenter {}
 </script>

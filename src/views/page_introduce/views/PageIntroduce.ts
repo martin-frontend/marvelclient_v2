@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import OpenLink from "@/core/global/OpenLink";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
@@ -7,6 +8,7 @@ import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
 export default class PageIntroduce extends AbstractView {
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;
+    reward_coin_info = this.pageData.reward_coin_info;
     pageImage = this.myProxy.pageImage;
 
     constructor() {
@@ -27,5 +29,9 @@ export default class PageIntroduce extends AbstractView {
             return "textWrap-xs";
         }
         return "textWarp-ct";
+    }
+
+    goContractInfo(){
+        OpenLink(this.reward_coin_info.contract_address);
     }
 }

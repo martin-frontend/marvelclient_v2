@@ -18,6 +18,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     pageData = {
+        enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
         bShow: false,
         //如果是列表，使用以下数据，否则删除
@@ -36,10 +37,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() {}
+    enter() { }
 
     /**离开页面时调用 */
-    leave() {}
+    leave() { }
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -47,9 +48,11 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
+        this.pageData.search = "";
     }
 
     setData(data: any) {
+        this.pageData.enable_set_promotion_floor = data.enable_set_promotion_floor;
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
@@ -64,6 +67,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
+        this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }

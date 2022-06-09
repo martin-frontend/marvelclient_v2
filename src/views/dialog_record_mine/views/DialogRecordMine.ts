@@ -6,12 +6,14 @@ import DialogRecordMineMediator from "../mediator/DialogRecordMineMediator";
 import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
 import dialog_record_mine_detail from "@/views/dialog_record_mine_detail";
 import Assets from "@/assets/Assets";
+import LangUtil from "@/core/global/LangUtil";
 
 @Component
 export default class DialogRecordMine extends AbstractView {
     myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+    LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
 
@@ -40,5 +42,12 @@ export default class DialogRecordMine extends AbstractView {
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_var_backwater();
+    }
+
+    getDateTime(data: any) {
+        // 2022-05-25 18:51:10
+        const md = `${data.split(" ")[0].split("-")[1]}-${data.split(" ")[0].split("-")[2]}`;
+        const ti = data.split(" ")[1];
+        return `${md} ${ti}`;
     }
 }

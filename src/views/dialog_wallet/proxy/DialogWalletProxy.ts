@@ -1,5 +1,6 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Constant from "@/core/global/Constant";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogWalletProxy extends puremvc.Proxy {
     static NAME = "DialogWalletProxy";
@@ -37,12 +38,12 @@ export default class DialogWalletProxy extends puremvc.Proxy {
             },
             coinOptions: () => {
                 const keys = Object.keys(GamePlatConfig.config.plat_coins);
-                keys.unshift("全部币种");
+                keys.unshift(LangUtil("全部币种"));
                 return keys;
             },
             typeOptions: () => {
                 const types = {
-                    0: "全部类型",
+                    0: LangUtil("全部类型"),
                 };
                 Object.assign(types, GamePlatConfig.enums.user_gold_log_type);
                 return types;

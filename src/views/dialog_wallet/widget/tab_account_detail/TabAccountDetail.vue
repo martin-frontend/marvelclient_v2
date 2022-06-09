@@ -7,9 +7,9 @@ import Component from "vue-class-component";
 import TabAccountDetail from "./TabAccountDetail";
 
 @Component({
-    components:{
-        CustomSelect
-    }
+    components: {
+        CustomSelect,
+    },
 })
 export default class extends TabAccountDetail {}
 </script>

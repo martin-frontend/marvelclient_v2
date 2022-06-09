@@ -3,6 +3,7 @@ import router from "@/router";
 import GlobalVar from "../global/GlobalVar";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
+import LangUtil from "../global/LangUtil";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
@@ -30,7 +31,12 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                     selfProxy.loginout();
                     router.push("/").catch((err: any) => err);
                 }
-                dialog_message_box.alert(body.result.msg);
+                dialog_message_box.alert({
+                    message: body.result.msg,
+                    okFun: () => {
+                        location.reload();
+                    },
+                });
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {
@@ -44,7 +50,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 dialog_message_box.alert(body.result.msg);
             }
         } else {
-            dialog_message_box.alert("未知错误");
+            dialog_message_box.alert(LangUtil("未知错误"));
         }
     }
 }

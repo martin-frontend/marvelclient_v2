@@ -1,7 +1,7 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18">奖励记录</div>
+            <div class="text-18">{{LangUtil("奖励记录")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
@@ -10,29 +10,29 @@
         <!--  -->
         <v-card-text class="px-5">
             <div class="listbox" v-if="pageData.list.length > 0">
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mt-5 px-6 py-2 rounded-lg mb-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
-                        <div>
-                            <div>结算时间</div>
-                            <div class="text-truncate">
-                                {{item.created_at.split(' ')[0]}}
+                        <div class="item">
+                            <div>{{LangUtil("结算时间")}}</div>
+                            <div class="text-body-1">
+                                {{ getDateTime(item.created_at) }}
                             </div>
                         </div>
-                        <div>
-                            <div>结算有效流水</div>
-                            <div>{{item.total_water}}</div>
+                        <div class="item">
+                            <div>{{LangUtil("结算有效流水")}}</div>
+                            <div class="text-body-1">{{item.total_water}}</div>
                         </div>
-                        <div>
-                            <div>奖励{{ Object.keys(item.total_backwater)[0]}}</div>
-                            <div>{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
+                        <div class="item">
+                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
+                            <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
-                        <div>
-                            <div>奖励{{ Object.keys(item.total_backwater)[1] }}</div>
-                            <div>{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
+                        <div class="item">
+                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }} </div>
+                            <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
-                        <div class="d-flex align-center listitem-90">
-                            <v-btn text class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
-                                查看详情<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
+                        <div class="d-flex align-end justify-end listitem-110">
+                            <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text"  @click="handlerDetail(item)">
+                                {{LangUtil("查看详情")}}<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
                             </v-btn>
                         </div>
                     </div>
@@ -41,12 +41,12 @@
             <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
                 <div>
                     <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                    <div class="text-14 colorText1--text mt-2 ml-8">暂无记录</div>
+                    <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
                 </div>
             </v-sheet>
             <v-spacer />
             <v-pagination
-                v-if="pageData.list.length > 0"
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
                 v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount"
                 :total-visible="7"

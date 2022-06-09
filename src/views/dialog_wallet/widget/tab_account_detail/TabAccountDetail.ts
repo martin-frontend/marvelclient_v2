@@ -3,11 +3,13 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Constant from "@/core/global/Constant";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import DialogWalletProxy from "../../proxy/DialogWalletProxy";
 
 @Component
 export default class TabAccountDetail extends AbstractView {
+    LangUtil = LangUtil;
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;

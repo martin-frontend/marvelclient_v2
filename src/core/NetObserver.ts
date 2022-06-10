@@ -109,6 +109,8 @@ export default class NetObserver extends AbstractMediator {
                             },
                         });
                     } else {
+                        this.gameProxy.lastRouter = router.currentRoute.path;
+                        console.log("this.gameProxy.lastRouter: ", this.gameProxy.lastRouter);
                         page_game_play.show(body.url);
                     }
                 }

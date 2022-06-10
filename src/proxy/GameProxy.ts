@@ -12,13 +12,15 @@ export default class GameProxy extends AbstractProxy {
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     /**当前正在玩的游戏 */
-    currGame:any;
+    currGame: any;
     /**当前选择的钱包类型 */
-    coin_name_unique:string = "";
+    coin_name_unique: string = "";
     /**上一个页面 */
     lastRouter = "/";
 
     loading = false;
+    /**跑马灯 */
+    marqueeIndex: any = [];
 
     /**
      * 大厅菜单
@@ -45,7 +47,7 @@ export default class GameProxy extends AbstractProxy {
         }
     }
 
-    setCoin(coin_name_unique:string){
+    setCoin(coin_name_unique: string) {
         window.localStorage.setItem("coin_name_unique", coin_name_unique);
         this.coin_name_unique = coin_name_unique;
     }
@@ -67,5 +69,10 @@ export default class GameProxy extends AbstractProxy {
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique
         });
+    }
+
+    /**跑马灯 */
+    setMarqueeIndex(data: any) {
+        this.marqueeIndex = data;
     }
 }

@@ -63,6 +63,7 @@ const opts = {
                 colorHowBtn: "#3B4B68", //used
                 colorTextNext: "#3B5F96", //used
                 colorVipLevelText: "#8C9FC4",
+                colorMarquee: "#20304D",
             },
         },
         dark: true,

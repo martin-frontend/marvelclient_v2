@@ -9,15 +9,20 @@ import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
+import FagProxy from "@/proxy/FagProxy";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
+    fagProxy: FagProxy = this.getProxy(FagProxy);
     pageData = this.myProxy.pageData;
     promotionData = this.myProxy.promotionData;
     statistics_data = this.myProxy.statistics_data;
     tableData = this.myProxy.tableData;
-    questionData = this.myProxy.questionData;
     LangUtil = LangUtil;
+
+    get questionData() {
+        return this.fagProxy.qData.type1;
+    }
 
     private QRCode = QRCode;
 

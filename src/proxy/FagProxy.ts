@@ -2,7 +2,7 @@ import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
 
 export default class FagProxy extends AbstractProxy {
-    static NAME = "GameProxy";
+    static NAME = "FagProxy";
 
     /**--其它--常见问题数据*/
     api_plat_fag_index() {
@@ -15,8 +15,7 @@ export default class FagProxy extends AbstractProxy {
         type3: null,
     };
 
-    setData(data: any): void {
-        console.warn("data>>>", data);
+    setData(data: any) {
         this.qData.type1 = data.faqs.filter((item: any) => item.module == 1);
         this.qData.type2 = data.faqs.filter((item: any) => item.module == 2);
         this.qData.type3 = data.faqs.filter((item: any) => item.module == 3);

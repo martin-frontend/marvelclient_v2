@@ -14,6 +14,8 @@ export default class GameSport extends AbstractView {
 
     get width(): number {
         switch (this.$vuetify.breakpoint.name) {
+            case "xs":
+                return this.$vuetify.breakpoint.width - 20;
             case "sm":
                 return 900;
             case "md":

@@ -350,17 +350,21 @@
                                 {{ item.stake_count }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                <div class="d-flex justify-space-between bonus-width">
+                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
                                     <span>
                                         {{ item.total_stake_amount }}
                                     </span>
+                                </div>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 ${{ item.hundred_bonus }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
-                                    {{ item.total_bonus_amount }}
+                                <div class="d-flex justify-space-between bonus-width">
+                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
+                                    <span>{{ item.total_bonus_amount }}</span>
+                                </div>
                             </v-col>
                         </v-row>
                         <v-divider></v-divider>
@@ -401,10 +405,12 @@
                                 {{ getDateTime(item.date) }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
-                                <span>
-                                    {{ item.stake_amount }}
-                                </span>
+                                <div class="d-flex justify-space-between bonus-width">
+                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                    <span>
+                                        {{ item.stake_amount }}
+                                    </span>
+                                </div>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 {{ item.stake_ratio }}
@@ -413,8 +419,10 @@
                                 ${{ item.hundred_bonus }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
-                                ${{ item.bonus_amount }}
+                                <div class="d-flex justify-space-between bonus-width">
+                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20" :height="$vuetify.breakpoint.width > 600 ? 25 : 20" :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
+                                <span>${{ item.bonus_amount }}</span>
+                                </div>
                             </v-col>
                         </v-row>
                         <v-divider></v-divider>

@@ -15,6 +15,8 @@ export default class GameProxy extends AbstractProxy {
     currGame:any;
     /**当前选择的钱包类型 */
     coin_name_unique:string = "";
+    /**上一个页面 */
+    lastRouter = "/";
 
     loading = false;
 

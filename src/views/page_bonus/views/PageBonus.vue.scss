@@ -82,4 +82,9 @@
         right: -30px;
     }
 }
-
+.bonus-width{
+    width: 105px;
+    @media (max-width: 700px){
+        width: 75px;
+    }
+}

@@ -29,6 +29,10 @@ export default class Advertise extends AbstractView {
         this.onChange();
     }
 
+    onBigItemClick(item:any){
+        this.noticeProxy.jump(item);
+    }
+
     onChange() {
         this.progressObj.value = 0;
         gsap.to(this.progressObj, {

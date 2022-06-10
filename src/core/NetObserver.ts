@@ -36,6 +36,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_plat_var_notice_index,
             net.EventType.api_plat_fag_index,
+            net.EventType.api_plat_var_marquee_index,
         ];
     }
 
@@ -81,6 +82,8 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                     //常见问题
                     this.sendNotification(net.HttpType.api_plat_fag_index);
+                    // 获取跑马灯
+                    this.sendNotification(net.HttpType.api_plat_var_marquee_index, { plat_id: core.plat_id });
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -118,6 +121,10 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_plat_fag_index:
                 this.fagProxy.setData(body);
+                break;
+            case net.EventType.api_plat_var_marquee_index:
+                // 获取跑马灯
+                this.gameProxy.setMarqueeIndex(body);
                 break;
         }
     }

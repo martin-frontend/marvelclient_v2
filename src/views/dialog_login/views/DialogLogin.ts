@@ -64,7 +64,6 @@ export default class DialogLogin extends AbstractView {
                 }
             }
         }
-        console.log("this.areaCodeList: ", this.areaCodeList);
     }
     onItemAreaCode(item: any) {
         this.forgetData.form.area_code = item.area_code;

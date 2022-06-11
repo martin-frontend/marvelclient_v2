@@ -35,4 +35,26 @@ export default class GamePlatConfig {
         delete data.enum;
         Object.assign(this.config, data);
     }
+    /**主币 */
+    static getMainCoin() {
+        const coins = this.config.plat_coins;
+        const keys = Object.keys(coins);
+        for (const key of keys) {
+            if (coins[key].type == 2) {
+                return key;
+            }
+        }
+        return "";
+    }
+    /**奖励币 */
+    static getAwardCoin() {
+        const coins = this.config.plat_coins;
+        const keys = Object.keys(coins);
+        for (const key of keys) {
+            if (coins[key].type == 3) {
+                return key;
+            }
+        }
+        return "";
+    }
 }

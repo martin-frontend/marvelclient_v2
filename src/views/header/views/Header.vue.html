@@ -66,7 +66,7 @@
 
             <button class="nav-button" :class="routerPath == '/introduce' ? 'active' : ''" @click="goIntroduce">
                 <v-icon>mdi-information</v-icon>
-                <div class="ml-1">{{LangUtil("CF币介绍")}}</div>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </button>
         </div>
     </v-container>
@@ -100,7 +100,7 @@
             <v-spacer />
             <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
                 <v-icon>mdi-information</v-icon>
-                <div class="ml-1">{{LangUtil("CF币介绍")}}</div>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </v-btn>
         </div>
     </v-container>

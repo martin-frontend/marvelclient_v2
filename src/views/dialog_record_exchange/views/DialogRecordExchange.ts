@@ -40,7 +40,7 @@ export default class DialogRecordExchange extends AbstractView {
         }
     }
 
-    onPageChange(val:any){
+    onPageChange(val: any) {
         this.pageData.listQuery.page_count = val;
         this.myProxy.api_user_var_exchange_order_list();
     }

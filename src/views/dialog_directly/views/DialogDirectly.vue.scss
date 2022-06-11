@@ -15,19 +15,19 @@
 }
 
 .listitem {
-    color: #9DB1D8;
+    color: #9db1d8;
     div:first-child {
-        color: #4C5D7F;
+        color: #4c5d7f;
     }
     div > a {
-        color: #9DB1D8;
+        color: #9db1d8;
     }
 }
 
-.arrow{
+.arrow {
     margin-bottom: -1px !important;
 }
-.search{
+.search {
     width: 207px;
 }
 ::v-deep .input-text input::placeholder {
@@ -35,7 +35,7 @@
     font-weight: 400;
 }
 ::v-deep .v-btn__content {
-    color: #98ACD3;
+    color: #98acd3;
     font-size: 16px;
     font-weight: 400;
 }

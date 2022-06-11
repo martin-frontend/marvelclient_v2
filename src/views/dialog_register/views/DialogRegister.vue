@@ -12,8 +12,8 @@ import DialogRegister from "./DialogRegister";
     components: {
         AdvertiseInLogin,
         CustomInput,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogRegister {}
 </script>

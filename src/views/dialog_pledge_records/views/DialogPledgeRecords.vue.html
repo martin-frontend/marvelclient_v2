@@ -39,14 +39,17 @@
                         <div class="d-flex flex-wrap listitem">
                             <div>
                                 <div>{{LangUtil("时间")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">
-                                    {{ getDateTime(item.created_at) }}
-                                </div>
+                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
                             </div>
                             <div>
                                 <div class="ml-sm-8">{{LangUtil("数量")}}</div>
                                 <div class="d-flex align-center text-16 font-weight-regular">
-                                    <v-img class="mr-2" max-width="25" height="25" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                    <v-img
+                                        class="mr-2"
+                                        max-width="25"
+                                        height="25"
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                    ></v-img>
                                     {{ item.gold }}
                                 </div>
                             </div>
@@ -61,14 +64,12 @@
                 </v-sheet>
             </div>
             <div v-if="listQuery.cate == 2" class="scroll-y scroll_box">
-                <v-sheet  color="#121E36" :height="deListHeight" >
+                <v-sheet color="#121E36" :height="deListHeight">
                     <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
                         <div class="d-flex flex-wrap listitem-de">
                             <div>
                                 <div>{{LangUtil("时间")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">
-                                    {{ getDateTime(item.created_at) }}
-                                </div>
+                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
                             </div>
                             <div class="listitem-180">
                                 <div>{{LangUtil("类型")}}</div>
@@ -81,13 +82,23 @@
                             <div class="listitem-150">
                                 <div class="ml-sm-8">{{LangUtil("到账数量")}}</div>
                                 <div class="d-flex align-center text-16 font-weight-regular">
-                                    <v-img class="mr-2" max-width="25" height="25" :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                    <v-img
+                                        class="mr-2"
+                                        max-width="25"
+                                        height="25"
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                    ></v-img>
                                     {{ item.gold }}
                                 </div>
                             </div>
                         </div>
                     </v-sheet>
-                    <v-sheet v-if="pageData.list.length == 0" class="d-flex justify-center align-center" color="transparent" min-height="450">
+                    <v-sheet
+                        v-if="pageData.list.length == 0"
+                        class="d-flex justify-center align-center"
+                        color="transparent"
+                        min-height="450"
+                    >
                         <div>
                             <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                             <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
@@ -97,12 +108,12 @@
                 </v-sheet>
             </div>
             <v-pagination
-                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                    v-model="pageData.pageInfo.pageCurrent"
-                    :length="pageData.pageInfo.pageCount"
-                    :total-visible="7"
-                    @input="onPageChange"
-                ></v-pagination>
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

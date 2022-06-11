@@ -32,7 +32,7 @@ export default class RecentBetting extends AbstractView {
         }, 5000);
     }
 
-    destroyed(){
+    destroyed() {
         clearInterval(this.timer);
         super.destroyed();
     }

@@ -14,7 +14,7 @@ export default class Footer extends AbstractView {
         dialog_contract.show();
     }
 
-    getVersion(){
+    getVersion() {
         return process.env.version;
     }
 }

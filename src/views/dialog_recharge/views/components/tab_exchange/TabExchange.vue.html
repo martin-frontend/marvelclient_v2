@@ -4,13 +4,7 @@
         {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}}
     </div>
     <div class="d-flex mt-3">
-        <CustomSelect
-            class="mr-3"
-            :icons="plat_coins"
-            :options="pageData.methodList"
-            v-model="form.coin_name_unique"
-            @change="onChange"
-        />
+        <CustomSelect class="mr-3" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" />
         <CustomSelect
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
@@ -46,7 +40,12 @@
         <v-col>
             <div>{{LangUtil("余额")}}</div>
             <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
-                <v-img class="mr-2" :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon" max-width="20" height="20"></v-img>
+                <v-img
+                    class="mr-2"
+                    :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+                    max-width="20"
+                    height="20"
+                ></v-img>
                 <div>{{ balance }}</div>
             </v-sheet>
         </v-col>
@@ -66,5 +65,5 @@
             :key="key"
         ></v-img>
     </v-card-text>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-card-text>

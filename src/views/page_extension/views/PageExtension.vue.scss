@@ -1,36 +1,36 @@
-.horizontal-gradient-left{
-    background-image: linear-gradient(to right, #1E2C47, #384F72 );
-    &.down{
-        background-image: url("~@/assets/extension/commission@2x.png"),  linear-gradient(to right, #1E2C47, #384F72 );
+.horizontal-gradient-left {
+    background-image: linear-gradient(to right, #1e2c47, #384f72);
+    &.down {
+        background-image: url("~@/assets/extension/commission@2x.png"), linear-gradient(to right, #1e2c47, #384f72);
         background-size: 240px 281px, 100% 100%;
         background-position: -6% bottom;
         height: calc(100% - 96px);
-        @media (max-width: 1426px){
+        @media (max-width: 1426px) {
             background-position: -20% bottom;
         }
-        @media (max-width: 1264px){
+        @media (max-width: 1264px) {
             background-position: -6% bottom;
         }
-        @media (max-width: 700px){
+        @media (max-width: 700px) {
             background-position: -14% bottom;
         }
-        @media (max-width: 400px){
-            background-image: url("~@/assets/extension/commission@2x.png"), 
-            url("~@/assets/extension/background.png"), linear-gradient(to right, #1E2C47, #384F72 );
+        @media (max-width: 400px) {
+            background-image: url("~@/assets/extension/commission@2x.png"), url("~@/assets/extension/background.png"),
+                linear-gradient(to right, #1e2c47, #384f72);
             background-position: -24% bottom, right;
             background-size: 216px 252px, 60% 65%, 100% 100%;
             height: unset;
         }
-        @media (min-width: 400px) and (max-width: 600px){
+        @media (min-width: 400px) and (max-width: 600px) {
             height: unset;
         }
     }
 }
-.horizontal-gradient-right{
-    background: linear-gradient(to right, #1E2C47, #123564 );
+.horizontal-gradient-right {
+    background: linear-gradient(to right, #1e2c47, #123564);
 }
-.level_title{
-    background-image: linear-gradient(to right, #253754, #1D2F4E );
+.level_title {
+    background-image: linear-gradient(to right, #253754, #1d2f4e);
 }
 .level_col {
     position: relative;
@@ -38,12 +38,12 @@
         position: absolute;
         left: 15px;
         max-width: 30px;
-        @media (max-width: 750px){
+        @media (max-width: 750px) {
             left: 15px;
             top: 3px;
             max-width: 20px;
         }
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
             left: 3px;
             top: 2px;
             max-width: 15px;
@@ -59,28 +59,28 @@
     ::v-deep img {
         width: 100%;
     }
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         border-radius: 10px;
         padding: 4px;
         max-width: 90px;
         max-height: 90px;
     }
 }
-.new{
-    @media (min-width: 1263px) and (max-width: 1426px){
+.new {
+    @media (min-width: 1263px) and (max-width: 1426px) {
         width: 113px;
     }
-    @media (min-width: 600px) and (max-width: 640px){
+    @media (min-width: 600px) and (max-width: 640px) {
         width: 113px;
     }
 }
-.rounded-card{
-    @media (max-width: 600px){
+.rounded-card {
+    @media (max-width: 600px) {
         border-radius: 10px !important;
     }
 }
-.rounded-button{
-    @media (max-width: 600px){
+.rounded-button {
+    @media (max-width: 600px) {
         border-radius: 5px !important;
     }
 }

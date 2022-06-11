@@ -1,8 +1,6 @@
 <v-dialog width="300" v-model="pageData.bShow" :retain-focus="false" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
-        <v-card-title class="gradient-bg text-18 justify-center">
-            {{LangUtil("获得奖励")}}
-        </v-card-title>
+        <v-card-title class="gradient-bg text-18 justify-center"> {{LangUtil("获得奖励")}} </v-card-title>
         <v-card-text>
             <div class="d-flex justify-center colorTextGold--text text-16 mb-2" v-for="(item, key) of pageData.data" :key="key">
                 <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
@@ -14,5 +12,5 @@
             <v-btn color="colorBtnBg" block @click="onClose">{{LangUtil("确定")}}</v-btn>
         </v-card-actions>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

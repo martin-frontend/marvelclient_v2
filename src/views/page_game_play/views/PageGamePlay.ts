@@ -26,7 +26,7 @@ export default class PageGamePlay extends AbstractView {
     }
 
     onBack() {
-        const gameProxy:GameProxy = getProxy(GameProxy);
+        const gameProxy: GameProxy = getProxy(GameProxy);
         router.replace(gameProxy.lastRouter);
     }
 }

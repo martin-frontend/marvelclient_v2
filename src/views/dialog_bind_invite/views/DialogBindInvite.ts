@@ -28,11 +28,11 @@ export default class DialogBindInvite extends AbstractView {
 
     get isCheckedId(): boolean {
         const { inviteId } = this.pageData;
-        return (this.checkId(inviteId))
+        return this.checkId(inviteId);
     }
 
     private checkId(id: any) {
-        return id.length > 0 ? true : false
+        return id.length > 0 ? true : false;
     }
 
     onSubmit() {

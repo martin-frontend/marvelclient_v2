@@ -10,8 +10,8 @@ import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 @Component({
     components: {
         CustomSelect,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogBetRecord {}
 </script>

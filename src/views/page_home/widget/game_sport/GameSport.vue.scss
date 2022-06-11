@@ -1,8 +1,8 @@
-.listbox{
+.listbox {
     padding-left: 7px;
 }
-.box{
-    background-image: linear-gradient(180deg, #243A5D 0%, #1F2F4B 100%);
+.box {
+    background-image: linear-gradient(180deg, #243a5d 0%, #1f2f4b 100%);
 }
 .egame__item__mask {
     height: 100%;
@@ -29,16 +29,16 @@
     border-radius: 100px;
     font-size: 48px;
 }
-.game-icon{
-    margin-left:44px;
+.game-icon {
+    margin-left: 44px;
 }
 @media screen and (max-width: 500px) {
-    .game-icon{
+    .game-icon {
         margin-left: 28px;
-        .game-title{
+        .game-title {
             font-size: 20px;
         }
-        .vendor-title{
+        .vendor-title {
             font-size: 15px;
         }
     }

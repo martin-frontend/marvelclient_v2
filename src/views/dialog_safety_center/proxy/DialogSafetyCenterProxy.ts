@@ -47,22 +47,22 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
         });
-        console.log(">>>>>>>>.restform")
+        console.log(">>>>>>>>.restform");
     }
 
-    api_user_bind_mobile_var(){
+    api_user_bind_mobile_var() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_bind_mobile_var, this.pageData.formBindPhone);
     }
 
-    api_user_bind_email_var(){
+    api_user_bind_email_var() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_bind_email_var, this.pageData.formBindEmail);
     }
 
-    api_user_change_password_var(){
+    api_user_change_password_var() {
         this.pageData.loading = true;
-        const {user_id, password_old, password, password_confirm} = this.pageData.formChangePassword;
+        const { user_id, password_old, password, password_confirm } = this.pageData.formChangePassword;
         this.sendNotification(net.HttpType.api_user_change_password_var, {
             user_id,
             password_old: core.MD5.createInstance().hex_md5(password_old),

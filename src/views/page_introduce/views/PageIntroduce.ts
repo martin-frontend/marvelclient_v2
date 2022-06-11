@@ -31,7 +31,7 @@ export default class PageIntroduce extends AbstractView {
         return "textWarp-ct";
     }
 
-    goContractInfo(){
+    goContractInfo() {
         OpenLink(this.reward_coin_info.contract_address);
     }
 }

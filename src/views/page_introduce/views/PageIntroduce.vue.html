@@ -7,7 +7,9 @@
                     <v-col cols="12" sm="7" md="7" lg="8" :class="$vuetify.breakpoint.smAndDown ? 'ml-2' : ''">
                         <v-row>
                             <v-col>
-                                <div class="font-weight-bold white--text" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-26'">J9BC介绍</div>
+                                <div class="font-weight-bold white--text" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-26'">
+                                    J9BC介绍
+                                </div>
                             </v-col>
                         </v-row>
                         <v-row class="mt-n4">
@@ -44,11 +46,25 @@
                     </v-col>
                     <v-col cols="12" lg="7">
                         <ul class="textWrap" :class="getTextWrapClass()">
-                            <li><span class="mr-3 rounded-lg text-subtitle-2">70%</span> <strong class="text-subtitle-1">游戏挖矿</strong></li>
-                            <li><span class="mr-3 rounded-lg text-subtitle-2">10%</span> <strong class="text-subtitle-1">空投及社区奖励</strong></li>
-                            <li><span class="mr-3 rounded-lg text-subtitle-2">10%</span> <strong class="text-subtitle-1">创始团队持有并锁仓两年</strong></li>
-                            <li><span class="mr-3 rounded-lg text-subtitle-2">5%</span> <strong class="text-subtitle-1">合作伙伴持有并锁仓两年</strong></li>
-                            <li><span class="mr-3 rounded-lg text-subtitle-2">5%</span> <strong class="text-subtitle-1">好友推荐奖励</strong></li>
+                            <li>
+                                <span class="mr-3 rounded-lg text-subtitle-2">70%</span> <strong class="text-subtitle-1">游戏挖矿</strong>
+                            </li>
+                            <li>
+                                <span class="mr-3 rounded-lg text-subtitle-2">10%</span>
+                                <strong class="text-subtitle-1">空投及社区奖励</strong>
+                            </li>
+                            <li>
+                                <span class="mr-3 rounded-lg text-subtitle-2">10%</span>
+                                <strong class="text-subtitle-1">创始团队持有并锁仓两年</strong>
+                            </li>
+                            <li>
+                                <span class="mr-3 rounded-lg text-subtitle-2">5%</span>
+                                <strong class="text-subtitle-1">合作伙伴持有并锁仓两年</strong>
+                            </li>
+                            <li>
+                                <span class="mr-3 rounded-lg text-subtitle-2">5%</span>
+                                <strong class="text-subtitle-1">好友推荐奖励</strong>
+                            </li>
                         </ul>
                     </v-col>
                 </v-row>
@@ -64,14 +80,22 @@
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">合约地址 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="d-flex font-weight-black amber--text text--darken-1 cursor-pointer" @click="goContractInfo">
+                        <v-col
+                            cols="8"
+                            md="12"
+                            lg="9"
+                            class="d-flex font-weight-black amber--text text--darken-1 cursor-pointer"
+                            @click="goContractInfo"
+                        >
                             <span>查看合约信息</span>
                             <v-img class="ml-1" max-width="24" max-height="24" :src="pageImage.externalLink"></v-img>
                         </v-col>
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">发行链 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.block_network_name}}</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text"
+                            >{{reward_coin_info.block_network_name}}</v-col
+                        >
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计发行 :</v-col>
@@ -79,11 +103,15 @@
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计流通 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.total_circulate}}</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text"
+                            >{{reward_coin_info.total_circulate}}</v-col
+                        >
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">总计质押 :</v-col>
-                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text">{{reward_coin_info.total_stake_amount}}</v-col>
+                        <v-col cols="8" md="12" lg="9" class="font-weight-black intro-chain-text"
+                            >{{reward_coin_info.total_stake_amount}}</v-col
+                        >
                     </v-row>
                     <v-row no-gutters class="mt-4 mb-6" :class="$vuetify.breakpoint.width < 1426 ? 'text-14' : 'text-16'">
                         <v-col class="intro-chain-label">持币地址数 :</v-col>
@@ -127,7 +155,11 @@
     <v-row no-gutters class="d-flex justify-center ml-md-n4 mt-2">
         <v-col cols="12" md="4">
             <v-hover v-slot="{ hover }">
-                <v-card class="pa-2 intro-radius mr-md-4" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
+                <v-card
+                    class="pa-2 intro-radius mr-md-4"
+                    :color="hover ? '#283c63' : '#25324b'"
+                    :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''"
+                >
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.money"></v-img>
                         <span class="ml-2">质押分红</span>
@@ -138,22 +170,19 @@
                     <v-layout justify-center :class="$vuetify.breakpoint.mdAndDown ? 'flex-wrap' : ''">
                         <v-card width="100%" class="mx-2 my-2 pa-4" color="rgba(0, 0, 0, 0.2)">
                             <div :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">当前分红池</div>
-                            <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">$263,967</div>
+                            <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
+                                $263,967
+                            </div>
                         </v-card>
                         <v-card width="100%" class="mx-2 my-2 pa-4" color="rgba(0, 0, 0, 0.2)">
                             <div :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">昨日分红</div>
-                            <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">$28,520.14</div>
+                            <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
+                                $28,520.14
+                            </div>
                         </v-card>
                     </v-layout>
                     <v-card-actions class="pa-4 d-flex">
-                        <v-btn
-                            rounded
-                            block
-                            :class="hover ? 'intro-btn-hover' : 'intro-btn'"
-                            color="white"
-                            height="48"
-                            class="text-body-1"
-                        >
+                        <v-btn rounded block :class="hover ? 'intro-btn-hover' : 'intro-btn'" color="white" height="48" class="text-body-1">
                             去质押
                         </v-btn>
                     </v-card-actions>
@@ -174,12 +203,19 @@
                 </v-card>
             </v-hover>
             <v-hover v-slot="{ hover }">
-                <v-card height="100%" class="pa-2 mr-md-4 intro-radius" :color="hover ? '#283c63' : '#25324b'" :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''">
+                <v-card
+                    height="100%"
+                    class="pa-2 mr-md-4 intro-radius"
+                    :color="hover ? '#283c63' : '#25324b'"
+                    :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''"
+                >
                     <v-card-title>
                         <v-img contain max-width="24" max-height="24" :src="pageImage.coin"></v-img>
                         <span class="ml-2">J9BC投注</span>
                         <v-spacer></v-spacer>
-                        <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">敬请期待</span>
+                        <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'"
+                            >敬请期待</span
+                        >
                     </v-card-title>
                     <v-card-text :class="hover ? 'white--text' : 'intro-text'">
                         J9BC将会作为网站可用游戏额度，支持多种游戏投注、结算，并支持J9BC作为流通数字货币。
@@ -205,7 +241,9 @@
                         <v-img contain max-width="24" max-height="24" :src="pageImage.joystick"></v-img>
                         <span class="ml-2">购买特权NFT</span>
                         <v-spacer></v-spacer>
-                        <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">敬请期待</span>
+                        <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'"
+                            >敬请期待</span
+                        >
                     </v-card-title>
                     <v-card-text :class="hover ? 'white--text' : 'intro-text'">
                         J9.io将会上线特权NFT，玩家可在网站内使用J9BC进行购买或在opensea使用ETH进行购买。
@@ -216,7 +254,9 @@
     </v-row>
     <!-- 如何获得 -->
     <v-row no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4">
-        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">如何获得J9BC</v-col>
+        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'"
+            >如何获得J9BC</v-col
+        >
     </v-row>
     <v-row no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4">
         <v-col cols="12" md="4" class="mb-4">

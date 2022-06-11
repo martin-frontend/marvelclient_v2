@@ -3,9 +3,8 @@ import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
 import getProxy from "@/core/global/getProxy";
 
 export default class PageIntroduceMediator extends AbstractMediator {
-
     protected initViewData(): void {
-        const myProxy:PageIntroduceProxy = getProxy(PageIntroduceProxy);
+        const myProxy: PageIntroduceProxy = getProxy(PageIntroduceProxy);
         myProxy.api_plat_var_reward_coin_info();
     }
 

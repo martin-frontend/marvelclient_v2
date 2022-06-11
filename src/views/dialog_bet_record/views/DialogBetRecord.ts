@@ -88,7 +88,7 @@ export default class DialogBetRecord extends AbstractView {
     @Watch("pageData.list.length")
     onWatchList() {
         if (this.pageData.list.length > 0) {
-            console.log('handlerScroll');
+            console.log("handlerScroll");
             this.handlerScroll();
         }
     }

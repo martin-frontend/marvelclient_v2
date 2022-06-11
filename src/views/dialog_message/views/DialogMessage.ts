@@ -9,5 +9,4 @@ export default class DialogMessage extends AbstractView {
     constructor() {
         super(DialogMessageMediator);
     }
-
 }

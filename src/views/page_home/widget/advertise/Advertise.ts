@@ -29,7 +29,7 @@ export default class Advertise extends AbstractView {
         this.onChange();
     }
 
-    onBigItemClick(item:any){
+    onBigItemClick(item: any) {
         this.noticeProxy.jump(item);
     }
 

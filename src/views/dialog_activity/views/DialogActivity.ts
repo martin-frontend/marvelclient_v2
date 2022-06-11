@@ -39,12 +39,12 @@ export default class DialogActivity extends AbstractView {
         }
     }
 
-    onDetail(item:any){
+    onDetail(item: any) {
         this.pageData.bShow = false;
         dialog_activity_detail.show(item);
     }
 
-    onPageChange(val:number){
+    onPageChange(val: number) {
         this.pageData.listQuery.page_count = val;
         this.myProxy.api_plat_activity();
     }

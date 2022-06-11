@@ -20,8 +20,8 @@ export const messages = {
         ...zh_CN,
     },
     vi_VN: {
-        ...vi_VN
-    }
+        ...vi_VN,
+    },
     // 这里如果有其它语言包继续按照规则添加即可
 };
 

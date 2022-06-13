@@ -15,17 +15,8 @@
             width: 100%;
         }
         div {
-            width: calc(100% / 3);
-            margin-left: 0px;
-        }
-    }
-    @media only screen and (max-width: 480px) {
-        div:first-child {
+            margin-left: 20px;
             width: 100%;
-        }
-        div {
-            width: calc(100%);
-            margin-left: 0px;
         }
     }
 }
@@ -54,7 +45,7 @@
         margin-bottom: 3px;
         color: #9db1d8;
         @media only screen and (max-width: 750px) {
-            width: calc(100% / 2);
+            width: 100%;
         }
         div:first-child {
             color: #4c5d7f;

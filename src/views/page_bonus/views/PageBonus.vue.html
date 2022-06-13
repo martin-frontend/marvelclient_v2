@@ -336,7 +336,9 @@
                                 </div>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
-                                ${{ item.hundred_bonus }}
+                                <div class="d-flex justify-end hundred-bonus-width mr-sm-10">
+                                    ${{ item.hundred_bonus }}
+                                </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
                                 <div class="d-flex justify-space-between bonus-width">
@@ -405,7 +407,9 @@
                                 {{ item.stake_ratio }}
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
-                                ${{ item.hundred_bonus }}
+                                <div class="d-flex justify-end hundred-bonus-width mr-sm-10">
+                                    ${{ item.hundred_bonus }}
+                                </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
                                 <div class="d-flex justify-space-between bonus-width">

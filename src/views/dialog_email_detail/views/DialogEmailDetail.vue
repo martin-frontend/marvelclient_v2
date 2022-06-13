@@ -8,8 +8,8 @@ import DialogEmailDetail from "./DialogEmailDetail";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogEmailDetail {}
 </script>

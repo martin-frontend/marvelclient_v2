@@ -14,9 +14,7 @@
                     <div class="d-flex flex-wrap listitem">
                         <div class="item">
                             <div>{{LangUtil("结算时间")}}</div>
-                            <div class="text-body-1">
-                                {{ getDateTime(item.created_at) }}
-                            </div>
+                            <div class="text-body-1">{{ getDateTime(item.created_at) }}</div>
                         </div>
                         <div class="item">
                             <div>{{LangUtil("结算有效流水")}}</div>
@@ -27,12 +25,17 @@
                             <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
                         <div class="item">
-                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }} </div>
+                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
                         <div class="d-flex align-end justify-end listitem-110">
-                            <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text"  @click="handlerDetail(item)">
-                                {{LangUtil("查看详情")}}<v-img class="arrow" width="24" height="24" src="@/assets/extension/chevrons-right.png"></v-img>
+                            <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
+                                {{LangUtil("查看详情")}}<v-img
+                                    class="arrow"
+                                    width="24"
+                                    height="24"
+                                    src="@/assets/extension/chevrons-right.png"
+                                ></v-img>
                             </v-btn>
                         </div>
                     </div>

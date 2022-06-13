@@ -19,7 +19,7 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
         },
     };
 
-    setRewardCoinInfo(data:any){
+    setRewardCoinInfo(data: any) {
         Object.assign(this.pageData.reward_coin_info, data);
     }
 
@@ -46,6 +46,6 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
     };
 
     api_plat_var_reward_coin_info() {
-        this.sendNotification(net.HttpType.api_plat_var_reward_coin_info, {plat_id: core.plat_id});
+        this.sendNotification(net.HttpType.api_plat_var_reward_coin_info, { plat_id: core.plat_id });
     }
 }

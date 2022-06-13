@@ -9,7 +9,7 @@
             </v-btn>
         </div>
 
-        <iframe id="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
+        <iframe id="gameFrame" ref="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
     </v-sheet>
     <RecentBetting class="mt-4" />
 </v-container>

@@ -7,9 +7,9 @@ import Component from "vue-class-component";
 import DialogRecordRecharge from "./DialogRecordRecharge";
 
 @Component({
-    components:{
-        Overlay
-    }
+    components: {
+        Overlay,
+    },
 })
 export default class extends DialogRecordRecharge {}
 </script>

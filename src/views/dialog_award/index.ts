@@ -3,7 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import DialogAwardProxy from "./proxy/DialogAwardProxy";
 import DialogAward from "./views/DialogAward.vue";
 
-function show(data:any) {
+function show(data: any) {
     DialogMount(DialogAward);
     const proxy: DialogAwardProxy = getProxy(DialogAwardProxy);
     proxy.pageData.bShow = true;

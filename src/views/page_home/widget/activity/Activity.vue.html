@@ -1,13 +1,19 @@
-<div class="font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-8'">
-    <div v-if="!$vuetify.breakpoint.mobile" class="text-18 mb-4 ml-2">{{LangUtil("热门活动")}}</div>
+<div class="font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-2'">
+    <!-- <div v-if="!$vuetify.breakpoint.mobile" class="text-18 mb-4 ml-2">{{LangUtil("热门活动")}}</div> -->
     <div class="d-flex box-container">
         <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goPageBouns">
                 <div class="text-16">{{LangUtil("挖{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
                 <div class="text-12">{{LangUtil("当前分红池")}}:</div>
                 <!-- <div class="text-24 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div> -->
-                <Money v-model="pageData.stakeInfo.bonus_pool_amount" fontSize="24" itemWidth="16" itemHeight="36"/>
-                <v-sheet class="btn text-14 rounded-pill mt-1 d-flex align-center justify-center" width="90" height="25">{{LangUtil("领取分红")}}</v-sheet>
+                <Money v-model="pageData.stakeInfo.bonus_pool_amount" fontSize="24" itemWidth="16" itemHeight="36" />
+
+                <div class="d-flex">
+                    <v-sheet class="btn text-14 rounded-pill mt-1 px-2 d-flex align-center justify-center" height="25">
+                        {{LangUtil("领取分红")}}
+                    </v-sheet>
+                    <v-spacer />
+                </div>
             </div>
 
             <div class="activity2-min rounded-lg pa-3">
@@ -17,9 +23,13 @@
                     <div class="text-14 ml-2">{{LangUtil("当前价格")}}</div>
                     <div class="text-14 font-weight-bold ml-2 price">$0.01</div>
                 </v-sheet>
-                <v-sheet class="btn btn-disabled text-14 rounded-pill d-flex align-center justify-center" width="90" height="25"
-                    >{{LangUtil("暂未开放")}}</v-sheet
-                >
+
+                <div class="d-flex">
+                    <v-sheet class="btn btn-disabled text-14 px-2 rounded-pill d-flex align-center justify-center" height="25">
+                        {{LangUtil("暂未开放")}}
+                    </v-sheet>
+                    <v-spacer />
+                </div>
             </div>
         </div>
 
@@ -27,10 +37,13 @@
             <div class="text-24 mt-5 ml-5">{{LangUtil("投注挖{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
             <div class="text-16 ml-5 mt-2">{{LangUtil("当前分红池")}}:</div>
             <!-- <div class="text-48 ml-5 font-weight-black gradient-text">{{moneyFormat(pageData.stakeInfo.bonus_pool_amount)}}</div> -->
-            <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5"/>
-            <v-sheet class="btn text-18 ml-5 mt-2 rounded-pill d-flex align-center justify-center" width="160" height="42"
-                >{{LangUtil("领取分红")}}</v-sheet
-            >
+            <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5" />
+            <div class="d-flex">
+                <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="42">
+                    {{LangUtil("领取分红")}}
+                </v-sheet>
+                <v-spacer />
+            </div>
         </div>
 
         <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly">
@@ -40,9 +53,13 @@
                 <div class="text-16 ml-4 mr-2">{{LangUtil("当前价格")}}</div>
                 <div class="text-28 font-weight-bold price">$0.01</div>
             </v-sheet>
-            <v-sheet class="btn btn-disabled text-18 ml-5 mt-2 rounded-pill d-flex align-center justify-center" width="160" height="42"
-                >{{LangUtil("暂未开放")}}</v-sheet
-            >
+
+            <div class="d-flex">
+                <v-sheet class="btn btn-disabled text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="42">
+                    {{LangUtil("暂未开放")}}
+                </v-sheet>
+                <v-spacer />
+            </div>
         </div>
 
         <div class="activity3 text-24">

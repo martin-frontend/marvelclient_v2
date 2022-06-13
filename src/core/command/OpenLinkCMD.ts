@@ -3,7 +3,7 @@ export default class OpenLinkCMD extends puremvc.SimpleCommand {
         const url = notification.getBody();
 
         try {
-            const winHandler:any = window.open("", "_blank");
+            const winHandler: any = window.open("", "_blank");
             winHandler.location.href = url;
         } catch (e) {
             const a = document.createElement("a"); //创建a标签

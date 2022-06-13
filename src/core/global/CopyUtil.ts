@@ -10,5 +10,4 @@ export default function (text: string) {
     document.body.removeChild(input);
 
     dialog_message.info(LangUtil("复制成功"));
-
 }

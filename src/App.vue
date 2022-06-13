@@ -9,7 +9,7 @@
             <MobileMenu v-else />
             <Overlay v-model="gameProxy.loading" />
         </div>
-        <DialogMessage/>
+        <DialogMessage />
         <div id="dialog_container"></div>
     </v-app>
 </template>
@@ -31,10 +31,10 @@ import getProxy from "./core/global/getProxy";
         Header,
         Footer,
         MobileMenu,
-        Overlay
+        Overlay,
     },
 })
 export default class APP extends Vue {
-    gameProxy:GameProxy = getProxy(GameProxy);
+    gameProxy: GameProxy = getProxy(GameProxy);
 }
 </script>

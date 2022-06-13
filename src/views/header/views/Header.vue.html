@@ -1,7 +1,13 @@
-<v-app-bar class="app-bar" :height="$vuetify.breakpoint.xsOnly?80:155" color="colorTitleBg" elevation="0" :app="routerPath != '/page_game_play'">
+<v-app-bar
+    class="app-bar"
+    :height="$vuetify.breakpoint.xsOnly?80:155"
+    color="colorTitleBg"
+    elevation="0"
+    :app="routerPath != '/page_game_play'"
+>
     <v-container class="ma-auto px-6 py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center mt-2">
-            <img src="@/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="">
+            <img src="@/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
             <v-spacer />
             <div v-if="GamePlatConfig.config.language">
                 <CustomSelect
@@ -60,13 +66,13 @@
 
             <button class="nav-button" :class="routerPath == '/introduce' ? 'active' : ''" @click="goIntroduce">
                 <v-icon>mdi-information</v-icon>
-                <div class="ml-1">{{LangUtil("CF币介绍")}}</div>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </button>
         </div>
     </v-container>
     <v-container v-else class="mt-3">
         <div class="d-flex align-center">
-            <img src="@/assets/logo.png" height="20" alt="">
+            <img src="@/assets/logo.png" height="20" alt="" />
             <v-spacer />
             <div v-if="GamePlatConfig.config.language">
                 <CustomSelect
@@ -94,7 +100,7 @@
             <v-spacer />
             <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
                 <v-icon>mdi-information</v-icon>
-                <div class="ml-1">{{LangUtil("CF币介绍")}}</div>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </v-btn>
         </div>
     </v-container>

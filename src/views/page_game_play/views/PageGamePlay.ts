@@ -1,4 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import getProxy from "@/core/global/getProxy";
+import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
 import { Watch, Component } from "vue-property-decorator";
@@ -24,6 +26,7 @@ export default class PageGamePlay extends AbstractView {
     }
 
     onBack() {
-        router.back();
+        const gameProxy: GameProxy = getProxy(GameProxy);
+        router.replace(gameProxy.lastRouter);
     }
 }

@@ -110,3 +110,6 @@
 .theme--dark.v-tabs .v-tab--active::before {
     opacity: 0;
 }
+::v-deep .v-ripple__container {
+    display: none;
+}

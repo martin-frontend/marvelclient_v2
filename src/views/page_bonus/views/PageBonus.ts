@@ -10,15 +10,17 @@ import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
+import FagProxy from "@/proxy/FagProxy";
 
 @Component
 export default class PageBonus extends AbstractView {
     myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
+    fagProxy: FagProxy = this.getProxy(FagProxy);
     pageData = this.myProxy.pageData;
     plat_stake_info = this.myProxy.plat_stake_info;
     user_stake_info = this.myProxy.user_stake_info;
     listQuery = this.pageData.listQuery;
-    questionData = this.myProxy.questionData;
+
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
 
@@ -32,6 +34,10 @@ export default class PageBonus extends AbstractView {
 
     get bonus_rank() {
         return this.myProxy.bonus_rank;
+    }
+
+    get questionData() {
+        return this.fagProxy.qData.type3;
     }
 
     get bonus_recently() {

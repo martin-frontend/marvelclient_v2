@@ -12,10 +12,8 @@
                 <v-icon size="30" class="colorText1--text ml-2">mdi-email-open</v-icon>
                 <div class="text-16 ml-2">{{pageData.data.title}}</div>
             </div>
-            <v-divider/>
-            <v-sheet class="colorText1--text pa-3" min-height="138" color="transparent">
-                {{pageData.data.content}}
-            </v-sheet>
+            <v-divider />
+            <v-sheet class="colorText1--text pa-3" min-height="138" color="transparent"> {{pageData.data.content}} </v-sheet>
             <div v-if="pageData.data.attachment_status != 1" class="d-flex align-end mt-3 px-2">
                 <div class="d-flex mr-2" v-for="(item, key) of pageData.data.attachment_content" :key="key">
                     <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="40" height="40"></v-img>
@@ -24,11 +22,13 @@
                         <div>{{item}}</div>
                     </div>
                 </div>
-                <v-spacer/>
-                <v-btn v-if="pageData.data.attachment_status == 11" color="colorBtnBg" small @click="onReceive">{{LangUtil("领取奖励")}}</v-btn>
+                <v-spacer />
+                <v-btn v-if="pageData.data.attachment_status == 11" color="colorBtnBg" small @click="onReceive"
+                    >{{LangUtil("领取奖励")}}</v-btn
+                >
             </div>
-            <v-divider class="mt-2"/>
+            <v-divider class="mt-2" />
         </v-card-text>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

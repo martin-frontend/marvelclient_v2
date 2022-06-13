@@ -21,14 +21,15 @@ export default class PageHome extends AbstractView {
 
     get marqueeTxt() {
         const arrMsg = this.gameProxy.marqueeIndex;
-        let result = "<div>";
+        let result = "";
         if (arrMsg.length != 0) {
             if (this.marqueeHtml) {
+                // let width = this.marqueeHtml.$refs.link.clientWidth;
                 for (const msg of arrMsg) {
-                    result += `<span style="margin-right:${this.marqueeHtml.clientWidth}px">${msg.content}</span>`;
+                    result += `<span style="margin-right:${this.marqueeHtml.$refs.link.clientWidth}px">${msg.content}</span>`;
                 }
             }
         }
-        return `${result}</div>`;
+        return `${result}`;
     }
 }

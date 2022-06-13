@@ -26,7 +26,6 @@
     }
 }
 .daily-height {
-    height: calc(100% - 104px);
     @media (max-width: 600px) {
         height: 180px;
     }

@@ -17,6 +17,7 @@ export default class DialogEmailProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -31,12 +32,18 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
-    setDetail(data:any){
-        for(const item of this.pageData.list){
-            if(item.id == data.id){
+    setDetail(data: any) {
+        for (const item of this.pageData.list) {
+            if (item.id == data.id) {
                 Object.assign(item, data);
                 item.is_read = true;
             }
@@ -55,22 +62,22 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_mail_var, { user_id: core.user_id, id });
     }
 
-    api_user_var_mail_var_receive(id:number){
+    api_user_var_mail_var_receive(id: number) {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_mail_var_receive, { user_id: core.user_id, id });
     }
 
-    api_user_var_receiveQuick(){
+    api_user_var_receiveQuick() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_receiveQuick, { user_id: core.user_id });
     }
 
-    api_user_var_destroy_batch(ids:number[]){
+    api_user_var_destroy_batch(ids: number[]) {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_receiveQuick, { user_id: core.user_id, ids });
     }
 
-    api_user_var_destroy_quick(){
+    api_user_var_destroy_quick() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_destroy_quick, { user_id: core.user_id });
     }

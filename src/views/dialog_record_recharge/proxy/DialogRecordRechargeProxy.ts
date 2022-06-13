@@ -10,13 +10,14 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
 
     statusOptions = {
@@ -36,7 +37,13 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     api_user_var_recharge_list() {

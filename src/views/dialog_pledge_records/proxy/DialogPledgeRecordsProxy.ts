@@ -10,7 +10,7 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -21,6 +21,7 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
             mainCoin: {},
             rewardCoin: {},
         },
+        isMobile: false,
     };
 
     /**取目前的主币 奖励币 */
@@ -51,8 +52,14 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
         this.getCurrentCoin();
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     /**--分红--用户质押记录*/

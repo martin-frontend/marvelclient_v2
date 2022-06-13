@@ -52,7 +52,7 @@
                 <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
             </div>
 
-            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" :height="listHeight">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y table_data" :height="listHeight">
                 <v-sheet class="mt-5 px-4 py-3 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                     <div class="ml-4" style="width: 100%">

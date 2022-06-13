@@ -1,8 +1,8 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 
-export default class DialogRecordExchangeProxy extends AbstractProxy{
+export default class DialogRecordExchangeProxy extends AbstractProxy {
     static NAME = "DialogRecordExchangeProxy";
-    
+
     pageData = {
         loading: false,
         bShow: false,
@@ -17,13 +17,14 @@ export default class DialogRecordExchangeProxy extends AbstractProxy{
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
 
-    show(){
+    show() {
         this.pageData.bShow = true;
     }
 
-    resetQuery(){
+    resetQuery() {
         Object.assign(this.pageData.listQuery, {
             page_count: 1,
             page_size: 20,
@@ -33,10 +34,16 @@ export default class DialogRecordExchangeProxy extends AbstractProxy{
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
-    api_user_var_exchange_order_list(){
+    api_user_var_exchange_order_list() {
         this.pageData.loading = true;
         const obj = { user_id: core.user_id };
         Object.assign(obj, this.pageData.listQuery);

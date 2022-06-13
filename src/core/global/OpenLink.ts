@@ -1,6 +1,6 @@
-export default function OpenLink(url:string){
+export default function OpenLink(url: string) {
     try {
-        const winHandler:any = window.open("", "_blank");
+        const winHandler: any = window.open("", "_blank");
         winHandler.location.href = url;
     } catch (e) {
         const a = document.createElement("a"); //创建a标签

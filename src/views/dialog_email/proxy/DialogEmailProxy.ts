@@ -34,9 +34,9 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         this.pageData.list = data.list;
     }
 
-    setDetail(data:any){
-        for(const item of this.pageData.list){
-            if(item.id == data.id){
+    setDetail(data: any) {
+        for (const item of this.pageData.list) {
+            if (item.id == data.id) {
                 Object.assign(item, data);
                 item.is_read = true;
             }
@@ -55,33 +55,32 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_mail_var, { user_id: core.user_id, id });
     }
 
-    api_user_var_mail_var_receive(id:number){
+    api_user_var_mail_var_receive(id: number) {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_mail_var_receive, { user_id: core.user_id, id });
     }
 
-    api_user_var_receiveQuick(){
+    api_user_var_receiveQuick() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_receiveQuick, { user_id: core.user_id });
     }
 
-    api_user_var_destroy_batch(ids:number[]){
+    api_user_var_destroy_batch(ids: number[]) {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_receiveQuick, { user_id: core.user_id, ids });
     }
 
-    api_user_var_destroy_quick(){
+    api_user_var_destroy_quick() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_destroy_quick, { user_id: core.user_id });
     }
 }
 
-
 /**邮件分类 */
 export enum EnumMailCateType {
     ALL = 0,
     PLAT = 1,
-    ACTIVITY = 11
+    ACTIVITY = 11,
 }
 
 export enum EnumRewardStatus {

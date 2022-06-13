@@ -8,20 +8,25 @@ import SelfProxy from "@/proxy/SelfProxy";
 import page_game_list from "@/views/page_game_list";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
+import FagProxy from "@/proxy/FagProxy";
 
 @Component
 export default class PageMine extends AbstractView {
     myProxy: PageMineProxy = this.getProxy(PageMineProxy);
     pageData = this.myProxy.pageData;
+    fagProxy: FagProxy = this.getProxy(FagProxy);
     LangUtil = LangUtil;
 
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     private xsOnly = false;
-    private qData = this.myProxy.questionData;
     private progressLinear = 16;
 
     constructor() {
         super(PageMineMediator);
+    }
+
+    get questionData() {
+        return this.fagProxy.qData.type2;
     }
 
     mounted() {

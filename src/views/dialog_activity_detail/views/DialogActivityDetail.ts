@@ -22,7 +22,7 @@ export default class DialogActivityDetail extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if(!this.pageData.bShow){
+        if (!this.pageData.bShow) {
             dialog_activity.show();
         }
     }

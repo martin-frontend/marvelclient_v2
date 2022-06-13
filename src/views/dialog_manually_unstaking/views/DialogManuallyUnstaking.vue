@@ -11,7 +11,7 @@ import CustomInputButton from "@/views/widget/custom_input_buttom/CustomInputBut
     components: {
         Overlay,
         CustomInputButton,
-    }
+    },
 })
 export default class extends DialogManuallyUnstaking {}
 </script>

@@ -4,6 +4,6 @@ export default class DialogActivityDetailProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        data: <core.ActivityDetailVO>{}
+        data: <core.ActivityDetailVO>{},
     };
 }

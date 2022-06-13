@@ -14,6 +14,7 @@ import page_mine from "@/views/page_mine";
 import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -29,7 +30,7 @@ export default class UserPanel extends AbstractView {
         { id: 11, name: LangUtil("终身分红"), icon: "mdi-clock" },
         { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-bell" },
         { id: 13, name: LangUtil("精彩活动"), icon: "mdi-bell" },
-        { id: 14, name: LangUtil("CF币介绍"), icon: "mdi-bell" },
+        { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-bell" },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

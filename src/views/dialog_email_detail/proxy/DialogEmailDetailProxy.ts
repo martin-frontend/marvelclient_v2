@@ -22,7 +22,6 @@ export default class DialogEmailDetailProxy extends puremvc.Proxy {
     }
 }
 
-
 export enum EnumRewardStatus {
     Empty = 1, //無獎勵
     UNRECEIVED = 11, //未領取

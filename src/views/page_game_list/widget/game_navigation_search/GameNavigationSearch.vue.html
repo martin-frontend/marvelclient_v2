@@ -9,7 +9,15 @@
             </v-btn>
         </v-list-item-icon>
     </v-list-item>
-    <v-tabs class="mr-1 mt-1" hide-slider grow slider-color="transparent" background-color="transparent" v-model="navigationData.showPage" @change="onTabsChange">
+    <v-tabs
+        class="mr-1 mt-1"
+        hide-slider
+        grow
+        slider-color="transparent"
+        background-color="transparent"
+        v-model="navigationData.showPage"
+        @change="onTabsChange"
+    >
         <v-tab>
             <v-chip
                 class="rounded-xl d-flex justify-center align-center"
@@ -130,7 +138,12 @@
                             <v-icon size="29" class="mr-2" color="#4C5D7F">mdi-file-search</v-icon>
                         </template>
                         <template v-slot:append>
-                            <v-btn :small="$vuetify.breakpoint.smAndDown" class="rounded-lg primary text-subtitle-1" color="colorBtnBg" @click="onSearchGame">
+                            <v-btn
+                                :small="$vuetify.breakpoint.smAndDown"
+                                class="rounded-lg primary text-subtitle-1"
+                                color="colorBtnBg"
+                                @click="onSearchGame"
+                            >
                                 <span class="text-rwd-16">查询</span>
                             </v-btn>
                         </template>
@@ -174,7 +187,9 @@
                     ></v-rating>
                 </v-col>
                 <v-col cols="auto">
-                    <v-btn :small="$vuetify.breakpoint.smAndDown" class="playgame-btn" color="colorBtnBg" @click="onEnterGame(item)">去游戏</v-btn>
+                    <v-btn :small="$vuetify.breakpoint.smAndDown" class="playgame-btn" color="colorBtnBg" @click="onEnterGame(item)"
+                        >去游戏</v-btn
+                    >
                 </v-col>
             </v-row>
         </v-tab-item>

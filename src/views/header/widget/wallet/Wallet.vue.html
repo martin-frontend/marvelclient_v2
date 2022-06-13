@@ -1,33 +1,35 @@
-<div>
+<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:45" class="rounded-pill d-flex align-center">
     <v-menu offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
                     v-if="$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
-                    class="align-center d-flex rounded-pill ml-2 pr-8"
+                    class="align-center d-flex rounded-pill ml-2 pr-2"
                     color="colorPanelTitleBg"
-                    width="190"
+                    min-width="80"
                     height="30"
                 >
                     <v-img
-                        class="ml-2"
                         :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
                         max-width="20"
                         max-height="20"
                     ></v-img>
-                    <span class="text-16 ml-2">{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{ selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
+                    <span class="text-16 ml-2"
+                        >{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{
+                        selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span
+                    >
                     <v-spacer />
                     <div
-                        class="icon-box iconfont mr-8 text-14 colorText2--text"
+                        class="icon-box iconfont text-14 colorText2--text ml-2"
                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                     >
                         
                     </div>
                 </v-sheet>
                 <v-sheet
-                    class="align-center d-flex rounded-pill pr-8"
+                    class="align-center d-flex rounded-pill pr-3"
                     color="colorPanelTitleBg"
-                    width="260"
+                    min-width="90"
                     height="45"
                     v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                 >
@@ -37,10 +39,13 @@
                         max-width="20"
                         max-height="20"
                     ></v-img>
-                    <span class="text-16 ml-2">{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{ selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
+                    <span class="text-16 ml-2"
+                        >{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{
+                        selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span
+                    >
                     <v-spacer />
                     <div
-                        class="icon-box iconfont mr-16 text-14 colorText2--text"
+                        class="icon-box iconfont text-14 colorText2--text ml-2"
                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                     >
                         
@@ -66,16 +71,10 @@
         </v-sheet>
     </v-menu>
 
-    <v-btn
-        v-if="$vuetify.breakpoint.xsOnly"
-        class="btn-topup-mobile rounded-pill black--text mr-3"
-        x-small
-        color="#ffb01b"
-        @click="onCoinIn"
-    >
+    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2" x-small color="#ffb01b" @click="onCoinIn">
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="btn-topup rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
+    <v-btn v-else class="rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
         <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
     </v-btn>
-</div>
+</v-sheet>

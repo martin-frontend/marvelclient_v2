@@ -14,13 +14,13 @@ $screen-lg-min: 1264px;
         @content;
     }
 }
- 
+
 @mixin md {
     @media (min-width: #{$screen-md-min}) {
         @content;
     }
 }
- 
+
 @mixin lg {
     @media (min-width: #{$screen-lg-min}) {
         @content;
@@ -29,7 +29,7 @@ $screen-lg-min: 1264px;
 
 // Custom devices
 @mixin rwd($screen) {
-    @media (min-width: ($screen + 'px')) {
+    @media (min-width: ($screen + "px")) {
         @content;
     }
 }

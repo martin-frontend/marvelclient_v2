@@ -1,7 +1,7 @@
 import { vuetify } from "@/plugins/vuetify";
 import Vue from "vue";
 
-const map:any = [];
+const map: any = [];
 
 export default function (pageClass: any) {
     if (map.indexOf(pageClass) == -1) {

@@ -10,14 +10,16 @@
         <v-card-text class="px-5">
             <div class="colorText2--text text-16 ml-3 d-flex">
                 <div>{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-                <div class="ml-5">{{LangUtil("输赢")}} {{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</div>
+                <div class="ml-5">
+                    {{LangUtil("输赢")}} {{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}
+                </div>
             </div>
             <v-divider class="mt-2 mb-4" />
             <div class="d-flex flex-wrap sclect_box">
                 <CustomSelect class="mb-2 mr-2" v-model="typeSelect" :options="typeOptions" width="140" @change="onTypeChange" />
-                <CustomSelect class="mb-2  mr-2" v-model="vendorSelect" :options="vendorOptions" width="140" @change="onVendorChange" />
-                <CustomSelect class="mb-2  mr-2" v-model="statusSelect" :options="statusOptions" width="140" @change="onStatusChange" />
-                <CustomSelect class="mb-2  mr-2" v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+                <CustomSelect class="mb-2 mr-2" v-model="vendorSelect" :options="vendorOptions" width="140" @change="onVendorChange" />
+                <CustomSelect class="mb-2 mr-2" v-model="statusSelect" :options="statusOptions" width="140" @change="onStatusChange" />
+                <CustomSelect class="mb-2 mr-2" v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">

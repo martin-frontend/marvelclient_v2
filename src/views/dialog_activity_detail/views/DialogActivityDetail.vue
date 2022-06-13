@@ -8,8 +8,8 @@ import DialogActivityDetail from "./DialogActivityDetail";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogActivityDetail {}
 </script>

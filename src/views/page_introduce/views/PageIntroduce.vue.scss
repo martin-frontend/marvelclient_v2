@@ -1,8 +1,8 @@
-$introFontFamily: 'PingFang SC';
+$introFontFamily: "PingFang SC";
 $introIntroText: rgba(255, 255, 255, 0.8);
-$chainMsgLabelColor: #9DB1D8;
+$chainMsgLabelColor: #9db1d8;
 $introChainTextColor: rgba(255, 255, 255, 0.8);
-$waitTextColor: #9DB1D8CC;
+$waitTextColor: #9db1d8cc;
 
 .intro-intro-md {
     background-image: url("~@/assets/introduce/CAT@3x.png");
@@ -26,7 +26,7 @@ $waitTextColor: #9DB1D8CC;
 }
 
 .intro-plan {
-    background: linear-gradient(90deg, #103464 0%, #1D2A43 100%);
+    background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
 }
 
 .intro-destroy {
@@ -47,7 +47,7 @@ $waitTextColor: #9DB1D8CC;
 }
 
 .intro-text {
-    color: #9DB1D8 !important;
+    color: #9db1d8 !important;
 }
 
 .intro-wait-text {
@@ -101,7 +101,7 @@ $waitTextColor: #9DB1D8CC;
 }
 
 .intro-distext-color {
-    color: #50607F;
+    color: #50607f;
 }
 
 .chartWrap {
@@ -259,23 +259,23 @@ $waitTextColor: #9DB1D8CC;
         height: 28px;
         line-height: 28px;
     }
-    li:nth-child(1)>span {
+    li:nth-child(1) > span {
         background: rgba(114, 226, 96, 0.2);
         color: #72e260;
     }
-    li:nth-child(2)>span {
+    li:nth-child(2) > span {
         background: rgba(226, 174, 96, 0.2);
         color: #e2ae60;
     }
-    li:nth-child(3)>span {
+    li:nth-child(3) > span {
         background: rgba(200, 96, 226, 0.2);
         color: #c860e2;
     }
-    li:nth-child(4)>span {
+    li:nth-child(4) > span {
         background: rgba(226, 96, 96, 0.2);
         color: #e26060;
     }
-    li:nth-child(5)>span {
+    li:nth-child(5) > span {
         background: rgba(96, 164, 226, 0.2);
         color: #60a4e2;
     }

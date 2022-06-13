@@ -197,6 +197,7 @@
             overflow: inherit;
             .game_mine_title {
                 font-size: 18px !important;
+                line-height: 1;
             }
             &::after {
                 content: url("~@/assets/mine/cat_icon_750.png");
@@ -251,6 +252,15 @@
         }
         .how_title {
             font-size: 14px !important;
+        }
+        #howMine {
+            ::v-deep .v-card__title {
+                width: 66%;
+            }
+            .how_title_box {
+                width: 62%;
+                line-height: 1.3;
+            }
         }
     }
 }

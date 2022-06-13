@@ -32,9 +32,9 @@
                     {{LangUtil("解除质押")}}
                 </v-btn>
             </div>
-            <v-divider class="my-3" />
-            <div v-if="listQuery.cate == 1" class="scroll-y scroll_box">
-                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="listHeight">
+            <v-divider class="my-3"/>
+            <div v-if="listQuery.cate == 1" class="scroll_box">
+                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="listHeight" class="scroll-y table_data">
                     <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex flex-wrap listitem">
                             <div>
@@ -63,8 +63,8 @@
                     </div>
                 </v-sheet>
             </div>
-            <div v-if="listQuery.cate == 2" class="scroll-y scroll_box">
-                <v-sheet color="#121E36" :height="deListHeight">
+            <div v-if="listQuery.cate == 2" class="scroll_box">
+                <v-sheet color="#121E36" :height="deListHeight" class="scroll-y table_data">
                     <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
                         <div class="d-flex flex-wrap listitem-de">
                             <div>

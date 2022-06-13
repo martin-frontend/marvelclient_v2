@@ -34,6 +34,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             pageTotal: 0,
         },
         search: "",
+        isMobile: false,
     };
 
     /**进入页面时调用 */
@@ -56,7 +57,13 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     setFloorRangeData(agent_user_id: number, val: number) {

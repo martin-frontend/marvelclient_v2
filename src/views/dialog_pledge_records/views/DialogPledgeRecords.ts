@@ -9,6 +9,8 @@ import DialogPledgeRecordsProxy from "../proxy/DialogPledgeRecordsProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PageBonusProxy from "@/views/page_bonus/proxy/PageBonusProxy";
 import LangUtil from "@/core/global/LangUtil";
+import GlobalVar from "@/core/global/GlobalVar";
+import { handleScroll } from "@/core/global/Functions";
 
 @Component
 export default class DialogPledgeRecords extends AbstractView {
@@ -19,6 +21,7 @@ export default class DialogPledgeRecords extends AbstractView {
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
+    handleScroll = handleScroll;
 
     commonIcon = Assets.commonIcon;
 
@@ -44,6 +47,26 @@ export default class DialogPledgeRecords extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_stake_log(1);
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
+        }
+    }
+
+    // 监听手机版scroll 到底加载
+    @Watch("scrollStatus.flag")
+    onScroll() {
+        if (this.myProxy.pageData.pageInfo.pageCurrent < this.myProxy.pageData.pageInfo.pageCount) {
+            this.myProxy.pageData.listQuery.page_count++;
+            this.myProxy.api_user_var_stake_log(this.listQuery.cate);
+        }
+    }
+
+    handlerScroll() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            this.$nextTick(() => {
+                GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
+                GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+                GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
+            });
         }
     }
 

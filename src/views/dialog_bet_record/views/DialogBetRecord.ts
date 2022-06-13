@@ -107,7 +107,6 @@ export default class DialogBetRecord extends AbstractView {
         if (this.$vuetify.breakpoint.xsOnly) {
             this.$nextTick(() => {
                 GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
-                // target.replaceWith(target.cloneNode(true));
                 GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
                 GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
             });

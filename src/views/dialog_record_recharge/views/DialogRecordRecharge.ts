@@ -42,6 +42,7 @@ export default class DialogRecordRecharge extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_recharge_list();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
         }
     }
 

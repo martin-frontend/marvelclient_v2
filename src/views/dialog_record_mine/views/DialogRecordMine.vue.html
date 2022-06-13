@@ -10,7 +10,7 @@
         <!--  -->
         <v-card-text class="px-5">
             <div class="listbox" v-if="pageData.list.length > 0">
-                <v-sheet class="mt-5 px-6 py-2 rounded-lg mb-3" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mt-5 px-6 py-2 rounded-lg mb-3 scroll-y table_data" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div class="item">
                             <div>{{LangUtil("结算时间")}}</div>

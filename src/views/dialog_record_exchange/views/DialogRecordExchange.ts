@@ -41,6 +41,7 @@ export default class DialogRecordExchange extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_exchange_order_list();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
         }
     }
 

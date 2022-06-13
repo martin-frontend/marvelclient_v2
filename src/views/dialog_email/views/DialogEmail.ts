@@ -48,6 +48,7 @@ export default class DialogEmail extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_mail();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
         }
     }
 

@@ -13,6 +13,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 export default class DialogActivity extends AbstractView {
     LangUtil = LangUtil;
     handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
     myProxy: DialogActivityProxy = this.getProxy(DialogActivityProxy);
     pageData = this.myProxy.pageData;
 

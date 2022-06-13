@@ -17,6 +17,7 @@ export default class TabAccountDetail extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     listOptions = this.pageData.listOptions;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

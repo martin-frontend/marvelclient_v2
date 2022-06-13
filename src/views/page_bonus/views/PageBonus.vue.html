@@ -325,7 +325,7 @@
                                 {{ item.stake_count }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <div class="d-flex justify-space-between bonus-width">
+                                <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -336,10 +336,14 @@
                                 </div>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
-                                ${{ item.hundred_bonus }}
+                                <div class="d-flex hundred-bonus-width">
+                                    <span class="mr-2">$
+                                    </span>
+                                    <span>{{ item.hundred_bonus }}</span>
+                                </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <div class="d-flex justify-space-between bonus-width">
+                                <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -391,7 +395,7 @@
                                 {{ getDateTime(item.date) }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <div class="d-flex justify-space-between bonus-width">
+                                <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -405,17 +409,21 @@
                                 {{ item.stake_ratio }}
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
-                                ${{ item.hundred_bonus }}
+                                <div class="d-flex hundred-bonus-width">
+                                    <span class="mr-2">$
+                                    </span>
+                                    <span>{{ item.hundred_bonus }}</span>
+                                </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
-                                <div class="d-flex justify-space-between bonus-width">
+                                <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"
                                     ></v-img>
-                                    <span>${{ item.bonus_amount }}</span>
+                                    <span>{{ item.bonus_amount }}</span>
                                 </div>
                             </v-col>
                         </v-row>

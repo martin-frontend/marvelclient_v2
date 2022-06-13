@@ -18,6 +18,7 @@ export default class DialogRecordRecharge extends AbstractView {
     myProxy: DialogRecordRechargeProxy = this.getProxy(DialogRecordRechargeProxy);
     pageData = this.myProxy.pageData;
     statusOptions = this.myProxy.statusOptions;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

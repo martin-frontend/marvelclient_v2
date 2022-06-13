@@ -16,6 +16,7 @@ export default class DialogEmail extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

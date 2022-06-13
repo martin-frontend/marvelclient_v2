@@ -17,6 +17,7 @@ export default class DialogRecordMine extends AbstractView {
     listQuery = this.pageData.listQuery;
     LangUtil = LangUtil;
     handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

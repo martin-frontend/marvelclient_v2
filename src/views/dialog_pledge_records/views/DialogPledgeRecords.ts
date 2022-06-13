@@ -22,6 +22,7 @@ export default class DialogPledgeRecords extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
     handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 
@@ -48,6 +49,14 @@ export default class DialogPledgeRecords extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_stake_log(1);
             this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
+        }
+    }
+
+    @Watch("pageData.list.length")
+    onWatchList() {
+        if (this.pageData.list.length > 0) {
+            console.log("handlerScroll");
+            this.handlerScroll();
         }
     }
 

@@ -1,62 +1,62 @@
-.horizontal-gradient-top{
-    background-image: linear-gradient(to right, #263754, #1C2E4D )
+.horizontal-gradient-top {
+    background-image: linear-gradient(to right, #263754, #1c2e4d);
 }
-.horizontal-gradient{
-    background: linear-gradient(to right, #1D2A45, #2A3A78 );
+.horizontal-gradient {
+    background: linear-gradient(to right, #1d2a45, #2a3a78);
 }
-.gradient-type1{
-    background-image: linear-gradient(to right, #7592FF, #B1BEFF );
+.gradient-type1 {
+    background-image: linear-gradient(to right, #7592ff, #b1beff);
     &:hover {
-        background-image: linear-gradient(to right, #70FEFF, #B3DFFF );
-      }
+        background-image: linear-gradient(to right, #70feff, #b3dfff);
+    }
 }
-.daily-radius{
+.daily-radius {
     border-radius: 10px 10px 0px 0px;
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         border-radius: 5px 5px 0px 0px;
     }
 }
-.rank-height{
+.rank-height {
     height: 55px;
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         height: 40px;
     }
-    &.mobile{
+    &.mobile {
         height: 30px;
     }
 }
-.daily-height{
+.daily-height {
     height: calc(100% - 104px);
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         height: 180px;
     }
 }
-.bonus-card{
-    @media (max-width: 1264px){
+.bonus-card {
+    @media (max-width: 1264px) {
         background-color: #172237;
         border-radius: 10px;
         margin-bottom: 8px;
     }
 }
-.btn-left{
+.btn-left {
     margin-left: -22px;
 }
-.rounded-button{
-    @media (max-width: 600px){
+.rounded-button {
+    @media (max-width: 600px) {
         border-radius: 5px !important;
     }
 }
-.stake-width{
+.stake-width {
     min-width: 120px;
 }
-.arrow-width{
+.arrow-width {
     width: 100%;
 }
 .listitem {
     div {
         font-size: 18px;
         color: white;
-        @media (max-width: 700px){
+        @media (max-width: 700px) {
             font-size: 12px;
         }
     }
@@ -64,27 +64,27 @@
         div {
             color: #506080;
             font-size: 16px;
-            @media (max-width: 700px){
+            @media (max-width: 700px) {
                 font-size: 12px;
             }
         }
     }
 }
-.man{
-    background: url('~@/assets/bonus/man@3x.png') no-repeat center center;
+.man {
+    background: url("~@/assets/bonus/man@3x.png") no-repeat center center;
     background-size: cover;
     position: absolute;
     height: 370px;
     top: 55px;
     right: 15px;
     min-width: 320px;
-    @media (max-width: 1429px){
+    @media (max-width: 1429px) {
         right: -30px;
     }
 }
-.bonus-width{
+.bonus-width {
     width: 105px;
-    @media (max-width: 700px){
+    @media (max-width: 700px) {
         width: 75px;
     }
 }

@@ -6,6 +6,6 @@ export default class GlobalVar {
     };
 
     static HTMLElement = <any>{
-        dom: null
-    }
+        dom: null,
+    };
 }

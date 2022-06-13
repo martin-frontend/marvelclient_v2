@@ -68,7 +68,6 @@ export function handleScroll() {
         GlobalVar.scrollStatus.flag = !GlobalVar.scrollStatus.flag;
         console.log(GlobalVar.scrollStatus.flag);
     }
-
 }
 
 /**

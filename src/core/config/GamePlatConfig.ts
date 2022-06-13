@@ -21,8 +21,8 @@ export default class GamePlatConfig {
         sign_info: { is_open: 0 },
         vip_info: { is_open: 1 },
         plat_coins: {},
-        language:<any>{},
-        main_language: ""
+        language: <any>{},
+        main_language: "",
     };
     /**枚举 */
     static enums: {
@@ -34,5 +34,27 @@ export default class GamePlatConfig {
         this.enums = data.enum;
         delete data.enum;
         Object.assign(this.config, data);
+    }
+    /**主币 */
+    static getMainCoin() {
+        const coins = this.config.plat_coins;
+        const keys = Object.keys(coins);
+        for (const key of keys) {
+            if (coins[key].type == 2) {
+                return key;
+            }
+        }
+        return "";
+    }
+    /**奖励币 */
+    static getAwardCoin() {
+        const coins = this.config.plat_coins;
+        const keys = Object.keys(coins);
+        for (const key of keys) {
+            if (coins[key].type == 3) {
+                return key;
+            }
+        }
+        return "";
     }
 }

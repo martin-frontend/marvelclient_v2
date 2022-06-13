@@ -28,7 +28,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
         Object.assign(this.pageData.listQuery, {
             page_count: 1,
             page_size: 20,
-        })
+        });
     }
 
     setData(data: any) {

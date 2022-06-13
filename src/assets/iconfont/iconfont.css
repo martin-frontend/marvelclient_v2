@@ -1,9 +1,7 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 2876876 */
-    src: url(iconfont.woff2) format("woff2"),
-        url(iconfont.woff) format("woff"),
-        url(iconfont.ttf) format("truetype");
+    src: url(iconfont.woff2) format("woff2"), url(iconfont.woff) format("woff"), url(iconfont.ttf) format("truetype");
 }
 
 .iconfont {
@@ -609,7 +607,6 @@
 .icon-X:before {
     content: "\e601";
 }
-
 
 .icon-box {
     display: inline-grid;

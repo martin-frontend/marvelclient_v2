@@ -46,7 +46,9 @@
                         <div class="d-flex flex-wrap justify-space-between listitem">
                             <div class="item-auto">
                                 <div>{{LangUtil("业绩类型")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">{{ categoryType[item.type].label }}{{LangUtil("业绩")}}</div>
+                                <div class="text-truncate text-16 font-weight-regular">
+                                    {{ categoryType[item.type].label }}{{LangUtil("业绩")}}
+                                </div>
                             </div>
                             <div class="item-auto">
                                 <div>{{LangUtil("总业绩")}}</div>
@@ -95,7 +97,12 @@
                             <div class="colorBlue--text">{{ item.user_id }}</div>
                         </div>
                     </div>
-                    <v-sheet class="mb-2 px-6 py-2 rounded-lg" color="#16233F" v-for="(val, name) in item.water_info" :key="'s' + name + idx">
+                    <v-sheet
+                        class="mb-2 px-6 py-2 rounded-lg"
+                        color="#16233F"
+                        v-for="(val, name) in item.water_info"
+                        :key="'s' + name + idx"
+                    >
                         <div class="d-flex flex-wrap justify-space-between listitem">
                             <div class="item-auto">
                                 <div>{{LangUtil("业绩类型")}}</div>
@@ -115,12 +122,19 @@
                             </div>
                             <div class="item-auto">
                                 <div>{{LangUtil("每万返佣")}}</div>
-                                <div class="text-16 font-weight-regular">{{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(LangUtil('保底'))" : "" }}</div>
+                                <div class="text-16 font-weight-regular">
+                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(LangUtil('保底'))" : "" }}
+                                </div>
                             </div>
                         </div>
                     </v-sheet>
                 </template>
-                <v-sheet v-if="pageData.directList.length == 0" class="d-flex justify-center align-center" color="transparent" min-height="450">
+                <v-sheet
+                    v-if="pageData.directList.length == 0"
+                    class="d-flex justify-center align-center"
+                    color="transparent"
+                    min-height="450"
+                >
                     <div>
                         <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                         <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>

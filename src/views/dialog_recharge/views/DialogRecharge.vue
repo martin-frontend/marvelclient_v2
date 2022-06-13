@@ -10,8 +10,8 @@ import DialogRecharge from "./DialogRecharge";
 @Component({
     components: {
         TabExchange,
-        TabRecharge
-    }
+        TabRecharge,
+    },
 })
 export default class extends DialogRecharge {}
 </script>

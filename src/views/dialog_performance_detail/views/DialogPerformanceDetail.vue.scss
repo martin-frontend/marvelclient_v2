@@ -39,7 +39,8 @@
     }
 }
 .listitem {
-    .item-auto,.item-110 {
+    .item-auto,
+    .item-110 {
         width: auto;
         margin-top: 3px;
         margin-bottom: 3px;
@@ -69,6 +70,6 @@
     font-size: 16px;
     font-weight: 400;
 }
-.scroll_box{
+.scroll_box {
     max-height: calc(100vh - 155px);
 }

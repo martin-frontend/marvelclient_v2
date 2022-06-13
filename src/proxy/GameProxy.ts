@@ -67,7 +67,7 @@ export default class GameProxy extends AbstractProxy {
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
-            coin_name_unique: this.coin_name_unique
+            coin_name_unique: this.coin_name_unique,
         });
     }
 

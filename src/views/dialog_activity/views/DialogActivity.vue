@@ -10,8 +10,8 @@ import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin
 @Component({
     components: {
         AdvertiseInLogin,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogActivity {}
 </script>

@@ -29,34 +29,30 @@ export default class Header extends AbstractView {
         super(HeaderMediator);
     }
 
-    @Watch("gameProxy.lobbyIndex")
-    onWatchIndex() {
-        console.log(this.gameProxy.lobbyIndex);
-    }
-
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
     }
-
+    /**打开主页 */
     goHome() {
         if (this.$router.app.$route.path != "/") {
             router.push("/");
         }
         ScrollUtil(0);
     }
-
+    /**打开介绍页面 */
     goIntroduce() {
         router.push("/page_introduce");
     }
-
+    /**打开登录页面 */
     handlerLogin() {
         dialog_login.show();
     }
+    /**打开注册页面 */
     handlerRegister() {
         dialog_register.show();
     }
-
+    /**锚点跳转 */
     goAnchor(id: string) {
         if (this.routerPath != "/") this.goHome();
         setTimeout(() => {
@@ -66,7 +62,7 @@ export default class Header extends AbstractView {
             }
         }, 100);
     }
-
+    /**切换语言 */
     onLangChange() {
         Cookies.set("lang", core.lang);
         location.reload();

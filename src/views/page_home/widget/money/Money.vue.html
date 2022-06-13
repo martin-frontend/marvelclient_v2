@@ -1,6 +1,8 @@
 <v-sheet class="d-flex align-center" :class="'text-'+fontSize" :height="itemHeight" color="transparent" style="overflow: hidden">
     <div v-for="i of money.length" :key="i">
-        <div v-if="!checkNum(money.substr(i-1, 1))" class="gradient-text" :style="{width: itemWidth+'px'}">{{money.substr(i-1, 1)}}</div>
+        <div v-if="!checkNum(money.substr(i-1, 1))" class="gradient-text" :style="{width: (i==1?itemWidth:itemWidth/2+3)+'px'}">
+            {{money.substr(i-1, 1)}}
+        </div>
         <div ref="nums" :data="money.substr(i-1, 1)" :idx="i" v-else>
             <div v-for="i of 10" :key="i" class="gradient-text" :style="{width: itemWidth+'px'}">{{i-1}}</div>
             <div class="gradient-text">0</div>

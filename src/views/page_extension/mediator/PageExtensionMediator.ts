@@ -10,7 +10,7 @@ export default class PageExtensionMediator extends AbstractMediator {
     LangUtil = LangUtil;
 
     protected initViewData(): void {
-        this.myProxy.api_user_var_short_chain()
+        this.myProxy.api_user_var_short_chain();
         this.myProxy.api_user_var_commission_commissiondetail();
         this.myProxy.api_user_var_commission_commissionnum();
     }
@@ -21,11 +21,9 @@ export default class PageExtensionMediator extends AbstractMediator {
     }
 
     private isToday(someDate: any) {
-        const today = new Date()
-        const [year, month, day] = someDate.split('-');
-        return Number(day) == today.getDate() &&
-            (Number(month) == (today.getMonth() + 1)) &&
-            Number(year) == today.getFullYear()
+        const today = new Date();
+        const [year, month, day] = someDate.split("-");
+        return Number(day) == today.getDate() && Number(month) == today.getMonth() + 1 && Number(year) == today.getFullYear();
     }
 
     public listNotificationInterests(): string[] {

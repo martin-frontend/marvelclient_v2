@@ -26,10 +26,10 @@ export default class DialogRegister extends AbstractView {
 
     areaCodeMenu = false;
     areaCodeSearch = "";
-    areaCodeList:any = [];
+    areaCodeList: any = [];
 
     @Watch("pageData.areaCode")
-    onWatchAreaCode(){
+    onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
     }
     onTabClick(type: number) {
@@ -37,24 +37,24 @@ export default class DialogRegister extends AbstractView {
         this.myProxy.resetForm();
     }
 
-    getImageVerity(){
+    getImageVerity() {
         this.myProxy.api_public_auth_code();
     }
 
-    onAreaCodeInput(){
-        if(this.areaCodeSearch == ""){
+    onAreaCodeInput() {
+        if (this.areaCodeSearch == "") {
             this.areaCodeList = this.pageData.areaCode;
-        }else{
+        } else {
             this.areaCodeList = [];
-            for(const item of this.pageData.areaCode){
-                if(item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch){
+            for (const item of this.pageData.areaCode) {
+                if (item.name.indexOf(this.areaCodeSearch) != -1 || item.area_code == this.areaCodeSearch) {
                     this.areaCodeList.push(item);
                 }
             }
         }
         console.log("this.areaCodeList: ", this.areaCodeList);
     }
-    onItemAreaCode(item:any){
+    onItemAreaCode(item: any) {
         this.pageData.form.area_code = item.area_code;
         this.areaCodeMenu = false;
     }
@@ -81,9 +81,9 @@ export default class DialogRegister extends AbstractView {
     }
 
     getCode() {
-        if(this.form.register_type == 2){
+        if (this.form.register_type == 2) {
             dialog_get_verity.showEmailVerity(6, this.form.username);
-        }else{
+        } else {
             dialog_get_verity.showSmsVerity(6, this.form.area_code, this.form.username);
         }
     }
@@ -99,7 +99,7 @@ export default class DialogRegister extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if(this.pageData.bShow){
+        if (this.pageData.bShow) {
             this.myProxy.api_public_auth_code();
         }
     }

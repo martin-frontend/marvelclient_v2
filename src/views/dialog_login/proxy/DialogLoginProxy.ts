@@ -51,7 +51,6 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             this.pageData.form.password = pwd;
             this.pageData.remember = true;
         }
-        console.log("this.pageData.form: ", this.pageData.form);
     }
 
     show() {
@@ -76,7 +75,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
         if (this.pageData.remember) {
             Cookies.set("username", username, { expires: 7 });
             Cookies.set("password", password, { expires: 7 });
-        }else{
+        } else {
             Cookies.remove("username");
             Cookies.remove("password");
         }

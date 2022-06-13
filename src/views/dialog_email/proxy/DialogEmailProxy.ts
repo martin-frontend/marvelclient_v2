@@ -83,12 +83,11 @@ export default class DialogEmailProxy extends puremvc.Proxy {
     }
 }
 
-
 /**邮件分类 */
 export enum EnumMailCateType {
     ALL = 0,
     PLAT = 1,
-    ACTIVITY = 11
+    ACTIVITY = 11,
 }
 
 export enum EnumRewardStatus {

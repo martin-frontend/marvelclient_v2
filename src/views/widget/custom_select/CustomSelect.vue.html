@@ -6,7 +6,7 @@
                 :rounded="isPill ? 'pill':''"
                 width="100%"
                 :height="height"
-                color="colorPanelTitleBg"
+                :color="$vuetify.breakpoint.xsOnly?'transparent':'colorPanelTitleBg'"
                 v-bind="attrs"
                 v-on="on"
             >

@@ -11,6 +11,8 @@ export default class GameSlideGroup extends AbstractView {
     @Prop() data!: any;
     @Prop() bShowAll!: boolean;
 
+    checkAllFlag = false
+
     getIcon(item: any) {
         if (item.icon.indexOf("http") != -1) {
             return item.icon;
@@ -25,5 +27,15 @@ export default class GameSlideGroup extends AbstractView {
 
     onShowAll() {
         page_game_list.show(this.data.category);
+    }
+
+
+    mounted() {
+        this.$nextTick(() => {
+            const viewBtn: any = this.$refs.viewBtn;
+            if (viewBtn.$refs.link.clientWidth > 85) {
+                this.checkAllFlag = true
+            }
+        });
     }
 }

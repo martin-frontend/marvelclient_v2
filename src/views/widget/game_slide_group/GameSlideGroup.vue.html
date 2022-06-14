@@ -10,6 +10,7 @@
             color="rgba(243, 231, 231, 0.098)"
             height="24"
             @click="onShowAll"
+            ref="viewBtn"
         >
             {{LangUtil("查看全部")}}
         </v-btn>
@@ -18,7 +19,7 @@
         <GameItem v-for="item of data.list" :key="item.vendor_prodcut_id" :item="item" />
     </v-sheet>
     <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
-        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile">
+        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile" :class="checkAllFlag?'width-ext' : ''">
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
                 <GameItem :item="item" />
             </v-slide-item>

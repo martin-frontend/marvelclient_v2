@@ -16,6 +16,10 @@ export default class Marquee1 extends AbstractView {
         super(Marquee1Mediator);
     }
 
+    mounted(){
+        this.onWatchText();
+    }
+
     @Watch("pageData.text")
     onWatchText() {
         this.$nextTick(() => {

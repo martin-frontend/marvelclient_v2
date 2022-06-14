@@ -97,19 +97,18 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
                     this.gameProxy.loading = false;
-                    //如果是移动设备，则在新页面中打开游戏
-                    if (vuetify.framework.breakpoint.mobile) {
-                        dialog_message_box.confirm({
-                            message: LangUtil("进入游戏"),
-                            okFun: () => {
+                    dialog_message_box.confirm({
+                        message: LangUtil("进入游戏"),
+                        okFun: () => {
+                            //如果是移动设备，则在新页面中打开游戏
+                            if (vuetify.framework.breakpoint.mobile) {
                                 OpenLink(body.url);
-                            },
-                        });
-                    } else {
-                        this.gameProxy.lastRouter = router.currentRoute.path;
-                        console.log("this.gameProxy.lastRouter: ", this.gameProxy.lastRouter);
-                        page_game_play.show(body.url);
-                    }
+                            } else {
+                                this.gameProxy.lastRouter = router.currentRoute.path;
+                                page_game_play.show(body.url);
+                            }
+                        },
+                    });
                 }
                 break;
             case net.EventType.api_plat_var_notice_index:

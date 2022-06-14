@@ -128,13 +128,13 @@ export default class PageMineProxy extends puremvc.Proxy {
 
         this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
         this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
-        this.pageData.trial.date = this.getTrialData;
+        // this.pageData.trial.date = this.getTrialData;
     }
 
-    get getTrialData() {
-        const d = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
-        return d.split("-")[1] + "-" + d.split("-")[2];
-    }
+    // get getTrialData() {
+    //     const d = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+    //     return d.split("-")[1] + "-" + d.split("-")[2];
+    // }
     /**游戏挖矿 试算 */
     api_user_var_backwater_trial() {
         this.sendNotification(net.HttpType.api_user_var_backwater_trial, {
@@ -150,5 +150,13 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     getVipLevel(level: any) {
         return level + 1 > this.pageData.vipMaxLevel ? this.pageData.vipMaxLevel : level + 1;
+    }
+
+    getTrialTime(data: any) {
+        if (data.url.indexOf("trial") > 0) {
+            const result = JSON.parse(data.result);
+            const d = result.extend.date.split(" ")[0];
+            this.pageData.trial.date = d.split("-")[1] + "-" + d.split("-")[2];
+        }
     }
 }

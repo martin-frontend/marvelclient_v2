@@ -18,6 +18,7 @@ export default class PageMineMediator extends AbstractMediator {
             net.EventType.api_user_show_var,
             net.EventType.api_user_var_backwater_trial,
             net.EventType.api_user_var_backwater_trial_receive,
+            core.EventType.REQUEST_END,
         ];
     }
 
@@ -35,6 +36,9 @@ export default class PageMineMediator extends AbstractMediator {
                 console.warn(body);
                 dialog_message.success("领取成功");
                 myProxy.api_user_var_backwater_trial();
+                break;
+            case core.EventType.REQUEST_END:
+                myProxy.getTrialTime(body);
                 break;
         }
     }

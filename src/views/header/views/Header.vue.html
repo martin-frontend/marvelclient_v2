@@ -74,12 +74,16 @@
         <div class="d-flex align-center">
             <img src="@/assets/logo.png" height="20" alt="" />
             <v-spacer />
+            <v-btn height="20" width="20" fab color="#ffb01b" class="black--text"
+            >
+            <v-icon small>mdi-message-text-outline</v-icon>
+            </v-btn>
             <div v-if="GamePlatConfig.config.language">
                 <CustomSelect
                     v-model="core.lang"
                     :options="GamePlatConfig.config.language"
                     :icons="GamePlatConfig.config.language"
-                    :width="130"
+                    :width="$vuetify.breakpoint.xsOnly? 45 : 130"
                     :height="30"
                     fontSize="12"
                     iconSize="20"

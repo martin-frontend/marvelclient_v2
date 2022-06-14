@@ -16,7 +16,7 @@ export default class Marquee1 extends AbstractView {
         super(Marquee1Mediator);
     }
 
-    mounted(){
+    mounted() {
         this.onWatchText();
     }
 
@@ -25,21 +25,23 @@ export default class Marquee1 extends AbstractView {
         this.$nextTick(() => {
             const marqueeBox: any = this.$refs.marqueeBox;
             const marqueeText: any = this.$refs.marqueeText;
-            const fromX = marqueeBox.clientWidth;
-            const toX = -marqueeText.clientWidth;
-            const time = (fromX - toX) / 50;
-            gsap.fromTo(
-                marqueeText,
-                { x: fromX },
-                {
-                    x: toX,
-                    duration: time,
-                    ease: Linear.easeNone,
-                    onComplete: () => {
-                        this.myProxy.next();
-                    },
-                }
-            );
+            if (marqueeBox) {
+                const fromX = marqueeBox.clientWidth;
+                const toX = -marqueeText.clientWidth;
+                const time = (fromX - toX) / 50;
+                gsap.fromTo(
+                    marqueeText,
+                    { x: fromX },
+                    {
+                        x: toX,
+                        duration: time,
+                        ease: Linear.easeNone,
+                        onComplete: () => {
+                            this.myProxy.next();
+                        },
+                    }
+                );
+            }
         });
     }
 }

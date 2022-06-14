@@ -119,6 +119,7 @@ export default class DialogBetRecord extends AbstractView {
         } else {
             this.listQuery.vendor_type = this.typeSelect;
         }
+        this.myProxy.pageData.list = []
         this.myProxy.api_user_show_var_bet();
     }
     onVendorChange() {
@@ -127,6 +128,7 @@ export default class DialogBetRecord extends AbstractView {
         } else {
             this.listQuery.vendor_id = this.vendorSelect;
         }
+        this.myProxy.pageData.list = []
         this.myProxy.api_user_show_var_bet();
     }
     onStatusChange() {
@@ -135,6 +137,7 @@ export default class DialogBetRecord extends AbstractView {
         } else {
             this.listQuery.settlement_status = this.statusSelect;
         }
+        this.myProxy.pageData.list = []
         this.myProxy.api_user_show_var_bet();
     }
     onTimeChange() {
@@ -156,6 +159,7 @@ export default class DialogBetRecord extends AbstractView {
                 this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
         }
+        this.myProxy.pageData.list = []
         this.myProxy.api_user_show_var_bet();
     }
 

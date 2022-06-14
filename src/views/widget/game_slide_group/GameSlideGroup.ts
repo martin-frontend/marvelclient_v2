@@ -32,9 +32,11 @@ export default class GameSlideGroup extends AbstractView {
 
     mounted() {
         this.$nextTick(() => {
-            const viewBtn: any = this.$refs.viewBtn;
-            if (viewBtn.$refs.link.clientWidth > 85) {
-                this.checkAllFlag = true
+            if (!this.$vuetify.breakpoint.xsOnly) {
+                const viewBtn: any = this.$refs.viewBtn;
+                if (viewBtn.$refs.link.clientWidth > 85) {
+                    this.checkAllFlag = true
+                }
             }
         });
     }

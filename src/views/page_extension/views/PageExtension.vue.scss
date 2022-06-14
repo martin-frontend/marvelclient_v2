@@ -14,10 +14,10 @@
             background-position: -14% bottom;
         }
         @media (max-width: 400px) {
-            background-image: url("~@/assets/extension/commission@2x.png"), url("~@/assets/extension/background.png"),
+            background-image: url("~@/assets/extension/commission@2x.png"),
                 linear-gradient(to right, #1e2c47, #384f72);
-            background-position: -24% bottom, right;
-            background-size: 216px 252px, 60% 65%, 100% 100%;
+            background-position: -24% bottom;
+            background-size: 216px 252px, 100% 100%;
             height: unset;
         }
         @media (min-width: 400px) and (max-width: 600px) {

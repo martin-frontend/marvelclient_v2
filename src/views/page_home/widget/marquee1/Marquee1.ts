@@ -25,7 +25,7 @@ export default class Marquee1 extends AbstractView {
         this.$nextTick(() => {
             const marqueeBox: any = this.$refs.marqueeBox;
             const marqueeText: any = this.$refs.marqueeText;
-            if (marqueeBox) {
+            if (marqueeBox && marqueeText) {
                 const fromX = marqueeBox.clientWidth;
                 const toX = -marqueeText.clientWidth;
                 const time = (fromX - toX) / 50;

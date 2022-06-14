@@ -10,6 +10,7 @@ import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
+import Marquee1 from "../widget/marquee1/Marquee1.vue";
 
 @Component({
     components: {
@@ -19,6 +20,7 @@ import GameSport from "../widget/game_sport/GameSport.vue";
         Activity,
         GameSport,
         RecentBetting,
+        Marquee1,
     },
 })
 export default class extends PageHome {

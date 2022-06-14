@@ -29,7 +29,6 @@ export default class PageBonus extends AbstractView {
     private hr: any = "00";
     private min: any = "00";
     private sec: any = "00";
-    private test: any = "00";
 
     private timer: any = null;
 
@@ -130,7 +129,9 @@ export default class PageBonus extends AbstractView {
     }
 
     countdown() {
-        const end = Date.parse(this.myProxy.plat_stake_info.bonus_time);
+        //@ts-ignore
+        const end = Date.parse(new Date(this.myProxy.plat_stake_info.bonus_time.replace(/-/g, "/")))
+
         //@ts-ignore
         const now = Date.parse(new Date());
         const msec = end - now;
@@ -138,12 +139,12 @@ export default class PageBonus extends AbstractView {
             this.myProxy.api_plat_var_stake_info();
             this.myProxy.api_user_var_stake_info();
         }
-        this.test = msec.toString()
+
         this.hr = Math.floor(msec / 1000 / 60 / 60);
         this.min = Math.floor((msec / 1000 / 60) % 60);
         this.sec = (msec / 1000) % 60;
-        // this.hr = this.hr > 9 ? this.hr : "0" + this.hr;
-        // this.min = this.min > 9 ? this.min : "0" + this.min;
-        // this.sec = this.sec > 9 ? this.sec : "0" + this.sec;
+        this.hr = this.hr > 9 ? this.hr : "0" + this.hr;
+        this.min = this.min > 9 ? this.min : "0" + this.min;
+        this.sec = this.sec > 9 ? this.sec : "0" + this.sec;
     }
 }

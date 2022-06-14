@@ -78,7 +78,7 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        console.warn("user info >>>", this.userInfo);
+        // console.warn("user info >>>", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
@@ -118,9 +118,6 @@ export default class PageMineProxy extends puremvc.Proxy {
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
                 : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
-
-        // this.pageData.nextExp = -1123;
-        // this.pageData.nextUSDT = -1123;
     }
 
     setTrial(body: any) {
@@ -131,7 +128,12 @@ export default class PageMineProxy extends puremvc.Proxy {
 
         this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
         this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
-        this.pageData.trial.date = <any>core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+        this.pageData.trial.date = this.getTrialData;
+    }
+
+    get getTrialData() {
+        const d = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+        return d.split("-")[1] + "-" + d.split("-")[2];
     }
     /**游戏挖矿 试算 */
     api_user_var_backwater_trial() {

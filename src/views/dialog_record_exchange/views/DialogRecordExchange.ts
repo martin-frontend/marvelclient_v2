@@ -17,6 +17,7 @@ export default class DialogRecordExchange extends AbstractView {
     handleScroll = handleScroll;
     myProxy: DialogRecordExchangeProxy = this.getProxy(DialogRecordExchangeProxy);
     pageData = this.myProxy.pageData;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

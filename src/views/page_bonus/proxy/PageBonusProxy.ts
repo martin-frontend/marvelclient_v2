@@ -83,12 +83,12 @@ export default class PageBonusProxy extends puremvc.Proxy {
     }
 
     setPlatBonus(data: any) {
-        this.plat_bonus = data;
+        this.plat_bonus.list = data.list.slice(0, 10);
         this.getCurrentCoin();
     }
 
     setUserBonus(data: any) {
-        this.user_bonus = data;
+        this.user_bonus.list = data.list.slice(0, 10);
     }
 
     /**取目前的主币 奖励币 */

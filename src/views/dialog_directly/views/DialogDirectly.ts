@@ -18,6 +18,7 @@ export default class DialogDirectly extends AbstractView {
     pageData = this.myProxy.pageData;
     LangUtil = LangUtil;
     handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

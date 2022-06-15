@@ -1,25 +1,26 @@
-<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'">
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" ref="box">
     <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
         <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[data.category] }}</v-icon>
         <div :class="$vuetify.breakpoint.xsOnly?'text-12':''">{{ data.category_name }}</div>
         <v-spacer />
-        <v-btn
-            v-if="bShowAll && !$vuetify.breakpoint.mobile"
-            class="text-12 rounded-pill"
-            style="padding: 8px"
-            color="rgba(243, 231, 231, 0.098)"
-            height="24"
-            @click="onShowAll"
-            ref="viewBtn"
-        >
-            {{LangUtil("查看全部")}}
-        </v-btn>
+        <div ref="viewBtn">
+            <v-btn
+                v-if="bShowAll && !$vuetify.breakpoint.mobile"
+                class="text-12 rounded-pill"
+                style="padding: 8px"
+                color="rgba(243, 231, 231, 0.098)"
+                height="24"
+                @click="onShowAll"
+            >
+                {{LangUtil("查看全部")}}
+            </v-btn>
+        </div>
     </div>
     <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
         <GameItem v-for="item of data.list" :key="item.vendor_prodcut_id" :item="item" />
     </v-sheet>
     <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
-        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile" :class="checkAllFlag?'width-ext' : ''">
+        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile">
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
                 <GameItem :item="item" />
             </v-slide-item>

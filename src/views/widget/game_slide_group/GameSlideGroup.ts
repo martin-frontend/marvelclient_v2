@@ -11,8 +11,6 @@ export default class GameSlideGroup extends AbstractView {
     @Prop() data!: any;
     @Prop() bShowAll!: boolean;
 
-    checkAllFlag = false
-
     getIcon(item: any) {
         if (item.icon.indexOf("http") != -1) {
             return item.icon;
@@ -29,15 +27,17 @@ export default class GameSlideGroup extends AbstractView {
         page_game_list.show(this.data.category);
     }
 
-
     mounted() {
+        this.onWatchBreakPoint();
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchBreakPoint() {
         this.$nextTick(() => {
-            if (!this.$vuetify.breakpoint.xsOnly) {
-                const viewBtn: any = this.$refs.viewBtn;
-                if (viewBtn.$refs.link.clientWidth > 85) {
-                    this.checkAllFlag = true
-                }
-            }
+            const box: any = this.$refs.box;
+            const viewBtn: any = this.$refs.viewBtn;
+            box.style.setProperty("--next-right", viewBtn.clientWidth + 22 + "px");
+            box.style.setProperty("--prev-right", viewBtn.clientWidth + 22 + 35 + "px");
         });
     }
 }

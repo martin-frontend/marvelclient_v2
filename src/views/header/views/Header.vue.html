@@ -64,7 +64,7 @@
 
             <v-spacer />
 
-            <button class="nav-button" :class="routerPath == '/introduce' ? 'active' : ''" @click="goIntroduce">
+            <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
                 <v-icon>mdi-information</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </button>

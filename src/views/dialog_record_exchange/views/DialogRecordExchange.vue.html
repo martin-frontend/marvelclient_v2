@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-divider class="mx-5" />
-        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
+        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
             <v-sheet class="mx-5 mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex flex-wrap listitem">
                     <div class="min-width-150">

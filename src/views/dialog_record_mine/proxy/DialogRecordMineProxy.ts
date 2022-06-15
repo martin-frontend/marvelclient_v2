@@ -10,13 +10,14 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
             page_size: 20,
             user_id: core.user_id,
         },
-        list: [],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -28,7 +29,13 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
     /**获取用户返水记录 */
     api_user_var_backwater() {

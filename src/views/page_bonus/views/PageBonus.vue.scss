@@ -26,7 +26,6 @@
     }
 }
 .daily-height {
-    height: calc(100% - 104px);
     @media (max-width: 600px) {
         height: 180px;
     }
@@ -87,4 +86,7 @@
     @media (max-width: 700px) {
         width: 75px;
     }
+}
+.hundred-bonus-width {
+    width: 85px;
 }

@@ -17,6 +17,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
 
     show() {
@@ -33,7 +34,13 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     api_user_var_exchange_order_list() {

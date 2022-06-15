@@ -4,7 +4,6 @@
         background-image: url("~@/assets/extension/commission@2x.png"), linear-gradient(to right, #1e2c47, #384f72);
         background-size: 240px 281px, 100% 100%;
         background-position: -6% bottom;
-        height: calc(100% - 96px);
         @media (max-width: 1426px) {
             background-position: -20% bottom;
         }
@@ -82,5 +81,10 @@
 .rounded-button {
     @media (max-width: 600px) {
         border-radius: 5px !important;
+    }
+}
+.commission{
+    @media (max-width: 600px) {
+        max-width: 85px !important;
     }
 }

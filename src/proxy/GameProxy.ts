@@ -19,8 +19,6 @@ export default class GameProxy extends AbstractProxy {
     lastRouter = "/";
 
     loading = false;
-    /**跑马灯 */
-    marqueeIndex: any = [];
 
     /**
      * 大厅菜单
@@ -69,10 +67,5 @@ export default class GameProxy extends AbstractProxy {
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
         });
-    }
-
-    /**跑马灯 */
-    setMarqueeIndex(data: any) {
-        this.marqueeIndex = data;
     }
 }

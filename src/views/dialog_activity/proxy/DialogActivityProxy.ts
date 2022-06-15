@@ -9,13 +9,14 @@ export default class DialogActivityProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -29,7 +30,13 @@ export default class DialogActivityProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     /**获取活动列表 */

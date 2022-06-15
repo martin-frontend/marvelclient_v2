@@ -8,6 +8,8 @@ import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
+import { handleScroll } from "@/core/global/Functions";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -15,6 +17,8 @@ export default class DialogDirectly extends AbstractView {
     myProxy: DialogDirectlyProxy = this.getProxy(DialogDirectlyProxy);
     pageData = this.myProxy.pageData;
     LangUtil = LangUtil;
+    handleScroll = handleScroll;
+    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 
@@ -35,14 +39,41 @@ export default class DialogDirectly extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
-        this.myProxy.resetQuery();
     }
 
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
+            this.myProxy.resetQuery();
             this.myProxy.api_user_var_agent_direct_list();
+            this.myProxy.pageData.isMobile = this.$vuetify.breakpoint.width < 600;
+        }
+    }
+
+    @Watch("pageData.list.length")
+    onWatchList() {
+        if (this.pageData.list.length > 0) {
+            this.handlerScroll();
+        }
+    }
+
+    // 监听手机版scroll 到底加载
+    @Watch("scrollStatus.flag")
+    onScroll() {
+        if (this.myProxy.pageData.pageInfo.pageCurrent < this.myProxy.pageData.pageInfo.pageCount) {
+            this.myProxy.pageData.listQuery.page_count++;
+            this.myProxy.api_user_var_agent_direct_list();
+        }
+    }
+
+    handlerScroll() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+            this.$nextTick(() => {
+                GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
+                GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
+                GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
+            });
         }
     }
 

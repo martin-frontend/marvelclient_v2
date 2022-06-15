@@ -17,6 +17,7 @@ export default class DialogEmailProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        isMobile: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -31,7 +32,13 @@ export default class DialogEmailProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        if (this.pageData.isMobile) {
+            if (data.list.length > 0) {
+                this.pageData.list.push(...data.list);
+            }
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     setDetail(data: any) {

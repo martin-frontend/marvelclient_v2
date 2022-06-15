@@ -79,7 +79,7 @@
             >
             <v-icon small>mdi-message-text-outline</v-icon>
             </v-btn>
-            <div v-if="GamePlatConfig.config.language">
+            <div v-if="GamePlatConfig.config.language" class="language">
                 <CustomSelect
                     v-model="core.lang"
                     :options="GamePlatConfig.config.language"

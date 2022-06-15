@@ -51,3 +51,8 @@ a {
 .app-bar {
     background: url("~@/assets/header/wenli.png") no-repeat left top;
 }
+.language{
+    ::v-deep .colorPanelTitleBg {
+        background-color: transparent !important;
+    }
+}

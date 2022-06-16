@@ -1,16 +1,12 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import Assets from "@/assets/Assets";
 import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
-import dialog_message from "@/views/dialog_message";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPledgeRecordsMediator from "../mediator/DialogPledgeRecordsMediator";
 import DialogPledgeRecordsProxy from "../proxy/DialogPledgeRecordsProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PageBonusProxy from "@/views/page_bonus/proxy/PageBonusProxy";
 import LangUtil from "@/core/global/LangUtil";
-import GlobalVar from "@/core/global/GlobalVar";
-import { handleScroll } from "@/core/global/Functions";
 
 @Component
 export default class DialogPledgeRecords extends AbstractView {
@@ -21,8 +17,6 @@ export default class DialogPledgeRecords extends AbstractView {
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
-    handleScroll = handleScroll;
-    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 

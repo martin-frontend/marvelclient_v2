@@ -1,4 +1,5 @@
-<v-card-text class="mt-3 px-5">
+<!-- pc显示方式 -->
+<v-card-text class="mt-3 px-5" v-if="!$vuetify.breakpoint.xsOnly">
     <div class="d-flex flex-wrap">
         <CustomSelect
             class="mb-2 mr-2"

@@ -1,23 +1,16 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
-import GamePlatConfig from "@/core/config/GamePlatConfig";
-import Constant from "@/core/global/Constant";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
-import { Prop, Watch, Component } from "vue-property-decorator";
+import { Watch, Component } from "vue-property-decorator";
 import DialogWalletProxy from "../../proxy/DialogWalletProxy";
-import GlobalVar from "@/core/global/GlobalVar";
-import { handleScroll } from "@/core/global/Functions";
-
 @Component
 export default class TabAccountDetail extends AbstractView {
     LangUtil = LangUtil;
-    handleScroll = handleScroll;
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     listOptions = this.pageData.listOptions;
-    scrollStatus = GlobalVar.scrollStatus;
 
     commonIcon = Assets.commonIcon;
 
@@ -41,34 +34,6 @@ export default class TabAccountDetail extends AbstractView {
                 break;
         }
         this.myProxy.api_user_show_var_gold();
-    }
-
-    @Watch("pageData.list.length")
-    onWatchList() {
-        if (this.pageData.list.length > 0) {
-            console.log("handlerScroll");
-            this.handlerScroll();
-        }
-    }
-
-    // 监听手机版scroll 到底加载
-    @Watch("scrollStatus.flag")
-    onScroll() {
-        console.warn("end");
-        if (this.myProxy.pageData.pageInfo.pageCurrent < this.myProxy.pageData.pageInfo.pageCount) {
-            this.myProxy.pageData.listQuery.page_count++;
-            this.myProxy.api_user_show_var_gold();
-        }
-    }
-
-    handlerScroll() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            this.$nextTick(() => {
-                GlobalVar.HTMLElement.dom = document.querySelector(".table_data") as HTMLElement;
-                GlobalVar.HTMLElement.dom.removeEventListener("scroll", this.handleScroll);
-                GlobalVar.HTMLElement.dom.addEventListener("scroll", this.handleScroll);
-            });
-        }
     }
 
     onCoinChange() {

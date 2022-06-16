@@ -10,7 +10,7 @@
         <v-card-text class="px-5">
             <div class="d-flex flex-wrap justify-space-between mb-2">
                 <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
-                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}</div>
+                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search mt-4 mt-xs-0 ml-4 ml-xs-0">
@@ -32,7 +32,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("注册时间")}</div>
+                            <div class="mb-1">{{LangUtil("注册时间")}}</div>
                             <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
                         </v-col>
                         <v-col
@@ -41,7 +41,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("用户ID")}</div>
+                            <div class="mb-1">{{LangUtil("用户ID")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
                         </v-col>
                         <v-col
@@ -50,7 +50,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("用户昵称")}</div>
+                            <div class="mb-1">{{LangUtil("用户昵称")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
                         </v-col>
                         <v-col
@@ -59,7 +59,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("直属人数")}</div>
+                            <div class="mb-1">{{LangUtil("直属人数")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
                         </v-col>
                         <v-col
@@ -68,7 +68,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("团队人数")}</div>
+                            <div class="mb-1">{{LangUtil("团队人数")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
                         </v-col>
                         <v-col
@@ -77,7 +77,7 @@
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
                         >
-                            <div class="mb-1">{{LangUtil("保底")}</div>
+                            <div class="mb-1">{{LangUtil("保底")}}</div>
                             <div v-if="item.is_promotion_floor === 1">
                                 <a href="#" class="text-16 font-weight-regular" @click="handlerSetting(item)"
                                     >{{ item.promotion_floor["0"] }}</a
@@ -91,7 +91,7 @@
             <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
                 <div>
                     <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                    <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}</div>
+                    <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
                 </div>
             </v-sheet>
         </v-card-text>

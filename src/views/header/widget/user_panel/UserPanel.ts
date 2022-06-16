@@ -35,6 +35,7 @@ export default class UserPanel extends AbstractView {
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     userInfo = this.selfProxy.userInfo;
+    red_dot_tips = this.selfProxy.red_dot_tips;
 
     onLoginOut() {
         this.selfProxy.api_user_logout();

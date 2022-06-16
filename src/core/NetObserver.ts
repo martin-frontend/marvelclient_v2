@@ -36,7 +36,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_plat_var_notice_index,
             net.EventType.api_plat_fag_index,
-            net.EventType.api_plat_var_marquee_index,
+            net.EventType.api_user_var_red_dot_tips,
         ];
     }
 
@@ -82,8 +82,6 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                     //常见问题
                     this.sendNotification(net.HttpType.api_plat_fag_index);
-                    // 获取跑马灯
-                    this.sendNotification(net.HttpType.api_plat_var_marquee_index, { plat_id: core.plat_id });
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -100,19 +98,18 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
                     this.gameProxy.loading = false;
-                    //如果是移动设备，则在新页面中打开游戏
-                    if (vuetify.framework.breakpoint.mobile) {
-                        dialog_message_box.confirm({
-                            message: LangUtil("进入游戏"),
-                            okFun: () => {
+                    dialog_message_box.confirm({
+                        message: LangUtil("进入游戏"),
+                        okFun: () => {
+                            //如果是移动设备，则在新页面中打开游戏
+                            if (vuetify.framework.breakpoint.mobile) {
                                 OpenLink(body.url);
-                            },
-                        });
-                    } else {
-                        this.gameProxy.lastRouter = router.currentRoute.path;
-                        console.log("this.gameProxy.lastRouter: ", this.gameProxy.lastRouter);
-                        page_game_play.show(body.url);
-                    }
+                            } else {
+                                this.gameProxy.lastRouter = router.currentRoute.path;
+                                page_game_play.show(body.url);
+                            }
+                        },
+                    });
                 }
                 break;
             case net.EventType.api_plat_var_notice_index:
@@ -124,9 +121,8 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_plat_fag_index:
                 this.fagProxy.setData(body);
                 break;
-            case net.EventType.api_plat_var_marquee_index:
-                // 获取跑马灯
-                this.gameProxy.setMarqueeIndex(body);
+            case net.EventType.api_user_var_red_dot_tips:
+                this.selfProxy.redDotTips(body);
                 break;
         }
     }

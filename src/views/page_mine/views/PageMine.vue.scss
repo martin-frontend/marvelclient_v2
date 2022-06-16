@@ -253,14 +253,17 @@
         .how_title {
             font-size: 14px !important;
         }
-        #howMine {
-            ::v-deep .v-card__title {
-                width: 66%;
-            }
-            .how_title_box {
-                width: 62%;
-                line-height: 1.3;
-            }
-        }
+        // #howMine {
+        //     ::v-deep .v-card__title {
+        //         width: 66%;
+        //     }
+        //     .how_title_box {
+        //         width: 62%;
+        //         line-height: 1.3;
+        //     }
+        // }
+        // .liheight {
+        //     line-height: 1.2;
+        // }
     }
 }

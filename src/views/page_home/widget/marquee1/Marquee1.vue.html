@@ -1,0 +1,12 @@
+<v-sheet
+    v-if="pageData.list.length>0"
+    color="#1d3256"
+    :height="$vuetify.breakpoint.xsOnly?30:35"
+    :class="$vuetify.breakpoint.xsOnly?'rounded':'rounded-lg'"
+    class="d-flex align-center pr-3"
+>
+    <v-icon class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon">mdi-bullhorn-outline</v-icon>
+    <div ref="marqueeBox" class="marquee-box">
+        <div ref="marqueeText">{{pageData.text}}</div>
+    </div>
+</v-sheet>

@@ -9,12 +9,24 @@ export default class SelfProxy extends AbstractProxy {
 
     public onRegister(): void {
         setInterval(() => {
-            this.api_user_show_var([2]);
+            if (core.user_id) {
+                this.api_user_show_var([2]);
+                this.api_user_var_red_dot_tips();
+            }
         }, 10000);
     }
 
     /**用户个人信息 */
     userInfo: core.UserInfoVO = { user_id: 0, nick_name: "", bsc_address: "", gold_info: <any>{} };
+    /**红点信息 */
+    red_dot_tips = {
+        is_activity: 0,
+        is_binding: 0,
+        is_commission: 0,
+        is_today_sign: 0,
+        is_user_mail: 0,
+        is_vip: 0,
+    };
 
     setUserInfo(value: any) {
         Object.assign(this.userInfo, value);
@@ -37,6 +49,10 @@ export default class SelfProxy extends AbstractProxy {
         router.push("/");
     }
 
+    redDotTips(data: any) {
+        Object.assign(this.red_dot_tips, data);
+    }
+
     /**--账号--登出*/
     api_user_logout() {
         this.sendNotification(net.HttpType.api_user_logout);
@@ -53,5 +69,9 @@ export default class SelfProxy extends AbstractProxy {
             ...data,
             user_id: core.user_id,
         });
+    }
+    /**--其它--获取红点提示信息*/
+    api_user_var_red_dot_tips() {
+        this.sendNotification(net.HttpType.api_user_var_red_dot_tips, { user_id: core.user_id });
     }
 }

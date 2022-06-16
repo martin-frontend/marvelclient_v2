@@ -78,7 +78,7 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        console.warn("user info >>>", this.userInfo);
+        // console.warn("user info >>>", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
@@ -118,9 +118,6 @@ export default class PageMineProxy extends puremvc.Proxy {
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
                 : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
-
-        // this.pageData.nextExp = -1123;
-        // this.pageData.nextUSDT = -1123;
     }
 
     setTrial(body: any) {
@@ -131,8 +128,13 @@ export default class PageMineProxy extends puremvc.Proxy {
 
         this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
         this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
-        this.pageData.trial.date = <any>core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+        // this.pageData.trial.date = this.getTrialData;
     }
+
+    // get getTrialData() {
+    //     const d = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+    //     return d.split("-")[1] + "-" + d.split("-")[2];
+    // }
     /**游戏挖矿 试算 */
     api_user_var_backwater_trial() {
         this.sendNotification(net.HttpType.api_user_var_backwater_trial, {
@@ -148,5 +150,13 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     getVipLevel(level: any) {
         return level + 1 > this.pageData.vipMaxLevel ? this.pageData.vipMaxLevel : level + 1;
+    }
+
+    getTrialTime(data: any) {
+        if (data.url.indexOf("trial") > 0) {
+            const result = JSON.parse(data.result);
+            const d = result.extend.date.split(" ")[0];
+            this.pageData.trial.date = d.split("-")[1] + "-" + d.split("-")[2];
+        }
     }
 }

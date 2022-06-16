@@ -26,4 +26,18 @@ export default class GameSlideGroup extends AbstractView {
     onShowAll() {
         page_game_list.show(this.data.category);
     }
+
+    mounted() {
+        this.onWatchBreakPoint();
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchBreakPoint() {
+        this.$nextTick(() => {
+            const box: any = this.$refs.box;
+            const viewBtn: any = this.$refs.viewBtn;
+            box.style.setProperty("--next-right", viewBtn.clientWidth + 22 + "px");
+            box.style.setProperty("--prev-right", viewBtn.clientWidth + 22 + 35 + "px");
+        });
+    }
 }

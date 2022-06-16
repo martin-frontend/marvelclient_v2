@@ -49,7 +49,7 @@
                                         <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2 next_title">{{ pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}} </span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between mt-1 mt-md-3">
-                                        <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigReward.now }}</span>
+                                        <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigReward.now }}%</span>
                                         <v-img max-width="40" height="22" contain src="~@/assets/mine/arrow_icon.png"></v-img>
                                         <span class="colorTextNext--text text-h6 text-md-h5">{{ pageData.backwaterConfigReward.next }}</span>
                                     </div>
@@ -140,16 +140,16 @@
                     <v-img max-width="62" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                     <span class="text-body-2 font-weight-medium">VIP {{ myProxy.getVipLevel(level) }}</span>
                 </div>
-                <div class="d-flex align-center">
+                <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
                     <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.mainCoin.name }} {{LangUtil('返水')}}  </span>
                 </div>
-                <div class="d-flex align-center">
+                <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
                     <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[2].backwater_rate * 100).toFixed(3)}}%</span>
                 </div>
-                <div class="d-flex align-center">
+                <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
                     <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
                 </div>
-                <div class="d-flex align-center">
+                <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
                     <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[3].backwater_rate * 100).toFixed(3)}}%</span>
                 </div>
             </v-sheet>

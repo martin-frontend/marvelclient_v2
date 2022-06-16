@@ -6,7 +6,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
-import FagProxy from "@/proxy/FagProxy";
+import VueLoadmore from 'vuejs-loadmore';
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -16,6 +16,7 @@ core.channel_id = "30000001";
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
+Vue.use(VueLoadmore);
 
 //@ts-ignore
 window["vm"] = new Vue({

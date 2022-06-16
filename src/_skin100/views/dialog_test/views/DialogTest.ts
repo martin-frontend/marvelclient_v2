@@ -26,7 +26,7 @@ export default class DialogTest extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
-            this.myProxy.api_xxx();
+            // this.myProxy.api_xxx();
         }
     }
 }

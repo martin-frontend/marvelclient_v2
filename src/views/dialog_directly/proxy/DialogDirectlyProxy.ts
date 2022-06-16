@@ -2,6 +2,7 @@ import { objectRemoveNull } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/DialogPromotionFloorProxy";
 import dialog_promotion_floor from "@/views/dialog_promotion_floor";
+import { vuetify } from "@/plugins/vuetify";
 
 export default class DialogDirectlyProxy extends puremvc.Proxy {
     dialogPromotionFloorProxy: DialogPromotionFloorProxy = getProxy(DialogPromotionFloorProxy);
@@ -34,14 +35,16 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             pageTotal: 0,
         },
         search: "",
-        isMobile: false,
+        // 列表是否加载完成，手机模式专用
+        finished: false,
+        done: <any>null,
     };
 
     /**进入页面时调用 */
-    enter() {}
+    enter() { }
 
     /**离开页面时调用 */
-    leave() {}
+    leave() { }
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -57,10 +60,15 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        if (this.pageData.isMobile) {
-            if (data.list.length > 0) {
+        if (vuetify.framework.breakpoint.xsOnly) {
+            const { pageCount, pageCurrent } = this.pageData.pageInfo;
+            if (pageCurrent == 1) {
+                this.pageData.list = data.list;
+            } else {
                 this.pageData.list.push(...data.list);
             }
+            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
@@ -72,20 +80,23 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         dialog_promotion_floor.show();
     }
 
+    /**手机下拉刷新 */
+    listRefrush(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count = 1;
+        this.api_user_var_agent_direct_list();
+    }
+    /**手机上拉加载更多 */
+    listMore(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count++;
+        this.api_user_var_agent_direct_list();
+    }
+
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
         this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }
-
-    /**--代理推广--直属保底范围查询*/
-    // api_user_var_agent_var_floor_range(agent_user_id: any) {
-    //     this.parameter.agent_user_id = agent_user_id;
-    //     this.dialogPromotionFloorProxy.parameter.agent_user_id = agent_user_id;
-    //     this.sendNotification(net.HttpType.api_user_var_agent_var_floor_range, {
-    //         user_id: core.user_id,
-    //         agent_user_id: agent_user_id,
-    //     });
-    // }
 }

@@ -25,8 +25,8 @@ export default class DialogBetRecord extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
+        BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            BlurUtil(this.pageData.bShow);
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
             this.myProxy.resetQuery();

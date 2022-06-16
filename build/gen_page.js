@@ -3,7 +3,7 @@ const fs = require("fs");
 const utils = require("./utils");
 
 const tempPath = path.resolve(__dirname, "template/page");
-const srcPath = path.resolve(__dirname, "../src");
+var srcPath = path.resolve(__dirname, "../src");
 
 const moduleName = process.argv[2];
 if (!moduleName) throw "参数错误";

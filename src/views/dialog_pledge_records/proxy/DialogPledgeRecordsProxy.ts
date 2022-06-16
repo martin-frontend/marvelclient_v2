@@ -78,8 +78,6 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
     }
     /**手机上拉加载更多 */
     listMore(done: any) {
-        console.log('listMore');
-
         this.pageData.done = done;
         this.pageData.listQuery.page_count++;
         this.api_user_var_stake_log(this.pageData.listQuery.cate);

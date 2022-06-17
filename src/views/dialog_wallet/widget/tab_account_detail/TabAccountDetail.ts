@@ -59,6 +59,14 @@ export default class TabAccountDetail extends AbstractView {
         this.myProxy.api_user_show_var_gold();
     }
 
+    onRefresh(done: any) {
+        this.myProxy.listRefrush(done);
+    }
+
+    onLoad(done: any) {
+        this.myProxy.listMore(done);
+    }
+
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
             return this.$vuetify.breakpoint.height - 305;

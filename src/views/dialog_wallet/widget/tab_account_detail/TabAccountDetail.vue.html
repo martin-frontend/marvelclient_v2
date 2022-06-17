@@ -1,67 +1,122 @@
-<!-- pc显示方式 -->
-<v-card-text class="mt-3 px-5" v-if="!$vuetify.breakpoint.xsOnly">
-    <div class="d-flex flex-wrap">
-        <CustomSelect
-            class="mb-2 mr-2"
-            v-model="listOptions.timeSelect"
-            :options="listOptions.timeOptions()"
-            width="140"
-            @change="onTimeChange"
-        />
-        <CustomSelect
-            class="mb-2 mr-2"
-            v-model="listOptions.coinSelect"
-            :options="listOptions.coinOptions()"
-            width="140"
-            @change="onCoinChange"
-        />
-        <CustomSelect
-            class="mb-2 mr-2"
-            v-model="listOptions.typeSelect"
-            :options="listOptions.typeOptions()"
-            width="140"
-            @change="onTypeChange"
-        />
-    </div>
-    <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
-        <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-            <div class="d-flex flex-wrap listitem">
-                <div>
-                    <div>{{LangUtil("明细类型")}}</div>
-                    <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
+<div>
+    <!-- pc显示方式 -->
+    <v-card-text class="mt-3 px-5" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="d-flex flex-wrap">
+            <CustomSelect
+                class="mb-2 mr-2"
+                v-model="listOptions.timeSelect"
+                :options="listOptions.timeOptions()"
+                width="140"
+                @change="onTimeChange"
+            />
+            <CustomSelect
+                class="mb-2 mr-2"
+                v-model="listOptions.coinSelect"
+                :options="listOptions.coinOptions()"
+                width="140"
+                @change="onCoinChange"
+            />
+            <CustomSelect
+                class="mb-2 mr-2"
+                v-model="listOptions.typeSelect"
+                :options="listOptions.typeOptions()"
+                width="140"
+                @change="onTypeChange"
+            />
+        </div>
+        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
+            <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <div class="d-flex flex-wrap listitem">
+                    <div>
+                        <div>{{LangUtil("明细类型")}}</div>
+                        <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("币种")}}</div>
+                        <div>{{item.coin_name_unique}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("数量变化")}}</div>
+                        <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("账户余额")}}</div>
+                        <div>{{item.balance}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("日期")}}</div>
+                        <div class="text-truncate">{{item.created_at.substr(5)}}</div>
+                    </div>
                 </div>
-                <div>
-                    <div>{{LangUtil("币种")}}</div>
-                    <div>{{item.coin_name_unique}}</div>
-                </div>
-                <div>
-                    <div>{{LangUtil("数量变化")}}</div>
-                    <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
-                </div>
-                <div>
-                    <div>{{LangUtil("账户余额")}}</div>
-                    <div>{{item.balance}}</div>
-                </div>
-                <div>
-                    <div>{{LangUtil("日期")}}</div>
-                    <div class="text-truncate">{{item.created_at.substr(5)}}</div>
-                </div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
+            <div>
+                <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
+                <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
             </div>
         </v-sheet>
-    </v-sheet>
-    <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
-        <div>
-            <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-            <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
+        <v-spacer />
+        <v-pagination
+            class="mt-2"
+            v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+            v-model="pageData.pageInfo.pageCurrent"
+            :length="pageData.pageInfo.pageCount"
+            :total-visible="7"
+            @input="onPageChange"
+        ></v-pagination>
+    </v-card-text>
+    <!-- 手机显示方式 -->
+    <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+        <div class="d-flex justify-space-between mx-5 mb-2">
+            <CustomSelect
+                class="mr-1"
+                v-model="listOptions.timeSelect"
+                :options="listOptions.timeOptions()"
+                width="100%"
+                @change="onTimeChange"
+            />
+            <CustomSelect
+                class="ml-1"
+                v-model="listOptions.coinSelect"
+                :options="listOptions.coinOptions()"
+                width="100%"
+                @change="onCoinChange"
+            />
         </div>
-    </v-sheet>
-    <v-spacer />
-    <v-pagination
-        class="mt-2"
-        v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-        v-model="pageData.pageInfo.pageCurrent"
-        :length="pageData.pageInfo.pageCount"
-        :total-visible="7"
-        @input="onPageChange"
-    ></v-pagination>
-</v-card-text>
+        <div class="d-flex justify-space-between mx-5 mb-2">
+            <CustomSelect
+                v-model="listOptions.typeSelect"
+                :options="listOptions.typeOptions()"
+                width="49%"
+                @change="onTypeChange"
+            />
+        </div>
+        <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+            <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <div class="d-flex flex-wrap listitem">
+                    <div>
+                        <div>{{LangUtil("明细类型")}}</div>
+                        <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("币种")}}</div>
+                        <div>{{item.coin_name_unique}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("数量变化")}}</div>
+                        <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("账户余额")}}</div>
+                        <div>{{item.balance}}</div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("日期")}}</div>
+                        <div class="text-truncate">{{item.created_at.substr(5)}}</div>
+                    </div>
+                </div>
+            </v-sheet>
+        </vue-loadmore>
+    </v-card-text>
+</div>

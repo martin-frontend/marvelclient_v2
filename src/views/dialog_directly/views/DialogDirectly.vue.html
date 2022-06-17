@@ -1,5 +1,5 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
-    <v-card :class="heightClass" class="rounded-lg d-flex flex-column" color="colorPanelBg">
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-rwd-18 font-weight-regular">{{LangUtil("我的直属")}}</div>
@@ -14,7 +14,7 @@
                     <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
-                <div class="search mt-4 mt-xs-0 ml-4 ml-xs-0">
+                <div class="search">
                     <CustomInputButton
                         height="41"
                         :placeholder="LangUtil('输入查询ID')"
@@ -24,7 +24,7 @@
                     />
                 </div>
             </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" height="100%" class="scroll-y table_data">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
                 <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <v-row no-gutters class="justify-space-between fill-height">
                         <v-col
@@ -89,14 +89,8 @@
                     </v-row>
                 </v-sheet>
             </v-sheet>
-            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
-                <div>
-                    <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                    <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
-                </div>
-            </v-sheet>
-        </v-card-text>
-        <v-card-actions class="mt-auto" v-if="!$vuetify.breakpoint.xsOnly">
+            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <v-spacer />
             <v-pagination
                 class="mx-auto mb-2"
                 v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
@@ -104,7 +98,7 @@
                 :length="pageData.pageInfo.pageCount"
                 @input="onPageChange"
             ></v-pagination>
-        </v-card-actions>
+        </v-card-text>
         <!-- 手机显示方式 -->
         <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
             <div class="gradient-bg d-flex align-center px-5">
@@ -132,68 +126,37 @@
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                    <v-row no-gutters class="justify-space-between fill-height">
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("注册时间")}}</div>
-                            <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
-                        </v-col>
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("用户ID")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
-                        </v-col>
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("用户昵称")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
-                        </v-col>
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("直属人数")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
-                        </v-col>
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("团队人数")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
-                        </v-col>
-                        <v-col
-                            class="listitem d-flex justify-center flex-column"
-                            cols="6"
-                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
-                            md="auto"
-                        >
-                            <div class="mb-1">{{LangUtil("保底")}}</div>
-                            <div v-if="item.is_promotion_floor === 1">
-                                <a href="#" class="text-16 font-weight-regular" @click="handlerSetting(item)"
-                                    >{{ item.promotion_floor["0"] }}</a
-                                >
-                            </div>
-                            <div v-else>-</div>
-                        </v-col>
-                    </v-row>
+                <ListNodata v-if="pageData.list.length == 0"/>
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("注册时间")}}</div>
+                        <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("用户ID")}}</div>
+                        <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("用户昵称")}}</div>
+                        <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("直属人数")}}</div>
+                        <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("团队人数")}}</div>
+                        <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("保底")}}</div>
+                        <div v-if="item.is_promotion_floor === 1">
+                            <a href="#" class="text-16 font-weight-regular" @click="handlerSetting(item)"
+                                >{{ item.promotion_floor["0"] }}</a
+                            >
+                        </div>
+                        <div v-else>-</div>
+                    </div>
                 </v-sheet>
             </vue-loadmore>
         </v-card-text>

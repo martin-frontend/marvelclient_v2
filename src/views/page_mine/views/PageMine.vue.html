@@ -117,15 +117,15 @@
             <v-slide-item v-for="(item, level) of pageData.vipConfig" :key="level">
                 <v-card color="transparent">
                     <v-sheet color="transparent" height="277">
-                        <v-img max-width="160" width="160" height="100%" class="mx-2" contain src="~@/assets/mine/item_bg.png">
+                        <v-img max-width="160" width="160" height="100%" class="mr-1" contain src="~@/assets/mine/item_bg.png">
                             <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
                             <div class="d-flex flex-column mt-n3 justify-center align-center pt-2 text-body-1">
                                 <div class="mt-1 mb-2">VIP {{ myProxy.getVipLevel(level) }}</div>
                                 <div class="d-flex flex-column mt-n3 justify-center align-center vip_config_box">
                                     <div class="mt-1 font-weight-medium colorVipLevelText--text" v-if="item.backwater_config[2].backwater_rate > 0">{{ pageData.platCoins.mainCoin.name }}{{LangUtil('返水')}}</div>
-                                    <div class="mt-1 font-weight-medium colorCoin--text text-h5" v-if="item.backwater_config[2].backwater_rate > 0">{{(item.backwater_config[2].backwater_rate * 100).toFixed(3)}}%</div>
+                                    <div class="mt-1 font-weight-medium colorCoin--text text-h5" v-if="item.backwater_config[2].backwater_rate > 0">{{(item.backwater_config[2].backwater_rate * 100).toFixed(2)}}%</div>
                                     <div class="mt-1 font-weight-medium colorVipLevelText--text" v-if="item.backwater_config[3].backwater_rate > 0">{{ pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}</div>
-                                    <div class="mt-1 font-weight-medium colorCoin--text text-h5" v-if="item.backwater_config[3].backwater_rate > 0">{{(item.backwater_config[3].backwater_rate * 100).toFixed(3)}}%</div>
+                                    <div class="mt-1 font-weight-medium colorCoin--text text-h5" v-if="item.backwater_config[3].backwater_rate > 0">{{(item.backwater_config[3].backwater_rate * 100).toFixed(2)}}%</div>
                                 </div>
                             </div>
                         </v-img>
@@ -144,13 +144,13 @@
                     <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.mainCoin.name }} {{LangUtil('返水')}}  </span>
                 </div>
                 <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
-                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[2].backwater_rate * 100).toFixed(3)}}%</span>
+                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[2].backwater_rate * 100).toFixed(2)}}%</span>
                 </div>
                 <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
                     <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
                 </div>
                 <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
-                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[3].backwater_rate * 100).toFixed(3)}}%</span>
+                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[3].backwater_rate * 100).toFixed(2)}}%</span>
                 </div>
             </v-sheet>
         </div>

@@ -56,10 +56,11 @@
                             </div>
                         </div>
                     </v-sheet>
+                    <ListNodata v-if="pageData.list.length == 0" height="445"/>
                 </v-sheet>
             </div>
             <div v-if="listQuery.cate == 2 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
-                <v-sheet color="#121E36" :height="deListHeight" class="scroll-y table_data">
+                <v-sheet v-if="pageData.list.length>0" color="#121E36" :height="deListHeight" class="scroll-y table_data">
                     <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
                         <div class="d-flex flex-wrap listitem-de">
                             <div>
@@ -88,10 +89,10 @@
                             </div>
                         </div>
                     </v-sheet>
-                    <ListNodata v-if="pageData.list.length == 0" height="445"/>
-                    <v-spacer />
                 </v-sheet>
             </div>
+            <ListNodata v-if="pageData.list.length == 0" height="445"/>
+            <v-spacer />
             <v-pagination
                 v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
                 v-model="pageData.pageInfo.pageCurrent"

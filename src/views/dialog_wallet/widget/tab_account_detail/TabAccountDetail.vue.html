@@ -24,7 +24,7 @@
                 @change="onTypeChange"
             />
         </div>
-        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
+        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
             <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex flex-wrap listitem">
                     <div>

@@ -82,12 +82,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="368+43">
-                <div>
-                    <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                    <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
-                </div>
-            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0" height="411"/>
             <v-spacer />
             <v-pagination
                 class="mt-2"
@@ -149,6 +144,7 @@
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                <ListNodata v-if="pageData.list.length == 0"/>
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("订单号")}}</div>

@@ -1,18 +1,8 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib/framework";
 import "vuetify/dist/vuetify.min.css";
-import VueI18n from "vue-i18n";
-import { getLocale, messages } from "@/lang";
 
 Vue.use(Vuetify);
-// Vue.use(VueI18n);
-
-// const locale = getLocale();
-
-// const i18n = new VueI18n({
-//     locale: locale,
-//     messages,
-// });
 
 const opts = {
     theme: {

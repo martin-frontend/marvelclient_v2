@@ -17,6 +17,7 @@ import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
+import { locale } from 'vuejs-loadmore';
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -66,6 +67,7 @@ export default class NetObserver extends AbstractMediator {
                             core.lang = GamePlatConfig.config.main_language;
                         }
                     }
+                    locale.use(core.lang);
                     LangConfig.load();
                 }
                 break;

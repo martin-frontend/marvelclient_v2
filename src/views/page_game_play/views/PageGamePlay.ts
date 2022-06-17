@@ -90,7 +90,13 @@ export default class PageGamePlay extends AbstractView {
 
     onBack() {
         const gameProxy: GameProxy = getProxy(GameProxy);
-        const len = gameProxy.historyLength - window.history.length;
-        this.$router.go(len);
+        // const len = gameProxy.historyLength - window.history.length;
+        // this.$router.go(len);
+        router.back();
+        setTimeout(()=>{
+            if(router.currentRoute.path == "/page_game_play"){
+                router.replace(gameProxy.lastRouter);
+            }
+        }, 100);
     }
 }

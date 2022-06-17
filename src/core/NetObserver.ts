@@ -103,6 +103,7 @@ export default class NetObserver extends AbstractMediator {
                     dialog_message_box.confirm({
                         message: LangUtil("进入游戏"),
                         okFun: () => {
+                            this.gameProxy.lastRouter = router.currentRoute.path;
                             this.gameProxy.historyLength = window.history.length;
                             page_game_play.show(body.url);
                         },

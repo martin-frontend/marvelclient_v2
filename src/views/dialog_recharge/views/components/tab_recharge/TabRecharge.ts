@@ -26,9 +26,11 @@ export default class TabRecharge extends AbstractView {
     onChange1(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.form.recharge_channel_id = this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
     onChange2(value: any) {
+        this.form.recharge_channel_id = this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
 

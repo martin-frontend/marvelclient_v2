@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
-import { locale } from 'vuejs-loadmore';
+import { locale } from "vuejs-loadmore";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -103,13 +103,8 @@ export default class NetObserver extends AbstractMediator {
                     dialog_message_box.confirm({
                         message: LangUtil("进入游戏"),
                         okFun: () => {
-                            //如果是移动设备，则在新页面中打开游戏
-                            if (vuetify.framework.breakpoint.mobile) {
-                                OpenLink(body.url);
-                            } else {
-                                this.gameProxy.lastRouter = router.currentRoute.path;
-                                page_game_play.show(body.url);
-                            }
+                            this.gameProxy.historyLength = window.history.length;
+                            page_game_play.show(body.url);
                         },
                     });
                 }

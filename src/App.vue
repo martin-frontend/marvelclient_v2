@@ -1,12 +1,12 @@
 <template>
     <v-app>
         <div id="page">
-            <Header />
+            <Header v-if="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
             <v-main>
                 <router-view />
             </v-main>
             <Footer v-if="!$vuetify.breakpoint.mobile" />
-            <MobileMenu v-else />
+            <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
         <DialogMessage />
@@ -34,6 +34,7 @@ import Overlay from "./views/widget/overlay/Overlay.vue";
 import GameProxy from "./proxy/GameProxy";
 import getProxy from "./core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import { Watch } from "vue-property-decorator";
 
 @Component({
     components: {

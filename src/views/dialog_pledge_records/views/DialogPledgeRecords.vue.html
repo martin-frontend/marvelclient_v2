@@ -57,12 +57,6 @@
                         </div>
                     </v-sheet>
                 </v-sheet>
-                <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="450">
-                    <div>
-                        <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                        <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
-                    </div>
-                </v-sheet>
             </div>
             <div v-if="listQuery.cate == 2 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
                 <v-sheet color="#121E36" :height="deListHeight" class="scroll-y table_data">
@@ -94,17 +88,7 @@
                             </div>
                         </div>
                     </v-sheet>
-                    <v-sheet
-                        v-if="pageData.list.length == 0"
-                        class="d-flex justify-center align-center"
-                        color="transparent"
-                        min-height="450"
-                    >
-                        <div>
-                            <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                            <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
-                        </div>
-                    </v-sheet>
+                    <ListNodata v-if="pageData.list.length == 0" height="445"/>
                     <v-spacer />
                 </v-sheet>
             </div>
@@ -149,28 +133,27 @@
                     {{LangUtil("解除质押")}}
                 </v-btn>
             </div>
-            <v-divider class="my-3 mx-5"/>
+            <v-divider class="my-2 mx-5"/>
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <div v-if="listQuery.cate == 1 && $vuetify.breakpoint.xsOnly">
                 <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                    <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                        <div class="d-flex flex-wrap listitem">
-                            <div>
-                                <div>{{LangUtil("时间")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
-                            </div>
-                            <div>
-                                <div class="ml-sm-8">{{LangUtil("数量")}}</div>
-                                <div class="d-flex align-center text-16 font-weight-regular">
-                                    <v-img
-                                        class="mr-2"
-                                        max-width="25"
-                                        height="25"
-                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
-                                    ></v-img>
-                                    {{ item.gold }}
-                                </div>
+                    <ListNodata v-if="pageData.list.length == 0" />
+                    <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("时间")}}</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="ml-sm-8 d-flex align-center colorText1--text">{{LangUtil("数量")}}</div>
+                            <div class="d-flex align-center text-16 font-weight-regular">
+                                <v-img
+                                    class="mr-2"
+                                    max-width="20"
+                                    height="20"
+                                    :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                ></v-img>
+                                {{ item.gold }}
                             </div>
                         </div>
                     </v-sheet>
@@ -178,32 +161,31 @@
             </div>
             <div v-if="listQuery.cate == 2 && $vuetify.breakpoint.xsOnly">
                 <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                    <ListNodata v-if="pageData.list.length == 0"/>
                     <v-sheet color="#121E36">
-                        <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
-                            <div class="d-flex flex-wrap listitem-de">
-                                <div>
-                                    <div>{{LangUtil("时间")}}</div>
-                                    <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
+                        <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
+                            <div class="d-flex justify-space-between">
+                                <div class="colorText1--text">{{LangUtil("时间")}}</div>
+                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
+                            </div>
+                            <div class="d-flex justify-space-between">
+                                <div class="colorText1--text">{{LangUtil("类型")}}</div>
+                                <div class="text-truncate text-16 font-weight-regular">
+                                    <span v-if="item.type == 48">{{LangUtil("质押")}}</span>
+                                    <span v-else-if="item.type == 49">{{LangUtil("自动解质押")}}</span>
+                                    <span v-else>{{LangUtil("手动解质押")}}</span>
                                 </div>
-                                <div class="listitem-180">
-                                    <div>{{LangUtil("类型")}}</div>
-                                    <div class="text-truncate text-16 font-weight-regular">
-                                        <span v-if="item.type == 48">{{LangUtil("质押")}}</span>
-                                        <span v-else-if="item.type == 49">{{LangUtil("自动解质押")}}</span>
-                                        <span v-else>{{LangUtil("手动解质押")}}</span>
-                                    </div>
-                                </div>
-                                <div class="listitem-150">
-                                    <div class="ml-sm-8">{{LangUtil("到账数量")}}</div>
-                                    <div class="d-flex align-center text-16 font-weight-regular">
-                                        <v-img
-                                            class="mr-2"
-                                            max-width="25"
-                                            height="25"
-                                            :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
-                                        ></v-img>
-                                        {{ item.gold }}
-                                    </div>
+                            </div>
+                            <div class="d-flex justify-space-between">
+                                <div class="ml-sm-8 colorText1--text">{{LangUtil("到账数量")}}</div>
+                                <div class="d-flex align-center text-16 font-weight-regular">
+                                    <v-img
+                                        class="mr-2"
+                                        max-width="20"
+                                        height="20"
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                    ></v-img>
+                                    {{ item.gold }}
                                 </div>
                             </div>
                         </v-sheet>

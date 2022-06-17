@@ -45,21 +45,26 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.vendor_type = this.listOptions.typeSelect;
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
         this.myProxy.api_user_show_var_bet();
     }
     onVendorChange() {
         this.listQuery.vendor_id = this.listOptions.vendorSelect;
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
         this.myProxy.api_user_show_var_bet();
     }
     onStatusChange() {
         this.listQuery.settlement_status = this.listOptions.statusSelect;
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
         this.myProxy.api_user_show_var_bet();
     }
     onTimeChange() {
+        this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
         switch (this.listOptions.timeSelect) {
             case 0:
                 this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");

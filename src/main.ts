@@ -7,6 +7,7 @@ import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
 import VueLoadmore from 'vuejs-loadmore';
+import WebViewBridge from "@/core/native/WebViewBridge";
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -25,6 +26,10 @@ window["vm"] = new Vue({
     render: (h) => h(App),
 });
 // .$mount("#app");
+
+//native调用
+//@ts-ignore
+window["receiveNative"] = WebViewBridge.getInstance().receiveNative;
 
 window.onload = function () {
     document.addEventListener("touchstart", function (event) {

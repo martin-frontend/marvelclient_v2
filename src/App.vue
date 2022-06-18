@@ -10,6 +10,7 @@
             <Overlay v-model="gameProxy.loading" />
         </div>
         <DialogMessage />
+        <GameSearch />
         <div id="dialog_container"></div>
         <v-btn
             height="42"
@@ -35,6 +36,7 @@ import GameProxy from "./proxy/GameProxy";
 import getProxy from "./core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
+import GameSearch from "./views/game_search/views/GameSearch.vue";
 
 @Component({
     components: {
@@ -42,6 +44,7 @@ import { Watch } from "vue-property-decorator";
         Header,
         Footer,
         MobileMenu,
+        GameSearch,
         Overlay,
     },
 })

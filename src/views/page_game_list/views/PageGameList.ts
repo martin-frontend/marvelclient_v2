@@ -2,6 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
 import LoginEnter from "@/core/global/LoginEnter";
+import game_search from "@/views/game_search";
 import { Watch, Component } from "vue-property-decorator";
 import PageGameListMediator from "../mediator/PageGameListMediator";
 import PageGameListProxy from "../proxy/PageGameListProxy";
@@ -38,9 +39,6 @@ export default class PageGameList extends AbstractView {
     }
 
     showGameSearch() {
-        LoginEnter(() => {
-            const myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
-            myProxy.navigationData.bShow = true;
-        });
+        LoginEnter(game_search.show);
     }
 }

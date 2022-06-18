@@ -1,83 +1,151 @@
 <v-dialog width="850" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg pb-3" color="colorPanelBg">
-        <v-card-title class="gradient-bg">
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <!-- pc显示方式 -->
+        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("充币记录")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-divider class="mx-5" />
-        <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y table_data">
-            <v-sheet class="mx-5 mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                <div class="d-flex flex-wrap listitem">
-                    <div class="min-width-150">
-                        <div>{{LangUtil("订单号")}}</div>
-                        <div class="text-truncate text-decoration-underline cursor-pointer" @click="onCopy(item.order_no)">
-                            {{item.order_no}}
+        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+            <v-divider/>
+            <v-sheet v-if="pageData.list.length>0 && !$vuetify.breakpoint.xsOnly" color="transparent" :height="listHeight" class="scroll-y">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex flex-wrap listitem">
+                        <div class="min-width-150">
+                            <div>{{LangUtil("订单号")}}</div>
+                            <div class="text-truncate text-decoration-underline cursor-pointer" @click="onCopy(item.order_no)">
+                                {{item.order_no}}
+                            </div>
+                        </div>
+                        <div class="min-width-150">
+                            <div>{{LangUtil("创建时间")}}</div>
+                            <div>{{item.created_at}}</div>
+                        </div>
+                        <div class="min-width-120">
+                            <div>{{LangUtil("链名")}}</div>
+                            <div>{{item.third_order_info.block_name}}</div>
+                        </div>
+                        <div class="min-width-100">
+                            <div>{{LangUtil("币种")}}</div>
+                            <div>{{item.third_order_info.token_name}}</div>
+                        </div>
+                        <div class="min-width-100">
+                            <div>{{LangUtil("数量")}}</div>
+                            <div>{{item.gold}}</div>
+                        </div>
+                        <div class="min-width-150">
+                            <div>{{LangUtil("发送地址")}}</div>
+                            <div
+                                class="text-truncate text-decoration-underline cursor-pointer"
+                                @click="onCopy(item.third_order_info.from_address)"
+                            >
+                                {{item.third_order_info.from_address}}
+                            </div>
+                        </div>
+                        <div class="min-width-150">
+                            <div>{{LangUtil("接收地址")}}</div>
+                            <div
+                                class="text-truncate text-decoration-underline cursor-pointer"
+                                @click="onCopy(item.third_order_info.to_address)"
+                            >
+                                {{item.third_order_info.to_address}}
+                            </div>
+                        </div>
+                        <div class="min-width-120">
+                            <div>{{LangUtil("状态")}}</div>
+                            <div>{{statusOptions[item.status]}}</div>
+                        </div>
+                        <div class="min-width-150">
+                            <div>{{LangUtil("查询区块")}}</div>
+                            <div class="text-decoration-underline cursor-pointer">
+                                <a :href="item.third_order_info.tx_scan_url" target="_blank">{{LangUtil("点击查询")}}</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="min-width-150">
-                        <div>{{LangUtil("创建时间")}}</div>
-                        <div>{{item.created_at}}</div>
-                    </div>
-                    <div class="min-width-120">
-                        <div>{{LangUtil("链名")}}</div>
-                        <div>{{item.third_order_info.block_name}}</div>
-                    </div>
-                    <div class="min-width-100">
-                        <div>{{LangUtil("币种")}}</div>
-                        <div>{{item.third_order_info.token_name}}</div>
-                    </div>
-                    <div class="min-width-100">
-                        <div>{{LangUtil("数量")}}</div>
-                        <div>{{item.gold}}</div>
-                    </div>
-                    <div class="min-width-150">
-                        <div>{{LangUtil("发送地址")}}</div>
-                        <div
-                            class="text-truncate text-decoration-underline cursor-pointer"
-                            @click="onCopy(item.third_order_info.from_address)"
-                        >
-                            {{item.third_order_info.from_address}}
-                        </div>
-                    </div>
-                    <div class="min-width-150">
-                        <div>{{LangUtil("接收地址")}}</div>
-                        <div
-                            class="text-truncate text-decoration-underline cursor-pointer"
-                            @click="onCopy(item.third_order_info.to_address)"
-                        >
-                            {{item.third_order_info.to_address}}
-                        </div>
-                    </div>
-                    <div class="min-width-120">
-                        <div>{{LangUtil("状态")}}</div>
-                        <div>{{statusOptions[item.status]}}</div>
-                    </div>
-                    <div class="min-width-150">
-                        <div>{{LangUtil("查询区块")}}</div>
-                        <div class="text-decoration-underline cursor-pointer">
-                            <a :href="item.third_order_info.tx_scan_url" target="_blank">{{LangUtil("点击查询")}}</a>
-                        </div>
-                    </div>
-                </div>
+                </v-sheet>
             </v-sheet>
-        </v-sheet>
-        <v-sheet v-else class="d-flex justify-center align-center" color="transparent" :height="listHeight+43">
-            <div>
-                <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
-                <div class="text-14 colorText1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
+            <ListNodata v-if="pageData.list.length == 0" height="445"/>
+            <v-spacer />
+            <v-pagination
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("充币记录")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
             </div>
-        </v-sheet>
-        <v-spacer />
-        <v-pagination
-            v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-            v-model="pageData.pageInfo.pageCurrent"
-            :length="pageData.pageInfo.pageCount"
-            :total-visible="7"
-            @input="onPageChange"
-        ></v-pagination>
+            <v-divider class="mx-5"/>
+        </v-card-text>
+        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                <ListNodata v-if="pageData.list.length == 0"/>
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="listitem">
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("订单号")}}</div>
+                            <div class="text-truncate text-decoration-underline cursor-pointer my-0" @click="onCopy(item.order_no)">
+                                {{item.order_no}}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("创建时间")}}</div>
+                            <div class="d-flex justify-end my-0">{{item.created_at}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("链名")}}</div>
+                            <div class="d-flex justify-end my-0">{{item.third_order_info.block_name}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("币种")}}</div>
+                            <div class="d-flex justify-end my-0">{{item.third_order_info.token_name}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("数量")}}</div>
+                            <div class="d-flex justify-end my-0">{{item.gold}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("发送地址")}}</div>
+                            <div
+                                class="text-truncate text-decoration-underline cursor-pointer my-0"
+                                @click="onCopy(item.third_order_info.from_address)"
+                            >
+                                {{item.third_order_info.from_address}}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("接收地址")}}</div>
+                            <div
+                                class="text-truncate text-decoration-underline cursor-pointer my-0"
+                                @click="onCopy(item.third_order_info.to_address)"
+                            >
+                                {{item.third_order_info.to_address}}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("状态")}}</div>
+                            <div class="d-flex justify-end my-0">{{statusOptions[item.status]}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("查询区块")}}</div>
+                            <div class="d-flex justify-end text-decoration-underline cursor-pointer my-0">
+                                <a :href="item.third_order_info.tx_scan_url" target="_blank">{{LangUtil("点击查询")}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </vue-loadmore>
+        </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

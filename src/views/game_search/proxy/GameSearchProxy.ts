@@ -66,10 +66,12 @@ export default class GameSearchProxy extends puremvc.Proxy {
 
     /**--搜索--我的游戏*/
     api_user_var_game_index() {
-        this.pageData.loading = true;
-        this.sendNotification(net.HttpType.api_user_var_game_index, {
-            user_id: core.user_id,
-        });
+        if (core.user_id) {
+            this.pageData.loading = true;
+            this.sendNotification(net.HttpType.api_user_var_game_index, {
+                user_id: core.user_id,
+            });
+        }
     }
 
     /**--搜索--收藏游戏*/

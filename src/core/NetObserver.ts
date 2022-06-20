@@ -86,6 +86,10 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                     //常见问题
                     this.sendNotification(net.HttpType.api_plat_fag_index);
+
+                    if (GlobalVar.app_type == core.EnumAppType.APP) {
+                        WebViewBridge.getInstance().enterHall();
+                    }
                 }
                 break;
             case net.EventType.api_user_logout:

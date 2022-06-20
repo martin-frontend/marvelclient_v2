@@ -134,7 +134,7 @@
         <v-card-text v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
                 <ListNodata v-if="pageData.list.length == 0"/>
-                <v-sheet class="mt-5 px-4 py-3 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="px-3 py-2 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                     <div class="ml-4" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">

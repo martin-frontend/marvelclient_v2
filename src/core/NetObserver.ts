@@ -18,6 +18,8 @@ import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
 import { locale } from "vuejs-loadmore";
+import GlobalVar from "./global/GlobalVar";
+import WebViewBridge from "./native/WebViewBridge";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -103,9 +105,13 @@ export default class NetObserver extends AbstractMediator {
                     dialog_message_box.confirm({
                         message: LangUtil("进入游戏"),
                         okFun: () => {
-                            this.gameProxy.lastRouter = router.currentRoute.path;
-                            this.gameProxy.historyLength = window.history.length;
-                            page_game_play.show(body.url);
+                            if (GlobalVar.app_type == core.EnumAppType.WEB) {
+                                this.gameProxy.lastRouter = router.currentRoute.path;
+                                this.gameProxy.historyLength = window.history.length;
+                                page_game_play.show(body.url);
+                            } else {
+                                WebViewBridge.getInstance().openBrowser(body.url);
+                            }
                         },
                     });
                 }

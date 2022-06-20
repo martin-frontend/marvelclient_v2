@@ -21,11 +21,11 @@
                             <div class="text-body-1">{{item.total_water}}</div>
                         </div>
                         <div class="item">
-                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
+                            <div v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
                             <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
                         <div class="item">
-                            <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
+                            <div v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
                         <div class="d-flex align-end justify-end listitem-110">
@@ -74,11 +74,11 @@
                         <div class="text-body-1">{{item.total_water}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
-                        <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
+                        <div v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
                         <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
-                        <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
+                        <div v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                         <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                     </div>
                     <div class="d-flex align-end justify-end listitem-110">

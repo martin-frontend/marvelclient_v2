@@ -14,10 +14,11 @@ export default class AppFacade {
     private facade = puremvc.Facade.getInstance();
 
     startup() {
-        GameConfig.load();
         this.initProxy();
         this.initCommand();
         this.initObserver();
+
+        GameConfig.load();
     }
 
     private initProxy() {

@@ -19,7 +19,7 @@ export default class GameSport extends AbstractView {
             case "sm":
                 return 900;
             case "md":
-                return 430;
+                return 426;
             case "lg":
                 if (this.$vuetify.breakpoint.width < 1426) return 1185 / 2 - 20;
                 return 697;

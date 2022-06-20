@@ -13,7 +13,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         pageInfo: {
             pageCurrent: 1,
             pageCount: 51,
-            pageSize: 24,
+            pageSize: 30,
             pageTotal: 1006,
         },
     };
@@ -36,7 +36,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         vendor_type: 0,
         vendor_id: 0,
         page_count: 1,
-        page_size: 24,
+        page_size: 30,
     };
 
     setHotGame(data: any) {

@@ -87,7 +87,7 @@ export default class NetObserver extends AbstractMediator {
                     //常见问题
                     this.sendNotification(net.HttpType.api_plat_fag_index);
 
-                    if (GlobalVar.app_type == core.EnumAppType.APP) {
+                    if (core.app_type == core.EnumAppType.APP) {
                         WebViewBridge.getInstance().enterHall();
                     }
                 }
@@ -109,7 +109,7 @@ export default class NetObserver extends AbstractMediator {
                     dialog_message_box.confirm({
                         message: LangUtil("进入游戏"),
                         okFun: () => {
-                            if (GlobalVar.app_type == core.EnumAppType.WEB) {
+                            if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.lastRouter = router.currentRoute.path;
                                 this.gameProxy.historyLength = window.history.length;
                                 page_game_play.show(body.url);

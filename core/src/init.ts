@@ -17,7 +17,7 @@ module core {
 
         plat_id = getQueryVariable("plat_id") || "10001";
         channel_id = getQueryVariable("channel_id") || "10001001";
-        app_type = EnumAppType.APP;
+        app_type = EnumAppType.WEB;
         // device_type = parseInt(getQueryVariable("RunType")) || EnumDeviceType.OTHER;
 
         const runType = parseInt(getQueryVariable("RunType"));

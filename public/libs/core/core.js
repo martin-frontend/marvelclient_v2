@@ -35,7 +35,7 @@ var core;
         core.token && (core.user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
         core.plat_id = core.getQueryVariable("plat_id") || "10001";
         core.channel_id = core.getQueryVariable("channel_id") || "10001001";
-        core.app_type = core.EnumAppType.APP;
+        core.app_type = core.EnumAppType.WEB;
         // device_type = parseInt(getQueryVariable("RunType")) || EnumDeviceType.OTHER;
         const runType = parseInt(core.getQueryVariable("RunType"));
         if (runType) {
@@ -3818,7 +3818,7 @@ var core;
     /**用来获取配置文件的cdn地址 */
     core.cdnUrl = "http://others.sftpuser.nqsf9emow.com:27799";
     /**语言 */
-    core.lang = "zh";
+    core.lang = "en_EN";
 })(core || (core = {}));
 var net;
 (function (net) {

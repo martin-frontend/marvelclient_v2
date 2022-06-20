@@ -60,6 +60,14 @@ export default class TabAccountDetail extends AbstractView {
         this.myProxy.api_user_show_var_gold();
     }
 
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_show_var_gold();
+        }
+    }
+
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_show_var_gold();

@@ -42,6 +42,14 @@ export default class DialogRecordRecharge extends AbstractView {
         }
     }
 
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_var_recharge_list();
+        }
+    }
+
     onPageChange(val: any) {
         this.pageData.listQuery.page_count = val;
         this.myProxy.api_user_var_recharge_list();

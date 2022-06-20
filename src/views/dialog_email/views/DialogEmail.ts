@@ -47,6 +47,14 @@ export default class DialogEmail extends AbstractView {
         }
     }
 
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_var_mail();
+        }
+    }
+
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_var_mail();

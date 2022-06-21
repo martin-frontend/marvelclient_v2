@@ -11,6 +11,8 @@ declare module core {
 declare module net {
     /**协议*/
     var HttpType: {
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: string;
         /**--新加的--获取验证码图片*/
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
@@ -240,6 +242,8 @@ declare module net {
         REQUEST_ERROR: string;
         /**IO错误 */
         IO_ERROR: string;
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: string;
         /**--新加的--获取验证码图片*/
         api_public_auth_code: string;
         /**--新加的--发送邮件*/
@@ -584,6 +588,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_game_config extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取语言列表
+ */
+declare module net {
+    class cmd_api_plat_var_language_config extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

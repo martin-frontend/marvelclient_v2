@@ -61,6 +61,7 @@ export default class PageMineProxy extends puremvc.Proxy {
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
         const plat_coins = <any>GamePlatConfig.config.plat_coins;
+        console.warn("plat_coins", plat_coins);
         const coinsKey = Object.keys(plat_coins);
         coinsKey.forEach((key: any) => {
             if (plat_coins[key].type === 2) {
@@ -78,16 +79,23 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        // console.warn("user info >>>", this.userInfo);
+        // console.warn("this.userInfo", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
+        const backwater_info = <any>this.userInfo.backwater_info;
+        // console.warn("----", backwater_info);
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
         // 流水等级
-        this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
+        if (vip_progress[0]) {
+            this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
+        }
         // USDT充值
-        this.pageData.nextUSDT = <any>(Number(vip_progress[1].next_vip_level_need_exp) - Number(vip_progress[1].user_exp)).toFixed(2);
+        if (vip_progress[1]) {
+            this.pageData.nextUSDT = <any>(Number(vip_progress[1].next_vip_level_need_exp) - Number(vip_progress[1].user_exp)).toFixed(2);
+        }
+
         // 经验条
         this.pageData.vipProgress =
             ((vip_progress[0].user_exp - vip_progress[0].cur_vip_level_need_exp) /
@@ -99,25 +107,25 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.vipNextLevel =
             this.pageData.vipLevel + 1 > vip_info.max_vip_level - 1 ? vip_info.max_vip_level - 1 : this.pageData.vipLevel + 1;
         // 主币
-        this.pageData.backwaterConfigMain.now =
-            this.pageData.vipLevel == 0
-                ? "0%"
-                : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+        if (backwater_info.backwater_config[2]) {
+            this.pageData.backwaterConfigMain.now = backwater_info.backwater_config[2].backwater_rate;
+        }
+
+        // this.pageData.vipLevel == 0
+        //     ? "0%"
+        //     : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
 
         this.pageData.backwaterConfigMain.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2);
         // 奖励币
-        this.pageData.backwaterConfigReward.now =
-            this.pageData.vipLevel == 0
-                ? "0%"
-                : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
+        this.pageData.backwaterConfigReward.now = (backwater_info.backwater_config[3].backwater_rate * 100).toFixed(2);
 
         this.pageData.backwaterConfigReward.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
-                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2) + "%";
+                : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 100).toFixed(2);
     }
 
     setTrial(body: any) {
@@ -128,6 +136,7 @@ export default class PageMineProxy extends puremvc.Proxy {
 
         this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
         this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
+
         // this.pageData.trial.date = this.getTrialData;
     }
 

@@ -1,6 +1,7 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Constant from "@/core/global/Constant";
 import LangUtil from "@/core/global/LangUtil";
+import { vuetify } from "@/plugins/vuetify";
 
 export default class DialogWalletProxy extends puremvc.Proxy {
     static NAME = "DialogWalletProxy";
@@ -49,7 +50,9 @@ export default class DialogWalletProxy extends puremvc.Proxy {
                 return types;
             },
         },
-        isMobile: false,
+        // 列表是否加载完成，手机模式专用
+        finished: false,
+        done: <any>null,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -67,13 +70,31 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        if (this.pageData.isMobile) {
-            if (data.list.length > 0) {
+        if (vuetify.framework.breakpoint.xsOnly) {
+            const { pageCount, pageCurrent } = this.pageData.pageInfo;
+            if (pageCurrent == 1) {
+                this.pageData.list = data.list;
+            } else {
                 this.pageData.list.push(...data.list);
             }
+            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
+    }
+
+    /**手机下拉刷新 */
+    listRefrush(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count = 1;
+        this.api_user_show_var_gold();
+    }
+    /**手机上拉加载更多 */
+    listMore(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count++;
+        this.api_user_show_var_gold();
     }
 
     api_user_show_var_gold() {

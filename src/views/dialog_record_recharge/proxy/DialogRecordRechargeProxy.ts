@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import { vuetify } from "@/plugins/vuetify";
 
 export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRecordRechargeProxy";
@@ -17,7 +18,9 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
-        isMobile: false,
+        // 列表是否加载完成，手机模式专用
+        finished: false,
+        done: <any>null,
     };
 
     statusOptions = {
@@ -37,13 +40,31 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        if (this.pageData.isMobile) {
-            if (data.list.length > 0) {
+        if (vuetify.framework.breakpoint.xsOnly) {
+            const { pageCount, pageCurrent } = this.pageData.pageInfo;
+            if (pageCurrent == 1) {
+                this.pageData.list = data.list;
+            } else {
                 this.pageData.list.push(...data.list);
             }
+            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
+    }
+
+    /**手机下拉刷新 */
+    listRefrush(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count = 1;
+        this.api_user_var_recharge_list();
+    }
+    /**手机上拉加载更多 */
+    listMore(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count++;
+        this.api_user_var_recharge_list();
     }
 
     api_user_var_recharge_list() {

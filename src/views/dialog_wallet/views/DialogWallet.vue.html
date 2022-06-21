@@ -1,13 +1,14 @@
 <v-dialog width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
-        <v-card-title class="gradient-bg">
+        <!-- pc显示方式 -->
+        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("平台钱包")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="d-flex align-center padding_bottom">
+        <v-card-text class="d-flex align-center padding_bottom" v-if="!$vuetify.breakpoint.xsOnly">
             <v-btn
                 height="40"
                 class="rounded-pill font-weight-bold mr-2"
@@ -39,7 +40,50 @@
                 <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-database</v-icon>{{LangUtil("账户明细")}}
             </v-btn>
         </v-card-text>
-        <v-divider class="mx-5" />
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("平台钱包")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="px-6 pb-3">
+                <v-btn
+                height="40"
+                class="rounded-pill font-weight-bold mr-2"
+                elevation="0"
+                :text="pageData.tabIndex != 0"
+                :color="pageData.tabIndex == 0 ? 'colorBtnBg' : 'colorText1'"
+                @click="onTabClick(0)"
+            >
+                {{LangUtil("我的资产")}}
+            </v-btn>
+            <v-btn
+                height="40"
+                class="rounded-pill font-weight-bold mr-2"
+                elevation="0"
+                :text="pageData.tabIndex != 1"
+                :color="pageData.tabIndex == 1 ? 'colorBtnBg' : 'colorText1'"
+                @click="onTabClick(1)"
+            >
+                {{LangUtil("厂商资产")}}
+            </v-btn>
+            <v-btn
+                height="40"
+                class="rounded-pill font-weight-bold"
+                elevation="0"
+                :text="pageData.tabIndex != 2"
+                :color="pageData.tabIndex == 2 ? 'colorBtnBg' : 'colorText1'"
+                @click="onTabClick(2)"
+            >
+                {{LangUtil("账户明细")}}
+            </v-btn>
+            </div>
+            <v-divider class="mx-5" />  
+        </v-card-text>
+        <v-divider class="mx-5" v-if="!$vuetify.breakpoint.xsOnly" />
         <TabMyAssets v-if="pageData.tabIndex == 0" />
         <TabVendorAssets v-if="pageData.tabIndex == 1" />
         <TabAccountDetail v-show="pageData.tabIndex == 2" />

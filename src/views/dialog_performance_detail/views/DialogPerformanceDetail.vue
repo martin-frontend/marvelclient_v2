@@ -5,10 +5,12 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogPerformanceDetail from "./DialogPerformanceDetail";
+import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
         Overlay,
+        ListNodata,
     },
 })
 export default class extends DialogPerformanceDetail {}

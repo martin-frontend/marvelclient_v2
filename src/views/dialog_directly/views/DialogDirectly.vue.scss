@@ -29,17 +29,22 @@
 }
 .search {
     width: 207px;
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 16px;
+        font-weight: 400;
+    }
 }
 ::v-deep .input-text input::placeholder {
     font-size: 16px;
     font-weight: 400;
 }
-::v-deep .v-btn__content {
-    color: #98acd3;
-    font-size: 16px;
-    font-weight: 400;
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
 }
-
-.card-height {
-    min-height: 670px;
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 125px;
 }

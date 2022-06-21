@@ -1704,6 +1704,13 @@
   dependencies:
     "jest-diff" "^24.3.0"
 
+"@types/js-base64@^3.3.1":
+  "integrity" "sha512-Zw33oQNAvDdAN9b0IE5stH0y2MylYvtU7VVTKEJPxhyM2q57CVaNJhtJW258ah24NRtaiA23tptUmVn3dmTKpw=="
+  "resolved" "https://registry.npmjs.org/@types/js-base64/-/js-base64-3.3.1.tgz"
+  "version" "3.3.1"
+  dependencies:
+    "js-base64" "*"
+
 "@types/js-cookie@^2.2.7":
   "integrity" "sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA=="
   "resolved" "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-2.2.7.tgz"
@@ -7141,6 +7148,11 @@
     "import-local" "^2.0.0"
     "jest-cli" "^24.9.0"
 
+"js-base64@*", "js-base64@^2.5.1":
+  "integrity" "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="
+  "resolved" "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
+  "version" "2.6.4"
+
 "js-beautify@^1.6.12", "js-beautify@^1.6.14":
   "integrity" "sha512-f1ra8PHtOEu/70EBnmiUlV8nJePS58y9qKjl4JHfYWlFH6bo7ogZBz//FAZp7jDuXtYnGYKymZPlrg2I/9Zo4g=="
   "resolved" "https://registry.npmjs.org/js-beautify/-/js-beautify-1.14.3.tgz"
@@ -11172,10 +11184,17 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.6.11", "vue@^2.6.4", "vue@^2.x", "vue@2.x":
+"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.6.11", "vue@^2.6.14", "vue@^2.6.4", "vue@^2.x", "vue@2.x":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
+
+"vuejs-loadmore@^1.0.7":
+  "integrity" "sha512-7E4hrdr0cMZB7SAKp1vtGHvjYHBOECqBAOAHOXaRE+Lhbp5DumzbvPgh7/EaKuJlPTxEpEZp2QnbjqQ16zc10g=="
+  "resolved" "https://registry.npmjs.org/vuejs-loadmore/-/vuejs-loadmore-1.0.7.tgz"
+  "version" "1.0.7"
+  dependencies:
+    "vue" "^2.6.14"
 
 "vuetify-loader@^1.7.0":
   "integrity" "sha512-1Kt6Rfvuw3i9BBlxC9WTMnU3WEU7IBWQmDX+fYGAVGpzWCX7oHythUIwPCZGShHSYcPMKSDbXTPP8UvT5RNw8Q=="

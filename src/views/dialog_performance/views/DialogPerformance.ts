@@ -58,7 +58,7 @@ export default class DialogPerformance extends AbstractView {
 
     get listHeight() {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 155;
+            return this.$vuetify.breakpoint.height - 145;
         } else {
             return 450;
         }

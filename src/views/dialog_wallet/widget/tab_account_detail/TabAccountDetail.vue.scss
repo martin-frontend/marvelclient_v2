@@ -14,3 +14,13 @@
         }
     }
 }
+.header-mobile {
+    position: fixed;
+    z-index: 999;
+    background-color: #121e36;
+    padding-top: 135px;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 205px;
+}

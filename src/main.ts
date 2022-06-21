@@ -6,7 +6,8 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
-import FagProxy from "@/proxy/FagProxy";
+import VueLoadmore from 'vuejs-loadmore';
+import WebViewBridge from "@/core/native/WebViewBridge";
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -16,15 +17,19 @@ core.channel_id = "30000001";
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
+Vue.use(VueLoadmore);
 
 //@ts-ignore
 window["vm"] = new Vue({
     router,
     vuetify,
-    // i18n,
     render: (h) => h(App),
 });
 // .$mount("#app");
+
+//native调用
+//@ts-ignore
+window["receiveNative"] = WebViewBridge.getInstance().receiveNative;
 
 window.onload = function () {
     document.addEventListener("touchstart", function (event) {

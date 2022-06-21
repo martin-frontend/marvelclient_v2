@@ -1,4 +1,5 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { vuetify } from "@/plugins/vuetify";
 export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
     static NAME = "DialogPledgeRecordsProxy";
 
@@ -21,7 +22,9 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
             mainCoin: {},
             rewardCoin: {},
         },
-        isMobile: false,
+        // 列表是否加载完成，手机模式专用
+        finished: false,
+        done: <any>null,
     };
 
     /**取目前的主币 奖励币 */
@@ -53,13 +56,31 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.getCurrentCoin();
-        if (this.pageData.isMobile) {
-            if (data.list.length > 0) {
+        if (vuetify.framework.breakpoint.xsOnly) {
+            const { pageCount, pageCurrent } = this.pageData.pageInfo;
+            if (pageCurrent == 1) {
+                this.pageData.list = data.list;
+            } else {
                 this.pageData.list.push(...data.list);
             }
+            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
+    }
+
+    /**手机下拉刷新 */
+    listRefrush(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count = 1;
+        this.api_user_var_stake_log(this.pageData.listQuery.cate);
+    }
+    /**手机上拉加载更多 */
+    listMore(done: any) {
+        this.pageData.done = done;
+        this.pageData.listQuery.page_count++;
+        this.api_user_var_stake_log(this.pageData.listQuery.cate);
     }
 
     /**--分红--用户质押记录*/

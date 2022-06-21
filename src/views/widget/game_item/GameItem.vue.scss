@@ -66,6 +66,41 @@
     font-size: 48px;
 }
 
+@media screen and (max-width: 1260px) {
+    .box {
+        margin: 4.8px;
+    }
+    .game-icon {
+        width: 154px;
+        height: 177.5px;
+        .game-title {
+            font-size: 15px;
+            line-height: 15px;
+            margin-bottom: -20px;
+        }
+        .vendor-title {
+            font-size: 12px;
+            line-height: 12px;
+            margin-bottom: -28px;
+        }
+    }
+    .game-icon:hover {
+        .game-title {
+            font-size: 18px;
+        }
+        .vendor-title {
+            font-size: 13px;
+        }
+    }
+    .egame__item__play-icon {
+        width: 40px;
+        height: 40px;
+        div > div {
+            font-size: 32px;
+        }
+    }
+}
+
 @media screen and (max-width: 750px) {
     .box {
         margin: 3.8px;

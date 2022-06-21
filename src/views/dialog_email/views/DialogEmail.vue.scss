@@ -1,3 +1,9 @@
-.listbox {
-    overflow-y: scroll;
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 165px;
 }

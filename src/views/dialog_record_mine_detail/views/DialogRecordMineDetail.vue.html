@@ -27,11 +27,11 @@
                             <div>{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
                             <div class="text-body-1">{{ item.water }}</div>
                         </div>
-                        <div class="item">
+                        <div class="item" v-if="main_coin_backwater_rate > 0">
                             <div>{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
                             <div class="text-body-1">{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
                         </div>
-                        <div class="item">
+                        <div class="item"  v-if="item.main_coin_backwater > 0">
                             <div>{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
                             <div class="text-body-1">{{ item.main_coin_backwater }}</div>
                         </div>

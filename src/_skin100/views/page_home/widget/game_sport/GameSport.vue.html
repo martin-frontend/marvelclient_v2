@@ -1,0 +1,47 @@
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'">
+    <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+        <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[data.category] }}</v-icon>
+        <div :class="$vuetify.breakpoint.xsOnly?'text-12':''">{{ data.category_name }}</div>
+        <v-spacer />
+        <v-btn
+            v-if="!$vuetify.breakpoint.xsOnly"
+            class="text-12 rounded-pill"
+            style="padding: 8px"
+            color="rgba(243, 231, 231, 0.098)"
+            height="24"
+            @click="onShowAll"
+        >
+            {{LangUtil("查看全部")}}
+        </v-btn>
+    </div>
+    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap listbox" color="transparent">
+        <v-card
+            :width="width"
+            :height="279/697*width"
+            color="colorTitleBg"
+            class="rounded-lg mr-3 my-1 mt-2 box"
+            v-for="item of data.list"
+            :key="item.vendor_prodcut_id"
+            @click="goGamePlay(item)"
+        >
+            <v-img class="cursor-pointer d-flex align-center" :height="279/697*width" :src="getIcon(item)">
+                <div class="game-icon">
+                    <div class="game-title text-30 font-weight-bold">{{item.vendor_product_name}}</div>
+                    <div class="vendor-title text-18 mt-2">{{item.vendor_name}}</div>
+                </div>
+                <div class="egame__item__mask">
+                    <div class="egame__item__play-icon">
+                        <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                            <div class="icon-chevron-right icon__icon mt-n1"></div>
+                        </div>
+                    </div>
+                </div>
+                <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                    </v-row>
+                </template>
+            </v-img>
+        </v-card>
+    </v-sheet>
+</div>

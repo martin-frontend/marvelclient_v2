@@ -7,7 +7,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/",
         name: "page_home",
-        component: () => import(/* webpackChunkName: "page_home" */ "@/views/page_home/views/PageHome.vue"),
+        component: () => import(/* webpackChunkName: "page_home" */ "@/_skin100/views/page_home/views/PageHome.vue"),
     },
     {
         path: "/page_game_list",

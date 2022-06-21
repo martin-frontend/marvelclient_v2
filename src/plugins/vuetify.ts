@@ -33,6 +33,9 @@ const opts = {
                 colorBlue2Bg: "#2C3952",
                 colorYellowBg: "#F2A81C",
 
+                //新增
+                colorBtnSeleBg: "#CD30C1", //used
+
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
                 colorText3: "#9BA1AB", //used

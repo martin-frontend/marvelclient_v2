@@ -1,0 +1,21 @@
+<v-dialog v-model="pageData.bShow" max-width="300" persistent>
+    <v-card class="rounded-lg colorPanelBgVer" width="320" height="210">
+        <v-card-title class="d-flex align-center gradient-bg-tran py-4 px-5">
+            <div class="ml-2 font-weight-medium white--text text-18">
+                {{pageData.category == 0 ? LangUtil("获取邮箱验证码"): LangUtil("获取短信验证码")}}
+            </div>
+            <v-spacer />
+            <v-btn icon @click="onClose"><v-icon color="colorText3">mdi-close</v-icon></v-btn>
+        </v-card-title>
+        <!-- <v-card-text class="d-flex px-8 mt-2"> -->
+        <v-card-text class="d-flex px-5 pb-0">
+            <CustomInput type="tel" class="rounded verity-ip" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
+                <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img>
+            </CustomInput>
+        </v-card-text>
+        <v-card-actions class="px-5 mt-4">
+            <v-btn class="rounded-sm on-verity-bg"  height="40"  block @click="onSend">{{LangUtil("确定")}}</v-btn>
+        </v-card-actions>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

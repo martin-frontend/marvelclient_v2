@@ -4,7 +4,7 @@ import { vuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
-import "@/style/common.scss";
+import "@/_skin100/style/common.scss";
 import AppFacade from "@/AppFacade";
 
 core.init();

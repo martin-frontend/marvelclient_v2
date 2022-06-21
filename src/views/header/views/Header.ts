@@ -24,12 +24,18 @@ export default class Header extends AbstractView {
     routerPath = this.$router.app.$route.path;
     core = core;
     LangUtil = LangUtil;
-
     GamePlatConfig = GamePlatConfig;
     LangConfig = LangConfig;
+    //当前活动的分类
+    categoryActive = -1;
 
     constructor() {
         super(HeaderMediator);
+    }
+
+    mounted() {
+        window.addEventListener("scroll", this.scrollHandle, true);
+        this.scrollHandle();
     }
 
     @Watch("$route")
@@ -71,7 +77,25 @@ export default class Header extends AbstractView {
         location.reload();
     }
 
-    onService(){
+    onService() {
         OpenLink(LangUtil("客服链接"));
+    }
+
+    scrollHandle() {
+        this.categoryActive = -1;
+        if (!this.$vuetify.breakpoint.mobile) {
+            const len = this.pageData.lobbyIndex.length;
+            for (let i = 0; i < len; i++) {
+                const item = this.pageData.lobbyIndex[i];
+                const div = document.getElementById(item.category.toString());
+                if (div) {
+                    const rect = div.getBoundingClientRect();
+                    if (rect.top <= 250 && rect.bottom - 50 > 155) {
+                        this.categoryActive = i;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

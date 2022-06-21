@@ -46,7 +46,12 @@
 
         <div class="d-flex mt-5">
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
-            <button v-if="!$vuetify.breakpoint.mobile" class="nav-button" :class="routerPath == '/' ? 'active' : ''" @click="goHome">
+            <button
+                v-if="!$vuetify.breakpoint.mobile"
+                class="nav-button"
+                :class="(routerPath == '/' && categoryActive == -1) ? 'active' : ''"
+                @click="goHome"
+            >
                 <v-icon>mdi-home</v-icon>
                 <div>{{LangUtil("首页")}}</div>
             </button>
@@ -54,9 +59,10 @@
             <button
                 v-if="!$vuetify.breakpoint.mobile"
                 class="nav-button d-none d-md-flex"
-                v-for="item of pageData.lobbyIndex"
-                :key="item.category"
+                v-for="(item, index) of pageData.lobbyIndex"
+                :key="index"
                 @click="goAnchor(item.category)"
+                :class="(routerPath == '/' && categoryActive == index) ? 'active' : ''"
             >
                 <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
                 <div>{{ item.category_name }}</div>

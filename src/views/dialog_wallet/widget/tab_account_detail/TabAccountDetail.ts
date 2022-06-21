@@ -15,6 +15,8 @@ export default class TabAccountDetail extends AbstractView {
     commonIcon = Assets.commonIcon;
 
     onTimeChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1;
         switch (this.listOptions.timeSelect) {
             case 0:
                 this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");
@@ -37,6 +39,8 @@ export default class TabAccountDetail extends AbstractView {
     }
 
     onCoinChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
@@ -46,6 +50,8 @@ export default class TabAccountDetail extends AbstractView {
     }
 
     onTypeChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1
         if (this.listOptions.typeSelect == 0) {
             this.listQuery.type = 0;
         } else {
@@ -54,9 +60,25 @@ export default class TabAccountDetail extends AbstractView {
         this.myProxy.api_user_show_var_gold();
     }
 
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_show_var_gold();
+        }
+    }
+
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_show_var_gold();
+    }
+
+    onRefresh(done: any) {
+        this.myProxy.listRefrush(done);
+    }
+
+    onLoad(done: any) {
+        this.myProxy.listMore(done);
     }
 
     get listHeight() {

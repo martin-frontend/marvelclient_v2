@@ -5,8 +5,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
 
     /**参数 */
     parameter: any = {
-        end_date: dateFormat(getTodayOffset(0), "yyyy-MM-dd hh:mm:ss").split(" ")[0],
-        start_date: dateFormat(getTodayOffset(0 + 1, 1), "yyyy-MM-dd hh:mm:ss").split(" ")[0],
+        end_date: dateFormat(getTodayOffset(0), "yyyy-MM-dd"),
+        start_date: dateFormat(getTodayOffset(0 + 1, 1), "yyyy-MM-dd"),
     };
 
     pageData = {
@@ -31,13 +31,12 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     /** 日期选择 */
     onSelectDay(offset: any = 0) {
         if (offset == -1) {
-            this.parameter.end_date = dateFormat(getTodayOffset(offset), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
-            this.parameter.start_date = dateFormat(getTodayOffset(offset + 1, 1), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+            this.parameter.end_date = dateFormat(getTodayOffset(offset), "yyyy-MM-dd");
+            this.parameter.start_date = dateFormat(getTodayOffset(offset + 1, 1), "yyyy-MM-dd");
         } else {
-            this.parameter.end_date = dateFormat(getTodayOffset(0), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
-            this.parameter.start_date = dateFormat(getTodayOffset(offset + 1, 1), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
+            this.parameter.end_date = dateFormat(getTodayOffset(0), "yyyy-MM-dd");
+            this.parameter.start_date = dateFormat(getTodayOffset(offset + 1, 1), "yyyy-MM-dd");
         }
-
         this.api_user_var_commission_commissionlist();
     }
 

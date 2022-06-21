@@ -13,7 +13,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         pageInfo: {
             pageCurrent: 1,
             pageCount: 51,
-            pageSize: 24,
+            pageSize: 30,
             pageTotal: 1006,
         },
     };
@@ -36,17 +36,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         vendor_type: 0,
         vendor_id: 0,
         page_count: 1,
-        page_size: 24,
-    };
-
-    /**游戏搜索 */
-    navigationData = {
-        bShow: false,
-        showPage: 1,
-        recently: [],
-        collection: [],
-        searchList: [],
-        noSearchGameIcon: require(`@/assets/game/noSearchGameData.png`),
+        page_size: 30,
     };
 
     setHotGame(data: any) {
@@ -69,22 +59,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
         }
     }
 
-    setGameIndex({ recently, collection }: any) {
-        if (this.navigationData.showPage == 1) {
-            this.navigationData.recently = recently;
-        } else if (this.navigationData.showPage == 0) {
-            this.navigationData.collection = collection;
-        }
-    }
-
-    setGameUpdate(body: any) {
-        this.api_user_var_game_index();
-    }
-
-    setGameSearch(body: any) {
-        this.navigationData.searchList = body;
-    }
-
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
     }
@@ -96,30 +70,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
     api_plat_var_game_all_index() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
-    }
-
-    /**--搜索--搜索游戏*/
-    api_user_var_game_search(gameName: string) {
-        this.sendNotification(net.HttpType.api_user_var_game_search, {
-            user_id: core.user_id,
-            game_name: gameName,
-        });
-    }
-
-    /**--搜索--我的游戏*/
-    api_user_var_game_index() {
-        this.sendNotification(net.HttpType.api_user_var_game_index, {
-            user_id: core.user_id,
-        });
-    }
-
-    /**--搜索--收藏游戏*/
-    api_user_var_game_update_var(item: any) {
-        this.sendNotification(net.HttpType.api_user_var_game_update_var, {
-            user_id: core.user_id,
-            vendor_product_id: item.vendor_product_id,
-            is_collection: item.is_collection.toString(),
-        });
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/

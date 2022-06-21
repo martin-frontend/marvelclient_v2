@@ -30,6 +30,7 @@ export class RechargeProxy extends puremvc.Proxy {
         form: {
             coin_name_unique: "",
             block_network_id: "",
+            recharge_channel_id: "",
         },
     };
 
@@ -43,6 +44,7 @@ export class RechargeProxy extends puremvc.Proxy {
             const optionsKeys = Object.keys(data[key].options);
             if (optionsKeys[0]) {
                 this.pageData.form.block_network_id = optionsKeys[0];
+                this.pageData.form.recharge_channel_id = data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
             }
         }
         this.api_user_var_recharge_address();

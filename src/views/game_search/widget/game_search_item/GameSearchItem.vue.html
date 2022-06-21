@@ -1,0 +1,10 @@
+<v-sheet color="transparent" height="80" class="d-flex align-center mb-4">
+    <v-img class="rounded-lg mr-4" max-width="80" max-height="80" :src="data.icon"></v-img>
+    <div class="text-18">
+        <div class="mb-2">{{data.vendor_product_name}}</div>
+        <div>{{data.vendor_name}}</div>
+    </div>
+    <v-spacer/>
+    <v-icon class="mx-2" color="orange" @click="onToggle">{{data.is_collection==1 ? 'mdi-heart':'mdi-heart-outline'}}</v-icon>
+    <v-btn color="colorBtnBg" @click="goGame">{{LangUtil("去游戏")}}</v-btn>
+</v-sheet>

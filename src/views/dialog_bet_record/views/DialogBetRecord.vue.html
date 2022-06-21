@@ -48,7 +48,7 @@
                     @change="onTimeChange"
                 />
             </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y table_data">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div>
@@ -178,6 +178,5 @@
             </vue-loadmore>
         </v-card-text>
     </v-card>
-
     <Overlay v-model="pageData.loading" />
 </v-dialog>

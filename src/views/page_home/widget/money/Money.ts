@@ -13,14 +13,16 @@ export default class Money extends AbstractView {
 
     mounted() {
         if (this.value != 0) {
-            this.money = moneyFormat(this.value);
+            const m = moneyFormat(this.value);
+            this.money = m.substring(0, m.length - 3);
             this.animate();
         }
     }
 
     @Watch("value")
     onValueChange() {
-        this.money = moneyFormat(this.value);
+        const m = moneyFormat(this.value);
+        this.money = m.substring(0, m.length - 3);
         this.animate();
     }
 

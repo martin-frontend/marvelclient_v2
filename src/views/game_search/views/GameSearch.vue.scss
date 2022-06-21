@@ -1,0 +1,14 @@
+@import "@/style/input.scss";
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    padding-top: 141px;
+}
+.search-box{
+    height: 50px;
+    border: solid 1px #24314A;
+    border-radius: 10px;
+}

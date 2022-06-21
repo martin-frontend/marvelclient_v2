@@ -5,6 +5,8 @@ module net {
     /**协议*/
     export var HttpType = {
 
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: "api/plat/{plat_id}/language/config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
@@ -252,6 +254,8 @@ module net {
         /**IO错误 */
         IO_ERROR: "IO_ERROR",
         
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: "api_plat_var_language_config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
@@ -492,6 +496,7 @@ module net {
     export function initCommand() {
         const facade = puremvc.Facade.getInstance();
         //--新加的
+        facade.registerCommand(HttpType.api_plat_var_language_config, cmd_api_plat_var_language_config);
         facade.registerCommand(HttpType.api_public_auth_code, cmd_api_public_auth_code);
         facade.registerCommand(HttpType.api_public_email_send, cmd_api_public_email_send);
         facade.registerCommand(HttpType.api_public_sms_send, cmd_api_public_sms_send);

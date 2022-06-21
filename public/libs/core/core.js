@@ -65,6 +65,8 @@ var net;
 (function (net) {
     /**协议*/
     net.HttpType = {
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: "api/plat/{plat_id}/language/config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api/public/auth_code",
         /**--新加的--发送邮件*/
@@ -294,6 +296,8 @@ var net;
         REQUEST_ERROR: "REQUEST_ERROR",
         /**IO错误 */
         IO_ERROR: "IO_ERROR",
+        /**--新加的--获取语言列表*/
+        api_plat_var_language_config: "api_plat_var_language_config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api_public_auth_code",
         /**--新加的--发送邮件*/
@@ -517,6 +521,7 @@ var net;
     function initCommand() {
         const facade = puremvc.Facade.getInstance();
         //--新加的
+        facade.registerCommand(net.HttpType.api_plat_var_language_config, net.cmd_api_plat_var_language_config);
         facade.registerCommand(net.HttpType.api_public_auth_code, net.cmd_api_public_auth_code);
         facade.registerCommand(net.HttpType.api_public_email_send, net.cmd_api_public_email_send);
         facade.registerCommand(net.HttpType.api_public_sms_send, net.cmd_api_public_sms_send);
@@ -954,6 +959,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_game_config = cmd_api_plat_var_game_config;
+})(net || (net = {}));
+/**
+ * 获取语言列表
+ */
+var net;
+/**
+ * 获取语言列表
+ */
+(function (net) {
+    class cmd_api_plat_var_language_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_language_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_language_config, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_language_config = cmd_api_plat_var_language_config;
 })(net || (net = {}));
 /**
  * 获取游戏类型,游戏菜单（大厅菜单）
@@ -3830,13 +3857,6 @@ var net;
             data.device = core.device;
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
-            // switch(core.lang){
-            //     case "vi":
-            //         data.lang = "vi_VN";
-            //         break;
-            //     default:
-            //         data.lang = "zh_CN";
-            // }
             data.lang = core.lang;
             if (core.user_id) {
                 data.user_id = core.user_id;

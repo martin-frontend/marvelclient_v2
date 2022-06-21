@@ -2,6 +2,11 @@ import axios from "axios";
 import NotificationName from "../NotificationName";
 
 export default class LangConfig {
+    //系统支持的语言列表
+    static language: any;
+    //主语言
+    static main_language: string;
+    //语言包
     static config: any;
 
     static load() {

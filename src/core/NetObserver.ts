@@ -33,6 +33,7 @@ export default class NetObserver extends AbstractMediator {
             NotificationName.GAME_CONFIG,
             NotificationName.LANG_CONFIG,
             net.EventType.api_user_logout,
+            net.EventType.api_plat_var_language_config,
             net.EventType.api_plat_var_game_config,
             net.EventType.api_user_show_var,
             net.EventType.api_plat_var_lobby_index,
@@ -48,15 +49,14 @@ export default class NetObserver extends AbstractMediator {
         switch (notification.getName()) {
             //系统配置
             case NotificationName.GAME_CONFIG:
-                {
-                    //获取平台配置信息
-                    this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
-                }
+                //获取语言配置
+                this.sendNotification(net.HttpType.api_plat_var_language_config, { plat_id: core.plat_id });
+
                 break;
-            //游戏配置
-            case net.EventType.api_plat_var_game_config:
+            case net.EventType.api_plat_var_language_config:
                 {
-                    GamePlatConfig.init(body);
+                    LangConfig.language = body.language;
+                    LangConfig.main_language = body.main_language;
                     //确定语言
                     const userLang = Cookies.get("lang");
                     if (userLang) {
@@ -70,8 +70,14 @@ export default class NetObserver extends AbstractMediator {
                         }
                     }
                     locale.use(core.lang);
-                    LangConfig.load();
+                    //获取平台配置信息
+                    this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
                 }
+                break;
+            //游戏配置
+            case net.EventType.api_plat_var_game_config:
+                GamePlatConfig.init(body);
+                LangConfig.load();
                 break;
             case NotificationName.LANG_CONFIG:
                 {

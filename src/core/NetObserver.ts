@@ -63,10 +63,10 @@ export default class NetObserver extends AbstractMediator {
                         core.lang = userLang;
                     } else {
                         const sysLang = navigator.language.replace("-", "_");
-                        if (GamePlatConfig.config.language[sysLang]) {
+                        if (LangConfig.language[sysLang]) {
                             core.lang = sysLang;
                         } else {
-                            core.lang = GamePlatConfig.config.main_language;
+                            core.lang = LangConfig.main_language;
                         }
                     }
                     locale.use(core.lang);

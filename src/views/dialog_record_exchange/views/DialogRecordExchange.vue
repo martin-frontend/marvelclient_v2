@@ -5,10 +5,12 @@
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogRecordExchange from "./DialogRecordExchange";
+import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
         Overlay,
+        ListNodata,
     },
 })
 export default class extends DialogRecordExchange {}

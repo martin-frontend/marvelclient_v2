@@ -5,12 +5,12 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogActivity from "./DialogActivity";
-import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
+import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
-        AdvertiseInLogin,
         Overlay,
+        ListNodata,
     },
 })
 export default class extends DialogActivity {}

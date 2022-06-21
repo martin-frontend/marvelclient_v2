@@ -8,7 +8,6 @@ import PageGameList from "./PageGameList";
 import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
 import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
 import GameItem from "@/views/widget/game_item/GameItem.vue";
-import GameNavigationSearch from "../widget/game_navigation_search/GameNavigationSearch.vue";
 
 @Component({
     components: {
@@ -16,7 +15,6 @@ import GameNavigationSearch from "../widget/game_navigation_search/GameNavigatio
         GameListSelect,
         GameSlideGroup,
         GameItem,
-        GameNavigationSearch,
     },
 })
 export default class extends PageGameList {

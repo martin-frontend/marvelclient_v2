@@ -17,7 +17,9 @@ import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
 import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
-import { locale } from 'vuejs-loadmore';
+import { locale } from "vuejs-loadmore";
+import GlobalVar from "./global/GlobalVar";
+import WebViewBridge from "./native/WebViewBridge";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -31,6 +33,7 @@ export default class NetObserver extends AbstractMediator {
             NotificationName.GAME_CONFIG,
             NotificationName.LANG_CONFIG,
             net.EventType.api_user_logout,
+            net.EventType.api_plat_var_language_config,
             net.EventType.api_plat_var_game_config,
             net.EventType.api_user_show_var,
             net.EventType.api_plat_var_lobby_index,
@@ -46,30 +49,35 @@ export default class NetObserver extends AbstractMediator {
         switch (notification.getName()) {
             //系统配置
             case NotificationName.GAME_CONFIG:
-                {
-                    //获取平台配置信息
-                    this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
-                }
+                //获取语言配置
+                this.sendNotification(net.HttpType.api_plat_var_language_config, { plat_id: core.plat_id });
+
                 break;
-            //游戏配置
-            case net.EventType.api_plat_var_game_config:
+            case net.EventType.api_plat_var_language_config:
                 {
-                    GamePlatConfig.init(body);
+                    LangConfig.language = body.language;
+                    LangConfig.main_language = body.main_language;
                     //确定语言
                     const userLang = Cookies.get("lang");
                     if (userLang) {
                         core.lang = userLang;
                     } else {
                         const sysLang = navigator.language.replace("-", "_");
-                        if (GamePlatConfig.config.language[sysLang]) {
+                        if (LangConfig.language[sysLang]) {
                             core.lang = sysLang;
                         } else {
-                            core.lang = GamePlatConfig.config.main_language;
+                            core.lang = LangConfig.main_language;
                         }
                     }
                     locale.use(core.lang);
-                    LangConfig.load();
+                    //获取平台配置信息
+                    this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
                 }
+                break;
+            //游戏配置
+            case net.EventType.api_plat_var_game_config:
+                GamePlatConfig.init(body);
+                LangConfig.load();
                 break;
             case NotificationName.LANG_CONFIG:
                 {
@@ -84,6 +92,10 @@ export default class NetObserver extends AbstractMediator {
                     this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
                     //常见问题
                     this.sendNotification(net.HttpType.api_plat_fag_index);
+
+                    if (core.app_type == core.EnumAppType.APP) {
+                        WebViewBridge.getInstance().enterHall();
+                    }
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -103,12 +115,12 @@ export default class NetObserver extends AbstractMediator {
                     dialog_message_box.confirm({
                         message: LangUtil("进入游戏"),
                         okFun: () => {
-                            //如果是移动设备，则在新页面中打开游戏
-                            if (vuetify.framework.breakpoint.mobile) {
-                                OpenLink(body.url);
-                            } else {
+                            if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.lastRouter = router.currentRoute.path;
+                                this.gameProxy.historyLength = window.history.length;
                                 page_game_play.show(body.url);
+                            } else {
+                                WebViewBridge.getInstance().openBrowser(body.url);
                             }
                         },
                     });

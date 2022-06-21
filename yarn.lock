@@ -1704,6 +1704,13 @@
   dependencies:
     "jest-diff" "^24.3.0"
 
+"@types/js-base64@^3.3.1":
+  "integrity" "sha512-Zw33oQNAvDdAN9b0IE5stH0y2MylYvtU7VVTKEJPxhyM2q57CVaNJhtJW258ah24NRtaiA23tptUmVn3dmTKpw=="
+  "resolved" "https://registry.npmjs.org/@types/js-base64/-/js-base64-3.3.1.tgz"
+  "version" "3.3.1"
+  dependencies:
+    "js-base64" "*"
+
 "@types/js-cookie@^2.2.7":
   "integrity" "sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA=="
   "resolved" "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-2.2.7.tgz"
@@ -7140,6 +7147,11 @@
   dependencies:
     "import-local" "^2.0.0"
     "jest-cli" "^24.9.0"
+
+"js-base64@*", "js-base64@^2.5.1":
+  "integrity" "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="
+  "resolved" "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
+  "version" "2.6.4"
 
 "js-beautify@^1.6.12", "js-beautify@^1.6.14":
   "integrity" "sha512-f1ra8PHtOEu/70EBnmiUlV8nJePS58y9qKjl4JHfYWlFH6bo7ogZBz//FAZp7jDuXtYnGYKymZPlrg2I/9Zo4g=="

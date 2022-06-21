@@ -1,6 +1,6 @@
-<v-container>
+<v-container :class="$vuetify.breakpoint.mobile?'pa-0':''">
     <v-sheet class="rounded-lg" color="#192b4d">
-        <div class="d-flex justify-end my-2 mr-3">
+        <div class="d-flex justify-end my-2 mr-3" v-if="!$vuetify.breakpoint.mobile">
             <v-btn class="my-2 ml-3" icon @click="onFullScreen">
                 <v-icon>mdi-fullscreen</v-icon>
             </v-btn>
@@ -8,8 +8,12 @@
                 <v-icon>mdi-keyboard-backspace</v-icon>
             </v-btn>
         </div>
-
-        <iframe id="gameFrame" ref="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
+        <iframe id="gameFrame" ref="gameFrame" :class="$vuetify.breakpoint.mobile?'frame-mobile':'frame'" :src="pageData.url" allowfullscreen="true"></iframe>
     </v-sheet>
-    <RecentBetting class="mt-4" />
+    <RecentBetting class="mt-4" v-if="!$vuetify.breakpoint.mobile" />
+    <div class="flow-btn" ref="btnFlow" v-if="$vuetify.breakpoint.mobile">
+        <v-btn fab small color="red" @click="onBack">
+            <v-icon>mdi-backup-restore</v-icon>
+        </v-btn>
+    </div>
 </v-container>

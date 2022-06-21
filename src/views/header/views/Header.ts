@@ -1,8 +1,10 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import LangConfig from "@/core/config/LangConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
@@ -22,11 +24,18 @@ export default class Header extends AbstractView {
     routerPath = this.$router.app.$route.path;
     core = core;
     LangUtil = LangUtil;
-
     GamePlatConfig = GamePlatConfig;
+    LangConfig = LangConfig;
+    //当前活动的分类
+    categoryActive = -1;
 
     constructor() {
         super(HeaderMediator);
+    }
+
+    mounted() {
+        window.addEventListener("scroll", this.scrollHandle, true);
+        this.scrollHandle();
     }
 
     @Watch("$route")
@@ -66,5 +75,27 @@ export default class Header extends AbstractView {
     onLangChange() {
         Cookies.set("lang", core.lang);
         location.reload();
+    }
+
+    onService() {
+        OpenLink(LangUtil("客服链接"));
+    }
+
+    scrollHandle() {
+        this.categoryActive = -1;
+        if (!this.$vuetify.breakpoint.mobile) {
+            const len = this.pageData.lobbyIndex.length;
+            for (let i = 0; i < len; i++) {
+                const item = this.pageData.lobbyIndex[i];
+                const div = document.getElementById(item.category.toString());
+                if (div) {
+                    const rect = div.getBoundingClientRect();
+                    if (rect.top <= 250 && rect.bottom - 50 > 155) {
+                        this.categoryActive = i;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

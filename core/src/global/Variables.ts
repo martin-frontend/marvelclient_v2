@@ -24,6 +24,6 @@ module core {
     /**配置文件 */
     export var configVo: ConfigVO;
     /**语言 */
-    export var lang:string = "zh";
+    export var lang:string = "en_EN";
     
 }

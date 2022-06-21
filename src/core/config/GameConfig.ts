@@ -15,9 +15,9 @@ export default class GameConfig {
         channel_id && (core.channel_id = channel_id);
         if (platformConfig) {
             if (platformConfig) {
-                GlobalVar.app_type = core.EnumAppType.APP;
+                core.app_type = core.EnumAppType.APP;
             } else {
-                GlobalVar.app_type = core.EnumAppType.WEB;
+                core.app_type = core.EnumAppType.WEB;
             }
             const conf: string = decodeURI(platformConfig);
             try {

@@ -22,7 +22,6 @@
         }
     }
 }
-
 .header-mobile {
     position: fixed;
     z-index: 1000;
@@ -31,30 +30,4 @@
 .listbox-mobile {
     overflow: hidden;
     padding-top: 210px;
-}
-
-::v-deep .vuejs-loadmore-wrap .vuejs-refresh-track .vuejs-refresh-head {
-    .vuejs-loading{
-        color: #4c5d7f;
-        .vuejs-loading-text{
-            color: #4c5d7f;
-        }
-    }
-    .vuejs-refresh-text{
-        color: #4c5d7f;
-    }
-}
-::v-deep .vuejs-loadmore .vuejs-loadmore-loading .vuejs-loading {
-    .vuejs-loading{
-        color: #4c5d7f;
-        .vuejs-loading-text{
-            color: #4c5d7f;
-        }
-    }
-    .vuejs-loading-text{
-        color: #4c5d7f;
-    }
-}
-::v-deep .vuejs-loadmore .vuejs-loadmore-finished-text{
-    color: #4c5d7f;
 }

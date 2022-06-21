@@ -51,21 +51,17 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        console.log("详情..", data);
         this.pageData.data.title.award = "";
         this.pageData.data.title.endTime = data.settlement_from_date;
         this.pageData.data.title.endWater = data.total_water;
         if (data.total_backwater[Object.keys(data.total_backwater)[0]]) {
-            this.pageData.data.title.award += `${Object.keys(data.total_backwater)[0]} ${
-                data.total_backwater[Object.keys(data.total_backwater)[0]]
-            }  `;
+            this.pageData.data.title.award += `${Object.keys(data.total_backwater)[0]} ${data.total_backwater[Object.keys(data.total_backwater)[0]]
+                }  `;
         }
         if (data.total_backwater[Object.keys(data.total_backwater)[1]]) {
-            this.pageData.data.title.award += `${Object.keys(data.total_backwater)[1]} ${
-                data.total_backwater[Object.keys(data.total_backwater)[1]]
-            }  `;
+            this.pageData.data.title.award += `${Object.keys(data.total_backwater)[1]} ${data.total_backwater[Object.keys(data.total_backwater)[1]]
+                }  `;
         }
-
         this.pageData.data.detail = data.detail;
         this.pageData.loading = false;
     }

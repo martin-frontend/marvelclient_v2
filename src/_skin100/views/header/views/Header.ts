@@ -1,6 +1,7 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import LangConfig from "@/core/config/LangConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
@@ -24,6 +25,7 @@ export default class Header extends AbstractView {
     LangUtil = LangUtil;
 
     GamePlatConfig = GamePlatConfig;
+    LangConfig = LangConfig;
 
     constructor() {
         super(HeaderMediator);

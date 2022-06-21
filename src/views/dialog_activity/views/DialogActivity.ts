@@ -5,14 +5,12 @@ import dialog_activity_detail from "@/views/dialog_activity_detail";
 import { Watch, Component } from "vue-property-decorator";
 import DialogActivityMediator from "../mediator/DialogActivityMediator";
 import DialogActivityProxy from "../proxy/DialogActivityProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
 
 @Component
 export default class DialogActivity extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogActivityProxy = this.getProxy(DialogActivityProxy);
     pageData = this.myProxy.pageData;
-    noticeProxy: NoticeProxy = this.getProxy(NoticeProxy);
 
     constructor() {
         super(DialogActivityMediator);

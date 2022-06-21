@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
@@ -66,5 +67,9 @@ export default class Header extends AbstractView {
     onLangChange() {
         Cookies.set("lang", core.lang);
         location.reload();
+    }
+
+    onService(){
+        OpenLink(LangUtil("客服链接"));
     }
 }

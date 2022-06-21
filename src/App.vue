@@ -16,6 +16,7 @@
             height="42"
             color="#ffb01b"
             class="customer rounded-xl black--text font-weight-bold d-flex align-center text-h6"
+            @click="onService"
             v-if="!$vuetify.breakpoint.mobile"
         >
             <v-icon class="mr-1">mdi-message-text-outline</v-icon>
@@ -37,6 +38,7 @@ import getProxy from "./core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
 import GameSearch from "./views/game_search/views/GameSearch.vue";
+import OpenLink from "./core/global/OpenLink";
 
 @Component({
     components: {
@@ -51,6 +53,10 @@ import GameSearch from "./views/game_search/views/GameSearch.vue";
 export default class APP extends Vue {
     gameProxy: GameProxy = getProxy(GameProxy);
     LangUtil = LangUtil;
+
+    onService(){
+        OpenLink(LangUtil("客服链接"));
+    }
 }
 </script>
 <style lang="scss" scoped>

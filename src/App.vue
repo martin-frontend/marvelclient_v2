@@ -10,6 +10,7 @@
             <Overlay v-model="gameProxy.loading" />
         </div>
         <DialogMessage />
+        <Orientation v-if="$vuetify.breakpoint.mobile && $vuetify.breakpoint.width > $vuetify.breakpoint.height && $route.path != '/page_game_play'"/>
         <div id="dialog_container"></div>
         <v-btn
             height="42"
@@ -37,6 +38,7 @@ import getProxy from "./core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
 import OpenLink from "./core/global/OpenLink";
+import Orientation from "@/views/widget/orientation/Orientation.vue";
 
 @Component({
     components: {
@@ -45,6 +47,7 @@ import OpenLink from "./core/global/OpenLink";
         Footer,
         MobileMenu,
         Overlay,
+        Orientation,
     },
 })
 export default class APP extends Vue {
@@ -62,5 +65,6 @@ export default class APP extends Vue {
     position: fixed;
     right: 55px;
     bottom: 60px;
+    z-index: 100;
 }
 </style>

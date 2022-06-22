@@ -301,14 +301,14 @@
                             :max-width="$vuetify.breakpoint.xsOnly? 15 : 30"
                             :height="$vuetify.breakpoint.xsOnly? 15 : 30"
                         ></v-img>
-                        <span class="mr-1">{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
-                        <v-img
+                        <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                        <!-- <v-img
                             class="mr-1"
                             :src="pageData.platCoins.rewardCoin.icon"
                             :max-width="$vuetify.breakpoint.xsOnly? 15 : 30"
                             :height="$vuetify.breakpoint.xsOnly? 15 : 30"
                         ></v-img>
-                        {{ item.commission_num[pageData.platCoins.rewardCoin.name] }}
+                        {{ item.commission_num[pageData.platCoins.rewardCoin.name] }} -->
                     </v-col>
                     <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
                         <span
@@ -322,14 +322,14 @@
                                 :max-width="$vuetify.breakpoint.xsOnly? 15 : 30"
                                 :height="$vuetify.breakpoint.xsOnly? 15 : 30"
                             ></v-img>
-                            <span class="mr-1">{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
-                            <v-img
+                            <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                            <!-- <v-img
                                 class="mr-1"
                                 :src="pageData.platCoins.rewardCoin.icon"
                                 :max-width="$vuetify.breakpoint.xsOnly? 15 : 30"
                                 :height="$vuetify.breakpoint.xsOnly? 15 : 30"
                             ></v-img>
-                            {{ item.commission_num_added[pageData.platCoins.rewardCoin.name] }}
+                            {{ item.commission_num_added[pageData.platCoins.rewardCoin.name] }} -->
                         </span>
                     </v-col>
                 </v-row>

@@ -76,6 +76,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     setFloorRangeData(agent_user_id: number, val: number) {
         this.parameter.agent_user_id = agent_user_id;
+        this.api_user_var_agent_var_floor_range()
         this.dialogPromotionFloorProxy.setSelectedFloorData(this.parameter.agent_user_id, val);
         dialog_promotion_floor.show();
     }
@@ -98,5 +99,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
+    }
+
+    /**--代理推广--直属保底范围查询*/
+    api_user_var_agent_var_floor_range() {
+        this.sendNotification(net.HttpType.api_user_var_agent_var_floor_range, this.parameter);
     }
 }

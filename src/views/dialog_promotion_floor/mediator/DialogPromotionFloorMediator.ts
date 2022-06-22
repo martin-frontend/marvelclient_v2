@@ -5,7 +5,8 @@ import DialogDirectlyProxy from "@/views/dialog_directly/proxy/DialogDirectlyPro
 
 export default class DialogPromotionFloorMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_agent_var_update];
+        return [net.EventType.api_user_var_agent_var_update,
+        net.EventType.api_user_var_agent_var_floor_range];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -16,6 +17,9 @@ export default class DialogPromotionFloorMediator extends AbstractMediator {
             case net.EventType.api_user_var_agent_var_update:
                 myProxy.setData(body);
                 dialogDirectlyProxy.api_user_var_agent_direct_list();
+                break;
+            case net.EventType.api_user_var_agent_var_floor_range:
+                myProxy.setFloorRange(body);
                 break;
         }
     }

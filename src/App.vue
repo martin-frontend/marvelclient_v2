@@ -51,13 +51,14 @@ export default class APP extends Vue {
     gameProxy: GameProxy = getProxy(GameProxy);
     LangUtil = LangUtil;
 
-    onService(){
+    onService() {
         OpenLink(LangUtil("客服链接"));
     }
 }
 </script>
 <style lang="scss" scoped>
 .customer {
+    z-index: 100;
     position: fixed;
     right: 55px;
     bottom: 60px;

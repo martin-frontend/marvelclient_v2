@@ -1,0 +1,80 @@
+<div>
+    <v-container>
+        <v-row no-gutters>
+            <v-col cols="12" lg="8" class="pr-lg-2">
+            </v-col>
+            <v-col cols="12" lg="4" class="">
+                <v-card class="rounded-lg" color="colorPanelBg4" flat>
+                    <v-card-title class="gradient-bg head d-flex align-center px-6 pt-5">
+                        <div>
+                            <div class="d-flex align-start text-22 font-weight-bold">{{LangUtil("交换")}}</div>
+                            <div class="primary--text text-16">
+                                即时交易代币
+                            </div>
+                        </div>
+                        <v-spacer />
+                        <div>
+                            <v-btn icon>
+                                <v-icon>mdi-reload</v-icon>
+                            </v-btn>
+                            <v-btn icon >
+                                <v-icon>mdi-reload</v-icon>
+                            </v-btn>
+                        </div>
+                    </v-card-title >
+                    <v-divider class="mx-6" />
+                    <v-card-text class="px-6">
+                        <span class="d-flex mb-3">
+                            <v-img :src="GamePlatConfig.config.plat_coins['CF'].icon" max-width="30" max-height="30">
+                            </v-img>
+                            <div class="d-flex align-center text-16 ml-2">CF</div>
+                        </span>
+                        <span class="d-flex mb-3">
+                            <v-img :src="GamePlatConfig.config.plat_coins['USDT'].icon" max-width="30" max-height="30">
+                            </v-img>
+                            <div class="d-flex align-center text-16 ml-2">USDT</div>
+                        </span>
+                        <CustomInput
+                            class="mb-6"
+                            v-model="pageData.usdt"
+                        />
+                        <div class="primary--text text-16">
+                            滑点容差
+                        </div>
+                        
+                    </v-card-text>
+                </v-card>
+                <v-card class="rounded-lg mt-3 primary--text text-16 px-5 pt-7 pb-5" color="colorPanelBg4" flat>
+                    <div class="d-flex mb-4">
+                        <span>
+                            最小获得量
+                        </span>
+                        <v-spacer />
+                        <span>
+                            0 USDT
+                        </span>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <span>
+                            影响价格
+                        </span>
+                        <v-spacer />
+                        <span>
+                            0%
+                        </span>
+                    </div>
+                    <div class="d-flex">
+                        <span>
+                            手续费
+                        </span>
+                        <v-spacer />
+                        <span>
+                            0 CF
+                        </span>
+                    </div>
+                </v-card>
+            </v-col>
+        </v-row>
+        <Question :questions="questionData"></Question>
+    </v-container>
+</div>

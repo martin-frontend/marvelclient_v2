@@ -24,6 +24,7 @@ const opts = {
                 colorPanelBg: "#121E36", //used
                 colorPanelBg2: "#16233F", //used
                 colorPanelBg3: "#12294A", //used
+                colorPanelBg4: "#1A273F", //used
                 colorPanelTitleBg: "#25324B", //used
                 colorBtnBg: "#6fa9fa", //used
                 colorSelectBg: "#2C3D5C", //used

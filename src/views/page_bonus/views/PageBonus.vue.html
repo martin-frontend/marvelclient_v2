@@ -92,11 +92,8 @@
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
                                                 <span>
                                                     {{ user_stake_info.stake_amount }}
-                                                    <v-btn icon @click="handlerRecords" :max-height="$vuetify.breakpoint.xsOnly? 22 : 28">
-                                                        <v-img
-                                                            :max-width="$vuetify.breakpoint.xsOnly? 25 : 39"
-                                                            src="@/assets/bonus/history@2x.png"
-                                                        ></v-img>
+                                                    <v-btn icon plan @click="handlerRecords">
+                                                        <v-icon color="colorText1">mdi-file-document</v-icon>
                                                     </v-btn>
                                                 </span>
                                             </div>
@@ -122,11 +119,8 @@
                                             <div class="text-18 text-sm-h5 d-flex align-center justify-space-between">
                                                 <span class="colorTextGold--text">
                                                     {{ user_stake_info.stake_bonus_awaiting_num }}
-                                                    <v-btn icon @click="handleRecords" :max-height="$vuetify.breakpoint.xsOnly? 22 : 28">
-                                                        <v-img
-                                                            :max-width="$vuetify.breakpoint.xsOnly? 25 : 39"
-                                                            src="@/assets/bonus/history@2x.png"
-                                                        ></v-img>
+                                                    <v-btn icon plan @click="handleRecords">
+                                                        <v-icon color="colorText1">mdi-file-document</v-icon>
                                                     </v-btn>
                                                 </span>
                                             </div>
@@ -332,13 +326,12 @@
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
                                     ></v-img>
-                                    <span > {{ item.total_stake_amount }} </span>
+                                    <span> {{ item.total_stake_amount }} </span>
                                 </div>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 <div class="d-flex hundred-bonus-width">
-                                    <span class="mr-2">$
-                                    </span>
+                                    <span class="mr-2">$ </span>
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
@@ -410,8 +403,7 @@
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 <div class="d-flex hundred-bonus-width">
-                                    <span class="mr-2">$
-                                    </span>
+                                    <span class="mr-2">$ </span>
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>

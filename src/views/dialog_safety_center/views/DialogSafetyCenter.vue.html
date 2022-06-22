@@ -158,20 +158,23 @@
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入原始密码')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password_old"
                 />
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    :placeholder="LangUtil('请输入密码(6~12位)')"
+                    :placeholder="LangUtil('请输入密码（6-20位）')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password"
                 />
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    :placeholder="LangUtil('确认密码（4-20位）')"
+                    :placeholder="LangUtil('确认密码（6-20位）')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password_confirm"
                 />
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">

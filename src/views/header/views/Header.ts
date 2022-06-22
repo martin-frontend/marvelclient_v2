@@ -24,6 +24,7 @@ export default class Header extends AbstractView {
     routerPath = this.$router.app.$route.path;
     core = core;
     LangUtil = LangUtil;
+    commonIcon = Assets.commonIcon;
     GamePlatConfig = GamePlatConfig;
     LangConfig = LangConfig;
     //当前活动的分类

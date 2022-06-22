@@ -1,8 +1,10 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
+import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
+import dialog_message_box from "@/views/dialog_message_box";
 import { Watch, Component } from "vue-property-decorator";
 import PageGamePlayMediator from "../mediator/PageGamePlayMediator";
 import PageGamePlayProxy from "../proxy/PageGamePlayProxy";
@@ -20,6 +22,7 @@ export default class PageGamePlay extends AbstractView {
         this.$nextTick(() => {
             const that = this;
             const oDiv: any = this.$refs.btnFlow;
+            if (!oDiv) return;
             let flag = 0; //标记是拖曳还是点击
             let disX: number,
                 disY: number,
@@ -89,12 +92,17 @@ export default class PageGamePlay extends AbstractView {
     }
 
     onBack() {
-        const gameProxy: GameProxy = getProxy(GameProxy);
-        router.back();
-        setTimeout(()=>{
-            if(router.currentRoute.path == "/page_game_play"){
-                router.replace(gameProxy.lastRouter);
+        dialog_message_box.confirm({
+            message: LangUtil("确定要退出游戏吗"),
+            okFun: () => {
+                const gameProxy: GameProxy = getProxy(GameProxy);
+                router.back();
+                setTimeout(() => {
+                    if (router.currentRoute.path == "/page_game_play") {
+                        router.replace(gameProxy.lastRouter);
+                    }
+                }, 100);
             }
-        }, 100);
+        });
     }
 }

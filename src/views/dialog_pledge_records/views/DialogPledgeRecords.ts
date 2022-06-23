@@ -12,7 +12,7 @@ import LangUtil from "@/core/global/LangUtil";
 export default class DialogPledgeRecords extends AbstractView {
     myProxy: DialogPledgeRecordsProxy = this.getProxy(DialogPledgeRecordsProxy);
     bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
-    plat_stake_info = this.bonusProxy.plat_stake_info;
+    plat_stake_info = this.bonusProxy.pageData.plat_stake_info;
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;

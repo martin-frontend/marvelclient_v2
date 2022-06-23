@@ -18,14 +18,6 @@ export default class DialogActivity extends AbstractView {
         super(DialogActivityMediator);
     }
 
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 155;
-        } else {
-            return 468;
-        }
-    }
-
     onClose() {
         this.pageData.bShow = false;
     }

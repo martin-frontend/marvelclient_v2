@@ -92,12 +92,10 @@ export default class PageBonusProxy extends puremvc.Proxy {
             if (plat_coins[key].type === 2) {
                 this.pageData.platCoins.mainCoin = plat_coins[key];
                 this.pageData.platCoins.mainCoin.name = key;
-                // this.pageData.platCoins.mainCoin[key].name = key;
             }
             if (plat_coins[key].type === 3) {
                 this.pageData.platCoins.rewardCoin = plat_coins[key];
                 this.pageData.platCoins.rewardCoin.name = key;
-                // this.pageData.platCoins.rewardCoin[key].name = key;
             }
         });
     }

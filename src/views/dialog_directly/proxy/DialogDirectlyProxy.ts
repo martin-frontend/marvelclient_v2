@@ -12,6 +12,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     parameter: any = {
         user_id: 0,
         agent_user_id: 0,
+        direct_user_id: 0,
         page_size: 20,
         page_count: 1,
         start_date: null,
@@ -53,6 +54,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_size: 20,
         });
         this.pageData.search = "";
+        this.parameter.direct_user_id = "";
     }
 
     setData(data: any) {

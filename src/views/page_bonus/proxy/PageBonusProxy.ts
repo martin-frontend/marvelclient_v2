@@ -48,8 +48,6 @@ export default class PageBonusProxy extends puremvc.Proxy {
         referenceBonusAmount: 50,
     };
 
-
-
     setPlatData(data: any) {
         Object.assign(this.pageData.plat_stake_info, data);
     }
@@ -64,13 +62,15 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     setBonusRecently(data: any) {
         this.pageData.bonus_recently = data;
-        this.pageData.referenceBonusAmount = Math.max(...this.pageData.bonus_recently.map((o: { total_bonus_amount: any }) => o.total_bonus_amount));
-
+        this.pageData.referenceBonusAmount = Math.max(
+            ...this.pageData.bonus_recently.map((o: { total_bonus_amount: any }) => o.total_bonus_amount)
+        );
         for (let i = 0; i < this.pageData.bonus_recently.length; i++) {
             if (Number(this.pageData.bonus_recently[i].total_bonus_amount) / this.pageData.referenceBonusAmount >= 1) {
                 this.pageData.bonus_recently[i].bar = 1;
             } else {
-                this.pageData.bonus_recently[i].bar = Number(this.pageData.bonus_recently[i].total_bonus_amount) / this.pageData.referenceBonusAmount;
+                this.pageData.bonus_recently[i].bar =
+                    Number(this.pageData.bonus_recently[i].total_bonus_amount) / this.pageData.referenceBonusAmount;
             }
         }
     }

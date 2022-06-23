@@ -130,7 +130,7 @@ export default class PageBonus extends AbstractView {
 
     countdown() {
         //@ts-ignore
-        const end = Date.parse(new Date(this.myProxy.pageData.plat_stake_info.bonus_time.replace(/-/g, "/")))
+        const end = Date.parse(new Date(this.myProxy.pageData.plat_stake_info.bonus_time.replace(/-/g, "/")));
 
         //@ts-ignore
         const now = Date.parse(new Date());

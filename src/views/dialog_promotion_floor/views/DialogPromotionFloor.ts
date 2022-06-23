@@ -42,7 +42,7 @@ export default class DialogPromotionFloor extends AbstractView {
     }
 
     setFloor(): void {
-        this.myProxy.pageData.loading = true;
+        this.pageData.loading = true;
         this.myProxy.api_user_var_agent_var_update();
     }
 }

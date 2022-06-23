@@ -27,7 +27,7 @@ export default class DialogPledge extends AbstractView {
 
     /**确定质押 */
     handleConfirm() {
-        this.myProxy.pageData.loading = true;
+        this.pageData.loading = true;
         this.myProxy.api_user_var_deposit_stake();
     }
 

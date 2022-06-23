@@ -139,7 +139,7 @@
                                             min-width="32"
                                             class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1"
                                             color="colorText4"
-                                            v-if="myProxy.btnBind"
+                                            v-if="myProxy.pageData.btnBind"
                                             @click="handlerBind"
                                         >
                                             {{LangUtil("绑定")}}
@@ -204,7 +204,7 @@
                                 :height="$vuetify.breakpoint.xsOnly? 35 :46"
                                 class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2"
                             >
-                                <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.link }}</span>
+                                <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link }}</span>
                                 <v-btn icon @click="copy">
                                     <v-img
                                         max-width="30"

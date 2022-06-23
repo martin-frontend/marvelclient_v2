@@ -25,8 +25,9 @@ export default class DialogManuallyUnstaking extends AbstractView {
         this.myProxy.pageData.amount = this.pageBonusProxy.pageData.user_stake_info.stake_amount;
     }
 
-    /**确定质押 */
+    /**确定手动解除质押 */
     handleConfirm() {
+        this.myProxy.pageData.loading = true;
         this.myProxy.api_user_var_withdraw_stake();
     }
 

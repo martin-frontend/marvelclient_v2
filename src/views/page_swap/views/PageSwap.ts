@@ -21,4 +21,12 @@ export default class PageSwap extends AbstractView {
     get questionData() {
         return this.fagProxy.qData.type3;
     }
+
+    mouseover() {
+        this.pageData.icon = 'mdi-swap-vertical'
+    }
+
+    mouseleave() {
+        this.pageData.icon = 'mdi-arrow-down'
+    }
 }

@@ -1,21 +1,22 @@
 <div>
     <v-container>
-        <v-row no-gutters>
+        <v-row no-gutters class="mb-5">
             <v-col cols="12" lg="8" class="pr-lg-2">
+                <v-card class="rounded-lg" height="100%" color="colorPanelBg4" flat></v-card>
             </v-col>
             <v-col cols="12" lg="4" class="">
                 <v-card class="rounded-lg" color="colorPanelBg4" flat>
                     <v-card-title class="gradient-bg head d-flex align-center px-6 pt-5">
                         <div>
                             <div class="d-flex align-start text-22 font-weight-bold">{{LangUtil("交换")}}</div>
-                            <div class="primary--text text-16">
+                            <div class="colorText8--text text-16">
                                 即时交易代币
                             </div>
                         </div>
                         <v-spacer />
                         <div>
                             <v-btn icon>
-                                <v-icon>mdi-reload</v-icon>
+                                <v-icon>mdi-note-text</v-icon>
                             </v-btn>
                             <v-btn icon >
                                 <v-icon>mdi-reload</v-icon>
@@ -24,27 +25,68 @@
                     </v-card-title >
                     <v-divider class="mx-6" />
                     <v-card-text class="px-6">
-                        <span class="d-flex mb-3">
-                            <v-img :src="GamePlatConfig.config.plat_coins['CF'].icon" max-width="30" max-height="30">
-                            </v-img>
-                            <div class="d-flex align-center text-16 ml-2">CF</div>
-                        </span>
-                        <span class="d-flex mb-3">
-                            <v-img :src="GamePlatConfig.config.plat_coins['USDT'].icon" max-width="30" max-height="30">
-                            </v-img>
-                            <div class="d-flex align-center text-16 ml-2">USDT</div>
+                        <div class="d-flex justify-space-between align-center mb-3">
+                            <span class="d-flex align-center">
+                                <v-img :src="GamePlatConfig.config.plat_coins['CF'].icon" max-width="30" max-height="30">
+                                </v-img>
+                                <div class="text-16 ml-2">CF</div>
+                            </span>
+                            <span class="d-flex align-center text-16">
+                                余额: 0
+                            </span>
+                        </div>
+                        <CustomInput
+                            v-model="pageData.cf"
+                        />
+                        <div class="d-flex justify-center my-4">
+                            <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+                                <v-icon>{{ pageData.icon }}</v-icon>
+                            </v-btn>
+                        </div>
+                        <span class="d-flex justify-space-between align-center mb-3">
+                            <span class="d-flex align-center">
+                                <v-img :src="GamePlatConfig.config.plat_coins['USDT'].icon" max-width="30" max-height="30">
+                                </v-img>
+                                <div class="d-flex align-center text-16 ml-2">USDT</div>
+                            </span>
+                            <span class="d-flex align-center text-16">
+                                余额: 0
+                            </span>
                         </span>
                         <CustomInput
                             class="mb-6"
                             v-model="pageData.usdt"
                         />
-                        <div class="primary--text text-16">
+                        <v-sheet class="d-flex colorText8--text text-16 rounded-lg px-4 align-center" color="colorPanelBg5" height="50">
+                            <span>价格</span>
+                            <v-spacer />
+                            <span>1 CF = 0.02999</span>
+                        </v-sheet>
+                        <div class="colorText8--text text-16 mt-7 mb-3">
                             滑点容差
                         </div>
-                        
+                        <v-btn-toggle mandatory group>
+                            <v-btn class="rounded-lg mr-2" :height="45" :width="95"> 
+                                <span class="text-16"> 2% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mr-2" :height="45" :width="95">
+                                <span class="text-16"> 5% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mr-2" :height="45" :width="95"> 
+                                <span class="text-16"> 10% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg" :height="45" :width="95">
+                                <span class="text-16"> 20% </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                    </v-card-text>
+                    <v-card-text class="px-6 pb-6 pt-3">
+                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="">
+                            <span class="text-16"> {{LangUtil("交换")}} </span>
+                        </v-btn>
                     </v-card-text>
                 </v-card>
-                <v-card class="rounded-lg mt-3 primary--text text-16 px-5 pt-7 pb-5" color="colorPanelBg4" flat>
+                <v-card class="rounded-lg mt-3 colorText8--text text-16 px-5 pt-7 pb-5" color="colorPanelBg4" flat>
                     <div class="d-flex mb-4">
                         <span>
                             最小获得量

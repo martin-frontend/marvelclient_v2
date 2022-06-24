@@ -7,8 +7,9 @@ export default class PageSwapProxy extends puremvc.Proxy {
     }
 
     pageData = {
+        loading: false,
         cf: "",
         usdt: "",
-        loading: false,
+        icon: "mdi-arrow-down",
     };
 }

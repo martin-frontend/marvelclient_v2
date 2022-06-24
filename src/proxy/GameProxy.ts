@@ -1,6 +1,5 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
-import Cookies from "js-cookie";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";

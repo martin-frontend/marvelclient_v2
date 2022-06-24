@@ -10,7 +10,6 @@ import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_login from "@/views/dialog_login";
 import dialog_register from "@/views/dialog_register";
-import Cookies from "js-cookie";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
 import HeaderProxy from "../proxy/HeaderProxy";
@@ -74,7 +73,7 @@ export default class Header extends AbstractView {
     }
     /**切换语言 */
     onLangChange() {
-        Cookies.set("lang", core.lang);
+        window.localStorage.setItem("lang", core.lang);
         location.reload();
     }
 

@@ -9,16 +9,10 @@ import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
 import FagProxy from "@/proxy/FagProxy";
 
-import Vue from "vue";
-import App from "@/App.vue";
-import { vuetify } from "@/plugins/vuetify";
 import router from "@/router";
-import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
-import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
 import { locale } from "vuejs-loadmore";
-import GlobalVar from "./global/GlobalVar";
 import WebViewBridge from "./native/WebViewBridge";
 
 export default class NetObserver extends AbstractMediator {
@@ -57,7 +51,7 @@ export default class NetObserver extends AbstractMediator {
                     LangConfig.language = body.language;
                     LangConfig.main_language = body.main_language;
                     //确定语言
-                    const userLang = Cookies.get("lang");
+                    const userLang = window.localStorage.getItem("lang");
                     if (userLang) {
                         core.lang = userLang;
                     } else {

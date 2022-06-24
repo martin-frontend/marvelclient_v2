@@ -44,6 +44,11 @@
         <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
             <GameItem :item="item" />
         </div>
+        <div class="mx-n1"><GameItem /></div>
+        <div class="mx-n1"><GameItem /></div>
+        <div class="mx-n1"><GameItem /></div>
+        <div class="mx-n1"><GameItem /></div>
+        <div class="mx-n1"><GameItem /></div>
     </v-card>
     <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
         <div class="d-flex flex-column justify-center align-center">

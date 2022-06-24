@@ -18,6 +18,20 @@ export default class PageGamePlay extends AbstractView {
         super(PageGamePlayMediator);
     }
 
+    get gameFrameClass(){
+        if(this.$vuetify.breakpoint.mobile){
+            //@ts-ignore
+            if(window.navigator.standalone){
+                return "frame-mobile-standalone";
+            }else{
+                return "frame-mobile"
+            }
+        }else{
+            return "frame";
+        }
+        this.$vuetify.breakpoint.mobile?'frame-mobile':'frame'
+    }
+
     mounted() {
         this.$nextTick(() => {
             const that = this;

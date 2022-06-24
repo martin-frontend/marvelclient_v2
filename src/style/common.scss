@@ -12,7 +12,6 @@
     }
 }
 .html {
-    height: -webkit-fill-available;
     background-color: #131e36;
 }
 @-moz-document url-prefix() {
@@ -39,7 +38,6 @@ body {
         display: none; /* Chrome Safari */
     }
     min-height: 100vh;
-    min-height: -webkit-fill-available;
 }
 li {
     list-style-type: none;

@@ -3,12 +3,11 @@ import PageGameListProxy from "../proxy/PageGameListProxy";
 import getProxy from "@/core/global/getProxy";
 
 export default class PageGameListMediator extends AbstractMediator {
-
     public onRegister(): void {
         const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
-        if(myProxy.config.loaded){
+        if (myProxy.config.loaded) {
             myProxy.api_plat_var_game_all_index();
-        }else{
+        } else {
             myProxy.api_plat_var_game_all_config();
         }
     }

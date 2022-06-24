@@ -60,6 +60,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     /**--代理推广--设置直属保底*/
     api_user_var_agent_var_update() {
         this.amountToParameter();
+        this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_var_update, this.parameter);
     }
 }

@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
-            <CustomInput class="mb-3 text-18" v-model="pageData.amount" />
+            <CustomInput class="mb-3 text-18" v-model="pageData.amount" key="promotion_floor"/>
             <div class="ml-5 mb-9 colorDialogInfo--text text-16 font-weight-regular">{{LangUtil("每万保底金额")}}{{pageData.range.min}}-{{pageData.range.max}}</div>
             <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block @click="setFloor"
                 >{{LangUtil("保存设置")}}</v-btn

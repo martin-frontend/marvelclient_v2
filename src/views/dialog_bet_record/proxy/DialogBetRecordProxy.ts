@@ -96,16 +96,15 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
-        Object.assign(this.pageData.pageInfo, data.pageInfo);
+        // Object.assign(this.pageData.pageInfo, data.pageInfo);
+        this.pageData.pageInfo = data.pageInfo;
         this.pageData.total_bet_gold = data.total_bet_gold;
         this.pageData.total_water = data.total_water;
         this.pageData.total_win_gold = data.total_win_gold;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
-                // this.pageData.list = data.list;
-                this.pageData.list = [];
-                this.pageData.list.push(...data.list);
+                this.pageData.list = data.list;
             } else {
                 this.pageData.list.push(...data.list);
             }

@@ -12,6 +12,7 @@ import Advertise from "../widget/advertise/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
 import Marquee1 from "../widget/marquee1/Marquee1.vue";
 import PageIntroduce from "../widget/page_introduce/views/PageIntroduce.vue";
+import AdSwiper from "../widget/advertise_swiper/Advertise.vue";
 
 @Component({
     components: {
@@ -22,6 +23,7 @@ import PageIntroduce from "../widget/page_introduce/views/PageIntroduce.vue";
         GameSport,
         RecentBetting,
         Marquee1,
+        AdSwiper,
         PageIntroduce,
     },
 })

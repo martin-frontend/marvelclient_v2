@@ -16,7 +16,9 @@ $waitTextColor: #9db1d8cc;
 .intro-radius {
     border-radius: 16px;
 }
-
+.bg1 {
+    background-image: linear-gradient(90deg, #332ef0 4%, rgba(187, 99, 130, 0) 99%);
+}
 .intro-chain-label {
     color: $chainMsgLabelColor;
 }
@@ -57,25 +59,37 @@ $waitTextColor: #9db1d8cc;
 
 .intro-btn {
     background-color: white;
-    color: #324466;
+    color: #fff;
+    background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%);
+    background-size: contain;
+}
+
+.intro-btn-V2 {
+    background: #f8d129;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .intro-btn-hover {
     background: linear-gradient(90deg, #69b7f8 0%, #6fa7fa 100%), #ffffff;
 }
+.intro-btn-hover-V2 {
+    background: linear-gradient(90deg, #f8d129 0%, #f8d129 100%), #000000 !important;
+}
 
 .intro-how-01-md {
-    background: url("~@/assets/introduce/01P.png") no-repeat;
-    background-position: bottom right;
+    background: url("~@/_skin100/assets/introduce/01P.png") no-repeat;
     background-size: contain;
+    background-position: bottom right;
 }
 .intro-how-02-md {
-    background: url("~@/assets/introduce/02P.png") no-repeat;
+    background: url("~@/_skin100/assets/introduce/01P.png") no-repeat;
     background-position: bottom right;
     background-size: contain;
 }
 .intro-how-03-md {
-    background: url("~@/assets/introduce/03P.png") no-repeat;
+    background: url("~@/_skin100/assets/introduce/01P.png") no-repeat;
     background-position: bottom right;
     background-size: contain;
 }

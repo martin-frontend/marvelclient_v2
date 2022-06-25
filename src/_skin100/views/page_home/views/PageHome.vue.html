@@ -1,8 +1,81 @@
 <v-container class="main-container">
     <Advertise />
     <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px-2 mt-3':''">
-        <Marquee1 class="mt-1"/>
-        <Activity />
+        <Marquee1 class="marquee1"/>
+        <div class="banner-content">
+            <AdSwiper class="ad-swiper"/>
+            <div class="second-content">
+                <div class="left">
+                    <img src="@/_skin100/assets/img52.png" alt="">
+                </div>
+                <div class="right">
+                    <p class="r-title">Cfans介绍</p>
+                    <p class="tx">
+                        Cfans是J9国际（Coinfans.com）基于BSC币安智能链发行的一种数字货币，有去中心化、交易匿名、安全等特性。
+                    </p>
+                    <p class="tx">
+                        Cfans独创下注挖矿解决方案——用户的每笔投注都会产出一定数量的Cfans， 并且所有持有Cfans的玩家都可以从分红池中获得一定比例的网站利润分成。
+                    </p>
+                    <div  class="totle-data">
+                        <div class="s-left">
+                            <p>
+                                <span >
+                                    {{LangUtil("总计销毁")}}:  
+                                    <span class="s-num">
+                                        52,150,595.94
+                                    </span>
+                                </span>
+                                <span class="ml-8">
+                                    {{LangUtil("本周销毁")}}:  
+                                    <span class="s-num">
+                                        12,281,737.27
+                                    </span>
+                                </span>
+                                
+                                </p>
+                                <p>
+                                    玩家质押Cfans所支付的手续费都将转账到黑洞地址，实现Cfans的不断通缩，以支持价格不断上涨。
+                                </p>
+                        </div>
+                        <div class="s-right">
+                            <span>
+                                链上销毁记录
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-content">
+              <div class="content">
+                <p class="t-title">{{LangUtil("Token名称")}}</p>
+                <p  class="t-text">{{reward_coin_info.coin_name}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("合约地址")}}</p>
+                <p class="t-text" @click="goContractInfo">{{LangUtil("查看合约信息")}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("发行链")}}</p>
+                <p class="t-text">{{reward_coin_info.block_network_name}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("总计发行")}}</p>
+                <p class="t-text">{{reward_coin_info.total_supply}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("总计流通")}} </p>
+                <p class="t-text">{{reward_coin_info.total_circulate}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("总计质押")}}</p>
+                <p class="t-text">{{reward_coin_info.total_stake_amount}}</p>
+              </div>
+              <div class="content">
+                <p class="t-title">{{LangUtil("持币地址数")}}</p>
+                <p class="t-text">{{reward_coin_info.total_holder}}</p>
+              </div>
+            </div>
+        </div>
         <PageIntroduce />
         <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
             <GameSlideGroup
@@ -12,9 +85,7 @@
             :name="item.category"
             :id="item.category"
             />
-            <!-- <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport> -->
         </div>
-        <!-- <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" /> -->
     </v-container>
     
 </v-container>

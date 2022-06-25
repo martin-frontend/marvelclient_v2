@@ -1,3 +1,4 @@
+import dialog_message_box from "@/views/dialog_message_box";
 import GlobalVar from "./GlobalVar";
 /**
  * 全局属性和方法
@@ -33,7 +34,8 @@ export function dateFormat(d: Date, fmt: string): string {
  * @offsetSecond 偏移秒
  */
 export function getTodayOffset(offset: any = 0, offsetSecond: any = 0): Date {
-    const d = new Date(new Date().toLocaleDateString());
+    const today = new Date();
+    const d = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     d.setTime(d.getTime() + 3600 * 1000 * 24 * offset - offsetSecond);
     return d;
 }

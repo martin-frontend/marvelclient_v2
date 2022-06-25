@@ -98,7 +98,7 @@ module core {
     export function getQueryVariable(value: string): string | null {
         // const query = window.location.search.substring(1);
         let query = window.localStorage.getItem("query");
-        if(!query) query = window.location.search.substring(1);
+        if (!query) query = window.location.search.substring(1);
         const vars = query.split("&");
         for (const item of vars) {
             const idx = item.search("=");
@@ -154,7 +154,8 @@ module core {
      * @param value
      */
     export function checkMail(value: string): boolean {
-        const Regx = /^(?:[a-zA-Z0-9]+[_\-\+\.]?)*[a-zA-Z0-9]+@(?:([a-zA-Z0-9]+[_\-]?)*[a-zA-Z0-9]+\.)+([a-zA-Z]{2,})+$/;
+        const Regx =
+            /^(?:[a-zA-Z0-9]+[_\-\+\.]?)*[a-zA-Z0-9]+@(?:([a-zA-Z0-9]+[_\-]?)*[a-zA-Z0-9]+\.)+([a-zA-Z]{2,})+$/;
         return Regx.test(value);
     }
 
@@ -186,16 +187,12 @@ module core {
     }
     /**是否android */
     export function isAndroid() {
-        const flag = navigator.userAgent.match(
-            /(Android)/i
-        );
+        const flag = navigator.userAgent.match(/(Android)/i);
         return flag;
     }
     /**是否IOS */
     export function isIOS() {
-        const flag = navigator.userAgent.match(
-            /(phone|pad|pod|iPhone|iPod|ios|iPad)/i
-        );
+        const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad)/i);
         return flag;
     }
 
@@ -214,7 +211,8 @@ module core {
      * @offsetSecond 偏移秒
      */
     export function getTodayOffset(offset = 0, offsetSecond = 0): Date {
-        const d = new Date(new Date().toLocaleDateString());
+        const today = new Date();
+        const d = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         d.setTime(d.getTime() + 3600 * 1000 * 24 * offset - offsetSecond);
         return d;
     }
@@ -230,5 +228,4 @@ module core {
         }
         return result;
     }
-    
 }

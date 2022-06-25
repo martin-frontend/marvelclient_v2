@@ -1,6 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 import getProxy from "@/core/global/getProxy";
+import dialog_message_box from "@/views/dialog_message_box";
 
 export default class DialogBetRecordMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {

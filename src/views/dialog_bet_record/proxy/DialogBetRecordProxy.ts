@@ -103,7 +103,9 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
-                this.pageData.list = data.list;
+                // this.pageData.list = data.list;
+                this.pageData.list = [];
+                this.pageData.list.push(...data.list);
             } else {
                 this.pageData.list.push(...data.list);
             }

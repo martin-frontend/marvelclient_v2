@@ -10,8 +10,9 @@ export default class PageHome extends AbstractView {
     LangUtil = LangUtil;
     myProxy: PageHomeProxy = this.getProxy(PageHomeProxy);
     myProxyV2: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
-    pageData = this.myProxyV2.pageData;
-    reward_coin_info = this.pageData.reward_coin_info;
+    pageData = this.myProxy.pageData;
+    pageDataV2 = this.myProxyV2.pageData;
+    reward_coin_info = this.pageDataV2.reward_coin_info;
 
     constructor() {
         super(PageHomeMediator);

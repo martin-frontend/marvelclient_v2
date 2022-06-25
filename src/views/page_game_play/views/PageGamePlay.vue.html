@@ -8,11 +8,11 @@
                 <v-icon>mdi-keyboard-backspace</v-icon>
             </v-btn>
         </div>
-        <iframe id="gameFrame" ref="gameFrame" :class="$vuetify.breakpoint.mobile?'frame-mobile':'frame'" :src="pageData.url" allowfullscreen="true"></iframe>
+        <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass" :src="pageData.url" allowfullscreen="true"></iframe>
     </v-sheet>
     <RecentBetting class="mt-4" v-if="!$vuetify.breakpoint.mobile" />
-    <div class="flow-btn" ref="btnFlow" v-if="$vuetify.breakpoint.mobile">
-        <v-btn fab small color="red" @click="onBack">
+    <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$vuetify.breakpoint.mobile">
+        <v-btn fab small color="red" >
             <v-icon>mdi-backup-restore</v-icon>
         </v-btn>
     </div>

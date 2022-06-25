@@ -1,12 +1,6 @@
-/**数字货币图标 */
-const CoinIcon = {
-    USDT: require(`@/assets/icon/coin/icon_usdt.png`),
-    ETH: require(`@/assets/icon/coin/icon_usdt.png`),
-    BTC: require(`@/assets/icon/coin/icon_usdt.png`),
-    BNB: require(`@/assets/icon/coin/icon_usdt.png`),
-};
 
 const commonIcon = {
+    logo: require(`@/assets/logo.png`),
     loading: require(`@/assets/loading.gif`),
     nodata: require(`@/assets/nodata.png`),
 };
@@ -36,4 +30,4 @@ const CategoryIcon = {
     512: "mdi-cards-playing",
 };
 
-export default { commonIcon, CoinIcon, CategoryIcon };
+export default { commonIcon, CategoryIcon };

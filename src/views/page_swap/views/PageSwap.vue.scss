@@ -1,0 +1,19 @@
+.gradient-bg{
+    height: unset;
+    background-color: #16233b;
+    background-image: linear-gradient(180deg, #24385a 0%, #1A273F 70px);
+    text-align: center;
+}
+.btn_backbround{
+    background-color: #2D4468;
+}
+::v-deep.v-btn-toggle--group{
+    .v-btn{
+        border: solid 1px #68799A !important;
+        color: #68799A !important;
+    } 
+    .v-btn.v-btn--active{
+        background-color: #6fa9fa !important;
+        color: #ffffff !important;
+    }
+}

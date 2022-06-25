@@ -51,13 +51,6 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     userInfo: core.UserInfoVO = {};
 
-    questionData = [
-        { question: "什么是个人业績和朋友业績?", answer: "Some content" },
-        { question: "什么是有效投注额?", answer: "Some content" },
-        { question: "推荐洗码的具体计算方法是什么?", answer: "Some content" },
-        { question: "洗码是否会影响J9BC产出?", answer: "Some content" },
-    ];
-
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
         const plat_coins = <any>GamePlatConfig.config.plat_coins;
@@ -67,24 +60,20 @@ export default class PageMineProxy extends puremvc.Proxy {
             if (plat_coins[key].type === 2) {
                 this.pageData.platCoins.mainCoin = plat_coins[key];
                 this.pageData.platCoins.mainCoin.name = key;
-                // this.pageData.platCoins.mainCoin[key].name = key;
             }
             if (plat_coins[key].type === 3) {
                 this.pageData.platCoins.rewardCoin = plat_coins[key];
                 this.pageData.platCoins.rewardCoin.name = key;
-                // this.pageData.platCoins.rewardCoin[key].name = key;
             }
         });
     }
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        // console.warn("this.userInfo", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
         const backwater_info = <any>this.userInfo.backwater_info;
-        // console.warn("----", backwater_info);
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
         // 流水等级
@@ -110,11 +99,6 @@ export default class PageMineProxy extends puremvc.Proxy {
         if (backwater_info.backwater_config[2]) {
             this.pageData.backwaterConfigMain.now = backwater_info.backwater_config[2].backwater_rate;
         }
-
-        // this.pageData.vipLevel == 0
-        //     ? "0%"
-        //     : (this.pageData.vipConfig[this.pageData.vipLevel - 1]["backwater_config"][2]["backwater_rate"] * 100).toFixed(2) + "%";
-
         this.pageData.backwaterConfigMain.next =
             this.pageData.vipLevel == vip_info.max_vip_level
                 ? "一"
@@ -136,14 +120,8 @@ export default class PageMineProxy extends puremvc.Proxy {
 
         this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
         this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
-
-        // this.pageData.trial.date = this.getTrialData;
     }
 
-    // get getTrialData() {
-    //     const d = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd hh:mm:ss").split(" ")[0];
-    //     return d.split("-")[1] + "-" + d.split("-")[2];
-    // }
     /**游戏挖矿 试算 */
     api_user_var_backwater_trial() {
         this.sendNotification(net.HttpType.api_user_var_backwater_trial, {

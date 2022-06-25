@@ -10,6 +10,10 @@ import page_mine from "@/views/page_mine";
 export default class NoticeProxy extends puremvc.Proxy {
     static NAME = "NoticeProxy";
 
+    public onRegister(): void {
+        this.api_plat_var_notice_index();
+    }
+
     data = {
         listAll: <core.PlatNoticeVO[]>[],
         listType1: <core.PlatNoticeVO[]>[],

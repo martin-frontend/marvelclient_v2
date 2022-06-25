@@ -11,21 +11,11 @@ const routes: Array<RouteConfig> = [
         // component: () => import(/* webpackChunkName: "home" */ "../views/home/views/Home.vue"),
         component: () => import(/* webpackChunkName: "page_home" */ "../views/page_home/views/PageHome.vue"),
     },
-    // {
-    //     path: "/gamelist",
-    //     name: "GameList",
-    //     component: () => import(/* webpackChunkName: "gamelist" */ "../views/gamelist/views/GameList.vue"),
-    // },
     {
         path: "/page_game_list",
         name: "page_game_list",
         component: () => import(/* webpackChunkName: "page_game_list" */ "../views/page_game_list/views/PageGameList.vue"),
     },
-    // {
-    //     path: "/gameplay",
-    //     name: "GamePlay",
-    //     component: () => import(/* webpackChunkName: "gameplay" */ "../views/gameplay/views/GamePlay.vue"),
-    // },
     {
         path: "/page_game_play",
         name: "page_game_play",
@@ -50,6 +40,11 @@ const routes: Array<RouteConfig> = [
         path: "/page_bonus",
         name: "page_bonus",
         component: () => import(/* webpackChunkName: "page_bonus" */ "../views/page_bonus/views/PageBonus.vue"),
+    },
+    {
+        path: "/page_swap",
+        name: "page_swap",
+        component: () => import(/* webpackChunkName: "page_swap" */ "../views/page_swap/views/PageSwap.vue"),
     },
 ];
 

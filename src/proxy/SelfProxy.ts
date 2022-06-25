@@ -1,7 +1,6 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import getProxy from "@/core/global/getProxy";
 import router from "@/router";
-import Cookies from "js-cookie";
 import GameProxy from "./GameProxy";
 
 export default class SelfProxy extends AbstractProxy {

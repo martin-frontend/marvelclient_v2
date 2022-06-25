@@ -15,9 +15,9 @@ export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     fagProxy: FagProxy = this.getProxy(FagProxy);
     pageData = this.myProxy.pageData;
-    promotionData = this.myProxy.promotionData;
-    statistics_data = this.myProxy.statistics_data;
-    tableData = this.myProxy.tableData;
+    promotionData = this.myProxy.pageData.promotionData;
+    statistics_data = this.myProxy.pageData.statistics_data;
+    tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
 
     get questionData() {
@@ -32,14 +32,14 @@ export default class PageExtension extends AbstractView {
 
     destroyed() {
         super.destroyed();
-        this.myProxy.link = "";
+        this.myProxy.pageData.link = "";
     }
 
-    @Watch("myProxy.link")
+    @Watch("myProxy.pageData.link")
     private onWatchLink() {
         const div = this.$refs.qrcode;
         // @ts-ignore
-        new this.QRCode(div, this.myProxy.link);
+        new this.QRCode(div, this.myProxy.pageData.link);
     }
 
     handlerBind() {
@@ -70,7 +70,7 @@ export default class PageExtension extends AbstractView {
     }
 
     savePhoto() {
-        this.myProxy.savePoster(this.myProxy.link);
+        this.myProxy.savePoster(this.myProxy.pageData.link);
     }
 
     reget() {

@@ -17,8 +17,8 @@ export default class PageBonus extends AbstractView {
     myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     fagProxy: FagProxy = this.getProxy(FagProxy);
     pageData = this.myProxy.pageData;
-    plat_stake_info = this.myProxy.plat_stake_info;
-    user_stake_info = this.myProxy.user_stake_info;
+    plat_stake_info = this.myProxy.pageData.plat_stake_info;
+    user_stake_info = this.myProxy.pageData.user_stake_info;
     listQuery = this.pageData.listQuery;
 
     GamePlatConfig = GamePlatConfig;
@@ -33,7 +33,7 @@ export default class PageBonus extends AbstractView {
     private timer: any = null;
 
     get bonus_rank() {
-        return this.myProxy.bonus_rank;
+        return this.myProxy.pageData.bonus_rank;
     }
 
     get questionData() {
@@ -41,15 +41,15 @@ export default class PageBonus extends AbstractView {
     }
 
     get bonus_recently() {
-        return this.myProxy.bonus_recently;
+        return this.myProxy.pageData.bonus_recently;
     }
 
     get plat_bonus() {
-        return this.myProxy.plat_bonus;
+        return this.myProxy.pageData.plat_bonus;
     }
 
     get user_bonus() {
-        return this.myProxy.user_bonus;
+        return this.myProxy.pageData.user_bonus;
     }
 
     constructor() {
@@ -130,7 +130,7 @@ export default class PageBonus extends AbstractView {
 
     countdown() {
         //@ts-ignore
-        const end = Date.parse(new Date(this.myProxy.plat_stake_info.bonus_time.replace(/-/g, "/")))
+        const end = Date.parse(new Date(this.myProxy.pageData.plat_stake_info.bonus_time.replace(/-/g, "/")));
 
         //@ts-ignore
         const now = Date.parse(new Date());

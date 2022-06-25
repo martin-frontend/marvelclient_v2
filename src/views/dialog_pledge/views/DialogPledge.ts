@@ -22,11 +22,12 @@ export default class DialogPledge extends AbstractView {
 
     /**全部 */
     handleMaxVal() {
-        this.myProxy.pageData.amount = this.pageBonusProxy.user_stake_info.amount;
+        this.myProxy.pageData.amount = this.pageBonusProxy.pageData.user_stake_info.amount;
     }
 
     /**确定质押 */
     handleConfirm() {
+        this.pageData.loading = true;
         this.myProxy.api_user_var_deposit_stake();
     }
 

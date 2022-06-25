@@ -26,6 +26,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     };
     /**配置 */
     config = {
+        loaded: false,
         vendor_type: {},
         vendor_type_vendor_id: {},
     };
@@ -44,6 +45,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     setConfig(data: any) {
+        this.config.loaded = true;
         Object.assign(this.config, data.all_game);
         this.api_plat_var_game_all_index();
     }

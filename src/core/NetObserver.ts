@@ -9,16 +9,10 @@ import getProxy from "./global/getProxy";
 import NotificationName from "./NotificationName";
 import FagProxy from "@/proxy/FagProxy";
 
-import Vue from "vue";
-import App from "@/App.vue";
-import { vuetify } from "@/plugins/vuetify";
 import router from "@/router";
-import Cookies from "js-cookie";
 import LangConfig from "./config/LangConfig";
-import OpenLink from "./global/OpenLink";
 import LangUtil from "./global/LangUtil";
 import { locale } from "vuejs-loadmore";
-import GlobalVar from "./global/GlobalVar";
 import WebViewBridge from "./native/WebViewBridge";
 
 export default class NetObserver extends AbstractMediator {
@@ -26,7 +20,6 @@ export default class NetObserver extends AbstractMediator {
 
     private selfProxy: SelfProxy = getProxy(SelfProxy);
     private gameProxy: GameProxy = getProxy(GameProxy);
-    private fagProxy: FagProxy = getProxy(FagProxy);
 
     public listNotificationInterests(): string[] {
         return [
@@ -58,7 +51,7 @@ export default class NetObserver extends AbstractMediator {
                     LangConfig.language = body.language;
                     LangConfig.main_language = body.main_language;
                     //确定语言
-                    const userLang = Cookies.get("lang");
+                    const userLang = window.localStorage.getItem("lang");
                     if (userLang) {
                         core.lang = userLang;
                     } else {
@@ -87,11 +80,7 @@ export default class NetObserver extends AbstractMediator {
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
-                    this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
-                    //公告
-                    this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
-                    //常见问题
-                    this.sendNotification(net.HttpType.api_plat_fag_index);
+                    this.gameProxy.api_plat_var_lobby_index();
 
                     if (core.app_type == core.EnumAppType.APP) {
                         WebViewBridge.getInstance().enterHall();
@@ -133,7 +122,10 @@ export default class NetObserver extends AbstractMediator {
                 }
                 break;
             case net.EventType.api_plat_fag_index:
-                this.fagProxy.setData(body);
+                {
+                    const fagProxy: FagProxy = getProxy(FagProxy);
+                    fagProxy.setData(body);
+                }
                 break;
             case net.EventType.api_user_var_red_dot_tips:
                 this.selfProxy.redDotTips(body);

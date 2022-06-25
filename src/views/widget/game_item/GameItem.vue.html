@@ -1,5 +1,11 @@
-<v-card class="rounded-lg box" @click="goGamePlay" color="colorTitleBg" :class="item.status != 1 ? 'filter-gray':''">
-    <v-img class="game-icon cursor-pointer" :src="getIcon(item)">
+<v-card
+    class="box"
+    @click="goGamePlay"
+    :color="item?'colorTitleBg':'transparent'"
+    :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+    :class="(item && item.status != 1) ? 'filter-gray':''"
+>
+    <v-img v-if="item" class="game-icon cursor-pointer" :src="getIcon(item)">
         <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
         <div class="vendor-title">{{ item.vendor_name }}</div>
         <div class="egame__item__mask">

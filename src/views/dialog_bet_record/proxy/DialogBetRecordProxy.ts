@@ -2,6 +2,7 @@ import Constant from "@/core/global/Constant";
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { vuetify } from "@/plugins/vuetify";
+import dialog_message_box from "@/views/dialog_message_box";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
@@ -107,7 +108,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             } else {
                 this.pageData.list.push(...data.list);
             }
-            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
@@ -134,6 +135,9 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
+
+        // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
+
         this.sendNotification(net.HttpType.api_user_show_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 }

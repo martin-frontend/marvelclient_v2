@@ -44,4 +44,11 @@ export default class Marquee1 extends AbstractView {
             }
         });
     }
+
+    beforeDestroy() {
+        const marqueeText: any = this.$refs.marqueeText;
+        if (marqueeText) {
+            gsap.killTweensOf(marqueeText);
+        }
+    }
 }

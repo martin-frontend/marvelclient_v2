@@ -6,14 +6,21 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
 import AppFacade from "./AppFacade";
-import VueLoadmore from 'vuejs-loadmore';
+import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 
+
 core.init();
-core.host = "http://api.starsabc.com/";
-core.cdnUrl = "http://sftpuser.starsabc.com/";
-core.plat_id = "30000";
-core.channel_id = "30000001";
+//@ts-ignore
+core.plat_id = core.channel_id = undefined;
+if (process.env.VUE_APP_ENV == "production") {
+    core.cdnUrl = "https://static.cf0x.com";
+} else {
+    core.host = "http://api.starsabc.com/";
+    core.cdnUrl = "http://sftpuser.starsabc.com/";
+    core.plat_id = "30000";
+    core.channel_id = "30000001";
+}
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;

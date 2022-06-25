@@ -19,14 +19,6 @@ export default class DialogEmail extends AbstractView {
         super(DialogEmailMediator);
     }
 
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 150;
-        } else {
-            return 450;
-        }
-    }
-
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;

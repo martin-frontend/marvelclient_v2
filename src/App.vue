@@ -28,7 +28,7 @@
             <span class="mb-1">{{ LangUtil("客服") }}</span>
         </v-btn>
         <!-- 添加到桌面引导 -->
-        <div class="btn-guide" v-if="isShowGuide && $route.path == '/'">
+        <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide">{{ guideText }}</v-btn>
         </div>
         <v-navigation-drawer v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary app>
@@ -84,7 +84,7 @@ export default class APP extends Vue {
     //是否显示IOS引导
     guideDrawer = false;
 
-    get guideText(){
+    get guideText() {
         //@ts-ignore
         return LangUtil(window.navigator.standalone === undefined ? "下载APP" : "添加到桌面");
     }
@@ -101,7 +101,7 @@ export default class APP extends Vue {
         //@ts-ignore
         if (window.navigator.standalone === false) {
             this.guideDrawer = true;
-        }else{
+        } else {
             //下载apk
         }
     }

@@ -9,10 +9,12 @@ import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 
-core.init();
 
+core.init();
+//@ts-ignore
+core.plat_id = core.channel_id = undefined;
 if (process.env.VUE_APP_ENV == "production") {
-    core.cdnUrl = "https://static.cf0x.com/";
+    core.cdnUrl = "https://static.cf0x.com";
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com/";

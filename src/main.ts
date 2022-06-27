@@ -8,8 +8,9 @@ import "@/style/common.scss";
 import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
+import LogUtil from "./core/global/LogUtil";
 
-
+LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;

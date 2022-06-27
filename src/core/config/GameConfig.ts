@@ -32,7 +32,7 @@ export default class GameConfig {
 
         if (core.plat_id) {
             const fileName: string = new core.MD5().hex_md5("plat-" + core.plat_id);
-            const url = `${core.cdnUrl}/client_config/${fileName}.json?${Math.random()}`;
+            const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${Math.random()}`;
             axios
                 .get(url)
                 .then((response: any) => {

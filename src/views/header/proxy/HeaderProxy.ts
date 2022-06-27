@@ -10,6 +10,7 @@ export default class HeaderProxy extends puremvc.Proxy {
     }
 
     pageData = {
+        bShowUserPanel: false,
         lobbyIndex: <core.PlatLobbyIndexVO[]>[],
     };
 

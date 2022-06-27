@@ -1,7 +1,9 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
+import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import SelfProxy from "@/proxy/SelfProxy";
 import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
@@ -9,7 +11,7 @@ import DialogEmailProxy from "../proxy/DialogEmailProxy";
 @Component
 export default class DialogEmail extends AbstractView {
     LangUtil = LangUtil;
-    myProxy: DialogEmailProxy = this.getProxy(DialogEmailProxy);
+    myProxy: DialogEmailProxy = getProxy(DialogEmailProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
 
@@ -27,6 +29,8 @@ export default class DialogEmail extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        const selfProxy:SelfProxy = getProxy(SelfProxy);
+        selfProxy.api_user_var_red_dot_tips();
     }
 
     @Watch("pageData.bShow")

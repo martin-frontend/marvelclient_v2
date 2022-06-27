@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="activity2-min rounded-lg pa-3">
+            <div class="activity2-min rounded-lg pa-3" @click="goPageSwap">
                 <div class="text-16 ml-2">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
                 <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div>
                 <v-sheet class="skew d-flex align-center rounded ml-1 my-2" color="#FACA4B" width="130" height="25">

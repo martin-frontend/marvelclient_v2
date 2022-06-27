@@ -16,4 +16,33 @@
         background-color: #6fa9fa !important;
         color: #ffffff !important;
     }
+        
+}
+.period{
+    &::v-deep.v-btn-toggle--group{
+        .v-btn.v-btn--active{
+            background-color: #7789AB !important;
+            color: #0D0B1E !important;
+        }
+    }
+    
+}
+.btn_group_width{
+    width: 100%;
+}
+.btn_width{
+    width: calc((100% - 24px)/4);
+}
+.help{
+    background-color: #7789AB;
+}
+.text-xs-18{
+    @media (max-width: 600px) {
+        font-size: 18px;
+    }
+}
+::v-deep .input-text {
+    @media (max-width: 600px) {
+        height: 37px;
+    }
 }

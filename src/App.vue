@@ -11,11 +11,13 @@
         </div>
         <DialogMessage />
         <!-- 不是竖屏时提醒 -->
-        <Orientation
-            v-if="$vuetify.breakpoint.mobile && $vuetify.breakpoint.width > $vuetify.breakpoint.height && $route.path != '/page_game_play'"
-        />
+        <Orientation v-if="isMobile() && !isScreenV && $route.path != '/page_game_play'" />
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
+        <!-- 用户面板 -->
+        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary absolute width="288" color="#16233B">
+            <UserPanel />
+        </v-navigation-drawer>
         <!-- 客服 -->
         <v-btn
             height="42"
@@ -67,6 +69,9 @@ import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
 import OpenLink from "./core/global/OpenLink";
 import Orientation from "@/views/widget/orientation/Orientation.vue";
+import HeaderProxy from "./views/header/proxy/HeaderProxy";
+import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
+import { isMobile } from "./core/global/Functions";
 
 @Component({
     components: {
@@ -76,13 +81,22 @@ import Orientation from "@/views/widget/orientation/Orientation.vue";
         MobileMenu,
         Overlay,
         Orientation,
+        UserPanel,
     },
 })
 export default class APP extends Vue {
     gameProxy: GameProxy = getProxy(GameProxy);
+    headerProxy: HeaderProxy = getProxy(HeaderProxy);
     LangUtil = LangUtil;
+    isMobile = isMobile;
     //是否显示IOS引导
     guideDrawer = false;
+    isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchScreen() {
+        this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+    }
 
     get guideText() {
         //@ts-ignore

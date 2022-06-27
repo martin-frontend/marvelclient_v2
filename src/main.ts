@@ -17,7 +17,7 @@ if (process.env.VUE_APP_ENV == "production") {
     core.cdnUrl = "https://static.cf0x.com";
 } else {
     core.host = "http://api.starsabc.com/";
-    core.cdnUrl = "http://sftpuser.starsabc.com/";
+    core.cdnUrl = "http://sftpuser.starsabc.com";
     core.plat_id = "30000";
     core.channel_id = "30000001";
 }

@@ -39,14 +39,14 @@
         </v-menu>
     </div>
     <div v-else>
-        <v-btn icon small size="20" @click.stop="drawer = !drawer">
+        <v-btn icon small size="20" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
             <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
                 <v-icon>mdi-format-list-bulleted</v-icon>
             </v-badge>
         </v-btn>
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
-        <v-navigation-drawer v-model="drawer" app temporary floating absolute width="288" color="#16233B">
+        <!-- <v-navigation-drawer v-model="drawer" app temporary absolute width="288" overlay-color="red" color="#16233B">
             <UserPanel />
-        </v-navigation-drawer>
+        </v-navigation-drawer> -->
     </div>
 </div>

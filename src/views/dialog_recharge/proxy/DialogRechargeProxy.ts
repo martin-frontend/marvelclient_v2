@@ -1,4 +1,5 @@
 import getProxy from "@/core/global/getProxy";
+import GameProxy from "@/proxy/GameProxy";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -38,13 +39,21 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-        const key = keys[0];
-        if (key) {
-            this.pageData.form.coin_name_unique = key;
-            const optionsKeys = Object.keys(data[key].options);
+
+        const gameProxy: GameProxy = getProxy(GameProxy);
+        let coin_name_unique = gameProxy.coin_name_unique;
+        if (keys.indexOf(coin_name_unique) == -1) {
+            coin_name_unique = keys[0];
+        }
+
+        if (coin_name_unique) {
+            this.pageData.form.coin_name_unique = coin_name_unique;
+            const optionsKeys = Object.keys(data[coin_name_unique].options);
+
             if (optionsKeys[0]) {
                 this.pageData.form.block_network_id = optionsKeys[0];
-                this.pageData.form.recharge_channel_id = data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
+                this.pageData.form.recharge_channel_id =
+                    data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
             }
         }
         this.api_user_var_recharge_address();
@@ -93,10 +102,16 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-        const key = keys[0];
-        if (key) {
-            this.pageData.form.coin_name_unique = key;
-            const optionsKeys = Object.keys(data[key].options);
+
+        const gameProxy: GameProxy = getProxy(GameProxy);
+        let coin_name_unique = gameProxy.coin_name_unique;
+        if (keys.indexOf(coin_name_unique) == -1) {
+            coin_name_unique = keys[0];
+        }
+
+        if (coin_name_unique) {
+            this.pageData.form.coin_name_unique = coin_name_unique;
+            const optionsKeys = Object.keys(data[coin_name_unique].options);
             if (optionsKeys[0]) {
                 this.pageData.form.block_network_id = optionsKeys[0];
             }

@@ -5,6 +5,12 @@ import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogRechargeMediator extends AbstractMediator {
+    public onRegister(): void {
+        const myProxy:DialogRechargeProxy = getProxy(DialogRechargeProxy);
+        myProxy.exchangeProxy.api_user_var_exchange_method_list();
+        myProxy.rechargeProxy.api_user_var_recharge_method_list();
+    }
+
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_var_recharge_method_list,

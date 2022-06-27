@@ -10,7 +10,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
         bShow: false,
         //如果是列表，使用以下数据，否则删除
         form: {
-            invite_user_id: "",
+            invite_user_id: core.invite_user_id,
             username: "",
             password: "",
             password_confirm: "",
@@ -24,7 +24,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
 
     resetForm() {
         Object.assign(this.pageData.form, {
-            invite_user_id: "",
+            invite_user_id: core.invite_user_id,
             username: "",
             password: "",
             password_confirm: "",

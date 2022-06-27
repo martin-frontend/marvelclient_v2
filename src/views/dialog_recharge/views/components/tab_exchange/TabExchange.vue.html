@@ -12,30 +12,13 @@
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
-    <v-text-field
-        class="rounded-lg mt-1 color-blue"
-        height="44"
-        :placeholder="LangUtil('输入钱包地址')"
-        outlined
-        dense
-        hide-details
-        v-model="form.account"
-    ></v-text-field>
+    <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account"></CustomInput>
     <v-row class="colorText1--text mt-3" dense>
         <v-col class="mr-1">
             <div>{{LangUtil("提取金额")}}</div>
-            <v-text-field
-                class="rounded-lg mt-1"
-                height="44"
-                :placeholder="LangUtil('输入金额')"
-                outlined
-                dense
-                hide-details
-                v-model="form.amount"
-            ></v-text-field>
-            <div class="d-flex justify-end">
-                <v-btn class="colorBlue--text btn-all" x-small height="22" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
-            </div>
+            <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                <v-btn class="colorBlue--text mr-n1" x-small height="22" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
+            </CustomInput>
         </v-col>
         <v-col>
             <div>{{LangUtil("余额")}}</div>

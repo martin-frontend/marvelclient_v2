@@ -13,14 +13,14 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-if (process.env.VUE_APP_ENV == "production") {
+// if (process.env.VUE_APP_ENV == "production") {
     core.cdnUrl = "https://static.cf0x.com";
-} else {
-    core.host = "http://api.starsabc.com/";
-    core.cdnUrl = "http://sftpuser.starsabc.com";
-    core.plat_id = "30000";
-    core.channel_id = "30000001";
-}
+// } else {
+    // core.host = "http://api.starsabc.com/";
+    // core.cdnUrl = "http://sftpuser.starsabc.com";
+    // core.plat_id = "30000";
+    // core.channel_id = "30000001";
+// }
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;

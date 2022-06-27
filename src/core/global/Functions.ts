@@ -285,12 +285,12 @@ export function checkVerifyVode(value: string): boolean {
 // /**
 //  * 是否为移动设备
 //  */
-// export function isMobile() {
-//     const flag = navigator.userAgent.match(
-//         /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-//     );
-//     return flag;
-// }
+export function isMobile() {
+    const flag = navigator.userAgent.match(
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    );
+    return flag;
+}
 
 // /**
 //  * Check if an element has a class

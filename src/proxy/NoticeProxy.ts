@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_activity from "@/views/dialog_activity";
 import dialog_message_box from "@/views/dialog_message_box";
@@ -45,16 +46,16 @@ export default class NoticeProxy extends puremvc.Proxy {
                     page_introduce.show();
                     break;
                 case 3:
-                    page_bonus.show();
+                    LoginEnter(page_bonus.show);
                     break;
                 case 4:
-                    page_mine.show();
+                    LoginEnter(page_mine.show);
                     break;
                 case 5:
-                    dialog_activity.show();
+                    LoginEnter(dialog_activity.show);
                     break;
                 case 6:
-                    page_extension.show();
+                    LoginEnter(page_extension.show);
                     break;
                 case 7:
                     dialog_message_box.alert(LangUtil("敬请期待"));

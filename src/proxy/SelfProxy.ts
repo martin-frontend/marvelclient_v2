@@ -8,7 +8,7 @@ export default class SelfProxy extends AbstractProxy {
 
     public onRegister(): void {
         setInterval(() => {
-            if (core.user_id) {
+            if (core.user_id && core.plat_id) {
                 this.api_user_show_var([2]);
                 this.api_user_var_red_dot_tips();
             }

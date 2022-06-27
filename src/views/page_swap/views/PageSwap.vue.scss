@@ -27,11 +27,11 @@
     }
     
 }
+.btn_group_width{
+    width: 100%;
+}
 .btn_width{
-    width: 75px;
-    @media screen and (min-width: 1430px){
-        width: 95px;
-    }
+    width: calc((100% - 24px)/4);
 }
 .help{
     background-color: #7789AB;
@@ -39,5 +39,10 @@
 .text-xs-18{
     @media (max-width: 600px) {
         font-size: 18px;
+    }
+}
+::v-deep .input-text {
+    @media (max-width: 600px) {
+        height: 37px;
     }
 }

@@ -2,7 +2,7 @@
     <v-menu offset-y nudge-bottom="5">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
-                class="d-flex align-center rounded-lg px-3 colorText2--text"
+                class="d-flex align-center justify-space-between rounded-lg px-3 colorText2--text"
                 :rounded="isPill ? 'pill':''"
                 width="100%"
                 :height="height"
@@ -10,16 +10,19 @@
                 v-bind="attrs"
                 v-on="on"
             >
-                <img
-                    v-if="icons"
-                    class="mr-2"
-                    :width="iconSize"
-                    :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
-                />
-                <div class="text-truncate" :class="'text-'+fontSize">
-                    {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
+                <div class="d-flex align-center">
+                    <img
+                        v-if="icons"
+                        class="mr-2"
+                        :width="iconSize"
+                        :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
+                    />
+                    <div class="text-truncate" :class="'text-'+fontSize">
+                        {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
+                    </div>
                 </div>
-                <v-spacer/>
+
+                <!-- <v-spacer/> -->
                 <div
                     v-if="options && Object.keys(options).length > 1"
                     class="icon-box iconfont ml-4 text-14"

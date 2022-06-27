@@ -37,11 +37,8 @@ export default class GameConfig {
             axios
                 .get(url)
                 .then((response: any) => {
-                    if (response.data.status == 0) {
-                        this.config = response.data;
-                        core.host = this.config.ApiUrl;
-                        console.log(this.config);
-                    }
+                    this.config = response.data;
+                    core.host = this.config.ApiUrl;
                     puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 })
                 .catch(() => {

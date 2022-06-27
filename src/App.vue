@@ -16,6 +16,10 @@
         />
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
+        <!-- 用户面板 -->
+        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary absolute width="288" color="#16233B">
+            <UserPanel />
+        </v-navigation-drawer>
         <!-- 客服 -->
         <v-btn
             height="42"
@@ -67,6 +71,8 @@ import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
 import OpenLink from "./core/global/OpenLink";
 import Orientation from "@/views/widget/orientation/Orientation.vue";
+import HeaderProxy from "./views/header/proxy/HeaderProxy";
+import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
 
 @Component({
     components: {
@@ -76,10 +82,12 @@ import Orientation from "@/views/widget/orientation/Orientation.vue";
         MobileMenu,
         Overlay,
         Orientation,
+        UserPanel,
     },
 })
 export default class APP extends Vue {
     gameProxy: GameProxy = getProxy(GameProxy);
+    headerProxy: HeaderProxy = getProxy(HeaderProxy);
     LangUtil = LangUtil;
     //是否显示IOS引导
     guideDrawer = false;

@@ -39,6 +39,7 @@ export default class GameConfig {
                 .then((response: any) => {
                     if (response.data.status == 0) {
                         this.config = response.data;
+                        core.host = this.config.ApiUrl;
                         console.log(this.config);
                     }
                     puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);

@@ -6,6 +6,7 @@ import DialogUserCenterMediator from "../mediator/DialogUserCenterMediator";
 import DialogUserCenterProxy from "../proxy/DialogUserCenterProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -30,5 +31,11 @@ export default class DialogUserCenter extends AbstractView {
 
     onLoginOut() {
         this.selfProxy.api_user_logout();
+        this.pageData.bShow = false;
+    }
+
+    private copy() {
+        this.myProxy.copyId();
+        dialog_message.warn(LangUtil("复制成功"));
     }
 }

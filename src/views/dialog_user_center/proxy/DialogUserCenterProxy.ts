@@ -1,3 +1,5 @@
+import CopyUtil from "@/core/global/CopyUtil";
+
 export default class DialogUserCenterProxy extends puremvc.Proxy {
     static NAME = "DialogUserCenterProxy";
 
@@ -30,5 +32,9 @@ export default class DialogUserCenterProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
+    }
+
+    copyId() {
+        CopyUtil(core.user_id.toString());
     }
 }

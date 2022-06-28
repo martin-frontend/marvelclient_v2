@@ -11,7 +11,7 @@
         </div>
         <DialogMessage />
         <!-- 不是竖屏时提醒 -->
-        <Orientation v-if="isMobile() && !isScreenV && $route.path != '/page_game_play'" />
+        <Orientation v-if="!isScreenV && $route.path != '/page_game_play'" />
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- 用户面板 -->
@@ -72,6 +72,7 @@ import Orientation from "@/views/widget/orientation/Orientation.vue";
 import HeaderProxy from "./views/header/proxy/HeaderProxy";
 import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
 import { isMobile } from "./core/global/Functions";
+import dialog_message from "./views/dialog_message";
 
 @Component({
     components: {
@@ -91,21 +92,31 @@ export default class APP extends Vue {
     isMobile = isMobile;
     //是否显示IOS引导
     guideDrawer = false;
-    isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+    //是否竖屏
+    isScreenV = true;
+
+    mounted() {
+        this.onWatchScreen();
+    }
 
     @Watch("$vuetify.breakpoint.width")
     onWatchScreen() {
-        this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+        this.$nextTick(() => {
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                this.isScreenV = this.$vuetify.breakpoint.width < this.$vuetify.breakpoint.height;
+            } else {
+                this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+            }
+        });
     }
 
     @Watch("headerProxy.pageData.bShowUserPanel")
-    onWatchUserPanelShow(){
-        if(this.headerProxy.pageData.bShowUserPanel){
+    onWatchUserPanelShow() {
+        if (this.headerProxy.pageData.bShowUserPanel) {
             document.documentElement.style.overflow = "hidden";
             //@ts-ignore
             document.body.scroll = "no";
-        }
-        else{
+        } else {
             document.documentElement.style.overflow = "scroll";
             //@ts-ignore
             document.body.scroll = "yes";
@@ -119,7 +130,7 @@ export default class APP extends Vue {
 
     get isShowGuide() {
         //@ts-ignore
-        if (window.navigator.standalone === true) {
+        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone === true) {
             return false;
         }
         return true;

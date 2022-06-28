@@ -67,11 +67,11 @@ export default class WebViewBridge extends puremvc.Proxy {
                 // SoundManager.getInstance().clearMusic();
                 break;
             case N2HType.APP_RESUME:
-                puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_show_var, {
-                    user_id: core.user_id,
-                    modules: 2,
-                    hideWaiting: true,
-                });
+                // puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_show_var, {
+                //     user_id: core.user_id,
+                //     modules: 2,
+                //     hideWaiting: true,
+                // });
 
                 // if(GlobalVar.b_page_click && GlobalVar.b_music_loaded){
                 //     SoundManager.getInstance().clearMusic();

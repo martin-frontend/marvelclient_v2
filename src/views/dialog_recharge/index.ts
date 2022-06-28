@@ -10,6 +10,8 @@ function show() {
     proxy.pageData.tabIndex = 0;
     proxy.exchangeProxy.pageData.form.account = "";
     proxy.exchangeProxy.pageData.form.amount = "";
+    proxy.exchangeProxy.api_user_var_exchange_method_list();
+    proxy.rechargeProxy.api_user_var_recharge_method_list();
 }
 
 export default { show };

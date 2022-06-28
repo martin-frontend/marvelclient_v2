@@ -98,6 +98,20 @@ export default class APP extends Vue {
         this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
     }
 
+    @Watch("headerProxy.pageData.bShowUserPanel")
+    onWatchUserPanelShow(){
+        if(this.headerProxy.pageData.bShowUserPanel){
+            document.documentElement.style.overflow = "hidden";
+            //@ts-ignore
+            document.body.scroll = "no";
+        }
+        else{
+            document.documentElement.style.overflow = "scroll";
+            //@ts-ignore
+            document.body.scroll = "yes";
+        }
+    }
+
     get guideText() {
         //@ts-ignore
         return LangUtil(window.navigator.standalone === undefined ? "下载APP" : "添加到桌面");

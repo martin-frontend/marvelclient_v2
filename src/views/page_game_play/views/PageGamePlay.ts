@@ -109,6 +109,7 @@ export default class PageGamePlay extends AbstractView {
         dialog_message_box.confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
+                this.pageData.url = "#";
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 router.back();
                 setTimeout(() => {

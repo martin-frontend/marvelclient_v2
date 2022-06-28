@@ -34,14 +34,16 @@ export default class APP extends AbstractView {
 
     @Watch("headerProxy.pageData.bShowUserPanel")
     onWatchUserPanelShow() {
-        if (this.headerProxy.pageData.bShowUserPanel) {
-            document.documentElement.style.overflow = "hidden";
-            //@ts-ignore
-            document.body.scroll = "no";
-        } else {
-            document.documentElement.style.overflow = "scroll";
-            //@ts-ignore
-            document.body.scroll = "yes";
+        if (isMobile()) {
+            if (this.headerProxy.pageData.bShowUserPanel) {
+                document.documentElement.style.overflow = "hidden";
+                //@ts-ignore
+                document.body.scroll = "no";
+            } else {
+                document.documentElement.style.overflow = "scroll";
+                //@ts-ignore
+                document.body.scroll = "yes";
+            }
         }
     }
 

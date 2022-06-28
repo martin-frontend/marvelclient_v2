@@ -15,7 +15,7 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- 用户面板 -->
-        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary absolute width="288" color="#16233B">
+        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary width="288" color="#16233B">
             <UserPanel />
         </v-navigation-drawer>
         <!-- 客服 -->

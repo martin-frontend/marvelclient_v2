@@ -35,6 +35,7 @@ export default class NoticeProxy extends puremvc.Proxy {
                 this.data.listType3.push(item);
             }
         }
+        this.data = Object.freeze(this.data);
     }
 
     jump(item: core.PlatNoticeVO) {

@@ -12,7 +12,7 @@ export default class Marquee1Proxy extends puremvc.Proxy {
     };
 
     public setData(data: any): void {
-        this.pageData.list = data;
+        this.pageData.list = Object.freeze(data);
         if (data.length > 0) {
             this.next();
         }

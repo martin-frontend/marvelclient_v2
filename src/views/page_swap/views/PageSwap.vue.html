@@ -4,12 +4,12 @@
             <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$vuetify.breakpoint.xsOnly">
                 <v-card class="rounded-lg pa-5" height="100%" color="colorPanelBg4" flat>
                     <div class="d-flex mx-3 align-end">
-                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins['CF'].icon" max-width="30" max-height="30">
+                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chartFrom].icon" max-width="30" max-height="30">
                         </v-img>
-                        <v-img :src="GamePlatConfig.config.plat_coins['USDT'].icon" max-width="30" max-height="30">
+                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chartTo].icon" max-width="30" max-height="30">
                         </v-img>
-                        <span class="text-18 mx-4 colorBlue--text">CF/USDT</span>
-                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30">
+                        <span class="text-18 mx-4 colorBlue--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
+                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
                             <v-icon>
                                 mdi-swap-horizontal
                             </v-icon>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="d-flex mt-5 mx-3 align-end">
                         <span class="text-h4">0.001</span> 
-                        <span class="text-18 ml-2 colorText8--text">CF/USDT</span>
+                        <span class="text-18 ml-2 colorText8--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
                         <span class="text-18 ml-4 colorText9--text">+0.00023(12.29%)</span>
                         
                     </div>
@@ -62,9 +62,9 @@
                     <v-card-text class="pa-3 px-sm-6">
                         <div class="d-flex justify-space-between align-center mb-3">
                             <span class="d-flex align-center">
-                                <v-img :src="GamePlatConfig.config.plat_coins['CF'].icon" max-width="30" max-height="30">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.from].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="text-14 text-sm-subtitle-1 ml-2 colorCoinCF--text">CF</div>
+                                <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.from">{{ pageData.from }}</div>
                             </span>
                             <span class="d-flex align-center text-14 text-sm-subtitle-1">
                                 余额: 0
@@ -75,15 +75,15 @@
                             v-model="pageData.cf"
                         />
                         <div class="d-flex justify-center my-4">
-                            <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+                            <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave" @click="tradeSwap">
                                 <v-icon>{{ pageData.icon }}</v-icon>
                             </v-btn>
                         </div>
                         <span class="d-flex justify-space-between align-center mb-3">
                             <span class="d-flex align-center">
-                                <v-img :src="GamePlatConfig.config.plat_coins['USDT'].icon" max-width="30" max-height="30">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.to].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2 colorCoinUSDT--text">USDT</div>
+                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.to">{{ pageData.to }}</div>
                             </span>
                             <span class="d-flex align-center text-14 text-sm-subtitle-1">
                                 余额: 0
@@ -96,7 +96,7 @@
                         <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
                             <span>价格</span>
                             <v-spacer />
-                            <span>1 CF = 0.02999</span>
+                            <span>1 {{ pageData.from }} = 0.02999 {{ pageData.to }}</span>
                         </v-sheet>
                         <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
                             滑点容差
@@ -132,7 +132,7 @@
                         </v-btn>
                         <v-spacer />
                         <span>
-                            0 USDT
+                            0 {{ pageData.to }}
                         </span>
                     </div>
                     <div class="d-flex align-center mb-4">
@@ -156,7 +156,7 @@
                         </v-btn>
                         <v-spacer />
                         <span>
-                            0 CF
+                            0 {{ pageData.from }}
                         </span>
                     </div>
                 </v-card>

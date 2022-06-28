@@ -48,8 +48,6 @@ const opts = {
                 colorTextBlue: "#31486C", //used
                 colorTextPurple: "#A8A8F5", //used
                 colorTextGreen: "#69B65E", //used
-                colorCoinCF: "#3A94E2", //used
-                colorCoinUSDT: "#269F7B", //used
                 colorTextAll: "669CE7", //used
                 colorTextBlueLight: "#72ABFD", //used
                 colorTextBlueLight2: "#98ACD3", //used

@@ -29,4 +29,14 @@ export default class PageSwap extends AbstractView {
     mouseleave() {
         this.pageData.icon = 'mdi-arrow-down'
     }
+
+    /**交易对调 */
+    private tradeSwap() {
+        this.myProxy.tradeReverse();
+    }
+
+    /**交易对调 */
+    private chartSwap() {
+        this.myProxy.chartReverse();
+    }
 }

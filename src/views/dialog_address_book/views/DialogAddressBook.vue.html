@@ -1,0 +1,29 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">{{LangUtil("地址薄")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-divider />
+        <v-card-text>
+            <div class="d-flex mt-3">
+                <CustomSelect
+                    class="mr-3"
+                    :icons="plat_coins"
+                    :options="pageData.methodList"
+                    v-model="form.coin_name_unique"
+                    @change="onChange"
+                />
+                <CustomSelect
+                    v-if="pageData.methodList[form.coin_name_unique]"
+                    :options="pageData.methodList[form.coin_name_unique].options"
+                    v-model="form.block_network_id"
+                />
+            </div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -7,6 +7,7 @@ import OpenLink from "./core/global/OpenLink";
 import HeaderProxy from "./views/header/proxy/HeaderProxy";
 import { isMobile, judgeClient } from "./core/global/Functions";
 import CopyUtil from "./core/global/CopyUtil";
+import GameConfig from "./core/config/GameConfig";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -66,9 +67,15 @@ export default class APP extends AbstractView {
         if (window.navigator.standalone === false) {
             this.guideDrawer = true;
         } else {
-            //下载apk
+            //将参数复制到剪切板
             const data = { code: core.user_id, pid: core.plat_id, channel: core.channel_id };
             CopyUtil(JSON.stringify(data));
+            //下载apk
+            const src = GameConfig.config.AndroidApkUrl;
+            const form = document.createElement("form");
+            form.action = src;
+            document.getElementsByTagName("body")[0].appendChild(form);
+            form.submit();
         }
     }
 

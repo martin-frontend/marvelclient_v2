@@ -31,8 +31,8 @@
                 <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-arrow-up-bold-circle</v-icon>{{LangUtil("兑换")}}
             </v-btn>
             <v-spacer />
-            <v-btn small color="colorText1" @click="goRecord">
-                <span class="record-btn">{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
+            <v-btn small color="colorText1 colorBlue--text" @click="goRecord">
+                <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
             </v-btn>
         </v-card-text>
         <v-divider class="mx-5" />

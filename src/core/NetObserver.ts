@@ -55,7 +55,8 @@ export default class NetObserver extends AbstractMediator {
                     if (userLang) {
                         core.lang = userLang;
                     } else {
-                        const sysLang = navigator.language.replace("-", "_");
+                        //@ts-ignore
+                        const sysLang = (navigator.browserLanguage || navigator.language).replace("-", "_");
                         if (LangConfig.language[sysLang]) {
                             core.lang = sysLang;
                         } else {

@@ -12,25 +12,53 @@
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
-    <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account"></CustomInput>
+    <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+        <div class="d-flex align-center mr-n2">
+            <v-tooltip top color="colorText1">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                </template>
+                <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+            </v-tooltip>
+
+            <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook">{{LangUtil("地址薄")}}</v-btn>
+            <v-btn color="colorText1 colorBlue--text" x-small height="30" @click="onPaste">{{LangUtil("粘贴")}}</v-btn>
+        </div>
+    </CustomInput>
+
+    <div class="colorText1--text mt-3">{{LangUtil("平台余额")}}</div>
+    <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
+        <v-img
+            class="mr-2"
+            :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+            max-width="20"
+            height="20"
+        ></v-img>
+        <div>{{ balance }}</div>
+        <v-spacer />
+        <v-tooltip top color="colorText1">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+            </template>
+            <span>{{LangUtil("余额可能在厂商资产里，如兑换请先从厂商提取")}}</span>
+        </v-tooltip>
+        <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onWallet">{{LangUtil("平台钱包")}}</v-btn>
+    </v-sheet>
+
     <v-row class="colorText1--text mt-3" dense>
         <v-col class="mr-1">
-            <div>{{LangUtil("提取金额")}}</div>
-            <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
-                <v-btn class="colorBlue--text mr-n1" x-small height="22" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
-            </CustomInput>
+            <v-sheet color="transparent" min-width="300" class="mb-2">
+                <div class="colorText1--text">{{LangUtil("提取金额")}}</div>
+                <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
+                </CustomInput>
+            </v-sheet>
         </v-col>
         <v-col>
-            <div>{{LangUtil("余额")}}</div>
-            <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
-                <v-img
-                    class="mr-2"
-                    :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
-                    max-width="20"
-                    height="20"
-                ></v-img>
-                <div>{{ balance }}</div>
-            </v-sheet>
+            <div>{{LangUtil("交易密码")}}</div>
+            <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" type="password" v-model="form.password">
+                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
+            </CustomInput>
         </v-col>
     </v-row>
     <div class="text-12 mt-3 color-blue">⚠️ {{LangUtil("1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。")}}</div>

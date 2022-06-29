@@ -5,7 +5,8 @@ import LangUtil from "@/core/global/LangUtil";
 import { Watch } from "vue-property-decorator";
 import OpenLink from "./core/global/OpenLink";
 import HeaderProxy from "./views/header/proxy/HeaderProxy";
-import { isMobile } from "./core/global/Functions";
+import { isMobile, judgeClient } from "./core/global/Functions";
+import CopyUtil from "./core/global/CopyUtil";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -24,7 +25,7 @@ export default class APP extends AbstractView {
     @Watch("$vuetify.breakpoint.width")
     onWatchScreen() {
         this.$nextTick(() => {
-            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            if (judgeClient() == "iOS") {
                 this.isScreenV = this.$vuetify.breakpoint.width < this.$vuetify.breakpoint.height;
             } else {
                 this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
@@ -66,6 +67,8 @@ export default class APP extends AbstractView {
             this.guideDrawer = true;
         } else {
             //下载apk
+            const data = { code: core.user_id, pid: core.plat_id, channel: core.channel_id };
+            CopyUtil(JSON.stringify(data));
         }
     }
 

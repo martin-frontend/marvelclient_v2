@@ -25,11 +25,6 @@ export default class DialogPromotionFloor extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if (this.pageData.bShow) {
-            //如果是列表，使用以下数据，否则删除
-            // this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
-        }
     }
 
     get isCheckedAmount(): boolean {

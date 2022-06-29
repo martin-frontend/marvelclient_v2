@@ -22,6 +22,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
         loading: false,
         bShow: false,
         amount: "0",
+        origin_amount: "0",
         range: {
             min: 0,
             max: 200,
@@ -31,6 +32,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     setSelectedFloorData(agent_user_id: number, val: number): void {
         this.parameter.agent_user_id = agent_user_id;
         this.pageData.amount = val.toString();
+        this.pageData.origin_amount = val.toString();
     }
 
     setData(data: any) {

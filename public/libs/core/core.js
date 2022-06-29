@@ -3329,7 +3329,8 @@ var core;
      * @offsetSecond 偏移秒
      */
     function getTodayOffset(offset = 0, offsetSecond = 0) {
-        const d = new Date(new Date().toLocaleDateString());
+        const today = new Date();
+        const d = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         d.setTime(d.getTime() + 3600 * 1000 * 24 * offset - offsetSecond);
         return d;
     }

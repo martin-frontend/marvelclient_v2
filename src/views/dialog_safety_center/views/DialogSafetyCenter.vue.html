@@ -9,7 +9,7 @@
                     <v-icon large>mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
-            <v-card-text class="px-10 mt-2" style="height: 60px">
+            <v-card-text class="px-5 px-md-10 mt-2" style="height: 60px">
                 <div class="d-flex mb-10">
                     <v-btn
                         height="40"
@@ -44,7 +44,7 @@
                 </div>
             </v-card-text>
             <!-- 绑定手机 -->
-            <v-card-text v-if="pageData.tabIndex == 0" class="px-10">
+            <v-card-text v-if="pageData.tabIndex == 0" class="px-5 px-md-10">
                 <v-sheet
                     v-if="userInfo.phone"
                     class="d-flex flex-column align-center justify-center text-16 colorText2--text"
@@ -106,7 +106,7 @@
                             </v-menu>
                         </template>
                         <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(formBindPhone.mobile)" @click="getCode">
-                            {{LangUtil("获取验证码")}}
+                            {{LangUtil("验证码")}}
                         </v-btn>
                     </CustomInput>
                     <CustomInput
@@ -122,7 +122,7 @@
                 </div>
             </v-card-text>
             <!-- 绑定邮箱 -->
-            <v-card-text v-if="pageData.tabIndex == 1" class="px-10">
+            <v-card-text v-if="pageData.tabIndex == 1" class="px-5 px-md-10">
                 <v-sheet
                     v-if="userInfo.email"
                     class="d-flex flex-column align-center justify-center text-16 colorText2--text"
@@ -136,7 +136,7 @@
                 <div v-else>
                     <CustomInput class="mb-6" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
                         <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(formBindEmail.email)" @click="getCode">
-                            {{LangUtil("获取验证码")}}
+                            {{LangUtil("验证码")}}
                         </v-btn>
                     </CustomInput>
                     <CustomInput
@@ -152,26 +152,29 @@
                 </div>
             </v-card-text>
             <!-- 修改密码 -->
-            <v-card-text v-if="pageData.tabIndex == 2" class="px-10">
+            <v-card-text v-if="pageData.tabIndex == 2" class="px-5 px-md-10">
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入原始密码')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password_old"
                 />
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    :placeholder="LangUtil('请输入密码(6~12位)')"
+                    :placeholder="LangUtil('请输入密码（6-20位）')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password"
                 />
                 <CustomInput
                     class="mb-6"
                     icon="mdi-lock"
-                    :placeholder="LangUtil('确认密码（4-20位）')"
+                    :placeholder="LangUtil('确认密码（6-20位）')"
                     type="password"
+                    maxlength="20"
                     v-model="formChangePassword.password_confirm"
                 />
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">

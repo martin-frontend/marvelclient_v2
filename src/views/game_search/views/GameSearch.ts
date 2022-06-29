@@ -15,13 +15,6 @@ export default class GameSearch extends AbstractView {
         this.myProxy.api_user_var_game_index();
     }
 
-    @Watch("pageData.bShow")
-    onWatchShow() {
-        if (this.pageData.bShow) {
-            this.myProxy.api_user_var_game_index();
-        }
-    }
-
     onTabClick(val: any) {
         this.pageData.tabIndex = val;
     }

@@ -10,9 +10,9 @@
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="d-flex justify-end mb-2">
-                <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                 <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap justify-space-between listitem">
                         <div class="item-110">
@@ -66,9 +66,9 @@
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <div class="d-flex justify-end mb-2">
-                <CustomSelect v-model="timeSelect" :options="timeOptions" width="140" @change="onTimeChange" />
+                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y">
                 <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("时间")}}</div>

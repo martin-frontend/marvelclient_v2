@@ -1,0 +1,167 @@
+<div>
+    <v-container>
+        <v-row no-gutters class="mb-5 font-weight-medium">
+            <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$vuetify.breakpoint.xsOnly">
+                <v-card class="rounded-lg pa-5" height="100%" color="colorPanelBg4" flat>
+                    <div class="d-flex mx-3 align-end">
+                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chartFrom].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chartTo].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <span class="text-18 mx-4 colorBlue--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
+                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
+                            <v-icon>
+                                mdi-swap-horizontal
+                            </v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <v-btn-toggle mandatory group class="period">
+                            <v-btn class="rounded-lg mr-2" :height="35" :width="80"> 
+                                <span class="text-caption text-14"> 24小时 </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mr-2" :height="35" :width="80">
+                                <span class="text-caption text-14"> 一周 </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mr-2" :height="35" :width="80"> 
+                                <span class="text-caption text-14"> 一月 </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg" :height="35" :width="80">
+                                <span class="text-caption text-14"> 一年 </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                    </div>
+                    <div class="d-flex mt-5 mx-3 align-end">
+                        <span class="text-h4">0.001</span> 
+                        <span class="text-18 ml-2 colorText8--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
+                        <span class="text-18 ml-4 colorText9--text">+0.00023(12.29%)</span>
+                        
+                    </div>
+                    <div class="mt-2 mx-3 text-14 colorText8--text">2002年6月21日 16:46</div>
+                </v-card>
+            </v-col>
+            <v-col cols="12" lg="4" class="">
+                <v-card class="rounded-lg" color="colorPanelBg4" flat>
+                    <v-card-title class="gradient-bg head d-flex align-center px-3 px-sm-6 pb-3 pb-sm-4 pt-1 pt-sm-5">
+                        <div>
+                            <div class="d-flex align-start text-xs-18 text-22 font-weight-bold">{{LangUtil("交换")}}</div>
+                            <div class="colorText8--text text-14 text-sm-subtitle-1">
+                                即时交易代币
+                            </div>
+                        </div>
+                        <v-spacer />
+                        <div>
+                            <v-btn icon>
+                                <v-icon>mdi-note-text</v-icon>
+                            </v-btn>
+                            <v-btn icon >
+                                <v-icon>mdi-reload</v-icon>
+                            </v-btn>
+                        </div>
+                    </v-card-title >
+                    <v-divider class="mx-3 mx-sm-6" />
+                    <v-card-text class="pa-3 px-sm-6">
+                        <div class="d-flex justify-space-between align-center mb-3">
+                            <span class="d-flex align-center">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.from].icon" max-width="30" max-height="30">
+                                </v-img>
+                                <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.from">{{ pageData.from }}</div>
+                            </span>
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
+                                余额: 0
+                            </span>
+                        </div>
+                        <CustomInput
+                            type="all"
+                            v-model="pageData.cf"
+                        />
+                        <div class="d-flex justify-center my-4">
+                            <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave" @click="tradeSwap">
+                                <v-icon>{{ pageData.icon }}</v-icon>
+                            </v-btn>
+                        </div>
+                        <span class="d-flex justify-space-between align-center mb-3">
+                            <span class="d-flex align-center">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.to].icon" max-width="30" max-height="30">
+                                </v-img>
+                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.to">{{ pageData.to }}</div>
+                            </span>
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
+                                余额: 0
+                            </span>
+                        </span>
+                        <CustomInput
+                            class="mb-3 mb-sm-6"
+                            v-model="pageData.usdt"
+                        />
+                        <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
+                            <span>价格</span>
+                            <v-spacer />
+                            <span>1 {{ pageData.from }} = 0.02999 {{ pageData.to }}</span>
+                        </v-sheet>
+                        <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
+                            滑点容差
+                        </div>
+                        <v-btn-toggle mandatory group class="btn_group_width">
+                            <v-btn class="rounded-lg ml-0 mr-2 btn_width" height="45"> 
+                                <span class="text-14 text-sm-subtitle-1"> 2% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45">
+                                <span class="text-14 text-sm-subtitle-1"> 5% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45"> 
+                                <span class="text-14 text-sm-subtitle-1"> 10% </span>
+                            </v-btn>
+                            <v-btn class="rounded-lg mx-0 btn_width" height="45">
+                                <span class="text-14 text-sm-subtitle-1"> 20% </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                    </v-card-text>
+                    <v-card-text class="px-3 px-sm-6 pb-4 pb-sm-6 pt-1 pt-sm-3">
+                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="">
+                            <span class="text-14 text-sm-subtitle-1"> {{LangUtil("交换")}} </span>
+                        </v-btn>
+                    </v-card-text>
+                </v-card>
+                <v-card class="rounded-lg mt-3 colorText8--text text-14 text-sm-subtitle-1 px-5 pt-3 pt-sm-7 pb-5" color="colorPanelBg4" flat>
+                    <div class="d-flex align-center mb-4">
+                        <span class="mr-2">
+                            最小获得量
+                        </span>
+                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
+                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <span>
+                            0 {{ pageData.to }}
+                        </span>
+                    </div>
+                    <div class="d-flex align-center mb-4">
+                        <span class="mr-2">
+                            影响价格
+                        </span>
+                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
+                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <span>
+                            0%
+                        </span>
+                    </div>
+                    <div class="d-flex align-center">
+                        <span class="mr-2">
+                            手续费
+                        </span>
+                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
+                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <span>
+                            0 {{ pageData.from }}
+                        </span>
+                    </div>
+                </v-card>
+            </v-col>
+        </v-row>
+        <Question :questions="questionData"></Question>
+    </v-container>
+</div>

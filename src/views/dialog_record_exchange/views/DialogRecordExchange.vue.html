@@ -10,7 +10,7 @@
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <v-divider />
-            <v-sheet v-if="pageData.list.length>0 && !$vuetify.breakpoint.xsOnly" color="transparent" :height="listHeight" class="scroll-y">
+            <v-sheet v-if="pageData.list.length>0 && !$vuetify.breakpoint.xsOnly" color="transparent" height="368" class="scroll-y">
                 <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div class="min-width-150">
@@ -25,11 +25,11 @@
                         </div>
                         <div class="min-width-120">
                             <div>{{LangUtil("链名")}}</div>
-                            <div>{{item.third_order_info.block_name}}</div>
+                            <div>{{item.third_order_info ? item.third_order_info.block_name : "-"}}</div>
                         </div>
                         <div class="min-width-100">
                             <div>{{LangUtil("币种")}}</div>
-                            <div>{{item.third_order_info.token_name}}</div>
+                            <div>{{item.third_order_info ? item.third_order_info.token_name : "-"}}</div>
                         </div>
                         <div class="min-width-100">
                             <div>{{LangUtil("数量")}}</div>
@@ -39,18 +39,18 @@
                             <div>{{LangUtil("发送地址")}}</div>
                             <div
                                 class="text-truncate text-decoration-underline cursor-pointer"
-                                @click="onCopy(item.third_order_info.from_address)"
+                                @click="onCopy(item.third_order_info ? item.third_order_info.from_address : '')"
                             >
-                                {{item.third_order_info.from_address}}
+                                {{item.third_order_info ? item.third_order_info.from_address : "-"}}
                             </div>
                         </div>
                         <div class="min-width-150">
                             <div>{{LangUtil("接收地址")}}</div>
                             <div
                                 class="text-truncate text-decoration-underline cursor-pointer"
-                                @click="onCopy(item.third_order_info.to_address)"
+                                @click="onCopy(item.third_order_info ? item.third_order_info.to_address : '')"
                             >
-                                {{item.third_order_info.to_address}}
+                                {{item.third_order_info ? item.third_order_info.to_address : "-"}}
                             </div>
                         </div>
                         <div class="min-width-120">
@@ -60,13 +60,15 @@
                         <div class="min-width-150">
                             <div>{{LangUtil("查询区块")}}</div>
                             <div class="text-decoration-underline cursor-pointer">
-                                <a :href="item.third_order_info.tx_scan_url" target="_blank">{{LangUtil("点击查询")}}</a>
+                                <a :href="item.third_order_info && item.third_order_info.tx_scan_url" target="_blank"
+                                    >{{LangUtil("点击查询")}}</a
+                                >
                             </div>
                         </div>
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="445"/>
+            <ListNodata v-if="pageData.list.length == 0" height="445" />
             <v-spacer />
             <v-pagination
                 v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
@@ -85,11 +87,11 @@
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </div>
-            <v-divider class="mx-5"/>
+            <v-divider class="mx-5" />
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <ListNodata v-if="pageData.list.length == 0"/>
+                <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="listitem">
                         <div class="d-flex justify-space-between my-0">
@@ -104,11 +106,11 @@
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("链名")}}</div>
-                            <div class="d-flex justify-end my-0">{{item.third_order_info.block_name}}</div>
+                            <div class="d-flex justify-end my-0">{{item.third_order_info ? item.third_order_info.block_name : "-"}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("币种")}}</div>
-                            <div class="d-flex justify-end my-0">{{item.third_order_info.token_name}}</div>
+                            <div class="d-flex justify-end my-0">{{item.third_order_info ? item.third_order_info.token_name : "-"}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("数量")}}</div>
@@ -117,19 +119,23 @@
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("发送地址")}}</div>
                             <div
-                                class="text-truncate text-decoration-underline cursor-pointer my-0"
-                                @click="onCopy(item.third_order_info.from_address)"
+                                class="d-flex justify-end my-0"
+                                @click="onCopy(item.third_order_info ? item.third_order_info.from_address : '')"
                             >
-                                {{item.third_order_info.from_address}}
+                                <div class="text-truncate text-align-right colorText6--text" :class="item.third_order_info && 'text-decoration-underline'">
+                                    {{item.third_order_info ? item.third_order_info.from_address : "-"}}
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("接收地址")}}</div>
                             <div
-                                class="text-truncate text-decoration-underline cursor-pointer my-0"
-                                @click="onCopy(item.third_order_info.to_address)"
+                                class="d-flex justify-end my-0"
+                                @click="onCopy(item.third_order_info ? item.third_order_info.to_address : '')"
                             >
-                                {{item.third_order_info.to_address}}
+                                <div class="text-truncate text-align-right colorText6--text" :class="item.third_order_info && 'text-decoration-underline'">
+                                    {{item.third_order_info ? item.third_order_info.to_address : "-"}}
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
@@ -139,7 +145,9 @@
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("查询区块")}}</div>
                             <div class="d-flex justify-end text-decoration-underline cursor-pointer my-0">
-                                <a :href="item.third_order_info.tx_scan_url" target="_blank">{{LangUtil("点击查询")}}</a>
+                                <a :href="item.third_order_info && item.third_order_info.tx_scan_url" target="_blank"
+                                    >{{LangUtil("点击查询")}}</a
+                                >
                             </div>
                         </div>
                     </div>

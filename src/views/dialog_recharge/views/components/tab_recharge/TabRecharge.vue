@@ -13,9 +13,5 @@ import TabRecharge from "./TabRecharge";
         Overlay,
     },
 })
-export default class extends TabRecharge {
-    mounted() {
-        this.myProxy.rechargeProxy.api_user_var_recharge_method_list();
-    }
-}
+export default class extends TabRecharge {}
 </script>

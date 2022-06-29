@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 
 @Component
@@ -31,8 +32,8 @@ export default class TabExchange extends AbstractView {
     }
 
     get isChecked(): boolean {
-        const { amount, account, coin_name_unique } = this.form;
-        if (amount != "") {
+        const { amount, account, coin_name_unique, password } = this.form;
+        if (amount != "" && password != "") {
             const amount_num = parseFloat(amount);
             if (amount_num > 0 && amount_num <= this.myProxy.exchangeProxy.gold_info[coin_name_unique].sum_money && account != "") {
                 return true;
@@ -48,12 +49,34 @@ export default class TabExchange extends AbstractView {
         return "0.00";
     }
 
+    onAddressBook(){
+        //打开地址薄
+    }
+
+    onPaste(){
+        if(navigator.clipboard){
+            //@ts-ignore
+            navigator.clipboard.readText().then((result:any)=>{
+                this.form.account = result;
+            })
+        }
+    }
+
+    onWallet(){
+        //打开平台钱包
+        dialog_wallet.show();
+    }
+
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         } else {
             this.form.amount = "0.00";
         }
+    }
+
+    onSetPassword(){
+        //打开密码设置面板
     }
 
     onSubmit() {

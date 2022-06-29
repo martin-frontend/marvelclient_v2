@@ -10,11 +10,12 @@ export default class HeaderProxy extends puremvc.Proxy {
     }
 
     pageData = {
+        bShowUserPanel: false,
         lobbyIndex: <core.PlatLobbyIndexVO[]>[],
     };
 
     setLobbyIndex(body: any) {
-        this.pageData.lobbyIndex = body.class;
+        this.pageData.lobbyIndex = Object.freeze(body.class);
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/

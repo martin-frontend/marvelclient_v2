@@ -12,7 +12,7 @@ import LangUtil from "@/core/global/LangUtil";
 export default class DialogPledgeRecords extends AbstractView {
     myProxy: DialogPledgeRecordsProxy = this.getProxy(DialogPledgeRecordsProxy);
     bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
-    plat_stake_info = this.bonusProxy.plat_stake_info;
+    plat_stake_info = this.bonusProxy.pageData.plat_stake_info;
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
@@ -50,22 +50,6 @@ export default class DialogPledgeRecords extends AbstractView {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
             this.myProxy.api_user_var_stake_log(this.listQuery.cate);
-        }
-    }
-
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 150;
-        } else {
-            return 450;
-        }
-    }
-
-    get deListHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 150;
-        } else {
-            return 450;
         }
     }
 

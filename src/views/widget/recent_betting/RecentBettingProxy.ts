@@ -1,10 +1,12 @@
+import router from "@/router";
+
 export default class RecentBettingProxy extends puremvc.Proxy {
     static NAME = "RecentBettingProxy";
 
     public onRegister(): void {
         this.api_plat_var_recently_bet_info();
         setInterval(() => {
-            this.api_plat_var_recently_bet_info();
+            if (router.currentRoute.path == "/" || router.currentRoute.path == "/page_game_play") this.api_plat_var_recently_bet_info();
         }, 30000);
     }
     /**

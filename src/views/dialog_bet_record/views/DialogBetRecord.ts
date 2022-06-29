@@ -1,6 +1,7 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
+import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
@@ -67,20 +68,20 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = 1;
         switch (this.listOptions.timeSelect) {
             case 0:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd");
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
             case 1:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-1), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(0, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd");
+                this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd");
                 break;
             case 2:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd");
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
             case 3:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd");
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
         }
         this.listQuery.page_count = 1;

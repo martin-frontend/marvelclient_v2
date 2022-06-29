@@ -7,6 +7,7 @@ import page_extension from "@/views/page_extension";
 import dialog_activity from "@/views/dialog_activity";
 import LoginEnter from "@/core/global/LoginEnter";
 import page_bonus from "@/views/page_bonus";
+import page_swap from "@/views/page_swap";
 import PageHomeProxy from "../../proxy/PageHomeProxy";
 import { moneyFormat } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
@@ -41,5 +42,9 @@ export default class Activity extends AbstractView {
 
     goActivity() {
         dialog_activity.show();
+    }
+
+    goPageSwap() {
+        LoginEnter(page_swap.show);
     }
 }

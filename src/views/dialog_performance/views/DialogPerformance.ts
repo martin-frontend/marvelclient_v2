@@ -14,15 +14,11 @@ export default class DialogPerformance extends AbstractView {
     dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
     myProxy: DialogPerformanceProxy = this.getProxy(DialogPerformanceProxy);
     pageData = this.myProxy.pageData;
+    listOptions = this.myProxy.listOptions;
+    listQuery = this.pageData.listQuery;
     LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
-
-    get timeOptions() {
-        return Constant.PERFORMANCE_TIME_TYPE;
-    }
-
-    timeSelect = 0;
 
     constructor() {
         super(DialogPerformanceMediator);
@@ -41,26 +37,21 @@ export default class DialogPerformance extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            this.myProxy.onSelectDay(-6);
+            this.myProxy.api_user_var_commission_commissionlist();
         }
     }
 
     onTimeChange() {
-        switch (this.timeSelect) {
+        switch (this.listOptions.timeSelect) {
             case 0:
-                this.myProxy.onSelectDay(-6);
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
             case 1:
-                this.myProxy.onSelectDay(-29);
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
                 break;
         }
-    }
-
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 145;
-        } else {
-            return 450;
-        }
+        this.myProxy.api_user_var_commission_commissionlist();
     }
 }

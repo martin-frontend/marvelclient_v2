@@ -22,11 +22,17 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
         loading: false,
         bShow: false,
         amount: "0",
+        origin_amount: "0",
+        range: {
+            min: 0,
+            max: 200,
+        }
     };
 
     setSelectedFloorData(agent_user_id: number, val: number): void {
         this.parameter.agent_user_id = agent_user_id;
         this.pageData.amount = val.toString();
+        this.pageData.origin_amount = val.toString();
     }
 
     setData(data: any) {
@@ -35,6 +41,10 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
             dialog_message.warn(LangUtil("设置成功"));
             this.pageData.bShow = false;
         }
+    }
+
+    setFloorRange(data: any) {
+        Object.assign(this.pageData.range, data[0]);
     }
 
     amountToParameter(): void {
@@ -52,6 +62,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     /**--代理推广--设置直属保底*/
     api_user_var_agent_var_update() {
         this.amountToParameter();
+        this.parameter.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_agent_var_update, this.parameter);
     }
 }

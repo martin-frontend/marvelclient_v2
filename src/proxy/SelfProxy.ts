@@ -1,7 +1,6 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import getProxy from "@/core/global/getProxy";
 import router from "@/router";
-import Cookies from "js-cookie";
 import GameProxy from "./GameProxy";
 
 export default class SelfProxy extends AbstractProxy {
@@ -9,7 +8,7 @@ export default class SelfProxy extends AbstractProxy {
 
     public onRegister(): void {
         setInterval(() => {
-            if (core.user_id) {
+            if (core.user_id && core.plat_id) {
                 this.api_user_show_var([2]);
                 this.api_user_var_red_dot_tips();
             }

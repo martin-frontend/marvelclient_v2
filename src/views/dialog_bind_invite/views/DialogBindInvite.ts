@@ -36,6 +36,7 @@ export default class DialogBindInvite extends AbstractView {
     }
 
     onSubmit() {
+        this.pageData.loading = true;
         this.selfProxy.api_user_update_var({ invite_user_id: this.pageData.inviteId });
     }
 }

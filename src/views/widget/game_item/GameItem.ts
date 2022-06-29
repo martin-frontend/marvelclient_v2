@@ -31,9 +31,11 @@ export default class GameItem extends AbstractView {
     }
 
     goGamePlay() {
-        LoginEnter(() => {
-            const gameProxy: GameProxy = this.getProxy(GameProxy);
-            gameProxy.api_vendor_var_ori_product_show_var(this.item);
-        });
+        if (this.item) {
+            LoginEnter(() => {
+                const gameProxy: GameProxy = this.getProxy(GameProxy);
+                gameProxy.api_vendor_var_ori_product_show_var(this.item);
+            });
+        }
     }
 }

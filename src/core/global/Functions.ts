@@ -1,3 +1,4 @@
+import dialog_message_box from "@/views/dialog_message_box";
 import GlobalVar from "./GlobalVar";
 /**
  * 全局属性和方法
@@ -33,7 +34,8 @@ export function dateFormat(d: Date, fmt: string): string {
  * @offsetSecond 偏移秒
  */
 export function getTodayOffset(offset: any = 0, offsetSecond: any = 0): Date {
-    const d = new Date(new Date().toLocaleDateString());
+    const today = new Date();
+    const d = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     d.setTime(d.getTime() + 3600 * 1000 * 24 * offset - offsetSecond);
     return d;
 }
@@ -283,12 +285,27 @@ export function checkVerifyVode(value: string): boolean {
 // /**
 //  * 是否为移动设备
 //  */
-// export function isMobile() {
-//     const flag = navigator.userAgent.match(
-//         /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-//     );
-//     return flag;
-// }
+export function isMobile() {
+    const flag = navigator.userAgent.match(
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    );
+    return flag;
+}
+
+/*判断客户端*/
+export function judgeClient() {
+    let client = "";
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        //判断iPhone|iPad|iPod|iOS
+        client = "iOS";
+    } else if (/(Android)/i.test(navigator.userAgent)) {
+        //判断Android
+        client = "Android";
+    } else {
+        client = "PC";
+    }
+    return client;
+}
 
 // /**
 //  * Check if an element has a class

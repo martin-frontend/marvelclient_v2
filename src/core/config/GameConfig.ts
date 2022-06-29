@@ -3,6 +3,7 @@ import { GameConfigVO } from "../../vo/GameConfigVO";
 import GlobalVar from "../global/GlobalVar";
 import { Base64 } from "js-base64";
 import NotificationName from "../NotificationName";
+import LangUtil from "../global/LangUtil";
 
 export default class GameConfig {
     static config: GameConfigVO;
@@ -36,14 +37,12 @@ export default class GameConfig {
             axios
                 .get(url)
                 .then((response: any) => {
-                    if (response.data.status == 0) {
-                        this.config = response.data;
-                        console.log(this.config);
-                    }
+                    this.config = response.data;
+                    core.host = this.config.ApiUrl;
                     puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 })
                 .catch(() => {
-                    alert("平台配置文件获取失败");
+                    alert(LangUtil("平台配置文件获取失败"));
                     window.location.reload();
                 });
         } else {
@@ -53,17 +52,17 @@ export default class GameConfig {
 
     static getChannelConfig() {
         const fileName: string = new core.MD5().hex_md5(location.hostname);
+        // const fileName: string = new core.MD5().hex_md5("www.cf0x.com");
         const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${Math.random()}`;
         axios
             .get(url)
             .then((response: any) => {
-                const json = JSON.parse(response);
-                core.channel_id = json.channels;
-                core.plat_id = json.platform;
+                core.channel_id = response.data.channels;
+                core.plat_id = response.data.platform;
                 this.load();
             })
             .catch(() => {
-                alert("渠道配置文件获取失败");
+                alert(LangUtil("渠道配置文件获取失败"));
                 window.location.reload();
             });
     }

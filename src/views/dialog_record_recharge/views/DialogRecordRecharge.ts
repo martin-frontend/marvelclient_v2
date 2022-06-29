@@ -62,12 +62,4 @@ export default class DialogRecordRecharge extends AbstractView {
     onLoad(done: any) {
         this.myProxy.listMore(done);
     }
-
-    get listHeight() {
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return this.$vuetify.breakpoint.height - 125;
-        } else {
-            return 368;
-        }
-    }
 }

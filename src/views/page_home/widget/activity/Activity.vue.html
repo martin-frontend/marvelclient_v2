@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="activity2-min rounded-lg pa-3">
+            <div class="activity2-min rounded-lg pa-3" @click="goPageSwap">
                 <div class="text-16 ml-2">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
                 <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div>
                 <v-sheet class="skew d-flex align-center rounded ml-1 my-2" color="#FACA4B" width="130" height="25">
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageSwap">
             <div class="text-24 mt-5 ml-5">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
             <div class="text-16 ml-5 mt-2">{{LangUtil("当前锚定美元价格，平台定期回购")}}</div>
             <v-sheet class="skew d-flex align-center ml-5 my-4 rounded-lg" color="#FACA4B" width="230" height="50">
@@ -53,7 +53,7 @@
             </v-sheet>
 
             <div class="d-flex">
-                <v-sheet class="btn btn-disabled text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="42">
+                <v-sheet class="btn text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="42">
                     {{LangUtil("暂未开放")}}
                 </v-sheet>
                 <v-spacer />

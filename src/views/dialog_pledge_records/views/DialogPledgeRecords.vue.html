@@ -35,7 +35,7 @@
             </div>
             <v-divider class="my-3"/>
             <div v-if="listQuery.cate == 1 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
-                <v-sheet v-if="pageData.list.length>0" color="transparent" :height="listHeight" class="scroll-y">
+                <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                     <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex flex-wrap listitem">
                             <div>
@@ -43,7 +43,7 @@
                                 <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
                             </div>
                             <div>
-                                <div class="ml-sm-8">{{LangUtil("数量")}}</div>
+                                <div>{{LangUtil("数量")}}</div>
                                 <div class="d-flex align-center text-16 font-weight-regular">
                                     <v-img
                                         class="mr-2"
@@ -60,7 +60,7 @@
                 </v-sheet>
             </div>
             <div v-if="listQuery.cate == 2 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
-                <v-sheet v-if="pageData.list.length>0" color="transparent" :height="deListHeight" class="scroll-y">
+                <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                     <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, idx) in pageData.list" :key="idx">
                         <div class="d-flex flex-wrap listitem-de">
                             <div>
@@ -146,7 +146,7 @@
                             <div>{{ getDateTime(item.created_at) }}</div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="ml-sm-8 d-flex align-center colorText1--text">{{LangUtil("数量")}}</div>
+                            <div class="d-flex align-center colorText1--text">{{LangUtil("数量")}}</div>
                             <div class="d-flex align-center">
                                 <v-img
                                     class="mr-2"

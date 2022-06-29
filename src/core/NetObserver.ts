@@ -110,7 +110,13 @@ export default class NetObserver extends AbstractMediator {
                                 this.gameProxy.historyLength = window.history.length;
                                 page_game_play.show(body.url);
                             } else {
-                                WebViewBridge.getInstance().openBrowser(body.url);
+                                let gameUrl = "";
+                                if (body.url.indexOf("?") != -1) {
+                                    gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+                                } else {
+                                    gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+                                }
+                                WebViewBridge.getInstance().openBrowser(gameUrl);
                             }
                         },
                     });

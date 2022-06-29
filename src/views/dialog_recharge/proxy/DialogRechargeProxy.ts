@@ -95,6 +95,8 @@ export class ExchangeProxy extends puremvc.Proxy {
             coin_name_unique: "",
             block_network_id: "",
             account: "",
+
+            password: "",
         },
     };
 

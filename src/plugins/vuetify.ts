@@ -35,6 +35,9 @@ const opts = {
                 colorBlue2Bg: "#2C3952",
                 colorYellowBg: "#F2A81C",
 
+                //新增
+                colorBtnSeleBg: "#CD30C1", //used
+
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",
                 colorText3: "#9BA1AB", //used
@@ -48,8 +51,6 @@ const opts = {
                 colorTextBlue: "#31486C", //used
                 colorTextPurple: "#A8A8F5", //used
                 colorTextGreen: "#69B65E", //used
-                colorCoinCF: "#3A94E2", //used
-                colorCoinUSDT: "#269F7B", //used
                 colorTextAll: "669CE7", //used
                 colorTextBlueLight: "#72ABFD", //used
                 colorTextBlueLight2: "#98ACD3", //used

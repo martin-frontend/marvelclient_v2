@@ -1,0 +1,112 @@
+<v-app-bar
+    class="app-bar"
+    :height="$vuetify.breakpoint.xsOnly?80:80"
+    color="colorTitleBg"
+    elevation="0"
+    :app="routerPath != '/page_game_play'"
+>
+    <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="d-flex align-center ">
+            <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
+            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button">
+                 {{LangUtil("首页")}}
+            </span>
+            <!-- <button
+            v-if="!$vuetify.breakpoint.mobile"
+            class="nav-button d-none d-md-flex"
+            v-for="item of pageData.lobbyIndex"
+            :key="item.category"
+            @click="goAnchor(item.category)"
+        >
+            <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
+            <div>{{ item.category_name }}</div>
+        </button> -->
+            <v-spacer />
+            <span v-if="core.user_id == 0" class="login-btn px-2" @click="handlerLogin">{{LangUtil("登录")}}</span>
+        <v-btn
+            v-if="core.user_id == 0"
+            :small="$vuetify.breakpoint.mobile"
+            class="text-26 mx-4 white--text regin-btn"
+            @click="handlerRegister"
+        >
+            <span class="px-2">{{LangUtil("注册")}}</span>
+        </v-btn>
+        <div v-if="LangConfig.language">
+            <CustomSelect
+                v-model="core.lang"
+                :options="LangConfig.language"
+                :icons="LangConfig.language"
+                :width="160"
+                :height="45"
+                :isPill="true"
+                class="mr-4"
+                @change="onLangChange"
+            />
+        </div>
+
+       
+            <Wallet v-if="core.user_id" />
+            <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
+        </div>
+
+      <!--   <div class="d-flex mt-5">
+            <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
+            <button v-if="!$vuetify.breakpoint.mobile" class="nav-button" :class="routerPath == '/' ? 'active' : ''" @click="goHome">
+                <v-icon>mdi-home</v-icon>
+                <div>{{LangUtil("首页")}}</div>
+            </button>
+
+            <button
+                v-if="!$vuetify.breakpoint.mobile"
+                class="nav-button d-none d-md-flex"
+                v-for="item of pageData.lobbyIndex"
+                :key="item.category"
+                @click="goAnchor(item.category)"
+            >
+                <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
+                <div>{{ item.category_name }}</div>
+            </button> 
+
+            <v-spacer />
+        </div>-->
+    </v-container>
+     <!-- 手机 -->
+    <v-container v-else class="mt-3">
+        <div class="d-flex align-center">
+            <img src="@/assets/logo.png" height="20" alt="" />
+            <v-spacer />
+            <v-btn height="20" width="20" fab color="#ffb01b" class="black--text"
+            >
+            <v-icon small>mdi-message-text-outline</v-icon>
+            </v-btn>
+            <div v-if="GamePlatConfig.config.language" class="language">
+                <CustomSelect
+                    v-model="core.lang"
+                    :options="GamePlatConfig.config.language"
+                    :icons="GamePlatConfig.config.language"
+                    :width="$vuetify.breakpoint.xsOnly? 45 : 130"
+                    :height="30"
+                    fontSize="12"
+                    iconSize="20"
+                    :isPill="true"
+                    @change="onLangChange"
+                />
+            </div>
+        </div>
+        <div class="d-flex align-center mt-1 mb-2">
+            <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
+                <span class="px-2">{{LangUtil("登录")}}</span>
+            </v-btn>
+            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
+                <span class="px-2">{{LangUtil("注册")}}</span>
+            </v-btn>
+            <User v-if="core.user_id" />
+            <Wallet v-if="core.user_id" />
+            <v-spacer />
+            <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
+                <v-icon>mdi-information</v-icon>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
+            </v-btn>
+        </div>
+    </v-container>
+</v-app-bar>

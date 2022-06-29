@@ -41,7 +41,9 @@ export default class PageGameListProxy extends puremvc.Proxy {
     };
 
     setHotGame(data: any) {
-        Object.assign(this.hotGame, data);
+        this.hotGame.category = data.category;
+        this.hotGame.category_name = data.category_name;
+        this.hotGame.list = Object.freeze(data.list);
     }
 
     setConfig(data: any) {

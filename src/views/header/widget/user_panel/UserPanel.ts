@@ -15,15 +15,17 @@ import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_user_center from "@/views/dialog_user_center";
 
 @Component
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
     menuList = [
-        { id: 0, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
-        { id: 1, name: LangUtil("平台钱包"), icon: "mdi-clock" },
-        { id: 2, name: LangUtil("投注记录"), icon: "mdi-bell" },
-        { id: 3, name: LangUtil("消息中心"), icon: "mdi-bell" },
+        { id: 0, name: LangUtil("个人中心"), icon: "mdi-shield-check" },
+        { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
+        { id: 2, name: LangUtil("平台钱包"), icon: "mdi-clock" },
+        { id: 3, name: LangUtil("投注记录"), icon: "mdi-bell" },
+        { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
     menuList1 = [
         { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-shield-check" },
@@ -44,15 +46,18 @@ export default class UserPanel extends AbstractView {
     onMenuItem(item: any) {
         switch (item.id) {
             case 0:
-                LoginEnter(dialog_safety_center.show);
+                LoginEnter(dialog_user_center.show);
                 break;
             case 1:
-                LoginEnter(dialog_wallet.show);
+                LoginEnter(dialog_safety_center.show);
                 break;
             case 2:
-                LoginEnter(dialog_bet_record.show);
+                LoginEnter(dialog_wallet.show);
                 break;
             case 3:
+                LoginEnter(dialog_bet_record.show);
+                break;
+            case 4:
                 LoginEnter(dialog_email.show);
                 break;
             case 10:

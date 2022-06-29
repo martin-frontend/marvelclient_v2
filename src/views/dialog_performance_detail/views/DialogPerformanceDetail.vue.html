@@ -119,7 +119,7 @@
                             <div class="item-auto">
                                 <div>{{LangUtil("每万返佣")}}</div>
                                 <div class="text-16 font-weight-regular">
-                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(LangUtil('保底'))" : "" }}
+                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
                                 </div>
                             </div>
                         </div>
@@ -247,7 +247,7 @@
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("每万返佣")}}</div>
                             <div>
-                                {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(LangUtil('保底'))" : "" }}
+                                {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
                             </div>
                         </div>
                     </v-sheet>

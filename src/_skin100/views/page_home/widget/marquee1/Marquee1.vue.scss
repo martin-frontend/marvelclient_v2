@@ -1,0 +1,15 @@
+.marquee-box {
+    width: 100%;
+    overflow: hidden;
+    div {
+        width: fit-content;
+        white-space: nowrap;
+    }
+}
+
+.v-application .btr {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: none;
+    border-bottom-right-radius: none;
+}

@@ -69,7 +69,7 @@
                         </div>
                         <div>
                             <div>{{LangUtil("输赢")}}</div>
-                            <div>${{(parseFloat(item.win_gold) < 0 ? "" : "+") + item.win_gold }}</div>
+                            <div>{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div>
                         </div>
                         <div>
                             <div>{{LangUtil("状态")}}</div>
@@ -164,7 +164,7 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("输赢")}}</div>
-                        <div>${{(parseFloat(item.win_gold) < 0 ? "" : "+") + item.win_gold }}</div>
+                        <div>{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div>
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("状态")}}</div>

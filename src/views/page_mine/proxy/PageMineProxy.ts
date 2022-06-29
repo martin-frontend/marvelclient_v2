@@ -54,7 +54,6 @@ export default class PageMineProxy extends puremvc.Proxy {
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
         const plat_coins = <any>GamePlatConfig.config.plat_coins;
-        console.warn("plat_coins", plat_coins);
         const coinsKey = Object.keys(plat_coins);
         coinsKey.forEach((key: any) => {
             if (plat_coins[key].type === 2) {

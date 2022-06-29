@@ -6,12 +6,14 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogAddressBook from "./DialogAddressBook";
 import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
+import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
         CustomSelect,
-        Overlay
-    }
+        Overlay,
+        ListNodata,
+    },
 })
 export default class extends DialogAddressBook {}
 </script>

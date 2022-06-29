@@ -8,17 +8,20 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
         loading: false,
         bShow: false,
         methodList: <any>{},
-        form: {
-            amount: "",
-            exchange_channel_id: 0,
-            payment_method_type: 0,
-
+        listQuery: {
             coin_name_unique: "",
             block_network_id: "",
-            account: "",
-
-            password: "",
         },
+        list: <any>[1, 2],
+        pageInfo: {
+            pageCurrent: 1,
+            pageCount: 1,
+            pageSize: 20,
+            pageTotal: 9,
+        },
+        finished: true,
+        //加载完毕后调用，手机模式专用
+        done: <any>null,
     };
 
     setData(data: any) {
@@ -33,10 +36,10 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
         }
 
         if (coin_name_unique) {
-            this.pageData.form.coin_name_unique = coin_name_unique;
+            this.pageData.listQuery.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             if (optionsKeys[0]) {
-                this.pageData.form.block_network_id = optionsKeys[0];
+                this.pageData.listQuery.block_network_id = optionsKeys[0];
             }
         }
     }

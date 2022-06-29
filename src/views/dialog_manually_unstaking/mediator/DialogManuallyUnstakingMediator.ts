@@ -17,6 +17,7 @@ export default class DialogManuallyUnstakingMediator extends AbstractMediator {
         const myProxy: DialogManuallyUnstakingProxy = getProxy(DialogManuallyUnstakingProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_withdraw_stake:
+                this.myProxy.pageData.loading = false;
                 dialog_message_box.alert("解除质押数量" + body);
                 this.bonusProxy.api_user_var_stake_info();
                 this.bonusProxy.api_plat_var_stake_info();

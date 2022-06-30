@@ -7,7 +7,6 @@ import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogPledgeMediator extends AbstractMediator {
     private bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
-    private myProxy: DialogPledgeProxy = this.getProxy(DialogPledgeProxy);
 
     public listNotificationInterests(): string[] {
         return [net.EventType.api_user_var_deposit_stake];
@@ -18,11 +17,11 @@ export default class DialogPledgeMediator extends AbstractMediator {
         const myProxy: DialogPledgeProxy = getProxy(DialogPledgeProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_deposit_stake:
-                this.myProxy.pageData.loading = false;
+                myProxy.pageData.loading = false;
                 dialog_message_box.alert(LangUtil("质押锁仓成功"));
                 this.bonusProxy.api_user_var_stake_info();
                 this.bonusProxy.api_plat_var_stake_info();
-                this.myProxy.pageData.bShow = false;
+                myProxy.pageData.bShow = false;
                 break;
         }
     }

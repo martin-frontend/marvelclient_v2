@@ -15,11 +15,6 @@ export default class PageExtensionMediator extends AbstractMediator {
         this.myProxy.api_user_var_commission_commissionnum();
     }
 
-    /**按日期获取业绩详情 */
-    private getDetdail() {
-        this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, { user_id: core.user_id });
-    }
-
     private isToday(someDate: any) {
         const today = new Date();
         const [year, month, day] = someDate.split("-");
@@ -51,11 +46,6 @@ export default class PageExtensionMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_short_chain:
                 this.myProxy.setLink(body.url);
-                break;
-            case net.EventType.api_user_update_var:
-                this.bindInviteproxy.hide();
-                dialog_message.success(LangUtil("操作成功"));
-                this.getDetdail();
                 break;
             case net.EventType.api_user_var_commission_receive:
                 this.myProxy.api_user_var_commission_commissiondetail();

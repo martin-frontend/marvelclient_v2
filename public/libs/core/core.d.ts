@@ -2259,6 +2259,8 @@ declare module core {
         main_language: string;
         /**可以注册的类型: 1-用户名注册|2-邮箱注册|4-手机注册 */
         register_types: number[];
+        /**安全设置:1-邮箱验证|2-短信验证 */
+        validate_type: number[];
     }
 }
 declare module core {

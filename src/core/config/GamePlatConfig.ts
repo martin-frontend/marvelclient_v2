@@ -23,6 +23,7 @@ export default class GamePlatConfig {
         plat_coins: {},
         language: <any>{},
         main_language: "",
+        validate_type: [],
     };
     /**枚举 */
     static enums: {

@@ -12,6 +12,7 @@ import dialog_nick_name from "@/views/dialog_nick_name";
 import dialog_safety_center from "@/views/dialog_safety_center";
 import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_trade_password from "@/views/dialog_trade_password";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -21,6 +22,8 @@ export default class DialogUserCenter extends AbstractView {
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     safetyCenterProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
     userInfo = this.selfProxy.userInfo;
+    validate_type = GamePlatConfig.config.validate_type;
+    is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
 
     constructor() {
         super(DialogUserCenterMediator);
@@ -38,6 +41,10 @@ export default class DialogUserCenter extends AbstractView {
     onLoginOut() {
         this.selfProxy.api_user_logout();
         this.pageData.bShow = false;
+    }
+
+    checkValidateType(val: any) {
+        return this.validate_type.includes(val);
     }
 
     private copy() {

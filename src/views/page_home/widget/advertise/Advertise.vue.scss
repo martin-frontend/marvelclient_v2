@@ -35,18 +35,7 @@
 }
 
 ::v-deep.v-carousel .v-carousel__controls .v-item-group .v-carousel__controls__item {
-    margin: 0;
-    margin-top:30px;
-    width: 20px;
-    height: 20px;
+    margin: -5px;
+    margin-top: 25px;
     transform: scale(0.5);
-    .v-item--active.v-btn--active{
-        color: red;
-    }
 }
-::v-deep.v-carousel .v-carousel__controls .v-item-group.v-item--active{
-    color: red;
-}
-
-
-// v-carousel__controls__item v-btn v-item--active v-btn--active v-btn--icon v-btn--round theme--dark v-size--small

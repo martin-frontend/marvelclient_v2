@@ -79,6 +79,11 @@ $waitTextColor: #9db1d8cc;
     background-position: bottom right;
     background-size: contain;
 }
+.intro-how-04-md {
+    background: url("~@/assets/introduce/04P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
 
 .intro-how-01 {
     background: url("~@/assets/introduce/01M.png") no-repeat;
@@ -92,6 +97,11 @@ $waitTextColor: #9db1d8cc;
 }
 .intro-how-03 {
     background: url("~@/assets/introduce/03M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-04 {
+    background: url("~@/assets/introduce/04M.png") no-repeat;
     background-position: bottom left;
     background-size: contain;
 }

@@ -6,9 +6,9 @@ import gsap, { Linear, Elastic } from "gsap";
 @Component
 export default class Money extends AbstractView {
     @Prop() value!: any;
-    @Prop({ default: 48 }) fontSize!: number;
-    @Prop({ default: 32 }) itemWidth!: number;
-    @Prop({ default: 72 }) itemHeight!: number;
+    @Prop({ default: 40 }) fontSize!: number;
+    @Prop({ default: 22 }) itemWidth!: number;
+    @Prop({ default: 60 }) itemHeight!: number;
     money = "$";
 
     mounted() {

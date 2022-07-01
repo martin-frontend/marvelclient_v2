@@ -8,12 +8,14 @@ export default class PageSwapMediator extends AbstractMediator {
     protected initViewData(): void {
         this.myProxy.api_plat_var_swap_setting_info();
         this.myProxy.api_user_var_swap_trial();
+        this.myProxy.api_plat_var_swap_k();
     }
 
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_plat_var_swap_setting_info,
             net.EventType.api_user_var_swap_trial,
+            net.EventType.api_plat_var_swap_k,
         ];
     }
 
@@ -26,6 +28,9 @@ export default class PageSwapMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_swap_trial:
                 this.myProxy.setTrial(body);
+                break;
+            case net.EventType.api_plat_var_swap_k:
+                this.myProxy.setSwapK(body);
                 break;
         }
     }

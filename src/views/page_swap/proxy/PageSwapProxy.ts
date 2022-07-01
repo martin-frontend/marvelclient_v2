@@ -10,6 +10,9 @@ export default class PageSwapProxy extends puremvc.Proxy {
         loading: false,
         cf: "",
         usdt: "",
+        from_coin: "",
+        from_coin_number: "",
+        tolerance: "",
         icon: "mdi-arrow-down",
         chart_a: "CF",
         chart_b: "USDT",
@@ -43,6 +46,10 @@ export default class PageSwapProxy extends puremvc.Proxy {
         Object.assign(this.pageData.trial, data);
     }
 
+    setSwapK(data: any) {
+
+    }
+
     /** 交换互换*/
     tradeReverse() {
         const target = this.pageData.swap_setting_info.coin_b;
@@ -68,5 +75,15 @@ export default class PageSwapProxy extends puremvc.Proxy {
     /**Swap--Swap试算*/
     api_user_var_swap_trial() {
         this.sendNotification(net.HttpType.api_user_var_swap_trial, { user_id: core.user_id, });
+    }
+
+    /**Swap--Swap价格图*/
+    api_plat_var_swap_k() {
+        this.sendNotification(net.HttpType.api_plat_var_swap_k, {});
+    }
+
+    /**Swap--Swap创建订单*/
+    api_user_var_swap_create_order() {
+        this.sendNotification(net.HttpType.api_user_var_swap_create_order, { user_id: core.user_id, });
     }
 }

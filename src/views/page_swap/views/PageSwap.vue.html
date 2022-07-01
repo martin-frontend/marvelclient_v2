@@ -53,7 +53,7 @@
                             <v-btn icon @click="handlerRecord">
                                 <v-icon>mdi-note-text</v-icon>
                             </v-btn>
-                            <v-btn icon >
+                            <v-btn icon @click="handlerRefresh">
                                 <v-icon>mdi-reload</v-icon>
                             </v-btn>
                         </div>
@@ -96,23 +96,23 @@
                         <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
                             <span>价格</span>
                             <v-spacer />
-                            <span>1 {{ pageData.swap_setting_info.coin_a }} = 0.02999 {{ pageData.swap_setting_info.coin_b }}</span>
+                            <span>1 {{ pageData.swap_setting_info.coin_a }} = {{ trail.price }} {{ pageData.swap_setting_info.coin_b }}</span>
                         </v-sheet>
                         <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
                             滑点容差
                         </div>
                         <v-btn-toggle mandatory group class="btn_group_width">
                             <v-btn class="rounded-lg ml-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> {{ (Number(tolerance[0])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[0])*100).toFixed(4)))? (Number(tolerance[0])*100).toFixed(0):(Number(tolerance[0])*100).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> {{ (Number(tolerance[1])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[1])*100).toFixed(4)))? (Number(tolerance[1])*100).toFixed(0):Number.isInteger((Number(tolerance[1])*100).toFixed(4)) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> {{ (Number(tolerance[2])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[2])*100).toFixed(4)))? (Number(tolerance[2])*100).toFixed(0):(Number(tolerance[2])*100).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> {{ (Number(tolerance[3])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[3])*100).toFixed(4)))? (Number(tolerance[3])*100).toFixed(0):(Number(tolerance[3])*100).toFixed(4) }}% </span>
                             </v-btn>
                         </v-btn-toggle>
                     </v-card-text>

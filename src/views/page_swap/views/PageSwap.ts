@@ -49,4 +49,10 @@ export default class PageSwap extends AbstractView {
     handlerRecord() {
         dialog_swap_record.show();
     }
+
+    handlerRefresh() {
+        this.myProxy.api_plat_var_swap_setting_info();
+        this.myProxy.api_user_var_swap_trial();
+        this.myProxy.api_plat_var_swap_k();
+    }
 }

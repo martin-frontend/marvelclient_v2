@@ -41,7 +41,11 @@ export default class DialogTradePassword extends AbstractView {
     }
 
     getCode() {
-        if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined)) {
+        if ((this.userInfo.phone != "" && this.userInfo.phone != undefined)) {
+            dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
+        } else if ((this.userInfo.email != "" && this.userInfo.email != undefined)) {
+            dialog_get_verity.showEmailVerity(5, this.userInfo.email); //获取邮箱验证码
+        } else if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && !(this.userInfo.email != "" && this.userInfo.email != undefined)) {
             dialog_message_box.confirm({
                 message: LangUtil("您的账号未绑定手机，请绑定手机?"),
                 okFun: () => {
@@ -49,7 +53,7 @@ export default class DialogTradePassword extends AbstractView {
                 },
             });
         } else {
-            dialog_get_verity.showSmsVerity(5, '', '');
+            dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
         }
     }
 

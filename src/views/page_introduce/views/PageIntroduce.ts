@@ -39,4 +39,9 @@ export default class PageIntroduce extends AbstractView {
     goContractInfo() {
         OpenLink(this.reward_coin_info.contract_address);
     }
+
+    goWhitePage(){
+        console.log(LangUtil("白皮书链接"))
+        OpenLink(LangUtil("白皮书链接"));
+    }
 }

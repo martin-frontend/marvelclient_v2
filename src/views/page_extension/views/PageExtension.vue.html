@@ -255,11 +255,14 @@
                     <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                         {{LangUtil("总业绩")}}
                     </v-col>
-                    <v-col :cols="tableData.is_promotion_num_added==1?4:4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
                         {{LangUtil("返佣额度(每万)")}}
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                    <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
                         {{LangUtil("级差")}}
+                    </v-col>
+                    <v-col cols="2" class="d-flex justify-center align-center">
+                        {{LangUtil("CF奖励")}}
                     </v-col>
                 </v-row>
             </v-card>
@@ -271,17 +274,17 @@
                 :key="index"
             >
                 <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
-                    <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center level_col align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:3" class="d-flex justify-center level_col align-center">
                         <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                             <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
                         </span>
                         {{LangUtil("{0}级", item.level)}}
                     </v-col>
-                    <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:3" class="d-flex justify-center align-center">
                         <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
                         <span v-else>{{ item.total_performance }}</span>
                     </v-col>
-                    <v-col :cols="tableData.is_promotion_num_added==1?4:4" class="d-flex justify-center align-center">
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:3" class="d-flex justify-center align-center">
                         <v-img
                             class="mr-1"
                             :src="pageData.platCoins.mainCoin.icon"
@@ -297,9 +300,9 @@
                         ></v-img>
                         {{ item.commission_num[pageData.platCoins.rewardCoin.name] }} -->
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                    <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
                         <span
-                            v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0 && item.commission_num_added[pageData.platCoins.rewardCoin.name] == 0"
+                            v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0"
                             >-
                         </span>
                         <span v-else class="d-flex flex-row align-center">
@@ -317,6 +320,21 @@
                                 :height="$vuetify.breakpoint.xsOnly? 15 : 30"
                             ></v-img>
                             {{ item.commission_num_added[pageData.platCoins.rewardCoin.name] }} -->
+                        </span>
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:3" class="d-flex justify-center align-center" v-if="item.commission_num[pageData.platCoins.rewardCoin.name]">
+                        <span
+                            v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0"
+                            >-
+                        </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img
+                                class="mr-1"
+                                :src="pageData.platCoins.rewardCoin.icon"
+                                :max-width="$vuetify.breakpoint.xsOnly? 15 : 30"
+                                :height="$vuetify.breakpoint.xsOnly? 15 : 30"
+                            ></v-img>
+                            <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
                         </span>
                     </v-col>
                 </v-row>

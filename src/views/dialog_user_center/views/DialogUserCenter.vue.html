@@ -75,7 +75,7 @@
                         <v-icon class="mr-2" color="colorInfo">mdi-lock</v-icon>{{LangUtil("交易密码")}}
                     </span>
                     <span class="d-flex align-center colorText1--text">
-                        {{userInfo.password_gold_exists? '': LangUtil("未设置")}}
+                        {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
                         <v-btn icon class="ml-2" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerTradePassword">
                             <v-icon large>mdi-chevron-right</v-icon>
                         </v-btn>

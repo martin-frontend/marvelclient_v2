@@ -15,12 +15,12 @@
                         <v-row class="mt-n4">
                             <v-col :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">
                                 {{LangUtil("币种专题页介绍", awardCoin, awardCoin, awardCoin)}}
-                                <div class="mt-2">
-                                    <a target="_blank" href="white/1/white.pdf">
-                                        <span class="colorTextGold--text font-weight-bold text-decoration-underline"
-                                            >{{LangUtil("{0}白皮书", awardCoin)}}</span
-                                        >
-                                    </a>
+                                <div
+                                    class="mt-2 colorTextGold--text font-weight-bold text-decoration-underline cursor-pointer"
+                                    style="position: relative; z-index: 100;"
+                                    @click="goWhitePage"
+                                >
+                                    {{LangUtil("{0}白皮书", awardCoin)}}
                                 </div>
                             </v-col>
                         </v-row>

@@ -18,23 +18,7 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-        list: [{
-            order_no: "666644444",                // 交易ID
-            coin_a: "CF",                    // 兑换币种
-            coin_b: "USDT",                  // 获得币种
-            coin_a_amount: "1250.000000",    // 兑换数量
-            coin_b_amount: "12.374292",      // 获得数量
-            trade_status: 3,                 // 状态 1-待处理|2-处理中|3-处理成功|4-处理失败
-            updated_at: "2022-06-29 23:22:54"// 时间
-        }, {
-            order_no: "4444",                // 交易ID
-            coin_a: "CF",                    // 兑换币种
-            coin_b: "USDT",                  // 获得币种
-            coin_a_amount: "1250.000000",    // 兑换数量
-            coin_b_amount: "12.374292",      // 获得数量
-            trade_status: 3,                 // 状态 1-待处理|2-处理中|3-处理成功|4-处理失败
-            updated_at: "2022-06-29 23:22:54"// 时间
-        }],
+        list: <any>[],
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -56,6 +40,7 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
             };
         },
     }
+
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
@@ -67,19 +52,19 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
-        // Object.assign(this.pageData.pageInfo, data.pageInfo);
-        // if (vuetify.framework.breakpoint.xsOnly) {
-        //     const { pageCount, pageCurrent } = this.pageData.pageInfo;
-        //     if (pageCurrent == 1) {
-        //         this.pageData.list = data.list;
-        //     } else {
-        //         this.pageData.list.push(...data.list);
-        //     }
-        //     this.pageData.finished = pageCount == pageCurrent;
-        //     this.pageData.done && this.pageData.done();
-        // } else {
-        //     this.pageData.list = data.list;
-        // }
+        Object.assign(this.pageData.pageInfo, data.pageInfo);
+        if (vuetify.framework.breakpoint.xsOnly) {
+            const { pageCount, pageCurrent } = this.pageData.pageInfo;
+            if (pageCurrent == 1) {
+                this.pageData.list = data.list;
+            } else {
+                this.pageData.list.push(...data.list);
+            }
+            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.done && this.pageData.done();
+        } else {
+            this.pageData.list = data.list;
+        }
     }
 
     /**手机下拉刷新 */

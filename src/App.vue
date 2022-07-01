@@ -33,7 +33,7 @@
         <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide">{{ guideText }}</v-btn>
         </div>
-        <v-navigation-drawer v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary app>
+        <v-navigation-drawer v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary>
             <div class="colorTextGold--text text-14 pt-5">
                 <div class="d-flex justify-center mb-3">
                     {{ LangUtil("点击下方工具栏的") }}

@@ -64,7 +64,7 @@ export default class APP extends AbstractView {
 
     onGuide() {
         //@ts-ignore
-        if (!window.navigator.standalone) {
+        if (window.navigator.standalone === false) {
             this.guideDrawer = true;
         } else {
             //将参数复制到剪切板

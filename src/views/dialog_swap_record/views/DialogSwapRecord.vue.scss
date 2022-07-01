@@ -1,0 +1,9 @@
+.listitem {
+    color: #9db1d8;
+    div:first-child {
+        color: #4c5d7f;
+    }
+    div > a {
+        color: #9db1d8;
+    }
+}

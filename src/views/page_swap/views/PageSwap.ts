@@ -5,6 +5,7 @@ import PageSwapProxy from "../proxy/PageSwapProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import FagProxy from "@/proxy/FagProxy";
+import dialog_swap_record from "@/views/dialog_swap_record";
 
 @Component
 export default class PageSwap extends AbstractView {
@@ -43,5 +44,9 @@ export default class PageSwap extends AbstractView {
     /**交易对调 */
     private chartSwap() {
         this.myProxy.chartReverse();
+    }
+
+    handlerRecord() {
+        dialog_swap_record.show();
     }
 }

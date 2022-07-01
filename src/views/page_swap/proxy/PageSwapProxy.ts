@@ -37,12 +37,10 @@ export default class PageSwapProxy extends puremvc.Proxy {
         this.pageData.chart_a = data.coin_a;
         this.pageData.chart_b = data.coin_b;
         this.pageData.swap_setting_info.tolerance_params = data.tolerance_params;
-        console.log(this.pageData.swap_setting_info);
     }
 
     setTrial(data: any) {
         Object.assign(this.pageData.trial, data);
-        console.log(this.pageData.trial);
     }
 
     /** 交换互换*/

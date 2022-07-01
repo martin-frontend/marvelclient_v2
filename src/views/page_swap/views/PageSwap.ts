@@ -12,6 +12,7 @@ export default class PageSwap extends AbstractView {
     myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     pageData = this.myProxy.pageData;
     fagProxy: FagProxy = this.getProxy(FagProxy);
+    trail = this.myProxy.pageData.trial;
     GamePlatConfig = GamePlatConfig;
 
     constructor() {
@@ -22,12 +23,16 @@ export default class PageSwap extends AbstractView {
         return this.fagProxy.qData.type3;
     }
 
+    get tolerance() {
+        return this.myProxy.pageData.swap_setting_info.tolerance_params;
+    }
+
     mouseover() {
-        this.pageData.icon = 'mdi-swap-vertical'
+        this.pageData.icon = "mdi-swap-vertical";
     }
 
     mouseleave() {
-        this.pageData.icon = 'mdi-arrow-down'
+        this.pageData.icon = "mdi-arrow-down";
     }
 
     /**交易对调 */

@@ -1,12 +1,10 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
-import DialogBindInviteProxy from "@/views/dialog_bind_invite/proxy/DialogBindInviteProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
-    private bindInviteproxy: DialogBindInviteProxy = getProxy(DialogBindInviteProxy);
     LangUtil = LangUtil;
 
     protected initViewData(): void {

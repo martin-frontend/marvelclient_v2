@@ -66,13 +66,14 @@
                                 </v-img>
                                 <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_a">{{ pageData.swap_setting_info.coin_a }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
-                                余额: 0
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a]">
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a].sum_money }}
                             </span>
                         </div>
                         <CustomInput
                             type="all"
-                            v-model="pageData.cf"
+                            v-model="pageData.amount_a"
+                            @click="handlerAll"
                         />
                         <div class="d-flex justify-center my-4">
                             <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave" @click="tradeSwap">
@@ -85,23 +86,23 @@
                                 </v-img>
                                 <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_b">{{ pageData.swap_setting_info.coin_b }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
-                                余额: 0
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b]">
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b].sum_money }}
                             </span>
                         </span>
                         <CustomInput
                             class="mb-3 mb-sm-6"
-                            v-model="pageData.usdt"
+                            v-model="pageData.amount_b"
                         />
                         <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
                             <span>价格</span>
                             <v-spacer />
-                            <span>1 {{ pageData.swap_setting_info.coin_a }} = {{ trail.price }} {{ pageData.swap_setting_info.coin_b }}</span>
+                            <span>1 {{ pageData.swap_setting_info.coin_a }} = {{ trial.price }} {{ pageData.swap_setting_info.coin_b }}</span>
                         </v-sheet>
                         <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
                             滑点容差
                         </div>
-                        <v-btn-toggle mandatory group class="btn_group_width">
+                        <v-btn-toggle mandatory group class="btn_group_width" v-model="parameter.tolerance" @change="onChange">
                             <v-btn class="rounded-lg ml-0 mr-2 btn_width" height="45"> 
                                 <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[0])*100).toFixed(4)))? (Number(tolerance[0])*100).toFixed(0):(Number(tolerance[0])*100).toFixed(4) }}% </span>
                             </v-btn>
@@ -117,7 +118,7 @@
                         </v-btn-toggle>
                     </v-card-text>
                     <v-card-text class="px-3 px-sm-6 pb-4 pb-sm-6 pt-1 pt-sm-3">
-                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="">
+                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="handlerTrade">
                             <span class="text-14 text-sm-subtitle-1"> {{LangUtil("交换")}} </span>
                         </v-btn>
                     </v-card-text>
@@ -132,7 +133,7 @@
                         </v-btn>
                         <v-spacer />
                         <span>
-                            {{ trail.min_to_coin_number }} {{ pageData.swap_setting_info.coin_b }}
+                            {{ trial.min_to_coin_number }} {{ pageData.swap_setting_info.coin_b }}
                         </span>
                     </div>
                     <div class="d-flex align-center mb-4">
@@ -144,7 +145,7 @@
                         </v-btn>
                         <v-spacer />
                         <span>
-                            {{ trail.affect_price }}
+                            {{ trial.affect_price }}
                         </span>
                     </div>
                     <div class="d-flex align-center">
@@ -156,7 +157,7 @@
                         </v-btn>
                         <v-spacer />
                         <span>
-                            {{ trail.swap_fee }} {{ pageData.swap_setting_info.coin_a }}
+                            {{ trial.swap_fee }} {{ pageData.swap_setting_info.coin_a }}
                         </span>
                     </div>
                 </v-card>

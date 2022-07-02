@@ -33,7 +33,7 @@
                     <div class="d-flex mt-5 mx-3 align-end">
                         <span class="text-h4">{{ pageData.price}}</span> 
                         <span class="text-18 ml-2 colorText8--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
-                        <span class="text-18 ml-4 colorText9--text">{{ pageData.changed}}</span>
+                        <span class="text-18 ml-4" :class="(pageData.changed).substr(0,1) == '-'? 'red--text': 'green--text'">{{ pageData.changed }}</span>
                         
                     </div>
                     <div class="mt-2 mx-3 text-14 colorText8--text">{{ pageData.chartTime}}</div>

@@ -36,6 +36,15 @@ export default class DialogDirectly extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    @Watch("pageData.search")
+    onWatchSearch() {
+        if (this.pageData.search != "") {
+            this.pageData.buttonActive = true;
+        } else {
+            this.pageData.buttonActive = false;
+        }
+    }
+
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);

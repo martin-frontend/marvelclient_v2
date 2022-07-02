@@ -15,13 +15,15 @@
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search">
-                    <CustomInputButton
+                    <CustomInput
                         height="41"
                         :placeholder="LangUtil('输入查询ID')"
-                        :button-name="LangUtil('查询')"
                         v-model="pageData.search"
-                        @click="search"
-                    />
+                    >
+                        <v-btn class="rounded-lg" :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'" min-width="61" height="30"  @click="search">
+                            <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                        </v-btn>
+                    </CustomInput>
                 </div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">

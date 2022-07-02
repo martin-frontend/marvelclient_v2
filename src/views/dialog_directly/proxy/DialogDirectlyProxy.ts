@@ -36,6 +36,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             pageTotal: 0,
         },
         search: "",
+        buttonActive: false,
         // 列表是否加载完成，手机模式专用
         finished: false,
         done: <any>null,

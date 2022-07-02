@@ -40,7 +40,6 @@ export default class PageSwapMediator extends AbstractMediator {
                 this.myProxy.resetTrial();
                 dialog_message.success(LangUtil("交换成功"));
                 break;
-
         }
     }
 }

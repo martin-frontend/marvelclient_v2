@@ -5,9 +5,7 @@ import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
 import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";
-import dialog_pledge from "@/views/dialog_pledge";
-import page_home from "@/views/page_home";
-import page_mine from "@/views/page_mine";
+import page_bonus from "@/views/page_bonus";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
@@ -55,7 +53,7 @@ export default class PageIntroduce extends AbstractView {
     }
 
     goPledge(){
-        LoginEnter(page_mine.show);
+        LoginEnter(page_bonus.show);
     }
 
     goActivity(){

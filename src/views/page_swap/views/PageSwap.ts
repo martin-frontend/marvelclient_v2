@@ -6,14 +6,18 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import FagProxy from "@/proxy/FagProxy";
 import dialog_swap_record from "@/views/dialog_swap_record";
+import SelfProxy from "@/proxy/SelfProxy";
+import dialog_message_box from "@/views/dialog_message_box";
 
 @Component
 export default class PageSwap extends AbstractView {
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     pageData = this.myProxy.pageData;
     fagProxy: FagProxy = this.getProxy(FagProxy);
-    trail = this.myProxy.pageData.trial;
+    trial = this.myProxy.pageData.trial;
+    parameter = this.myProxy.parameter;
     GamePlatConfig = GamePlatConfig;
 
     constructor() {
@@ -28,6 +32,14 @@ export default class PageSwap extends AbstractView {
         return this.myProxy.pageData.swap_setting_info.tolerance_params;
     }
 
+    @Watch("pageData.amount_a")
+    onWatchAmount_A() {
+        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+        this.myProxy.pageData.amount_b = "";
+        this.myProxy.api_user_var_swap_trial()
+    }
+
     mouseover() {
         this.pageData.icon = "mdi-swap-vertical";
     }
@@ -39,6 +51,9 @@ export default class PageSwap extends AbstractView {
     /**交易对调 */
     private tradeSwap() {
         this.myProxy.tradeReverse();
+        this.myProxy.pageData.amount_a = "";
+        this.myProxy.pageData.amount_b = "";
+        this.myProxy.resetTrial();
     }
 
     /**交易对调 */
@@ -46,13 +61,39 @@ export default class PageSwap extends AbstractView {
         this.myProxy.chartReverse();
     }
 
+    onChange() {
+        if (this.myProxy.pageData.amount_a != "") {
+            this.myProxy.api_user_var_swap_trial();
+        }
+    }
+
+    handlerAll() {
+        //@ts-ignore
+        this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].sum_money;
+        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+        this.myProxy.api_user_var_swap_trial()
+    }
+
     handlerRecord() {
         dialog_swap_record.show();
     }
 
     handlerRefresh() {
+        this.myProxy.pageData.amount_a = "";
+        this.myProxy.pageData.amount_b = "";
+        this.myProxy.resetParameter();
         this.myProxy.api_plat_var_swap_setting_info();
         this.myProxy.api_user_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();
+    }
+
+    handlerTrade() {
+        dialog_message_box.confirm({
+            message: LangUtil("确定要交换?"),
+            okFun: () => {
+                this.myProxy.api_user_var_swap_create_order();
+            },
+        });
     }
 }

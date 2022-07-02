@@ -44,4 +44,8 @@ export default class CustomInput extends AbstractView {
     onToggle() {
         this.bShowPassword = !this.bShowPassword;
     }
+
+    onClick() {
+        this.$emit("click");
+    }
 }

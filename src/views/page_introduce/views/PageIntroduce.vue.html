@@ -382,14 +382,14 @@
                     </v-card-text>
                     <v-card-actions class="pa-4 d-flex" :class="$vuetify.breakpoint.mdAndUp ? '' : 'justify-end'">
                         <v-btn
-                            disabled
                             rounded
                             color="white"
                             height="48"
                             :min-width="$vuetify.breakpoint.mdAndUp ? '170' : '118'"
                             class="text-body-1 indigo--text text--darken-2 px-4"
+                            @click="goExtension"
                         >
-                            {{LangUtil("敬请期待")}}
+                            {{LangUtil("去推广赚钱")}}
                         </v-btn>
                     </v-card-actions>
                 </v-card>

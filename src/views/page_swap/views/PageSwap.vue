@@ -7,12 +7,14 @@ import PageSwap from "./PageSwap";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import Question from "@/views/widget/question/Question.vue";
+import Chart from "../widget/Chart.vue";
 
 @Component({
     components: {
         Overlay,
         CustomInput,
         Question,
+        Chart,
     },
 })
 export default class extends PageSwap {

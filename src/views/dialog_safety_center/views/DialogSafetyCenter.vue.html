@@ -155,28 +155,22 @@
             </v-card-text>
             <!-- 修改密码 -->
             <v-card-text v-if="pageData.tabIndex == 2" class="px-5 px-md-10">
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入原始密码')"
-                    type="password"
-                    maxlength="20"
                     v-model="formChangePassword.password_old"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
-                    type="password"
-                    maxlength="20"
                     v-model="formChangePassword.password"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('确认密码（6-20位）')"
-                    type="password"
-                    maxlength="20"
                     v-model="formChangePassword.password_confirm"
                 />
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">

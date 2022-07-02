@@ -56,7 +56,7 @@
         </v-col>
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
-            <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" type="password" v-model="form.password">
+            <CustomPassword class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.password">
                 <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
             </CustomInput>
         </v-col>

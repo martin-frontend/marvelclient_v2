@@ -134,20 +134,16 @@
                     maxlength="6"
                     v-model="form.verify_code"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
-                    maxlength="20"
-                    type="password"
                     v-model="form.password"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('确认密码（6-20位）')"
-                    maxlength="20"
-                    type="password"
                     v-model="form.password_confirm"
                 />
                 <CustomInput

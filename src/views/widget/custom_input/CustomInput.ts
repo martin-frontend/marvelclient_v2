@@ -23,27 +23,9 @@ export default class CustomInput extends AbstractView {
     get getValue() {
         return this.value ? this.value : "";
     }
-<<<<<<< HEAD
-=======
-
-    getType(): string {
-        if (this.type == "password") {
-            return this.bShowPassword ? this.type : "text";
-        }
-        return this.type;
-    }
 
     onClear() {
         this.inputValue = "";
         this.$emit("input", this.inputValue);
     }
-
-    onToggle() {
-        this.bShowPassword = !this.bShowPassword;
-    }
-
-    onClick() {
-        this.$emit("click");
-    }
->>>>>>> 75903d1d1dbfe4e171898c62da1e60e085c27487
 }

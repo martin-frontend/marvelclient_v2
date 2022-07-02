@@ -34,10 +34,47 @@ export default class PageSwap extends AbstractView {
 
     @Watch("pageData.amount_a")
     onWatchAmount_A() {
+        if (this.myProxy.pageData.amount_a == "") {
+            this.myProxy.pageData.amount_b = "";
+            return
+        }
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        this.myProxy.pageData.amount_b = "";
-        this.myProxy.api_user_var_swap_trial()
+        if (this.myProxy.pageData.inputFlag == '') {
+            this.myProxy.pageData.inputFlag = 'A';
+            this.myProxy.api_user_var_swap_trial()
+        } else if (this.myProxy.pageData.inputFlag == 'B' && this.myProxy.pageData.amount_a == "") {
+            this.myProxy.pageData.inputFlag = 'A';
+            this.myProxy.api_user_var_swap_trial();
+        } else if (this.myProxy.pageData.inputFlag == 'B') {
+            return
+        } else {
+            this.myProxy.pageData.inputFlag = 'A';
+            this.myProxy.api_user_var_swap_trial();
+        }
+    }
+
+    @Watch("pageData.amount_b")
+    onWatchAmount_B() {
+        if (this.myProxy.pageData.amount_b == "") {
+            this.myProxy.pageData.amount_a = "";
+            return
+        }
+
+        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
+        this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
+        if (this.myProxy.pageData.inputFlag == '') {
+            this.myProxy.pageData.inputFlag = 'B';
+            this.myProxy.api_user_var_swap_trial();
+        } else if (this.myProxy.pageData.inputFlag == 'A' && this.myProxy.pageData.amount_a == "") {
+            this.myProxy.pageData.inputFlag = 'B';
+            this.myProxy.api_user_var_swap_trial();
+        } else if (this.myProxy.pageData.inputFlag == 'A') {
+            return
+        } else {
+            this.myProxy.pageData.inputFlag = 'B';
+            this.myProxy.api_user_var_swap_trial();
+        }
     }
 
     mouseover() {
@@ -51,8 +88,6 @@ export default class PageSwap extends AbstractView {
     /**交易对调 */
     private tradeSwap() {
         this.myProxy.tradeReverse();
-        this.myProxy.pageData.amount_a = "";
-        this.myProxy.pageData.amount_b = "";
         this.myProxy.resetTrial();
     }
 
@@ -63,11 +98,14 @@ export default class PageSwap extends AbstractView {
 
     onChange() {
         if (this.myProxy.pageData.amount_a != "") {
+            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+            this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
             this.myProxy.api_user_var_swap_trial();
         }
     }
 
     handlerAll() {
+        this.myProxy.pageData.inputFlag = "A"
         //@ts-ignore
         this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].sum_money;
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
@@ -80,9 +118,9 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRefresh() {
-        this.myProxy.pageData.amount_a = "";
-        this.myProxy.pageData.amount_b = "";
+        this.myProxy.pageData.inputFlag = "";
         this.myProxy.resetParameter();
+        this.myProxy.resetTrial();
         this.myProxy.api_plat_var_swap_setting_info();
         this.myProxy.api_user_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();

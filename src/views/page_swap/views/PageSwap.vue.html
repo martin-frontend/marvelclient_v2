@@ -73,8 +73,11 @@
                         <CustomInput
                             type="all"
                             v-model="pageData.amount_a"
-                            @click="handlerAll"
-                        />
+                        >
+                            <v-btn class="d-flex align-center mr-2 text-sm-subtitle-1" icon min-width="32" color="colorTextAll" width="20" height="20" @click="handlerAll">
+                                全部
+                            </v-btn>
+                        </CustomInput>
                         <div class="d-flex justify-center my-4">
                             <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave" @click="tradeSwap">
                                 <v-icon>{{ pageData.icon }}</v-icon>

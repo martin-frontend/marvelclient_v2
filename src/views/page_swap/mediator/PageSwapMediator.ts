@@ -19,6 +19,7 @@ export default class PageSwapMediator extends AbstractMediator {
             net.EventType.api_plat_var_swap_setting_info,
             net.EventType.api_user_var_swap_trial,
             net.EventType.api_plat_var_swap_k,
+            net.EventType.api_user_var_swap_create_order,
         ];
     }
 
@@ -36,6 +37,7 @@ export default class PageSwapMediator extends AbstractMediator {
                 this.myProxy.setSwapK(body);
                 break;
             case net.EventType.api_user_var_swap_create_order:
+                this.myProxy.resetTrial();
                 dialog_message.success(LangUtil("交换成功"));
                 break;
 

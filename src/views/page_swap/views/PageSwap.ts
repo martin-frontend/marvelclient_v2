@@ -96,6 +96,7 @@ export default class PageSwap extends AbstractView {
     /**交易对调 */
     private chartSwap() {
         this.myProxy.chartReverse();
+        this.myProxy.api_plat_var_swap_k()
     }
 
     onTimeChange() {

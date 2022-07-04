@@ -36,12 +36,37 @@ export default class PageSwapProxy extends puremvc.Proxy {
             coin_b: "",
             coin_b_a_changed: "", // 币B兑币A增幅价格
             swap_price_log: [],
+            number: 0,
         },
         changed: "",
         changedFlag: false,
         price: "",
         chartTime: "",
+        coin_a_b_price: [],
+        coin_b_a_price: [],
+        created_time: [],
     };
+
+    /**曲线图数据 */
+    chartData = {
+        option: {
+            xAxis: {
+                type: "category",
+                boundaryGap: false,
+                data: [],
+            },
+            yAxis: {
+                type: "value",
+            },
+            series: [
+                {
+                    data: [],
+                    type: "line",
+                    areaStyle: {},
+                },
+            ],
+        },
+    }
 
     resetParameter() {
         Object.assign(this.parameter, {
@@ -64,6 +89,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         });
     }
 
+    /** 基础信息*/
     setData(data: any) {
         Object.assign(this.pageData.swap_setting_info, data);
         this.pageData.chart_a = data.coin_a;
@@ -71,6 +97,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         this.pageData.swap_setting_info.tolerance_params = data.tolerance_params;
     }
 
+    /** 试算*/
     setTrial(data: any) {
         Object.assign(this.pageData.trial, data);
         if (this.pageData.inputFlag == "") {
@@ -83,13 +110,37 @@ export default class PageSwapProxy extends puremvc.Proxy {
         }
     }
 
+    /** 价格图*/
     setSwapK(data: any) {
+        this.chartData.option.series[0].data = [];
+        this.chartData.option.xAxis.data = [];
         Object.assign(this.pageData.swap_k, data);
+
         this.pageData.changed = this.pageData.swap_k.coin_a_b_changed;
         //@ts-ignore
         this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
         //@ts-ignore
         this.pageData.chartTime = this.pageData.swap_k.swap_price_log[0].created_time;
+
+        const swap_price_log = this.getObject(data.swap_price_log);
+        if (this.pageData.timeSelect == 0) {
+            console.log(swap_price_log.created_time);
+
+
+        } else {
+            console.log(swap_price_log.created_time);
+        }
+
+        Object.assign(this.chartData.option.series[0].data, swap_price_log.coin_a_b_price.reverse());
+        Object.assign(this.chartData.option.xAxis.data, swap_price_log.created_time.reverse());
+        // this.pageData.coin_a_b_price = swap_price_log.coin_a_b_price;
+        // this.pageData.coin_b_a_price = swap_price_log.coin_b_a_price;
+        // this.pageData.created_time = swap_price_log.created_time;
+        // console.log(this.pageData.coin_a_b_price);
+        // console.log(this.pageData.coin_b_a_price);
+        // console.log(this.pageData.created_time);
+
+        this.pageData.swap_k.number++;
     }
 
     /** 交换互换*/
@@ -104,6 +155,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** Chart互换*/
     chartReverse() {
+        this.api_plat_var_swap_k()
         const target = this.pageData.chart_b;
         this.pageData.chart_b = this.pageData.chart_a;
         this.pageData.chart_a = target;
@@ -117,6 +169,16 @@ export default class PageSwapProxy extends puremvc.Proxy {
             //@ts-ignore
             this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
         }
+    }
+
+    getObject(array: any) {
+        return array.reduce(function (r: { [x: string]: { [x: string]: any; }; }, o: { [x: string]: any; }, i: string | number) {
+            Object.keys(o).forEach(function (k) {
+                r[k] = r[k] || [];
+                r[k][i] = o[k];
+            });
+            return r;
+        }, {});
     }
 
     /**Swap--Swap基础信息*/

@@ -42,8 +42,10 @@ export default class DialogTradePassword extends AbstractView {
 
     getCode() {
         if ((this.userInfo.phone != "" && this.userInfo.phone != undefined)) {
+            this.pageData.code_type = 1;
             dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
         } else if ((this.userInfo.email != "" && this.userInfo.email != undefined)) {
+            this.pageData.code_type = 2;
             dialog_get_verity.showEmailVerity(5, this.userInfo.email); //获取邮箱验证码
         } else if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && !(this.userInfo.email != "" && this.userInfo.email != undefined)) {
             dialog_message_box.confirm({
@@ -53,6 +55,7 @@ export default class DialogTradePassword extends AbstractView {
                 },
             });
         } else {
+            this.pageData.code_type = 1;
             dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
         }
     }

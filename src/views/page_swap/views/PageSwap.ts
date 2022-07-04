@@ -124,6 +124,7 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRefresh() {
+        this.myProxy.pageData.changedFlag = false;
         this.myProxy.pageData.inputFlag = "";
         this.myProxy.resetParameter();
         this.myProxy.resetTrial();

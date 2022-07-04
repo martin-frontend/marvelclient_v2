@@ -26,6 +26,7 @@ export default class DialogNickName extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        this.myProxy.pageData.nickname = "";
     }
 
     get isCheckedId(): boolean {

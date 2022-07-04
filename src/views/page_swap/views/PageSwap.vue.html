@@ -70,11 +70,11 @@
                                 <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_a">{{ pageData.swap_setting_info.coin_a }}</div>
                             </span>
                             <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a]">
-                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a].sum_money }}
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a].plat_money }}
                             </span>
                         </div>
                         <CustomInput
-                            type="all"
+                            type="number"
                             v-model="pageData.amount_a"
                         >
                             <v-btn class="d-flex align-center mr-2 text-sm-subtitle-1" icon min-width="32" color="colorTextAll" width="20" height="20" @click="handlerAll">
@@ -93,10 +93,11 @@
                                 <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_b">{{ pageData.swap_setting_info.coin_b }}</div>
                             </span>
                             <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b]">
-                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b].sum_money }}
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b].plat_money }}
                             </span>
                         </span>
                         <CustomInput
+                            type="number"
                             class="mb-3 mb-sm-6"
                             v-model="pageData.amount_b"
                         />

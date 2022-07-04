@@ -9,6 +9,7 @@ export default class PageSwapMediator extends AbstractMediator {
     LangUtil = LangUtil;
 
     protected initViewData(): void {
+        this.myProxy.pageData.timeSelect = 0;
         this.myProxy.api_plat_var_swap_setting_info();
         this.myProxy.api_user_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();

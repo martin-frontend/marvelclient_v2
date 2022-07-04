@@ -45,6 +45,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         coin_a_b_price: [],
         coin_b_a_price: [],
         created_time: [],
+        swap_price_log: <any>[],
     };
 
     /**曲线图数据 */
@@ -122,24 +123,22 @@ export default class PageSwapProxy extends puremvc.Proxy {
         //@ts-ignore
         this.pageData.chartTime = this.pageData.swap_k.swap_price_log[0].created_time;
 
-        const swap_price_log = this.getObject(data.swap_price_log);
+        this.pageData.swap_price_log = this.getObject(data.swap_price_log);
+        this.pageData.swap_price_log.coin_a_b_price = this.pageData.swap_price_log.coin_a_b_price.reverse();
+        this.pageData.swap_price_log.coin_b_a_price = this.pageData.swap_price_log.coin_b_a_price.reverse();
+        this.pageData.swap_price_log.created_time = this.pageData.swap_price_log.created_time.reverse();
+        const swap_price_log = this.pageData.swap_price_log;
         if (this.pageData.timeSelect == 0) {
-            console.log(swap_price_log.created_time);
-
-
+            for (let i = 0; i < swap_price_log.created_time.length; i++) {
+                swap_price_log.created_time[i] = (swap_price_log.created_time[i].split(" ")[1]).substr(0, 5);
+            }
         } else {
-            console.log(swap_price_log.created_time);
+            for (let i = 0; i < swap_price_log.created_time.length; i++) {
+                swap_price_log.created_time[i] = (swap_price_log.created_time[i].split(" ")[0]).substr(5);
+            }
         }
-
-        Object.assign(this.chartData.option.series[0].data, swap_price_log.coin_a_b_price.reverse());
-        Object.assign(this.chartData.option.xAxis.data, swap_price_log.created_time.reverse());
-        // this.pageData.coin_a_b_price = swap_price_log.coin_a_b_price;
-        // this.pageData.coin_b_a_price = swap_price_log.coin_b_a_price;
-        // this.pageData.created_time = swap_price_log.created_time;
-        // console.log(this.pageData.coin_a_b_price);
-        // console.log(this.pageData.coin_b_a_price);
-        // console.log(this.pageData.created_time);
-
+        Object.assign(this.chartData.option.series[0].data, swap_price_log.coin_a_b_price);
+        Object.assign(this.chartData.option.xAxis.data, swap_price_log.created_time); //时间轴
         this.pageData.swap_k.number++;
     }
 
@@ -155,19 +154,23 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** Chart互换*/
     chartReverse() {
-        this.api_plat_var_swap_k()
         const target = this.pageData.chart_b;
         this.pageData.chart_b = this.pageData.chart_a;
         this.pageData.chart_a = target;
         this.pageData.changedFlag = !this.pageData.changedFlag;
+        this.chartData.option.series[0].data = [];
         if (this.pageData.changedFlag) {
             this.pageData.changed = this.pageData.swap_k.coin_b_a_changed;
             //@ts-ignore
             this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_b_a_price;
+            Object.assign(this.chartData.option.series[0].data, this.pageData.swap_price_log.coin_b_a_price);
+            this.pageData.swap_k.number++;
         } else {
             this.pageData.changed = this.pageData.swap_k.coin_a_b_changed;
             //@ts-ignore
             this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
+            Object.assign(this.chartData.option.series[0].data, this.pageData.swap_price_log.coin_a_b_price);
+            this.pageData.swap_k.number++;
         }
     }
 

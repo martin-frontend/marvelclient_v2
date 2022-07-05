@@ -39,6 +39,7 @@ export default class PageSwap extends AbstractView {
             this.myProxy.resetTrial();
             return;
         }
+
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
         if (this.myProxy.pageData.inputFlag == "") {
@@ -62,7 +63,6 @@ export default class PageSwap extends AbstractView {
             this.myProxy.resetTrial();
             return;
         }
-
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
         if (this.myProxy.pageData.inputFlag == "") {
@@ -89,8 +89,12 @@ export default class PageSwap extends AbstractView {
 
     /**交易对调 */
     private tradeSwap() {
+        this.myProxy.pageData.tradeFlag = 1;
         this.myProxy.tradeReverse();
         this.myProxy.resetTrial();
+        this.parameter.from_coin = this.pageData.swap_setting_info.coin_a;
+        this.parameter.from_coin_number = 1;
+        this.myProxy.api_user_var_swap_trial()
     }
 
     /**交易对调 */

@@ -12,7 +12,6 @@ export default class PageSwapMediator extends AbstractMediator {
         this.myProxy.pageData.timeSelect = 0;
         this.myProxy.resetTrial();
         this.myProxy.api_plat_var_swap_setting_info();
-        this.myProxy.api_user_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();
     }
 
@@ -31,7 +30,9 @@ export default class PageSwapMediator extends AbstractMediator {
         const myProxy: PageSwapProxy = getProxy(PageSwapProxy);
         switch (notification.getName()) {
             case net.EventType.api_plat_var_swap_setting_info:
+                myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
                 this.myProxy.setData(body);
+                this.myProxy.api_user_var_swap_trial();
                 break;
             case net.EventType.api_user_var_swap_trial:
                 this.myProxy.setTrial(body);

@@ -4,7 +4,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
     /**参数 */
     parameter: any = {
         from_coin: "",
-        from_coin_number: 0,
+        from_coin_number: 1,
         tolerance: 0,
         user_id: 0,
     };
@@ -46,6 +46,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         coin_b_a_price: [],
         created_time: [],
         swap_price_log: <any>[],
+        tradeFlag: 1,
     };
 
     /**曲线图数据 */
@@ -100,14 +101,24 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** 试算*/
     setTrial(data: any) {
+        console.log(this.pageData.tradeFlag);
+        if (this.pageData.tradeFlag == 1) {
+            this.pageData.trial.price = data.price;
+            this.pageData.trial.min_to_coin_number = "0";
+            this.pageData.trial.affect_price = "0";
+            this.pageData.trial.swap_fee = "0";
+            this.pageData.tradeFlag = 0;
+            return;
+        }
+
         Object.assign(this.pageData.trial, data);
         if (this.pageData.inputFlag == "") {
             return;
         }
         if (this.pageData.inputFlag == "A") {
             this.pageData.amount_b = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
-        } else {
-            this.pageData.amount_a = (Number(this.pageData.amount_b) / Number(this.pageData.trial.price)).toString();
+        } else if (this.pageData.inputFlag == "B") {
+            this.pageData.amount_a = (Number(this.pageData.amount_b) * Number(this.pageData.trial.price)).toString();
         }
     }
 

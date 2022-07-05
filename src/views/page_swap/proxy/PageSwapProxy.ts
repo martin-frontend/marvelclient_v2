@@ -28,7 +28,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
             affect_price: "", // 影响价格
             swap_fee: "", // 手续费
         },
-        inputFlag: "",
         timeSelect: 0,
         swap_k: {
             coin_a: "",
@@ -39,14 +38,16 @@ export default class PageSwapProxy extends puremvc.Proxy {
             number: 0,
         },
         changed: "",
-        changedFlag: false,
+        changedFlag: false, // Chart互换
         price: "",
         chartTime: "",
         coin_a_b_price: [],
         coin_b_a_price: [],
         created_time: [],
         swap_price_log: <any>[],
-        tradeFlag: 1,
+        tradeFlag: 1, // 上下对调
+        inputChangeFlag: false, // 判断是否有输入
+        inputType: "", // 判断输入匡
     };
 
     /**曲线图数据 */
@@ -101,7 +102,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** 试算*/
     setTrial(data: any) {
-        console.log(this.pageData.tradeFlag);
+        // 上下对调
         if (this.pageData.tradeFlag == 1) {
             this.pageData.trial.price = data.price;
             this.pageData.trial.min_to_coin_number = "0";
@@ -112,14 +113,24 @@ export default class PageSwapProxy extends puremvc.Proxy {
         }
 
         Object.assign(this.pageData.trial, data);
-        if (this.pageData.inputFlag == "") {
-            return;
-        }
-        if (this.pageData.inputFlag == "A") {
+        if (this.pageData.inputType == "A") {
             this.pageData.amount_b = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
-        } else if (this.pageData.inputFlag == "B") {
-            this.pageData.amount_a = (Number(this.pageData.amount_b) * Number(this.pageData.trial.price)).toString();
+        } else if (this.pageData.inputType == "B") {
+            this.pageData.trial.price = (1 / data.price).toString();
+            this.pageData.amount_a = (Number(this.pageData.amount_b) / Number(this.pageData.trial.price)).toString();
         }
+        else {
+            this.pageData.amount_a = "";
+            this.pageData.amount_b = "";
+        }
+        // if (this.pageData.inputFlag == "") {
+        //     return;
+        // }
+        // if (this.pageData.inputFlag == "A") {
+        //     this.pageData.amount_b = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
+        // } else if (this.pageData.inputFlag == "B") {
+        //     this.pageData.amount_a = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
+        // }
     }
 
     /** 价格图*/

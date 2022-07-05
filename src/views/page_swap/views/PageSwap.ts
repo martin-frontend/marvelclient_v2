@@ -20,6 +20,17 @@ export default class PageSwap extends AbstractView {
     parameter = this.myProxy.parameter;
     GamePlatConfig = GamePlatConfig;
 
+    mounted() {
+        setInterval(
+            () => {
+                if (this.myProxy.pageData.inputChangeFlag == true) {
+                    this.myProxy.api_user_var_swap_trial();
+                    this.myProxy.pageData.inputChangeFlag = false;
+                }
+            }
+            , 3000);
+    }
+
     constructor() {
         super(PageSwapMediator);
     }
@@ -32,52 +43,52 @@ export default class PageSwap extends AbstractView {
         return this.myProxy.pageData.swap_setting_info.tolerance_params;
     }
 
-    @Watch("pageData.amount_a")
-    onWatchAmount_A() {
-        if (this.myProxy.pageData.amount_a == "") {
-            this.myProxy.pageData.amount_b = "";
-            this.myProxy.resetTrial();
-            return;
-        }
+    // @Watch("pageData.amount_a")
+    // onWatchAmount_A() {
+    //     if (this.myProxy.pageData.amount_a == "") {
+    //         this.myProxy.pageData.amount_b = "";
+    //         this.myProxy.resetTrial();
+    //         return;
+    //     }
 
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        if (this.myProxy.pageData.inputFlag == "") {
-            this.myProxy.pageData.inputFlag = "A";
-            this.myProxy.api_user_var_swap_trial();
-        } else if (this.myProxy.pageData.inputFlag == "B" && this.myProxy.pageData.amount_a == "") {
-            this.myProxy.pageData.inputFlag = "A";
-            this.myProxy.api_user_var_swap_trial();
-        } else if (this.myProxy.pageData.inputFlag == "B") {
-            return;
-        } else {
-            this.myProxy.pageData.inputFlag = "A";
-            this.myProxy.api_user_var_swap_trial();
-        }
-    }
+    //     this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+    //     this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+    //     if (this.myProxy.pageData.inputFlag == "") {
+    //         this.myProxy.pageData.inputFlag = "A";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     } else if (this.myProxy.pageData.inputFlag == "B" && this.myProxy.pageData.amount_a == "") {
+    //         this.myProxy.pageData.inputFlag = "A";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     } else if (this.myProxy.pageData.inputFlag == "B") {
+    //         return;
+    //     } else {
+    //         this.myProxy.pageData.inputFlag = "A";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     }
+    // }
 
-    @Watch("pageData.amount_b")
-    onWatchAmount_B() {
-        if (this.myProxy.pageData.amount_b == "") {
-            this.myProxy.pageData.amount_a = "";
-            this.myProxy.resetTrial();
-            return;
-        }
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
-        if (this.myProxy.pageData.inputFlag == "") {
-            this.myProxy.pageData.inputFlag = "B";
-            this.myProxy.api_user_var_swap_trial();
-        } else if (this.myProxy.pageData.inputFlag == "A" && this.myProxy.pageData.amount_a == "") {
-            this.myProxy.pageData.inputFlag = "B";
-            this.myProxy.api_user_var_swap_trial();
-        } else if (this.myProxy.pageData.inputFlag == "A") {
-            return;
-        } else {
-            this.myProxy.pageData.inputFlag = "B";
-            this.myProxy.api_user_var_swap_trial();
-        }
-    }
+    // @Watch("pageData.amount_b")
+    // onWatchAmount_B() {
+    //     if (this.myProxy.pageData.amount_b == "") {
+    //         this.myProxy.pageData.amount_a = "";
+    //         this.myProxy.resetTrial();
+    //         return;
+    //     }
+    //     this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
+    //     this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
+    //     if (this.myProxy.pageData.inputFlag == "") {
+    //         this.myProxy.pageData.inputFlag = "B";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     } else if (this.myProxy.pageData.inputFlag == "A" && this.myProxy.pageData.amount_a == "") {
+    //         this.myProxy.pageData.inputFlag = "B";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     } else if (this.myProxy.pageData.inputFlag == "A") {
+    //         return;
+    //     } else {
+    //         this.myProxy.pageData.inputFlag = "B";
+    //         this.myProxy.api_user_var_swap_trial();
+    //     }
+    // }
 
     mouseover() {
         this.pageData.icon = "mdi-swap-vertical";
@@ -85,6 +96,58 @@ export default class PageSwap extends AbstractView {
 
     mouseleave() {
         this.pageData.icon = "mdi-arrow-down";
+    }
+
+    amount_a() {
+        this.myProxy.pageData.amount_b = "";
+        if (this.myProxy.pageData.amount_a == "") {
+            this.myProxy.pageData.amount_b = "";
+            this.myProxy.resetTrial();
+            return;
+        }
+        this.myProxy.pageData.inputChangeFlag = true;
+
+        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+        this.myProxy.pageData.inputType = "A";
+        // if (this.myProxy.pageData.inputFlag == "") {
+        //     this.myProxy.pageData.inputFlag = "A";
+        //     this.myProxy.api_user_var_swap_trial();
+        // } else if (this.myProxy.pageData.inputFlag == "B" && this.myProxy.pageData.amount_a == "") {
+        //     this.myProxy.pageData.inputFlag = "A";
+        //     this.myProxy.api_user_var_swap_trial();
+        // } else if (this.myProxy.pageData.inputFlag == "B") {
+        //     return;
+        // } else {
+        //     this.myProxy.pageData.inputFlag = "A";
+        //     this.myProxy.api_user_var_swap_trial();
+        // }
+    }
+
+    amount_b() {
+        this.myProxy.pageData.amount_a = "";
+        if (this.myProxy.pageData.amount_b == "") {
+            this.myProxy.pageData.amount_a = "";
+            this.myProxy.resetTrial();
+            return;
+        }
+        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
+        this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
+        this.myProxy.pageData.inputType = "B";
+
+        this.myProxy.pageData.inputChangeFlag = true;
+        // if (this.myProxy.pageData.inputFlag == "") {
+        //     this.myProxy.pageData.inputFlag = "B";
+        //     this.myProxy.api_user_var_swap_trial();
+        // } else if (this.myProxy.pageData.inputFlag == "A" && this.myProxy.pageData.amount_a == "") {
+        //     this.myProxy.pageData.inputFlag = "B";
+        //     this.myProxy.api_user_var_swap_trial();
+        // } else if (this.myProxy.pageData.inputFlag == "A") {
+        //     return;
+        // } else {
+        //     this.myProxy.pageData.inputFlag = "B";
+        //     this.myProxy.api_user_var_swap_trial();
+        // }
     }
 
     /**交易对调 */
@@ -107,17 +170,21 @@ export default class PageSwap extends AbstractView {
     }
 
     onChange() {
-        if (this.myProxy.pageData.amount_a != "") {
+        if (this.myProxy.pageData.inputType == "A") {
             this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
             this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+            this.myProxy.api_user_var_swap_trial();
+        } else {
+            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
+            this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
             this.myProxy.api_user_var_swap_trial();
         }
     }
 
     handlerAll() {
-        this.myProxy.pageData.inputFlag = "A";
+        this.myProxy.pageData.inputType = "A";
         //@ts-ignore
-        this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].sum_money;
+        this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].plat_money;
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
         this.myProxy.api_user_var_swap_trial();
@@ -129,7 +196,7 @@ export default class PageSwap extends AbstractView {
 
     handlerRefresh() {
         this.myProxy.pageData.changedFlag = false;
-        this.myProxy.pageData.inputFlag = "";
+        this.myProxy.pageData.inputChangeFlag = false
         this.myProxy.resetParameter();
         this.myProxy.resetTrial();
         this.myProxy.api_plat_var_swap_setting_info();

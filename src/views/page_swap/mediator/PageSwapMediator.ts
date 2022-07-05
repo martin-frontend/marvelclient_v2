@@ -3,10 +3,12 @@ import PageSwapProxy from "../proxy/PageSwapProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
+import SelfProxy from "@/proxy/SelfProxy";
 
 export default class PageSwapMediator extends AbstractMediator {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     LangUtil = LangUtil;
+    private selfProxy: SelfProxy = getProxy(SelfProxy);
 
     protected initViewData(): void {
         this.myProxy.pageData.timeSelect = 0;
@@ -43,9 +45,9 @@ export default class PageSwapMediator extends AbstractMediator {
             case net.EventType.api_user_var_swap_create_order:
                 this.myProxy.resetTrial();
                 dialog_message.success(LangUtil("交换成功"));
+                this.selfProxy.api_user_show_var([2]);
                 break;
             case net.EventType.api_user_var_mail_var_receive:
-
                 break;
         }
     }

@@ -171,6 +171,41 @@
                     </div>
                 </v-card>
             </v-col>
+            <!-- 手机 Swap -->
+            <v-col cols="12" lg="8" class="pr-lg-2 mt-3" v-if="$vuetify.breakpoint.xsOnly">
+                <v-card class="rounded-lg pa-4" height="100%" color="colorPanelBg4" flat>
+                    <div class="d-flex align-end">
+                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chart_a].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chart_b].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <span class="text-14 mx-4 colorBlue--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
+                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
+                            <v-icon>
+                                mdi-swap-horizontal
+                            </v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <CustomSelect
+                            class="ml-1 timeSelect"
+                            v-model="pageData.timeSelect"
+                            height="30"
+                            width="105"
+                            :options="listOptions.timeOptions()"
+                            @change="onTimeChange"
+                        />
+                    </div>
+                    <div class="d-flex mt-2 align-center">
+                        <span class="text-24">{{ Number(pageData.price).toFixed(4)}}</span> 
+                        <span class="text-14 ml-1 colorText8--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
+                        <span class="text-14 ml-1" :class="(pageData.changed).substr(0,1) == '-'? 'red--text': 'green--text'">{{ pageData.changed }}</span>
+                        
+                    </div>
+                    <div class="mt-1 text-14 colorText8--text">{{ pageData.chartTime}}</div>
+                    <!-- chart -->
+                    <Chart />   
+                </v-card>
+            </v-col>
         </v-row>
         <Question :questions="questionData"></Question>
     </v-container>

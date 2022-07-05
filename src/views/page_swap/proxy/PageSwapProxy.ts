@@ -1,3 +1,4 @@
+import LangUtil from "@/core/global/LangUtil";
 export default class PageSwapProxy extends puremvc.Proxy {
     static NAME = "PageSwapProxy";
 
@@ -68,6 +69,18 @@ export default class PageSwapProxy extends puremvc.Proxy {
                     areaStyle: {},
                 },
             ],
+        },
+    }
+
+    //选择器
+    listOptions = {
+        timeOptions: () => {
+            return {
+                0: LangUtil("24小时"),
+                1: LangUtil("一周"),
+                2: LangUtil("一月"),
+                3: LangUtil("一年"),
+            }
         },
     }
 

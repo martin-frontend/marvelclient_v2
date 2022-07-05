@@ -19,6 +19,7 @@ export default class PageSwap extends AbstractView {
     trial = this.myProxy.pageData.trial;
     parameter = this.myProxy.parameter;
     GamePlatConfig = GamePlatConfig;
+    listOptions = this.myProxy.listOptions;
 
     mounted() {
         setInterval(

@@ -9,6 +9,7 @@
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
             v-model="form.block_network_id"
+            @change="onChangeSub" 
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>

@@ -37,6 +37,11 @@ export default class TabExchange extends AbstractView {
     onChange(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
+    }
+
+    onChangeSub(value: any) {
+        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
     }
 
     get isChecked(): boolean {

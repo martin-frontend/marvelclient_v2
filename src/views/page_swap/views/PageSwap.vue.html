@@ -112,16 +112,16 @@
                         </div>
                         <v-btn-toggle mandatory group class="btn_group_width" v-model="parameter.tolerance" @change="onChange">
                             <v-btn class="rounded-lg ml-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[0])*100).toFixed(4)))? (Number(tolerance[0])*100).toFixed(0):(Number(tolerance[0])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[0])).toFixed(4)))? (Number(tolerance[0])).toFixed(0):(Number(tolerance[0])).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[1])*100).toFixed(4)))? (Number(tolerance[1])*100).toFixed(0):Number.isInteger((Number(tolerance[1])*100).toFixed(4)) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[1])).toFixed(4)))? (Number(tolerance[1])).toFixed(0):Number.isInteger((Number(tolerance[1])).toFixed(4)) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[2])*100).toFixed(4)))? (Number(tolerance[2])*100).toFixed(0):(Number(tolerance[2])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[2])).toFixed(4)))? (Number(tolerance[2])).toFixed(0):(Number(tolerance[2])).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[3])*100).toFixed(4)))? (Number(tolerance[3])*100).toFixed(0):(Number(tolerance[3])*100).toFixed(4) }}% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[3])).toFixed(4)))? (Number(tolerance[3])).toFixed(0):(Number(tolerance[3])).toFixed(4) }}% </span>
                             </v-btn>
                         </v-btn-toggle>
                     </v-card-text>

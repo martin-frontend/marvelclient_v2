@@ -18,7 +18,7 @@ export default class DashboardDialog extends AbstractView {
     @Watch("myProxy.pageData.swap_k.number")
     private onChartInit() {
         let chartDome = this.$refs.chart as HTMLElement;
-        let myChart = echarts.init(chartDome);
+        let myChart = echarts.init(chartDome, { width: 700, height: 400 });
         myChart.clear();
         myChart.setOption(this.myProxy.chartData.option);
         window.onresize = function () {
@@ -31,6 +31,6 @@ export default class DashboardDialog extends AbstractView {
 <style lang="scss" scoped>
 .chart {
     width: 100%;
-    height: 300px;
+    height: 600px;
 }
 </style>

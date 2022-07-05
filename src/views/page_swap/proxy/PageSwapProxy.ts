@@ -60,13 +60,23 @@ export default class PageSwapProxy extends puremvc.Proxy {
                 data: [],
             },
             yAxis: {
+                show: false,
                 type: "value",
+                splitLine: {
+                    show: false,
+                }
             },
             series: [
                 {
                     data: [],
                     type: "line",
-                    areaStyle: {},
+                    areaStyle: {
+                        color: "#B22222",
+                    },
+                    symbol: "none", //去掉小圆点
+                    lineStyle: {
+                        color: "#B22222",
+                    }
                 },
             ],
         },
@@ -153,6 +163,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
         Object.assign(this.pageData.swap_k, data);
 
         this.pageData.changed = this.pageData.swap_k.coin_a_b_changed;
+        this.changeChartColor();
+
         //@ts-ignore
         this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
         //@ts-ignore
@@ -206,6 +218,18 @@ export default class PageSwapProxy extends puremvc.Proxy {
             this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
             Object.assign(this.chartData.option.series[0].data, this.pageData.swap_price_log.coin_a_b_price);
             this.pageData.swap_k.number++;
+        }
+        this.changeChartColor();
+    }
+
+    changeChartColor() {
+        if (this.pageData.changed.substring(0, 1) == '-') {
+            this.chartData.option.series[0].lineStyle.color = "#FF0000"
+            this.chartData.option.series[0].areaStyle.color = "#FF0000"
+        } else {
+            console.log(false);
+            this.chartData.option.series[0].lineStyle.color = "#4caf50"
+            this.chartData.option.series[0].areaStyle.color = "#4caf50"
         }
     }
 

@@ -60,11 +60,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
                 data: [],
             },
             yAxis: {
-                show: false,
+                show: false, // 隐藏y轴坐标
                 type: "value",
-                splitLine: {
-                    show: false,
-                }
             },
             series: [
                 {
@@ -73,7 +70,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
                     areaStyle: {
                         color: "#B22222",
                     },
-                    symbol: "none", //去掉小圆点
+                    // symbol: "none", // 去掉小圆点
                     lineStyle: {
                         color: "#B22222",
                     }

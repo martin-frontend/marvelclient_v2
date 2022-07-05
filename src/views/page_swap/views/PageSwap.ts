@@ -37,7 +37,7 @@ export default class PageSwap extends AbstractView {
     }
 
     get questionData() {
-        return this.fagProxy.qData.type3;
+        return this.fagProxy.qData.type4;
     }
 
     get tolerance() {

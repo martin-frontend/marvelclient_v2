@@ -84,10 +84,13 @@ export default class PageSwap extends AbstractView {
     private tradeSwap() {
         this.myProxy.pageData.tradeFlag = 1;
         this.myProxy.tradeReverse();
-        this.myProxy.resetTrial();
+        // this.myProxy.resetTrial();
         this.parameter.from_coin = this.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = 1;
-        this.myProxy.api_user_var_swap_trial()
+        const target = this.pageData.amount_b;
+        this.pageData.amount_b = this.pageData.amount_a;
+        this.pageData.amount_a = target;
+        // this.myProxy.api_user_var_swap_trial()
     }
 
     /**交易对调 */
@@ -113,6 +116,8 @@ export default class PageSwap extends AbstractView {
 
     handlerAll() {
         this.myProxy.pageData.inputType = "A";
+        this.myProxy.pageData.inputChangeFlag = true;
+        this.myProxy.pageData.amount_b = "";
         //@ts-ignore
         this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].plat_money;
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;

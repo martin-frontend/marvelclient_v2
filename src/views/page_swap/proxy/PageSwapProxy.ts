@@ -153,14 +153,17 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
         Object.assign(this.pageData.trial, data);
         if (this.pageData.inputType == "A") {
-            this.pageData.amount_b = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
+            this.pageData.amount_b = data.to_coin_number;
         } else if (this.pageData.inputType == "B") {
             this.pageData.trial.price = (1 / data.price).toString();
-            this.pageData.amount_a = (Number(this.pageData.amount_b) / Number(this.pageData.trial.price)).toString();
+            this.pageData.amount_a = data.to_coin_number;
         }
         else {
             this.pageData.amount_a = "";
             this.pageData.amount_b = "";
+            this.pageData.trial.min_to_coin_number = "0";
+            this.pageData.trial.affect_price = "0";
+            this.pageData.trial.swap_fee = "0";
         }
     }
 

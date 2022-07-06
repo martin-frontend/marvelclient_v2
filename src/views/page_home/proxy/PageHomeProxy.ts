@@ -9,6 +9,7 @@ export default class PageHomeProxy extends puremvc.Proxy {
         from_coin_number: 1,
         tolerance: 0,
         user_id: 0,
+        plat_id: core.plat_id,
     };
 
     pageData = {
@@ -49,8 +50,8 @@ export default class PageHomeProxy extends puremvc.Proxy {
     }
 
     /**Swap--Swap试算*/
-    api_user_var_swap_trial() {
-        this.parameter.user_id = core.user_id;
-        this.sendNotification(net.HttpType.api_user_var_swap_trial, this.parameter);
+    api_plat_var_swap_trial() {
+        this.parameter.plat_id = core.plat_id;
+        this.sendNotification(net.HttpType.api_plat_var_swap_trial, this.parameter);
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-chart class="chart" :option="myProxy.chartData.option" @highlight="onSelect" />
+        <v-chart ref="chart" class="chart" :option="myProxy.chartData.option" @highlight="onSelect" autoresize />
     </div>
 </template>
 
@@ -40,5 +40,8 @@ export default class DashboardDialog extends AbstractView {
 .chart {
     width: 100%;
     height: 600px;
+    @media (max-width: 600px) {
+        height: 300px;
+    }
 }
 </style>

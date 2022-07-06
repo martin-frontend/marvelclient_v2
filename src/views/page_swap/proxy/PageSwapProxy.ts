@@ -70,6 +70,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             },
             series: [
                 {
+                    name: "Chart",
                     data: [],
                     type: "line",
                     areaStyle: {
@@ -134,6 +135,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         Object.assign(this.pageData.swap_setting_info, data);
         this.pageData.chart_a = data.coin_a;
         this.pageData.chart_b = data.coin_b;
+        this.chartData.option.series[0].name = this.pageData.chart_a + "/" + this.pageData.chart_b;
         this.pageData.swap_setting_info.tolerance_params = data.tolerance_params;
     }
 
@@ -227,6 +229,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             this.pageData.swap_k.number++;
         }
         this.changeChartColor();
+        this.chartData.option.series[0].name = this.pageData.chart_a + "/" + this.pageData.chart_b;
     }
 
     changeChartColor() {

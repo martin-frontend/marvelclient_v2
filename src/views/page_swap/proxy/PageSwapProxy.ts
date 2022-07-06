@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import * as echarts from "echarts";
 export default class PageSwapProxy extends puremvc.Proxy {
     static NAME = "PageSwapProxy";
 
@@ -68,11 +69,22 @@ export default class PageSwapProxy extends puremvc.Proxy {
                     data: [],
                     type: "line",
                     areaStyle: {
-                        color: "#B22222",
+                        opacity: 0.1,
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
+                            {
+                                offset: 0,
+                                color: "rgb(205, 104, 104)"//这里是渐变色的起始颜色
+                            },
+                            {
+                                offset: 1,
+                                color: "#1a273f"// 这里是渐变色的结束颜色
+                            }
+                        ])
                     },
-                    // symbol: "none", // 去掉小圆点
+                    symbol: "none", // 去掉小圆点
                     lineStyle: {
-                        color: "#B22222",
+                        color: "rgba(205, 104, 104, 0.9)", //red
+                        width: 1,
                     }
                 },
             ],
@@ -155,6 +167,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** 价格图*/
     setSwapK(data: any) {
+        // to do 判断处理 changedFlag
         this.chartData.option.series[0].data = [];
         this.chartData.option.xAxis.data = [];
         Object.assign(this.pageData.swap_k, data);
@@ -221,12 +234,31 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     changeChartColor() {
         if (this.pageData.changed.substring(0, 1) == '-') {
-            this.chartData.option.series[0].lineStyle.color = "#FF0000"
-            this.chartData.option.series[0].areaStyle.color = "#FF0000"
+            // red
+            this.chartData.option.series[0].lineStyle.color = "rgba(205, 104, 104, 0.9)"
+            this.chartData.option.series[0].areaStyle.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
+                {
+                    offset: 0,
+                    color: "rgb(205, 104, 104)"//这里是渐变色的起始颜色
+                },
+                {
+                    offset: 1,
+                    color: "#1a273f"// 这里是渐变色的结束颜色
+                }
+            ])
         } else {
-            console.log(false);
-            this.chartData.option.series[0].lineStyle.color = "#4caf50"
-            this.chartData.option.series[0].areaStyle.color = "#4caf50"
+            // green
+            this.chartData.option.series[0].lineStyle.color = "rgba(104, 199, 205, 0.9)"
+            this.chartData.option.series[0].areaStyle.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
+                {
+                    offset: 0,
+                    color: "rgb(104, 199, 205)"//这里是渐变色的起始颜色
+                },
+                {
+                    offset: 1,
+                    color: "#1a273f"// 这里是渐变色的结束颜色
+                }
+            ])
         }
     }
 

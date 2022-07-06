@@ -3,6 +3,14 @@ import GameConfig from "@/core/config/GameConfig";
 export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
 
+    /**参数 */
+    parameter: any = {
+        from_coin: "CF",
+        from_coin_number: 1,
+        tolerance: 0,
+        user_id: 0,
+    };
+
     pageData = {
         loading: false,
         lobbyIndex: <core.PlatLobbyIndexVO[]>[],
@@ -14,6 +22,13 @@ export default class PageHomeProxy extends puremvc.Proxy {
             bonus_time: "0", // 下次分红时间
             coin_name_unique: "", // 质押币种
         },
+        trial: {
+            to_coin_number: "", // 获取量
+            price: "", // 兑换价格
+            min_to_coin_number: "", // 最小获取量
+            affect_price: "", // 影响价格
+            swap_fee: "", // 手续费
+        },
     };
 
     setLobbyIndex(body: any) {
@@ -24,7 +39,18 @@ export default class PageHomeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.stakeInfo, data);
     }
 
+    /** 试算*/
+    setTrial(data: any) {
+        Object.assign(this.pageData.trial, data);
+    }
+
     api_plat_var_stake_info() {
         this.sendNotification(net.HttpType.api_plat_var_stake_info, { plat_id: core.plat_id });
+    }
+
+    /**Swap--Swap试算*/
+    api_user_var_swap_trial() {
+        this.parameter.user_id = core.user_id;
+        this.sendNotification(net.HttpType.api_user_var_swap_trial, this.parameter);
     }
 }

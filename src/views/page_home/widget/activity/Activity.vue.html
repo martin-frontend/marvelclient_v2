@@ -16,7 +16,7 @@
                 <!-- <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div> -->
                 <div class="d-flex align-center rounded px-2 price ml-1 py-1 my-4">
                     <div class="text-14 mr-2">{{LangUtil("当前价格")}}</div>
-                    <div class="text-14 font-weight-bold">$0.01</div>
+                    <div class="text-14 font-weight-bold">${{ pageData.trial.price }}</div>
                 </div>
                 <v-sheet class="btn text-14 px-2 rounded-pill d-flex align-center justify-center" height="25" min-width="90">
                     {{LangUtil("前往交易")}}
@@ -38,7 +38,7 @@
 
             <div class="d-flex align-center rounded-lg px-5 price ml-5 my-9">
                 <div class="text-16 mr-2">{{LangUtil("当前价格")}}</div>
-                <div class="text-28 font-weight-bold price">$0.01</div>
+                <div class="text-28 font-weight-bold price">${{ pageData.trial.price }}</div>
             </div>
 
             <v-sheet class="btn text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="35" min-width="110">

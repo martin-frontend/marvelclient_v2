@@ -26,7 +26,7 @@ export default class DashboardDialog extends AbstractView {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
 
     onSelect(val: any) {
-        console.log(">>>>>>>", val);
+        this.myProxy.setChart_k(val.batch[0].dataIndex);
     }
 
     @Watch("$vuetify.breakpoint.width")

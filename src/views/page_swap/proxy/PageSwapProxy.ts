@@ -21,7 +21,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         swap_setting_info: {
             coin_a: "CF", // 币A
             coin_b: "USDT", // 币B
-            tolerance_params: [], // 容差,乘100显示,传值还是传这里的值
+            tolerance_params: [], // 容差
         },
         trial: {
             to_coin_number: "", // 获取量
@@ -196,6 +196,19 @@ export default class PageSwapProxy extends puremvc.Proxy {
         Object.assign(this.chartData.option.series[0].data, swap_price_log.coin_a_b_price);
         Object.assign(this.chartData.option.xAxis.data, swap_price_log.created_time); //时间轴
         this.pageData.swap_k.number++;
+    }
+
+    setChart_k(index: any) {
+        const length = this.pageData.swap_k.swap_price_log.length - 1;
+        if (this.pageData.changedFlag == false) {
+            //@ts-ignore
+            this.pageData.price = this.pageData.swap_k.swap_price_log[length - index].coin_a_b_price;
+        } else {
+            //@ts-ignore
+            this.pageData.price = this.pageData.swap_k.swap_price_log[length - index].coin_b_a_price;
+        }
+        //@ts-ignore
+        this.pageData.chartTime = this.pageData.swap_k.swap_price_log[length - index].created_time;
     }
 
     /** 交换互换*/

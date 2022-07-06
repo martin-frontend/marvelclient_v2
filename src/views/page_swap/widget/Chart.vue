@@ -1,29 +1,37 @@
 <template>
     <div>
-        <div ref="chart" class="chart"></div>
+        <v-chart class="chart" :option="myProxy.chartData.option" @highlight="onSelect" />
     </div>
 </template>
 
 <script lang="ts">
 import AbstractView from "@/core/abstract/AbstractView";
 import { Component, Vue, Watch } from "vue-property-decorator";
-import * as echarts from "echarts";
 import PageSwapProxy from "../proxy/PageSwapProxy";
 
-@Component
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { LineChart } from "echarts/charts";
+import { TitleComponent, TooltipComponent, LegendComponent } from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+
+use([CanvasRenderer, LineChart, TitleComponent, TooltipComponent, LegendComponent]);
+
+@Component({
+    components: {
+        VChart,
+    },
+})
 export default class DashboardDialog extends AbstractView {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
-    private echarts = echarts;
 
-    @Watch("myProxy.pageData.swap_k.number")
-    private onChartInit() {
-        let chartDome = this.$refs.chart as HTMLElement;
-        let myChart = echarts.init(chartDome, { width: 700, height: 400 });
-        myChart.clear();
-        myChart.setOption(this.myProxy.chartData.option);
-        window.onresize = function () {
-            myChart.resize();
-        };
+    onSelect(val: any) {
+        console.log(">>>>>>>", val);
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWathWidth() {
+        //重绘
     }
 }
 </script>

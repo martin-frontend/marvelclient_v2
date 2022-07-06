@@ -55,6 +55,9 @@ export default class PageSwapProxy extends puremvc.Proxy {
     /**曲线图数据 */
     chartData = {
         option: {
+            tooltip: {
+                trigger: "axis",
+            },
             xAxis: {
                 type: "category",
                 boundaryGap: false,

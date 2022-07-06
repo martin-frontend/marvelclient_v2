@@ -20,7 +20,7 @@ export default class PageSwapMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_plat_var_swap_setting_info,
-            net.EventType.api_user_var_swap_trial,
+            net.EventType.api_plat_var_swap_trial,
             net.EventType.api_plat_var_swap_k,
             net.EventType.api_user_var_swap_create_order,
             net.EventType.api_user_var_mail_var_receive,
@@ -34,9 +34,9 @@ export default class PageSwapMediator extends AbstractMediator {
             case net.EventType.api_plat_var_swap_setting_info:
                 myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
                 this.myProxy.setData(body);
-                this.myProxy.api_user_var_swap_trial();
+                this.myProxy.api_plat_var_swap_trial();
                 break;
-            case net.EventType.api_user_var_swap_trial:
+            case net.EventType.api_plat_var_swap_trial:
                 this.myProxy.setTrial(body);
                 break;
             case net.EventType.api_plat_var_swap_k:
@@ -49,7 +49,7 @@ export default class PageSwapMediator extends AbstractMediator {
                 myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
                 myProxy.parameter.from_coin_number = "1";
                 myProxy.pageData.inputType = "";
-                this.myProxy.api_user_var_swap_trial();
+                this.myProxy.api_plat_var_swap_trial();
                 break;
             case net.EventType.api_user_var_mail_var_receive:
                 break;

@@ -236,7 +236,7 @@ declare module net {
         /**--Swap--Swap价格图*/
         api_plat_var_swap_k: string;
         /**--Swap--Swap试算*/
-        api_user_var_swap_trial: string;
+        api_plat_var_swap_trial: string;
         /**--Swap--Swap兑换订单*/
         api_user_var_swap_order_list: string;
         /**--Swap--Swap创建订单*/
@@ -477,7 +477,7 @@ declare module net {
         /**--Swap--Swap价格图*/
         api_plat_var_swap_k: string;
         /**--Swap--Swap试算*/
-        api_user_var_swap_trial: string;
+        api_plat_var_swap_trial: string;
         /**--Swap--Swap兑换订单*/
         api_user_var_swap_order_list: string;
         /**--Swap--Swap创建订单*/
@@ -698,6 +698,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_swap_setting_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap试算
+ */
+declare module net {
+    class cmd_api_plat_var_swap_trial extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1463,15 +1472,6 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_swap_order_list extends puremvc.SimpleCommand {
-        execute(notification: puremvc.INotification): void;
-        private response;
-    }
-}
-/**
- * Swap试算
- */
-declare module net {
-    class cmd_api_user_var_swap_trial extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

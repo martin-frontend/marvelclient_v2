@@ -25,7 +25,7 @@ export default class PageSwap extends AbstractView {
         setInterval(
             () => {
                 if (this.myProxy.pageData.inputChangeFlag == true) {
-                    this.myProxy.api_user_var_swap_trial();
+                    this.myProxy.api_plat_var_swap_trial();
                     this.myProxy.pageData.inputChangeFlag = false;
                 }
             }
@@ -106,11 +106,11 @@ export default class PageSwap extends AbstractView {
         if (this.myProxy.pageData.inputType == "A") {
             this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
             this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-            this.myProxy.api_user_var_swap_trial();
+            this.myProxy.api_plat_var_swap_trial();
         } else {
             this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
             this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
-            this.myProxy.api_user_var_swap_trial();
+            this.myProxy.api_plat_var_swap_trial();
         }
     }
 
@@ -122,7 +122,7 @@ export default class PageSwap extends AbstractView {
         this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].plat_money;
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        this.myProxy.api_user_var_swap_trial();
+        this.myProxy.api_plat_var_swap_trial();
     }
 
     handlerRecord() {
@@ -135,7 +135,7 @@ export default class PageSwap extends AbstractView {
         this.myProxy.resetParameter();
         this.myProxy.resetTrial();
         this.myProxy.api_plat_var_swap_setting_info();
-        this.myProxy.api_user_var_swap_trial();
+        this.myProxy.api_plat_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();
     }
 

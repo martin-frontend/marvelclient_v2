@@ -45,6 +45,6 @@ export default class Activity extends AbstractView {
     }
 
     goPageSwap() {
-        LoginEnter(page_swap.show);
+        page_swap.show();
     }
 }

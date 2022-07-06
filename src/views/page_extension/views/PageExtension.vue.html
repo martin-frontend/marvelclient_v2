@@ -168,7 +168,7 @@
                         <v-col cols="4">
                             <v-row no-gutters class="d-flex flex-column align-center mt-7 mt-sm-0">
                                 <v-col cols="12">
-                                    <div class="d-flex justify-center mb-5">
+                                    <div class="d-flex justify-center mb-5 cursor" @click="showPreview">
                                         <div ref="qrcode" class="qrcode"></div>
                                     </div>
                                 </v-col>
@@ -207,7 +207,7 @@
                                 :height="$vuetify.breakpoint.xsOnly? 35 :46"
                                 class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1"
                             >
-                                {{ promotionData.user_id }}
+                                {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
                                 <v-btn class="mr-1" color="#6FA9FA" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copyMyId">
                                     <v-img
                                         max-width="24"

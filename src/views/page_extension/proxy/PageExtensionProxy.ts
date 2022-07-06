@@ -41,6 +41,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             total_water: 0,
             commission_info: {},
             commission_num: 0,
+            pretty_user_id: 0,
         },
         statistics_data: <any>{
             total_commission: {}, // 预计今日总佣金

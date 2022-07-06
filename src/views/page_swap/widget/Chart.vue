@@ -29,9 +29,18 @@ export default class DashboardDialog extends AbstractView {
         this.myProxy.setChart_k(val.batch[0].dataIndex);
     }
 
-    @Watch("$vuetify.breakpoint.width")
-    onWathWidth() {
-        //重绘
+    @Watch("myProxy.pageData.swap_k.number")
+    resizeTheChart() {
+        let chartDome = this.$refs.chart;
+        //@ts-ignore
+        chartDome.clear();
+
+        setTimeout(() => {
+            //@ts-ignore
+            chartDome.setOption(this.myProxy.chartData.option);
+            //@ts-ignore
+            chartDome.resize();
+        }, 200);
     }
 }
 </script>

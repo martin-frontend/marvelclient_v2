@@ -94,6 +94,12 @@ export default class PageSwapProxy extends puremvc.Proxy {
                     }
                 },
             ],
+            grid: {
+                x: 20, // 左侧距离
+                y: 80, // 顶部距离
+                x2: 20, //右侧距离
+                y2: 35 //底部距离
+            },
         },
     }
 

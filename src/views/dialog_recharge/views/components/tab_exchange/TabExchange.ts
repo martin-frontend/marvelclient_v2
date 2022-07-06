@@ -2,6 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_address_book from "@/views/dialog_address_book";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import dialog_wallet from "@/views/dialog_wallet";
@@ -16,6 +17,13 @@ export default class TabExchange extends AbstractView {
 
     plat_coins = GamePlatConfig.config.plat_coins;
 
+    get bindHtml() {
+        return LangUtil(
+            "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
+            `<a class="text-decoration-underline colorBtnBg--text" target="_blank" href="${LangUtil("安全中心链接")}">${LangUtil("安全中心")}</a>`
+        );
+    }
+
     @Watch("form.block_network_id")
     onWatchNetwwork() {
         const coinObj = this.pageData.methodList[this.form.coin_name_unique];
@@ -29,6 +37,11 @@ export default class TabExchange extends AbstractView {
     onChange(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
+        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
+    }
+
+    onChangeSub(value: any) {
+        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
     }
 
     get isChecked(): boolean {
@@ -49,20 +62,21 @@ export default class TabExchange extends AbstractView {
         return "0.00";
     }
 
-    onAddressBook(){
+    onAddressBook() {
         //打开地址薄
+        dialog_address_book.show();
     }
 
-    onPaste(){
-        if(navigator.clipboard){
+    onPaste() {
+        if (navigator.clipboard) {
             //@ts-ignore
-            navigator.clipboard.readText().then((result:any)=>{
+            navigator.clipboard.readText().then((result: any) => {
                 this.form.account = result;
-            })
+            });
         }
     }
 
-    onWallet(){
+    onWallet() {
         //打开平台钱包
         dialog_wallet.show();
     }
@@ -75,7 +89,7 @@ export default class TabExchange extends AbstractView {
         }
     }
 
-    onSetPassword(){
+    onSetPassword() {
         //打开密码设置面板
     }
 

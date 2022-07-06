@@ -9,6 +9,7 @@ import dialog_get_verity from "@/views/dialog_get_verity";
 import { Watch, Component } from "vue-property-decorator";
 import DialogSafetyCenterMediator from "../mediator/DialogSafetyCenterMediator";
 import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogSafetyCenter extends AbstractView {
@@ -18,6 +19,8 @@ export default class DialogSafetyCenter extends AbstractView {
     formBindPhone = this.pageData.formBindPhone;
     formBindEmail = this.pageData.formBindEmail;
     formChangePassword = this.pageData.formChangePassword;
+    validate_type = GamePlatConfig.config.validate_type;
+
 
     selfProxy: SelfProxy = getProxy(SelfProxy);
     userInfo = this.selfProxy.userInfo;
@@ -35,6 +38,10 @@ export default class DialogSafetyCenter extends AbstractView {
 
     constructor() {
         super(DialogSafetyCenterMediator);
+    }
+
+    checkValidateType(val: any) {
+        return this.validate_type.includes(val)
     }
 
     get isCheckFormMobile() {

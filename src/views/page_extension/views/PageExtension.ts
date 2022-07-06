@@ -69,6 +69,10 @@ export default class PageExtension extends AbstractView {
         });
     }
 
+    showPreview() {
+        console.log('showPreview');
+    }
+
     reget() {
         this.myProxy.api_user_var_short_chain();
     }

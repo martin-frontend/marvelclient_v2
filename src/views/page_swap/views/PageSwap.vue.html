@@ -4,18 +4,18 @@
             <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$vuetify.breakpoint.xsOnly">
                 <v-card class="rounded-lg pa-5" height="100%" color="colorPanelBg4" flat>
                     <div class="d-flex mx-3 align-end">
-                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chartFrom].icon" max-width="30" max-height="30">
+                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chart_a].icon" max-width="30" max-height="30">
                         </v-img>
-                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chartTo].icon" max-width="30" max-height="30">
+                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chart_b].icon" max-width="30" max-height="30">
                         </v-img>
-                        <span class="text-18 mx-4 colorBlue--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
+                        <span class="text-18 mx-4 colorBlue--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
                         <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
                             <v-icon>
                                 mdi-swap-horizontal
                             </v-icon>
                         </v-btn>
                         <v-spacer />
-                        <v-btn-toggle mandatory group class="period">
+                        <v-btn-toggle mandatory group class="period" v-model="pageData.timeSelect" @change="onTimeChange">
                             <v-btn class="rounded-lg mr-2" :height="35" :width="80"> 
                                 <span class="text-caption text-14"> 24小时 </span>
                             </v-btn>
@@ -31,12 +31,14 @@
                         </v-btn-toggle>
                     </div>
                     <div class="d-flex mt-5 mx-3 align-end">
-                        <span class="text-h4">0.001</span> 
-                        <span class="text-18 ml-2 colorText8--text">{{ pageData.chartFrom }}/{{ pageData.chartTo }}</span>
-                        <span class="text-18 ml-4 colorText9--text">+0.00023(12.29%)</span>
+                        <span class="text-h4">{{ pageData.price}}</span> 
+                        <span class="text-18 ml-2 colorText8--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
+                        <span class="text-18 ml-4" :class="(pageData.changed).substr(0,1) == '-'? 'red_k': 'green_k'">{{ pageData.changed }}</span>
                         
                     </div>
-                    <div class="mt-2 mx-3 text-14 colorText8--text">2002年6月21日 16:46</div>
+                    <div class="mt-2 mx-3 text-14 colorText8--text">{{ pageData.chartTime}}</div>
+                    <!-- chart -->
+                    <Chart class="line_chart" />   
                 </v-card>
             </v-col>
             <v-col cols="12" lg="4" class="">
@@ -50,10 +52,10 @@
                         </div>
                         <v-spacer />
                         <div>
-                            <v-btn icon>
+                            <v-btn icon @click="handlerRecord">
                                 <v-icon>mdi-note-text</v-icon>
                             </v-btn>
-                            <v-btn icon >
+                            <v-btn icon @click="handlerRefresh">
                                 <v-icon>mdi-reload</v-icon>
                             </v-btn>
                         </div>
@@ -62,103 +64,154 @@
                     <v-card-text class="pa-3 px-sm-6">
                         <div class="d-flex justify-space-between align-center mb-3">
                             <span class="d-flex align-center">
-                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.from].icon" max-width="30" max-height="30">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.swap_setting_info.coin_a].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.from">{{ pageData.from }}</div>
+                                <div class="text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_a">{{ pageData.swap_setting_info.coin_a }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
-                                余额: 0
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a]">
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_a].plat_money }}
                             </span>
                         </div>
                         <CustomInput
-                            type="all"
-                            v-model="pageData.cf"
-                        />
-                        <div class="d-flex justify-center my-4">
+                            type="number"
+                            v-model="pageData.amount_a"
+                            @input="amount_a(pageData.amount_a)"
+                        >
+                            <v-btn class="d-flex align-center mr-2 text-sm-subtitle-1" icon min-width="32" color="colorTextAll" width="20" height="20" @click="handlerAll">
+                                全部
+                            </v-btn>
+                        </CustomInput>
+                        <div class="d-flex justify-center my-3">
                             <v-btn icon class="btn_backbround" color="#669CE7" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave" @click="tradeSwap">
                                 <v-icon>{{ pageData.icon }}</v-icon>
                             </v-btn>
                         </div>
                         <span class="d-flex justify-space-between align-center mb-3">
                             <span class="d-flex align-center">
-                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.to].icon" max-width="30" max-height="30">
+                                <v-img :src="GamePlatConfig.config.plat_coins[pageData.swap_setting_info.coin_b].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.to">{{ pageData.to }}</div>
+                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="pageData.swap_setting_info.coin_b">{{ pageData.swap_setting_info.coin_b }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1">
-                                余额: 0
+                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b]">
+                                余额: {{ selfProxy.userInfo.gold_info[pageData.swap_setting_info.coin_b].plat_money }}
                             </span>
                         </span>
                         <CustomInput
+                            type="number"
                             class="mb-3 mb-sm-6"
-                            v-model="pageData.usdt"
+                            v-model="pageData.amount_b"
+                            @input="amount_b(pageData.amount_b)"
                         />
                         <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
                             <span>价格</span>
                             <v-spacer />
-                            <span>1 {{ pageData.from }} = 0.02999 {{ pageData.to }}</span>
+                            <span>1 {{ pageData.swap_setting_info.coin_a }} = {{ trial.price }} {{ pageData.swap_setting_info.coin_b }}</span>
                         </v-sheet>
                         <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
                             滑点容差
                         </div>
-                        <v-btn-toggle mandatory group class="btn_group_width">
+                        <v-btn-toggle mandatory group class="btn_group_width" v-model="parameter.tolerance" @change="onChange">
                             <v-btn class="rounded-lg ml-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> 2% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[0])).toFixed(4)))? (Number(tolerance[0])).toFixed(0):(Number(tolerance[0])).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> 5% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[1])).toFixed(4)))? (Number(tolerance[1])).toFixed(0):Number.isInteger((Number(tolerance[1])).toFixed(4)) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 mr-2 btn_width" height="45"> 
-                                <span class="text-14 text-sm-subtitle-1"> 10% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[2])).toFixed(4)))? (Number(tolerance[2])).toFixed(0):(Number(tolerance[2])).toFixed(4) }}% </span>
                             </v-btn>
                             <v-btn class="rounded-lg mx-0 btn_width" height="45">
-                                <span class="text-14 text-sm-subtitle-1"> 20% </span>
+                                <span class="text-14 text-sm-subtitle-1"> {{ Number.isInteger(Number((Number(tolerance[3])).toFixed(4)))? (Number(tolerance[3])).toFixed(0):(Number(tolerance[3])).toFixed(4) }}% </span>
                             </v-btn>
                         </v-btn-toggle>
                     </v-card-text>
-                    <v-card-text class="px-3 px-sm-6 pb-4 pb-sm-6 pt-1 pt-sm-3">
-                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="">
+                    <v-card-text class="px-3 px-sm-6 pb-4 pb-sm-5 pt-1 pt-sm-3">
+                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="handlerTrade">
                             <span class="text-14 text-sm-subtitle-1"> {{LangUtil("交换")}} </span>
                         </v-btn>
                     </v-card-text>
                 </v-card>
-                <v-card class="rounded-lg mt-3 colorText8--text text-14 text-sm-subtitle-1 px-5 pt-3 pt-sm-7 pb-5" color="colorPanelBg4" flat>
-                    <div class="d-flex align-center mb-4">
+                <v-card class="rounded-lg mt-2 colorText8--text text-14 text-sm-subtitle-1 px-5 pt-3 pt-sm-4 pb-4" color="colorPanelBg4" flat>
+                    <div class="d-flex align-center mb-3">
                         <span class="mr-2">
                             最小获得量
                         </span>
-                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
-                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
-                        </v-btn>
+                        <v-tooltip top>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                            </template>
+                            <span>如果确认前，出现了较大的波动，您的交易将会被取消。</span>
+                        </v-tooltip>
                         <v-spacer />
                         <span>
-                            0 {{ pageData.to }}
+                            {{ trial.min_to_coin_number }} {{ pageData.swap_setting_info.coin_b }}
                         </span>
                     </div>
-                    <div class="d-flex align-center mb-4">
+                    <div class="d-flex align-center mb-3">
                         <span class="mr-2">
                             影响价格
                         </span>
-                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
-                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
-                        </v-btn>
+                        <v-tooltip top>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                            </template>
+                            <span>市场价格与预估金额之间的差异，取决于交易规模。</span>
+                        </v-tooltip>
                         <v-spacer />
                         <span>
-                            0%
+                            {{ trial.affect_price }}
                         </span>
                     </div>
                     <div class="d-flex align-center">
                         <span class="mr-2">
                             手续费
                         </span>
-                        <v-btn icon class="help" color="colorPanelBg4" min-width="20" max-width="20" height="20">
-                            <v-icon class="text-subtitle-1">mdi-help</v-icon>
-                        </v-btn>
+                        <v-tooltip top>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                            </template>
+                            <span>流动奖池功能上线后，手续费将用于流动性提供者奖励。</span>
+                        </v-tooltip>
                         <v-spacer />
                         <span>
-                            0 {{ pageData.from }}
+                            {{ trial.swap_fee }} {{ pageData.swap_setting_info.coin_a }}
                         </span>
                     </div>
+                </v-card>
+            </v-col>
+            <!-- 手机 Swap -->
+            <v-col cols="12" lg="8" class="pr-lg-2 mt-3" v-if="$vuetify.breakpoint.xsOnly">
+                <v-card class="rounded-lg pa-4" height="100%" color="colorPanelBg4" flat>
+                    <div class="d-flex align-end">
+                        <v-img class="mr-2" :src="GamePlatConfig.config.plat_coins[pageData.chart_a].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <v-img :src="GamePlatConfig.config.plat_coins[pageData.chart_b].icon" max-width="30" max-height="30">
+                        </v-img>
+                        <span class="text-14 mx-4 colorBlue--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
+                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
+                            <v-icon>
+                                mdi-swap-horizontal
+                            </v-icon>
+                        </v-btn>
+                        <v-spacer />
+                        <CustomSelect
+                            class="ml-1 timeSelect"
+                            v-model="pageData.timeSelect"
+                            height="30"
+                            width="105"
+                            :options="listOptions.timeOptions()"
+                            @change="onTimeChange"
+                        />
+                    </div>
+                    <div class="d-flex mt-2 align-center">
+                        <span class="text-24">{{ Number(pageData.price).toFixed(4)}}</span> 
+                        <span class="text-14 ml-1 colorText8--text">{{ pageData.chart_a }}/{{ pageData.chart_b }}</span>
+                        <span class="text-14 ml-1" :class="(pageData.changed).substr(0,1) == '-'? 'red--text': 'green--text'">{{ pageData.changed }}</span>
+                        
+                    </div>
+                    <div class="mt-1 text-14 colorText8--text">{{ pageData.chartTime}}</div>
+                    <!-- chart -->
+                    <Chart />   
                 </v-card>
             </v-col>
         </v-row>

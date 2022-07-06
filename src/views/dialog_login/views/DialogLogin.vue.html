@@ -112,18 +112,16 @@
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
-                    type="password"
                     v-model="forgetData.form.password"
                 />
-                <CustomInput
+                <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('密码确认')"
-                    type="password"
                     v-model="forgetData.form.password_confirm"
                 />
                 <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedForget" block @click="onSubmitForget">
@@ -138,10 +136,9 @@
                     :placeholder="LangUtil('请输入账号/手机号/邮箱')"
                     v-model="pageData.form.username"
                 />
-                <CustomInput
+                <CustomPassword
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
-                    type="password"
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">

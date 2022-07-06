@@ -1,4 +1,4 @@
-<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
             <div class="text-18">{{LangUtil("设置昵称")}}</div>
@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
-            <CustomInput class="mb-3" :placeholder="LangUtil('请输入需要设置的昵称(3-10位)')" v-model="pageData.nickname" />
+            <CustomInput class="mb-3" :placeholder="LangUtil('昵称为1-6位汉字或1-12位英文')" v-model="pageData.nickname" />
             <div class="ml-5 mb-9 colorDialogInfo--text">{{LangUtil("昵称只允许设置一次")}}</div>
             <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit" block
                 >{{LangUtil("保存设置")}}</v-btn

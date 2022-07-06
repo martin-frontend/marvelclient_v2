@@ -8,6 +8,7 @@ import OpenLink from "@/core/global/OpenLink";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
+import dialog_activity from "@/views/dialog_activity";
 import dialog_login from "@/views/dialog_login";
 import dialog_register from "@/views/dialog_register";
 import { Prop, Watch, Component } from "vue-property-decorator";
@@ -52,6 +53,10 @@ export default class Header extends AbstractView {
     /**打开介绍页面 */
     goIntroduce() {
         router.push("/page_introduce");
+    }
+    /**打开活动页面 */
+    goActivity(){
+        dialog_activity.show();
     }
     /**打开登录页面 */
     handlerLogin() {

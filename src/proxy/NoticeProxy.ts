@@ -53,7 +53,7 @@ export default class NoticeProxy extends puremvc.Proxy {
                     LoginEnter(page_mine.show);
                     break;
                 case 5:
-                    LoginEnter(dialog_activity.show);
+                    dialog_activity.show();
                     break;
                 case 6:
                     LoginEnter(page_extension.show);

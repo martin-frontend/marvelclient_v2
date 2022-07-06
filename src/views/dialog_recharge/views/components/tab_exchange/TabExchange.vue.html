@@ -1,7 +1,7 @@
 <v-card-text class="mt-5">
-    <div class="colorText1--text">
+    <div class="colorText1--text" v-html="bindHtml">
         <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
-        {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}}
+        <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
     </div>
     <div class="d-flex mt-3">
         <CustomSelect class="mr-3" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" />
@@ -9,6 +9,7 @@
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
             v-model="form.block_network_id"
+            @change="onChangeSub" 
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
@@ -56,9 +57,9 @@
         </v-col>
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
-            <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" type="password" v-model="form.password">
+            <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password">
                 <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
-            </CustomInput>
+            </CustomPassword>
         </v-col>
     </v-row>
     <div class="text-12 mt-3 color-blue">⚠️ {{LangUtil("1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。")}}</div>

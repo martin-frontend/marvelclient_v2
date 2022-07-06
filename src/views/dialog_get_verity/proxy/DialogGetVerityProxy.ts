@@ -1,3 +1,5 @@
+import { objectRemoveNull } from "@/core/global/Functions";
+
 export default class DialogGetVerityProxy extends puremvc.Proxy {
     static NAME = "DialogGetVerityProxy";
 
@@ -45,6 +47,6 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
     api_public_sms_send() {
         this.pageData.loading = true;
         const { type, area_code, mobile, auth_code, plat_id, uuid, user_id } = this.pageData.form;
-        this.sendNotification(net.HttpType.api_public_sms_send, { type, area_code, mobile, auth_code, plat_id, uuid, user_id });
+        this.sendNotification(net.HttpType.api_public_sms_send, objectRemoveNull({ type, area_code, mobile, auth_code, plat_id, uuid, user_id }, [undefined, null, "", 0, "0"]));
     }
 }

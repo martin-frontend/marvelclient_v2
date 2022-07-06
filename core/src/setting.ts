@@ -242,6 +242,17 @@ module net {
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
+
+        /**--Swap--Swap基础信息*/
+        api_plat_var_swap_setting_info: "api/plat/{plat_id}/swap_setting_info",
+        /**--Swap--Swap价格图*/
+        api_plat_var_swap_k: "api/plat/{plat_id}/swap_k",
+        /**--Swap--Swap试算*/
+        api_user_var_swap_trial: "api/user/{user_id}/swap/trial",
+        /**--Swap--Swap兑换订单*/
+        api_user_var_swap_order_list: "api/user/{user_id}/swap/order_list",
+        /**--Swap--Swap创建订单*/
+        api_user_var_swap_create_order: "api/user/{user_id}/swap/create_order",
     };
     /**事件*/
     export var EventType = {
@@ -491,6 +502,17 @@ module net {
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
+
+        /**--Swap--Swap基础信息*/
+        api_plat_var_swap_setting_info: "api_plat_var_swap_setting_info",
+        /**--Swap--Swap价格图*/
+        api_plat_var_swap_k: "api_plat_var_swap_k",
+        /**--Swap--Swap试算*/
+        api_user_var_swap_trial: "api_user_var_swap_trial",
+        /**--Swap--Swap兑换订单*/
+        api_user_var_swap_order_list: "api_user_var_swap_order_list",
+        /**--Swap--Swap创建订单*/
+        api_user_var_swap_create_order: "api_user_var_swap_create_order",
     };
     /**注册协议*/
     export function initCommand() {
@@ -623,6 +645,12 @@ module net {
         facade.registerCommand(HttpType.api_user_var_beat, cmd_api_user_var_beat);
         facade.registerCommand(HttpType.api_user_var_red_dot_tips, cmd_api_user_var_red_dot_tips);
         facade.registerCommand(HttpType.api_plat_var_recently_bet_info, cmd_api_plat_var_recently_bet_info);
+        //--Swap
+        facade.registerCommand(HttpType.api_plat_var_swap_setting_info, cmd_api_plat_var_swap_setting_info);
+        facade.registerCommand(HttpType.api_plat_var_swap_k, cmd_api_plat_var_swap_k);
+        facade.registerCommand(HttpType.api_user_var_swap_trial, cmd_api_user_var_swap_trial);
+        facade.registerCommand(HttpType.api_user_var_swap_order_list, cmd_api_user_var_swap_order_list);
+        facade.registerCommand(HttpType.api_user_var_swap_create_order, cmd_api_user_var_swap_create_order);
     };
 
 }

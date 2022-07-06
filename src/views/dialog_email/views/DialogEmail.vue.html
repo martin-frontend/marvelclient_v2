@@ -92,7 +92,7 @@
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </div>
-            <div class="mx-6">
+            <div class="mx-3">
                 <v-btn
                     height="40"
                     class="rounded-pill font-weight-bold mr-2"
@@ -124,14 +124,14 @@
                     {{LangUtil("活动消息")}}
                 </v-btn>
             </div>
-            <v-divider class="my-3 mx-6" />
-            <div class="d-flex mx-6">
+            <v-divider class="my-3 mx-3" />
+            <div class="d-flex mx-3">
                 <v-spacer />
                 <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
                 <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
             </div>
         </v-card-text>
-        <v-card-text v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text v-if="$vuetify.breakpoint.xsOnly" class="px-3">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
                 <ListNodata v-if="pageData.list.length == 0"/>
                 <v-sheet class="px-3 py-2 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">

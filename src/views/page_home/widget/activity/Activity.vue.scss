@@ -1,88 +1,121 @@
-.price {
-    font-family: "Arial Black", "Arial-BoldMT";
-}
-.skew {
-    transform: skewX(-10deg);
-    div {
-        color: #081e5f;
-        transform: skewX(10deg);
-    }
-}
 .box-container {
     display: grid;
     gap: 10px;
 }
 .btn {
+    width: fit-content;
     background-color: white;
     text-align: center;
     color: rgb(50, 68, 102);
-    // font-size: 18px;
-    // height: 42px;
-    // line-height: 42px;
-    // min-width: 160px;
+    position: absolute;
+    bottom: 20px;
 }
 .activity1 {
+    position: relative;
     cursor: pointer;
     width: 100%;
     height: 230px;
-    background: url("~@/assets/activity/cat.png") no-repeat right 10px center, linear-gradient(90deg, #162f60, #1c6396);
+    background: url("~@/assets/activity/img_pool.png") no-repeat right 0px bottom, linear-gradient(90deg, #2e2998, #4d49f1);
     background-size: contain;
-    background-size: 203px 157px, 100% 100%;
+    background-size: 147px 154px, 100% 100%;
 }
+.activity1-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #2e2998, #4d49f1);
+    .btn {
+        bottom: 10px;
+    }
+}
+.activity2 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_swap.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #0052e3, #3b7cff);
+    background-size: 146px 154px, 100% 100%;
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #faca4b;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #081e5f;
+            transform: skewX(10deg);
+        }
+    }
+}
+.activity2-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #0052e3, #3b7cff);
+    .btn {
+        bottom: 10px;
+    }
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #faca4b;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #081e5f;
+            transform: skewX(10deg);
+        }
+    }
+}
+
+.activity3 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_mine.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #de2532, #ff5765);
+    background-size: contain;
+    background-size: 192px 155px, 100% 100%;
+}
+
+.activity4 {
+    min-width: 261px;
+    height: 230px;
+    .item1 {
+        cursor: pointer;
+        height: 111px;
+        background: url("~@/assets/activity/img_extension.png") no-repeat right 10px center, linear-gradient(90deg, #ff5a7e, #ff74b3);
+        background-size: contain;
+        background-size: 106px 81px, 100% 100%;
+    }
+    .item2 {
+        cursor: pointer;
+        height: 111px;
+        background: url("~@/assets/activity/img_activity.png") no-repeat right 10px center, linear-gradient(90deg, #ff7a45, #fdb25a);
+        background-size: contain;
+        background-size: 106px 81px, 100% 100%;
+    }
+}
+
+.btn-disabled {
+    background-color: #a9a9a9;
+    color: #656565;
+}
+
 .activity1:hover,
-.activity1-min:hover {
+.activity1-min:hover,
+.activity2:hover,
+.activity2-min:hover,
+.activity3:hover,
+.activity3-min:hover {
     .btn {
         background-color: #ffaf1a;
         color: white;
     }
 }
-.activity1-min {
-    cursor: pointer;
-    width: 100%;
-    height: 130px;
-    background: linear-gradient(90deg, #162f60, #1c6396);
-}
-.activity2 {
-    cursor: pointer;
-    width: 100%;
-    height: 230px;
-    background: url("~@/assets/activity/swap.png") no-repeat right center, linear-gradient(90deg, #0954d9, #68a5f7);
-}
-.btn-disabled {
-    background-color: #a9a9a9;
-    color: #656565;
-}
-.activity2-min {
-    cursor: pointer;
-    width: 100%;
-    height: 130px;
-    background: linear-gradient(90deg, #0954d9, #68a5f7);
-}
-.activity3 {
-    width: 470px;
-    height: 230px;
-    .item1 {
-        cursor: pointer;
-        width: 233px;
-        height: 146px;
-        background: url("~@/assets/activity/hand.png") no-repeat right center, linear-gradient(90deg, #ff5a7e, #ff74b3);
-    }
-    .item2 {
-        cursor: pointer;
-        width: 233px;
-        height: 146px;
-        background: url("~@/assets/activity/coin.png") no-repeat right center, linear-gradient(90deg, #ff7a45, #fdb25a);
-    }
-    .item3 {
-        cursor: pointer;
-        width: 470px;
-        height: 80px;
-        background: linear-gradient(90deg, #6079ff, #34b6fc);
-    }
-}
 
 @media screen and (max-width: 1460px) {
-    .activity3 {
+    .activity4 {
         display: none;
     }
 }

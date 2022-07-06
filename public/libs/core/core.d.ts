@@ -231,6 +231,16 @@ declare module net {
         api_user_var_red_dot_tips: string;
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: string;
+        /**--Swap--Swap基础信息*/
+        api_plat_var_swap_setting_info: string;
+        /**--Swap--Swap价格图*/
+        api_plat_var_swap_k: string;
+        /**--Swap--Swap试算*/
+        api_user_var_swap_trial: string;
+        /**--Swap--Swap兑换订单*/
+        api_user_var_swap_order_list: string;
+        /**--Swap--Swap创建订单*/
+        api_user_var_swap_create_order: string;
     };
     /**事件*/
     var EventType: {
@@ -462,6 +472,16 @@ declare module net {
         api_user_var_red_dot_tips: string;
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: string;
+        /**--Swap--Swap基础信息*/
+        api_plat_var_swap_setting_info: string;
+        /**--Swap--Swap价格图*/
+        api_plat_var_swap_k: string;
+        /**--Swap--Swap试算*/
+        api_user_var_swap_trial: string;
+        /**--Swap--Swap兑换订单*/
+        api_user_var_swap_order_list: string;
+        /**--Swap--Swap创建订单*/
+        api_user_var_swap_create_order: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -660,6 +680,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_stake_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap价格图
+ */
+declare module net {
+    class cmd_api_plat_var_swap_k extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap基础信息
+ */
+declare module net {
+    class cmd_api_plat_var_swap_setting_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1407,6 +1445,33 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_stake_log extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap创建订单
+ */
+declare module net {
+    class cmd_api_user_var_swap_create_order extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap兑换订单
+ */
+declare module net {
+    class cmd_api_user_var_swap_order_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * Swap试算
+ */
+declare module net {
+    class cmd_api_user_var_swap_trial extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2259,6 +2324,8 @@ declare module core {
         main_language: string;
         /**可以注册的类型: 1-用户名注册|2-邮箱注册|4-手机注册 */
         register_types: number[];
+        /**安全设置:1-邮箱验证|2-短信验证 */
+        validate_type: number[];
     }
 }
 declare module core {

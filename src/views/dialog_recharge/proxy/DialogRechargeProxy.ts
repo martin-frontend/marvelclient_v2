@@ -95,7 +95,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             coin_name_unique: "",
             block_network_id: "",
             account: "",
-
+            exchange_channel_method_id: 0,
             password: "",
         },
     };
@@ -116,6 +116,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             if (optionsKeys[0]) {
                 this.pageData.form.block_network_id = optionsKeys[0];
+                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[optionsKeys[0]].exchange_channel_method_id;
             }
         }
     }

@@ -7,11 +7,13 @@ import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogSafetyCenter from "./DialogSafetyCenter";
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
+import CustomPassword from "@/views/widget/custom_password/CustomPassword.vue";
 
 @Component({
     components: {
         AdvertiseInLogin,
         CustomInput,
+        CustomPassword,
         Overlay,
     },
 })

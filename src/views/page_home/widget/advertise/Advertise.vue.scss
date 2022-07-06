@@ -33,3 +33,9 @@
         border-radius: 8px;
     }
 }
+
+::v-deep.v-carousel .v-carousel__controls .v-item-group .v-carousel__controls__item {
+    margin: -5px;
+    margin-top: 25px;
+    transform: scale(0.5);
+}

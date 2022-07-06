@@ -7,6 +7,8 @@ import OpenLink from "./core/global/OpenLink";
 import HeaderProxy from "./views/header/proxy/HeaderProxy";
 import { isMobile, judgeClient } from "./core/global/Functions";
 import CopyUtil from "./core/global/CopyUtil";
+import GameConfig from "./core/config/GameConfig";
+import { vuetify } from "./plugins/vuetify";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -40,10 +42,16 @@ export default class APP extends AbstractView {
                 document.documentElement.style.overflow = "hidden";
                 //@ts-ignore
                 document.body.scroll = "no";
+                // if (judgeClient() == "iOS" && vuetify.framework.breakpoint.xsOnly) {
+                //     document.documentElement.style.position = "fixed";
+                // }
             } else {
                 document.documentElement.style.overflow = "scroll";
                 //@ts-ignore
                 document.body.scroll = "yes";
+                // if (judgeClient() == "iOS" && vuetify.framework.breakpoint.xsOnly) {
+                //     document.documentElement.style.position = "relative";
+                // }
             }
         }
     }
@@ -66,9 +74,15 @@ export default class APP extends AbstractView {
         if (window.navigator.standalone === false) {
             this.guideDrawer = true;
         } else {
-            //下载apk
+            //将参数复制到剪切板
             const data = { code: core.user_id, pid: core.plat_id, channel: core.channel_id };
             CopyUtil(JSON.stringify(data));
+            //下载apk
+            const src = GameConfig.config.AndroidApkUrl;
+            const form = document.createElement("form");
+            form.action = src;
+            document.getElementsByTagName("body")[0].appendChild(form);
+            form.submit();
         }
     }
 

@@ -18,4 +18,6 @@ export interface GameConfigVO {
     category_order: number[];
     /** 语言版本 */
     lang: string;
+    /**下载地址 */
+    AndroidApkUrl:string;
 }

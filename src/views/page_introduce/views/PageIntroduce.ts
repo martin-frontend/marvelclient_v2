@@ -1,7 +1,12 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
+import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
+import router from "@/router";
+import dialog_activity from "@/views/dialog_activity";
+import page_bonus from "@/views/page_bonus";
+import page_extension from "@/views/page_extension";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
@@ -38,5 +43,25 @@ export default class PageIntroduce extends AbstractView {
 
     goContractInfo() {
         OpenLink(this.reward_coin_info.contract_address);
+    }
+
+    goWhitePage(){
+        OpenLink(LangUtil("白皮书链接"));
+    }
+
+    goHome(){
+        router.replace("/");
+    }
+
+    goPledge(){
+        LoginEnter(page_bonus.show);
+    }
+
+    goActivity(){
+        dialog_activity.show();
+    }
+
+    goExtension(){
+        LoginEnter(page_extension.show)
     }
 }

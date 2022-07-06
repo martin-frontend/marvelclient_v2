@@ -9,6 +9,10 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message from "@/views/dialog_message";
 import page_mine from "@/views/page_mine";
 import dialog_nick_name from "@/views/dialog_nick_name";
+import dialog_safety_center from "@/views/dialog_safety_center";
+import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
+import dialog_trade_password from "@/views/dialog_trade_password";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -16,7 +20,10 @@ export default class DialogUserCenter extends AbstractView {
     myProxy: DialogUserCenterProxy = this.getProxy(DialogUserCenterProxy);
     pageData = this.myProxy.pageData;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    safetyCenterProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
     userInfo = this.selfProxy.userInfo;
+    validate_type = GamePlatConfig.config.validate_type;
+    is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
 
     constructor() {
         super(DialogUserCenterMediator);
@@ -36,6 +43,10 @@ export default class DialogUserCenter extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    checkValidateType(val: any) {
+        return this.validate_type.includes(val);
+    }
+
     private copy() {
         this.myProxy.copyId();
         dialog_message.warn(LangUtil("复制成功"));
@@ -46,7 +57,21 @@ export default class DialogUserCenter extends AbstractView {
         page_mine.show()
     }
 
+    goSetPhone() {
+        this.safetyCenterProxy.pageData.tabIndex = 0
+        dialog_safety_center.show()
+    }
+
+    goSetEmail() {
+        this.safetyCenterProxy.pageData.tabIndex = 1
+        dialog_safety_center.show()
+    }
+
     handlerNickName() {
         dialog_nick_name.show();
+    }
+
+    handlerTradePassword() {
+        dialog_trade_password.show();
     }
 }

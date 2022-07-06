@@ -5,10 +5,10 @@ $introChainTextColor: rgba(255, 255, 255, 0.8);
 $waitTextColor: #9db1d8cc;
 
 .intro-intro-md {
-    background-image: url("~@/assets/introduce/CAT@3x.png");
-    background-position: right top -60px;
+    background-image: url("~@/assets/introduce/1.png");
+    background-position: right bottom ;
     background-repeat: no-repeat;
-    background-size: 516px 350px;
+    background-size: 298px 252px;
     font-family: $introFontFamily;
     color: $introIntroText;
 }
@@ -19,10 +19,12 @@ $waitTextColor: #9db1d8cc;
 
 .intro-chain-label {
     color: $chainMsgLabelColor;
+    font-size: 20px;
 }
 
 .intro-chain-text {
     color: $introChainTextColor;
+    font-size: 20px;
 }
 
 .intro-plan {
@@ -79,6 +81,11 @@ $waitTextColor: #9db1d8cc;
     background-position: bottom right;
     background-size: contain;
 }
+.intro-how-04-md {
+    background: url("~@/assets/introduce/04P.png") no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
 
 .intro-how-01 {
     background: url("~@/assets/introduce/01M.png") no-repeat;
@@ -92,6 +99,11 @@ $waitTextColor: #9db1d8cc;
 }
 .intro-how-03 {
     background: url("~@/assets/introduce/03M.png") no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+.intro-how-04 {
+    background: url("~@/assets/introduce/04M.png") no-repeat;
     background-position: bottom left;
     background-size: contain;
 }

@@ -3,15 +3,9 @@
     <div v-if="$slots.pre">
         <slot name="pre"></slot>
     </div>
-    <input class="ml-3" :type="getType()" :placeholder="placeholder" @input="onInput" v-model="inputValue" :maxlength="maxlength" />
+    <input class="ml-3" :type="type" :placeholder="placeholder" @input="onInput" v-model="inputValue" :maxlength="maxlength" />
     <v-btn v-if="value.length > 0" class="mr-2" icon width="20" height="20" @click="onClear">
         <v-icon class="mx-3" size="20" color="colorInfo">mdi-close-circle</v-icon>
-    </v-btn>
-    <v-btn v-if="type == 'all'" class="mr-2 text-sm-subtitle-1" icon min-width="32" color="colorTextAll" width="20" height="20" @click="onClear">
-        全部
-    </v-btn>
-    <v-btn v-if="type == 'password'" class="mr-2" icon width="20" height="20" @click="onToggle">
-        <v-icon class="mx-3" size="20" color="colorInfo">{{ !bShowPassword ? "mdi-eye" : "mdi-eye-off" }}</v-icon>
     </v-btn>
     <div v-if="$slots.default" class="mr-2">
         <slot></slot>

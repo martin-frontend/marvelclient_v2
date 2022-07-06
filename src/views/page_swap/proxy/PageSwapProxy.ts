@@ -59,6 +59,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
                 type: "category",
                 boundaryGap: false,
                 data: [],
+                offset: 10,
             },
             yAxis: {
                 show: false, // 隐藏y轴坐标
@@ -81,7 +82,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
                             }
                         ])
                     },
-                    symbol: "none", // 去掉小圆点
+                    showSymbol: false,
+                    // symbol: "none", // 去掉小圆点
                     lineStyle: {
                         color: "rgba(205, 104, 104, 0.9)", //red
                         width: 1,
@@ -155,14 +157,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
             this.pageData.amount_a = "";
             this.pageData.amount_b = "";
         }
-        // if (this.pageData.inputFlag == "") {
-        //     return;
-        // }
-        // if (this.pageData.inputFlag == "A") {
-        //     this.pageData.amount_b = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
-        // } else if (this.pageData.inputFlag == "B") {
-        //     this.pageData.amount_a = (Number(this.pageData.amount_a) * Number(this.pageData.trial.price)).toString();
-        // }
     }
 
     /** 价格图*/

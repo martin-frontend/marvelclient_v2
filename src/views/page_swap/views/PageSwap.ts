@@ -44,53 +44,6 @@ export default class PageSwap extends AbstractView {
         return this.myProxy.pageData.swap_setting_info.tolerance_params;
     }
 
-    // @Watch("pageData.amount_a")
-    // onWatchAmount_A() {
-    //     if (this.myProxy.pageData.amount_a == "") {
-    //         this.myProxy.pageData.amount_b = "";
-    //         this.myProxy.resetTrial();
-    //         return;
-    //     }
-
-    //     this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-    //     this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-    //     if (this.myProxy.pageData.inputFlag == "") {
-    //         this.myProxy.pageData.inputFlag = "A";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     } else if (this.myProxy.pageData.inputFlag == "B" && this.myProxy.pageData.amount_a == "") {
-    //         this.myProxy.pageData.inputFlag = "A";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     } else if (this.myProxy.pageData.inputFlag == "B") {
-    //         return;
-    //     } else {
-    //         this.myProxy.pageData.inputFlag = "A";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     }
-    // }
-
-    // @Watch("pageData.amount_b")
-    // onWatchAmount_B() {
-    //     if (this.myProxy.pageData.amount_b == "") {
-    //         this.myProxy.pageData.amount_a = "";
-    //         this.myProxy.resetTrial();
-    //         return;
-    //     }
-    //     this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
-    //     this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
-    //     if (this.myProxy.pageData.inputFlag == "") {
-    //         this.myProxy.pageData.inputFlag = "B";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     } else if (this.myProxy.pageData.inputFlag == "A" && this.myProxy.pageData.amount_a == "") {
-    //         this.myProxy.pageData.inputFlag = "B";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     } else if (this.myProxy.pageData.inputFlag == "A") {
-    //         return;
-    //     } else {
-    //         this.myProxy.pageData.inputFlag = "B";
-    //         this.myProxy.api_user_var_swap_trial();
-    //     }
-    // }
-
     mouseover() {
         this.pageData.icon = "mdi-swap-vertical";
     }
@@ -111,18 +64,6 @@ export default class PageSwap extends AbstractView {
         this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
         this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
         this.myProxy.pageData.inputType = "A";
-        // if (this.myProxy.pageData.inputFlag == "") {
-        //     this.myProxy.pageData.inputFlag = "A";
-        //     this.myProxy.api_user_var_swap_trial();
-        // } else if (this.myProxy.pageData.inputFlag == "B" && this.myProxy.pageData.amount_a == "") {
-        //     this.myProxy.pageData.inputFlag = "A";
-        //     this.myProxy.api_user_var_swap_trial();
-        // } else if (this.myProxy.pageData.inputFlag == "B") {
-        //     return;
-        // } else {
-        //     this.myProxy.pageData.inputFlag = "A";
-        //     this.myProxy.api_user_var_swap_trial();
-        // }
     }
 
     amount_b() {
@@ -137,18 +78,6 @@ export default class PageSwap extends AbstractView {
         this.myProxy.pageData.inputType = "B";
 
         this.myProxy.pageData.inputChangeFlag = true;
-        // if (this.myProxy.pageData.inputFlag == "") {
-        //     this.myProxy.pageData.inputFlag = "B";
-        //     this.myProxy.api_user_var_swap_trial();
-        // } else if (this.myProxy.pageData.inputFlag == "A" && this.myProxy.pageData.amount_a == "") {
-        //     this.myProxy.pageData.inputFlag = "B";
-        //     this.myProxy.api_user_var_swap_trial();
-        // } else if (this.myProxy.pageData.inputFlag == "A") {
-        //     return;
-        // } else {
-        //     this.myProxy.pageData.inputFlag = "B";
-        //     this.myProxy.api_user_var_swap_trial();
-        // }
     }
 
     /**交易对调 */

@@ -73,6 +73,10 @@ export default class PageExtension extends AbstractView {
         console.log('showPreview');
     }
 
+    savePhoto() {
+        this.myProxy.savePoster(this.myProxy.pageData.link);
+    }
+
     reget() {
         this.myProxy.api_user_var_short_chain();
     }

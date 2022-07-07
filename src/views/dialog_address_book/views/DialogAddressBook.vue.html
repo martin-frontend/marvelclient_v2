@@ -34,9 +34,9 @@
                     :key="key"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
-                        <div class="mb-1 text-truncate">{{LangUtil("备注")}}</div>
+                        <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
                         <div class="text-truncate">
-                            {{item.payment_method.account_name}}
+                            {{item.payment_method.account}}
                         </div>
                     </v-sheet>
                     <v-spacer />
@@ -91,8 +91,8 @@
                     :key="key"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
-                        <div class="mb-1 text-truncate">{{LangUtil("备注")}}</div>
-                        <div class="text-truncate">{{item.payment_method.account_name}}</div>
+                        <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
+                        <div class="text-truncate">{{item.payment_method.account}}</div>
                     </v-sheet>
                     <v-spacer />
                     <v-btn class="colorBtnBg mr-3" small @click="onEdit(item)">{{LangUtil("备注")}}</v-btn>

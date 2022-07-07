@@ -22,10 +22,11 @@ export default class DialogAddressBookRemark extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-        if (this.pageData.bShow) {
-            BlurUtil(this.pageData.bShow);
-            //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-        }
+        BlurUtil(this.pageData.bShow);
+    }
+
+    onSubmit() {
+        this.pageData.loading = true;
+        this.myProxy.api_user_var_payment_method_update_var();
     }
 }

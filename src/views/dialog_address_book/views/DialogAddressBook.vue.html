@@ -22,6 +22,7 @@
                     v-if="pageData.methodList[listQuery.coin_name_unique]"
                     :options="pageData.methodList[listQuery.coin_name_unique].options"
                     v-model="listQuery.block_network_id"
+                    @change="onChangeSub"
                 />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
@@ -33,9 +34,9 @@
                     :key="key"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
-                        <div class="mb-1 text-truncate">备注</div>
+                        <div class="mb-1 text-truncate">{{LangUtil("备注")}}</div>
                         <div class="text-truncate">
-                            XXXXXXXXXXXXXXXXXXXXXXXXXXXAAAAAAAABBBBBBBBBXXXXXXXXXXXXXXXXXXXXXXXXXXXAAAAAAAABBBBBBBBB
+                            {{item.payment_method.account_name}}
                         </div>
                     </v-sheet>
                     <v-spacer />
@@ -76,6 +77,7 @@
                     v-if="pageData.methodList[listQuery.coin_name_unique]"
                     :options="pageData.methodList[listQuery.coin_name_unique].options"
                     v-model="listQuery.block_network_id"
+                    @change="onChangeSub"
                 />
             </div>
         </v-card-text>
@@ -89,8 +91,8 @@
                     :key="key"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
-                        <div class="mb-1 text-truncate">备注</div>
-                        <div class="text-truncate">XXXXXXXXXXXXXXXXXXXXXXXXXXXAAAAAAAABBBBBBBBB</div>
+                        <div class="mb-1 text-truncate">{{LangUtil("备注")}}</div>
+                        <div class="text-truncate">{{item.payment_method.account_name}}</div>
                     </v-sheet>
                     <v-spacer />
                     <v-btn class="colorBtnBg mr-3" small @click="onEdit(item)">{{LangUtil("备注")}}</v-btn>

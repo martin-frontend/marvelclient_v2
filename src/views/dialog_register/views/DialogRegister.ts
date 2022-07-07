@@ -8,6 +8,7 @@ import dialog_service from "@/views/dialog_service";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -27,6 +28,14 @@ export default class DialogRegister extends AbstractView {
     areaCodeMenu = false;
     areaCodeSearch = "";
     areaCodeList: any = [];
+
+    GamePlatConfig = GamePlatConfig;
+
+    private registerTypes = GamePlatConfig.config.register_types;
+
+    mounted() {
+        console.warn(this.registerTypes);
+    }
 
     @Watch("pageData.areaCode")
     onWatchAreaCode() {

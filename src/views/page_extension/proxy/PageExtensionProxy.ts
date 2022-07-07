@@ -136,7 +136,8 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     copyId() {
-        CopyUtil(core.user_id.toString());
+        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
+        CopyUtil(id.toString());
     }
 
     /**领取佣金 */

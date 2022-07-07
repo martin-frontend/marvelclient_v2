@@ -33,23 +33,23 @@ export default class PageSwapMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_plat_var_swap_setting_info:
                 myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
-                this.myProxy.setData(body);
-                this.myProxy.api_plat_var_swap_trial();
+                myProxy.setData(body);
+                myProxy.api_plat_var_swap_trial();
                 break;
             case net.EventType.api_plat_var_swap_trial:
-                this.myProxy.setTrial(body);
+                myProxy.setTrial(body);
                 break;
             case net.EventType.api_plat_var_swap_k:
-                this.myProxy.setSwapK(body);
+                myProxy.setSwapK(body);
                 break;
             case net.EventType.api_user_var_swap_create_order:
-                this.myProxy.resetTrial();
+                myProxy.resetTrial();
                 dialog_message.success(LangUtil("交换成功"));
                 this.selfProxy.api_user_show_var([2]);
                 myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
                 myProxy.parameter.from_coin_number = "1";
                 myProxy.pageData.inputType = "";
-                this.myProxy.api_plat_var_swap_trial();
+                myProxy.api_plat_var_swap_trial();
                 break;
             case net.EventType.api_user_var_mail_var_receive:
                 break;

@@ -130,7 +130,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
         this.pageData.amount_b = "";
         Object.assign(this.pageData.trial, {
             to_coin_number: "0",
-            price: "0",
             min_to_coin_number: "0",
             affect_price: "0",
             swap_fee: "0",
@@ -159,13 +158,20 @@ export default class PageSwapProxy extends puremvc.Proxy {
         }
 
         Object.assign(this.pageData.trial, data);
-        if (this.pageData.inputType == "A") {
+        if (this.pageData.inputType == "A" && !this.pageData.amount_a) {
+            this.pageData.amount_b = "";
+            return;
+        } else if (this.pageData.inputType == "B" && !this.pageData.amount_b) {
+            this.pageData.amount_a = "";
+            return;
+        } else if (this.pageData.inputType == "A") {
             this.pageData.amount_b = data.to_coin_number;
         } else if (this.pageData.inputType == "B") {
             this.pageData.trial.price = (1 / data.price).toString();
             this.pageData.amount_a = data.to_coin_number;
         }
         else {
+            //网页第一次试算
             this.pageData.amount_a = "";
             this.pageData.amount_b = "";
             this.pageData.trial.min_to_coin_number = "0";

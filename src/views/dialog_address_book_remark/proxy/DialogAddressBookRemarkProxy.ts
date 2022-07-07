@@ -23,7 +23,6 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
-        remark: "",
     };
 
     hide() {
@@ -36,7 +35,6 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
         this.pageData.listQuery.account_name = data.payment_method.account_name;
         this.pageData.listQuery.coin_name_unique = data.coin_name_unique;
         this.pageData.listQuery.block_network_id = data.block_network_id;
-        this.pageData.remark = data.payment_method.account_name;
     }
 
     /**删除数据 */

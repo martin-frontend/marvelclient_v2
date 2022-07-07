@@ -7,6 +7,7 @@ import page_bonus from "@/views/page_bonus";
 import page_extension from "@/views/page_extension";
 import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";
+import page_swap from "@/views/page_swap";
 
 export default class NoticeProxy extends puremvc.Proxy {
     static NAME = "NoticeProxy";
@@ -39,7 +40,7 @@ export default class NoticeProxy extends puremvc.Proxy {
     }
 
     jump(item: core.PlatNoticeVO) {
-        //1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易
+        //跳转模块:1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易|8-Swap
         console.log(">>>>>", item.open_mode);
         if (item.open_mode != 1) {
             switch (item.open_mode) {
@@ -60,6 +61,9 @@ export default class NoticeProxy extends puremvc.Proxy {
                     break;
                 case 7:
                     dialog_message_box.alert(LangUtil("敬请期待"));
+                    break;
+                case 8:
+                    page_swap.show();
                     break;
             }
         } else if (item.open_mode_url && item.open_mode_url != "") {

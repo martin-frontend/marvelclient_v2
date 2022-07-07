@@ -100,6 +100,14 @@ export class ExchangeProxy extends puremvc.Proxy {
         },
     };
 
+    resetform() {
+        Object.assign(this.pageData.form, {
+            amount: "",
+            account: "",
+            password: "",
+        });
+    }
+
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;

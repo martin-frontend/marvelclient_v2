@@ -14,8 +14,8 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-if (process.env.VUE_APP_ENV == "production") {
-    core.cdnUrl = "https://static.cf0x.com";
+if (process.env.NODE_ENV == "production") {
+    core.cdnUrl = process.env.VUE_APP_URL;
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com";

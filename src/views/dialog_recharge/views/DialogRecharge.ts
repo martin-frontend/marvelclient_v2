@@ -19,6 +19,7 @@ export default class DialogRecharge extends AbstractView {
     }
 
     onTabClick(idx: number) {
+        this.myProxy.exchangeProxy.resetform();
         this.pageData.tabIndex = idx;
     }
 

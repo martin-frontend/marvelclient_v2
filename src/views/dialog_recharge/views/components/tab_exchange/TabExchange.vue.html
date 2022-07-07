@@ -62,8 +62,8 @@
             </CustomPassword>
         </v-col>
     </v-row>
-    <div class="text-12 mt-3 color-blue">⚠️ {{LangUtil("1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。")}}</div>
-    <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div>
+    <div class="text-12 mt-3 color-blue mb-2">⚠️ {{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</div>
+    <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
     <v-divider class="mx-5" />
     <v-card-text class="d-flex justify-end mt-3">

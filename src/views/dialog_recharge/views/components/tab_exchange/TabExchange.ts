@@ -5,6 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import dialog_address_book from "@/views/dialog_address_book";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_trade_password from "@/views/dialog_trade_password";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 
@@ -90,7 +91,7 @@ export default class TabExchange extends AbstractView {
     }
 
     onSetPassword() {
-        //打开密码设置面板
+        dialog_trade_password.show();
     }
 
     onSubmit() {

@@ -54,7 +54,7 @@ export default class PageSwap extends AbstractView {
 
     amount_a() {
         this.myProxy.pageData.amount_b = "";
-        if (this.myProxy.pageData.amount_a == "") {
+        if (!this.myProxy.pageData.amount_a) {
             this.myProxy.pageData.amount_b = "";
             this.myProxy.resetTrial();
             return;
@@ -68,7 +68,7 @@ export default class PageSwap extends AbstractView {
 
     amount_b() {
         this.myProxy.pageData.amount_a = "";
-        if (this.myProxy.pageData.amount_b == "") {
+        if (!this.myProxy.pageData.amount_b) {
             this.myProxy.pageData.amount_a = "";
             this.myProxy.resetTrial();
             return;
@@ -103,6 +103,12 @@ export default class PageSwap extends AbstractView {
     }
 
     onChange() {
+        if (!this.myProxy.pageData.amount_a && !this.myProxy.pageData.amount_b) {
+            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
+            this.parameter.from_coin_number = 1;
+            this.myProxy.api_plat_var_swap_trial();
+            return;
+        }
         if (this.myProxy.pageData.inputType == "A") {
             this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
             this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
@@ -146,5 +152,13 @@ export default class PageSwap extends AbstractView {
                 this.myProxy.api_user_var_swap_create_order();
             },
         });
+    }
+
+    get isCheck(): boolean {
+        if (this.pageData.amount_a && this.pageData.amount_b) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

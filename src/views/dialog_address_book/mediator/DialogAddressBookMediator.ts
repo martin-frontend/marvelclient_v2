@@ -20,6 +20,7 @@ export default class DialogAddressBookMediator extends AbstractMediator {
                 myProxy.setAdressData(body);
                 break;
             case net.EventType.api_user_var_payment_method_update_var:
+                myProxy.api_user_var_payment_method_index();
                 myProxy.pageData.loading = false;
                 dialog_message.success(LangUtil("操作成功"));
                 break;

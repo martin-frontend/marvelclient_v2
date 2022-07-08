@@ -51,14 +51,14 @@
             <v-sheet color="transparent" min-width="300" class="mb-2">
                 <div class="colorText1--text">{{LangUtil("提取金额")}}</div>
                 <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
-                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
+                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onAll">{{LangUtil("全部")}}</v-btn>
                 </CustomInput>
             </v-sheet>
         </v-col>
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
             <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password">
-                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
+                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
             </CustomPassword>
         </v-col>
     </v-row>

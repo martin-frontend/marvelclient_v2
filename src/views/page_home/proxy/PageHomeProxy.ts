@@ -23,12 +23,10 @@ export default class PageHomeProxy extends puremvc.Proxy {
             bonus_time: "0", // 下次分红时间
             coin_name_unique: "", // 质押币种
         },
-        trial: {
-            to_coin_number: "", // 获取量
-            price: "", // 兑换价格
-            min_to_coin_number: "", // 最小获取量
-            affect_price: "", // 影响价格
-            swap_fee: "", // 手续费
+        swap_setting_info: {
+            coin_a: "CF", // 币A
+            coin_b: "USDT", // 币B
+            coin_a_b_price: "",
         },
     };
 
@@ -40,18 +38,17 @@ export default class PageHomeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.stakeInfo, data);
     }
 
-    /** 试算*/
-    setTrial(data: any) {
-        Object.assign(this.pageData.trial, data);
+    setInfo(data: any) {
+        Object.assign(this.pageData.swap_setting_info, data);
     }
 
     api_plat_var_stake_info() {
         this.sendNotification(net.HttpType.api_plat_var_stake_info, { plat_id: core.plat_id });
     }
 
-    /**Swap--Swap试算*/
-    api_plat_var_swap_trial() {
-        this.parameter.plat_id = core.plat_id;
-        this.sendNotification(net.HttpType.api_plat_var_swap_trial, this.parameter);
+    /**Swap--Swap基础信息*/
+    api_plat_var_swap_setting_info() {
+        this.sendNotification(net.HttpType.api_plat_var_swap_setting_info, { plat_id: core.plat_id });
     }
+
 }

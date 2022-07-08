@@ -34,6 +34,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.exchangeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_exchange_create_order:
+                myProxy.pageData.bShow = false;
                 dialog_message.success(LangUtil("创建成功"));
                 break;
         }

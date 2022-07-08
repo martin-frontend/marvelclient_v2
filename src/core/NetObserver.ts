@@ -106,8 +106,11 @@ export default class NetObserver extends AbstractMediator {
                         message: LangUtil("进入游戏"),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
-                                this.gameProxy.lastRouter = router.currentRoute.path;
-                                this.gameProxy.historyLength = window.history.length;
+                                this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
+                                this.gameProxy.gamePreData.historyLength = window.history.length;
+
+                                const obj = document.body.scrollTop ? document.body : document.documentElement;
+                                this.gameProxy.gamePreData.scrollY = obj.scrollTop;
                                 page_game_play.show(body.url);
                             } else {
                                 let gameUrl = "";

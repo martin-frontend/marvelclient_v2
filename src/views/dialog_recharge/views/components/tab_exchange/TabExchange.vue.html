@@ -62,7 +62,9 @@
             </CustomPassword>
         </v-col>
     </v-row>
-    <div class="text-12 mt-3 color-blue mb-2">⚠️ {{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</div>
+    <div class="text-12 mt-3 color-blue mb-2"
+    v-if="pageData.methodList[form.coin_name_unique]"
+    >⚠️ {{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</div>
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
     <v-divider class="mx-5" />

@@ -20,14 +20,13 @@ export default class DialogSafetyCenter extends AbstractView {
     formBindEmail = this.pageData.formBindEmail;
     formChangePassword = this.pageData.formChangePassword;
     validate_type = GamePlatConfig.config.validate_type;
-
-
     selfProxy: SelfProxy = getProxy(SelfProxy);
     userInfo = this.selfProxy.userInfo;
 
     areaCodeSearch = "";
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
+
     @Watch("pageData.areaCode")
     onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
@@ -38,6 +37,13 @@ export default class DialogSafetyCenter extends AbstractView {
 
     constructor() {
         super(DialogSafetyCenterMediator);
+    }
+
+    mounted() {
+        //安全设置无手机验证
+        if (!this.checkValidateType(2)) {
+            this.pageData.tabIndex = 1;
+        }
     }
 
     checkValidateType(val: any) {

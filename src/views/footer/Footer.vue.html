@@ -4,14 +4,20 @@
             <div>
                 <div class="text-16 mb-1">{{LangUtil("底部品牌文字")}}</div>
                 <div class="d-flex">
-                    <div class="mr-4" @click="goContact"><a class="info--text" href="#">{{LangUtil("关于我们")}}</a></div>
-                    <div class="mr-4"><a class="info--text" :href="LangUtil('客服链接')" target="_blank">{{LangUtil("联系我们")}}</a></div>
-                    <div class="mr-4" @click="goService"><a class="info--text" href="#">{{LangUtil("服务条款")}}</a></div>
+                    <div class="mr-4" @click="goContact"><a class="info--text">{{LangUtil("关于我们")}}</a></div>
+                    <div class="mr-4" @click="openLink(LangUtil('客服链接'))">
+                        <a class="info--text">{{LangUtil("联系我们")}}</a>
+                    </div>
+                    <div class="mr-4" @click="goService"><a class="info--text">{{LangUtil("服务条款")}}</a></div>
                 </div>
                 <div class="text-16 mt-4 mb-1">{{LangUtil("数字货币交易")}}</div>
                 <div class="d-flex">
-                    <div class="mr-4"><a class="info--text" :href="LangUtil('法币教程链接')" target="_blank">{{LangUtil("如何购买数字货币")}}</a></div>
-                    <div class="mr-4"><a class="info--text" :href="LangUtil('售币教程链接')" target="_blank">{{LangUtil("如何出售数字货币")}}</a></div>
+                    <div class="mr-4" @click="openLink(LangUtil('法币教程链接'))">
+                        <a class="info--text">{{LangUtil("如何购买数字货币")}}</a>
+                    </div>
+                    <div class="mr-4" @click="openLink(LangUtil('售币教程链接'))">
+                        <a class="info--text">{{LangUtil("如何出售数字货币")}}</a>
+                    </div>
                 </div>
             </div>
             <v-spacer />
@@ -149,5 +155,6 @@
         <p class="website-info">{{LangUtil("网页底部信息说明")}}</p>
         <div class="all-rights-reserved">{{LangUtil("网页底部公司说明")}}</div>
         <div class="all-rights-reserved">version:{{getVersion()}}</div>
+        <div class="all-rights-reserved">{{getChannelID()}}</div>
     </v-container>
 </v-footer>

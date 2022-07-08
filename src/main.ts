@@ -14,7 +14,7 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
     core.cdnUrl = process.env.VUE_APP_URL;
 } else {
     core.host = "http://api.starsabc.com/";

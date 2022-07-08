@@ -110,12 +110,12 @@ export default class PageGamePlay extends AbstractView {
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
                 const gameProxy: GameProxy = getProxy(GameProxy);
-                router.back();
-                setTimeout(() => {
+                // router.back();
+                // setTimeout(() => {
                     if (router.currentRoute.path == "/page_game_play") {
                         router.replace(gameProxy.lastRouter);
                     }
-                }, 100);
+                // }, 100);
             }
         });
     }

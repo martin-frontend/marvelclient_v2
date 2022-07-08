@@ -2,6 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
 import dialog_address_book from "@/views/dialog_address_book";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import dialog_message_box from "@/views/dialog_message_box";
@@ -20,10 +21,19 @@ export default class TabExchange extends AbstractView {
 
     plat_coins = GamePlatConfig.config.plat_coins;
 
+    mounted() {
+        const aLink = document.getElementById("aLink");
+        if (aLink) {
+            aLink.addEventListener("click", ()=>{
+                OpenLink(LangUtil("安全中心链接"));
+            });
+        }
+    }
+
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a class="text-decoration-underline colorBtnBg--text" target="_blank" href="${LangUtil("安全中心链接")}">${LangUtil("安全中心")}</a>`
+            `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
         );
     }
 

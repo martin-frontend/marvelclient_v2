@@ -2,7 +2,7 @@ import WebViewBridge from "../native/WebViewBridge";
 
 export default function OpenLink(url: string) {
     if (core.app_type == core.EnumAppType.APP) {
-        WebViewBridge.getInstance().openBrowser(url);
+        WebViewBridge.getInstance().openStstemBrowser(url);
     } else {
         // try {
         //     const winHandler: any = window.open("", "_blank");

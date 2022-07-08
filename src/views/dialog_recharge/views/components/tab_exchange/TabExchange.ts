@@ -3,6 +3,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_address_book from "@/views/dialog_address_book";
+import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import dialog_trade_password from "@/views/dialog_trade_password";
@@ -13,6 +14,7 @@ import { Component, Watch } from "vue-property-decorator";
 export default class TabExchange extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
+    addressBooProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
 
@@ -39,15 +41,21 @@ export default class TabExchange extends AbstractView {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
         this.form.block_network_id = keys[0];
         this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
+        // 地址簿
+        // this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
+        // console.log(this.addressBooProxy.pageData.listQuery);
+
     }
 
     onChangeSub(value: any) {
         this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
+        // 地址簿
+        // this.addressBooProxy.pageData.listQuery.block_network_id = value;
     }
 
     get isChecked(): boolean {
-        const { amount, account, coin_name_unique, password } = this.form;
-        if (amount != "" && password != "") {
+        const { amount, account, coin_name_unique, password_gold } = this.form;
+        if (amount != "" && password_gold != "") {
             const amount_num = parseFloat(amount);
             if (amount_num > 0 && amount_num <= this.myProxy.exchangeProxy.gold_info[coin_name_unique].sum_money && account != "") {
                 return true;

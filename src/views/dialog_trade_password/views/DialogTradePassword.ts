@@ -11,7 +11,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import dialog_safety_center from "@/views/dialog_safety_center";
 import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_message from "@/views/dialog_message";
-
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogTradePassword extends AbstractView {
@@ -19,6 +19,7 @@ export default class DialogTradePassword extends AbstractView {
     myProxy: DialogTradePasswordProxy = this.getProxy(DialogTradePasswordProxy);
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     safetyCenterProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
+    validate_type = GamePlatConfig.config.validate_type;
     userInfo = this.selfProxy.userInfo;
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
@@ -41,22 +42,29 @@ export default class DialogTradePassword extends AbstractView {
     }
 
     getCode() {
-        if ((this.userInfo.phone != "" && this.userInfo.phone != undefined)) {
+        console.log(this.validate_type);
+
+        if ((this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
             this.pageData.code_type = 1;
             dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
-        } else if ((this.userInfo.email != "" && this.userInfo.email != undefined)) {
+        } else if ((this.userInfo.email != "" && this.userInfo.email != undefined) && this.validate_type.includes(1
+        )) {
             this.pageData.code_type = 2;
             dialog_get_verity.showEmailVerity(5, this.userInfo.email); //获取邮箱验证码
-        } else if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && !(this.userInfo.email != "" && this.userInfo.email != undefined)) {
+        } else if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
             dialog_message_box.confirm({
                 message: LangUtil("您的账号未绑定手机，请绑定手机?"),
                 okFun: () => {
                     this.goSetPhone();
                 },
             });
-        } else {
-            this.pageData.code_type = 1;
-            dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
+        } else if (!(this.userInfo.email != "" && this.userInfo.email != undefined) && this.validate_type.includes(1)) {
+            dialog_message_box.confirm({
+                message: LangUtil("您的账号未绑定邮箱，请绑定邮箱?"),
+                okFun: () => {
+                    this.goSetEmail();
+                },
+            });
         }
     }
 
@@ -79,7 +87,12 @@ export default class DialogTradePassword extends AbstractView {
     }
 
     goSetPhone() {
-        this.safetyCenterProxy.pageData.tabIndex = 0
-        dialog_safety_center.show()
+        this.safetyCenterProxy.pageData.tabIndex = 0;
+        dialog_safety_center.show();
+    }
+
+    goSetEmail() {
+        this.safetyCenterProxy.pageData.tabIndex = 1;
+        dialog_safety_center.show();
     }
 }

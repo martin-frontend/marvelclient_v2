@@ -7,6 +7,7 @@ function show() {
     DialogMount(DialogPreview);
     const proxy: DialogPreviewProxy = getProxy(DialogPreviewProxy);
     proxy.pageData.bShow = true;
+    proxy.pageData.qrLink = proxy.pageData.link;
 }
 
 export default { show };

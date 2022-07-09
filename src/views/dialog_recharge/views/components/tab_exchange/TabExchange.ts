@@ -24,7 +24,7 @@ export default class TabExchange extends AbstractView {
     mounted() {
         const aLink = document.getElementById("aLink");
         if (aLink) {
-            aLink.addEventListener("click", ()=>{
+            aLink.addEventListener("click", () => {
                 OpenLink(LangUtil("安全中心链接"));
             });
         }
@@ -52,15 +52,13 @@ export default class TabExchange extends AbstractView {
         this.form.block_network_id = keys[0];
         this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
         // 地址簿
-        // this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
-        // console.log(this.addressBooProxy.pageData.listQuery);
-
+        this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
     }
 
     onChangeSub(value: any) {
         this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿
-        // this.addressBooProxy.pageData.listQuery.block_network_id = value;
+        this.addressBooProxy.pageData.listQuery.block_network_id = value;
     }
 
     get isChecked(): boolean {

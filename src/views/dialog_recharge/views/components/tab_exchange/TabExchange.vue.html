@@ -9,7 +9,7 @@
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
             v-model="form.block_network_id"
-            @change="onChangeSub" 
+            @change="onChangeSub"
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
@@ -58,13 +58,16 @@
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
             <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
-                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
+                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword"
+                    >{{LangUtil("设置")}}</v-btn
+                >
             </CustomPassword>
         </v-col>
     </v-row>
-    <div class="text-12 mt-3 color-blue mb-2"
-    v-if="pageData.methodList[form.coin_name_unique]"
-    >⚠️ {{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</div>
+    <div class="text-12 mt-3 color-blue mb-2 d-flex" v-if="pageData.methodList[form.coin_name_unique]">
+        <span class="mr-1">⚠️</span>
+        <pre>{{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</pre>
+    </div>
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
     <v-divider class="mx-5" />

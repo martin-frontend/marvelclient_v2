@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import { resetAutoDestroyState } from "@vue/test-utils";
 import * as echarts from "echarts";
 export default class PageSwapProxy extends puremvc.Proxy {
     static NAME = "PageSwapProxy";
@@ -68,6 +69,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             yAxis: {
                 show: false, // 隐藏y轴坐标
                 type: "value",
+                scale: true,
             },
             series: [
                 {
@@ -128,6 +130,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
     resetTrial() {
         this.pageData.amount_a = "";
         this.pageData.amount_b = "";
+        this.pageData.inputChangeFlag = false;
         Object.assign(this.pageData.trial, {
             to_coin_number: "0",
             min_to_coin_number: "0",

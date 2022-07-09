@@ -7,6 +7,7 @@ import dialog_address_book from "@/views/dialog_address_book";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_safety_center from "@/views/dialog_safety_center";
 import dialog_trade_password from "@/views/dialog_trade_password";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
@@ -25,7 +26,7 @@ export default class TabExchange extends AbstractView {
         const aLink = document.getElementById("aLink");
         if (aLink) {
             aLink.addEventListener("click", () => {
-                OpenLink(LangUtil("安全中心链接"));
+                dialog_safety_center.show();
             });
         }
     }

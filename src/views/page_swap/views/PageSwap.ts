@@ -31,7 +31,7 @@ export default class PageSwap extends AbstractView {
                     this.myProxy.pageData.inputChangeFlag = false;
                 }
             }
-            , 3000);
+            , 1000);
     }
 
     constructor() {
@@ -57,7 +57,6 @@ export default class PageSwap extends AbstractView {
     amount_a() {
         this.myProxy.pageData.amount_b = "";
         if (!this.myProxy.pageData.amount_a) {
-            this.myProxy.pageData.amount_b = "";
             this.myProxy.resetTrial();
             return;
         }
@@ -71,7 +70,6 @@ export default class PageSwap extends AbstractView {
     amount_b() {
         this.myProxy.pageData.amount_a = "";
         if (!this.myProxy.pageData.amount_b) {
-            this.myProxy.pageData.amount_a = "";
             this.myProxy.resetTrial();
             return;
         }

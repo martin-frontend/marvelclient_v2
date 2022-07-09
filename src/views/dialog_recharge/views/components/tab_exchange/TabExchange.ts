@@ -87,9 +87,9 @@ export default class TabExchange extends AbstractView {
     }
 
     onPaste() {
-        if (navigator.clipboard) {
+        if (window.navigator.clipboard) {
             //@ts-ignore
-            navigator.clipboard.readText().then((result: any) => {
+            window.navigator.clipboard.readText().then((result: any) => {
                 this.form.account = result;
             });
         }

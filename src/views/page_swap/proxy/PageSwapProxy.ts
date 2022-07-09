@@ -314,9 +314,10 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /**Swap--Swap价格图*/
     api_plat_var_swap_k() {
+        const { timeSelect } = this.pageData;
         this.sendNotification(net.HttpType.api_plat_var_swap_k, {
             plat_id: core.plat_id,
-            type: this.pageData.timeSelect,
+            type: Number(timeSelect) + 1,
         });
     }
 

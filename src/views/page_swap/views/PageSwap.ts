@@ -8,6 +8,8 @@ import FagProxy from "@/proxy/FagProxy";
 import dialog_swap_record from "@/views/dialog_swap_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
+import GameProxy from "@/proxy/GameProxy";
+import getProxy from "@/core/global/getProxy";
 
 @Component
 export default class PageSwap extends AbstractView {
@@ -149,6 +151,8 @@ export default class PageSwap extends AbstractView {
         dialog_message_box.confirm({
             message: LangUtil("确定要交换?"),
             okFun: () => {
+                const gameProxy:GameProxy = getProxy(GameProxy);
+                gameProxy.loading = true;
                 this.myProxy.api_user_var_swap_create_order();
             },
         });

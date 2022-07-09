@@ -8,12 +8,14 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_address_book_remark from "@/views/dialog_address_book_remark";
 import DialogAddressBookRemarkProxy from "@/views/dialog_address_book_remark/proxy/DialogAddressBookRemarkProxy";
+import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 
 @Component
 export default class DialogAddressBook extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     addressBookRemark: DialogAddressBookRemarkProxy = this.getProxy(DialogAddressBookRemarkProxy);
+    rechargeProxy: DialogRechargeProxy = this.getProxy(DialogRechargeProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
 
@@ -37,6 +39,11 @@ export default class DialogAddressBook extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+    }
+
+    onAddress(address: any) {
+        this.myProxy.pageData.bShow = false;
+        this.rechargeProxy.exchangeProxy.pageData.form.account = address;
     }
 
     @Watch("pageData.bShow")

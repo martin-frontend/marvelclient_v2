@@ -10,6 +10,7 @@ import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
+import dialog_preview from "@/views/dialog_preview";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -70,7 +71,7 @@ export default class PageExtension extends AbstractView {
     }
 
     showPreview() {
-        console.log('showPreview');
+        dialog_preview.show();
     }
 
     savePhoto() {

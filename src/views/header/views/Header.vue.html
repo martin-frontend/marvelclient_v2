@@ -88,11 +88,11 @@
             <v-spacer />
             <v-btn height="20" x-small class="mr-3 rounded-pill colorGoldBg black--text" @click="goActivity">
                 <!-- <img src="@/assets/activity/icon_activity.png" width="20"/> -->
-                <div>活动</div>
+                <div>{{LangUtil("活动")}}</div>
             </v-btn>
             <v-btn height="20" x-small class="rounded-pill colorGoldBg black--text" @click="onService">
                 <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
-                <div>语言</div>
+                <div>{{LangUtil("客服")}}</div>
             </v-btn>
             <div v-if="LangConfig.language" class="language">
                 <CustomSelect

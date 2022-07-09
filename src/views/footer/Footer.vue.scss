@@ -1,6 +1,3 @@
-.line-height-50 {
-    line-height: 50px;
-}
 
 .app-footer-single-content {
     height: 60px;
@@ -21,8 +18,6 @@
     margin: 0 auto;
 }
 .all-rights-reserved {
-    line-height: 18px;
-    padding: 8px 0 8px 0;
     font-size: 12px;
     color: #5f6888;
     text-align: center;
@@ -30,4 +25,8 @@
 }
 .lang-color {
     color: rgba(255, 255, 255, 0.6);
+}
+.img-vendor {
+    max-width: 90px;
+    max-height: 40px;
 }

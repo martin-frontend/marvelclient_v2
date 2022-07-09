@@ -29,9 +29,10 @@
                 <v-sheet
                     color="colorPanelBg2"
                     height="76"
-                    class="rounded-lg d-flex align-center px-5 mt-3"
+                    class="rounded-lg d-flex align-center px-5 mt-3 cursor"
                     v-for="(item, key) of pageData.list"
                     :key="key"
+                    @click="onAddress(item.payment_method.account)"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
                         <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
@@ -40,8 +41,8 @@
                         </div>
                     </v-sheet>
                     <v-spacer />
-                    <v-btn class="colorBtnBg mr-3" small @click="onEdit(item)">{{LangUtil("备注")}}</v-btn>
-                    <v-btn color="colorBlue" small @click="onDelete(item)">{{LangUtil("删除")}}</v-btn>
+                    <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
+                    <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
                 </v-sheet>
             </v-sheet>
             <ListNodata v-if="pageData.list.length == 0" height="411" />
@@ -85,18 +86,19 @@
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
                 <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet
-                    class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center"
+                    class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
                     color="colorPanelBg2"
                     v-for="(item, key) of pageData.list"
                     :key="key"
+                    @click="onAddress(item.payment_method.account)"
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
                         <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
                         <div class="text-truncate">{{item.payment_method.account}}</div>
                     </v-sheet>
                     <v-spacer />
-                    <v-btn class="colorBtnBg mr-3" small @click="onEdit(item)">{{LangUtil("备注")}}</v-btn>
-                    <v-btn color="colorBlue" small @click="onDelete(item)">{{LangUtil("删除")}}</v-btn>
+                    <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
+                    <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
                 </v-sheet>
             </vue-loadmore>
         </v-card-text>

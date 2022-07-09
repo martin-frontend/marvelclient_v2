@@ -337,7 +337,7 @@
                 </v-card>
             </v-hover>
         </v-col>
-        <v-col cols="12" md="4" class="mb-4">
+        <!-- <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
                     class="pa-2 intro-radius d-flex flex-column justify-space-between"
@@ -365,12 +365,12 @@
                     </v-card-actions>
                 </v-card>
             </v-hover>
-        </v-col>
+        </v-col> -->
         <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
                     class="pa-2 intro-radius mr-md-4 d-flex flex-column justify-space-between"
-                    :class="$vuetify.breakpoint.mdAndUp ? 'intro-how-04-md' : 'intro-how-04'"
+                    :class="$vuetify.breakpoint.mdAndUp ? 'intro-how-03-md' : 'intro-how-03'"
                     :color="hover ? '#283c63' : '#25324b'"
                     height="100%"
                 >
@@ -473,15 +473,15 @@
                 <span class="text-18 intro-year-color">2022</span>
             </div>
             <div class="d-flex mb-5">
-                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickAble"></v-img>
+                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickDisable"></v-img>
                 <span :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">股东质押分红池上链</span>
             </div>
             <div class="d-flex mb-5">
-                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickAble"></v-img>
+                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickDisable"></v-img>
                 <span :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">主流DEX平台开放交易</span>
             </div>
             <div class="d-flex mb-5">
-                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickAble"></v-img>
+                <v-img class="mr-4" max-width="17" max-height="17" :src="pageImage.tickDisable"></v-img>
                 <span :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">流动性挖矿Genius矿池启动</span>
             </div>
         </v-sheet>

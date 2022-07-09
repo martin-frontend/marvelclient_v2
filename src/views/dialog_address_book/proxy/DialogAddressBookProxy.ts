@@ -34,21 +34,21 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
-        const keys = Object.keys(data);
+        // const keys = Object.keys(data);
 
-        const gameProxy: GameProxy = getProxy(GameProxy);
-        let coin_name_unique = gameProxy.coin_name_unique;
-        if (keys.indexOf(coin_name_unique) == -1) {
-            coin_name_unique = keys[0];
-        }
+        // const gameProxy: GameProxy = getProxy(GameProxy);
+        // let coin_name_unique = gameProxy.coin_name_unique;
+        // if (keys.indexOf(coin_name_unique) == -1) {
+        //     coin_name_unique = keys[0];
+        // }
 
-        if (coin_name_unique) {
-            this.pageData.listQuery.coin_name_unique = coin_name_unique;
-            const optionsKeys = Object.keys(data[coin_name_unique].options);
-            if (optionsKeys[0]) {
-                this.pageData.listQuery.block_network_id = optionsKeys[0];
-            }
-        }
+        // if (coin_name_unique) {
+        //     this.pageData.listQuery.coin_name_unique = coin_name_unique;
+        //     const optionsKeys = Object.keys(data[coin_name_unique].options);
+        //     if (optionsKeys[0]) {
+        //         this.pageData.listQuery.block_network_id = optionsKeys[0];
+        //     }
+        // }
         this.api_user_var_payment_method_index();
     }
 

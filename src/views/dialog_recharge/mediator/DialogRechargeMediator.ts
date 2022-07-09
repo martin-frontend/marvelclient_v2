@@ -4,6 +4,8 @@ import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
+import DialogPreviewProxy from "@/views/dialog_preview/proxy/DialogPreviewProxy";
+
 
 export default class DialogRechargeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -20,6 +22,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
         const body = notification.getBody();
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
         const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
+        const previewProxy: DialogPreviewProxy = getProxy(DialogPreviewProxy);
         myProxy.exchangeProxy.pageData.loading = false;
         myProxy.rechargeProxy.pageData.loading = false;
         switch (notification.getName()) {
@@ -27,6 +30,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.rechargeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_recharge_address:
+                previewProxy.setLink(body);
                 myProxy.rechargeProxy.setAddress(body);
                 break;
             case net.EventType.api_user_show_var:

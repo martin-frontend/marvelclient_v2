@@ -3,6 +3,7 @@ import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
+import DialogPreviewProxy from "@/views/dialog_preview/proxy/DialogPreviewProxy";
 export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     LangUtil = LangUtil;
@@ -32,6 +33,7 @@ export default class PageExtensionMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: PageExtensionProxy = getProxy(PageExtensionProxy);
+        const previewProxy: DialogPreviewProxy = getProxy(DialogPreviewProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
@@ -40,13 +42,14 @@ export default class PageExtensionMediator extends AbstractMediator {
                 }
                 break;
             case net.EventType.api_user_var_commission_commissionnum:
-                this.myProxy.setCommissionCommissionnum(body);
+                myProxy.setCommissionCommissionnum(body);
                 break;
             case net.EventType.api_user_var_short_chain:
-                this.myProxy.setLink(body.url);
+                previewProxy.setLink(body.url);
+                myProxy.setLink(body.url);
                 break;
             case net.EventType.api_user_var_commission_receive:
-                this.myProxy.api_user_var_commission_commissiondetail();
+                myProxy.api_user_var_commission_commissiondetail();
                 dialog_message.success(LangUtil("领取成功"));
                 break;
         }

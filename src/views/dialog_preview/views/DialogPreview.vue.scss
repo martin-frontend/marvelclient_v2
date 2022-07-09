@@ -1,0 +1,16 @@
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    width: 270px;
+    height: 270px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 180px;
+        height: 180px;
+    }
+}

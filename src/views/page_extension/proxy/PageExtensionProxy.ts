@@ -134,20 +134,21 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     /**保存图片到相册 */
     async savePoster(url: any) {
         let poster: string;
+        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
         //@ts-ignore
         /* eslint-disable */
-        // const bg = require(`@/assets/extension/poster.jpg`);
-        // if (bg) {
-        //     const myCanvas = new MyCanvas(667, 375);
-        //     await myCanvas.drawImage1(bg, 0, 0);
-        //     await myCanvas.drawQrCode(url, 505, 180, 140, 140);
-        //     //推荐人
-        //     myCanvas.drawText(LangUtil("推荐人:") + core.user_id.toString(), 575, 350, "#ffffff", 14);
-        //     poster = myCanvas.getData();
-        // } else {
-        const qr = await Utils.generateQrcode(this.pageData.link);
-        poster = qr;
-        // }
+        const bg = require(`@/assets/extension/poster.jpg`);
+        if (bg) {
+            const myCanvas = new MyCanvas(750, 1334);
+            await myCanvas.drawImage1(bg, 0, 0);
+            await myCanvas.drawQrCode(url, 250, 990, 250, 250);
+            //推荐人
+            myCanvas.drawText(id.toString(), 390, 940, "#ffffff", 26);
+            poster = myCanvas.getData();
+        } else {
+            const qr = await Utils.generateQrcode(this.pageData.link);
+            poster = qr;
+        }
 
         const img = new Image();
         img.src = poster;

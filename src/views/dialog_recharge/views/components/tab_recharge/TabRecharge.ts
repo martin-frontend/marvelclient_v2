@@ -52,6 +52,6 @@ export default class TabRecharge extends AbstractView {
     }
 
     showPreview() {
-        dialog_preview.show();
+        dialog_preview.show(0);
     }
 }

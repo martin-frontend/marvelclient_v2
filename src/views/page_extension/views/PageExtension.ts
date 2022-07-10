@@ -72,14 +72,14 @@ export default class PageExtension extends AbstractView {
     }
 
     showPreview() {
-        dialog_preview.show();
+        dialog_preview.show(0);
     }
 
     savePhoto() {
         if (vuetify.framework.breakpoint.xsOnly) {
             this.myProxy.savePoster(this.myProxy.pageData.link);
         } else {
-            this.showPreview()
+            dialog_preview.show(1);
         }
     }
 

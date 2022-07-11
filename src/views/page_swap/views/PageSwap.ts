@@ -65,7 +65,7 @@ export default class PageSwap extends AbstractView {
     }
     /**图标时间选择 */
     onTimeChange(val: any) {
-        this.pageData.chartQuary.type = val + 1;
+        this.pageData.chartQuary.type = val;
         this.myProxy.api_plat_var_swap_k();
     }
     /**滑点容差选择 */
@@ -78,7 +78,7 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRefresh() {
-        if(this.form.inputA){
+        if (this.form.inputA) {
             this.myProxy.api_plat_var_swap_trial();
         }
     }
@@ -98,10 +98,10 @@ export default class PageSwap extends AbstractView {
         return !!this.form.inputA && !!this.form.inputB;
     }
 
-    get chartChangedData(){
-        if(this.chartData.coinA == this.swap_setting_info.coin_a){
+    get chartChangedData() {
+        if (this.chartData.coinA == this.swap_setting_info.coin_a) {
             return this.chartData.coin_a_b_changed;
-        }else{
+        } else {
             return this.chartData.coin_b_a_changed;
         }
     }

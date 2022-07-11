@@ -30,7 +30,7 @@ export default class DashboardDialog extends AbstractView {
         this.myProxy.setChart_k(val.batch[0].dataIndex);
     }
 
-    @Watch("myProxy.pageData.swap_k")
+    @Watch("pageData.chartData.number")
     resizeTheChart() {
         let chartDome = this.$refs.chart;
         //@ts-ignore
@@ -38,7 +38,7 @@ export default class DashboardDialog extends AbstractView {
 
         setTimeout(() => {
             //@ts-ignore
-            chartDome.setOption(this.myProxy.chartData.option);
+            chartDome.setOption(this.pageData.chartData.options);
             //@ts-ignore
             chartDome.resize();
         }, 200);

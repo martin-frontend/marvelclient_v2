@@ -36,7 +36,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             swap_fee: "", // 手续费
         },
         chartQuary: {
-            type: 1,
+            type: 0,
         },
         chartData: {
             coinA: "",
@@ -47,6 +47,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             coin_b_a_price: "", // 币种B兑币种A最新价格
             created_time: "", //当前时间
             formatData: <any>{},
+            number: 0,
             options: {
                 tooltip: {
                     trigger: "axis",
@@ -129,7 +130,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
     setTrial(data: any) {
         const { form } = this.pageData;
         const { timestamp, inputType } = form;
-        // if (data.timestamp == timestamp) {
+
+        if (data.timestamp == timestamp) {
             //第一次试算不填值
             if (timestamp > 1) {
                 if (inputType == 0) {
@@ -142,7 +144,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
             form.affect_price = data.affect_price;
             form.min_to_coin_number = data.min_to_coin_number;
             form.swap_fee = data.swap_fee;
-        // }
+        }
+        this.pageData.form.timestamp++;
     }
 
     /** 价格图*/
@@ -156,15 +159,15 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
         const formatData: any = (chartData.formatData = this.getObject(data.swap_price_log.reverse()));
         const { coin_a_b_price, coin_b_a_price, created_time } = formatData;
-        const created_time_format = created_time.map((item:string)=> chartQuary.type == 1 ? item.substring(11, 16) : item.substring(5, 10));
+        const created_time_format = created_time.map((item: string) => chartQuary.type == 0 ? item.substring(11, 16) : item.substring(5, 10));
         chartData.options.xAxis.data = created_time_format;
         chartData.options.series[0].data = chartData.coinA == data.coin_a ? coin_a_b_price : coin_b_a_price;
+        this.changeChartColor();
+        this.pageData.chartData.number++;
     }
     /**chart highlight事件 */
     setChart_k(index: any) {
         const { chartData } = this.pageData;
-        const length = chartData.formatData.created_time.length - 1;
-        index = length - index;
 
         chartData.created_time = chartData.formatData.created_time[index];
         chartData.coin_a_b_price = chartData.formatData.coin_a_b_price[index];
@@ -194,6 +197,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         chartData.options.series[0].data =
             chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
         this.changeChartColor();
+        this.pageData.chartData.number++;
     }
 
     /** Chart互换*/
@@ -206,6 +210,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         chartData.options.series[0].data =
             chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
         this.changeChartColor();
+        this.pageData.chartData.number++;
     }
     /**确定图表的颜色 */
     changeChartColor() {
@@ -262,7 +267,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
     /**Swap--Swap试算*/
     api_plat_var_swap_trial() {
         const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
-        this.pageData.form.timestamp++;
         const data = {
             plat_id: core.plat_id,
             from_coin: inputType == 0 ? coinA : coinB,
@@ -277,7 +281,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
     api_plat_var_swap_k() {
         this.sendNotification(net.HttpType.api_plat_var_swap_k, {
             plat_id: core.plat_id,
-            type: this.pageData.chartQuary.type,
+            type: this.pageData.chartQuary.type + 1,
         });
     }
 

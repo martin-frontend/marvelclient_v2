@@ -14,120 +14,62 @@ import getProxy from "@/core/global/getProxy";
 @Component
 export default class PageSwap extends AbstractView {
     LangUtil = LangUtil;
+    plat_coins = GamePlatConfig.config.plat_coins;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    fagProxy: FagProxy = this.getProxy(FagProxy);
     myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     pageData = this.myProxy.pageData;
-    fagProxy: FagProxy = this.getProxy(FagProxy);
-    trial = this.myProxy.pageData.trial;
-    parameter = this.myProxy.parameter;
-    GamePlatConfig = GamePlatConfig;
-    listOptions = this.myProxy.listOptions;
-
-    mounted() {
-        setInterval(
-            () => {
-                if (this.myProxy.pageData.inputChangeFlag == true) {
-                    this.myProxy.api_plat_var_swap_trial();
-                    this.myProxy.pageData.inputChangeFlag = false;
-                }
-            }
-            , 1000);
-    }
+    form = this.pageData.form;
+    chartData = this.pageData.chartData;
+    swap_setting_info = this.pageData.swap_setting_info;
+    userInfo = this.selfProxy.userInfo;
 
     constructor() {
         super(PageSwapMediator);
     }
 
-    get questionData() {
-        return this.fagProxy.qData.type4;
-    }
-
-    get tolerance() {
-        return this.myProxy.pageData.swap_setting_info.tolerance_params;
-    }
-
-    mouseover() {
-        this.pageData.icon = "mdi-swap-vertical";
-    }
-
-    mouseleave() {
-        this.pageData.icon = "mdi-arrow-down";
-    }
-
-    amount_a() {
-        this.myProxy.pageData.amount_b = "";
-        if (!this.myProxy.pageData.amount_a) {
-            this.myProxy.resetTrial();
-            return;
-        }
-        this.myProxy.pageData.inputChangeFlag = true;
-
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        this.myProxy.pageData.inputType = "A";
-    }
-
-    amount_b() {
-        this.myProxy.pageData.amount_a = "";
-        if (!this.myProxy.pageData.amount_b) {
-            this.myProxy.resetTrial();
-            return;
-        }
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
-        this.myProxy.pageData.inputType = "B";
-
-        this.myProxy.pageData.inputChangeFlag = true;
-    }
-
-    /**交易对调 */
-    private tradeSwap() {
-        this.myProxy.pageData.tradeFlag = 1;
-        this.myProxy.tradeReverse();
-        // this.myProxy.resetTrial();
-        this.parameter.from_coin = this.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = 1;
-        const target = this.pageData.amount_b;
-        this.pageData.amount_b = this.pageData.amount_a;
-        this.pageData.amount_a = target;
-        // this.myProxy.api_user_var_swap_trial()
-    }
-
-    /**交易对调 */
-    private chartSwap() {
-        this.myProxy.chartReverse();
-    }
-
-    onTimeChange() {
-        this.myProxy.api_plat_var_swap_k();
-    }
-
-    onChange() {
-        if (!this.myProxy.pageData.amount_a && !this.myProxy.pageData.amount_b) {
-            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-            this.parameter.from_coin_number = 1;
+    onInputA() {
+        this.pageData.form.inputType = 0;
+        this.pageData.form.inputB = "";
+        if (this.pageData.form.inputA) {
             this.myProxy.api_plat_var_swap_trial();
-            return;
         }
-        if (this.myProxy.pageData.inputType == "A") {
-            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-            this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-            this.myProxy.api_plat_var_swap_trial();
-        } else {
-            this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_b;
-            this.parameter.from_coin_number = this.myProxy.pageData.amount_b;
+    }
+
+    onInputB() {
+        this.pageData.form.inputType = 1;
+        this.pageData.form.inputA = "";
+        if (this.pageData.form.inputB) {
             this.myProxy.api_plat_var_swap_trial();
         }
     }
 
     handlerAll() {
-        this.myProxy.pageData.inputType = "A";
-        this.myProxy.pageData.inputChangeFlag = true;
-        this.myProxy.pageData.amount_b = "";
-        //@ts-ignore
-        this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].plat_money;
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
+        const { form } = this.pageData;
+        form.inputType = 0;
+        const gold_info: any = this.userInfo.gold_info;
+        if (gold_info) {
+            form.inputA = gold_info[form.coinA].plat_money;
+        }
+        this.onInputA();
+    }
+
+    /**交易对调 */
+    private tradeSwap() {
+        this.myProxy.tradeReverse();
+        this.myProxy.api_plat_var_swap_trial();
+    }
+    /**交易对调 */
+    private chartSwap() {
+        this.myProxy.chartReverse();
+    }
+    /**图标时间选择 */
+    onTimeChange(val: any) {
+        this.pageData.chartQuary.type = val + 1;
+        this.myProxy.api_plat_var_swap_k();
+    }
+    /**滑点容差选择 */
+    onChange() {
         this.myProxy.api_plat_var_swap_trial();
     }
 
@@ -136,20 +78,16 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRefresh() {
-        this.myProxy.pageData.changedFlag = false;
-        this.myProxy.pageData.inputChangeFlag = false
-        this.myProxy.resetParameter();
-        this.myProxy.resetTrial();
-        this.myProxy.api_plat_var_swap_setting_info();
-        this.myProxy.api_plat_var_swap_trial();
-        this.myProxy.api_plat_var_swap_k();
+        if(this.form.inputA){
+            this.myProxy.api_plat_var_swap_trial();
+        }
     }
 
     handlerTrade() {
         dialog_message_box.confirm({
             message: LangUtil("确定要交换?"),
             okFun: () => {
-                const gameProxy:GameProxy = getProxy(GameProxy);
+                const gameProxy: GameProxy = getProxy(GameProxy);
                 gameProxy.loading = true;
                 this.myProxy.api_user_var_swap_create_order();
             },
@@ -157,10 +95,14 @@ export default class PageSwap extends AbstractView {
     }
 
     get isCheck(): boolean {
-        if (this.pageData.amount_a && this.pageData.amount_b) {
-            return true;
-        } else {
-            return false;
+        return !!this.form.inputA && !!this.form.inputB;
+    }
+
+    get chartChangedData(){
+        if(this.chartData.coinA == this.swap_setting_info.coin_a){
+            return this.chartData.coin_a_b_changed;
+        }else{
+            return this.chartData.coin_b_a_changed;
         }
     }
 }

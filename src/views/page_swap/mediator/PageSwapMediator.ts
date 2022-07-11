@@ -12,8 +12,6 @@ export default class PageSwapMediator extends AbstractMediator {
     private selfProxy: SelfProxy = getProxy(SelfProxy);
 
     protected initViewData(): void {
-        this.myProxy.pageData.timeSelect = 0;
-        this.myProxy.resetTrial();
         this.myProxy.api_plat_var_swap_setting_info();
         this.myProxy.api_plat_var_swap_k();
     }
@@ -48,12 +46,8 @@ export default class PageSwapMediator extends AbstractMediator {
                     const gameProxy: GameProxy = getProxy(GameProxy);
                     gameProxy.loading = false;
 
-                    myProxy.resetTrial();
                     dialog_message.success(LangUtil("交换成功"));
                     this.selfProxy.api_user_show_var([2]);
-                    myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
-                    myProxy.parameter.from_coin_number = "1";
-                    myProxy.pageData.inputType = "";
                     myProxy.api_plat_var_swap_trial();
                 }
 

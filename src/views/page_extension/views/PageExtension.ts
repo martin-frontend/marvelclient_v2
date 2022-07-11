@@ -11,6 +11,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import dialog_preview from "@/views/dialog_preview";
+import { vuetify } from "@/plugins/vuetify";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -71,11 +72,15 @@ export default class PageExtension extends AbstractView {
     }
 
     showPreview() {
-        dialog_preview.show();
+        dialog_preview.show(0);
     }
 
     savePhoto() {
-        this.myProxy.savePoster(this.myProxy.pageData.link);
+        if (vuetify.framework.breakpoint.xsOnly) {
+            this.myProxy.savePoster(this.myProxy.pageData.link);
+        } else {
+            dialog_preview.show(1);
+        }
     }
 
     reget() {

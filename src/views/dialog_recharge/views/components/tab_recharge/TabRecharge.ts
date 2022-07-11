@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
+import dialog_preview from "@/views/dialog_preview";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -48,5 +49,9 @@ export default class TabRecharge extends AbstractView {
     destroyed() {
         super.destroyed();
         this.pageData.address = "";
+    }
+
+    showPreview() {
+        dialog_preview.show(0);
     }
 }

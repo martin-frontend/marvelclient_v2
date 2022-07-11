@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import { resetAutoDestroyState } from "@vue/test-utils";
 import * as echarts from "echarts";
 export default class PageSwapProxy extends puremvc.Proxy {
     static NAME = "PageSwapProxy";
@@ -13,96 +14,89 @@ export default class PageSwapProxy extends puremvc.Proxy {
     };
 
     pageData = {
-        loading: false,
-        amount_a: "",
-        amount_b: "",
-        icon: "mdi-arrow-down",
-        chart_a: "CF",
-        chart_b: "USDT",
+        //基础信息
         swap_setting_info: {
-            coin_a: "CF", // 币A
-            coin_b: "USDT", // 币B
+            coin_a: "", // 币A
+            coin_b: "", // 币B
             tolerance_params: [], // 容差
         },
-        trial: {
-            to_coin_number: "", // 获取量
-            price: "", // 兑换价格
-            min_to_coin_number: "", // 最小获取量
+        form: {
+            type: 0, // 0:CF->USDT 1:USDT->CF
+            inputType: 0, // 0:a->b 1:b->a
+            tolerance: 0, //容差
+            inputA: "",
+            inputB: "",
+            coinA: "",
+            coinB: "",
+            timestamp: 0,
+            price: "",
+
+            min_to_coin_number: "", // 最小获取量(用于显示可以兑换出的数量)
             affect_price: "", // 影响价格
             swap_fee: "", // 手续费
         },
-        timeSelect: 0,
-        swap_k: {
-            coin_a: "",
-            coin_a_b_changed: "", // 币A兑币B增幅价格
-            coin_b: "",
-            coin_b_a_changed: "", // 币B兑币A增幅价格
-            swap_price_log: [],
+        chartQuary: {
+            type: 0,
+        },
+        chartData: {
+            coinA: "",
+            coinB: "",
+            coin_a_b_changed: "", // 币种A兑币种B变化
+            coin_b_a_changed: "", // 币种B兑币种A变化
+            coin_a_b_price: "", // 币种A兑币种B最新价格
+            coin_b_a_price: "", // 币种B兑币种A最新价格
+            created_time: "", //当前时间
+            formatData: <any>{},
             number: 0,
-        },
-        changed: "",
-        changedFlag: false, // Chart互换
-        price: "",
-        chartTime: "",
-        coin_a_b_price: [],
-        coin_b_a_price: [],
-        created_time: [],
-        swap_price_log: <any>[],
-        tradeFlag: 1, // 上下对调
-        inputChangeFlag: false, // 判断是否有输入
-        inputType: "", // 判断输入匡
-    };
-
-    /**曲线图数据 */
-    chartData = {
-        option: {
-            tooltip: {
-                trigger: "axis",
-            },
-            xAxis: {
-                type: "category",
-                boundaryGap: false,
-                data: [],
-                offset: 10,
-            },
-            yAxis: {
-                show: false, // 隐藏y轴坐标
-                type: "value",
-            },
-            series: [
-                {
-                    name: "Chart",
-                    data: [],
-                    type: "line",
-                    areaStyle: {
-                        opacity: 0.1,
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
-                            {
-                                offset: 0,
-                                color: "rgb(205, 104, 104)"//这里是渐变色的起始颜色
-                            },
-                            {
-                                offset: 1,
-                                color: "#1a273f"// 这里是渐变色的结束颜色
-                            }
-                        ])
-                    },
-                    showSymbol: false,
-                    // symbol: "none", // 去掉小圆点
-                    lineStyle: {
-                        color: "rgba(205, 104, 104, 0.9)", //red
-                        width: 1,
-                    }
+            options: {
+                tooltip: {
+                    trigger: "axis",
                 },
-            ],
-            grid: {
-                x: 20, // 左侧距离
-                y: 80, // 顶部距离
-                x2: 20, //右侧距离
-                y2: 35 //底部距离
+                xAxis: {
+                    boundaryGap: false,
+                    data: [],
+                },
+                yAxis: {
+                    show: false, // 隐藏y轴坐标
+                    type: "value",
+                    scale: true,
+                },
+                series: [
+                    {
+                        name: "Chart",
+                        data: [],
+                        type: "line",
+                        areaStyle: {
+                            opacity: 0.1,
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                //这里是渐变的角度，上下左右四个方向
+                                {
+                                    offset: 0,
+                                    color: "rgb(205, 104, 104)", //这里是渐变色的起始颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: "#1a273f", // 这里是渐变色的结束颜色
+                                },
+                            ]),
+                        },
+                        showSymbol: false,
+                        // symbol: "none", // 去掉小圆点
+                        lineStyle: {
+                            color: "rgba(205, 104, 104, 0.9)", //red
+                            width: 1,
+                        },
+                    },
+                ],
+                grid: {
+                    x: 20, // 左侧距离
+                    y: 80, // 顶部距离
+                    x2: 20, //右侧距离
+                    y2: 35, //底部距离
+                },
             },
         },
-    }
+    };
 
     //选择器
     listOptions = {
@@ -112,187 +106,160 @@ export default class PageSwapProxy extends puremvc.Proxy {
                 1: LangUtil("一周"),
                 2: LangUtil("一月"),
                 3: LangUtil("一年"),
-            }
+            };
         },
-    }
-
-    resetParameter() {
-        Object.assign(this.parameter, {
-            from_coin: "",
-            from_coin_number: 0,
-            tolerance: 0,
-            user_id: 0,
-        });
-    }
-
-    resetTrial() {
-        this.pageData.amount_a = "";
-        this.pageData.amount_b = "";
-        Object.assign(this.pageData.trial, {
-            to_coin_number: "0",
-            min_to_coin_number: "0",
-            affect_price: "0",
-            swap_fee: "0",
-        });
-    }
+    };
 
     /** 基础信息*/
     setData(data: any) {
         Object.assign(this.pageData.swap_setting_info, data);
-        this.pageData.chart_a = data.coin_a;
-        this.pageData.chart_b = data.coin_b;
-        this.chartData.option.series[0].name = this.pageData.chart_a + "/" + this.pageData.chart_b;
-        this.pageData.swap_setting_info.tolerance_params = data.tolerance_params;
+        const { form, chartData } = this.pageData;
+        form.tolerance = data.tolerance_params[0];
+        form.coinA = data.coin_a;
+        form.coinB = data.coin_b;
+        form.type = 0;
+        form.inputType = 0;
+        form.inputA = form.inputB = "";
+
+        chartData.options.series[0].name = form.coinA + "/" + form.coinB;
+        chartData.coinA = data.coin_a;
+        chartData.coinB = data.coin_b;
     }
 
     /** 试算*/
     setTrial(data: any) {
-        // 上下对调
-        if (this.pageData.tradeFlag == 1) {
-            this.pageData.trial.price = data.price;
-            this.pageData.trial.min_to_coin_number = "0";
-            this.pageData.trial.affect_price = "0";
-            this.pageData.trial.swap_fee = "0";
-            this.pageData.tradeFlag = 0;
-            return;
-        }
+        const { form } = this.pageData;
+        const { timestamp, inputType } = form;
 
-        Object.assign(this.pageData.trial, data);
-        if (this.pageData.inputType == "A" && !this.pageData.amount_a) {
-            this.pageData.amount_b = "";
-            return;
-        } else if (this.pageData.inputType == "B" && !this.pageData.amount_b) {
-            this.pageData.amount_a = "";
-            return;
-        } else if (this.pageData.inputType == "A") {
-            this.pageData.amount_b = data.to_coin_number;
-        } else if (this.pageData.inputType == "B") {
-            this.pageData.trial.price = (1 / data.price).toString();
-            this.pageData.amount_a = data.to_coin_number;
+        if (data.timestamp == timestamp) {
+            //第一次试算不填值
+            if (timestamp > 1) {
+                if (inputType == 0) {
+                    form.inputB = data.to_coin_number;
+                } else {
+                    form.inputA = data.to_coin_number;
+                }
+            }
+            form.price = data.price;
+            form.affect_price = data.affect_price;
+            form.min_to_coin_number = data.min_to_coin_number;
+            form.swap_fee = data.swap_fee;
         }
-        else {
-            //网页第一次试算
-            this.pageData.amount_a = "";
-            this.pageData.amount_b = "";
-            this.pageData.trial.min_to_coin_number = "0";
-            this.pageData.trial.affect_price = "0";
-            this.pageData.trial.swap_fee = "0";
-        }
+        this.pageData.form.timestamp++;
     }
 
     /** 价格图*/
     setSwapK(data: any) {
-        // to do 判断处理 changedFlag
-        this.chartData.option.series[0].data = [];
-        this.chartData.option.xAxis.data = [];
-        Object.assign(this.pageData.swap_k, data);
+        const { chartData, chartQuary } = this.pageData;
+        chartData.coin_a_b_changed = data.coin_a_b_changed;
+        chartData.coin_a_b_price = data.coin_a_b_price;
+        chartData.coin_b_a_changed = data.coin_b_a_changed;
+        chartData.coin_b_a_price = data.coin_b_a_price;
+        chartData.created_time = data.swap_price_log[0].created_time;
 
-        this.pageData.changed = this.pageData.swap_k.coin_a_b_changed;
+        const formatData: any = (chartData.formatData = this.getObject(data.swap_price_log.reverse()));
+        const { coin_a_b_price, coin_b_a_price, created_time } = formatData;
+        const created_time_format = created_time.map((item: string) => chartQuary.type == 0 ? item.substring(11, 16) : item.substring(5, 10));
+        chartData.options.xAxis.data = created_time_format;
+        chartData.options.series[0].data = chartData.coinA == data.coin_a ? coin_a_b_price : coin_b_a_price;
         this.changeChartColor();
-
-        //@ts-ignore
-        this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
-        //@ts-ignore
-        this.pageData.chartTime = this.pageData.swap_k.swap_price_log[0].created_time;
-
-        this.pageData.swap_price_log = this.getObject(data.swap_price_log);
-        this.pageData.swap_price_log.coin_a_b_price = this.pageData.swap_price_log.coin_a_b_price.reverse();
-        this.pageData.swap_price_log.coin_b_a_price = this.pageData.swap_price_log.coin_b_a_price.reverse();
-        this.pageData.swap_price_log.created_time = this.pageData.swap_price_log.created_time.reverse();
-        const swap_price_log = this.pageData.swap_price_log;
-        if (this.pageData.timeSelect == 0) {
-            for (let i = 0; i < swap_price_log.created_time.length; i++) {
-                swap_price_log.created_time[i] = (swap_price_log.created_time[i].split(" ")[1]).substr(0, 5);
-            }
-        } else {
-            for (let i = 0; i < swap_price_log.created_time.length; i++) {
-                swap_price_log.created_time[i] = (swap_price_log.created_time[i].split(" ")[0]).substr(5);
-            }
-        }
-        Object.assign(this.chartData.option.series[0].data, swap_price_log.coin_a_b_price);
-        Object.assign(this.chartData.option.xAxis.data, swap_price_log.created_time); //时间轴
-        this.pageData.swap_k.number++;
+        this.pageData.chartData.number++;
     }
 
+    /**chart highlight事件 */
     setChart_k(index: any) {
-        const length = this.pageData.swap_k.swap_price_log.length - 1;
-        if (this.pageData.changedFlag == false) {
-            //@ts-ignore
-            this.pageData.price = this.pageData.swap_k.swap_price_log[length - index].coin_a_b_price;
-        } else {
-            //@ts-ignore
-            this.pageData.price = this.pageData.swap_k.swap_price_log[length - index].coin_b_a_price;
-        }
-        //@ts-ignore
-        this.pageData.chartTime = this.pageData.swap_k.swap_price_log[length - index].created_time;
+        const { chartData } = this.pageData;
+        chartData.created_time = chartData.formatData.created_time[index];
+        chartData.coin_a_b_price = chartData.formatData.coin_a_b_price[index];
+        chartData.coin_b_a_price = chartData.formatData.coin_b_a_price[index];
+    }
+
+    /**chart globalout事件 */
+    setChart_init() {
+        const { chartData } = this.pageData;
+        const index = chartData.formatData.created_time.length - 1;
+        chartData.created_time = chartData.formatData.created_time[index];
+        chartData.coin_a_b_price = chartData.formatData.coin_a_b_price[index];
+        chartData.coin_b_a_price = chartData.formatData.coin_b_a_price[index];
     }
 
     /** 交换互换*/
     tradeReverse() {
-        const target = this.pageData.swap_setting_info.coin_b;
-        this.pageData.swap_setting_info.coin_b = this.pageData.swap_setting_info.coin_a;
-        this.pageData.swap_setting_info.coin_a = target;
-        if (this.pageData.swap_setting_info.coin_b != this.pageData.chart_b) {
-            this.chartReverse();
+        const { swap_setting_info, form, chartData } = this.pageData;
+        const { formatData } = chartData;
+        form.type = form.type == 0 ? 1 : 0;
+        if (form.type == 0) {
+            form.coinA = swap_setting_info.coin_a;
+            form.coinB = swap_setting_info.coin_b;
+        } else {
+            form.coinA = swap_setting_info.coin_b;
+            form.coinB = swap_setting_info.coin_a;
         }
+        if (form.inputB) {
+            form.inputA = form.inputB;
+            form.inputB = "";
+        }
+        form.inputType = 0;
+
+        chartData.coinA = form.coinA;
+        chartData.coinB = form.coinB;
+        chartData.options.series[0].data =
+            chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
+        this.changeChartColor();
+        this.pageData.chartData.number++;
     }
 
     /** Chart互换*/
     chartReverse() {
-        const target = this.pageData.chart_b;
-        this.pageData.chart_b = this.pageData.chart_a;
-        this.pageData.chart_a = target;
-        this.pageData.changedFlag = !this.pageData.changedFlag;
-        this.chartData.option.series[0].data = [];
-        if (this.pageData.changedFlag) {
-            this.pageData.changed = this.pageData.swap_k.coin_b_a_changed;
-            //@ts-ignore
-            this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_b_a_price;
-            Object.assign(this.chartData.option.series[0].data, this.pageData.swap_price_log.coin_b_a_price);
-            this.pageData.swap_k.number++;
-        } else {
-            this.pageData.changed = this.pageData.swap_k.coin_a_b_changed;
-            //@ts-ignore
-            this.pageData.price = this.pageData.swap_k.swap_price_log[0].coin_a_b_price;
-            Object.assign(this.chartData.option.series[0].data, this.pageData.swap_price_log.coin_a_b_price);
-            this.pageData.swap_k.number++;
-        }
+        const { chartData, swap_setting_info } = this.pageData;
+        const { formatData } = chartData;
+        const lin = chartData.coinA;
+        chartData.coinA = chartData.coinB;
+        chartData.coinB = lin;
+        chartData.options.series[0].data =
+            chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
         this.changeChartColor();
-        this.chartData.option.series[0].name = this.pageData.chart_a + "/" + this.pageData.chart_b;
+        this.pageData.chartData.number++;
     }
-
+    /**确定图表的颜色 */
     changeChartColor() {
-        if (this.pageData.changed.substring(0, 1) == '-') {
-            // red
-            this.chartData.option.series[0].lineStyle.color = "rgba(205, 104, 104, 0.9)"
-            this.chartData.option.series[0].areaStyle.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
+        const { chartData, swap_setting_info } = this.pageData;
+        const coin_changed = chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_changed : chartData.coin_b_a_changed;
+        let lineColor: any, areaColor: any;
+        if (parseFloat(coin_changed) < 0) {
+            lineColor = "rgba(205, 104, 104, 0.9)";
+            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
-                    color: "rgb(205, 104, 104)"//这里是渐变色的起始颜色
+                    color: "rgb(205, 104, 104)", //这里是渐变色的起始颜色
                 },
                 {
                     offset: 1,
-                    color: "#1a273f"// 这里是渐变色的结束颜色
-                }
-            ])
+                    color: "#1a273f", // 这里是渐变色的结束颜色
+                },
+            ]);
         } else {
-            // green
-            this.chartData.option.series[0].lineStyle.color = "rgba(104, 199, 205, 0.9)"
-            this.chartData.option.series[0].areaStyle.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [ //这里是渐变的角度，上下左右四个方向
+            lineColor = "rgba(104, 199, 205, 0.9)";
+            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
-                    color: "rgb(104, 199, 205)"//这里是渐变色的起始颜色
+                    color: "rgb(104, 199, 205)", //这里是渐变色的起始颜色
                 },
                 {
                     offset: 1,
-                    color: "#1a273f"// 这里是渐变色的结束颜色
-                }
-            ])
+                    color: "#1a273f", // 这里是渐变色的结束颜色
+                },
+            ]);
         }
-    }
 
+        chartData.options.series[0].lineStyle.color = lineColor;
+        chartData.options.series[0].areaStyle.color = areaColor;
+    }
+    /**格式化图表数据 */
     getObject(array: any) {
-        return array.reduce(function (r: { [x: string]: { [x: string]: any; }; }, o: { [x: string]: any; }, i: string | number) {
+        return array.reduce(function (r: { [x: string]: { [x: string]: any } }, o: { [x: string]: any }, i: string | number) {
             Object.keys(o).forEach(function (k) {
                 r[k] = r[k] || [];
                 r[k][i] = o[k];
@@ -308,22 +275,34 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /**Swap--Swap试算*/
     api_plat_var_swap_trial() {
-        this.parameter.plat_id = core.plat_id;
-        this.sendNotification(net.HttpType.api_plat_var_swap_trial, this.parameter);
+        const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
+        const data = {
+            plat_id: core.plat_id,
+            from_coin: inputType == 0 ? coinA : coinB,
+            from_coin_number: inputType == 0 ? inputA : inputB,
+            tolerance,
+            timestamp,
+        };
+        this.sendNotification(net.HttpType.api_plat_var_swap_trial, data);
     }
 
     /**Swap--Swap价格图*/
     api_plat_var_swap_k() {
-        const { timeSelect } = this.pageData;
         this.sendNotification(net.HttpType.api_plat_var_swap_k, {
             plat_id: core.plat_id,
-            type: Number(timeSelect) + 1,
+            type: this.pageData.chartQuary.type + 1,
         });
     }
 
     /**Swap--Swap创建订单*/
     api_user_var_swap_create_order() {
-        this.parameter.user_id = core.user_id;
-        this.sendNotification(net.HttpType.api_user_var_swap_create_order, this.parameter);
+        const { coinA, inputA, tolerance } = this.pageData.form;
+        const data = {
+            user_id: core.user_id,
+            from_coin: coinA,
+            from_coin_number: inputA,
+            tolerance,
+        };
+        this.sendNotification(net.HttpType.api_user_var_swap_create_order, data);
     }
 }

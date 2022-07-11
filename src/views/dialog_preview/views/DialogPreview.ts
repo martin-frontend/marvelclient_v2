@@ -17,11 +17,15 @@ export default class DialogPreview extends AbstractView {
         super(DialogPreviewMediator);
     }
 
-    // @Watch("pageData.address")
-    onWatchAddress() {
-        const div: any = this.$refs.qrcode;
-        div.innerHTML = "";
-        // new this.QRCode(div, this.pageData.address);
+    @Watch("pageData.qrLink")
+    private onWatchLink() {
+        this.$nextTick(() => {
+            const div = this.$refs.qrcodeDialog;
+            if (div) {
+                // @ts-ignore
+                new this.QRCode(div, this.myProxy.pageData.link);
+            }
+        });
     }
 
     @Watch("pageData.bShow")
@@ -31,5 +35,6 @@ export default class DialogPreview extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        this.pageData.qrLink = "";
     }
 }

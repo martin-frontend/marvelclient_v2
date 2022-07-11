@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-chart ref="chart" class="chart" :option="myProxy.chartData.option" @highlight="onSelect" autoresize />
+        <v-chart ref="chart" class="chart" :option="pageData.chartData.options" @highlight="onSelect" autoresize />
     </div>
 </template>
 
@@ -24,12 +24,21 @@ use([CanvasRenderer, LineChart, TitleComponent, TooltipComponent, LegendComponen
 })
 export default class DashboardDialog extends AbstractView {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
+    pageData = this.myProxy.pageData;
+
+    mounted() {
+        let chartDome = this.$refs.chart;
+        //@ts-ignore
+        chartDome.chart.on("globalout", () => {
+            this.myProxy.setChart_init();
+        });
+    }
 
     onSelect(val: any) {
         this.myProxy.setChart_k(val.batch[0].dataIndex);
     }
 
-    @Watch("myProxy.pageData.swap_k.number")
+    @Watch("pageData.chartData.number")
     resizeTheChart() {
         let chartDome = this.$refs.chart;
         //@ts-ignore
@@ -37,7 +46,7 @@ export default class DashboardDialog extends AbstractView {
 
         setTimeout(() => {
             //@ts-ignore
-            chartDome.setOption(this.myProxy.chartData.option);
+            chartDome.setOption(this.pageData.chartData.options);
             //@ts-ignore
             chartDome.resize();
         }, 200);

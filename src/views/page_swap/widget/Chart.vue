@@ -26,6 +26,14 @@ export default class DashboardDialog extends AbstractView {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     pageData = this.myProxy.pageData;
 
+    mounted() {
+        let chartDome = this.$refs.chart;
+        //@ts-ignore
+        chartDome.chart.on("globalout", () => {
+            this.myProxy.setChart_init();
+        });
+    }
+
     onSelect(val: any) {
         this.myProxy.setChart_k(val.batch[0].dataIndex);
     }

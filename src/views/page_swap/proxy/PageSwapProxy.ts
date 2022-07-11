@@ -165,10 +165,19 @@ export default class PageSwapProxy extends puremvc.Proxy {
         this.changeChartColor();
         this.pageData.chartData.number++;
     }
+
     /**chart highlight事件 */
     setChart_k(index: any) {
         const { chartData } = this.pageData;
+        chartData.created_time = chartData.formatData.created_time[index];
+        chartData.coin_a_b_price = chartData.formatData.coin_a_b_price[index];
+        chartData.coin_b_a_price = chartData.formatData.coin_b_a_price[index];
+    }
 
+    /**chart globalout事件 */
+    setChart_init() {
+        const { chartData } = this.pageData;
+        const index = chartData.formatData.created_time.length - 1;
         chartData.created_time = chartData.formatData.created_time[index];
         chartData.coin_a_b_price = chartData.formatData.coin_a_b_price[index];
         chartData.coin_b_a_price = chartData.formatData.coin_b_a_price[index];

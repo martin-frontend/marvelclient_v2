@@ -22,10 +22,6 @@ export default class PageExtension extends AbstractView {
     tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
 
-    get questionData() {
-        return this.fagProxy.qData.type1;
-    }
-
     private QRCode = QRCode;
 
     constructor() {

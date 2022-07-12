@@ -25,10 +25,6 @@ export default class PageMine extends AbstractView {
         super(PageMineMediator);
     }
 
-    get questionData() {
-        return this.fagProxy.qData.type2;
-    }
-
     mounted() {
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
         this.checkProgress();
@@ -136,5 +132,9 @@ export default class PageMine extends AbstractView {
 
     onGoBet() {
         page_game_list.show();
+    }
+
+    destroyed() {
+        super.destroyed();
     }
 }

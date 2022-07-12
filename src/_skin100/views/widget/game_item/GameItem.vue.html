@@ -1,0 +1,25 @@
+<v-card
+    @click="goGamePlay"
+    :color="item?'colorTitleBg':'transparent'"
+    :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+    :class="getBoxClass()"
+>
+    <v-lazy>
+        <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="getIcon(item)">
+            <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
+            <div class="vendor-title">{{ item.vendor_name }}</div>
+            <div class="egame__item__mask">
+                <div class="egame__item__play-icon">
+                    <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                        <div class="icon-chevron-right icon__icon mt-n1"></div>
+                    </div>
+                </div>
+            </div>
+            <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                </v-row>
+            </template>
+        </v-img>
+    </v-lazy>
+</v-card>

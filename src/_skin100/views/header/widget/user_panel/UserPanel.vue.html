@@ -56,7 +56,7 @@
 
     <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
         <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
-            <v-icon small>{{ item.icon }}</v-icon>
+            <v-icon dense>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />
             <div class="icon-box iconfont mx-3 mr-4 text-14 icon-color" style="transform: rotate(-90deg)"></div>

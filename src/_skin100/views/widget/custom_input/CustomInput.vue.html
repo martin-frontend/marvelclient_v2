@@ -1,0 +1,13 @@
+<div class="input-text d-flex align-center pr-2">
+    <v-icon v-if="icon" class="ml-3" color="colorInfo">{{ icon }}</v-icon>
+    <div v-if="$slots.pre">
+        <slot name="pre"></slot>
+    </div>
+    <input class="ml-3" :type="type" :placeholder="placeholder" @input="onInput" v-model="inputValue" :maxlength="maxlength" />
+    <v-btn v-if="value.length > 0" class="mr-2" icon width="20" height="20" @click="onClear">
+        <v-icon class="mx-3" size="20" color="colorInfo">mdi-close-circle</v-icon>
+    </v-btn>
+    <div v-if="$slots.default" class="mr-2">
+        <slot></slot>
+    </div>
+</div>

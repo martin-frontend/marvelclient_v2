@@ -31,21 +31,22 @@
         >
             <span class="px-2">{{LangUtil("注册")}}</span>
         </v-btn>
-        <div v-if="LangConfig.language">
-            <CustomSelect
-                v-model="core.lang"
-                :options="LangConfig.language"
-                :icons="LangConfig.language"
-                :width="160"
-                :height="45"
-                :isPill="true"
-                class="mr-4"
-                @change="onLangChange"
-            />
-        </div>
+        
 
        
             <Wallet v-if="core.user_id" />
+            <div v-if="LangConfig.language">
+                <CustomSelect
+                    v-model="core.lang"
+                    :options="LangConfig.language"
+                    :icons="LangConfig.language"
+                    :width="160"
+                    :height="45"
+                    :isPill="true"
+                    class="mr-4"
+                    @change="onLangChange"
+                />
+            </div>
             <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
         </div>
 

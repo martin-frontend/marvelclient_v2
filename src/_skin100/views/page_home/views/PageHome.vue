@@ -4,9 +4,9 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageHome from "./PageHome";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
-import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
-import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
+import GameSlideGroup from "@/_skin100/views/widget/game_slide_group/GameSlideGroup.vue";
+import RecentBetting from "@/_skin100/views/widget/recent_betting/RecentBetting.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";

@@ -24,6 +24,7 @@ export default class PageSwap extends AbstractView {
     chartData = this.pageData.chartData;
     swap_setting_info = this.pageData.swap_setting_info;
     userInfo = this.selfProxy.userInfo;
+    parameter = this.myProxy.parameter;
 
     constructor() {
         super(PageSwapMediator);
@@ -86,7 +87,7 @@ export default class PageSwap extends AbstractView {
     }
     /**图标时间选择 */
     onTimeChange(val: any) {
-        this.pageData.chartQuary.type = val;
+        this.pageData.chartQuary.type = parseInt(val);
         this.myProxy.api_plat_var_swap_k();
     }
     /**滑点容差选择 */
@@ -128,6 +129,10 @@ export default class PageSwap extends AbstractView {
     }
 
     destroyed() {
+        this.parameter.from_coin_number = 1;
+        this.pageData.chartQuary.type = 0;
+        this.form.timestamp = 0;
+        this.form.tolerance = 0;
         super.destroyed();
     }
 }

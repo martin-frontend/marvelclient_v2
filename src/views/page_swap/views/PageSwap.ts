@@ -28,6 +28,23 @@ export default class PageSwap extends AbstractView {
         super(PageSwapMediator);
     }
 
+    mounted() {
+        /**更新折线图 */
+        setInterval(
+            () => {
+                this.myProxy.api_plat_var_swap_k();
+            }
+            , 30000);
+        /**更新试算 */
+        setInterval(
+            () => {
+                if (this.form.inputA) {
+                    this.myProxy.api_plat_var_swap_trial();
+                }
+            }
+            , 5000);
+    }
+
     onInputA() {
         this.pageData.form.inputType = 0;
         this.pageData.form.inputB = "";
@@ -53,7 +70,6 @@ export default class PageSwap extends AbstractView {
         }
         this.onInputA();
     }
-
     /**交易对调 */
     private tradeSwap() {
         this.myProxy.tradeReverse();

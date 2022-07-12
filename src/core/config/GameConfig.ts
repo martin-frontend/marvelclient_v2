@@ -53,10 +53,10 @@ export default class GameConfig {
     static getChannelConfig() {
         let hostname = location.hostname;
         if(process.env.NODE_ENV == "development"){
-            hostname = "static.cfcoinz.com";
+            hostname = "www.cftest666.com";
         }
+        // hostname = "www.cftest666.com";
         const fileName: string = new core.MD5().hex_md5(hostname);
-        // const fileName: string = new core.MD5().hex_md5("www.cf0x.com");
         const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${Math.random()}`;
         axios
             .get(url)

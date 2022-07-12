@@ -15,4 +15,8 @@
     <v-lazy>
         <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
     </v-lazy>
+    <div class=" mb-13" v-if="$vuetify.breakpoint.mobile">
+        <div class="all-rights-reserved">version:{{getVersion()}}</div>
+        <div class="all-rights-reserved">{{getChannelID()}}</div>
+    </div>
 </v-container>

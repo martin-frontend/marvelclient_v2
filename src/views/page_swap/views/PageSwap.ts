@@ -10,6 +10,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
+import LoginEnter from "@/core/global/LoginEnter";
 
 @Component
 export default class PageSwap extends AbstractView {
@@ -23,16 +24,36 @@ export default class PageSwap extends AbstractView {
     chartData = this.pageData.chartData;
     swap_setting_info = this.pageData.swap_setting_info;
     userInfo = this.selfProxy.userInfo;
+    parameter = this.myProxy.parameter;
 
     constructor() {
         super(PageSwapMediator);
     }
+
+    // mounted() {
+    //     /**更新折线图 */
+    //     setInterval(
+    //         () => {
+    //             this.myProxy.api_plat_var_swap_k();
+    //         }
+    //         , 30000);
+    //     /**更新试算 */
+    //     setInterval(
+    //         () => {
+    //             if (this.form.inputA) {
+    //                 this.myProxy.api_plat_var_swap_trial();
+    //             }
+    //         }
+    //         , 5000);
+    // }
 
     onInputA() {
         this.pageData.form.inputType = 0;
         this.pageData.form.inputB = "";
         if (this.pageData.form.inputA) {
             this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
         }
     }
 
@@ -41,6 +62,8 @@ export default class PageSwap extends AbstractView {
         this.pageData.form.inputA = "";
         if (this.pageData.form.inputB) {
             this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
         }
     }
 
@@ -53,7 +76,6 @@ export default class PageSwap extends AbstractView {
         }
         this.onInputA();
     }
-
     /**交易对调 */
     private tradeSwap() {
         this.myProxy.tradeReverse();
@@ -65,7 +87,7 @@ export default class PageSwap extends AbstractView {
     }
     /**图标时间选择 */
     onTimeChange(val: any) {
-        this.pageData.chartQuary.type = val;
+        this.pageData.chartQuary.type = parseInt(val);
         this.myProxy.api_plat_var_swap_k();
     }
     /**滑点容差选择 */
@@ -74,7 +96,7 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRecord() {
-        dialog_swap_record.show();
+        LoginEnter(dialog_swap_record.show);
     }
 
     handlerRefresh() {
@@ -104,5 +126,13 @@ export default class PageSwap extends AbstractView {
         } else {
             return this.chartData.coin_b_a_changed;
         }
+    }
+
+    destroyed() {
+        this.parameter.from_coin_number = 1;
+        this.pageData.chartQuary.type = 0;
+        this.form.timestamp = 0;
+        this.form.tolerance = 0;
+        super.destroyed();
     }
 }

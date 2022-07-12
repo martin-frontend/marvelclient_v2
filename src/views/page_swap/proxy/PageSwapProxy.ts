@@ -68,7 +68,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
                         type: "line",
                         areaStyle: {
                             opacity: 0.1,
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                                 //这里是渐变的角度，上下左右四个方向
                                 {
                                     offset: 0,
@@ -114,7 +114,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
     setData(data: any) {
         Object.assign(this.pageData.swap_setting_info, data);
         const { form, chartData } = this.pageData;
-        form.tolerance = data.tolerance_params[0];
+        // form.tolerance = data.tolerance_params[0];
         form.coinA = data.coin_a;
         form.coinB = data.coin_b;
         form.type = 0;
@@ -145,7 +145,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
             form.min_to_coin_number = data.min_to_coin_number;
             form.swap_fee = data.swap_fee;
         }
-        this.pageData.form.timestamp++;
     }
 
     /** 价格图*/
@@ -228,7 +227,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         let lineColor: any, areaColor: any;
         if (parseFloat(coin_changed) < 0) {
             lineColor = "rgba(205, 104, 104, 0.9)";
-            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            areaColor = new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                 //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
@@ -241,7 +240,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             ]);
         } else {
             lineColor = "rgba(104, 199, 205, 0.9)";
-            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            areaColor = new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                 //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
@@ -275,6 +274,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /**Swap--Swap试算*/
     api_plat_var_swap_trial() {
+        this.pageData.form.timestamp++;
         const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
         const data = {
             plat_id: core.plat_id,
@@ -283,6 +283,9 @@ export default class PageSwapProxy extends puremvc.Proxy {
             tolerance,
             timestamp,
         };
+        if (this.pageData.form.timestamp == 1) {
+            data.from_coin_number = "1";
+        }
         this.sendNotification(net.HttpType.api_plat_var_swap_trial, data);
     }
 

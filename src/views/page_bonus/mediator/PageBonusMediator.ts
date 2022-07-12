@@ -25,6 +25,7 @@ export default class PageBonusMediator extends AbstractMediator {
             net.EventType.api_plat_var_bonus_log,
             net.EventType.api_user_var_bonus_log,
             net.EventType.api_user_var_stake_draw,
+            net.EventType.api_user_var_mail_var_receive,
         ];
     }
 
@@ -52,6 +53,9 @@ export default class PageBonusMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_stake_draw:
                 dialog_message_box.alert(LangUtil("成功领取分红") + body);
+                this.myProxy.api_user_var_stake_info();
+                break;
+            case net.EventType.api_user_var_mail_var_receive:
                 this.myProxy.api_user_var_stake_info();
                 break;
         }

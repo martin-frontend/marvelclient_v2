@@ -6,13 +6,17 @@ import Component from "vue-class-component";
 import PageSwap from "./PageSwap";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
+import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 import Question from "@/views/widget/question/Question.vue";
+import Chart from "../widget/Chart.vue";
 
 @Component({
     components: {
         Overlay,
         CustomInput,
+        CustomSelect,
         Question,
+        Chart,
     },
 })
 export default class extends PageSwap {

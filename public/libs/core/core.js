@@ -290,7 +290,7 @@ var net;
         /**--Swap--Swap价格图*/
         api_plat_var_swap_k: "api/plat/{plat_id}/swap_k",
         /**--Swap--Swap试算*/
-        api_user_var_swap_trial: "api/user/{user_id}/swap/trial",
+        api_plat_var_swap_trial: "api/plat/{plat_id}/swap/trial",
         /**--Swap--Swap兑换订单*/
         api_user_var_swap_order_list: "api/user/{user_id}/swap/order_list",
         /**--Swap--Swap创建订单*/
@@ -531,7 +531,7 @@ var net;
         /**--Swap--Swap价格图*/
         api_plat_var_swap_k: "api_plat_var_swap_k",
         /**--Swap--Swap试算*/
-        api_user_var_swap_trial: "api_user_var_swap_trial",
+        api_plat_var_swap_trial: "api_plat_var_swap_trial",
         /**--Swap--Swap兑换订单*/
         api_user_var_swap_order_list: "api_user_var_swap_order_list",
         /**--Swap--Swap创建订单*/
@@ -671,7 +671,7 @@ var net;
         //--Swap
         facade.registerCommand(net.HttpType.api_plat_var_swap_setting_info, net.cmd_api_plat_var_swap_setting_info);
         facade.registerCommand(net.HttpType.api_plat_var_swap_k, net.cmd_api_plat_var_swap_k);
-        facade.registerCommand(net.HttpType.api_user_var_swap_trial, net.cmd_api_user_var_swap_trial);
+        facade.registerCommand(net.HttpType.api_plat_var_swap_trial, net.cmd_api_plat_var_swap_trial);
         facade.registerCommand(net.HttpType.api_user_var_swap_order_list, net.cmd_api_user_var_swap_order_list);
         facade.registerCommand(net.HttpType.api_user_var_swap_create_order, net.cmd_api_user_var_swap_create_order);
     }
@@ -1205,6 +1205,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_swap_setting_info = cmd_api_plat_var_swap_setting_info;
+})(net || (net = {}));
+/**
+ * Swap试算
+ */
+var net;
+/**
+ * Swap试算
+ */
+(function (net) {
+    class cmd_api_plat_var_swap_trial extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_swap_trial, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_swap_trial, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_swap_trial = cmd_api_plat_var_swap_trial;
 })(net || (net = {}));
 /**
  * 获取手机区号
@@ -3075,28 +3097,6 @@ var net;
         }
     }
     net.cmd_api_user_var_swap_order_list = cmd_api_user_var_swap_order_list;
-})(net || (net = {}));
-/**
- * Swap试算
- */
-var net;
-/**
- * Swap试算
- */
-(function (net) {
-    class cmd_api_user_var_swap_trial extends puremvc.SimpleCommand {
-        execute(notification) {
-            const body = notification.getBody() || {};
-            const url = net.getUrl(net.HttpType.api_user_var_swap_trial, body);
-            net.Http.request(body || {}, url).then(this.response.bind(this));
-        }
-        response(result) {
-            if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_swap_trial, result.data);
-            }
-        }
-    }
-    net.cmd_api_user_var_swap_trial = cmd_api_user_var_swap_trial;
 })(net || (net = {}));
 /**
  * 提取用户所有厂商的余额

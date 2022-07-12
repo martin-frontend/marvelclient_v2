@@ -1,4 +1,4 @@
-<v-dialog class="rounded-xl" width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog class="rounded-xl" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card color="colorPanelBg" class="d-flex rounded-xl">
         <AdvertiseInLogin :height="794" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
@@ -12,6 +12,7 @@
             <v-card-text class="px-5 px-md-10 mt-5">
                 <div class="d-flex mb-10">
                     <v-btn
+                        v-if="registerTypes.includes(1)"
                         height="40"
                         class="rounded-pill font-weight-bold mr-2"
                         elevation="0"
@@ -22,6 +23,7 @@
                         {{LangUtil("账号注册")}}
                     </v-btn>
                     <v-btn
+                        v-if="registerTypes.includes(4)"
                         height="40"
                         class="rounded-pill font-weight-bold"
                         elevation="0"
@@ -32,6 +34,7 @@
                         {{LangUtil("手机注册")}}
                     </v-btn>
                     <v-btn
+                        v-if="registerTypes.includes(2)"
                         height="40"
                         class="rounded-pill font-weight-bold"
                         elevation="0"

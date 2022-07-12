@@ -10,6 +10,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
             password_confirm: "",
             area_code: "86",
         },
+        code_type: 0,
     };
 
     resetForm() {
@@ -37,6 +38,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             code: verify_code,
             user_id: core.user_id,
+            code_type: this.pageData.code_type,
         });
     }
 }

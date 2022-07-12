@@ -1,0 +1,17 @@
+<v-dialog :width="pageData.type?800:360" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg" :class="pageData.type?'fix':''">
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text v-if="pageData.bShow" :class="pageData.type?'':'px-10'">
+            <div class="d-flex justify-center mb-5">
+                <div v-if="!pageData.type" ref="qrcodeDialog" class="qrcode"></div>
+                <div v-else id="qrCode" class="pt_20"></div>
+            </div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading"/>
+</v-dialog>

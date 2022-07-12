@@ -5,12 +5,12 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogPledge from "./DialogPledge";
-import CustomInputButton from "@/views/widget/custom_input_buttom/CustomInputButton.vue";
+import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 
 @Component({
     components: {
         Overlay,
-        CustomInputButton,
+        CustomInput,
     },
 })
 export default class extends DialogPledge {}

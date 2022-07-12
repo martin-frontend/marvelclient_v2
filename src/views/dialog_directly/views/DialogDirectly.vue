@@ -5,12 +5,12 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogDirectly from "./DialogDirectly";
-import CustomInputButton from "@/views/widget/custom_input_buttom/CustomInputButton.vue";
+import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
-        CustomInputButton,
+        CustomInput,
         Overlay,
         ListNodata,
     },

@@ -152,7 +152,7 @@
         "--Swap",
         ["api/plat/{plat_id}/swap_setting_info",         "Swap基础信息"],
         ["api/plat/{plat_id}/swap_k",                    "Swap价格图"],
-        ["api/user/{user_id}/swap/trial",                "Swap试算"],
+        ["api/plat/{plat_id}/swap/trial",                "Swap试算"],
         ["api/user/{user_id}/swap/order_list",           "Swap兑换订单"],
         ["api/user/{user_id}/swap/create_order",         "Swap创建订单"]
     ]

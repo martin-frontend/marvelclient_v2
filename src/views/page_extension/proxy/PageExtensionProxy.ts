@@ -41,6 +41,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             total_water: 0,
             commission_info: {},
             commission_num: 0,
+            pretty_user_id: 0,
         },
         statistics_data: <any>{
             total_commission: {}, // 预计今日总佣金
@@ -130,12 +131,39 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         to_date: dateFormat(getTodayOffset(-1), "yyyy-MM-dd hh:mm:ss").split(" ")[0],
     };
 
+    /**保存图片到相册 */
+    async savePoster(url: any) {
+        let poster: string;
+        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
+        //@ts-ignore
+        /* eslint-disable */
+        const bg = require(`@/assets/extension/poster.jpg`);
+        if (bg) {
+            const myCanvas = new MyCanvas(750, 1334);
+            await myCanvas.drawImage1(bg, 0, 0);
+            await myCanvas.drawQrCode(url, 250, 990, 250, 250);
+            //推荐人
+            myCanvas.drawText(id.toString(), 390, 940, "#ffffff", 26);
+            poster = myCanvas.getData();
+        } else {
+            const qr = await Utils.generateQrcode(this.pageData.link);
+            poster = qr;
+        }
+
+        const img = new Image();
+        img.src = poster;
+        const newWin: any = window.open("", "_blank");
+        newWin.document.write(img.outerHTML);
+    }
+
+
     copy() {
         CopyUtil(this.pageData.link);
     }
 
     copyId() {
-        CopyUtil(core.user_id.toString());
+        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
+        CopyUtil(id.toString());
     }
 
     /**领取佣金 */

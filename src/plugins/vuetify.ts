@@ -34,6 +34,7 @@ const opts = {
                 colorReceive: "#5E2E2E", //used
                 colorBlue2Bg: "#2C3952",
                 colorYellowBg: "#F2A81C",
+                colorGoldBg: "#ffb01b",
 
                 //新增
                 colorBtnSeleBg: "#CD30C1", //used

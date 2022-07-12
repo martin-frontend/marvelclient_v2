@@ -36,7 +36,7 @@
             </v-btn>
         </v-card-text>
         <v-divider class="mx-5" />
-        <TabRecharge v-if="pageData.tabIndex == 0" />
-        <TabExchange v-else />
+        <TabRecharge v-show="pageData.tabIndex == 0" />
+        <TabExchange v-show="pageData.tabIndex == 1" />
     </v-card>
 </v-dialog>

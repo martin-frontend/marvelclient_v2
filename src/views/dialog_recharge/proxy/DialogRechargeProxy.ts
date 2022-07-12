@@ -91,14 +91,21 @@ export class ExchangeProxy extends puremvc.Proxy {
             amount: "",
             exchange_channel_id: 0,
             payment_method_type: 0,
-
             coin_name_unique: "",
             block_network_id: "",
             account: "",
-
-            password: "",
+            exchange_channel_method_id: 0,
+            password_gold: "",
         },
     };
+
+    resetform() {
+        Object.assign(this.pageData.form, {
+            amount: "",
+            account: "",
+            password_gold: "",
+        });
+    }
 
     setData(data: any) {
         this.pageData.loading = false;
@@ -116,6 +123,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             if (optionsKeys[0]) {
                 this.pageData.form.block_network_id = optionsKeys[0];
+                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[optionsKeys[0]].exchange_channel_method_id;
             }
         }
     }
@@ -127,8 +135,17 @@ export class ExchangeProxy extends puremvc.Proxy {
 
     api_user_var_exchange_create_order() {
         this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
-        Object.assign(formCopy, this.pageData.form);
-        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, formCopy);
+        const { amount, exchange_channel_id, payment_method_type, coin_name_unique, block_network_id, account, exchange_channel_method_id, password_gold } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+        });
     }
 }

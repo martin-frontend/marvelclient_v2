@@ -1,4 +1,4 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="d-flex rounded-lg" color="colorPanelBg">
         <v-sheet color="transparent" width="366" class="d-none d-md-flex">
             <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
@@ -7,7 +7,7 @@
                 </v-carousel-item>
             </v-carousel>
         </v-sheet>
-        <v-card width="100%" color="transparent">
+        <v-card width="494" color="transparent">
             <!-- pc显示方式 -->
             <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
                 <div class="text-18">{{LangUtil("精彩活动")}}</div>

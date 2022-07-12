@@ -3,22 +3,26 @@ import PageSwapProxy from "../proxy/PageSwapProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
+import SelfProxy from "@/proxy/SelfProxy";
+import GameProxy from "@/proxy/GameProxy";
 
 export default class PageSwapMediator extends AbstractMediator {
     private myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     LangUtil = LangUtil;
+    private selfProxy: SelfProxy = getProxy(SelfProxy);
 
     protected initViewData(): void {
         this.myProxy.api_plat_var_swap_setting_info();
-        this.myProxy.api_user_var_swap_trial();
         this.myProxy.api_plat_var_swap_k();
     }
 
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_plat_var_swap_setting_info,
-            net.EventType.api_user_var_swap_trial,
+            net.EventType.api_plat_var_swap_trial,
             net.EventType.api_plat_var_swap_k,
+            net.EventType.api_user_var_swap_create_order,
+            net.EventType.api_user_var_mail_var_receive,
         ];
     }
 
@@ -27,18 +31,29 @@ export default class PageSwapMediator extends AbstractMediator {
         const myProxy: PageSwapProxy = getProxy(PageSwapProxy);
         switch (notification.getName()) {
             case net.EventType.api_plat_var_swap_setting_info:
-                this.myProxy.setData(body);
+                myProxy.parameter.from_coin = myProxy.pageData.swap_setting_info.coin_a;
+                myProxy.setData(body);
+                myProxy.api_plat_var_swap_trial();
                 break;
-            case net.EventType.api_user_var_swap_trial:
-                this.myProxy.setTrial(body);
+            case net.EventType.api_plat_var_swap_trial:
+                myProxy.setTrial(body);
                 break;
             case net.EventType.api_plat_var_swap_k:
-                this.myProxy.setSwapK(body);
+                myProxy.setSwapK(body);
                 break;
             case net.EventType.api_user_var_swap_create_order:
-                dialog_message.success(LangUtil("交换成功"));
-                break;
+                {
+                    const gameProxy: GameProxy = getProxy(GameProxy);
+                    gameProxy.loading = false;
 
+                    dialog_message.success(LangUtil("交换成功"));
+                    this.selfProxy.api_user_show_var([2]);
+                    myProxy.api_plat_var_swap_trial();
+                }
+
+                break;
+            case net.EventType.api_user_var_mail_var_receive:
+                break;
         }
     }
 }

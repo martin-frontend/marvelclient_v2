@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
@@ -18,18 +19,18 @@ export default class PageGamePlay extends AbstractView {
         super(PageGamePlayMediator);
     }
 
-    get gameFrameClass(){
-        if(this.$vuetify.breakpoint.mobile){
+    get gameFrameClass() {
+        if (this.$vuetify.breakpoint.mobile) {
             //@ts-ignore
-            if(window.navigator.standalone){
+            if (window.navigator.standalone) {
                 return "frame-mobile-standalone";
-            }else{
-                return "frame-mobile"
+            } else {
+                return "frame-mobile";
             }
-        }else{
+        } else {
             return "frame";
         }
-        this.$vuetify.breakpoint.mobile?'frame-mobile':'frame'
+        this.$vuetify.breakpoint.mobile ? "frame-mobile" : "frame";
     }
 
     mounted() {
@@ -110,13 +111,15 @@ export default class PageGamePlay extends AbstractView {
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
                 const gameProxy: GameProxy = getProxy(GameProxy);
-                router.back();
-                setTimeout(() => {
-                    if (router.currentRoute.path == "/page_game_play") {
-                        router.replace(gameProxy.lastRouter);
-                    }
-                }, 100);
-            }
+                if (gameProxy.gamePreData.historyLength - window.history.length < -1) {
+                    router.replace(gameProxy.gamePreData.lastRouter);
+                    setTimeout(()=>{
+                        ScrollUtil(gameProxy.gamePreData.scrollY, 0);
+                    })
+                } else {
+                    router.back();
+                }
+            },
         });
     }
 }

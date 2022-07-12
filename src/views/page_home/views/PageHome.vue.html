@@ -3,16 +3,14 @@
     <Marquee1 class="mt-1" />
     <Activity />
     <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
-        <v-lazy>
-            <GameSlideGroup
-                v-if="item.category != 4 && item.category != 32 && item.category != 64"
-                :data="item"
-                :bShowAll="true"
-                :name="item.category"
-                :id="item.category"
-            />
-            <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
-        </v-lazy>
+        <GameSlideGroup
+            v-if="item.category != 4 && item.category != 32 && item.category != 64"
+            :data="item"
+            :bShowAll="true"
+            :name="item.category"
+            :id="item.category"
+        />
+        <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
     <v-lazy>
         <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />

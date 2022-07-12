@@ -24,7 +24,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_introduce",
         name: "page_introduce",
-        component: () => import(/* webpackChunkName: "introduce" */ "../views/page_introduce/views/PageIntroduce.vue"),
+        component: () => import(/* webpackChunkName: "page_introduce" */ "../views/page_introduce/views/PageIntroduce.vue"),
     },
     {
         path: "/page_extension",
@@ -60,7 +60,7 @@ const router = new VueRouter({
 });
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (!core.user_id && to.name !== "page_home" && to.name !== "page_game_list" && to.name !== "page_introduce") {
+    if (!core.user_id && to.name !== "page_home" && to.name !== "page_game_list" && to.name !== "page_introduce" && to.name !== "page_swap") {
         next("/");
     } else {
         next();

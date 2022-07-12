@@ -28,7 +28,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             inputB: "",
             coinA: "",
             coinB: "",
-            timestamp: 1,
+            timestamp: 0,
             price: "",
 
             min_to_coin_number: "", // 最小获取量(用于显示可以兑换出的数量)
@@ -133,7 +133,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
         if (data.timestamp == timestamp) {
             //第一次试算不填值
-            if (Number(timestamp) > 2) {
+            if (timestamp > 1) {
                 if (inputType == 0) {
                     form.inputB = data.to_coin_number;
                 } else {
@@ -274,25 +274,18 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /**Swap--Swap试算*/
     api_plat_var_swap_trial() {
-        const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
         this.pageData.form.timestamp++;
-        let coin_number = "0";
-        if (timestamp != 1) {
-            if (inputType == 0) {
-                coin_number = inputA
-            } else {
-                coin_number = inputB
-            }
-        } else {
-            coin_number = "1";
-        }
+        const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
         const data = {
             plat_id: core.plat_id,
             from_coin: inputType == 0 ? coinA : coinB,
-            from_coin_number: coin_number,
+            from_coin_number: inputType == 0 ? inputA : inputB,
             tolerance,
             timestamp,
         };
+        if(this.pageData.form.timestamp == 1){
+            data.from_coin_number = "1";
+        }
         this.sendNotification(net.HttpType.api_plat_var_swap_trial, data);
     }
 

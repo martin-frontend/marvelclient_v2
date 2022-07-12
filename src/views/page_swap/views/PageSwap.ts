@@ -10,6 +10,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
+import LoginEnter from "@/core/global/LoginEnter";
 
 @Component
 export default class PageSwap extends AbstractView {
@@ -28,28 +29,30 @@ export default class PageSwap extends AbstractView {
         super(PageSwapMediator);
     }
 
-    mounted() {
-        /**更新折线图 */
-        setInterval(
-            () => {
-                this.myProxy.api_plat_var_swap_k();
-            }
-            , 30000);
-        /**更新试算 */
-        setInterval(
-            () => {
-                if (this.form.inputA) {
-                    this.myProxy.api_plat_var_swap_trial();
-                }
-            }
-            , 5000);
-    }
+    // mounted() {
+    //     /**更新折线图 */
+    //     setInterval(
+    //         () => {
+    //             this.myProxy.api_plat_var_swap_k();
+    //         }
+    //         , 30000);
+    //     /**更新试算 */
+    //     setInterval(
+    //         () => {
+    //             if (this.form.inputA) {
+    //                 this.myProxy.api_plat_var_swap_trial();
+    //             }
+    //         }
+    //         , 5000);
+    // }
 
     onInputA() {
         this.pageData.form.inputType = 0;
         this.pageData.form.inputB = "";
         if (this.pageData.form.inputA) {
             this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
         }
     }
 
@@ -58,6 +61,8 @@ export default class PageSwap extends AbstractView {
         this.pageData.form.inputA = "";
         if (this.pageData.form.inputB) {
             this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
         }
     }
 
@@ -90,7 +95,7 @@ export default class PageSwap extends AbstractView {
     }
 
     handlerRecord() {
-        dialog_swap_record.show();
+        LoginEnter(dialog_swap_record.show);
     }
 
     handlerRefresh() {
@@ -120,5 +125,9 @@ export default class PageSwap extends AbstractView {
         } else {
             return this.chartData.coin_b_a_changed;
         }
+    }
+
+    destroyed() {
+        super.destroyed();
     }
 }

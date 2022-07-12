@@ -133,7 +133,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
         if (data.timestamp == timestamp) {
             //第一次试算不填值
-            if (Number(timestamp) > 1) {
+            if (Number(timestamp) > 2) {
                 if (inputType == 0) {
                     form.inputB = data.to_coin_number;
                 } else {
@@ -145,7 +145,6 @@ export default class PageSwapProxy extends puremvc.Proxy {
             form.min_to_coin_number = data.min_to_coin_number;
             form.swap_fee = data.swap_fee;
         }
-        this.pageData.form.timestamp++;
     }
 
     /** 价格图*/
@@ -275,9 +274,8 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /**Swap--Swap试算*/
     api_plat_var_swap_trial() {
-
-
         const { inputType, inputA, inputB, coinA, coinB, tolerance, timestamp } = this.pageData.form;
+        this.pageData.form.timestamp++;
         let coin_number = "0";
         if (timestamp != 1) {
             if (inputType == 0) {

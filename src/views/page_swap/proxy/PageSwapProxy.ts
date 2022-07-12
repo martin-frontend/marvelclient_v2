@@ -68,7 +68,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
                         type: "line",
                         areaStyle: {
                             opacity: 0.1,
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                                 //这里是渐变的角度，上下左右四个方向
                                 {
                                     offset: 0,
@@ -227,7 +227,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         let lineColor: any, areaColor: any;
         if (parseFloat(coin_changed) < 0) {
             lineColor = "rgba(205, 104, 104, 0.9)";
-            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            areaColor = new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                 //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
@@ -240,7 +240,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             ]);
         } else {
             lineColor = "rgba(104, 199, 205, 0.9)";
-            areaColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            areaColor = new echarts.graphic.LinearGradient(1, 0, 0, 1, [
                 //这里是渐变的角度，上下左右四个方向
                 {
                     offset: 0,
@@ -283,7 +283,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             tolerance,
             timestamp,
         };
-        if(this.pageData.form.timestamp == 1){
+        if (this.pageData.form.timestamp == 1) {
             data.from_coin_number = "1";
         }
         this.sendNotification(net.HttpType.api_plat_var_swap_trial, data);

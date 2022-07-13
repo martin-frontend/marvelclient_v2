@@ -66,7 +66,8 @@ export default class MyCanvas {
         let that = this;
         return new Promise((resolve, reject) => {
             let img = document.createElement("img");
-            img.src = texture.toDataURL("image/png");
+            // img.src = texture.toDataURL("image/png");
+            img.src = texture;
             img.onload = function () {
                 that._ctx.drawImage(img, dx, dy, dWidth, dHeight);
                 //@ts-ignore

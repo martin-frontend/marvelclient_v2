@@ -158,7 +158,9 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
         const formatData: any = (chartData.formatData = this.getObject(data.swap_price_log.reverse()));
         const { coin_a_b_price, coin_b_a_price, created_time } = formatData;
-        const created_time_format = created_time.map((item: string) => chartQuary.type == 0 ? item.substring(11, 16) : item.substring(5, 10));
+        const created_time_format = created_time.map((item: string) =>
+            chartQuary.type == 0 ? item.substring(11, 16) : item.substring(5, 10)
+        );
         chartData.options.xAxis.data = created_time_format;
         chartData.options.series[0].data = chartData.coinA == data.coin_a ? coin_a_b_price : coin_b_a_price;
         this.changeChartColor();
@@ -204,6 +206,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         chartData.coinB = form.coinB;
         chartData.options.series[0].data =
             chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
+        chartData.options.series[0].name = chartData.coinA + "/" + chartData.coinB;
         this.changeChartColor();
         this.pageData.chartData.number++;
     }
@@ -217,6 +220,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
         chartData.coinB = lin;
         chartData.options.series[0].data =
             chartData.coinA == swap_setting_info.coin_a ? formatData.coin_a_b_price : formatData.coin_b_a_price;
+        chartData.options.series[0].name = chartData.coinA + "/" + chartData.coinB;
         this.changeChartColor();
         this.pageData.chartData.number++;
     }

@@ -74,6 +74,9 @@ export default class DialogPreview extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if (!this.pageData.bShow) {
+            this.pageData.qrLink = "";
+        }
     }
 
     onClose() {

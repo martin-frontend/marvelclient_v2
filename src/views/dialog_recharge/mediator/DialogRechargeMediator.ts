@@ -30,7 +30,6 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.rechargeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_recharge_address:
-                previewProxy.setLink(body);
                 myProxy.rechargeProxy.setAddress(body);
                 break;
             case net.EventType.api_user_show_var:

@@ -11,7 +11,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import dialog_preview from "@/views/dialog_preview";
-import { vuetify } from "@/plugins/vuetify";
+import MyCanvas from "@/core/ui/MyCanvas";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -22,22 +22,14 @@ export default class PageExtension extends AbstractView {
     tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
 
-    private QRCode = QRCode;
-
     constructor() {
         super(PageExtensionMediator);
     }
 
     destroyed() {
         super.destroyed();
-        this.myProxy.pageData.link = "";
-    }
-
-    @Watch("myProxy.pageData.link")
-    private onWatchLink() {
-        const div = this.$refs.qrcode;
-        // @ts-ignore
-        new this.QRCode(div, this.myProxy.pageData.link);
+        this.pageData.link = "";
+        this.pageData.qrCode = "";
     }
 
     handlerBind() {
@@ -67,15 +59,28 @@ export default class PageExtension extends AbstractView {
         });
     }
 
-    showPreview() {
-        dialog_preview.show(0);
+    async showPreview() {
+        if (this.pageData.qrCode) {
+            const myCanvas = new MyCanvas(288, 288);
+            await myCanvas.drawQrCode(this.pageData.link, 16, 16, 256, 256);
+            dialog_preview.show(myCanvas.getData());
+        }
     }
 
-    savePhoto() {
-        if (vuetify.framework.breakpoint.xsOnly) {
-            this.myProxy.savePoster(this.myProxy.pageData.link);
-        } else {
-            dialog_preview.show(1);
+    async savePhoto() {
+        if (this.pageData.qrCode) {
+            const bg = require(`@/assets/extension/poster.jpg`);
+            if (bg) {
+                const myCanvas = new MyCanvas(750, 1334);
+                await myCanvas.drawImage1(bg, 0, 0);
+                await myCanvas.drawQrCode(this.pageData.link, 250, 990, 250, 250);
+                //推荐人
+                const { pretty_user_id, user_id } = this.pageData.promotionData;
+                myCanvas.drawText(pretty_user_id || user_id, 390, 940, "#ffffff", 26);
+                dialog_preview.show(myCanvas.getData());
+            } else {
+                this.showPreview();
+            }
         }
     }
 

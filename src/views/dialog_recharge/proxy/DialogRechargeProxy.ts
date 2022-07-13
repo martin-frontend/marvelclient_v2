@@ -1,4 +1,5 @@
 import getProxy from "@/core/global/getProxy";
+import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
@@ -27,6 +28,8 @@ export class RechargeProxy extends puremvc.Proxy {
         methodList: <any>{},
         //当前选择的充值地址
         address: "",
+        //地址生成qrcode
+        qrcode: "",
         //获取充值地址的表单
         form: {
             coin_name_unique: "",
@@ -59,9 +62,10 @@ export class RechargeProxy extends puremvc.Proxy {
         this.api_user_var_recharge_address();
     }
 
-    setAddress(data: string) {
+    async setAddress(data: string) {
         this.pageData.loading = false;
         this.pageData.address = data;
+        this.pageData.qrcode = await Utils.generateQrcode(data);
     }
 
     api_user_var_recharge_method_list() {
@@ -75,6 +79,7 @@ export class RechargeProxy extends puremvc.Proxy {
         Object.assign(formCopy, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
         this.pageData.address = "";
+        this.pageData.qrcode = "";
     }
 }
 

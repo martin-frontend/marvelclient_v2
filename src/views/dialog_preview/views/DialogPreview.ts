@@ -1,6 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPreviewMediator from "../mediator/DialogPreviewMediator";
 import DialogPreviewProxy from "../proxy/DialogPreviewProxy";
@@ -11,21 +10,65 @@ export default class DialogPreview extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogPreviewProxy = this.getProxy(DialogPreviewProxy);
     pageData = this.myProxy.pageData;
-    QRCode = QRCode;
 
     constructor() {
         super(DialogPreviewMediator);
     }
 
-    @Watch("pageData.qrLink")
-    private onWatchLink() {
+    @Watch("pageData.url")
+    onWatchImage() {
+        this.onResize();
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchWidth() {
+        this.onResize();
+    }
+
+    @Watch("$vuetify.breakpoint.height")
+    onWatchHeight() {
+        this.onResize();
+    }
+
+    onResize() {
         this.$nextTick(() => {
-            const div = this.$refs.qrcodeDialog;
-            if (div) {
-                // @ts-ignore
-                new this.QRCode(div, this.myProxy.pageData.link);
-            }
+            const img: any = this.$refs.img;
+            const imgL = new Image();
+            imgL.src = img.src;
+            imgL.onload = function () {
+                const imgW = imgL.naturalWidth;
+                const imgH = imgL.naturalHeight;
+                const bodyW = document.body.clientWidth;
+                const bodyH = document.body.clientHeight;
+
+                if (imgW > bodyW && imgH > bodyH) {
+                    if (imgW / bodyW > imgH / bodyH) {
+                        img.style.width = "100vw";
+                        img.style.height = "auto";
+                    } else {
+                        img.style.height = "100vh";
+                        img.style.width = "auto";
+                    }
+                } else {
+                    if (imgW <= bodyW) {
+                        img.style.width = "auto";
+                    } else {
+                        img.style.width = "100vw";
+                    }
+                    if (imgH <= bodyH) {
+                        img.style.height = "auto";
+                    } else {
+                        img.style.height = "100vh";
+                    }
+                }
+            };
         });
+    }
+
+    getImgSize(img: any) {
+        const nWidth = img.naturalWidth;
+        const nHeight = img.naturalHeight;
+        return [nWidth, nHeight];
     }
 
     @Watch("pageData.bShow")
@@ -35,6 +78,5 @@ export default class DialogPreview extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
-        this.pageData.qrLink = "";
     }
 }

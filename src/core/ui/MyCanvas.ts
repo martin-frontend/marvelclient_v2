@@ -10,7 +10,9 @@ export default class MyCanvas {
         //@ts-ignore
         this._ctx = this._canvas.getContext("2d");
         this._ctx.strokeStyle = "#c3c3c3";
+        this._ctx.fillStyle = "#ffffff";
         this._ctx.strokeRect(0, 0, ww, hh);
+        this._ctx.fillRect(0, 0, ww, hh);
     }
     /**
      * 将文字绘制到canvas

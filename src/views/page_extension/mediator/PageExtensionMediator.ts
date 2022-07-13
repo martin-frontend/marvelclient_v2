@@ -3,7 +3,6 @@ import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
-import DialogPreviewProxy from "@/views/dialog_preview/proxy/DialogPreviewProxy";
 export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     LangUtil = LangUtil;

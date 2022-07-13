@@ -19,20 +19,6 @@ export default class PageGamePlay extends AbstractView {
         super(PageGamePlayMediator);
     }
 
-    get gameFrameClass() {
-        if (this.$vuetify.breakpoint.mobile) {
-            //@ts-ignore
-            if (window.navigator.standalone) {
-                return "frame-mobile-standalone";
-            } else {
-                return "frame-mobile";
-            }
-        } else {
-            return "frame";
-        }
-        this.$vuetify.breakpoint.mobile ? "frame-mobile" : "frame";
-    }
-
     mounted() {
         this.$nextTick(() => {
             const that = this;
@@ -95,6 +81,20 @@ export default class PageGamePlay extends AbstractView {
                 }
             });
         });
+        this.onWatchWidth();
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchWidth() {
+        this.$nextTick(() => {
+            if (this.$vuetify.breakpoint.mobile) {
+                const gameFrame: any = this.$refs.gameFrame;
+                const bodyW = document.body.clientWidth;
+                const bodyH = document.body.clientHeight;
+                gameFrame.style.width = bodyW + "px";
+                gameFrame.style.height = bodyH + "px";
+            }
+        });
     }
 
     onFullScreen() {
@@ -113,9 +113,9 @@ export default class PageGamePlay extends AbstractView {
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 if (gameProxy.gamePreData.historyLength - window.history.length < -1) {
                     router.replace(gameProxy.gamePreData.lastRouter);
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         ScrollUtil(gameProxy.gamePreData.scrollY, 0);
-                    })
+                    });
                 } else {
                     router.back();
                 }

@@ -12,6 +12,7 @@ import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
+import WebViewBridge from "@/core/native/WebViewBridge";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -70,6 +71,7 @@ export default class PageExtension extends AbstractView {
     async savePhoto() {
         if (this.pageData.qrCode) {
             const bg = require(`@/assets/extension/poster.jpg`);
+            let imgData: any;
             if (bg) {
                 const myCanvas = new MyCanvas(750, 1334);
                 await myCanvas.drawImage1(bg, 0, 0);
@@ -77,9 +79,19 @@ export default class PageExtension extends AbstractView {
                 //推荐人
                 const { pretty_user_id, user_id } = this.pageData.promotionData;
                 myCanvas.drawText(pretty_user_id || user_id, 390, 940, "#ffffff", 26);
-                dialog_preview.show(myCanvas.getData());
+                imgData = myCanvas.getData();
             } else {
-                this.showPreview();
+                const myCanvas = new MyCanvas(288, 288);
+                await myCanvas.drawQrCode(this.pageData.link, 16, 16, 256, 256);
+                imgData = myCanvas.getData();
+            }
+
+            if (core.app_type == core.EnumAppType.APP) {
+                WebViewBridge.getInstance().savePhoto(imgData, () => {
+                    dialog_message.success(LangUtil("保存存成功"));
+                });
+            } else {
+                dialog_preview.show(imgData);
             }
         }
     }

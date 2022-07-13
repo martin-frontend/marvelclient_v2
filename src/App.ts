@@ -91,7 +91,7 @@ export default class APP extends AbstractView {
             window.open(
                 LangUtil("客服链接"),
                 LangUtil("客服"),
-                "height=400, width=500, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
+                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
             );
         } catch (e: any) {
             OpenLink(LangUtil("客服链接"));

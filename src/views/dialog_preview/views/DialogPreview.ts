@@ -32,6 +32,7 @@ export default class DialogPreview extends AbstractView {
 
     onResize() {
         this.$nextTick(() => {
+            const box: any = this.$refs.box;
             const img: any = this.$refs.img;
             const imgL = new Image();
             imgL.src = img.src;
@@ -41,24 +42,27 @@ export default class DialogPreview extends AbstractView {
                 const bodyW = document.body.clientWidth;
                 const bodyH = document.body.clientHeight;
 
+                box.style.width = bodyW + "px";
+                box.style.height = bodyH + "px";
+
                 if (imgW > bodyW && imgH > bodyH) {
                     if (imgW / bodyW > imgH / bodyH) {
-                        img.style.width = "100vw";
+                        img.style.width = bodyW + "px";
                         img.style.height = "auto";
                     } else {
-                        img.style.height = "100vh";
+                        img.style.height = bodyH + "px";
                         img.style.width = "auto";
                     }
                 } else {
                     if (imgW <= bodyW) {
                         img.style.width = "auto";
                     } else {
-                        img.style.width = "100vw";
+                        img.style.width = bodyW + "px";
                     }
                     if (imgH <= bodyH) {
                         img.style.height = "auto";
                     } else {
-                        img.style.height = "100vh";
+                        img.style.height = bodyH + "px";
                     }
                 }
             };

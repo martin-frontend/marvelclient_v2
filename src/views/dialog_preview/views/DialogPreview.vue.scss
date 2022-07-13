@@ -18,6 +18,9 @@
     position: fixed;
     width: 800px;
 }
-.pt_20{
-    padding-top: 80px;
+::v-deep .v-dialog{
+    width: unset !important;
+    @media (max-width: 600px) {
+        width: 100% !important;
+    }
 }

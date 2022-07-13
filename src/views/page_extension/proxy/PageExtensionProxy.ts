@@ -139,11 +139,11 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         /* eslint-disable */
         const bg = require(`@/assets/extension/poster.jpg`);
         if (bg) {
-            const myCanvas = new MyCanvas(750, 1334);
-            await myCanvas.drawImage1(bg, 0, 0);
-            await myCanvas.drawQrCode(url, 250, 990, 250, 250);
+            const myCanvas = new MyCanvas(375, 667);
+            await myCanvas.drawImage2(bg, 0, 0, 375, 667);
+            await myCanvas.drawQrCode(url, 125, 495, 125, 125);
             //推荐人
-            myCanvas.drawText(id.toString(), 390, 940, "#ffffff", 26);
+            myCanvas.drawText(id.toString(), 195, 470, "#ffffff", 13);
             poster = myCanvas.getData();
         } else {
             const qr = await Utils.generateQrcode(this.pageData.link);

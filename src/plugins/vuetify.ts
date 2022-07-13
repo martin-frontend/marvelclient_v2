@@ -38,6 +38,7 @@ const opts = {
 
                 //新增
                 colorBtnSeleBg: "#CD30C1", //used
+                colorCloseBtn: "#756BA4", //used
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

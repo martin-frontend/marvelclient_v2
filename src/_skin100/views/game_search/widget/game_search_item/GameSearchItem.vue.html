@@ -1,0 +1,16 @@
+<v-sheet color="transparent" height="60" class="d-flex flex-column">
+    <div class="d-flex align-center">
+    <v-img class="rounded-lg mr-3" max-width="38" max-height="38" :src="data.icon"></v-img>
+    <div class="text-18 white--text">
+        <div class="text-16 font-weight-bold">{{data.vendor_product_name}}</div>
+        <div class="text-12">{{data.vendor_name}}</div>
+    </div>
+    <v-spacer/>
+    <v-icon class="mx-2" color="colorTextGold" size="20" @click="onToggle">{{data.is_collection==1 ? 'mdi-star':'mdi-star-outline'}}</v-icon>
+    <!-- <v-btn color="colorBtnBg" class="" @click="goGame"> -->
+    <v-btn color="" class="goPlayBtn rounded-pill" width="80" max-height="30"  @click="goGame">
+        <span class="white--text d-flex align-center justify-center">{{LangUtil("去游戏")}}<v-icon v-if="!$vuetify.breakpoint.xsOnly" color="white" size="17">mdi-play</v-icon></span>
+    </v-btn>
+    </div>
+    <v-divider class="my-2"></v-divider>
+</v-sheet>

@@ -1,0 +1,91 @@
+<!-- <v-navigation-drawer color="colorPanelBg" width="450" v-model="pageData.bShow" app temporary floating> -->
+    <v-dialog class="rounded-lg" width="860" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :scrollable="true" persistent>
+    <!-- <v-card color="colorPanelBg rounded-lg" class="ma-0 pa-0" elevation="0"> -->
+    <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" :height="570">
+        <!-- <v-card-text class="pa-0 header-mobile"> -->
+        <v-card-text class="pa-0" style="max-height: 140px;">
+            <!-- <div class="gradient-bg d-flex align-center px-5"> -->
+            <div class="search-header-bg d-flex align-center px-9 pt-5 pb-3">
+                <div class="text-20 font-weight-bold white--text">{{LangUtil("搜索游戏")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="d-inline-flex justify-start px-1 py-1 mx-9 mb-3 rounded-pill items-bg">
+                <v-btn
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="pageData.tabIndex != 0"
+                    :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    :class="pageData.tabIndex == 0 ? 'white--text' : 'white--text'"
+                    @click="onTabClick(0)"
+                >
+                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 0 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-heart</v-icon>
+                    {{LangUtil("收藏游戏")}}
+                </v-btn>
+                <v-btn
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="pageData.tabIndex != 1"
+                    :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    :class="pageData.tabIndex == 1 ? 'white--text' : 'white--text'"
+                    @click="onTabClick(1)"
+                >
+                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 1 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-clock</v-icon>
+                    {{LangUtil("最近游戏")}}
+                </v-btn>
+                <v-btn
+                    class="rounded-pill font-weight-bold"
+                    elevation="0"
+                    :text="pageData.tabIndex != 2"
+                    :color="pageData.tabIndex == 2 ? 'colorBtnSeleBg' : 'white--text'"
+                    :class="pageData.tabIndex == 2 ? 'white--text' : 'white--text'"
+                    @click="onTabClick(2)"
+                >
+                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 2 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-magnify</v-icon>
+                    {{LangUtil("游戏查询")}}
+                </v-btn>
+            </div>
+            <!-- <v-divider class="my-4 mx-5" /> -->
+        </v-card-text>
+        <v-card-text class="listbox-mobile px-9" :style="{maxHeight: $vuetify.breakpoint.xsOnly?'490px':'430px'}">
+            <v-window v-model="pageData.tabIndex">
+                <v-window-item>
+                    <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />
+                    <ListNodata v-if="pageData.collection.length == 0" />
+                </v-window-item>
+                <v-window-item>
+                    <GameSearchItem v-for="(item, key) in pageData.recently" :key="key" :data="item" />
+                    <ListNodata v-if="pageData.recently.length == 0" />
+                </v-window-item>
+                <v-window-item>
+                    <div class="search-box d-flex align-center px-2 mb-4">
+                        <!-- <v-icon size="29" class="mr-2" color="colorText1">mdi-file-search</v-icon> -->
+                        <!-- <input
+                            class="ml-3 colorText1--text"
+                            type="text"
+                            style="width: 100%"
+                            :placeholder="LangUtil('请输入关键词')"
+                            v-model="pageData.searchString"
+                            maxlength="10"
+                        /> -->
+                        <input
+                            class="ml-3 white--text"
+                            type="text"
+                            style="width: 100%"
+                            :placeholder="LangUtil('请输入关键词')"
+                            v-model="pageData.searchString"
+                            maxlength="10"
+                        />
+                        <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"><v-icon size="25" class="">mdi-magnify</v-icon></v-btn>
+                    </div>
+                    <GameSearchItem v-for="(item, key) in pageData.searchList" :key="key" :data="item" />
+                    <ListNodata v-if="pageData.searchList.length == 0"  style="max-height: 350px;" />
+                </v-window-item>
+            </v-window>
+        </v-card-text>
+        <Overlay v-model="pageData.loading" />
+    </v-card>
+    </v-dialog>
+<!-- </v-navigation-drawer> -->

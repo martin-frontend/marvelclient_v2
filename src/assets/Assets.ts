@@ -2,6 +2,7 @@ const commonIcon = Object.freeze({
     logo: require(`@/assets/logo.png`),
     loading: require(`@/assets/loading.gif`),
     nodata: require(`@/assets/nodata.png`),
+    nodata_b: require(`@/assets/nodata_b.png`),
 });
 
 /**游戏分类图标	

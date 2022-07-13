@@ -1,4 +1,4 @@
-<v-menu offset-y nudge-bottom="5">
+<!-- <v-menu offset-y nudge-bottom="5">
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
             class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1"
@@ -18,6 +18,40 @@
         </v-sheet>
     </template>
     <v-sheet color="#24314a" class="listbox">
+        <div
+            class="d-flex align-center listitem cursor-pointer"
+            :class="key == selectValue ? 'listitem-active' : ''"
+            v-for="(item, key) of options"
+            :key="key"
+            @click="onChange(key)"
+        >
+            <div v-if="key == selectValue" class="icon iconfont icon-control icon__icon text-15"></div>
+            <div v-else class="icon-box iconfont icon-Outlined icon__icon white--text"></div>
+            <div class="ml-2">{{ item.name || item }}</div>
+            <v-spacer />
+            <div v-if="item.amount">{{ item.amount }}</div>
+        </div>
+    </v-sheet>
+</v-menu> -->
+<v-menu offset-y nudge-bottom="5">
+    <template v-slot:activator="{ on, attrs }">
+        <v-sheet
+            class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg"
+            :class="$vuetify.breakpoint.xsOnly ? 'px-2':'px-5'"
+            :height="$vuetify.breakpoint.xsOnly ? '25' :'44'"
+            :width="$vuetify.breakpoint.xsOnly?135:150"
+            v-bind="attrs"
+            v-on="on"
+        >
+            <!-- <div class="icon-box iconfont icon-Filter icon__icon" :class="$vuetify.breakpoint.xsOnly?'text-18':'text-30'"></div> -->
+            <div class="ml-2 text-truncate white--text" :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'" v-if="options[selectValue]">
+                {{options[selectValue].name || options[selectValue]}}
+            </div>
+            <v-spacer />
+            <div class="icon-box iconfont" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
+        </v-sheet>
+    </template>
+    <v-sheet  class="listbox">
         <div
             class="d-flex align-center listitem cursor-pointer"
             :class="key == selectValue ? 'listitem-active' : ''"

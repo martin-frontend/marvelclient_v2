@@ -1,8 +1,8 @@
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''">
     <div :class="$vuetify.breakpoint.xsOnly?'mt-3':'mt-8'" v-if="hotGame.category == 1">
         <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
-            <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[hotGame.category] }}</v-icon>
-            <div :class="$vuetify.breakpoint.xsOnly?'text-12':''">{{ hotGame.category_name }}</div>
+            <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[hotGame.category] }}</v-icon> -->
+            <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{ hotGame.category_name }}{{LangUtil("游戏")}}</div>
         </div>
         <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
             <GameItemSmall v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
@@ -16,28 +16,34 @@
         </v-sheet>
     </div>
 
-    <v-sheet
+    <!-- <v-sheet
         class="d-flex align-center"
         :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-5 my-5'"
         color="colorTitleBg"
         :height="$vuetify.breakpoint.xsOnly ? '35' : '70'"
+    > -->
+    <v-sheet
+        class="d-flex align-center tranbg"
+        :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-2 my-5 mb-0'"
+        :height="$vuetify.breakpoint.xsOnly ? '35' : '70'"
     >
+        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("全部游戏")}}</div>
+        <v-spacer />
         <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
         <GameListSelect
             v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
             v-model="listQuery.vendor_id"
         />
-        <v-spacer />
+        <!-- <v-spacer /> -->
         <v-btn
-            class="ml-1 rounded-pill"
+            class="ml-1 rounded-pill searchbg"
             :small="$vuetify.breakpoint.xsOnly"
             :height="$vuetify.breakpoint.xsOnly?22.5:35"
-            color="colorBtnBg"
             @click="showGameSearch"
         >
             <v-icon v-if="!$vuetify.breakpoint.xsOnly">mdi-search-web</v-icon>
-            {{LangUtil("搜索5")}}
+            {{LangUtil("搜索")}}
         </v-btn>
     </v-sheet>
     <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
@@ -55,7 +61,7 @@
     <v-lazy>
         <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
             <div class="d-flex flex-column justify-center align-center">
-                <div class="mb-3" style="color: #ffffff66">
+                <div class="mb-3 text-14" style="color: #ffffff80">
                     {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
                     pageData.pageInfo.pageCurrent)}}
                 </div>
@@ -64,8 +70,7 @@
                     height="2"
                 ></v-progress-linear>
                 <v-btn
-                    class="rounded-pill my-5"
-                    color="colorBtnBg"
+                    class="rounded-pill my-5 morebg"
                     :width="$vuetify.breakpoint.xsOnly?125:196"
                     :height="$vuetify.breakpoint.xsOnly?25:40"
                     @click="getMore"

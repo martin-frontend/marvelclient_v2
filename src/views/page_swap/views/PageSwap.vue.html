@@ -33,7 +33,7 @@
                     <div class="d-flex mt-5 mx-3 align-end">
                         <span class="text-h4">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
                         <span class="text-18 ml-2 colorText8--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
-                        <span class="text-18 ml-4" :class="parseFloat(chartChangedData)<0? 'red_k': 'green_k'">{{ chartChangedData }}</span>
+                        <span class="text-18 ml-4" :class="parseFloat(chartChangedData)<0? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
                     </div>
                     <div class="mt-2 mx-3 text-14 colorText8--text">{{ chartData.created_time}}</div>
                     <!-- chart -->
@@ -207,7 +207,7 @@
                     <div class="d-flex mt-2 align-center">
                         <span class="text-24">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
                         <span class="text-14 ml-1 colorText8--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
-                        <span class="text-14 ml-1" :class=" parseFloat(chartChangedData)<0  ? 'red_k': 'green_k'">{{ chartChangedData }}</span>
+                        <span class="text-14 ml-1" :class=" parseFloat(chartChangedData)<0  ? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
                         
                     </div>
                     <div class="mt-1 text-14 colorText8--text">{{ chartData.created_time}}</div>

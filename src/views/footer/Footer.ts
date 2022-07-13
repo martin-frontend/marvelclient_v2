@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import { getVersion } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_contract from "@/views/dialog_contract";
@@ -8,6 +9,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 @Component
 export default class Footer extends AbstractView {
     LangUtil = LangUtil;
+    getVersion = getVersion;
 
     goService() {
         dialog_service.show();
@@ -19,9 +21,6 @@ export default class Footer extends AbstractView {
         OpenLink(url);
     }
 
-    getVersion() {
-        return process.env.version;
-    }
     getChannelID() {
         return core.channel_id;
     }

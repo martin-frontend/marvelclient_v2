@@ -22,10 +22,6 @@ export default class PageExtension extends AbstractView {
     tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
 
-    get questionData() {
-        return this.fagProxy.qData.type1;
-    }
-
     private QRCode = QRCode;
 
     constructor() {
@@ -76,11 +72,11 @@ export default class PageExtension extends AbstractView {
     }
 
     savePhoto() {
-        if (vuetify.framework.breakpoint.xsOnly) {
-            this.myProxy.savePoster(this.myProxy.pageData.link);
-        } else {
-            dialog_preview.show(1);
-        }
+        // if (vuetify.framework.breakpoint.xsOnly) {
+        //     this.myProxy.savePoster(this.myProxy.pageData.link);
+        // } else {
+        dialog_preview.show(1);
+        // }
     }
 
     reget() {

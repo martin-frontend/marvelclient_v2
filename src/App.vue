@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div id="page">
+        <div id="page" style="background-color;:#131e36">
             <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
             <v-main>
                 <router-view />

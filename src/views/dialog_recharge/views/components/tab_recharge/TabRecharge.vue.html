@@ -36,9 +36,10 @@
                 </v-btn>
             </div>
             <v-sheet class="d-flex rounded-lg pa-4 mt-4 text-14" color="colorPanelTitleBg">
-                <div class="info-text">
-                    ⚠️ {{pageData.methodList[form.coin_name_unique] &&
-                    pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain}}
+                <div class="info-text d-flex">
+                    <span class="mr-1">⚠️</span>
+                    <pre>{{pageData.methodList[form.coin_name_unique] &&
+                        pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain}}</pre>
                 </div>
                 <v-spacer />
                 <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">

@@ -1,5 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { moneyFormat } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
@@ -14,6 +15,7 @@ import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
 @Component
 export default class PageIntroduce extends AbstractView {
     LangUtil = LangUtil;
+    moneyFormat = moneyFormat;
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;
     reward_coin_info = this.pageData.reward_coin_info;

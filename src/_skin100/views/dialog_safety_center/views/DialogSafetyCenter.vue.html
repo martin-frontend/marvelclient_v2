@@ -62,11 +62,11 @@
                 <v-sheet
                     v-if="userInfo.phone"
                     class="d-flex flex-column align-center justify-center text-16 colorText2--text"
-                    height="400"
+                    height="200"
                     color="transparent"
                 >
-                    <v-icon color="green" size="100">mdi-check-circle</v-icon>
-                    <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                    <v-icon color="colorText3" size="80">mdi-check-circle</v-icon>
+                    <div class="my-2">{{LangUtil("绑定成功")}}</div>
                     <div>{{userInfo.phone}}</div>
                 </v-sheet>
                 <div v-else>
@@ -119,9 +119,6 @@
                                 </v-sheet>
                             </v-menu>
                         </template>
-                        <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(formBindPhone.mobile)" @click="getCode">
-                            {{LangUtil("验证码")}}
-                        </v-btn> -->
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
@@ -144,18 +141,15 @@
                 <v-sheet
                     v-if="userInfo.email"
                     class="d-flex flex-column align-center justify-center text-16 colorText2--text"
-                    height="400"
+                    height="200"
                     color="transparent"
                 >
-                    <v-icon color="green" size="100">mdi-check-circle</v-icon>
-                    <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                    <v-icon color="colorText3" size="80">mdi-check-circle</v-icon>
+                    <div class="my-2">{{LangUtil("绑定成功")}}</div>
                     <div>{{userInfo.email}}</div>
                 </v-sheet>
                 <div v-else>
                     <CustomInput class="mb-3 rounded safety-ip" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
-                        <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(formBindEmail.email)" @click="getCode">
-                            {{LangUtil("验证码")}}
-                        </v-btn> -->
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
@@ -168,7 +162,7 @@
                         {{LangUtil("获取验证码")}}
                     </v-btn>
                     </CustomInput>
-                    <v-btn class="rounded-lg on-safety-bg text-body-1"  height="48" :disabled="!isChckFormEmail" block @click="onBindEmail">
+                    <v-btn class="rounded-lg on-safety-bg text-body-1"  height="44" :disabled="!isChckFormEmail" block @click="onBindEmail">
                         {{LangUtil("绑定")}}
                     </v-btn>
                 </div>
@@ -193,7 +187,7 @@
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="formChangePassword.password_confirm"
                 />
-                <v-btn class="rounded-lg on-safety-bg text-body-1"  height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
+                <v-btn class="rounded-lg on-safety-bg text-body-1"  height="44" :disabled="!isCheckFormPassword" block @click="onChangePassword">
                     {{LangUtil("确定修改")}}
                 </v-btn>
             </v-card-text>

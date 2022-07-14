@@ -8,7 +8,7 @@
     <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center ">
             <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
-            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button">
+            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button" @click="goHome">
                  {{LangUtil("首页")}}
             </span>
             <!-- <button

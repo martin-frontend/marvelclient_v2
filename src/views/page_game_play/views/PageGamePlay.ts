@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import { judgeClient } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
@@ -18,6 +19,19 @@ export default class PageGamePlay extends AbstractView {
     constructor() {
         super(PageGamePlayMediator);
     }
+
+    // get gameFrameClass() {
+    //     if (this.$vuetify.breakpoint.mobile) {
+    //         //@ts-ignore
+    //         if (window.navigator.standalone) {
+    //             return "frame-mobile-standalone";
+    //         } else {
+    //             return "frame-mobile";
+    //         }
+    //     } else {
+    //         return "frame";
+    //     }
+    // }
 
     mounted() {
         this.$nextTick(() => {
@@ -81,19 +95,40 @@ export default class PageGamePlay extends AbstractView {
                 }
             });
         });
-        this.onWatchWidth();
+        this.onWatchHeight();
     }
 
-    @Watch("$vuetify.breakpoint.width")
-    onWatchWidth() {
+    @Watch("$vuetify.breakpoint.height")
+    onWatchHeight() {
+        //@ts-ignore
+        if (window.navigator.standalone) {
+            const gameFrame: any = this.$refs.gameFrame;
+            const bodyW = document.body.clientWidth;
+            const bodyH = document.body.clientHeight;
+            gameFrame.style.width = bodyW + "px";
+            gameFrame.style.height = bodyH + "px";
+        }
+    }
+
+    onResize() {
         this.$nextTick(() => {
             if (this.$vuetify.breakpoint.mobile) {
                 const gameFrame: any = this.$refs.gameFrame;
                 const bodyW = document.body.clientWidth;
                 const bodyH = document.body.clientHeight;
-                gameFrame.style.width = bodyW + "px";
-                gameFrame.style.height = bodyH + "px";
+
+                if (judgeClient() == "iOS") {
+                    gameFrame.style.width = bodyW + "px";
+                    gameFrame.style.height = "100vh";
+                    gameFrame.style.marginBottom = "20px";
+                } else {
+                    gameFrame.style.width = bodyW + "px";
+                    gameFrame.style.height = bodyH + "px";
+                }
             }
+            setTimeout(function () {
+                window.scrollTo(0, 1);
+            }, 1000);
         });
     }
 

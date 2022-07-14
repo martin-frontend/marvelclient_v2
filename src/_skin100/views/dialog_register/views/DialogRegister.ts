@@ -52,7 +52,6 @@ export default class DialogRegister extends AbstractView {
                 }
             }
         }
-        console.log("this.areaCodeList: ", this.areaCodeList);
     }
     onItemAreaCode(item: any) {
         this.pageData.form.area_code = item.area_code;

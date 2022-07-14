@@ -42,7 +42,9 @@
                 </div>
                 <v-spacer />
                 <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
-                    <div ref="qrcode" class="qrcode cursor" @click="showPreview"></div>
+                    <div ref="qrcode" class="qrcode" @click="showPreview">
+                        <v-img :src="pageData.qrcode"></v-img>
+                    </div>
                 </v-sheet>
             </v-sheet>
         </v-card>

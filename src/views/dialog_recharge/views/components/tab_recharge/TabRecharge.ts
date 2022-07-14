@@ -7,6 +7,7 @@ import OpenLink from "@/core/global/OpenLink";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
 import dialog_preview from "@/views/dialog_preview";
+import MyCanvas from "@/core/ui/MyCanvas";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -16,14 +17,6 @@ export default class TabRecharge extends AbstractView {
     form = this.pageData.form;
 
     plat_coins = GamePlatConfig.config.plat_coins;
-    QRCode = QRCode;
-
-    @Watch("pageData.address")
-    onWatchAddress() {
-        const div: any = this.$refs.qrcode;
-        div.innerHTML = "";
-        new this.QRCode(div, this.pageData.address);
-    }
 
     onChange1(value: any) {
         const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
@@ -51,7 +44,11 @@ export default class TabRecharge extends AbstractView {
         this.pageData.address = "";
     }
 
-    showPreview() {
-        dialog_preview.show(0);
+    async showPreview() {
+        if (this.pageData.qrcode) {
+            const myCanvas = new MyCanvas(288, 288);
+            await myCanvas.drawQrCode(this.pageData.address, 16, 16, 256, 256);
+            dialog_preview.show(myCanvas.getData());
+        }
     }
 }

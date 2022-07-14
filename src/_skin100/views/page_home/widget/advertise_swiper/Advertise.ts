@@ -29,8 +29,6 @@ export default class Advertise extends AbstractView {
         },
         on: {
             click: (e: any) => {
-                console.log(e.target.dataset);
-                console.log(e.target.dataset.jumpitem);
                 this.noticeProxy.jump(JSON.parse(e.target.dataset.jumpitem));
             },
         },

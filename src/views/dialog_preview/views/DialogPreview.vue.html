@@ -1,7 +1,5 @@
-<v-dialog v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
-    <v-card class="d-flex justify-center align-center rounded-lg" color="transparent" v-if="pageData.bShow" @click="onClose()">
-        <div v-if="!pageData.type" ref="qrcodeDialog" class="qrcode"></div>
-        <div v-else id="qrCode"></div>
-    </v-card>
-    <Overlay v-model="pageData.loading"/>
+<v-dialog width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="true">
+    <div ref="box" class="d-flex align-center justify-center" @click="onClose">
+        <img ref="img" :src="pageData.url" />
+    </div>
 </v-dialog>

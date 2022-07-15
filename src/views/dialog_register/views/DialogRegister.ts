@@ -89,13 +89,13 @@ export default class DialogRegister extends AbstractView {
         dialog_service.show();
     }
 
-    getCode() {
-        if (this.form.register_type == 2) {
-            dialog_get_verity.showEmailVerity(6, this.form.username);
-        } else {
-            dialog_get_verity.showSmsVerity(6, this.form.area_code, this.form.username);
-        }
-    }
+    // getCode() {
+    //     if (this.form.register_type == 2) {
+    //         dialog_get_verity.showEmailVerity(6, this.form.username);
+    //     } else {
+    //         dialog_get_verity.showSmsVerity(6, this.form.area_code, this.form.username);
+    //     }
+    // }
 
     onRegister() {
         this.myProxy.api_user_register();

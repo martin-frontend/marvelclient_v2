@@ -68,9 +68,10 @@
                     maxlength="30"
                     v-model="form.username"
                 >
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
+                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
-                    </v-btn>
+                    </v-btn> -->
+                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username"/>
                 </CustomInput>
 
                 <CustomInput
@@ -124,9 +125,10 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
+                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
-                    </v-btn>
+                    </v-btn> -->
+                    <DialogGetVerity :isCheck="checkPhone(form.username)" :category="1" :type="6" :area_code="form.area_code" :mobile="form.username"/>
                 </CustomInput>
 
                 <CustomInput

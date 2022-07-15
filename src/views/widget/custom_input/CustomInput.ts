@@ -7,6 +7,7 @@ export default class CustomInput extends AbstractView {
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
     @Prop({ default: 100 }) maxlength!: number;
+    @Prop()disabled!:number;
 
     inputValue = this.getValue;
 

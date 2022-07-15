@@ -51,6 +51,7 @@
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"
                     v-model="form.invite_user_id"
+                    :disabled="hasInviteUser()"
                 />
                 <CustomInput
                     v-if="form.register_type==1"

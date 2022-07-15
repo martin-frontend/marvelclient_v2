@@ -44,14 +44,14 @@ export default class DialogLogin extends AbstractView {
         );
     }
 
-    getCode() {
-        const { type, username, area_code } = this.forgetData.form;
-        if (this.forgetData.form.type == 2) {
-            dialog_get_verity.showEmailVerity(2, this.forgetData.form.username);
-        } else {
-            dialog_get_verity.showSmsVerity(2, area_code, username);
-        }
-    }
+    // getCode() {
+    //     const { type, username, area_code } = this.forgetData.form;
+    //     if (this.forgetData.form.type == 2) {
+    //         dialog_get_verity.showEmailVerity(2, this.forgetData.form.username);
+    //     } else {
+    //         dialog_get_verity.showSmsVerity(2, area_code, username);
+    //     }
+    // }
 
     onAreaCodeInput() {
         if (this.areaCodeSearch == "") {

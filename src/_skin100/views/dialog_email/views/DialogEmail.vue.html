@@ -1,0 +1,158 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+         <!-- pc显示方式 -->
+        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("消息中心")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
+            <div>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 0"
+                    :color="listQuery.cate == 0 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(0)"
+                >
+                    <!-- <v-icon class="mr-1">mdi-arrow-down-bold-circle</v-icon> -->
+                    {{LangUtil("全部消息")}}
+                </v-btn>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 1"
+                    :color="listQuery.cate == 1 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(1)"
+                >
+                    <!-- <v-icon class="mr-1">mdi-arrow-down-bold-circle</v-icon> -->
+                    {{LangUtil("平台消息")}}
+                </v-btn>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 11"
+                    :color="listQuery.cate == 11 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(11)"
+                >
+                    <!-- <v-icon class="mr-1">mdi-arrow-down-bold-circle</v-icon> -->
+                    {{LangUtil("活动消息")}}
+                </v-btn>
+            </div>
+
+            <v-divider class="my-3" />
+
+            <div class="d-flex">
+                <v-spacer />
+                <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
+                <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
+            </div>
+
+            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
+                <v-sheet class="mt-5 px-4 py-3 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
+                    <div class="ml-4" style="width: 100%">
+                        <div class="d-flex justify-space-between mb-2">
+                            <div class="text-16 colorText2--text">{{item.title}}</div>
+                            <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
+                                {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
+                            </v-icon>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="text-decoration-underline colorText1--text cursor-pointer" @click="onDetail(item)">
+                                {{LangUtil("点击阅读详情")}}
+                            </div>
+                            <div class="colorText1--text">{{item.created_at}}</div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0" height="445"/>
+            <v-spacer />
+            <v-pagination
+                class="mt-4"
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("消息中心")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="mx-3">
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 0"
+                    :color="listQuery.cate == 0 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(0)"
+                >
+                    {{LangUtil("全部消息")}}
+                </v-btn>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 1"
+                    :color="listQuery.cate == 1 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(1)"
+                >
+                    {{LangUtil("平台消息")}}
+                </v-btn>
+                <v-btn
+                    height="40"
+                    class="rounded-pill font-weight-bold mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 11"
+                    :color="listQuery.cate == 11 ? 'colorBtnBg' : 'colorText1'"
+                    @click="onTabClick(11)"
+                >
+                    {{LangUtil("活动消息")}}
+                </v-btn>
+            </div>
+            <v-divider class="my-3 mx-3" />
+            <div class="d-flex mx-3">
+                <v-spacer />
+                <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
+                <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
+            </div>
+        </v-card-text>
+        <v-card-text v-if="$vuetify.breakpoint.xsOnly" class="px-3">
+            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                <ListNodata v-if="pageData.list.length == 0"/>
+                <v-sheet class="px-3 py-2 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
+                    <div class="ml-4" style="width: 100%">
+                        <div class="d-flex justify-space-between mb-2">
+                            <div class="text-16 colorText2--text">{{item.title}}</div>
+                            <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
+                                {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
+                            </v-icon>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="text-decoration-underline colorText1--text cursor-pointer" @click="onDetail(item)">
+                                {{LangUtil("点击阅读详情")}}
+                            </div>
+                            <div class="colorText1--text">{{item.created_at}}</div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </vue-loadmore>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

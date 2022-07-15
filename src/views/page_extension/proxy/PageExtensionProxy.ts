@@ -79,6 +79,8 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
+        const aaa = data;
+        console.log(aaa);
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);
         this.pageData.btnBind = !data.invite_user_id;

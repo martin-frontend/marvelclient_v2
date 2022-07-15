@@ -35,9 +35,9 @@ export default class PageExtensionMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
-                if (this.isToday(body.date)) {
+                // if (this.isToday(body.date)) {
                     this.myProxy.setData(body);
-                }
+                // }
                 break;
             case net.EventType.api_user_var_commission_commissionnum:
                 myProxy.setCommissionCommissionnum(body);

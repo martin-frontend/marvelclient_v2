@@ -87,13 +87,13 @@ export default class PageExtension extends AbstractView {
                 imgData = myCanvas.getData();
             }
 
-            if (core.app_type == core.EnumAppType.APP) {
-                WebViewBridge.getInstance().savePhoto(imgData, () => {
-                    dialog_message.success(LangUtil("保存存成功"));
-                });
-            } else {
+            // if (core.app_type == core.EnumAppType.APP) {
+            //     WebViewBridge.getInstance().savePhoto(imgData, () => {
+            //         dialog_message.success(LangUtil("保存成功"));
+            //     });
+            // } else {
                 dialog_preview.show(imgData);
-            }
+            // }
         }
     }
 

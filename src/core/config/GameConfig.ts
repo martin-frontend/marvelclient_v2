@@ -24,7 +24,7 @@ export default class GameConfig {
             try {
                 const configstr: string = Base64.decode(conf);
                 this.config = JSON.parse(configstr);
-                core.host = this.config.ApiUrl;
+                core.host = this.config.ApiUrl || this.getApiUrl();
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 return;
             } catch (e) {
@@ -39,7 +39,7 @@ export default class GameConfig {
                 .get(url)
                 .then((response: any) => {
                     this.config = response.data;
-                    core.host = this.config.ApiUrl;
+                    core.host = this.config.ApiUrl || this.getApiUrl();
                     puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 })
                 .catch(() => {
@@ -53,7 +53,7 @@ export default class GameConfig {
 
     static getChannelConfig() {
         let hostname = location.hostname;
-        if(process.env.NODE_ENV == "development"){
+        if (process.env.NODE_ENV == "development") {
             hostname = "www.cftest666.com";
         }
         // hostname = "www.cftest666.com";
@@ -70,5 +70,16 @@ export default class GameConfig {
                 alert(LangUtil("渠道配置文件获取失败"));
                 window.location.reload();
             });
+    }
+
+    static getApiUrl(): string {
+        let apiUrl = "";
+        const origin = location.origin;
+        if (origin.indexOf("www") == -1) {
+            apiUrl = origin.replace("://", "://api.");
+        } else {
+            apiUrl = origin.replace("www", "api");
+        }
+        return apiUrl;
     }
 }

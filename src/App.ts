@@ -75,7 +75,7 @@ export default class APP extends AbstractView {
             this.guideDrawer = true;
         } else {
             //将参数复制到剪切板
-            const data = { code: core.user_id, pid: core.plat_id, channel: core.channel_id };
+            const data = { code: core.invite_user_id || core.user_id, pid: core.plat_id, channel: core.channel_id };
             CopyUtil(JSON.stringify(data));
             //下载apk
             const src = GameConfig.config.AndroidApkUrl;

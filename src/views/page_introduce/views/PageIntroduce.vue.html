@@ -182,13 +182,13 @@
                         <v-card width="100%" class="mx-2 my-2 pa-4" color="rgba(0, 0, 0, 0.2)">
                             <div :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">{{LangUtil("当前分红池")}}</div>
                             <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
-                                $263,967
+                                {{moneyFormat(pageData.stake_info.bonus_pool_amount)}}
                             </div>
                         </v-card>
                         <v-card width="100%" class="mx-2 my-2 pa-4" color="rgba(0, 0, 0, 0.2)">
                             <div :class="$vuetify.breakpoint.smAndDown ? 'text-14' : 'text-16'">{{LangUtil("昨日分红")}}</div>
                             <div class="amber--text font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
-                                $28,520.14
+                                {{moneyFormat(pageData.stake_info.yesterday_total_bonus_amount)}}
                             </div>
                         </v-card>
                     </v-layout>

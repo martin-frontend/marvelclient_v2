@@ -63,13 +63,13 @@ export default class DialogSafetyCenter extends AbstractView {
         return password == password_confirm && checkUserPassword(password_old) && checkUserPassword(password);
     }
 
-    getCode() {
-        if (this.pageData.tabIndex == 0) {
-            dialog_get_verity.showSmsVerity(1, this.formBindPhone.area_code, this.formBindPhone.mobile);
-        } else {
-            dialog_get_verity.showEmailVerity(7, this.formBindEmail.email);
-        }
-    }
+    // getCode() {
+    //     if (this.pageData.tabIndex == 0) {
+    //         dialog_get_verity.showSmsVerity(1, this.formBindPhone.area_code, this.formBindPhone.mobile);
+    //     } else {
+    //         dialog_get_verity.showEmailVerity(7, this.formBindEmail.email);
+    //     }
+    // }
 
     onAreaCodeInput() {
         if (this.areaCodeSearch == "") {

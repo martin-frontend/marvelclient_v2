@@ -1,4 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import { judgeClient } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
@@ -19,19 +20,18 @@ export default class PageGamePlay extends AbstractView {
         super(PageGamePlayMediator);
     }
 
-    get gameFrameClass() {
-        if (this.$vuetify.breakpoint.mobile) {
-            //@ts-ignore
-            if (window.navigator.standalone) {
-                return "frame-mobile-standalone";
-            } else {
-                return "frame-mobile";
-            }
-        } else {
-            return "frame";
-        }
-        this.$vuetify.breakpoint.mobile ? "frame-mobile" : "frame";
-    }
+    // get gameFrameClass() {
+    //     if (this.$vuetify.breakpoint.mobile) {
+    //         //@ts-ignore
+    //         if (window.navigator.standalone) {
+    //             return "frame-mobile-standalone";
+    //         } else {
+    //             return "frame-mobile";
+    //         }
+    //     } else {
+    //         return "frame";
+    //     }
+    // }
 
     mounted() {
         this.$nextTick(() => {
@@ -95,6 +95,41 @@ export default class PageGamePlay extends AbstractView {
                 }
             });
         });
+        this.onWatchHeight();
+    }
+
+    @Watch("$vuetify.breakpoint.height")
+    onWatchHeight() {
+        //@ts-ignore
+        if (window.navigator.standalone) {
+            const gameFrame: any = this.$refs.gameFrame;
+            const bodyW = document.body.clientWidth;
+            const bodyH = document.body.clientHeight;
+            gameFrame.style.width = bodyW + "px";
+            gameFrame.style.height = bodyH + "px";
+        }
+    }
+
+    onResize() {
+        this.$nextTick(() => {
+            if (this.$vuetify.breakpoint.mobile) {
+                const gameFrame: any = this.$refs.gameFrame;
+                const bodyW = document.body.clientWidth;
+                const bodyH = document.body.clientHeight;
+
+                if (judgeClient() == "iOS") {
+                    gameFrame.style.width = bodyW + "px";
+                    gameFrame.style.height = "100vh";
+                    gameFrame.style.marginBottom = "20px";
+                } else {
+                    gameFrame.style.width = bodyW + "px";
+                    gameFrame.style.height = bodyH + "px";
+                }
+            }
+            setTimeout(function () {
+                window.scrollTo(0, 1);
+            }, 1000);
+        });
     }
 
     onFullScreen() {
@@ -113,9 +148,9 @@ export default class PageGamePlay extends AbstractView {
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 if (gameProxy.gamePreData.historyLength - window.history.length < -1) {
                     router.replace(gameProxy.gamePreData.lastRouter);
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         ScrollUtil(gameProxy.gamePreData.scrollY, 0);
-                    })
+                    });
                 } else {
                     router.back();
                 }

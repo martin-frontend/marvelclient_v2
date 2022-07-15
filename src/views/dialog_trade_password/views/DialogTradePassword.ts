@@ -28,6 +28,14 @@ export default class DialogTradePassword extends AbstractView {
         super(DialogTradePasswordMediator);
     }
 
+    mounted() {
+        if (this.validate_type.includes(2)) {
+            this.pageData.code_type = 1;
+        } else {
+            this.pageData.code_type = 2;
+        }
+    }
+
     onClose() {
         this.pageData.bShow = false;
     }
@@ -42,16 +50,15 @@ export default class DialogTradePassword extends AbstractView {
     }
 
     getCode() {
-        console.log(this.validate_type);
-
-        if ((this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
-            this.pageData.code_type = 1;
-            dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
-        } else if ((this.userInfo.email != "" && this.userInfo.email != undefined) && this.validate_type.includes(1
-        )) {
-            this.pageData.code_type = 2;
-            dialog_get_verity.showEmailVerity(5, this.userInfo.email); //获取邮箱验证码
-        } else if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
+        // if ((this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
+        //     this.pageData.code_type = 1;
+        //     dialog_get_verity.showSmsVerity(5, '', ''); //获取短信验证码
+        // } else if ((this.userInfo.email != "" && this.userInfo.email != undefined) && this.validate_type.includes(1
+        // )) {
+        //     this.pageData.code_type = 2;
+        //     dialog_get_verity.showEmailVerity(5, this.userInfo.email); //获取邮箱验证码
+        // } else 
+        if (!(this.userInfo.phone != "" && this.userInfo.phone != undefined) && this.validate_type.includes(2)) {
             dialog_message_box.confirm({
                 message: LangUtil("您的账号未绑定手机，请绑定手机?"),
                 okFun: () => {

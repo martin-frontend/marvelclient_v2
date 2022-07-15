@@ -127,43 +127,17 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     listQuery = {
         user_id: core.user_id,
         agent_user_id: core.user_id,
-        from_date: dateFormat(getTodayOffset(-1), "yyyy-MM-dd hh:mm:ss").split(" ")[0],
-        to_date: dateFormat(getTodayOffset(-1), "yyyy-MM-dd hh:mm:ss").split(" ")[0],
+        from_date: dateFormat(getTodayOffset(-1), "yyyy-MM-dd"),
+        to_date: dateFormat(getTodayOffset(-1), "yyyy-MM-dd"),
     };
-
-    /**保存图片到相册 */
-    async savePoster(url: any) {
-        let poster: string;
-        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
-        //@ts-ignore
-        /* eslint-disable */
-        const bg = require(`@/assets/extension/poster.jpg`);
-        if (bg) {
-            const myCanvas = new MyCanvas(375, 667);
-            await myCanvas.drawImage2(bg, 0, 0, 375, 667);
-            await myCanvas.drawQrCode(url, 125, 495, 125, 125);
-            //推荐人
-            myCanvas.drawText(id.toString(), 195, 470, "#ffffff", 13);
-            poster = myCanvas.getData();
-        } else {
-            const qr = await Utils.generateQrcode(this.pageData.link);
-            poster = qr;
-        }
-
-        const img = new Image();
-        img.src = poster;
-        const newWin: any = window.open("", "_blank");
-        newWin.document.write(img.outerHTML);
-    }
-
 
     copy() {
         CopyUtil(this.pageData.link);
     }
 
     copyId() {
-        const id = this.pageData.promotionData.pretty_user_id == "" ? this.pageData.promotionData.user_id : this.pageData.promotionData.pretty_user_id;
-        CopyUtil(id.toString());
+        const { pretty_user_id, user_id } = this.pageData.promotionData;
+        CopyUtil(pretty_user_id || user_id);
     }
 
     /**领取佣金 */

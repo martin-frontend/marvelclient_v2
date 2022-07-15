@@ -76,7 +76,7 @@
             <v-spacer />
 
             <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
-                <v-icon>mdi-information</v-icon>
+                <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </button>
         </div>
@@ -119,7 +119,7 @@
             <Wallet v-if="core.user_id" />
             <v-spacer />
             <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
-                <v-icon>mdi-information</v-icon>
+                <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </v-btn>
         </div>

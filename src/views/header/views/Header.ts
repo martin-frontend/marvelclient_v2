@@ -87,7 +87,7 @@ export default class Header extends AbstractView {
             window.open(
                 LangUtil("客服链接"),
                 LangUtil("客服"),
-                "height=300, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no"
+                "height=680, width=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no"
             );
         } catch (e: any) {
             OpenLink(LangUtil("客服链接"));

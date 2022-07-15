@@ -24,6 +24,7 @@ export default class GameConfig {
             try {
                 const configstr: string = Base64.decode(conf);
                 this.config = JSON.parse(configstr);
+                core.host = this.config.ApiUrl;
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 return;
             } catch (e) {

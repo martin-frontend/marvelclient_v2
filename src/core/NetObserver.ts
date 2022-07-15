@@ -14,6 +14,8 @@ import LangConfig from "./config/LangConfig";
 import LangUtil from "./global/LangUtil";
 import { locale } from "vuejs-loadmore";
 import WebViewBridge from "./native/WebViewBridge";
+import { judgeClient } from "./global/Functions";
+import OpenLink from "./global/OpenLink";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -111,7 +113,13 @@ export default class NetObserver extends AbstractMediator {
 
                                 const obj = document.body.scrollTop ? document.body : document.documentElement;
                                 this.gameProxy.gamePreData.scrollY = obj.scrollTop;
-                                page_game_play.show(body.url);
+
+                                //@ts-ignore
+                                if (judgeClient() == "PC" || window.navigator.standalone) {
+                                    page_game_play.show(body.url);
+                                } else {
+                                    OpenLink(body.url);
+                                }
                             } else {
                                 let gameUrl = "";
                                 if (body.url.indexOf("?") != -1) {

@@ -79,7 +79,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        var aaa = data;
+        const aaa = data;
         console.log(aaa);
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);

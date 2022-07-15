@@ -4,6 +4,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
+import { number } from "echarts";
 import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
@@ -14,6 +15,13 @@ export default class DialogEmail extends AbstractView {
     myProxy: DialogEmailProxy = getProxy(DialogEmailProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
+
+    curValue = 0;
+    selectArr = {
+        0: { value: 0, name: "全部消息" },
+        1: { value: 1, name: "平台消息" },
+        11: { value: 11, name: "活动消息" },
+    };
 
     commonIcon = Assets.commonIcon;
 
@@ -29,7 +37,7 @@ export default class DialogEmail extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
-        const selfProxy:SelfProxy = getProxy(SelfProxy);
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
         selfProxy.api_user_var_red_dot_tips();
     }
 

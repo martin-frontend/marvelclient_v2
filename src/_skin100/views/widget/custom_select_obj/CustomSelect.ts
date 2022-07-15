@@ -24,9 +24,9 @@ export default class CustomSelect extends AbstractView {
         return this.value != undefined ? this.value : "";
     }
 
-    private onChange(value: number | any) {
+    private onChange(value: number | any, optionValue: number) {
         this.selectValue = value;
-        this.$emit("input", value);
-        this.$emit("change", value);
+        this.$emit("input", optionValue);
+        this.$emit("change", optionValue);
     }
 }

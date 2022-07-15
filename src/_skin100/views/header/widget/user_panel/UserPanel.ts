@@ -5,7 +5,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";
 import dialog_bet_record from "@/_skin100/views/dialog_bet_record";
-import dialog_email from "@/views/dialog_email";
+import dialog_email from "@/_skin100/views/dialog_email";
 import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
 import dialog_wallet from "@/_skin100/views/dialog_wallet";
 import page_extension from "@/views/page_extension";

@@ -5,10 +5,12 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogEmail from "./DialogEmail";
-import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
+import CustomSelect from "@/_skin100/views/widget/custom_select_obj/CustomSelect.vue";
+import ListNodata from "@/_skin100/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {
+        CustomSelect,
         Overlay,
         ListNodata,
     },

@@ -2,6 +2,7 @@
 <style src="./DialogRegister.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import DialogGetVerity from "@/views/dialog_get_verity/views/DialogGetVerity.vue";
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import CustomPassword from "@/views/widget/custom_password/CustomPassword.vue";
@@ -15,6 +16,7 @@ import DialogRegister from "./DialogRegister";
         CustomInput,
         CustomPassword,
         Overlay,
+        DialogGetVerity,
     },
 })
 export default class extends DialogRegister {}

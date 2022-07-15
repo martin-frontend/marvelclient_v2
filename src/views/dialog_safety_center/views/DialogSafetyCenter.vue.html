@@ -107,9 +107,10 @@
                                 </v-sheet>
                             </v-menu>
                         </template>
-                        <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(formBindPhone.mobile)" @click="getCode">
+                        <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(formBindPhone.mobile)" @click="getCode">
                             {{LangUtil("验证码")}}
-                        </v-btn>
+                        </v-btn> -->
+                        <DialogGetVerity :isCheck="checkPhone(formBindPhone.mobile)" :category="1" :type="1" :area_code="formBindPhone.area_code" :mobile="formBindPhone.mobile"/>
                     </CustomInput>
                     <CustomInput
                         class="mb-6"
@@ -137,9 +138,10 @@
                 </v-sheet>
                 <div v-else>
                     <CustomInput class="mb-6" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
-                        <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(formBindEmail.email)" @click="getCode">
+                        <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(formBindEmail.email)" @click="getCode">
                             {{LangUtil("验证码")}}
-                        </v-btn>
+                        </v-btn> -->
+                        <DialogGetVerity :isCheck="checkMail(formBindEmail.email)" :category="0" :type="7" :email="formBindEmail.email"/>
                     </CustomInput>
                     <CustomInput
                         class="mb-6"

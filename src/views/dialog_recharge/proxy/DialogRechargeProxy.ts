@@ -42,7 +42,7 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-
+        // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
@@ -52,9 +52,16 @@ export class RechargeProxy extends puremvc.Proxy {
         if (coin_name_unique) {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
+            // 默认选择trc20
+            let block_network_id = optionsKeys[0];
+            for(const key of optionsKeys){
+                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+                    block_network_id = key;
+                }
+            }
 
-            if (optionsKeys[0]) {
-                this.pageData.form.block_network_id = optionsKeys[0];
+            if (block_network_id) {
+                this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
             }
@@ -116,7 +123,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-
+        // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
@@ -126,9 +133,17 @@ export class ExchangeProxy extends puremvc.Proxy {
         if (coin_name_unique) {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
-            if (optionsKeys[0]) {
-                this.pageData.form.block_network_id = optionsKeys[0];
-                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[optionsKeys[0]].exchange_channel_method_id;
+            // 默认选择trc20
+            let block_network_id = optionsKeys[0];
+            for(const key of optionsKeys){
+                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+                    block_network_id = key;
+                }
+            }
+
+            if (block_network_id) {
+                this.pageData.form.block_network_id = block_network_id;
+                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].exchange_channel_method_id;
             }
         }
     }

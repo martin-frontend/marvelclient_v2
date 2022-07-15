@@ -3,6 +3,15 @@ import { objectRemoveNull } from "@/core/global/Functions";
 export default class DialogGetVerityProxy extends puremvc.Proxy {
     static NAME = "DialogGetVerityProxy";
 
+    private timer = 0;
+
+    private downcountHandler(){
+        this.pageData.downcount--;
+        if(this.pageData.downcount == 0){
+            clearInterval(this.timer);
+        }
+    }
+
     pageData = {
         loading: false,
         bShow: false,
@@ -19,6 +28,8 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         },
         category: 0, // 0:邮箱 1:短信
         auth_image: "",
+        //倒计时计数
+        downcount: 0,
     };
 
     resetForm() {
@@ -33,8 +44,14 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         this.api_public_auth_code();
     }
 
+    beginDowncount(){
+        this.pageData.downcount = 60;
+        this.timer = setInterval(this.downcountHandler.bind(this), 1000);
+    }
+
     api_public_auth_code() {
         this.pageData.loading = true;
+        this.pageData.form.auth_code = "";
         this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
     }
 

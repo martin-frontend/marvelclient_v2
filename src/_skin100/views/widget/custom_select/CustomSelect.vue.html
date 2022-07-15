@@ -6,7 +6,7 @@
                 :rounded="isPill ? 'pill':''"
                 width="100%"
                 :height="height"
-                color="colorPanelTitleBg"
+                color="rgba(255,255,255,0.1)"
                 v-bind="attrs"
                 v-on="on"
             >
@@ -16,7 +16,7 @@
                     :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
                 />
-                <div class="text-truncate" style="width:100%" :class="'text-'+fontSize">
+                <div class="text-truncate white--text" style="width:100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
                 </div>
                 <v-spacer/>
@@ -32,12 +32,12 @@
         <v-sheet
             class="rounded-lg py-2 scroll-y"
             max-height="420"
-            color="colorPanelTitleBg"
+            color="#23114F"
             v-if="options && Object.keys(options).length > 1"
         >
             <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
-                <div>{{ item.name || item }}</div>
+                <div class="white--text">{{ item.name || item }}</div>
             </div>
         </v-sheet>
     </v-menu>

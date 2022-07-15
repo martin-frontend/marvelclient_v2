@@ -30,11 +30,11 @@ export default class GameItem extends AbstractView {
         }
     }
 
-    getBoxClass(){
+    getBoxClass() {
         let classStr = "box";
-        if(this.item){
+        if (this.item) {
             classStr += " box-height";
-            if(this.item.status != 1){
+            if (this.item.status != 1) {
                 classStr += " filter-gray";
             }
         }

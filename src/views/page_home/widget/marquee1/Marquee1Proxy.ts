@@ -13,7 +13,9 @@ export default class Marquee1Proxy extends puremvc.Proxy {
 
     public setData(data: any): void {
         if(data.length == 1) {
-            data.push(data[0] + " ");
+            const data1 = JSON.parse(JSON.stringify(data[0]));
+            data1.content = data[0].content + " ";
+            data.push(data1);
         }
         this.pageData.list = Object.freeze(data);
         if (data.length > 0) {

@@ -88,7 +88,7 @@ export default class PageExtension extends AbstractView {
 
             if (core.app_type == core.EnumAppType.APP) {
                 WebViewBridge.getInstance().savePhoto(imgData, () => {
-                    dialog_message.success(LangUtil("保存存成功"));
+                    dialog_message.success(LangUtil("保存成功"));
                 });
             } else {
                 dialog_preview.show(imgData);

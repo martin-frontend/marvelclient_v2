@@ -39,13 +39,6 @@ export default class DialogSafetyCenter extends AbstractView {
         super(DialogSafetyCenterMediator);
     }
 
-    mounted() {
-        //安全设置无手机验证
-        if (!this.checkValidateType(2)) {
-            this.pageData.tabIndex = 1;
-        }
-    }
-
     checkValidateType(val: any) {
         return this.validate_type.includes(val)
     }

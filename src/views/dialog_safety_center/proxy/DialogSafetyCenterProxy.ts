@@ -1,3 +1,6 @@
+import getProxy from "@/core/global/getProxy";
+import SelfProxy from "@/proxy/SelfProxy";
+
 export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
 
@@ -47,7 +50,17 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
         });
-        console.log(">>>>>>>>.restform");
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
+        const { phone, email } = selfProxy.userInfo;
+        if (phone && email) {
+            this.pageData.tabIndex = 2;
+        } else {
+            if (phone) {
+                this.pageData.tabIndex = 1;
+            } else {
+                this.pageData.tabIndex = 0;
+            }
+        }
     }
 
     api_user_bind_mobile_var() {

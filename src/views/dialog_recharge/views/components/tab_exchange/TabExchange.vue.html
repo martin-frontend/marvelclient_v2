@@ -23,7 +23,9 @@
             </v-tooltip>
 
             <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook">{{LangUtil("地址薄")}}</v-btn>
-            <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste">{{LangUtil("粘贴")}}</v-btn>
+            <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
+                >{{LangUtil("粘贴")}}</v-btn
+            >
         </div>
     </CustomInput>
 
@@ -66,7 +68,11 @@
     </v-row>
     <div class="text-14 mt-3 color-blue mb-2 d-flex" v-if="pageData.methodList[form.coin_name_unique]">
         <span class="mr-1">⚠️</span>
-        <pre>{{ pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain }}</pre>
+        <div>
+            <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
+                {{item}}
+            </div>
+        </div>
     </div>
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>

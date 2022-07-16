@@ -87,14 +87,15 @@ export default class APP extends AbstractView {
     }
 
     onService() {
+        const link = LangUtil("客服链接") + "?id=" + core.user_id;
         try {
             window.open(
-                LangUtil("客服链接"),
+                link,
                 LangUtil("客服"),
                 "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
             );
         } catch (e: any) {
-            OpenLink(LangUtil("客服链接"));
+            OpenLink(link);
         }
     }
 }

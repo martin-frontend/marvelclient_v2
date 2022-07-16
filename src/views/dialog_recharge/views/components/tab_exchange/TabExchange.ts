@@ -3,6 +3,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
+import SelfProxy from "@/proxy/SelfProxy";
 import dialog_address_book from "@/views/dialog_address_book";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import dialog_message_box from "@/views/dialog_message_box";
@@ -15,6 +16,7 @@ import { Component, Watch } from "vue-property-decorator";
 @Component
 export default class TabExchange extends AbstractView {
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     addressBooProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     pageData = this.myProxy.exchangeProxy.pageData;
@@ -108,7 +110,12 @@ export default class TabExchange extends AbstractView {
     }
 
     onSetPassword() {
-        dialog_trade_password.show();
+        const {phone, email} = this.selfProxy.userInfo;
+        if(phone || email){
+            dialog_trade_password.show();
+        }else{
+            dialog_message_box.alert("请先绑定邮箱或者手机");
+        }
     }
 
     onSubmit() {

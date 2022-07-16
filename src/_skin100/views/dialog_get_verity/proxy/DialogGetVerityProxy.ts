@@ -26,7 +26,6 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
             auth_code: "",
             plat_id: core.plat_id,
             uuid: core.device,
-            user_id: core.user_id,
         });
         this.api_public_auth_code();
     }
@@ -38,13 +37,21 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
 
     api_public_email_send() {
         this.pageData.loading = true;
-        const { type, email, auth_code, plat_id, uuid, user_id } = this.pageData.form;
-        this.sendNotification(net.HttpType.api_public_email_send, { type, email, auth_code, plat_id, uuid, user_id });
+        const { type, email, auth_code, plat_id, uuid } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_public_email_send, { type, email, auth_code, plat_id, uuid, user_id: core.user_id });
     }
 
     api_public_sms_send() {
         this.pageData.loading = true;
-        const { type, area_code, mobile, auth_code, plat_id, uuid, user_id } = this.pageData.form;
-        this.sendNotification(net.HttpType.api_public_sms_send, { type, area_code, mobile, auth_code, plat_id, uuid, user_id });
+        const { type, area_code, mobile, auth_code, plat_id, uuid } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_public_sms_send, {
+            type,
+            area_code,
+            mobile,
+            auth_code,
+            plat_id,
+            uuid,
+            user_id: core.user_id,
+        });
     }
 }

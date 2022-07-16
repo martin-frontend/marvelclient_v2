@@ -4,7 +4,6 @@ import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
-import { number } from "echarts";
 import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";

@@ -9,7 +9,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="d-flex">
+            <div class="d-flex mb-3">
                 <!-- <v-btn
                     height="40"
                     class="rounded-pill font-weight-bold mr-2"
@@ -55,28 +55,16 @@
                 <v-btn class="text-14" rounded color="colorBtnSeleBg" width="90" height="35" @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
             </div>
 
-            <!-- <v-divider class="my-3" /> -->
-
-            <!-- <div class="d-flex">
-                <v-spacer />
-                <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
-                <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
-            </div> -->
-
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
-                <v-sheet class="mt-5 px-4 py-4 rounded-lg my-3 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="px-4 py-4 rounded-lg my-3 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                     <div style="width: 100%" class="d-flex mb-2">
                         <v-icon class="white--text" :style="{opacity: item.is_read ? 0.4 : 1 }" size="22">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> 
                         <span class="text-15 ml-2 white--text" :style="{opacity: item.is_read ? 0.4 : 1 }">{{item.is_read ? LangUtil("已读消息") : LangUtil("未读消息")}}</span>
-                        <!-- <div v-if="item.attachment_status == 11" class="giftbg rounded-pill text-12 white--text px-3 py-0 ml-2">{{LangUtil("待领奖励")}}</div> -->
-                        <div class="giftbg rounded-pill text-12 white--text px-3 py-0 ml-2">{{LangUtil("待领奖励")}}</div>
+                        <div v-if="item.attachment_status == 11" class="giftbg rounded-pill text-12 white--text px-3 py-0 ml-2">{{LangUtil("待领奖励")}}</div>
                     </div>
                     <div class="ml-0" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">
                             <div class="text-14 white--text" :style="{opacity: item.is_read ? 0.4 : 1 }">{{item.title}}</div>
-                            <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
-                                {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
-                            </v-icon> -->
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="white--text" style="opacity:0.4;">{{item.created_at}}</div>

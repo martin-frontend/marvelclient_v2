@@ -51,4 +51,11 @@ export default class TabRecharge extends AbstractView {
             dialog_preview.show(myCanvas.getData());
         }
     }
+
+    transformExplain(str:string){
+        if(str){
+            return str.split("\n");
+        }
+        return [];
+    }
 }

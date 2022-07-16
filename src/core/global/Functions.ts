@@ -306,6 +306,13 @@ export function judgeClient() {
     }
     return client;
 }
+/**按时区获取时间, 默认北京时间 */
+export function getTodayGMT(timezone:number = 8){
+    const offset_gmt = new Date().getTimezoneOffset();
+    const today = new Date().getTime();
+    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone*60*60*1000);
+    return targetToday;
+}
 
 // /**
 //  * Check if an element has a class

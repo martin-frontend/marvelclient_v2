@@ -3,6 +3,7 @@ import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
+import { getTodayGMT } from "@/core/global/Functions";
 export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     LangUtil = LangUtil;
@@ -14,7 +15,7 @@ export default class PageExtensionMediator extends AbstractMediator {
     }
 
     private isToday(someDate: any) {
-        const today = new Date();
+        const today = getTodayGMT();
         const [year, month, day] = someDate.split("-");
         return Number(day) == today.getDate() && Number(month) == today.getMonth() + 1 && Number(year) == today.getFullYear();
     }
@@ -35,9 +36,9 @@ export default class PageExtensionMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
-                // if (this.isToday(body.date)) {
+                if (this.isToday(body.date)) {
                     this.myProxy.setData(body);
-                // }
+                }
                 break;
             case net.EventType.api_user_var_commission_commissionnum:
                 myProxy.setCommissionCommissionnum(body);

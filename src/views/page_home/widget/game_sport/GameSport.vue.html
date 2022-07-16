@@ -20,6 +20,7 @@
             :height="279/697*width"
             color="colorTitleBg"
             class="rounded-lg mr-3 my-1 mt-2 box"
+            :class="item.status != 1 ? 'filter-gray' : ''"
             v-for="item of data.list"
             :key="item.vendor_prodcut_id"
             @click="goGamePlay(item)"

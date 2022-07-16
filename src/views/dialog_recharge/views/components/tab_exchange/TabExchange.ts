@@ -119,4 +119,11 @@ export default class TabExchange extends AbstractView {
             },
         });
     }
+
+    transformExplain(str:string){
+        if(str){
+            return str.split("\n");
+        }
+        return [];
+    }
 }

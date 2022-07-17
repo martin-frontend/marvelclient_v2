@@ -8,7 +8,7 @@ import dialog_bet_record from "@/_skin100/views/dialog_bet_record";
 import dialog_email from "@/_skin100/views/dialog_email";
 import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
 import dialog_wallet from "@/_skin100/views/dialog_wallet";
-import page_extension from "@/views/page_extension";
+import page_extension from "@/_skin100/views/page_extension";
 import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";
 import page_bonus from "@/views/page_bonus";

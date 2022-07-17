@@ -100,7 +100,10 @@ input {
     background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
 }
 .btnRedBg{
-    background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%);
+    background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%) !important;
+}
+.container-b{
+    background-color: #0d1b29;
 }
 .v-pagination {
     li {

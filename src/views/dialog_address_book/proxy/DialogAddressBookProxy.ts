@@ -90,6 +90,7 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
 
     api_user_var_payment_method_index() {
         this.pageData.loading = true;
+        this.pageData.listQuery.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_payment_method_index, objectRemoveNull(this.pageData.listQuery));
     }
 }

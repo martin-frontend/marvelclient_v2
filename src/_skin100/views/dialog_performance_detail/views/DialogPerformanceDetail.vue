@@ -5,7 +5,7 @@
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogPerformanceDetail from "./DialogPerformanceDetail";
-import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
+import ListNodata from "@/_skin100/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {

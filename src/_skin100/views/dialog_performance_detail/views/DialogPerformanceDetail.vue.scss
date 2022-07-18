@@ -35,6 +35,9 @@
     }
 }
 .listitem {
+    .item-all-width{
+        width:100%;
+    }
     .item-auto,
     .item-110 {
         width: auto;
@@ -68,4 +71,7 @@
 }
 .scroll_box {
     max-height: calc(100vh - 150px);
+}
+.totalPanelBg{
+    background-image: linear-gradient(151deg, #CD30C1 40%, #215ED6 100%);
 }

@@ -102,6 +102,12 @@ input {
 .btnRedBg{
     background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%) !important;
 }
+.bPanelOpacityBg{
+    background-color: rgba(0,0,0,0.1) !important;
+}
+.bPanelLevelBg{
+    background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+}
 .container-b{
     background-color: #0d1b29;
 }

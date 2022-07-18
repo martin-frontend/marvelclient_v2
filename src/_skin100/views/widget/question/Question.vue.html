@@ -1,13 +1,13 @@
-<div class="pb-5">
-    <div class="text-h6 text-md-h5 mb-md-5">{{LangUtil("常见问题解答")}}</div>
+<div class="mt-5 px-0 pa-sm-5 rounded-lg  bPanelLevelBg">
+    <div class="text-subtitle-1 text-sm-16 font-weight-medium mb-md-5 d-flex align-center "><v-img contain  class="mr-2" max-height="24" max-width="24" src="@/assets/question/question.png"> </v-img>{{LangUtil("常见问题解答")}}</div>
     <v-row no-gutters class="d-flex flex-row text-body-1 mt-2">
         <v-col cols="12" md="6" class="mb-2 pr-sm-2" v-for="(item, index) of questions" :key="index">
-            <v-expansion-panels>
+            <v-expansion-panels elevation="0">
                 <v-expansion-panel>
-                    <v-expansion-panel-header color="colorPanelTitleBg" class="text-body-2 text-md-body-1">
+                    <v-expansion-panel-header  class="text-body-2 text-md-body-1 bPanelOpacityBg">
                         {{ item.name }}
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content color="colorPanelTitleBg" class="colorBlue--text text-caption text-md-body-2">
+                    <v-expansion-panel-content class="colorBlue--text text-caption text-md-body-2 bPanelOpacityBg colorTextNormal--text">
                         {{ item.content }}
                     </v-expansion-panel-content>
                 </v-expansion-panel>

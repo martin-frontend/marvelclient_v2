@@ -1,7 +1,6 @@
 <v-app-bar
-    class="app-bar"
+    class="app-bar header_sk100"
     :height="$vuetify.breakpoint.xsOnly?80:80"
-    color="colorTitleBg"
     elevation="0"
     :app="routerPath != '/page_game_play'"
 >
@@ -10,6 +9,9 @@
             <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
             <span :class="routerPath == '/' ? 'active' : ''" class="nav-button" @click="goHome">
                  {{LangUtil("首页")}}
+            </span>
+            <span :class="routerPath == '/page_mine' ? 'active' : ''" class="nav-button" @click="goToMyPage">
+                 {{LangUtil("挖矿")}}
             </span>
             <!-- <button
             v-if="!$vuetify.breakpoint.mobile"

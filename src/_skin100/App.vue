@@ -17,7 +17,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import Header from "@/_skin100/views/header/views/Header.vue";
-import Footer from "@/views/footer/Footer.vue";
+import Footer from "@/_skin100/views/footer/Footer.vue";
 import MobileMenu from "@/views/mobile_menu/MobileMenu.vue";
 import DialogMessage from "@/views/dialog_message/views/DialogMessage.vue";
 

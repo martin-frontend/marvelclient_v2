@@ -42,6 +42,13 @@ export default class Header extends AbstractView {
         }
         ScrollUtil(0);
     }
+    /**打开挖矿 */
+    goToMyPage() {
+        if (this.$router.app.$route.path != "/page_mine") {
+            router.push("/page_mine");
+        }
+        ScrollUtil(0);
+    }
     /**打开介绍页面 */
     goIntroduce() {
         router.push("/page_introduce");

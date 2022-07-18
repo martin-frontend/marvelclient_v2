@@ -19,15 +19,26 @@ export default class TabRecharge extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
 
     onChange1(value: any) {
-        const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
-        this.form.block_network_id = keys[0];
-        this.form.recharge_channel_id =
-            this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id].recharge_channel_id;
+        const { methodList } = this.pageData;
+        const { coin_name_unique } = this.form;
+        const keys = Object.keys(methodList[coin_name_unique].options);
+
+        // 默认选择trc20
+        let block_network_id = keys[0];
+        for (const key of keys) {
+            if (methodList[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
+                block_network_id = key;
+            }
+        }
+
+        this.form.block_network_id = block_network_id;
+        this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
     onChange2(value: any) {
-        this.form.recharge_channel_id =
-            this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id].recharge_channel_id;
+        const { methodList } = this.pageData;
+        const { coin_name_unique, block_network_id } = this.form;
+        this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
 
@@ -52,8 +63,8 @@ export default class TabRecharge extends AbstractView {
         }
     }
 
-    transformExplain(str:string){
-        if(str){
+    transformExplain(str: string) {
+        if (str) {
             return str.split("\n");
         }
         return [];

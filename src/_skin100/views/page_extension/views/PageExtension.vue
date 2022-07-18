@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageExtension from "./PageExtension";
-import Question from "@/views/widget/question/Question.vue";
+import Question from "@/_skin100/views/widget/question/Question.vue";
 
 @Component({
     components: {

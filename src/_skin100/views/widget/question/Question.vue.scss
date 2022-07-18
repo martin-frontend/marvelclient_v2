@@ -13,3 +13,18 @@
 ::v-deep .v-icon.v-icon {
     color: #85a7dc !important;
 }
+::v-deep .v-expansion-panel:before{
+    box-shadow:none !important;
+}
+::v-deep .theme--dark.v-expansion-panels .v-expansion-panel{
+    background-color: transparent !important;
+}
+::v-deep .mdi:before{
+    color:#697786;
+}
+::v-deep .mdi:after{
+    color:#fff;
+}
+.bPanelOpacityBg{
+    background-color: rgba(0,0,0,0.1) !important;
+}

@@ -58,7 +58,7 @@
             <div>{{LangUtil("交易密码")}}</div>
             <CustomPassword class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.password">
                 <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
-            </CustomInput>
+            </CustomPassword>
         </v-col>
     </v-row>
     <div class="text-12 mt-3 color-blue">⚠️ {{LangUtil("1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。")}}</div>

@@ -41,6 +41,7 @@ const opts = {
                 colorCloseBtn: "#756BA4", //used
                 colorTextYellow: "#F8D129", //used
                 colorTextNormal: "#737c86", //used
+                colorTextNormal2: "#8f7ac0", //used
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

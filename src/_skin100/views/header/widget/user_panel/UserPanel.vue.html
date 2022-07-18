@@ -1,4 +1,4 @@
-<v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="288">
+<!-- <v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="288">
     <v-img class="rounded-pill mx-auto" src="@/assets/avatar/Avatar0.png" max-width="56" max-height="56"></v-img>
     <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer" @click="onCopy(userInfo.user_id)">
         ID:{{userInfo.user_id}}
@@ -28,6 +28,43 @@
 
     <div class="d-flex colorBlue--text mt-3 ml-1 cursor-pointer" @click="onLoginOut">
         <div>{{LangUtil("退出登录")}}</div>
+        <v-spacer />
+    </div>
+</v-sheet> -->
+<v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="300">
+    <div class="d-flex ml-2">
+    <v-img class="rounded-pill mr-4" src="@/assets/avatar/Avatar0.png" max-width="50" max-height="50"></v-img>
+    <div class="d-flex flex-column align-start justify-center">
+    <div class="mx-auto  text-16 font-weight-medium cursor-pointer" @click="onCopy(userInfo.user_id)">
+        ID:{{userInfo.user_id}}
+    </div>
+    <div class="px-2 mt-1 text-12 font-weight-medium cursor-pointer vip-level-bg">
+        VIP{{userInfo.vip_info && userInfo.vip_info.vip_level}}
+    </div>
+</div>
+</div>
+
+    <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
+            <v-icon dense>{{ item.icon }}</v-icon>
+            <div class="ml-2">{{ item.name }}</div>
+            <v-spacer />
+            <v-badge color="red" dot offset-y="5" :value="red_dot_tips.is_user_mail>0 && item.id == 3"></v-badge>
+            <div class="icon-box iconfont mx-3 mr-4 text-14 icon-color" style="transform: rotate(-90deg)"></div>
+        </div>
+    </v-sheet>
+
+    <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
+            <v-icon dense>{{ item.icon }}</v-icon>
+            <div class="ml-2">{{ item.name }}</div>
+            <v-spacer />
+            <div class="icon-box iconfont mx-3 mr-4 text-14 icon-color" style="transform: rotate(-90deg)"></div>
+        </div>
+    </v-sheet>
+
+    <div class="d-flex mt-3 mx-1 cursor-pointer" @click="onLoginOut">
+        <div class="d-flex align-center justify-center text-14 white--text login-out">{{LangUtil("退出登录")}}</div>
         <v-spacer />
     </div>
 </v-sheet>

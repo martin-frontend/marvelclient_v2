@@ -51,6 +51,7 @@
                         
                     </div>
                 </v-sheet>
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
             </div>
         </template>
         <v-sheet width="200" color="colorPanelTitleBg" class="py-2 px-0">
@@ -74,7 +75,7 @@
     <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2" x-small color="#ffb01b" @click="onCoinIn">
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
+    <v-btn v-else class="rounded-pill black--text mr-3" height="38" color="colorGoldBg" @click="onCoinIn">
         <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

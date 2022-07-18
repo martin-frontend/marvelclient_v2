@@ -4,6 +4,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_recharge from "@/views/dialog_recharge";
+import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import DialogRecordExchangeMediator from "../mediator/DialogRecordExchangeMediator";
@@ -13,6 +14,7 @@ import DialogRecordExchangeProxy from "../proxy/DialogRecordExchangeProxy";
 export default class DialogRecordExchange extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRecordExchangeProxy = this.getProxy(DialogRecordExchangeProxy);
+    rechargeProxy: DialogRechargeProxy = this.getProxy(DialogRechargeProxy);
     pageData = this.myProxy.pageData;
 
     commonIcon = Assets.commonIcon;
@@ -29,6 +31,7 @@ export default class DialogRecordExchange extends AbstractView {
         this.pageData.bShow = false;
         setTimeout(() => {
             dialog_recharge.show();
+            this.rechargeProxy.pageData.tabIndex = 1;
         }, 100);
     }
 

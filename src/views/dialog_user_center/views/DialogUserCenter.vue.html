@@ -1,4 +1,4 @@
-<v-dialog width="860" height="670" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="unset" height="670" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg d-flex" color="colorPanelBg">
         <AdvertiseInLogin :height="670" class="d-none d-md-flex" />
         <v-card color="transparent" width="494">
@@ -9,7 +9,7 @@
                     <v-icon large>mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
-            <v-card-text class="pl-10 pr-7 mt-7 text-sm-subtitle-1 text_height">
+            <v-card-text class="px-4 px-md-7 mt-7 text-sm-subtitle-1 text_height">
                 <div class="d-flex justify-space-between align-center mb-5">
                     <span class="d-flex colorBlue--text">
                         <v-icon class="mr-2" color="colorInfo">mdi-account</v-icon>ID

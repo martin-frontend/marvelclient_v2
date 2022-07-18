@@ -26,6 +26,7 @@ export default class DialogNickName extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        this.myProxy.pageData.nickname = "";
     }
 
     get isCheckedId(): boolean {
@@ -40,14 +41,14 @@ export default class DialogNickName extends AbstractView {
     onSubmit() {
         const { nickname } = this.pageData;
         const data: any = {};
-        if (10 >= nickname.length && nickname.length >= 3) {
+        if (12 >= nickname.length && nickname.length >= 1) {
             data.nick_name = nickname;
             if (Object.keys(nickname).length > 0) {
                 this.pageData.loading = true;
                 this.selfProxy.api_user_update_var(data);
             }
         } else {
-            dialog_message.info("请输入最少3位/最多10位");
+            dialog_message.info("昵称为1-6位汉字或1-12位英文");
         }
     }
 }

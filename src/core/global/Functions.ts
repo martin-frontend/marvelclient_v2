@@ -57,18 +57,18 @@ export function objectRemoveNull(obj: any, except: any[] = [undefined, null, ""]
  * 取得版本號
  */
 export function getVersion(): string {
-    let v = "";
-    // @ts-ignore
-    const compiletype = process.env.VUE_APP_ENV;
-    if (compiletype === "development") {
-        v += "dev";
-    } else if (compiletype === "production") {
-        v += "P";
-    } else {
-        v += "T";
-    }
-    v += "-" + "[AIV]{date}[/AIV]";
-    return v;
+    // let v = "";
+    // // @ts-ignore
+    // const compiletype = process.env.VUE_APP_ENV;
+    // if (compiletype === "development") {
+    //     v += "dev";
+    // } else if (compiletype === "production") {
+    //     v += "P";
+    // } else {
+    //     v += "T";
+    // }
+    // v += "-" + process.env.version;
+    return process.env.version;
 }
 /**
  * 取得本周一、本周日日期
@@ -305,6 +305,13 @@ export function judgeClient() {
         client = "PC";
     }
     return client;
+}
+/**按时区获取时间, 默认北京时间 */
+export function getTodayGMT(timezone:number = 8){
+    const offset_gmt = new Date().getTimezoneOffset();
+    const today = new Date().getTime();
+    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone*60*60*1000);
+    return targetToday;
 }
 
 // /**

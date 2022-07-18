@@ -12,12 +12,12 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_game_list",
         name: "page_game_list",
-        component: () => import(/* webpackChunkName: "page_game_list" */ "@/views/page_game_list/views/PageGameList.vue"),
+        component: () => import(/* webpackChunkName: "page_game_list" */ "@/_skin100/views/page_game_list/views/PageGameList.vue"),
     },
     {
         path: "/page_game_play",
         name: "page_game_play",
-        component: () => import(/* webpackChunkName: "page_game_play" */ "@/views/page_game_play/views/PageGamePlay.vue"),
+        component: () => import(/* webpackChunkName: "page_game_play" */ "@/_skin100/views/page_game_play/views/PageGamePlay.vue"),
     },
     {
         path: "/page_introduce",
@@ -27,7 +27,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_extension",
         name: "page_extension",
-        component: () => import(/* webpackChunkName: "page_extension" */ "@/views/page_extension/views/PageExtension.vue"),
+        component: () => import(/* webpackChunkName: "page_extension" */ "@/_skin100/views/page_extension/views/PageExtension.vue"),
     },
     {
         path: "/page_mine",

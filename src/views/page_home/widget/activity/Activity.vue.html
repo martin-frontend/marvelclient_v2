@@ -15,8 +15,8 @@
                 <div class="text-16 ml-2">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
                 <!-- <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div> -->
                 <div class="d-flex align-center rounded px-2 price ml-1 py-1 my-4">
-                    <div class="text-14 mr-2">{{LangUtil("当前价格")}}</div>
-                    <div class="text-14 font-weight-bold">$0.01</div>
+                    <div class="text-14 mr-1">{{LangUtil("价格")}}</div>
+                    <div class="text-14 font-weight-bold">${{ pageData.swap_setting_info.coin_a_b_price }}</div>
                 </div>
                 <v-sheet class="btn text-14 px-2 rounded-pill d-flex align-center justify-center" height="25" min-width="90">
                     {{LangUtil("前往交易")}}
@@ -37,8 +37,8 @@
             <div class="text-24 mt-5 ml-5">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
 
             <div class="d-flex align-center rounded-lg px-5 price ml-5 my-9">
-                <div class="text-16 mr-2">{{LangUtil("当前价格")}}</div>
-                <div class="text-28 font-weight-bold price">$0.01</div>
+                <div class="text-16 mr-2">{{LangUtil("价格")}}</div>
+                <div class="text-28 font-weight-bold price">${{ pageData.swap_setting_info.coin_a_b_price }}</div>
             </div>
 
             <v-sheet class="btn text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="35" min-width="110">

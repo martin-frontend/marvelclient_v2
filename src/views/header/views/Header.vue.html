@@ -9,7 +9,7 @@
         <div class="d-flex align-center mt-2">
             <img :src="commonIcon.logo" height="40" class="ml-3 mt-4 mb-2" alt="" />
             <v-spacer />
-            
+
             <!-- 语言 -->
             <div v-if="LangConfig.language">
                 <CustomSelect
@@ -76,7 +76,7 @@
             <v-spacer />
 
             <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
-                <v-icon>mdi-information</v-icon>
+                <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </button>
         </div>
@@ -86,11 +86,13 @@
         <div class="d-flex align-center">
             <img :src="commonIcon.logo" height="20" alt="" />
             <v-spacer />
-            <v-btn height="20" width="20" fab icon class="mr-3" @click="goActivity">
-                <img src="@/assets/activity/icon_activity.png" width="20"/>
+            <v-btn height="20" x-small class="mr-3 rounded-pill colorGoldBg black--text" @click="goActivity">
+                <!-- <img src="@/assets/activity/icon_activity.png" width="20"/> -->
+                <div>{{LangUtil("活动")}}</div>
             </v-btn>
-            <v-btn height="20" width="20" fab color="#ffb01b" class="black--text" @click="onService">
-                <v-icon small>mdi-message-text-outline</v-icon>
+            <v-btn height="20" x-small class="rounded-pill colorGoldBg black--text" @click="onService">
+                <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
+                <div>{{LangUtil("客服")}}</div>
             </v-btn>
             <div v-if="LangConfig.language" class="language">
                 <CustomSelect
@@ -117,7 +119,7 @@
             <Wallet v-if="core.user_id" />
             <v-spacer />
             <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
-                <v-icon>mdi-information</v-icon>
+                <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </v-btn>
         </div>

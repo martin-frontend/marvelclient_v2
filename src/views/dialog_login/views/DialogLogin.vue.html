@@ -1,4 +1,4 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card color="colorPanelBg" class="d-flex">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
@@ -45,9 +45,10 @@
                     :placeholder="LangUtil('请输入邮箱')"
                     v-model="forgetData.form.username"
                 >
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(forgetData.form.username)" @click="getCode">
+                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(forgetData.form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
-                    </v-btn>
+                    </v-btn> -->
+                    <DialogGetVerity :isCheck="checkMail(forgetData.form.username)" :category="0" :type="2" :email="forgetData.form.username"/>
                 </CustomInput>
 
                 <CustomInput
@@ -100,9 +101,10 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                    <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(forgetData.form.username)" @click="getCode"
+                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(forgetData.form.username)" @click="getCode"
                         >{{LangUtil("验证码")}}</v-btn
-                    >
+                    > -->
+                    <DialogGetVerity :isCheck="checkPhone(forgetData.form.username)" :category="1" :type="2" :area_code="forgetData.form.area_code" :mobile="forgetData.form.username"/>
                 </CustomInput>
 
                 <CustomInput

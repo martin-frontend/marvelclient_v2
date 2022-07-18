@@ -1,4 +1,5 @@
 import getProxy from "@/core/global/getProxy";
+import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
@@ -27,6 +28,8 @@ export class RechargeProxy extends puremvc.Proxy {
         methodList: <any>{},
         //当前选择的充值地址
         address: "",
+        //地址生成qrcode
+        qrcode: "",
         //获取充值地址的表单
         form: {
             coin_name_unique: "",
@@ -39,7 +42,7 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-
+        // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
@@ -49,9 +52,16 @@ export class RechargeProxy extends puremvc.Proxy {
         if (coin_name_unique) {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
+            // 默认选择trc20
+            let block_network_id = optionsKeys[0];
+            for(const key of optionsKeys){
+                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+                    block_network_id = key;
+                }
+            }
 
-            if (optionsKeys[0]) {
-                this.pageData.form.block_network_id = optionsKeys[0];
+            if (block_network_id) {
+                this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
             }
@@ -59,9 +69,10 @@ export class RechargeProxy extends puremvc.Proxy {
         this.api_user_var_recharge_address();
     }
 
-    setAddress(data: string) {
+    async setAddress(data: string) {
         this.pageData.loading = false;
         this.pageData.address = data;
+        this.pageData.qrcode = await Utils.generateQrcode(data);
     }
 
     api_user_var_recharge_method_list() {
@@ -75,6 +86,7 @@ export class RechargeProxy extends puremvc.Proxy {
         Object.assign(formCopy, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
         this.pageData.address = "";
+        this.pageData.qrcode = "";
     }
 }
 
@@ -91,20 +103,27 @@ export class ExchangeProxy extends puremvc.Proxy {
             amount: "",
             exchange_channel_id: 0,
             payment_method_type: 0,
-
             coin_name_unique: "",
             block_network_id: "",
             account: "",
-
-            password: "",
+            exchange_channel_method_id: 0,
+            password_gold: "",
         },
     };
+
+    resetform() {
+        Object.assign(this.pageData.form, {
+            amount: "",
+            account: "",
+            password_gold: "",
+        });
+    }
 
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
-
+        // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
@@ -114,8 +133,17 @@ export class ExchangeProxy extends puremvc.Proxy {
         if (coin_name_unique) {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
-            if (optionsKeys[0]) {
-                this.pageData.form.block_network_id = optionsKeys[0];
+            // 默认选择trc20
+            let block_network_id = optionsKeys[0];
+            for(const key of optionsKeys){
+                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+                    block_network_id = key;
+                }
+            }
+
+            if (block_network_id) {
+                this.pageData.form.block_network_id = block_network_id;
+                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].exchange_channel_method_id;
             }
         }
     }
@@ -127,8 +155,17 @@ export class ExchangeProxy extends puremvc.Proxy {
 
     api_user_var_exchange_create_order() {
         this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
-        Object.assign(formCopy, this.pageData.form);
-        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, formCopy);
+        const { amount, exchange_channel_id, payment_method_type, coin_name_unique, block_network_id, account, exchange_channel_method_id, password_gold } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+        });
     }
 }

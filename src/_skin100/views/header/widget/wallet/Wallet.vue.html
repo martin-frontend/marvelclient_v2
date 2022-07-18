@@ -71,10 +71,12 @@
         </v-sheet>
     </v-menu>
 
-    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2" x-small color="#ffb01b" @click="onCoinIn">
+    <!-- <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2" x-small color="#ffb01b" @click="onCoinIn"> -->
+    <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill white--text mr-2 rechange-btn-bg" x-small  @click="onCoinIn">
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn">
+    <!-- <v-btn v-else class="rounded-pill black--text mr-3" height="38" color="#ffb01b" @click="onCoinIn"> -->
+    <v-btn v-else class="rounded-pill white--text mr-3 rechange-btn-bg" height="38"  @click="onCoinIn">
         <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

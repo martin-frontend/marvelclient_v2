@@ -2,7 +2,7 @@ import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
-import page_game_play from "@/views/page_game_play";
+import page_game_play from "@/_skin100/views/page_game_play";
 import AbstractMediator from "./abstract/AbstractMediator";
 import GamePlatConfig from "./config/GamePlatConfig";
 import getProxy from "./global/getProxy";
@@ -14,6 +14,8 @@ import LangConfig from "./config/LangConfig";
 import LangUtil from "./global/LangUtil";
 import { locale } from "vuejs-loadmore";
 import WebViewBridge from "./native/WebViewBridge";
+import { judgeClient } from "./global/Functions";
+import OpenLink from "./global/OpenLink";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -106,9 +108,18 @@ export default class NetObserver extends AbstractMediator {
                         message: LangUtil("进入游戏"),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
-                                this.gameProxy.lastRouter = router.currentRoute.path;
-                                this.gameProxy.historyLength = window.history.length;
-                                page_game_play.show(body.url);
+                                this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
+                                this.gameProxy.gamePreData.historyLength = window.history.length;
+
+                                const obj = document.body.scrollTop ? document.body : document.documentElement;
+                                this.gameProxy.gamePreData.scrollY = obj.scrollTop;
+
+                                //@ts-ignore
+                                if (judgeClient() == "PC" || window.navigator.standalone) {
+                                    page_game_play.show(body.url);
+                                } else {
+                                    OpenLink(body.url);
+                                }
                             } else {
                                 let gameUrl = "";
                                 if (body.url.indexOf("?") != -1) {

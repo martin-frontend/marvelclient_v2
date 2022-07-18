@@ -24,7 +24,7 @@
                     <span class="stake-width">
                         <div class="colorText6--text mb-lg-3 text-caption text-sm-subtitle-1">{{LangUtil("总质押数量")}}</div>
                         <div class="text-18 text-sm-h5 d-flex align-center mr-sm-3">
-                            <span>${{ plat_stake_info.total_stake_amount }}</span>
+                            <span>{{ plat_stake_info.total_stake_amount }}</span>
                         </div>
                     </span>
                     <div class="d-flex align-center justify-center arrow-width" v-if="$vuetify.breakpoint.lgAndUp">
@@ -194,7 +194,7 @@
         </div>
         <v-row no-gutters class="pb-2 pb-sm-5">
             <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
-                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" height="100%">
+                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
                     <v-row no-gutters>
                         <v-col cols="12" lg="8" class="text-caption text-sm-subtitle-1">
                             <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-2 mb-sm-5 pt-2 pt-sm-6">
@@ -435,6 +435,6 @@
                 </v-sheet>
             </v-card-text>
         </v-card>
-        <Question :questions="questionData"></Question>
+        <Question :questions="fagProxy.qData.type3"></Question>
     </v-container>
 </div>

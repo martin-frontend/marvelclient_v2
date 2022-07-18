@@ -26,6 +26,7 @@ export default class DialogGetVerityMediator extends AbstractMediator {
             case net.EventType.api_public_sms_send:
                 dialog_message.success(LangUtil("发送成功"));
                 myProxy.pageData.bShow = false;
+                myProxy.beginDowncount();
                 break;
             case net.EventType.REQUEST_ERROR:
                 if (body.url == net.HttpType.api_public_email_send || body.url == net.HttpType.api_public_sms_send) {

@@ -8,6 +8,7 @@ import HeaderProxy from "./views/header/proxy/HeaderProxy";
 import { isMobile, judgeClient } from "./core/global/Functions";
 import CopyUtil from "./core/global/CopyUtil";
 import GameConfig from "./core/config/GameConfig";
+import { vuetify } from "./plugins/vuetify";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -41,10 +42,16 @@ export default class APP extends AbstractView {
                 document.documentElement.style.overflow = "hidden";
                 //@ts-ignore
                 document.body.scroll = "no";
+                // if (judgeClient() == "iOS" && vuetify.framework.breakpoint.xsOnly) {
+                //     document.documentElement.style.position = "fixed";
+                // }
             } else {
                 document.documentElement.style.overflow = "scroll";
                 //@ts-ignore
                 document.body.scroll = "yes";
+                // if (judgeClient() == "iOS" && vuetify.framework.breakpoint.xsOnly) {
+                //     document.documentElement.style.position = "relative";
+                // }
             }
         }
     }
@@ -68,7 +75,7 @@ export default class APP extends AbstractView {
             this.guideDrawer = true;
         } else {
             //将参数复制到剪切板
-            const data = { code: core.user_id, pid: core.plat_id, channel: core.channel_id };
+            const data = { code: core.invite_user_id || core.user_id, pid: core.plat_id, channel: core.channel_id };
             CopyUtil(JSON.stringify(data));
             //下载apk
             const src = GameConfig.config.AndroidApkUrl;
@@ -80,6 +87,15 @@ export default class APP extends AbstractView {
     }
 
     onService() {
-        OpenLink(LangUtil("客服链接"));
+        const link = LangUtil("客服链接") + "?id=" + core.user_id;
+        try {
+            window.open(
+                link,
+                LangUtil("客服"),
+                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
+            );
+        } catch (e: any) {
+            OpenLink(link);
+        }
     }
 }

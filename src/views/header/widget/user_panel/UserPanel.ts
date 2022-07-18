@@ -21,18 +21,18 @@ import dialog_user_center from "@/views/dialog_user_center";
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
     menuList = [
-        { id: 0, name: LangUtil("个人中心"), icon: "mdi-shield-check" },
+        { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
         { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
-        { id: 2, name: LangUtil("平台钱包"), icon: "mdi-clock" },
-        { id: 3, name: LangUtil("投注记录"), icon: "mdi-bell" },
+        { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
+        { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
     menuList1 = [
-        { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-shield-check" },
-        { id: 11, name: LangUtil("终身分红"), icon: "mdi-clock" },
-        { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-bell" },
-        { id: 13, name: LangUtil("精彩活动"), icon: "mdi-bell" },
-        { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-bell" },
+        { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+        { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
+        { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
+        { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+        { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

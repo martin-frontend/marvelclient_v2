@@ -9,6 +9,7 @@
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
             v-model="form.block_network_id"
+            @change="onChangeSub"
         />
     </div>
     <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
@@ -22,7 +23,9 @@
             </v-tooltip>
 
             <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook">{{LangUtil("地址薄")}}</v-btn>
-            <v-btn color="colorText1 colorBlue--text" x-small height="30" @click="onPaste">{{LangUtil("粘贴")}}</v-btn>
+            <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
+                >{{LangUtil("粘贴")}}</v-btn
+            >
         </div>
     </CustomInput>
 
@@ -50,19 +53,28 @@
             <v-sheet color="transparent" min-width="300" class="mb-2">
                 <div class="colorText1--text">{{LangUtil("提取金额")}}</div>
                 <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
-                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onAll">{{LangUtil("全部")}}</v-btn>
+                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onAll">{{LangUtil("全部")}}</v-btn>
                 </CustomInput>
             </v-sheet>
         </v-col>
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
-            <CustomPassword class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.password">
-                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="#33415D" @click="onSetPassword">{{LangUtil("设置")}}</v-btn>
+            <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword"
+                    >{{LangUtil("设置")}}</v-btn
+                >
             </CustomPassword>
         </v-col>
     </v-row>
-    <div class="text-12 mt-3 color-blue">⚠️ {{LangUtil("1.最小提现金额为$50，请确保您收款的协议与币种和系统显示一致。")}}</div>
-    <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div>
+    <div class="text-14 mt-3 color-blue mb-2 d-flex" v-if="pageData.methodList[form.coin_name_unique]">
+        <span class="mr-1">⚠️</span>
+        <div>
+            <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
+                {{item}}
+            </div>
+        </div>
+    </div>
+    <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
     <v-divider class="mx-5" />
     <v-card-text class="d-flex justify-end mt-3">

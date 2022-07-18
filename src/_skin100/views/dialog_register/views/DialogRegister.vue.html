@@ -96,7 +96,7 @@
                         <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
-                                    <div class="colorBtnBg--text mx-2">+{{form.area_code}}</div>
+                                    <div class="white--text mx-2">+{{form.area_code}}</div>
                                     <div
                                         class="icon-box iconfont text-18 mr-2"
                                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"

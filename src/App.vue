@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <div id="page">
+        <div id="page" style="background-color:#131e36">
             <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
-            <v-main>
+            <v-main style="background-color:#131e36">
                 <router-view />
             </v-main>
             <Footer v-if="!$vuetify.breakpoint.mobile" />
@@ -52,6 +52,8 @@
                 </div>
             </div>
         </v-navigation-drawer>
+        <!-- 游戏搜索 -->
+        <GameSearch/>
     </v-app>
 </template>
 
@@ -65,6 +67,7 @@ import Overlay from "./views/widget/overlay/Overlay.vue";
 import Orientation from "@/views/widget/orientation/Orientation.vue";
 import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
 import APP from "./App";
+import GameSearch from "./views/game_search/views/GameSearch.vue";
 
 @Component({
     components: {
@@ -75,6 +78,7 @@ import APP from "./App";
         Overlay,
         Orientation,
         UserPanel,
+        GameSearch,
     },
 })
 export default class extends APP {}

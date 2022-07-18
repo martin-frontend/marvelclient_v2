@@ -1,0 +1,57 @@
+<v-card-text class="mt-sm-3 px-0" :class="$vuetify.breakpoint.xsOnly?'mobile':''">
+    <div class="pt-sm-3 mx-8 rounded-lg assetsBg">
+    <!-- <v-sheet class="d-flex align-center justify-space-around rounded-pill mx-5 px-1" height="40" color="#16233F"> -->
+    <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-3 px-0" height="30" color="transparent">
+        <v-sheet class="d-flex justify-start white--text text-12" color="transparent" min-width="80">{{LangUtil("币种")}}</v-sheet>
+        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" min-width="80">{{LangUtil("厂商")}}</v-sheet>
+        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" min-width="80">{{LangUtil("金额")}}</v-sheet>
+        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" min-width="80">{{LangUtil("操作")}}</v-sheet>
+    </v-sheet>
+    <v-sheet class="mt-2" color="transparent" min-height="400">
+        <div v-if="!isEmpty">
+            <div v-for="(item, key) of pageData.gold_info" :key="key">
+                <!-- <v-sheet
+                    class="d-flex align-center justify-space-around rounded-pill mx-5 px-1 mb-3"
+                    class="d-flex align-center justify-space-between rounded-pill mx-3 px-0 mb-1"
+                    height="40"
+                    color="#16233F"
+                    v-for="(vendor, index) of item.vendors_detail"
+                    :key="index"
+                > -->
+                <v-sheet
+                    class="d-flex align-center justify-space-between rounded-pill mx-3 px-0 mb-1"
+                    height="35"
+                    color="transparent"
+                    v-for="(vendor, index) of item.vendors_detail"
+                    :key="index"
+                >
+                    <v-sheet class="d-flex align-center justify-start colorText2--text" color="transparent" min-width="80">
+                        <v-img :src="plat_coins[key].icon" max-width="18" height="18"></v-img>
+                        <div class="ml-1 font-weight-bold text-14 white--text">{{key}}</div>
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="80">
+                        <div class="text-truncate font-weight-bold text-14 white--text">{{vendor.vendor_name}}</div></v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center font-weight-bold text-14 white--text" color="transparent" min-width="80"
+                        >{{vendor.currency}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText2--text" color="transparent" min-width="80">
+                        <v-btn color="#291e67" height="24"  rounded small @click="onWithdraw(key)">
+                            <span class="text-13">
+                            {{LangUtil("提取")}}
+                            </span>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+            </div>
+        </div>
+
+        <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="400">
+            <div>
+                <v-img :src="commonIcon.nodata_b" max-width="140" height="100"></v-img>
+                <div class="d-flex text-14 colorText1--text mt-2 justify-center">{{LangUtil("暂无记录")}}</div>
+            </div>
+        </v-sheet>
+    </v-sheet>
+</div>
+</v-card-text>

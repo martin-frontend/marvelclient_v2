@@ -55,7 +55,7 @@ export default class Header extends AbstractView {
         router.push("/page_introduce");
     }
     /**打开活动页面 */
-    goActivity(){
+    goActivity() {
         dialog_activity.show();
     }
     /**打开登录页面 */
@@ -83,7 +83,16 @@ export default class Header extends AbstractView {
     }
 
     onService() {
-        OpenLink(LangUtil("客服链接"));
+        const link = LangUtil("客服链接") + "?id=" + core.user_id;
+        try {
+            window.open(
+                link,
+                LangUtil("客服"),
+                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
+            );
+        } catch (e: any) {
+            OpenLink(link);
+        }
     }
 
     scrollHandle() {

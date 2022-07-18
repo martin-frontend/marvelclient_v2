@@ -3,9 +3,9 @@
         <div class="white--text mb-2">{{LangUtil("想使用人民币充值？")}}</div>
         <div class="colorText1--text">
             {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
-            <a class="text-decoration-underline colorBtnBg--text" :href="LangUtil('法币教程链接')" target="_blank"
-                >{{LangUtil("人民币充值教程")}}</a
-            >
+            <a class="text-decoration-underline colorBtnBg--text" @click="onLink(LangUtil('法币教程链接'))" href="#">
+                {{LangUtil("人民币充值教程")}}
+            </a>
         </div>
         <div class="d-flex mt-3">
             <CustomSelect
@@ -35,14 +35,22 @@
                     <v-img src="@/assets/icon/icon_copy.png" width="24" height="24"></v-img>
                 </v-btn>
             </div>
-            <v-sheet class="d-flex rounded-lg pa-4 mt-4 text-14" color="colorPanelTitleBg">
-                <div class="info-text">
-                    ⚠️ {{pageData.methodList[form.coin_name_unique] &&
-                    pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain}}
+            <v-sheet class="d-flex flex-wrap rounded-lg pa-4 mt-4 text-14" color="colorPanelTitleBg">
+                <div class="info-text d-flex">
+                    <span class="mr-1">⚠️</span>
+                    <div>
+                        <div
+                            v-for="item of transformExplain(pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)"
+                        >
+                            {{item}}
+                        </div>
+                    </div>
                 </div>
                 <v-spacer />
                 <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
-                    <div ref="qrcode" class="qrcode"></div>
+                    <div ref="qrcode" class="qrcode" @click="showPreview">
+                        <v-img :src="pageData.qrcode"></v-img>
+                    </div>
                 </v-sheet>
             </v-sheet>
         </v-card>

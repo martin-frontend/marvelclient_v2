@@ -8,92 +8,131 @@ import FagProxy from "@/proxy/FagProxy";
 import dialog_swap_record from "@/views/dialog_swap_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
+import GameProxy from "@/proxy/GameProxy";
+import getProxy from "@/core/global/getProxy";
+import LoginEnter from "@/core/global/LoginEnter";
 
 @Component
 export default class PageSwap extends AbstractView {
     LangUtil = LangUtil;
+    plat_coins = GamePlatConfig.config.plat_coins;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    fagProxy: FagProxy = this.getProxy(FagProxy);
     myProxy: PageSwapProxy = this.getProxy(PageSwapProxy);
     pageData = this.myProxy.pageData;
-    fagProxy: FagProxy = this.getProxy(FagProxy);
-    trial = this.myProxy.pageData.trial;
+    form = this.pageData.form;
+    chartData = this.pageData.chartData;
+    swap_setting_info = this.pageData.swap_setting_info;
+    userInfo = this.selfProxy.userInfo;
     parameter = this.myProxy.parameter;
-    GamePlatConfig = GamePlatConfig;
 
     constructor() {
         super(PageSwapMediator);
     }
 
-    get questionData() {
-        return this.fagProxy.qData.type3;
+    // mounted() {
+    //     /**更新折线图 */
+    //     setInterval(
+    //         () => {
+    //             this.myProxy.api_plat_var_swap_k();
+    //         }
+    //         , 30000);
+    //     /**更新试算 */
+    //     setInterval(
+    //         () => {
+    //             if (this.form.inputA) {
+    //                 this.myProxy.api_plat_var_swap_trial();
+    //             }
+    //         }
+    //         , 5000);
+    // }
+
+    onInputA() {
+        this.pageData.form.inputType = 0;
+        this.pageData.form.inputB = "";
+        if (this.pageData.form.inputA) {
+            this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
+        }
     }
 
-    get tolerance() {
-        return this.myProxy.pageData.swap_setting_info.tolerance_params;
-    }
-
-    @Watch("pageData.amount_a")
-    onWatchAmount_A() {
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        this.myProxy.pageData.amount_b = "";
-        this.myProxy.api_user_var_swap_trial()
-    }
-
-    mouseover() {
-        this.pageData.icon = "mdi-swap-vertical";
-    }
-
-    mouseleave() {
-        this.pageData.icon = "mdi-arrow-down";
-    }
-
-    /**交易对调 */
-    private tradeSwap() {
-        this.myProxy.tradeReverse();
-        this.myProxy.pageData.amount_a = "";
-        this.myProxy.pageData.amount_b = "";
-        this.myProxy.resetTrial();
-    }
-
-    /**交易对调 */
-    private chartSwap() {
-        this.myProxy.chartReverse();
-    }
-
-    onChange() {
-        if (this.myProxy.pageData.amount_a != "") {
-            this.myProxy.api_user_var_swap_trial();
+    onInputB() {
+        this.pageData.form.inputType = 1;
+        this.pageData.form.inputA = "";
+        if (this.pageData.form.inputB) {
+            this.myProxy.api_plat_var_swap_trial();
+        } else {
+            this.pageData.form.timestamp = 1;
         }
     }
 
     handlerAll() {
-        //@ts-ignore
-        this.myProxy.pageData.amount_a = this.selfProxy.userInfo.gold_info[this.pageData.swap_setting_info.coin_a].sum_money;
-        this.parameter.from_coin = this.myProxy.pageData.swap_setting_info.coin_a;
-        this.parameter.from_coin_number = this.myProxy.pageData.amount_a;
-        this.myProxy.api_user_var_swap_trial()
+        const { form } = this.pageData;
+        form.inputType = 0;
+        const gold_info: any = this.userInfo.gold_info;
+        if (gold_info) {
+            form.inputA = gold_info[form.coinA].plat_money;
+        }
+        this.onInputA();
+    }
+    /**交易对调 */
+    private tradeSwap() {
+        this.myProxy.tradeReverse();
+        this.myProxy.api_plat_var_swap_trial();
+    }
+    /**交易对调 */
+    private chartSwap() {
+        this.myProxy.chartReverse();
+    }
+    /**图标时间选择 */
+    onTimeChange(val: any) {
+        this.pageData.chartQuary.type = parseInt(val);
+        this.myProxy.api_plat_var_swap_k();
+    }
+    /**滑点容差选择 */
+    onChange() {
+        this.myProxy.api_plat_var_swap_trial();
     }
 
     handlerRecord() {
-        dialog_swap_record.show();
+        LoginEnter(dialog_swap_record.show);
     }
 
     handlerRefresh() {
-        this.myProxy.pageData.amount_a = "";
-        this.myProxy.pageData.amount_b = "";
-        this.myProxy.resetParameter();
-        this.myProxy.api_plat_var_swap_setting_info();
-        this.myProxy.api_user_var_swap_trial();
-        this.myProxy.api_plat_var_swap_k();
+        if (this.form.inputA) {
+            this.myProxy.api_plat_var_swap_trial();
+        }
     }
 
     handlerTrade() {
         dialog_message_box.confirm({
             message: LangUtil("确定要交换?"),
             okFun: () => {
+                const gameProxy: GameProxy = getProxy(GameProxy);
+                gameProxy.loading = true;
                 this.myProxy.api_user_var_swap_create_order();
             },
         });
+    }
+
+    get isCheck(): boolean {
+        return !!this.form.inputA && !!this.form.inputB;
+    }
+
+    get chartChangedData() {
+        if (this.chartData.coinA == this.swap_setting_info.coin_a) {
+            return this.chartData.coin_a_b_changed;
+        } else {
+            return this.chartData.coin_b_a_changed;
+        }
+    }
+
+    destroyed() {
+        this.parameter.from_coin_number = 1;
+        this.pageData.chartQuary.type = 0;
+        this.form.timestamp = 0;
+        this.form.tolerance = 0;
+        super.destroyed();
     }
 }

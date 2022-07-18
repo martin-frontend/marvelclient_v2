@@ -10,7 +10,9 @@ export default class MyCanvas {
         //@ts-ignore
         this._ctx = this._canvas.getContext("2d");
         this._ctx.strokeStyle = "#c3c3c3";
+        this._ctx.fillStyle = "#ffffff";
         this._ctx.strokeRect(0, 0, ww, hh);
+        this._ctx.fillRect(0, 0, ww, hh);
     }
     /**
      * 将文字绘制到canvas
@@ -64,7 +66,8 @@ export default class MyCanvas {
         let that = this;
         return new Promise((resolve, reject) => {
             let img = document.createElement("img");
-            img.src = texture.toDataURL("image/png");
+            // img.src = texture.toDataURL("image/png");
+            img.src = texture;
             img.onload = function () {
                 that._ctx.drawImage(img, dx, dy, dWidth, dHeight);
                 //@ts-ignore

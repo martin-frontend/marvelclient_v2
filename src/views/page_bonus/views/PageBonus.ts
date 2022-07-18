@@ -36,10 +36,6 @@ export default class PageBonus extends AbstractView {
         return this.myProxy.pageData.bonus_rank;
     }
 
-    get questionData() {
-        return this.fagProxy.qData.type3;
-    }
-
     get bonus_recently() {
         return this.myProxy.pageData.bonus_recently;
     }

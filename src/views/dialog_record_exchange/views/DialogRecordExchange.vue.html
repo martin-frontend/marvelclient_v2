@@ -38,7 +38,8 @@
                         <div class="min-width-150">
                             <div>{{LangUtil("发送地址")}}</div>
                             <div
-                                class="text-truncate text-decoration-underline cursor-pointer"
+                                class="text-truncate cursor-pointer"
+                                :class="item.third_order_info ? 'text-decoration-underline': ''"
                                 @click="onCopy(item.third_order_info ? item.third_order_info.from_address : '')"
                             >
                                 {{item.third_order_info ? item.third_order_info.from_address : "-"}}
@@ -47,7 +48,8 @@
                         <div class="min-width-150">
                             <div>{{LangUtil("接收地址")}}</div>
                             <div
-                                class="text-truncate text-decoration-underline cursor-pointer"
+                                class="text-truncate cursor-pointer"
+                                :class="item.third_order_info ? 'text-decoration-underline': ''"
                                 @click="onCopy(item.third_order_info ? item.third_order_info.to_address : '')"
                             >
                                 {{item.third_order_info ? item.third_order_info.to_address : "-"}}

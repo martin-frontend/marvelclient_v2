@@ -2,24 +2,35 @@
     <v-container class="font-weight-bold">
         <div class="d-flex">
             <div>
-                <div class="text-16 line-height-50">{{LangUtil("底部品牌文字")}}</div>
+                <div class="text-16 mb-1">{{LangUtil("底部品牌文字")}}</div>
                 <div class="d-flex">
                     <div class="mr-4" @click="goContact"><a class="info--text">{{LangUtil("关于我们")}}</a></div>
-                    <div class="mr-4"><a class="info--text">{{LangUtil("联系我们")}}</a></div>
+                    <div class="mr-4" @click="openLink(LangUtil('客服链接'))">
+                        <a class="info--text">{{LangUtil("联系我们")}}</a>
+                    </div>
                     <div class="mr-4" @click="goService"><a class="info--text">{{LangUtil("服务条款")}}</a></div>
+                </div>
+                <div class="text-16 mt-4 mb-1">{{LangUtil("数字货币交易")}}</div>
+                <div class="d-flex">
+                    <div class="mr-4" @click="openLink(LangUtil('法币教程链接'))">
+                        <a class="info--text">{{LangUtil("如何购买数字货币")}}</a>
+                    </div>
+                    <div class="mr-4" @click="openLink(LangUtil('售币教程链接'))">
+                        <a class="info--text">{{LangUtil("如何出售数字货币")}}</a>
+                    </div>
                 </div>
             </div>
             <v-spacer />
             <div>
-                <div class="text-16 line-height-50">{{LangUtil("游戏提供商")}}</div>
-                <div class="d-flex mr-2" style="display: grid; gap: 25px; width: 100%">
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconEVO.ecebabd5.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconBG.964e9812.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconAG.34a4a20c.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconPS.df15013e.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconShaba.d77bb002.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconPNG.760bf608.svg" />
-                    <img src="https://hx1web.hstax1tic.com/static/media/IconMicro.ba37665c.svg" />
+                <div class="text-16 mb-1">{{LangUtil("游戏提供商")}}</div>
+                <div class="d-flex align-center mr-2" style="display: grid; gap: 25px; width: 100%">
+                    <img width="94" height="43" src="@/assets/footer/PP.png" />
+                    <img width="118" height="28" src="@/assets/footer/AM.png" />
+                    <img width="113" height="37" src="@/assets/footer/AG.png" />
+                    <img width="69" height="38" src="@/assets/footer/BY.png" />
+                    <img width="77" height="31" src="@/assets/footer/WL.png" />
+                    <img width="96" height="22" src="@/assets/footer/PG.png" />
+                    <img width="65" height="35" src="@/assets/footer/JBD.png" />
                 </div>
             </div>
         </div>
@@ -114,7 +125,7 @@
                             style="border-radius: 8px"
                             color="#2f3d58"
                             width="152"
-                            height="50"
+                           
                             v-bind="attrs"
                             v-on="on"
                         >
@@ -144,5 +155,6 @@
         <p class="website-info">{{LangUtil("网页底部信息说明")}}</p>
         <div class="all-rights-reserved">{{LangUtil("网页底部公司说明")}}</div>
         <div class="all-rights-reserved">version:{{getVersion()}}</div>
+        <div class="all-rights-reserved">{{getChannelID()}}</div>
     </v-container>
 </v-footer>

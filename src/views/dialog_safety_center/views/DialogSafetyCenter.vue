@@ -2,6 +2,7 @@
 <style src="./DialogSafetyCenter.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import DialogGetVerity from "@/views/dialog_get_verity/views/DialogGetVerity.vue";
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogSafetyCenter from "./DialogSafetyCenter";
@@ -15,6 +16,7 @@ import CustomPassword from "@/views/widget/custom_password/CustomPassword.vue";
         CustomInput,
         CustomPassword,
         Overlay,
+        DialogGetVerity,
     },
 })
 export default class extends DialogSafetyCenter {}

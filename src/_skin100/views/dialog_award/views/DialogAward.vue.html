@@ -1,0 +1,17 @@
+<v-dialog width="300" v-model="pageData.bShow" :retain-focus="false" persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <v-card class="rounded-lg bPanelBg">
+        <v-card-title class="px-8 text-18 justify-center"> {{LangUtil("获得奖励")}} </v-card-title>
+        <v-card-text class="px-8">
+            <div class="d-flex justify-center colorTextGold--text text-16 mb-2" v-for="(item, key) of pageData.data" :key="key">
+                <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
+                <div class="ml-3 mr-3">{{key}}</div>
+                <div>x{{item}}</div>
+            </div>
+        </v-card-text>
+        <v-card-actions class="mt-0 pt-0 pb-3">
+            <v-btn class="on-btn-bg" block @click="onClose">{{LangUtil("确定")}}</v-btn>
+        </v-card-actions>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

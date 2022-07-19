@@ -13,14 +13,23 @@
 .qrcode {
     cursor: pointer;
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 2px;
     padding: 8px;
-    width: 100px;
-    height: 100px;
+    width: 88px;
+    height: 88px;
     canvas {
         display: none;
     }
     ::v-deep img {
         width: 100%;
     }
+}
+.tips{
+    line-height: 18px;
+    color:#F04A5A;
+}
+.support-coin{
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    width:100%;
 }

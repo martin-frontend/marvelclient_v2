@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogEmailDetailProxy from "../proxy/DialogEmailDetailProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_award from "@/views/dialog_award";
+import dialog_award from "@/_skin100/views/dialog_award";
 
 export default class DialogEmailDetailMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {

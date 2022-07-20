@@ -5,7 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
-import dialog_recharge from "@/views/dialog_recharge";
+import dialog_recharge from "@/_skin100/views/dialog_recharge";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component

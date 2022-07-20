@@ -29,6 +29,12 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
         2: LangUtil("失败"),
         3: LangUtil("玩家已支付等待确认"),
     };
+    statusColorOptions = {
+        0: "yellow--text text--lighten-2",
+        1: "teal--text text--accent-2",
+        2: "deep-orange--text text--darken-1",
+        3: "yellow--text text--lighten-2",
+    };
 
     resetQuery() {
         Object.assign(this.pageData.listQuery, {

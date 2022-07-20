@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_recharge from "@/_skin100/views/dialog_recharge";
 import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
@@ -15,7 +16,9 @@ export default class DialogRecordRecharge extends AbstractView {
     myProxy: DialogRecordRechargeProxy = this.getProxy(DialogRecordRechargeProxy);
     pageData = this.myProxy.pageData;
     statusOptions = this.myProxy.statusOptions;
+    statusColorOptions = this.myProxy.statusColorOptions;
 
+    plat_coins = GamePlatConfig.config.plat_coins;
     commonIcon = Assets.commonIcon;
 
     constructor() {

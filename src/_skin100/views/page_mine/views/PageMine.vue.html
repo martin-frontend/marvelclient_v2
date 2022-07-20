@@ -15,13 +15,13 @@
                     <v-col cols="4" md="4" lg="3" class="pl-md-2 mt-n9 mt-md-n0 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
                         <!-- <v-img :max-width="mobileChange('leftBgVipIcon').w"  contain :src="vipMap[pageData.vipLevel]"></v-img> -->
                     </v-col>
-                    <v-col cols="8" md="8" lg="9" class="ml-n3 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
+                    <v-col cols="8" md="8" lg="9" class="ml-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
                         <v-sheet width="100%" class="text-h6 text-body-1 text-md-h5 mb-1 d-flex align-center justify-space-between px-2" color="transparent">
                             VIP {{ pageData.vipLevel }}
                         </v-sheet>
                         <v-sheet width="100%" color="transparent" class="">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" :height="progressLinear" class="rounded-xl"></v-progress-linear>
-                            <div class="text-body-2  text-md-body-1 ma-0 ml-2 mt-1 mt-md-3">
+                            <div class="text-body-2  text-14 ma-0 ml-2 mt-1 mt-md-3 text-align-center">
                                 <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}} </p>
                                 <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}} </span>
                                 <span class="white--text" v-if="pageData.nextExp > 0">
@@ -120,19 +120,19 @@
         </v-col>
     </v-row>
     <!-- vip 等级 -->
-    <v-sheet color="transparent" class="mt-8 mx-auto" max-width="1430" id="vipLevel" >
-        <span class="text-h6 text-md-h5 ">{{LangUtil('VIP等级')}} </span>
-        <p class="ma-0 mt-1 ml-2 ml-md-0 text-caption text-md-body-1 colorBlue--text">
+    <v-sheet color="transparent" class="mt-4 mx-auto" max-width="1430" id="vipLevel" >
+        <span class="text-h6 text-md-h7 ">{{LangUtil('VIP等级')}} </span>
+        <p class="ma-0 mt-1 ml-2 ml-md-0 text-caption text-md-body-3 colorText3--text">
             {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
         </p>
         
-        <v-slide-group class="mt-10" show-arrows v-if="!xsOnly">
+        <v-slide-group class="mt-6" show-arrows v-if="!xsOnly">
             <v-slide-item v-for="(item, level) of pageData.vipConfig" :key="level">
                 <v-card color="transparent">
                     <v-sheet color="transparent" height="277">
-                        <v-img max-width="160" width="160" height="100%" class="mr-1" contain src="~@/assets/mine/item_bg.png">
-                            <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
-                            <div class="d-flex flex-column mt-n3 justify-center align-center pt-2 text-body-1">
+                        <v-img max-width="160" width="160" height="100%" class="mr-1" contain src="~@/_skin100/assets/mine/item_bg.png">
+                            <v-img max-width="40" width="40" contain class="ml-15" :src="vipMap[level+1]"></v-img>
+                            <div class="d-flex flex-column  justify-center align-center pt-2 text-body-1">
                                 <div class="mt-1 mb-2">VIP {{ myProxy.getVipLevel(level) }}</div>
                                 <div class="d-flex flex-column mt-n3 justify-start align-center vip_config_box">
                                     <!-- 主币 -->
@@ -175,62 +175,64 @@
         </div>
     </v-sheet>
     <!-- 如何挖矿 -->
-    <v-sheet color="transparent" class="mt-8" id="howMine">
-        <span class="text-h6 text-md-h5 ">{{LangUtil('如何挖矿')}} </span>
-        <p class="ma-0 mt-1 ml-2 ml-md-0 text-caption text-md-body-1 colorBlue--text">
+    <v-sheet color="transparent" class="mt-1" id="howMine">
+        <span class="text-h6 text-md-h7">{{LangUtil('如何挖矿')}} </span>
+        <p class="ma-0 mt-1 ml-2 ml-md-0 text-caption text-md-body-3 colorText3--text">
             {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
         </p>
         <v-row class="mt-4" no-gutters>
             <!-- 01 -->
             <v-col cols="12" md="4" class="how_item mb-2 mb-md-0">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" >
-                    <v-card-title class="pa-0 order-1">
-                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4 how_icon" src="~@/assets/mine/about_01_icon.png"></v-img>
+                <v-card width="100%"  class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-4 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" >
+                    <v-card-title class="pa-0 order-1" style="width: 100%;" >
+                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4 how_icon" src="~@/_skin100/assets/mine/about_01_icon.png"></v-img>
                         <div class="d-flex flex-column how_title_box">
-                            <span class="text-md-h5 how_num colorCoin--text font-weight-medium mb-md-2">01</span>
+                            <span class="fz-16 colorText3--text font-weight-bolder">01</span>
                             <span class="how_title font-weight-medium">{{LangUtil('享受游戏之旅')}}</span>
                         </div>
+                        <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h" color="btnRedBg" @click="onGoBet" class="rounded-pill ml-auto">{{LangUtil('去投注')}}</v-btn>
                     </v-card-title>
                     <v-card-text class="px-0 mt-1 mt-mb-4 order-3 order-md-2 ">
                         <span class="text-caption text-md-body-2 colorBlue--text"
                             >{{LangUtil('参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。')}}</span
                         >
                     </v-card-text>
-                    <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
+                    <!-- <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
                         <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h" color="colorHowBtn" @click="onGoBet" class="rounded-pill">{{LangUtil('去投注')}}</v-btn>
-                    </v-card-actions>
+                    </v-card-actions> -->
                 </v-card>
             </v-col>
             <!-- 02 -->
             
-            <v-col cols="12" md="4" class="how_item px-md-1 mb-2 mb-md-0">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" >
+            <v-col cols="12" md="4" class="how_item px-md-2 mb-2 mb-md-0">
+                <v-card width="100%"  class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-4 pa-md-6 d-flex flex-wrap flex-column justify-space-between" height="100%" >
                     <v-card-title class="pa-0 order-1">
-                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4 how_icon" src="~@/assets/mine/about_02_icon.png"></v-img>
+                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4 how_icon" src="~@/_skin100/assets/mine/about_02_icon.png"></v-img>
                         <div class="d-flex flex-column how_title_box">
-                            <span class="text-md-h5 how_num colorCoin--text font-weight-medium mb-md-2">02</span>
+                            <span class="fz-16   colorText3--text font-weight-bolder">02</span>
                             <span class="how_title font-weight-medium">{{LangUtil('领取个人洗码')}}</span>
                         </div>
+                        <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h" color="btnRedBg" @click="onGoBet" class="rounded-pill ml-auto">{{LangUtil('去领取')}}</v-btn>
                     </v-card-title>
                     <v-card-text class="px-0 mt-1 mt-mb-4 order-3 order-md-2 ">
                         <span class="text-caption text-md-body-2 colorBlue--text"
                             >{{LangUtil('个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。')}}</span
                         >
                     </v-card-text>
-                    <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
+                    <!-- <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
                         <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h" color="colorHowBtn" @click="onGoBet" class="rounded-pill">{{LangUtil('去领取')}}</v-btn>
-                    </v-card-actions>
+                    </v-card-actions> -->
                 </v-card>
             </v-col>
            
             <!-- 03 -->
             <v-col cols="12" md="4"  class="how_item mb-6 mb-md-0">
-                <v-card width="100%" color="colorPanelBg2" class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-start" height="100%" >
+                <v-card width="100%"  class="linear_bg rounded-xl py-2 px-4 pa-md-5 pa-md-8 px-md-4 pa-md-6 d-flex flex-wrap flex-column justify-start" height="100%" >
                     <v-card-title class="pa-0 order-1">
-                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/assets/mine/about_03_icon.png"></v-img>
+                        <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/_skin100/assets/mine/about_03_icon.png"></v-img>
                         <div class="d-flex flex-column liheight">
-                            <span class="text-md-h5 how_num colorCoin--text font-weight-medium mb-md-2">03</span>
-                            <span class="how_title font-weight-medium">{{LangUtil('自动结算')}}</span>
+                            <span class="fz-16   colorText3--text font-weight-bolder">03</span>
+                            <span class="how_title fz-16 font-weight-medium">{{LangUtil('自动结算')}}</span>
                         </div>
                     </v-card-title>
                     <v-card-text class="px-0 mt-1 mt-mb-4 order-3 order-md-2 ">

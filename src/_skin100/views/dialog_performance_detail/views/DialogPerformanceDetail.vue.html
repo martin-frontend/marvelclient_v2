@@ -110,7 +110,53 @@
                 <ListNodata v-if="pageData.list.length == 0" height="411"/>
             </div>
             <v-sheet v-if="listQuery.cate == 1" color="transparent" class="listbox scroll-y">
-                <template v-for="(item, idx) in pageData.directList">
+                <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg px-5 py-4 pb-1 mb-3">
+                    <div class="colorText1--text text-14 font-weight-medium mb-2 d-flex flex-wrap align-center" :key="'u' + idx">
+                        <div class="d-flex align-center mr-3">
+                            <v-icon class="white--text mr-2">mdi-account-circle</v-icon>
+                            <div class="colorTextNormal2--text mr-1">{{LangUtil("昵称")}}</div>
+                            <div class="white--text">{{ item.nick_name }}</div>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="colorTextNormal2--text mr-1">{{LangUtil("ID")}}</div>
+                            <div class="white--text">{{ item.user_id }}</div>
+                        </div>
+                    </div>
+
+                    <v-sheet
+                        class="mb-2 rounded-lg"
+                        color="transparent"
+                        v-for="(val, name) in item.water_info"
+                        :key="'s' + name + idx"
+                    >
+                        <div class="d-flex flex-wrap justify-space-between listitem_b  pb-3">
+                            <div class="item-auto">
+                                <div class="colorTextNormal2--text text-12">{{LangUtil("业绩类型")}}</div>
+                                <div class="text-truncate white--text text-14 font-weight-medium">{{ categoryType[name].label }}业绩</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="colorTextNormal2--text text-12">{{LangUtil("团队人数")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ item.group_users }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="colorTextNormal2--text text-12">{{LangUtil("团队业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ val.group_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="colorTextNormal2--text text-12">{{LangUtil("自营业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ val.self_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="colorTextNormal2--text text-12">{{LangUtil("每万返佣")}}</div>
+                                <div class="white--text text-14 font-weight-medium">
+                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
+                                </div>
+                            </div>
+                        </div>
+                        <v-divider v-if="Object.keys(item.water_info)[item.water_info.length - 1] != name" />
+                    </v-sheet>
+                </div>
+                <!-- <template v-for="(item, idx) in pageData.directList">
                     <div class="colorText1--text text-16 ml-3 mb-2 d-flex flex-wrap align-center listinfo-detail" :key="'u' + idx">
                         <div class="d-flex align-center">
                             <v-icon class="colorText1--text">mdi-account-circle</v-icon>
@@ -153,7 +199,7 @@
                             </div>
                         </div>
                     </v-sheet>
-                </template>
+                </template> -->
                 <ListNodata v-if="pageData.directList.length == 0" height="411"/>
             </v-sheet>
         </v-card-text>

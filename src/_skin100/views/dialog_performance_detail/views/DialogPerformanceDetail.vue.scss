@@ -34,6 +34,36 @@
         }
     }
 }
+.listitem_b {
+    .item-all-width{
+        width:100%;
+    }
+    .item-auto,
+    .item-110 {
+        width: auto;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        color: #9db1d8;
+        @media only screen and (max-width: 750px) {
+            width: calc(100% / 2);
+        }
+        div:first-child {
+            color: #4c5d7f;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+    .item-110 {
+        width: 110px;
+    }
+    .listitem-90 {
+        width: 90px;
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+}
 .listitem {
     .item-all-width{
         width:100%;

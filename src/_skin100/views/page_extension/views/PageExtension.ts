@@ -6,7 +6,7 @@ import dialog_bind_invite from "@/views/dialog_bind_invite";
 import dialog_directly from "@/_skin100/views/dialog_directly";
 import dialog_performance from "@/_skin100/views/dialog_performance";
 import dialog_message from "@/views/dialog_message";
-import dialog_wallet from "@/views/dialog_wallet";
+import dialog_wallet from "@/_skin100/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";

@@ -5,7 +5,7 @@
 import Component from "vue-class-component";
 import PageMine from "./PageMine";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import Question from "@/views/widget/question/Question.vue";
+import Question from "@/_skin100/views/widget/question/Question.vue";
 
 @Component({
     components: {

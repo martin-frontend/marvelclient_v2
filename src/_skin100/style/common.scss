@@ -96,23 +96,32 @@ input {
     background-color: transparent;
     text-align: center;
 }
-.bPanelBg{
-    background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
+.bPanelBg {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
 }
-.btnRedBg{
-    background-image: linear-gradient(151deg, #CD30C1 30%, #215ED6 100%) !important;
+.btnRedBg {
+    background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%) !important;
+}
+.bPanelOpacityBg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.bPanelLevelBg {
+    background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
+}
+.btnRedBg {
+    background-image: linear-gradient(151deg, #cd30c1 30%, #215ed6 100%) !important;
 }
 
-.bPanelOpacityBg{
-    background-color: rgba(0,0,0,0.1) !important;
+.bPanelOpacityBg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
-.bPanelWhiteOpacityBg{
-    background-color: rgba(255,255,255,0.06) !important;
+.bPanelWhiteOpacityBg {
+    background-color: rgba(255, 255, 255, 0.06) !important;
 }
-.bPanelLevelBg{
-    background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+.bPanelLevelBg {
+    background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
 }
-.container-b{
+.container-b {
     background-color: #0d1b29;
 }
 // .v-dialog--fullscreen{
@@ -162,4 +171,7 @@ input {
 }
 ::v-deep .vuejs-loadmore .vuejs-loadmore-finished-text {
     color: #4c5d7f;
+}
+.text-align-center {
+    text-align: center;
 }

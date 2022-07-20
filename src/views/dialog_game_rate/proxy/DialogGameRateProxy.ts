@@ -9,7 +9,7 @@ export default class DialogGameRateProxy extends puremvc.Proxy {
 
     setData(data: any) {
         this.pageData.loading = false;
-        this.pageData.list = data.list;
+        this.pageData.list = data;
     }
 
     /**--获取币种游戏比率*/

@@ -5,7 +5,7 @@
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogRecordExchange from "./DialogRecordExchange";
-import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
+import ListNodata from "@/_skin100/views/widget/list_nodata/ListNodata.vue";
 
 @Component({
     components: {

@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_recharge from "@/_skin100/views/dialog_recharge";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import Component from "vue-class-component";
@@ -17,6 +18,7 @@ export default class DialogRecordExchange extends AbstractView {
     rechargeProxy: DialogRechargeProxy = this.getProxy(DialogRechargeProxy);
     pageData = this.myProxy.pageData;
 
+    plat_coins = GamePlatConfig.config.plat_coins;
     commonIcon = Assets.commonIcon;
 
     constructor() {

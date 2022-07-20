@@ -32,7 +32,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_mine",
         name: "page_mine",
-        component: () => import(/* webpackChunkName: "page_mine" */ "@/views/page_mine/views/PageMine.vue"),
+        component: () => import(/* webpackChunkName: "page_mine" */ "@/_skin100/views/page_mine/views/PageMine.vue"),
     },
     {
         path: "/page_bonus",

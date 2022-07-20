@@ -16,6 +16,7 @@ const opts = {
                 success: "#4CAF50",
                 warning: "#85AFF9",
                 white: "#ffffff",
+                footer: "#172432",
 
                 colorCoin: "#F3B952", //used
                 colorTitleBg: "#1d2a43", //used

@@ -69,7 +69,18 @@
                     <div>{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div>
                 </div>
             </v-sheet>
+            <v-btn
+                text
+                height="20"
+                min-width="32"
+                class="pa-0 my-1 ml-5"
+                color="colorText2"
+                @click="handlerGameRate"
+            >
+            {{LangUtil("游戏比率查询")}}
+            </v-btn>
         </v-sheet>
+       
     </v-menu>
 
     <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2" x-small color="#ffb01b" @click="onCoinIn">

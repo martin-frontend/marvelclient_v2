@@ -25,6 +25,8 @@ declare module net {
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: string;
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -266,6 +268,8 @@ declare module net {
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: string;
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -1013,6 +1017,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_beat extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取币种游戏比率
+ */
+declare module net {
+    class cmd_api_user_var_block_coins_scale extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

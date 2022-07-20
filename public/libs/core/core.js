@@ -79,6 +79,8 @@ var net;
         api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: "api/plat/{plat_id}/game/all/index",
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale: "api/user/{user_id}/block_coins_scale ",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
         /**--钱包--代币转入订单提交*/
@@ -320,6 +322,8 @@ var net;
         api_plat_var_game_all_config: "api_plat_var_game_all_config",
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: "api_plat_var_game_all_index",
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale: "api_user_var_block_coins_scale ",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api_plat_var_block_transfer_in_order_account",
         /**--钱包--代币转入订单提交*/
@@ -548,6 +552,7 @@ var net;
         facade.registerCommand(net.HttpType.api_public_area_code, net.cmd_api_public_area_code);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_config, net.cmd_api_plat_var_game_all_config);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_index, net.cmd_api_plat_var_game_all_index);
+        facade.registerCommand(net.HttpType.api_user_var_block_coins_scale, net.cmd_api_user_var_block_coins_scale);
         //--钱包
         facade.registerCommand(net.HttpType.api_plat_var_block_transfer_in_order_account, net.cmd_api_plat_var_block_transfer_in_order_account);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_in_order_store, net.cmd_api_user_var_block_transfer_in_order_store);
@@ -1975,6 +1980,28 @@ var net;
         }
     }
     net.cmd_api_user_var_beat = cmd_api_user_var_beat;
+})(net || (net = {}));
+/**
+ * 获取币种游戏比率
+ */
+var net;
+/**
+ * 获取币种游戏比率
+ */
+(function (net) {
+    class cmd_api_user_var_block_coins_scale extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_block_coins_scale, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_block_coins_scale, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_block_coins_scale = cmd_api_user_var_block_coins_scale;
 })(net || (net = {}));
 /**
  * 代币转入订单列表

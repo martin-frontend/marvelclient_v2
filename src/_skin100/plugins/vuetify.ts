@@ -51,6 +51,7 @@ const opts = {
                 colorDialogInfo: "#FFB01A",
                 colorPurpleBtn: "#4F5188", //used
                 colorHowBtn: "#3B4B68", //used
+                colorGreyBtn: "#303f4b", //used
                 colorTextNext: "#3B5F96", //used
                 colorVipLevelText: "#8C9FC4",
             },

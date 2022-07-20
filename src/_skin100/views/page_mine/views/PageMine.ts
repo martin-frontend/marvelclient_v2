@@ -69,7 +69,7 @@ export default class PageMine extends AbstractView {
             coinIcon: 42,
             minRewardBtn: {
                 w: 178,
-                h: 42,
+                h: 38,
             },
             leftBgVipIcon: {
                 w: 75,

@@ -2,6 +2,7 @@
     .font_18 {
         font-size: 18px !important;
     }
+
     ::v-deep .v-slide-group__prev {
         right: 50px;
         border-radius: 12pt 0pt 0pt 12pt;
@@ -74,34 +75,25 @@
     }
 
     .down_box {
-        .colorBorderBlue {
-            background-color: transparent !important;
-            border-width: 1px;
+        .colorBorder {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
         }
     }
     .left_bg {
-        background: url("~@/assets/mine/left_bg.png") no-repeat center center;
+        height: 300px !important;
+        // background: url("~@/assets/mine/left_bg.png") no-repeat center center;
+        background-color: #162734;
         background-size: cover;
     }
     .right_banner {
-        background: url("~@/assets/mine/right_bg.png") no-repeat center center;
+        height: 300px !important;
+        background-color: #162734;
+        // background: url("~@/assets/mine/right_bg.png") no-repeat center center;
         background-size: cover;
         position: relative;
         overflow: hidden;
 
-        &::before {
-            content: "";
-            background: url("~@/assets/mine/right_special.png") no-repeat center center;
-            background-size: contain;
-            position: absolute;
-            width: 162px;
-            height: 100%;
-            right: 0;
-            top: 0;
-            @media screen and (max-width: 1260px) {
-                display: none;
-            }
-        }
         .get_award {
             border: 1px solid #5e2e2e;
             background-color: #f3b952 !important;
@@ -111,7 +103,9 @@
                 right: 28px;
             }
             ::v-deep .v-btn__content {
+                color: black !important;
                 opacity: 1 !important;
+                font-weight: bold;
             }
         }
         .coins_group {

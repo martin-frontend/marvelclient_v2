@@ -43,6 +43,25 @@
         color:#8f7ac0;
     }
 }
+.mobile-search {
+    width: 45%;
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 15px;
+        font-weight: 400;
+    }
+    ::v-deep .input-text{
+        height:38px;
+        border: 0px;
+    }
+    ::v-deep .input-text input{
+        height:38px;
+        color:#8f7ac0;
+    }
+    ::v-deep .input-text input::placeholder{
+        font-size: 14px;
+    }
+}
 ::v-deep .input-text input::placeholder {
     font-size: 15px;
     font-weight: 400;
@@ -51,7 +70,17 @@
 .header-mobile {
     position: fixed;
     z-index: 1000;
-    background-color: #121e36;
+    // background-color: #121e36;
+    // background-color: #592cb7;
+}
+.listitem-mobile{
+    div{
+        width:30%;
+        div{
+            width:100%;
+        }
+    }
+    
 }
 .listbox-mobile {
     overflow: hidden;

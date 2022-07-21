@@ -19,6 +19,8 @@ module net {
         api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: "api/plat/{plat_id}/game/all/index",
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale : "api/user/{user_id}/block_coins_scale ",
 
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
@@ -279,6 +281,8 @@ module net {
         api_plat_var_game_all_config: "api_plat_var_game_all_config",
         /**--新加的--所有游戏的查询*/
         api_plat_var_game_all_index: "api_plat_var_game_all_index",
+        /**--新加的--获取币种游戏比率*/
+        api_user_var_block_coins_scale : "api_user_var_block_coins_scale ",
 
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api_plat_var_block_transfer_in_order_account",
@@ -525,6 +529,7 @@ module net {
         facade.registerCommand(HttpType.api_public_area_code, cmd_api_public_area_code);
         facade.registerCommand(HttpType.api_plat_var_game_all_config, cmd_api_plat_var_game_all_config);
         facade.registerCommand(HttpType.api_plat_var_game_all_index, cmd_api_plat_var_game_all_index);
+        facade.registerCommand(HttpType.api_user_var_block_coins_scale , cmd_api_user_var_block_coins_scale );
         //--钱包
         facade.registerCommand(HttpType.api_plat_var_block_transfer_in_order_account, cmd_api_plat_var_block_transfer_in_order_account);
         facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_store, cmd_api_user_var_block_transfer_in_order_store);

@@ -9,6 +9,7 @@
         ["api/public/area_code",                        "获取手机区号"],
         ["api/plat/{plat_id}/game/all/config",          "获取所有游戏的查询配置"],
         ["api/plat/{plat_id}/game/all/index",           "所有游戏的查询"],
+        ["api/user/{user_id}/block_coins_scale ",       "获取币种游戏比率"],
         
 
         "--钱包",

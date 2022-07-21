@@ -51,15 +51,27 @@ export default class TabExchange extends AbstractView {
     }
 
     onChange(value: any) {
-        const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
-        this.form.block_network_id = keys[0];
-        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
+        const { methodList } = this.pageData;
+        const { coin_name_unique } = this.form;
+        const keys = Object.keys(methodList[coin_name_unique].options);
+
+        // 默认选择trc20
+        let block_network_id = keys[0];
+        for (const key of keys) {
+            if (methodList[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
+                block_network_id = key;
+            }
+        }
+
+        this.form.block_network_id = block_network_id;
+        this.form.exchange_channel_method_id = methodList[coin_name_unique].options[block_network_id].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
     }
 
     onChangeSub(value: any) {
-        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
+        this.form.exchange_channel_method_id =
+            this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.block_network_id = value;
     }
@@ -110,10 +122,10 @@ export default class TabExchange extends AbstractView {
     }
 
     onSetPassword() {
-        const {phone, email} = this.selfProxy.userInfo;
-        if(phone || email){
+        const { phone, email } = this.selfProxy.userInfo;
+        if (phone || email) {
             dialog_trade_password.show();
-        }else{
+        } else {
             dialog_message_box.alert("请先绑定邮箱或者手机");
         }
     }
@@ -127,8 +139,8 @@ export default class TabExchange extends AbstractView {
         });
     }
 
-    transformExplain(str:string){
-        if(str){
+    transformExplain(str: string) {
+        if (str) {
             return str.split("\n");
         }
         return [];

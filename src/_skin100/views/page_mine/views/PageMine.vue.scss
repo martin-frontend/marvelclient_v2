@@ -205,7 +205,7 @@
                 height: 142px;
                 width: 134px;
                 position: absolute;
-                left: -75px;
+                left: -55px;
                 top: -3px;
                 transform: scale(0.12);
             }
@@ -219,6 +219,7 @@
             }
         }
         .left_bg {
+            height: 260px !important;
             .mine_level_title {
                 font-size: 18px !important;
             }
@@ -245,6 +246,7 @@
 
         #howMine {
             .how_item {
+                height: 140px;
                 margin-bottom: -12px;
             }
         }

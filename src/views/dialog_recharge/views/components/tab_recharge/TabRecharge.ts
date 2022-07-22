@@ -34,12 +34,24 @@ export default class TabRecharge extends AbstractView {
         this.form.block_network_id = block_network_id;
         this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
+        this.changeMoney();
     }
     onChange2(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
         this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
+        this.changeMoney();
+    }
+    // 如果是现金支付，则选择第三个。
+    changeMoney(){
+        const { methodList } = this.pageData;
+        const { coin_name_unique, block_network_id } = this.form;
+        if(methodList[coin_name_unique].payemthod_id == 5){
+            const fixed_gold_list = methodList[coin_name_unique].options[block_network_id].fixed_gold_list;
+            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+        }
     }
 
     onCopy() {
@@ -48,6 +60,15 @@ export default class TabRecharge extends AbstractView {
 
     onLink(url: string) {
         OpenLink(url);
+    }
+    // 选择快捷金额
+    onGoldClick(index:any, item:any){
+        this.form.amount = item;
+        this.pageData.gold_index = index;
+    }
+    // 创建充值订单
+    onSumbit(){
+        this.myProxy.rechargeProxy.api_user_var_recharge_create();
     }
 
     destroyed() {

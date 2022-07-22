@@ -37,7 +37,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_bonus",
         name: "page_bonus",
-        component: () => import(/* webpackChunkName: "page_bonus" */ "@/views/page_bonus/views/PageBonus.vue"),
+        component: () => import(/* webpackChunkName: "page_bonus" */ "@/_skin100/views/page_bonus/views/PageBonus.vue"),
     },
 ];
 

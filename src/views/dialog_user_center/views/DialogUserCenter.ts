@@ -29,6 +29,10 @@ export default class DialogUserCenter extends AbstractView {
         super(DialogUserCenterMediator);
     }
 
+    getHideUsername(str:string){
+        return str.substr(0,2)+'***'+str.substr(5,str.split('').length);
+    }
+
     onClose() {
         this.pageData.bShow = false;
     }

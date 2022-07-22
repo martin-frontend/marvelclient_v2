@@ -17,6 +17,11 @@ export default class Footer extends AbstractView {
     goContact() {
         dialog_contract.show();
     }
+
+    goTG(){
+        OpenLink(LangUtil("TG链接"));
+    }
+
     openLink(url:string){
         OpenLink(url);
     }

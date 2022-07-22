@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
+import OpenLink from "@/core/global/OpenLink";
 
 
 export default class DialogRechargeMediator extends AbstractMediator {
@@ -14,6 +15,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
             net.EventType.api_user_show_var,
             net.EventType.api_user_var_exchange_method_list,
             net.EventType.api_user_var_exchange_create_order,
+            net.EventType.api_user_var_recharge_create,
         ];
     }
 
@@ -40,6 +42,9 @@ export default class DialogRechargeMediator extends AbstractMediator {
             case net.EventType.api_user_var_exchange_create_order:
                 myProxy.pageData.bShow = false;
                 dialog_message.success(LangUtil("创建成功"));
+                break;
+            case net.EventType.api_user_var_recharge_create:
+                OpenLink(body);
                 break;
         }
     }

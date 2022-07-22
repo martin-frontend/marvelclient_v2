@@ -35,7 +35,9 @@ export class RechargeProxy extends puremvc.Proxy {
             coin_name_unique: "",
             block_network_id: "",
             recharge_channel_id: "",
+            amount: "",
         },
+        gold_index: 0,
     };
 
     setData(data: any) {
@@ -54,8 +56,8 @@ export class RechargeProxy extends puremvc.Proxy {
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             // 默认选择trc20
             let block_network_id = optionsKeys[0];
-            for(const key of optionsKeys){
-                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+            for (const key of optionsKeys) {
+                if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
                     block_network_id = key;
                 }
             }
@@ -64,6 +66,12 @@ export class RechargeProxy extends puremvc.Proxy {
                 this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
+                //如果payemthod_id == 5 则选择输入金额
+                if (data[coin_name_unique].payemthod_id == 5) {
+                    const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
+                    this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                    this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                }
             }
         }
         this.api_user_var_recharge_address();
@@ -81,12 +89,21 @@ export class RechargeProxy extends puremvc.Proxy {
     }
 
     api_user_var_recharge_address() {
-        this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
-        Object.assign(formCopy, this.pageData.form);
-        this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
+        if (this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4) {
+            this.pageData.loading = true;
+            const formCopy = { user_id: core.user_id };
+            Object.assign(formCopy, this.pageData.form);
+            this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
+        }
         this.pageData.address = "";
         this.pageData.qrcode = "";
+    }
+
+    api_user_var_recharge_create() {
+        this.pageData.loading = true;
+        const data = { user_id: core.user_id };
+        Object.assign(data, this.pageData.form);
+        this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
 }
 
@@ -135,15 +152,18 @@ export class ExchangeProxy extends puremvc.Proxy {
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             // 默认选择trc20
             let block_network_id = optionsKeys[0];
-            for(const key of optionsKeys){
-                if(data[coin_name_unique].options[key].name.toLowerCase() == "trc20"){
+            for (const key of optionsKeys) {
+                if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
                     block_network_id = key;
                 }
             }
 
             if (block_network_id) {
                 this.pageData.form.block_network_id = block_network_id;
-                this.pageData.form.exchange_channel_method_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].exchange_channel_method_id;
+                this.pageData.form.exchange_channel_method_id =
+                    this.pageData.methodList[this.pageData.form.coin_name_unique].options[
+                        this.pageData.form.block_network_id
+                    ].exchange_channel_method_id;
             }
         }
     }
@@ -155,7 +175,16 @@ export class ExchangeProxy extends puremvc.Proxy {
 
     api_user_var_exchange_create_order() {
         this.pageData.loading = true;
-        const { amount, exchange_channel_id, payment_method_type, coin_name_unique, block_network_id, account, exchange_channel_method_id, password_gold } = this.pageData.form;
+        const {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            password_gold,
+        } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
             amount,
             exchange_channel_id,

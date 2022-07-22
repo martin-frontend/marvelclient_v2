@@ -4,3 +4,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+input::placeholder{
+  color:#57399b;
+}

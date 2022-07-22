@@ -42,6 +42,7 @@ const opts = {
                 colorTextYellow: "#F8D129", //used
                 colorTextNormal: "#737c86", //used
                 colorTextNormal2: "#8f7ac0", //used
+                colorIcontNormal: "#57399b", //used
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

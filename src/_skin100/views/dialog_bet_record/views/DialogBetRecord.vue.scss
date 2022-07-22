@@ -30,6 +30,13 @@
     z-index: 1000;
     background-color: #121e36;
 }
+.listitem-mobile{
+    .l-item{
+        div{
+            width:100%;
+        }
+    }  
+}
 .listbox-mobile {
     overflow: hidden;
     padding-top: 210px;

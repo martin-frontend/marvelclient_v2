@@ -38,11 +38,10 @@
             </div>
             <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
                 <div class="colorText1--text mt-3">{{LangUtil("常用充值金额")}}</div>
-                <div class="d-flex flex-wrap my-2 mx-n1">
+                <div class="d-flex flex-wrap my-2 mx-n2">
                     <v-btn
-                        class="mb-2 mx-1"
-                        small
-                        min-width="80"
+                        class="mb-2 mx-2"
+                        min-width="100"
                         height="30"
                         :color="pageData.gold_index==index ? 'colorBtnBg' : 'colorPanelTitleBg'"
                         v-for="(item, index) of pageData.methodList[form.coin_name_unique].options[form.block_network_id].fixed_gold_list"

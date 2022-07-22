@@ -51,7 +51,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                         if (core.app_type == core.EnumAppType.WEB) {
                             OpenLink(body);
                         } else {
-                            WebViewBridge.getInstance().openBrowser(body);
+                            WebViewBridge.getInstance().openStstemBrowser(body);
                         }
                     },
                 });

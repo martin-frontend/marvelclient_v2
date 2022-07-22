@@ -12,7 +12,16 @@
             <v-card-text class="px-4 px-md-7 mt-7 text-sm-subtitle-1 text_height">
                 <div class="d-flex justify-space-between align-center mb-5">
                     <span class="d-flex colorBlue--text">
-                        <v-icon class="mr-2" color="colorInfo">mdi-account</v-icon>ID
+                        <v-icon class="mr-2" color="colorInfo">mdi-account</v-icon>{{LangUtil("账号")}}
+                    </span>
+                    <span class="d-flex align-center colorText1--text">
+                        {{getHideUsername(userInfo.username)}}
+                        <div class="empty_width"></div>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center mb-5">
+                    <span class="d-flex colorBlue--text">
+                        <v-icon class="mr-2" color="colorInfo">mdi-account-reactivate</v-icon>ID
                     </span>
                     <span class="d-flex align-center colorText1--text">{{userInfo.user_id}}
                         <v-btn class="ml-2" color="#6FA9FA" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy">

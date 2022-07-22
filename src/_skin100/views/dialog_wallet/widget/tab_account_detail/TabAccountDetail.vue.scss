@@ -14,16 +14,30 @@
         }
     }
 }
+.listitem-mobile {
+    .l-item {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: rgba(255,255,255,0.4);
+            // margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+}
 .num-change{
     width:100%;
 }
 .header-mobile {
     position: fixed;
     z-index: 999;
-    background-color: #121e36;
-    padding-top: 135px;
+    // background-color: #121e36;
+    padding-top: 125px;
 }
 .listbox-mobile {
     overflow: hidden;
-    padding-top: 205px;
+    // padding-top: 205px;
 }

@@ -1,6 +1,6 @@
 <v-dialog width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
-    <v-card class="rounded-lg bPanelBg">
+    <v-card class="rounded-lg d-flex flex-column bPanelBg">
         <!-- pc显示方式 -->
         <v-card-title  class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("平台钱包")}}</div>
@@ -14,7 +14,7 @@
             <v-btn
                 width="100"
                 height="32"
-                class="rounded-pill font-weight-bold mr-2 white--text"
+                class="rounded-pill font-weight-medium mr-2 white--text"
                 elevation="0"
                 :text="pageData.tabIndex != 0"
                 :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
@@ -28,7 +28,7 @@
             <v-btn
                 width="100"
                 height="32"
-                class="rounded-pill font-weight-bold mr-2 white--text"
+                class="rounded-pill font-weight-medium mr-2 white--text"
                 elevation="0"
                 :text="pageData.tabIndex != 1"
                 :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -42,7 +42,7 @@
             <v-btn
                 width="100"
                 height="32"
-                class="rounded-pill font-weight-bold white--text"
+                class="rounded-pill font-weight-medium white--text"
                 elevation="0"
                 :text="pageData.tabIndex != 2"
                 :color="pageData.tabIndex == 2 ? 'colorBtnSeleBg' : 'white--text'"
@@ -57,48 +57,55 @@
         </v-card-text>
         <!-- 手机显示方式 -->
         <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
-            <div class="gradient-bg d-flex align-center px-5">
-                <div class="text-18">{{LangUtil("平台钱包")}}</div>
+            <div class="d-flex align-center px-4 pt-5 pb-4">
+                <div class="white--text text-18">{{LangUtil("平台钱包")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
+                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
                 </v-btn>
             </div>
-            <div class="px-6 pb-3">
+            <div class="d-inline-flex align-center justify-center pa-1 ml-4 rounded-pill items-bg">
                 <v-btn
-                height="40"
-                class="rounded-pill font-weight-bold mr-2"
-                elevation="0"
-                :text="pageData.tabIndex != 0"
-                :color="pageData.tabIndex == 0 ? 'colorBtnBg' : 'colorText1'"
-                @click="onTabClick(0)"
-            >
-                {{LangUtil("我的资产")}}
-            </v-btn>
-            <v-btn
-                height="40"
-                class="rounded-pill font-weight-bold mr-2"
-                elevation="0"
-                :text="pageData.tabIndex != 1"
-                :color="pageData.tabIndex == 1 ? 'colorBtnBg' : 'colorText1'"
-                @click="onTabClick(1)"
-            >
-                {{LangUtil("厂商资产")}}
-            </v-btn>
-            <v-btn
-                height="40"
-                class="rounded-pill font-weight-bold"
-                elevation="0"
-                :text="pageData.tabIndex != 2"
-                :color="pageData.tabIndex == 2 ? 'colorBtnBg' : 'colorText1'"
-                @click="onTabClick(2)"
-            >
-                {{LangUtil("账户明细")}}
-            </v-btn>
+                    width="100"
+                    height="32"
+                    class="rounded-pill font-weight-medium mr-n2 white--text"
+                    elevation="0"
+                    :text="pageData.tabIndex != 0"
+                    :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)"
+                >
+                    <span class="text-15">
+                    {{LangUtil("我的资产")}}
+                    </span>
+                </v-btn>
+                <v-btn
+                    width="100"
+                    height="32"
+                    class="rounded-pill font-weight-medium mr-n2 white--text"
+                    elevation="0"
+                    :text="pageData.tabIndex != 1"
+                    :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(1)"
+                >
+                    <span class="text-15">
+                    {{LangUtil("厂商资产")}}
+                    </span>
+                </v-btn>
+                <v-btn
+                    width="100"
+                    height="32"
+                    class="rounded-pill font-weight-medium white--text"
+                    elevation="0"
+                    :text="pageData.tabIndex != 2"
+                    :color="pageData.tabIndex == 2 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(2)"
+                >
+                    <span class="text-15">
+                    {{LangUtil("账户明细")}}
+                    </span>
+                </v-btn>
             </div>
-            <v-divider class="mx-5" />  
         </v-card-text>
-        <!-- <v-divider class="mx-5" v-if="!$vuetify.breakpoint.xsOnly" /> -->
         <TabMyAssets v-if="pageData.tabIndex == 0" />
         <TabVendorAssets v-if="pageData.tabIndex == 1" />
         <TabAccountDetail v-show="pageData.tabIndex == 2" />

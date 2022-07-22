@@ -1,21 +1,19 @@
 <v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg bPanelBg">
-        <v-card-title class="px-8 pt-5" >
+        <!-- pc端展示 -->
+        <v-card-title class="px-8 pt-5" v-if="!$vuetify.breakpoint.xsOnly" >
             <div class="text-18">{{LangUtil("查看详情")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="px-8">
+        <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="d-flex align-center mb-2 white--text">
                 <v-icon size="22">mdi-email-open</v-icon>
-                <!-- <div class="text-16 ml-2">{{pageData.data.title}}</div> -->
                 <div class="text-15 ml-2">{{pageData.data.cate == 1 ? LangUtil("平台消息"):LangUtil("活动消息")}}</div>
                 <span class="text-14 ml-2 pt-1 white--text" style="opacity:0.4;">{{pageData.data.created_at}}</span>
             </div>
-            <!-- <v-divider /> -->
-            <!-- <v-sheet class="colorText1--text pa-3" min-height="450" color="transparent"> {{pageData.data.content}} </v-sheet> -->
             <v-sheet class="white--text py-3 pt-2 text-14" min-height="460" color="transparent"> {{pageData.data.content}} </v-sheet>
             <div v-if="pageData.data.attachment_status != 1" class="d-flex align-center mt-3 pa-4 rounded-lg itemBg">
                 <div class="d-flex mr-4 align-center" v-for="(item, key) of pageData.data.attachment_content" :key="key">
@@ -26,14 +24,39 @@
                     </div>
                 </div>
                 <v-spacer />
-                <!-- <v-btn v-if="pageData.data.attachment_status == 11" color="colorBtnBg" small @click="onReceive"
-                    >{{LangUtil("领取奖励")}}</v-btn
-                > -->
                 <v-btn  :class="pageData.data.attachment_status == 11 ? 'btnAcBg':'btnNacBg'" elevation="0" class="rounded-pill" width="90" height="35" @click="onReceive"
                     >{{pageData.data.attachment_status == 11 ? LangUtil("点击领取"):LangUtil("已领奖励") }}</v-btn
                 >
             </div>
-            <!-- <v-divider class="mt-2" /> -->
+        </v-card-text>
+        <!-- 手机端展示 -->
+        <v-card-title class="d-flex align-center px-5 pt-5 pb-4" v-if="$vuetify.breakpoint.xsOnly" >
+            <div class="white--text text-18">{{LangUtil("查看详情")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon color="colorCloseBtn">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex align-center pb-2 white--text">
+                <v-icon size="22">mdi-email-open</v-icon>
+                <div class="text-15 ml-2">{{pageData.data.cate == 1 ? LangUtil("平台消息"):LangUtil("活动消息")}}</div>
+                <span class="text-14 ml-2 pt-1 white--text" style="opacity:0.4;">{{pageData.data.created_at}}</span>
+            </div>
+            <v-sheet class="white--text py-3 pt-2 text-14" min-height="460" color="transparent"> {{pageData.data.content}} </v-sheet>
+            <div v-if="pageData.data.attachment_status != 1" class="d-flex align-center flex-wrap  pl-2 pr-1 py-4 rounded-lg itemBg">
+                <div class="d-flex mr-2 align-center" v-for="(item, key) of pageData.data.attachment_content" :key="key">
+                    <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="36" height="36"></v-img>
+                    <div class="ml-2 text-14 white--text">
+                        <div class="font-weight-bold mb-n1" style="opacity:0.4;">{{key}}</div>
+                        <div>{{item}}</div>
+                    </div>
+                </div>
+                <v-spacer />
+                <v-btn  :class="pageData.data.attachment_status == 11 ? 'btnAcBg':'btnNacBg'" elevation="0" class="rounded-pill ml-1" width="80" height="30" @click="onReceive"
+                    ><span class="text-13">{{pageData.data.attachment_status == 11 ? LangUtil("点击领取"):LangUtil("已领奖励") }}</span></v-btn
+                >
+            </div>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

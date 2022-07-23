@@ -1,8 +1,8 @@
 <v-container class="main-container">
     <Advertise />
     <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px-2 mt-3':''">
-        <Marquee1 class="marquee1"/>
-        <div class="banner-content">
+        <Marquee1 class="marquee1" :class="$vuetify.breakpoint.mobile?'hidden-h5':''" />
+        <div class="banner-content" :class="$vuetify.breakpoint.mobile?'hidden-h5':''">
             <AdSwiper class="ad-swiper"/>
             <div class="second-content">
                 <div class="left">

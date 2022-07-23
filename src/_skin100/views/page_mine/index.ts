@@ -1,4 +1,4 @@
-import router from "@/router";
+import router from "@/_skin100/router";
 import SelfProxy from "@/proxy/SelfProxy";
 import getProxy from "@/core/global/getProxy";
 

@@ -70,6 +70,7 @@ export default class TabExchange extends AbstractView {
     }
 
     onChangeSub(value: any) {
+        this.form.block_network_id = value;
         this.form.exchange_channel_method_id =
             this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿

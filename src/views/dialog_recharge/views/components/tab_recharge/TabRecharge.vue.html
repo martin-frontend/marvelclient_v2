@@ -15,13 +15,29 @@
                 v-model="form.coin_name_unique"
                 @change="onChange1"
             />
-            <CustomSelect
+            <!-- <CustomSelect
                 v-if="pageData.methodList[form.coin_name_unique]"
                 :options="pageData.methodList[form.coin_name_unique].options"
                 v-model="form.block_network_id"
                 @change="onChange2"
-            />
+            /> -->
+            
         </div>
+
+        <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+            <v-btn
+                class="mb-2 mx-2"
+                min-width="100"
+                height="30"
+                :color="form.block_network_id==key ? 'colorBtnBg' : 'colorPanelTitleBg'"
+                v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
+                :key="key"
+                @click="onChange2(key)"
+            >
+                {{item.name}}
+            </v-btn>
+        </div>
+
         <v-card color="transparent">
             <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
                 <div class="colorText1--text mt-3" v-if="pageData.methodList[form.coin_name_unique]">

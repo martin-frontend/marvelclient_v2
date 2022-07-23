@@ -6,10 +6,11 @@
         <div class="text-12">{{data.vendor_name}}</div>
     </div>
     <v-spacer/>
-    <v-icon class="mx-2" color="colorTextGold" size="20" @click="onToggle">{{data.is_collection==1 ? 'mdi-star':'mdi-star-outline'}}</v-icon>
+    <v-icon class="mx-4" color="colorTextGold" size="20" @click="onToggle">{{data.is_collection==1 ? 'mdi-star':'mdi-star-outline'}}</v-icon>
     <!-- <v-btn color="colorBtnBg" class="" @click="goGame"> -->
     <v-btn color="" class="goPlayBtn rounded-pill" width="80" max-height="30"  @click="goGame">
-        <span class="white--text d-flex align-center justify-center">{{LangUtil("去游戏")}}<v-icon v-if="!$vuetify.breakpoint.xsOnly" color="white" size="17">mdi-play</v-icon></span>
+        <!-- <span class="white--text d-flex align-center justify-center">{{LangUtil("去游戏")}}<v-icon v-if="!$vuetify.breakpoint.xsOnly" color="white" size="17">mdi-play</v-icon></span> -->
+        <span class="white--text d-flex align-center justify-center">{{LangUtil("去游戏")}}<v-icon color="white" size="17">mdi-play</v-icon></span>
     </v-btn>
     </div>
     <v-divider class="my-2"></v-divider>

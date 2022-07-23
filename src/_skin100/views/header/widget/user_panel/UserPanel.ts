@@ -81,4 +81,7 @@ export default class UserPanel extends AbstractView {
     onCopy(str: any) {
         CopyUtil(str);
     }
+    drawerClose() {
+        this.$emit("drawer", false);
+    }
 }

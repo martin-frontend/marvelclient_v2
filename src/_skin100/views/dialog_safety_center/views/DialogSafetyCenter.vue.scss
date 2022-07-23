@@ -14,3 +14,11 @@
 .on-safety-bg{
     background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%);
 }
+::v-deep.v-text-field--outlined fieldset {
+    // color: #314361 !important;
+    color: transparent !important;
+}
+.login-ip{
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+}

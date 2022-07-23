@@ -8,7 +8,8 @@ const opts = {
     theme: {
         themes: {
             dark: {
-                primary: "#4c5d7f", //used
+                primary: "#8f7ac0", //used
+                // primary: "#4c5d7f", //used
                 secondary: "#e3bc80", //used
                 accent: "#1D2A43", //used
                 error: "#EF413A",

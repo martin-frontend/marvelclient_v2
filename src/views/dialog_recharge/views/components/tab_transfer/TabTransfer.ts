@@ -20,8 +20,6 @@ export default class TabTransfer extends AbstractView {
     form = this.pageData.form;
 
     plat_coins = GamePlatConfig.config.plat_coins;
-    is_gold_transfer = GamePlatConfig.config.is_gold_transfer;
-
 
     mounted() {
         const aLink = document.getElementById("aLink");

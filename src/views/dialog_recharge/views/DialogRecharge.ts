@@ -1,3 +1,4 @@
+import SelfProxy from "@/proxy/SelfProxy";
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
@@ -7,15 +8,22 @@ import dialog_record_recharge from "@/views/dialog_record_recharge";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRechargeMediator from "../mediator/DialogRechargeMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogRecharge extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
 
     constructor() {
         super(DialogRechargeMediator);
+    }
+
+    get isOpen() {
+        // @ts-ignore
+        return GamePlatConfig.config.is_gold_transfer.is_open == 1 && this.selfProxy.userInfo.is_gold_transfer == 1;
     }
 
     onTabClick(idx: number) {

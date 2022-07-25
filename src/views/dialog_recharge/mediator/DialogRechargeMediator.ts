@@ -7,8 +7,11 @@ import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddr
 import OpenLink from "@/core/global/OpenLink";
 import dialog_message_box from "@/views/dialog_message_box";
 import WebViewBridge from "@/core/native/WebViewBridge";
+import SelfProxy from "@/proxy/SelfProxy";
 
 export default class DialogRechargeMediator extends AbstractMediator {
+    private selfProxy: SelfProxy = getProxy(SelfProxy);
+
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_var_recharge_method_list,
@@ -61,6 +64,8 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 });
                 break;
             case net.EventType.api_user_var_gold_transfer:
+                this.selfProxy.api_user_show_var([2]);
+                myProxy.transferProxy.resetform();
                 dialog_message.success(LangUtil("划转成功"));
                 break;
         }

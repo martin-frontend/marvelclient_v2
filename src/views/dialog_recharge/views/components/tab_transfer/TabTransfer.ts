@@ -22,9 +22,9 @@ export default class TabTransfer extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
 
     mounted() {
-        const aLink = document.getElementById("aLink");
-        if (aLink) {
-            aLink.addEventListener("click", () => {
+        const safetyLink = document.getElementById("safetyLink");
+        if (safetyLink) {
+            safetyLink.addEventListener("click", () => {
                 dialog_safety_center.show();
             });
         }
@@ -33,7 +33,7 @@ export default class TabTransfer extends AbstractView {
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
+            `<a id="safetyLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
         );
     }
 

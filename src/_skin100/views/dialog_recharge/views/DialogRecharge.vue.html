@@ -32,12 +32,12 @@
             >
                 <v-icon size="18" class="mr-1">mdi-arrow-up-bold-circle</v-icon>{{LangUtil("兑换")}}
             </v-btn>
-        </div>
+             </div>
             <v-spacer />
             <!-- <v-btn small color="colorText1 colorBlue--text" @click="goRecord">
                 <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
             </v-btn> -->
-            <v-img contain  class="mr-2 cur-img" :max-height="$vuetify.breakpoint.xsOnly?23:24" max-width="$vuetify.breakpoint.xsOnly?23:24" @click="goRecord" src="@/assets/recharge/history.png"> </v-img>
+            <v-img contain  class="mr-2 cur-img" :max-height="$vuetify.breakpoint.xsOnly?23:24" :max-width="$vuetify.breakpoint.xsOnly?23:24" @click="goRecord" src="@/assets/recharge/history.png"> </v-img>
         </v-card-text>
         <!-- <v-divider class="mx-5" /> -->
         <TabRecharge v-show="pageData.tabIndex == 0" />

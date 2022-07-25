@@ -1,4 +1,4 @@
-<v-card-text class="mt-3 px-8 pt-5 bPanelOpacityBg rounded-t-lg">
+<v-card-text class="mt-3 px-4 px-sm-8 pt-5 bPanelOpacityBg rounded-t-lg" :class="$vuetify.breakpoint.xsOnly?'rounded-t-xl':''">
     <div class="colorTextNormal2--text text-14" v-html="bindHtml">
         <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
         <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->

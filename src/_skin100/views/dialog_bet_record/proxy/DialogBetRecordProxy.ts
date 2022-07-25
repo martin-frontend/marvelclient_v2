@@ -2,7 +2,7 @@ import Constant from "@/core/global/Constant";
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { vuetify } from "@/plugins/vuetify";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";

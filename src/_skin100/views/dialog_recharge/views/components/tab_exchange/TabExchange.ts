@@ -6,7 +6,7 @@ import OpenLink from "@/core/global/OpenLink";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_address_book from "@/_skin100/views/dialog_address_book";
 import DialogAddressBookProxy from "@/_skin100/views/dialog_address_book/proxy/DialogAddressBookProxy";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
 import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
 import dialog_trade_password from "@/views/dialog_trade_password";

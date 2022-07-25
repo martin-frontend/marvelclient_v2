@@ -618,8 +618,8 @@
                         min-width="130"
                         height="35"
                         class="btnRedBg rounded-pill"
-                            color="colorExtensionBtn"
-                            v-if="false"
+                        color="colorExtensionBtn"
+                        v-if="false"
                         >
                         <span class="white--text text-14">{{LangUtil("推广统计")}}</span>
                         </v-btn>
@@ -814,7 +814,93 @@
             </v-card>
         </div>
         <!-- 手机表格 -->
-        <div class="px-0 px-sm-3 py-5" v-if="$vuetify.breakpoint.xsOnly">
+        <div class="rounded-lg level_panel pa-4 mx-1 mt-3" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="text-subtitle-1 text-sm-16 mb-2 mb-sm-2 font-weight-medium white--text d-flex align-center"><v-icon color="#666f7b" class="mr-2" >mdi-crown</v-icon>{{LangUtil("返佣等级")}}</div>
+            <div class="text-12 colorTextNormal--text px-3 py-1 mb-1 rounded bPanelOpacityBg">
+                {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
+            </div>
+            <v-card height="30" class="rounded-xl rounded-card mb-1 d-flex align-center mb-2 level_title" elevation="0">
+                <v-row no-gutters class="d-flex flex-row text-12 colorTextNormal--text font-weight-medium">
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                        {{LangUtil("等级")}}
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                        {{LangUtil("总业绩")}}
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
+                        {{LangUtil("返佣(每万)")}}
+                    </v-col>
+                    <v-col cols="2" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        {{LangUtil("级差")}}
+                    </v-col>
+                    <v-col cols="3" class="d-flex justify-center align-center">
+                        {{LangUtil("egame奖励")}}
+                    </v-col>
+                </v-row>
+            </v-card>
+            <!-- :class="item.level == tableData.myCommissionNum[0].cur_commission_level ? 'rowbg':'level_title'" -->
+            <v-card
+                height="33"
+                class="rounded mb-1 d-flex align-center "
+                v-for="(item, index) of tableData.promotionConfig[0]"
+                :class="item.level == tableData.myCommissionNum[0].cur_commission_level ? 'rowbg':'level_title'"
+                :key="index"
+                elevation="0"
+            >
+                <v-row no-gutters class="d-flex flex-row  text-13 font-weight-medium" >
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:3" class="d-flex justify-center level_col align-center">
+                        <!-- <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
+                            <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
+                        </span> -->
+                        {{LangUtil("{0}级", item.level)}}
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?2:3" class="d-flex justify-center align-center">
+                        <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
+                        <span v-else>{{ item.total_performance }}</span>
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:3" class="d-flex justify-center align-center">
+                        <v-img
+                            class="mr-1"
+                            :src="pageData.platCoins.mainCoin.icon"
+                            max-width="16"
+                            height="16"
+                        ></v-img>
+                        <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                    </v-col>
+                    <v-col cols="2" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        <span
+                            v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0"
+                            >-
+                        </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img
+                                class="mr-1"
+                                :src="pageData.platCoins.mainCoin.icon"
+                                max-width="16"
+                                height="16"
+                            ></v-img>
+                            <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                        </span>
+                    </v-col>
+                    <v-col :cols="tableData.is_promotion_num_added==1?3:3" class="d-flex justify-center align-center" v-if="item.commission_num[pageData.platCoins.rewardCoin.name]">
+                        <span
+                            v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0"
+                            >-
+                        </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img
+                                class="mr-1"
+                                :src="pageData.platCoins.rewardCoin.icon"
+                                max-width="16"
+                                height="16"
+                            ></v-img>
+                            <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
+                        </span>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </div>
+        <!-- <div class="px-0 px-sm-3 py-5" v-if="$vuetify.breakpoint.xsOnly">
             <div class="text-subtitle-1 text-sm-h5 mb-2 mb-sm-3 font-weight-medium">{{LangUtil("返佣等级")}}</div>
             <div class="text-caption text-sm-body-1 colorBlue--text mb-2 mb-sm-5">
                 {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
@@ -897,7 +983,7 @@
                     </v-col>
                 </v-row>
             </v-card>
-        </div>
+        </div> -->
         <Question :questions="fagProxy.qData.type1"></Question>
     </v-container>
 </div>

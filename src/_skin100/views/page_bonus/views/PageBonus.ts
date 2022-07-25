@@ -7,7 +7,7 @@ import dialog_pledge from "@/views/dialog_pledge";
 import dialog_manually_unstaking from "@/views/dialog_manually_unstaking";
 import dialog_pledge_records from "@/views/dialog_pledge_records";
 import dialog_wallet from "@/views/dialog_wallet";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";

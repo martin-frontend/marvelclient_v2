@@ -5,7 +5,7 @@ import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import { Watch, Component } from "vue-property-decorator";
 import PageGamePlayMediator from "../mediator/PageGamePlayMediator";
 import PageGamePlayProxy from "../proxy/PageGamePlayProxy";
@@ -113,9 +113,9 @@ export default class PageGamePlay extends AbstractView {
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 if (gameProxy.gamePreData.historyLength - window.history.length < -1) {
                     router.replace(gameProxy.gamePreData.lastRouter);
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         ScrollUtil(gameProxy.gamePreData.scrollY, 0);
-                    })
+                    });
                 } else {
                     router.back();
                 }

@@ -17,13 +17,10 @@ export default class DialogRecharge extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
 
+    GamePlatConfig = GamePlatConfig;
+
     constructor() {
         super(DialogRechargeMediator);
-    }
-
-    get isOpen() {
-        // @ts-ignore
-        return GamePlatConfig.config.is_gold_transfer.is_open == 1 && this.selfProxy.userInfo.is_gold_transfer == 1;
     }
 
     onTabClick(idx: number) {

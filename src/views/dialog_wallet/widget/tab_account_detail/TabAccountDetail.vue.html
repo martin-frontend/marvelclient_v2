@@ -44,6 +44,10 @@
                         <div>{{item.balance}}</div>
                     </div>
                     <div>
+                        <div>{{LangUtil("备注")}}</div>
+                        <div>{{item.remark}}</div>
+                    </div>
+                    <div>
                         <div>{{LangUtil("日期")}}</div>
                         <div class="text-truncate">{{item.created_at.substr(5)}}</div>
                     </div>
@@ -107,6 +111,10 @@
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("账户余额")}}</div>
                         <div>{{item.balance}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("备注")}}</div>
+                        <div>{{item.remark}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("日期")}}</div>

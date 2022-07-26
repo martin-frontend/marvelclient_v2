@@ -26,9 +26,10 @@
     width:100%;
 }
 .header-mobile {
-    position: fixed;
+    // position: fixed;
+    position: sticky;
     z-index: 1000;
-    background-color: #121e36;
+    // background-color: #121e36;
 }
 .listitem-mobile{
     .l-item{

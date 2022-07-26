@@ -32,10 +32,11 @@
     width:100%;
 }
 .header-mobile {
-    position: fixed;
+    // position: fixed;
+    position: sticky;
     z-index: 999;
     // background-color: #121e36;
-    padding-top: 125px;
+    // padding-top: 125px;
 }
 .listbox-mobile {
     overflow: hidden;

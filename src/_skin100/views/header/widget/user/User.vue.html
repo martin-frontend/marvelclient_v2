@@ -42,7 +42,7 @@
         <v-btn icon small size="20" @click.stop="drawer = !drawer" ><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute width="288" color="#16233B"> -->
-        <v-navigation-drawer v-model="drawer" app temporary floating absolute width="100%" >
+        <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" >
             <UserPanel @drawer="closeDrawer" />
         </v-navigation-drawer>
     </div>

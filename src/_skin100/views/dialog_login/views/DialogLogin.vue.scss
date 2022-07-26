@@ -72,3 +72,7 @@
 .colorPanelBg4{
     background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
 }
+
+::v-deep .v-input--selection-controls__input .v-icon{
+    color:rgba(255,255,255,0.3) !important;
+}

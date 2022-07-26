@@ -30,7 +30,7 @@
                     <v-btn
                         min-width="93"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2"
+                        class="rounded-pill font-weight-bold"
                         elevation="0"
                         :text="forgetData.form.type != 2"
                         :color="forgetData.form.type == 2 ? 'colorBtnSeleBg' : 'white'"
@@ -162,7 +162,7 @@
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">
-                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" color="white" dense hide-details></v-checkbox>
+                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" color="rgba(255,255,255,0.3)" dense hide-details></v-checkbox>
                     <div class="text-14 mt-1 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
                 <v-btn
@@ -207,7 +207,7 @@
                     <v-btn
                         min-width="115"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2"
+                        class="rounded-pill font-weight-bold"
                         elevation="0"
                         :text="forgetData.form.type != 2"
                         :color="forgetData.form.type == 2 ? 'colorBtnSeleBg' : 'white'"
@@ -333,7 +333,7 @@
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">
-                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" color="white" dense hide-details></v-checkbox>
+                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" class="remember-check" color="rgba(255,255,255,0.3)" dense hide-details></v-checkbox>
                     <div class="text-14 mt-1 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
                 <v-btn

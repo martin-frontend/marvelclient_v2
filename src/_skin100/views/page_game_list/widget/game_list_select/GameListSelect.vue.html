@@ -36,19 +36,19 @@
 <v-menu offset-y nudge-bottom="5">
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
-            class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg"
+            class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg2"
             :class="$vuetify.breakpoint.xsOnly ? 'px-2':'px-5'"
             :height="$vuetify.breakpoint.xsOnly ? '25' :'44'"
-            :width="$vuetify.breakpoint.xsOnly?135:150"
+            :width="$vuetify.breakpoint.xsOnly?70:150"
             v-bind="attrs"
             v-on="on"
         >
             <!-- <div class="icon-box iconfont icon-Filter icon__icon" :class="$vuetify.breakpoint.xsOnly?'text-18':'text-30'"></div> -->
-            <div class="ml-2 text-truncate white--text" :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'" v-if="options[selectValue]">
+            <div class="ml-2 text-truncate select-text" :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'" v-if="options[selectValue]">
                 {{options[selectValue].name || options[selectValue]}}
             </div>
             <v-spacer />
-            <div class="icon-box iconfont" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
+            <div class="icon-box iconfont select-text" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
         </v-sheet>
     </template>
     <v-sheet  class="listbox">

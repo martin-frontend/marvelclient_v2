@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageBonusProxy from "../proxy/PageBonusProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class PageBonusMediator extends AbstractMediator {

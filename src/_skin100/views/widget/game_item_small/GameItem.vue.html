@@ -3,9 +3,10 @@
     :color="item?'colorTitleBg':'transparent'"
     :style="{'opacity': item?1:0, 'cursor': 'auto'}"
     :class="getBoxClass()"
+    class="rounded-lg"
 >
     <v-lazy>
-        <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="getIcon(item)">
+        <v-img v-if="item" class="game-icon cursor-pointer rounded-lg" :src="getIcon(item)">
             <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
             <div class="vendor-title">{{ item.vendor_name }}</div>
             <div class="egame__item__mask">

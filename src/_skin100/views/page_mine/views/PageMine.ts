@@ -6,7 +6,7 @@ import dialog_record_mine from "@/_skin100/views/dialog_record_mine";
 import dialog_bet_record from "@/_skin100/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_game_list from "@/views/page_game_list";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 

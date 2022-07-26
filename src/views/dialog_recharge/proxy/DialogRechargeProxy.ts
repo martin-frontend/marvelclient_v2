@@ -7,11 +7,12 @@ export default class DialogRechargeProxy extends puremvc.Proxy {
 
     rechargeProxy: RechargeProxy = getProxy(RechargeProxy);
     exchangeProxy: ExchangeProxy = getProxy(ExchangeProxy);
+    transferProxy: TransferProxy = getProxy(TransferProxy);
 
     pageData = {
         loading: false,
         bShow: false,
-        tabIndex: 0, // 0充值 1兑换
+        tabIndex: 0, // 0充值 1兑换 2划转
     };
 
     show() {
@@ -194,6 +195,65 @@ export class ExchangeProxy extends puremvc.Proxy {
             account,
             exchange_channel_method_id,
             user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+        });
+    }
+}
+
+export class TransferProxy extends puremvc.Proxy {
+    static NAME = "TransferProxy";
+
+    /**钱包信息 */
+    gold_info = <any>{};
+
+    pageData = {
+        loading: false,
+        methodList: <any>{},
+        form: {
+            to_user_id: "",
+            gold: "",
+            coin_name_unique: "",
+            password_gold: "",
+        },
+    };
+
+    resetform() {
+        Object.assign(this.pageData.form, {
+            to_user_id: "",
+            gold: "",
+            password_gold: "",
+        });
+    }
+
+    setData(data: any) {
+        this.pageData.loading = false;
+        this.pageData.methodList = data;
+        const keys = Object.keys(data);
+        // 默认选中用户当前选择的币种
+        const gameProxy: GameProxy = getProxy(GameProxy);
+        let coin_name_unique = gameProxy.coin_name_unique;
+        if (keys.indexOf(coin_name_unique) == -1) {
+            coin_name_unique = keys[0];
+        }
+
+        if (coin_name_unique) {
+            this.pageData.form.coin_name_unique = coin_name_unique;
+        }
+    }
+
+    api_user_var_gold_transfer() {
+        this.pageData.loading = true;
+        const {
+            to_user_id,
+            gold,
+            coin_name_unique,
+            password_gold,
+        } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_user_var_gold_transfer, {
+            user_id: core.user_id,
+            to_user_id,
+            gold,
+            coin_name_unique,
             password_gold: core.MD5.createInstance().hex_md5(password_gold),
         });
     }

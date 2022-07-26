@@ -22,6 +22,9 @@ export default class AppFacade {
         //版本号
         core.version_str = getVersion();
         core.version = new Date(getVersion()).getTime();
+        if(process.env.VUE_APP_ENV == "development"){
+            core.version*=2;
+        }
         GameConfig.load();
     }
 

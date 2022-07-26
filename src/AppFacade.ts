@@ -20,6 +20,7 @@ export default class AppFacade {
         this.initObserver();
 
         //版本号
+        core.version_str = getVersion();
         core.version = new Date(getVersion()).getTime();
         GameConfig.load();
     }

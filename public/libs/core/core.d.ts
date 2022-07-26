@@ -1729,6 +1729,7 @@ declare module core {
 declare module core {
     /**版本号*/
     var version: number;
+    var version_str: string;
     /**host*/
     var host: string;
     /**用户ID*/
@@ -1756,6 +1757,7 @@ declare module core {
 }
 declare module net {
     class Http {
+        static needUpdate: boolean;
         static request(data: any, url: string, callback?: any): Promise<{}>;
         static get(url: string, data?: any): Promise<any>;
         static post(url: string, data?: any): Promise<any>;

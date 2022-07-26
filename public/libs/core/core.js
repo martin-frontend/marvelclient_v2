@@ -3994,6 +3994,7 @@ var core;
 (function (core) {
     /**版本号*/
     core.version = 0;
+    core.version_str = "";
     /**host*/
     core.host = "http://qa1.api.api_universe_swoole.nqsf9emow.com:27799";
     /**用户ID*/
@@ -4048,8 +4049,9 @@ var net;
                                 if (result.status == 0) {
                                     resolve(result);
                                     const version = (new Date(result.extend.version)).getTime();
-                                    if (core.version < version) {
-                                        alert("new version update!");
+                                    if (core.version < version && !Http.needUpdate) {
+                                        Http.needUpdate = true;
+                                        alert("new version update! current version: " + core.version_str);
                                         location.reload();
                                     }
                                 }
@@ -4104,6 +4106,7 @@ var net;
             });
         }
     }
+    Http.needUpdate = false;
     net.Http = Http;
     /**为URL附加参数 */
     function getUrl(source, obj) {

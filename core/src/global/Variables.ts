@@ -1,6 +1,7 @@
 module core {
     /**版本号*/
     export var version: number = 0;
+    export var version_str: string = "";
     /**host*/
     export var host: string = "http://qa1.api.api_universe_swoole.nqsf9emow.com:27799";
     /**用户ID*/

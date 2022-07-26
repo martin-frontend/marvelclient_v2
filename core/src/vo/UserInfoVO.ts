@@ -35,9 +35,7 @@ module core {
         is_channel_statistic_display?: number;
 
         /**转换开关：0-否|1-是 */
-        is_gold_transfer?: {
-            is_open: number;
-        };
+        is_gold_transfer?: number;
         /**转换手续费 */
         gold_transfer_fee?: number;
         /**流水倍数 */

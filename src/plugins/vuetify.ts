@@ -46,6 +46,7 @@ const opts = {
                 colorGreyBtn: "#303f4b", //used
                 colorIcontNormal: "#57399b", //used
                 colorTextGreey: "#798088", //used
+                colorTextNoData: "#9989c2", //used
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

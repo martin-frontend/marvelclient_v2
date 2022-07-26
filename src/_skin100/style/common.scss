@@ -172,9 +172,12 @@ input {
     }
 }
 ::v-deep .vuejs-loadmore .vuejs-loadmore-finished-text {
-    // color: #4c5d7f;
-    color: #8f7ac0;
+    color: #4c5d7f;
 }
 .text-align-center {
     text-align: center;
+}
+
+.vuejs-loadmore-error-text, .vuejs-loadmore-finished-text, .vuejs-loadmore-loading, .vuejs-refresh-text, .vuejs-loading-text{
+    color: #9989c2 !important;
 }

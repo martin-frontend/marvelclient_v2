@@ -2587,6 +2587,7 @@ declare module core {
         extend: {
             microtime: number;
             unique: string;
+            version: string;
         };
         data: any;
     }

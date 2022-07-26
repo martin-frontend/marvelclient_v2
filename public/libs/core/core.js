@@ -4047,6 +4047,11 @@ var net;
                                 console.groupEnd();
                                 if (result.status == 0) {
                                     resolve(result);
+                                    const version = (new Date(result.extend.version)).getTime();
+                                    if (core.version < version) {
+                                        alert("new version update!");
+                                        location.reload();
+                                    }
                                 }
                                 else {
                                     facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, result });

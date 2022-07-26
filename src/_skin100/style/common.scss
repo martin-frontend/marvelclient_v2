@@ -2,7 +2,7 @@
 @import "@/style/params.scss";
 .theme--dark {
     &.v-application {
-        background-color: #121e36ff;
+        background-color: #182533ff;
     }
 }
 
@@ -17,7 +17,8 @@
     }
 }
 .html {
-    background-color: #131e36;
+    // background-color: #131e36;
+    background-color: #182533;
 }
 @-moz-document url-prefix() {
     /* Disable scrollbar Firefox */
@@ -29,7 +30,7 @@ body {
     font-size: 14px;
     color: #fff;
     color: var(--app-color);
-    background-color: #121e36ff;
+    background-color: #182533ff;
     background-color: var(--app-background-color);
     font-family: "Montserrat", "Open Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei",
         Arial, sans-serif;

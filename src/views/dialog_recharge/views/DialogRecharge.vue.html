@@ -45,8 +45,12 @@
                     <v-icon class="mr-1">mdi-transfer</v-icon>{{LangUtil("划转")}}
                 </v-btn>
                 <v-spacer />
+
                 <v-btn v-if="pageData.tabIndex !== 2" small color="colorText1 colorBlue--text" @click="goRecord">
                     <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
+                </v-btn>
+                <v-btn v-else small color="colorText1 colorBlue--text" @click="viewDetail">
+                    <span>{{ LangUtil("账目明细") }} </span>
                 </v-btn>
             </v-card-text>
         </template>
@@ -97,8 +101,12 @@
                         {{LangUtil("划转")}}
                     </v-btn>
                     <v-spacer />
+
                     <v-btn v-if="pageData.tabIndex !== 2" small color="colorText1 colorBlue--text" @click="goRecord">
                         <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
+                    </v-btn>
+                    <v-btn v-else small color="colorText1 colorBlue--text" @click="viewDetail">
+                        <span>{{ LangUtil("账目明细") }} </span>
                     </v-btn>
                 </div>
             </v-card-text>

@@ -5,6 +5,7 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_record_exchange from "@/views/dialog_record_exchange";
 import dialog_record_recharge from "@/views/dialog_record_recharge";
+import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRechargeMediator from "../mediator/DialogRechargeMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
@@ -40,6 +41,10 @@ export default class DialogRecharge extends AbstractView {
             dialog_record_exchange.show();
         }
         this.pageData.bShow = false;
+    }
+
+    viewDetail() {
+        dialog_wallet.show(2, 0);
     }
 
     @Watch("pageData.bShow")

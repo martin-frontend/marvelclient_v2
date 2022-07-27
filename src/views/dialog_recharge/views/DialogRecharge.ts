@@ -9,7 +9,6 @@ import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRechargeMediator from "../mediator/DialogRechargeMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
-import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogRecharge extends AbstractView {
@@ -17,8 +16,6 @@ export default class DialogRecharge extends AbstractView {
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     selfProxy: SelfProxy = getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
-
-    GamePlatConfig = GamePlatConfig;
 
     constructor() {
         super(DialogRechargeMediator);

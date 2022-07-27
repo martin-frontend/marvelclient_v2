@@ -284,7 +284,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             plat_id: core.plat_id,
             from_coin: inputType == 0 ? coinA : coinB,
             from_coin_number: inputType == 0 ? inputA : inputB,
-            tolerance: tolerance.toString(),
+            tolerance: this.pageData.swap_setting_info.tolerance_params[tolerance],
             timestamp,
         };
         if (this.pageData.form.timestamp == 1) {
@@ -308,7 +308,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
             user_id: core.user_id,
             from_coin: coinA,
             from_coin_number: inputA,
-            tolerance: tolerance.toString(),
+            tolerance: this.pageData.swap_setting_info.tolerance_params[tolerance],
         };
         this.sendNotification(net.HttpType.api_user_var_swap_create_order, data);
     }

@@ -6,7 +6,7 @@
 >
     <v-lazy>
         <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="getIcon(item)">
-            <div class="game-title font-weight-bold">{{ item.vendor_product_name }}</div>
+            <div class="game-title font-weight-bold" :class="item.vendor_product_name.length > 6 ? 'mini': ''">{{ item.vendor_product_name }}</div>
             <div class="vendor-title">{{ item.vendor_name }}</div>
             <div class="egame__item__mask">
                 <div class="egame__item__play-icon">

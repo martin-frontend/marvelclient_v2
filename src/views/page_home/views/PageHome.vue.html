@@ -4,7 +4,7 @@
     <Activity />
     <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
         <GameSlideGroup
-            v-if="item.category != 4 && item.category != 32 && item.category != 64"
+            v-if=" item.category != 32 && item.category != 64"
             :data="item"
             :bShowAll="true"
             :name="item.category"
@@ -15,7 +15,7 @@
     <v-lazy>
         <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
     </v-lazy>
-    <div class=" mb-13" v-if="$vuetify.breakpoint.mobile">
+    <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
         <div class="all-rights-reserved">version:{{getVersion()}}</div>
         <div class="all-rights-reserved">{{getChannelID()}}</div>
     </div>

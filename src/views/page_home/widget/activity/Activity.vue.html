@@ -2,7 +2,7 @@
     <div class="d-flex box-container">
         <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goPageBouns">
-                <div class="text-16">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}} {{}}</div>
+                <div class="text-16">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
                 <div class="text-12">
                     <span>
                         {{LangUtil("当前分红池")}}:
@@ -23,8 +23,8 @@
                     <span>
                         {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
                     </span>
-                    <span class="font-weight-thin font-italic" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
-                        {{ `${coinChangedData[0] >= 0? '+': ''}${coinChangedData[1]}` }}
+                    <span class="font-weight-thin font-italic text-14" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                        {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
                     </span>
                 </div>
                 <!-- <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div> -->
@@ -44,7 +44,7 @@
                 <span>
                     {{LangUtil("当前分红池")}}:
                 </span>
-                <span class="green-text font-italic font-weight-thin ml-3">
+                <span class="green-text font-italic font-weight-thin ml-3 text-18">
                     {{`(APR：${pageData.stakeInfo.apr})`}}
                 </span>
             </div>
@@ -59,8 +59,8 @@
                 <span>
                     {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
                 </span>
-                <span class="text-18 font-weight-thin font-italic" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
-                    {{ `${coinChangedData[0] >= 0? '+': ''}${coinChangedData[1]}` }}
+                <span class="text-18 font-weight-thin font-italic" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                    {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
                 </span>
             </div>
 

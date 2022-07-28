@@ -32,11 +32,14 @@ export default class Activity extends AbstractView {
     /**CF今日涨跌 */
     get coinChangedData() {
         const str = this.pageData.swap_k.coin_a_b_changed;
+        if (str) {
+            const num1 = str.split("(");
+            const num2 = num1[1].split(")");
 
-        const num1 = str.split("(");
-        const num2 = num1[1].split(")");
-
-        return [num1[0], num2[0]];
+            return [num1[0], num2[0]];
+        } else {
+            return;
+        }
     }
 
     goPageBouns() {

@@ -11,10 +11,19 @@ export default class PageHomeMediator extends AbstractMediator {
         myProxy.pageData.lobbyIndex = gameProxy.lobbyIndex;
         myProxy.api_plat_var_stake_info();
         myProxy.api_plat_var_swap_setting_info();
+        myProxy.api_plat_var_swap_k();
+        myProxy.api_plat_var_backwater_setting_info();
     }
 
     public listNotificationInterests(): string[] {
-        return [NotificationName.GAME_CONFIG, net.EventType.api_plat_var_lobby_index, net.EventType.api_plat_var_stake_info, net.EventType.api_plat_var_swap_setting_info];
+        return [
+            NotificationName.GAME_CONFIG,
+            net.EventType.api_plat_var_lobby_index,
+            net.EventType.api_plat_var_stake_info,
+            net.EventType.api_plat_var_swap_setting_info,
+            net.EventType.api_plat_var_swap_k,
+            net.EventType.api_plat_var_backwater_setting_info,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -30,7 +39,12 @@ export default class PageHomeMediator extends AbstractMediator {
             case net.EventType.api_plat_var_swap_setting_info:
                 myProxy.setInfo(body);
                 break;
-
+            case net.EventType.api_plat_var_swap_k:
+                myProxy.setSwapK(body);
+                break;
+            case net.EventType.api_plat_var_backwater_setting_info:
+                myProxy.setbackwater(body);
+                break;
         }
     }
 }

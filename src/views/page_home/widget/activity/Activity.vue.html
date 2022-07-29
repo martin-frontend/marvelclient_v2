@@ -19,11 +19,11 @@
             </div>
 
             <div class="activity2-min rounded-lg pa-3" @click="goPageSwap">
-                <div class="text-16 ml-2">
+                <div class="text-16 ml-2 d-flex align-end">
                     <span>
                         {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
                     </span>
-                    <span class="font-weight-bold font-italic text-14" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                    <span class="font-weight-bold font-italic text-14 ml-1" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
                         {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
                     </span>
                 </div>

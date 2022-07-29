@@ -39,6 +39,11 @@ const routes: Array<RouteConfig> = [
         name: "page_bonus",
         component: () => import(/* webpackChunkName: "page_bonus" */ "@/_skin100/views/page_bonus/views/PageBonus.vue"),
     },
+    {
+        path: "/page_swap",
+        name: "page_swap",
+        component: () => import(/* webpackChunkName: "page_swap" */ "@/_skin100/views/page_swap/views/PageSwap.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */

@@ -27,6 +27,8 @@ declare module net {
         api_plat_var_game_all_index: string;
         /**--新加的--获取币种游戏比率*/
         api_user_var_block_coins_scale: string;
+        /**--新加的--获取平台最大挖矿效率*/
+        api_plat_var_backwater_setting_info: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -270,6 +272,8 @@ declare module net {
         api_plat_var_game_all_index: string;
         /**--新加的--获取币种游戏比率*/
         api_user_var_block_coins_scale: string;
+        /**--新加的--获取平台最大挖矿效率*/
+        api_plat_var_backwater_setting_info: string;
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: string;
         /**--钱包--代币转入订单提交*/
@@ -549,6 +553,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_sign_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取平台最大挖矿效率
+ */
+declare module net {
+    class cmd_api_plat_var_backwater_setting_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1729,6 +1742,7 @@ declare module core {
 declare module core {
     /**版本号*/
     var version: number;
+    var version_str: string;
     /**host*/
     var host: string;
     /**用户ID*/
@@ -1756,6 +1770,7 @@ declare module core {
 }
 declare module net {
     class Http {
+        static needUpdate: boolean;
         static request(data: any, url: string, callback?: any): Promise<{}>;
         static get(url: string, data?: any): Promise<any>;
         static post(url: string, data?: any): Promise<any>;
@@ -2587,6 +2602,7 @@ declare module core {
         extend: {
             microtime: number;
             unique: string;
+            version: string;
         };
         data: any;
     }

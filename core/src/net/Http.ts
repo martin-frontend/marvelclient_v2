@@ -1,5 +1,7 @@
 module net {
     export class Http {
+        static needUpdate = false;
+
         static request(data: any, url: string, callback?: any) {
             puremvc.Facade.getInstance().sendNotification(EventType.REQUEST_START, { url, data });
 
@@ -39,6 +41,12 @@ module net {
 
                                 if (result.status == 0) {
                                     resolve(result);
+                                    const version = (new Date(result.extend.version)).getTime();
+                                    if(core.version < version && !Http.needUpdate){
+                                        Http.needUpdate = true;
+                                        alert("new version update! current version: " + core.version_str);
+                                        location.reload();
+                                    }
                                 } else {
                                     facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, result });
                                 }

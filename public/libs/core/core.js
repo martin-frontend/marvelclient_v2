@@ -81,6 +81,8 @@ var net;
         api_plat_var_game_all_index: "api/plat/{plat_id}/game/all/index",
         /**--新加的--获取币种游戏比率*/
         api_user_var_block_coins_scale: "api/user/{user_id}/block_coins_scale ",
+        /**--新加的--获取平台最大挖矿效率*/
+        api_plat_var_backwater_setting_info: "api/plat/{plat_id}/backwater_setting_info",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
         /**--钱包--代币转入订单提交*/
@@ -324,6 +326,8 @@ var net;
         api_plat_var_game_all_index: "api_plat_var_game_all_index",
         /**--新加的--获取币种游戏比率*/
         api_user_var_block_coins_scale: "api_user_var_block_coins_scale ",
+        /**--新加的--获取平台最大挖矿效率*/
+        api_plat_var_backwater_setting_info: "api_plat_var_backwater_setting_info",
         /**--钱包--获取转入账号信息*/
         api_plat_var_block_transfer_in_order_account: "api_plat_var_block_transfer_in_order_account",
         /**--钱包--代币转入订单提交*/
@@ -553,6 +557,7 @@ var net;
         facade.registerCommand(net.HttpType.api_plat_var_game_all_config, net.cmd_api_plat_var_game_all_config);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_index, net.cmd_api_plat_var_game_all_index);
         facade.registerCommand(net.HttpType.api_user_var_block_coins_scale, net.cmd_api_user_var_block_coins_scale);
+        facade.registerCommand(net.HttpType.api_plat_var_backwater_setting_info, net.cmd_api_plat_var_backwater_setting_info);
         //--钱包
         facade.registerCommand(net.HttpType.api_plat_var_block_transfer_in_order_account, net.cmd_api_plat_var_block_transfer_in_order_account);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_in_order_store, net.cmd_api_user_var_block_transfer_in_order_store);
@@ -836,6 +841,28 @@ var net;
         }
     }
     net.cmd_api_plat_sign_index = cmd_api_plat_sign_index;
+})(net || (net = {}));
+/**
+ * 获取平台最大挖矿效率
+ */
+var net;
+/**
+ * 获取平台最大挖矿效率
+ */
+(function (net) {
+    class cmd_api_plat_var_backwater_setting_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_backwater_setting_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_backwater_setting_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_backwater_setting_info = cmd_api_plat_var_backwater_setting_info;
 })(net || (net = {}));
 /**
  * 获取转入账号信息

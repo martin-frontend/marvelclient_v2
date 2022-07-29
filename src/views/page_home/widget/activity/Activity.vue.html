@@ -3,7 +3,14 @@
         <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goPageBouns">
                 <div class="text-16">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
-                <div class="text-12">{{LangUtil("当前分红池")}}:</div>
+                <div class="text-12">
+                    <span>
+                        {{LangUtil("当前分红池")}}:
+                    </span>
+                    <span class="green-text font-italic font-weight-bold">
+                        {{`APR ${pageData.stakeInfo.apr}`}}
+                    </span>
+                </div>
                 <Money v-model="pageData.stakeInfo.bonus_pool_amount" fontSize="24" itemWidth="16" itemHeight="36" />
 
                 <v-sheet class="btn text-14 rounded-pill mt-1 px-2 d-flex align-center justify-center" height="25" min-width="90">
@@ -12,7 +19,14 @@
             </div>
 
             <div class="activity2-min rounded-lg pa-3" @click="goPageSwap">
-                <div class="text-16 ml-2">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
+                <div class="text-16 ml-2 d-flex align-end">
+                    <span>
+                        {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
+                    </span>
+                    <span class="font-weight-bold font-italic text-14 ml-1" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                        {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
+                    </span>
+                </div>
                 <!-- <div class="text-12 ml-2">{{LangUtil("平台定期回购")}}</div> -->
                 <div class="d-flex align-center rounded px-2 price ml-1 py-1 my-4">
                     <div class="text-14 mr-1">{{LangUtil("价格")}}</div>
@@ -26,7 +40,14 @@
 
         <div class="activity1 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageBouns">
             <div class="text-24 mt-5 ml-5">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
-            <div class="text-16 ml-5 mt-2">{{LangUtil("当前分红池")}}:</div>
+            <div class="text-16 ml-5 mt-2">
+                <span>
+                    {{LangUtil("当前分红池")}}:
+                </span>
+                <span class="green-text font-italic font-weight-bold text-18">
+                    {{`APR ${pageData.stakeInfo.apr}`}}
+                </span>
+            </div>
             <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5 mt-3" />
             <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35" min-width="110">
                 {{LangUtil("领取分红")}}
@@ -34,7 +55,14 @@
         </div>
 
         <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageSwap">
-            <div class="text-24 mt-5 ml-5">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
+            <div class="text-24 mt-5 ml-5">
+                <span>
+                    {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
+                </span>
+                <span class="text-18 font-weight-bold font-italic" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                    {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
+                </span>
+            </div>
 
             <div class="d-flex align-center rounded-lg px-5 price ml-5 my-9">
                 <div class="text-16 mr-2">{{LangUtil("价格")}}</div>
@@ -47,7 +75,14 @@
         </div>
 
         <div class="activity3 rounded-lg" @click="goMine" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-24 mt-5 ml-5">{{LangUtil("游戏挖矿")}}</div>
+            <div class="text-24 mt-5 ml-5">
+                <span>
+                    {{LangUtil("游戏挖矿")}}
+                </span>
+                <span class="yellow-text text-18 font-weight-bold font-italic">
+                    {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
+                </span>
+            </div>
             <div class="text-20 ml-5 mt-2" style="width: 50%">
                 {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
             </div>

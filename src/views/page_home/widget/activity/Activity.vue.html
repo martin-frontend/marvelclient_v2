@@ -8,7 +8,7 @@
                         {{LangUtil("当前分红池")}}:
                     </span>
                     <span class="green-text font-italic font-weight-bold">
-                        {{`(APR ${pageData.stakeInfo.apr})`}}
+                        {{`APR ${pageData.stakeInfo.apr}`}}
                     </span>
                 </div>
                 <Money v-model="pageData.stakeInfo.bonus_pool_amount" fontSize="24" itemWidth="16" itemHeight="36" />
@@ -45,7 +45,7 @@
                     {{LangUtil("当前分红池")}}:
                 </span>
                 <span class="green-text font-italic font-weight-bold text-18">
-                    {{`(APR ${pageData.stakeInfo.apr})`}}
+                    {{`APR ${pageData.stakeInfo.apr}`}}
                 </span>
             </div>
             <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5 mt-3" />
@@ -80,7 +80,7 @@
                     {{LangUtil("游戏挖矿")}}
                 </span>
                 <span class="yellow-text text-18 font-weight-bold font-italic">
-                    {{ `(${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")})` }}
+                    {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
                 </span>
             </div>
             <div class="text-20 ml-5 mt-2" style="width: 50%">

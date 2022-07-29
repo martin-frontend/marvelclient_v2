@@ -7,8 +7,8 @@
                     <span>
                         {{LangUtil("当前分红池")}}:
                     </span>
-                    <span class="green-text font-italic font-weight-thin ml-3">
-                        {{`(APR：${pageData.stakeInfo.apr})`}}
+                    <span class="green-text font-italic font-weight-bold">
+                        {{`(APR ${pageData.stakeInfo.apr})`}}
                     </span>
                 </div>
                 <Money v-model="pageData.stakeInfo.bonus_pool_amount" fontSize="24" itemWidth="16" itemHeight="36" />
@@ -23,7 +23,7 @@
                     <span>
                         {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
                     </span>
-                    <span class="font-weight-thin font-italic text-14" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                    <span class="font-weight-bold font-italic text-14" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
                         {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
                     </span>
                 </div>
@@ -44,8 +44,8 @@
                 <span>
                     {{LangUtil("当前分红池")}}:
                 </span>
-                <span class="green-text font-italic font-weight-thin ml-3 text-18">
-                    {{`(APR：${pageData.stakeInfo.apr})`}}
+                <span class="green-text font-italic font-weight-bold text-18">
+                    {{`(APR ${pageData.stakeInfo.apr})`}}
                 </span>
             </div>
             <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5 mt-3" />
@@ -59,7 +59,7 @@
                 <span>
                     {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
                 </span>
-                <span class="text-18 font-weight-thin font-italic" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                <span class="text-18 font-weight-bold font-italic" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
                     {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
                 </span>
             </div>
@@ -79,7 +79,7 @@
                 <span>
                     {{LangUtil("游戏挖矿")}}
                 </span>
-                <span class="yellow-text text-18 font-weight-thin font-italic">
+                <span class="yellow-text text-18 font-weight-bold font-italic">
                     {{ `(${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")})` }}
                 </span>
             </div>

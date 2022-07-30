@@ -55,11 +55,33 @@ export default class PageSwapProxy extends puremvc.Proxy {
                 xAxis: {
                     boundaryGap: false,
                     data: [],
+                    axisLine: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
                 },
                 yAxis: {
-                    show: false, // 隐藏y轴坐标
+                    show: true, // 隐藏y轴坐标
                     type: "value",
                     scale: true,
+                    boundaryGap: false,
+                    axisLine: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "rgba(151,151,151,0.2)",
+                        },
+                    },
+                    axisTick: {
+                        show: false,
+                    },
                 },
                 series: [
                     {
@@ -67,29 +89,39 @@ export default class PageSwapProxy extends puremvc.Proxy {
                         data: [],
                         type: "line",
                         areaStyle: {
-                            opacity: 0.1,
-                            color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
-                                //这里是渐变的角度，上下左右四个方向
-                                {
-                                    offset: 0,
-                                    color: "rgb(205, 104, 104)", //这里是渐变色的起始颜色
-                                },
-                                {
-                                    offset: 1,
-                                    color: "#1a273f", // 这里是渐变色的结束颜色
-                                },
-                            ]),
+                            color: "#963fc8", //red
+                            normal: {
+                                opacity: 0.05,
+                                color: "#963fc8",
+                                // color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                //     //这里是渐变的角度，上下左右四个方向
+                                //     {
+                                //         offset: 0,
+                                //         color: "#963fc8", //这里是渐变色的起始颜色
+                                //     },
+                                //     {
+                                //         offset: 1,
+                                //         color: "#1a273f", // 这里是渐变色的结束颜色
+                                //     },
+                                // ]),
+                            },
+                        },
+                        itemStyle: {
+                            color: "#963fc8",
                         },
                         showSymbol: false,
                         // symbol: "none", // 去掉小圆点
                         lineStyle: {
-                            color: "rgba(205, 104, 104, 0.9)", //red
-                            width: 1,
+                            color: "#963fc8", //red
+                            normal: {
+                                color: "#963fc8", //red
+                                width: 1,
+                            },
                         },
                     },
                 ],
                 grid: {
-                    x: 20, // 左侧距离
+                    x: 50, // 左侧距离
                     y: 80, // 顶部距离
                     x2: 20, //右侧距离
                     y2: 35, //底部距离

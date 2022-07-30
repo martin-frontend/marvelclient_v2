@@ -2,20 +2,21 @@
     <v-container>
         <v-row no-gutters class="mb-5 font-weight-medium">
             <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$vuetify.breakpoint.xsOnly">
-                <v-card class="rounded-lg pa-5" height="100%" color="colorPanelBg4" flat>
-                    <div class="d-flex mx-3 align-end">
-                        <v-img class="mr-2" :src="chartData.coinA && plat_coins[chartData.coinA].icon" max-width="30" max-height="30">
+                <v-card class="rounded-lg pa-5" height="100%" color="#212e3e" flat>
+                    <div class="d-flex mx-3 align-center">
+                        <v-img class="mr-1" :src="chartData.coinA && plat_coins[chartData.coinA].icon" max-width="40" max-height="40">
                         </v-img>
-                        <v-img :src="chartData.coinB && plat_coins[chartData.coinB].icon" max-width="30" max-height="30">
+                        <v-img :src="chartData.coinB && plat_coins[chartData.coinB].icon" max-width="40" max-height="40">
                         </v-img>
-                        <span class="text-18 mx-4 colorBlue--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
-                        <v-btn class="btn_backbround" color="#669CE7" plain min-width="30" max-width="30" height="30" @click="chartSwap">
-                            <v-icon>
+                        <span class="text-18 mx-2 white--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
+                        <v-btn  color="transparent" icon min-width="30" max-width="30" height="30" @click="chartSwap">
+                            <!-- <v-icon>
                                 mdi-swap-horizontal
-                            </v-icon>
+                            </v-icon> -->
+                            <v-img src="@/assets/swap/swap-icon.png" max-width="28" max-height="28"></v-img>
                         </v-btn>
                         <v-spacer />
-                        <v-btn-toggle mandatory group class="period" v-model="pageData.chartQuary.type" @change="onTimeChange">
+                        <!-- <v-btn-toggle mandatory group class="period" v-model="pageData.chartQuary.type" @change="onTimeChange">
                             <v-btn class="rounded-lg mr-2" :height="35" :width="80"> 
                                 <span class="text-caption text-14">  {{LangUtil("24小时")}} </span>
                             </v-btn>
@@ -28,48 +29,67 @@
                             <v-btn class="rounded-lg" :height="35" :width="80">
                                 <span class="text-caption text-14">  {{LangUtil("一年")}} </span>
                             </v-btn>
+                        </v-btn-toggle> -->
+                    </div>
+                    <div class="d-flex mt-2 mx-3 align-end">
+                        <span class="text-24 white--text" style="line-height:30px;">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
+                        <span class="text-16 ml-1 colorTextGreey--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
+                        <span class="text-16 ml-2" :class="parseFloat(chartChangedData)<0? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
+                        <v-spacer />
+                        <v-btn-toggle mandatory group class="period" v-model="pageData.chartQuary.type" @change="onTimeChange">
+                            <v-btn class="rounded-pill  mr-2" :height="36" :width="80"> 
+                                <span class="text-caption text-14 white--text font-weight-medium">  {{LangUtil("24小时")}} </span>
+                            </v-btn>
+                            <v-btn class="rounded-pill mr-2" :height="36" :width="80">
+                                <span class="text-caption text-14 white--text font-weight-medium">  {{LangUtil("一周")}} </span>
+                            </v-btn>
+                            <v-btn class="rounded-pill mr-2" :height="36" :width="80"> 
+                                <span class="text-caption text-14 white--text font-weight-medium">  {{LangUtil("一月")}} </span>
+                            </v-btn>
+                            <v-btn class="rounded-pill" :height="36" :width="80">
+                                <span class="text-caption text-14 white--text font-weight-medium">  {{LangUtil("一年")}} </span>
+                            </v-btn>
                         </v-btn-toggle>
                     </div>
-                    <div class="d-flex mt-5 mx-3 align-end">
-                        <span class="text-h4">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
-                        <span class="text-18 ml-2 colorText8--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
-                        <span class="text-18 ml-4" :class="parseFloat(chartChangedData)<0? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
-                    </div>
-                    <div class="mt-2 mx-3 text-14 colorText8--text">{{ chartData.created_time}}</div>
+                    <div class="mt-2 mx-3 text-14 colorTextGreey--text">{{ chartData.created_time}}</div>
                     <!-- chart -->
                     <Chart class="line_chart" />   
                 </v-card>
             </v-col>
 
             <v-col cols="12" lg="4" class="">
-                <v-card class="rounded-lg" color="colorPanelBg4" flat>
-                    <v-card-title class="gradient-bg head d-flex align-center px-3 px-sm-6 pb-3 pb-sm-4 pt-1 pt-sm-5">
+                <v-card class="rounded-lg" color="#212e3e" flat>
+                    <v-card-title class="head d-flex align-center px-3 px-sm-5 pb-3 pb-sm-4 pt-1 pt-sm-5">
                         <div>
-                            <div class="d-flex align-start text-xs-18 text-22 font-weight-bold">{{LangUtil("交换1")}}</div>
-                            <div class="colorText8--text text-14 text-sm-subtitle-1">
+                            <div class="d-flex align-start text-xs-18 text-18 font-weight-medium">{{LangUtil("兑换")}}</div>
+                            <div class="colorTextGreey--text text-14 mt-n1">
                                 {{LangUtil("即时交易代币")}}
                             </div>
                         </div>
                         <v-spacer />
-                        <div>
+                        <div class="mb-n6">
                             <v-btn icon @click="handlerRecord">
-                                <v-icon>mdi-note-text</v-icon>
+                                <!-- <v-icon>mdi-note-text</v-icon> -->
+                                <v-img src="@/assets/swap/record-icon.png" max-width="20" max-height="24"></v-img>
                             </v-btn>
                             <v-btn icon @click="handlerRefresh">
-                                <v-icon>mdi-reload</v-icon>
+                                <!-- <v-icon>mdi-reload</v-icon> -->
+                                <v-img src="@/assets/swap/reflush-icon.png" max-width="24" max-height="24"></v-img>
                             </v-btn>
                         </div>
                     </v-card-title >
-                    <v-divider class="mx-3 mx-sm-6" />
-                    <v-card-text class="pa-3 px-sm-6">
+                    <!-- <v-divider class="mx-3 mx-sm-6" /> -->
+                    <v-card-text class="pa-3 px-sm-5 pt-sm-0">
 
                         <div class="d-flex justify-space-between align-center mb-3">
                             <span class="d-flex align-center">
                                 <v-img :src="form.coinA && plat_coins[form.coinA].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="text-14 text-sm-subtitle-1 ml-2" :class="form.coinA">{{ form.coinA }}</div>
+                                <!-- <div class="text-14 text-sm-subtitle-1 ml-2" :class="form.coinA">{{ form.coinA }}</div> -->
+                                <div class="text-16 white--text ml-2">{{ form.coinA }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="userInfo.gold_info[form.coinA]">
+                            <!-- <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="userInfo.gold_info[form.coinA]"> -->
+                            <span class="d-flex align-center text-16 bTextColor5" v-if="userInfo.gold_info[form.coinA]">
                                 {{LangUtil("余额:")}} {{ userInfo.gold_info[form.coinA].plat_money }}
                             </span>
                         </div>
@@ -79,15 +99,17 @@
                             v-model="form.inputA"
                             @input="onInputA"
                         >
-                            <v-btn class="d-flex align-center mr-2 text-sm-subtitle-1" icon min-width="32" color="colorTextAll" width="20" height="20" @click="handlerAll" v-if="userInfo.user_id">
-                                {{LangUtil("全部")}}
+                            <v-btn class="d-flex align-center mr-n1 rounded-pill "  min-width="32" color="rgba(255,255,255,0.1)" elevation="0"  width="50" height="28" @click="handlerAll" v-if="userInfo.user_id">
+                               <span class="text-12 bTextColor5">{{LangUtil("全部")}}</span>
                             </v-btn>
                         </CustomInput>
 
                         <div class="d-flex justify-center my-3">
                             <v-hover v-slot="{ hover }">
-                                <v-btn icon class="btn_backbround" color="#669CE7" @click="tradeSwap">
-                                    <v-icon>{{ hover ? "mdi-swap-vertical" : "mdi-arrow-down" }}</v-icon>
+                                <!-- <v-btn icon class="btn_backbround" color="transparent" @click="tradeSwap"> -->
+                                <v-btn icon color="transparent" @click="tradeSwap">
+                                    <!-- <v-icon>{{ hover ? "mdi-swap-vertical" : "mdi-arrow-down" }}</v-icon> -->
+                                    <v-img src="@/assets/swap/swap-v-icon.png" max-width="32" max-height="32"></v-img>
                                 </v-btn>
                             </v-hover>
                         </div>
@@ -96,22 +118,24 @@
                             <span class="d-flex align-center">
                                 <v-img :src="form.coinB && plat_coins[form.coinB].icon" max-width="30" max-height="30">
                                 </v-img>
-                                <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="form.coinB">{{ form.coinB }}</div>
+                                <!-- <div class="d-flex align-center text-14 text-sm-subtitle-1 ml-2" :class="form.coinB">{{ form.coinB }}</div> -->
+                                <div class="text-16 white--text ml-2" :class="form.coinB">{{ form.coinB }}</div>
                             </span>
-                            <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="userInfo.gold_info[form.coinB]">
+                            <!-- <span class="d-flex align-center text-14 text-sm-subtitle-1" v-if="userInfo.gold_info[form.coinB]"> -->
+                            <span class="d-flex align-center text-16 bTextColor5" v-if="userInfo.gold_info[form.coinB]">
                                 {{LangUtil("余额:")}} {{ userInfo.gold_info[form.coinB].plat_money }}
                             </span>
                         </span>
                         <CustomInput
                             :placeholder="0"
                             type="number"
-                            class="mb-3 mb-sm-6"
+                            class="mb-3 mb-sm-0"
                             v-model="form.inputB"
                             @input="onInputB"
                             :disabled="true"
                         />
 
-                        <v-sheet class="d-flex colorText8--text text-14 text-sm-subtitle-1 rounded-lg px-4 align-center" color="colorPanelBg5" :height="$vuetify.breakpoint.xsOnly? 37:50">
+                        <v-sheet class="d-flex colorTextGreey--text text-14 px-0 align-center" color="transparent" :height="$vuetify.breakpoint.xsOnly? 37:34">
                             <span>{{LangUtil("价格")}}</span>
                             <v-spacer />
                             <span>1 {{ form.coinA }} = {{ form.price }} {{ form.coinB }}</span>

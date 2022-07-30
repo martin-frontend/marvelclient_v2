@@ -57,8 +57,8 @@ export default class DashboardDialog extends AbstractView {
 <style lang="scss" scoped>
 .chart {
     width: 100%;
-    height: 600px;
-    // height: 455px;
+    // height: 600px;
+    height: 530px;
     @media (max-width: 600px) {
         height: 300px;
     }

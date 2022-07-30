@@ -2,7 +2,7 @@
     <v-container>
         <v-row no-gutters class="mb-5 font-weight-medium">
             <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$vuetify.breakpoint.xsOnly">
-                <v-card class="rounded-lg pa-5" height="100%" color="#212e3e" flat>
+                <v-card class="rounded-lg pa-5" height="100%" color="colorGreyPanel" flat>
                     <div class="d-flex mx-3 align-center">
                         <v-img class="mr-1" :src="chartData.coinA && plat_coins[chartData.coinA].icon" max-width="40" max-height="40">
                         </v-img>
@@ -58,7 +58,7 @@
             </v-col>
 
             <v-col cols="12" lg="4" class="">
-                <v-card class="rounded-lg" color="#212e3e" flat>
+                <v-card class="rounded-lg" color="colorGreyPanel" flat>
                     <v-card-title class="head d-flex align-center px-3 px-sm-5 pb-3 pb-sm-4 pt-1 pt-sm-5">
                         <div>
                             <div class="d-flex align-start text-xs-18 text-18 font-weight-medium">{{LangUtil("兑换")}}</div>
@@ -141,30 +141,32 @@
                             <span>1 {{ form.coinA }} = {{ form.price }} {{ form.coinB }}</span>
                         </v-sheet>
 
-                        <div class="colorText8--text text-14 text-sm-subtitle-1 mt-3 mt-sm-7 mb-2 mb-sm-3">
+                        <div class="colorTextGreey--text text-14  mt-3 mt-sm-4 mb-2 mb-sm-2">
                             {{LangUtil("滑点容差:")}}
                         </div>
-                        <v-btn-toggle mandatory group class="btn_group_width mx-n1" v-model="form.tolerance" @change="onChange">
-                            <v-btn class="rounded-lg mx-1 btn_width" height="45" v-for="(item, key) of pageData.swap_setting_info.tolerance_params" :key="key"> 
-                                <span class="text-14 text-sm-subtitle-1"> {{ item }}% </span>
+                        <v-btn-toggle mandatory group class="btn_group_width mx-n1 period" v-model="form.tolerance" @change="onChange">
+                            <!-- <v-btn class="rounded-lg mx-1 btn_width" height="45" v-for="(item, key) of pageData.swap_setting_info.tolerance_params" :key="key">  -->
+                            <v-btn class="rounded-pill mx-1" width="80" height="36" v-for="(item, key) of pageData.swap_setting_info.tolerance_params" :key="key"> 
+                                <!-- <span class="text-14 text-sm-subtitle-1"> {{ item }}% </span> -->
+                                <span class="text-caption text-14 white--text font-weight-medium"> {{ item }}% </span>
                             </v-btn>
                         </v-btn-toggle>
                     </v-card-text>
                     <v-card-text class="px-3 px-sm-6 pb-4 pb-sm-5 pt-1 pt-sm-3">
-                        <v-btn class="rounded-lg" color="colorBtnBg" height="48" block @click="handlerTrade" :disabled="!isCheck">
-                            <span class="text-14 text-sm-subtitle-1"> {{LangUtil("交换")}} </span>
+                        <v-btn class="rounded btnRedBg" height="48" block @click="handlerTrade" :disabled="!isCheck">
+                            <span class="text-16"> {{LangUtil("确认兑换")}} </span>
                         </v-btn>
                     </v-card-text>
                 </v-card>
 
-                <v-card class="rounded-lg mt-2 colorText8--text text-14 text-sm-subtitle-1 px-5 pt-3 pt-sm-4 pb-4" color="colorPanelBg4" flat>
+                <v-card class="rounded-lg mt-2 colorTextGreey--text text-14  px-5 pt-3 pt-sm-4 pb-4" color="colorGreyPanel" flat>
                     <div class="d-flex align-center mb-3">
                         <span class="mr-2">
                             {{LangUtil("最小获得量")}}
                         </span>
                         <v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">
-                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                                <v-icon color="colorGreyPanel" class="help text-caption" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
                             </template>
                             <span>{{LangUtil("如果确认前，出现了较大的波动，您的交易将会被取消。")}}</span>
                         </v-tooltip>
@@ -179,7 +181,7 @@
                         </span>
                         <v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">
-                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                                <v-icon color="colorPanelBg4" class="help text-caption" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
                             </template>
                             <span>{{LangUtil("市场价格与预估金额之间的差异，取决于交易规模。")}}</span>
                         </v-tooltip>
@@ -194,7 +196,7 @@
                         </span>
                         <v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">
-                                <v-icon color="colorPanelBg4" class="help text-subtitle-1" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
+                                <v-icon color="colorPanelBg4" class="help text-caption" dark v-bind="attrs" v-on="on">mdi-help</v-icon>
                             </template>
                             <span>{{LangUtil("流动奖池功能上线后，手续费将用于流动性提供者奖励。")}}</span>
                         </v-tooltip>

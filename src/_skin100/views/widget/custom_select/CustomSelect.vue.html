@@ -1,8 +1,17 @@
 <v-sheet :width="width" color="transparent">
     <v-menu offset-y nudge-bottom="5">
         <template v-slot:activator="{ on, attrs }">
-            <v-sheet
+            <!-- <v-sheet
                 class="d-flex align-center rounded-lg px-3 colorText2--text"
+                :rounded="isPill ? 'pill':''"
+                width="100%"
+                :height="height"
+                :color="background"
+                v-bind="attrs"
+                v-on="on"
+            > -->
+            <v-sheet
+                class="d-flex align-center px-3 colorText2--text"
                 :rounded="isPill ? 'pill':''"
                 width="100%"
                 :height="height"

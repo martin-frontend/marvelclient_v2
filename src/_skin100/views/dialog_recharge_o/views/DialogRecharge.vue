@@ -4,7 +4,6 @@
 <script lang="ts">
 import TabExchange from "./components/tab_exchange/TabExchange.vue";
 import TabRecharge from "./components/tab_recharge/TabRecharge.vue";
-import TabTransfer from "./components/tab_transfer/TabTransfer.vue";
 import Component from "vue-class-component";
 import DialogRecharge from "./DialogRecharge";
 
@@ -12,7 +11,6 @@ import DialogRecharge from "./DialogRecharge";
     components: {
         TabExchange,
         TabRecharge,
-        TabTransfer,
     },
 })
 export default class extends DialogRecharge {}

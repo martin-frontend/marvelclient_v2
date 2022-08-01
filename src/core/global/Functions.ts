@@ -1,5 +1,3 @@
-import dialog_message_box from "@/views/dialog_message_box";
-import GlobalVar from "./GlobalVar";
 /**
  * 全局属性和方法
  */

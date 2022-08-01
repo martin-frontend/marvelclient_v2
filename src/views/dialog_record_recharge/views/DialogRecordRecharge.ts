@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_message from "@/views/dialog_message";
 import dialog_recharge from "@/views/dialog_recharge";
 import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
@@ -24,6 +25,7 @@ export default class DialogRecordRecharge extends AbstractView {
 
     onCopy(value: string) {
         CopyUtil(value);
+        dialog_message.info(LangUtil("复制成功"));
     }
 
     onClose() {

@@ -60,7 +60,8 @@
     height: 500px;
 }
 .red_k{
-    color: rgba(205, 104, 104, 0.9),
+    // color: rgba(205, 104, 104, 0.9),
+    color: #F04A5A ,
 }
 .green_k{
     color: rgba(104, 199, 205, 0.9),
@@ -80,10 +81,40 @@
 .period{
     margin-bottom:-9px;
 }
+.period-btn{
+    margin-bottom:0px;
+}
 
 ::v-deep .input-text {
     border-radius: 4px;
     height: 48px;
     border: 0px;
     background-color: rgba(255,255,255,0.06);
+}
+
+::v-deep .input-mobile{
+    height: 40px;
+}
+
+::v-deep .input-text input {
+    color: #fff;
+}
+::v-deep .input-text input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+::v-deep .v-btn>.v-btn__content .v-icon{
+    color:rgba(255, 255, 255, 0.1) !important;
+}
+
+::v-deep .arrow{
+    color: rgba(255,255,255,0.5) !important;
+}
+
+::v-deep .arrow-show {
+    color: rgba(255,255,255,0.5) !important;
+}
+
+::v-deep .v-menu__content .diy-color{
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }

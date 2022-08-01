@@ -4,6 +4,7 @@ import MyCanvas from "@/core/ui/MyCanvas";
 import CopyUtil from "@/core/global/CopyUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_message from "@/views/dialog_message";
 
 export default class PageExtensionProxy extends puremvc.Proxy {
     static NAME = "PageExtensionProxy";
@@ -135,11 +136,13 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     copy() {
         CopyUtil(this.pageData.link);
+        dialog_message.info(LangUtil("复制成功"));
     }
 
     copyId() {
         const { pretty_user_id, user_id } = this.pageData.promotionData;
         CopyUtil(pretty_user_id || user_id);
+        dialog_message.info(LangUtil("复制成功"));
     }
 
     /**领取佣金 */

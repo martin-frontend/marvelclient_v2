@@ -1,5 +1,3 @@
-import dialog_message_box from "@/_skin100/views/dialog_message_box";
-import GlobalVar from "./GlobalVar";
 /**
  * 全局属性和方法
  */
@@ -307,10 +305,10 @@ export function judgeClient() {
     return client;
 }
 /**按时区获取时间, 默认北京时间 */
-export function getTodayGMT(timezone: number = 8) {
+export function getTodayGMT(timezone:number = 8){
     const offset_gmt = new Date().getTimezoneOffset();
     const today = new Date().getTime();
-    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone * 60 * 60 * 1000);
+    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone*60*60*1000);
     return targetToday;
 }
 

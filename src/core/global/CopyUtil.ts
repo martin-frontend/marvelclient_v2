@@ -8,6 +8,4 @@ export default function (text: string) {
     input.select();
     input.setSelectionRange(0, input.value.length), document.execCommand("Copy");
     document.body.removeChild(input);
-
-    dialog_message.info(LangUtil("复制成功"));
 }

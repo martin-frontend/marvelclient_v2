@@ -1,8 +1,6 @@
 import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_message_box from "@/views/dialog_message_box";
-import page_game_play from "@/views/page_game_play";
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
@@ -16,6 +14,8 @@ import { locale } from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import { judgeClient } from "@/core/global/Functions";
 import OpenLink from "@/core/global/OpenLink";
+import dialog_message_box from "../views/dialog_message_box";
+import page_game_play from "../views/page_game_play";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";

@@ -1,6 +1,6 @@
-import dialog_login from "@/_skin100/views/dialog_login";
-import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_login from "@/views/dialog_login";
+import dialog_message_box from "@/views/dialog_message_box";
 
 export default function LoginEnter(fun: any) {
     if (core.user_id) {

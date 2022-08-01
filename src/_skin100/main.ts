@@ -43,7 +43,7 @@ import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/_skin100/style/common.scss";
-import AppFacade from "../AppFacade";
+import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "../core/global/LogUtil";

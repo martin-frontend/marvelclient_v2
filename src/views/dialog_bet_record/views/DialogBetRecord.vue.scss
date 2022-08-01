@@ -30,4 +30,7 @@
 .listbox-mobile {
     overflow: hidden;
     padding-top: 210px;
+    @media only screen and (max-width: 440px) {
+        padding-top: 230px;
+    }
 }

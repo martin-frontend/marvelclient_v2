@@ -1,6 +1,13 @@
 <template>
     <div>
         <v-chart ref="chart" class="chart" :option="pageData.chartData.options" @highlight="onSelect" autoresize />
+        <!-- <v-chart
+            ref="chart"
+            :option="pageData.chartData.options"
+            @highlight="onSelect"
+            :height="$vuetify.breakpoint.xsOnly ? 300 : 530"
+            autoresize
+        /> -->
     </div>
 </template>
 
@@ -60,7 +67,7 @@ export default class DashboardDialog extends AbstractView {
     // height: 600px;
     height: 530px;
     @media (max-width: 600px) {
-        height: 300px;
+        height: 230px;
     }
 }
 </style>

@@ -1,0 +1,15 @@
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    // padding-top: 80px !important;
+    margin-top: 80px !important;
+}
+.listbox-contain{
+    overflow-y: auto;
+    height:calc(500px - 80px);
+}

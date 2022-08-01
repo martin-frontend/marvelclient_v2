@@ -6,7 +6,7 @@ module core {
         /**状态 0正常*/
         status: number;
         msg: string;
-        extend: { microtime: number; unique: string };
+        extend: { microtime: number; unique: string; version: string };
         data: any;
     }
 }

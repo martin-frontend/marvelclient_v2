@@ -43,7 +43,7 @@ import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/_skin100/style/common.scss";
-import AppFacade from "../AppFacade";
+import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "../core/global/LogUtil";
@@ -57,8 +57,8 @@ if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com";
-    core.plat_id = "30000";
-    core.channel_id = "30000001";
+    core.plat_id = "30012";
+    core.channel_id = "30012001";
 }
 AppFacade.inst.startup();
 

@@ -8,6 +8,7 @@ import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargePro
 import { Component, Watch } from "vue-property-decorator";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -57,6 +58,7 @@ export default class TabRecharge extends AbstractView {
 
     onCopy() {
         CopyUtil(this.pageData.address);
+        dialog_message.info(LangUtil("复制成功"));
     }
 
     onLink(url: string) {

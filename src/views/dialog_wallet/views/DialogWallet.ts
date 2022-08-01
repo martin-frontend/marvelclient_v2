@@ -1,6 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogWalletMediator from "../mediator/DialogWalletMediator";

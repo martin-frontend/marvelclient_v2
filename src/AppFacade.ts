@@ -3,6 +3,7 @@ import RequestEndCMD from "./core/command/RequestEndCMD";
 import RequestErrorCMD from "./core/command/RequestErrorCMD";
 import RequestStartCMD from "./core/command/RequestStartCMD";
 import GameConfig from "./core/config/GameConfig";
+import { getVersion } from "./core/global/Functions";
 import NetObserver from "./core/NetObserver";
 import GameProxy from "./proxy/GameProxy";
 import NoticeProxy from "./proxy/NoticeProxy";
@@ -18,6 +19,12 @@ export default class AppFacade {
         this.initCommand();
         this.initObserver();
 
+        //版本号
+        core.version_str = getVersion();
+        core.version = new Date(getVersion()).getTime();
+        if(process.env.VUE_APP_ENV == "development"){
+            core.version*=2;
+        }
         GameConfig.load();
     }
 

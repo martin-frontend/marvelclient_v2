@@ -12,6 +12,7 @@ export default class CustomSelect extends AbstractView {
     @Prop({ default: 16 }) fontSize!: number;
     @Prop({ default: 30 }) iconSize!: number;
     @Prop({ default: "rgba(255,255,255,0.1)" }) background!: string;
+    @Prop({ default: "#23114F" }) sheet_bg!: string;
 
     private selectValue = this.getValue;
 

@@ -75,7 +75,7 @@
     </v-card>
 
     <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" v-if="$vuetify.breakpoint.xsOnly">
-        <v-card-text class="pa-0" style="min-height: 120px;">
+        <v-card-text class="pa-0 flex-grow-0 flex-shrink-0" style="min-height: 120px !important;">
             <div class="search-header-bg d-flex align-center pb-0 pt-5 px-4">
                 <div class="text-17 font-weight-bold white--text">{{LangUtil("搜索游戏")}}</div>
                 <v-spacer />
@@ -125,7 +125,7 @@
                 </v-btn>
             </div>
         </v-card-text>
-        <v-card-text class="listbox-mobile px-4" :style="{maxHeight: '520px',paddingTop:'0px'}">
+        <v-card-text class="listbox-mobile px-4 align-self-start" :style="{maxHeight: '520px',paddingTop:'0px'}">
             <v-window v-model="pageData.tabIndex">
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />

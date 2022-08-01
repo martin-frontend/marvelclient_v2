@@ -2,7 +2,7 @@
 @import "@/style/params.scss";
 .theme--dark {
     &.v-application {
-        background-color: #121e36ff;
+        background-color: #182533ff;
     }
 }
 
@@ -17,7 +17,8 @@
     }
 }
 .html {
-    background-color: #131e36;
+    // background-color: #131e36;
+    background-color: #182533;
 }
 @-moz-document url-prefix() {
     /* Disable scrollbar Firefox */
@@ -29,7 +30,7 @@ body {
     font-size: 14px;
     color: #fff;
     color: var(--app-color);
-    background-color: #121e36ff;
+    background-color: #182533ff;
     background-color: var(--app-background-color);
     font-family: "Montserrat", "Open Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei",
         Arial, sans-serif;
@@ -124,6 +125,9 @@ input {
 .container-b {
     background-color: #0d1b29;
 }
+.bTextColor5{
+    color:rgba(255,255,255,0.5);
+}
 // .v-dialog--fullscreen{
 //     border-top-left-radius: 24px !important;
 //     border-top-right-radius: 24px !important;
@@ -171,9 +175,12 @@ input {
     }
 }
 ::v-deep .vuejs-loadmore .vuejs-loadmore-finished-text {
-    // color: #4c5d7f;
-    color: #8f7ac0;
+    color: #4c5d7f;
 }
 .text-align-center {
     text-align: center;
+}
+
+.vuejs-loadmore-error-text, .vuejs-loadmore-finished-text, .vuejs-loadmore-loading, .vuejs-refresh-text, .vuejs-loading-text{
+    color: #9989c2 !important;
 }

@@ -1,4 +1,6 @@
 import CopyUtil from "@/core/global/CopyUtil";
+import LangUtil from "@/core/global/LangUtil";
+import dialog_message from "@/views/dialog_message";
 
 export default class DialogUserCenterProxy extends puremvc.Proxy {
     static NAME = "DialogUserCenterProxy";
@@ -36,5 +38,6 @@ export default class DialogUserCenterProxy extends puremvc.Proxy {
 
     copyId() {
         CopyUtil(core.user_id.toString());
+        dialog_message.info(LangUtil("复制成功"));
     }
 }

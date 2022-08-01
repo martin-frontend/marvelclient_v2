@@ -13,6 +13,7 @@ export default class DialogDirectly extends AbstractView {
     dialogPromotionFloorProxy: DialogPromotionFloorProxy = this.getProxy(DialogPromotionFloorProxy);
     myProxy: DialogDirectlyProxy = this.getProxy(DialogDirectlyProxy);
     pageData = this.myProxy.pageData;
+    listQuery = this.pageData.listQuery;
     LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;
@@ -69,8 +70,8 @@ export default class DialogDirectly extends AbstractView {
         this.myProxy.api_user_var_agent_direct_list();
     }
 
-    onPageChange(): void {
-        this.pageData.loading = true;
+    onPageChange(val: any) {
+        this.listQuery.page_count = val;
         this.myProxy.api_user_var_agent_direct_list();
     }
 

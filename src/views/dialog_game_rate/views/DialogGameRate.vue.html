@@ -2,7 +2,6 @@
     <v-card class="rounded-lg" color="colorPanelBg">
          <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-18">{{LangUtil("游戏汇率查询")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
@@ -10,7 +9,7 @@
         </v-card-title>
         <v-card-text class="px-5 text-subtitle-1" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="mx-1 mb-5 colorText2--text">
-                {{LangUtil("Coinfans为USDT数字娱乐平台。所有游戏厂商都是USDT账户。不同的币种进入游戏汇率、以及下分汇率如下：")}}
+                {{LangUtil("Coinfans为数字货币娱乐平台。进入游戏使用当前选中的币种，不同币种进入游戏时可以兑换的筹码数量不同，但都是币本位游戏结算。详细兑换比例如下表：")}}
             </div>
             <v-card
                 height="40"
@@ -20,15 +19,12 @@
                 :key="index"
                 >
                 <v-row no-gutters class="colorText4--text">
-                    <v-col cols="4" class="d-flex justify-left align-center">
+                    <v-col cols="6" class="d-flex justify-left align-center">
                         <v-img :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon" max-width="25" max-height="25" class="ml-5 mr-2"></v-img>
                         {{item.coin_name_unique}}
                     </v-col>
-                    <v-col cols="3" class="d-flex justify-center align-center">
-                        {{LangUtil("汇率")}}
-                    </v-col>
-                    <v-col cols="5" class="d-flex justify-end align-center pr-5">
-                        1{{item.coin_name_unique}}={{item.scale}}$
+                    <v-col cols="6" class="d-flex justify-end align-center pr-5">
+                        1{{item.coin_name_unique}}={{item.scale}}<v-img src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
                     </v-col>
                 </v-row>
             </v-card>
@@ -37,7 +33,6 @@
         <!-- 手机显示方式 -->
         <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
             <div class="gradient-bg d-flex align-center px-5">
-                <div class="text-18">{{LangUtil("游戏汇率查询")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
                     <v-icon>mdi-close</v-icon>
@@ -46,7 +41,7 @@
         </v-card-text>
         <v-card-text class="px-5 listbox-mobile" v-if="$vuetify.breakpoint.xsOnly">
             <div class="mx-1 mb-5 colorText2--text">
-                {{LangUtil("Coinfans为USDT数字娱乐平台。所有游戏厂商都是USDT账户。不同的币种进入游戏汇率、以及下分汇率如下：")}}
+                {{LangUtil("Coinfans为数字货币娱乐平台。进入游戏使用当前选中的币种，不同币种进入游戏时可以兑换的筹码数量不同，但都是币本位游戏结算。详细兑换比例如下表：")}}
             </div>
             <v-card
                 height="40"
@@ -56,15 +51,12 @@
                 :key="index"
                 >
                 <v-row no-gutters class="colorText4--text">
-                    <v-col cols="4" class="d-flex justify-left align-center">
+                    <v-col cols="6" class="d-flex justify-left align-center">
                         <v-img :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon" max-width="25" max-height="25" class="ml-3 mr-2"></v-img>
                         {{item.coin_name_unique}}
                     </v-col>
-                    <v-col cols="3" class="d-flex justify-center align-center">
-                        {{LangUtil("汇率")}}
-                    </v-col>
-                    <v-col cols="5" class="d-flex justify-end align-center pr-3">
-                        1{{item.coin_name_unique}}={{item.scale}}$
+                    <v-col cols="6" class="d-flex justify-end align-center pr-3">
+                        1{{item.coin_name_unique}}={{item.scale}}<v-img src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
                     </v-col>
                 </v-row>
             </v-card>

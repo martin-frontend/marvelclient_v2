@@ -5,7 +5,7 @@ import PageSwapProxy from "../proxy/PageSwapProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import FagProxy from "@/proxy/FagProxy";
-import dialog_swap_record from "@/views/dialog_swap_record";
+import dialog_swap_record from "@/_skin100/views/dialog_swap_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import GameProxy from "@/proxy/GameProxy";

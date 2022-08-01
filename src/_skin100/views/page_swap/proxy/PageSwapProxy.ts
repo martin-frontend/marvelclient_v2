@@ -1,6 +1,7 @@
 import LangUtil from "@/core/global/LangUtil";
 import { resetAutoDestroyState } from "@vue/test-utils";
 import * as echarts from "echarts";
+import { Autoplay } from "swiper";
 export default class PageSwapProxy extends puremvc.Proxy {
     static NAME = "PageSwapProxy";
 
@@ -121,10 +122,16 @@ export default class PageSwapProxy extends puremvc.Proxy {
                     },
                 ],
                 grid: {
-                    x: 50, // 左侧距离
-                    y: 80, // 顶部距离
-                    x2: 20, //右侧距离
-                    y2: 35, //底部距离
+                    // x: 50, // 左侧距离
+                    // y: 20, // 顶部距离
+                    // x2: 20, //右侧距离
+                    // y2: 35, //底部距离
+                    left: 60, // 左侧距离
+                    top: "16%", // 顶部距离
+                    right: "3%", //右侧距离
+                    bottom: "10%", //底部距离
+                    width: "auto",
+                    height: "auto",
                 },
             },
         },

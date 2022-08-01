@@ -4,7 +4,11 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Wallet from "./Wallet";
-
-@Component
+import CoinTip from "./coin_tip/CoinTip.vue";
+@Component({
+    components: {
+        CoinTip,
+    },
+})
 export default class extends Wallet {}
 </script>

@@ -3,6 +3,9 @@ import GameConfig from "@/core/config/GameConfig";
 export default class HeaderProxy extends puremvc.Proxy {
     static NAME = "HeaderProxy";
 
+    isOpenWalletMenu: boolean = false;
+    isShowWalletTip: boolean = false;
+
     public onRegister(): void {
         if (GameConfig.config) {
             this.api_plat_var_lobby_index();
@@ -21,5 +24,12 @@ export default class HeaderProxy extends puremvc.Proxy {
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
+    }
+
+    openMenu() {
+        setTimeout(() => {
+            this.isOpenWalletMenu = true;
+            this.isShowWalletTip = true;
+        }, 100);
     }
 }

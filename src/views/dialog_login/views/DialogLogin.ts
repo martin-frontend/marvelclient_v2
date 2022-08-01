@@ -6,7 +6,6 @@ import dialog_get_verity from "@/views/dialog_get_verity";
 import dialog_message from "@/views/dialog_message";
 import dialog_register from "@/views/dialog_register";
 import { Component, Watch } from "vue-property-decorator";
-import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 import DialogLoginMediator from "../mediator/DialogLoginMediator";
 import DialogLoginProxy from "../proxy/DialogLoginProxy";
 
@@ -14,7 +13,6 @@ import DialogLoginProxy from "../proxy/DialogLoginProxy";
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
-    headerProxy: HeaderProxy = this.getProxy(HeaderProxy);
     pageData = this.myProxy.pageData;
     forgetData = this.myProxy.forgetData;
 
@@ -83,7 +81,6 @@ export default class DialogLogin extends AbstractView {
 
     private onSubmitLogin() {
         this.myProxy.api_user_login();
-        this.headerProxy.openMenu();
     }
 
     private goForget() {

@@ -57,8 +57,8 @@ if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com";
-    core.plat_id = "30000";
-    core.channel_id = "30000001";
+    core.plat_id = "30012";
+    core.channel_id = "30012001";
 }
 AppFacade.inst.startup();
 

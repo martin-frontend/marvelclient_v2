@@ -1,0 +1,16 @@
+.padding_bottom {
+    padding-bottom: 0px !important;
+}
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 100px;
+}
+.items-bg{
+    background-color: rgba(0, 0, 0, 0.1);
+}

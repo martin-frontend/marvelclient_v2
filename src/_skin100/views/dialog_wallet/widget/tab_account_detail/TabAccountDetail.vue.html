@@ -1,0 +1,175 @@
+<div>
+    <!-- pc显示方式 -->
+    <v-card-text class="mt-0 px-8" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="d-flex mb-2">
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.timeSelect"
+                height="35"
+                fontSize="14"
+                :options="listOptions.timeOptions()"
+                @change="onTimeChange"
+            />
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.coinSelect"
+                height="35"
+                fontSize="14"
+                :options="listOptions.coinOptions()"
+                @change="onCoinChange"
+            />
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.typeSelect"
+                height="35"
+                fontSize="14"
+                :options="listOptions.typeOptions()"
+                @change="onTypeChange"
+            />
+        </div>
+        <v-sheet v-if="pageData.list.length>0" color="transparent" height="488" class="scroll-y">
+            <v-sheet class="px-4 py-4 rounded-lg my-3" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <div class="d-flex flex-wrap justify-space-between listitem">
+                    <div class="num-change mb-2 d-flex align-center justify-space-between">
+                        <div class="d-flex align-center"><v-img class="mr-2" :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon" max-width="18" height="18"></v-img><div>{{item.coin_name_unique}}</div></div>
+                        <div class="colorTextNormal2--text">{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div>
+                    <div class="l-item">
+                        <div class="text-12">{{LangUtil("明细类型")}}</div>
+                        <div class="text-truncate text-14 white--text">{{listOptions.typeOptions()[item.type]}}</div>
+                    </div>
+                    <!-- <div>
+                        <div>{{LangUtil("币种")}}</div>
+                        <div><v-img :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon" width="18" height="18"></v-img><div>{{item.coin_name_unique}}</div></div>
+                    </div>
+                    <div>
+                        <div>{{LangUtil("数量变化")}}</div>
+                        <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div> -->
+                    <div class="l-item">
+                        <div class="text-12">{{LangUtil("账户余额")}}</div>
+                        <div class="text-14 white--text">{{item.balance}}</div>
+                    </div>
+                    <div class="l-item">
+                        <div class="text-right text-12">{{LangUtil("日期")}}</div>
+                        <div class="text-truncate text-right text-14 white--text">{{item.created_at.substr(5)}}</div>
+                    </div>
+                </div>
+            </v-sheet>
+        </v-sheet>
+        <ListNodata v-if="pageData.list.length == 0" height="441"/>
+        <v-spacer />
+        <v-pagination
+            class="mt-2"
+            v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+            v-model="pageData.pageInfo.pageCurrent"
+            :length="pageData.pageInfo.pageCount"
+            :total-visible="7"
+            @input="onPageChange"
+        ></v-pagination>
+    </v-card-text>
+    <!-- 手机显示方式 -->
+    <v-card-text class="pt-0 pb-0 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+        <div class="d-flex mx-4 mb-0">
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.timeSelect"
+                height="35"
+                width="107"
+                fontSize="14"
+                :options="listOptions.timeOptions()"
+                @change="onTimeChange"
+            />
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.coinSelect"
+                height="35"
+                width="107"
+                fontSize="14"
+                :options="listOptions.coinOptions()"
+                @change="onCoinChange"
+            />
+            <CustomSelect
+                class="mr-2"
+                v-model="listOptions.typeSelect"
+                height="35"
+                width="107"
+                fontSize="14"
+                :options="listOptions.typeOptions()"
+                @change="onTypeChange"
+            />
+        </div>
+        <!-- <div class="d-flex justify-space-between mx-5 mb-2">
+            <CustomSelect
+                class="mr-1"
+                v-model="listOptions.timeSelect"
+                :options="listOptions.timeOptions()"
+                width="100%"
+                @change="onTimeChange"
+            />
+            <CustomSelect
+                class="ml-1"
+                v-model="listOptions.coinSelect"
+                :options="listOptions.coinOptions()"
+                width="100%"
+                @change="onCoinChange"
+            />
+        </div>
+        <div class="d-flex justify-space-between mx-5 mb-2">
+            <CustomSelect
+                v-model="listOptions.typeSelect"
+                :options="listOptions.typeOptions()"
+                width="49%"
+                @change="onTypeChange"
+            />
+        </div> -->
+    </v-card-text>
+    <v-card-text class="px-4 pt-2" v-if="$vuetify.breakpoint.xsOnly">
+        <v-sheet  color="transparent" height="520"  class="scroll-y">
+        <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+            <ListNodata v-if="pageData.list.length == 0" />
+                 
+            <v-sheet class="pa-3 rounded-lg my-3 colorText2--text" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <div class="d-flex flex-wrap justify-space-between listitem-mobile">
+                    <div class="num-change mb-2 d-flex align-center justify-space-between">
+                        <div class="d-flex align-center"><v-img class="mr-2" :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon" max-width="18" height="18"></v-img><div>{{item.coin_name_unique}}</div></div>
+                        <div class="colorTextNormal2--text">{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div>
+                    <div class="l-item">
+                        <div class="text-12">{{LangUtil("明细类型")}}</div>
+                        <div class="text-truncate text-14 white--text">{{listOptions.typeOptions()[item.type]}}</div>
+                    </div>
+                    <div class="l-item">
+                        <div class="text-12">{{LangUtil("账户余额")}}</div>
+                        <div class="text-14 white--text">{{item.balance}}</div>
+                    </div>
+                    <div class="l-item">
+                        <div class="text-right text-12">{{LangUtil("日期")}}</div>
+                        <div class="text-truncate text-right text-14 white--text">{{item.created_at.substr(5)}}</div>
+                    </div>
+                </div>
+                    <!-- <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("明细类型")}}</div>
+                        <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("币种")}}</div>
+                        <div>{{item.coin_name_unique}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("数量变化")}}</div>
+                        <div>{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("账户余额")}}</div>
+                        <div>{{item.balance}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("日期")}}</div>
+                        <div class="text-truncate">{{item.created_at.substr(5)}}</div>
+                    </div> -->
+            </v-sheet>
+        </vue-loadmore>
+        </v-sheet>
+    </v-card-text>
+</div>

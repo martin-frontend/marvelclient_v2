@@ -1,0 +1,13 @@
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 0px;
+}
+.giftbg{
+    background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%); 
+}

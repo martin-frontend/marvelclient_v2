@@ -8,7 +8,8 @@ const opts = {
     theme: {
         themes: {
             dark: {
-                primary: "#4c5d7f", //used
+                primary: "#8f7ac0", //used
+                // primary: "#4c5d7f", //used
                 secondary: "#e3bc80", //used
                 accent: "#1D2A43", //used
                 error: "#EF413A",
@@ -38,6 +39,16 @@ const opts = {
 
                 //新增
                 colorBtnSeleBg: "#CD30C1", //used
+                colorCloseBtn: "#756BA4", //used
+                colorTextYellow: "#F8D129", //used
+                colorTextNormal: "#737c86", //used
+                colorTextNormal2: "#8f7ac0", //used
+                colorTextNormal3: "#9086af",
+                colorGreyBtn: "#303f4b", //used
+                colorIcontNormal: "#57399b", //used
+                colorTextGreey: "#798088", //used
+                colorTextNoData: "#9989c2", //used
+                colorGreyPanel: "#212e3e",
 
                 colorText1: "#4c5d7f",
                 colorText2: "#96AAD0",

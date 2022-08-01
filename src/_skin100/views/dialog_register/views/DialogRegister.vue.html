@@ -2,20 +2,13 @@
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
         <!-- <AdvertiseInLogin :height="794" class="d-none d-md-flex" /> -->
         <v-img src="../../../../assets/register/coinFans.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
-        <v-card color="transparent" width="488" class="rounded-0">
-            <!-- <v-card-title class="d-flex justify-end pb-0 gradient-bg"> -->
-            <!-- <v-card-title class="d-flex justify-end pb-0">
-                <div class="ml-2 font-weight-medium white--text text-18">{{LangUtil("注册")}}</div>
-                <v-spacer />
-                <v-btn class="mr-2" icon @click="onClose">
-                    <v-icon large>mdi-close</v-icon>
-                </v-btn>
-            </v-card-title> -->
+        <!-- pc显示 -->
+        <v-card color="transparent" width="488" class="rounded-0" v-if="!$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">
                 <div class="font-weight-medium white--text text-20">{{LangUtil("注册")}}</div>
                 <v-spacer />
                 <v-btn class="" icon @click="onClose">
-                    <v-icon color="colorText3">mdi-close</v-icon>
+                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
             <v-card-text class="px-10 mt-5">
@@ -96,14 +89,14 @@
                         <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
-                                    <div class="colorBtnBg--text mx-2">+{{form.area_code}}</div>
+                                    <div class="white--text mx-2">+{{form.area_code}}</div>
                                     <div
                                         class="icon-box iconfont text-18 mr-2"
                                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                                     >
                                         
                                     </div>
-                                    <div class="text-20">|</div>
+                                    <!-- <div class="text-20">|</div> -->
                                 </div>
                             </template>
                             <v-sheet class="pa-3 rounded-lg colorPanelBg4" width="400">
@@ -124,6 +117,204 @@
                                             v-for="(item, index) of areaCodeList"
                                             :key="index"
                                             class="colorText2--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                        </v-menu>
+                    </template>
+                    <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!checkPhone(form.username)" @click="getCode">
+                        {{LangUtil("获取验证码")}}
+                    </v-btn> -->
+                </CustomInput>
+
+                <CustomInput
+                    class="mt-3 rounded register-ip"
+                    v-if="form.register_type != 1"
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码（6位）')"
+                    maxlength="6"
+                    v-model="form.verify_code"
+                >
+                  <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!(checkPhone(form.username) || checkMail(form.username))" @click="getCode">
+                        {{LangUtil("获取验证码")}}
+                    </v-btn>
+                </CustomInput>
+                <CustomPassword
+                    class="mt-3 rounded register-ip"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('请输入密码（4-20位）')"
+                    v-model="form.password"
+                />
+                <CustomPassword
+                    class="mt-3 rounded register-ip"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('确认密码（4-20位）')"
+                    v-model="form.password_confirm"
+                />
+                <CustomInput
+                    class="mt-3 rounded register-ip"
+                    v-if="form.register_type == 1"
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码（4位）')"
+                    maxlength="4"
+                    v-model="form.verify_code"
+                >
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
+                </CustomInput>
+
+                <div class="text-caption tips-box mt-3 mb-8">
+                    {{LangUtil("注册即代表您已阅读并同意")}}
+                    <button class="tips-box_red" type="button" @click="goService">{{LangUtil("《服务协议》")}}</button>
+                </div>
+                <v-btn class="rounded-sm on-register-bg text-body-1"  height="44" :disabled="!isCheck" block @click="onRegister"
+                    >{{LangUtil("注册")}}</v-btn
+                >
+                <div class="tips-box">
+                    {{LangUtil("已有账户?")}}<button class="tips-box_red" @click="goLogin"> {{LangUtil("去登录")}}</button>
+                </div>
+
+                <!-- <div class="loginByGoogle mt-5 mb-5">
+                    <div class="d-flex align-center">
+                        <v-divider />
+                        <div class="loginTip">或使用以下方式快速登录</div>
+                        <v-divider />
+                    </div>
+                    <ul class="loginWrap">
+                        <li class="mr-4">
+                            <button class="loginBtn" disabled="">
+                                <img src="https://hx1web.hstax1tic.com/static/media/Google.b3a2db02.svg" alt="" />Google
+                            </button>
+                        </li>
+                        <li>
+                            <button class="loginBtn">
+                                <img src="https://hx1web.hstax1tic.com/static/media/Metamask.7cc94b04.svg" alt="" />Metamask
+                            </button>
+                        </li>
+                    </ul>
+                </div> -->
+            </v-card-text>
+        </v-card>
+        <!-- 手机显示 -->
+        <v-card color="transparent" width="488" class="rounded-0" v-if="$vuetify.breakpoint.xsOnly">
+            <v-card-title class="d-flex justify-end pb-0 pt-5 px-4">
+                <div class="font-weight-medium white--text text-20">{{LangUtil("注册")}}</div>
+                <v-spacer />
+                <v-btn class="" icon @click="onClose">
+                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text class="px-4 mt-2">
+                <!-- <div class="d-flex mb-10"> -->
+                <div class="d-inline-flex mb-4 pa-1 rounded-pill items-bg">
+                    <v-btn
+                        height="32"
+                        width="93"
+                        class="rounded-pill font-weight-bold mr-1"
+                        elevation="0"
+                        :text="form.register_type != 1"
+                        :color="form.register_type == 1 ? 'colorBtnSeleBg' : 'white'"
+                        @click="onTabClick(1)"
+                    >
+                        {{LangUtil("账号")}}
+                    </v-btn>
+                    <v-btn
+                    height="32"
+                    width="93"
+                        class="rounded-pill font-weight-bold mr-1"
+                        elevation="0"
+                        :text="form.register_type != 4"
+                        :color="form.register_type == 4 ? 'colorBtnSeleBg' : 'white'"
+                        @click="onTabClick(4)"
+                    >
+                        {{LangUtil("手机号")}}
+                    </v-btn>
+                    <v-btn
+                    height="32"
+                    width="93"
+                        class="rounded-pill font-weight-bold"
+                        elevation="0"
+                        :text="form.register_type != 2"
+                        :color="form.register_type == 2 ? 'colorBtnSeleBg' : 'white'"
+                        @click="onTabClick(2)"
+                    >
+                        {{LangUtil("邮箱")}}
+                    </v-btn>
+                </div>
+
+                <CustomInput
+                    class="mb-0 rounded register-ip"
+                    icon="mdi-account-box-multiple"
+                    :placeholder="LangUtil('请输入推荐人（选填）')"
+                    v-model="form.invite_user_id"
+                />
+                <CustomInput
+                    v-if="form.register_type==1"
+                    class="mt-3  rounded register-ip"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.username"
+                />
+                <CustomInput
+                    v-if="form.register_type==2"
+                    class="mt-3 rounded register-ip"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    maxlength="30"
+                    v-model="form.username"
+                >
+                    <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!checkMail(form.username)" @click="getCode">
+                        {{LangUtil("获取验证码")}}
+                    </v-btn> -->
+                </CustomInput>
+
+                <CustomInput
+                    v-if="form.register_type==4"
+                    class="mt-3 rounded register-ip"
+                    icon="mdi-phone"
+                    type="tel"
+                    :placeholder="LangUtil('请输入手机号')"
+                    maxlength="11"
+                    v-model="form.username"
+                >
+                    <template v-slot:pre>
+                        <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
+                                    <div class="white--text mx-2">+{{form.area_code}}</div>
+                                    <div
+                                        class="icon-box iconfont text-18 mr-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div>
+                                    <!-- <div class="text-20">|</div> -->
+                                </div>
+                            </template>
+                            <v-sheet class="pa-3 rounded-lg colorPanelBg4">
+                                <v-text-field
+                                    class="rounded-pill register-ip"
+                                    height="32"
+                                    outlined
+                                    dense
+                                    prepend-inner-icon="mdi-database-search-outline"
+                                    hide-details
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></v-text-field>
+
+                                <v-list dense color="rgba(0,0,0,0)">
+                                    <v-list-item-group>
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="colorTextNormal2--text"
                                             @click="onItemAreaCode(item)"
                                         >
                                             <div>{{item.name}}</div>

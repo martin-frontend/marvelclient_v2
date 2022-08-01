@@ -4,8 +4,9 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import router from "@/router";
-import dialog_recharge from "@/views/dialog_recharge";
+import router from "@/_skin100/router";
+import dialog_game_rate from "@/_skin100/views/dialog_game_rate";
+import dialog_recharge from "@/_skin100/views/dialog_recharge";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
@@ -26,5 +27,9 @@ export default class Wallet extends AbstractView {
 
     onCoinIn() {
         dialog_recharge.show();
+    }
+
+    handlerGameRate() {
+        dialog_game_rate.show();
     }
 }

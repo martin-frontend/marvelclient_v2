@@ -6,7 +6,7 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
-import router from "@/router";
+import router from "@/_skin100/router";
 import dialog_login from "@/_skin100/views/dialog_login";
 import dialog_register from "@/_skin100/views/dialog_register";
 import Cookies from "js-cookie";
@@ -39,6 +39,13 @@ export default class Header extends AbstractView {
     goHome() {
         if (this.$router.app.$route.path != "/") {
             router.push("/");
+        }
+        ScrollUtil(0);
+    }
+    /**打开挖矿 */
+    goToMyPage() {
+        if (this.$router.app.$route.path != "/page_mine") {
+            router.push("/page_mine");
         }
         ScrollUtil(0);
     }

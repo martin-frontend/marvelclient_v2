@@ -1,0 +1,35 @@
+.address-box {
+    border-radius: 10px;
+    border: 2px solid #24314a;
+    height: 44px;
+    div {
+        width: 90%;
+        line-height: 18px;
+    }
+}
+.info-text {
+    color: #97abd1;
+}
+.qrcode {
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 8px;
+    width: 88px;
+    height: 88px;
+    canvas {
+        display: none;
+    }
+    ::v-deep img {
+        width: 100%;
+    }
+}
+.tips{
+    line-height: 18px;
+    color:#F04A5A;
+}
+.support-coin{
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    width:100%;
+}

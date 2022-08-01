@@ -1,15 +1,17 @@
 <v-app-bar
-    class="app-bar"
+    class="app-bar header_sk100"
     :height="$vuetify.breakpoint.xsOnly?80:80"
-    color="colorTitleBg"
     elevation="0"
     :app="routerPath != '/page_game_play'"
 >
     <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center ">
             <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
-            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button">
+            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button" @click="goHome">
                  {{LangUtil("首页")}}
+            </span>
+            <span :class="routerPath == '/page_mine' ? 'active' : ''" class="nav-button" @click="goToMyPage">
+                 {{LangUtil("挖矿")}}
             </span>
             <!-- <button
             v-if="!$vuetify.breakpoint.mobile"
@@ -31,21 +33,22 @@
         >
             <span class="px-2">{{LangUtil("注册")}}</span>
         </v-btn>
-        <div v-if="LangConfig.language">
-            <CustomSelect
-                v-model="core.lang"
-                :options="LangConfig.language"
-                :icons="LangConfig.language"
-                :width="160"
-                :height="45"
-                :isPill="true"
-                class="mr-4"
-                @change="onLangChange"
-            />
-        </div>
+        
 
        
             <Wallet v-if="core.user_id" />
+            <div v-if="LangConfig.language">
+                <CustomSelect
+                    v-model="core.lang"
+                    :options="LangConfig.language"
+                    :icons="LangConfig.language"
+                    :width="160"
+                    :height="45"
+                    :isPill="true"
+                    class="mr-4"
+                    @change="onLangChange"
+                />
+            </div>
             <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
         </div>
 
@@ -73,7 +76,7 @@
      <!-- 手机 -->
     <v-container v-else class="mt-3">
         <div class="d-flex align-center">
-            <img src="@/assets/logo.png" height="20" alt="" />
+            <img src="@/_skin100/assets/logo.png" height="20" alt="" />
             <v-spacer />
             <v-btn height="20" width="20" fab color="#ffb01b" class="black--text"
             >

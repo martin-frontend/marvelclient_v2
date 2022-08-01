@@ -132,7 +132,8 @@ export default class PageBonus extends AbstractView {
 
         const now = today.getTime();
         const msec = end - now;
-        if (msec == 0) {
+
+        if (msec < 0) {
             this.myProxy.api_plat_var_stake_info();
             this.myProxy.api_user_var_stake_info();
         }

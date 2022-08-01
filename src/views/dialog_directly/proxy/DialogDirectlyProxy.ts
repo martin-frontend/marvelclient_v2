@@ -15,8 +15,6 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         direct_user_id: 0,
         page_size: 20,
         page_count: 1,
-        start_date: null,
-        end_date: null,
     };
 
     pageData = {
@@ -101,6 +99,8 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     api_user_var_agent_direct_list() {
         this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
+        this.parameter.page_count = this.pageData.listQuery.page_count;
+
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }
 

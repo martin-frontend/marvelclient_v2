@@ -9,6 +9,7 @@ import { isMobile, judgeClient } from "./core/global/Functions";
 import CopyUtil from "./core/global/CopyUtil";
 import GameConfig from "./core/config/GameConfig";
 import { vuetify } from "./plugins/vuetify";
+import dialog_message from "./views/dialog_message";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);

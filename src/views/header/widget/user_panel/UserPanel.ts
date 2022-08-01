@@ -16,6 +16,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_user_center from "@/views/dialog_user_center";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -80,5 +81,6 @@ export default class UserPanel extends AbstractView {
 
     onCopy(str: any) {
         CopyUtil(str);
+        dialog_message.info(LangUtil("复制成功"));
     }
 }

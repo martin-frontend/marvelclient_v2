@@ -1,13 +1,13 @@
 import LangUtil from "@/core/global/LangUtil";
-import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_activity from "@/views/dialog_activity";
-import dialog_message_box from "@/views/dialog_message_box";
-import page_bonus from "@/views/page_bonus";
-import page_extension from "@/views/page_extension";
-import page_introduce from "@/views/page_introduce";
-import page_mine from "@/views/page_mine";
-import page_swap from "@/views/page_swap";
+import LoginEnter from "../core/global/LoginEnter";
+import dialog_message_box from "../views/dialog_message_box";
+import page_bonus from "../views/page_bonus";
+import page_extension from "../views/page_extension";
+import page_introduce from "../views/page_home/widget/page_introduce";
+import page_mine from "../views/page_mine";
+import page_swap from "../views/page_swap";
 
 export default class NoticeProxy extends puremvc.Proxy {
     static NAME = "NoticeProxy";

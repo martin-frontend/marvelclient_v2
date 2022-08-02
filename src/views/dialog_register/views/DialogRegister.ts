@@ -9,13 +9,11 @@ import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 
 @Component
 export default class DialogRegister extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
-    headerProxy: HeaderProxy = this.getProxy(HeaderProxy);
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
 
@@ -105,7 +103,6 @@ export default class DialogRegister extends AbstractView {
 
     onRegister() {
         this.myProxy.api_user_register();
-        this.headerProxy.openMenu();
     }
 
     onClose() {

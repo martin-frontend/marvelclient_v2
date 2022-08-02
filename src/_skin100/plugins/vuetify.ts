@@ -46,6 +46,7 @@ export function getVuetify(): Vuetify {
                         colorTextNormal: "#737c86", //used
                         colorTextNormal2: "#8f7ac0", //used
                         colorTextNormal3: "#9086af",
+                        colorTextNormal4: "#9AA1B1",
                         colorGreyBtn: "#303f4b", //used
                         colorIcontNormal: "#57399b", //used
                         colorTextGreey: "#798088", //used

@@ -1,6 +1,6 @@
-<v-card-text class="mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto" style="padding-bottom:90px;">
+<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;">
     <div class="white--text mb-1 d-flex align-center"><div class="r-before"></div> {{LangUtil("想使用人民币充值？")}}</div>
-    <div class="colorTextNormal2--text">
+    <div class="colorTextNormal2--text" :class="$vuetify.breakpoint.xsOnly ? 'text-13':''">
         {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
         <a class="text-decoration-underline colorBtnSeleBg--text" @click="onLink(LangUtil('法币教程链接'))" href="#">
             {{LangUtil("充值教程")}}
@@ -27,7 +27,7 @@
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
         <v-btn
-            class="mb-2 mx-2 rounded-pill"
+            class="mb-2 mx-2 rounded-pill font-weight-regular"
             elevation="0"
             min-width="70"
             height="30"
@@ -80,7 +80,7 @@
             
         </div>
 
-        <v-sheet class="d-flex flex-wrap rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)">
+        <v-sheet class="d-flex  justify-space-between rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)">
             <div class="d-flex">
                 <!-- <span class="mr-1">⚠️</span> -->
                 <div>
@@ -106,10 +106,10 @@
             </v-sheet>
         </v-sheet>
         <div class="d-flex justify-center mt-5"  v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
-        <v-btn class="white--text btnRedBg rounded" width="345" height="44" @click="onSumbit"
+            <v-btn class="white--text btnRedBg rounded" width="345" height="44" @click="onSumbit"
                     >{{LangUtil("确定充值")}}</v-btn
                 >
-            </div>
+        </div>
     </v-card>
     <!-- <v-divider class="mx-5" /> -->
     <!-- <v-card-text class="d-flex justify-end mt-3">

@@ -1,5 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
-import { vuetify } from "@/plugins/vuetify";
+import { getVuetify } from "@/plugins/vuetify";
 
 export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRecordRechargeProxy";
@@ -40,6 +40,7 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
+        const vuetify = getVuetify();
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

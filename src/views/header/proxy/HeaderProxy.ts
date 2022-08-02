@@ -30,6 +30,6 @@ export default class HeaderProxy extends puremvc.Proxy {
         setTimeout(() => {
             this.isOpenWalletMenu = true;
             this.isShowWalletTip = true;
-        }, 100);
+        }, 300);
     }
 }

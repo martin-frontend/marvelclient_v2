@@ -40,32 +40,32 @@ export function getVuetify(): Vuetify {
                         colorGoldBg: "#ffb01b",
 
                         // //新增
-                        // colorBtnSeleBg: "#CD30C1", //used
+                        colorBtnSeleBg: "#CD30C1", //used
 
-                        // colorText1: "#4c5d7f",
-                        // colorText2: "#96AAD0",
-                        // colorText3: "#9BA1AB", //used
-                        // colorText4: "#85A7DC", //used
-                        // colorText5: "#9AAED5", //used
-                        // colorText6: "#9DB1D8", //used
-                        // colorText7: "#5F80C1",
-                        // colorText8: "#68799A",
-                        // colorText9: "#60B7BF",
-                        // colorTextGold: "#F3B952",
-                        // colorTextBlue: "#31486C", //used
-                        // colorTextPurple: "#A8A8F5", //used
-                        // colorTextGreen: "#69B65E", //used
-                        // colorTextAll: "669CE7", //used
-                        // colorTextBlueLight: "#72ABFD", //used
-                        // colorTextBlueLight2: "#98ACD3", //used
-                        // colorTextBlueLight3: "#70A9FA", //used
-                        // colorBorderBlue: "#374F81", //used
-                        // colorDialogInfo: "#FFB01A",
-                        // colorPurpleBtn: "#4F5188", //used
-                        // colorHowBtn: "#3B4B68", //used
-                        // colorTextNext: "#3B5F96", //used
-                        // colorVipLevelText: "#8C9FC4",
-                        // colorMarqueeIcon: "#667798",
+                        colorText1: "#4c5d7f",
+                        colorText2: "#96AAD0",
+                        colorText3: "#9BA1AB", //used
+                        colorText4: "#85A7DC", //used
+                        colorText5: "#9AAED5", //used
+                        colorText6: "#9DB1D8", //used
+                        colorText7: "#5F80C1",
+                        colorText8: "#68799A",
+                        colorText9: "#60B7BF",
+                        colorTextGold: "#F3B952",
+                        colorTextBlue: "#31486C", //used
+                        colorTextPurple: "#A8A8F5", //used
+                        colorTextGreen: "#69B65E", //used
+                        colorTextAll: "669CE7", //used
+                        colorTextBlueLight: "#72ABFD", //used
+                        colorTextBlueLight2: "#98ACD3", //used
+                        colorTextBlueLight3: "#70A9FA", //used
+                        colorBorderBlue: "#374F81", //used
+                        colorDialogInfo: "#FFB01A",
+                        colorPurpleBtn: "#4F5188", //used
+                        colorHowBtn: "#3B4B68", //used
+                        colorTextNext: "#3B5F96", //used
+                        colorVipLevelText: "#8C9FC4",
+                        colorMarqueeIcon: "#667798",
                     },
                 },
                 dark: true,

@@ -1,4 +1,5 @@
-import { vuetify } from "@/plugins/vuetify";
+import { getVuetify } from "@/plugins/vuetify";
+
 export default class DialogActivityProxy extends puremvc.Proxy {
     static NAME = "DialogActivityProxy";
 
@@ -33,6 +34,7 @@ export default class DialogActivityProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
+        const vuetify = getVuetify();
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

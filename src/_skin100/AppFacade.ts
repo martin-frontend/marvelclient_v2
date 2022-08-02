@@ -1,6 +1,4 @@
-import IOErrorCMD from "@/core/command/IOErrorCMD";
 import RequestEndCMD from "@/core/command/RequestEndCMD";
-import RequestErrorCMD from "@/core/command/RequestErrorCMD";
 import RequestStartCMD from "@/core/command/RequestStartCMD";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
@@ -8,6 +6,8 @@ import NetObserver from "./core/NetObserver";
 import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "./proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import IOErrorCMD from "./core/command/IOErrorCMD";
+import RequestErrorCMD from "./core/command/RequestErrorCMD";
 
 export default class AppFacade {
     static inst = new AppFacade();

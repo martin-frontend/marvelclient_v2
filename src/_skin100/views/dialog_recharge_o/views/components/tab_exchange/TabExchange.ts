@@ -4,13 +4,13 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_address_book from "@/views/dialog_address_book";
-import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
-import dialog_message_box from "@/views/dialog_message_box";
-import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
-import dialog_safety_center from "@/views/dialog_safety_center";
+import dialog_address_book from "@/_skin100/views/dialog_address_book";
+import DialogAddressBookProxy from "@/_skin100/views/dialog_address_book/proxy/DialogAddressBookProxy";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
+import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
 import dialog_trade_password from "@/views/dialog_trade_password";
-import dialog_wallet from "@/views/dialog_wallet";
+import dialog_wallet from "@/_skin100/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 
 @Component
@@ -25,7 +25,7 @@ export default class TabExchange extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
 
     mounted() {
-        const aLink = document.getElementById("aLink");
+        const aLink = document.getElementById("aLink_b");
         if (aLink) {
             aLink.addEventListener("click", () => {
                 dialog_safety_center.show();
@@ -36,7 +36,7 @@ export default class TabExchange extends AbstractView {
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
+            `<a id="aLink_b" class="text-decoration-underline colorBtnSeleBg--text">${LangUtil("安全中心")}</a>`
         );
     }
 
@@ -51,26 +51,15 @@ export default class TabExchange extends AbstractView {
     }
 
     onChange(value: any) {
-        const { methodList } = this.pageData;
-        const { coin_name_unique } = this.form;
-        const keys = Object.keys(methodList[coin_name_unique].options);
-
-        // 默认选择trc20
-        let block_network_id = keys[0];
-        for (const key of keys) {
-            if (methodList[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
-                block_network_id = key;
-            }
-        }
-
-        this.form.block_network_id = block_network_id;
-        this.form.exchange_channel_method_id = methodList[coin_name_unique].options[block_network_id].exchange_channel_method_id;
+        const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
+        this.form.block_network_id = keys[0];
+        this.form.exchange_channel_method_id =
+            this.pageData.methodList[this.form.coin_name_unique].options[keys[0]].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
     }
 
     onChangeSub(value: any) {
-        this.form.block_network_id = value;
         this.form.exchange_channel_method_id =
             this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿

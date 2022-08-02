@@ -1,4 +1,3 @@
-import { vuetify } from "@/plugins/vuetify";
 import { isMobile, judgeClient } from "./Functions";
 
 export default function (blur: boolean) {

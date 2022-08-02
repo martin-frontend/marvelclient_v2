@@ -1,11 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { vuetify } from "./plugins/vuetify";
+
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/_skin100/style/common.scss";
 import AppFacade from "@/AppFacade";
+import { getVuetify } from "./plugins/vuetify";
 
 core.init();
 core.host = "http://api.starsabc.com/";
@@ -16,6 +17,7 @@ AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 
+const vuetify =  getVuetify();
 //@ts-ignore
 window["vm"] = new Vue({
     router,

@@ -91,7 +91,7 @@ export default class PageExtension extends AbstractView {
             //         dialog_message.success(LangUtil("保存成功"));
             //     });
             // } else {
-                dialog_preview.show(imgData);
+            dialog_preview.show(imgData);
             // }
         }
     }

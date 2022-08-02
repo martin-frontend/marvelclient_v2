@@ -26,15 +26,6 @@
     </div>
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
-        <!-- <v-btn
-            class="mb-2 mx-2"
-            min-width="100"
-            height="30"
-            :color="form.block_network_id==key ? 'colorBtnBg' : 'colorPanelTitleBg'"
-            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
-            :key="key"
-            @click="onChange2(key)"
-        > -->
         <v-btn
             class="mb-2 mx-2 rounded-pill"
             elevation="0"
@@ -50,8 +41,7 @@
     </div>
 
     <v-card color="transparent" elevation="0">
-        <!-- <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"> -->
-        <div v-if="false">
+        <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
             <div class="colorTextNormal2--text mt-2" v-if="pageData.methodList[form.coin_name_unique]">
                 {{LangUtil("你的{0} {1}充值地址", form.coin_name_unique,
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
@@ -59,50 +49,35 @@
             <div class="d-flex align-center address-box pa-2 mt-1">
                 <div class="white--text ml-1">{{ pageData.address }}</div>
                 <v-spacer />
-                <!-- <v-btn color="#6FA9FA" small width="24" min-width="0" height="24" @click="onCopy">
-                    <v-img src="@/assets/icon/icon_copy.png" width="24" height="24"></v-img>
-                </v-btn> -->
                 <v-btn class="rounded-pill btnRedBg" width="70" min-width="70" height="30" @click="onCopy">
                     <span class="text-13">{{LangUtil("复制")}}</span>
                 </v-btn>
             </div>
         </div>
         <!-- 待修改 -->
-        <!-- <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5"> -->
-        <div v-if="true">
+        <div v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
             <div class="colorTextNormal2--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
-                <!-- <v-btn
-                    class="mb-2 mx-2"
-                    min-width="100"
-                    height="30"
-                    :color="pageData.gold_index==index ? 'colorBtnBg' : 'colorPanelTitleBg'"
-                    v-for="(item, index) of pageData.methodList[form.coin_name_unique].options[form.block_network_id].fixed_gold_list"
-                    :key="index"
-                    @click="onGoldClick(index, item)"
-                    >{{item}}</v-btn
-                > -->
                 <v-btn
                     class="mb-2 mx-2 text-14 rounded-pill"
                     min-width="80"
                     height="30"
                     elevation="0"
                     :class="pageData.gold_index==index ? 'btnRedBg' : 'btnWhiteBg'"
-                    v-for="(item, index) of [20,50,100,500,1000,2000]"
+                    v-for="(item, index) of pageData.methodList[form.coin_name_unique].options[form.block_network_id].fixed_gold_list"
                     :key="index"
                     @click="onGoldClick(index, item)"
                     >{{item}}</v-btn
                 >
                 <v-spacer />
             </div>
-            <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number">
-                
+            <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number">    
             </CustomInput>
-            <div>
-                <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
+            
+                <!-- <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
                     >{{LangUtil("提交充值")}}</v-btn
-                >
-            </div>
+                > -->
+            
         </div>
 
         <v-sheet class="d-flex flex-wrap rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)">
@@ -117,27 +92,24 @@
                 </div>
             </div>
             <v-spacer />
-            <!-- <v-sheet
-                class="rounded-sm ml-3"
-                width="70"
-                min-width="70"
-                height="70"
-                color="white"
-                v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-            > -->
             <v-sheet
                 class="rounded-sm ml-3"
                 width="70"
                 min-width="70"
                 height="70"
                 color="white"
-                v-if="false"
+                v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
             >
                 <div ref="qrcode" class="qrcode" @click="showPreview">
                     <v-img :src="pageData.qrcode"></v-img>
                 </div>
             </v-sheet>
         </v-sheet>
+        <div class="d-flex justify-center mt-5"  v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
+        <v-btn class="white--text btnRedBg rounded" width="345" height="44" @click="onSumbit"
+                    >{{LangUtil("确定充值")}}</v-btn
+                >
+            </div>
     </v-card>
     <!-- <v-divider class="mx-5" /> -->
     <!-- <v-card-text class="d-flex justify-end mt-3">

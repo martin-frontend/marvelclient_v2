@@ -7,17 +7,17 @@ const routes: Array<RouteConfig> = [
     {
         path: "/",
         name: "page_home",
-        component: () => import(/* webpackChunkName: "page_home" */ "@/_skin100/views/page_home/views/PageHome.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_home" */ "@/_skin100/views/page_home/views/PageHome.vue"),
     },
     {
         path: "/page_game_list",
         name: "page_game_list",
-        component: () => import(/* webpackChunkName: "page_game_list" */ "@/_skin100/views/page_game_list/views/PageGameList.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_game_list" */ "@/_skin100/views/page_game_list/views/PageGameList.vue"),
     },
     {
         path: "/page_game_play",
         name: "page_game_play",
-        component: () => import(/* webpackChunkName: "page_game_play" */ "@/_skin100/views/page_game_play/views/PageGamePlay.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_game_play" */ "@/_skin100/views/page_game_play/views/PageGamePlay.vue"),
     },
     {
         path: "/page_introduce",
@@ -27,22 +27,22 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_extension",
         name: "page_extension",
-        component: () => import(/* webpackChunkName: "page_extension" */ "@/_skin100/views/page_extension/views/PageExtension.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_extension" */ "@/_skin100/views/page_extension/views/PageExtension.vue"),
     },
     {
         path: "/page_mine",
         name: "page_mine",
-        component: () => import(/* webpackChunkName: "page_mine" */ "@/_skin100/views/page_mine/views/PageMine.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_mine" */ "@/_skin100/views/page_mine/views/PageMine.vue"),
     },
     {
         path: "/page_bonus",
         name: "page_bonus",
-        component: () => import(/* webpackChunkName: "page_bonus" */ "@/_skin100/views/page_bonus/views/PageBonus.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_bonus" */ "@/_skin100/views/page_bonus/views/PageBonus.vue"),
     },
     {
         path: "/page_swap",
         name: "page_swap",
-        component: () => import(/* webpackChunkName: "page_swap" */ "@/_skin100/views/page_swap/views/PageSwap.vue"),
+        component: () => import(/* webpackChunkName: "skin100_page_swap" */ "@/_skin100/views/page_swap/views/PageSwap.vue"),
     },
 ];
 

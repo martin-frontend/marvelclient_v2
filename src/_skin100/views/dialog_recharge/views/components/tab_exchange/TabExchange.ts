@@ -4,13 +4,13 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_address_book from "@/views/dialog_address_book";
-import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
-import dialog_message_box from "@/views/dialog_message_box";
-import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
-import dialog_safety_center from "@/views/dialog_safety_center";
+import dialog_address_book from "@/_skin100/views/dialog_address_book";
+import DialogAddressBookProxy from "@/_skin100/views/dialog_address_book/proxy/DialogAddressBookProxy";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
+import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
 import dialog_trade_password from "@/views/dialog_trade_password";
-import dialog_wallet from "@/views/dialog_wallet";
+import dialog_wallet from "@/_skin100/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 
 @Component
@@ -36,7 +36,7 @@ export default class TabExchange extends AbstractView {
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
+            `<a id="aLink" class="text-decoration-underline colorBtnSeleBg--text">${LangUtil("安全中心")}</a>`
         );
     }
 

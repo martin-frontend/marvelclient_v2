@@ -76,6 +76,47 @@
               </div>
             </div>
         </div>
+        <div v-if="$vuetify.breakpoint.mobile" >
+            <div class="h5-intrduce">
+                <Marquee1 class="marquee1"  />
+                <p class="title">egame介绍</p>
+                <p class="content">
+                    Cfans是J9国际（Coinfans.com）基于BSC币安智能链发行的一种数字货币，有去中心化、交易匿名、安全等特性。
+                    Cfans独创下注挖矿解决方案——用户的每笔投注都会产出一定数量的Cfans， 并且所有持有Cfans的玩家都可以从分红池中获得一定比例的网站利润分成。
+                </p>
+
+                <!-- <div class="h5-t-content">
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("Token名称")}}</p>
+                      <p  class="t-text">{{reward_coin_info.coin_name}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("合约地址")}}</p>
+                      <p class="t-text" @click="goContractInfo">{{LangUtil("查看合约信息")}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("发行链")}}</p>
+                      <p class="t-text">{{reward_coin_info.block_network_name}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("总计发行")}}</p>
+                      <p class="t-text">{{reward_coin_info.total_supply}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("总计流通")}} </p>
+                      <p class="t-text">{{reward_coin_info.total_circulate}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("总计质押")}}</p>
+                      <p class="t-text">{{reward_coin_info.total_stake_amount}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("持币地址数")}}</p>
+                      <p class="t-text">{{reward_coin_info.total_holder}}</p>
+                    </div>
+                  </div> -->
+            </div>
+        </div>
         <PageIntroduce />
         <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
             <GameSlideGroup

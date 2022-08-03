@@ -1,4 +1,15 @@
 .page_mine {
+    #vipLevel.mobile-vip {
+        background-color: #162734 !important;
+        background-size: cover;
+        border-radius: 16px;
+        padding: 20px 30px;
+        .tips {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px 25px;
+            border-radius: 8px;
+        }
+    }
     .font_18 {
         font-size: 18px !important;
     }

@@ -112,4 +112,11 @@ export default class Header extends AbstractView {
             }
         }
     }
+
+    @Watch("myProxy.isOpenWalletMenu")
+    onWatchMenu(val: boolean) {
+        if (!val) {
+            this.myProxy.isShowWalletTip = false;
+        }
+    }
 }

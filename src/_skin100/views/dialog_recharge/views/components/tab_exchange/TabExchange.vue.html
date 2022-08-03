@@ -1,4 +1,4 @@
-<v-card-text class="mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto">
+<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;">
     <div class="colorTextNormal2--text text-14" v-html="bindHtml">
         <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
         <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
@@ -15,7 +15,7 @@
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
         <v-btn
-            class="mb-2 mx-2 rounded-pill"
+            class="mb-2 mx-2 rounded-pill font-weight-regular"
             elevation="0"
             min-width="70"
             height="30"
@@ -38,7 +38,7 @@
                 <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
             </v-tooltip>
 
-            <v-btn elevation="0"  class="rounded-pill btnWhiteBg mr-2" width="62" height="28"  @click="onAddressBook"><span class="text-12 colorTextNormal4--text">{{LangUtil("地址薄")}}</span></v-btn>
+            <v-btn elevation="0"  class="rounded-pill btnWhiteBg" width="62" height="28"  @click="onAddressBook"><span class="text-12 colorTextNormal4--text">{{LangUtil("地址薄")}}</span></v-btn>
             <v-btn v-if="!$vuetify.breakpoint.mobile" elevation="0" class="rounded-pill btnWhiteBg" width="50"  height="28" @click="onPaste"
                 ><span class="text-12 colorTextNormal4--text">{{LangUtil("粘贴")}}</span></v-btn
             >

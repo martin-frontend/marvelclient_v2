@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { vuetify } from "./plugins/vuetify";
+import { getVuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
@@ -27,6 +27,7 @@ AppFacade.inst.startup();
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
+const vuetify =  getVuetify();
 //@ts-ignore
 window["vm"] = new Vue({
     router,

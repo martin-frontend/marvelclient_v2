@@ -1,5 +1,6 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import { vuetify } from "@/plugins/vuetify";
+import { getVuetify } from "@/plugins/vuetify";
+
 export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
     static NAME = "DialogPledgeRecordsProxy";
 
@@ -56,6 +57,7 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.getCurrentCoin();
+        const vuetify = getVuetify();
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

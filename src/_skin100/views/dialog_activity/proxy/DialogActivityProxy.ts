@@ -1,4 +1,4 @@
-import { getVuetify } from "@/plugins/vuetify";
+import { getVuetify } from "@/_skin100/plugins/vuetify";
 
 export default class DialogActivityProxy extends puremvc.Proxy {
     static NAME = "DialogActivityProxy";

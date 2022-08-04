@@ -64,16 +64,16 @@
         <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-2" x-small width="74" height="28"  @click="onWallet"><span class="text-12 colorTextNormal4--text">{{LangUtil("平台钱包")}}</span></v-btn>
     </v-sheet>
 
-    <v-row class="colorText1--text mt-3" dense>
-        <v-col class="mr-1">
-            <v-sheet color="transparent" min-width="300" class="mb-2">
+    <v-row class="colorText1--text mt-3 d-flex" dense>
+        <v-col cols="6">
+            <v-sheet color="transparent" class="mb-2">
                 <div class="colorTextNormal2--text">{{LangUtil("提取金额")}}</div>
                 <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入金额')" v-model="form.amount">
                     <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small width="50" height="28" @click="onAll"><span class="text-12 colorTextNormal4--text">{{LangUtil("全部")}}</span></v-btn>
                 </CustomInput>
             </v-sheet>
         </v-col>
-        <v-col>
+        <v-col cols="6">
             <div class="colorTextNormal2--text">{{LangUtil("交易密码")}}</div>
             <CustomPassword class="mt-1 input_b" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
                 <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small width="50" height="30"  @click="onSetPassword"

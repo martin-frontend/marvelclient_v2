@@ -41,7 +41,7 @@ export default class NoticeProxy extends puremvc.Proxy {
 
     jump(item: core.PlatNoticeVO) {
         //跳转模块:1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易|8-Swap
-        console.log(">>>>>", item.open_mode);
+        console.log(">>>>>qq", item.open_mode);
         if (item.open_mode != 1) {
             switch (item.open_mode) {
                 case 2:

@@ -1,5 +1,5 @@
 import GameProxy from "@/proxy/GameProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
+import NoticeProxy from "../proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import GamePlatConfig from "@/core/config/GamePlatConfig";

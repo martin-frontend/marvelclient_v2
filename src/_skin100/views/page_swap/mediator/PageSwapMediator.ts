@@ -2,7 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageSwapProxy from "../proxy/PageSwapProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
 import GameProxy from "@/proxy/GameProxy";
 

@@ -3,7 +3,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_get_verity from "@/_skin100/views/dialog_get_verity";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import dialog_register from "@/_skin100/views/dialog_register";
 import { Component, Watch } from "vue-property-decorator";
 import DialogLoginMediator from "../mediator/DialogLoginMediator";

@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogWalletProxy from "../proxy/DialogWalletProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogWalletMediator extends AbstractMediator {

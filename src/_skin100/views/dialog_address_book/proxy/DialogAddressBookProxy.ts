@@ -3,7 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 // import { vuetify } from "@/plugins/vuetify";
-import { getVuetify } from "@/plugins/vuetify";
+import { getVuetify } from "@/_skin100/plugins/vuetify";
 
 export default class DialogAddressBookProxy extends puremvc.Proxy {
     static NAME = "DialogAddressBookProxy";

@@ -1,0 +1,9 @@
+<v-dialog v-model="pageData.bShow" width="$vuetify.breakpoint.width/2" :retain-focus="false" :fullscreen="true" persistent>
+    <v-card color="transparent" class="d-flex align-center justify-center">
+        <img v-if="$vuetify.breakpoint.xsOnly" width="100%" :src="pageData.data.link_url" />
+        <img v-else class="imgage" :src="pageData.data.link_url" />
+    </v-card>
+    <v-btn class="btn-close" icon @click="onClose">
+        <v-icon large>mdi-close</v-icon>
+    </v-btn>
+</v-dialog>

@@ -3,9 +3,9 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import DialogDirectly from "./DialogDirectly";
-import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
+import CustomInput from "@/_skin100/views/widget/custom_input/CustomInput.vue";
 import ListNodata from "@/_skin100/views/widget/list_nodata/ListNodata.vue";
 
 @Component({

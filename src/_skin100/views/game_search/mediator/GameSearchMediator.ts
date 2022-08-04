@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import GameSearchProxy from "../proxy/GameSearchProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 
 export default class GameSearchMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {

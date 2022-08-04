@@ -1,4 +1,4 @@
-<v-card-text class="mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto">
+<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;">
     <div class="colorTextNormal2--text text-14" v-html="bindHtml">
         <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
         <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
@@ -15,7 +15,7 @@
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
         <v-btn
-            class="mb-2 mx-2 rounded-pill"
+            class="mb-2 mx-2 rounded-pill font-weight-regular"
             elevation="0"
             min-width="70"
             height="30"
@@ -31,34 +31,19 @@
     <div class="colorTextNormal2--text mt-1">{{LangUtil("你的钱包地址")}}</div>
     <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
         <div class="d-flex align-center mr-n2">
-            <v-tooltip top color="colorText1">
+            <v-tooltip top color="colorIcontNormal">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn v-bind="attrs" v-on="on" color="colorTextNormal4" icon small class="mr-0"><v-icon small>mdi-help-circle</v-icon></v-btn>
                 </template>
                 <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
             </v-tooltip>
 
-            <v-btn elevation="0"  class="rounded-pill btnWhiteBg mr-2" width="62" height="28"  @click="onAddressBook"><span class="text-12 colorTextNormal4--text">{{LangUtil("地址薄")}}</span></v-btn>
+            <v-btn elevation="0"  class="rounded-pill btnWhiteBg" width="62" height="28"  @click="onAddressBook"><span class="text-12 colorTextNormal4--text">{{LangUtil("地址薄")}}</span></v-btn>
             <v-btn v-if="!$vuetify.breakpoint.mobile" elevation="0" class="rounded-pill btnWhiteBg" width="50"  height="28" @click="onPaste"
                 ><span class="text-12 colorTextNormal4--text">{{LangUtil("粘贴")}}</span></v-btn
             >
         </div>
     </CustomInput>
-    <!-- <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
-        <div class="d-flex align-center mr-n2">
-            <v-tooltip top color="colorText1">
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
-                </template>
-                <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
-            </v-tooltip>
-
-            <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook">{{LangUtil("地址薄")}}</v-btn>
-            <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
-                >{{LangUtil("粘贴")}}</v-btn
-            >
-        </div>
-    </CustomInput> -->
 
     <div class="colorTextNormal2--text mt-3">{{LangUtil("平台余额")}}</div>
     <v-sheet class="d-flex align-center pl-4 mt-1 rounded bPanelWhiteOpacityBg" height="40">
@@ -70,7 +55,7 @@
         ></v-img>
         <div>{{ balance }}</div>
         <v-spacer />
-        <v-tooltip top color="colorText1">
+        <v-tooltip top color="colorIcontNormal">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn v-bind="attrs" v-on="on" color="colorTextNormal4" icon small class="mr-1"><v-icon small>mdi-help-circle</v-icon></v-btn>
             </template>
@@ -110,27 +95,18 @@
         </div>
         <v-spacer />
     </v-sheet>
-
-    <!-- <div class="text-14 mt-3 color-blue mb-2 d-flex" v-if="pageData.methodList[form.coin_name_unique]">
-        <div>
-            <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
-                {{item}}
-            </div>
-        </div>
-    </div> -->
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
-    <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
-    <v-divider class="mx-5" />
-    <v-card-text class="d-flex justify-end mt-3">
-        <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
-        <v-img
-            class="mr-2"
-            :src="plat_coins[key].icon"
-            max-width="20"
-            height="20"
-            v-for="(item, key) of pageData.methodList"
-            :key="key"
-        ></v-img>
+    <div class="d-flex justify-center mt-5" >
+        <v-btn class="white--text btnRedBg rounded" width="345" height="44" :disabled="!isChecked" @click="onSubmit"
+                >{{LangUtil("确认兑换")}}</v-btn
+            >
+    </div>
+
+    <v-card-text class="d-flex justify-start align-center px-3 py-2 mt-5 coins-area">
+        <div class="mr-3 colorTextNormal2--text text-13">{{LangUtil("已支持币种")}}</div>
+        <div v-for="(item, key) of pageData.methodList" :key="key">
+            <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="18" height="18"></v-img>
+        </div>
     </v-card-text>
     <Overlay v-model="pageData.loading" />
 </v-card-text>

@@ -4,11 +4,11 @@ import CopyUtil from "@/core/global/CopyUtil";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
-import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
 import { Component, Watch } from "vue-property-decorator";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 
 @Component
 export default class TabRecharge extends AbstractView {

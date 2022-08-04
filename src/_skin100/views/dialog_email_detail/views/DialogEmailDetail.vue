@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import DialogEmailDetail from "./DialogEmailDetail";
 
 @Component({

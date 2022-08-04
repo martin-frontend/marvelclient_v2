@@ -1,6 +1,6 @@
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
-import dialog_activity from "@/views/dialog_activity";
+import dialog_activity from "@/_skin100/views/dialog_activity";
 import LoginEnter from "../core/global/LoginEnter";
 import dialog_message_box from "../views/dialog_message_box";
 import page_bonus from "../views/page_bonus";

@@ -1,0 +1,77 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg d-flex flex-column bPanelBg">
+        <!-- <v-sheet color="transparent" width="366" class="d-none d-md-flex">
+            <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
+                <v-carousel-item v-for="(item, index) of noticeProxy.data.listType2" :key="index">
+                    <v-img :src="item.img_url" width="366" height="610"></v-img>
+                </v-carousel-item>
+            </v-carousel>
+        </v-sheet> -->
+        <!-- <v-card color="transparent"> -->
+            <!-- pc显示方式 -->
+            <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
+                <div class="text-18">{{LangUtil("精彩活动")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon  color="colorCloseBtn">mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
+                <v-sheet color="transparent" height="468" class="scroll-y">
+                    <v-sheet
+                        class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3 bPanelOpacityBg"
+                        height="80"
+                        v-for="(item, index) of pageData.list"
+                        :key="index"
+                    >
+                        <div>
+                            <div class="white--text text-16 mb-1">{{item.activity_name}}</div>
+                            <div class="colorTextNormal3--text text-14">{{item.start_time}} ~ {{item.end_time}}</div>
+                        </div>
+                        <v-btn :text="true" class="align-self-end mb-2"  small @click="onDetail(item)"><span class="colorTextNormal3--text text-14 font-weight-regular">{{LangUtil("查看详情")}}<v-icon class="white--text" :style="{opacity: 0.4}" size="22">mdi-chevron-right</v-icon> </span></v-btn>
+                    </v-sheet>
+                </v-sheet>
+            </v-card-text>
+            <v-card-actions class="justify-center" v-if="!$vuetify.breakpoint.xsOnly">
+                <v-pagination
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </v-card-actions>
+            <!-- 手机显示方式 -->
+            <v-card-text class="pb-0 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+                <div class="d-flex align-center px-4 pt-5 pb-4">
+                    <div class="white--text text-17">{{LangUtil("精彩活动")}}</div>
+                    <v-spacer />
+                    <v-btn icon @click="onClose">
+                        <v-icon  color="colorCloseBtn">mdi-close</v-icon>
+                    </v-btn>
+                </div>
+            </v-card-text>
+            <v-card-text v-if="$vuetify.breakpoint.xsOnly" class="px-3 overflow-auto" style="padding-bottom:90px;">
+                <v-sheet color="transparent" height="560" class="scroll-y">
+                <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                    <v-sheet color="transparent">
+                        <v-sheet
+                            class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3 bPanelOpacityBg"
+                            height="80"
+                            v-for="(item, index) of pageData.list"
+                            :key="index"
+                        >
+                            <div>
+                                <div class="white--text text-14 mb-1">{{item.activity_name}}</div>
+                                <div class="colorTextNormal3--text text-14">{{item.start_time}} ~ {{item.end_time}}</div>
+                            </div>
+                            <v-btn :text="true" class="align-self-end px-0"  small @click="onDetail(item)"><span class="colorTextNormal3--text text-14 font-weight-regular">{{LangUtil("查看详情")}}<v-icon class="white--text" :style="{opacity: 0.4}" size="22">mdi-chevron-right</v-icon> </span></v-btn>
+                        </v-sheet>
+                    </v-sheet>
+                </vue-loadmore>
+            </v-sheet>
+            </v-card-text>
+        <!-- </v-card> -->
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

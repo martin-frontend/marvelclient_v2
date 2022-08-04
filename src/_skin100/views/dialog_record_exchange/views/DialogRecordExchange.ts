@@ -5,7 +5,7 @@ import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_recharge from "@/_skin100/views/dialog_recharge";
-import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
 import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import DialogRecordExchangeMediator from "../mediator/DialogRecordExchangeMediator";

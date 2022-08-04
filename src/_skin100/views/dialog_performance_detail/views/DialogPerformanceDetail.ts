@@ -5,7 +5,7 @@ import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceDetailMediator from "../mediator/DialogPerformanceDetailMediator";
 import DialogPerformanceDetailProxy from "../proxy/DialogPerformanceDetailProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 
 @Component

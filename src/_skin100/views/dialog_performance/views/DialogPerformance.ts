@@ -6,7 +6,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceMediator from "../mediator/DialogPerformanceMediator";
 import DialogPerformanceProxy from "../proxy/DialogPerformanceProxy";
 import dialog_performance_detail from "@/_skin100/views/dialog_performance_detail";
-import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
+import DialogPerformanceDetailProxy from "@/_skin100/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import LangUtil from "@/core/global/LangUtil";
 
 @Component

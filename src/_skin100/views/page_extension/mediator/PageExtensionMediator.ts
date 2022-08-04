@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageExtensionProxy from "../proxy/PageExtensionProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 import { getTodayGMT } from "@/core/global/Functions";
 export default class PageExtensionMediator extends AbstractMediator {

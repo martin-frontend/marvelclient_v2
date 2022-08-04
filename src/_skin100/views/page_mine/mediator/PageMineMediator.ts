@@ -2,7 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageMineProxy from "../proxy/PageMineProxy";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 
 export default class PageMineMediator extends AbstractMediator {
     private pageMineProxy: PageMineProxy = this.getProxy(PageMineProxy);

@@ -4,8 +4,8 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageGamePlay from "./PageGamePlay";
-import router from "@/router";
-import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
+import router from "@/_skin100/router";
+import RecentBetting from "@/_skin100/views/widget/recent_betting/RecentBetting.vue";
 
 @Component({
     components: {

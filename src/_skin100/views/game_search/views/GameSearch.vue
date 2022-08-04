@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import GameSearch from "./GameSearch";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import ListNodata from "@/_skin100/views/widget/list_nodata/ListNodata.vue";
 import GameSearchItem from "../widget/game_search_item/GameSearchItem.vue";
 

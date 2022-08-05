@@ -31,6 +31,7 @@ export default class AppFacade {
     private initProxy() {
         this.facade.registerProxy(new SelfProxy(SelfProxy.NAME));
         this.facade.registerProxy(new GameProxy(GameProxy.NAME));
+        this.facade.registerProxy(new NoticeProxy(NoticeProxy.NAME));
     }
 
     private initCommand() {

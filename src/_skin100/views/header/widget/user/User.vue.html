@@ -39,7 +39,10 @@
         </v-menu>
     </div>
     <div v-else>
-        <v-btn icon small size="20" @click.stop="drawer = !drawer" ><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+        <img class="rounded-pill" width="28" height="28" src="../../../../assets/avatar/Avatar0.png" @click.stop="drawer = !drawer"></img>
+       <!--  <v-btn icon small size="20"  >
+            <v-icon>mdi-format-list-bulleted</v-icon> 
+        </v-btn>
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute width="288" color="#16233B"> -->
         <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" >

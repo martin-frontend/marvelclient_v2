@@ -12,7 +12,8 @@
             <div class="text-15 ml-3 d-inline-flex px-4 py-2 pr-16 rounded-pill items-bg">
                 <div color="rgba(255,255,255,0.4)">{{LangUtil("总投注额")}} <span class="span-b">{{pageData.total_bet_gold}}</span></div>
                 <div color="rgba(255,255,255,0.4)" class="ml-5">
-                    {{LangUtil("输赢")}} <span class="span-b">{{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</span>
+                    <!-- {{LangUtil("输赢")}} <span class="span-b">{{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</span> -->
+                    {{LangUtil("输赢")}} <span class="span-b">{{ pageData.total_win_gold}}</span>
                 </div>
             </div>
         </v-card-text>
@@ -76,7 +77,8 @@
                         </div>
                         <div class="l-item">
                             <div class="text-right text-12">{{LangUtil("输赢")}}</div>
-                            <div class="text-14 text-right white--text">{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div>
+                            <!-- <div class="text-14 text-right white--text">{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div> -->
+                            <div class="text-14 text-right white--text">{{ item.win_gold }}</div>
                         </div>      
                     </div>
                 </v-sheet>
@@ -105,7 +107,9 @@
                 <div class="d-flex px-4 py-3 rounded-pill items-bg">
                     <div color="rgba(255,255,255,0.4)" class="text-14">{{LangUtil("总投注额")}} <span class="span-b text-16 font-weight-bold">{{pageData.total_bet_gold}}</span></div>
                     <div color="rgba(255,255,255,0.4)" class="ml-2 text-14">
-                        {{LangUtil("输赢")}} <span class="span-b font-weight-bold">{{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</span>
+                        {{LangUtil("输赢")}} 
+                        <!-- <span class="span-b font-weight-bold">{{ (parseFloat(pageData.total_win_gold) < 0 ? "" : "+") + pageData.total_win_gold}}</span> -->
+                        <span class="span-b font-weight-bold">{{pageData.total_win_gold}}</span>
                     </div>
                 </div>
             </div>
@@ -206,7 +210,8 @@
                         </div>
                         <div class="l-item ml-auto">
                             <div class="text-right text-12">{{LangUtil("输赢")}}</div>
-                            <div class="text-14 text-right white--text">{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div>
+                            <!-- <div class="text-14 text-right white--text">{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div> -->
+                            <div class="text-14 text-right white--text">{{item.win_gold }}</div>
                         </div>  
                         
                         <div class="listitem-150 l-item" style="width:40%;">

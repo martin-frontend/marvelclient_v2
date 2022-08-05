@@ -7,7 +7,7 @@ import getProxy from "@/core/global/getProxy";
 import NotificationName from "@/core/NotificationName";
 import FagProxy from "@/proxy/FagProxy";
 
-import router from "@/router";
+import router from "../router";
 import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";

@@ -5,7 +5,7 @@ import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/_skin100/style/common.scss";
-import AppFacade from "@/AppFacade";
+import AppFacade from "./AppFacade";
 import { getVuetify } from "./plugins/vuetify";
 
 core.init();

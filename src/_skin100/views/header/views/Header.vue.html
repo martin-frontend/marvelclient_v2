@@ -107,10 +107,10 @@
             </div>
         </div>
         <div class="d-flex align-center mt-1 mb-2 ">
-            <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
+            <v-btn v-if="core.user_id == 0" small  class="text-14 white--text common-btn" @click="handlerLogin">
                 <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
+            <v-btn v-if="core.user_id == 0" small color="white" style="border-radius: 23px;" class="text-14 mx-4 black--text" @click="handlerRegister">
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <User v-if="core.user_id" />
@@ -118,7 +118,7 @@
             <v-spacer />
             <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
                 <!-- <v-icon>mdi-information</v-icon> -->
-                <img src="../../../assets/32-2.png" width="24" alt="">
+                <img src="../../../assets/32-2.png" width="20" alt="">
                 <div class="ml-1 text-14">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
             </v-btn>
         </div>

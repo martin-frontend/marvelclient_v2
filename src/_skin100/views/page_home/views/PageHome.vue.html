@@ -85,36 +85,68 @@
                     Cfans独创下注挖矿解决方案——用户的每笔投注都会产出一定数量的Cfans， 并且所有持有Cfans的玩家都可以从分红池中获得一定比例的网站利润分成。
                 </p>
 
-                <!-- <div class="h5-t-content">
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("Token名称")}}</p>
-                      <p  class="t-text">{{reward_coin_info.coin_name}}</p>
-                    </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("合约地址")}}</p>
-                      <p class="t-text" @click="goContractInfo">{{LangUtil("查看合约信息")}}</p>
-                    </div>
-                    <div class="content">
+                <div class="h5-t-content">
+                  <div class="content">
+                    <p class="t-title">{{LangUtil("合约地址")}}</p>
+                    <p class="t-text" @click="goContractInfo">{{LangUtil("查看合约信息")}}</p>
+                  </div>
+                  <div class="content">
+                    <p class="t-title">{{LangUtil("总计发行")}}</p>
+                    <p class="t-text">{{reward_coin_info.total_supply}}</p>
+                  </div>
+                   <div class="content">
                       <p class="t-title">{{LangUtil("发行链")}}</p>
                       <p class="t-text">{{reward_coin_info.block_network_name}}</p>
-                    </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("总计发行")}}</p>
-                      <p class="t-text">{{reward_coin_info.total_supply}}</p>
-                    </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("总计流通")}} </p>
-                      <p class="t-text">{{reward_coin_info.total_circulate}}</p>
                     </div>
                     <div class="content">
                       <p class="t-title">{{LangUtil("总计质押")}}</p>
                       <p class="t-text">{{reward_coin_info.total_stake_amount}}</p>
                     </div>
                     <div class="content">
+                      <p class="t-title">{{LangUtil("总计流通")}} </p>
+                      <p class="t-text">{{reward_coin_info.total_circulate}}</p>
+                    </div>
+                    <div class="content">
+                      <p class="t-title">{{LangUtil("Token名称")}}</p>
+                      <p  class="t-text">{{reward_coin_info.coin_name}}</p>
+                    </div>
+                    <div class="content">
                       <p class="t-title">{{LangUtil("持币地址数")}}</p>
                       <p class="t-text">{{reward_coin_info.total_holder}}</p>
                     </div>
-                  </div> -->
+                  </div>
+
+                  <div class="tip-content">
+                    <div  class="totle-data">
+                      <div class="s-left">
+                          <div>
+                              <div >
+                                  {{LangUtil("总计销毁")}}:  
+                                  <span class="s-num colorYellowBg--text">
+                                      52,150,595.94
+                                  </span>
+                              </div>
+                              <div class="">
+                                  {{LangUtil("本周销毁")}}:  
+                                  <span class="s-num  colorYellowBg--text">
+                                      12,281,737.27
+                                  </span>
+                              </div>
+                              
+                              </div>
+                              <div class="s-right">
+                                <span>
+                                    链上销毁记录
+                                </span>
+                            </div>
+                            </div>
+                              <p class="bm-text">
+                                  玩家质押egame所支付的手续费都将转账到黑洞地址，实现egame的不断通缩，以支持价格不断上涨。
+                              </p>
+                   
+                  </div>
+                    <div class="bg"></div>
+                  </div>
             </div>
         </div>
         <PageIntroduce />

@@ -6,14 +6,12 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import PageGameList from "./PageGameList";
 import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
-import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
 import GameItem from "@/views/widget/game_item/GameItem.vue";
 
 @Component({
     components: {
         Overlay,
         GameListSelect,
-        GameSlideGroup,
         GameItem,
     },
 })

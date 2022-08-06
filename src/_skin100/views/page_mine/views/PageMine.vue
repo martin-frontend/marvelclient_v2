@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageMine from "./PageMine";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import Question from "@/_skin100/views/widget/question/Question.vue";
 
 @Component({

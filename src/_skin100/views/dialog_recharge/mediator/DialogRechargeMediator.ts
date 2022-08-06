@@ -1,11 +1,11 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
-import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
+import DialogAddressBookProxy from "@/_skin100/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import OpenLink from "@/core/global/OpenLink";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import SelfProxy from "@/proxy/SelfProxy";
 

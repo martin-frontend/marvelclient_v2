@@ -4,7 +4,7 @@
 <script lang="ts">
 import CustomInput from "@/_skin100/views/widget/custom_input/CustomInput.vue";
 import CustomSelect from "@/_skin100/views/widget/custom_select/CustomSelect.vue";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import TabRecharge from "./TabRecharge";
 

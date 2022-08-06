@@ -10,7 +10,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
 
 @Component
 export default class PageSwap extends AbstractView {

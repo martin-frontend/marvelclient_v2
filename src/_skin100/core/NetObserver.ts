@@ -1,5 +1,5 @@
 import GameProxy from "@/proxy/GameProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
+import NoticeProxy from "../proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
@@ -7,7 +7,7 @@ import getProxy from "@/core/global/getProxy";
 import NotificationName from "@/core/NotificationName";
 import FagProxy from "@/proxy/FagProxy";
 
-import router from "@/router";
+import router from "../router";
 import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";

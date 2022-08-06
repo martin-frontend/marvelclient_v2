@@ -12,3 +12,22 @@
         color: #9db1d8;
     }
 }
+
+.l-item {
+    // min-width: 126px;
+    // max-width: 126px;
+    width: calc(80% / 6);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #9db1d8;
+    div:first-child {
+        color: rgba(255,255,255,0.4);
+        // margin-bottom: 5px;
+    }
+    div > a {
+        color: #9db1d8;
+    }
+}
+.column-title{
+    color: rgba(255,255,255,0.4);  
+}

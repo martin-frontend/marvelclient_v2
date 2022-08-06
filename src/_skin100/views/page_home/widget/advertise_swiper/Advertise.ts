@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
+import NoticeProxy from "@/_skin100/proxy/NoticeProxy";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
 import { Prop, Watch, Component } from "vue-property-decorator";

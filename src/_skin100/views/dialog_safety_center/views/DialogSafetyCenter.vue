@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
+import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import DialogSafetyCenter from "./DialogSafetyCenter";
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/_skin100/views/widget/custom_input/CustomInput.vue";

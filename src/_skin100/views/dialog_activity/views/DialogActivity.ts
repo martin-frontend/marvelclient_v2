@@ -5,7 +5,7 @@ import dialog_activity_detail from "@/_skin100/views/dialog_activity_detail";
 import { Watch, Component } from "vue-property-decorator";
 import DialogActivityMediator from "../mediator/DialogActivityMediator";
 import DialogActivityProxy from "../proxy/DialogActivityProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
+import NoticeProxy from "@/_skin100/proxy/NoticeProxy";
 
 @Component
 export default class DialogActivity extends AbstractView {

@@ -3,7 +3,7 @@ import DialogEmailProxy from "../proxy/DialogEmailProxy";
 import getProxy from "@/core/global/getProxy";
 import dialog_email_detail from "@/_skin100/views/dialog_email_detail";
 import dialog_award from "@/_skin100/views/dialog_award";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogEmailMediator extends AbstractMediator {

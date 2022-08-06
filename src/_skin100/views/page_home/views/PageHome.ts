@@ -4,7 +4,7 @@ import PageHomeMediator from "../mediator/PageHomeMediator";
 import PageHomeProxy from "../proxy/PageHomeProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
-import PageIntroduceProxy from "@/_skin100/views/page_home/widget/page_introduce/proxy/PageIntroduceProxy.ts";
+import PageIntroduceProxy from "@/_skin100/views/page_home/widget/page_introduce/proxy/PageIntroduceProxy";
 @Component
 export default class PageHome extends AbstractView {
     LangUtil = LangUtil;

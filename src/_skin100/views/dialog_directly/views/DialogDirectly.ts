@@ -5,7 +5,7 @@ import DialogPromotionFloorProxy from "@/views/dialog_promotion_floor/proxy/Dial
 import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message from "@/_skin100/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 
 @Component

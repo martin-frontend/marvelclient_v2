@@ -71,9 +71,14 @@ export default class Header extends AbstractView {
             }
         }, 100);
     }
+    // /**切换语言 */
+    // onLangChange() {
+    //     Cookies.set("lang", core.lang);
+    //     location.reload();
+    // }
     /**切换语言 */
     onLangChange() {
-        Cookies.set("lang", core.lang);
+        window.localStorage.setItem("lang", core.lang);
         location.reload();
     }
 }

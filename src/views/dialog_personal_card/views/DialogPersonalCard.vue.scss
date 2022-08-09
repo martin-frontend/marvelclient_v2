@@ -1,0 +1,18 @@
+.input-text {
+    border-radius: 12px;
+    // height: 150px;
+    border: solid 1px #4c5d7f;
+    textarea {
+        vertical-align: middle;
+        height: 150px;
+        width: 100%;
+        color: #96a9d0;
+        font-weight: bold;
+        resize: none;
+        border: none;
+        outline: none;
+    }
+}
+textarea::placeholder {
+    color: #4c5d7f;
+}

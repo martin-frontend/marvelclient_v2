@@ -20,19 +20,83 @@ import dialog_user_center from "@/views/dialog_user_center";
 @Component
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
+    // menuList = [
+    //     { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
+    //     { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
+    //     { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
+    //     { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
+    //     { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
+    // ];
+    // menuList1 = [
+    //     { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+    //     { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
+    //     { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
+    //     { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+    //     { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
+    // ];
     menuList = [
-        { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
-        { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
-        { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
-        { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
-        { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
+        {
+            id: 0,
+            name: LangUtil("个人中心"),
+            icon: require("@/_skin100/assets/my/aqzx.png"),
+            icon_white: require("@/_skin100/assets/my/hover/aqzx.png"),
+        },
+        {
+            id: 1,
+            name: LangUtil("安全中心"),
+            icon: require("@/_skin100/assets/my/aqzx.png"),
+            icon_white: require("@/_skin100/assets/my/hover/aqzx.png"),
+        },
+        {
+            id: 2,
+            name: LangUtil("平台钱包"),
+            icon: require("@/_skin100/assets/my/ptqb.png"),
+            icon_white: require("@/_skin100/assets/my/hover/ptqb.png"),
+        },
+        {
+            id: 3,
+            name: LangUtil("投注记录"),
+            icon: require("@/_skin100/assets/my/tzjl.png"),
+            icon_white: require("@/_skin100/assets/my/hover/tzjl.png"),
+        },
+        {
+            id: 4,
+            name: LangUtil("消息中心"),
+            icon: require("@/_skin100/assets/my/xxzx.png"),
+            icon_white: require("@/_skin100/assets/my/hover/xxzx.png"),
+        },
     ];
     menuList1 = [
-        { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
-        { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
-        { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
-        { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
-        { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
+        {
+            id: 10,
+            name: LangUtil("推广赚钱"),
+            icon: require("@/_skin100/assets/my/tgzq.png"),
+            icon_white: require("@/_skin100/assets/my/hover/tgzq.png"),
+        },
+        {
+            id: 11,
+            name: LangUtil("终身分红"),
+            icon: require("@/_skin100/assets/my/zsfh.png"),
+            icon_white: require("@/_skin100/assets/my/hover/zsfh.png"),
+        },
+        {
+            id: 12,
+            name: LangUtil("游戏挖矿"),
+            icon: require("@/_skin100/assets/my/yxwk.png"),
+            icon_white: require("@/_skin100/assets/my/hover/yxwk.png"),
+        },
+        {
+            id: 13,
+            name: LangUtil("精彩活动"),
+            icon: require("@/_skin100/assets/my/jchd.png"),
+            icon_white: require("@/_skin100/assets/my/hover/jchd.png"),
+        },
+        {
+            id: 14,
+            name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()),
+            icon: require("@/_skin100/assets/my/bjs.png"),
+            icon_white: require("@/_skin100/assets/my/hover/bjs.png"),
+        },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

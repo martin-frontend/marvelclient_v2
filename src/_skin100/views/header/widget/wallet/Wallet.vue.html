@@ -1,4 +1,4 @@
-<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:45" class="rounded-pill d-flex align-center">
+<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex align-center">
     <v-menu offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
@@ -30,7 +30,7 @@
                     class="align-center d-flex rounded-pill pr-3"
                     color="colorPanelTitleBg"
                     min-width="90"
-                    height="45"
+                    height="40"
                     v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                 >
                     <v-img
@@ -93,7 +93,7 @@
     <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-pill black--text mr-2 common-btn white--text" x-small  @click="onCoinIn">
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="rounded-pill  mr-3  common-btn white--text" height="38"  @click="onCoinIn">
+    <v-btn v-else class="rounded-pill  mr-3  common-btn white--text" height="32"  @click="onCoinIn">
         <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

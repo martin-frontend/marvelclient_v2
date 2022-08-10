@@ -62,6 +62,7 @@ export function getVuetify(): Vuetify {
                         colorText7: "#5F80C1",
                         colorText8: "#68799A",
                         colorText9: "#60B7BF",
+                        colorInfo10: "#6E777F",
                         colorTextGold: "#F3B952",
                         colorTextBlue: "#31486C", //used
                         colorTextPurple: "#A8A8F5", //used

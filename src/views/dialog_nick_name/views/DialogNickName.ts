@@ -47,7 +47,7 @@ export default class DialogNickName extends AbstractView {
                 this.selfProxy.api_user_update_var(data);
             }
         } else {
-            dialog_message.info("昵称为1-6位汉字或1-12位英文");
+            dialog_message.info(LangUtil("昵称为1-12位字符"));
         }
     }
 }

@@ -12,6 +12,7 @@ import dialog_safety_center from "@/views/dialog_safety_center";
 import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_trade_password from "@/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_real_name from "@/views/dialog_real_name";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -68,6 +69,11 @@ export default class DialogUserCenter extends AbstractView {
     goSetEmail() {
         this.safetyCenterProxy.pageData.tabIndex = 1
         dialog_safety_center.show()
+    }
+
+    handlerRealName(){
+        //设置真实姓名
+        dialog_real_name.show();
     }
 
     handlerNickName() {

@@ -16,6 +16,7 @@ export default class DialogPromotionFloorMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_var_agent_var_update:
                 myProxy.setData(body);
+                myProxy.resetData();
                 dialogDirectlyProxy.api_user_var_agent_direct_list();
                 break;
             case net.EventType.api_user_var_agent_var_floor_range:

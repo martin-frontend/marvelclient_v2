@@ -8,12 +8,14 @@ import router from "@/router";
 import dialog_game_rate from "@/views/dialog_game_rate";
 import dialog_recharge from "@/views/dialog_recharge";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import HeaderProxy from "../../proxy/HeaderProxy";
 
 @Component
 export default class Wallet extends AbstractView {
     LangUtil = LangUtil;
     selfProxy: SelfProxy = getProxy(SelfProxy);
     gameProxy: GameProxy = getProxy(GameProxy);
+    headerProxy: HeaderProxy = getProxy(HeaderProxy);
 
     GamePlatConfig = GamePlatConfig;
 

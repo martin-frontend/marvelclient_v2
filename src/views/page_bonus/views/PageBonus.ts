@@ -11,6 +11,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
+import { getTodayGMT } from "@/core/global/Functions";
 
 @Component
 export default class PageBonus extends AbstractView {
@@ -127,18 +128,19 @@ export default class PageBonus extends AbstractView {
     countdown() {
         //@ts-ignore
         const end = Date.parse(new Date(this.myProxy.pageData.plat_stake_info.bonus_time.replace(/-/g, "/")));
+        const today = getTodayGMT();
 
-        //@ts-ignore
-        const now = Date.parse(new Date());
+        const now = today.getTime();
         const msec = end - now;
-        if (msec == 0) {
+
+        if (msec < 0) {
             this.myProxy.api_plat_var_stake_info();
             this.myProxy.api_user_var_stake_info();
         }
 
         this.hr = Math.floor(msec / 1000 / 60 / 60);
         this.min = Math.floor((msec / 1000 / 60) % 60);
-        this.sec = (msec / 1000) % 60;
+        this.sec = Math.floor((msec / 1000) % 60);
         this.hr = this.hr > 9 ? this.hr : "0" + this.hr;
         this.min = this.min > 9 ? this.min : "0" + this.min;
         this.sec = this.sec > 9 ? this.sec : "0" + this.sec;

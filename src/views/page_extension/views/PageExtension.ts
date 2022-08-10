@@ -13,6 +13,8 @@ import FagProxy from "@/proxy/FagProxy";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
 import WebViewBridge from "@/core/native/WebViewBridge";
+import dialog_personal_card from "@/views/dialog_personal_card";
+import SelfProxy from "@/proxy/SelfProxy";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -22,6 +24,7 @@ export default class PageExtension extends AbstractView {
     statistics_data = this.myProxy.pageData.statistics_data;
     tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
     constructor() {
         super(PageExtensionMediator);
@@ -109,5 +112,10 @@ export default class PageExtension extends AbstractView {
     private copyMyId() {
         this.myProxy.copyId();
         dialog_message.warn(LangUtil("复制成功"));
+    }
+
+    handlerViewCard() {
+        const { invite_user_business_card } = this.selfProxy.userInfo;
+        dialog_personal_card.show(invite_user_business_card, false);
     }
 }

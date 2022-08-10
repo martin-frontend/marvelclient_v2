@@ -80,6 +80,6 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     handlerPersonalCard() {
-        dialog_personal_card.show();
+        dialog_personal_card.show(this.userInfo.business_card);
     }
 }

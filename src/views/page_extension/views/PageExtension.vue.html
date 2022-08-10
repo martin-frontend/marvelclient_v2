@@ -147,6 +147,21 @@
                                     </span>
                                 </v-col>
                             </v-row>
+                            <v-row v-if="promotionData.invite_user_id" no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
+                                <v-col cols="6"></v-col>
+                                <v-col cols="6">
+                                    <v-btn
+                                            text
+                                            height="20"
+                                            min-width="32"
+                                            class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 font-weight-bold"
+                                            color="colorText4"
+                                            @click="handlerViewCard"
+                                        >
+                                            {{LangUtil("查看上级名片")}}
+                                        </v-btn>
+                                </v-col>
+                            </v-row> 
                             <v-row no-gutters calss="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
                                 <v-col cols="6" class="commission"></v-col>
                             </v-row>

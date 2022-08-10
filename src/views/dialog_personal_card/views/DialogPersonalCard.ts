@@ -24,10 +24,7 @@ export default class DialogPersonalCard extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-        if (this.pageData.bShow) {
-            BlurUtil(this.pageData.bShow);
-            this.myProxy.pageData.personalCard = "";
-        }
+        BlurUtil(this.pageData.bShow);
     }
 
     private onSubmit() {

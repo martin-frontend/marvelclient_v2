@@ -7,12 +7,11 @@
         height: 150px;
         width: 100%;
         color: #96a9d0;
-        font-weight: bold;
         resize: none;
         border: none;
         outline: none;
     }
 }
-textarea::placeholder {
+textarea::placeholder, textarea[disabled] {
     color: #4c5d7f;
 }

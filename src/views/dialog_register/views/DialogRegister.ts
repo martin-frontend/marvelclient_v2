@@ -33,7 +33,7 @@ export default class DialogRegister extends AbstractView {
 
     private registerTypes = GamePlatConfig.config.register_types;
 
-    hasInviteUser(){
+    hasInviteUser() {
         return !!core.invite_user_id;
     }
 

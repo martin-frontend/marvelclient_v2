@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
 import LangUtil from "@/core/global/LangUtil";
+import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -18,12 +19,14 @@ export default class DialogRegisterMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogRegisterProxy = getProxy(DialogRegisterProxy);
+        const headerProxy: HeaderProxy = this.getProxy(HeaderProxy);
         myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_register:
                 dialog_message.success(LangUtil("注册成功"));
                 myProxy.pageData.bShow = false;
                 this.loginSuccess(body);
+                headerProxy.openMenu();
                 break;
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;

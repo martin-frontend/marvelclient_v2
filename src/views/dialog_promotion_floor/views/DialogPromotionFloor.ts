@@ -19,6 +19,7 @@ export default class DialogPromotionFloor extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        this.myProxy.resetData();
     }
 
     @Watch("pageData.bShow")

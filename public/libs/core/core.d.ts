@@ -2835,6 +2835,10 @@ declare module core {
             }[];
         };
         password_gold_exists?: number;
+        /**个人名片*/
+        business_card?: string;
+        /**上級个人名片*/
+        invite_user_business_card?: string;
     }
     /**
      * vip 奖励活动相关

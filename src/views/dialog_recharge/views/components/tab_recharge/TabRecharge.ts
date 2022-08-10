@@ -43,13 +43,36 @@ export default class TabRecharge extends AbstractView {
         const { coin_name_unique, block_network_id } = this.form;
         this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
-        this.changeMoney();
+
+        const channel = methodList[coin_name_unique].options[block_network_id].channel;
+        if (channel) {
+            if (channel.length > 0) {
+                this.form.third_id = channel[0].third_id;
+                this.form.subtitle = channel[0].subtitle;
+                this.paymethod6ChangeMoney();
+            }
+        } else {
+            this.changeMoney();
+        }
     }
+    // onChange3(value: any) {
+    //     if (value) this.form.block_network_id = value;
+    //     const { methodList } = this.pageData;
+    //     const { coin_name_unique, block_network_id } = this.form;
+    //     this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
+
+    //     const channel = methodList[coin_name_unique].options[block_network_id].channel;
+    //     if (channel.length > 0) {
+    //         this.form.third_id = channel[0].third_id;
+    //         this.form.subtitle = channel[0].subtitle;
+    //         this.paymethod6ChangeMoney();
+    //     }
+    // }
     // 如果是现金支付，则选择第三个。
     changeMoney() {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
-        if (methodList[coin_name_unique].payemthod_id == 5) {
+        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 5) {
             const fixed_gold_list = methodList[coin_name_unique].options[block_network_id].fixed_gold_list;
             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
@@ -69,6 +92,44 @@ export default class TabRecharge extends AbstractView {
         this.form.amount = item;
         this.pageData.gold_index = index;
     }
+
+    // 选择通道
+    paymethod6ThirdClick(item: any) {
+        this.form.third_id = item.third_id;
+        this.form.subtitle = item.subtitle;
+        this.paymethod6ChangeMoney();
+    }
+
+    paymethod6ChangeMoney() {
+        const { methodList } = this.pageData;
+        const { coin_name_unique, block_network_id, third_id } = this.form;
+        const options = methodList[coin_name_unique].options;
+        console.log(">>>>>>>>this.form: ", this.form);
+        console.log(">>>>>>>>>>>>..options: ", options);
+        if (options[block_network_id].payemthod_id == 6) {
+            console.log(">>>>>>xxxx:", options[block_network_id].channel.find(
+                (item: any) => item.third_id == third_id
+            ))
+            const fixed_gold_list = options[block_network_id].channel.find(
+                (item: any) => item.third_id == third_id
+            ).fixed_gold_list;
+            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+        }
+    }
+
+    getPaymethod6_fixed_gold_list() {
+        const { methodList } = this.pageData;
+        const { coin_name_unique, block_network_id, third_id } = this.form;
+        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+            const channel = methodList[coin_name_unique].options[block_network_id].channel;
+            console.log(">>>>>>>>>>", channel);
+            return channel.find((item: any) => item.third_id == third_id)
+                .fixed_gold_list;
+        }
+        return [];
+    }
+
     // 创建充值订单
     onSumbit() {
         this.myProxy.rechargeProxy.api_user_var_recharge_create();

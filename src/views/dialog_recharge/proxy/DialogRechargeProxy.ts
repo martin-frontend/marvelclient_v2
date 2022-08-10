@@ -37,6 +37,8 @@ export class RechargeProxy extends puremvc.Proxy {
             block_network_id: "",
             recharge_channel_id: "",
             amount: "",
+            third_id: "",
+            subtitle: "",
         },
         gold_index: 0,
     };
@@ -68,10 +70,21 @@ export class RechargeProxy extends puremvc.Proxy {
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
                 //如果payemthod_id == 5 则选择输入金额
-                if (data[coin_name_unique].payemthod_id == 5) {
+                if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
                     const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                }
+                if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+                    const channel = data[coin_name_unique].options[block_network_id].channel;
+                    if (channel.length > 0) {
+                        this.pageData.form.third_id = channel[0].third_id;
+                        this.pageData.form.subtitle = channel[0].subtitle;
+
+                        const fixed_gold_list = channel[0].fixed_gold_list;
+                        this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                        this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                    }
                 }
             }
         }
@@ -243,12 +256,7 @@ export class TransferProxy extends puremvc.Proxy {
 
     api_user_var_gold_transfer() {
         this.pageData.loading = true;
-        const {
-            to_user_id,
-            gold,
-            coin_name_unique,
-            password_gold,
-        } = this.pageData.form;
+        const { to_user_id, gold, coin_name_unique, password_gold } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_var_gold_transfer, {
             user_id: core.user_id,
             to_user_id,

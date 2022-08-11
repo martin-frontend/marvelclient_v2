@@ -1,6 +1,6 @@
 @import "@/style/params.scss";
 .password-operate {
-    margin: 8px 0 40px;
+    margin: 8px 0 20px;
     display: flex;
     justify-content: space-between;
     color: $color-info;
@@ -8,9 +8,9 @@
     line-height: 16px;
 }
 .tips-box {
-    margin-top: 16px;
+    margin-top: 13px;
     font-size: 12px;
-    color: $color-info;
+    color: rgba(255,255,255,0.3);
     font-size: 14px;
 }
 .tips-box_org {
@@ -72,7 +72,21 @@
 .colorPanelBg4{
     background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
 }
-
+.v-input--checkbox.v-input--dense {
+    margin-top: -5px;
+}
+::v-deep .v-input--selection-controls__input {
+    margin-right:2px !important;
+}
 ::v-deep .v-input--selection-controls__input .v-icon{
     color:rgba(255,255,255,0.3) !important;
+}
+::v-deep .v-input--selection-controls__input .primary--text{
+    color:#bf35c3 !important;
+}
+::v-deep .v-input--selection-controls .v-input__slot > .v-label{
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 400;
+    left:7.5px;
 }

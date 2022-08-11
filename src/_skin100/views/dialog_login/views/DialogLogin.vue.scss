@@ -17,7 +17,11 @@
     color: #6fa9fa;
     font-size: 13px;
 }
+.arrow-color{
+    color:rgba(255,255,255,0.2) !important;
+    caret-color:rgba(255,255,255,0.3) !important;
 
+}
 .arrow {
     transform: rotate(0deg);
     font-weight: 600;
@@ -32,7 +36,12 @@
     // color: #314361 !important;
     color: transparent !important;
 }
-
+.search-area{
+    border:0;
+    height: 32px;
+    border-radius: 16px !important;
+    background-color: rgba(0, 0, 0, 0.1);
+}
 // ::v-deep.v-input--dense {
 //     margin: 0 !important;
 //     padding: 0 !important;

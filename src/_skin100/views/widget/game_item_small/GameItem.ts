@@ -1,5 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
@@ -30,11 +30,11 @@ export default class GameItem extends AbstractView {
         }
     }
 
-    getBoxClass(){
+    getBoxClass() {
         let classStr = "box";
-        if(this.item){
+        if (this.item) {
             classStr += " box-height";
-            if(this.item.status != 1){
+            if (this.item.status != 1) {
                 classStr += " filter-gray";
             }
         }

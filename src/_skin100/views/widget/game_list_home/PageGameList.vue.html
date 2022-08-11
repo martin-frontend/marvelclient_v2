@@ -1,7 +1,7 @@
 <div class="container-c">
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''" v-if="!$vuetify.breakpoint.xsOnly">
     <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" v-if="hotGame.category == 1">
-        <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+        <div class="text-16 ml-2 mr-1 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
             <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("棋牌游戏")}}</div>
             <v-spacer />
             <v-btn

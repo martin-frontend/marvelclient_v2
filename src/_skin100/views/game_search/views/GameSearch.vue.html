@@ -1,14 +1,15 @@
 <v-dialog class="rounded-lg" width="860" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :scrollable="true" persistent>
     <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" :height="600" v-if="!$vuetify.breakpoint.xsOnly">
         <v-card-text class="pa-0" style="max-height: 130px;">
-            <div class="search-header-bg d-flex align-center px-9 pt-5 pb-3">
+            <div class="search-header-bg d-flex align-center px30 pt26 pb-3">
                 <div class="text-20 font-weight-bold white--text">{{LangUtil("搜索游戏")}}</div>
                 <v-spacer />
-                <v-btn icon @click="onClose">
-                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
+                <v-btn icon width="18" height="18" class="exit-icon" @click="onClose">
+                    <!-- <v-icon color="colorCloseBtn">mdi-close</v-icon> -->
+                    <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
                 </v-btn>
             </div>
-            <div class="d-inline-flex justify-start px-1 py-1 mx-9 mb-3 rounded-pill items-bg">
+            <div class="d-inline-flex justify-start px-1 py-1 mx30 mb-3 rounded-pill items-bg">
                 <v-btn
                     class="rounded-pill font-weight-bold mr-2"
                     elevation="0"
@@ -17,7 +18,9 @@
                     :class="pageData.tabIndex == 0 ? 'white--text' : 'white--text'"
                     @click="onTabClick(0)"
                 >
-                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 0 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-heart</v-icon>
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 0 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-heart</v-icon> -->
+                    <v-img v-if="pageData.tabIndex == 0" src="@/_skin100/assets/game-search/sc_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img v-else src="@/_skin100/assets/game-search/sc.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("收藏游戏")}}
                 </v-btn>
                 <v-btn
@@ -28,7 +31,9 @@
                     :class="pageData.tabIndex == 1 ? 'white--text' : 'white--text'"
                     @click="onTabClick(1)"
                 >
-                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 1 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-clock</v-icon>
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 1 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-clock</v-icon> -->
+                    <v-img v-if="pageData.tabIndex == 1" src="@/_skin100/assets/game-search/zj_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img v-else src="@/_skin100/assets/game-search/zj.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("最近游戏")}}
                 </v-btn>
                 <v-btn
@@ -39,20 +44,22 @@
                     :class="pageData.tabIndex == 2 ? 'white--text' : 'white--text'"
                     @click="onTabClick(2)"
                 >
-                    <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 2 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-magnify</v-icon>
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 2 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-magnify</v-icon> -->
+                    <v-img v-if="pageData.tabIndex == 2" src="@/_skin100/assets/game-search/cx_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img v-else src="@/_skin100/assets/game-search/cx.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("游戏查询")}}
                 </v-btn>
             </div>
         </v-card-text>
-        <v-card-text class="listbox-mobile px-9" :style="{maxHeight: $vuetify.breakpoint.xsOnly?'490px':'460px'}">
+        <v-card-text class="listbox-mobile px30" :style="{maxHeight: $vuetify.breakpoint.xsOnly?'490px':'460px'}">
             <v-window v-model="pageData.tabIndex">
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.collection.length == 0" />
+                    <ListNodata v-if="pageData.collection.length == 0" style="max-height: 390px;" />
                 </v-window-item>
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.recently" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.recently.length == 0" />
+                    <ListNodata v-if="pageData.recently.length == 0" style="max-height: 390px;"  />
                 </v-window-item>
                 <v-window-item>
                     <div class="search-box d-flex align-center px-2 mb-4">

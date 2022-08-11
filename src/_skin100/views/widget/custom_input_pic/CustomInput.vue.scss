@@ -1,0 +1,14 @@
+@import "@/style/input.scss";
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::placeholder{
+  // color:#57399b;
+  color:rgba(255,255,255,0.15);
+  font-weight: 400;
+}
+.input-text input{
+  color:#fff;
+}

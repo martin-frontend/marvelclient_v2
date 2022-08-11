@@ -5,7 +5,7 @@
             <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("棋牌游戏")}}</div>
             <v-spacer />
             <v-btn
-            class="text-12 rounded-pill"
+            class="text-12 rounded-pill mt-2"
             style="padding: 8px"
             color="rgba(243, 231, 231, 0.098)"
             height="24"
@@ -29,6 +29,16 @@
         :height="$vuetify.breakpoint.xsOnly ? '35' : '50'"
     >
         <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("电子游戏")}}</div>
+        <v-spacer />
+        <v-btn
+        class="text-12 rounded-pill mt-2"
+        style="padding: 8px"
+        color="rgba(243, 231, 231, 0.098)"
+        height="24"
+        @click="onShowAll"
+    >
+        {{LangUtil("查看全部")}}
+    </v-btn>
     </v-sheet>
     <v-sheet  max-width="1430" class="mx-auto" color="transparent">
         <v-slide-group show-arrows>
@@ -39,10 +49,10 @@
     </v-sheet>
      <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
          <v-btn
-                    class="rounded-pill my-5 morebg"
+                    class="rounded-pill my-8 morebg"
                     :width="$vuetify.breakpoint.xsOnly?125:196"
-                    :height="$vuetify.breakpoint.xsOnly?25:40"
-                    @click="getMore"
+                    :height="$vuetify.breakpoint.xsOnly?25:46"
+                    @click="onShowAll"
                     >
                     {{LangUtil("查看更多游戏")}}
                     <img class="ml-2"  width="9" height="14" src="../../../assets/arrow.png" alt=""></img>

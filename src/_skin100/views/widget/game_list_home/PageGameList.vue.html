@@ -1,0 +1,54 @@
+<div class="container-c">
+<v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''" v-if="!$vuetify.breakpoint.xsOnly">
+    <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" v-if="hotGame.category == 1">
+        <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+            <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("棋牌游戏")}}</div>
+            <v-spacer />
+            <v-btn
+            class="text-12 rounded-pill"
+            style="padding: 8px"
+            color="rgba(243, 231, 231, 0.098)"
+            height="24"
+            @click="onShowAll"
+        >
+            {{LangUtil("查看全部")}}
+        </v-btn>
+        </div>
+        <v-sheet  max-width="1430" class="mx-auto" color="transparent">
+            <v-slide-group show-arrows>
+                <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                    <GameItemSmall :item="item" />
+                </v-slide-item>
+            </v-slide-group>
+        </v-sheet>
+    </div>
+
+    <v-sheet
+        class="d-flex align-center tranbg"
+        :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-2 mt-8 mb-0'"
+        :height="$vuetify.breakpoint.xsOnly ? '35' : '50'"
+    >
+        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("电子游戏")}}</div>
+    </v-sheet>
+    <v-sheet  max-width="1430" class="mx-auto" color="transparent">
+        <v-slide-group show-arrows>
+            <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                <GameItemSmall :item="item" />
+            </v-slide-item>
+        </v-slide-group>
+    </v-sheet>
+     <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+         <v-btn
+                    class="rounded-pill my-5 morebg"
+                    :width="$vuetify.breakpoint.xsOnly?125:196"
+                    :height="$vuetify.breakpoint.xsOnly?25:40"
+                    @click="getMore"
+                    >
+                    {{LangUtil("查看更多游戏")}}
+                    <img class="ml-2"  width="9" height="14" src="../../../assets/arrow.png" alt=""></img>
+                    </v-btn
+                >
+      </div>
+</v-container>
+
+</div>

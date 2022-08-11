@@ -150,7 +150,8 @@
             </div>
         </div>
         <PageIntroduce />
-        <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
+        <PageGameList />
+        <!-- <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
             <GameSlideGroup
             v-if="item.category != 4 && item.category != 32 && item.category != 64"
             :data="item"
@@ -158,7 +159,7 @@
             :name="item.category"
             :id="item.category"
             />
-        </div>
+        </div> -->
     </v-container>
     
 </v-container>

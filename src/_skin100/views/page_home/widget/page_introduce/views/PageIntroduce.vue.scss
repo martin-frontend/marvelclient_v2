@@ -79,7 +79,7 @@ $waitTextColor: #9db1d8cc;
 }
 
 .intro-how-01-md {
-    background: url("~@/_skin100/assets/introduce/01P.png") no-repeat;
+    background: url("~@/_skin100/assets/introduce/02P.png") no-repeat;
     background-size: 100% 100%;
     background-position: bottom right;
 }
@@ -299,11 +299,46 @@ $waitTextColor: #9db1d8cc;
         font-weight: normal;
     }
 }
-
+.card-bg {
+    background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
+}
 .phone-class {
     background: rgba(0, 0, 0, 0.3);
     &.web-use-content {
         margin: 0 14px;
         border-radius: 12px;
+    }
+}
+
+.promote-content {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    .promote-item {
+        width: calc(50% - 10px);
+        position: relative;
+        cursor: pointer;
+        .promote-text {
+            position: absolute;
+            left: 56px;
+            top: 90px;
+            user-select: none;
+            p {
+                margin-block-start: 0em;
+                margin-block-end: 0em;
+            }
+            .promote-title {
+                font-size: 28px;
+                color: #ffffff;
+                line-height: 40px;
+                font-weight: 600;
+            }
+            .sub-title {
+                font-size: 16px;
+                color: #ffffff;
+                line-height: 28px;
+                font-weight: 500;
+            }
+        }
     }
 }

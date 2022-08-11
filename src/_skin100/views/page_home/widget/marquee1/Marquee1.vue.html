@@ -5,7 +5,8 @@
     :class="$vuetify.breakpoint.xsOnly?'rounded':'btr'"
     class="d-flex align-center pr-3 "
 >
-    <v-icon class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon">mdi-bullhorn-outline</v-icon>
+    <!-- <v-icon class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon">mdi-bullhorn-outline</v-icon> -->
+    <img width="20" height="20" class="ml-8 mr-2" src="../../../../assets/icon-notice.png" alt="">
     <div ref="marqueeBox" class="marquee-box">
         <div ref="marqueeText">{{pageData.text}}</div>
     </div>

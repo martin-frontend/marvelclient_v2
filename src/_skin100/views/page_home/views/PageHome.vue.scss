@@ -4,6 +4,9 @@
         font-size: 20px;
     }
 }
+.a-ele {
+    text-decoration: underline;
+}
 .marquee1 {
     margin-top: -68px;
     position: relative;
@@ -50,9 +53,12 @@
             width: 860px;
             height: 110px;
             margin-top: 40px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             background: url("~@/_skin100/assets/img51.png") 0 0 no-repeat;
             background-size: 100% 100%;
+            .s-left .top-text {
+                margin-bottom: 8px;
+            }
             .s-left,
             .s-right {
                 display: inline-block;
@@ -113,6 +119,7 @@
     }
     #page {
         .main-container {
+            background: #0d1529;
             padding-top: 0;
         }
         .h5-t-content {

@@ -1,14 +1,17 @@
 <v-dialog width="unset" height="670" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="d-flex rounded-lg dialog-background" color="colorPanelBg" >
         <!-- <AdvertiseInLogin :height="670" class="d-none d-md-flex" /> -->
-        <v-img src="../../../../assets/register/coinFans.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
+        <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
         <v-card color="transparent" width="494" v-if="!$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">
                 <div class="font-weight-medium white--text text-20">{{LangUtil("安全中心")}}</div>
                 <v-spacer />
-                <v-btn class="" icon @click="onClose">
-                    <v-icon color="colorText3">mdi-close</v-icon>
+                <v-btn icon width="18" height="18" class="exit-icon" @click="onClose">
+                    <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
                 </v-btn>
+                <!-- <v-btn class="" icon @click="onClose">
+                    <v-icon color="colorText3">mdi-close</v-icon>
+                </v-btn> -->
             </v-card-title>
             <v-card-text class="px-5 px-md-10 pb-0 mt-5" >
                 <!-- <div class="d-flex mb-10"> -->
@@ -65,26 +68,57 @@
                 <div v-else>
                     <CustomInput
                         class="mb-3 rounded safety-ip"
-                        icon="mdi-phone"
+                        :icon="icons.sj"
                         type="tel"
                         :placeholder="LangUtil('请输入手机号')"
                         v-model="formBindPhone.mobile"
                     >
                         <template v-slot:pre>
-                            <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                            <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="28">
                                 <template v-slot:activator="{ on, attrs }">
                                     <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                         <div class="white--text mx-2">+{{formBindPhone.area_code}}</div>
                                         <div
+                                        class="icon-box iconfont text-14 mr-2 arrow-color font-weight-bold"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div>
+                                        <!-- <div
                                             class="icon-box iconfont text-18 mr-2"
                                             :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                                         >
                                             
-                                        </div>
-                                        <div class="text-20">|</div>
+                                        </div> -->
+                                        <!-- <div class="text-20">|</div> -->
                                     </div>
                                 </template>
-                                <v-sheet class="pa-3 rounded-lg colorPanelBg4" color="colorPanelTitleBg" width="400">
+                                <v-sheet class="pa-3 rounded-lg colorPanelBg4" width="400">
+                                    <CustomInput
+                                        class="mt-3 rounded search-area"
+                                        :icon="icons.cx"
+                                        :iconSize="18"
+                                        :placeholder="LangUtil('请选择国家或地区')"
+                                        v-model="areaCodeSearch"
+                                        @input="onAreaCodeInput"
+                                    ></CustomInput>
+    
+                                    <v-list dense color="rgba(0,0,0,0)">
+                                        <v-list-item-group>
+                                            <v-list-item
+                                                v-for="(item, index) of areaCodeList"
+                                                :key="index"
+                                                class="white--text"
+                                                @click="onItemAreaCode(item)"
+                                            >
+                                                <div>{{item.name}}</div>
+                                                <v-spacer />
+                                                <div>+{{item.area_code}}</div>
+                                            </v-list-item>
+                                        </v-list-item-group>
+                                    </v-list>
+                                </v-sheet>
+                                <!-- <v-sheet class="pa-3 rounded-lg colorPanelBg4" color="colorPanelTitleBg" width="400">
                                     <v-text-field
                                         class="rounded-pill"
                                         outlined
@@ -109,13 +143,13 @@
                                             </v-list-item>
                                         </v-list-item-group>
                                     </v-list>
-                                </v-sheet>
+                                </v-sheet> -->
                             </v-menu>
                         </template>
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
-                        icon="mdi-shield-check"
+                        :icon="icons.yzm"
                         :placeholder="LangUtil('请输入验证码')"
                         type="tel"
                         v-model="formBindPhone.code"
@@ -142,11 +176,11 @@
                     <div>{{userInfo.email}}</div>
                 </v-sheet>
                 <div v-else>
-                    <CustomInput class="mb-3 rounded safety-ip" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
+                    <CustomInput class="mb-3 rounded safety-ip" :icon="icons.yx" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
-                        icon="mdi-shield-check"
+                        :icon="icons.yzm"
                         :placeholder="LangUtil('请输入验证码')"
                         type="tel"
                         v-model="formBindEmail.code"
@@ -164,19 +198,19 @@
             <v-card-text v-if="pageData.tabIndex == 2" class="px-5 px-md-10">
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('请输入原始密码')"
                     v-model="formChangePassword.password_old"
                 />
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="formChangePassword.password"
                 />
                 <CustomPassword
                     class="mb-5 rounded safety-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="formChangePassword.password_confirm"
                 />

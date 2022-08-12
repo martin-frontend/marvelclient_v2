@@ -1,4 +1,4 @@
-<v-dialog width="730" v-model="pageData.bShow"   :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="860" v-model="pageData.bShow"   :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg bPanelBg" >
         <!-- pc显示方式 -->
         <v-card-title  v-if="!$vuetify.breakpoint.xsOnly">
@@ -10,7 +10,7 @@
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="listbox" v-if="pageData.list.length > 0">
-                <v-sheet class="mt-5 px-6 py-2 rounded-lg mb-3 scroll-y" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mt-2 px-6 py-2 rounded-lg mb-3 scroll-y" color="rgba(0,0,0,0.2)" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div class="item" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'">
                             <div>{{LangUtil("结算时间")}}</div>
@@ -28,7 +28,7 @@
                             <div>{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div class="text-body-1">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
-                        <div class="d-flex align-end justify-end listitem-110">
+                        <div class="d-flex align-center justify-end listitem-110">
                             <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
                                 {{LangUtil("查看详情")}}<v-img
                                     class="arrow"

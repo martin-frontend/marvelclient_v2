@@ -133,7 +133,10 @@ input {
     color: rgba(255, 255, 255, 0.5);
 }
 .textColor1 {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+.textColor3 {
+    color: rgba(255, 255, 255, 0.3) !important;
 }
 .px30 {
     padding-left: 30px !important;
@@ -141,6 +144,9 @@ input {
 }
 .pt26 {
     padding-top: 26px !important;
+}
+.mt10{
+    margin-top:10px !important;
 }
 .mx30 {
     margin-left: 30px !important;

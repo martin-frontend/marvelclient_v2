@@ -41,7 +41,7 @@
                 </div>
 
                 <CustomInput
-                    v-if="forgetData.form.type == 2"
+                    v-show="forgetData.form.type == 2"
                     class="mb-0 rounded login-ip"
                     :icon="icons.yx"
                     :placeholder="LangUtil('请输入邮箱')"
@@ -53,7 +53,7 @@
                 </CustomInput>
 
                 <CustomInput
-                    v-else
+                    v-show="forgetData.form.type != 2"
                     class="mb-0 rounded login-ip"
                     :icon="icons.sj"
                     type="tel"

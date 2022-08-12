@@ -1,9 +1,10 @@
-<div class="container-b">
+<!-- <div class="container-b"> -->
+<div >
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''" v-if="!$vuetify.breakpoint.xsOnly">
     <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-8'" v-if="hotGame.category == 1">
         <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
             <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[hotGame.category] }}</v-icon> -->
-            <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{ hotGame.category_name }}{{LangUtil("游戏")}}</div>
+            <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'" class="game-cate">{{ hotGame.category_name }}{{LangUtil("游戏")}}</div>
         </div>
         <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
             <GameItemSmall v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
@@ -28,7 +29,7 @@
         :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-2 my-5 mb-0'"
         :height="$vuetify.breakpoint.xsOnly ? '35' : '70'"
     >
-        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("全部游戏")}}</div>
+        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'" class="game-cate">{{LangUtil("全部游戏")}}</div>
         <v-spacer />
         <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
         <GameListSelect

@@ -22,3 +22,13 @@
     border-width: 0;
     background-color: rgba(0, 0, 0, 0.15);
 }
+.arrow-color{
+    color:rgba(255,255,255,0.2) !important;
+    caret-color:rgba(255,255,255,0.3) !important;
+}
+.search-area{
+    border:0;
+    height: 32px;
+    border-radius: 16px !important;
+    background-color: rgba(0, 0, 0, 0.1);
+}

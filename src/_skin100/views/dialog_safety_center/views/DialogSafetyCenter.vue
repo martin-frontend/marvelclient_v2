@@ -6,8 +6,8 @@ import Component from "vue-class-component";
 import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import DialogSafetyCenter from "./DialogSafetyCenter";
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
-import CustomInput from "@/_skin100/views/widget/custom_input/CustomInput.vue";
-import CustomPassword from "@/_skin100/views/widget/custom_password/CustomPassword.vue";
+import CustomInput from "@/_skin100/views/widget/custom_input_pic/CustomInput.vue";
+import CustomPassword from "@/_skin100/views/widget/custom_password_pic/CustomPassword.vue";
 
 @Component({
     components: {

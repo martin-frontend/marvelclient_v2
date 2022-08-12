@@ -124,8 +124,14 @@
 .cursor{
     cursor: pointer;
 }
+.select-row:hover{
+    background-color: rgba(0,0,0,0.1) !important;
+}
+.curr-row{
+    background-image: linear-gradient(151deg, #CD30C180 0%, #215ED680 100%);
+}
 .rowbg{
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.1) !important;
 }
 .level_panel{
         background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
@@ -133,4 +139,6 @@
 .promte-link{
     flex-shrink: 0;
 }
-
+.v-sheet.v-card:not(.v-sheet--outlined) {
+    box-shadow:none !important;
+}

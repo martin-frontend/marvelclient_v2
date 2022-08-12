@@ -133,7 +133,10 @@ input {
     color: rgba(255, 255, 255, 0.5);
 }
 .textColor1 {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+.textColor3 {
+    color: rgba(255, 255, 255, 0.3) !important;
 }
 .px30 {
     padding-left: 30px !important;
@@ -142,9 +145,24 @@ input {
 .pt26 {
     padding-top: 26px !important;
 }
+.pt20 {
+    padding-top: 20px !important;
+}
+.pt10{
+    padding-top:10px !important;
+}
+.pb10{
+    padding-bottom:10px !important;
+}
+.mt10{
+    margin-top:10px !important;
+}
 .mx30 {
     margin-left: 30px !important;
     margin-right: 30px !important;
+}
+.mt10{
+    margin-top:10px !important;
 }
 .rounded6 {
     border-radius: 6px !important;

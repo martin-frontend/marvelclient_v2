@@ -33,6 +33,20 @@
                         <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
                     </span>
                 </div>
+
+                <div class="d-flex justify-space-between align-center mb-5">
+                    <span class="d-flex colorBlue--text">
+                        <v-icon class="mr-2" color="colorInfo">mdi-account-edit</v-icon>{{LangUtil("真实姓名")}}
+                    </span>
+                    <span class="d-flex align-center colorText1--text">
+                        {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
+                        <v-btn v-if="!userInfo.real_name" icon class="ml-2" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerRealName">
+                            <v-icon large>mdi-chevron-right</v-icon>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+
                 <div class="d-flex justify-space-between align-center mb-5">
                     <span class="d-flex colorBlue--text">
                         <v-icon class="mr-2" color="colorInfo">mdi-account-edit</v-icon>{{LangUtil("昵称")}}

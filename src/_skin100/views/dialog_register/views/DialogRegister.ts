@@ -45,6 +45,7 @@ export default class DialogRegister extends AbstractView {
     onTabClick(type: number) {
         this.pageData.form.register_type = type;
         this.myProxy.resetForm();
+        this.areaCodeMenu = false;
     }
 
     getImageVerity() {

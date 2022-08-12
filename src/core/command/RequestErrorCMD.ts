@@ -2,6 +2,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "../global/LangUtil";
+import dialog_real_name from "@/views/dialog_real_name";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
@@ -41,7 +42,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 // TODO 绑定手机
                 dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
-                dialog_message_box.alert(body.result.msg);
+                dialog_message_box.confirm({message: body.result.msg, okFun: dialog_real_name.show});
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
             } else {

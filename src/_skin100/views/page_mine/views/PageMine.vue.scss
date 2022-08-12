@@ -1,4 +1,5 @@
 .page_mine {
+    padding-bottom: 40px;
     #vipLevel.mobile-vip {
         background-color: #162734 !important;
         background-size: cover;
@@ -182,9 +183,12 @@
         font-size: 18px !important;
     }
     .how_item {
-        height: 210px;
+        height: 180px;
     }
     #howMine {
+        .sub-title-color {
+            color: rgba(255, 255, 255, 0.4);
+        }
         @media only screen and (max-width: 960px) {
             ::v-deep .v-card {
                 display: flex !important;

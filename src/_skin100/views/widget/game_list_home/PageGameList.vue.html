@@ -1,7 +1,7 @@
 <div class="container-c">
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''" v-if="!$vuetify.breakpoint.xsOnly">
     <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" v-if="hotGame.category == 1">
-        <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+        <div class="text-16 ml-2 mr-1 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
             <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("棋牌游戏")}}</div>
             <v-spacer />
             <v-btn
@@ -47,9 +47,9 @@
             </v-slide-item>
         </v-slide-group>
     </v-sheet>
-     <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+     <div class="d-flex justify-center pt-2" >
          <v-btn
-                    class="rounded-pill my-8 morebg"
+                    class="rounded-pill my-8 morebg text-16 font-weight-bold"
                     :width="$vuetify.breakpoint.xsOnly?125:196"
                     :height="$vuetify.breakpoint.xsOnly?25:46"
                     @click="onShowAll"

@@ -43,7 +43,8 @@
             :height="$vuetify.breakpoint.xsOnly?22.5:35"
             @click="showGameSearch"
         >
-            <v-icon v-if="!$vuetify.breakpoint.xsOnly">mdi-search-web</v-icon>
+            <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly">mdi-search-web</v-icon> -->
+            <v-img src="@/_skin100/assets/game-search/cx_white.png" max-width="20" max-height="20" class="mr-1"></v-img>
             {{LangUtil("搜索")}}
         </v-btn>
     </v-sheet>

@@ -1,4 +1,4 @@
-<v-dialog class="rounded-xl" width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog class="rounded-xl" width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
         <!-- <AdvertiseInLogin :height="794" class="d-none d-md-flex" /> -->
         <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
@@ -8,7 +8,6 @@
                 <div class="font-weight-medium white--text text-20">{{LangUtil("注册")}}</div>
                 <v-spacer />
                 <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
-                    <!-- <v-icon color="colorCloseBtn">mdi-close</v-icon> -->
                     <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
                 </v-btn>
                 <!-- <v-btn class="" icon @click="onClose">
@@ -81,7 +80,7 @@
                 </CustomInput>
 
                 <CustomInput
-                    v-show="form.register_type==4"
+                    v-if="form.register_type==4"
                     class="mt-3 rounded register-ip"
                     :icon="icons.sj"
                     type="tel"

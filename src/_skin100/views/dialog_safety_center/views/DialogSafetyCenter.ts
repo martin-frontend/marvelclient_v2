@@ -100,6 +100,7 @@ export default class DialogSafetyCenter extends AbstractView {
 
     onTabClick(tabIndex: number) {
         this.pageData.tabIndex = tabIndex;
+        this.areaCodeMenu = false;
     }
 
     onBindMobile() {

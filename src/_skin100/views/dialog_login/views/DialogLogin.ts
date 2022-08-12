@@ -43,6 +43,7 @@ export default class DialogLogin extends AbstractView {
     }
     onTabClick(type: number) {
         this.forgetData.form.type = type;
+        this.areaCodeMenu = false;
     }
     get isCheckedForget(): boolean {
         const { type, username, verify_code, password, password_confirm } = this.forgetData.form;

@@ -1,4 +1,4 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
         <!-- <AdvertiseInLogin :height="610" class="d-none d-md-flex" /> -->
         <v-img src="../../../../assets/login/egameLogin.png" :width="380" :height="500" class="d-none d-md-flex rounded-0"></v-img>
@@ -41,7 +41,7 @@
                 </div>
 
                 <CustomInput
-                    v-show="forgetData.form.type == 2"
+                    v-if="forgetData.form.type == 2"
                     class="mb-0 rounded login-ip"
                     :icon="icons.yx"
                     :placeholder="LangUtil('请输入邮箱')"
@@ -53,7 +53,7 @@
                 </CustomInput>
 
                 <CustomInput
-                    v-show="forgetData.form.type != 2"
+                    v-else
                     class="mb-0 rounded login-ip"
                     :icon="icons.sj"
                     type="tel"

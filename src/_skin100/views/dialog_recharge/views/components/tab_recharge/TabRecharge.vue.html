@@ -1,4 +1,5 @@
-<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px-8 pt-7 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;">
+<!-- <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;"> -->
+<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'">
     <div class="white--text mb-1 d-flex align-center"><div class="r-before"></div> {{LangUtil("想使用人民币充值？")}}</div>
     <div class="colorTextNormal2--text" :class="$vuetify.breakpoint.xsOnly ? 'text-13':''">
         {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
@@ -106,7 +107,7 @@
             </v-sheet>
         </v-sheet>
         <div class="d-flex justify-center mt-5"  v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
-            <v-btn class="white--text btnRedBg rounded" width="345" height="44" @click="onSumbit"
+            <v-btn class="white--text btnRedBg rounded6" width="345" height="44" @click="onSumbit"
                     >{{LangUtil("确定充值")}}</v-btn
                 >
         </div>

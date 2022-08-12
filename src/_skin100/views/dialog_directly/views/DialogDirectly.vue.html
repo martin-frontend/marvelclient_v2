@@ -1,4 +1,4 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"  persistent>
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true"  persistent>
     <v-card class="rounded-lg d-flex flex-column bPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">

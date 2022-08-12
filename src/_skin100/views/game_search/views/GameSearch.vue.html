@@ -1,4 +1,4 @@
-<v-dialog class="rounded-lg" width="860" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :scrollable="true" persistent>
+<v-dialog class="rounded-lg" width="860" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :scrollable="true" :no-click-animation="true" persistent>
     <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" :height="600" v-if="!$vuetify.breakpoint.xsOnly">
         <v-card-text class="pa-0" style="max-height: 130px;">
             <div class="search-header-bg d-flex align-center px30 pt26 pb-3">

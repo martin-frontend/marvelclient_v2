@@ -1,6 +1,6 @@
 <div class="container-b">
     <v-container>
-        <div class="px-0 px-sm-3 py-2 py-sm-5">
+        <div class="px-0 px-sm-3 py-2 pb-sm-2 pt-0">
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("{0}持币分红", plat_stake_info.coin_name_unique)}}</div>
         </div>
         <v-card
@@ -11,8 +11,8 @@
             <v-row no-gutters class="px-6">
                 <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span class="stake-width">
-                        <div class="white--text mb-lg-1 text-caption text-sm-subtitle-1">{{LangUtil("当前奖池金额")}}</div>
-                        <div class="colorCoin--text text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                        <div class="white--text mb-lg-1  text-14 font-weight-bold">{{LangUtil("当前奖池金额")}}</div>
+                        <div class="colorCoin--text text-18  d-flex align-center mr-sm-3 font-weight-medium">
                             <span>${{ plat_stake_info.bonus_pool_amount }}</span>
                         </div>
                     </span>
@@ -22,8 +22,8 @@
                 </v-col>
                 <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span class="stake-width">
-                        <div class="white--text mb-lg-1 text-caption text-sm-subtitle-1">{{LangUtil("总质押数量")}}</div>
-                        <div class="colorCoin--text text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                        <div class="white--text mb-lg-1  text-14 font-weight-bold">{{LangUtil("总质押数量")}}</div>
+                        <div class="colorCoin--text text-18  d-flex align-center mr-sm-3 font-weight-medium">
                             <span>{{ plat_stake_info.total_stake_amount }}</span>
                         </div>
                     </span>
@@ -33,8 +33,8 @@
                 </v-col>
                 <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                     <span class="stake-width">
-                        <div class="white--text mb-lg-1 text-caption text-sm-subtitle-1">{{LangUtil("总计已派发")}}</div>
-                        <div class="colorCoin--text text-18 text-sm-h5 d-flex align-center mr-sm-3">
+                        <div class="white--text mb-lg-1  text-14 font-weight-bold">{{LangUtil("总计已派发")}}</div>
+                        <div class="colorCoin--text text-18  d-flex align-center mr-sm-3 font-weight-medium">
                             <span>${{ plat_stake_info.total_bonus_amount }}</span>
                         </div>
                     </span>
@@ -44,8 +44,8 @@
                 </v-col>
                 <v-col cols="6" lg="3">
                     <span>
-                        <div class="white--text mb-lg-1 text-caption text-sm-subtitle-1">{{LangUtil("下次分红倒计时")}}</div>
-                        <div class="colorCoin--text text-18 text-sm-h5 d-flex align-center justify-space-between">
+                        <div class="white--text mb-lg-1  text-14 font-weight-bold">{{LangUtil("下次分红倒计时")}}</div>
+                        <div class="colorCoin--text text-18  d-flex align-center justify-space-between font-weight-medium">
                             <span>{{ hr }}:{{ min }}:{{ sec }}</span>
                         </div>
                     </span>
@@ -74,8 +74,8 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn
                                                 :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
-                                                :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg text-sm-body-1 rounded-button"
+                                                :height="$vuetify.breakpoint.xsOnly? 30 :36"
+                                                class="rounded-xl text-14 rounded-button"
                                                 color="btnRedBg"
                                                 @click="handlerPledge"
                                                 :disabled="user_stake_info.amount == 0"
@@ -92,7 +92,7 @@
                                                 <span class="colorTextGold--text">
                                                     {{ user_stake_info.stake_bonus_awaiting_num }}
                                                     <v-btn icon plan @click="handleRecords">
-                                                        <v-icon color="colorText1">mdi-file-document</v-icon>
+                                                        <v-img max-width="18" max-height="18" src="../../../assets/bonus/icon-copy.png"></v-img>
                                                     </v-btn>
                                                 </span>
                                             </div>
@@ -100,8 +100,8 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn
                                                 :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
-                                                :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg text-sm-body-1 rounded-button"
+                                                :height="$vuetify.breakpoint.xsOnly? 30 :36"
+                                                class="rounded-xl text-14 rounded-button"
                                                 color="btnRedBg"
                                                 @click="stakeDraw"
                                                 :disabled="user_stake_info.stake_bonus_awaiting_num == 0"
@@ -122,7 +122,7 @@
                                                 <span>
                                                     {{ user_stake_info.stake_amount }}
                                                     <v-btn icon plan @click="handlerRecords">
-                                                        <v-icon color="colorText1">mdi-file-document</v-icon>
+                                                        <v-img max-width="18" max-height="18" src="../../../assets/bonus/icon-copy.png"></v-img>
                                                     </v-btn>
                                                 </span>
                                             </div>
@@ -130,8 +130,8 @@
                                         <div class="d-flex align-center align-lg-end btn-left">
                                             <v-btn
                                                 :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
-                                                :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg text-sm-body-1 rounded-button"
+                                                :height="$vuetify.breakpoint.xsOnly? 30 :36"
+                                                class="rounded-xl text-14 rounded-button"
                                                 color="btnRedBg"
                                                 @click="handlerUnpledge"
                                                 :disabled="user_stake_info.stake_amount == 0"
@@ -150,8 +150,8 @@
                                         <div class="d-flex align-center align-lg-end">
                                             <v-btn
                                                 :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
-                                                :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg text-sm-body-1 rounded-button"
+                                                :height="$vuetify.breakpoint.xsOnly? 30 :36"
+                                                class="rounded-xl text-14 rounded-button"
                                                 color="btnRedBg"
                                                 @click="jumpTo('#record')"
                                             >
@@ -180,9 +180,9 @@
                 </v-card>
             </v-col>
             <v-col lg="5" v-if="$vuetify.breakpoint.lgAndUp">
-                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6 text-sm-subtitle-1 left-item" color="horizontal-gradient" >
+                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-5 text-sm-subtitle-1 left-item" color="horizontal-gradient" >
                     <div class="text-16  font-weight-medium">{{LangUtil("规则说明")}}</div>
-                    <div class="colorText6--text text-13">
+                    <div class="option-text text-13">
                         <div>{{LangUtil("质押规则说明1")}}</div>
                         <div>{{LangUtil("质押规则说明2")}}</div>
                         <div>{{LangUtil("质押规则说明3")}}</div>
@@ -191,7 +191,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="px-0 px-sm-3 py-2 py-sm-4">
+        <div class="px-0 px-sm-3 py-2 py-sm-3">
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("分红数据")}}</div>
         </div>
         <v-row no-gutters class="pb-2 pb-sm-5">

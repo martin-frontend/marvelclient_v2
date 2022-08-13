@@ -9,11 +9,11 @@ import dialog_message from "@/views/dialog_message";
 import page_mine from "@/_skin100/views/page_mine";
 import dialog_nick_name from "@/views/dialog_nick_name";
 import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
-import dialog_personal_card from "@/views/dialog_personal_card";
+import dialog_personal_card from "@/_skin100/views/dialog_personal_card";
 import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_trade_password from "@/_skin100/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import dialog_real_name from "@/views/dialog_real_name";
+import dialog_real_name from "@/_skin100/views/dialog_real_name";
 
 @Component
 export default class DialogUserCenter extends AbstractView {

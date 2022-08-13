@@ -2,8 +2,8 @@
 <style src="./DialogTradePassword.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-import DialogGetVerity from "@/_skin100/views/dialog_get_verity/views/DialogGetVerity.vue";
-import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
+import DialogGetVerity from "@/_skin100/views/dialog_get_verity_b/views/DialogGetVerity.vue";
+import CustomInput from "@/_skin100/views/widget/custom_input/CustomInput.vue";
 import Component from "vue-class-component";
 import Overlay from "@/_skin100/views/widget/overlay/Overlay.vue";
 import DialogTradePassword from "./DialogTradePassword";

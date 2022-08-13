@@ -6,10 +6,10 @@ import DialogTradePasswordProxy from "../proxy/DialogTradePasswordProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_message_box from "@/views/dialog_message_box";
-import dialog_safety_center from "@/views/dialog_safety_center";
-import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
-import dialog_message from "@/views/dialog_message";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
+import dialog_safety_center from "@/_skin100/views/dialog_safety_center";
+import DialogSafetyCenterProxy from "@/_skin100/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
+import dialog_message from "@/_skin100/views/dialog_message";
 
 @Component
 export default class DialogTradePassword extends AbstractView {

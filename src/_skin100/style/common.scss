@@ -142,11 +142,18 @@ input {
     padding-left: 30px !important;
     padding-right: 30px !important;
 }
+.px20 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
 .pt26 {
     padding-top: 26px !important;
 }
 .pt20 {
     padding-top: 20px !important;
+}
+.pt15{
+    padding-top:15px !important;
 }
 .pt10{
     padding-top:10px !important;
@@ -157,6 +164,12 @@ input {
 .pb10{
     padding-bottom:10px !important;
 }
+.pb15{
+    padding-bottom:15px !important;
+}
+.pb30{
+    padding-bottom:30px !important;
+}
 .mt10{
     margin-top:10px !important;
 }
@@ -164,11 +177,14 @@ input {
     margin-left: 30px !important;
     margin-right: 30px !important;
 }
-.mt10{
-    margin-top:10px !important;
+.mb10{
+    margin-bottom:10px !important;
 }
 .mb20{
     margin-bottom:20px !important;
+}
+.mb30{
+    margin-bottom:30px !important;
 }
 .rounded6 {
     border-radius: 6px !important;

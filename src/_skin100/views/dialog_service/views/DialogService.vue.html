@@ -1,0 +1,15 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
+    <v-card class="rounded-lg pb-5 dialog-background">
+        <v-sheet class="d-flex text-20 font-weight-medium align-center px-10 mb20 pt26" color="transparent">
+            <div>{{LangUtil("服务条款")}}</div>
+            <v-spacer />
+            <!-- <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn>
+        </v-sheet>
+        <v-sheet class="overflow-y-auto mx-10 text-wrapper" color="transparent" height="525"><span style="color:rgba(255,255,255,0.5)">{{LangUtil("服务条款内容")}}</span></v-sheet>
+    </v-card>
+</v-dialog>

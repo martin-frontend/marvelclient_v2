@@ -1,8 +1,8 @@
 .horizontal-gradient-top {
-    background-image: linear-gradient(-20deg, #162735 0%, #223341 97%);
+    background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
 }
 .horizontal-gradient {
-    background: linear-gradient(-20deg, #162735, #223341);
+    background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
 }
 .gradient-type1 {
     cursor: pointer;
@@ -10,6 +10,9 @@
     &:hover {
         background-image: linear-gradient(to right, #70feff, #b3dfff);
     }
+}
+.option-text {
+    color: rgba(105, 119, 134, 1);
 }
 .daily-radius {
     border-radius: 10px 10px 0px 0px;

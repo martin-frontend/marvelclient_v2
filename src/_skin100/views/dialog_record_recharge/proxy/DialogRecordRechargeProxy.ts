@@ -30,8 +30,8 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
         3: LangUtil("玩家已支付等待确认"),
     };
     statusColorOptions = {
-        0: "yellow--text text--lighten-2",
-        1: "teal--text text--accent-2",
+        0: "colorProcessing--text",
+        1: "colorSuccess--text",
         2: "deep-orange--text text--darken-1",
         3: "yellow--text text--lighten-2",
     };

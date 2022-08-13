@@ -18,20 +18,26 @@
 
 <div>
     <div v-if="!$vuetify.breakpoint.xsOnly">
-        <v-menu offset-y nudge-bottom="20" nudge-left="190" content-class="content-style">
+        <v-menu offset-y nudge-bottom="7" nudge-left="190" content-class="content-style">
             <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
-                    <v-sheet class="d-flex align-center rounded-pill ml-4" color="colorPanelTitleBg" width="100" height="45">
+                    <v-sheet class="d-flex align-center rounded-pill ml-4" color="colorPanelTitleBg" width="90" height="40">
                         <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
-                            <img class="ml-3" src="@/assets/header/avatar.gif" width="32" height="32" alt="" />
+                            <img class="ml-3" src="@/_skin100/assets/header/avatar.gif" width="32" height="32" alt="" />
                         </v-badge>
-                        
-                        <div
+                        <v-img
+                        class="expand-icon ml-2"
+                        src="@/_skin100/assets/wallet/expand.png"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                        max-width="24"
+                        max-height="24"
+                    ></v-img>
+                        <!-- <div
                             class="icon-box iconfont ml-4 text-14 colorText2--text"
                             :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                         >
                             
-                        </div>
+                        </div> -->
                     </v-sheet>
                 </div>
             </template>

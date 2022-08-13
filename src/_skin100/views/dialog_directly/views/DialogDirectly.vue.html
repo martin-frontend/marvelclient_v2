@@ -1,11 +1,14 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"  persistent>
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true"  persistent>
     <v-card class="rounded-lg d-flex flex-column bPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-rwd-18 font-weight-regular">{{LangUtil("我的直属")}}</div>
+            <div class="text-rwd-18">{{LangUtil("我的直属")}}</div>
             <v-spacer />
-            <v-btn icon @click="onClose">
+            <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn" >mdi-close</v-icon>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
@@ -90,7 +93,7 @@
                     </v-row>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0" height="480"/>
             <v-spacer />
             <v-pagination
                 class="mx-auto mb-2"

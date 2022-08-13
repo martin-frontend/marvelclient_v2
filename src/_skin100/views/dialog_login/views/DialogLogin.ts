@@ -20,6 +20,16 @@ export default class DialogLogin extends AbstractView {
     areaCodeSearch = "";
     areaCodeList: any = [];
 
+    icons = {
+        mm: require("@/_skin100/assets/register/mm.png"),
+        tjr: require("@/_skin100/assets/register/tjr.png"),
+        yhm: require("@/_skin100/assets/register/yhm.png"),
+        yzm: require("@/_skin100/assets/register/yzm.png"),
+        yx: require("@/_skin100/assets/register/yx.png"),
+        sj: require("@/_skin100/assets/register/sj.png"),
+        cx: require("@/_skin100/assets/game-search/cx.png"),
+    };
+
     constructor() {
         super(DialogLoginMediator);
     }
@@ -33,6 +43,7 @@ export default class DialogLogin extends AbstractView {
     }
     onTabClick(type: number) {
         this.forgetData.form.type = type;
+        this.areaCodeMenu = false;
     }
     get isCheckedForget(): boolean {
         const { type, username, verify_code, password, password_confirm } = this.forgetData.form;

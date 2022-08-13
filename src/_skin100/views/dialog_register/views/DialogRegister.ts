@@ -4,7 +4,7 @@ import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVod
 import LangUtil from "@/core/global/LangUtil";
 import dialog_get_verity from "@/_skin100/views/dialog_get_verity";
 import dialog_login from "@/_skin100/views/dialog_login";
-import dialog_service from "@/views/dialog_service";
+import dialog_service from "@/_skin100/views/dialog_service";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
@@ -28,6 +28,16 @@ export default class DialogRegister extends AbstractView {
     areaCodeSearch = "";
     areaCodeList: any = [];
 
+    icons = {
+        mm: require("@/_skin100/assets/register/mm.png"),
+        tjr: require("@/_skin100/assets/register/tjr.png"),
+        yhm: require("@/_skin100/assets/register/yhm.png"),
+        yzm: require("@/_skin100/assets/register/yzm.png"),
+        yx: require("@/_skin100/assets/register/yx.png"),
+        sj: require("@/_skin100/assets/register/sj.png"),
+        cx: require("@/_skin100/assets/game-search/cx.png"),
+    };
+
     @Watch("pageData.areaCode")
     onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
@@ -35,6 +45,7 @@ export default class DialogRegister extends AbstractView {
     onTabClick(type: number) {
         this.pageData.form.register_type = type;
         this.myProxy.resetForm();
+        this.areaCodeMenu = false;
     }
 
     getImageVerity() {

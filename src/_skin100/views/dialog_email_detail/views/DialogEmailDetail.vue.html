@@ -1,16 +1,20 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
     <v-card class="rounded-lg bPanelBg">
         <!-- pc端展示 -->
         <v-card-title class="px-8 pt-5" v-if="!$vuetify.breakpoint.xsOnly" >
             <div class="text-18">{{LangUtil("查看详情")}}</div>
             <v-spacer />
-            <v-btn icon @click="onClose">
+            <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="d-flex align-center mb-2 white--text">
-                <v-icon size="22">mdi-email-open</v-icon>
+                <!-- <v-icon size="22">mdi-email-open</v-icon> -->
+                <v-img v-if="pageData.data.cate == 1" src="@/assets/email/system-email.png" max-width="22" max-height="22"></v-img><v-img v-else src="@/assets/email/activity-email.png" max-width="22" max-height="22"></v-img>
                 <div class="text-15 ml-2">{{pageData.data.cate == 1 ? LangUtil("平台消息"):LangUtil("活动消息")}}</div>
                 <span class="text-14 ml-2 pt-1 white--text" style="opacity:0.4;">{{pageData.data.created_at}}</span>
             </div>

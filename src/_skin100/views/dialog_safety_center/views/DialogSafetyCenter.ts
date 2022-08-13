@@ -27,6 +27,16 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
 
+    icons = {
+        mm: require("@/_skin100/assets/register/mm.png"),
+        tjr: require("@/_skin100/assets/register/tjr.png"),
+        yhm: require("@/_skin100/assets/register/yhm.png"),
+        yzm: require("@/_skin100/assets/register/yzm.png"),
+        yx: require("@/_skin100/assets/register/yx.png"),
+        sj: require("@/_skin100/assets/register/sj.png"),
+        cx: require("@/_skin100/assets/game-search/cx.png"),
+    };
+
     @Watch("pageData.areaCode")
     onWatchAreaCode() {
         this.areaCodeList = this.pageData.areaCode;
@@ -90,6 +100,7 @@ export default class DialogSafetyCenter extends AbstractView {
 
     onTabClick(tabIndex: number) {
         this.pageData.tabIndex = tabIndex;
+        this.areaCodeMenu = false;
     }
 
     onBindMobile() {

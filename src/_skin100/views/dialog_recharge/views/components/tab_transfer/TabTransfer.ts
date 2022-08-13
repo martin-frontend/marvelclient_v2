@@ -7,7 +7,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
 import dialog_safety_center from "@/views/dialog_safety_center";
-import dialog_trade_password from "@/views/dialog_trade_password";
+import dialog_trade_password from "@/_skin100/views/dialog_trade_password";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 

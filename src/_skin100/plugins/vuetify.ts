@@ -52,6 +52,8 @@ export function getVuetify(): Vuetify {
                         colorTextGreey: "#798088", //used
                         colorTextNoData: "#9989c2", //used
                         colorGreyPanel: "#212e3e",
+                        colorSuccess: "#28BA98",
+                        colorProcessing: "#FBD535",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",
@@ -62,6 +64,7 @@ export function getVuetify(): Vuetify {
                         colorText7: "#5F80C1",
                         colorText8: "#68799A",
                         colorText9: "#60B7BF",
+                        colorInfo10: "#6E777F",
                         colorTextGold: "#F3B952",
                         colorTextBlue: "#31486C", //used
                         colorTextPurple: "#A8A8F5", //used

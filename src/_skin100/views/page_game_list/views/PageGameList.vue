@@ -19,13 +19,13 @@ import GameItemSmall from "@/_skin100/views/widget/game_item_small/GameItem.vue"
 })
 export default class extends PageGameList {
     mounted() {
-        // var v_main = document.querySelector(".v-main__wrap");
-        // v_main?.setAttribute("style", "background-image: linear-gradient(167deg, #4d2ba3 0%, rgba(20, 6, 115, 0) 97%);");
-        // window.scrollTo(0, 0);
+        var v_main = document.querySelector(".v-main__wrap");
+        v_main?.setAttribute("style", "background-image: linear-gradient(150deg, #4f2aa7 -10%, #0d1b29 97%);");
+        window.scrollTo(0, 0);
     }
     beforeDestroy() {
-        // var v_main = document.querySelector(".v-main__wrap");
-        // v_main?.removeAttribute("style");
+        var v_main = document.querySelector(".v-main__wrap");
+        v_main?.removeAttribute("style");
     }
 }
 </script>

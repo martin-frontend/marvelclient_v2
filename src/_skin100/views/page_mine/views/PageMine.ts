@@ -68,7 +68,7 @@ export default class PageMine extends AbstractView {
         const mapPC = <any>{
             coinIcon: 42,
             minRewardBtn: {
-                w: 178,
+                w: 120,
                 h: 38,
             },
             leftBgVipIcon: {

@@ -27,7 +27,7 @@
                 @change="onTypeChange"
             />
         </div>
-        <v-sheet v-if="pageData.list.length>0" color="transparent" height="488" class="scroll-y">
+        <v-sheet v-if="pageData.list.length>0" color="transparent" height="405" class="scroll-y">
             <v-sheet class="px-4 py-4 rounded-lg my-3" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex flex-wrap justify-space-between listitem">
                     <div class="num-change mb-2 d-flex align-center justify-space-between">
@@ -57,7 +57,7 @@
                 </div>
             </v-sheet>
         </v-sheet>
-        <ListNodata v-if="pageData.list.length == 0" height="441"/>
+        <ListNodata v-if="pageData.list.length == 0" height="456"/>
         <v-spacer />
         <v-pagination
             class="mt-2"

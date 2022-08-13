@@ -754,8 +754,8 @@
             </v-card>
             <v-card
                 height="40"
-                class="rounded-card mb-2 d-flex align-center "
-                :class="item.level == tableData.myCommissionNum[0].cur_commission_level ? 'rowbg':'level_title'"
+                class="rounded-card mb-2 d-flex align-center select-row"
+                :class="item.level == tableData.myCommissionNum[0].cur_commission_level ? 'curr-row':'level_title'"
                 v-for="(item, index) of tableData.promotionConfig[0]"
                 :key="index"
                 elevation="0"

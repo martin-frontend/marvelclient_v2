@@ -1,4 +1,8 @@
 .page_mine {
+    padding-bottom: 40px;
+    .rounded-pill {
+        border-radius: 18px;
+    }
     #vipLevel.mobile-vip {
         background-color: #162734 !important;
         background-size: cover;
@@ -15,7 +19,7 @@
     }
 
     ::v-deep .v-slide-group__prev {
-        right: 50px;
+        right: 40px;
         border-radius: 12pt 0pt 0pt 12pt;
     }
     ::v-deep .v-slide-group__next {
@@ -93,13 +97,15 @@
     }
     .left_bg {
         height: 300px !important;
+        border-radius: 8px;
         // background: url("~@/assets/mine/left_bg.png") no-repeat center center;
-        background-color: #162734;
+        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 107%);
         background-size: cover;
     }
     .right_banner {
+        border-radius: 8px;
         height: 300px !important;
-        background-color: #162734;
+        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 107%);
         // background: url("~@/assets/mine/right_bg.png") no-repeat center center;
         background-size: cover;
         position: relative;
@@ -182,9 +188,12 @@
         font-size: 18px !important;
     }
     .how_item {
-        height: 210px;
+        height: 180px;
     }
     #howMine {
+        .sub-title-color {
+            color: rgba(255, 255, 255, 0.4);
+        }
         @media only screen and (max-width: 960px) {
             ::v-deep .v-card {
                 display: flex !important;
@@ -281,6 +290,6 @@
         // }
     }
     .tc {
-        color: #797f97;
+        color: rgba(255, 255, 255, 0.4);
     }
 }

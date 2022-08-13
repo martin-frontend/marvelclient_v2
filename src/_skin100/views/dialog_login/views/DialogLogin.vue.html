@@ -1,7 +1,7 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
         <!-- <AdvertiseInLogin :height="610" class="d-none d-md-flex" /> -->
-        <v-img src="../../../../assets/login/coinFansLogin.png" :width="380" :height="500" class="d-none d-md-flex rounded-0"></v-img>
+        <v-img src="../../../../assets/login/egameLogin.png" :width="380" :height="500" class="d-none d-md-flex rounded-0"></v-img>
         <!-- pc显示 -->
         <v-card color="transparent" width="488" v-if="!$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">
@@ -43,7 +43,7 @@
                 <CustomInput
                     v-if="forgetData.form.type == 2"
                     class="mb-0 rounded login-ip"
-                    icon="mdi-email"
+                    :icon="icons.yx"
                     :placeholder="LangUtil('请输入邮箱')"
                     v-model="forgetData.form.username"
                 >
@@ -55,7 +55,7 @@
                 <CustomInput
                     v-else
                     class="mb-0 rounded login-ip"
-                    icon="mdi-phone"
+                    :icon="icons.sj"
                     type="tel"
                     :placeholder="LangUtil('请输入手机号')"
                     v-model="forgetData.form.username"
@@ -66,15 +66,46 @@
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="white--text mx-2">+{{forgetData.form.area_code}}</div>
                                     <div
-                                        class="icon-box iconfont text-18 mr-2"
+                                        class="icon-box iconfont text-14 mr-2 arrow-color font-weight-bold"
                                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                                     >
                                         
                                     </div>
-                                    <div class="text-20">|</div>
+                                    <!-- <div
+                                        class="icon-box iconfont text-18 mr-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div> -->
+                                    <!-- <div class="text-20">|</div> -->
                                 </div>
                             </template>
-                            <v-sheet class="pa-3 rounded-lg"  color="#23114F" width="400">
+                            <v-sheet class="pa-3 rounded-lg colorPanelBg4" width="400">
+                                <CustomInput
+                                    class="mt-3 rounded search-area"
+                                    :icon="icons.cx"
+                                    :iconSize="18"
+                                    :placeholder="LangUtil('请选择国家或地区')"
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></CustomInput>
+
+                                <v-list dense color="rgba(0,0,0,0)">
+                                    <v-list-item-group>
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="white--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                            <!-- <v-sheet class="pa-3 rounded-lg"  color="#23114F" width="400">
                                 <v-text-field
                                     class="rounded-pill"
                                     outlined
@@ -99,7 +130,7 @@
                                         </v-list-item>
                                     </v-list-item-group>
                                 </v-list>
-                            </v-sheet>
+                            </v-sheet> -->
                         </v-menu>
                     </template>
                     <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!checkPhone(forgetData.form.username)" @click="getCode"
@@ -109,7 +140,7 @@
 
                 <CustomInput
                     class="mt-3 rounded login-ip"
-                    icon="mdi-shield-check"
+                    :icon="icons.yzm"
                     :placeholder="LangUtil('请输入验证码')"
                     type="tel"
                     v-model="forgetData.form.verify_code"
@@ -126,13 +157,13 @@
                 </CustomInput>
                 <CustomPassword
                     class="mt-3 rounded login-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('请输入密码(6~12位)')"
                     v-model="forgetData.form.password"
                 />
                 <CustomPassword
                     class="mb-3 mt-3 rounded login-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('密码确认')"
                     v-model="forgetData.form.password_confirm"
                 />
@@ -151,22 +182,22 @@
             <v-card-text v-else class="px-10 mt-5">
                 <CustomInput
                     class="mb-3 rounded login-ip"
-                    icon="mdi-account"
+                    :icon="icons.yhm"
                     :placeholder="LangUtil('请输入账号/手机号/邮箱')"
                     v-model="pageData.form.username"
                 />
                 <CustomPassword
                     class="rounded login-ip"
-                    icon="mdi-lock"
+                    :icon="icons.mm"
                     :placeholder="LangUtil('请输入密码(6~12位)')"
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">
-                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" color="rgba(255,255,255,0.3)" dense hide-details></v-checkbox>
+                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')"  dense hide-details></v-checkbox>
                     <div class="text-14 mt-1 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
                 <v-btn
-                    class="rounded-lg on-login-bg"
+                    class="rounded6 on-login-bg"
                     color="colorBtnBg"
                     height="44"
                     :disabled="!isCheckedLogin"

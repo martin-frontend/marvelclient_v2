@@ -5,7 +5,9 @@ import OpenLink from "@/core/global/OpenLink";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
-
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
+import page_extension from "@/_skin100/views/page_extension";
+import dialog_activity from "@/_skin100/views/dialog_activity";
 @Component
 export default class PageIntroduce extends AbstractView {
     LangUtil = LangUtil;
@@ -35,7 +37,12 @@ export default class PageIntroduce extends AbstractView {
         }
         return "textWarp-ct";
     }
-
+    goExtension() {
+        LoginEnter(page_extension.show);
+    }
+    goActivity() {
+        dialog_activity.show();
+    }
     goContractInfo() {
         OpenLink(this.reward_coin_info.contract_address);
     }

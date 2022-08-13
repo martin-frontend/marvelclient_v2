@@ -1,14 +1,14 @@
 <div>
-<v-card-text class="mt-sm-3 px-0" v-if="!$vuetify.breakpoint.xsOnly" >
+<v-card-text class="mt10 pt-0 pb-10 px-0" v-if="!$vuetify.breakpoint.xsOnly" >
     <div class="pt-sm-3 mx-8 pb-2 rounded-lg assetsBg">
     <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-3 px-0" height="30" color="transparent">
-        <v-sheet class="d-flex justify-start white--text text-12" color="transparent" width="100">{{LangUtil("币种")}}</v-sheet>
-        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" width="100">{{LangUtil("可用")}}</v-sheet>
-        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" width="70">{{LangUtil("厂商")}}</v-sheet>
+        <v-sheet class="d-flex justify-start textColor1 text-12" color="transparent" width="100">{{LangUtil("币种")}}</v-sheet>
+        <v-sheet class="d-flex justify-center textColor1 text-12" color="transparent" width="100">{{LangUtil("可用")}}</v-sheet>
+        <v-sheet class="d-flex justify-center textColor1 text-12" color="transparent" width="70">{{LangUtil("厂商")}}</v-sheet>
     </v-sheet>
-    <v-sheet class="mt-0 listbox" color="transparent" min-height="400">
+    <v-sheet class="mt-0 listbox" color="transparent" min-height="430">
         <v-sheet
-            class="d-flex align-center justify-space-between rounded-pill mx-3 px-0 mb-1"
+            class="d-flex align-center justify-space-between px-3 px-0 mb-1 item-select"
             height="35"
             color="transparent"
             v-for="(item, key) of pageData.gold_info"

@@ -1,0 +1,33 @@
+// .input-text {
+//     border-radius: 12px;
+//     // height: 150px;
+//     border: solid 1px #4c5d7f;
+//     textarea {
+//         vertical-align: middle;
+//         height: 150px;
+//         width: 100%;
+//         color: #96a9d0;
+//         resize: none;
+//         border: none;
+//         outline: none;
+//     }
+// }
+.input-text {
+    border-radius: 4px;
+    // height: 150px;
+    // border: 0px;
+    background-color: rgba(0,0,0,0.20);
+    textarea {
+        
+        vertical-align: middle;
+        height: 150px;
+        width: 100%;
+        color: #fff;
+        resize: none;
+        border: none;
+        outline: none;
+    }
+}
+textarea::placeholder, textarea[disabled] {
+    color: rgba(255,255,255,0.2);
+}

@@ -6,7 +6,7 @@
 >
     <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center ">
-            <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2" alt="" />
+            <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2 cursor-pointer" @click="goHome" alt="" />
             <span :class="routerPath == '/' ? 'active' : ''" class="nav-button" @click="goHome">
                  {{LangUtil("首页")}}
             </span>
@@ -42,8 +42,9 @@
                     v-model="core.lang"
                     :options="LangConfig.language"
                     :icons="LangConfig.language"
-                    :width="160"
-                    :height="45"
+                    :width="140"
+                    :height="40"
+                    :iconSize="20"
                     :isPill="true"
                     class="mr-4"
                     @change="onLangChange"

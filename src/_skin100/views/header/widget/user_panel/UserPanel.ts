@@ -15,7 +15,7 @@ import page_bonus from "@/_skin100/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import dialog_user_center from "@/views/dialog_user_center";
+import dialog_user_center from "@/_skin100/views/dialog_user_center";
 
 @Component
 export default class UserPanel extends AbstractView {

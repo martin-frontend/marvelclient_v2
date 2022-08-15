@@ -15,5 +15,14 @@ import GameSearchItem from "../widget/game_search_item/GameSearchItem.vue";
         GameSearchItem,
     },
 })
-export default class extends GameSearch {}
+export default class extends GameSearch {
+    // mounted() {
+    //     var v_main = document.querySelector("#page");
+    //     v_main?.setAttribute("style", "filter: blur(6px);");
+    // }
+    // beforeDestroy() {
+    //     var v_main = document.querySelector("#page");
+    //     v_main?.removeAttribute("style");
+    // }
+}
 </script>

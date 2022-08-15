@@ -1,7 +1,7 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import game_search from "@/_skin100/views/game_search";
 import { Watch, Component } from "vue-property-decorator";
 import PageGameListMediator from "../mediator/PageGameListMediator";

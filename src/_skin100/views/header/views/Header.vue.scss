@@ -4,6 +4,11 @@ a {
 ::v-deep .v-toolbar__content {
     padding: 0px;
 }
+@media screen and (min-width: 1430px) {
+    .container {
+        max-width: 1730px;
+    }
+}
 .nav-button {
     display: flex;
     cursor: pointer;

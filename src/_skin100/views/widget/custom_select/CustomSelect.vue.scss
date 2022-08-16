@@ -19,8 +19,11 @@
 
 @media only screen and (max-width: 750px) {
     .v-menu__content {
-        min-width: 150px !important;
-        width: 150px !important;
+        // min-width: 150px !important;
+        // width: 150px !important;
+        left:16px !important;
+        min-width: calc(100% - 32px) !important;
+        width: calc(100% - 32px) !important;
     }
 }
 

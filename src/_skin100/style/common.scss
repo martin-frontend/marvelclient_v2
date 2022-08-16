@@ -180,6 +180,12 @@ input {
 .mb10{
     margin-bottom:10px !important;
 }
+.mb14{
+    margin-bottom:14px !important;
+}
+.mb15{
+    margin-bottom:15px !important;
+}
 .mb20{
     margin-bottom:20px !important;
 }
@@ -189,16 +195,19 @@ input {
 .rounded6 {
     border-radius: 6px !important;
 }
+.rounded18 {
+    border-radius: 18px !important;
+}
 .exit-icon {
     margin-top: 2.5px !important;
     margin-right: 1.5px !important;
 }
-// .v-dialog--fullscreen{
-//     border-top-left-radius: 24px !important;
-//     border-top-right-radius: 24px !important;
-//     top: 40px !important;
-//     height: calc(100% - 40px) !important;
-// }
+.v-dialog--fullscreen{
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
+    top: 55px !important;
+    height: calc(100% - 55px) !important;
+}
 .v-pagination {
     li {
         .v-pagination__item {

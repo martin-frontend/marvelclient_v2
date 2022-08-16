@@ -20,7 +20,10 @@ import GameItemSmall from "@/_skin100/views/widget/game_item_small/GameItem.vue"
 export default class extends PageGameList {
     mounted() {
         var v_main = document.querySelector(".v-main__wrap");
-        v_main?.setAttribute("style", "background-image: linear-gradient(150deg, #4f2aa7 -10%, #0d1b29 97%);");
+        this.$vuetify.breakpoint.xsOnly
+            ? v_main?.setAttribute("style", "background-color: #0d1b29);")
+            : v_main?.setAttribute("style", "background-image: linear-gradient(150deg, #4f2aa7 -10%, #0d1b29 97%);");
+        // v_main?.setAttribute("style", "background-image: linear-gradient(150deg, #4f2aa7 -10%, #0d1b29 97%);");
         window.scrollTo(0, 0);
     }
     beforeDestroy() {

@@ -9,6 +9,7 @@ import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "./core/global/LogUtil";
+import { js_utils } from "custer-js-utils";
 
 LogUtil.init();
 core.init();
@@ -19,15 +20,15 @@ if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com";
-    core.plat_id = "30000";
-    core.channel_id = "30000001";
+    core.plat_id = js_utils.getQueryVariable("plat_id") || "30000";
+    core.channel_id = js_utils.getQueryVariable("channel_id") || "30000001";
 }
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
-const vuetify =  getVuetify();
+const vuetify = getVuetify();
 //@ts-ignore
 window["vm"] = new Vue({
     router,

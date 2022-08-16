@@ -15,6 +15,8 @@ export default class PageGameList extends AbstractView {
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
     pageData = this.myProxy.pageData;
     hotGame = this.myProxy.hotGame;
+    qpGame = this.myProxy.qpGame;
+    dzGame = this.myProxy.dzGame;
     listQuery = this.myProxy.listQuery;
 
     constructor() {

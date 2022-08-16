@@ -137,24 +137,22 @@
                             v-on="on"
                         >
                             <div class="icon-box iconfont text-16 mr-1"></div>
-                            <div class="text-16 line-height-50">中文（简体）</div>
+                            <div class="text-16 line-height-50">{{ (LangConfig.language[core.lang] && LangConfig.language[core.lang].name) || LangConfig.language[core.lang] }}</div>
                         </v-sheet>
                     </template>
                     <v-list color="#324466" elevation="0">
-                        <v-list-item>
+                        <v-list-item v-for="(item, key) of LangConfig.language" :key="key" @click="onChange(key)">
                             <v-list-item-title class="d-flex cursor-pointer">
-                                <div class="icon-box iconfont select-icon lang-color">中文</div>
+                                <div class="icon-box iconfont select-icon lang-color">{{item.name || item}}</div>
                                 <v-spacer />
-                                <!-- <v-icon class="lang-color">mdi-radiobox-blank</v-icon> -->
                             </v-list-item-title>
                         </v-list-item>
-                        <v-list-item>
+                        <!-- <v-list-item>
                             <v-list-item-title class="d-flex cursor-pointer">
                                 <div class="icon-box iconfont select-icon secondary--text">English</div>
                                 <v-spacer />
-                                <!-- <v-icon color="secondary">mdi-radiobox-marked</v-icon> -->
                             </v-list-item-title>
-                        </v-list-item>
+                        </v-list-item> -->
                     </v-list>
                 </v-menu>
             </div>

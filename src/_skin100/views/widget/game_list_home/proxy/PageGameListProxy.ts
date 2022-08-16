@@ -24,6 +24,18 @@ export default class PageGameListProxy extends puremvc.Proxy {
         category_name: "",
         list: [],
     };
+    /**棋牌游戏*/
+    qpGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
+    /**电子游戏 */
+    dzGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
     /**配置 */
     config = {
         loaded: false,
@@ -44,6 +56,16 @@ export default class PageGameListProxy extends puremvc.Proxy {
         this.hotGame.category = data.category;
         this.hotGame.category_name = data.category_name;
         this.hotGame.list = Object.freeze(data.list);
+    }
+    setQpGame(data: any) {
+        this.qpGame.category = data.category;
+        this.qpGame.category_name = data.category_name;
+        this.qpGame.list = Object.freeze(data.list);
+    }
+    setDzGame(data: any) {
+        this.dzGame.category = data.category;
+        this.dzGame.category_name = data.category_name;
+        this.dzGame.list = Object.freeze(data.list);
     }
 
     setConfig(data: any) {

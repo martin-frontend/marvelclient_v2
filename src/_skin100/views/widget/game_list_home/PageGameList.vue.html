@@ -1,6 +1,6 @@
 <div class="container-c">
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''" v-if="!$vuetify.breakpoint.xsOnly">
-    <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" v-if="hotGame.category == 1">
+    <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" >
         <div class="text-16 ml-2 mr-1 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
             <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'">{{LangUtil("棋牌游戏")}}</div>
             <v-spacer />
@@ -16,7 +16,7 @@
         </div>
         <v-sheet  max-width="1430" class="mx-auto" color="transparent">
             <v-slide-group show-arrows>
-                <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                <v-slide-item v-for="item of qpGame.list" :key="item.vendor_prodcut_id">
                     <GameItemSmall :item="item" />
                 </v-slide-item>
             </v-slide-group>
@@ -42,7 +42,7 @@
     </v-sheet>
     <v-sheet  max-width="1430" class="mx-auto" color="transparent">
         <v-slide-group show-arrows>
-            <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+            <v-slide-item v-for="item of dzGame.list" :key="item.vendor_prodcut_id">
                 <GameItemSmall :item="item" />
             </v-slide-item>
         </v-slide-group>

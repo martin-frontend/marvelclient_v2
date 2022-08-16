@@ -1,11 +1,11 @@
-<v-container class="mt-0 mt-sm-7" :class="$vuetify.breakpoint.mobile ? 'px-3' : ''">
+<div class="mt-0 mt-sm-7" :class="$vuetify.breakpoint.mobile ? 'pt-4' : ''">
     <!-- 用途 -->
-    <v-row no-gutters class="d-flex justify-center flex-wrap mt-2 mt-sm-0 ml-md-n4">
-        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'"
+    <v-row no-gutters class="d-flex justify-center flex-wrap mt-2 mt-sm-0 ">
+        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-17' : 'text-20'"
             >{{LangUtil("{0}的用途", awardCoin)}}</v-col
         >
     </v-row>
-    <v-row no-gutters class="d-flex justify-space-between ml-md-n4 mt-2">
+    <v-row no-gutters class="d-flex justify-space-between  mt-2">
         <v-col cols="12" md="4">
             <v-hover v-slot="{ hover }">
                 <v-card
@@ -190,12 +190,12 @@
         </v-col>
     </v-row>
     <!-- 如何获得 -->
-    <v-row no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4 mt-sm-10">
-        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
+    <v-row no-gutters class="d-flex justify-center flex-wrap  mt-4 mt-sm-10">
+        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-17' : 'text-20'">
             {{LangUtil("如何获得{0}", awardCoin)}}
         </v-col>
     </v-row>
-    <v-row no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4">
+    <v-row no-gutters class="d-flex justify-center flex-wrap  mt-2">
         <v-col cols="12" md="4" class="mb-4">
             <v-hover v-slot="{ hover }">
                 <v-card
@@ -280,13 +280,12 @@
         </v-col>
     </v-row>
     <!-- 如何获得 -->
-    <v-row v-if="!$vuetify.breakpoint.mobile" no-gutters class="d-flex justify-center flex-wrap ml-md-n4 mt-4 mt-sm-10">
-        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-24' : 'text-28'">
+    <v-row no-gutters class="d-flex justify-center flex-wrap mt-4 mt-sm-10">
+        <v-col cols="12" md="12" class="font-weight-bold" :class="$vuetify.breakpoint.smAndDown ? 'text-17' : 'text-20'">
             {{LangUtil("推广活动")}}
         </v-col>
-    
     </v-row>
-    <div v-if="!$vuetify.breakpoint.mobile" class="promote-content">
+    <div  :class="$vuetify.breakpoint.mobile?'promote-content-h5':'promote-content' ">
         <div class="promote-item" @click="goExtension">
             <img width="100%" src="../../../../../assets/promote/promote-1.png" alt="">
             <div class="promote-text">
@@ -311,4 +310,4 @@
         </div>
     </div>
 
-</v-container>
+</div>

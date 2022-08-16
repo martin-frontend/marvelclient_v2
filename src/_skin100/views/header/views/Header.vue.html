@@ -77,7 +77,7 @@
      <!-- 手机 -->
     <v-container v-else class="mt-3 pt-0 pb-0">
         <div class="d-flex align-center   pb-2">
-            <img src="@/_skin100/assets/logo.png" height="30" alt="" />
+            <img src="@/_skin100/assets/logo.png" height="42" alt="" />
             <v-spacer />
             <!-- <v-btn height="20" width="20" fab color="#ffb01b" class="black--text"
             >
@@ -99,6 +99,7 @@
                 v-model="core.lang"
                 :options="LangConfig.language"
                 :icons="LangConfig.language"
+                :iconSize="18"
                 :width="160"
                 :height="30"
                 :isPill="true"
@@ -111,7 +112,7 @@
             <v-btn v-if="core.user_id == 0" small  class="text-14 white--text common-btn" @click="handlerLogin">
                 <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" style="border-radius: 23px;" class="text-14 mx-4 black--text" @click="handlerRegister">
+            <v-btn v-if="core.user_id == 0" small color="white" style="border-radius: 23px;" class="text-14 ml-2 mx-4 black--text" @click="handlerRegister">
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <User v-if="core.user_id" />

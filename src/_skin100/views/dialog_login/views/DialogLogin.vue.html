@@ -278,7 +278,7 @@
                                 </div>
                             </div>
                         </template>
-                        <v-sheet class="pa-3 rounded-lg colorPanelBg4" width="400">
+                        <v-sheet class="pa-3 rounded-lg colorPanelBg4">
                             <CustomInput
                                 class="mt-3 rounded search-area"
                                 :icon="icons.cx"
@@ -378,14 +378,14 @@
                     v-model="forgetData.form.password_confirm"
                 />
                 <v-btn
-                    class="rounded-lg on-login-bg mt-5"
+                    class="rounded6 on-login-bg mt-5"
                     color="colorBtnBg"
                     height="48"
                     :disabled="!isCheckedForget"
                     block
                     @click="onSubmitForget"
                 >
-                    {{LangUtil("确认重置")}}
+                   <span class="text-16">{{LangUtil("确认重置")}}</span>
                 </v-btn>
             </v-card-text>
             <!-- 登录 -->
@@ -407,7 +407,7 @@
                     <div class="text-14 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
                 <v-btn
-                    class="rounded-lg on-login-bg"
+                    class="rounded6 on-login-bg"
                     color="colorBtnBg"
                     height="44"
                     :disabled="!isCheckedLogin"

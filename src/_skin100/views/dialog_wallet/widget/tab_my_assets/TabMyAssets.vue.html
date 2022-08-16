@@ -25,16 +25,16 @@
     </div>
 </v-card-text>
 
-<v-card-text class="mt-sm-3 px-0 mobile" v-if="$vuetify.breakpoint.xsOnly" >
-    <div class="mx-4 py-3 rounded-lg assetsBg">
-    <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-4 px-0" height="30" color="transparent">
-        <v-sheet class="d-flex justify-start white--text text-12" color="transparent" width="100">{{LangUtil("币种")}}</v-sheet>
-        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" width="100">{{LangUtil("可用")}}</v-sheet>
-        <v-sheet class="d-flex justify-center white--text text-12" color="transparent" width="70">{{LangUtil("厂商")}}</v-sheet>
+<v-card-text class="mt-0 pt-0 px-0 mobile" v-if="$vuetify.breakpoint.xsOnly" >
+    <div class="mx-4 pt10 pb10 rounded-lg assetsBg">
+    <v-sheet class="d-flex align-center justify-space-between rounded-pill mx-4 px-0" height="20" color="transparent">
+        <v-sheet class="d-flex justify-start textColor1 text-12" color="transparent" width="100">{{LangUtil("币种")}}</v-sheet>
+        <v-sheet class="d-flex justify-center textColor1 text-12" color="transparent" width="100">{{LangUtil("可用")}}</v-sheet>
+        <v-sheet class="d-flex justify-center textColor1 text-12" color="transparent" width="70">{{LangUtil("厂商")}}</v-sheet>
     </v-sheet>
     <v-sheet class="listbox" color="transparent" min-height="400">
         <v-sheet
-            class="d-flex align-center justify-space-between rounded-pill mx-3 px-0 mb-1"
+            class="d-flex align-center justify-space-between px-3 px-0 mb-1 item-select-m"
             height="35"
             color="transparent"
             v-for="(item, key) of pageData.gold_info"

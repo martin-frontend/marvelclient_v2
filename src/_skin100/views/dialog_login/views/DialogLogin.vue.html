@@ -213,6 +213,7 @@
         <!-- 手机显示 -->
         <v-card color="transparent" width="488" v-if="$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-5 px-4">
+                <!-- <div class="ml-0 font-weight-medium white--text" :class="forgetData.bShow ? 'text-17':'text-20' "> -->
                 <div class="ml-0 font-weight-medium white--text" :class="forgetData.bShow ? 'text-17':'text-20' ">
                     {{forgetData.bShow ? LangUtil('找回密码') : LangUtil('登录')}}
                 </div>

@@ -28,3 +28,18 @@
 .bPanelOpacityBg{
     background-color: rgba(0,0,0,0.1) !important;
 }
+.header-h5{
+    padding: 0;
+    min-height: 40px !important;
+}
+::v-deep .content-h5{
+    .v-expansion-panel-content__wrap{
+        padding: 0 !important;
+        font-size: 14px;
+        color: #697786;
+        margin-bottom: 10px;
+    }
+}
+.theme--dark.v-divider {
+    border-color: rgba(255, 255, 255, 0.05);
+}

@@ -157,4 +157,8 @@ export default class PageGamePlay extends AbstractView {
             },
         });
     }
+
+    destroyed(){
+        super.destroyed();
+    }
 }

@@ -1,4 +1,4 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" persistent>
     <v-card class="rounded-lg d-flex flex-column bPanelBg">
          <!-- pc显示方式 -->
         <v-card-title class="px-8"  v-if="!$vuetify.breakpoint.xsOnly">
@@ -94,14 +94,14 @@
         </v-card-text>
         <!-- 手机显示方式 -->
         <v-card-text class="pb-0 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
-            <div class="d-flex align-center px-5 pt-5 pb-4">
-                <div class="white--text text-18">{{LangUtil("消息中心")}}</div>
+            <div class="d-flex align-center px-5 pt-5 pb15">
+                <div class="font-weight-medium white--text text-17">{{LangUtil("消息中心")}}</div>
                 <v-spacer />
-                <v-btn icon @click="onClose">
-                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
+                <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                    <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
                 </v-btn>
             </div>
-            <div class="d-flex mb-3 mx-5">
+            <div class="d-flex mb5 mx-5">
                 <CustomSelect
                     class="mr-2"
                     :isPill="true"
@@ -122,7 +122,7 @@
             <v-sheet  color="transparent" height="510"  class="scroll-y">
                 <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" >
                     <ListNodata v-if="pageData.list.length == 0"/>
-                    <v-sheet class="px-4 py-4 rounded-lg my-3 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                    <v-sheet class="px-4 py-4 rounded-lg mt10 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                         <div style="width: 100%" class="d-flex mb-2">
                             <!-- <v-badge color="red" dot offset-y="8" offset-x="7"  :value="!item.is_read"><v-icon class="white--text" :style="{opacity: item.is_read ? 0.4 : 1 }" size="22">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> </v-badge> -->
                             <v-badge color="red" dot offset-y="8" offset-x="7"  :value="!item.is_read"><v-img v-if="item.cate == 1" src="@/assets/email/system-email.png" width="22" height="22"></v-img><v-img v-else src="@/assets/email/activity-email.png" width="22" height="22"></v-img> </v-badge>

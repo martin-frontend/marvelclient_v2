@@ -140,6 +140,7 @@ export default class UserPanel extends AbstractView {
                 page_introduce.show();
                 break;
         }
+        this.drawerClose();
     }
 
     onCopy(str: any) {

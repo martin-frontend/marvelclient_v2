@@ -11,6 +11,9 @@
         background-image: linear-gradient(to right, #70feff, #b3dfff);
     }
 }
+.white-text2 {
+    color: rgba(255, 255, 255, 0.4);
+}
 .option-text {
     color: rgba(105, 119, 134, 1);
 }
@@ -48,8 +51,8 @@
 }
 .bonus-card {
     @media (max-width: 1264px) {
-        background-color: #172237;
-        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
         margin-bottom: 8px;
     }
 }

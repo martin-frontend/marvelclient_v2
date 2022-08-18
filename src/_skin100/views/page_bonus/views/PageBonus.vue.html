@@ -252,7 +252,10 @@
                     <v-row no-gutters>
                         <v-col cols="12" lg="8" class="text-caption text-sm-subtitle-1">
                             <div class="text-subtitle-1 text-16 white--text font-weight-medium mb-2 mb-sm-2 pt-2 pt-sm-6">
-                                {{LangUtil("近5日分红金额")}}
+                                <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-1.png" />
+                                <span class="ml-1"  style="vertical-align: middle;">
+                                    {{LangUtil("近5日分红金额")}}
+                                </span>
                             </div>
                             <div class="white-text2 text-14 mb-2 mb-sm-0">
                                 {{LangUtil("随着网站成长，股东质押的{0}收益会逐渐增长", plat_stake_info.coin_name_unique)}}
@@ -285,7 +288,10 @@
             <v-col cols="12" lg="4">
                 <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
                     <div class="text-subtitle-1 text-16 white--text font-weight-medium mb-3 mb-sm-2 ml-3">
-                        {{LangUtil("分红排行榜")}}
+                        <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-2.png" />
+                        <span class="ml-1"  style="vertical-align: middle;">
+                            {{LangUtil("分红排行榜")}}
+                        </span>
                     </div>
                     <v-row no-gutters class="white-text2 text-caption text-16 rank-height mobile">
                         <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>
@@ -316,9 +322,17 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top px-5 py-3 py-sm-6" id="record">
+        <v-card class="mb-0  mb-sm-2 rounded-lg horizontal-gradient-top px-5 py-3 py-sm-6" id="record">
             <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
-                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4"> {{LangUtil("分红记录")}} </span>
+                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4">
+                    <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-3.png" />
+                    <span class="ml-1"  style="vertical-align: middle;">
+                        {{LangUtil("分红记录")}}
+                    </span>
+                
+                </span>
+
+                    
                 <div class="btn-around">
                 <v-btn
                     :height="$vuetify.breakpoint.width > 600 ? 32 : 30"
@@ -403,7 +417,7 @@
                                 </div>
                             </v-col>
                         </v-row>
-                        <v-divider></v-divider>
+                        <!-- <v-divider></v-divider> -->
                     </div>
                     <v-sheet
                         v-if="plat_bonus.list.length == 0"
@@ -475,7 +489,7 @@
                                 </div>
                             </v-col>
                         </v-row>
-                        <v-divider></v-divider>
+                        <!-- <v-divider></v-divider> -->
                     </div>
                     <v-sheet
                         v-if="user_bonus.list.length == 0"
@@ -491,6 +505,6 @@
                 </v-sheet>
             </v-card-text>
         </v-card>
-        <Question :questions="fagProxy.qData.type3"></Question>
+        <Question style="overflow: hidden;" :questions="fagProxy.qData.type3"></Question>
     </v-container>
 </div>

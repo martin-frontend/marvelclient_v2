@@ -66,4 +66,8 @@ export default class PageIntroduce extends AbstractView {
     goExtension(){
         LoginEnter(page_extension.show)
     }
+
+    destroyed(){
+        super.destroyed();
+    }
 }

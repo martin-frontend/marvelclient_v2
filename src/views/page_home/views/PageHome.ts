@@ -17,4 +17,8 @@ export default class PageHome extends AbstractView {
     getChannelID() {
         return core.channel_id;
     }
+
+    destroyed(){
+        super.destroyed();
+    }
 }

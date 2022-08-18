@@ -155,7 +155,7 @@
             </div>
         </v-card-text>
         <v-card-text class="px15" v-if="$vuetify.breakpoint.xsOnly">
-            <v-sheet  color="transparent" height="420"  class="scroll-y">
+            <v-sheet  color="transparent" height="380"  class="scroll-y overflow-y-auto">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
                 <ListNodata v-if="pageData.list.length == 0"/>
                 <v-sheet class="px-4 py-4 rounded-lg mt10 colorTextNormal2--text d-flex flex-wrap justify-start listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">

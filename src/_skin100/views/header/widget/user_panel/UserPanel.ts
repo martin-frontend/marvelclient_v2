@@ -91,12 +91,12 @@ export default class UserPanel extends AbstractView {
             icon: require("@/_skin100/assets/my/jchd.png"),
             icon_white: require("@/_skin100/assets/my/hover/jchd.png"),
         },
-        {
-            id: 14,
-            name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()),
-            icon: require("@/_skin100/assets/my/bjs.png"),
-            icon_white: require("@/_skin100/assets/my/hover/bjs.png"),
-        },
+        // {
+        //     id: 14,
+        //     name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()),
+        //     icon: require("@/_skin100/assets/my/bjs.png"),
+        //     icon_white: require("@/_skin100/assets/my/hover/bjs.png"),
+        // },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

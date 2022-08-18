@@ -12,6 +12,17 @@
     border-top-right-radius: 8px;
     border-bottom-left-radius: none;
     border-bottom-right-radius: none;
+    background-image: linear-gradient(90deg, #51289d 4%, #0f045c 99%);
+    color: #8c84b2;
+}
+
+.v-application #page .container .btr-h5 {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    color: #8c84b2;
+    background-image: linear-gradient(90deg, #51289d 4%, #0f045c 99%);
 }
 
 .v-application #page .container .btr-h5 {

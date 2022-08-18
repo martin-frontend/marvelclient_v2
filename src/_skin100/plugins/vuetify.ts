@@ -55,6 +55,7 @@ export function getVuetify(): Vuetify {
                         colorSuccess: "#28BA98",
                         colorProcessing: "#FBD535",
                         colorBindSuccess: "#8e79c4",
+                        colorTitleBgSkin: "#172432",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

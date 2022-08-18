@@ -1,0 +1,22 @@
+<v-dialog width="360" v-model="pageData.bShow" :retain-focus="false"  persistent>
+    <v-card class="rounded-lg bPanelBg">
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("设置昵称")}}</div>
+            <v-spacer />
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn>
+            <!-- <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn> -->
+        </v-card-title>
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput maxlength="12" class="ip" :placeholder="LangUtil('昵称为1-6位汉字或1-12位英文')" v-model="pageData.nickname" />
+            <div class="mt10 mb20 real-name-text">{{LangUtil("昵称只允许设置一次")}}</div>
+            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedId" @click="onSubmit" block
+                >{{LangUtil("保存设置")}}</v-btn
+            >
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

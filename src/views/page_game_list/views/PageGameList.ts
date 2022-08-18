@@ -41,4 +41,8 @@ export default class PageGameList extends AbstractView {
     showGameSearch() {
         LoginEnter(game_search.show);
     }
+
+    destroyed(){
+        super.destroyed();
+    }
 }

@@ -136,9 +136,9 @@ export default class UserPanel extends AbstractView {
             case 13:
                 dialog_activity.show();
                 break;
-            case 14:
-                page_introduce.show();
-                break;
+            // case 14:
+            //     page_introduce.show();
+            //     break;
         }
         this.drawerClose();
     }

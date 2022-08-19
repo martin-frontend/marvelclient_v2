@@ -72,28 +72,30 @@
             </v-card>
         </v-col>
         <v-col cols="12" md="6" lg="6" class="d-flex mt-1  order-1 order-md-2">
-            <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0" width="100%" height="100%">
+            <v-card class="right_banner pl-5 pr-5 pr-md-0 pt10 pt-sm-5 pb-0" width="100%" height="100%"
+            :class="$vuetify.breakpoint.mobile?'right-banner-h5':''"
+            >
                 <v-card-text class="pa-0">
                     <v-row no-gutters>
                         <v-col cols="4">
                             <v-img width="24" height="24"  contain src="~@/_skin100/assets/icon-title-14.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
                             <span class="game_mine_title white--text pt-0 text-16 align-center text-md-16 pl-0  font-weight-medium">
                                 {{LangUtil('游戏挖矿')}}</span>
-                            <v-img class="cat_icon mt-4 ml-n3 ml-sm-0" max-width="270" height="224" contain src="~@/assets/mine/cat_icon.png"></v-img>
+                            <v-img v-if="!$vuetify.breakpoint.mobile" class="cat_icon mt-4 ml-n3 ml-sm-0" max-width="270" height="224" contain src="~@/_skin100/assets/mine/cat_icon.png"></v-img>
                         </v-col>
-                        <v-col cols="8" class="text-body-2 text-align-center ml-n4 pl-0 pl-md-7 pl-md-0 text-md-body-1 game_mine_info">
-                            <div class="mt-11 mt-md-8">
-                                <p class="ma-0 text-body-1 colorTextYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</p>
+                        <v-col :cols="$vuetify.breakpoint.mobile?'12':'8'" class="text-body-2 text-align-center ml-0 ml-sm-n4 pl-0 pl-md-7 pl-md-0 text-md-body-1 game_mine_info">
+                            <div class="mt-4 mt-sm-11 mt-md-8">
+                                <p class="ma-0 text-17 font-weight-bold colorTextYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</p>
                                 <p class="ma-0 text-body-2 text-md-body-1 colorTextNormal--text">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
                             </div>
                         
                             <div class="d-flex justify-center align-center mt-3 mt-md-3 coins_group elevation='2'">
                                 <!-- 主币 -->
                                 <v-img v-if="pageData.trial.main" :max-width="mobileChange('coinIcon')" :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"></v-img>
-                                <span v-if="pageData.trial.main" class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 mr-4 mr-md-8 font-weight-medium">{{ pageData.trial.main }}</span>
+                                <span v-if="pageData.trial.main" class="white--text text-h5 text-md-h4 ml-2 ml-md-4 mr-4 mr-md-8 font-weight-medium">{{ pageData.trial.main }}</span>
                                 <!-- 奖励币 -->
                                 <v-img v-if="pageData.trial.reward" :max-width="mobileChange('coinIcon')" :height="mobileChange('coinIcon')" contain :src="pageData.trial.rewardIconSrc"></v-img>
-                                <span v-if="pageData.trial.reward" class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium">{{ pageData.trial.reward }}</span>
+                                <span v-if="pageData.trial.reward" class="white--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium">{{ pageData.trial.reward }}</span>
                             </div>
 
                             <v-btn :width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorCoin" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6 font-weight-bolder black--text"   @click="handlerAward">{{LangUtil('领取奖励')}}</v-btn>
@@ -105,13 +107,13 @@
                                 <v-btn color="colorGreyBtn" height="38" min-width="127" class="rounded-pill text-14" @click="handlerBetRecord">{{LangUtil('投注记录')}}</v-btn>
                             </div>
                         </v-col>
-                        <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group  mt-9">
+                        <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-5  mt-sm-9">
                             <!-- 手机显示 -->
-                            <v-btn color="colorGreyBtn" height="30" min-width="90" class="rounded-pill text-caption" @click="jumpTo('#howMine')">
+                            <v-btn color="colorGreyBtn" height="35" min-width="90" class="rounded-pill text-14" @click="jumpTo('#howMine')">
                                 {{LangUtil('说明')}}
                             </v-btn>
-                            <v-btn color="colorGreyBtn" height="30" min-width="90" class="rounded-pill text-caption" @click="handlerMineRecord">{{LangUtil('奖励记录')}}</v-btn>
-                            <v-btn color="colorGreyBtn" height="30" min-width="90" class="rounded-pill text-caption" @click="handlerBetRecord">{{LangUtil('投注记录')}}</v-btn>
+                            <v-btn color="colorGreyBtn" height="35" min-width="90" class="rounded-pill text-14" @click="handlerMineRecord">{{LangUtil('奖励记录')}}</v-btn>
+                            <v-btn color="colorGreyBtn" height="35" min-width="90" class="rounded-pill text-14" @click="handlerBetRecord">{{LangUtil('投注记录')}}</v-btn>
                         </v-col>
                     </v-row>
                 </v-card-text>

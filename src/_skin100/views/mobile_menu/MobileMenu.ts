@@ -9,6 +9,8 @@ import page_mine from "../page_mine";
 
 @Component
 export default class MobileMenu extends AbstractView {
+    active = 0;
+    drawer = false;
     LangUtil = LangUtil;
     menuList = [
         {
@@ -44,7 +46,7 @@ export default class MobileMenu extends AbstractView {
             name: LangUtil("我的"),
             icon: require("../../assets/footer/tab-5.png"),
             activeIcon: require("../../assets/footer/tab-5-active.png"),
-            path: "/page_mine",
+            // path: "/page_mine",
         },
     ];
 
@@ -58,19 +60,29 @@ export default class MobileMenu extends AbstractView {
         switch (item.id) {
             case 0:
                 router.push(item.path);
+                this.active = 0;
                 break;
             case 1:
                 router.push(item.path);
+                this.active = 1;
                 break;
             case 2:
                 LoginEnter(page_mine.show);
+                this.active = 2;
                 break;
             case 3:
                 LoginEnter(page_extension.show);
+                this.active = 3;
                 break;
             case 4:
-                LoginEnter(page_bonus.show);
+                // LoginEnter(page_bonus.show);
+                LoginEnter(() => {});
+                this.active = 4;
+                this.drawer = true;
                 break;
         }
+    }
+    closeDrawer(isClose: boolean) {
+        this.drawer = false;
     }
 }

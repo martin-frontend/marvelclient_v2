@@ -1,8 +1,8 @@
 <div class="container-b">
-    <v-container>
+    <v-container class="px15">
         <v-row no-gutters>
             <v-col cols="12" lg="6" class="pr-lg-2">
-                <v-card class="mb-2 rounded-lg rounded-card horizontal-gradient-left text-body-1 d-flex align-center mx-1 mx-sm-auto px-4 px-sm-5 py-3 py-sm-3">
+                <v-card class="mb-2 rounded-lg rounded-card horizontal-gradient-left text-body-1 d-flex align-center mx-sm-auto px-4 px-sm-5 py-3 py-sm-3">
                     <v-row no-gutters class="d-flex flex-row">
                         <v-col cols="12" sm="auto" class="d-flex align-center justify-start justify-md-start mb-4 mb-sm-0">
                             <v-img v-if="$vuetify.breakpoint.xsOnly" class="mr-2" src="@/assets/extension/comm.png" max-width="24" height="24"></v-img>
@@ -173,7 +173,7 @@
                 <v-card
                     v-if="$vuetify.breakpoint.xsOnly"
                     min-width="90"
-                    class="rounded-xl rounded-card horizontal-gradient-left text-body-1 mb-lg-0 px-4 px-sm-6 py-4 py-sm-6 mx-1 mx-sm-auto"
+                    class="rounded-xl rounded-card horizontal-gradient-left text-body-1 mb-lg-0 px-4 px-sm-6 py-4 py-sm-6  mx-sm-auto"
                 >
                 <v-row no-gutters class="d-flex flex-row">
                     <v-col cols="12" sm="auto" class="d-flex align-center justify-start justify-md-start mb-4 mb-sm-0">
@@ -520,7 +520,7 @@
             </v-col>
             <!--  -->
             <v-col cols="12" lg="6" class="mt-2 mt-lg-0" v-if="$vuetify.breakpoint.xsOnly">
-                <v-card class="rounded-xl rounded-card horizontal-gradient-right mb-lg-0 px-4 px-sm-6 py-4 py-sm-6 mx-1 mx-sm-auto" height="100%">
+                <v-card class="rounded-xl rounded-card horizontal-gradient-right mb-lg-0 px-4 px-sm-6 py-4 py-sm-6 mx-sm-auto" height="100%">
                     <v-row no-gutters class="d-flex flex-row">
                         <v-col cols="12" sm="auto" class="d-flex align-center justify-start justify-md-start mb-4 mb-sm-0">
                             <v-img v-if="$vuetify.breakpoint.xsOnly" class="mr-2" src="@/assets/extension/invite.png" max-width="24" height="24"></v-img>
@@ -814,7 +814,7 @@
             </v-card>
         </div>
         <!-- 手机表格 -->
-        <div class="rounded-lg level_panel pa-4 mx-1 mt-3" v-if="$vuetify.breakpoint.xsOnly">
+        <div class="rounded-lg level_panel pa-4  mt-3" v-if="$vuetify.breakpoint.xsOnly">
             <div class="text-subtitle-1 text-sm-16 mb-2 mb-sm-2 font-weight-medium white--text d-flex align-center"><v-icon color="#666f7b" class="mr-2" >mdi-crown</v-icon>{{LangUtil("返佣等级")}}</div>
             <div class="text-12 colorTextNormal--text px-3 py-1 mb-1 rounded bPanelOpacityBg">
                 {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}

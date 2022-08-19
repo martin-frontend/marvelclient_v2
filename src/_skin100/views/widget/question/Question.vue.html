@@ -16,9 +16,9 @@
         </v-col>
     </v-row>
 </div>
-<div class="mt10  mx-1 px15 py-3 rounded-lg  bPanelLevelBg" v-if="$vuetify.breakpoint.xsOnly">
+<div class="mt10 px15 py-3 rounded-lg  bPanelLevelBg" v-if="$vuetify.breakpoint.xsOnly">
     <div class="text-15 text-sm-16 font-weight-medium mb-md-5 d-flex align-center "><v-img contain  class="mr-2" max-height="24" max-width="24" src="@/assets/question/question.png"> </v-img>{{LangUtil("常见问题")}}</div>
-    <v-row no-gutters class="d-flex flex-row text-body-1 mt-2">
+    <v-row no-gutters class="d-flex flex-row text-body-1 mt-2" v-if="questions && questions.length > 0">
         <v-col cols="12" class="pr-sm-2" v-for="(item, index) of questions" :key="index">
             <v-expansion-panels elevation="0">
                 <v-expansion-panel>

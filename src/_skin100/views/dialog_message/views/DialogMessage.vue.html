@@ -1,3 +1,7 @@
-<v-snackbar v-model="pageData.bShow" :value="true" light centered timeout="3000" class="text-16" height="40" color="#EFF1F7">
-    {{ pageData.message }}
+<!-- <v-snackbar v-model="pageData.bShow" :value="true" light centered timeout="3000" class="text-16" height="40" color="#EFF1F7"> -->
+<v-snackbar v-model="pageData.bShow" :value="true" light centered timeout="3000" class="messageBg" height="40">
+   <v-img v-if="pageData.type == 1" src="@/_skin100/assets/message/success.png" max-width="16" max-height="16" class="mr10"></v-img> 
+   <v-img v-if="pageData.type == 2" src="@/_skin100/assets/message/warn.png" max-width="16" max-height="16" class="mr10"></v-img> 
+   <v-img v-if="pageData.type == 3" src="@/_skin100/assets/message/error.png" max-width="16" max-height="16" class="mr10"></v-img> 
+   {{ pageData.message }}
 </v-snackbar>

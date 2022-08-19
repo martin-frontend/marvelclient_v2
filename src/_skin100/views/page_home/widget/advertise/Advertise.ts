@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
+import page_swap from "@/_skin100/views/page_swap";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import gsap, { Linear } from "gsap";
 
@@ -40,5 +41,8 @@ export default class Advertise extends AbstractView {
             value: 100,
             ease: Linear.easeNone,
         });
+    }
+    goSwap() {
+        page_swap.show();
     }
 }

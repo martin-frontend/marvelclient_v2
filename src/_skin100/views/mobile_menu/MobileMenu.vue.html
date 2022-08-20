@@ -13,7 +13,7 @@
         <!-- <v-icon size="26" :color="routerPath == item.path ? 'active-footer' : 'colorText2'">{{item.icon}}</v-icon> -->
         <img v-if="item.id == active" width="26" height="26" :src="item.activeIcon"  alt="">
         <img v-else width="26" height="26" :src="item.icon"  alt="">
-        <div class="text-12" :class="item.id == active ? 'active-footer': 'colorText2--text'">{{item.name}}</div>
+        <div class="text-12 mt-1" :class="item.id == active ? 'active-footer': 'colorText2--text'">{{item.name}}</div>
     </v-sheet>
 </v-footer>
 <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" >

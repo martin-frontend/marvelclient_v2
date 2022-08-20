@@ -129,7 +129,9 @@
     </v-row>
     <!-- vip 等级 -->
     <v-sheet color="transparent" class="mt10 mx-auto" :class="$vuetify.breakpoint.xsOnly?'mobile-vip':''" max-width="1430" id="vipLevel" >
-        <span class="text-h6 text-md-h7">{{LangUtil('VIP等级')}} </span>
+        <span class=" text-md-h7"
+        :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
+        >{{LangUtil('VIP等级')}} </span>
         <p class="ma-0 mt-1  text-14 text-md-body-3 colorText3--text tips">
             {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
         </p>
@@ -190,7 +192,9 @@
     </v-sheet>
     <!-- 如何挖矿 -->
     <v-sheet color="transparent" class="mt-4 mt-sm-5" id="howMine">
-        <span class="text-h6 text-md-h7">{{LangUtil('如何挖矿')}} </span>
+        <span class="text-md-h7"
+        :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
+        >{{LangUtil('如何挖矿')}} </span>
         <p class="ma-0 mt-1 ml-2 ml-md-0  text-14 colorText3--text">
             {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
         </p>

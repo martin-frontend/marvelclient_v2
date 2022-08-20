@@ -49,6 +49,20 @@ export default class Header extends AbstractView {
         }
         ScrollUtil(0);
     }
+    /**打开分红 */
+    goToMyBonus() {
+        if (this.$router.app.$route.path != "/page_bonus") {
+            router.push("/page_bonus");
+        }
+        ScrollUtil(0);
+    }
+    /**打开交易 */
+    goToMySwap() {
+        if (this.$router.app.$route.path != "/page_swap") {
+            router.push("/page_swap");
+        }
+        ScrollUtil(0);
+    }
     /**打开介绍页面 */
     goIntroduce() {
         router.push("/page_introduce");

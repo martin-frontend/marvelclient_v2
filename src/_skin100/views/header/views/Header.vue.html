@@ -7,11 +7,21 @@
     <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center ">
             <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2 cursor-pointer" @click="goHome" alt="" />
-            <span :class="routerPath == '/' ? 'active' : ''" class="nav-button" @click="goHome">
-                 {{LangUtil("首页")}}
+            <span class="nav-button" @click="goHome">
+                 <span class="button-text">{{LangUtil("首页")}}</span>
+                 <div :class="routerPath == '/' ? 'button-bar-active' : 'button-bar'" ></div>
             </span>
-            <span :class="routerPath == '/page_mine' ? 'active' : ''" class="nav-button" @click="goToMyPage">
-                 {{LangUtil("挖矿")}}
+            <span class="nav-button" @click="goToMyPage">
+                 <span class="button-text">{{LangUtil("挖矿")}}</span>
+                 <div :class="routerPath == '/page_mine' ? 'button-bar-active' : 'button-bar'" ></div>
+            </span>
+            <span class="nav-button" @click="goToMyBonus">
+                 <span class="button-text">{{LangUtil("分红")}}</span>
+                 <div :class="routerPath == '/page_bonus' ? 'button-bar-active' : 'button-bar'" ></div>
+            </span>
+            <span class="nav-button" @click="goToMySwap">
+                 <span class="button-text">{{LangUtil("交易")}}</span>
+                 <div :class="routerPath == '/page_swap' ? 'button-bar-active' : 'button-bar'" ></div>
             </span>
             <!-- <button
             v-if="!$vuetify.breakpoint.mobile"

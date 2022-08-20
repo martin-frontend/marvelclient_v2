@@ -22,7 +22,7 @@
                         <v-sheet width="100%" color="transparent" class="">
                             <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear>
                             <div class="text-14 ma-0 ml-2 mt-1 mt-md-3 text-align-center">
-                                <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}} </p>
+                                <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级到最高等级')}} </p>
                                 <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}} </span>
                                 <span class="white--text" v-if="pageData.nextExp > 0">
                                     <span class="colorYellowBg--text">{{ pageData.nextExp }}</span>{{LangUtil('有效流水')}} </span>

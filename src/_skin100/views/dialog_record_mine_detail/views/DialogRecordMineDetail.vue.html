@@ -1,0 +1,117 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" persistent>
+    <v-card class="rounded-lg bPanelBg" v-if="!pageData.loading">
+        <!-- pc显示方式 -->
+        <v-card-title class="px30" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("奖励详情")}}</div>
+            <v-spacer />
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px30" v-if="!$vuetify.breakpoint.xsOnly">
+            <v-sheet class="px-7 py-2 rounded-lg mb-3 totalPanelBg" style="height:60px;" v-for="(item, key) of pageData.data.detail" :key="key">
+                <div class="d-flex flex-wrap listitem-total">
+                    <div class="item">
+                        <div class="text-12">{{LangUtil("结算时间")}}</div>
+                        <div class="text-14">{{ pageData.data.title.endTime }}</div>
+                    </div>
+                    <div class="item item-sec">
+                        <div class="text-12">{{LangUtil("结算有效流水")}}</div>
+                        <div class="text-14">{{ pageData.data.title.endWater }}</div>
+                    </div>
+                    <div class="item">
+                        <div class="text-12">{{LangUtil("奖励")}}</div>
+                        <div class="text-14">{{ pageData.data.title.award }}</div>
+                    </div>
+                </div>
+            </v-sheet>
+            <!-- <div class="d-flex title_ mb-2">
+                <p class="mb-0 text-body-1 colorText1--text">
+                    <span>
+                        {{LangUtil("结算时间")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>
+                    </span>
+                    <span>
+                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>
+                    </span>
+                    <span> {{LangUtil("奖励")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span> </span>
+                </p>
+            </div> -->
+            <div class="listbox" v-if="pageData.data.detail.length > 0">
+                <v-sheet class="px-7 py-2 rounded-lg mb-3" style="height:60px;" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.data.detail" :key="key">
+                    <div class="d-flex flex-wrap listitem">
+                        <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
+                            <div class="text-12">{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
+                            <div class="text-14 white--text">{{ item.water }}</div>
+                        </div>
+                        <div class="item" v-if="item.main_coin_backwater_rate > 0">
+                            <div class="text-12">{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                            <div class="text-14 white--text">{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                        </div>
+                        <div class="item" v-if="item.main_coin_backwater > 0">
+                            <div class="text-12">{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
+                            <div class="text-14 white--text">{{ item.main_coin_backwater }}</div>
+                        </div>
+                        <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
+                            <div class="text-12">{{ item.reward_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                            <div class="text-14 white--text">{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
+                            <div class="text-12 text-right" >{{LangUtil("奖励")}}{{ item.reward_coin_name_unique }}</div>
+                            <div class="text-14 white--text text-right">{{ item.reward_coin_backwater }}</div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </div>
+            <v-spacer />
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("奖励详情")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </div>
+        </v-card-text>
+        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex title_ mb-2 listbox-mobile">
+                <p class="mb-0 text-body-1 colorText1--text">
+                    <span>
+                        {{LangUtil("结算时间")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>
+                    </span>
+                    <span>
+                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>
+                    </span>
+                    <span> {{LangUtil("奖励")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span> </span>
+                </p>
+            </div>
+            <div class="listbox" v-if="pageData.data.detail.length > 0">
+                <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
+                        <div>{{ item.water }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between" v-if="item.main_coin_backwater_rate > 0">
+                        <div class="colorText1--text">{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                        <div>{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between" v-if="item.main_coin_backwater > 0">
+                        <div class="colorText1--text">{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
+                        <div>{{ item.main_coin_backwater }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{ item.reward_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                        <div>{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("奖励")}}{{ item.reward_coin_name_unique }}</div>
+                        <div>{{ item.reward_coin_backwater }}</div>
+                    </div>
+                </v-sheet>
+            </div>
+            <v-spacer />
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

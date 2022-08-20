@@ -4,6 +4,7 @@ import GlobalVar from "../global/GlobalVar";
 import { Base64 } from "js-base64";
 import NotificationName from "../NotificationName";
 import LangUtil from "../global/LangUtil";
+import { getFileVersion } from "../global/Functions";
 
 export default class GameConfig {
     static config: GameConfigVO;
@@ -34,7 +35,7 @@ export default class GameConfig {
 
         if (core.plat_id) {
             const fileName: string = new core.MD5().hex_md5("plat-" + core.plat_id);
-            const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${Math.random()}`;
+            const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${getFileVersion()}`;
             axios
                 .get(url)
                 .then((response: any) => {
@@ -58,7 +59,7 @@ export default class GameConfig {
         }
         // hostname = "www.cftest666.com";
         const fileName: string = new core.MD5().hex_md5(hostname);
-        const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${Math.random()}`;
+        const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${getFileVersion()}`;
         axios
             .get(url)
             .then((response: any) => {

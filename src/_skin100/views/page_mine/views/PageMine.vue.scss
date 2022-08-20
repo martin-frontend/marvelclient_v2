@@ -7,10 +7,11 @@
         border-radius: 18px;
     }
     #vipLevel.mobile-vip {
-        background-color: #162734 !important;
+        // background-color: #162734 !important;
+        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
         background-size: cover;
-        border-radius: 16px;
-        padding: 20px 30px;
+        border-radius: 8px;
+        padding: 10px 15px;
         .tips {
             background: rgba(0, 0, 0, 0.1);
             padding: 15px 25px;
@@ -102,13 +103,13 @@
         height: 300px !important;
         border-radius: 8px;
         // background: url("~@/assets/mine/left_bg.png") no-repeat center center;
-        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 107%);
+        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
         background-size: cover;
     }
     .right_banner {
         border-radius: 8px;
         height: 300px !important;
-        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 107%);
+        background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
         // background: url("~@/assets/mine/right_bg.png") no-repeat center center;
         background-size: cover;
         position: relative;
@@ -221,7 +222,7 @@
 
             &.right-banner-h5 {
                 padding-top: 10px;
-                height: 250px !important;
+                height: 240px !important;
             }
             .game_mine_title {
                 font-size: 18px !important;
@@ -246,7 +247,7 @@
             }
         }
         .left_bg {
-            height: 260px !important;
+            height: 240px !important;
             .mine_level_title {
                 font-size: 18px !important;
             }

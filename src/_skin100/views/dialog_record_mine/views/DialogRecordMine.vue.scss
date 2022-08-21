@@ -42,7 +42,7 @@
             color: rgba(255,255,255,0.4);
         }
         div:nth-child(2) {
-            margin-top: -5px;
+            margin-top: -2px;
         }
         div > a {
             color: #9db1d8;
@@ -70,7 +70,20 @@
     z-index: 1000;
     background-color: #121e36;
 }
-.listbox-mobile {
+
+.listitem-mobile{
     overflow: hidden;
-    padding-top: 85px;
+    div{
+        width:33.33%;
+        div{
+            width:100%;
+        }
+    }  
 }
+.mobile{
+    overflow: hidden;
+}
+// .listbox-mobile {
+//     overflow: hidden;
+//     padding-top: 85px;
+// }

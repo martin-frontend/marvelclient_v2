@@ -35,7 +35,7 @@ export default class GameConfig {
 
         core.host = this.getApiUrl();
         const data = {
-            game_domain: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "all.starsabc.com",
+            game_domain: core.game_domain,
         };
         axios.post(core.host + "/api/game_address", data).then((response: any) => {
             const data = response.data.data;

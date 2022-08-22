@@ -4034,6 +4034,8 @@ var core;
     core.plat_id = "10001";
     /**渠道ID*/
     core.channel_id = "10001001";
+    /**域名 */
+    core.game_domain = "";
     /**用来获取配置文件的cdn地址 */
     core.cdnUrl = "http://others.sftpuser.nqsf9emow.com:27799";
     /**语言 */
@@ -4049,6 +4051,7 @@ var net;
             data.device = core.device;
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
+            data.game_domain = core.game_domain;
             data.lang = core.lang;
             if (core.user_id) {
                 data.user_id = core.user_id;

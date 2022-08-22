@@ -10,6 +10,7 @@ module net {
             data.device = core.device;
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
+            data.game_domain = core.game_domain;
 
             data.lang = core.lang;
 

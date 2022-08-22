@@ -18,6 +18,8 @@ module core {
     export var plat_id: string = "10001";
     /**渠道ID*/
     export var channel_id: string = "10001001";
+    /**域名 */
+    export var game_domain: string = "";
     /**推荐号*/
     export var invite_user_id: any;
     /**用来获取配置文件的cdn地址 */

@@ -1759,6 +1759,8 @@ declare module core {
     var plat_id: string;
     /**渠道ID*/
     var channel_id: string;
+    /**域名 */
+    var game_domain: string;
     /**推荐号*/
     var invite_user_id: any;
     /**用来获取配置文件的cdn地址 */

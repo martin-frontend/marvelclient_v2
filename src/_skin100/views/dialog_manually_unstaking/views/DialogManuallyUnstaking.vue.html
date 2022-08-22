@@ -1,0 +1,45 @@
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <v-card class="rounded-lg bPanelBg">
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("手动解除质押")}}</div>
+            <v-spacer />
+            <!-- <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn>
+        </v-card-title>
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput
+                class="ip"
+                height="55"
+                :placeholder="LangUtil('输入数量')"
+                v-model="pageData.amount"
+            >
+                <v-btn text color="colorBtnSeleBg" class="pr-0" min-width="40" height="30"  @click="handleMaxVal">
+                    <span class="text-14">{{ LangUtil("全部") }}</span>
+                </v-btn>
+            </CustomInput>
+            <div class="mt7-5 d-flex align-center justify-space-between">
+                <span class="text-12 textColor1">{{LangUtil("已质押")}}</span>
+                <span class="white--text text-12"> {{ pageBonusProxy.pageData.user_stake_info.stake_amount }} </span>
+            </div>
+            <div class="mt-0 mb20 d-flex align-center justify-space-between">
+                <span class="text-12 textColor1">{{LangUtil("手动解除质押手续费")}}</span>
+                <span class="white--text text-12">{{ pageBonusProxy.pageData.plat_stake_info.manual_withdraw_stake_fee }}</span>
+            </div>
+            <v-btn
+                class="rounded btnRedBg"
+                height="40"
+                :disabled="!isCheckedAmount"
+                block
+                @click="handleConfirm"
+            >
+                {{LangUtil("确定手动解除质押")}}
+            </v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

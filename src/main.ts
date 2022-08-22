@@ -16,14 +16,14 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
-    core.cdnUrl = GameConfig.getCdnUrl();
-} else {
-    core.host = "http://api.starsabc.com/";
-    core.cdnUrl = "http://sftpuser.starsabc.com";
-    core.plat_id = js_utils.getQueryVariable("plat_id") || "30000";
-    core.channel_id = js_utils.getQueryVariable("channel_id") || "30000001";
-}
+// if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
+//     core.cdnUrl = GameConfig.getCdnUrl();
+// } else {
+//     core.host = "http://api.starsabc.com/";
+//     core.cdnUrl = "http://sftpuser.starsabc.com";
+//     core.plat_id = js_utils.getQueryVariable("plat_id") || "30000";
+//     core.channel_id = js_utils.getQueryVariable("channel_id") || "30000001";
+// }
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;

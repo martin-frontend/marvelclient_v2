@@ -25,61 +25,82 @@ export default class GameConfig {
             try {
                 const configstr: string = Base64.decode(conf);
                 this.config = JSON.parse(configstr);
-                core.host = this.config.ApiUrl || this.getApiUrl();
-                puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
+                // core.host = this.config.ApiUrl || this.getApiUrl();
+                // puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
                 return;
             } catch (e) {
                 console.log("native platformConfig error");
             }
         }
 
-        if (core.plat_id) {
-            const fileName: string = new core.MD5().hex_md5("plat-" + core.plat_id);
-            const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${getFileVersion()}`;
-            axios
-                .get(url)
-                .then((response: any) => {
-                    this.config = response.data;
-                    core.host = this.config.ApiUrl || this.getApiUrl();
-                    puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-                })
-                .catch(() => {
-                    alert(LangUtil("平台配置文件获取失败"));
-                    window.location.reload();
-                });
-        } else {
-            this.getChannelConfig();
-        }
+        core.host = this.getApiUrl();
+        const data = {
+            game_domain: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "all.starsabc.com",
+        };
+        axios.post(core.host + "/api/game_address", data).then((response: any) => {
+            const data = response.data.data;
+            if(!core.plat_id) core.plat_id = data.plat_id;
+            if(!core.channel_id) core.channel_id = data.channel_id;
+            core.cdnUrl = data.cdn_domain;
+            puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
+        });
+
+        // if (core.plat_id) {
+        //     const fileName: string = new core.MD5().hex_md5("plat-" + core.plat_id);
+        //     const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${getFileVersion()}`;
+        //     axios
+        //         .get(url)
+        //         .then((response: any) => {
+        //             this.config = response.data;
+        //             core.host = this.config.ApiUrl || this.getApiUrl();
+        //             puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
+        //         })
+        //         .catch(() => {
+        //             alert(LangUtil("平台配置文件获取失败"));
+        //             // window.location.reload();
+        //         });
+        // } else {
+        //     this.getChannelConfig();
+        // }
     }
 
-    static getChannelConfig() {
-        let hostname = location.hostname;
-        if (process.env.NODE_ENV == "development") {
-            hostname = "www.cftest666.com";
-        }
-        // hostname = "www.cftest666.com";
-        const fileName: string = new core.MD5().hex_md5(hostname);
-        const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${getFileVersion()}`;
-        axios
-            .get(url)
-            .then((response: any) => {
-                core.channel_id = response.data.channels;
-                core.plat_id = response.data.platform;
-                this.load();
-            })
-            .catch(() => {
-                alert(LangUtil("渠道配置文件获取失败"));
-                window.location.reload();
-            });
-    }
+    // static getChannelConfig() {
+    //     let hostname = location.hostname;
+    //     if (process.env.NODE_ENV == "development") {
+    //         hostname = "www.cftest666.com";
+    //     }
+    //     // hostname = "www.cftest666.com";
+    //     const fileName: string = new core.MD5().hex_md5(hostname);
+    //     const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${getFileVersion()}`;
+    //     axios
+    //         .get(url)
+    //         .then((response: any) => {
+    //             core.channel_id = response.data.channels;
+    //             core.plat_id = response.data.platform;
+    //             this.load();
+    //         })
+    //         .catch(() => {
+    //             alert(LangUtil("渠道配置文件获取失败"));
+    //             window.location.reload();
+    //         });
+    // }
 
     static getApiUrl(): string {
         let apiUrl = "";
-        const origin = location.origin;
-        if (origin.indexOf("www") == -1) {
-            apiUrl = origin.replace("://", "://api.");
+        if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
+            const port = location.port;
+            if (port == "") {
+                const origin = location.origin;
+                if (origin.indexOf("www") == -1) {
+                    apiUrl = origin.replace("://", "://api.");
+                } else {
+                    apiUrl = origin.replace("www", "api");
+                }
+            } else {
+                apiUrl = location.hostname + ":28001";
+            }
         } else {
-            apiUrl = origin.replace("www", "api");
+            apiUrl = "http://api.starsabc.com";
         }
         return apiUrl;
     }

@@ -1,9 +1,10 @@
 <v-card
     @click="goGamePlay"
-    :color="item?'colorTitleBg':'transparent'"
+    :color="item?'colorTitleBgSkin':'transparent'"
     :style="{'opacity': item?1:0, 'cursor': 'auto'}"
     :class="getBoxClass()"
     class="rounded-lg"
+    elevation="0"
 >
     <v-lazy>
         <v-img v-if="item" class="game-icon cursor-pointer rounded-lg" :src="getIcon(item)">
@@ -18,7 +19,8 @@
             </div>
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                    <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                    <!-- <v-progress-circular indeterminate color="colorText1"></v-progress-circular> -->
+                    <v-progress-circular indeterminate color="colorBtnSeleBg"></v-progress-circular>
                 </v-row>
             </template>
         </v-img>

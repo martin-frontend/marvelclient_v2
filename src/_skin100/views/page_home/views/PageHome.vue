@@ -9,6 +9,7 @@ import GameSlideGroup from "@/_skin100/views/widget/game_slide_group/GameSlideGr
 import RecentBetting from "@/_skin100/views/widget/recent_betting/RecentBetting.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";
+import Advertise2 from "../widget/advertise2/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
 import Marquee1 from "../widget/marquee1/Marquee1.vue";
 import PageIntroduce from "../widget/page_introduce/views/PageIntroduce.vue";
@@ -19,6 +20,7 @@ import PageGameList from "@/_skin100/views/widget/game_list_home/PageGameList.vu
         Overlay,
         GameSlideGroup,
         Advertise,
+        Advertise2,
         Activity,
         GameSport,
         RecentBetting,

@@ -13,6 +13,8 @@ export default class GameSearch extends AbstractView {
     constructor() {
         super(GameSearchMediator);
         this.myProxy.api_user_var_game_index();
+        const v_main = document.querySelector("#page");
+        v_main?.setAttribute("style", "filter: blur(6px);");
     }
 
     onTabClick(val: any) {
@@ -21,6 +23,8 @@ export default class GameSearch extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        const v_main = document.querySelector("#page");
+        v_main?.removeAttribute("style");
     }
 
     onSearch() {

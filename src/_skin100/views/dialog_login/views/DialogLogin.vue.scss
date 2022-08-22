@@ -1,8 +1,9 @@
 @import "@/style/params.scss";
 .password-operate {
-    margin: 8px 0 20px;
+    margin: 8px 0 18px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: $color-info;
     font-size: 12px;
     line-height: 16px;
@@ -86,6 +87,7 @@
 }
 ::v-deep .v-input--selection-controls__input {
     margin-right:2px !important;
+    margin-top:1px !important;
 }
 ::v-deep .v-input--selection-controls__input .v-icon{
     color:rgba(255,255,255,0.3) !important;

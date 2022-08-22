@@ -15,7 +15,6 @@ export default class CustomPassword extends AbstractView {
     onValueChange() {
         this.inputValue = this.value;
     }
-
     onInput(value: any) {
         this.inputValue = this.inputValue.replace(/[\u4e00-\u9fa5]/g, "");
         this.inputValue = this.inputValue.replace(/\s*/g, "");

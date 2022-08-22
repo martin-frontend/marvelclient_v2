@@ -5,7 +5,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import page_mine from "@/views/page_mine";
 import page_extension from "@/views/page_extension";
 import dialog_activity from "@/views/dialog_activity";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import page_bonus from "@/views/page_bonus";
 import PageHomeProxy from "../../proxy/PageHomeProxy";
 import { moneyFormat } from "@/core/global/Functions";

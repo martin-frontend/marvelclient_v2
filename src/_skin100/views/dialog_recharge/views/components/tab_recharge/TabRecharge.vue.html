@@ -1,5 +1,5 @@
 <!-- <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;"> -->
-<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'">
+<v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px30 pt20 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'">
     <div class="white--text mb-1 d-flex align-center"><div class="r-before"></div> {{LangUtil("想使用人民币充值？")}}</div>
     <div class="colorTextNormal2--text" :class="$vuetify.breakpoint.xsOnly ? 'text-13':''">
         {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
@@ -48,7 +48,7 @@
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
             </div>
             <div class="d-flex align-center address-box pa-2 mt-1">
-                <div class="white--text ml-1">{{ pageData.address }}</div>
+                <div class="white--text ml-1">{{ pageData.address || LangUtil("暂无地址") }}</div>
                 <v-spacer />
                 <v-btn class="rounded-pill btnRedBg" width="70" min-width="70" height="30" @click="onCopy">
                     <span class="text-13">{{LangUtil("复制")}}</span>
@@ -60,7 +60,7 @@
             <div class="colorTextNormal2--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
-                    class="mb-2 mx-2 text-14 rounded-pill"
+                    class="mb-2 mx-1 text-14 rounded-pill"
                     min-width="80"
                     height="30"
                     elevation="0"
@@ -99,7 +99,7 @@
                 min-width="70"
                 height="70"
                 color="white"
-                v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
+                v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
             >
                 <div ref="qrcode" class="qrcode" @click="showPreview">
                     <v-img :src="pageData.qrcode"></v-img>
@@ -107,7 +107,7 @@
             </v-sheet>
         </v-sheet>
         <div class="d-flex justify-center mt-5"  v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5">
-            <v-btn class="white--text btnRedBg rounded6" width="345" height="44" @click="onSumbit"
+            <v-btn class="white--text btnRedBg rounded6" width="315" height="44" @click="onSumbit"
                     >{{LangUtil("确定充值")}}</v-btn
                 >
         </div>

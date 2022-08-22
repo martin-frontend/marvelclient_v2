@@ -1,4 +1,4 @@
-<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex align-center">
+<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex ml10 align-center">
     <v-menu offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
@@ -62,9 +62,9 @@
             </div>
         </template>
         <!-- <v-sheet width="200" color="colorPanelTitleBg" class="py-2 px-0"> -->
-        <v-sheet width="180" class="py-2 px-0 walletPanelBg rounded-lg">
+        <v-sheet width="180" class="pt5 pb-2 px-0 walletPanelBg rounded-lg">
             <v-sheet
-                class="d-flex align-center pl-3 cursor-pointer mt-3 listitem"
+                class="d-flex align-center pl-4 cursor-pointer mt10 listitem"
                 color="transparent"
                 width="180"
                 v-for="(item, key) of selfProxy.userInfo.gold_info"
@@ -81,7 +81,7 @@
                 text
                 height="34"
                 min-width="32"
-                class="my-1 mt-3 ml-3 py-2 px-5 btnBg"
+                class="my-1 mt-3 mx-4 py-2 px-4 btnBg"
                 @click="handlerGameRate"
             >
             <span class="bTextColor5">{{LangUtil("游戏汇率查询")}} →</span>

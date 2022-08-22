@@ -146,58 +146,109 @@ input {
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
+.px15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
 .pt26 {
     padding-top: 26px !important;
 }
 .pt20 {
     padding-top: 20px !important;
 }
-.pt15{
-    padding-top:15px !important;
+.pt22-5 {
+    padding-top: 22.5px !important;
 }
-.pt10{
-    padding-top:10px !important;
+.pt15 {
+    padding-top: 15px !important;
 }
-.pt26{
-    padding-top:26px !important;
+.pt10 {
+    padding-top: 10px !important;
 }
-.pb10{
-    padding-bottom:10px !important;
+.pt5 {
+    padding-top: 5px !important;
 }
-.pb15{
-    padding-bottom:15px !important;
+.pt26 {
+    padding-top: 26px !important;
 }
-.pb30{
-    padding-bottom:30px !important;
+.pb10 {
+    padding-bottom: 10px !important;
 }
-.mt10{
-    margin-top:10px !important;
+.pb15 {
+    padding-bottom: 15px !important;
+}
+.pb30 {
+    padding-bottom: 30px !important;
+}
+.mt7-5 {
+    margin-top: 7.5px !important;
+}
+.mt10 {
+    margin-top: 10px !important;
+}
+.ml10 {
+    margin-left: 10px !important;
+}
+.mr10 {
+    margin-right: 10px !important;
 }
 .mx30 {
     margin-left: 30px !important;
     margin-right: 30px !important;
 }
-.mb10{
-    margin-bottom:10px !important;
+.mx15 {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
 }
-.mb20{
-    margin-bottom:20px !important;
+.mb5 {
+    margin-bottom: 5px !important;
 }
-.mb30{
-    margin-bottom:30px !important;
+.mb10 {
+    margin-bottom: 10px !important;
+}
+.mb14 {
+    margin-bottom: 14px !important;
+}
+.mb13 {
+    margin-bottom: 13px !important;
+}
+.mb15 {
+    margin-bottom: 15px !important;
+}
+.mb20 {
+    margin-bottom: 20px !important;
+}
+.mb28 {
+    margin-bottom: 28px !important;
+}
+.mb30 {
+    margin-bottom: 30px !important;
 }
 .rounded6 {
     border-radius: 6px !important;
+}
+.rounded18 {
+    border-radius: 18px !important;
+}
+.hei50 {
+    height: 50px !important;
 }
 .exit-icon {
     margin-top: 2.5px !important;
     margin-right: 1.5px !important;
 }
-.v-dialog--fullscreen{
+.v-dialog--fullscreen {
     border-top-left-radius: 18px !important;
     border-top-right-radius: 18px !important;
     top: 55px !important;
     height: calc(100% - 55px) !important;
+    // overflow: hidden;
+}
+.activity-detail {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    top: 0px !important;
+    height: 100% !important;
 }
 .v-pagination {
     li {

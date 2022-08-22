@@ -1,16 +1,16 @@
-<v-dialog width="unset" height="620" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
+<v-dialog width="unset" height="620" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" :no-click-animation="true" persistent>
     <v-card class="rounded-lg d-flex dialog-background" color="colorPanelBg">
         <!-- <AdvertiseInLogin :height="670" class="d-none d-md-flex" /> -->
         <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
         <v-card color="transparent" width="494">
-            <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">
+            <v-card-title class="d-flex justify-end px-5 py-5 pb-sm-0 pt-sm-6 px-sm-10">
                 <div class="text-20">{{LangUtil("个人中心")}}</div>
                 <v-spacer />
                 <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                     <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
                 </v-btn>
             </v-card-title>
-            <v-card-text class="px-4 px-md-10 mt-7 text-sm-subtitle-1 text_height">
+            <v-card-text class="px-5 mt-0 px-md-10 mt-sm-7 text-sm-subtitle-1 text_height" v-if="!$vuetify.breakpoint.xsOnly">
                 <div class="d-flex justify-space-between align-center mb18">
                     <span class="d-flex white--text text-14 d-flex align-center">
                         <v-img src="@/_skin100/assets/register/yhm.png" width="22" height="22" class="mr-2" />{{LangUtil("账号")}}
@@ -138,7 +138,138 @@
                     </span>
                 </div>
             </v-card-text>
-            <v-card-actions class="px-10 d-flex align-end">
+            <v-card-text class="px-5 pb-0 mt-0 px-md-10 mt-sm-7 text-sm-subtitle-1" v-if="$vuetify.breakpoint.xsOnly">
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/register/yhm.png" width="22" height="22" class="mr-2" />{{LangUtil("账号")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{getHideUsername(userInfo.username)}}
+                        <div class="empty_width"></div>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/id.png" width="22" height="22" class="mr-2" />ID
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">{{userInfo.user_id}}
+                        <v-btn class="ml-1"  icon small :width="$vuetify.breakpoint.xsOnly? 24 :18" min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="copy">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/copy.png"
+                            ></v-img>
+                        </v-btn>
+                        <!-- <v-icon class="ml-1" color="colorInfo">mdi-account</v-icon> -->
+                    </span>
+                </div>
+
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("真实姓名")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
+                        <v-btn v-if="!userInfo.real_name" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerRealName">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("昵称")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}}
+                        <v-btn v-if="!(userInfo.nick_name != userInfo.user_id)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerNickName">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/vip.png" width="22" height="22" class="mr-2" />{{LangUtil("VIP等级")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{userInfo.vip_info.vip_level}}
+                        <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goMine">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50" v-if="checkValidateType(2)">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/sj.png" width="22" height="22" class="mr-2" />{{LangUtil("手机")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">{{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}}
+                        <v-btn v-if="!(userInfo.phone != '' && userInfo.phone != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetPhone">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50" v-if="checkValidateType(1)">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/yx.png" width="22" height="22" class="mr-2" />{{LangUtil("邮箱")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}}
+                        <v-btn v-if="!(userInfo.email != '' && userInfo.email != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetEmail">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50" v-if="is_password_gold_transfer.is_open">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/mm.png" width="22" height="22" class="mr-2" />{{LangUtil("交易密码")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
+                        <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerTradePassword">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                    </span>
+                </div>
+                <div class="d-flex justify-space-between align-center hei50">
+                    <span class="d-flex white--text text-14 d-flex align-center">
+                        <v-img src="@/_skin100/assets/user-center/mp.png" width="22" height="22" class="mr-2" />{{LangUtil("个人名片")}}
+                    </span>
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        {{LangUtil("设置")}}
+                        <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerPersonalCard">
+                            <v-img
+                                max-width="18"
+                                src="@/_skin100/assets/user-center/right.png"
+                            ></v-img>
+                        </v-btn>
+                    </span>
+                </div>
+            </v-card-text>
+            <v-card-actions class="px-10 d-flex align-end" v-if="!$vuetify.breakpoint.xsOnly">
+                <v-btn block class="rounded6 on-register-bg text-body-1" color="colorBtnBg" @click="onLoginOut" height="44">{{LangUtil('退出登录')}}</v-btn>
+            </v-card-actions>
+            <v-card-actions class="px-5 mt-5 d-flex align-end hei44"  v-if="$vuetify.breakpoint.xsOnly">
                 <v-btn block class="rounded6 on-register-bg text-body-1" color="colorBtnBg" @click="onLoginOut" height="44">{{LangUtil('退出登录')}}</v-btn>
             </v-card-actions>
         </v-card>

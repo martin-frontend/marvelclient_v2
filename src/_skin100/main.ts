@@ -5,18 +5,19 @@ import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/_skin100/style/common.scss";
-import AppFacade from "@/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import { getVuetify } from "./plugins/vuetify";
 import LogUtil from "@/core/global/LogUtil";
 import { js_utils } from "custer-js-utils";
+import AppFacade from "./AppFacade";
+import GameConfig from "@/core/config/GameConfig";
 
 LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
-    core.cdnUrl = process.env.VUE_APP_URL;
+    core.cdnUrl = GameConfig.getCdnUrl();
 } else {
     core.host = "http://api.starsabc.com/";
     core.cdnUrl = "http://sftpuser.starsabc.com";
@@ -28,7 +29,7 @@ AppFacade.inst.startup();
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
-const vuetify =  getVuetify();
+const vuetify = getVuetify();
 //@ts-ignore
 window["vm"] = new Vue({
     router,

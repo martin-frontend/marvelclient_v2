@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_record_mine_detail from "@/views/dialog_record_mine_detail";
+import dialog_record_mine_detail from "@/_skin100/views/dialog_record_mine_detail";
 import DialogRecordMineDetailProxy from "@/views/dialog_record_mine_detail/proxy/DialogRecordMineDetailProxy";
 
 export default class DialogRecordMineMediator extends AbstractMediator {

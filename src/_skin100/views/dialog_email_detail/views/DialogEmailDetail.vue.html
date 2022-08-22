@@ -34,33 +34,36 @@
             </div>
         </v-card-text>
         <!-- 手机端展示 -->
-        <v-card-title class="d-flex align-center px-5 pt-5 pb-4" v-if="$vuetify.breakpoint.xsOnly" >
-            <div class="white--text text-18">{{LangUtil("查看详情")}}</div>
+        <v-card-title class="d-flex align-center px-5 pt-5 pb15" v-if="$vuetify.breakpoint.xsOnly" >
+            <div class="font-weight-medium white--text text-17">{{LangUtil("查看详情")}}</div>
             <v-spacer />
-            <v-btn icon @click="onClose">
-                <v-icon color="colorCloseBtn">mdi-close</v-icon>
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <div class="d-flex align-center pb-2 white--text">
-                <v-icon size="22">mdi-email-open</v-icon>
+                <!-- <v-icon size="22">mdi-email-open</v-icon> -->
+                <v-img v-if="pageData.data.cate == 1" src="@/assets/email/system-email.png" max-width="22" max-height="22"></v-img><v-img v-else src="@/assets/email/activity-email.png" max-width="22" max-height="22"></v-img>
                 <div class="text-15 ml-2">{{pageData.data.cate == 1 ? LangUtil("平台消息"):LangUtil("活动消息")}}</div>
                 <span class="text-14 ml-2 pt-1 white--text" style="opacity:0.4;">{{pageData.data.created_at}}</span>
             </div>
-            <v-sheet class="white--text py-3 pt-2 text-14" min-height="460" color="transparent"> {{pageData.data.content}} </v-sheet>
-            <div v-if="pageData.data.attachment_status != 1" class="d-flex align-center flex-wrap  pl-2 pr-1 py-4 rounded-lg itemBg">
-                <div class="d-flex mr-2 align-center" v-for="(item, key) of pageData.data.attachment_content" :key="key">
-                    <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="36" height="36"></v-img>
-                    <div class="ml-2 text-14 white--text">
-                        <div class="font-weight-bold mb-n1" style="opacity:0.4;">{{key}}</div>
-                        <div>{{item}}</div>
+            <v-sheet class="white--text py-3 pt-2 text-14" min-height="460" color="transparent"><p>{{pageData.data.content}}</p> 
+                <div v-if="pageData.data.attachment_status != 1" class="d-flex align-center flex-wrap  px15 py-4 rounded-lg itemBg">
+                    <div class="d-flex mr-2 align-center" v-for="(item, key) of pageData.data.attachment_content" :key="key">
+                        <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="36" height="36"></v-img>
+                        <div class="ml-2 text-14 white--text">
+                            <div class="font-weight-bold mb-n1" style="opacity:0.4;">{{key}}</div>
+                            <div>{{item}}</div>
+                        </div>
                     </div>
+                    <v-spacer />
+                    <v-btn  :class="pageData.data.attachment_status == 11 ? 'btnAcBg':'btnNacBg'" elevation="0" class="rounded-pill" width="80" height="30" @click="onReceive"
+                        ><span class="text-13">{{pageData.data.attachment_status == 11 ? LangUtil("点击领取"):LangUtil("已领奖励") }}</span></v-btn
+                    >
                 </div>
-                <v-spacer />
-                <v-btn  :class="pageData.data.attachment_status == 11 ? 'btnAcBg':'btnNacBg'" elevation="0" class="rounded-pill ml-1" width="80" height="30" @click="onReceive"
-                    ><span class="text-13">{{pageData.data.attachment_status == 11 ? LangUtil("点击领取"):LangUtil("已领奖励") }}</span></v-btn
-                >
-            </div>
+            </v-sheet>
+            
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

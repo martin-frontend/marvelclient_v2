@@ -1,0 +1,37 @@
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <v-card class="rounded-lg bPanelBg">
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("质押")}}</div>
+            <v-spacer />
+            <!-- <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn>
+        </v-card-title>
+        <!-- <v-card-text v-if="pageData.bShow" class="px-10 mt-8 text-16 font-weight-regular"> -->
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput
+                class="ip"
+                height="55"
+                :placeholder="LangUtil('输入数量')"
+                v-model="pageData.amount"
+            >
+                <v-btn  text min-width="40" height="30" color="colorBtnSeleBg" class="pr-0"  @click="handleMaxVal">
+                    <span class="text-14">{{ LangUtil("全部") }}</span>
+                </v-btn>
+            </CustomInput>
+            <div class="mt7-5 mb20 d-flex align-center justify-space-between">
+                <span class="text-12 textColor1">{{LangUtil("拥有数量")}}</span>
+                <span class="white--text text-12"> {{ pageBonusProxy.pageData.user_stake_info.amount }} </span>
+            </div>
+            <!-- <v-btn class="confirm-btn rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block @click="handleConfirm"> -->
+            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedAmount" block @click="handleConfirm">
+                {{LangUtil("确定质押")}}
+            </v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

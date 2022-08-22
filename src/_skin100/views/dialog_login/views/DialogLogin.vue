@@ -2,6 +2,7 @@
 <style src="./DialogLogin.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import DialogGetVerity from "@/_skin100/views/dialog_get_verity_b/views/DialogGetVerity.vue";
 import AdvertiseInLogin from "@/_skin100/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/_skin100/views/widget/custom_input_pic/CustomInput.vue";
 import CustomPassword from "@/_skin100/views/widget/custom_password_pic/CustomPassword.vue";
@@ -11,6 +12,7 @@ import DialogLogin from "./DialogLogin";
 
 @Component({
     components: {
+        DialogGetVerity,
         Overlay,
         CustomInput,
         CustomPassword,

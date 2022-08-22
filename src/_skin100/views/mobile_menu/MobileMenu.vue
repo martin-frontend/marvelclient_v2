@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import MobileMenu from "./MobileMenu";
+import UserPanel from "@/_skin100/views/header/widget/user_panel/UserPanel.vue";
 
-@Component
+@Component({
+    components: {
+        UserPanel,
+    },
+})
 export default class extends MobileMenu {}
 </script>

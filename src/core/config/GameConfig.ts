@@ -82,4 +82,15 @@ export default class GameConfig {
         }
         return apiUrl;
     }
+    /**获取cdn地址 */
+    static getCdnUrl(): string {
+        let apiUrl = "";
+        const origin = location.origin;
+        if (origin.indexOf("www") == -1) {
+            apiUrl = origin.replace("://", "://static.");
+        } else {
+            apiUrl = origin.replace("www", "static");
+        }
+        return apiUrl;
+    }
 }

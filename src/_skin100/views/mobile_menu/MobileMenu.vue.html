@@ -1,3 +1,4 @@
+<div>
 <v-footer class="justify-space-around pa-0" height="75" color="#1D2A43" app>
     <v-sheet
         class="d-flex flex-column align-center cursor-pointer pt-3 rounded-b"
@@ -6,10 +7,16 @@
         v-for="(item, index) of menuList"
         :key="index"
         @click="onItemClick(item)"
-        :class="routerPath == item.path ? 'active':''"
+        :class="item.id == active ? 'active':''"
         color="transparent"
     >
-        <v-icon size="26" :color="routerPath == item.path ? 'colorTextGold' : 'colorText2'">{{item.icon}}</v-icon>
-        <div class="text-12" :class="routerPath == item.path ? 'colorTextGold--text': 'colorText2--text'">{{item.name}}</div>
+        <!-- <v-icon size="26" :color="routerPath == item.path ? 'active-footer' : 'colorText2'">{{item.icon}}</v-icon> -->
+        <img v-if="item.id == active" width="26" height="26" :src="item.activeIcon"  alt="">
+        <img v-else width="26" height="26" :src="item.icon"  alt="">
+        <div class="text-12 mt-1" :class="item.id == active ? 'active-footer': 'colorText2--text'">{{item.name}}</div>
     </v-sheet>
 </v-footer>
+<v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" >
+    <UserPanel @drawer="closeDrawer" />
+</v-navigation-drawer>
+</div>

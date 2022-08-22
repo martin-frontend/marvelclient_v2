@@ -305,11 +305,16 @@ export function judgeClient() {
     return client;
 }
 /**按时区获取时间, 默认北京时间 */
-export function getTodayGMT(timezone:number = 8){
+export function getTodayGMT(timezone: number = 8) {
     const offset_gmt = new Date().getTimezoneOffset();
     const today = new Date().getTime();
-    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone*60*60*1000);
+    const targetToday = new Date(today + offset_gmt * 60 * 1000 + timezone * 60 * 60 * 1000);
     return targetToday;
+}
+/**临时，获取文件版本号 */
+export function getFileVersion(): string {
+    const min = (new Date().getTime() / 1000 / 60) >> 0;
+    return ((min / 60) >> 0).toString() + (((min % 60) / 15) >> 0).toString();
 }
 
 // /**

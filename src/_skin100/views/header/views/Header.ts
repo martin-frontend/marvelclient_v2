@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
 import HeaderProxy from "../proxy/HeaderProxy";
+import LoginEnter from "@/_skin100/core/global/LoginEnter";
 
 @Component
 export default class Header extends AbstractView {
@@ -44,6 +45,7 @@ export default class Header extends AbstractView {
     }
     /**打开挖矿 */
     goToMyPage() {
+        LoginEnter(() => {});
         if (this.$router.app.$route.path != "/page_mine") {
             router.push("/page_mine");
         }
@@ -51,6 +53,7 @@ export default class Header extends AbstractView {
     }
     /**打开分红 */
     goToMyBonus() {
+        LoginEnter(() => {});
         if (this.$router.app.$route.path != "/page_bonus") {
             router.push("/page_bonus");
         }

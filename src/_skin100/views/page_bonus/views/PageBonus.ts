@@ -5,7 +5,7 @@ import PageBonusMediator from "../mediator/PageBonusMediator";
 import PageBonusProxy from "../proxy/PageBonusProxy";
 import dialog_pledge from "@/_skin100/views/dialog_pledge";
 import dialog_manually_unstaking from "@/_skin100/views/dialog_manually_unstaking";
-import dialog_pledge_records from "@/views/dialog_pledge_records";
+import dialog_pledge_records from "@/_skin100/views/dialog_pledge_records";
 import dialog_wallet from "@/_skin100/views/dialog_wallet";
 import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import GamePlatConfig from "@/core/config/GamePlatConfig";

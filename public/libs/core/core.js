@@ -299,6 +299,8 @@ var net;
         api_user_var_swap_order_list: "api/user/{user_id}/swap/order_list",
         /**--Swap--Swap创建订单*/
         api_user_var_swap_create_order: "api/user/{user_id}/swap/create_order",
+        /**--平台入口配置获取--平台入口配置获取*/
+        api_plat_var_config: "api/plat/{plat_id}/config",
     };
     /**事件*/
     net.EventType = {
@@ -544,6 +546,8 @@ var net;
         api_user_var_swap_order_list: "api_user_var_swap_order_list",
         /**--Swap--Swap创建订单*/
         api_user_var_swap_create_order: "api_user_var_swap_create_order",
+        /**--平台入口配置获取--平台入口配置获取*/
+        api_plat_var_config: "api_plat_var_config",
     };
     /**注册协议*/
     function initCommand() {
@@ -684,6 +688,8 @@ var net;
         facade.registerCommand(net.HttpType.api_plat_var_swap_trial, net.cmd_api_plat_var_swap_trial);
         facade.registerCommand(net.HttpType.api_user_var_swap_order_list, net.cmd_api_user_var_swap_order_list);
         facade.registerCommand(net.HttpType.api_user_var_swap_create_order, net.cmd_api_user_var_swap_create_order);
+        //--平台入口配置获取
+        facade.registerCommand(net.HttpType.api_plat_var_config, net.cmd_api_plat_var_config);
     }
     net.initCommand = initCommand;
     ;
@@ -951,6 +957,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_bonus_recently = cmd_api_plat_var_bonus_recently;
+})(net || (net = {}));
+/**
+ * 平台入口配置获取
+ */
+var net;
+/**
+ * 平台入口配置获取
+ */
+(function (net) {
+    class cmd_api_plat_var_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_config, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_config = cmd_api_plat_var_config;
 })(net || (net = {}));
 /**
  * 获取所有游戏的查询配置

@@ -55,3 +55,8 @@
 .side-group {
     display: flex;
 }
+.game-group {
+    .box:first-child {
+        margin-left: 0 !important;
+    }
+}

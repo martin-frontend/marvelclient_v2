@@ -42,6 +42,7 @@ export default class GameConfig {
             if(!core.plat_id) core.plat_id = data.plat_id;
             if(!core.channel_id) core.channel_id = data.channel_id;
             core.cdnUrl = data.cdn_domain;
+            if(data.api_domain) core.host = data.api_domain;
             puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
         });
 

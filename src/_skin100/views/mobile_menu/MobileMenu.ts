@@ -32,7 +32,7 @@ export default class MobileMenu extends AbstractView {
             name: LangUtil("质押"),
             icon: require("../../assets/footer/tab-3.png"),
             activeIcon: require("../../assets/footer/tab-3-active.png"),
-            path: "/page_mine",
+            path: "/page_bonus",
         },
         {
             id: 3,
@@ -63,11 +63,13 @@ export default class MobileMenu extends AbstractView {
                 this.active = 0;
                 break;
             case 1:
-                router.push(item.path);
+                // router.push(item.path);
+                LoginEnter(page_mine.show);
                 this.active = 1;
                 break;
             case 2:
-                LoginEnter(page_mine.show);
+                // router.push(item.path);
+                LoginEnter(page_bonus.show);
                 this.active = 2;
                 break;
             case 3:

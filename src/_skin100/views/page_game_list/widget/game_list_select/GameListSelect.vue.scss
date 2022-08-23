@@ -1,12 +1,17 @@
 .listbox {
     border-radius: 10px;
-    padding: 16px 8px;
+    // padding: 16px 8px;
+    padding: 16px 0px;
     background-image: linear-gradient(155deg, #6432C4 0%, #140673 98%);
 }
 .listitem {
-    padding: 8px 16px;
+    // padding: 8px 16px;
+    padding: 8px 24px;
     height: 34.5px;
     color: rgb(157, 177, 216);
+}
+.listitem:hover {
+    background-color: rgba(0,0,0,0.15);
 }
 .listitem-active {
     color: white;

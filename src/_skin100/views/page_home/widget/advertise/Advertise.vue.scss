@@ -132,8 +132,33 @@
             margin-left: -5%;
             padding-left: 25px;
             height: 270px;
-            background: url("~@/_skin100/assets/banner-h5.png") 0 0 no-repeat;
+            // background-color: #020409;
+            background: #020409 url("~@/_skin100/assets/banner-h5.png") 0 0 no-repeat;
             background-size: contain;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .box {
+        border-radius: 8px;
+    }
+    .home-adds {
+        height: 300px;
+        .banner-tx {
+            .text-one {
+                margin-top: 0px;
+                padding-right: 20px;
+                font-size: 24px;
+                font-weight: 600;
+            }
+            .text-three {
+                margin-top: 10px;
+                padding-right: 20px;
+                font-size: 13px;
+                font-weight: 500;
+            }
+            
         }
     }
 }

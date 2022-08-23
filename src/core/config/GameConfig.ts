@@ -27,7 +27,7 @@ export default class GameConfig {
                 this.config = JSON.parse(configstr);
                 // core.host = this.config.ApiUrl || this.getApiUrl();
                 // puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-                return;
+                // return;
             } catch (e) {
                 console.log("native platformConfig error");
             }

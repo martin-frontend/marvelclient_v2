@@ -15,7 +15,6 @@
         padding: 0;
         padding-bottom: 80px;
         max-width: 100%;
-        overflow-x: hidden;
     }
 }
 .html {
@@ -236,6 +235,9 @@ input {
 }
 .hei50 {
     height: 50px !important;
+}
+.menuable__content__active{
+    background:  linear-gradient(151deg, #CD30C1 0%, #215ED6 100%) !important;
 }
 .exit-icon {
     margin-top: 2.5px !important;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getFileVersion } from "../global/Functions";
 import NotificationName from "../NotificationName";
 
 export default class LangConfig {
@@ -11,7 +12,7 @@ export default class LangConfig {
 
     static load() {
         const file_name = core.MD5.createInstance().hex_md5(`plat-${core.plat_id}-${core.lang}-1`);
-        const url = `${core.cdnUrl}/resource/language_web/${file_name}.json?` + Math.random();
+        const url = `${core.cdnUrl}/resource/language_web/${file_name}.json?` + getFileVersion();
         axios
             .get(url)
             .then((response: any) => {

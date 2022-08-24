@@ -43,15 +43,7 @@ export default class GameConfig {
             if(!core.channel_id) core.channel_id = data.channel_id;
             core.cdnUrl = data.cdn_domain;
             if(data.api_domain) core.host = data.api_domain;
-
-            const url = net.getUrl(net.HttpType.api_plat_var_config, {plat_id: core.plat_id});
-            net.Http.request({}, url).then((response:any) => {
-                GameConfig.config = response.data;
-                puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-            }).catch(()=>{
-                alert(LangUtil("平台配置文件获取失败"));
-                window.location.reload();
-            })
+            puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
         });
 
         // if (core.plat_id) {

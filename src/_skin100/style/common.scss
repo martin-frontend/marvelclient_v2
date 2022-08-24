@@ -242,6 +242,9 @@ input {
 .pointer{
     cursor: pointer;
 }
+.shadow-clear{
+    box-shadow:none;
+}
 .exit-icon {
     margin-top: 2.5px !important;
     margin-right: 1.5px !important;

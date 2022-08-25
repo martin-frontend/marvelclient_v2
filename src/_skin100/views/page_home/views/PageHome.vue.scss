@@ -19,13 +19,14 @@
     border-top-right-radius: none;
     position: relative;
     background-image: linear-gradient(90deg, #6432c4 4%, #140673 87%);
-    height: 710px;
+    // height: 710px;
     // padding: 0 30px;
 }
 .ad-swiper {
     margin-left: 30px;
 }
 .second-content {
+    height: 380px;
     .left {
         display: inline-block;
         // margin-left: -30px;
@@ -119,7 +120,8 @@
     }
     #page {
         .main-container {
-            background: #0d1529;
+            // background: #0d1529;
+            background: #0d1b29;
             padding-top: 0;
             overflow-x: hidden;
         }

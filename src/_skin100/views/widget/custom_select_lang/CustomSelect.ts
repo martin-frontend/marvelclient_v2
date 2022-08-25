@@ -11,7 +11,7 @@ export default class CustomSelect extends AbstractView {
     @Prop({ default: false }) isPill!: boolean;
     @Prop({ default: 14 }) fontSize!: number;
     @Prop({ default: 30 }) iconSize!: number;
-    @Prop({ default: "rgba(255,255,255,0.1)" }) background!: string;
+    @Prop({ default: "rgba(255,255,255,0.05)" }) background!: string;
 
     private selectValue = this.getValue;
 

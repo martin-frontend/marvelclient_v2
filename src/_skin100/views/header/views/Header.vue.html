@@ -4,9 +4,9 @@
     elevation="0"
     :app="routerPath != '/page_game_play'"
 >
-    <v-container class="py-0" v-if="!$vuetify.breakpoint.xsOnly">
+    <v-container class="py-0 mx18" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center ">
-            <img src="@/_skin100/assets/logo.png" height="40" class="ml-3 mt-4 mb-2 cursor-pointer" @click="goHome" alt="" />
+            <img src="@/_skin100/assets/logo.png" height="40" class="mt-4 mb-2 mr-8 cursor-pointer" @click="goHome" alt="" />
             <span class="nav-button" @click="goHome">
                  <span class="button-text">{{LangUtil("首页")}}</span>
                  <div :class="routerPath == '/' ? 'button-bar-active' : 'button-bar'" ></div>
@@ -34,9 +34,11 @@
             <div>{{ item.category_name }}</div>
         </button> -->
             <v-spacer />
-            <span v-if="core.user_id == 0" class="login-btn px-2" @click="handlerLogin">{{LangUtil("登录")}}</span>
+            <span v-if="core.user_id == 0" class="login-btn px-2 mt2" @click="handlerLogin">{{LangUtil("登录")}}</span>
         <v-btn
             v-if="core.user_id == 0"
+            height="40"
+            min-width="100"
             :small="$vuetify.breakpoint.mobile"
             class="text-26 mx-4 white--text regin-btn"
             @click="handlerRegister"
@@ -55,8 +57,8 @@
                     :width="140"
                     :height="40"
                     :iconSize="20"
+                    :fontSize="16"
                     :isPill="true"
-                    class="mr-4"
                     @change="onLangChange"
                 />
             </div>

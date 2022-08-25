@@ -49,3 +49,12 @@
 .game-cate{
     font-weight: 600;
 }
+::v-deep .gameselect-mobile{
+   .selectbg{
+        background-color: rgba(255,255,255,0.05);
+        .colors-text{
+            font-size:13px !important;
+            color:rgba(255,255,255,0.5) !important;
+        }
+    }
+}

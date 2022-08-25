@@ -12,6 +12,8 @@ export default class Marquee1 extends AbstractView {
     myProxy: Marquee1Proxy = getProxy(Marquee1Proxy);
     pageData = this.myProxy.pageData;
 
+    step = /(Android)/i.test(navigator.userAgent) ? 40 : 50;
+
     constructor() {
         super(Marquee1Mediator);
     }
@@ -26,14 +28,14 @@ export default class Marquee1 extends AbstractView {
             const marqueeBox: any = this.$refs.marqueeBox;
             const marqueeText: any = this.$refs.marqueeText;
             if (marqueeBox && marqueeText) {
-                const fromX = marqueeBox.clientWidth;
-                const toX = -marqueeText.clientWidth;
-                const time = (fromX - toX) / 50;
+                const fromY = marqueeBox.clientHeight;
+                const toY = -marqueeText.clientHeight;
+                const time = 7;
                 gsap.fromTo(
                     marqueeText,
-                    { x: fromX },
+                    { y: fromY },
                     {
-                        x: toX,
+                        y: toY,
                         duration: time,
                         ease: Linear.easeNone,
                         onComplete: () => {
@@ -41,7 +43,29 @@ export default class Marquee1 extends AbstractView {
                         },
                     }
                 );
+                // const fromX = marqueeBox.clientWidth;
+                // const toX = -marqueeText.clientWidth;
+                // const time = (fromX - toX) / this.step;
+                // gsap.fromTo(
+                //     marqueeText,
+                //     { x: fromX },
+                //     {
+                //         x: toX,
+                //         duration: time,
+                //         ease: Linear.easeNone,
+                //         onComplete: () => {
+                //             this.myProxy.next();
+                //         },
+                //     }
+                // );
             }
         });
+    }
+
+    beforeDestroy() {
+        const marqueeText: any = this.$refs.marqueeText;
+        if (marqueeText) {
+            gsap.killTweensOf(marqueeText);
+        }
     }
 }

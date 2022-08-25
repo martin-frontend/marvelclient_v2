@@ -6,9 +6,21 @@
     }
 }
 
-@media screen and (min-width: 1430px) {
+// @media screen and (min-width: 1430px) {
+//     .container {
+//         max-width: 1430px;
+//     }
+//     .main-container {
+//         // background: #0d1529;
+//         background: #0d1b29;
+//         padding: 0;
+//         padding-bottom: 14px;
+//         max-width: 100%;
+//     }
+// }
+@media screen and (min-width: 1424px) {
     .container {
-        max-width: 1430px;
+        max-width: 1424px;
     }
     .main-container {
         // background: #0d1529;
@@ -139,17 +151,21 @@ input {
 .textColor3 {
     color: rgba(255, 255, 255, 0.3) !important;
 }
-.px30 {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+.px3 {
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+.px15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
 }
 .px20 {
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
-.px15 {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+.px30 {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
 }
 .pt26 {
     padding-top: 26px !important;

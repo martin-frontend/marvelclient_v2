@@ -1,5 +1,5 @@
 <div class="container-b pb-10">
-    <v-container class="px15">
+    <v-container :class="$vuetify.breakpoint.xsOnly ? '':'px-0'">
         <div class="px-0 px-sm-3 py-2 pb-sm-2 pt-0">
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("{0}持币分红", plat_stake_info.coin_name_unique)}}</div>
         </div>

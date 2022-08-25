@@ -40,7 +40,9 @@
                         <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("真实姓名")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
+                        <!-- {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.real_name">{{userInfo.real_name}}</span>
+                        <span v-else class="pointer" @click="handlerRealName">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!userInfo.real_name" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerRealName">
                             <v-img
                                 max-width="18"
@@ -56,7 +58,9 @@
                         <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("昵称")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}}
+                        <!-- {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.nick_name != userInfo.user_id">{{userInfo.nick_name}}</span>
+                        <span v-else class="pointer" @click="handlerNickName">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.nick_name != userInfo.user_id)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerNickName">
                             <v-img
                                 max-width="18"
@@ -71,7 +75,7 @@
                         <v-img src="@/_skin100/assets/user-center/vip.png" width="22" height="22" class="mr-2" />{{LangUtil("VIP等级")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.vip_info.vip_level}}
+                        <span class="pointer" @click="goMine">{{userInfo.vip_info.vip_level}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goMine">
                             <v-img
                                 max-width="18"
@@ -84,7 +88,10 @@
                     <span class="d-flex white--text text-14 d-flex align-center">
                         <v-img src="@/_skin100/assets/user-center/sj.png" width="22" height="22" class="mr-2" />{{LangUtil("手机")}}
                     </span>
-                    <span class="d-flex align-center bTextColor5 text-14">{{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}}
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        <!-- {{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.phone != '' && userInfo.phone != undefined">{{userInfo.phone}}</span>
+                        <span v-else class="pointer" @click="goSetPhone">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.phone != '' && userInfo.phone != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetPhone">
                             <v-img
                                 max-width="18"
@@ -99,7 +106,9 @@
                         <v-img src="@/_skin100/assets/user-center/yx.png" width="22" height="22" class="mr-2" />{{LangUtil("邮箱")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}}
+                        <!-- {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.email != '' && userInfo.email != undefined">{{userInfo.email}}</span>
+                        <span v-else class="pointer" @click="goSetEmail">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.email != '' && userInfo.email != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetEmail">
                             <v-img
                                 max-width="18"
@@ -114,7 +123,9 @@
                         <v-img src="@/_skin100/assets/user-center/mm.png" width="22" height="22" class="mr-2" />{{LangUtil("交易密码")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
+                        <!-- {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}} -->
+                        <span v-if="userInfo.password_gold_exists">{{LangUtil("已设置")}}</span>
+                        <span v-else class="pointer" @click="handlerTradePassword">{{LangUtil("未设置")}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerTradePassword">
                             <v-img
                                 max-width="18"
@@ -128,7 +139,8 @@
                         <v-img src="@/_skin100/assets/user-center/mp.png" width="22" height="22" class="mr-2" />{{LangUtil("个人名片")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{LangUtil("设置")}}
+                        <!-- {{LangUtil("设置")}} -->
+                        <span class="pointer" @click="handlerPersonalCard">{{LangUtil("设置")}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerPersonalCard">
                             <v-img
                                 max-width="18"
@@ -168,7 +180,9 @@
                         <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("真实姓名")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
+                        <!-- {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.real_name">{{userInfo.real_name}}</span>
+                        <span v-else class="pointer" @click="handlerRealName">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!userInfo.real_name" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerRealName">
                             <v-img
                                 max-width="18"
@@ -184,7 +198,9 @@
                         <v-img src="@/_skin100/assets/user-center/xm.png" width="22" height="22" class="mr-2" />{{LangUtil("昵称")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}}
+                        <!-- {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.nick_name != userInfo.user_id">{{userInfo.nick_name}}</span>
+                        <span v-else class="pointer" @click="handlerNickName">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.nick_name != userInfo.user_id)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerNickName">
                             <v-img
                                 max-width="18"
@@ -199,7 +215,8 @@
                         <v-img src="@/_skin100/assets/user-center/vip.png" width="22" height="22" class="mr-2" />{{LangUtil("VIP等级")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.vip_info.vip_level}}
+                        <!-- {{userInfo.vip_info.vip_level}} -->
+                        <span class="pointer" @click="goMine">{{userInfo.vip_info.vip_level}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goMine">
                             <v-img
                                 max-width="18"
@@ -212,7 +229,10 @@
                     <span class="d-flex white--text text-14 d-flex align-center">
                         <v-img src="@/_skin100/assets/user-center/sj.png" width="22" height="22" class="mr-2" />{{LangUtil("手机")}}
                     </span>
-                    <span class="d-flex align-center bTextColor5 text-14">{{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}}
+                    <span class="d-flex align-center bTextColor5 text-14">
+                        <!-- {{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.phone != '' && userInfo.phone != undefined">{{userInfo.phone}}</span>
+                        <span v-else class="pointer" @click="goSetPhone">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.phone != '' && userInfo.phone != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetPhone">
                             <v-img
                                 max-width="18"
@@ -227,7 +247,9 @@
                         <v-img src="@/_skin100/assets/user-center/yx.png" width="22" height="22" class="mr-2" />{{LangUtil("邮箱")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}}
+                        <!-- {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}} -->
+                        <span v-if="userInfo.email != '' && userInfo.email != undefined">{{userInfo.email}}</span>
+                        <span v-else class="pointer" @click="goSetEmail">{{LangUtil("未设置")}}</span>
                         <v-btn v-if="!(userInfo.email != '' && userInfo.email != undefined)" icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="goSetEmail">
                             <v-img
                                 max-width="18"
@@ -242,7 +264,9 @@
                         <v-img src="@/_skin100/assets/user-center/mm.png" width="22" height="22" class="mr-2" />{{LangUtil("交易密码")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
+                        <!-- {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}} -->
+                        <span v-if="userInfo.password_gold_exists">{{LangUtil("已设置")}}</span>
+                        <span v-else class="pointer" @click="handlerTradePassword">{{LangUtil("未设置")}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerTradePassword">
                             <v-img
                                 max-width="18"
@@ -256,7 +280,8 @@
                         <v-img src="@/_skin100/assets/user-center/mp.png" width="22" height="22" class="mr-2" />{{LangUtil("个人名片")}}
                     </span>
                     <span class="d-flex align-center bTextColor5 text-14">
-                        {{LangUtil("设置")}}
+                        <!-- {{LangUtil("设置")}} -->
+                        <span class="pointer" @click="handlerPersonalCard">{{LangUtil("设置")}}</span>
                         <v-btn icon class="ml-1" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :18" :height="$vuetify.breakpoint.xsOnly? 24 :18" @click="handlerPersonalCard">
                             <v-img
                                 max-width="18"

@@ -27,7 +27,7 @@ export default class GameConfig {
                 this.config = JSON.parse(configstr);
                 // core.host = this.config.ApiUrl || this.getApiUrl();
                 // puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-                return;
+                // return;
             } catch (e) {
                 console.log("native platformConfig error");
             }
@@ -42,6 +42,7 @@ export default class GameConfig {
             if(!core.plat_id) core.plat_id = data.plat_id;
             if(!core.channel_id) core.channel_id = data.channel_id;
             core.cdnUrl = data.cdn_domain;
+            if(data.api_domain) core.host = data.api_domain;
             puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
         });
 
@@ -97,7 +98,7 @@ export default class GameConfig {
                     apiUrl = origin.replace("www", "api");
                 }
             } else {
-                apiUrl = location.hostname + ":28001";
+                apiUrl = "http://" + location.hostname + ":28001";
             }
         } else {
             apiUrl = "http://api.starsabc.com";

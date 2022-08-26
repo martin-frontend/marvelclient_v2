@@ -44,8 +44,10 @@
             <UserPanel />
         </v-menu>
     </div>
-    <div v-else>
-        <img class="rounded-pill" width="28" height="28" src="../../../../assets/avatar/Avatar0.png" @click.stop="drawer = !drawer"></img>
+    <div class="d-flex align-center" v-else>
+        <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
+            <img class="rounded-pill" width="24" height="24" src="../../../../assets/avatar/Avatar0.png" @click.stop="drawer = !drawer"></img>
+        </v-badge>
        <!--  <v-btn icon small size="20"  >
             <v-icon>mdi-format-list-bulleted</v-icon> 
         </v-btn>

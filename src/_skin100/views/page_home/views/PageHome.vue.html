@@ -1,7 +1,7 @@
 <v-container class="main-container">
     <Advertise />
     <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px-2 mt-1':''">
-        <Marquee1 class="marquee1" :class="$vuetify.breakpoint.mobile?'hidden-h5':''" />
+        <Marquee1 class="marquee1" :class="$vuetify.breakpoint.mobile?'hidden-h5':''" v-if="!$vuetify.breakpoint.mobile" />
         <div class="banner-content" :class="$vuetify.breakpoint.mobile?'hidden-h5':''">
             <AdSwiper class="ad-swiper"/>
             <div class="second-content">
@@ -87,33 +87,33 @@
                 </p>
 
                 <div class="h5-t-content">
-                  <div class="content">
-                    <p class="t-title">{{LangUtil("合约地址")}}</p>
-                    <p class="t-text a-ele" @click="goContractInfo">{{LangUtil("查看合约信息")}}</p>
+                  <div class="content first-con">
+                    <div class="t-title">{{LangUtil("合约地址")}}</div>
+                    <div class="t-text a-ele" @click="goContractInfo">{{LangUtil("查看合约信息")}}</div>
                   </div>
-                  <div class="content">
-                    <p class="t-title">{{LangUtil("总计发行")}}</p>
-                    <p class="t-text">{{reward_coin_info.total_supply}}</p>
+                  <div class="content sec-con">
+                    <div class="t-title">{{LangUtil("总计发行")}}</div>
+                    <div class="t-text">{{reward_coin_info.total_supply}}</div>
                   </div>
-                   <div class="content">
-                      <p class="t-title">{{LangUtil("发行链")}}</p>
-                      <p class="t-text">{{reward_coin_info.block_network_name}}</p>
+                   <div class="content first-con">
+                      <div class="t-title">{{LangUtil("发行链")}}</div>
+                      <div class="t-text">{{reward_coin_info.block_network_name}}</div>
                     </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("总计质押")}}</p>
-                      <p class="t-text">{{reward_coin_info.total_stake_amount}}</p>
+                    <div class="content sec-con">
+                      <div class="t-title">{{LangUtil("总计质押")}}</div>
+                      <div class="t-text">{{reward_coin_info.total_stake_amount}}</div>
                     </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("总计流通")}} </p>
-                      <p class="t-text">{{reward_coin_info.total_circulate}}</p>
+                    <div class="content first-con">
+                      <div class="t-title">{{LangUtil("总计流通")}} </div>
+                      <div class="t-text">{{reward_coin_info.total_circulate}}</div>
                     </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("Token名称")}}</p>
-                      <p  class="t-text">{{reward_coin_info.coin_name}}</p>
+                    <div class="content sec-con">
+                      <div class="t-title">{{LangUtil("Token名称")}}</div>
+                      <div  class="t-text">{{reward_coin_info.coin_name}}</div>
                     </div>
-                    <div class="content">
-                      <p class="t-title">{{LangUtil("持币地址数")}}</p>
-                      <p class="t-text" :class="reward_coin_info.total_holder !='-'?'a-ele':''">{{reward_coin_info.total_holder}}</p>
+                    <div class="content first-con">
+                      <div class="t-title">{{LangUtil("持币地址数")}}</div>
+                      <div class="t-text" :class="reward_coin_info.total_holder !='-'?'a-ele':''">{{reward_coin_info.total_holder}}</div>
                     </div>
                   </div>
 
@@ -121,29 +121,29 @@
                     <div  class="totle-data">
                       <div class="s-left">
                           <div>
-                              <div >
+                              <div class="text-12">
                                   {{LangUtil("总计销毁")}}:  
-                                  <span class="s-num colorYellowBg--text">
+                                  <span class="s-num colorYellowBg--text text-15">
                                       52,150,595.94
                                   </span>
                               </div>
-                              <div class="">
+                              <div class="text-12">
                                   {{LangUtil("本周销毁")}}:  
-                                  <span class="s-num  colorYellowBg--text">
+                                  <span class="s-num colorYellowBg--text text-15">
                                       12,281,737.27
                                   </span>
                               </div>
                               
                               </div>
                               <div class="s-right">
-                                <span>
+                                <span class="text-13">
                                     链上销毁记录
                                 </span>
                             </div>
                             </div>
-                              <p class="bm-text">
+                              <div class="bm-text text-12">
                                   玩家质押egame所支付的手续费都将转账到黑洞地址，实现egame的不断通缩，以支持价格不断上涨。
-                              </p>
+                              </div>
                    
                   </div>
                     <div class="bg"></div>

@@ -60,28 +60,26 @@
 }
 .listitem-de {
     div {
-        width: 250px;
+        width: 300px;
         margin-top: 2px;
         margin-bottom: 2px;
-        color: #9db1d8;
         div:first-child {
-            color: #4c5d7f;
             margin-bottom: 5px;
-        }
-        div > a {
-            color: #9db1d8;
         }
     }
     .listitem-180 {
         width: 180px;
         div {
+            text-align: center;
             width: 180px;
         }
     }
     .listitem-150 {
-        width: 150px;
+        text-align: right;
+        width: 260px;
         div {
-            width: 150px;
+            text-align: right;
+            width: 280px;
         }
     }
 }

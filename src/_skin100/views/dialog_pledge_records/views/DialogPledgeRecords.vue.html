@@ -14,7 +14,7 @@
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="items-bg">
                 <v-btn
-                    height="40"
+                    height="32"
                     width="115"
                     class="rounded-pill font-weight-bold mr-2 "
                     elevation="0"
@@ -26,7 +26,7 @@
                     {{LangUtil("质押")}}
                 </v-btn>
                 <v-btn
-                    height="40"
+                    height="32"
                     class="rounded-pill font-weight-bold"
                     elevation="0"
                     :text="listQuery.cate != 2"
@@ -39,16 +39,16 @@
             </div>
             <v-divider class="my-3"/>
             <div v-if="listQuery.cate == 1 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
-                <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
-                    <v-sheet class="mt-2 px-6 py-2 rounded-lg my-3 list-item"  v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet v-if="pageData.list.length>0"  color="transparent" height="450" class="scroll-y">
+                    <v-sheet class="mt-2 px15 pt-1 pb-1  rounded-lg my-3 list-item" v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex flex-wrap listitem">
                             <div class="list-item-1">
-                                <div>{{LangUtil("时间")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
+                                <div class="white-color-a mb-0 text-12">{{LangUtil("时间")}}</div>
+                                <div class="text-14 white--text text-truncate mt-0 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
                             </div>
                             <div class="list-item-1">
-                                <div class="d-flex justify-end">{{LangUtil("数量")}}</div>
-                                <div class="d-flex justify-end text-16 font-weight-regular" style="line-height: 30px;">
+                                <div class="d-flex justify-end  mb-0 white-color-a">{{LangUtil("数量")}}</div>
+                                <div class="d-flex justify-end white--text mt-0 font-weight-regular item-text" style="line-height: 30px;">
                                     <v-img
                                         class="mr-2"
                                         max-width="25"
@@ -64,24 +64,24 @@
                 </v-sheet>
             </div>
             <div v-if="listQuery.cate == 2 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
-                <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
-                    <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3 list-item"  v-for="(item, idx) in pageData.list" :key="idx">
+                <v-sheet v-if="pageData.list.length>0"  color="transparent" height="450" class="scroll-y">
+                    <v-sheet class="mt-2 px15 py-1 rounded-lg list-item" v-for="(item, idx) in pageData.list" :key="idx">
                         <div class="d-flex flex-wrap listitem-de">
                             <div>
-                                <div>{{LangUtil("时间")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
+                                <div class="white-color-a">{{LangUtil("时间")}}</div>
+                                <div class="text-truncate text-14 font-weight-regular">{{ getDateTime(item.created_at) }}</div>
                             </div>
                             <div class="listitem-180">
-                                <div>{{LangUtil("类型")}}</div>
-                                <div class="text-truncate text-16 font-weight-regular">
+                                <div class="white-color-a">{{LangUtil("类型")}}</div>
+                                <div class="text-truncate text-14 font-weight-regular">
                                     <span v-if="item.type == 48">{{LangUtil("质押")}}</span>
                                     <span v-else-if="item.type == 49">{{LangUtil("自动解质押")}}</span>
                                     <span v-else>{{LangUtil("手动解质押")}}</span>
                                 </div>
                             </div>
                             <div class="listitem-150">
-                                <div class="ml-sm-8">{{LangUtil("到账数量")}}</div>
-                                <div class="d-flex align-center text-16 font-weight-regular">
+                                <div class="white-color-a">{{LangUtil("到账数量")}}</div>
+                                <div class="d-flex align-center justify-content-end text-14 font-weight-regular">
                                     <v-img
                                         class="mr-2"
                                         max-width="25"

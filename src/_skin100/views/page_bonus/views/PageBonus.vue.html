@@ -5,7 +5,7 @@
         </div>
         <v-card
         v-if="$vuetify.breakpoint.lgAndUp"
-        class="mb-2 rounded-lg horizontal-gradient-top d-flex flex-column flex-sm-row align-center py-3 py-sm-6"
+        class="mb-2 rounded-lg horizontal-gradient-top d-flex flex-column flex-sm-row align-center py-3 py-sm-6" color="transparent"
             :height="$vuetify.breakpoint.mdAndDown? 240 :100"
         >
             <v-img  max-width="110" contain src="@/_skin100/assets/bonus/bonus.png" class="mb-sm-2 ml-sm-10 mb-2 mt-sm-6 mr-sm-10"></v-img>
@@ -55,7 +55,8 @@
         </v-card>
         <v-row no-gutters>
             <v-col cols="12" lg="7" class="pr-lg-3">
-                <v-card class="rounded-lg mb-lg-0 py-lg-1 text-sm-subtitle-1 " :class="$vuetify.breakpoint.lgAndUp?'left-item':''" color="horizontal-gradient">
+                <!-- <v-card class="rounded-lg mb-lg-0 py-lg-1 text-sm-subtitle-1 " :class="$vuetify.breakpoint.lgAndUp?'left-item':''" color="horizontal-gradient"> -->
+                <v-card class="rounded-lg mb-lg-0 py-lg-1 text-sm-subtitle-1 horizontal-gradient" color="transparent" :class="$vuetify.breakpoint.lgAndUp?'left-item':''" >
                     <v-row v-if="!$vuetify.breakpoint.lgAndUp" no-gutters class="px-6 top-row pt-4">
                         <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between mb-3">
                             <span class="stake-width">
@@ -232,7 +233,7 @@
                 </v-card>
             </v-col>
             <v-col lg="5" v-if="$vuetify.breakpoint.lgAndUp">
-                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-5 text-sm-subtitle-1 left-item" color="horizontal-gradient" >
+                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-5 text-sm-subtitle-1 left-item horizontal-gradient" color="transparent" >
                     <div class="text-16  font-weight-medium">{{LangUtil("规则说明")}}</div>
                     <div class="option-text text-13">
                         <div>{{LangUtil("质押规则说明1")}}</div>
@@ -248,7 +249,7 @@
         </div>
         <v-row no-gutters class="pb-2 pb-sm-3">
             <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
-                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
+                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" color="transparent" :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
                     <v-row no-gutters>
                         <v-col cols="12" lg="8" class="text-caption text-sm-subtitle-1">
                             <div class="text-subtitle-1 text-16 white--text font-weight-medium mb-2 mb-sm-2 pt-2 pt-sm-6">
@@ -286,7 +287,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" lg="4">
-                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
+                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" color="transparent" height="100%">
                     <div class="text-subtitle-1 text-16 white--text font-weight-medium mb-3 mb-sm-2 ml-3">
                         <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-2.png" />
                         <span class="ml-1"  style="vertical-align: middle;">
@@ -322,7 +323,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-card class="mb-0  mb-sm-2 rounded-lg horizontal-gradient-top px-5 py-3 py-sm-6" id="record">
+        <v-card class="mb-0  mb-sm-2 rounded-lg horizontal-gradient px-5 py-3 py-sm-6" color="transparent" id="record">
             <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
                 <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4">
                     <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-3.png" />

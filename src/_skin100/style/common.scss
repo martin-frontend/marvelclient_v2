@@ -28,6 +28,14 @@
         padding: 0;
         padding-bottom: 14px;
         max-width: 100%;
+        padding-left:12px;
+        padding-right:12px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .container {
+        padding-left:15px;
+        padding-right:15px;
     }
 }
 .html {
@@ -166,6 +174,14 @@ input {
 .px30 {
     padding-left: 30px !important;
     padding-right: 30px !important;
+}
+.py12-5 {
+    padding-top: 12.5px !important;
+    padding-bottom: 12.5px !important;
+}
+.py17-5{
+    padding-top:17.5px !important;
+    padding-bottom: 17.5px !important;
 }
 .pt26 {
     padding-top: 26px !important;

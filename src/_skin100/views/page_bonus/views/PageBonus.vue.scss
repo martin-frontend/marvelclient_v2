@@ -73,7 +73,7 @@
 .listitem {
     div {
         font-size: 18px;
-        color: white;
+        // color: white;
         @media (max-width: 700px) {
             font-size: 12px;
         }
@@ -108,4 +108,7 @@
 }
 .hundred-bonus-width {
     width: 85px;
+}
+.colorTitleOpacity{
+    color:rgba(255,255,255,0.4);
 }

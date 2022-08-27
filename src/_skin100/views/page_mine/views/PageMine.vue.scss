@@ -14,7 +14,7 @@
         padding: 10px 15px;
         .tips {
             background: rgba(0, 0, 0, 0.1);
-            padding: 15px 25px;
+            padding: 7.5px 12.5px;
             border-radius: 8px;
         }
     }
@@ -68,19 +68,26 @@
         border-radius: 20px;
     }
     ::v-deep .v-progress-linear__buffer {
-        background: #121e36;
+        // background: #121e36;
+        background:rgba(255, 255, 255, 0.1) ;
+    }
+    ::v-deep .v-progress-linear__background {
+        // background: #121e36;
+        background:none !important;
+        border-color: transparent !important;
+        border-width: 0px;
     }
 
     ::v-deep .v-progress-linear__determinate {
-        height: 8px;
-        top: 4px;
+        // height: 8px;
+        // top: 4px;
         transform: scale(0.98);
         @media only screen and (max-width: 1264px) {
             transform: scale(0.96);
         }
         @media only screen and (max-width: 750px) {
-            height: 6px;
-            top: 2px;
+            // height: 6px;
+            // top: 2px;
             transform: scale(0.97);
         }
     }

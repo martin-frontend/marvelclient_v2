@@ -19,12 +19,13 @@
                         <!-- <v-img :max-width="mobileChange('leftBgVipIcon').w"  contain :src="vipMap[pageData.vipLevel]"></v-img> -->
                     </v-col>
                     <v-col cols="12" md="8" lg="9" :class="$vuetify.breakpoint.xsOnly?'px-4':''" class="ml-0 ml-sm-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
-                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 mb-1 d-flex align-center justify-space-start px-2" color="transparent">
-                            <v-img max-width="24" height="24" contain src="~@/_skin100/assets/mine/vip0.png" class="mx-md-1 d-inline-flex"></v-img>
+                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 mb-1 d-flex align-center justify-space-start" color="transparent">
+                            <v-img max-width="24" height="24" contain src="~@/_skin100/assets/mine/vip0.png" class="d-inline-flex mr10"></v-img>
                             VIP {{ pageData.vipLevel }}
                         </v-sheet>
                         <v-sheet width="100%" color="transparent" class="">
-                            <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear>
+                            <!-- <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear> -->
+                            <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg2" :height="6" class="rounded-sm mt7-5"></v-progress-linear>
                             <div class="text-14 ma-0 ml-2 mt-2 mt-md-3 text-align-center">
                                 <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}} </p>
                                 <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}} </span>
@@ -132,7 +133,7 @@
         <span class=" text-md-h7"
         :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
         >{{LangUtil('VIP等级')}} </span>
-        <p class="ma-0 mt-1  text-14 text-md-body-3 colorText3--text tips">
+        <p class="ma-0 mt-1 text-md-body-3 colorText3--text tips" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
             {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
         </p>
         
@@ -195,7 +196,7 @@
         <span class="text-md-h7"
         :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
         >{{LangUtil('如何挖矿')}} </span>
-        <p class="ma-0 mt-1 ml-2 ml-md-0  text-14 colorText3--text">
+        <p class="ma-0 mt-1 ml-0 colorText3--text" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
             {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
         </p>
         <v-row class="mt-4" no-gutters>
@@ -244,7 +245,7 @@
             </v-col>
            
             <!-- 03 -->
-            <v-col cols="12" md="4"  class="how_item mb-6 mb-md-0">
+            <v-col cols="12" md="4"  class="how_item mb-0 mb-md-0">
                 <v-card width="100%"  class="linear_bg rounded-sm py-2 px-4  pa-md-4 px-md-4  d-flex flex-wrap flex-column justify-start" height="100%" >
                     <v-card-title class="pa-0 order-1 mb-2" style="width: 100%;" >
                         <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/_skin100/assets/mine/about_03_icon.png"></v-img>

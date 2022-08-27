@@ -3,11 +3,11 @@
     <v-row no-gutters>
         <v-col cols="12" md="6" lg="6" class="mt-3 mt-md-1 pr-md-2 order-2 order-md-1">
             <v-card  class="pt10 pt-sm-5 pb-2  left_bg" width="100%" height="100%">
-                <span class="text-15 font-weight-medium pl-md-3 px-5  pl-md-5 d-inline-flex align-center"
+                <span class="text-15 font-weight-medium px15  pl-md-5 d-inline-flex align-center"
                 :class="$vuetify.breakpoint.xsOnly?'text-15':'text-16'" 
                 >
                     <v-img v-if="!$vuetify.breakpoint.xsOnly" width="24" height="24"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
-                    <v-img v-else width="22" height="22"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
+                    <v-img v-else width="27" height="27"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
                     <!-- <v-img width="25" height="25"  contain src="~@/_skin100/assets/crown.png" class="mr-2 d-inline-flex align-center"></v-img> -->
                     {{LangUtil('挖矿等级')}}</span>
                     <span class="float-right pr-5 tc text-14 pt-0 pt-sm-1 mr-n3 mr-md-0 cursop_pointer d-inline-flex align-center" @click="jumpTo('#vipLevel')">
@@ -18,12 +18,12 @@
                     <v-col cols="4" md="4" lg="3" class="pl-md-2  mt-n9 mt-md-n0 pl-5 ml-0 ml-sm-n4 ml-md-n0 pl-md-5 d-flex justify-center">
                         <!-- <v-img :max-width="mobileChange('leftBgVipIcon').w"  contain :src="vipMap[pageData.vipLevel]"></v-img> -->
                     </v-col>
-                    <v-col cols="12" md="8" lg="9" :class="$vuetify.breakpoint.xsOnly?'px-4':''" class="ml-0 ml-sm-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
-                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 mb-1 d-flex align-center justify-space-start" color="transparent">
+                    <v-col cols="12" md="8" lg="9" :class="$vuetify.breakpoint.xsOnly?'px15':''" class="ml-0 ml-sm-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
+                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 d-flex align-center justify-space-start" color="transparent">
                             <v-img max-width="24" height="24" contain src="~@/_skin100/assets/mine/vip0.png" class="d-inline-flex mr10"></v-img>
                             VIP {{ pageData.vipLevel }}
                         </v-sheet>
-                        <v-sheet width="100%" color="transparent" class="">
+                        <v-sheet width="100%" color="transparent">
                             <!-- <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear> -->
                             <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg2" :height="6" class="rounded-sm mt7-5"></v-progress-linear>
                             <div class="text-14 ma-0 ml-2 mt-2 mt-md-3 text-align-center">
@@ -39,7 +39,7 @@
                         </v-sheet>
                     </v-col>
                   
-                    <v-col class="d-flex mb-1 mb-md-0 mt-md-3 down_box px-5">
+                    <v-col class="d-flex mb-1 mb-md-0 mt-md-3 down_box px15">
                         <v-row no-gutters class="mt-3 px-md-0">
                             <!-- 主币 -->
                             <!-- <v-col cols="6" md="12" lg="6" class="pl-1 pt-md-2 pl-md-0 pl-lg-1 pt-lg-0" v-if="pageData.backwaterConfigMain.now > 0">
@@ -77,15 +77,15 @@
             </v-card>
         </v-col>
         <v-col cols="12" md="6" lg="6" class="d-flex mt-1  order-1 order-md-2">
-            <v-card class="right_banner pl-5 pr-5 pr-md-0 pt10 pt-sm-5 pb-0" width="100%" height="100%"
+            <v-card class="right_banner px15 pr-md-0 pt10 pt-sm-5 pb-0" width="100%" height="100%"
             :class="$vuetify.breakpoint.mobile?'right-banner-h5':''"
             >
                 <v-card-text class="pa-0">
                     <v-row no-gutters>
-                        <v-col cols="4">
+                        <v-col cols="4" class="d-inline-flex align-center">
                             <v-img v-if="!$vuetify.breakpoint.xsOnly" width="24" height="24"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
-                            <v-img v-else width="22" height="22"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
-                            <span class="white--text pt-0  align-center  pl-1  font-weight-medium"
+                            <v-img v-else max-width="27" min-height="27"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
+                            <span class="white--text pt-0  pl-1  font-weight-medium"
                             :class="$vuetify.breakpoint.xsOnly?'text-15':'text-16'" 
                             >
                                 {{LangUtil('游戏挖矿')}}</span>

@@ -70,10 +70,10 @@
     </v-sheet>
      <div class="d-flex justify-center pt-2" >
          <v-btn
-                    class="rounded-pill my-8 morebg font-weight-bold"
+                    class="rounded-pill morebg font-weight-bold"
                     :width="$vuetify.breakpoint.xsOnly?150:196"
                     :height="$vuetify.breakpoint.xsOnly?35:46"
-                    :class="$vuetify.breakpoint.xsOnly?'morebg-h5':'text-16'"
+                    :class="$vuetify.breakpoint.mobile?'morebg-h5 mt-4 mb-3':'text-16 my-8'"
                     @click="onShowAll"
                     >
                     {{LangUtil("查看更多游戏")}}

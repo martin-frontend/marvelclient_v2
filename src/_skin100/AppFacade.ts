@@ -8,6 +8,8 @@ import NoticeProxy from "./proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import IOErrorCMD from "./core/command/IOErrorCMD";
 import RequestErrorCMD from "./core/command/RequestErrorCMD";
+import NotificationName from "@/core/NotificationName";
+import CheckSpeedCMD from "@/core/command/CheckSpeedCMD";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -39,6 +41,7 @@ export default class AppFacade {
         this.facade.registerCommand(core.EventType.REQUEST_END, RequestEndCMD);
         this.facade.registerCommand(core.EventType.IO_ERROR, IOErrorCMD);
         this.facade.registerCommand(core.EventType.REQUEST_ERROR, RequestErrorCMD);
+        this.facade.registerCommand(NotificationName.CHECK_SPEED, CheckSpeedCMD);
     }
 
     private initObserver() {

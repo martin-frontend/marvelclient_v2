@@ -42,59 +42,25 @@ export default class GameConfig {
             if (!core.plat_id) core.plat_id = data.plat_id;
             if (!core.channel_id) core.channel_id = data.channel_id;
             core.cdnUrl = data.cdn_domain;
-            if (data.api_domain) core.host = data.api_domain;
-
-            const url = net.getUrl(net.HttpType.api_plat_var_config, { plat_id: core.plat_id });
-            net.Http.request({}, url)
-                .then((response: any) => {
-                    GameConfig.config = response.data;
-                    puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-                })
-                .catch(() => {
-                    alert(LangUtil("平台配置文件获取失败"));
-                    window.location.reload();
-                });
+            GlobalVar.host_urls = data.api_domain;
+            // if (data.api_domain) core.host = data.api_domain;
+            core.host = "";
+            puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
         });
-
-        // if (core.plat_id) {
-        //     const fileName: string = new core.MD5().hex_md5("plat-" + core.plat_id);
-        //     const url = `${core.cdnUrl}/resource/client_config/${fileName}.json?${getFileVersion()}`;
-        //     axios
-        //         .get(url)
-        //         .then((response: any) => {
-        //             this.config = response.data;
-        //             core.host = this.config.ApiUrl || this.getApiUrl();
-        //             puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
-        //         })
-        //         .catch(() => {
-        //             alert(LangUtil("平台配置文件获取失败"));
-        //             // window.location.reload();
-        //         });
-        // } else {
-        //     this.getChannelConfig();
-        // }
     }
 
-    // static getChannelConfig() {
-    //     let hostname = location.hostname;
-    //     if (process.env.NODE_ENV == "development") {
-    //         hostname = "www.cftest666.com";
-    //     }
-    //     // hostname = "www.cftest666.com";
-    //     const fileName: string = new core.MD5().hex_md5(hostname);
-    //     const url = `${core.cdnUrl}/resource/game_address/${fileName}.json?${getFileVersion()}`;
-    //     axios
-    //         .get(url)
-    //         .then((response: any) => {
-    //             core.channel_id = response.data.channels;
-    //             core.plat_id = response.data.platform;
-    //             this.load();
-    //         })
-    //         .catch(() => {
-    //             alert(LangUtil("渠道配置文件获取失败"));
-    //             window.location.reload();
-    //         });
-    // }
+    static loadPlatConfig(){
+        const url = net.getUrl(net.HttpType.api_plat_var_config, { plat_id: core.plat_id });
+        net.Http.request({}, url)
+            .then((response: any) => {
+                GameConfig.config = response.data;
+                puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
+            })
+            .catch(() => {
+                alert(LangUtil("平台配置文件获取失败"));
+                window.location.reload();
+            });
+    }
 
     static getApiUrl(): string {
         let apiUrl = "";

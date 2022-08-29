@@ -5,8 +5,12 @@
     class="d-flex align-center pr-3 btr"
 >
     <!-- <v-icon class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon">mdi-bullhorn-outline</v-icon> -->
-    <img width="20" height="20" class="ml-4 ml-sm-8 mr-2" src="../../../../assets/icon-notice.png" alt="">
-    <div ref="marqueeBox" class="marquee-box">
-        <div ref="marqueeText">{{pageData.text}}</div>
+    <img v-if="!$vuetify.breakpoint.mobile" width="20" height="20" class="ml-4 ml-sm-8 mr-2" src="../../../../assets/icon-notice.png" alt="">
+    <img v-else width="15" height="15" class="ml-4 ml-sm-8 mr-2" src="../../../../assets/icon-notice.png" alt="">
+    <div v-if="!$vuetify.breakpoint.mobile" ref="marqueeBox" class="marquee-box">
+        <div ref="marqueeText" class="marquee-text">{{pageData.text}}</div>
+    </div>
+    <div v-else ref="marqueeBox" class="marquee-box">
+        <div ref="marqueeText" class="marquee-text-h5">{{pageData.text}}</div>
     </div>
 </v-sheet>

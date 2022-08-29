@@ -6,6 +6,7 @@
 }
 .a-ele {
     text-decoration: underline;
+    cursor: pointer;
 }
 .marquee1 {
     margin-top: -68px;
@@ -19,13 +20,14 @@
     border-top-right-radius: none;
     position: relative;
     background-image: linear-gradient(90deg, #6432c4 4%, #140673 87%);
-    height: 710px;
+    // height: 710px;
     // padding: 0 30px;
 }
 .ad-swiper {
     margin-left: 30px;
 }
 .second-content {
+    height: 380px;
     .left {
         display: inline-block;
         // margin-left: -30px;
@@ -119,19 +121,21 @@
     }
     #page {
         .main-container {
-            background: #0d1529;
+            // background: #0d1529;
+            background: #0d1b29;
             padding-top: 0;
             overflow-x: hidden;
         }
         .h5-t-content {
+            margin-top:20px;
             display: flex;
             justify-content: space-between;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            padding: 15px 25px 5px 5px;
+            padding: 10px 15px;
             flex-wrap: wrap;
             .content {
-                padding-top: 10px;
+                // padding-top: 10px;
                 width: 50%;
             }
         }
@@ -140,29 +144,37 @@
 
 .h5-intrduce {
     position: relative;
-    width: 110%;
-    padding: 15px 15px 20px 20px;
-    margin-left: -5%;
-    // margin-top: 70px;
+    // width: 110%;
+    // padding: 15px 15px 20px 20px;
+    padding: 15px;
+    // margin-left: -5%;
     background-image: linear-gradient(90deg, #6432c4 4%, #140673 87%);
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-
+    width:100vw;
+    margin-left:-20px;
+    .first-con{
+        width:60% !important;
+    }
+    .sec-con{
+        width:40% !important;
+    }
     .t-title {
+        margin-top:5px;
         font-size: 15px;
         color: #ffffff;
-        text-align: center;
-        line-height: 25px;
+        text-align: left;
+        line-height: 28px;
         font-weight: 600;
         margin-bottom: 0;
     }
     .t-text {
         font-size: 12px;
         color: #f8d129;
-        text-align: center;
-        line-height: 28px;
+        text-align: left;
+        line-height: 20px;
         font-weight: 500;
     }
 }
@@ -195,11 +207,11 @@
             background: rgba(0, 0, 0, 0.2);
             border-radius: 44px;
             width: auto;
-            height: 42px;
-            padding: 10px 20px;
+            // height: 42px;
+            padding: 8px 16px;
         }
     }
     .bm-text {
-        margin-top: 10px;
+        margin-top: 8px;
     }
 }

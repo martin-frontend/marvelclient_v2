@@ -4,16 +4,21 @@ a {
 ::v-deep .v-toolbar__content {
     padding: 0px;
 }
+.container {
+    max-width: 100vw;
+}
 @media screen and (min-width: 1430px) {
     .container {
-        max-width: 1730px;
+        // max-width: 1730px;
+        max-width: 100vw;
     }
 }
 .nav-button {
     display: flex;
     cursor: pointer;
-    margin: 0 32px;
-    font-size: 18px;
+    // margin: 0 32px;
+    margin: 0 20px;
+    font-size: 16px;
     font-weight: 500;
     transition: color 0.2s ease-in-out;
     color: rgba(255, 255, 255, 1);
@@ -73,4 +78,11 @@ a {
 
 .v-menu__content .diy-color {
     background-image: linear-gradient(148deg, #6432c4 10%, #10045c 170%) !important;
+}
+.second-head-bar-bg{
+    background-color: rgba(255, 255, 255, 0.04);
+}
+.marquee-text-h5{
+    font-size: 13px;
+    color:rgba(255, 255, 255, 0.5)
 }

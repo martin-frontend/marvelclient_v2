@@ -1,6 +1,6 @@
-<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog width="360" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" persistent>
     <v-card class="rounded-lg bPanelBg">
-        <v-card-title >
+        <v-card-title class="px20 pt15 pb15" >
             <div class="text-18">{{LangUtil("绑定上级ID")}}</div>
             <v-spacer />
             <!-- <v-btn icon @click="onClose">
@@ -10,10 +10,10 @@
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
             </v-btn>
         </v-card-title>
-        <v-card-text v-if="pageData.bShow" class="px-10 mt-5">
-            <CustomInput class="mb-3" :placeholder="LangUtil('请输入绑定上级ID')" v-model="pageData.inviteId" />
-            <div class="ml-0 mb-9 colorDialogInfo--text">{{LangUtil("确定绑定后无法更改")}}</div>
-            <v-btn class="rounded-lg btnRedBg"  height="48" :disabled="!isCheckedId" @click="onSubmit" block
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput class="ip" :placeholder="LangUtil('请输入绑定上级ID')" v-model="pageData.inviteId" />
+            <div class="mt10 mb20 real-name-text">{{LangUtil("确定绑定后无法更改")}}</div>
+            <v-btn class="rounded btnRedBg"  height="40" :disabled="!isCheckedId" @click="onSubmit" block
                 >{{LangUtil("确定绑定")}}</v-btn
             >
         </v-card-text>

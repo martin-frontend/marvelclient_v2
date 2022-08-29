@@ -37,6 +37,7 @@ export function getVuetify(): Vuetify {
                         colorReceive: "#5E2E2E", //used
                         colorBlue2Bg: "#2C3952",
                         colorYellowBg: "#F2A81C",
+                        colorYellowBg2: "#F8D129",
                         colorGoldBg: "#ffb01b",
 
                         //新增
@@ -56,6 +57,7 @@ export function getVuetify(): Vuetify {
                         colorProcessing: "#FBD535",
                         colorBindSuccess: "#8e79c4",
                         colorTitleBgSkin: "#172432",
+                        footerText: "#697787",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",
@@ -71,7 +73,7 @@ export function getVuetify(): Vuetify {
                         colorTextBlue: "#31486C", //used
                         colorTextPurple: "#A8A8F5", //used
                         colorTextGreen: "#69B65E", //used
-                        colorTextAll: "669CE7", //used
+                        colorTextAll: "#669CE7", //used
                         colorTextBlueLight: "#72ABFD", //used
                         colorTextBlueLight2: "#98ACD3", //used
                         colorTextBlueLight3: "#70A9FA", //used

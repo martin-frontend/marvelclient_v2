@@ -35,7 +35,7 @@
             color="#23114F"
             v-if="options && Object.keys(options).length > 1"
         >
-            <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key,item.value)">
+            <div class="d-flex align-center listitem pl-4 cursor-pointer" :class="selectValue == key ? 'item-select':''" v-for="(item, key) of options" :key="key" @click="onChange(key,item.value)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <div class="white--text">{{ item.name || item }}</div>
             </div>

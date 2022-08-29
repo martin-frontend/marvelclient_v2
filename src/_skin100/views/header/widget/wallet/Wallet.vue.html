@@ -1,11 +1,11 @@
-<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex ml10 align-center">
+<v-sheet color="rgba(255,255,255,0.05)" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex ml10 align-center mr10">
     <v-menu offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
                     v-if="$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                     class="align-center d-flex rounded-pill ml-2 pr-2"
-                    color="colorPanelTitleBg"
+                    color="transparent"
                     min-width="80"
                     height="30"
                 >
@@ -28,7 +28,7 @@
                 </v-sheet>
                 <v-sheet
                     class="align-center d-flex rounded-pill pr-3"
-                    color="colorPanelTitleBg"
+                    color="transparent"
                     min-width="90"
                     height="40"
                     v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
@@ -94,6 +94,6 @@
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
     <v-btn v-else class="rounded-pill  mr-3  common-btn white--text" height="32"  @click="onCoinIn">
-        <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
+        <div class="mx-1 text-14">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

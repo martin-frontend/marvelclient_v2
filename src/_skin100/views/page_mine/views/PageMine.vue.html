@@ -1,13 +1,13 @@
 <div class="container-b">
-<v-container class="page_mine">
+<v-container class="page_mine" :class="$vuetify.breakpoint.xsOnly ? '':'px-0'">
     <v-row no-gutters>
         <v-col cols="12" md="6" lg="6" class="mt-3 mt-md-1 pr-md-2 order-2 order-md-1">
             <v-card  class="pt10 pt-sm-5 pb-2  left_bg" width="100%" height="100%">
-                <span class="text-15 font-weight-medium pl-md-3 px-5  pl-md-5 d-inline-flex align-center"
+                <span class="text-15 font-weight-medium px15  pl-md-5 d-inline-flex align-center"
                 :class="$vuetify.breakpoint.xsOnly?'text-15':'text-16'" 
                 >
                     <v-img v-if="!$vuetify.breakpoint.xsOnly" width="24" height="24"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
-                    <v-img v-else width="22" height="22"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
+                    <v-img v-else width="27" height="27"  contain src="~@/_skin100/assets/crown.png"  class="mr-2 d-inline-flex align-center"></v-img>
                     <!-- <v-img width="25" height="25"  contain src="~@/_skin100/assets/crown.png" class="mr-2 d-inline-flex align-center"></v-img> -->
                     {{LangUtil('挖矿等级')}}</span>
                     <span class="float-right pr-5 tc text-14 pt-0 pt-sm-1 mr-n3 mr-md-0 cursop_pointer d-inline-flex align-center" @click="jumpTo('#vipLevel')">
@@ -18,13 +18,14 @@
                     <v-col cols="4" md="4" lg="3" class="pl-md-2  mt-n9 mt-md-n0 pl-5 ml-0 ml-sm-n4 ml-md-n0 pl-md-5 d-flex justify-center">
                         <!-- <v-img :max-width="mobileChange('leftBgVipIcon').w"  contain :src="vipMap[pageData.vipLevel]"></v-img> -->
                     </v-col>
-                    <v-col cols="12" md="8" lg="9" :class="$vuetify.breakpoint.xsOnly?'px-4':''" class="ml-0 ml-sm-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
-                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 mb-1 d-flex align-center justify-space-start px-2" color="transparent">
-                            <v-img max-width="24" height="24" contain src="~@/_skin100/assets/mine/vip0.png" class="mx-md-1 d-inline-flex"></v-img>
+                    <v-col cols="12" md="8" lg="9" :class="$vuetify.breakpoint.xsOnly?'px15':''" class="ml-0 ml-sm-n10 ml-md-n0 d-flex flex-column align-start justify-center text-caption text-sm-body-2 text-lg-body-1">
+                        <v-sheet width="100%" class="text-16 text-body-5 text-md-16 d-flex align-center justify-space-start" color="transparent">
+                            <v-img max-width="24" height="24" contain src="~@/_skin100/assets/mine/vip0.png" class="d-inline-flex mr10"></v-img>
                             VIP {{ pageData.vipLevel }}
                         </v-sheet>
-                        <v-sheet width="100%" color="transparent" class="">
-                            <v-progress-linear :value="pageData.vipProgress" color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear>
+                        <v-sheet width="100%" color="transparent">
+                            <!-- <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg" :height="progressLinear" class="rounded-sm"></v-progress-linear> -->
+                            <v-progress-linear :value="pageData.vipProgress"  color="colorYellowBg2" :height="6" class="rounded-sm mt7-5"></v-progress-linear>
                             <div class="text-14 ma-0 ml-2 mt-2 mt-md-3 text-align-center">
                                 <p class="white--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}} </p>
                                 <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}} </span>
@@ -38,7 +39,7 @@
                         </v-sheet>
                     </v-col>
                   
-                    <v-col class="d-flex mb-1 mb-md-0 mt-md-3 down_box px-5">
+                    <v-col class="d-flex mb-1 mb-md-0 mt-md-3 down_box px15">
                         <v-row no-gutters class="mt-3 px-md-0">
                             <!-- 主币 -->
                             <!-- <v-col cols="6" md="12" lg="6" class="pl-1 pt-md-2 pl-md-0 pl-lg-1 pt-lg-0" v-if="pageData.backwaterConfigMain.now > 0">
@@ -76,15 +77,15 @@
             </v-card>
         </v-col>
         <v-col cols="12" md="6" lg="6" class="d-flex mt-1  order-1 order-md-2">
-            <v-card class="right_banner pl-5 pr-5 pr-md-0 pt10 pt-sm-5 pb-0" width="100%" height="100%"
+            <v-card class="right_banner px15 pr-md-0 pt10 pt-sm-5 pb-0" width="100%" height="100%"
             :class="$vuetify.breakpoint.mobile?'right-banner-h5':''"
             >
                 <v-card-text class="pa-0">
                     <v-row no-gutters>
-                        <v-col cols="4">
-                            <v-img v-if="!$vuetify.breakpoint.xsOnly" width="24" height="24"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
-                            <v-img v-else width="22" height="22"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
-                            <span class="white--text pt-0  align-center  pl-1  font-weight-medium"
+                        <v-col cols="4" class="d-inline-flex "   :class="$vuetify.breakpoint.mobile ? 'align-center' : ''">
+                            <v-img v-if="!$vuetify.breakpoint.xsOnly" max-width="24" height="24"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
+                            <v-img v-else max-width="27" min-height="27"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 mr-2 d-inline-flex align-center"></v-img>
+                            <span class="white--text pt-0  pl-1  font-weight-medium"
                             :class="$vuetify.breakpoint.xsOnly?'text-15':'text-16'" 
                             >
                                 {{LangUtil('游戏挖矿')}}</span>
@@ -129,14 +130,16 @@
     </v-row>
     <!-- vip 等级 -->
     <v-sheet color="transparent" class="mt10 mx-auto" :class="$vuetify.breakpoint.xsOnly?'mobile-vip':''" max-width="1430" id="vipLevel" >
+        <span class="d-flex align-center"
+        ><v-img v-if="$vuetify.breakpoint.xsOnly" max-width="27" min-height="27"  contain src="~@/_skin100/assets/crown.png"  class="mx-md-1 mr-2 d-inline-flex align-center"></v-img>
         <span class=" text-md-h7"
         :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
-        >{{LangUtil('VIP等级')}} </span>
-        <p class="ma-0 mt-1  text-14 text-md-body-3 colorText3--text tips">
+        >{{LangUtil('VIP等级')}} </span></span>
+        <p class="ma-0 mt-1 text-md-body-3 colorText3--text tips" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
             {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
         </p>
         
-        <v-slide-group class="mt-6" show-arrows v-if="!xsOnly">
+        <v-slide-group class="mt-6" show-arrows v-if="!$vuetify.breakpoint.xsOnly">
             <v-slide-item v-for="(item, level) of pageData.vipConfig" :key="level">
                 <v-card color="transparent">
                     <v-sheet color="transparent" height="223">
@@ -169,23 +172,23 @@
             </div>
             <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="rounded_customized py-2 d-flex justify-space-between mb-1">
                 <div class="d-flex align-center">
-                    <v-img max-width="32" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
-                    <span class="text-body-2 font-weight-medium ml-2">VIP {{ myProxy.getVipLevel(level) }}</span>
+                    <v-img max-width="14" width="16" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
+                    <span class="text-13 font-weight-medium ml-2">VIP {{ myProxy.getVipLevel(level) }}</span>
                 </div>
                 <!-- 主币 -->
                 <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
-                    <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.mainCoin.name }} {{LangUtil('返水')}}  </span>
+                    <span class="text-13 colorYellowBg2--text">{{ pageData.platCoins.mainCoin.name }} {{LangUtil('返水')}}  </span>
                 </div>
                 <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
-                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}%</span>
+                    <span class="text-13 colorYellowBg2--text">{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}%</span>
                 </div>
                 <!-- 奖励币 -->
-                <div class="d-flex flex-column justify-center align-center" v-if="item.backwater_config[3].backwater_rate > 0">
-                    <span class="text-caption colorVipLevelText--text">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
-                    <span class="text-caption colorVipLevelText--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
+                <div class="d-flex justify-center align-center" v-if="item.backwater_config[3].backwater_rate > 0">
+                    <span class="text-13 colorYellowBg2--text">{{ pageData.platCoins.rewardCoin.name }}挖矿</span>
+                    <span class="text-13 colorYellowBg2--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
                 </div>
                 <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
-                    <span class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}</span>
+                    <span class="text-13 colorYellowBg2--text">{{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}</span>
                 </div>
             </v-sheet>
         </div>
@@ -195,7 +198,7 @@
         <span class="text-md-h7"
         :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6'"
         >{{LangUtil('如何挖矿')}} </span>
-        <p class="ma-0 mt-1 ml-2 ml-md-0  text-14 colorText3--text">
+        <p class="ma-0 mt-1 ml-0 colorText3--text" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
             {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
         </p>
         <v-row class="mt-4" no-gutters>
@@ -244,7 +247,7 @@
             </v-col>
            
             <!-- 03 -->
-            <v-col cols="12" md="4"  class="how_item mb-6 mb-md-0">
+            <v-col cols="12" md="4"  class="how_item mb-0 mb-md-0">
                 <v-card width="100%"  class="linear_bg rounded-sm py-2 px-4  pa-md-4 px-md-4  d-flex flex-wrap flex-column justify-start" height="100%" >
                     <v-card-title class="pa-0 order-1 mb-2" style="width: 100%;" >
                         <v-img :max-width="mobileChange('howIcon')" :height="mobileChange('howIcon')" contain class="mr-1 mr-md-4" src="~@/_skin100/assets/mine/about_03_icon.png"></v-img>

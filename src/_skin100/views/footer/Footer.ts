@@ -6,7 +6,6 @@ import dialog_contract from "@/_skin100/views/dialog_contract";
 import dialog_service from "@/_skin100/views/dialog_service";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangConfig from "@/core/config/LangConfig";
-
 @Component
 export default class Footer extends AbstractView {
     LangUtil = LangUtil;

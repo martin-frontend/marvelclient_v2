@@ -1,7 +1,7 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <v-card-title class="gradient-bg">
-            <div class="text-18">dialog_promotion_statistics</div>
+            <div class="text-18">{{LangUtil("推广统计")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>

@@ -110,6 +110,13 @@ export default class PageSwapProxy extends puremvc.Proxy {
         },
     };
 
+    /**清空输入框 */
+    resetInput() {
+        const { form } = this.pageData;
+        form.inputA = "";
+        form.inputB = "";
+    }
+
     /** 基础信息*/
     setData(data: any) {
         Object.assign(this.pageData.swap_setting_info, data);

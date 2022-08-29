@@ -156,6 +156,11 @@
         ["api/plat/{plat_id}/swap_k",                    "Swap价格图"],
         ["api/plat/{plat_id}/swap/trial",                "Swap试算"],
         ["api/user/{user_id}/swap/order_list",           "Swap兑换订单"],
-        ["api/user/{user_id}/swap/create_order",         "Swap创建订单"]
+        ["api/user/{user_id}/swap/create_order",         "Swap创建订单"],
+
+
+        "--平台入口配置获取",
+        ["api/plat/{plat_id}/config",                   "平台入口配置获取"],
+        ["api/test_speed",                              "检测接口速度"]
     ]
 }

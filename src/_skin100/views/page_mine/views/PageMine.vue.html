@@ -82,8 +82,8 @@
             >
                 <v-card-text class="pa-0">
                     <v-row no-gutters>
-                        <v-col cols="4" class="d-inline-flex align-center">
-                            <v-img v-if="!$vuetify.breakpoint.xsOnly" width="24" height="24"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
+                        <v-col cols="4" class="d-inline-flex "   :class="$vuetify.breakpoint.mobile ? 'align-center' : ''">
+                            <v-img v-if="!$vuetify.breakpoint.xsOnly" max-width="24" height="24"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 d-inline-flex align-center"></v-img>
                             <v-img v-else max-width="27" min-height="27"  contain src="~@/_skin100/assets/icon-title-13.png" style="padding-bottom:10px"  class="mx-md-1 mr-2 d-inline-flex align-center"></v-img>
                             <span class="white--text pt-0  pl-1  font-weight-medium"
                             :class="$vuetify.breakpoint.xsOnly?'text-15':'text-16'" 

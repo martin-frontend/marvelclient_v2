@@ -257,6 +257,11 @@ module net {
         api_user_var_swap_order_list: "api/user/{user_id}/swap/order_list",
         /**--Swap--Swap创建订单*/
         api_user_var_swap_create_order: "api/user/{user_id}/swap/create_order",
+
+        /**--平台入口配置获取--平台入口配置获取*/
+        api_plat_var_config: "api/plat/{plat_id}/config",
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: "api/test_speed",
     };
     /**事件*/
     export var EventType = {
@@ -521,6 +526,11 @@ module net {
         api_user_var_swap_order_list: "api_user_var_swap_order_list",
         /**--Swap--Swap创建订单*/
         api_user_var_swap_create_order: "api_user_var_swap_create_order",
+
+        /**--平台入口配置获取--平台入口配置获取*/
+        api_plat_var_config: "api_plat_var_config",
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: "api_test_speed",
     };
     /**注册协议*/
     export function initCommand() {
@@ -661,6 +671,9 @@ module net {
         facade.registerCommand(HttpType.api_plat_var_swap_trial, cmd_api_plat_var_swap_trial);
         facade.registerCommand(HttpType.api_user_var_swap_order_list, cmd_api_user_var_swap_order_list);
         facade.registerCommand(HttpType.api_user_var_swap_create_order, cmd_api_user_var_swap_create_order);
+        //--平台入口配置获取
+        facade.registerCommand(HttpType.api_plat_var_config, cmd_api_plat_var_config);
+        facade.registerCommand(HttpType.api_test_speed, cmd_api_test_speed);
     };
 
 }

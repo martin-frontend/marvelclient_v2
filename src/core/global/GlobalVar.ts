@@ -1,1 +1,3 @@
-export default class GlobalVar {}
+export default class GlobalVar {
+    static host_urls:string = "";
+}

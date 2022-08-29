@@ -12,7 +12,6 @@ export default class GameSearch extends AbstractView {
 
     constructor() {
         super(GameSearchMediator);
-        this.myProxy.api_user_var_game_index();
     }
 
     onTabClick(val: any) {
@@ -25,5 +24,16 @@ export default class GameSearch extends AbstractView {
 
     onSearch() {
         this.myProxy.api_user_var_game_search();
+    }
+
+    @Watch("pageData.bShow")
+    onWatchShow() {
+        if (this.pageData.bShow) {
+            this.myProxy.api_user_var_game_index();
+        } else {
+            this.pageData.searchList = [];
+            this.pageData.collection = [];
+            this.pageData.recently = [];
+        }
     }
 }

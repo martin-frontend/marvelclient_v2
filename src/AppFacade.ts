@@ -1,10 +1,13 @@
+import CheckSpeedCMD from "./core/command/CheckSpeedCMD";
 import IOErrorCMD from "./core/command/IOErrorCMD";
 import RequestEndCMD from "./core/command/RequestEndCMD";
 import RequestErrorCMD from "./core/command/RequestErrorCMD";
 import RequestStartCMD from "./core/command/RequestStartCMD";
 import GameConfig from "./core/config/GameConfig";
 import { getVersion } from "./core/global/Functions";
+import GlobalVar from "./core/global/GlobalVar";
 import NetObserver from "./core/NetObserver";
+import NotificationName from "./core/NotificationName";
 import GameProxy from "./proxy/GameProxy";
 import NoticeProxy from "./proxy/NoticeProxy";
 import SelfProxy from "./proxy/SelfProxy";
@@ -26,6 +29,12 @@ export default class AppFacade {
             core.version*=2;
         }
         GameConfig.load();
+
+        //五分钟检测一次网络
+        setInterval(()=>{
+            if(GlobalVar.host_urls)
+                this.facade.sendNotification(NotificationName.CHECK_SPEED);
+        }, 300000)
     }
 
     private initProxy() {
@@ -38,6 +47,7 @@ export default class AppFacade {
         this.facade.registerCommand(core.EventType.REQUEST_END, RequestEndCMD);
         this.facade.registerCommand(core.EventType.IO_ERROR, IOErrorCMD);
         this.facade.registerCommand(core.EventType.REQUEST_ERROR, RequestErrorCMD);
+        this.facade.registerCommand(NotificationName.CHECK_SPEED, CheckSpeedCMD);
     }
 
     private initObserver() {

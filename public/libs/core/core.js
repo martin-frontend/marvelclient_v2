@@ -301,6 +301,8 @@ var net;
         api_user_var_swap_create_order: "api/user/{user_id}/swap/create_order",
         /**--平台入口配置获取--平台入口配置获取*/
         api_plat_var_config: "api/plat/{plat_id}/config",
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: "api/test_speed",
     };
     /**事件*/
     net.EventType = {
@@ -548,6 +550,8 @@ var net;
         api_user_var_swap_create_order: "api_user_var_swap_create_order",
         /**--平台入口配置获取--平台入口配置获取*/
         api_plat_var_config: "api_plat_var_config",
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: "api_test_speed",
     };
     /**注册协议*/
     function initCommand() {
@@ -690,6 +694,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_swap_create_order, net.cmd_api_user_var_swap_create_order);
         //--平台入口配置获取
         facade.registerCommand(net.HttpType.api_plat_var_config, net.cmd_api_plat_var_config);
+        facade.registerCommand(net.HttpType.api_test_speed, net.cmd_api_test_speed);
     }
     net.initCommand = initCommand;
     ;
@@ -1463,6 +1468,28 @@ var net;
         }
     }
     net.cmd_api_sms_transfer = cmd_api_sms_transfer;
+})(net || (net = {}));
+/**
+ * 检测接口速度
+ */
+var net;
+/**
+ * 检测接口速度
+ */
+(function (net) {
+    class cmd_api_test_speed extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_test_speed, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_test_speed, result.data);
+            }
+        }
+    }
+    net.cmd_api_test_speed = cmd_api_test_speed;
 })(net || (net = {}));
 /**
  * 用户绑定邮箱
@@ -4137,6 +4164,7 @@ var net;
                 ajax.onreadystatechange = function (e) {
                     if (this.readyState == 4) {
                         if (this.status == 200) {
+                            console.log(this.response);
                             resolve(this.response);
                         }
                         else {

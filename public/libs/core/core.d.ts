@@ -247,6 +247,8 @@ declare module net {
         api_user_var_swap_create_order: string;
         /**--平台入口配置获取--平台入口配置获取*/
         api_plat_var_config: string;
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: string;
     };
     /**事件*/
     var EventType: {
@@ -494,6 +496,8 @@ declare module net {
         api_user_var_swap_create_order: string;
         /**--平台入口配置获取--平台入口配置获取*/
         api_plat_var_config: string;
+        /**--平台入口配置获取--检测接口速度*/
+        api_test_speed: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -809,6 +813,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_sms_transfer extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 检测接口速度
+ */
+declare module net {
+    class cmd_api_test_speed extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

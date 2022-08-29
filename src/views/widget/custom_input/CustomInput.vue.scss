@@ -12,3 +12,7 @@ input {
 .text-disabled{
   // color: #4c5d7f !important;
 }
+
+input[type=number] {
+    -moz-appearance:textfield;
+}

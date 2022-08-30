@@ -35,7 +35,7 @@ export default class PageBonus extends AbstractView {
     private timer: any = null;
 
     get bonus_rank() {
-        return this.myProxy.pageData.bonus_rank;
+        return this.myProxy.pageData.bonus_rank.slice(0, 5);
     }
 
     get bonus_recently() {

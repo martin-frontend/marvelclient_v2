@@ -13,6 +13,8 @@ export default class DialogBonusRanking extends AbstractView {
     myProxy: DialogBonusRankingProxy = this.getProxy(DialogBonusRankingProxy);
     pagebonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     pageData = this.myProxy.pageData;
+    dataList = this.pagebonusProxy.pageData.bonus_rank;
+    dataRank = this.pagebonusProxy.pageData.rank;
 
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
@@ -30,9 +32,6 @@ export default class DialogBonusRanking extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if (this.pageData.bShow) {
-            this.myProxy.api_plat_var_bonus_rank();
-        }
     }
 
     private iconsPrize: any = {

@@ -8,9 +8,9 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5">
-            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y content">
+            <v-sheet v-if="dataList.length>0" color="transparent" class="scroll-y content">
                 <div class="mx-1 mb-1 colorText2--text text-caption text-sm-subtitle-1 font-weight-bold">
-                    <span v-if="pageData.rank <= 50">{{LangUtil("您当前排名第{0}名", pageData.rank)}}</span>
+                    <span v-if="dataRank <= 50">{{LangUtil("您当前排名第{0}名", dataRank)}}</span>
                     <span v-else>{{LangUtil("您当日分红没有进入排名")}}</span>
                 </div>
                 <v-card height="40" class="horizontal-gradient rounded-lg rounded-card d-flex align-center mb-2" >
@@ -26,7 +26,7 @@
                 <v-card
                 height="50"
                 class="horizontal-gradient rounded-lg rounded-card d-flex align-center mb-1"
-                v-for="(item, index) of pageData.list"
+                v-for="(item, index) of dataList"
                 :key="index"
                 >
                     <v-row no-gutters class="colorText4--text text-caption text-sm-subtitle-1">
@@ -44,8 +44,7 @@
                     </v-row>
                 </v-card>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
+            <ListNodata v-if="dataList.length == 0" height="411" />
         </v-card-text>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
 </v-dialog>

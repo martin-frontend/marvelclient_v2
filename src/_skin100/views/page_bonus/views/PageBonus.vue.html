@@ -220,7 +220,7 @@
                         </v-col>
                         <v-row no-gutters class="mx-4 mx-lg-0 mb-5 d-flex flex-column" v-if="!$vuetify.breakpoint.lgAndUp">
                             <div class="text-subtitle-1 text-sm-h5 white--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
-                                {{LangUtil("规则说明321")}}
+                                {{LangUtil("规则说明")}}
                             </div>
                             <div class="text-caption white-text2 mx-2">
                                 <div>{{LangUtil("质押规则说明1")}}</div>
@@ -234,7 +234,7 @@
             </v-col>
             <v-col lg="5" v-if="$vuetify.breakpoint.lgAndUp">
                 <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-5 text-sm-subtitle-1 left-item horizontal-gradient" color="transparent" elevation="0" >
-                    <div class="text-16  font-weight-medium">{{LangUtil("规则说明123")}}</div>
+                    <div class="text-16  font-weight-medium">{{LangUtil("规则说明")}}</div>
                     <div class="option-text text-13">
                         <div>{{LangUtil("质押规则说明1")}}</div>
                         <div>{{LangUtil("质押规则说明2")}}</div>
@@ -342,7 +342,7 @@
                     class="rounded-pill"
                     elevation="0"
                     :text="listQuery.cate != 0"
-                    :color="listQuery.cate == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    :color="listQuery.cate == 0 ? 'gradient-type2' : 'white--text'"
                     @click="onTabClick(0)"
                 >
                     <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-web</v-icon> -->
@@ -353,7 +353,7 @@
                     class="rounded-pill"
                     elevation="0"
                     :text="listQuery.cate != 1"
-                    :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    :color="listQuery.cate == 1 ? 'gradient-type2' : 'white--text'"
                     @click="onTabClick(1)"
                 >
                     <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-human-handsdown</v-icon> -->
@@ -378,7 +378,7 @@
                             <v-col cols="2" class="d-flex justify-center align-center white-text2" v-if="$vuetify.breakpoint.width > 600">
                                 {{LangUtil("每100{0}分红", plat_stake_info.coin_name_unique)}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center white-text2">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4" :class="$vuetify.breakpoint.xsOnly?'':'pr-6'" class="d-flex justify-end align-center  white-text2">
                                 {{LangUtil("总计已派发")}}
                             </v-col>
                         </v-row>
@@ -408,7 +408,7 @@
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end  align-center">
                                 <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"
@@ -438,7 +438,9 @@
                 <v-sheet color="transparent" v-if="listQuery.cate == 1">
                     <div class="mb-sm-4 mb-2 d-flex justify-space-around listitem">
                         <v-row no-gutters class="d-flex flex-row">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-center align-center white-text2">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-start align-center white-text2"
+                                :class="$vuetify.breakpoint.xsOnly?'text-12':'text-14'"
+                                >
                                 {{LangUtil("日期")}}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center white-text2">
@@ -450,14 +452,16 @@
                             <v-col cols="2" class="d-flex justify-center align-center white-text2" v-if="$vuetify.breakpoint.width > 600">
                                 {{LangUtil("每100{0}分红", plat_stake_info.coin_name_unique)}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center white-text2">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
+                                :class="$vuetify.breakpoint.xsOnly?'':'pr-6'"
+                                class="d-flex justify-end align-center white-text2">
                                 {{LangUtil("已派发")}}
                             </v-col>
                         </v-row>
                     </div>
                     <div v-for="(item, index) in user_bonus.list" :key="index">
                         <v-row no-gutters class="d-flex flex-row mt-sm-4 mt-2 mb-sm-5 mb-1 listitem">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-start align-center">
                                 {{ getDateTime(item.date) }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
@@ -480,7 +484,7 @@
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-end align-center">
                                 <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"

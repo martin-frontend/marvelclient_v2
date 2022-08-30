@@ -5,7 +5,6 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogBonusRankingMediator from "../mediator/DialogBonusRankingMediator";
 import DialogBonusRankingProxy from "../proxy/DialogBonusRankingProxy";
 import LangUtil from "@/core/global/LangUtil";
-import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PageBonusProxy from "@/views/page_bonus/proxy/PageBonusProxy";
 
 @Component
@@ -16,7 +15,6 @@ export default class DialogBonusRanking extends AbstractView {
     dataList = this.pagebonusProxy.pageData.bonus_rank;
     dataRank = this.pagebonusProxy.pageData.rank;
 
-    GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
 
     plat_stake_info = this.pagebonusProxy.pageData.plat_stake_info;

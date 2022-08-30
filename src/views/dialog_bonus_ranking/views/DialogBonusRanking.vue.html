@@ -1,0 +1,50 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18 font-weight-regular">{{LangUtil("每日分红排行榜")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5">
+            <v-sheet v-if="dataList.length>0" color="transparent" class="scroll-y content">
+                <div class="mx-1 mb-1 colorText2--text text-caption text-sm-subtitle-1 font-weight-bold">
+                    <span v-if="dataRank == 0">{{LangUtil("您当日分红没有进入排名")}}</span>
+                    <span v-else>{{LangUtil("您当前排名第{0}名", dataRank)}}</span>
+                </div>
+                <v-card height="40" class="horizontal-gradient rounded-lg rounded-card d-flex align-center mb-2" >
+                    <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile font-weight-bold">
+                        <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("用户")}} </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center">
+                            {{LangUtil("质押{0}数量", plat_stake_info.coin_name_unique)}}
+                        </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("获得分红")}} </v-col>
+                    </v-row>
+                </v-card>
+                <v-card
+                height="50"
+                class="horizontal-gradient rounded-lg rounded-card d-flex align-center mb-1"
+                v-for="(item, index) of dataList"
+                :key="index"
+                >
+                    <v-row no-gutters class="colorText4--text text-caption text-sm-subtitle-1">
+                        <v-col cols="2" class="d-flex justify-center align-center">
+                            <div v-if="index < 3">
+                                <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :50" contain :src="iconsPrize[index]"> </v-img>
+                            </div>
+                            <div v-else class="d-flex justify-center align-center white--text text-18 text-sm-h5">{{ index + 1 }}</div>
+                        </v-col>
+                        <v-col cols="3" class="text-truncate d-flex justify-center align-center">
+                            <span class="text-truncate">{{ item.username }}</span>
+                        </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center"> {{ item.stake_amount }} </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center"> {{ item.bonus_amount }} </v-col>
+                    </v-row>
+                </v-card>
+            </v-sheet>
+            <ListNodata v-if="dataList.length == 0" height="411" />
+        </v-card-text>
+    </v-card>
+</v-dialog>

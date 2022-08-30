@@ -12,6 +12,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import { getTodayGMT } from "@/core/global/Functions";
+import dialog_bonus_ranking from "@/views/dialog_bonus_ranking";
 
 @Component
 export default class PageBonus extends AbstractView {
@@ -34,7 +35,7 @@ export default class PageBonus extends AbstractView {
     private timer: any = null;
 
     get bonus_rank() {
-        return this.myProxy.pageData.bonus_rank;
+        return this.myProxy.pageData.bonus_rank.slice(0, 5);
     }
 
     get bonus_recently() {
@@ -76,6 +77,14 @@ export default class PageBonus extends AbstractView {
         dialog_pledge_records.show();
     }
 
+    handleRecords() {
+        dialog_wallet.show(2, 51);
+    }
+
+    handleMore() {
+        dialog_bonus_ranking.show();
+    }
+
     jumpTo(target: string) {
         window.scrollTo({
             //@ts-ignore
@@ -83,10 +92,6 @@ export default class PageBonus extends AbstractView {
             behavior: "smooth",
         });
         this.onTabClick(1);
-    }
-
-    handleRecords() {
-        dialog_wallet.show(2, 51);
     }
 
     onTabClick(cate: number) {

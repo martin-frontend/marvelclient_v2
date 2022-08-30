@@ -193,6 +193,7 @@
             <div class="text-subtitle-1 text-sm-h5 font-weight-medium">{{LangUtil("分红数据")}}</div>
         </div>
         <v-row no-gutters class="pb-2 pb-sm-5">
+            <!-- 近5日分红金额 -->
             <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
                 <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6" :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
                     <v-row no-gutters>
@@ -228,10 +229,16 @@
                     </v-row>
                 </v-card>
             </v-col>
+             <!-- 分红排行榜 -->
             <v-col cols="12" lg="4">
                 <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
-                    <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-3 mb-sm-5 ml-3">
-                        {{LangUtil("分红排行榜")}}
+                    <div class="d-flex justify-space-between">
+                        <div class="text-subtitle-1 text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-3 mb-sm-5 ml-3">
+                            {{LangUtil("分红排行榜")}}
+                        </div>
+                        <div class="text-subtitle-2 text-sm-h6 colorTextBlueLight3--text font-weight-medium text-decoration-underline mb-3 mb-sm-5 mr-3 cursor-pointer" @click="handleMore">
+                            {{LangUtil("查看更多")}}
+                        </div>
                     </div>
                     <v-row no-gutters class="colorText6--text text-caption text-sm-subtitle-1 rank-height mobile">
                         <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>

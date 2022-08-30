@@ -138,6 +138,8 @@ module core {
         business_card?: string;
         /**上級个人名片*/
         invite_user_business_card?: string;
+        /**是否显示代理统计*/
+        is_show_agent_statistic?: number;
     }
 
     /**

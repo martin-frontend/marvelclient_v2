@@ -8,6 +8,7 @@ import dialog_performance from "@/views/dialog_performance";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/views/dialog_wallet";
 import dialog_message_box from "@/views/dialog_message_box";
+import dialog_promotion_statistics from "@/views/dialog_promotion_statistics";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import dialog_preview from "@/views/dialog_preview";
@@ -51,6 +52,10 @@ export default class PageExtension extends AbstractView {
     handleRecords() {
         // 开启弹窗: 平台钱包/账户明细/推广返佣
         dialog_wallet.show(2, 15);
+    }
+
+    handlerPromotion() {
+        dialog_promotion_statistics.show();
     }
 
     /**领取奖励 */

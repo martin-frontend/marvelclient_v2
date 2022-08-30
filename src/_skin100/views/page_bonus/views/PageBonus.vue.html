@@ -220,7 +220,7 @@
                         </v-col>
                         <v-row no-gutters class="mx-4 mx-lg-0 mb-5 d-flex flex-column" v-if="!$vuetify.breakpoint.lgAndUp">
                             <div class="text-subtitle-1 text-sm-h5 white--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
-                                {{LangUtil("规则说明")}}
+                                {{LangUtil("规则说明321")}}
                             </div>
                             <div class="text-caption white-text2 mx-2">
                                 <div>{{LangUtil("质押规则说明1")}}</div>
@@ -234,7 +234,7 @@
             </v-col>
             <v-col lg="5" v-if="$vuetify.breakpoint.lgAndUp">
                 <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-5 text-sm-subtitle-1 left-item horizontal-gradient" color="transparent" elevation="0" >
-                    <div class="text-16  font-weight-medium">{{LangUtil("规则说明")}}</div>
+                    <div class="text-16  font-weight-medium">{{LangUtil("规则说明123")}}</div>
                     <div class="option-text text-13">
                         <div>{{LangUtil("质押规则说明1")}}</div>
                         <div>{{LangUtil("质押规则说明2")}}</div>
@@ -248,7 +248,7 @@
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("分红数据")}}</div>
         </div>
         <v-row no-gutters class="pb-2 pb-sm-3">
-            <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
+            <v-col cols="12" lg="7" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
                 <v-card class="horizontal-gradient rounded-lg" :class="$vuetify.breakpoint.xsOnly ? 'py12-5 px15':'mb-lg-0 px-4 px-sm-6'" color="transparent" elevation="0" :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
                     <v-row no-gutters>
                         <v-col cols="12" lg="8" class="text-caption text-sm-subtitle-1">
@@ -286,25 +286,27 @@
                     </v-row>
                 </v-card>
             </v-col>
-            <v-col cols="12" lg="4">
-                <v-card class="horizontal-gradient rounded-lg " :class="$vuetify.breakpoint.xsOnly ? 'py12-5 px15':'mb-lg-0 px-4 px-sm-6 py-4 py-sm-6'" color="transparent" elevation="0" height="100%">
+            <v-col cols="12" lg="5">
+                <v-card class="horizontal-gradient rounded-lg " :class="$vuetify.breakpoint.xsOnly ? 'py12-5 px15':'mb-lg-0 px-4 px-sm-4 py-4 py-sm-6'" color="transparent" elevation="0" height="100%">
                     <div class="text-subtitle-1 text-16 white--text font-weight-medium mb-2 mb-sm-2">
                         <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-2.png" />
                         <span class="ml-1 text-15"  style="vertical-align: middle;">
                             {{LangUtil("分红排行榜")}}
                         </span>
                     </div>
-                    <v-row no-gutters class="white-text2 text-caption text-16 rank-height mobile">
-                        <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("用户")}} </v-col>
-                        <v-col cols="4" class="d-flex justify-center align-center">
+                    <v-row no-gutters class="white-text2 text-caption text-16 rank-height mobile" 
+                    :class="$vuetify.breakpoint.xsOnly?'ml-n4':'ml-n7'"
+                    >
+                        <v-col cols="2" class="d-flex justify-center align-center text-14"> {{LangUtil("排行")}} </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center text-14"> {{LangUtil("用户")}} </v-col>
+                        <v-col cols="4" class="d-flex justify-center align-center text-14">
                             {{LangUtil("质押")}}{{ plat_stake_info.coin_name_unique }}{{LangUtil("数量")}}
                         </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("获得分红")}} </v-col>
+                        <v-col cols="3" class="d-flex justify-center align-center text-14"> {{LangUtil("获得分红")}} </v-col>
                     </v-row>
                     <v-row
                         no-gutters
-                        class="white--text text-caption text-sm-subtitle-1 rank-height mobile-list"
+                        class="white--text text-caption text-sm-subtitle-1 rank-height mobile-list ml-n5"
                         v-for="(item, index) of bonus_rank"
                         :key="index"
                     >

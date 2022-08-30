@@ -69,11 +69,11 @@
     }
     ::v-deep .v-progress-linear__buffer {
         // background: #121e36;
-        background:rgba(255, 255, 255, 0.1) ;
+        background: rgba(255, 255, 255, 0.1);
     }
     ::v-deep .v-progress-linear__background {
         // background: #121e36;
-        background:none !important;
+        background: none !important;
         border-color: transparent !important;
         border-width: 0px;
     }
@@ -254,7 +254,7 @@
             }
         }
         .left_bg {
-            height: 225px !important;
+            height: 250px !important;
             .mine_level_title {
                 font-size: 18px !important;
             }
@@ -306,5 +306,17 @@
     }
     .tc {
         color: rgba(255, 255, 255, 0.4);
+    }
+}
+.vip-card-bg {
+    margin-top: 27px;
+    padding-top: 40px;
+    position: relative;
+    background-image: linear-gradient(90deg, #1d2a39 0%, #152231 97%);
+    background-size: cover;
+    border-radius: 8px;
+    .vip-icon {
+        position: absolute;
+        top: -20px;
     }
 }

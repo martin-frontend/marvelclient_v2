@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
-export default class CustomInput extends AbstractView {
+export default class CustomDatePick extends AbstractView {
     @Prop() icon!: string;
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;

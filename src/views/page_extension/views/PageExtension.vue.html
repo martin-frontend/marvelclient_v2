@@ -257,8 +257,9 @@
                             class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
                             color="colorExtensionBtn"
                             @click="handlerPromotion"
+                            v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
                         >
-                            {{LangUtil("推广统计")}}
+                            {{LangUtil("代理统计")}}
                         </v-btn>
                         <v-btn
                             :min-width="$vuetify.breakpoint.xsOnly? 90 : 120"

@@ -14,7 +14,7 @@ export default class DialogPromotionStatisticsMediator extends AbstractMediator{
         const myProxy:DialogPromotionStatisticsProxy = getProxy(DialogPromotionStatisticsProxy);
         switch(notification.getName()){
             case net.EventType.api_user_var_agent_var_statistic_promotion:
-                // myProxy.setFloorRange(body);
+                myProxy.setData(body);
                 break;
         }
     }

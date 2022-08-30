@@ -20,12 +20,34 @@ export default class DialogPromotionStatistics extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    onQuery() {
+        this.myProxy.onQuery();
+    }
+
+    @Watch("pageData.search.agent_user_id")
+    onWatchSearchAgentId(val: any) {
+        if (val != "") {
+            this.pageData.idButtonActive = true;
+        } else {
+            this.pageData.idButtonActive = false;
+        }
+    }
+
+    @Watch("pageData.search.dateArr")
+    onWatchSearchDate(val: any) {
+        if (val != "") {
+            this.pageData.dateButtonActive = true;
+        } else {
+            this.pageData.dateButtonActive = false;
+        }
+    }
+
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            this.myProxy.resetQuery();
-            this.myProxy.api_user_var_agent_var_statistic_promotion();
+            this.myProxy.reset();
+            // this.myProxy.api_user_var_agent_var_statistic_promotion();
         }
     }
 }

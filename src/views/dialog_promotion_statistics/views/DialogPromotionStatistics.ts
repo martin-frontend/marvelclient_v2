@@ -47,7 +47,7 @@ export default class DialogPromotionStatistics extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.reset();
-            // this.myProxy.api_user_var_agent_var_statistic_promotion();
+            this.myProxy.onQuery();
         }
     }
 }

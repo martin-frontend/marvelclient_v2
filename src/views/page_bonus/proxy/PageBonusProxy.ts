@@ -37,7 +37,7 @@ export default class PageBonusProxy extends puremvc.Proxy {
             stake_bonus_awaiting_num: "", // 可领取分红
             stake_bonus_received_num: "", // 个人累计分红
         },
-        bonus_rank: <any>[], //排行版
+        bonus_rank: <any>[], //排行榜
         rank: "", //排名
         bonus_recently: <any>[],
         plat_bonus: <any>{

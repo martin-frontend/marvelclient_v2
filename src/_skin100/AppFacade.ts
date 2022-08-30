@@ -24,8 +24,8 @@ export default class AppFacade {
         //版本号
         core.version_str = getVersion();
         core.version = new Date(getVersion()).getTime();
-        if(process.env.VUE_APP_ENV == "development"){
-            core.version*=2;
+        if (process.env.VUE_APP_ENV == "development") {
+            core.version *= 2;
         }
         GameConfig.load();
     }
@@ -33,7 +33,7 @@ export default class AppFacade {
     private initProxy() {
         this.facade.registerProxy(new SelfProxy(SelfProxy.NAME));
         this.facade.registerProxy(new GameProxy(GameProxy.NAME));
-        this.facade.registerProxy(new NoticeProxy(NoticeProxy.NAME));
+        // this.facade.registerProxy(new NoticeProxy(NoticeProxy.NAME));
     }
 
     private initCommand() {

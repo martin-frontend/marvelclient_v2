@@ -1,5 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import NoticeProxy from "@/proxy/NoticeProxy";
+// import NoticeProxy from "@/proxy/NoticeProxy";
+import NoticeProxy from "@/_skin100/proxy/NoticeProxy";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component

@@ -37,7 +37,8 @@ export default class PageBonusProxy extends puremvc.Proxy {
             stake_bonus_awaiting_num: "", // 可领取分红
             stake_bonus_received_num: "", // 个人累计分红
         },
-        bonus_rank: <any>[],
+        bonus_rank: <any>[], //排行版
+        rank: "", //排名
         bonus_recently: <any>[],
         plat_bonus: <any>{
             list: [],
@@ -57,7 +58,8 @@ export default class PageBonusProxy extends puremvc.Proxy {
     }
 
     setBonusRank(data: any) {
-        this.pageData.bonus_rank = data;
+        this.pageData.bonus_rank = data.list;
+        this.pageData.rank = data.rank;
     }
 
     setBonusRecently(data: any) {
@@ -117,7 +119,7 @@ export default class PageBonusProxy extends puremvc.Proxy {
 
     /**--分红--昨日分红排行榜*/
     api_plat_var_bonus_rank() {
-        this.sendNotification(net.HttpType.api_plat_var_bonus_rank, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_bonus_rank, { plat_id: core.plat_id, user_id: core.user_id });
     }
 
     /**--分红--领取分红*/

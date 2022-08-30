@@ -57,9 +57,9 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
         const [ from_date, to_date ] = dateArr;
 
         Object.assign(this.pageData.listQuery, {
-            agent_user_id,
-            from_date,
-            to_date,
+            agent_user_id: agent_user_id || core.user_id,
+            from_date: from_date || dateFormat(getTodayOffset(-6), "yyyy-MM-dd"),
+            to_date: to_date || dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd"),
         })
         this.api_user_var_agent_var_statistic_promotion();
     }

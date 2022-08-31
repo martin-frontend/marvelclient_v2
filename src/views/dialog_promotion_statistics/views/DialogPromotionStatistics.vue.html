@@ -27,6 +27,7 @@
                         transition="scale-transition"
                         offset-y
                         min-width="auto"
+                        :return-value.sync="pageData.search.dateArr"
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <CustomDatePick
@@ -46,6 +47,8 @@
                         <v-date-picker
                             v-model="pageData.search.dateArr"
                             range
+                            no-title
+                            scrollable
                         ></v-date-picker>
                     </v-menu>
                 </div>

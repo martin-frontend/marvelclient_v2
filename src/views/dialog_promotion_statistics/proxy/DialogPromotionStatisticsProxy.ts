@@ -1,8 +1,8 @@
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
     static NAME = "DialogPromotionStatisticsProxy";
- 
     pageData = {
         loading: false,
         bShow: false,
@@ -20,12 +20,14 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             agent_user_id: '',
             dateArr: <any>[],
         },
+        // 是否顯示公式
         isShowFormula: 0,
         formulaData: {
             user_loss: "",
             bonus_ratio: "",
             bonus: ""
         },
+        formulaString: '',
         tableData: <any>[]
     };
     //如果是列表，使用以下数据，否则删除
@@ -39,15 +41,16 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             agent_user_id: core.user_id,
             dateArr: [dateFormat(getTodayOffset(-6), "yyyy-MM-dd"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd")],
         });
-        this.pageData.tableData.length = 0;
-        this.pageData.isShowFormula = 0;
     }
 
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.list = data;
         this.pageData.isShowFormula = data.user_loss_formula.is_show; 
-        this.pageData.formulaData = { ...data.user_loss_formula?.data };
+        if(data.user_loss_formula.is_show) {
+            this.pageData.formulaData = { ...data.user_loss_formula.data };
+            this.converToFormulaString(data.user_loss_formula.formula);
+        }
         this.converToTableData();
     }
 
@@ -57,10 +60,14 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
         const [ from_date, to_date ] = dateArr;
 
         Object.assign(this.pageData.listQuery, {
-            agent_user_id: agent_user_id,
-            from_date: from_date,
-            to_date: to_date,
+            agent_user_id,
+            from_date,
+            to_date,
         })
+    
+        this.pageData.tableData.length = 0;
+        this.pageData.isShowFormula = 0;
+    
         this.api_user_var_agent_var_statistic_promotion();
     }
 
@@ -190,8 +197,6 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             group_bonus_pool_128,
         } = this.pageData.list.statistic_info;
 
-        this.pageData.tableData.length = 0;
-
         this.pageData.tableData.push(
             { name: '人数', directly: total_directly_users, group: total_group_users },
             { name: '新增', directly: directly_users, group: group_users },
@@ -253,5 +258,47 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             { name: '链游输赢', directly: directly_win_loss_128, group: group_win_loss_128 },
             { name: '链游奖池', directly: directly_bonus_pool_128, group: group_bonus_pool_128 },
         )
+    }
+
+    converToFormulaString(formula: any) {
+        const keyArr = Object.keys(formula);
+        const res = keyArr.map((key)=> {
+            let label = '';
+            const arr = formula[key].map(this.converToKeyName);
+            if(key == "others") {
+                return arr.join(' + ')
+            }
+
+            if(key == 'backwater') {
+                label = LangUtil('挖矿返水');
+            }
+            if(key == 'commission') {
+                label = LangUtil('推广佣金');
+            }
+            if(key == 'vendor_fee') {
+                label = LangUtil('三方厂商游戏费用');
+            }
+            if(key == 'bonus_pool') {
+                label = LangUtil('奖池分红');
+            }
+            if(key == 'win_loss') {
+                label = LangUtil('玩家总输赢');
+            }
+            return `${label} (${arr.join(' / ')})`
+        })
+        this.pageData.formulaString = res.join(' + ');
+    }
+
+    converToKeyName(key: string) {
+        if(key == "backwater_2" || key == "commission_2" || key == "vendor_fee_2" || key == "win_loss_2" || key == "bonus_pool_2") return LangUtil('棋牌');
+        if(key == "backwater_4" || key == "commission_4" || key == "vendor_fee_4" || key == "win_loss_4" || key == "bonus_pool_4") return LangUtil('彩票');
+        if(key == "backwater_8" || key == "commission_8" || key == "vendor_fee_8" || key == "win_loss_8" || key == "bonus_pool_8") return LangUtil('捕鱼');
+        if(key == "backwater_16" || key == "commission_16" || key == "vendor_fee_16" || key == "win_loss_16" || key == "bonus_pool_16") return LangUtil('电子');
+        if(key == "backwater_32" || key == "commission_32" || key == "vendor_fee_32" || key == "win_loss_32" || key == "bonus_pool_32") return LangUtil('真人');
+        if(key == "backwater_64" || key == "commission_64" || key == "vendor_fee_64" || key == "win_loss_64" || key == "bonus_pool_64") return LangUtil('体育电竞');
+        if(key == "backwater_128" || key == "commission_128" || key == "vendor_fee_128" || key == "win_loss_128" || key == "bonus_pool_128") return LangUtil('链游');
+        if(key == "activity_bonus") return LangUtil('活动红利');
+        if(key == "recharge_fee") return LangUtil('充值手续费');
+        if(key == "exchange_fee") return LangUtil('提现手续费');
     }
 }

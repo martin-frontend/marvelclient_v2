@@ -54,7 +54,7 @@
                     <span v-if="pageData.listQuery.from_date && pageData.listQuery.to_date">{{`${pageData.listQuery.from_date} ${LangUtil("至")} ${pageData.listQuery.to_date} ${LangUtil("统计")}`}}</span>
                 </div>
             </div>
-            <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 240px)':'700px'}">
+            <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 250px)':'650px'}">
                 <v-sheet
                     v-if="pageData.isShowFormula == 1 && pageData.formulaData"
                     color="#1d3256"

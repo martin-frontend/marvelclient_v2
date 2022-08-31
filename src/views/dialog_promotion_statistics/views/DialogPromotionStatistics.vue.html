@@ -1,0 +1,120 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">{{LangUtil("代理统计")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5">
+            <div class="mb-2 ml-2">
+                <div class="d-flex" :class="{ 'flex-column': $vuetify.breakpoint.xsOnly }">
+                    <CustomInput
+                        height="41"
+                        :placeholder="LangUtil('输入查询ID')"
+                        v-model="pageData.search.agent_user_id"
+                        :class="$vuetify.breakpoint.xsOnly? 'mb-2' : 'mr-2'"
+                        class="w-280"
+                    >
+                        <v-btn class="rounded-lg" :color="pageData.idButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.idButtonActive" min-width="61" height="30" @click="onQuery">
+                            <span :class="pageData.idButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                        </v-btn>
+                    </CustomInput>
+                    <v-menu
+                        ref="menu"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomDatePick
+                                height="41"
+                                :placeholder="LangUtil('请选择时间')"
+                                v-model="pageData.search.dateArr"
+                                v-bind="attrs"
+                                v-on="on"
+                                readonly
+                                class="w-280"
+                            >
+                                <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
+                                    <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                                </v-btn>
+                            </CustomDatePick>
+                        </template>
+                        <v-date-picker
+                            v-model="pageData.search.dateArr"
+                            range
+                            no-title
+                            scrollable
+                        ></v-date-picker>
+                    </v-menu>
+                </div>
+                <div class="colorText6--text text-body-2 my-3">
+                    <span v-if="pageData.listQuery.agent_user_id" class="mr-2">{{`${LangUtil("ID")}  ${pageData.listQuery.agent_user_id} `}}</span>
+                    <span v-if="pageData.listQuery.from_date && pageData.listQuery.to_date">{{`${pageData.listQuery.from_date} ${LangUtil("至")} ${pageData.listQuery.to_date} ${LangUtil("统计")}`}}</span>
+                </div>
+            </div>
+            <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 250px)':'650px'}">
+                <v-sheet
+                    v-if="pageData.isShowFormula == 1 && pageData.formulaData"
+                    color="#1d3256"
+                    class="rounded-lg px-4 py-3 colorText6--text font-weight-bold"
+                >
+                    <div>
+                        {{ `${LangUtil('净亏损(团队)')} = ${pageData.formulaString}` }}
+                    </div>
+                    <v-divider class="my-3"></v-divider>
+                    <div class="d-flex justify-space-around text-center">
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("净亏损(团队)") }}</span>
+                            <span class="text-green">{{ pageData.formulaData.user_loss }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("分红比例") }}</span>
+                            <span class="text-yellow">{{ pageData.formulaData.bonus_ratio }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("分红") }}</span>
+                            <span class="text-red">{{ pageData.formulaData.bonus }}</span>
+                        </div>
+                    </div>
+                </v-sheet>
+
+                <div class="py-2">
+                    <v-card color="#1d3256" height="40" class="d-flex align-center rounded-lg">
+                        <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
+                            <v-col class="d-flex justify-center align-center">
+                                {{ LangUtil("统计类型") }}
+                            </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ LangUtil("直属统计") }}
+                            </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ LangUtil("团队统计") }}
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <v-card v-for="{ name, directly, group } of pageData.tableData" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
+                        <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
+                            <v-col class="d-flex justify-center align-center">
+                                {{ LangUtil(name) }}
+                            </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ directly }}
+                            </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ group }}
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </div>
+                <ListNodata :height="$vuetify.breakpoint.xsOnly ? 200:300" v-if="pageData.tableData.length == 0"/>
+
+            </div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading"/>
+</v-dialog>

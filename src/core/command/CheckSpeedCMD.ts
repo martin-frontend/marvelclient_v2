@@ -49,7 +49,7 @@ export default class CheckSpeedCMD extends puremvc.SimpleCommand {
                 }
                 alertStr += "APIURL: " + GlobalVar.host_urls + "\n";
                 alertStr += "URL: " + location.host;
-                alert(alertStr);
+                // alert(alertStr);
             }
         }
     }

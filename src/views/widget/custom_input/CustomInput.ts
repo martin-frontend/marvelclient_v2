@@ -11,20 +11,16 @@ export default class CustomInput extends AbstractView {
     @Prop()readonly!:number;
     @Prop() height!: string;
     
-    inputValue = this.getValue;
+    inputValue = '';
 
     @Prop() value!: any;
-    @Watch("value")
-    onValueChange() {
-        this.inputValue = this.value;
+    @Watch("value", { immediate: true })
+    onValueChange(val: string) {
+        this.inputValue = val;
     }
 
     onInput(value: any) {
         this.$emit("input", this.inputValue);
-    }
-
-    get getValue() {
-        return this.value ? this.value : "";
     }
 
     onClear() {

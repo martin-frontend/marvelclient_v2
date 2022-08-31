@@ -15,6 +15,7 @@
                         :placeholder="LangUtil('输入查询ID')"
                         v-model="pageData.search.agent_user_id"
                         :class="$vuetify.breakpoint.xsOnly? 'mb-2' : 'mr-2'"
+                        class="w-280"
                     >
                         <v-btn class="rounded-lg" :color="pageData.idButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.idButtonActive" min-width="61" height="30" @click="onQuery">
                             <span :class="pageData.idButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
@@ -35,6 +36,7 @@
                                 v-bind="attrs"
                                 v-on="on"
                                 readonly
+                                class="w-280"
                             >
                                 <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
                                     <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
@@ -44,6 +46,8 @@
                         <v-date-picker
                             v-model="pageData.search.dateArr"
                             range
+                            no-title
+                            scrollable
                         ></v-date-picker>
                     </v-menu>
                 </div>
@@ -52,14 +56,14 @@
                     <span v-if="pageData.listQuery.from_date && pageData.listQuery.to_date">{{`${pageData.listQuery.from_date} ${LangUtil("至")} ${pageData.listQuery.to_date} ${LangUtil("统计")}`}}</span>
                 </div>
             </div>
-            <div class="overflow-auto" style="height: 500px">
+            <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 250px)':'650px'}">
                 <v-sheet
                     v-if="pageData.isShowFormula == 1 && pageData.formulaData"
                     color="#1d3256"
                     class="rounded-lg px-4 py-3 colorText6--text font-weight-bold"
                 >
                     <div>
-                        {{ LangUtil('净亏损(团队) = 玩家总输赢 (真人/链游/体育电竞/彩票) + 推广佣金 (真人/链游/体育电竞/彩票) + 挖矿反水 (真人/链游/体育电竞/彩票) + 活动红利 + 三方厂商游戏费用 (真人/链游/体育电竞/彩票) + 奖池分红') }}
+                        {{ `${LangUtil('净亏损(团队)')} = ${pageData.formulaString}` }}
                     </div>
                     <v-divider class="my-3"></v-divider>
                     <div class="d-flex justify-space-around text-center">
@@ -94,7 +98,7 @@
                     </v-card>
 
                     <v-card v-for="{ name, directly, group } of pageData.tableData" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
-                        <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
+                        <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
                             <v-col class="d-flex justify-center align-center">
                                 {{ LangUtil(name) }}
                             </v-col>

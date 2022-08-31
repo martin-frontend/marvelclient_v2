@@ -5,6 +5,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPromotionStatisticsMediator from "../mediator/DialogPromotionStatisticsMediator";
 import DialogPromotionStatisticsProxy from "../proxy/DialogPromotionStatisticsProxy";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_message_box from "@/views/dialog_message_box";
 
 @Component
 export default class DialogPromotionStatistics extends AbstractView {
@@ -21,6 +22,10 @@ export default class DialogPromotionStatistics extends AbstractView {
     }
 
     onQuery() {
+        if(this.pageData.search.agent_user_id == '') {
+            dialog_message_box.alert(LangUtil("请输入ID"));
+            return;
+        }
         this.myProxy.onQuery();
     }
 

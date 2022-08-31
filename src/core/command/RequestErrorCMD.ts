@@ -22,6 +22,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             const ERROR_CODE_PLAY_GAME = [1102136, 1102128];
             //注册失败
             const ERROR_CODE_REGISTER_FAIL = [1100114, 1100119, 1100117];
+            //无权限查询
+            const ERROR_CODE_NO_PERMISSION = [1103315];
 
             const selfProxy: SelfProxy = <any>this.facade.retrieveProxy(SelfProxy.NAME);
 
@@ -45,6 +47,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 dialog_message_box.confirm({ message: body.result.msg, okFun: dialog_real_name.show });
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
+            } else if (ERROR_CODE_NO_PERMISSION.includes(result.status)) {
+                dialog_message_box.alert(LangUtil("该用户ID无权限查询"));
             } else {
                 dialog_message_box.alert(body.result.msg);
             }

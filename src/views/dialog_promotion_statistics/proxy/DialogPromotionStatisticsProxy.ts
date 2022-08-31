@@ -36,8 +36,8 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             to_date: '',
         });
         Object.assign(this.pageData.search, {
-            agent_user_id: '',
-            dateArr: [],
+            agent_user_id: core.user_id,
+            dateArr: [dateFormat(getTodayOffset(-6), "yyyy-MM-dd"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd")],
         });
         this.pageData.tableData.length = 0;
         this.pageData.isShowFormula = 0;
@@ -57,9 +57,9 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
         const [ from_date, to_date ] = dateArr;
 
         Object.assign(this.pageData.listQuery, {
-            agent_user_id: agent_user_id || core.user_id,
-            from_date: from_date || dateFormat(getTodayOffset(-6), "yyyy-MM-dd"),
-            to_date: to_date || dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd"),
+            agent_user_id: agent_user_id,
+            from_date: from_date,
+            to_date: to_date,
         })
         this.api_user_var_agent_var_statistic_promotion();
     }

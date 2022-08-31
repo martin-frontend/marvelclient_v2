@@ -28,14 +28,37 @@ export default class Marquee1 extends AbstractView {
             const marqueeBox: any = this.$refs.marqueeBox;
             const marqueeText: any = this.$refs.marqueeText;
             if (marqueeBox && marqueeText) {
-                const fromY = marqueeBox.clientHeight;
-                const toY = -marqueeText.clientHeight;
-                const time = 7;
+                // const fromY = marqueeBox.clientHeight;
+                // const toY = -marqueeText.clientHeight;
+                // const time = 7;
+                // gsap.to(marqueeText, {
+                //     y: 0,
+                //     duration: 3,
+                //     ease: Linear.easeInOut,
+                //     onComplete: () => {
+                //         this.myProxy.next();
+                //     },
+                // });
+                // gsap.fromTo(
+                //     marqueeText,
+                //     { y: fromY },
+                //     {
+                //         y: toY,
+                //         duration: time,
+                //         ease: Linear.easeInOut,
+                //         onComplete: () => {
+                //             this.myProxy.next();
+                //         },
+                //     }
+                // );
+                const fromX = marqueeBox.clientWidth;
+                const toX = -marqueeText.clientWidth;
+                const time = (fromX - toX) / this.step;
                 gsap.fromTo(
                     marqueeText,
-                    { y: fromY },
+                    { x: fromX },
                     {
-                        y: toY,
+                        x: toX,
                         duration: time,
                         ease: Linear.easeNone,
                         onComplete: () => {
@@ -43,21 +66,6 @@ export default class Marquee1 extends AbstractView {
                         },
                     }
                 );
-                // const fromX = marqueeBox.clientWidth;
-                // const toX = -marqueeText.clientWidth;
-                // const time = (fromX - toX) / this.step;
-                // gsap.fromTo(
-                //     marqueeText,
-                //     { x: fromX },
-                //     {
-                //         x: toX,
-                //         duration: time,
-                //         ease: Linear.easeNone,
-                //         onComplete: () => {
-                //             this.myProxy.next();
-                //         },
-                //     }
-                // );
             }
         });
     }

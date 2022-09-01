@@ -1,3 +1,4 @@
+import { getVuetify } from "@/_skin100/plugins/vuetify";
 export default class PageGameListProxy extends puremvc.Proxy {
     static NAME = "PageGameListProxy";
 
@@ -37,7 +38,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         vendor_type: 0,
         vendor_id: 0,
         page_count: 1,
-        page_size: 30,
+        page_size: getVuetify().framework.breakpoint.xsOnly ? 30 : 32,
     };
 
     setHotGame(data: any) {

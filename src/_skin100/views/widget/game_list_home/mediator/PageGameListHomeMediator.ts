@@ -1,22 +1,23 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
-import PageGameListProxy from "../proxy/PageGameListProxy";
+import PageGameListProxy from "../proxy/PageGameListHomeProxy";
 import getProxy from "@/core/global/getProxy";
 
 export default class PageGameListMediator extends AbstractMediator {
     public onRegister(): void {
         const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
-        if (myProxy.config.loaded) {
-            myProxy.api_plat_var_game_all_index();
-        } else {
-            myProxy.api_plat_var_game_all_config();
-        }
+        // myProxy.api_plat_var_lobby_index();
+        // if (myProxy.config.loaded) {
+        //     myProxy.api_plat_var_game_all_index();
+        // } else {
+        //     myProxy.api_plat_var_game_all_config();
+        // }
     }
 
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_plat_var_lobby_index,
-            net.EventType.api_plat_var_game_all_config,
-            net.EventType.api_plat_var_game_all_index,
+            // net.EventType.api_plat_var_game_all_config,
+            // net.EventType.api_plat_var_game_all_index,
         ];
     }
 
@@ -39,12 +40,12 @@ export default class PageGameListMediator extends AbstractMediator {
                     }
                 }
                 break;
-            case net.EventType.api_plat_var_game_all_config:
-                myProxy.setConfig(body);
-                break;
-            case net.EventType.api_plat_var_game_all_index:
-                myProxy.setGameList(body);
-                break;
+            // case net.EventType.api_plat_var_game_all_config:
+            //     myProxy.setConfig(body);
+            //     break;
+            // case net.EventType.api_plat_var_game_all_index:
+            //     myProxy.setGameList(body);
+            //     break;
         }
     }
 }

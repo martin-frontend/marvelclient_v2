@@ -1,10 +1,10 @@
-export default class PageGameListProxy extends puremvc.Proxy {
-    static NAME = "PageGameListProxy";
+export default class PageGameListHomeProxy extends puremvc.Proxy {
+    static NAME = "PageGameListHomeProxy";
 
     public onRegister(): void {
         this.pageData.loading = true;
         this.api_plat_var_lobby_index();
-        this.api_plat_var_game_all_config();
+        // this.api_plat_var_game_all_config();
     }
 
     pageData = {

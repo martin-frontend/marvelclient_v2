@@ -72,7 +72,11 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
     }
 
     api_user_var_agent_var_statistic_promotion() {
-        this.sendNotification(net.HttpType.api_user_var_agent_var_statistic_promotion, objectRemoveNull(this.pageData.listQuery));
+        const obj: any = {
+            ...this.pageData.listQuery,
+            user_id: core.user_id,
+        };
+        this.sendNotification(net.HttpType.api_user_var_agent_var_statistic_promotion, objectRemoveNull(obj));
     }
 
     converToTableData() {

@@ -5,9 +5,10 @@ import NoticeProxy from "@/_skin100/proxy/NoticeProxy";
 import page_swap from "@/_skin100/views/page_swap";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import gsap, { Linear } from "gsap";
-
+import LangUtil from "@/core/global/LangUtil";
 @Component
 export default class Advertise extends AbstractView {
+    LangUtil = LangUtil;
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
     selectIndex = 0;
     progressObj = {

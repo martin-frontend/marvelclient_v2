@@ -89,7 +89,8 @@
                     v-model="form.username"
                 >
                     <template v-slot:pre>
-                        <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="36">
+                        <!-- <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="36"> -->
+                        <v-menu open-on-hover v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-left="36">
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="white--text mx-2">+{{form.area_code}}</div>
@@ -102,6 +103,7 @@
                                     <!-- <div class="text-20">|</div> -->
                                 </div>
                             </template>
+                            <div class="menu-space-20"></div>
                             <v-sheet class="pa-3 rounded-lg colorPanelBg4" width="400">
                                 <!-- <v-text-field
                                     class="rounded-pill register-ip"
@@ -285,9 +287,6 @@
                     maxlength="30"
                     v-model="form.username"
                 >
-                    <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!checkMail(form.username)" @click="getCode">
-                        {{LangUtil("获取验证码")}}
-                    </v-btn> -->
                 </CustomInput>
 
                 <CustomInput
@@ -300,7 +299,7 @@
                     v-model="form.username"
                 >
                 <template v-slot:pre>
-                    <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" content-class="shadow-clear" nudge-bottom="20" nudge-left="36">
+                    <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" content-class="shadow-clear menu-full" nudge-bottom="20" nudge-left="36">
                         <template v-slot:activator="{ on, attrs }">
                             <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                 <div class="white--text mx-2">+{{form.area_code}}</div>
@@ -340,51 +339,6 @@
                         </v-sheet>
                     </v-menu>
                 </template>
-                    <!-- <template v-slot:pre>
-                        <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
-                            <template v-slot:activator="{ on, attrs }">
-                                <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
-                                    <div class="white--text mx-2">+{{form.area_code}}</div>
-                                    <div
-                                        class="icon-box iconfont text-18 mr-2"
-                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
-                                    >
-                                        
-                                    </div>
-                                </div>
-                            </template>
-                            <v-sheet class="pa-3 rounded-lg colorPanelBg4">
-                                <v-text-field
-                                    class="rounded-pill register-ip"
-                                    height="32"
-                                    outlined
-                                    dense
-                                    prepend-inner-icon="mdi-database-search-outline"
-                                    hide-details
-                                    v-model="areaCodeSearch"
-                                    @input="onAreaCodeInput"
-                                ></v-text-field>
-
-                                <v-list dense color="rgba(0,0,0,0)">
-                                    <v-list-item-group>
-                                        <v-list-item
-                                            v-for="(item, index) of areaCodeList"
-                                            :key="index"
-                                            class="colorTextNormal2--text"
-                                            @click="onItemAreaCode(item)"
-                                        >
-                                            <div>{{item.name}}</div>
-                                            <v-spacer />
-                                            <div>+{{item.area_code}}</div>
-                                        </v-list-item>
-                                    </v-list-item-group>
-                                </v-list>
-                            </v-sheet>
-                        </v-menu>
-                    </template> -->
-                    <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!checkPhone(form.username)" @click="getCode">
-                        {{LangUtil("获取验证码")}}
-                    </v-btn> -->
                 </CustomInput>
 
                 <CustomInput
@@ -397,9 +351,6 @@
                 >
                 <DialogGetVerity v-if="form.register_type==2" :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username"/>
                 <DialogGetVerity v-if="form.register_type==4" :isCheck="checkPhone(form.username)" :category="1" :type="6" :area_code="form.area_code" :mobile="form.username"/>
-                  <!-- <v-btn class="text-button" color="colorBtnSeleBg" text small :disabled="!(checkPhone(form.username) || checkMail(form.username))" @click="getCode">
-                        {{LangUtil("获取验证码")}}
-                    </v-btn> -->
                 </CustomInput>
                 <CustomPassword
                     class="mt-3 rounded register-ip"

@@ -18,7 +18,8 @@
 
 <div>
     <div v-if="!$vuetify.breakpoint.xsOnly">
-        <v-menu offset-y nudge-bottom="7" nudge-left="190" content-class="content-style">
+        <!-- <v-menu open-on-hover offset-y nudge-bottom="7" nudge-left="190" content-class="content-style"> -->
+        <v-menu open-on-hover offset-y nudge-left="190" content-class="content-style">
             <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
                     <v-sheet class="d-flex align-center rounded-pill ml10" color="rgba(255,255,255,0.05)" width="90" height="40">
@@ -41,6 +42,7 @@
                     </v-sheet>
                 </div>
             </template>
+            <div class="menu-space"></div>
             <UserPanel />
         </v-menu>
     </div>

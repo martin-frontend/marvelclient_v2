@@ -1,5 +1,6 @@
 <v-sheet :width="140" color="transparent">
-    <v-menu offset-y nudge-bottom="7">
+    <!-- <v-menu open-on-hover offset-y nudge-bottom="7"> -->
+    <v-menu open-on-hover offset-y >
         <template v-slot:activator="{ on, attrs }">
             <!-- <v-sheet
                 class="d-flex align-center rounded-lg px-3 colorText2--text"
@@ -39,6 +40,7 @@
                 </div>
             </v-sheet>
         </template>
+        <div class="menu-space"></div>
         <v-sheet
             class="rounded-lg py-2 scroll-y diy-color"
             max-height="420"

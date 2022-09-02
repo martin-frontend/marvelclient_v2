@@ -73,7 +73,7 @@
                         </div>
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("分红比例") }}</span>
-                            <span class="text-yellow">{{ pageData.formulaData.bonus_ratio }}</span>
+                            <span class="text-yellow">{{ pageData.formulaData.bonus_ratio }}%</span>
                         </div>
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("分红") }}</span>
@@ -94,10 +94,13 @@
                             <v-col class="d-flex justify-center align-center">
                                 {{ LangUtil("团队统计") }}
                             </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ LangUtil("总团队统计") }}
+                            </v-col>
                         </v-row>
                     </v-card>
 
-                    <v-card v-for="{ name, directly, group } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
+                    <v-card v-for="{ name, directly, group, all } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
                             <v-col class="d-flex justify-center align-center">
                                 {{ LangUtil(name) }}
@@ -112,6 +115,9 @@
                             </v-col>
                             <v-col class="d-flex justify-center align-center">
                                 {{ group }}
+                            </v-col>
+                            <v-col class="d-flex justify-center align-center">
+                                {{ all }}
                             </v-col>
                         </v-row>
                     </v-card>

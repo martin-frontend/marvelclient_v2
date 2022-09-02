@@ -51,8 +51,9 @@
             <v-img class="item-img" :src="item.icon" max-width="22" max-height="22"></v-img>
             <v-img class="item-img-white" :src="item.icon_white" max-width="22" max-height="22"></v-img>
             <div class="ml085">{{ item.name }}</div>
+            <v-badge color="red" dot offset-x="-4" offset-y="0" :value="red_dot_tips.is_user_mail>0 && item.id == 4"></v-badge>
             <v-spacer />
-            <v-badge color="red" dot offset-y="5" :value="red_dot_tips.is_user_mail>0 && item.id == 3"></v-badge>
+            <!-- <v-badge color="red" dot offset-y="5" :value="red_dot_tips.is_user_mail>0 && item.id == 4"></v-badge> -->
             <div class="icon-box iconfont mx-3 mr-4 text-14 icon-color" style="transform: rotate(-90deg)"></div>
         </div>
     </v-sheet>

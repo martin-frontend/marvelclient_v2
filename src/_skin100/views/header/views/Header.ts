@@ -14,6 +14,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
 import HeaderProxy from "../proxy/HeaderProxy";
 import LoginEnter from "@/_skin100/core/global/LoginEnter";
+import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class Header extends AbstractView {
@@ -97,5 +98,17 @@ export default class Header extends AbstractView {
     onLangChange() {
         window.localStorage.setItem("lang", core.lang);
         location.reload();
+    }
+    onService() {
+        const link = LangUtil("客服链接") + "?id=" + core.user_id;
+        try {
+            window.open(
+                link,
+                LangUtil("客服"),
+                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
+            );
+        } catch (e: any) {
+            OpenLink(link);
+        }
     }
 }

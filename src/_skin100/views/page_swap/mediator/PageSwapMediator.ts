@@ -48,6 +48,7 @@ export default class PageSwapMediator extends AbstractMediator {
 
                     dialog_message.success(LangUtil("交换成功"));
                     this.selfProxy.api_user_show_var([2]);
+                    myProxy.resetInput();
                     myProxy.api_plat_var_swap_trial();
                 }
 

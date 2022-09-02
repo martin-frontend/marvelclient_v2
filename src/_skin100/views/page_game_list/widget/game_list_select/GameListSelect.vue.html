@@ -33,7 +33,8 @@
         </div>
     </v-sheet>
 </v-menu> -->
-<v-menu offset-y nudge-bottom="5">
+<!-- <v-menu offset-y nudge-bottom="5"> -->
+<v-menu open-on-hover offset-y>
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
             class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg"
@@ -51,6 +52,7 @@
             <div class="icon-box iconfont select-text font-weight-bold colors-text" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
         </v-sheet>
     </template>
+    <div class="menu-space-5"></div>
     <v-sheet class="listbox">
         <div
             class="d-flex align-center listitem cursor-pointer"

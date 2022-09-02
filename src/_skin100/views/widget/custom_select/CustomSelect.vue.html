@@ -1,5 +1,6 @@
 <v-sheet :width="width" color="transparent">
-    <v-menu offset-y nudge-bottom="5" rounded="lg" content-class="custom-select">
+    <!-- <v-menu offset-y nudge-bottom="5" rounded="lg" content-class="custom-select"> -->
+    <v-menu open-on-hover offset-y rounded="lg" content-class="custom-select">
         <template v-slot:activator="{ on, attrs }">
             <!-- <v-sheet
                 class="d-flex align-center rounded-lg px-3 colorText2--text"
@@ -38,6 +39,7 @@
                 </div>
             </v-sheet>
         </template>
+        <div class="menu-space-5"></div>
         <v-sheet
             class="rounded-lg py-2 scroll-y diy-color"
             max-height="420"

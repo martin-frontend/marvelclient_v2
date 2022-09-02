@@ -3,7 +3,7 @@ export default class PageGameListHomeProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.pageData.loading = true;
-        this.api_plat_var_lobby_index();
+        // this.api_plat_var_lobby_index();
         // this.api_plat_var_game_all_config();
     }
 

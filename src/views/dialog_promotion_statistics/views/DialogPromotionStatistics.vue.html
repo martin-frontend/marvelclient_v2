@@ -97,12 +97,17 @@
                         </v-row>
                     </v-card>
 
-                    <v-card v-for="{ name, directly, group } of pageData.tableData" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
+                    <v-card v-for="{ name, directly, group } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
                             <v-col class="d-flex justify-center align-center">
                                 {{ LangUtil(name) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col v-if="name == '总输赢'" class="d-flex justify-center align-center">
+                                <span v-if="directly>0">+{{ directly }}</span>
+                                <span v-else-if="directly<0">-{{ directly }}</span>
+                                <span v-else>{{ directly }}</span>
+                            </v-col>
+                            <v-col v-else class="d-flex justify-center align-center">
                                 {{ directly }}
                             </v-col>
                             <v-col class="d-flex justify-center align-center">

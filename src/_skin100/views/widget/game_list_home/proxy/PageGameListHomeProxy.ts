@@ -36,6 +36,30 @@ export default class PageGameListHomeProxy extends puremvc.Proxy {
         category_name: "",
         list: [],
     };
+    /**体育游戏 */
+    sportGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
+    /**链游 */
+    hxGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
+    /**捕鱼 */
+    fishingGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
+    /**真人 */
+    realGame = {
+        category: 0,
+        category_name: "",
+        list: [],
+    };
     /**配置 */
     config = {
         loaded: false,
@@ -61,6 +85,26 @@ export default class PageGameListHomeProxy extends puremvc.Proxy {
         this.qpGame.category = data.category;
         this.qpGame.category_name = data.category_name;
         this.qpGame.list = Object.freeze(data.list);
+    }
+    setHXGame(data: any) {
+        this.hxGame.category = data.category;
+        this.hxGame.category_name = data.category_name;
+        this.hxGame.list = Object.freeze(data.list);
+    }
+    setFishingGame(data: any) {
+        this.fishingGame.category = data.category;
+        this.fishingGame.category_name = data.category_name;
+        this.fishingGame.list = Object.freeze(data.list);
+    }
+    setRealGame(data: any) {
+        this.realGame.category = data.category;
+        this.realGame.category_name = data.category_name;
+        this.realGame.list = Object.freeze(data.list);
+    }
+    setSportGame(data: any) {
+        this.sportGame.category = data.category;
+        this.sportGame.category_name = data.category_name;
+        this.sportGame.list = Object.freeze(data.list);
     }
     setDzGame(data: any) {
         this.dzGame.category = data.category;

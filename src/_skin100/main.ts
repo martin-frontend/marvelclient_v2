@@ -11,6 +11,7 @@ import LogUtil from "@/core/global/LogUtil";
 import { js_utils } from "custer-js-utils";
 import AppFacade from "./AppFacade";
 import GameConfig from "@/core/config/GameConfig";
+import { isMobile, judgeClient } from "@/core/global/Functions";
 
 LogUtil.init();
 core.init();
@@ -31,6 +32,8 @@ Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
 const vuetify = getVuetify();
+const isIOSMobile = judgeClient() == "iOS" && isMobile();
+Vue.prototype.isIOSMobile = isIOSMobile;
 //@ts-ignore
 window["vm"] = new Vue({
     router,

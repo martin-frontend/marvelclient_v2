@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 // import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 // import { isMobile, judgeClient } from "@/core/global/Functions";
+// import { getVuetify } from "@/_skin100/plugins/vuetify";
 // import CopyUtil from "@/core/global/CopyUtil";
 // import GameConfig from "@/core/config/GameConfig";
 

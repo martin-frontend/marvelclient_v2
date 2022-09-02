@@ -16,7 +16,8 @@
                     <p class="tx">
                       {{LangUtil("egame独创下注挖矿解决方案——用户的每笔投注都会产出一定数量的egame， 并且所有持有egame的玩家都可以从分红池中获得一定比例的网站利润分成。")}}
                     </p>
-                    <div  class="totle-data">
+                    <!-- 暂进隐藏 -->
+                    <div  class="totle-data" v-if="false">
                         <div class="s-left">
                             <p class="top-text">
                                 <span >
@@ -116,8 +117,8 @@
                       <div class="t-text" :class="reward_coin_info.total_holder !='-'?'a-ele':''">{{reward_coin_info.total_holder}}</div>
                     </div>
                   </div>
-
-                  <div class="tip-content">
+                  <!-- 暂时隐藏 -->
+                  <div class="tip-content" v-if="false">
                     <div  class="totle-data">
                       <div class="s-left">
                           <div>

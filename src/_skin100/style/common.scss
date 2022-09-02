@@ -345,6 +345,8 @@ input {
     border-top-left-radius: 18px !important;
     border-top-right-radius: 18px !important;
     top: 55px !important;
+    // height: calc(100% - 55px) !important;
+    // height: calc(100vh - 55px) !important;
     height: calc(100% - 55px) !important;
     // overflow: hidden;
 }

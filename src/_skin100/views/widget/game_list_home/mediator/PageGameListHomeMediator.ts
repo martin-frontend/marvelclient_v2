@@ -37,6 +37,18 @@ export default class PageGameListMediator extends AbstractMediator {
                         if (item.category == 16) {
                             myProxy.setDzGame(item);
                         }
+                        if (item.category == 128) {
+                            myProxy.setHXGame(item);
+                        }
+                        if (item.category == 64) {
+                            myProxy.setSportGame(item);
+                        }
+                        if (item.category == 8) {
+                            myProxy.setFishingGame(item);
+                        }
+                        if (item.category == 32) {
+                            myProxy.setRealGame(item);
+                        }
                     }
                 }
                 break;

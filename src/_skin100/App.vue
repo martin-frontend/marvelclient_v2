@@ -13,8 +13,7 @@
         <!-- 客服 -->
         <v-btn
             height="42"
-            color="#ffb01b"
-            class="customer rounded-xl black--text font-weight-bold d-flex align-center text-h6"
+            class="customer rounded-xl white--text font-weight-bold d-flex align-center text-h6 common-btn"
             @click="onService"
             v-if="!$vuetify.breakpoint.mobile"
         >

@@ -11,15 +11,22 @@
         <DialogMessage />
         <div id="dialog_container"></div>
         <!-- 客服 -->
-        <v-btn
-            height="42"
-            class="customer rounded-xl white--text font-weight-bold d-flex align-center text-h6 common-btn"
+        <v-img
+            width="64"
+            height="64"
+            src="@/_skin100/assets/service/service.png"
+            class="customer rounded-pill"
             @click="onService"
             v-if="!$vuetify.breakpoint.mobile"
-        >
-            <v-icon class="mr-1">mdi-message-text-outline</v-icon>
-            <span class="mb-1">{{ LangUtil("客服") }}</span>
-        </v-btn>
+        />
+        <v-img
+            width="40"
+            height="40"
+            src="@/_skin100/assets/service/service.png"
+            class="customer-h5 rounded-pill"
+            @click="onService"
+            v-else
+        />
     </v-app>
 </template>
 
@@ -45,11 +52,18 @@ export default class extends APP {}
 
 <style lang="scss" scoped>
 .customer {
+    cursor: pointer;
     z-index: 100;
     position: fixed;
-    right: 55px;
-    bottom: 60px;
+    right: 10px;
+    bottom: 30px;
+}
+.customer-h5 {
+    cursor: pointer;
     z-index: 100;
+    position: fixed;
+    right: 5px;
+    bottom: 80px;
 }
 .btn-guide {
     width: 100%;

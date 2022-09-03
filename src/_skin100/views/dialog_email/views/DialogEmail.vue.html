@@ -119,8 +119,9 @@
 
         </v-card-text>
         <v-card-text v-if="$vuetify.breakpoint.xsOnly" class="px-4">
-            <v-sheet  color="transparent" height="510"  class="scroll-y">
-                <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" >
+            <!-- <v-sheet  color="transparent" height="510"  class="scroll-y"> -->
+            <v-sheet  color="transparent" :height="isIOSMobile ? '60vh':'70vh'"  class="overflow-y-auto">
+                <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
                     <ListNodata v-if="pageData.list.length == 0"/>
                     <v-sheet class="px-4 py-4 rounded-lg mt10 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                         <div style="width: 100%" class="d-flex mb-2">

@@ -322,6 +322,14 @@
                         <v-col cols="4" class="d-flex justify-center align-center"> {{ item.stake_amount }} </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center"> {{ item.bonus_amount }} </v-col>
                     </v-row>
+                    <v-row v-if="bonus_rank.length == 0"
+                    :class="$vuetify.breakpoint.xsOnly?'no-data-h5':'no-data-web'"
+                    class="d-flex justify-center align-center" color="transparent" min-height="400">
+                        <div>
+                            <v-img :src="commonIcon.nodata_b" max-width="140" height="100"></v-img>
+                            <div class="d-flex text-14 white-text2 mt-1 justify-center">{{LangUtil("暂无记录")}}</div>
+                        </div>
+                    </v-row>
                 </v-card>
             </v-col>
         </v-row>

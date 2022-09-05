@@ -1,7 +1,20 @@
 <v-dialog width="unset" height="670" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="d-flex rounded-lg dialog-background" color="colorPanelBg" >
         <!-- <AdvertiseInLogin :height="670" class="d-none d-md-flex" /> -->
-        <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" />
+        <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" >
+            <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="colorBtnSeleBg"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+        </v-img>
         <v-card color="transparent" width="494" v-if="!$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">
                 <div class="font-weight-medium white--text text-20">{{LangUtil("安全中心")}}</div>

@@ -32,6 +32,14 @@
         // padding-right:12px;
     }
 }
+
+@media screen and (min-width: 751px) and (max-width: 1424px) {
+    .container {
+        width: 1424px;
+        max-width: 1424px;
+    }
+}
+
 @media screen and (max-width: 750px) {
     .container {
         padding-left: 15px;

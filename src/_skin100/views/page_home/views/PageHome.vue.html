@@ -1,8 +1,8 @@
 <v-container class="main-container">
     <Advertise />
-    <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px-2 mt-1':''">
-        <Marquee1 class="marquee1"  v-if="!$vuetify.breakpoint.mobile" />
-        <div class="banner-content" v-if="!$vuetify.breakpoint.mobile">
+    <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.xsOnly?'px-2 mt-1':''">
+        <Marquee1 class="marquee1"  v-if="!$vuetify.breakpoint.xsOnly" />
+        <div class="banner-content" v-if="!$vuetify.breakpoint.xsOnly">
             <AdSwiper class="ad-swiper"/>
             <div class="second-content">
                 <div class="left">
@@ -77,7 +77,7 @@
               </div>
             </div>
         </div>
-        <div v-if="$vuetify.breakpoint.mobile" >
+        <div v-if="$vuetify.breakpoint.xsOnly" >
             <div class="h5-intrduce">
                 <Marquee1 class="marquee1"  />
                 <Advertise2></Advertise2>

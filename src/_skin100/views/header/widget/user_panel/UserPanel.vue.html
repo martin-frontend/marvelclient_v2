@@ -48,8 +48,8 @@
     <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
         <div class="d-flex align-center pl14 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
             <!-- <v-icon dense>{{ item.icon }}</v-icon> -->
-            <v-img class="item-img" :src="item.icon" max-width="22" max-height="22"></v-img>
-            <v-img class="item-img-white" :src="item.icon_white" max-width="22" max-height="22"></v-img>
+            <img class="item-img" :src="item.icon" width="22" height="22"></img>
+            <img class="item-img-white" :src="item.icon_white" width="22" height="22"></img>
             <div class="ml085">{{ item.name }}</div>
             <v-badge color="red" dot offset-x="-4" offset-y="0" :value="red_dot_tips.is_user_mail>0 && item.id == 4"></v-badge>
             <v-spacer />
@@ -61,8 +61,8 @@
     <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
         <div class="d-flex align-center pl14 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
             <!-- <v-icon dense>{{ item.icon }}</v-icon> -->
-            <v-img class="item-img" :src="item.icon" max-width="22" max-height="22"></v-img>
-            <v-img class="item-img-white" :src="item.icon_white" max-width="22" max-height="22"></v-img>
+            <img class="item-img" :src="item.icon" width="22" height="22"></img>
+            <img class="item-img-white" :src="item.icon_white" width="22" height="22"></img>
             <div class="ml085">{{ item.name }}</div>
             <v-spacer />
             <div class="icon-box iconfont mx-3 mr-4 text-14 icon-color" style="transform: rotate(-90deg)"></div>

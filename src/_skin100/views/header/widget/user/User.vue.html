@@ -22,7 +22,7 @@
         <v-menu open-on-hover offset-y nudge-left="190" content-class="content-style">
             <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
-                    <v-sheet class="d-flex align-center rounded-pill ml10" color="rgba(255,255,255,0.05)" width="90" height="40">
+                    <v-sheet class="pointer d-flex align-center rounded-pill ml10" color="rgba(255,255,255,0.05)" width="90" height="40">
                         <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
                             <img class="ml-3" src="@/_skin100/assets/header/avatar.gif" width="32" height="32" alt="" />
                         </v-badge>
@@ -46,7 +46,7 @@
             <UserPanel />
         </v-menu>
     </div>
-    <div class="d-flex align-center" v-else>
+    <div class="d-flex align-center pointer" v-else>
         <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
             <img class="rounded-pill" width="24" height="24" src="../../../../assets/avatar/Avatar0.png" @click.stop="drawer = !drawer"></img>
         </v-badge>

@@ -266,7 +266,7 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             { name: "充值金额", directly: directly_recharge, group: group_recharge, all: group_all_recharge },
             { name: "兑换笔数", directly: directly_exchange_count, group: group_exchange_count, all: group_all_exchange_count },
             { name: "兑换金额", directly: directly_exchange, group: group_exchange, all: group_all_exchange },
-            { name: "玩家总盈利", directly: total_directly_profit, group: total_group_profit, all: total_group_all_profit },
+            // { name: "玩家总盈利", directly: total_directly_profit, group: total_group_profit, all: total_group_all_profit },
             { name: "提现手续费", directly: directly_exchange_fee, group: group_exchange_fee, all: group_all_exchange_fee },
             { name: "平台赠送", directly: directly_gift_gold, group: group_gift_gold, all: group_all_gift_gold },
 
@@ -306,7 +306,7 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             { name: "体育电竞投注", directly: directly_bet_64, group: group_bet_64, all: group_all_bet_64 },
             { name: "链游投注", directly: directly_bet_128, group: group_bet_128, all: group_all_bet_128 },
 
-            { name: "总输赢", directly: directly_total_win_loss, group: group_total_win_loss, all: group_all_total_win_loss },
+            { name: "玩家总输赢", directly: directly_total_win_loss, group: group_total_win_loss, all: group_all_total_win_loss },
             { name: "棋牌输赢", directly: directly_win_loss_2, group: group_win_loss_2, all: group_all_win_loss_2 },
             { name: "彩票输赢", directly: directly_win_loss_4, group: group_win_loss_4, all: group_all_win_loss_4 },
             { name: "捕鱼输赢", directly: directly_win_loss_8, group: group_win_loss_8, all: group_all_win_loss_8 },

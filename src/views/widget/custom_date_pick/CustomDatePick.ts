@@ -1,8 +1,9 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
-export default class CustomInput extends AbstractView {
+export default class CustomDatePick extends AbstractView {
     @Prop() icon!: string;
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
@@ -11,11 +12,12 @@ export default class CustomInput extends AbstractView {
     @Prop()readonly!:number;
     @Prop() height!: string;
     
-    inputValue = '';
+    inputValue = this.getValue;
+    LangUtil = LangUtil;
 
     @Prop() value!: any;
-    @Watch("value", { immediate: true })
-    onValueChange(val: string) {
+    @Watch("value", { immediate:true })
+    onValueChange(val: any) {
         this.inputValue = val;
     }
 
@@ -23,8 +25,12 @@ export default class CustomInput extends AbstractView {
         this.$emit("input", this.inputValue);
     }
 
+    get getValue() {
+        return this.value ? this.value : '';
+    }
+
     onClear() {
-        this.inputValue = "";
-        this.$emit("input", this.inputValue);
+        this.inputValue = '';
+        this.$emit("input", []);
     }
 }

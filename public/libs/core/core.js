@@ -4164,7 +4164,6 @@ var net;
                 ajax.onreadystatechange = function (e) {
                     if (this.readyState == 4) {
                         if (this.status == 200) {
-                            console.log(this.response);
                             resolve(this.response);
                         }
                         else {

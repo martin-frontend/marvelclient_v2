@@ -159,11 +159,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         }
     }
 
-    /**业绩查询--获取用户推广统计信息*/
-    api_user_var_agent_var_statistic_promotion() {
-        this.sendNotification(net.HttpType.api_user_var_agent_var_statistic_promotion, objectRemoveNull(this.listQuery));
-    }
-
     /**业绩查询--返佣等级*/
     api_user_var_commission_commissionnum() {
         this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, { user_id: core.user_id });

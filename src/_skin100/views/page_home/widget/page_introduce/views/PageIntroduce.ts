@@ -8,6 +8,7 @@ import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
 import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import page_extension from "@/_skin100/views/page_extension";
 import dialog_activity from "@/_skin100/views/dialog_activity";
+import page_bonus from "@/_skin100/views/page_bonus";
 @Component
 export default class PageIntroduce extends AbstractView {
     LangUtil = LangUtil;
@@ -39,6 +40,10 @@ export default class PageIntroduce extends AbstractView {
     }
     goExtension() {
         LoginEnter(page_extension.show);
+    }
+
+    goPledge() {
+        LoginEnter(page_bonus.show);
     }
     goActivity() {
         dialog_activity.show();

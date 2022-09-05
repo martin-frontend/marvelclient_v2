@@ -53,8 +53,14 @@
                             </div>
                         </v-card>
                     </v-layout> -->
-                    <v-card-actions class="pt-4 pb-1 px-0 d-flex">
-                        <v-btn rounded block :class="hover ? 'intro-btn-V2' : 'intro-btn-V2'" color="#f8d129" :height="$vuetify.breakpoint.mobile?'37':'48'" class="text-body-1">
+                    <v-card-actions class="pt-4 pb-1 px-0 px-sm-4 d-flex"
+                    :class="$vuetify.breakpoint.mobile? 'intro-btn-h5' : 'intro-btn-web'" 
+                    >
+                        <v-btn rounded block 
+                        @click="goPledge"
+                        color="#f8d129" 
+                        :height="$vuetify.breakpoint.mobile?'37':'48'" 
+                        class="text-body-1">
                             {{LangUtil("去质押")}}
                         </v-btn>
                     </v-card-actions>

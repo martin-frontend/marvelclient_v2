@@ -105,12 +105,7 @@
                             <v-col class="d-flex justify-center align-center">
                                 {{ LangUtil(name) }}
                             </v-col>
-                            <v-col v-if="name == '总输赢'" class="d-flex justify-center align-center">
-                                <span v-if="directly>0">+{{ directly }}</span>
-                                <span v-else-if="directly<0">-{{ directly }}</span>
-                                <span v-else>{{ directly }}</span>
-                            </v-col>
-                            <v-col v-else class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center">
                                 {{ directly }}
                             </v-col>
                             <v-col class="d-flex justify-center align-center">

@@ -1,6 +1,5 @@
 <v-sheet color="rgba(255,255,255,0.05)" :height="$vuetify.breakpoint.xsOnly?30:40" class="rounded-pill d-flex ml10 align-center mr10">
-    <!-- <v-menu open-on-hover offset-y nudge-bottom="7"> -->
-    <v-menu open-on-hover offset-y>
+    <v-menu offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
@@ -59,11 +58,10 @@
                         
                     </div> -->
                 </v-sheet>
-                <!-- <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div> -->
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
             </div>
         </template>
         <!-- <v-sheet width="200" color="colorPanelTitleBg" class="py-2 px-0"> -->
-        <div class="menu-space"></div>
         <v-sheet width="180" class="pt5 pb-2 px-0 walletPanelBg rounded-lg">
             <v-sheet
                 class="d-flex align-center pl-4 cursor-pointer mt10 listitem"
@@ -95,7 +93,7 @@
     <v-btn v-if="$vuetify.breakpoint.xsOnly" elevation="0" class="rounded-pill black--text mr-2 common-btn white--text" x-small  @click="onCoinIn">
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="rounded-pill  mr-3  common-btn white--text" elevation="0" height="32"  @click="onCoinIn">
+    <v-btn v-else class="rounded-pill  mr-3  common-btn white--text pointer" elevation="0" height="32"  @click="onCoinIn">
         <div class="mx-1 text-14">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

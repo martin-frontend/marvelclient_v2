@@ -16,7 +16,8 @@
                 </v-btn>
             </v-card-title>
             <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
-                <v-sheet color="transparent" height="468" class="scroll-y">
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet v-else color="transparent" height="468" class="scroll-y">
                     <v-sheet
                         class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3 bPanelOpacityBg"
                         height="80"
@@ -51,7 +52,8 @@
                 </div>
             </v-card-text>
             <v-card-text v-if="$vuetify.breakpoint.xsOnly" class="px-3 overflow-auto" style="padding-bottom:90px;">
-                <v-sheet color="transparent" height="560" class="scroll-y">
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet v-else color="transparent" height="560" class="scroll-y">
                 <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
                     <v-sheet color="transparent">
                         <v-sheet

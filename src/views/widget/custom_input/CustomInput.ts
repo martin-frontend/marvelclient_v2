@@ -7,11 +7,11 @@ export default class CustomInput extends AbstractView {
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
     @Prop({ default: 100 }) maxlength!: number;
-    @Prop()disabled!:number;
-    @Prop()readonly!:number;
+    @Prop() disabled!: number;
+    @Prop() readonly!: number;
     @Prop() height!: string;
-    
-    inputValue = '';
+
+    inputValue = "";
 
     @Prop() value!: any;
     @Watch("value", { immediate: true })

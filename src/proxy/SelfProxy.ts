@@ -16,7 +16,20 @@ export default class SelfProxy extends AbstractProxy {
     }
 
     /**用户个人信息 */
-    userInfo: core.UserInfoVO = { user_id: 0, nick_name: "", phone: "", email: "", real_name: "", password_gold_exists: 0, bsc_address: "", gold_info: <any>{}, is_gold_transfer: 0, business_card: "", invite_user_business_card: "", is_show_agent_statistic: 0 };
+    userInfo: core.UserInfoVO = {
+        user_id: 0,
+        nick_name: "",
+        phone: "",
+        email: "",
+        real_name: "",
+        password_gold_exists: 0,
+        bsc_address: "",
+        gold_info: <any>{},
+        is_gold_transfer: 0,
+        business_card: "",
+        invite_user_business_card: "",
+        is_show_agent_statistic: 0,
+    };
     /**红点信息 */
     red_dot_tips = {
         is_activity: 0,

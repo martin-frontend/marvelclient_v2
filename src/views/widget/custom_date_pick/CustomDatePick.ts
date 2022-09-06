@@ -8,15 +8,15 @@ export default class CustomDatePick extends AbstractView {
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
     @Prop({ default: 100 }) maxlength!: number;
-    @Prop()disabled!:number;
-    @Prop()readonly!:number;
+    @Prop() disabled!: number;
+    @Prop() readonly!: number;
     @Prop() height!: string;
-    
+
     inputValue = this.getValue;
     LangUtil = LangUtil;
 
     @Prop() value!: any;
-    @Watch("value", { immediate:true })
+    @Watch("value", { immediate: true })
     onValueChange(val: any) {
         this.inputValue = val;
     }
@@ -26,11 +26,11 @@ export default class CustomDatePick extends AbstractView {
     }
 
     get getValue() {
-        return this.value ? this.value : '';
+        return this.value ? this.value : "";
     }
 
     onClear() {
-        this.inputValue = '';
+        this.inputValue = "";
         this.$emit("input", []);
     }
 }

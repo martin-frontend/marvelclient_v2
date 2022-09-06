@@ -1,8 +1,8 @@
 <v-container class="main-container">
     <Advertise />
-    <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.xsOnly?'px-2 mt-1':''">
+    <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.xsOnly?'px-2 mt-1':'mt-n5'">
+      <div class="banner-content" v-if="!$vuetify.breakpoint.xsOnly" style="border-radius: 12px 12px 0px 0px;">
         <Marquee1 class="marquee1"  v-if="!$vuetify.breakpoint.xsOnly" />
-        <div class="banner-content" v-if="!$vuetify.breakpoint.xsOnly">
             <AdSwiper class="ad-swiper"/>
             <div class="second-content">
                 <div class="left">

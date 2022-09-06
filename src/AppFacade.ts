@@ -25,16 +25,15 @@ export default class AppFacade {
         //版本号
         core.version_str = getVersion();
         core.version = new Date(getVersion()).getTime();
-        if(process.env.VUE_APP_ENV == "development"){
-            core.version*=2;
+        if (process.env.VUE_APP_ENV == "development") {
+            core.version *= 2;
         }
         GameConfig.load();
 
         //五分钟检测一次网络
-        setInterval(()=>{
-            if(GlobalVar.host_urls)
-                this.facade.sendNotification(NotificationName.CHECK_SPEED);
-        }, 300000)
+        setInterval(() => {
+            if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
+        }, 300000);
     }
 
     private initProxy() {

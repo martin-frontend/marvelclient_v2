@@ -49,7 +49,7 @@ export default class GameConfig {
         });
     }
 
-    static loadPlatConfig(){
+    static loadPlatConfig() {
         const url = net.getUrl(net.HttpType.api_plat_var_config, { plat_id: core.plat_id });
         net.Http.request({}, url)
             .then((response: any) => {

@@ -16,7 +16,8 @@ export default class DialogDirectlyMediator extends AbstractMediator {
     initViewData() {}
 
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_agent_direct_list, net.EventType.api_user_var_agent_var_floor_range];    }
+        return [net.EventType.api_user_var_agent_direct_list, net.EventType.api_user_var_agent_var_floor_range];
+    }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();

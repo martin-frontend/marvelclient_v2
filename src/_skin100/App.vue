@@ -5,7 +5,8 @@
             <v-main>
                 <router-view />
             </v-main>
-            <Footer v-if="!$vuetify.breakpoint.mobile" />
+            <!-- <Footer v-if="!$vuetify.breakpoint.mobile" /> -->
+            <Footer v-if="!$vuetify.breakpoint.xsOnly" />
             <MobileMenu v-else />
         </div>
         <DialogMessage />

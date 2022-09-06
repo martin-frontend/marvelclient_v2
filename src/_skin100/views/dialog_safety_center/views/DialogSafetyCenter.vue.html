@@ -82,6 +82,7 @@
                     <CustomInput
                         class="mb-3 rounded safety-ip"
                         :icon="icons.sj"
+                        :maxlength="15"
                         type="tel"
                         :placeholder="LangUtil('请输入手机号')"
                         v-model="formBindPhone.mobile"
@@ -133,6 +134,7 @@
                         class="mb-5 rounded safety-ip"
                         :icon="icons.yzm"
                         :placeholder="LangUtil('请输入验证码')"
+                        :maxlength="10"
                         type="tel"
                         v-model="formBindPhone.code"
                     >
@@ -156,11 +158,12 @@
                     <div class="colorBindSuccess--text text-14">{{userInfo.email}}</div>
                 </v-sheet>
                 <div v-else>
-                    <CustomInput class="mb-3 rounded safety-ip" :icon="icons.yx" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
+                    <CustomInput class="mb-3 rounded safety-ip" :maxlength="50" :icon="icons.yx" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
                         :icon="icons.yzm"
+                        :maxlength="10"
                         :placeholder="LangUtil('请输入验证码')"
                         type="tel"
                         v-model="formBindEmail.code"
@@ -177,18 +180,21 @@
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('请输入原始密码')"
                     v-model="formChangePassword.password_old"
                 />
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="formChangePassword.password"
                 />
                 <CustomPassword
                     class="mb-5 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="formChangePassword.password_confirm"
                 />
@@ -262,6 +268,7 @@
                     <CustomInput
                         class="mb-3 rounded safety-ip"
                         :icon="icons.sj"
+                        :maxlength="15"
                         type="tel"
                         :placeholder="LangUtil('请输入手机号')"
                         v-model="formBindPhone.mobile"
@@ -312,6 +319,7 @@
                     <CustomInput
                         class="mb-5 rounded safety-ip"
                         :icon="icons.yzm"
+                        :maxlength="10"
                         :placeholder="LangUtil('请输入验证码')"
                         type="tel"
                         v-model="formBindPhone.code"
@@ -336,11 +344,12 @@
                     <div class="colorBindSuccess--text text-14">{{userInfo.email}}</div>
                 </v-sheet>
                 <div v-else>
-                    <CustomInput class="mb-3 rounded safety-ip" :icon="icons.yx" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
+                    <CustomInput class="mb-3 rounded safety-ip" :maxlength="50" :icon="icons.yx" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
                     </CustomInput>
                     <CustomInput
                         class="mb-5 rounded safety-ip"
                         :icon="icons.yzm"
+                        :maxlength="10"
                         :placeholder="LangUtil('请输入验证码')"
                         type="tel"
                         v-model="formBindEmail.code"
@@ -357,18 +366,21 @@
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('请输入原始密码')"
                     v-model="formChangePassword.password_old"
                 />
                 <CustomPassword
                     class="mb-3 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="formChangePassword.password"
                 />
                 <CustomPassword
                     class="mb-5 rounded safety-ip"
                     :icon="icons.mm"
+                    :maxlength="20"
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="formChangePassword.password_confirm"
                 />

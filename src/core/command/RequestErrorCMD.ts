@@ -46,7 +46,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 // TODO 绑定手机
                 dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
-                dialog_message_box.confirm({message: body.result.msg, okFun: dialog_real_name.show});
+                dialog_message_box.confirm({ message: body.result.msg, okFun: dialog_real_name.show });
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
             } else if (ERROR_CODE_NO_PERMISSION.includes(result.status)) {

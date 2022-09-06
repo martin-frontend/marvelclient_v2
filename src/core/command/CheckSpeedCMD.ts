@@ -6,7 +6,7 @@ export default class CheckSpeedCMD extends puremvc.SimpleCommand {
     private speeds: number[] = [];
     private beginTime = 0;
     private index = 0;
-    private player_ip:string = "";
+    private player_ip: string = "";
 
     public execute(notification: puremvc.INotification): void {
         this.urls = GlobalVar.host_urls.split(",");
@@ -25,27 +25,26 @@ export default class CheckSpeedCMD extends puremvc.SimpleCommand {
                     const endTime = new Date().getTime();
                     this.speeds.push(endTime - this.beginTime);
                 })
-                .catch(()=>{
+                .catch(() => {
                     this.speeds.push(100000000);
                 })
                 .finally(() => {
                     this.index++;
                     this.checkNext();
                 });
-        }else{
+        } else {
             const min = Math.min(...this.speeds);
-            if(min<3000){
-                if(core.host){
+            if (min < 3000) {
+                if (core.host) {
                     core.host = this.urls[this.speeds.indexOf(min)];
-                }else{
+                } else {
                     core.host = this.urls[this.speeds.indexOf(min)];
                     GameConfig.loadPlatConfig();
                 }
-                
-            }else{
+            } else {
                 let alertStr = "URL ERROR\n";
-                if(this.player_ip){
-                    alertStr+= "IP: " + this.player_ip + "\n";
+                if (this.player_ip) {
+                    alertStr += "IP: " + this.player_ip + "\n";
                 }
                 alertStr += "APIURL: " + GlobalVar.host_urls + "\n";
                 alertStr += "URL: " + location.host;

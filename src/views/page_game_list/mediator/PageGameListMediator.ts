@@ -6,7 +6,7 @@ export default class PageGameListMediator extends AbstractMediator {
     public onRegister(): void {
         const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
         if (myProxy.config.loaded) {
-            myProxy.api_plat_var_game_all_index();
+            if (myProxy.pageData.pageInfo.pageCurrent < 2) myProxy.api_plat_var_game_all_index();
         } else {
             myProxy.api_plat_var_game_all_config();
         }

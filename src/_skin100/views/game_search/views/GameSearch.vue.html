@@ -54,11 +54,13 @@
             <v-window v-model="pageData.tabIndex">
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.collection.length == 0" style="max-height: 390px;" />
+                    <ListNodata v-if="pageData.collection.length == 0 && !pageData.loading" style="max-height: 390px;" />
+                    <div style="width:100%;max-height:390px;" v-if="pageData.collection.length == 0 && pageData.loading"></div>
                 </v-window-item>
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.recently" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.recently.length == 0" style="max-height: 390px;"  />
+                    <ListNodata v-if="pageData.recently.length == 0 && !pageData.loading" style="max-height: 390px;"  />
+                    <div style="width:100%;max-height:390px;" v-if="pageData.recently.length == 0 && pageData.loading"></div>
                 </v-window-item>
                 <v-window-item>
                     <div class="search-box d-flex align-center px-2 mb-4">
@@ -73,7 +75,8 @@
                         <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"><v-icon size="25" class="">mdi-magnify</v-icon></v-btn>
                     </div>
                     <GameSearchItem v-for="(item, key) in pageData.searchList" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.searchList.length == 0"  style="max-height: 350px;" />
+                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading"  style="max-height: 350px;" />
+                    <div style="width:100%;max-height:350px;" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
                 </v-window-item>
             </v-window>
         </v-card-text>
@@ -141,11 +144,11 @@
             <v-window v-model="pageData.tabIndex">
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.collection.length == 0" />
+                    <ListNodata v-if="pageData.collection.length == 0 && !pageData.loading" />
                 </v-window-item>
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.recently" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.recently.length == 0" />
+                    <ListNodata v-if="pageData.recently.length == 0 && !pageData.loading" />
                 </v-window-item>
                 <v-window-item>
                     <div class="search-box d-flex align-center px-2 mb-4">
@@ -160,7 +163,8 @@
                         <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"><v-icon size="25" class="">mdi-magnify</v-icon></v-btn>
                     </div>
                     <GameSearchItem v-for="(item, key) in pageData.searchList" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.searchList.length == 0"  style="max-height: 350px;" />
+                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading"  style="max-height: 350px;" />
+                    <div style="width:100%;max-height:350px;" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
                 </v-window-item>
             </v-window>
         </v-card-text>

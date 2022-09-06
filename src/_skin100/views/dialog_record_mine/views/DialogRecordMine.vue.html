@@ -47,7 +47,8 @@
                     </div>
                 </v-sheet>
             </div>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411"/>
+            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
@@ -73,7 +74,7 @@
         <v-card-text class="px15 overflow-y-auto" style="height:500px;" v-if="$vuetify.breakpoint.xsOnly">
             <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile"> -->
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
-                <ListNodata v-if="pageData.list.length == 0"/>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
                 <v-sheet class="px-4 py-4 rounded-lg mb-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-center flex-column mb-4" style="width:40%;">
                         <div class="text-12">{{LangUtil("结算时间")}}</div>

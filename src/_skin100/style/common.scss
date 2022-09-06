@@ -92,6 +92,10 @@ button {
     font-size: inherit;
     color: inherit;
 }
+
+.theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
+    color: white !important;
+}
 input {
     border: none;
     outline: medium;

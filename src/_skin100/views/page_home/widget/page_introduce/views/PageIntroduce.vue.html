@@ -139,7 +139,7 @@
         </v-col>
         <v-col v-else cols="12" sm="4" class="d-flex flex-column justify-space-between">
             <v-hover v-slot="{ hover }">
-                <v-card height="100%" class="mb-4 pa-2 mr-md-4 intro-radius" 
+                <v-card height="100%" class="mb-0 pa-2 mr-md-4 pb-sm-4 intro-radius" 
                 :class="hover? 'card-bg-hover':'card-bg'" 
                 style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
@@ -158,11 +158,7 @@
                     :color="hover ? '#283c63' : ''"
                     :class="hover? 'card-bg-hover':'card-bg'" 
                     style="box-shadow: none;"
-<<<<<<< HEAD
                     :style="$vuetify.breakpoint.smAndDown ? 'margin-bottom:16px' : ''"
-=======
-                    :class="$vuetify.breakpoint.xsOnly ? 'mb-4' : ''"
->>>>>>> cb8ff5ef42d2b830e9a78c34705d489087e98566
                 >
                     <v-card-title>
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-2.png"></img>

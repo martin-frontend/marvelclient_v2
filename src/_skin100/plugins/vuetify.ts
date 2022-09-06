@@ -43,6 +43,7 @@ export function getVuetify(): Vuetify {
                         //新增
                         colorBtnSeleBg: "#CD30C1", //used
                         colorCloseBtn: "#756BA4", //used
+                        colorCloseBtn2: "#8272b4", //used
                         colorTextYellow: "#F8D129", //used
                         colorTextNormal: "#737c86", //used
                         colorTextNormal2: "#8f7ac0", //used

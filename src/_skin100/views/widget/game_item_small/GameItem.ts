@@ -6,8 +6,8 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 @Component
 export default class GameItem extends AbstractView {
     @Prop() item!: any;
-    ww = 224;
-    hh = 280;
+    ww = 163.8;
+    hh = 204;
 
     getIcon(item: any) {
         if (item.icon.indexOf("http") != -1) {
@@ -26,7 +26,7 @@ export default class GameItem extends AbstractView {
         if (this.$vuetify.breakpoint.mobile) {
             (this.ww = 124), (this.hh = 154);
         } else {
-            (this.ww = 224), (this.hh = 280);
+            (this.ww = 163.8), (this.hh = 204);
         }
     }
 

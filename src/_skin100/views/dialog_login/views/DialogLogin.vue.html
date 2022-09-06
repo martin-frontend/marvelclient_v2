@@ -22,8 +22,11 @@
                     {{forgetData.bShow ? LangUtil('找回密码') : LangUtil('登录')}}
                 </div>
                 <v-spacer />
+                <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                </v-btn> -->
                 <v-btn class="" icon @click="onClose" class="exit-icon">
-                    <v-icon color="colorCloseBtn">{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
+                    <v-icon class="font-weight-bold close-icon" >{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
             <!-- 找回密码 -->

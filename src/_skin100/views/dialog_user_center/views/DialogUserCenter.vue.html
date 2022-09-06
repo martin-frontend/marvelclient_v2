@@ -6,8 +6,11 @@
             <v-card-title class="d-flex justify-end px-5 py-5 pb-sm-0 pt-sm-6 px-sm-10">
                 <div class="text-20">{{LangUtil("个人中心")}}</div>
                 <v-spacer />
-                <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                     <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+                </v-btn> -->
+                <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
             <v-card-text class="px-5 mt-0 px-md-10 mt-sm-7 text-sm-subtitle-1 text_height" v-if="!$vuetify.breakpoint.xsOnly">

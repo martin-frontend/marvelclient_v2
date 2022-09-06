@@ -139,12 +139,14 @@
         </v-col>
         <v-col v-else cols="12" md="4" class="d-flex flex-column justify-space-between">
             <v-hover v-slot="{ hover }">
-                <v-card height="100%" class="mb-4 pa-2 mr-md-4 intro-radius card-bg"  style="box-shadow: none;" :color="hover ? '#283c63' : ''">
+                <v-card height="100%" class="mb-4 pa-2 mr-md-4 intro-radius" 
+                :class="hover? 'card-bg-hover':'card-bg'" 
+                style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-1.png"></img>
                         <span class="ml-2">{{LangUtil("玩家间交易")}}</span>
                     </v-card-title>
-                    <v-card-text :class="hover ? 'white--text' : 'colorInfo10-text'">
+                    <v-card-text class="colorInfo10-text">
                         {{LangUtil("币种专题页介绍_玩家交易说明", awardCoin, awardCoin, awardCoin)}}
                     </v-card-text>
                 </v-card>
@@ -152,10 +154,11 @@
             <v-hover v-slot="{ hover }">
                 <v-card
                     height="100%"
-                    class="pa-2 mr-md-4 intro-radius  card-bg"
+                    class="pa-2 mr-md-4 intro-radius"
                     :color="hover ? '#283c63' : ''"
+                    :class="hover? 'card-bg-hover':'card-bg'" 
                     style="box-shadow: none;"
-                    :class="$vuetify.breakpoint.smAndDown ? 'mb-4' : ''"
+                    :style="$vuetify.breakpoint.smAndDown ? 'margin-bottom:16px' : ''"
                 >
                     <v-card-title>
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-2.png"></img>
@@ -165,7 +168,7 @@
                             {{LangUtil("敬请期待")}}
                         </span>
                     </v-card-title>
-                    <v-card-text :class="hover ? 'white--text' : 'colorInfo10-text'">
+                    <v-card-text class="colorInfo10-text">
                         {{LangUtil("币种专题页介绍_投注说明", awardCoin, awardCoin)}}
                     </v-card-text>
                 </v-card>
@@ -173,18 +176,22 @@
         </v-col>
         <v-col  v-if="!$vuetify.breakpoint.mobile" cols="12" md="4" class="d-flex flex-column justify-space-between">
             <v-hover v-slot="{ hover }">
-                <v-card height="100%" class="mb-4 pa-2 intro-radius  card-bg"  style="box-shadow: none;" :color="hover ? '#283c63' : ''">
+                <v-card height="100%" class="mb-4 pa-2 intro-radius" 
+                :class="hover? 'card-bg-hover':'card-bg'" 
+                style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-3.png"></img>
                         <span class="ml-2">{{LangUtil("{0}回购", awardCoin)}}</span>
                     </v-card-title>
-                    <v-card-text :class="hover ? 'white--text' : 'colorInfo10-text'">
+                    <v-card-text class="colorInfo10-text">
                         {{LangUtil("币种专题页介绍_回购说明", awardCoin, awardCoin)}}
                     </v-card-text>
                 </v-card>
             </v-hover>
             <v-hover v-slot="{ hover }">
-                <v-card height="100%" class="pa-2 intro-radius  card-bg"  style="box-shadow: none;" :color="hover ? '#283c63' : ''">
+                <v-card height="100%" class="pa-2 intro-radius" 
+                :class="hover? 'card-bg-hover':'card-bg'" 
+                style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-4.png"></img>
                         <span class="ml-2">{{LangUtil("购买特权NFT")}}</span>
@@ -193,7 +200,7 @@
                             {{LangUtil("敬请期待")}}
                         </span>
                     </v-card-title>
-                    <v-card-text :class="hover ? 'white--text' : 'colorInfo10-text'">
+                    <v-card-text class="colorInfo10-text">
                         {{LangUtil("币种专题页介绍_购买特权NFT说明", awardCoin)}}
                     </v-card-text>
                 </v-card>

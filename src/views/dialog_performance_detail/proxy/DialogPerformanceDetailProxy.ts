@@ -55,10 +55,10 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
             label: LangUtil("真人"),
         },
         64: {
-            label: LangUtil("体育"),
+            label: LangUtil("体育电竞"),
         },
         128: {
-            label: LangUtil("电竞"),
+            label: LangUtil("链游"),
         },
     };
 

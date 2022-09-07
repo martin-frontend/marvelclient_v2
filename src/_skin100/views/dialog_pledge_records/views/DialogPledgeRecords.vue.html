@@ -15,11 +15,11 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="items-bg">
+            <div class="items-bg d-inline-flex mb6">
                 <v-btn
                     height="32"
                     width="115"
-                    class="rounded-pill font-weight-bold mr-2 "
+                    class="rounded-pill font-weight-bold ma-1"
                     elevation="0"
                     :text="listQuery.cate != 1"
                     :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -30,7 +30,7 @@
                 </v-btn>
                 <v-btn
                     height="32"
-                    class="rounded-pill font-weight-bold"
+                    class="rounded-pill font-weight-bold ma-1"
                     elevation="0"
                     :text="listQuery.cate != 2"
                     :color="listQuery.cate == 2 ? 'colorBtnSeleBg' : 'white--text'"
@@ -40,7 +40,7 @@
                     {{LangUtil("解除质押")}}
                 </v-btn>
             </div>
-            <v-divider class="my-3"/>
+            <!-- <v-divider class="my-3"/> -->
             <div v-if="listQuery.cate == 1 && !$vuetify.breakpoint.xsOnly" class="scroll_box">
                 <v-sheet  color="transparent" height="450" class="scroll-y">
                     <v-sheet class="mt-2 px15 pt-1 pb-1  rounded-lg my-3 list-item" v-for="(item, key) of pageData.list" :key="key">

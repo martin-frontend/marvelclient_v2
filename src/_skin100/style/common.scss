@@ -141,6 +141,7 @@ input {
 //     background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%) !important;
 // }
 .bPanelLevelBg {
+    user-select: none;
     background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
 }
 .btnRedBg {
@@ -160,6 +161,7 @@ input {
     background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
 }
 .container-b {
+    user-select: none;
     background-color: #0d1b29;
 }
 .bTextColor5 {
@@ -323,25 +325,25 @@ input {
 .hei50 {
     height: 50px !important;
 }
-.menu-space-5{
-    width:100%;
-    height:5px;
+.menu-space-5 {
+    width: 100%;
+    height: 5px;
 }
-.menu-space{
-    width:100%;
-    height:10px;
+.menu-space {
+    width: 100%;
+    height: 10px;
 }
-.menu-space-20{
-    width:100%;
-    height:20px;
+.menu-space-20 {
+    width: 100%;
+    height: 20px;
 }
-.menu-full{
+.menu-full {
     padding: 0 15px;
-    width:100% !important;
+    width: 100% !important;
     max-width: 100% !important;
 }
-.v-menu__content{
-    box-shadow:none !important;
+.v-menu__content {
+    box-shadow: none !important;
 }
 .v-tooltip__content {
     background: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%) !important;

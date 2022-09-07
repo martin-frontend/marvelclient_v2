@@ -40,6 +40,11 @@
                 <v-slide-item v-for="item of qpGame.list" :key="item.vendor_prodcut_id">
                     <GameItemSmall :item="item" />
                 </v-slide-item>
+                <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorBtnSeleBg"></v-progress-circular>
+                    </v-row>
+                </template>
             </v-slide-group>
         </v-sheet>
     </div>

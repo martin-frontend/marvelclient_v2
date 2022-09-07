@@ -44,7 +44,7 @@ export function getVuetify(): Vuetify {
                         colorBtnSeleBg: "#CD30C1", //used
                         colorCloseBtn: "#756BA4", //used
                         colorTextYellow: "#F8D129", //used
-                        colorTextNormal: "#737c86", //used
+                        colorTextNormal: "#7d8b9b", //used
                         colorTextNormal2: "#8f7ac0", //used
                         colorTextNormal3: "#9086af",
                         colorTextNormal4: "#9AA1B1",

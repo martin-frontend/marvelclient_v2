@@ -66,7 +66,6 @@ module net {
         static get(url:string, data?:any):Promise<any>{
             return new Promise((resolve, reject) => {
                 const ajax = new XMLHttpRequest();
-                ajax.timeout = 2000;
                 ajax.open("GET", url);
                 ajax.send(data);
                 ajax.onreadystatechange = function (e) {
@@ -84,7 +83,6 @@ module net {
         static post(url:string, data?:any):Promise<any>{
             return new Promise((resolve, reject) => {
                 const ajax = new XMLHttpRequest();
-                ajax.timeout = 2000;
                 ajax.open("POST", url);
                 ajax.send(data);
                 ajax.onreadystatechange = function (e) {

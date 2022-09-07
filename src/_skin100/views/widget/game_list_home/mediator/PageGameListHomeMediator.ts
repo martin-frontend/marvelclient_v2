@@ -50,6 +50,7 @@ export default class PageGameListMediator extends AbstractMediator {
                             myProxy.setRealGame(item);
                         }
                     }
+                    myProxy.setloading();
                 }
                 break;
             // case net.EventType.api_plat_var_game_all_config:

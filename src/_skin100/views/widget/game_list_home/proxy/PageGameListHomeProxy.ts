@@ -118,6 +118,10 @@ export default class PageGameListHomeProxy extends puremvc.Proxy {
         this.api_plat_var_game_all_index();
     }
 
+    setloading() {
+        this.pageData.loading = false;
+    }
+
     setGameList(data: any) {
         this.pageData.loading = false;
         const { list, pageInfo } = data;

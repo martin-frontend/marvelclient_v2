@@ -22,7 +22,7 @@ export default class DialogPromotionStatistics extends AbstractView {
     }
 
     onQuery() {
-        if(this.pageData.search.agent_user_id == '') {
+        if (this.pageData.search.agent_user_id == "") {
             dialog_message_box.alert(LangUtil("请输入ID"));
             return;
         }

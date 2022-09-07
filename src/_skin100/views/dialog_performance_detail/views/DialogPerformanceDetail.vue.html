@@ -8,8 +8,11 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text class="px30" v-if="!$vuetify.breakpoint.xsOnly">
@@ -125,7 +128,8 @@
                         </div>
                     </v-sheet>
                 </v-sheet>
-                <ListNodata v-if="pageData.list.length == 0" height="411"/>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411"/>
+                <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             </div>
             <v-sheet v-if="listQuery.cate == 1"  height="525" color="transparent" class="listbox scroll-y">
                 <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg px-5 py-4 pb-1 mb-3">
@@ -218,7 +222,8 @@
                         </div>
                     </v-sheet>
                 </template> -->
-                <ListNodata v-if="pageData.directList.length == 0" height="480"/>
+                <ListNodata v-if="pageData.directList.length == 0 && !pageData.loading" height="480"/>
+                <div style="width:100%;height:480px;" v-if="pageData.directList.length == 0 && pageData.loading"></div>
             </v-sheet>
         </v-card-text>
         <!-- 手机显示方式 -->
@@ -320,7 +325,7 @@
                             </div>
                     </v-sheet>
                 </v-sheet>
-                <ListNodata v-if="pageData.list.length == 0"/>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
             </div>
             <v-sheet v-if="listQuery.cate == 1" color="transparent" class="listbox scroll-y">
                 <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg pa-4 mb-3">
@@ -410,7 +415,7 @@
                         </div>
                     </v-sheet>
                 </template> -->
-                <ListNodata v-if="pageData.directList.length == 0"/>
+                <ListNodata v-if="pageData.directList.length == 0 && !pageData.loading"/>
             </v-sheet>
         </v-card-text>
     </v-card>

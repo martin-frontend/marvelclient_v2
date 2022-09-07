@@ -7,8 +7,11 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
@@ -81,7 +84,8 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="445"/>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="445"/>
+            <div style="width:100%;height:445px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 class="mt-4"
@@ -122,7 +126,7 @@
             <!-- <v-sheet  color="transparent" height="510"  class="scroll-y"> -->
             <v-sheet  color="transparent" :height="isIOSMobile ? '60vh':'70vh'"  class="overflow-y-auto">
                 <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
-                    <ListNodata v-if="pageData.list.length == 0"/>
+                    <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
                     <v-sheet class="px-4 py-4 rounded-lg mt10 d-flex flex-wrap" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                         <div style="width: 100%" class="d-flex mb-2">
                             <!-- <v-badge color="red" dot offset-y="8" offset-x="7"  :value="!item.is_read"><v-icon class="white--text" :style="{opacity: item.is_read ? 0.4 : 1 }" size="22">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> </v-badge> -->

@@ -8,8 +8,11 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
@@ -70,7 +73,8 @@
                     <v-btn class="bPanelOpacityBg rounded-pill" min-width="80" height="30" elevation="1" @click.stop.prevent="onDelete(item)"><span class="text-14">{{LangUtil("删除")}}</span></v-btn>
                 </v-sheet> -->
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
+            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 class="mt-2"
@@ -113,7 +117,7 @@
         <v-card-text class="px-3" v-if="$vuetify.breakpoint.xsOnly">
         <v-sheet  color="transparent" height="520"  class="scroll-y">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" >
-                <ListNodata v-if="pageData.list.length == 0" />
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
                 <v-sheet
                     height="90"
                     class="rounded-lg d-flex align-center px-5 mt-3 cursor bPanelOpacityBg"

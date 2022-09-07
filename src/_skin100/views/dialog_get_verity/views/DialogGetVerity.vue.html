@@ -5,7 +5,10 @@
                 {{pageData.category == 0 ? LangUtil("获取邮箱验证码"): LangUtil("获取短信验证码")}}
             </div>
             <v-spacer />
-            <v-btn icon @click="onClose"><v-icon color="colorText3">mdi-close</v-icon></v-btn>
+            <!-- <v-btn icon @click="onClose"><v-icon color="colorText3">mdi-close</v-icon></v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
         </v-card-title>
         <!-- <v-card-text class="d-flex px-8 mt-2"> -->
         <v-card-text class="d-flex px-5 pb-0">

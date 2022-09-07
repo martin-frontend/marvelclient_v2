@@ -7,8 +7,11 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon color="colorCloseBtn">mdi-close</v-icon>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
@@ -83,7 +86,8 @@
                     </v-row>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411"/>
+            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 class="mx-auto mb-2"
@@ -105,7 +109,7 @@
         </v-card-text>
         <v-card-text class="px-4" v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <ListNodata v-if="pageData.list.length == 0"/>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="column-title">{{LangUtil("交易ID")}}</div>

@@ -7,13 +7,16 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+            </v-btn> -->
+            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <!-- <v-card-text v-if="pageData.bShow" class="px-10 mt-5"> -->
         <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
-            <CustomInput maxlength="12" class="ip" :placeholder="LangUtil('昵称为1-10位字符')" v-model="pageData.real_name" />
+            <CustomInput maxlength="10" class="ip" :placeholder="LangUtil('昵称为1-10位字符')" v-model="pageData.real_name" />
             <div class="mt10 mb20 real-name-text">{{LangUtil("请绑定您的真实姓名，玩家姓名与付款姓名相同、否则支付不到账；（绑定后不能修改）")}}</div>
             <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedId" @click="onSubmit" block
                 ><span class="text-16">{{LangUtil("保存设置")}}</span></v-btn

@@ -52,7 +52,7 @@
                     @click="onTabClick(2)"
                     v-if="selfProxy.userInfo.is_gold_transfer == 1"
                 >
-                    <v-icon size="18" class="mr-1">mdi-transfer</v-icon>{{LangUtil("划转")}}
+                    <v-icon size="18" :color="pageData.tabIndex == 2 ? '' : 'rgba(255,255,255,0.3)'" class="mr-1">mdi-transfer</v-icon>{{LangUtil("划转")}}
                 </v-btn>
                  </div>
                 <v-spacer />
@@ -120,7 +120,7 @@
             <v-card-text class="d-flex align-center px-4 px-sm-8 pb-0" >
                 <div class="d-inline-flex align-center justify-center pa-1 rounded-pill bPanelOpacityBg">
                 <v-btn
-                    width="115"
+                    width="90"
                     height="32"
                     class="rounded-pill font-weight-bold mr-2 white--text"
                     elevation="0"
@@ -132,7 +132,7 @@
                     <v-icon size="18" :color="pageData.tabIndex == 0 ? '' : 'rgba(255,255,255,0.3)'" class="mr-1">mdi-arrow-down-bold-circle</v-icon>{{LangUtil("充值")}}
                 </v-btn>
                 <v-btn
-                    width="115"
+                    width="90"
                     height="32"
                     class="rounded-pill font-weight-bold white--text"
                     :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''"
@@ -145,7 +145,7 @@
                     <v-icon size="18" :color="pageData.tabIndex == 1 ? '' : 'rgba(255,255,255,0.3)'" class="mr-1">mdi-arrow-up-bold-circle</v-icon>{{LangUtil("兑换")}}
                 </v-btn>
                 <v-btn
-                    width="115"
+                    width="90"
                     height="32"
                     class="rounded-pill font-weight-bold white--text"
                     elevation="0"
@@ -154,7 +154,7 @@
                     @click="onTabClick(2)"
                     v-if="selfProxy.userInfo.is_gold_transfer == 1"
                 >
-                    <v-icon size="18" class="mr-1">mdi-transfer</v-icon>{{LangUtil("划转")}}
+                    <v-icon size="18" :color="pageData.tabIndex == 2 ? '' : 'rgba(255,255,255,0.3)'" class="mr-1">mdi-transfer</v-icon>{{LangUtil("划转")}}
                 </v-btn>
                  </div>
                 <v-spacer />

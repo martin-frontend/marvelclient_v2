@@ -435,7 +435,30 @@
                                 <v-col cols="12">
                                     <div class="d-flex justify-center mb-4 cursor" @click="showPreview">
                                         <div ref="qrcode" class="qrcode">
-                                            <v-img :src="pageData.qrCode"></v-img>
+                                                <v-row v-if="!pageData.qrCode"
+                                                      class="fill-height ma-0"
+                                                      align="center"
+                                                      justify="center"
+                                                    >
+                                                      <v-progress-circular
+                                                        indeterminate
+                                                        color="colorBtnSeleBg"
+                                                      ></v-progress-circular>
+                                                </v-row>
+                                            <v-img :src="pageData.qrCode">
+                                                <!-- <template v-slot:placeholder>
+                                                    <v-row
+                                                      class="fill-height ma-0"
+                                                      align="center"
+                                                      justify="center"
+                                                    >
+                                                      <v-progress-circular
+                                                        indeterminate
+                                                        color="colorBtnSeleBg"
+                                                      ></v-progress-circular>
+                                                    </v-row>
+                                                  </template> -->
+                                            </v-img>
                                         </div>
                                     </div>
                                 </v-col>
@@ -571,7 +594,30 @@
                                 <v-col cols="3" class="mr-4">
                                     <div class="d-flex justify-start cursor" @click="showPreview">
                                         <div ref="qrcode" class="qrcode">
-                                            <v-img :src="pageData.qrCode"></v-img>
+                                                    <v-row v-if="!pageData.qrCode"
+                                                      class="fill-height ma-0"
+                                                      align="center"
+                                                      justify="center"
+                                                    >
+                                                      <v-progress-circular
+                                                        indeterminate
+                                                        color="colorBtnSeleBg"
+                                                      ></v-progress-circular>
+                                                    </v-row>
+                                            <v-img :src="pageData.qrCode">
+                                                <!-- <template v-slot:placeholder>
+                                                    <v-row
+                                                      class="fill-height ma-0"
+                                                      align="center"
+                                                      justify="center"
+                                                    >
+                                                      <v-progress-circular
+                                                        indeterminate
+                                                        color="colorBtnSeleBg"
+                                                      ></v-progress-circular>
+                                                    </v-row>
+                                                  </template> -->
+                                            </v-img>
                                         </div>
                                     </div>
                                 </v-col>

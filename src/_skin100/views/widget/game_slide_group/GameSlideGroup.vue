@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import GameItem from "../game_item/GameItem.vue";
+import GameItem from "../game_item_small/GameItem.vue";
 import GameSlideGroup from "./GameSlideGroup";
 
 @Component({

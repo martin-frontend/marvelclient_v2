@@ -152,7 +152,7 @@
             </div>
         </div>
         <PageIntroduce />
-        <PageGameList />
+        <!-- <PageGameList /> -->
         <!-- <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
             <GameSlideGroup
             v-if="item.category != 4 && item.category != 32 && item.category != 64"
@@ -162,6 +162,30 @@
             :id="item.category"
             />
         </div> -->
+
+        <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
+          <GameSlideGroup
+              v-if=" item.category != 32 && item.category != 64"
+              :data="item"
+              :bShowAll="true"
+              :name="item.category"
+              :id="item.category"
+          />
+          <!-- <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport> -->
+      </div>
+
+      <div class="d-flex justify-center pt-2" >
+        <v-btn
+            class="rounded-pill morebg"
+            :width="$vuetify.breakpoint.xsOnly?150:196"
+            :height="$vuetify.breakpoint.xsOnly?35:46"
+            :class="$vuetify.breakpoint.mobile?'morebg-h5 mt-4 mb-3':'text-16 my-8'"
+            @click="onShowAll"
+            >
+            {{LangUtil("查看更多游戏")}}
+            <img class="ml-2"  width="9" height="14" src="../../../assets/arrow.png" alt=""></img>
+            </v-btn>
+     </div>
     </v-container>
     
 </v-container>

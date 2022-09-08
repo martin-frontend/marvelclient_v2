@@ -33,7 +33,7 @@
                     </div>
                     <div class="d-flex mt-2 mx-3 align-end">
                         <span class="text-24 white--text" style="line-height:30px;">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
-                        <span class="text-16 ml-1 colorTextGreey--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
+                        <span class="text-16 ml-1 colorTextNormal2--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
                         <span class="text-16 ml-2" :class="parseFloat(chartChangedData)<0? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
                         <v-spacer />
                         <v-btn-toggle mandatory group class="period" v-model="pageData.chartQuary.type" @change="onTimeChange">
@@ -51,7 +51,7 @@
                             </v-btn>
                         </v-btn-toggle>
                     </div>
-                    <div class="mt-2 mx-3 text-14 colorTextGreey--text">{{ chartData.created_time}}</div>
+                    <div class="mt-2 mx-3 text-14 colorTextNormal2--text">{{ chartData.created_time}}</div>
                     <!-- chart -->
                     <Chart class="line_chart" />   
                 </v-card>
@@ -62,7 +62,7 @@
                     <v-card-title class="head d-flex align-center px-3 px-sm-5 pb-3 pb-sm-4 pt-1 pt-sm-5">
                         <div>
                             <div class="d-flex align-start text-xs-18 text-18 font-weight-medium">{{LangUtil("兑换")}}</div>
-                            <div class="colorTextGreey--text text-14 mt-n1">
+                            <div class="colorTextNormal2--text text-14 mt-n1">
                                 {{LangUtil("即时交易代币")}}
                             </div>
                         </div>
@@ -135,13 +135,13 @@
                             :disabled="true"
                         />
 
-                        <v-sheet class="d-flex colorTextGreey--text text-14 px-0 align-center" color="transparent" :height="$vuetify.breakpoint.xsOnly? 37:34">
+                        <v-sheet class="d-flex colorTextNormal2--text text-14 px-0 align-center" color="transparent" :height="$vuetify.breakpoint.xsOnly? 37:34">
                             <span>{{LangUtil("价格")}}</span>
                             <v-spacer />
                             <span>1 {{ form.coinA }} = {{ form.price }} {{ form.coinB }}</span>
                         </v-sheet>
 
-                        <div class="colorTextGreey--text text-14  mt-3 mt-sm-4 mb-2 mb-sm-2">
+                        <div class="colorTextNormal2--text text-14  mt-3 mt-sm-4 mb-2 mb-sm-2">
                             {{LangUtil("滑点容差:")}}
                         </div>
                         <v-btn-toggle mandatory group class="btn_group_width mx-n1 period" v-model="form.tolerance" @change="onChange">
@@ -159,7 +159,7 @@
                     </v-card-text>
                 </v-card>
 
-                <v-card class="rounded-lg mt-2 colorTextGreey--text text-14  px-5 pt-3 pt-sm-4 pb-4" color="colorGreyPanel" flat>
+                <v-card class="rounded-lg mt-2 colorTextNormal2--text text-14  px-5 pt-3 pt-sm-4 pb-4" color="colorGreyPanel" flat>
                     <div class="d-flex align-center mb-3">
                         <span class="mr-2">
                             {{LangUtil("最小获得量")}}
@@ -213,7 +213,7 @@
                     <v-card-title class="head d-flex align-center px-4  pb-3  pt-4 ">
                         <div>
                             <div class="d-flex align-start text-17 font-weight-medium">{{LangUtil("兑换")}}</div>
-                            <div class="colorTextGreey--text text-13 mt-n2">
+                            <div class="colorTextNormal2--text text-13 mt-n2">
                                 {{LangUtil("即时交易代币")}}
                             </div>
                         </div>
@@ -287,13 +287,13 @@
                             :disabled="true"
                         />
 
-                        <v-sheet class="d-flex colorTextGreey--text text-14 px-0 align-center" color="transparent" height="34">
+                        <v-sheet class="d-flex colorTextNormal2--text text-14 px-0 align-center" color="transparent" height="34">
                             <span>{{LangUtil("价格")}}</span>
                             <v-spacer />
                             <span>1 {{ form.coinA }} = {{ form.price }} {{ form.coinB }}</span>
                         </v-sheet>
 
-                        <div class="colorTextGreey--text text-14  mt-2 mb-2">
+                        <div class="colorTextNormal2--text text-14  mt-2 mb-2">
                             {{LangUtil("滑点容差:")}}
                         </div>
                         <v-btn-toggle mandatory group class="btn_group_width mx-n1 period period-btn" v-model="form.tolerance" @change="onChange">
@@ -311,7 +311,7 @@
                     </v-card-text>
                 </v-card>
 
-                <v-card class="rounded-lg mt-2 colorTextGreey--text text-14  px-4 py-3" color="colorGreyPanel" flat>
+                <v-card class="rounded-lg mt-2 colorTextNormal2--text text-14  px-4 py-3" color="colorGreyPanel" flat>
                     <div class="d-flex align-center mb-3">
                         <span class="mr-2">
                             {{LangUtil("最小获得量")}}
@@ -391,11 +391,11 @@
                     </div>
                     <div class="d-flex mt-2 align-center">
                         <span class="text-21">{{ chartData.coinA == swap_setting_info.coin_a ? chartData.coin_a_b_price : chartData.coin_b_a_price}}</span> 
-                        <span class="text-14 ml-1 colorTextGreey--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
+                        <span class="text-14 ml-1 colorTextNormal2--text">{{ chartData.coinA }}/{{ chartData.coinB }}</span>
                         <span class="text-14 ml-1" :class=" parseFloat(chartChangedData)<0  ? 'red_k': 'green_k'">{{ parseFloat(chartChangedData)>0? '+' + chartChangedData: chartChangedData }}</span>
                         
                     </div>
-                    <div class="mt-1 text-14 colorTextGreey--text">{{ chartData.created_time}}</div>
+                    <div class="mt-1 text-14 colorTextNormal2--text">{{ chartData.created_time}}</div>
                     <!-- chart -->
                     <Chart />   
                 </v-card>

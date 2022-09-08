@@ -96,7 +96,7 @@
                         <v-col :cols="$vuetify.breakpoint.mobile?'12':'8'" class="text-body-2 text-align-center ml-0 ml-sm-n4 pl-0 pl-md-7 pl-md-0 text-md-body-1 game_mine_info">
                             <div class="mt-4 mt-sm-11 mt-md-8">
                                 <p class="ma-0 text-17 font-weight-bold colorTextYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</p>
-                                <p class="ma-0 text-body-2 text-md-body-1 colorTextNormal--text">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
+                                <p class="ma-0 text-body-2 text-md-body-1 bTextColor5">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
                             </div>
                         
                             <div class="d-flex justify-center align-center mt-3 mt-md-3 coins_group elevation='2'">
@@ -137,7 +137,7 @@
         <span class=" text-md-h7"
         :class="$vuetify.breakpoint.xsOnly?'text-15':'text-h6 mt12'"
         >{{LangUtil('VIP等级')}} </span></span>
-        <p class="ma-0 mt-1 text-md-body-3 colorText3--text tips" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
+        <p class="ma-0 mt-1 text-md-body-3 bTextColor5 tips" :class="$vuetify.breakpoint.xsOnly ? 'text-12':'text-14'">
             {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
         </p>
         

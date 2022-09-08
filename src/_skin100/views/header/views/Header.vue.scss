@@ -1,6 +1,7 @@
 a {
     text-decoration: none;
 }
+
 ::v-deep .v-toolbar__content {
     padding: 0px;
 }
@@ -65,7 +66,6 @@ a {
     border-radius: 22px;
 }
 .header_sk100 {
-    user-select: none;
     background-color: #182533 !important;
 }
 .app-bar {

@@ -4,9 +4,7 @@
         font-size: 20px;
     }
 }
-#page .main-container {
-    user-select: none;
-}
+
 .a-ele {
     text-decoration: underline;
     cursor: pointer;
@@ -124,7 +122,6 @@
     }
     #page {
         .main-container {
-            user-select: none;
             // background: #0d1529;
             background: #0d1b29;
             padding-top: 0;

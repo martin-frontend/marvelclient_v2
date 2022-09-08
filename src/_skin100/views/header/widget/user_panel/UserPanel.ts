@@ -52,12 +52,12 @@ export default class UserPanel extends AbstractView {
     //     { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
     // ];
     menuList = [
-        {
-            id: 0,
-            name: LangUtil("个人中心"),
-            icon: aqzx,
-            icon_white: aqzx_w,
-        },
+        // {
+        //     id: 0,
+        //     name: LangUtil("个人中心"),
+        //     icon: aqzx,
+        //     icon_white: aqzx_w,
+        // },
         {
             id: 1,
             name: LangUtil("安全中心"),
@@ -213,7 +213,9 @@ export default class UserPanel extends AbstractView {
         }
         this.drawerClose();
     }
-
+    userCenterShow() {
+        LoginEnter(dialog_user_center.show);
+    }
     onCopy(str: any) {
         CopyUtil(str);
     }

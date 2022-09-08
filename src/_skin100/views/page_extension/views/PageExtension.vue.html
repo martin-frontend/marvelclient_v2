@@ -139,7 +139,7 @@
                                     <span class="text-14 white--text"> {{LangUtil("我的上级")}} </span>
                                 </v-col>
                                 <v-col cols="12" class="commission mt-n1">
-                                    <span class="text-body-2 text-12 font-weight-medium" :style="{color:promotionData.invite_user_id? 'rgba(255,255,255,1)': 'rgba(255,255,255,0.3)'}">
+                                    <span class="text-body-2 text-12 font-weight-medium" :style="{color:promotionData.invite_user_id? 'rgba(255,255,255,1)': 'rgba(255,255,255,0.5)'}">
                                         {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
                                         <v-btn
                                             text
@@ -272,7 +272,7 @@
                                 <span class="text-14 white--text font-weight-medium"> {{LangUtil("我的上级")}} </span>
                             </v-col>
                             <v-col cols="12" class="commission mt-n1">
-                                <span class="text-body-2 text-12 font-weight-medium" :style="{color:promotionData.invite_user_id? 'rgba(255,255,255,1)': 'rgba(255,255,255,0.3)'}">
+                                <span class="text-body-2 text-12 font-weight-medium" :style="{color:promotionData.invite_user_id? 'rgba(255,255,255,1)': 'rgba(255,255,255,0.5)'}">
                                     {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
                                     <v-btn
                                         text
@@ -488,7 +488,7 @@
                             </v-row>
                         </v-col>
                         <v-col cols="8" class="colorText4--text text-subtitle-1 pl-4 pl-sm-2">
-                            <div class="mb-2 text-body-2 text-sm-14 colorTextNormal--text">{{LangUtil("推广链接")}}:</div>
+                            <div class="mb-2 text-body-2 text-sm-14 colorTextNormal2--text">{{LangUtil("推广链接")}}:</div>
                             <v-sheet
                                 color="rowbg white--text"
                                 :height="$vuetify.breakpoint.xsOnly? 35 :40"
@@ -502,7 +502,7 @@
                                     ></v-img>
                                 </v-btn>
                             </v-sheet>
-                            <div class="mb-2 text-body-2 text-sm-14 colorTextNormal--text">{{LangUtil("邀请码")}}</div>
+                            <div class="mb-2 text-body-2 text-sm-14 colorTextNormal2--text">{{LangUtil("邀请码")}}</div>
                             <v-sheet
                                 color="rowbg white--text"
                                 :height="$vuetify.breakpoint.xsOnly? 35 :40"
@@ -516,8 +516,8 @@
                                     ></v-img>
                                 </v-btn>
                             </v-sheet>
-                            <div class="text-caption text-sm-body-12 colorTextNormal--text">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
-                            <div class="text-caption text-sm-body-12 colorTextNormal--text">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
+                            <div class="text-caption text-sm-body-12 colorTextNormal2--text">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
+                            <div class="text-caption text-sm-body-12 colorTextNormal2--text">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
                         </v-col>
                     </v-row>
                     <div class="d-flex justify-end mt-2 mt-lg-n2">
@@ -776,11 +776,11 @@
         </v-row>
         <div class="mt-5 px-0 pa-sm-5 rounded-lg level_panel" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-subtitle-1 text-sm-16 mb-2 mb-sm-2 font-weight-medium white--text d-flex align-center"><v-icon color="#666f7b" class="mr-2" >mdi-crown</v-icon>{{LangUtil("返佣等级")}}</div>
-            <div class="text-14 colorTextNormal--text px-4 py-2 mb-2 mb-sm-5 rounded-lg bPanelOpacityBg">
+            <div class="text-14 colorTextNormal2--text px-4 py-2 mb-2 mb-sm-5 rounded-lg bPanelOpacityBg">
                 {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
             </div>
             <v-card height="30" class="rounded-xl rounded-card mb-1 d-flex align-center mb-2 level_title" elevation="0">
-                <v-row no-gutters class="d-flex flex-row text-sm-14 colorTextNormal--text">
+                <v-row no-gutters class="d-flex flex-row text-sm-14 colorTextNormal2--text">
                     <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                         {{LangUtil("等级")}}
                     </v-col>
@@ -862,11 +862,11 @@
         <!-- 手机表格 -->
         <div class="rounded-lg level_panel pa-4  mt-3" v-if="$vuetify.breakpoint.xsOnly">
             <div class="text-subtitle-1 text-sm-16 mb-2 mb-sm-2 font-weight-medium white--text d-flex align-center"><v-icon color="#666f7b" class="mr-2" >mdi-crown</v-icon>{{LangUtil("返佣等级")}}</div>
-            <div class="text-12 colorTextNormal--text px-3 py-1 mb-1 rounded bPanelOpacityBg">
+            <div class="text-12 colorTextNormal2--text px-3 py-1 mb-1 rounded bPanelOpacityBg">
                 {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
             </div>
             <v-card height="30" class="rounded-xl rounded-card mb-1 d-flex align-center mb-2 level_title" elevation="0">
-                <v-row no-gutters class="d-flex flex-row text-12 colorTextNormal--text font-weight-medium">
+                <v-row no-gutters class="d-flex flex-row text-12 colorTextNormal2--text font-weight-medium">
                     <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                         {{LangUtil("等级")}}
                     </v-col>

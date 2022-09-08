@@ -1,7 +1,7 @@
 <v-dialog class="rounded-xl" width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" :no-click-animation="true" persistent>
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
-        <!-- <AdvertiseInLogin :height="794" class="d-none d-md-flex" /> -->
-        <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" >
+        <AdvertiseInLogin :height="620" class="d-none d-md-flex" />
+        <!-- <v-img src="../../../../assets/register/egame.png" :width="380" :height="620"  class="d-none d-md-flex rounded-0" >
             <template v-slot:placeholder>
                 <v-row
                   class="fill-height ma-0"
@@ -14,7 +14,7 @@
                   ></v-progress-circular>
                 </v-row>
               </template>
-        </v-img>
+        </v-img> -->
         <!-- pc显示 -->
         <v-card color="transparent" width="488" class="rounded-0" v-if="!$vuetify.breakpoint.xsOnly">
             <v-card-title class="d-flex justify-end pb-0 pt-6 px-10">

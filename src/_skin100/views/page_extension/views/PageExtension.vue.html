@@ -23,9 +23,10 @@
                             <v-btn
                                 :min-width="$vuetify.breakpoint.xsOnly? 130 : 120"
                                 :height="$vuetify.breakpoint.xsOnly? 35 :36"
-                                class="mr-3 rounded-lg text-body-2 text-sm-body-1 white--text rounded-pill btnRedBg"
+                                class="mr-3 rounded-lg text-body-2 text-sm-body-1 white--text rounded-pill"
    
                                 @click="handlerAward"
+                                :class="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0 ? '':'btnRedBg'"
                                 :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
                                 >{{LangUtil("领取奖励")}}</v-btn
                             >

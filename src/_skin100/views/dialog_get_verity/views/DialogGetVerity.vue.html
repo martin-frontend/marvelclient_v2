@@ -13,7 +13,8 @@
         <!-- <v-card-text class="d-flex px-8 mt-2"> -->
         <v-card-text class="d-flex px-5 pb-0">
             <CustomInput type="tel" class="rounded verity-ip" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
-                <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img>
+                <!-- <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img> -->
+                <v-img class="ml-3 mr-n4" :src="pageData.auth_image" width="78" height="42" @click="getVerity"></v-img>
             </CustomInput>
         </v-card-text>
         <v-card-actions class="px-5 mt-4">

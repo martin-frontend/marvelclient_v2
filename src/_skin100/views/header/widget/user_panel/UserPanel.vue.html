@@ -33,17 +33,17 @@
 </v-sheet> -->
 <div>
 <v-sheet class="walletPanelBg rounded-lg pa15 pt-4" v-if="!$vuetify.breakpoint.xsOnly" elevation="0" width="300">
-    <div class="d-flex ml-2">
-        <v-img class="rounded-pill mr-4 cursor-pointer" src="@/assets/avatar/Avatar0.png" max-width="50" max-height="50" @click="userCenterShow"></v-img>
+    <div class="d-flex ml-2 cursor-pointer" @click="userCenterShow">
+        <v-img class="rounded-pill mr-4" src="@/assets/avatar/Avatar0.png" max-width="50" max-height="50"></v-img>
         <div class="d-flex flex-column align-start justify-center">
-        <div class="mx-auto  text-16 font-weight-medium cursor-pointer" @click="onCopy(userInfo.user_id)">
+        <div class="mx-auto  text-16 font-weight-medium cursor-pointer" @click.stop.prevent="onCopy(userInfo.user_id)">
             ID:{{userInfo.user_id}}
         </div>
         <div class="px-2 mt-1 text-12 font-weight-medium  vip-level-bg">
             VIP{{userInfo.vip_info && userInfo.vip_info.vip_level}}
         </div>
         </div>
-        <div class="icon-box iconfont mx-3 mr-4 text-14 ml-auto cursor-pointer" style="transform: rotate(-90deg)" @click="userCenterShow"></div>
+        <div class="icon-box iconfont mx-3 mr-4 text-14 ml-auto cursor-pointer" style="transform: rotate(-90deg)"></div>
     </div>
 
     <v-sheet class="rounded-lg mt-3 py-1 ucenter-item-bg">
@@ -82,17 +82,18 @@
         <div class="white--text text-17 font-weight-medium">{{LangUtil("我的")}}</div>
         <div style="width:14px;"> </div>
     </div>
-    <div class="d-flex ml-2 mt-5">
+    <div class="d-flex ml-2 mt-5 cursor-pointer" @click="userCenterShow">
         <v-img class="rounded-pill mr-4" src="@/assets/avatar/Avatar0.png" max-width="55" max-height="55"></v-img>
         <div class="d-flex flex-column align-start justify-center">
-        <div class="mx-auto text-17 font-weight-medium cursor-pointer" @click="onCopy(userInfo.user_id)">
-            ID {{userInfo.user_id}}
+            <div class="mx-auto text-17 font-weight-medium cursor-pointer" @click.stop.prevent="onCopy(userInfo.user_id)">
+                ID {{userInfo.user_id}}
+            </div>
+            <div class="px-2 mt-1 text-12 font-weight-medium cursor-pointer vip-level-bg">
+                VIP{{userInfo.vip_info && userInfo.vip_info.vip_level}}
+            </div>
         </div>
-        <div class="px-2 mt-1 text-12 font-weight-medium cursor-pointer vip-level-bg">
-            VIP{{userInfo.vip_info && userInfo.vip_info.vip_level}}
-        </div>
+        <div class="icon-box iconfont mx-3 mr-4 text-14 ml-auto" style="transform: rotate(-90deg)"></div>
     </div>
-</div>
 
     <v-sheet class="rounded-lg mt-3 py-2 ucenter-item-bg">
         <div class="d-flex align-center pa-4 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">

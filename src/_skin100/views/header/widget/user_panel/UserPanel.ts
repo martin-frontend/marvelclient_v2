@@ -16,6 +16,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_user_center from "@/_skin100/views/dialog_user_center";
+import dialog_message from "@/_skin100/views/dialog_message";
 
 import aqzx from "@/_skin100/assets/my/aqzx.png";
 import aqzx_w from "@/_skin100/assets/my/hover/aqzx.png";
@@ -218,6 +219,7 @@ export default class UserPanel extends AbstractView {
     }
     onCopy(str: any) {
         CopyUtil(str);
+        dialog_message.success(LangUtil("复制成功"));
     }
     drawerClose() {
         this.$emit("drawer", false);

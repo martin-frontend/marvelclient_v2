@@ -96,9 +96,9 @@ button {
     color: inherit;
 }
 
-// .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
-//     color: white !important;
-// }
+.theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
+    background-image:none !important;
+}
 input {
     border: none;
     outline: medium;

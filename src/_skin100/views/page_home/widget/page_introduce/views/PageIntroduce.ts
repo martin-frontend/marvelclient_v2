@@ -5,10 +5,12 @@ import OpenLink from "@/core/global/OpenLink";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
+import router from "@/router";
 import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import page_extension from "@/_skin100/views/page_extension";
 import dialog_activity from "@/_skin100/views/dialog_activity";
 import page_bonus from "@/_skin100/views/page_bonus";
+import page_game_list from "@/_skin100/views/page_game_list";
 @Component
 export default class PageIntroduce extends AbstractView {
     LangUtil = LangUtil;
@@ -47,6 +49,12 @@ export default class PageIntroduce extends AbstractView {
     }
     goActivity() {
         dialog_activity.show();
+    }
+    onTGGroup() {
+        // onWatchShow()
+    }
+    goHome() {
+        page_game_list.show();
     }
     goContractInfo() {
         OpenLink(this.reward_coin_info.contract_address);

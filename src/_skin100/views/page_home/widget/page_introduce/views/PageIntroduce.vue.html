@@ -234,6 +234,7 @@
                             :min-width="$vuetify.breakpoint.xsOnly ? '105' : '170'"
                             class="px-4 intro-btn font-weight-bold"
                             :class="$vuetify.breakpoint.xsOnly ? 'text-13' : 'text-body-1'"
+                            @click="goHome"
                         >
                             {{LangUtil("去游戏大厅")}}
                         </v-btn>
@@ -262,6 +263,7 @@
                             :min-width="$vuetify.breakpoint.mdAndUp ? '170' : '105'"
                             class=" px-4 intro-btn font-weight-bold"
                             :class="$vuetify.breakpoint.mdAndUp ? ' text-body-1' : 'text-13'"
+                            @click="onTGGroup"
                         >
                             {{LangUtil("加入TG社群")}}
                         </v-btn>

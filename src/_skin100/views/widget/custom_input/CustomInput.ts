@@ -7,6 +7,7 @@ export default class CustomInput extends AbstractView {
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
     @Prop({ default: 100 }) maxlength!: number;
+    @Prop({ default: 100 }) diglength!: number; //小数位
 
     inputValue = this.getValue;
 
@@ -17,6 +18,8 @@ export default class CustomInput extends AbstractView {
     }
 
     onInput(value: any) {
+        const RegStr = `^[\\+\\-]?\\d+\\.?\\d{0,${this.diglength}}`;
+        this.inputValue = this.inputValue.match(new RegExp(RegStr, "g")) || null;
         this.$emit("input", this.inputValue);
     }
 

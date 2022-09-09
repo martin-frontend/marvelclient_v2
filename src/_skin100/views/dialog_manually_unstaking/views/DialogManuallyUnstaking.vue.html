@@ -12,10 +12,11 @@
             <CustomInput
                 class="ip"
                 height="55"
+                :diglength="8"
                 :placeholder="LangUtil('输入数量')"
                 v-model="pageData.amount"
             >
-                <v-btn text color="colorBtnSeleBg" class="pr-0" min-width="40" height="30"  @click="handleMaxVal">
+                <v-btn text color="colorBtnSeleBg" min-width="40" height="30" class="px-1 mr-n3"  @click="handleMaxVal">
                     <span class="text-14">{{ LangUtil("全部") }}</span>
                 </v-btn>
             </CustomInput>
@@ -30,7 +31,7 @@
             <v-btn
                 class="rounded btnRedBg"
                 height="40"
-                :disabled="!isCheckedAmount"
+                :disabled="!isCheckedAmount || !pageData.amount"
                 block
                 @click="handleConfirm"
             >

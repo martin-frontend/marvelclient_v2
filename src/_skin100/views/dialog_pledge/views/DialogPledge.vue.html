@@ -17,7 +17,7 @@
                 :placeholder="LangUtil('输入数量')"
                 v-model="pageData.amount"
             >
-                <v-btn  text min-width="40" height="30" color="colorBtnSeleBg" class="mr-0"  @click="handleMaxVal">
+                <v-btn  text min-width="40" height="30" color="colorBtnSeleBg" class="px-1 mr-n3"  @click="handleMaxVal">
                     <span class="text-14">{{ LangUtil("全部") }}</span>
                 </v-btn>
             </CustomInput>
@@ -26,7 +26,7 @@
                 <span class="white--text text-12"> {{ pageBonusProxy.pageData.user_stake_info.amount }} </span>
             </div>
             <!-- <v-btn class="confirm-btn rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isCheckedAmount" block @click="handleConfirm"> -->
-            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedAmount" block @click="handleConfirm">
+            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedAmount || !pageData.amount" block @click="handleConfirm">
                 {{LangUtil("确定质押")}}
             </v-btn>
         </v-card-text>

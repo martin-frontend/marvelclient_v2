@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogManuallyUnstakingProxy from "../proxy/DialogManuallyUnstakingProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message_box from "@/views/dialog_message_box";
+import dialog_message_box from "@/_skin100/views/dialog_message_box";
 import PageBonusProxy from "../../page_bonus/proxy/PageBonusProxy";
 
 export default class DialogManuallyUnstakingMediator extends AbstractMediator {

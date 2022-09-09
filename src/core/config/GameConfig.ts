@@ -63,21 +63,24 @@ export default class GameConfig {
     }
 
     static getApiUrl(): string {
-        let apiUrl = "";
-        if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
-            const port = location.port;
-            if (port == "") {
-                const origin = location.origin;
-                if (origin.indexOf("www") == -1) {
-                    apiUrl = origin.replace("://", "://api.");
+        //@ts-ignore
+        let apiUrl = window.api_url;
+        if(!apiUrl){
+            if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
+                const port = location.port;
+                if (port == "") {
+                    const origin = location.origin;
+                    if (origin.indexOf("www") == -1) {
+                        apiUrl = origin.replace("://", "://api.");
+                    } else {
+                        apiUrl = origin.replace("www", "api");
+                    }
                 } else {
-                    apiUrl = origin.replace("www", "api");
+                    apiUrl = "http://" + location.hostname + ":28001";
                 }
             } else {
-                apiUrl = "http://" + location.hostname + ":28001";
+                apiUrl = "http://api.starsabc.com";
             }
-        } else {
-            apiUrl = "http://api.starsabc.com";
         }
         return apiUrl;
     }

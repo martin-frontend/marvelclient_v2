@@ -16,6 +16,12 @@ module.exports = {
     pages: {
         base: {
             entry: 'src/main.ts',
+            template: 'public/io.html',
+            filename: 'io.html',
+            title: 'CoinFans',
+        },
+        base_copy: {
+            entry: 'src/main.ts',
             template: 'public/index.html',
             filename: 'index.html',
             title: 'CoinFans',

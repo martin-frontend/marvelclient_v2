@@ -5,12 +5,6 @@
         <v-card-title class="px30" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("业绩详情")}}</div>
             <v-spacer />
-            <!-- <v-btn icon @click="onClose">
-                <v-icon color="colorCloseBtn">mdi-close</v-icon>
-            </v-btn> -->
-            <!-- <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
-                <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
-            </v-btn> -->
             <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
                 <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
@@ -231,11 +225,8 @@
             <div class="d-flex align-center px15 pt-5">
                 <div class="font-weight-medium white--text text-17">{{LangUtil("业绩详情")}}</div>
                 <v-spacer />
-                <!-- <v-btn icon @click="onClose">
-                    <v-icon color="colorCloseBtn">mdi-close</v-icon>
-                </v-btn> -->
                 <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
-                    <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
                 </v-btn>
             </div>
         </v-card-text>

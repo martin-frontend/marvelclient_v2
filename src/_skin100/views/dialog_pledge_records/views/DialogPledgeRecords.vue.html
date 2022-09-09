@@ -7,10 +7,10 @@
             <!-- <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn> -->
-            <!-- <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <!-- <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
                 <v-img src="@/_skin100/assets/del/del.png" max-width="18px" max-height="18px"></v-img>
             </v-btn> -->
-            <v-btn icon width="18px" height="18px" class="exit-icon" @click="onClose">
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
                 <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
             </v-btn>
         </v-card-title>
@@ -99,7 +99,8 @@
                         </div>
                     </v-sheet>
                 </v-sheet> 
-                <ListNodata v-if="pageData.list.length == 0" height="445"/>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="445"/>
+                <div style="width:100%;height:445px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
             </div>
             <v-spacer />
             <v-pagination

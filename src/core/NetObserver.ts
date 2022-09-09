@@ -116,7 +116,13 @@ export default class NetObserver extends AbstractMediator {
 
                                 //@ts-ignore
                                 if (judgeClient() == "PC" || window.navigator.standalone) {
-                                    page_game_play.show(body.url);
+                                    //@ts-ignore
+                                    if(window.navigator.standalone && this.gameProxy.currGame.ori_vendor_extend.iframe_bad){
+                                        // iframe无法正常显示的游戏
+                                        OpenLink(body.url);
+                                    }else{
+                                        page_game_play.show(body.url);
+                                    }
                                 } else {
                                     OpenLink(body.url);
                                 }

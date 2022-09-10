@@ -7,19 +7,18 @@ export default class CheckSpeedCMD extends puremvc.SimpleCommand {
 
     public execute(notification: puremvc.INotification): void {
         this.urls = GlobalVar.host_urls.split(",");
-        while(this.urls.length > 0){
+        while (this.urls.length > 0) {
             const host = this.urls.pop();
-            if(host)
-            this.checkAPI(host);
+            if (host) this.checkAPI(host);
         }
     }
 
     private checkAPI(host: string) {
         net.Http.post(host + net.HttpType.api_test_speed).then((response) => {
-            if(!this.selected){
-                if(core.host){
+            if (!this.selected) {
+                if (core.host) {
                     core.host = host;
-                }else{
+                } else {
                     core.host = host;
                     GameConfig.loadPlatConfig();
                 }

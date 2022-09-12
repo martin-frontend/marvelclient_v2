@@ -55,8 +55,10 @@
         </v-btn>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute width="288" color="#16233B"> -->
-        <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" >
+        <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" style="position: fixed;">
+            <!-- <v-dialog v-model="drawer" :fullscreen="true" transition="slide-y-reverse-transition" :no-click-animation="true" persistent> -->
             <UserPanel @drawer="closeDrawer" />
+            <!-- </v-dialog> -->
         </v-navigation-drawer>
     </div>
 </div>

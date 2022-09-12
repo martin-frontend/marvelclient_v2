@@ -31,7 +31,7 @@
         <v-spacer />
     </div>
 </v-sheet> -->
-<div>
+<div style="min-height:100%;">
 <v-sheet class="walletPanelBg rounded-lg pa15 pt-4" v-if="!$vuetify.breakpoint.xsOnly" elevation="0" width="300">
     <div class="d-flex ml-2 cursor-pointer" @click="userCenterShow">
         <v-img class="rounded-pill mr-4" src="@/assets/avatar/Avatar0.png" max-width="50" max-height="50"></v-img>
@@ -76,7 +76,7 @@
     </div>
 </v-sheet>
 
-<v-sheet class="bg rounded-lg pa-4 pt-4" v-if="$vuetify.breakpoint.xsOnly" :style="{paddingBottom:($vuetify.breakpoint.xsOnly?'100px !important':'')}" elevation="0"  width="100%">
+<v-sheet class="bg rounded-lg pa-4 pt-4" v-if="$vuetify.breakpoint.xsOnly" :style="{paddingBottom:($vuetify.breakpoint.xsOnly?'100px !important':'')}" elevation="0"  width="100%" min-height="100%">
     <div class="d-flex justify-space-between px-0 pt-3">
         <v-icon style="color:#fff !important" class="ml-0" @click="drawerClose" >mdi-arrow-left</v-icon>
         <div class="white--text text-17 font-weight-medium">{{LangUtil("我的")}}</div>

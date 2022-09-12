@@ -34,7 +34,7 @@
     </v-sheet>
 </v-menu> -->
 <!-- <v-menu offset-y nudge-bottom="5"> -->
-<v-menu open-on-hover offset-y>
+<v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" offset-y>
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
             class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg"

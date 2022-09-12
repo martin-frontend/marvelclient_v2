@@ -89,17 +89,17 @@ export default class DialogWalletProxy extends puremvc.Proxy {
     listRefrush(done: any) {
         this.pageData.done = done;
         this.pageData.listQuery.page_count = 1;
-        this.api_user_show_var_gold();
+        this.api_user_show_var_gold(false);
     }
     /**手机上拉加载更多 */
     listMore(done: any) {
         this.pageData.done = done;
         this.pageData.listQuery.page_count++;
-        this.api_user_show_var_gold();
+        this.api_user_show_var_gold(false);
     }
 
-    api_user_show_var_gold() {
-        this.pageData.loading = true;
+    api_user_show_var_gold(isLoading: boolean = true) {
+        this.pageData.loading = isLoading;
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
         this.sendNotification(net.HttpType.api_user_show_var_gold, formCopy);

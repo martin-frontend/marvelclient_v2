@@ -124,9 +124,8 @@
     </v-card-text>
     <v-card-text class="px-4 pt-0" v-if="$vuetify.breakpoint.xsOnly">
         <v-sheet  color="transparent" height="450"  class="scroll-y">
-        <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
-                 
+        <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" :height="280" />
+        <vue-loadmore v-if="pageData.list.length > 0" :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
             <v-sheet class="pa-3 rounded-lg mt10 colorText2--text" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex flex-wrap justify-space-between listitem-mobile">
                     <div class="num-change mb-2 d-flex align-center justify-space-between">

@@ -112,12 +112,13 @@
                 </v-sheet>
             </div> -->
         </div>
-        <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="400">
+        <ListNodata v-else :height="280" />
+        <!-- <v-sheet v-else class="d-flex justify-center align-center" color="transparent" min-height="400">
             <div>
                 <v-img :src="commonIcon.nodata_b" max-width="140" height="100"></v-img>
                 <div class="d-flex text-14 colorTextNoData--text mt-2 justify-center">{{LangUtil("暂无记录")}}</div>
             </div>
-        </v-sheet>
+        </v-sheet> -->
     </v-sheet>
 </div>
 </v-card-text>

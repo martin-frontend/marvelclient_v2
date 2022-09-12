@@ -1,6 +1,6 @@
 <v-sheet :width="140" color="transparent">
     <!-- <v-menu open-on-hover offset-y nudge-bottom="7"> -->
-    <v-menu open-on-hover offset-y >
+    <v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" offset-y >
         <template v-slot:activator="{ on, attrs }">
             <!-- <v-sheet
                 class="d-flex align-center rounded-lg px-3 colorText2--text"

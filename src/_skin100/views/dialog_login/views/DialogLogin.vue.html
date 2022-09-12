@@ -75,7 +75,7 @@
                 >
                     <template v-slot:pre>
                         <!-- <v-menu  v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38"> -->
-                        <v-menu open-on-hover v-model="areaCodeMenu" offset-y :close-on-content-click="false"  nudge-left="38">
+                        <v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" v-model="areaCodeMenu" offset-y :close-on-content-click="false"  nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="white--text mx-2">+{{forgetData.form.area_code}}</div>

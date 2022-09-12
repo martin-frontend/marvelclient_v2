@@ -451,7 +451,7 @@
                                 >
                                 {{LangUtil("日期")}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center white-text2">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:6" class="d-flex justify-center align-center white-text2">
                                 <span class="ml-4">{{LangUtil("质押数量")}}</span>
                             </v-col>
                             <v-col cols="2" class="d-flex justify-center align-center white-text2" v-if="$vuetify.breakpoint.width > 600">
@@ -460,7 +460,7 @@
                             <v-col cols="2" class="d-flex justify-center align-center white-text2" v-if="$vuetify.breakpoint.width > 600">
                                 {{LangUtil("每100{0}分红", plat_stake_info.coin_name_unique)}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4"
                                 :class="$vuetify.breakpoint.xsOnly?'':'pr-6'"
                                 class="d-flex justify-end align-center white-text2">
                                 {{LangUtil("已派发")}}
@@ -472,7 +472,7 @@
                             <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-start align-center">
                                 {{ getDateTime(item.date) }}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:6" class="d-flex justify-center align-center">
                                 <div class="d-flex bonus-width ml-4">
                                     <v-img
                                         class="mr-2"
@@ -492,7 +492,7 @@
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-end align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end align-center">
                                 <div class="d-flex bonus-width">
                                     <v-img
                                         class="mr-2"

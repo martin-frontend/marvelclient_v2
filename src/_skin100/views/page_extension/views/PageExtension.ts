@@ -88,12 +88,16 @@ export default class PageExtension extends AbstractView {
             }
 
             // if (core.app_type == core.EnumAppType.APP) {
-            //     WebViewBridge.getInstance().savePhoto(imgData, () => {
-            //         dialog_message.success(LangUtil("保存成功"));
-            //     });
+            // WebViewBridge.getInstance().savePhoto(imgData, () => {
+            //     dialog_message.success(LangUtil("保存成功"));
+            // });
             // } else {
-            dialog_preview.show(imgData);
+            // dialog_preview.show(imgData); //可恢复为原流程
             // }
+            const a = document.createElement("a");
+            a.href = imgData;
+            a.setAttribute("download", "invite_link");
+            a.click();
         }
     }
 

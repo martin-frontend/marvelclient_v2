@@ -14,7 +14,7 @@ export default class DialogPledgeRecords extends AbstractView {
     bonusProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     plat_stake_info = this.bonusProxy.pageData.plat_stake_info;
     pageData = this.myProxy.pageData;
-    // pageData = { listQuery: [], list: [] };
+
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;

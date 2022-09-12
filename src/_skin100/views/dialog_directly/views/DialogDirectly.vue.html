@@ -151,9 +151,11 @@
             </div> -->
         </v-card-text>
         <v-card-text class="px-4" v-if="$vuetify.breakpoint.xsOnly">
-            <v-sheet  color="transparent" height="510" class="scroll-y">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
+            <v-sheet  color="transparent" :min-height="isIOSMobile ? 360:'80%'" class="scroll-y">
                 <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
+            <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished"> -->
+            <vue-loadmore v-if="pageData.list.length > 0" :on-loadmore="onLoad" :finished="pageData.finished">
+                
                 <v-sheet class="px-4 py-4 rounded-lg my-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-center flex-column" style="width:40%;">
                         <div class="text-12">{{LangUtil("注册时间")}}</div>

@@ -256,7 +256,7 @@
                 </v-btn>
             </div>
 
-            <div v-if="listQuery.cate == 0" class="scroll-y scroll_box">
+            <v-sheet v-if="listQuery.cate == 0" :min-height="isIOSMobile ? 360:'80%'" color="transparent" class="scroll-y scroll_box">
                 <v-sheet class="mb-3 px-5 py-3 rounded-lg totalPanelBg">
                     <div class="d-flex flex-wrap justify-space-between listitem-mobile-h">
                         <div class="item-all-width" >
@@ -317,8 +317,8 @@
                     </v-sheet>
                 </v-sheet>
                 <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
-            </div>
-            <v-sheet v-if="listQuery.cate == 1" color="transparent" class="listbox scroll-y">
+            </v-sheet>
+            <v-sheet v-if="listQuery.cate == 1" :min-height="isIOSMobile ? 360:'80%'" color="transparent" class="listbox scroll-y">
                 <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg pa-4 mb-3">
                     <div class="colorText1--text text-14 font-weight-medium mb-2 d-flex flex-wrap align-center" :key="'u' + idx">
                         <div class="d-flex align-center mr-3">

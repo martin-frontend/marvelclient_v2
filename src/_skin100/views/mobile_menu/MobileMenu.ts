@@ -80,7 +80,8 @@ export default class MobileMenu extends AbstractView {
         },
         {
             id: 3,
-            name: LangUtil("链游"),
+            // name: LangUtil("链游"),
+            name: LangUtil("推广"),
             icon: tab_4,
             activeIcon: tab_4_active,
             path: "/page_extension",

@@ -5,7 +5,7 @@ import GameSearch from "./views/GameSearch.vue";
 
 function show() {
     DialogMount(GameSearch, false);
-    const myProxy:GameSearchProxy = getProxy(GameSearchProxy);
+    const myProxy: GameSearchProxy = getProxy(GameSearchProxy);
     myProxy.pageData.bShow = true;
 }
 

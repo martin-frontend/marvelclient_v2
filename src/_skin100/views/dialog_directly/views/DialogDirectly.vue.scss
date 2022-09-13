@@ -34,13 +34,13 @@
         font-size: 16px;
         font-weight: 400;
     }
-    ::v-deep .input-text{
-        height:40px;
+    ::v-deep .input-text {
+        height: 40px;
         border: 0px;
     }
-    ::v-deep .input-text input{
-        height:40px;
-        color:#8f7ac0;
+    ::v-deep .input-text input {
+        height: 40px;
+        color: #8f7ac0;
     }
 }
 .mobile-search {
@@ -50,22 +50,22 @@
         font-size: 15px;
         font-weight: 400;
     }
-    ::v-deep .input-text{
-        height:38px;
+    ::v-deep .input-text {
+        height: 38px;
         border: 0px;
     }
-    ::v-deep .input-text input{
-        height:38px;
-        color:#8f7ac0;
+    ::v-deep .input-text input {
+        height: 38px;
+        color: #8f7ac0;
     }
-    ::v-deep .input-text input::placeholder{
+    ::v-deep .input-text input::placeholder {
         font-size: 14px;
     }
 }
 ::v-deep .input-text input::placeholder {
     font-size: 15px;
     font-weight: 400;
-    color:#8f7ac0;
+    color: #8f7ac0;
 }
 .header-mobile {
     // position: fixed;
@@ -74,21 +74,20 @@
     // background-color: #121e36;
     // background-color: #592cb7;
 }
-.listitem-mobile{
-    div{
-        width:30%;
-        div{
-            width:100%;
+.listitem-mobile {
+    div {
+        width: 30%;
+        div {
+            width: 100%;
         }
     }
-    
 }
 .listbox-mobile {
     overflow: hidden;
     padding-top: 125px;
 }
-.playnum-search{
-    border: 1px solid rgba(255,255,255,0.2);
+.playnum-search {
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .scroll_box {
     max-height: calc(100vh - 260px);

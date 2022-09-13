@@ -243,12 +243,7 @@ export class TransferProxy extends puremvc.Proxy {
 
     api_user_var_gold_transfer() {
         this.pageData.loading = true;
-        const {
-            to_user_id,
-            gold,
-            coin_name_unique,
-            password_gold,
-        } = this.pageData.form;
+        const { to_user_id, gold, coin_name_unique, password_gold } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_var_gold_transfer, {
             user_id: core.user_id,
             to_user_id,

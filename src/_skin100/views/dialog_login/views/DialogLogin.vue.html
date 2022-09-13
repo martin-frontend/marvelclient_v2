@@ -1,4 +1,12 @@
-<v-dialog width="854" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" persistent>
+<v-dialog
+    width="854"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true"
+    :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent
+>
     <v-card color="colorPanelBg" class="d-flex rounded-lg dialog-background">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <!-- <v-img src="../../../../assets/login/egameLogin.png" :width="380" :height="500" class="d-none d-md-flex rounded-0">
@@ -26,7 +34,7 @@
                     <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
                 </v-btn> -->
                 <v-btn class="" icon @click="onClose" class="exit-icon">
-                    <v-icon class="font-weight-bold close-icon" >{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
+                    <v-icon class="font-weight-bold close-icon">{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
             <!-- 找回密码 -->
@@ -75,7 +83,13 @@
                 >
                     <template v-slot:pre>
                         <!-- <v-menu  v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38"> -->
-                        <v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" v-model="areaCodeMenu" offset-y :close-on-content-click="false"  nudge-left="38">
+                        <v-menu
+                            :open-on-hover="!$vuetify.breakpoint.xsOnly"
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            nudge-left="38"
+                        >
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="white--text mx-2">+{{forgetData.form.area_code}}</div>
@@ -124,8 +138,21 @@
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 >
-                    <DialogGetVerity v-if="forgetData.form.type == 2" :isCheck="checkMail(forgetData.form.username)" :category="0" :type="2" :email="forgetData.form.username"/>
-                    <DialogGetVerity v-else :isCheck="checkPhone(forgetData.form.username)" :category="1" :type="2" :area_code="forgetData.form.area_code" :mobile="forgetData.form.username"/>
+                    <DialogGetVerity
+                        v-if="forgetData.form.type == 2"
+                        :isCheck="checkMail(forgetData.form.username)"
+                        :category="0"
+                        :type="2"
+                        :email="forgetData.form.username"
+                    />
+                    <DialogGetVerity
+                        v-else
+                        :isCheck="checkPhone(forgetData.form.username)"
+                        :category="1"
+                        :type="2"
+                        :area_code="forgetData.form.area_code"
+                        :mobile="forgetData.form.username"
+                    />
                 </CustomInput>
                 <CustomPassword
                     class="mt-3 rounded login-ip"
@@ -165,16 +192,10 @@
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">
-                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')"  dense hide-details></v-checkbox>
+                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" dense hide-details></v-checkbox>
                     <div class="text-14 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
-                <v-btn
-                    class="rounded6 on-login-bg"
-                    color="colorBtnBg"
-                    height="44"
-                    :disabled="!isCheckedLogin"
-                    block
-                    @click="onSubmitLogin"
+                <v-btn class="rounded6 on-login-bg" color="colorBtnBg" height="44" :disabled="!isCheckedLogin" block @click="onSubmitLogin"
                     >{{LangUtil("登录")}}</v-btn
                 >
                 <div class="tips-box">
@@ -238,47 +259,53 @@
                     :placeholder="LangUtil('请输入手机号')"
                     v-model="forgetData.form.username"
                 >
-                <template v-slot:pre>
-                    <!-- <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" content-class="shadow-clear" nudge-bottom="20" nudge-left="38"> -->
-                    <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" content-class="shadow-clear menu-full" nudge-bottom="20" >
-                        <template v-slot:activator="{ on, attrs }">
-                            <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
-                                <div class="white--text mx-2">+{{forgetData.form.area_code}}</div>
-                                <div
-                                    class="icon-box iconfont text-14 mr-2 arrow-color font-weight-bold"
-                                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
-                                >
-                                    
-                                </div>
-                            </div>
-                        </template>
-                        <v-sheet class="pa-3 rounded-lg colorPanelBg4">
-                            <CustomInput
-                                class="mt-3 rounded search-area"
-                                :icon="icons.cx"
-                                :iconSize="18"
-                                :placeholder="LangUtil('请选择国家或地区')"
-                                v-model="areaCodeSearch"
-                                @input="onAreaCodeInput"
-                            ></CustomInput>
-
-                            <v-list dense color="rgba(0,0,0,0)">
-                                <v-list-item-group>
-                                    <v-list-item
-                                        v-for="(item, index) of areaCodeList"
-                                        :key="index"
-                                        class="white--text"
-                                        @click="onItemAreaCode(item)"
+                    <template v-slot:pre>
+                        <!-- <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" content-class="shadow-clear" nudge-bottom="20" nudge-left="38"> -->
+                        <v-menu
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            content-class="shadow-clear menu-full"
+                            nudge-bottom="20"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
+                                    <div class="white--text mx-2">+{{forgetData.form.area_code}}</div>
+                                    <div
+                                        class="icon-box iconfont text-14 mr-2 arrow-color font-weight-bold"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                                     >
-                                        <div>{{item.name}}</div>
-                                        <v-spacer />
-                                        <div>+{{item.area_code}}</div>
-                                    </v-list-item>
-                                </v-list-item-group>
-                            </v-list>
-                        </v-sheet>
-                    </v-menu>
-                </template>
+                                        
+                                    </div>
+                                </div>
+                            </template>
+                            <v-sheet class="pa-3 rounded-lg colorPanelBg4">
+                                <CustomInput
+                                    class="mt-3 rounded search-area"
+                                    :icon="icons.cx"
+                                    :iconSize="18"
+                                    :placeholder="LangUtil('请选择国家或地区')"
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></CustomInput>
+
+                                <v-list dense color="rgba(0,0,0,0)">
+                                    <v-list-item-group>
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="white--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                        </v-menu>
+                    </template>
                 </CustomInput>
 
                 <CustomInput
@@ -288,8 +315,21 @@
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 >
-                    <DialogGetVerity v-if="forgetData.form.type == 2" :isCheck="checkMail(forgetData.form.username)" :category="0" :type="2" :email="forgetData.form.username"/>
-                    <DialogGetVerity v-else :isCheck="checkPhone(forgetData.form.username)" :category="1" :type="2" :area_code="forgetData.form.area_code" :mobile="forgetData.form.username"/>
+                    <DialogGetVerity
+                        v-if="forgetData.form.type == 2"
+                        :isCheck="checkMail(forgetData.form.username)"
+                        :category="0"
+                        :type="2"
+                        :email="forgetData.form.username"
+                    />
+                    <DialogGetVerity
+                        v-else
+                        :isCheck="checkPhone(forgetData.form.username)"
+                        :category="1"
+                        :type="2"
+                        :area_code="forgetData.form.area_code"
+                        :mobile="forgetData.form.username"
+                    />
                 </CustomInput>
                 <CustomPassword
                     class="mt-3 rounded login-ip"
@@ -311,7 +351,7 @@
                     block
                     @click="onSubmitForget"
                 >
-                   <span class="text-16">{{LangUtil("确认重置")}}</span>
+                    <span class="text-16">{{LangUtil("确认重置")}}</span>
                 </v-btn>
             </v-card-text>
             <!-- 登录 -->
@@ -329,16 +369,10 @@
                     v-model="pageData.form.password"
                 />
                 <div class="password-operate">
-                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')"  dense hide-details></v-checkbox>
+                    <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" dense hide-details></v-checkbox>
                     <div class="text-14 cursor-pointer tips-box_red" @click="goForget">{{LangUtil("忘记密码")}}？</div>
                 </div>
-                <v-btn
-                    class="rounded6 on-login-bg"
-                    color="colorBtnBg"
-                    height="44"
-                    :disabled="!isCheckedLogin"
-                    block
-                    @click="onSubmitLogin"
+                <v-btn class="rounded6 on-login-bg" color="colorBtnBg" height="44" :disabled="!isCheckedLogin" block @click="onSubmitLogin"
                     ><span class="text-16">{{LangUtil("登录")}}</span></v-btn
                 >
                 <div class="tips-box">

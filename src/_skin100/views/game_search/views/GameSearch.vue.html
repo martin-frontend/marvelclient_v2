@@ -1,6 +1,15 @@
-<v-dialog class="rounded-lg" width="860" v-model="pageData.bShow" :fullscreen="$vuetify.breakpoint.xsOnly" :scrollable="true" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" persistent>
+<v-dialog
+    class="rounded-lg"
+    width="860"
+    v-model="pageData.bShow"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    :scrollable="true"
+    :no-click-animation="true"
+    :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent
+>
     <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" :height="600" v-if="!$vuetify.breakpoint.xsOnly">
-        <v-card-text class="pa-0" style="max-height: 130px;">
+        <v-card-text class="pa-0" style="max-height: 130px">
             <div class="search-header-bg d-flex align-center px30 pt26 pb-3">
                 <div class="text-20 font-weight-bold white--text">{{LangUtil("搜索游戏")}}</div>
                 <v-spacer />
@@ -18,7 +27,13 @@
                     @click="onTabClick(0)"
                 >
                     <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 0 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-heart</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 0" src="@/_skin100/assets/game-search/sc_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 0"
+                        src="@/_skin100/assets/game-search/sc_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/sc.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("收藏游戏")}}
                 </v-btn>
@@ -31,7 +46,13 @@
                     @click="onTabClick(1)"
                 >
                     <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 1 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-clock</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 1" src="@/_skin100/assets/game-search/zj_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 1"
+                        src="@/_skin100/assets/game-search/zj_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/zj.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("最近游戏")}}
                 </v-btn>
@@ -44,7 +65,13 @@
                     @click="onTabClick(2)"
                 >
                     <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" :color="pageData.tabIndex == 2 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-magnify</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 2" src="@/_skin100/assets/game-search/cx_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 2"
+                        src="@/_skin100/assets/game-search/cx_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/cx.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("游戏查询")}}
                 </v-btn>
@@ -54,13 +81,13 @@
             <v-window v-model="pageData.tabIndex">
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.collection" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.collection.length == 0 && !pageData.loading" style="max-height: 390px;" />
-                    <div style="width:100%;max-height:390px;" v-if="pageData.collection.length == 0 && pageData.loading"></div>
+                    <ListNodata v-if="pageData.collection.length == 0 && !pageData.loading" style="max-height: 390px" />
+                    <div style="width: 100%; max-height: 390px" v-if="pageData.collection.length == 0 && pageData.loading"></div>
                 </v-window-item>
                 <v-window-item>
                     <GameSearchItem v-for="(item, key) in pageData.recently" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.recently.length == 0 && !pageData.loading" style="max-height: 390px;"  />
-                    <div style="width:100%;max-height:390px;" v-if="pageData.recently.length == 0 && pageData.loading"></div>
+                    <ListNodata v-if="pageData.recently.length == 0 && !pageData.loading" style="max-height: 390px" />
+                    <div style="width: 100%; max-height: 390px" v-if="pageData.recently.length == 0 && pageData.loading"></div>
                 </v-window-item>
                 <v-window-item>
                     <div class="search-box d-flex align-center px-2 mb-4">
@@ -72,11 +99,13 @@
                             v-model="pageData.searchString"
                             maxlength="10"
                         />
-                        <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"><v-icon size="25" class="">mdi-magnify</v-icon></v-btn>
+                        <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"
+                            ><v-icon size="25" class="">mdi-magnify</v-icon></v-btn
+                        >
                     </div>
                     <GameSearchItem v-for="(item, key) in pageData.searchList" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading"  style="max-height: 350px;" />
-                    <div style="width:100%;max-height:350px;" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
+                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading" style="max-height: 350px" />
+                    <div style="width: 100%; max-height: 350px" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
                 </v-window-item>
             </v-window>
         </v-card-text>
@@ -84,7 +113,7 @@
     </v-card>
 
     <v-card class="ma-0 pa-0 pb-4 searchPanelBg rounded-lg" elevation="0" v-if="$vuetify.breakpoint.xsOnly">
-        <v-card-text class="pa-0 flex-grow-0 flex-shrink-0" style="min-height: 120px !important;">
+        <v-card-text class="pa-0 flex-grow-0 flex-shrink-0" style="min-height: 120px !important">
             <div class="search-header-bg d-flex align-center pb-0 pt-5 px-4">
                 <div class="text-17 font-weight-bold white--text">{{LangUtil("搜索游戏")}}</div>
                 <v-spacer />
@@ -107,7 +136,13 @@
                     @click="onTabClick(0)"
                 >
                     <!-- <v-icon  :color="pageData.tabIndex == 0 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-heart</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 0" src="@/_skin100/assets/game-search/sc_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 0"
+                        src="@/_skin100/assets/game-search/sc_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/sc.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("收藏游戏")}}
                 </v-btn>
@@ -122,7 +157,13 @@
                     @click="onTabClick(1)"
                 >
                     <!-- <v-icon  :color="pageData.tabIndex == 1 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-clock</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 1" src="@/_skin100/assets/game-search/zj_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 1"
+                        src="@/_skin100/assets/game-search/zj_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/zj.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("最近游戏")}}
                 </v-btn>
@@ -137,7 +178,13 @@
                     @click="onTabClick(2)"
                 >
                     <!-- <v-icon  :color="pageData.tabIndex == 2 ? 'white' : 'colorCloseBtn'" size="20" class="mr-1">mdi-magnify</v-icon> -->
-                    <v-img v-if="pageData.tabIndex == 2" src="@/_skin100/assets/game-search/cx_white.png" class="mr-1" width="20" height="20"></v-img>
+                    <v-img
+                        v-if="pageData.tabIndex == 2"
+                        src="@/_skin100/assets/game-search/cx_white.png"
+                        class="mr-1"
+                        width="20"
+                        height="20"
+                    ></v-img>
                     <v-img v-else src="@/_skin100/assets/game-search/cx.png" class="mr-1" width="20" height="20"></v-img>
                     {{LangUtil("游戏查询")}}
                 </v-btn>
@@ -163,11 +210,13 @@
                             v-model="pageData.searchString"
                             maxlength="10"
                         />
-                        <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"><v-icon size="25" class="">mdi-magnify</v-icon></v-btn>
+                        <v-btn icon color="white" small @click="onSearch" :disabled="pageData.searchString == ''"
+                            ><v-icon size="25" class="">mdi-magnify</v-icon></v-btn
+                        >
                     </div>
                     <GameSearchItem v-for="(item, key) in pageData.searchList" :key="key" :data="item" />
-                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading"  style="max-height: 350px;" />
-                    <div style="width:100%;max-height:350px;" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
+                    <ListNodata v-if="pageData.searchList.length == 0 && !pageData.loading" style="max-height: 350px" />
+                    <div style="width: 100%; max-height: 350px" v-if="pageData.searchList.length == 0 && pageData.loading"></div>
                 </v-window-item>
             </v-window>
         </v-card-text>

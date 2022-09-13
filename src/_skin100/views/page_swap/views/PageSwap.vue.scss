@@ -1,46 +1,44 @@
-.gradient-bg{
+.gradient-bg {
     height: unset;
     background-color: #16233b;
-    background-image: linear-gradient(180deg, #24385a 0%, #1A273F 70px);
+    background-image: linear-gradient(180deg, #24385a 0%, #1a273f 70px);
     text-align: center;
 }
-.btn_backbround{
-    background-color: #2D4468;
+.btn_backbround {
+    background-color: #2d4468;
 }
-::v-deep.v-btn-toggle--group{
-    .v-btn{
-        border: solid 1px #68799A !important;
-        color: #68799A !important;
-    } 
-    .v-btn.v-btn--active{
+::v-deep.v-btn-toggle--group {
+    .v-btn {
+        border: solid 1px #68799a !important;
+        color: #68799a !important;
+    }
+    .v-btn.v-btn--active {
         background-color: #6fa9fa !important;
         color: #ffffff !important;
     }
-        
 }
-.period{
-    &::v-deep.v-btn-toggle--group{
-        .v-btn.v-btn--active{
-            background-color: #7789AB !important;
-            color: #0D0B1E !important;
+.period {
+    &::v-deep.v-btn-toggle--group {
+        .v-btn.v-btn--active {
+            background-color: #7789ab !important;
+            color: #0d0b1e !important;
         }
     }
-    
 }
-.btn_group_width{
+.btn_group_width {
     width: 100%;
 }
-.btn_width{
-    width: calc((100% - 24px)/4);
+.btn_width {
+    width: calc((100% - 24px) / 4);
 }
-.help{
+.help {
     border-radius: 100%;
     width: 13px;
     height: 13px;
     // background-color: #7789AB;
-    background-color: #9AA1B1;
+    background-color: #9aa1b1;
 }
-.text-xs-18{
+.text-xs-18 {
     @media (max-width: 600px) {
         font-size: 18px;
     }
@@ -50,26 +48,26 @@
         height: 37px;
     }
 }
-.CF{
-    color:#3A94E2;
+.CF {
+    color: #3a94e2;
 }
-.USDT{
-    color:#269F7B;
+.USDT {
+    color: #269f7b;
 }
-.line_chart{
+.line_chart {
     height: 500px;
 }
-.red_k{
+.red_k {
     // color: rgba(205, 104, 104, 0.9),
-    color: #F04A5A ,
+    color: #f04a5a;
 }
-.green_k{
-    color: rgba(104, 199, 205, 0.9),
+.green_k {
+    color: rgba(104, 199, 205, 0.9);
 }
 
 .v-btn-toggle--group > .v-btn.v-btn {
     border: solid 0px !important;
-    background-color: rgba(255,255,255,0.1) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
     color: #fff !important;
 }
 
@@ -78,21 +76,21 @@
     background-color: transparent !important;
     color: #fff !important;
 }
-.period{
-    margin-bottom:-9px;
+.period {
+    margin-bottom: -9px;
 }
-.period-btn{
-    margin-bottom:0px;
+.period-btn {
+    margin-bottom: 0px;
 }
 
 ::v-deep .input-text {
     border-radius: 4px;
     height: 48px;
     border: 0px;
-    background-color: rgba(255,255,255,0.06);
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
-::v-deep .input-mobile{
+::v-deep .input-mobile {
     height: 40px;
 }
 
@@ -100,22 +98,21 @@
     color: #fff;
 }
 ::v-deep .input-text input::placeholder {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
-::v-deep .v-btn>.v-btn__content .v-icon{
-    color:rgba(255, 255, 255, 0.1) !important;
+::v-deep .v-btn > .v-btn__content .v-icon {
+    color: rgba(255, 255, 255, 0.1) !important;
 }
 
-::v-deep .arrow{
-    color: rgba(255,255,255,0.5) !important;
+::v-deep .arrow {
+    color: rgba(255, 255, 255, 0.5) !important;
 }
 
 ::v-deep .arrow-show {
-    color: rgba(255,255,255,0.5) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
 }
 
-::v-deep .v-menu__content .diy-color{
+::v-deep .v-menu__content .diy-color {
     background-color: rgba(255, 255, 255, 0.1) !important;
 }
-

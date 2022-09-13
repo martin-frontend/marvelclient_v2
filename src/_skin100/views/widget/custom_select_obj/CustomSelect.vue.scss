@@ -14,7 +14,7 @@
 }
 .listitem:hover {
     color: white;
-    background-color:rgba(255,255,255,0.06) ;
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
 @media only screen and (max-width: 750px) {
@@ -23,10 +23,10 @@
         width: 150px !important;
     }
 }
-.custom-select{
+.custom-select {
     box-shadow: none !important;
 }
 
 .item-select {
-    background-color:rgba(255,255,255,0.06) ;
+    background-color: rgba(255, 255, 255, 0.06);
 }

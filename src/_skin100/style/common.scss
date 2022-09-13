@@ -97,7 +97,7 @@ button {
 }
 
 .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
-    background-image:none !important;
+    background-image: none !important;
 }
 input {
     border: none;
@@ -227,6 +227,9 @@ input {
     padding-top: 26px !important;
 }
 
+.pa15 {
+    padding-bottom: 5px !important;
+}
 .pb5 {
     padding-bottom: 5px !important;
 }
@@ -238,6 +241,22 @@ input {
 }
 .pb30 {
     padding-bottom: 30px !important;
+}
+.px0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.px10 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.px15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+.py10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 .mt1 {
     margin-top: 1px !important;
@@ -465,6 +484,6 @@ input {
 //     background: rgba(0,0,0,0.12);
 //     -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
 // }
-#app.v-application .colorTextNormal2--text{
-    color:rgba(255,255,255,0.5) !important;
+#app.v-application .colorTextNormal2--text {
+    color: rgba(255, 255, 255, 0.5) !important;
 }

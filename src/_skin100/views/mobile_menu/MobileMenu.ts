@@ -129,7 +129,7 @@ export default class MobileMenu extends AbstractView {
             case 4:
                 // LoginEnter(page_bonus.show);
                 LoginEnter(() => {});
-                this.active = 4;
+                // this.active = 4;
                 this.drawer = true;
                 break;
         }

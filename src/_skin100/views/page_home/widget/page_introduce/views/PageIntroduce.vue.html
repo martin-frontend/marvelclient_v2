@@ -9,22 +9,22 @@
         <v-col cols="12" sm="4">
             <v-hover v-slot="{ hover }">
                 <v-card
-                    class="pa-4 intro-radius mr-md-4 bg1"
+                    class="px15 py10 intro-radius mr-md-4 bg1"
                     :class="$vuetify.breakpoint.xsOnly ? 'mb-4' : ''"
                 >
-                    <v-card-title class="pt-0">
+                    <v-card-title class="pt-0 pb-1" :class="$vuetify.breakpoint.xsOnly ? 'px0' : 'px10'">
                         <v-img contain max-width="27" max-height="27" src="../../../../../assets/icon-title-12.png"></v-img>
                         <span class="ml-2"
                         :class="$vuetify.breakpoint.xsOnly ? 'text-14 font-weight-bold' : ''"
                         >{{LangUtil("质押分红")}}</span>
                     </v-card-title>
                     <v-card-text 
-                    :class="$vuetify.breakpoint.xsOnly ? 'text-13' : ''"
+                    :class="$vuetify.breakpoint.xsOnly ? 'text-13 px0' : 'px10'"
                     >
                         {{LangUtil("玩家的{0}可在网站参与质押，享受网站收益分红，每日零点自动发放，持有{1}越多分红越多。", awardCoin,
                         awardCoin)}}
                     </v-card-text>
-                    <v-layout   justify-space-around class="flex-wrap phone-class" :class="!$vuetify.breakpoint.xsOnly?'web-use-content':''">
+                    <v-layout   justify-space-around class="flex-wrap phone-class" :class="!$vuetify.breakpoint.xsOnly?'web-use-content ':''">
                         <div  class="mx-2 my-2 pa-4 text-align-center" >
                             <div :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'" class="">{{LangUtil("当前分红池")}}</div>
                             <div class="white--text text-14 font-weight-bold"  :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'">
@@ -52,7 +52,7 @@
                             </div>
                         </v-card>
                     </v-layout> -->
-                    <v-card-actions class="pt-4 pb-1 px-0 px-sm-4 d-flex"
+                    <v-card-actions class="pt-4 pb-1 px-0 px-sm-2 d-flex"
                     :class="$vuetify.breakpoint.xsOnly? 'intro-btn-h5' : 'intro-btn-web'" 
                     >
                         <v-btn rounded block 
@@ -95,7 +95,7 @@
                 :class="$vuetify.breakpoint.xsOnly ? 'mb-4' : ''"
             >
                 <v-card-title   :class="$vuetify.breakpoint.xsOnly ? 'pb5' : ''">
-                    <img contain  width="27" height="27" src="../../../../../assets/icon-title-2.png"></img>
+                    <img contain  width="27" height="27" src="../../../../../assets/icon-title-3.png"></img>
                     <span class="ml-2 text-16">{{LangUtil("{0}投注", awardCoin)}}</span>
                     <v-spacer></v-spacer>
                     <!-- <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
@@ -110,7 +110,7 @@
             <v-carousel-item>
                 <v-card height="100%" class="mb-4  pa-2 pt-0 intro-radius"  style="box-shadow: none;" color="#212e3d">
                     <v-card-title   :class="$vuetify.breakpoint.xsOnly ? 'pb5' : ''">
-                        <img contain  width="27" height="27" src="../../../../../assets/icon-title-3.png"></img>
+                        <img contain  width="" height="27" src="../../../../../assets/icon-title-2.png"></img>
                         <span class="ml-2 text-16">{{LangUtil("{0}回购", awardCoin)}}</span>
                     </v-card-title>
                     <v-card-text>
@@ -141,7 +141,7 @@
                 :class="hover? 'card-bg-hover':'card-bg'" 
                 style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
-                        <img contain width="24" height="24" src="../../../../../assets/icon-title-1.png"></img>
+                        <img contain width="36" height="36" src="../../../../../assets/icon-title-1.png"></img>
                         <span class="ml-2">{{LangUtil("玩家间交易")}}</span>
                     </v-card-title>
                     <v-card-text class="colorInfo10-text">
@@ -159,7 +159,7 @@
                     :style="$vuetify.breakpoint.smAndDown ? 'margin-bottom:16px' : ''"
                 >
                     <v-card-title>
-                        <img contain width="24" height="24" src="../../../../../assets/icon-title-2.png"></img>
+                        <img contain width="36" height="36" src="../../../../../assets/icon-title-3.png"></img>
                         <span class="ml-2">{{LangUtil("{0}投注", awardCoin)}}</span>
                         <v-spacer></v-spacer>
                         <!-- <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
@@ -178,7 +178,7 @@
                 :class="hover? 'card-bg-hover':'card-bg'" 
                 style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
-                        <img contain width="24" height="24" src="../../../../../assets/icon-title-3.png"></img>
+                        <img contain width="36" height="36" src="../../../../../assets/icon-title-2.png"></img>
                         <span class="ml-2">{{LangUtil("{0}回购", awardCoin)}}</span>
                     </v-card-title>
                     <v-card-text class="colorInfo10-text">
@@ -191,7 +191,7 @@
                 :class="hover? 'card-bg-hover':'card-bg'" 
                 style="box-shadow: none;" :color="hover ? '#283c63' : ''">
                     <v-card-title>
-                        <img contain width="24" height="24" src="../../../../../assets/icon-title-4.png"></img>
+                        <img contain width="36" height="36" src="../../../../../assets/icon-title-4.png"></img>
                         <span class="ml-2">{{LangUtil("购买特权NFT")}}</span>
                         <v-spacer></v-spacer>
                         <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">

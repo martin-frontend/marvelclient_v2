@@ -13,24 +13,29 @@ module.exports = {
             return args;
         });
     },
+    css: {
+        extract: {
+            ignoreOrder: true,
+        },
+    },
     pages: {
         base: {
-            entry: 'src/main.ts',
-            template: 'public/io.html',
-            filename: 'io.html',
-            title: 'CoinFans',
+            entry: "src/main.ts",
+            template: "public/io.html",
+            filename: "io.html",
+            title: "CoinFans",
         },
         base_copy: {
-            entry: 'src/main.ts',
-            template: 'public/index.html',
-            filename: 'index.html',
-            title: 'CoinFans',
+            entry: "src/main.ts",
+            template: "public/index.html",
+            filename: "index.html",
+            title: "CoinFans",
         },
         skin100: {
-            entry: 'src/_skin100/main.ts',
-            template: 'public/skin100.html',
-            filename: 'skin100.html',
-            title: 'skin100',
-        }
-    }
+            entry: "src/_skin100/main.ts",
+            template: "public/skin100.html",
+            filename: "skin100.html",
+            title: "egame",
+        },
+    },
 };

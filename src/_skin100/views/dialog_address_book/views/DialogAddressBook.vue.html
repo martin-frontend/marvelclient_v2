@@ -15,7 +15,9 @@
                 <CustomSelect
                     class="mr-3"
                     background="rgba(255,255,255,0.06)"
-                    fontSize="14" iconSize="22" height="36"
+                    fontSize="14"
+                    iconSize="22"
+                    height="36"
                     :icons="plat_coins"
                     :options="pageData.methodList"
                     v-model="listQuery.coin_name_unique"
@@ -24,14 +26,16 @@
                 <CustomSelect
                     v-if="pageData.methodList[listQuery.coin_name_unique]"
                     background="rgba(255,255,255,0.06)"
-                    fontSize="14" iconSize="22" height="36"
+                    fontSize="14"
+                    iconSize="22"
+                    height="36"
                     :options="pageData.methodList[listQuery.coin_name_unique].options"
                     v-model="listQuery.block_network_id"
                     @change="onChangeSub"
                 />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
-            <!-- <v-sheet  color="transparent" height="368" class="scroll-y"> -->
+                <!-- <v-sheet  color="transparent" height="368" class="scroll-y"> -->
                 <v-sheet
                     height="60"
                     class="rounded-lg d-flex align-center px-5 mt-3 cursor bPanelOpacityBg"
@@ -41,13 +45,15 @@
                 >
                     <v-sheet color="transparent" class="white--text text-truncate mr-2">
                         <div class="text-truncate textColor1">{{item.payment_method.account_name}}</div>
-                        <div class="text-truncate white--text">
-                            {{item.payment_method.account}}
-                        </div>
+                        <div class="text-truncate white--text">{{item.payment_method.account}}</div>
                     </v-sheet>
                     <v-spacer />
-                    <v-btn class="mr-1 rounded-pill btnWhiteBg" min-width="60" height="30" elevation="0" @click.stop.prevent="onEdit(item)"><span class="text-14 colorTextNormal4--text">{{LangUtil("备注")}}</span></v-btn>
-                    <v-btn class="rounded-pill btnWhiteBg" min-width="60" height="30" elevation="0" @click.stop.prevent="onDelete(item)"><span class="text-14 colorTextNormal4--text">{{LangUtil("删除")}}</span></v-btn>
+                    <v-btn class="mr-1 rounded-pill btnWhiteBg" min-width="60" height="30" elevation="0" @click.stop.prevent="onEdit(item)"
+                        ><span class="text-14 colorTextNormal4--text">{{LangUtil("备注")}}</span></v-btn
+                    >
+                    <v-btn class="rounded-pill btnWhiteBg" min-width="60" height="30" elevation="0" @click.stop.prevent="onDelete(item)"
+                        ><span class="text-14 colorTextNormal4--text">{{LangUtil("删除")}}</span></v-btn
+                    >
                 </v-sheet>
                 <!-- <v-sheet
                     height="76"
@@ -68,7 +74,7 @@
                 </v-sheet> -->
             </v-sheet>
             <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
-            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
+            <div style="width: 100%; height: 411px" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 class="mt-2"
@@ -112,27 +118,39 @@
             </div>
         </v-card-text>
         <v-card-text class="px-3" v-if="$vuetify.breakpoint.xsOnly">
-        <v-sheet  color="transparent" height="520"  class="scroll-y">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" >
-                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
-                <v-sheet
-                    height="90"
-                    class="rounded-lg d-flex align-center px-5 mt-3 cursor bPanelOpacityBg"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                    @click="onAddress(item.payment_method.account)"
-                >
-                    <v-sheet color="transparent" class="white--text mr-2" style="width:60%;">
-                        <div class="text-truncate textColor1">{{item.payment_method.account_name}}</div>
-                        <div class="white--text" style="width:100%;">
-                            {{item.payment_method.account}}
-                        </div>
+            <v-sheet color="transparent" height="520" class="scroll-y">
+                <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
+                    <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
+                    <v-sheet
+                        height="90"
+                        class="rounded-lg d-flex align-center px-5 mt-3 cursor bPanelOpacityBg"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        @click="onAddress(item.payment_method.account)"
+                    >
+                        <v-sheet color="transparent" class="white--text mr-2" style="width: 60%">
+                            <div class="text-truncate textColor1">{{item.payment_method.account_name}}</div>
+                            <div class="white--text" style="width: 100%">{{item.payment_method.account}}</div>
+                        </v-sheet>
+                        <v-spacer />
+                        <v-btn
+                            class="mr-1 rounded-pill btnWhiteBg align-self-end mb-4"
+                            min-width="50"
+                            height="28"
+                            elevation="0"
+                            @click.stop.prevent="onEdit(item)"
+                            ><span class="text-12 colorTextNormal4--text">{{LangUtil("备注")}}</span></v-btn
+                        >
+                        <v-btn
+                            class="rounded-pill btnWhiteBg align-self-end mb-4"
+                            min-width="50"
+                            height="28"
+                            elevation="0"
+                            @click.stop.prevent="onDelete(item)"
+                            ><span class="text-12 colorTextNormal4--text">{{LangUtil("删除")}}</span></v-btn
+                        >
                     </v-sheet>
-                    <v-spacer />
-                    <v-btn class="mr-1 rounded-pill btnWhiteBg align-self-end mb-4" min-width="50" height="28" elevation="0" @click.stop.prevent="onEdit(item)"><span class="text-12 colorTextNormal4--text">{{LangUtil("备注")}}</span></v-btn>
-                    <v-btn class="rounded-pill btnWhiteBg align-self-end mb-4" min-width="50" height="28" elevation="0" @click.stop.prevent="onDelete(item)"><span class="text-12 colorTextNormal4--text">{{LangUtil("删除")}}</span></v-btn>
-                </v-sheet>
-                <!-- <v-sheet
+                    <!-- <v-sheet
                     height="76"
                     class="rounded-lg d-flex align-center px-4 mt-3 cursor bPanelOpacityBg"
                     v-for="(item, key) of pageData.list"
@@ -149,8 +167,8 @@
                     <v-btn class="btnRedBg mr-3 rounded-pill" min-width="40" height="25" elevation="0" @click.stop.prevent="onEdit(item)"><span class="text-13">{{LangUtil("备注")}}</span></v-btn>
                     <v-btn class="bPanelOpacityBg rounded-pill" min-width="40" height="25" elevation="1" @click.stop.prevent="onDelete(item)"><span class="text-13">{{LangUtil("删除")}}</span></v-btn>
                 </v-sheet> -->
-            </vue-loadmore>
-        </v-sheet>
+                </vue-loadmore>
+            </v-sheet>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

@@ -1,9 +1,16 @@
-<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" persistent>
+<v-dialog
+    width="860"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true"
+    persistent
+>
     <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
     <v-card class="rounded-lg bPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-18 ">{{LangUtil("业绩查询")}}</div>
+            <div class="text-18">{{LangUtil("业绩查询")}}</div>
             <v-spacer />
             <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
                 <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
@@ -11,7 +18,13 @@
         </v-card-title>
         <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="d-flex justify-start mb-3">
-                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="260" height="35" @change="onTimeChange" />
+                <CustomSelect
+                    v-model="listOptions.timeSelect"
+                    :options="listOptions.timeOptions()"
+                    width="260"
+                    height="35"
+                    @change="onTimeChange"
+                />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="495" class="scroll-y">
                 <v-sheet class="mb-3 px-5 py-3 rounded-lg" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
@@ -54,8 +67,8 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411"/>
-            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
+            <div style="width: 100%; height: 411px" v-if="pageData.list.length == 0 && pageData.loading"></div>
         </v-card-text>
         <!-- 手机显示方式 -->
         <v-card-text class="pb-3 px-0" v-if="$vuetify.breakpoint.xsOnly">
@@ -69,10 +82,21 @@
         </v-card-text>
         <v-card-text class="px15" v-if="$vuetify.breakpoint.xsOnly">
             <div class="d-flex justify-start mb-3">
-                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="125" height="35" @change="onTimeChange" />
+                <CustomSelect
+                    v-model="listOptions.timeSelect"
+                    :options="listOptions.timeOptions()"
+                    width="125"
+                    height="35"
+                    @change="onTimeChange"
+                />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y">
-                <v-sheet class="px-4 py-4 rounded-lg mb-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet
+                    class="px-4 py-4 rounded-lg mb-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile"
+                    color="rgba(0,0,0,0.1)"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
                     <div class="d-flex justify-center flex-column">
                         <div class="text-12">{{LangUtil("时间")}}</div>
                         <div class="white--text text-14 font-weight-medium">{{ item.date }}</div>
@@ -94,9 +118,12 @@
                         <div class="white--text text-14 font-weight-medium text-center">{{ item.total_commission.USDT }}</div>
                     </div>
                     <div class="d-flex justify-end align-end">
-                        <v-btn text height="20" 
+                        <v-btn
+                            text
+                            height="20"
                             class="text-decoration-underline pa-0 white--text text-14 font-weight-medium"
-                            @click="handlerDetail(item.date)">
+                            @click="handlerDetail(item.date)"
+                        >
                             {{LangUtil("查看详情")}}>>
                             <!-- <v-img
                                 class="arrow"
@@ -108,7 +135,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

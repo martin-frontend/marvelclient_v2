@@ -1,6 +1,6 @@
 <v-dialog width="360" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" persistent>
     <v-card class="rounded-lg bPanelBg">
-        <v-card-title class="px20 pt15 pb15" >
+        <v-card-title class="px20 pt15 pb15">
             <div class="text-18">{{LangUtil("绑定上级ID")}}</div>
             <v-spacer />
             <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
@@ -10,9 +10,7 @@
         <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
             <CustomInput class="ip" :placeholder="LangUtil('请输入绑定上级ID')" v-model="pageData.inviteId" />
             <div class="mt10 mb20 real-name-text">{{LangUtil("确定绑定后无法更改")}}</div>
-            <v-btn class="rounded btnRedBg"  height="40" :disabled="!isCheckedId" @click="onSubmit" block
-                >{{LangUtil("确定绑定")}}</v-btn
-            >
+            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedId" @click="onSubmit" block>{{LangUtil("确定绑定")}}</v-btn>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

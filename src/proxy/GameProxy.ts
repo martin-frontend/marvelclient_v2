@@ -22,8 +22,8 @@ export default class GameProxy extends AbstractProxy {
     gamePreData = {
         lastRouter: "",
         historyLength: 0,
-        scrollY:0
-    }
+        scrollY: 0,
+    };
 
     loading = false;
 

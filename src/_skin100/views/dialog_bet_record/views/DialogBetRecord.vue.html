@@ -1,4 +1,12 @@
-<v-dialog width="820" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'" persistent>
+<v-dialog
+    width="820"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true"
+    :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent
+>
     <v-card class="rounded-lg d-flex flex-column bPanelBg" color="colorPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
@@ -53,11 +61,16 @@
                 />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="411" class="scroll-y">
-                <v-sheet  class="px-4 py-4 rounded-lg mt10" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="px-4 py-4 rounded-lg mt10" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap justify-space-between listitem">
                         <div class="num-change mb-2 d-flex align-center justify-space-between">
-                            <div class="d-flex align-center"><div class="mr-2">{{LangUtil("订单号")}}</div><div>{{item.order_no}}</div></div>
-                            <div :class="listOptions.statusColorOptions()[item.settlement_status]">{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                            <div class="d-flex align-center">
+                                <div class="mr-2">{{LangUtil("订单号")}}</div>
+                                <div>{{item.order_no}}</div>
+                            </div>
+                            <div :class="listOptions.statusColorOptions()[item.settlement_status]">
+                                {{listOptions.statusOptions()[item.settlement_status]}}
+                            </div>
                         </div>
                         <div class="l-item">
                             <div class="text-12">{{LangUtil("游戏名称")}}</div>
@@ -79,12 +92,12 @@
                             <div class="text-right text-12">{{LangUtil("输赢")}}</div>
                             <!-- <div class="text-14 text-right white--text">{{parseFloat(item.win_gold) < 0 ? "-$" + (item.win_gold).substr(1) : "+$" + item.win_gold }}</div> -->
                             <div class="text-14 text-right white--text">{{ item.win_gold }}</div>
-                        </div>      
+                        </div>
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="461"/>
-            <div style="width:100%;height:461px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="461" />
+            <div style="width: 100%; height: 461px" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 class="mt-2"
@@ -104,16 +117,18 @@
                     <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
                 </v-btn>
             </div>
-            <div class="px-4 mb-2" >
+            <div class="px-4 mb-2">
                 <div class="d-flex px-4 py-3 rounded-pill items-bg">
-                    <div color="rgba(255,255,255,0.4)" class="text-14">{{LangUtil("总投注额")}} <span class="span-b text-16 font-weight-bold">{{pageData.total_bet_gold}}</span></div>
+                    <div color="rgba(255,255,255,0.4)" class="text-14">
+                        {{LangUtil("总投注额")}} <span class="span-b text-16 font-weight-bold">{{pageData.total_bet_gold}}</span>
+                    </div>
                     <div color="rgba(255,255,255,0.4)" class="ml-2 text-14">
-                        {{LangUtil("输赢")}} 
+                        {{LangUtil("输赢")}}
                         <span class="span-b font-weight-bold">{{pageData.total_win_gold}}</span>
                     </div>
                 </div>
             </div>
-            <div class="px-4" >
+            <div class="px-4">
                 <div class="d-flex justify-space-between">
                     <CustomSelect
                         class="mb-2 mr-2"
@@ -153,15 +168,25 @@
             </div>
         </v-card-text>
         <v-card-text class="px15" v-if="$vuetify.breakpoint.xsOnly">
-            <v-sheet  color="transparent" height="380"  class="scroll-y overflow-y-auto">
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
-            <vue-loadmore v-if="pageData.list.length > 0" :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
-                <v-sheet  class="px-4 py-4 rounded-lg mt10 colorTextNormal2--text d-flex flex-wrap justify-start listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+            <v-sheet color="transparent" height="380" class="scroll-y overflow-y-auto">
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
+                <vue-loadmore v-if="pageData.list.length > 0" :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
+                    <v-sheet
+                        class="px-4 py-4 rounded-lg mt10 colorTextNormal2--text d-flex flex-wrap justify-start listitem-mobile"
+                        color="rgba(0,0,0,0.1)"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                    >
                         <div class="num-change mb-2 d-flex align-center justify-space-between">
-                            <div class="d-flex align-center white--text text-15" style="width:80%;"><div class="mr-2">{{LangUtil("订单号")}}</div><div class="text-truncate" style="width:70%;">{{item.order_no}}</div></div>
-                            <div :class="listOptions.statusColorOptions()[item.settlement_status]">{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                            <div class="d-flex align-center white--text text-15" style="width: 80%">
+                                <div class="mr-2">{{LangUtil("订单号")}}</div>
+                                <div class="text-truncate" style="width: 70%">{{item.order_no}}</div>
+                            </div>
+                            <div :class="listOptions.statusColorOptions()[item.settlement_status]">
+                                {{listOptions.statusOptions()[item.settlement_status]}}
+                            </div>
                         </div>
-                        <div class="l-item" style="width:40%;">
+                        <div class="l-item" style="width: 40%">
                             <div class="text-12">{{LangUtil("游戏名称")}}</div>
                             <div class="text-14 white--text">{{item.vendor_product_name}}</div>
                         </div>
@@ -172,9 +197,9 @@
                         <div class="l-item ml-auto">
                             <div class="text-right text-12">{{LangUtil("输赢")}}</div>
                             <div class="text-14 text-right white--text">{{item.win_gold }}</div>
-                        </div>  
-                        
-                        <div class="listitem-150 l-item" style="width:40%;">
+                        </div>
+
+                        <div class="listitem-150 l-item" style="width: 40%">
                             <div class="text-12">{{LangUtil("投注时间")}}</div>
                             <div class="text-truncate text-14 white--text">{{item.bet_at}}</div>
                         </div>
@@ -182,8 +207,8 @@
                             <div class="text-12">{{LangUtil("投注币种")}}</div>
                             <div class="text-14 white--text">{{item.coin_name_unique}}</div>
                         </div>
-                </v-sheet>
-                <!-- <v-sheet class="px-4 py-4 rounded-lg my-3 colorTextNormal2--text d-flex flex-wrap justify-start listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                    </v-sheet>
+                    <!-- <v-sheet class="px-4 py-4 rounded-lg my-3 colorTextNormal2--text d-flex flex-wrap justify-start listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                         <div class="num-change mb-2 d-flex align-center justify-space-between">
                             <div class="d-flex align-center" style="width:80%;"><div class="mr-2">{{LangUtil("订单号")}}</div><div class="text-truncate" style="width:70%;">{{item.order_no}}</div></div>
                             <div :class="listOptions.statusColorOptions()[item.settlement_status]">{{listOptions.statusOptions()[item.settlement_status]}}</div>
@@ -210,8 +235,8 @@
                             <div class="text-14 white--text">{{item.coin_name_unique}}</div>
                         </div>
                 </v-sheet> -->
-            </vue-loadmore>
-        </v-sheet>
+                </vue-loadmore>
+            </v-sheet>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

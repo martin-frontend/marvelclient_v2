@@ -13,36 +13,36 @@
 ::v-deep .v-icon.v-icon {
     color: #85a7dc !important;
 }
-::v-deep .v-expansion-panel:before{
-    box-shadow:none !important;
+::v-deep .v-expansion-panel:before {
+    box-shadow: none !important;
 }
-::v-deep .theme--dark.v-expansion-panels .v-expansion-panel{
+::v-deep .theme--dark.v-expansion-panels .v-expansion-panel {
     background-color: transparent !important;
 }
-::v-deep .mdi:before{
-    color:#697786;
+::v-deep .mdi:before {
+    color: #697786;
 }
-::v-deep .mdi:after{
-    color:#fff;
+::v-deep .mdi:after {
+    color: #fff;
 }
-.bPanelOpacityBg{
-    background-color: rgba(0,0,0,0.1) !important;
+.bPanelOpacityBg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
-.header-h5{
+.header-h5 {
     padding: 0;
     min-height: 20px !important;
-    margin-top:10px;
-    padding-bottom:5px;
+    margin-top: 10px;
+    padding-bottom: 5px;
 }
-::v-deep .content-h5{
+::v-deep .content-h5 {
     // padding-bottom: 5px;
-    .v-expansion-panel-content__wrap{
+    .v-expansion-panel-content__wrap {
         padding: 0 !important;
         font-size: 14px;
         color: #697786;
     }
 }
 .theme--dark.v-divider {
-    margin-top:5px;
+    margin-top: 5px;
     border-color: rgba(255, 255, 255, 0.05);
 }

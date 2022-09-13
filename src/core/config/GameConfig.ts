@@ -65,7 +65,7 @@ export default class GameConfig {
     static getApiUrl(): string {
         //@ts-ignore
         let apiUrl = window.api_url;
-        if(!apiUrl){
+        if (!apiUrl) {
             if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
                 const port = location.port;
                 if (port == "") {

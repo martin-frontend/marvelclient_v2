@@ -3,17 +3,10 @@
         <v-carousel-item v-for="(item, index) of noticeProxy.data.listType2" :key="index">
             <v-img :src="item.img_url" width="366" :height="height">
                 <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        indeterminate
-                        color="colorBtnSeleBg"
-                      ></v-progress-circular>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorBtnSeleBg"></v-progress-circular>
                     </v-row>
-                  </template>
+                </template>
             </v-img>
         </v-carousel-item>
     </v-carousel>

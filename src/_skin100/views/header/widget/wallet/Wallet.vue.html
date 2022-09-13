@@ -77,23 +77,22 @@
                     <div class="text-12 bTextColor5">{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div>
                 </div>
             </v-sheet>
-            <v-btn
-                text
-                height="34"
-                min-width="32"
-                class="my-1 mt-3 mx-4 py-2 px-4 btnBg"
-                @click="handlerGameRate"
-            >
-            <span class="bTextColor5">{{LangUtil("游戏汇率查询")}} →</span>
+            <v-btn text height="34" min-width="32" class="my-1 mt-3 mx-4 py-2 px-4 btnBg" @click="handlerGameRate">
+                <span class="bTextColor5">{{LangUtil("游戏汇率查询")}} →</span>
             </v-btn>
         </v-sheet>
-       
     </v-menu>
 
-    <v-btn v-if="$vuetify.breakpoint.xsOnly" elevation="0" class="rounded-pill black--text mr-2 common-btn white--text" x-small  @click="onCoinIn">
+    <v-btn
+        v-if="$vuetify.breakpoint.xsOnly"
+        elevation="0"
+        class="rounded-pill black--text mr-2 common-btn white--text"
+        x-small
+        @click="onCoinIn"
+    >
         <div>{{LangUtil("充值")}}</div>
     </v-btn>
-    <v-btn v-else class="rounded-pill  mr-3  common-btn white--text pointer" elevation="0" height="32"  @click="onCoinIn">
+    <v-btn v-else class="rounded-pill mr-3 common-btn white--text pointer" elevation="0" height="32" @click="onCoinIn">
         <div class="mx-1 text-14">{{LangUtil("充值")}}</div>
     </v-btn>
 </v-sheet>

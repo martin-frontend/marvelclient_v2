@@ -6,7 +6,6 @@ import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
 import Assets from "@/assets/Assets";
 import LangUtil from "@/core/global/LangUtil";
 
-
 @Component
 export default class DialogRecordMine extends AbstractView {
     myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);

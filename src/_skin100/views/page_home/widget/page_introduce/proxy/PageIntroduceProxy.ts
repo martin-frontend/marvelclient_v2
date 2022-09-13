@@ -17,12 +17,24 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
             total_stake_amount: "", // 总计质押
             total_holder: "", // 持币地址数
         },
+        stake_info: {
+            bonus_pool_amount: "0", // 当前奖池金额
+            yesterday_total_bonus_amount: "0", // 总质押数量
+            total_stake_amount: "0", // 总质押数量
+            total_bonus_amount: "0", // 总计已派发
+            auto_withdraw_stake_time: "0", // 自动解质押时刻
+            bonus_time: "0", // 下次分红时间
+            coin_name_unique: "", // 质押币种
+        },
     };
 
     setRewardCoinInfo(data: any) {
         Object.assign(this.pageData.reward_coin_info, data);
     }
 
+    setStakeInfo(data: any) {
+        Object.assign(this.pageData.stake_info, data);
+    }
     pageImage = {
         cat: require("@/assets/introduce/CAT@3x.png"),
         coin: require("@/assets/introduce/coin.png"),
@@ -47,5 +59,9 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
 
     api_plat_var_reward_coin_info() {
         this.sendNotification(net.HttpType.api_plat_var_reward_coin_info, { plat_id: core.plat_id });
+    }
+
+    api_plat_var_stake_info() {
+        this.sendNotification(net.HttpType.api_plat_var_stake_info, { plat_id: core.plat_id });
     }
 }

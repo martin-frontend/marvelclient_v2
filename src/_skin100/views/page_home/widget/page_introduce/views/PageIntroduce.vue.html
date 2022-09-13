@@ -28,13 +28,13 @@
                         <div  class="mx-2 my-2 pa-4 text-align-center" >
                             <div :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'" class="">{{LangUtil("当前分红池")}}</div>
                             <div class="white--text text-14 font-weight-bold"  :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'">
-                                $263,967
+                                {{moneyFormat(pageData.stake_info.bonus_pool_amount)}}
                             </div>
                         </div>
                         <div  class="mx-2 my-2 pa-4 text-align-center" >
                             <div class="text-14"  :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'">{{LangUtil("昨日分红")}}</div>
                             <div class="white--text text-14 font-weight-bold"  :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'">
-                                $28,520.14
+                                {{moneyFormat(pageData.stake_info.yesterday_total_bonus_amount)}}
                             </div>
                         </div>
                     </v-layout>
@@ -98,9 +98,9 @@
                     <img contain  width="27" height="27" src="../../../../../assets/icon-title-2.png"></img>
                     <span class="ml-2 text-16">{{LangUtil("{0}投注", awardCoin)}}</span>
                     <v-spacer></v-spacer>
-                    <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
+                    <!-- <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
                         {{LangUtil("敬请期待")}}
-                    </span>
+                    </span> -->
                 </v-card-title>
                 <v-card-text>
                     {{LangUtil("币种专题页介绍_投注说明", awardCoin, awardCoin)}}
@@ -162,9 +162,9 @@
                         <img contain width="24" height="24" src="../../../../../assets/icon-title-2.png"></img>
                         <span class="ml-2">{{LangUtil("{0}投注", awardCoin)}}</span>
                         <v-spacer></v-spacer>
-                        <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
+                        <!-- <span class="font-weight-bold intro-wait-text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
                             {{LangUtil("敬请期待")}}
-                        </span>
+                        </span> -->
                     </v-card-title>
                     <v-card-text class="colorInfo10-text">
                         {{LangUtil("币种专题页介绍_投注说明", awardCoin, awardCoin)}}
@@ -223,7 +223,7 @@
                         <span  :class="$vuetify.breakpoint.xsOnly ? 'text-14' : ''">{{LangUtil("游戏投注挖矿")}}</span>
                     </v-card-title>
                     <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'text-13' : ''">
-                        {{LangUtil("币种专题页介绍_游戏投注挖矿说明", awardCoin)}}
+                        {{LangUtil("币种专题页介绍_游戏投注挖矿说明", awardCoin , awardCoin)}}
                     </v-card-text>
                     <v-card-actions class="pa-4  pt-0 pt-sm-4  d-flex" :class="$vuetify.breakpoint.xsOnly ? '' : ''">
                         <v-btn

@@ -109,16 +109,22 @@ export default class MobileMenu extends AbstractView {
             case 1:
                 // router.push(item.path);
                 LoginEnter(page_mine.show);
-                this.active = 1;
+                if (this.routerPath != "/") {
+                    this.active = 1;
+                }
                 break;
             case 2:
                 // router.push(item.path);
                 LoginEnter(page_bonus.show);
-                this.active = 2;
+                if (this.routerPath != "/") {
+                    this.active = 2;
+                }
                 break;
             case 3:
                 LoginEnter(page_extension.show);
-                this.active = 3;
+                if (this.routerPath != "/") {
+                    this.active = 3;
+                }
                 break;
             case 4:
                 // LoginEnter(page_bonus.show);

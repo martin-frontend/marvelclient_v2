@@ -47,27 +47,27 @@ export default class PageIntroduce extends AbstractView {
         OpenLink(this.reward_coin_info.contract_address);
     }
 
-    goWhitePage(){
+    goWhitePage() {
         OpenLink(LangUtil("白皮书链接"));
     }
 
-    goHome(){
+    goHome() {
         router.replace("/");
     }
 
-    goPledge(){
+    goPledge() {
         LoginEnter(page_bonus.show);
     }
 
-    goActivity(){
+    goActivity() {
         dialog_activity.show();
     }
 
-    goExtension(){
-        LoginEnter(page_extension.show)
+    goExtension() {
+        LoginEnter(page_extension.show);
     }
 
-    destroyed(){
+    destroyed() {
         super.destroyed();
     }
 }

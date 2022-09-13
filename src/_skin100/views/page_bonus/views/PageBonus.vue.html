@@ -267,7 +267,7 @@
                                     class="d-flex justify-end flex-column mr-lg-3 mb-sm-3"
                                     v-for="(item, index) of bonus_recently.slice().reverse()"
                                     :key="index"
-                                    :class="index != 4 ? 'mr-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'"
+                                    :class="index != 4 ? 'mr-2 mr-sm-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'"
                                 >
                                     <div class="d-flex justify-center">${{ item.total_bonus_amount }}</div>
                                     <div class="d-flex justify-center">
@@ -335,7 +335,7 @@
         </v-row>
         <v-card class="mb-0  mb-sm-2 rounded-lg horizontal-gradient" :class="$vuetify.breakpoint.xsOnly ? 'py12-5 px15':'px-5 py-3 py-sm-6'" color="transparent" elevation="0" id="record">
             <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
-                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4">
+                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4 dividend-record">
                     <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-3.png" />
                     <span class="ml-1 text-15"  style="vertical-align: middle;">
                         {{LangUtil("分红记录")}}

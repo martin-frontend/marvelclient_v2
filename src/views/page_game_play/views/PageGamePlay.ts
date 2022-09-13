@@ -146,13 +146,17 @@ export default class PageGamePlay extends AbstractView {
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
                 const gameProxy: GameProxy = getProxy(GameProxy);
-                const ori_vendor_extend = JSON.parse(gameProxy.currGame.ori_vendor_extend);
-                if (ori_vendor_extend.router_bad) {
-                    // 导致路由混乱的游戏
-                    router.replace(gameProxy.gamePreData.lastRouter);
-                    setTimeout(() => {
-                        ScrollUtil(gameProxy.gamePreData.scrollY, 0);
-                    });
+                if (gameProxy.currGame.ori_vendor_extend) {
+                    const ori_vendor_extend = JSON.parse(gameProxy.currGame.ori_vendor_extend);
+                    if (ori_vendor_extend.router_bad) {
+                        // 导致路由混乱的游戏
+                        router.replace(gameProxy.gamePreData.lastRouter);
+                        setTimeout(() => {
+                            ScrollUtil(gameProxy.gamePreData.scrollY, 0);
+                        });
+                    } else {
+                        router.back();
+                    }
                 } else {
                     router.back();
                 }

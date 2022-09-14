@@ -1,6 +1,6 @@
 <!-- <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;"> -->
 <v-card-text
-    :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px30 pt20 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'"
+    :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px15 pt20 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'"
 >
     <div class="white--text mb-1 d-flex align-center">
         <div class="r-before"></div>
@@ -64,8 +64,8 @@
             <div class="colorTextNormal2--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
-                    class="mb-2 mx-1 text-14 rounded-pill"
-                    min-width="80"
+                    class="mb-2 mx3 text-14 rounded-pill"
+                    :min-width="$vuetify.breakpoint.xsOnly?'55':'80'"
                     height="30"
                     elevation="0"
                     :class="pageData.gold_index==index ? 'btnRedBg' : 'btnWhiteBg'"
@@ -113,7 +113,7 @@
             class="d-flex justify-center mt-5"
             v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5"
         >
-            <v-btn class="white--text btnRedBg rounded6" width="315" height="44" @click="onSumbit">{{LangUtil("确定充值")}}</v-btn>
+            <v-btn class="white--text btnRedBg rounded6" width="100%" height="44" @click="onSumbit">{{LangUtil("确定充值")}}</v-btn>
         </div>
     </v-card>
     <!-- <v-divider class="mx-5" /> -->

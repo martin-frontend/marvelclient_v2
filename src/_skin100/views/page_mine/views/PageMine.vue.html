@@ -175,7 +175,7 @@
                 <span class="ml-10">{{LangUtil("USDT返水")}}</span>
                 <span>{{LangUtil("LCC挖矿")}}</span>
             </div>
-            <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="rounded_customized py-2 d-flex justify-space-between mb-1">
+            <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="rounded_customized py-2 d-flex justify-space-between">
                 <div class="d-flex align-center">
                     <v-img max-width="14" width="16" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                     <span class="text-13 font-weight-medium ml-2">VIP {{ myProxy.getVipLevel(level) }}</span>

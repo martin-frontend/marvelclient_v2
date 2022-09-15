@@ -109,7 +109,7 @@
                                 <span v-if="pageData.trial.reward" class="white--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium">{{ pageData.trial.reward }}</span>
                             </div>
 
-                            <v-btn :width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorYellowBg2" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6 font-weight-bolder black--text"   @click="handlerAward">{{LangUtil('领取奖励')}}</v-btn>
+                            <v-btn :min-width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorYellowBg2" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6 font-weight-bolder black--text"   @click="handlerAward">{{LangUtil('领取奖励')}}</v-btn>
                             <div class="d-none d-md-flex  justify-md-center btn_group mt-4 mb-6 right_btn_group">
                                 <v-btn  height="38" min-width="85" class="rounded-pill bPanelWhiteOpacityBg text-14" @click="jumpTo('#howMine')">
                                     {{LangUtil('说明')}}

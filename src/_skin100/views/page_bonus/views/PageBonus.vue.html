@@ -449,7 +449,7 @@
                                 {{ item.stake_count }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:6" class="d-flex justify-center align-center">
-                                <div class="d-flex bonus-width ml-4">
+                                <div class="d-flex bonus-width ml-4 ">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -466,7 +466,9 @@
                                 </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end align-center">
-                                <div class="d-flex bonus-width">
+                                <div class="d-flex bonus-width "
+                                :class="$vuetify.breakpoint.xsOnly ? 'justify-end':'justify-center'"
+                                >
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -513,7 +515,7 @@
                             </v-col>
                             <v-col
                                 :cols="$vuetify.breakpoint.width > 600?3:4"
-                                :class="$vuetify.breakpoint.xsOnly?'':'pr-6'"
+                                :class="$vuetify.breakpoint.xsOnly?'':'pr-4'"
                                 class="d-flex justify-end align-center white-text2"
                             >
                                 {{LangUtil("已派发")}}
@@ -546,7 +548,9 @@
                                 </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end align-center">
-                                <div class="d-flex bonus-width">
+                                <div class="d-flex bonus-width" 
+                                :class="$vuetify.breakpoint.xsOnly? 'justify-end':'justify-center'"
+                                >
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"

@@ -164,6 +164,9 @@ input {
 }
 .container-b {
     background-color: #0d1b29;
+    @media screen and (min-width: 751px) and (max-width: 1424px) {
+        min-width: 1424px;
+    }
 }
 .bTextColor5 {
     color: rgba(255, 255, 255, 0.5) !important;

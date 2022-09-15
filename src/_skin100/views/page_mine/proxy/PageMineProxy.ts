@@ -69,7 +69,6 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
-        console.warn("this.userInfo >>>", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;

@@ -23,7 +23,7 @@
                     <v-btn
                         width="115"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2 white--text"
+                        class="rounded-pill font-weight-bold white--text"
                         elevation="0"
                         :text="pageData.tabIndex != 0"
                         :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
@@ -33,11 +33,11 @@
                             >mdi-arrow-down-bold-circle</v-icon
                         >{{LangUtil("充值")}}
                     </v-btn>
+                    <!-- :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''" -->
                     <v-btn
                         width="115"
                         height="32"
-                        class="rounded-pill font-weight-bold white--text"
-                        :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''"
+                        class="rounded-pill font-weight-bold white--text"     
                         elevation="0"
                         :text="pageData.tabIndex != 1"
                         :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -142,11 +142,11 @@
                 </v-btn>
             </v-card-title>
             <v-card-text class="d-flex align-center px15 px-sm-8 pb-0">
-                <div class="d-inline-flex align-center justify-center py-1 rounded-pill bPanelOpacityBg">
+                <div class="d-inline-flex align-center justify-center pa-1 rounded-pill bPanelOpacityBg">
                     <v-btn
                         width="90"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2 white--text"
+                        class="rounded-pill font-weight-bold white--text"
                         elevation="0"
                         :text="pageData.tabIndex != 0"
                         :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
@@ -157,11 +157,11 @@
                             >mdi-arrow-down-bold-circle</v-icon
                         >{{LangUtil("充值")}}
                     </v-btn>
+                    <!-- :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''" -->
                     <v-btn
                         width="90"
                         height="32"
                         class="rounded-pill font-weight-bold white--text"
-                        :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''"
                         elevation="0"
                         :text="pageData.tabIndex != 1"
                         :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"

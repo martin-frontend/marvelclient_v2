@@ -478,22 +478,23 @@ input {
     color: #9989c2 !important;
 }
 
-// /* 滚动槽 */
-// ::-webkit-scrollbar {
-//     width: 6px;
-//     height: 6px;
-// }
-// ::-webkit-scrollbar-track {
-//     border-radius: 3px;
-//     background: rgba(0,0,0,0.06);
-//     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-// }
-// /* 滚动条滑块 */
-// ::-webkit-scrollbar-thumb {
-//     border-radius: 3px;
-//     background: rgba(0,0,0,0.12);
-//     -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-// }
+/* 滚动槽 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 3px;
+    // background: rgba(0,0,0,0.06);
+    background: rgba(255,255,255);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(0,0,0,0.12);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
 #app.v-application .colorTextNormal2--text {
     color: rgba(255, 255, 255, 0.5) !important;
 }

@@ -1,22 +1,22 @@
 <div>
-<v-footer class="justify-space-around pa-0" height="75" color="#182533" app>
-    <v-sheet
-        class="d-flex flex-column align-center cursor-pointer pt-3 rounded-b"
-        width="70"
-        height="75"
-        v-for="(item, index) of menuList"
-        :key="index"
-        @click="onItemClick(item)"
-        :class="item.id == active ? 'active':''"
-        color="transparent"
-    >
-        <img v-show="item.id == active" width="26" height="26" :src="item.activeIcon"  alt="">
-        <img v-show="item.id != active" width="26" height="26" :src="item.icon"  alt="">
-        <div class="text-12 mt-1" :class="item.id == active ? 'active-footer': 'footerText--text'">{{item.name}}</div>
-    </v-sheet>
-</v-footer>
-<!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" > -->
-<v-navigation-drawer v-model="drawer" app temporary absolute touchless width="100%"  style="position: fixed;" >
-    <UserPanel @drawer="closeDrawer" />
-</v-navigation-drawer>
+    <v-footer class="justify-space-around pa-0" height="75" color="#182533" app>
+        <v-sheet
+            class="d-flex flex-column align-center cursor-pointer pt-3 rounded-b"
+            width="70"
+            height="75"
+            v-for="(item, index) of menuList"
+            :key="index"
+            @click="onItemClick(item)"
+            :class="item.id == active ? 'active':''"
+            color="transparent"
+        >
+            <img v-show="item.id == active" width="26" height="26" :src="item.activeIcon" alt="" />
+            <img v-show="item.id != active" width="26" height="26" :src="item.icon" alt="" />
+            <div class="text-12 mt-1" :class="item.id == active ? 'active-footer': 'footerText--text'">{{item.name}}</div>
+        </v-sheet>
+    </v-footer>
+    <!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" > -->
+    <v-navigation-drawer v-model="drawer" app temporary absolute touchless width="100%" style="position: fixed">
+        <UserPanel @drawer="closeDrawer" />
+    </v-navigation-drawer>
 </div>

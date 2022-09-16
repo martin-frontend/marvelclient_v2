@@ -34,27 +34,27 @@
         background: rgba(243, 231, 231, 0.098);
     }
 }
-::v-deep .v-progress-linear__determinate{
-    background-image: linear-gradient(-3deg, #CD30C1 0%, #215ED6 100%);
+::v-deep .v-progress-linear__determinate {
+    background-image: linear-gradient(-3deg, #cd30c1 0%, #215ed6 100%);
 }
-.tranbg{
+.tranbg {
     background-color: transparent;
 }
-.searchbg{
+.searchbg {
     background-image: linear-gradient(151deg, rgba(205, 48, 193, 0.9) 0%, rgba(33, 94, 214, 0.9) 100%);
 }
-.morebg{
-    background-image: linear-gradient(151deg, #CD30C1 0%, #215ED6 100%);
+.morebg {
+    background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%);
 }
-.game-cate{
+.game-cate {
     font-weight: 600;
 }
-::v-deep .gameselect-mobile{
-   .selectbg{
-        background-color: rgba(255,255,255,0.05);
-        .colors-text{
-            font-size:13px !important;
-            color:rgba(255,255,255,0.5) !important;
+::v-deep .gameselect-mobile {
+    .selectbg {
+        background-color: rgba(255, 255, 255, 0.05);
+        .colors-text {
+            font-size: 13px !important;
+            color: rgba(255, 255, 255, 0.5) !important;
         }
     }
 }

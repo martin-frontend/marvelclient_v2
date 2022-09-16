@@ -11,17 +11,16 @@
 .tips-box {
     margin-top: 13px;
     font-size: 12px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.3);
     font-size: 14px;
 }
 .tips-box_org {
     color: #6fa9fa;
     font-size: 13px;
 }
-.arrow-color{
-    color:rgba(255,255,255,0.2) !important;
-    caret-color:rgba(255,255,255,0.3) !important;
-
+.arrow-color {
+    color: rgba(255, 255, 255, 0.2) !important;
+    caret-color: rgba(255, 255, 255, 0.3) !important;
 }
 .arrow {
     transform: rotate(0deg);
@@ -37,8 +36,8 @@
     // color: #314361 !important;
     color: transparent !important;
 }
-.search-area{
-    border:0;
+.search-area {
+    border: 0;
     height: 32px;
     border-radius: 16px !important;
     background-color: rgba(0, 0, 0, 0.1);
@@ -58,46 +57,46 @@
 //     color: #8f7ac0;
 // }
 
-.dialog-background{
-    background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
+.dialog-background {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
 }
 
-.items-bg{
+.items-bg {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.login-ip{
+.login-ip {
     border-width: 0;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
 .tips-box_red {
-    color: #CD30C1;
+    color: #cd30c1;
 }
 
-.on-login-bg{
-    background-image:  linear-gradient(151deg, #CD30C1 0%, #215ED6 100%);
+.on-login-bg {
+    background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%);
 }
 
-.colorPanelBg4{
-    background-image: linear-gradient(147deg, #6432C4 0%, #10045C 76%);
+.colorPanelBg4 {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
 }
 .v-input--checkbox.v-input--dense {
     margin-top: -5px;
 }
 ::v-deep .v-input--selection-controls__input {
-    margin-right:2px !important;
-    margin-top:1px !important;
+    margin-right: 2px !important;
+    margin-top: 1px !important;
 }
-::v-deep .v-input--selection-controls__input .v-icon{
-    color:rgba(255,255,255,0.3) !important;
+::v-deep .v-input--selection-controls__input .v-icon {
+    color: rgba(255, 255, 255, 0.3) !important;
 }
-::v-deep .v-input--selection-controls__input .primary--text{
-    color:#bf35c3 !important;
+::v-deep .v-input--selection-controls__input .primary--text {
+    color: #bf35c3 !important;
 }
-::v-deep .v-input--selection-controls .v-input__slot > .v-label{
+::v-deep .v-input--selection-controls .v-input__slot > .v-label {
     font-size: 14px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.3);
     font-weight: 400;
-    left:7.5px;
+    left: 7.5px;
 }

@@ -1,7 +1,15 @@
-<v-dialog width="860" v-model="pageData.bShow"   :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"  persistent>
-    <v-card class="rounded-lg bPanelBg" >
+<v-dialog
+    width="860"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true"
+    :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent
+>
+    <v-card class="rounded-lg bPanelBg">
         <!-- pc显示方式 -->
-        <v-card-title class="px30"  v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-title class="px30" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("奖励记录")}}</div>
             <v-spacer />
             <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
@@ -10,7 +18,12 @@
         </v-card-title>
         <v-card-text class="px30" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="listbox" v-if="pageData.list.length > 0">
-                <v-sheet class="mt-2 px-6 py-2 rounded-lg mb-3 scroll-y" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet
+                    class="mt-2 px-6 py-2 rounded-lg mb-3 scroll-y"
+                    color="rgba(0,0,0,0.1)"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
                     <div class="d-flex flex-wrap listitem">
                         <div class="item" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'">
                             <div class="text-12">{{LangUtil("结算时间")}}</div>
@@ -20,15 +33,26 @@
                             <div class="text-12">{{LangUtil("结算有效流水")}}</div>
                             <div class="text-14 white--text">{{item.total_water}}</div>
                         </div>
-                        <div class="item" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
+                        <div
+                            class="item"
+                            :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'"
+                            v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]"
+                        >
                             <div class="text-12">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
                             <div class="text-14 white--text">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
-                        <div class="item" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'"  v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">
+                        <div
+                            class="item"
+                            :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'"
+                            v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]"
+                        >
                             <div class="text-12">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div class="text-14 white--text">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
-                        <div class="item d-flex align-center justify-end" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'">
+                        <div
+                            class="item d-flex align-center justify-end"
+                            :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'"
+                        >
                             <!-- <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
                                 {{LangUtil("查看详情")}}<v-img
                                     class="arrow"
@@ -44,8 +68,8 @@
                     </div>
                 </v-sheet>
             </div>
-            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411"/>
-            <div style="width:100%;height:411px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
+            <div style="width: 100%; height: 411px" v-if="pageData.list.length == 0 && pageData.loading"></div>
             <v-spacer />
             <v-pagination
                 v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
@@ -65,36 +89,52 @@
                 </v-btn>
             </div>
         </v-card-text>
-        <v-card-text class="px15 overflow-y-auto" style="height:500px;" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px15 overflow-y-auto" style="height: 500px" v-if="$vuetify.breakpoint.xsOnly">
             <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile"> -->
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished">
-                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading"/>
-                <v-sheet class="px-4 py-4 rounded-lg mb-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
-                    <div class="d-flex justify-center flex-column mb-4" style="width:40%;">
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
+                <v-sheet
+                    class="px-4 py-4 rounded-lg mb-3 colorTextNormal2--text d-flex flex-wrap listitem-mobile"
+                    color="rgba(0,0,0,0.1)"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
+                    <div class="d-flex justify-center flex-column mb-4" style="width: 40%">
                         <div class="text-12">{{LangUtil("结算时间")}}</div>
                         <div class="white--text text-14 font-weight-medium">{{ getDateTime(item.created_at) }}</div>
                     </div>
-                    <div class="d-flex justify-center flex-column mb-4" style="width:26.66%;">
+                    <div class="d-flex justify-center flex-column mb-4" style="width: 26.66%">
                         <div class="text-12">{{LangUtil("结算有效流水")}}</div>
                         <div class="white--text text-14 font-weight-medium">{{item.total_water}}</div>
                     </div>
                     <div class="d-flex justify-center flex-column mb-4" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
                         <div class="text-12 text-right">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
-                        <div class="white--text text-14 font-weight-medium text-right">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
+                        <div class="white--text text-14 font-weight-medium text-right">
+                            {{item.total_backwater[Object.keys(item.total_backwater)[0]]}}
+                        </div>
                     </div>
                     <div class="d-flex justify-center flex-column mb-4" v-else></div>
-                    <div class="d-flex justify-center flex-column" v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]" style="width:40%;">
+                    <div
+                        class="d-flex justify-center flex-column"
+                        v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]"
+                        style="width: 40%"
+                    >
                         <div class="text-12">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
-                        <div class="white--text text-14 font-weight-medium">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
+                        <div class="white--text text-14 font-weight-medium">
+                            {{item.total_backwater[Object.keys(item.total_backwater)[1]]}}
+                        </div>
                     </div>
-                    <div class="d-flex justify-center flex-column" v-else style="width:40%;"></div>
-                    <div class="d-flex justify-center flex-column" style="width:26.66%;">
+                    <div class="d-flex justify-center flex-column" v-else style="width: 40%"></div>
+                    <div class="d-flex justify-center flex-column" style="width: 26.66%">
                         <!-- 空置分隔 -->
                     </div>
                     <div class="d-flex justify-end align-end">
-                        <v-btn text height="20" 
+                        <v-btn
+                            text
+                            height="20"
                             class="text-decoration-underline pa-0 white--text text-14 font-weight-medium"
-                            @click="handlerDetail(item)">
+                            @click="handlerDetail(item)"
+                        >
                             {{LangUtil("查看详情")}}>>
                         </v-btn>
                     </div>

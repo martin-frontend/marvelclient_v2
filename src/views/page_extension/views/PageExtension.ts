@@ -78,8 +78,7 @@ export default class PageExtension extends AbstractView {
 
     async savePhoto() {
         if (this.pageData.qrCode) {
-            // const bg = require(`@/assets/extension/poster.jpg`);
-            const bg = "";
+            const bg = require(`@/assets/extension/poster.jpg`);
             let imgData: any;
             if (bg) {
                 const myCanvas = new MyCanvas(750, 1334);

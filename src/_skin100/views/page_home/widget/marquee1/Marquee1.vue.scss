@@ -1,18 +1,18 @@
 .marquee-box {
     width: 100%;
-    height:30px;
-    padding-top:4px;
+    height: 30px;
+    padding-top: 4px;
     overflow: hidden;
     div {
         width: fit-content;
         white-space: nowrap;
     }
 }
-.marquee-text{
-    height:22px;
-    margin-left:12px;
+.marquee-text {
+    height: 22px;
+    margin-left: 12px;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 400;
 }
 

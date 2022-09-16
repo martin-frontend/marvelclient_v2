@@ -1,27 +1,22 @@
-<v-app-bar
-    class="app-bar header_sk100"
-    :height="$vuetify.breakpoint.xsOnly?100:80"
-    elevation="0"
-    :app="routerPath != '/page_game_play'"
->
+<v-app-bar class="app-bar header_sk100" :height="$vuetify.breakpoint.xsOnly?100:80" elevation="0" :app="routerPath != '/page_game_play'">
     <v-container class="py-0 mx18" v-if="!$vuetify.breakpoint.xsOnly">
-        <div class="d-flex align-center ">
+        <div class="d-flex align-center">
             <img src="@/_skin100/assets/logo.png" height="40" class="mt-4 mb-2 mr-8 cursor-pointer" @click="goHome" alt="" />
             <span class="nav-button" @click="goHome">
-                 <span class="button-text">{{LangUtil("首页")}}</span>
-                 <div :class="routerPath == '/' ? 'button-bar-active' : 'button-bar'" ></div>
+                <span class="button-text">{{LangUtil("首页")}}</span>
+                <div :class="routerPath == '/' ? 'button-bar-active' : 'button-bar'"></div>
             </span>
             <span class="nav-button" @click="goToMyPage">
-                 <span class="button-text">{{LangUtil("挖矿")}}</span>
-                 <div :class="routerPath == '/page_mine' ? 'button-bar-active' : 'button-bar'" ></div>
+                <span class="button-text">{{LangUtil("挖矿")}}</span>
+                <div :class="routerPath == '/page_mine' ? 'button-bar-active' : 'button-bar'"></div>
             </span>
             <span class="nav-button" @click="goToMyBonus">
-                 <span class="button-text">{{LangUtil("分红")}}</span>
-                 <div :class="routerPath == '/page_bonus' ? 'button-bar-active' : 'button-bar'" ></div>
+                <span class="button-text">{{LangUtil("分红")}}</span>
+                <div :class="routerPath == '/page_bonus' ? 'button-bar-active' : 'button-bar'"></div>
             </span>
             <span class="nav-button" @click="goToMySwap">
-                 <span class="button-text">{{LangUtil("交易")}}</span>
-                 <div :class="routerPath == '/page_swap' ? 'button-bar-active' : 'button-bar'" ></div>
+                <span class="button-text">{{LangUtil("交易")}}</span>
+                <div :class="routerPath == '/page_swap' ? 'button-bar-active' : 'button-bar'"></div>
             </span>
             <!-- <button
             v-if="!$vuetify.breakpoint.mobile"
@@ -35,19 +30,17 @@
         </button> -->
             <v-spacer />
             <span v-if="core.user_id == 0" class="login-btn px-2 mt2" @click="handlerLogin">{{LangUtil("登录")}}</span>
-        <v-btn
-            v-if="core.user_id == 0"
-            height="40"
-            min-width="100"
-            :small="$vuetify.breakpoint.mobile"
-            class="text-26 mx-4 white--text regin-btn"
-            @click="handlerRegister"
-        >
-            <span class="px-2">{{LangUtil("注册")}}</span>
-        </v-btn>
-        
+            <v-btn
+                v-if="core.user_id == 0"
+                height="40"
+                min-width="100"
+                :small="$vuetify.breakpoint.mobile"
+                class="text-26 mx-4 white--text regin-btn"
+                @click="handlerRegister"
+            >
+                <span class="px-2">{{LangUtil("注册")}}</span>
+            </v-btn>
 
-       
             <Wallet v-if="core.user_id" />
             <div v-if="LangConfig.language">
                 <CustomSelect
@@ -65,7 +58,7 @@
             <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
         </div>
 
-      <!--   <div class="d-flex mt-5">
+        <!--   <div class="d-flex mt-5">
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
             <button v-if="!$vuetify.breakpoint.mobile" class="nav-button" :class="routerPath == '/' ? 'active' : ''" @click="goHome">
                 <v-icon>mdi-home</v-icon>
@@ -86,7 +79,7 @@
             <v-spacer />
         </div>-->
     </v-container>
-     <!-- 手机 -->
+    <!-- 手机 -->
     <v-container v-else class="pt-0 pb-0 px-0">
         <div class="d-flex align-center hei50 px15">
             <img src="@/_skin100/assets/logo.png" height="32" alt="" />
@@ -96,23 +89,30 @@
             </v-btn> -->
             <div v-if="GamePlatConfig.config.language" class="language">
                 <CustomSelect
-                v-model="core.lang"
-                :options="LangConfig.language"
-                :icons="LangConfig.language"
-                :iconSize="18"
-                :width="122"
-                :height="30"
-                :isPill="true"
-                class="mr-0 pointer"
-                @change="onLangChange"
-            />
+                    v-model="core.lang"
+                    :options="LangConfig.language"
+                    :icons="LangConfig.language"
+                    :iconSize="18"
+                    :width="122"
+                    :height="30"
+                    :isPill="true"
+                    class="mr-0 pointer"
+                    @change="onLangChange"
+                />
             </div>
         </div>
-        <div class="d-flex align-center hei50 second-head-bar-bg px15" >
-            <v-btn v-if="core.user_id == 0" small  class="text-14 white--text common-btn" @click="handlerLogin">
+        <div class="d-flex align-center hei50 second-head-bar-bg px15">
+            <v-btn v-if="core.user_id == 0" small class="text-14 white--text common-btn" @click="handlerLogin">
                 <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" style="border-radius: 23px;" class="text-14 ml-2 mx-4 black--text" @click="handlerRegister">
+            <v-btn
+                v-if="core.user_id == 0"
+                small
+                color="white"
+                style="border-radius: 23px"
+                class="text-14 ml-2 mx-4 black--text"
+                @click="handlerRegister"
+            >
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <User v-if="core.user_id" />

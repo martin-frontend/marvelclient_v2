@@ -9,15 +9,8 @@
             </v-btn>
         </v-card-title>
         <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
-            <CustomInput
-                class="ip"
-                height="55"
-                :diglength="8"
-                :isNum="true"
-                :placeholder="LangUtil('输入数量')"
-                v-model="pageData.amount"
-            >
-                <v-btn text color="colorBtnSeleBg" min-width="40" height="30" class="px-1 mr-n3"  @click="handleMaxVal">
+            <CustomInput class="ip" height="55" :diglength="8" :isNum="true" :placeholder="LangUtil('输入数量')" v-model="pageData.amount">
+                <v-btn text color="colorBtnSeleBg" min-width="40" height="30" class="px-1 mr-n3" @click="handleMaxVal">
                     <span class="text-14">{{ LangUtil("全部") }}</span>
                 </v-btn>
             </CustomInput>
@@ -29,13 +22,7 @@
                 <span class="text-12 textColor1">{{LangUtil("手动解除质押手续费")}}</span>
                 <span class="white--text text-12">{{ pageBonusProxy.pageData.plat_stake_info.manual_withdraw_stake_fee }}</span>
             </div>
-            <v-btn
-                class="rounded btnRedBg"
-                height="40"
-                :disabled="!isCheckedAmount || !pageData.amount"
-                block
-                @click="handleConfirm"
-            >
+            <v-btn class="rounded btnRedBg" height="40" :disabled="!isCheckedAmount || !pageData.amount" block @click="handleConfirm">
                 {{LangUtil("确定手动解除质押")}}
             </v-btn>
         </v-card-text>

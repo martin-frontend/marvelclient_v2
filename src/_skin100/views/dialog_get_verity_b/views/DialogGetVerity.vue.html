@@ -1,10 +1,19 @@
 <v-dialog v-model="pageData.bShow" max-width="320" persistent>
     <template v-slot:activator="{ on, attrs }">
-        <v-btn class="text-14 mr-n3" color="colorBtnSeleBg" text small min-width="65" :disabled="!isCheck || pageData.downcount > 0" v-bind="attrs" v-on="on">
+        <v-btn
+            class="text-14 mr-n3"
+            color="colorBtnSeleBg"
+            text
+            small
+            min-width="65"
+            :disabled="!isCheck || pageData.downcount > 0"
+            v-bind="attrs"
+            v-on="on"
+        >
             <span class="text-14">{{pageData.downcount > 0 ? pageData.downcount : LangUtil("获取验证码")}}</span>
         </v-btn>
     </template>
-     <v-card class="rounded-lg colorPanelBgVer" width="360" height="210">
+    <v-card class="rounded-lg colorPanelBgVer" width="360" height="210">
         <v-card-title class="d-flex align-center gradient-bg-tran py-4 px-5">
             <div class="ml-2 font-weight-medium white--text text-17">
                 {{pageData.category == 0 ? LangUtil("获取邮箱验证码"): LangUtil("获取短信验证码")}}
@@ -17,13 +26,20 @@
         </v-card-title>
         <!-- <v-card-text class="d-flex px-8 mt-2"> -->
         <v-card-text class="d-flex px-5 pb-0">
-            <CustomInput type="tel" class="rounded verity-ip" :maxlength="10" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
+            <CustomInput
+                type="tel"
+                class="rounded verity-ip"
+                :maxlength="10"
+                icon="mdi-shield-check"
+                v-model="pageData.form.auth_code"
+                :placeholder="LangUtil('请输入验证码')"
+            >
                 <!-- <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img> -->
                 <v-img class="ml-3 mr-n2" :src="pageData.auth_image" width="74" height="30" @click="getVerity"></v-img>
             </CustomInput>
         </v-card-text>
         <v-card-actions class="px-5 mt-4">
-            <v-btn class="rounded6 on-verity-bg"  height="40"  block @click="onSend">{{LangUtil("确定")}}</v-btn>
+            <v-btn class="rounded6 on-verity-bg" height="40" block @click="onSend">{{LangUtil("确定")}}</v-btn>
         </v-card-actions>
     </v-card>
     <!-- <v-card class="rounded-xl" color="colorPanelBg" width="300" height="230">

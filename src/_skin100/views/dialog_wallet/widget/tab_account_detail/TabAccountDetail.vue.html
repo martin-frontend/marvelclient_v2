@@ -31,7 +31,15 @@
             <v-sheet class="px-4 py-4 rounded-lg my-3" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex flex-wrap justify-space-between listitem">
                     <div class="num-change mb-2 d-flex align-center justify-space-between">
-                        <div class="d-flex align-center"><v-img class="mr-2" :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon" max-width="18" height="18"></v-img><div>{{item.coin_name_unique}}</div></div>
+                        <div class="d-flex align-center">
+                            <v-img
+                                class="mr-2"
+                                :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon"
+                                max-width="18"
+                                height="18"
+                            ></v-img>
+                            <div>{{item.coin_name_unique}}</div>
+                        </div>
                         <div class="colorTextNormal2--text">{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
                     </div>
                     <div class="l-item">
@@ -57,8 +65,8 @@
                 </div>
             </v-sheet>
         </v-sheet>
-        <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="456"/>
-        <div style="width:100%;height:456px;" v-if="pageData.list.length == 0 && pageData.loading"></div>
+        <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="456" />
+        <div style="width: 100%; height: 456px" v-if="pageData.list.length == 0 && pageData.loading"></div>
         <v-spacer />
         <v-pagination
             class="mt-2"
@@ -123,28 +131,47 @@
         </div> -->
     </v-card-text>
     <v-card-text class="px-4 pt-0" v-if="$vuetify.breakpoint.xsOnly">
-        <v-sheet  color="transparent" height="450"  class="scroll-y">
-        <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" :height="280" />
-        <vue-loadmore v-if="pageData.list.length > 0" :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-            <v-sheet class="pa-3 rounded-lg mt10 colorText2--text" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
-                <div class="d-flex flex-wrap justify-space-between listitem-mobile">
-                    <div class="num-change mb-2 d-flex align-center justify-space-between">
-                        <div class="d-flex align-center"><v-img class="mr-2" :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon" max-width="18" height="18"></v-img><div class="white--text font-weight-regular">{{item.coin_name_unique}}</div></div>
-                        <div class="colorTextNormal2--text">{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+        <v-sheet color="transparent" height="450" class="scroll-y">
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" :height="280" />
+            <vue-loadmore
+                v-if="pageData.list.length > 0"
+                :on-refresh="onRefresh"
+                :on-loadmore="onLoad"
+                :finished="pageData.finished"
+                class="listbox-mobile"
+            >
+                <v-sheet
+                    class="pa-3 rounded-lg mt10 colorText2--text"
+                    color="rgba(0,0,0,0.1)"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
+                    <div class="d-flex flex-wrap justify-space-between listitem-mobile">
+                        <div class="num-change mb-2 d-flex align-center justify-space-between">
+                            <div class="d-flex align-center">
+                                <v-img
+                                    class="mr-2"
+                                    :src="plat_coins[item.coin_name_unique] && plat_coins[item.coin_name_unique].icon"
+                                    max-width="18"
+                                    height="18"
+                                ></v-img>
+                                <div class="white--text font-weight-regular">{{item.coin_name_unique}}</div>
+                            </div>
+                            <div class="colorTextNormal2--text">{{(parseFloat(item.gold) < 0 ? "" : "+") + item.gold}}</div>
+                        </div>
+                        <div class="l-item">
+                            <div class="text-12">{{LangUtil("明细类型")}}</div>
+                            <div class="text-truncate text-14 white--text">{{listOptions.typeOptions()[item.type]}}</div>
+                        </div>
+                        <div class="l-item">
+                            <div class="text-12">{{LangUtil("账户余额")}}</div>
+                            <div class="text-14 white--text">{{item.balance}}</div>
+                        </div>
+                        <div class="l-item">
+                            <div class="text-right text-12">{{LangUtil("日期")}}</div>
+                            <div class="text-truncate text-right text-14 white--text">{{item.created_at.substr(5)}}</div>
+                        </div>
                     </div>
-                    <div class="l-item">
-                        <div class="text-12">{{LangUtil("明细类型")}}</div>
-                        <div class="text-truncate text-14 white--text">{{listOptions.typeOptions()[item.type]}}</div>
-                    </div>
-                    <div class="l-item">
-                        <div class="text-12">{{LangUtil("账户余额")}}</div>
-                        <div class="text-14 white--text">{{item.balance}}</div>
-                    </div>
-                    <div class="l-item">
-                        <div class="text-right text-12">{{LangUtil("日期")}}</div>
-                        <div class="text-truncate text-right text-14 white--text">{{item.created_at.substr(5)}}</div>
-                    </div>
-                </div>
                     <!-- <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("明细类型")}}</div>
                         <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>
@@ -165,8 +192,8 @@
                         <div class="colorText1--text">{{LangUtil("日期")}}</div>
                         <div class="text-truncate">{{item.created_at.substr(5)}}</div>
                     </div> -->
-            </v-sheet>
-        </vue-loadmore>
+                </v-sheet>
+            </vue-loadmore>
         </v-sheet>
     </v-card-text>
 </div>

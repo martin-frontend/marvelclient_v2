@@ -28,9 +28,10 @@
 .horizontal-gradient-left {
     // background-image: linear-gradient(to right, #1e2c47, #384f72);
     background-color: transparent !important;
-    background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+    background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
     &.down {
-        background-image: url("~@/assets/extension/commission@2x.png"), linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);;
+        background-image: url("~@/assets/extension/commission@2x.png"),
+            linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
         background-size: 240px 281px, 100% 100%;
         background-position: -6% bottom;
         @media (max-width: 1426px) {
@@ -45,7 +46,7 @@
         @media (max-width: 400px) {
             // background-image: url("~@/assets/extension/commission@2x.png"), url("~@/assets/extension/background.png"),
             background-image: url("~@/assets/extension/commission@2x.png"), url("~@/assets/extension/background.png"),
-            linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+                linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
             background-position: -24% bottom, right;
             background-size: 216px 252px, 60% 65%, 100% 100%;
             height: unset;
@@ -58,7 +59,7 @@
 .horizontal-gradient-right {
     // background: linear-gradient(to right, #1e2c47, #123564);
     background-color: transparent !important;
-    background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+    background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
 }
 .level_title {
     // background-image: linear-gradient(to right, #253754, #1d2f4e);
@@ -116,29 +117,29 @@
         border-radius: 5px !important;
     }
 }
-.commission{
+.commission {
     @media (max-width: 600px) {
         max-width: 85px !important;
     }
 }
-.cursor{
+.cursor {
     cursor: pointer;
 }
-.select-row:hover{
-    background-color: rgba(0,0,0,0.1) !important;
+.select-row:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
-.curr-row{
-    background-image: linear-gradient(151deg, #CD30C180 0%, #215ED680 100%);
+.curr-row {
+    background-image: linear-gradient(151deg, #cd30c180 0%, #215ed680 100%);
 }
-.rowbg{
-    background-color: rgba(0,0,0,0.1) !important;
+.rowbg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
-.level_panel{
-        background-image: linear-gradient(-20deg, rgba(53,64,82,0.3) 0%, rgba(92,103,123,0.3) 97%);
+.level_panel {
+    background-image: linear-gradient(-20deg, rgba(53, 64, 82, 0.3) 0%, rgba(92, 103, 123, 0.3) 97%);
 }
-.promte-link{
+.promte-link {
     flex-shrink: 0;
 }
 .v-sheet.v-card:not(.v-sheet--outlined) {
-    box-shadow:none !important;
+    box-shadow: none !important;
 }

@@ -2,9 +2,11 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
+import { moneyFormat } from "@/core/global/Functions";
 import { Watch, Component } from "vue-property-decorator";
 import PageIntroduceMediator from "../mediator/PageIntroduceMediator";
 import PageIntroduceProxy from "../proxy/PageIntroduceProxy";
+import dialog_message_box from "@/_skin100/views/dialog_message_box/index";
 import router from "@/router";
 import LoginEnter from "@/_skin100/core/global/LoginEnter";
 import page_extension from "@/_skin100/views/page_extension";
@@ -14,6 +16,7 @@ import page_game_list from "@/_skin100/views/page_game_list";
 @Component
 export default class PageIntroduce extends AbstractView {
     LangUtil = LangUtil;
+    moneyFormat = moneyFormat;
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;
     reward_coin_info = this.pageData.reward_coin_info;
@@ -51,6 +54,7 @@ export default class PageIntroduce extends AbstractView {
         dialog_activity.show();
     }
     onTGGroup() {
+        dialog_message_box.alert(LangUtil("暂未开放"));
         // onWatchShow()
     }
     goHome() {

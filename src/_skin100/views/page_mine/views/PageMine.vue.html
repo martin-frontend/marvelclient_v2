@@ -109,7 +109,7 @@
                                 <span v-if="pageData.trial.reward" class="white--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium">{{ pageData.trial.reward }}</span>
                             </div>
 
-                            <v-btn :width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorYellowBg2" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6 font-weight-bolder black--text"   @click="handlerAward">{{LangUtil('领取奖励')}}</v-btn>
+                            <v-btn :min-width="mobileChange('minRewardBtn').w" :height="mobileChange('minRewardBtn').h" color="colorYellowBg2" plain class="rounded-pill text-body-2 text-md-body-1 get_award mt-2 mt-md-6 font-weight-bolder black--text"   @click="handlerAward">{{LangUtil('领取奖励')}}</v-btn>
                             <div class="d-none d-md-flex  justify-md-center btn_group mt-4 mb-6 right_btn_group">
                                 <v-btn  height="38" min-width="85" class="rounded-pill bPanelWhiteOpacityBg text-14" @click="jumpTo('#howMine')">
                                     {{LangUtil('说明')}}
@@ -175,7 +175,7 @@
                 <span class="ml-10">{{LangUtil("USDT返水")}}</span>
                 <span>{{LangUtil("LCC挖矿")}}</span>
             </div>
-            <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="rounded_customized py-2 d-flex justify-space-between mb-1">
+            <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent" class="rounded_customized py-2 d-flex justify-space-between">
                 <div class="d-flex align-center">
                     <v-img max-width="14" width="16" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                     <span class="text-13 font-weight-medium ml-2">VIP {{ myProxy.getVipLevel(level) }}</span>

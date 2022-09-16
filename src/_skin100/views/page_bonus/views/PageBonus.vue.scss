@@ -41,13 +41,23 @@
 .left-item {
     height: 100%;
     @media (min-width: 1264px) {
-        height: 180px;
+        // height: 180px;
     }
 }
 .btn-around {
     display: inline-block;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    @media (max-width: 325px) {
+        button {
+            padding: 0 5px !important;
+        }
+    }
+}
+.dividend-record {
+    @media (max-width: 325px) {
+        margin-right: 5px !important;
+    }
 }
 .daily-height {
     height: 348px;

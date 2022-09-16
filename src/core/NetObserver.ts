@@ -116,12 +116,16 @@ export default class NetObserver extends AbstractMediator {
 
                                 //@ts-ignore
                                 if (judgeClient() == "PC" || window.navigator.standalone) {
-                                    const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                                    //@ts-ignore
-                                    if(window.navigator.standalone && ori_vendor_extend.iframe_bad){
-                                        // iframe无法正常显示的游戏
-                                        OpenLink(body.url);
-                                    }else{
+                                    if (this.gameProxy.currGame.ori_vendor_extend) {
+                                        const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
+                                        //@ts-ignore
+                                        if (window.navigator.standalone && ori_vendor_extend.iframe_bad) {
+                                            // iframe无法正常显示的游戏
+                                            OpenLink(body.url);
+                                        } else {
+                                            page_game_play.show(body.url);
+                                        }
+                                    } else {
                                         page_game_play.show(body.url);
                                     }
                                 } else {

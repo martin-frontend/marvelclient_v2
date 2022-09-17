@@ -29,7 +29,8 @@ module.exports = {
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/no-this-alias": "off",
         "no-useless-escape": "off",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "no-console": "off",
     },
     overrides: [
         {

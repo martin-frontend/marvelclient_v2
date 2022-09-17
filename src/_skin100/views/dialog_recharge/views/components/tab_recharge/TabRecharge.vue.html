@@ -52,7 +52,8 @@
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
             </div>
             <div class="d-flex align-center address-box pa-2 mt-1">
-                <div class="white--text ml-1">{{ pageData.address || LangUtil("暂无地址") }}</div>
+                <div class="white--text ml-1" v-if="pageData.loading">--</div>
+                <div class="white--text ml-1" v-else>{{ pageData.address || LangUtil("暂无地址") }}</div>
                 <v-spacer />
                 <v-btn class="rounded-pill btnRedBg" width="70" min-width="70" height="30" @click="onCopy">
                     <span class="text-13">{{LangUtil("复制")}}</span>

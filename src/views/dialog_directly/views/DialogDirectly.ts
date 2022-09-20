@@ -7,6 +7,7 @@ import DialogDirectlyMediator from "../mediator/DialogDirectlyMediator";
 import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_bet_record from "@/views/dialog_bet_record";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -81,5 +82,9 @@ export default class DialogDirectly extends AbstractView {
 
     onLoad(done: any) {
         this.myProxy.listMore(done);
+    }
+
+    handlerShowBetRecord(agent_user_id: any) {
+        dialog_bet_record.show(agent_user_id);
     }
 }

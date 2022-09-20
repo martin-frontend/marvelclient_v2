@@ -161,6 +161,9 @@
 
         "--平台入口配置获取",
         ["api/plat/{plat_id}/config",                   "平台入口配置获取"],
-        ["api/test_speed",                              "检测接口速度"]
+        ["api/test_speed",                              "检测接口速度"],
+
+        "--直属投注记录列表",
+        ["api/user/{user_id}/agent/{agent_user_id}/bet", "直属投注记录列表"]
     ]
 }

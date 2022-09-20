@@ -24,7 +24,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
             page_count: 1,
             page_size: 20,
-            user_id: 0,
+            agent_user_id: null,
         },
         list: <any>[],
         total_bet_gold: "",
@@ -119,26 +119,38 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     listRefrush(done: any) {
         this.pageData.done = done;
         this.pageData.listQuery.page_count = 1;
-        this.api_user_show_var_bet();
+        this.getApi();
     }
     /**手机上拉加载更多 */
     listMore(done: any) {
         this.pageData.done = done;
         this.pageData.listQuery.page_count++;
-        this.api_user_show_var_bet();
+        this.getApi();
     }
 
     api_vendor_simple() {
         this.sendNotification(net.HttpType.api_vendor_simple);
     }
 
+    getApi() {
+        this.pageData.listQuery.agent_user_id != null ? this.api_user_var_agent_var_bet() : this.api_user_show_var_bet();
+    }
+
     api_user_show_var_bet() {
         this.pageData.loading = true;
-        const formCopy = {};
+        const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
-        console.warn('this.pageData.listQuery', formCopy);
-        
+
         // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
         this.sendNotification(net.HttpType.api_user_show_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
+    }
+
+    api_user_var_agent_var_bet() {
+        this.pageData.loading = true;
+        const formCopy = { user_id: core.user_id };
+        Object.assign(formCopy, this.pageData.listQuery);
+
+        // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
+        this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 }

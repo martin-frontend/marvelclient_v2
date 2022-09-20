@@ -5,7 +5,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 
 export default class DialogBetRecordMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_vendor_simple, net.EventType.api_user_show_var_bet];
+        return [net.EventType.api_vendor_simple, net.EventType.api_user_show_var_bet, net.EventType.api_user_var_agent_var_bet];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -16,6 +16,9 @@ export default class DialogBetRecordMediator extends AbstractMediator {
                 myProxy.pageData.vendors = body;
                 break;
             case net.EventType.api_user_show_var_bet:
+                myProxy.setData(body);
+                break;
+            case net.EventType.api_user_var_agent_var_bet:
                 myProxy.setData(body);
                 break;
         }

@@ -84,7 +84,7 @@ export default class DialogDirectly extends AbstractView {
         this.myProxy.listMore(done);
     }
 
-    handlerShowBetRecord(user_id: any) {
-        dialog_bet_record.show(user_id);
+    handlerShowBetRecord(agent_user_id: any) {
+        dialog_bet_record.show(agent_user_id);
     }
 }

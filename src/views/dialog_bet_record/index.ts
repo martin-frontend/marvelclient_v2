@@ -3,10 +3,10 @@ import getProxy from "@/core/global/getProxy";
 import DialogBetRecordProxy from "./proxy/DialogBetRecordProxy";
 import DialogBetRecord from "./views/DialogBetRecord.vue";
 
-function show(user_id: any = core.user_id) {
+function show(agent_user_id: any = null) {
     DialogMount(DialogBetRecord);
     const proxy: DialogBetRecordProxy = getProxy(DialogBetRecordProxy);
-    proxy.pageData.listQuery.user_id = user_id;
+    proxy.pageData.listQuery.agent_user_id = agent_user_id;
     proxy.pageData.bShow = true;
 }
 

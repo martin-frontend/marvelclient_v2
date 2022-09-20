@@ -15,12 +15,14 @@
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search">
-                    <CustomInput
-                        height="41"
-                        :placeholder="LangUtil('输入查询ID')"
-                        v-model="pageData.search"
-                    >
-                        <v-btn class="rounded-lg" :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'" min-width="61" height="30"  @click="search">
+                    <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
+                        <v-btn
+                            class="rounded-lg"
+                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            min-width="61"
+                            height="30"
+                            @click="search"
+                        >
                             <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
                         </v-btn>
                     </CustomInput>
@@ -88,10 +90,20 @@
                             </div>
                             <div v-else>-</div>
                         </v-col>
+                        <v-col
+                            class="listitem d-flex justify-center flex-column"
+                            cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
+                            md="auto"
+                        >
+                            <v-btn class="text-14" color="colorBtnBg" width="90" height="30" elevation="0" @click="handlerShowBetRecord(item.user_id)"
+                                >{{LangUtil("投注记录")}}</v-btn
+                            >
+                        </v-col>
                     </v-row>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
             <v-spacer />
             <v-pagination
                 class="mx-auto mb-2"
@@ -116,12 +128,14 @@
                     <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
                 </div>
                 <div class="search mr-5 mr-sm-0">
-                    <CustomInput
-                        height="41"
-                        :placeholder="LangUtil('输入查询ID')"
-                        v-model="pageData.search"
-                    >
-                        <v-btn class="rounded-lg" :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'" min-width="61" height="30"  @click="search">
+                    <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
+                        <v-btn
+                            class="rounded-lg"
+                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            min-width="61"
+                            height="30"
+                            @click="search"
+                        >
                             <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
                         </v-btn>
                     </CustomInput>
@@ -130,7 +144,7 @@
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
             <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <ListNodata v-if="pageData.list.length == 0"/>
+                <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("注册时间")}}</div>
@@ -155,9 +169,7 @@
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("保底")}}</div>
                         <div v-if="pageData.enable_set_promotion_floor == 1">
-                            <a href="#" @click="handlerSetting(item)"
-                                >{{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}</a
-                            >
+                            <a href="#" @click="handlerSetting(item)">{{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}</a>
                         </div>
                         <div v-else>-</div>
                     </div>

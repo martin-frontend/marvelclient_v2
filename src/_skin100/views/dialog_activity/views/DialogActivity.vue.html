@@ -32,7 +32,7 @@
                         <div class="white--text text-16 mb-1">{{item.activity_name}}</div>
                         <div class="colorTextNormal3--text text-14">{{item.start_time}} ~ {{item.end_time}}</div>
                     </div>
-                    <v-btn :text="true" class="align-self-end mb-2" small @click="onDetail(item)"
+                    <v-btn :text="true" :ripple="false" class="align-self-end mb-2" small @click="onDetail(item)"
                         ><span class="colorTextNormal3--text text-14 font-weight-regular"
                             >{{LangUtil("查看详情")}}<v-icon class="white--text" :style="{opacity: 0.4}" size="22"
                                 >mdi-chevron-right</v-icon
@@ -77,7 +77,7 @@
                                 <div class="white--text text-14 mb-1">{{item.activity_name}}</div>
                                 <div class="colorTextNormal3--text text-14">{{item.start_time}} ~ {{item.end_time}}</div>
                             </div>
-                            <v-btn :text="true" class="align-self-end px-0" small @click="onDetail(item)"
+                            <v-btn :text="true" :ripple="false" class="align-self-end px-0" small @click="onDetail(item)"
                                 ><span class="colorTextNormal3--text text-14 font-weight-regular"
                                     >{{LangUtil("查看详情")}}<v-icon class="white--text" :style="{opacity: 0.4}" size="22"
                                         >mdi-chevron-right</v-icon

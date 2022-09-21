@@ -95,9 +95,10 @@
                             cols="6"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'"
                             md="auto"
+                            v-if="selfProxy.userInfo.is_show_agent_statistic == 1"
                         >
                             <v-btn class="text-14" color="colorBtnBg" width="90" height="30" elevation="0" @click="handlerShowBetRecord(item.user_id)"
-                                >{{LangUtil("投注记录")}}</v-btn
+                                >{{LangUtil("投注记录") }}</v-btn
                             >
                         </v-col>
                     </v-row>

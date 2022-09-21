@@ -249,6 +249,8 @@ declare module net {
         api_plat_var_config: string;
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: string;
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: string;
     };
     /**事件*/
     var EventType: {
@@ -498,6 +500,8 @@ declare module net {
         api_plat_var_config: string;
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: string;
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -975,6 +979,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_agent_direct_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 直属投注记录列表
+ */
+declare module net {
+    class cmd_api_user_var_agent_var_bet extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

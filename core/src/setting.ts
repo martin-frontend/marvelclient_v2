@@ -70,6 +70,8 @@ module net {
         api_user_show_var_gold: "api/user/show/{user_id}/gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api/user/change_bsc_address/{user_id}",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api/user/{user_id}/google_key",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
@@ -339,6 +341,8 @@ module net {
         api_user_show_var_gold: "api_user_show_var_gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api_user_change_bsc_address_var",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api_user_var_google_key",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
@@ -570,6 +574,7 @@ module net {
         facade.registerCommand(HttpType.api_user_show_var_channel_statistic, cmd_api_user_show_var_channel_statistic);
         facade.registerCommand(HttpType.api_user_show_var_gold, cmd_api_user_show_var_gold);
         facade.registerCommand(HttpType.api_user_change_bsc_address_var, cmd_api_user_change_bsc_address_var);
+        facade.registerCommand(HttpType.api_user_var_google_key, cmd_api_user_var_google_key);
         //--大厅
         facade.registerCommand(HttpType.api_plat_var_lobby_index, cmd_api_plat_var_lobby_index);
         facade.registerCommand(HttpType.api_vendor_simple, cmd_api_vendor_simple);

@@ -39,7 +39,8 @@
         ["api/user/show/{user_id}/bet",                 "投注记录"],
         ["api/user/show/{user_id}/channel_statistic",   "渠道统计"],
         ["api/user/show/{user_id}/gold",                "获取用户账户明细"],
-        ["api/user/change_bsc_address/{user_id}",                "钱包地址修改"],
+        ["api/user/change_bsc_address/{user_id}",       "钱包地址修改"],
+        ["api/user/{user_id}/google_key",               "获取google验证码"],
 
         "--大厅",
         ["api/plat/{plat_id}/lobby/index",                              "获取游戏类型,游戏菜单（大厅菜单）"],

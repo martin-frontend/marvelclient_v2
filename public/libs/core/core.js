@@ -127,6 +127,8 @@ var net;
         api_user_show_var_gold: "api/user/show/{user_id}/gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api/user/change_bsc_address/{user_id}",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api/user/{user_id}/google_key",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
         /**--大厅--获取厂商列表*/
@@ -376,6 +378,8 @@ var net;
         api_user_show_var_gold: "api_user_show_var_gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api_user_change_bsc_address_var",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api_user_var_google_key",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
         /**--大厅--获取厂商列表*/
@@ -591,6 +595,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_show_var_channel_statistic, net.cmd_api_user_show_var_channel_statistic);
         facade.registerCommand(net.HttpType.api_user_show_var_gold, net.cmd_api_user_show_var_gold);
         facade.registerCommand(net.HttpType.api_user_change_bsc_address_var, net.cmd_api_user_change_bsc_address_var);
+        facade.registerCommand(net.HttpType.api_user_var_google_key, net.cmd_api_user_var_google_key);
         //--大厅
         facade.registerCommand(net.HttpType.api_plat_var_lobby_index, net.cmd_api_plat_var_lobby_index);
         facade.registerCommand(net.HttpType.api_vendor_simple, net.cmd_api_vendor_simple);
@@ -2678,6 +2683,28 @@ var net;
         }
     }
     net.cmd_api_user_var_gold_water_index = cmd_api_user_var_gold_water_index;
+})(net || (net = {}));
+/**
+ * 获取google验证码
+ */
+var net;
+/**
+ * 获取google验证码
+ */
+(function (net) {
+    class cmd_api_user_var_google_key extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_google_key, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_google_key, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_google_key = cmd_api_user_var_google_key;
 })(net || (net = {}));
 /**
  * 获取用户邮件列表

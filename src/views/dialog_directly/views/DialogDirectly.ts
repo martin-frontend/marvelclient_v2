@@ -8,6 +8,7 @@ import DialogDirectlyProxy from "../proxy/DialogDirectlyProxy";
 import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_bet_record from "@/views/dialog_bet_record";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -16,6 +17,7 @@ export default class DialogDirectly extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
     commonIcon = Assets.commonIcon;
 

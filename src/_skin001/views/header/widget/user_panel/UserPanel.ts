@@ -30,10 +30,10 @@ export default class UserPanel extends AbstractView {
     ];
     menuList1 = [
         { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
-        { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
+        // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
         { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
         { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
-        { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
+        // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);

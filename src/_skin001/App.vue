@@ -5,7 +5,7 @@
             <v-main style="background-color: #131e36">
                 <router-view />
             </v-main>
-            <Footer v-if="!$vuetify.breakpoint.mobile" />
+            <Footer v-if="!$vuetify.breakpoint.mobile" class="mt-10"/>
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
@@ -60,12 +60,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Header from "./views/header/views/Header.vue";
-import Footer from "@/views/footer/Footer.vue";
-import MobileMenu from "@/views/mobile_menu/MobileMenu.vue";
+import Footer from "./views/footer/Footer.vue";
+import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
 import DialogMessage from "@/views/dialog_message/views/DialogMessage.vue";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Orientation from "@/views/widget/orientation/Orientation.vue";
-import UserPanel from "@/views/header/widget/user_panel/UserPanel.vue";
+import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
 import APP from "./App";
 import GameSearch from "@/views/game_search/views/GameSearch.vue";
 

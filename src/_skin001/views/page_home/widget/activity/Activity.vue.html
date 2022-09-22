@@ -1,14 +1,14 @@
 <div class="font-weight-black" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-2'">
     <div class="d-flex box-container">
-        <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
+        <!-- <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goMine">
                 <div class="text-16">
                     <span>
                         {{LangUtil("游戏挖矿")}}
                     </span>
-                    <!-- <span class="yellow-text text-18 font-weight-bold font-italic">
+                    <span class="yellow-text text-18 font-weight-bold font-italic">
                         {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
-                    </span> -->
+                    </span>
                 </div>
                 <div class="text-12 mt-2" style="width: 50%">
                     {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
@@ -22,7 +22,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="d-flex" v-if="$vuetify.breakpoint.mobile && !$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goMine">
                 <div class="text-24">

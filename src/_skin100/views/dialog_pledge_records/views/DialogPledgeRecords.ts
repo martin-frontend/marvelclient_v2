@@ -26,6 +26,7 @@ export default class DialogPledgeRecords extends AbstractView {
     }
 
     onTabClick(cate: number) {
+        this.pageData.list = [];
         this.listQuery.page_count = 1;
         if (cate != this.listQuery.cate) {
             this.listQuery.cate = cate;

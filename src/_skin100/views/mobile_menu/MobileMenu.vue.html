@@ -7,12 +7,12 @@
             v-for="(item, index) of menuList"
             :key="index"
             @click="onItemClick(item)"
-            :class="item.id == active ? 'active':''"
+            :class="routerPath == item.path ? 'active':''"
             color="transparent"
         >
-            <img v-show="item.id == active" width="26" height="26" :src="item.activeIcon" alt="" />
-            <img v-show="item.id != active" width="26" height="26" :src="item.icon" alt="" />
-            <div class="text-12 mt-1" :class="item.id == active ? 'active-footer': 'footerText--text'">{{item.name}}</div>
+            <img v-show="routerPath == item.path" width="26" height="26" :src="item.activeIcon" alt="" />
+            <img v-show="routerPath != item.path" width="26" height="26" :src="item.icon" alt="" />
+            <div class="text-12 mt-1" :class="routerPath == item.path ? 'active-footer': 'footerText--text'">{{item.name}}</div>
         </v-sheet>
     </v-footer>
     <!-- <v-navigation-drawer v-model="drawer" app temporary floating absolute touchless width="100%" > -->

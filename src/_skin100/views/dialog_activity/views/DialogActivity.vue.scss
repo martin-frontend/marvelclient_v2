@@ -8,3 +8,9 @@
 //     overflow: hidden;
 //     padding-top: 70px;
 // }
+.theme--dark.v-btn:hover::before {
+    opacity: 0;
+}
+.theme--dark.v-btn:focus::before {
+    opacity: 0;
+}

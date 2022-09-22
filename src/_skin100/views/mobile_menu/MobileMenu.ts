@@ -101,29 +101,53 @@ export default class MobileMenu extends AbstractView {
     }
 
     onItemClick(item: any) {
+        // switch (item.id) {
+        //     case 0:
+        //         router.push(item.path);
+        //         this.active = 0;
+        //         break;
+        //     case 1:
+        //         // router.push(item.path);
+        //         LoginEnter(page_mine.show);
+        //         if (this.routerPath != "/") {
+        //             this.active = 1;
+        //         }
+        //         break;
+        //     case 2:
+        //         // router.push(item.path);
+        //         LoginEnter(page_bonus.show);
+        //         if (this.routerPath != "/") {
+        //             this.active = 2;
+        //         }
+        //         break;
+        //     case 3:
+        //         LoginEnter(page_extension.show);
+        //         if (this.routerPath != "/") {
+        //             this.active = 3;
+        //         }
+        //         break;
+        //     case 4:
+        //         // LoginEnter(page_bonus.show);
+        //         LoginEnter(() => {});
+        //         // this.active = 4;
+        //         this.drawer = true;
+        //         break;
+        // }
         switch (item.id) {
             case 0:
                 router.push(item.path);
-                this.active = 0;
                 break;
             case 1:
-                // router.push(item.path);
                 LoginEnter(page_mine.show);
-                this.active = 1;
                 break;
             case 2:
-                // router.push(item.path);
                 LoginEnter(page_bonus.show);
-                this.active = 2;
                 break;
             case 3:
                 LoginEnter(page_extension.show);
-                this.active = 3;
                 break;
             case 4:
-                // LoginEnter(page_bonus.show);
                 LoginEnter(() => {});
-                this.active = 4;
                 this.drawer = true;
                 break;
         }

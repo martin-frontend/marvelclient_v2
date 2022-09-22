@@ -23,7 +23,7 @@
                     <v-btn
                         width="115"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2 white--text"
+                        class="rounded-pill font-weight-bold white--text"
                         elevation="0"
                         :text="pageData.tabIndex != 0"
                         :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
@@ -33,11 +33,11 @@
                             >mdi-arrow-down-bold-circle</v-icon
                         >{{LangUtil("充值")}}
                     </v-btn>
+                    <!-- :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''" -->
                     <v-btn
                         width="115"
                         height="32"
-                        class="rounded-pill font-weight-bold white--text"
-                        :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''"
+                        class="rounded-pill font-weight-bold white--text"     
                         elevation="0"
                         :text="pageData.tabIndex != 1"
                         :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -134,19 +134,19 @@
 
         <!-- 手机显示方式 -->
         <template v-else>
-            <v-card-title class="px-5 px-sm-8 pb-2 pb-sm-auto">
+            <v-card-title class="px15 px-sm-8 pb-2 pb-sm-auto">
                 <div class="font-weight-medium white--text text-17">{{LangUtil("数字货币")}}</div>
                 <v-spacer />
                 <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
                     <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
                 </v-btn>
             </v-card-title>
-            <v-card-text class="d-flex align-center px-4 px-sm-8 pb-0">
+            <v-card-text class="d-flex align-center px15 px-sm-8 pb-0">
                 <div class="d-inline-flex align-center justify-center pa-1 rounded-pill bPanelOpacityBg">
                     <v-btn
                         width="90"
                         height="32"
-                        class="rounded-pill font-weight-bold mr-2 white--text"
+                        class="rounded-pill font-weight-bold white--text"
                         elevation="0"
                         :text="pageData.tabIndex != 0"
                         :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
@@ -157,11 +157,11 @@
                             >mdi-arrow-down-bold-circle</v-icon
                         >{{LangUtil("充值")}}
                     </v-btn>
+                    <!-- :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''" -->
                     <v-btn
                         width="90"
                         height="32"
                         class="rounded-pill font-weight-bold white--text"
-                        :class="selfProxy.userInfo.is_gold_transfer == 1 ? 'mr-2':''"
                         elevation="0"
                         :text="pageData.tabIndex != 1"
                         :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"

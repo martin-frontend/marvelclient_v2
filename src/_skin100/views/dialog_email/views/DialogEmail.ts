@@ -29,6 +29,7 @@ export default class DialogEmail extends AbstractView {
     }
 
     onTabClick(cate: number) {
+        this.pageData.list = [];
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
         this.myProxy.api_user_var_mail();

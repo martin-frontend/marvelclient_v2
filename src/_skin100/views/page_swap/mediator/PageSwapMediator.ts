@@ -46,7 +46,7 @@ export default class PageSwapMediator extends AbstractMediator {
                     const gameProxy: GameProxy = getProxy(GameProxy);
                     gameProxy.loading = false;
 
-                    dialog_message.success(LangUtil("交换成功"));
+                    dialog_message.success(LangUtil("交易成功，请在交易记录中查看订单状态"));
                     this.selfProxy.api_user_show_var([2]);
                     myProxy.resetInput();
                     myProxy.api_plat_var_swap_trial();

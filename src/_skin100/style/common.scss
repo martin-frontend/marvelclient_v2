@@ -164,6 +164,9 @@ input {
 }
 .container-b {
     background-color: #0d1b29;
+    @media screen and (min-width: 751px) and (max-width: 1424px) {
+        min-width: 1424px;
+    }
 }
 .bTextColor5 {
     color: rgba(255, 255, 255, 0.5) !important;
@@ -227,6 +230,9 @@ input {
     padding-top: 26px !important;
 }
 
+.pa15 {
+    padding-bottom: 5px !important;
+}
 .pb5 {
     padding-bottom: 5px !important;
 }
@@ -238,6 +244,22 @@ input {
 }
 .pb30 {
     padding-bottom: 30px !important;
+}
+.px0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.px10 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.px15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+.py10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 .mt1 {
     margin-top: 1px !important;
@@ -265,6 +287,10 @@ input {
 }
 .mr15 {
     margin-right: 15px !important;
+}
+.mx3 {
+    margin-left: 3px !important;
+    margin-right: 3px !important;
 }
 .mx30 {
     margin-left: 30px !important;
@@ -360,6 +386,9 @@ input {
     // margin-right: 1.5px !important;
     // margin-right: 0px !important;
 }
+.v-image {
+    user-select: none !important;
+}
 .close-icon {
     color: #8272b4 !important;
 }
@@ -368,6 +397,8 @@ input {
 }
 .v-dialog__content--active {
     background: rgba(1, 3, 8, 0.5);
+    // z-index:9999 !important;
+    pointer-events: unset !important;
 }
 .v-dialog--fullscreen {
     border-top-left-radius: 18px !important;
@@ -449,22 +480,23 @@ input {
     color: #9989c2 !important;
 }
 
-// /* 滚动槽 */
-// ::-webkit-scrollbar {
-//     width: 6px;
-//     height: 6px;
-// }
-// ::-webkit-scrollbar-track {
-//     border-radius: 3px;
-//     background: rgba(0,0,0,0.06);
-//     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-// }
-// /* 滚动条滑块 */
-// ::-webkit-scrollbar-thumb {
-//     border-radius: 3px;
-//     background: rgba(0,0,0,0.12);
-//     -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-// }
+/* 滚动槽 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 3px;
+    // background: rgba(0,0,0,0.06);
+    background: rgba(255,255,255);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(0,0,0,0.12);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
 #app.v-application .colorTextNormal2--text {
     color: rgba(255, 255, 255, 0.5) !important;
 }

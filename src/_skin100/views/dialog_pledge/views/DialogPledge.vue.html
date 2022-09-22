@@ -10,7 +10,10 @@
         </v-card-title>
         <!-- <v-card-text v-if="pageData.bShow" class="px-10 mt-8 text-16 font-weight-regular"> -->
         <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
-            <CustomInput class="ip" height="55" :maxlength="20" :placeholder="LangUtil('输入数量')" v-model="pageData.amount">
+            <CustomInput class="ip"
+            :diglength="8"
+            :isNum="true"
+            height="55" :maxlength="20" :placeholder="LangUtil('输入数量')" v-model="pageData.amount">
                 <v-btn text min-width="40" height="30" color="colorBtnSeleBg" class="px-1 mr-n3" @click="handleMaxVal">
                     <span class="text-14">{{ LangUtil("全部") }}</span>
                 </v-btn>

@@ -1,6 +1,6 @@
 <!-- <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;"> -->
 <v-card-text
-    :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px30 pt20 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'"
+    :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px15 pt20 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'"
 >
     <div class="white--text mb-1 d-flex align-center">
         <div class="r-before"></div>
@@ -52,7 +52,8 @@
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
             </div>
             <div class="d-flex align-center address-box pa-2 mt-1">
-                <div class="white--text ml-1">{{ pageData.address || LangUtil("暂无地址") }}</div>
+                <div class="white--text ml-1" v-if="pageData.loading">--</div>
+                <div class="white--text ml-1" v-else>{{ pageData.address || LangUtil("暂无地址") }}</div>
                 <v-spacer />
                 <v-btn class="rounded-pill btnRedBg" width="70" min-width="70" height="30" @click="onCopy">
                     <span class="text-13">{{LangUtil("复制")}}</span>
@@ -64,8 +65,8 @@
             <div class="colorTextNormal2--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
-                    class="mb-2 mx-1 text-14 rounded-pill"
-                    min-width="80"
+                    class="mb-2 mx3 text-14 rounded-pill"
+                    :min-width="$vuetify.breakpoint.xsOnly?'55':'80'"
                     height="30"
                     elevation="0"
                     :class="pageData.gold_index==index ? 'btnRedBg' : 'btnWhiteBg'"
@@ -83,7 +84,33 @@
                 > -->
         </div>
 
-        <v-sheet class="d-flex justify-space-between rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)">
+        <v-sheet class="d-flex justify-space-between rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)" v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
+            <div class="d-flex">
+                <!-- <span class="mr-1">⚠️</span> -->
+                <div>
+                    <div
+                        style="color: #f04a5a"
+                        v-for="item of transformExplain(pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)"
+                    >
+                        {{item}}
+                    </div>
+                </div>
+            </div>
+            <v-spacer />
+            <v-sheet
+                class="rounded-sm ml-3"
+                width="70"
+                min-width="70"
+                height="70"
+                color="white"
+                v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
+            >
+                <div ref="qrcode" class="qrcode" @click="showPreview">
+                    <v-img :src="pageData.qrcode"></v-img>
+                </div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet class="d-flex justify-space-between rounded mt-1 text-12" color="transparent" v-else>
             <div class="d-flex">
                 <!-- <span class="mr-1">⚠️</span> -->
                 <div>
@@ -113,7 +140,7 @@
             class="d-flex justify-center mt-5"
             v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5"
         >
-            <v-btn class="white--text btnRedBg rounded6" width="315" height="44" @click="onSumbit">{{LangUtil("确定充值")}}</v-btn>
+            <v-btn class="white--text btnRedBg rounded6" width="100%" height="44" @click="onSumbit">{{LangUtil("确定充值")}}</v-btn>
         </div>
     </v-card>
     <!-- <v-divider class="mx-5" /> -->

@@ -131,7 +131,7 @@
             <div class="px-4">
                 <div class="d-flex justify-space-between">
                     <CustomSelect
-                        class="mb-2 mr-2"
+                        class="mb-2 mr-2 select-mobile-max-width"
                         v-model="listOptions.typeSelect"
                         :options="listOptions.typeOptions()"
                         height="35"
@@ -139,7 +139,8 @@
                         @change="onTypeChange"
                     />
                     <CustomSelect
-                        class="mb-2"
+                        class="mb-2 select-mobile-max-width"
+                        style="width:calc(50% - 4px);"
                         v-model="listOptions.vendorSelect"
                         :options="listOptions.vendorOptions()"
                         height="35"
@@ -149,7 +150,7 @@
                 </div>
                 <div class="d-flex justify-space-between">
                     <CustomSelect
-                        class="mr-2"
+                        class="mr-2 select-mobile-max-width"
                         v-model="listOptions.statusSelect"
                         :options="listOptions.statusOptions()"
                         height="35"
@@ -157,7 +158,7 @@
                         @change="onStatusChange"
                     />
                     <CustomSelect
-                        class=""
+                        class="select-mobile-max-width"
                         v-model="listOptions.timeSelect"
                         :options="listOptions.timeOptions()"
                         height="35"

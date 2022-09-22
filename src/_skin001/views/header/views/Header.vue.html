@@ -75,10 +75,10 @@
 
             <v-spacer />
 
-            <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
+            <!-- <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
                 <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
-            </button>
+            </button> -->
         </div>
     </v-container>
     <!-- 手机 -->
@@ -118,10 +118,10 @@
             <User v-if="core.user_id" />
             <Wallet v-if="core.user_id" />
             <v-spacer />
-            <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
+            <!-- <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
                 <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
-            </v-btn>
+            </v-btn> -->
         </div>
     </v-container>
 </v-app-bar>

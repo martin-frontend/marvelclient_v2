@@ -52,8 +52,9 @@
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
             </div>
             <div class="d-flex align-center address-box pa-2 mt-1">
-                <div class="white--text ml-1" v-if="pageData.loading">--</div>
-                <div class="white--text ml-1" v-else>{{ pageData.address || LangUtil("暂无地址") }}</div>
+                <!-- <div class="white--text ml-1" v-if="pageData.loading">--</div>
+                <div class="white--text ml-1" v-else>{{ pageData.address || LangUtil("暂无地址") }}</div> -->
+                <div class="white--text ml-1" >{{ pageData.address || "--" }}</div>
                 <v-spacer />
                 <v-btn class="rounded-pill btnRedBg" width="70" min-width="70" height="30" @click="onCopy">
                     <span class="text-13">{{LangUtil("复制")}}</span>
@@ -78,13 +79,9 @@
                 <v-spacer />
             </div>
             <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number"> </CustomInput>
-
-            <!-- <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
-                    >{{LangUtil("提交充值")}}</v-btn
-                > -->
         </div>
 
-        <v-sheet class="d-flex justify-space-between rounded  text-12" :class="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4 ? 'px-4 py-3 mt-2':'mt-1'" :min-height="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4 ? 94:40" :color="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4 ? 'rgba(255,255,255,0.06)':'transparent'">
+        <v-sheet class="d-flex justify-space-between rounded px-4 py-3 mt-2  text-12" min-height="94" color="rgba(255,255,255,0.06)">
             <div class="d-flex">
                 <!-- <span class="mr-1">⚠️</span> -->
                 <div>
@@ -97,14 +94,6 @@
                 </div>
             </div>
             <v-spacer />
-            <!-- <v-sheet
-                class="rounded-sm ml-3"
-                width="70"
-                min-width="70"
-                height="70"
-                color="white"
-                v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-            > -->
             <v-sheet
                 class="rounded-sm ml-3"
                 width="70"
@@ -114,6 +103,9 @@
                 v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
             >
                 <div ref="qrcode" class="qrcode" @click="showPreview">
+                    <!-- <v-row v-if="!pageData.qrcode" class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorBtnSeleBg"></v-progress-circular>
+                    </v-row> -->
                     <v-img :src="pageData.qrcode">
                         <template v-slot:placeholder>
                             <v-row
@@ -131,31 +123,6 @@
                 </div>
             </v-sheet>
         </v-sheet>
-        <!-- <v-sheet class="d-flex justify-space-between rounded mt-1 text-12" min-height="94" color="transparent" v-else>
-            <div class="d-flex">
-                <div>
-                    <div
-                        style="color: #f04a5a"
-                        v-for="item of transformExplain(pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)"
-                    >
-                        {{item}}
-                    </div>
-                </div>
-            </div>
-            <v-spacer />
-            <v-sheet
-                class="rounded-sm ml-3"
-                width="70"
-                min-width="70"
-                height="70"
-                color="white"
-                v-if="pageData.qrcode && pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-            >
-                <div ref="qrcode" class="qrcode" @click="showPreview">
-                    <v-img :src="pageData.qrcode"></v-img>
-                </div>
-            </v-sheet>
-        </v-sheet> -->
         <div
             class="d-flex justify-center mt-5"
             v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5"
@@ -163,13 +130,6 @@
             <v-btn class="white--text btnRedBg rounded6" width="100%" height="44" @click="onSumbit">{{LangUtil("确定充值")}}</v-btn>
         </div>
     </v-card>
-    <!-- <v-divider class="mx-5" /> -->
-    <!-- <v-card-text class="d-flex justify-end mt-3">
-        <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
-        <div v-for="(item, key) of pageData.methodList" :key="key">
-            <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
-        </div>
-    </v-card-text> -->
 
     <v-card-text class="d-flex justify-start align-center px-3 py-2 mt-5 coins-area">
         <div class="mr-3 colorTextNormal2--text text-13">{{LangUtil("已支持币种")}}</div>

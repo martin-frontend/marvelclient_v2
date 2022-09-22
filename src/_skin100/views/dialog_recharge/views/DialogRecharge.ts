@@ -29,6 +29,8 @@ export default class DialogRecharge extends AbstractView {
 
     onClose() {
         this.myProxy.pageData.bShow = false;
+        this.myProxy.rechargeProxy.pageData.address = "";
+        this.myProxy.rechargeProxy.pageData.qrcode = "";
     }
 
     goRecord() {

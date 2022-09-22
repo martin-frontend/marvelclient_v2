@@ -1,7 +1,5 @@
-import dialog_bind_google from "@/views/dialog_bind_google";
-
-export default class DialogGoogleVerificationProxy extends puremvc.Proxy {
-    static NAME = "DialogGoogleVerificationProxy";
+export default class DialogBindGoogleProxy extends puremvc.Proxy {
+    static NAME = "DialogBindGoogleProxy";
 
     pageData = {
         loading: false,
@@ -25,10 +23,6 @@ export default class DialogGoogleVerificationProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
-    }
-
-    nextStep() {
-        dialog_bind_google.show();
     }
 
     setData(data: any) {

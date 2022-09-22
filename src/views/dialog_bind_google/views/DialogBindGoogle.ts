@@ -2,26 +2,23 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
-import DialogGoogleVerificationMediator from "../mediator/DialogGoogleVerificationMediator";
-import DialogGoogleVerificationProxy from "../proxy/DialogGoogleVerificationProxy";
+import DialogBindGoogleMediator from "../mediator/DialogBindGoogleMediator";
+import DialogBindGoogleProxy from "../proxy/DialogBindGoogleProxy";
 import LangUtil from "@/core/global/LangUtil";
 
 @Component
-export default class DialogGoogleVerification extends AbstractView {
+export default class DialogBindGoogle extends AbstractView {
     LangUtil = LangUtil;
-    myProxy: DialogGoogleVerificationProxy = this.getProxy(DialogGoogleVerificationProxy);
+    myProxy: DialogBindGoogleProxy = this.getProxy(DialogBindGoogleProxy);
     pageData = this.myProxy.pageData;
+    test = ''
 
     constructor() {
-        super(DialogGoogleVerificationMediator);
+        super(DialogBindGoogleMediator);
     }
 
     onClose() {
         this.pageData.bShow = false;
-    }
-
-    handlerNextStep() {
-        this.myProxy.nextStep();
     }
 
     @Watch("pageData.bShow")

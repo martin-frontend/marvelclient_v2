@@ -14,7 +14,7 @@ import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSa
 import dialog_trade_password from "@/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_real_name from "@/views/dialog_real_name";
-import dialog_google_verification from "@/views/dialog_google_verification";
+import dialog_google_settings from "@/views/dialog_google_settings";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -73,8 +73,8 @@ export default class DialogUserCenter extends AbstractView {
         dialog_safety_center.show()
     }
 
-    goSetGoogleVerification() {
-        dialog_google_verification.show()
+    goSetGoogleSettings() {
+        dialog_google_settings.show()
     }
 
     handlerRealName(){

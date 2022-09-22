@@ -5,13 +5,16 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogBindGoogleMediator from "../mediator/DialogBindGoogleMediator";
 import DialogBindGoogleProxy from "../proxy/DialogBindGoogleProxy";
 import LangUtil from "@/core/global/LangUtil";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogBindGoogle extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogBindGoogleProxy = this.getProxy(DialogBindGoogleProxy);
     pageData = this.myProxy.pageData;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     test = ''
+    userInfo = this.selfProxy.userInfo;
 
     constructor() {
         super(DialogBindGoogleMediator);

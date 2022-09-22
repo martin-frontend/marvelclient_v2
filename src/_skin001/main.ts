@@ -14,7 +14,7 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "all.starsabc.com";
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {

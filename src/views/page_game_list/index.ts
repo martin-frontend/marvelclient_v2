@@ -1,5 +1,4 @@
 import getProxy from "@/core/global/getProxy";
-import router from "@/router";
 import PageGameListProxy from "./proxy/PageGameListProxy";
 
 function show(category?: number) {
@@ -8,7 +7,9 @@ function show(category?: number) {
         proxy.listQuery.vendor_type = category;
         proxy.listQuery.vendor_id = 0;
     }
-    router.push("/page_game_list");
+
+    //@ts-ignore
+    window["vm"].$router.push("/page_game_list");
 }
 
 export default { show };

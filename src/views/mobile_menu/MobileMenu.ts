@@ -27,10 +27,10 @@ export default class MobileMenu extends AbstractView {
     onItemClick(item: any) {
         switch (item.id) {
             case 0:
-                router.push(item.path);
+                this.$router.push(item.path);
                 break;
             case 1:
-                router.push(item.path);
+                this.$router.push(item.path);
                 break;
             case 2:
                 LoginEnter(page_mine.show);

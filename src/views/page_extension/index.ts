@@ -1,7 +1,6 @@
-import router from "@/router";
-
 function show() {
-    router.push("/page_extension");
+    //@ts-ignore
+    window["vm"].$router.push("/page_extension");
 }
 
 export default { show };

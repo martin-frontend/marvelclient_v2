@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Cache-control" content="no-cache" />
+        <meta http-equiv="Cache" content="no-cache" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="icon" href="<%= BASE_URL %>favicon001.ico" />
+        <link rel="apple-touch-icon" href="img/app001.png" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <script src="libs/puremvc/puremvc.min.js"></script>
+        <script src="libs/qrcode/qrcode.min.js"></script>
+        <script src="libs/core/core.min.js?<%=process.env.version%>"></script>
+
+        <% if (process.env.VUE_APP_ENV !== 'production' ) { %>
+        <!-- 测试版本 -->
+        <script>
+            window.onerror = function (msg, url, row, col, error) {
+                var _data = {};
+                _data.msg = msg;
+                _data.url = url;
+                _data.row = row;
+                _data.col = col;
+                _data.error = error;
+
+                alert(msg);
+            };
+        </script>
+        <% } %>
+
+        <script>
+            window.bannerNight = function () {};
+            window.onNightModeChanged = function () {};
+            window.addEventListener(
+                "error",
+                (event) => {
+                    var target = event.target || event.srcElement;
+                    var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
+                    if (isCheck) {
+                        let url = target.src || target.href;
+                        alert("Loading failed, click retry: " + url);
+                        location.reload();
+                    }
+                },
+                true
+            );
+        </script>
+    </head>
+
+    <style>
+        html {
+            background-color: #121e36ff;
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #app {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .loading {
+            height: 100%;
+            display: flex;
+        }
+    </style>
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it
+                to continue.</strong
+            >
+        </noscript>
+        <div id="app">
+            <div class="loading">
+                <img src="img/loading.gif" style="margin: auto; width: 100px" />
+            </div>
+
+        </div>
+
+        <!-- built files will be auto injected -->
+    </body>
+</html>

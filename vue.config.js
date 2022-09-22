@@ -31,6 +31,12 @@ module.exports = {
             filename: "index.html",
             title: "CoinFans",
         },
+        skin001: {
+            entry: "src/_skin001/main.ts",
+            template: "public/index001.html",
+            filename: "skin001.html",
+            title: "easybet",
+        },
         skin100: {
             entry: "src/_skin100/main.ts",
             template: "public/skin100.html",

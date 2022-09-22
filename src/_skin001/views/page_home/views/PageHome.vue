@@ -6,7 +6,7 @@ import Component from "vue-class-component";
 import PageHome from "./PageHome";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
-import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
+// import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
@@ -19,7 +19,7 @@ import Marquee1 from "../widget/marquee1/Marquee1.vue";
         Advertise,
         Activity,
         GameSport,
-        RecentBetting,
+        // RecentBetting,
         Marquee1,
     },
 })

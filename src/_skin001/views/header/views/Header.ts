@@ -46,14 +46,14 @@ export default class Header extends AbstractView {
     /**打开主页 */
     goHome() {
         if (this.$router.app.$route.path != "/") {
-            router.push("/");
+            this.$router.push("/");
         }
         ScrollUtil(0);
     }
     /**打开介绍页面 */
-    goIntroduce() {
-        router.push("/page_introduce");
-    }
+    // goIntroduce() {
+    //     router.push("/page_introduce");
+    // }
     /**打开活动页面 */
     goActivity() {
         dialog_activity.show();

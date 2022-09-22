@@ -26,10 +26,10 @@
                     :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
                 />
-                <div class="text-truncate white--text" style="width: 100%" :class="'text-'+fontSize">
+                <div class="text-truncate white--text" style="width:100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
                 </div>
-                <v-spacer />
+                <v-spacer/>
                 <div
                     v-if="options && Object.keys(options).length > 1"
                     class="icon-box iconfont ml-2 text-14 colorTextNormal2--text"
@@ -47,14 +47,8 @@
             :color="sheet_bg"
             v-if="options && Object.keys(options).length > 1"
         >
-            <div
-                class="d-flex align-center listitem pl-4 cursor-pointer"
-                :class="selectValue == key ? 'item-select':''"
-                v-for="(item, key) of options"
-                :key="key"
-                @click="onChange(key)"
-            >
-                <v-img v-if="icons" class="mr-2" :src=" (icons[key] && icons[key].icon) || icons[key]" max-width="20" height="20"></v-img>
+            <div class="d-flex align-center listitem pl-4 cursor-pointer" :class="selectValue == key ? 'item-select':''" v-for="(item, key) of options" :key="key" @click="onChange(key)">
+                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <div class="white--text">{{ item.name || item }}</div>
             </div>
         </v-sheet>

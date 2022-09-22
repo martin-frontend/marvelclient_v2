@@ -130,8 +130,9 @@
             />
         </div> -->
     </v-card-text>
-    <v-card-text class="px-4 pt-0" v-if="$vuetify.breakpoint.xsOnly">
-        <v-sheet color="transparent" height="450" class="scroll-y">
+    <v-card-text class="px-4 pt-0" v-if="$vuetify.breakpoint.xsOnly" >
+        <!-- <v-sheet color="transparent" height="450" class="scroll-y"> -->
+        <v-sheet color="transparent" class="scroll_box overflow-y-auto">
             <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" :height="280" />
             <!-- <vue-loadmore
                 v-if="pageData.list.length > 0"

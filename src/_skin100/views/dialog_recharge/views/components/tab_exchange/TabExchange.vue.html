@@ -52,11 +52,9 @@
                 <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
             </v-tooltip>
 
-            <v-btn elevation="0" class="rounded-pill btnWhiteBg" width="62" height="28" @click="onAddressBook"
-                ><span class="text-12" style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("地址薄")}}</span></v-btn
-            >
-            <v-btn v-if="!$vuetify.breakpoint.mobile" elevation="0" class="rounded-pill btnWhiteBg" width="50" height="28" @click="onPaste"
-                ><span class="text-12" style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("粘贴")}}</span></v-btn
+            <v-btn elevation="0"  class="rounded-pill btnWhiteBg " width="62" height="28"  :class="!$vuetify.breakpoint.mobile? 'mr-2':''" @click="onAddressBook"><span class="text-12" style="color:rgba(255,255,255,0.5);">{{LangUtil("地址薄")}}</span></v-btn>
+            <v-btn v-if="!$vuetify.breakpoint.mobile" elevation="0" class="rounded-pill btnWhiteBg" width="50"  height="28" @click="onPaste"
+                ><span class="text-12" style="color:rgba(255,255,255,0.5);">{{LangUtil("粘贴")}}</span></v-btn
             >
         </div>
     </CustomInput>
@@ -88,10 +86,11 @@
         <v-col cols="6">
             <v-sheet color="transparent" class="mb-2">
                 <div class="colorTextNormal2--text">{{LangUtil("提取金额")}}</div>
-                <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入金额')" v-model="form.amount">
-                    <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small width="50" height="28" @click="onAll"
-                        ><span class="text-12" style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("全部")}}</span></v-btn
-                    >
+                <CustomInput class="mt-1 input_b" 
+                :diglength="8"
+                :isNum="true"
+                :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                    <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small width="50" height="28" @click="onAll"><span class="text-12" style="color:rgba(255,255,255,0.5);">{{LangUtil("全部")}}</span></v-btn>
                 </CustomInput>
             </v-sheet>
         </v-col>

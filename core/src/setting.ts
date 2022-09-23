@@ -47,6 +47,8 @@ module net {
         api_user_reset_password: "api/user/reset_password",
         /**--账号--现金密码*/
         api_user_change_password_gold_var: "api/user/change_password_gold/{user_id}",
+        /**--账号--用户登陆前置验证*/
+        api_user_login_check: "api/user/login_check",
 
         /**--会员资料--获取用户基本信息*/
         api_user_show_var: "api/user/show/{user_id}",
@@ -70,6 +72,10 @@ module net {
         api_user_show_var_gold: "api/user/show/{user_id}/gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api/user/change_bsc_address/{user_id}",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api/user/{user_id}/google_key",
+        /**--会员资料--绑定google验证码*/
+        api_user_bind_google_key_var: "api/user/bind_google_key/{user_id}",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
@@ -262,6 +268,9 @@ module net {
         api_plat_var_config: "api/plat/{plat_id}/config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api/test_speed",
+
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
     };
     /**事件*/
     export var EventType = {
@@ -316,6 +325,8 @@ module net {
         api_user_reset_password: "api_user_reset_password",
         /**--账号--现金密码*/
         api_user_change_password_gold_var: "api_user_change_password_gold_var",
+        /**--账号--用户登陆前置验证*/
+        api_user_login_check: "api_user_login_check",
 
         /**--会员资料--获取用户基本信息*/
         api_user_show_var: "api_user_show_var",
@@ -339,6 +350,10 @@ module net {
         api_user_show_var_gold: "api_user_show_var_gold",
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: "api_user_change_bsc_address_var",
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: "api_user_var_google_key",
+        /**--会员资料--绑定google验证码*/
+        api_user_bind_google_key_var: "api_user_bind_google_key_var",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
@@ -531,6 +546,9 @@ module net {
         api_plat_var_config: "api_plat_var_config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api_test_speed",
+
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
     };
     /**注册协议*/
     export function initCommand() {
@@ -558,6 +576,7 @@ module net {
         facade.registerCommand(HttpType.api_user_change_password_var, cmd_api_user_change_password_var);
         facade.registerCommand(HttpType.api_user_reset_password, cmd_api_user_reset_password);
         facade.registerCommand(HttpType.api_user_change_password_gold_var, cmd_api_user_change_password_gold_var);
+        facade.registerCommand(HttpType.api_user_login_check, cmd_api_user_login_check);
         //--会员资料
         facade.registerCommand(HttpType.api_user_show_var, cmd_api_user_show_var);
         facade.registerCommand(HttpType.api_user_update_var, cmd_api_user_update_var);
@@ -570,6 +589,8 @@ module net {
         facade.registerCommand(HttpType.api_user_show_var_channel_statistic, cmd_api_user_show_var_channel_statistic);
         facade.registerCommand(HttpType.api_user_show_var_gold, cmd_api_user_show_var_gold);
         facade.registerCommand(HttpType.api_user_change_bsc_address_var, cmd_api_user_change_bsc_address_var);
+        facade.registerCommand(HttpType.api_user_var_google_key, cmd_api_user_var_google_key);
+        facade.registerCommand(HttpType.api_user_bind_google_key_var, cmd_api_user_bind_google_key_var);
         //--大厅
         facade.registerCommand(HttpType.api_plat_var_lobby_index, cmd_api_plat_var_lobby_index);
         facade.registerCommand(HttpType.api_vendor_simple, cmd_api_vendor_simple);
@@ -674,6 +695,8 @@ module net {
         //--平台入口配置获取
         facade.registerCommand(HttpType.api_plat_var_config, cmd_api_plat_var_config);
         facade.registerCommand(HttpType.api_test_speed, cmd_api_test_speed);
+        //--直属投注记录列表
+        facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
     };
 
 }

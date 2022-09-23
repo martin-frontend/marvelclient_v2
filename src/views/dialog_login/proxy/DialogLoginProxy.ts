@@ -1,3 +1,4 @@
+import { objectRemoveNull } from "@/core/global/Functions";
 import Cookies from "js-cookie";
 export default class DialogLoginProxy extends puremvc.Proxy {
     static NAME = "DialogLoginProxy";
@@ -14,6 +15,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: "",
         },
         remember: false,
+        is_login_need_google: 0,
     };
 
     /**找回密码 */
@@ -64,14 +66,16 @@ export default class DialogLoginProxy extends puremvc.Proxy {
     }
 
     /**--账号--登入*/
-    api_user_login() {
+    api_user_login(google_code?: any) {
         this.pageData.loading = true;
         const { username, password } = this.pageData.form;
         window.localStorage.setItem("username", username);
-        this.sendNotification(net.HttpType.api_user_login, {
-            username,
+        const copyForm = {
             password: core.MD5.createInstance().hex_md5(password),
-        });
+            username,
+            google_code,
+        };
+        this.sendNotification(net.HttpType.api_user_login, objectRemoveNull(copyForm));
         if (this.pageData.remember) {
             Cookies.set("username", username, { expires: 7 });
             Cookies.set("password", password, { expires: 7 });
@@ -95,5 +99,14 @@ export default class DialogLoginProxy extends puremvc.Proxy {
     /**获取手机区号 */
     api_public_area_code() {
         this.sendNotification(net.HttpType.api_public_area_code);
+    }
+
+    /**用户登陆前置验证 */
+    api_user_login_check() {
+        const { username, password } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_user_login_check, {
+            username,
+            password: core.MD5.createInstance().hex_md5(password),
+        });
     }
 }

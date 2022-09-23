@@ -56,7 +56,7 @@
                         </div>
                         <div class="min-width-150 l-item">
                             <div>{{LangUtil("发送地址")}}</div>
-                            <div class="text-truncate cursor-pointer">
+                            <div class="text-truncate">
                                 {{item.third_order_info ? item.third_order_info.from_address : "-"}}
                                 <v-icon
                                     small
@@ -68,7 +68,7 @@
                         </div>
                         <div class="min-width-150 l-item mr-n12">
                             <div>{{LangUtil("接收地址")}}</div>
-                            <div class="text-truncate cursor-pointer">
+                            <div class="text-truncate">
                                 {{item.third_order_info ? item.third_order_info.to_address : "-"}}
                                 <v-icon
                                     small
@@ -214,7 +214,7 @@
                             </div>
                             <div class="l-item">
                                 <div>{{LangUtil("发送地址")}}</div>
-                                <div class="cursor-pointer d-flex flex-nowrap">
+                                <div class="d-flex flex-nowrap">
                                     <span class="text-truncate">{{item.third_order_info ? item.third_order_info.from_address : "-"}}</span>
                                     <v-icon
                                         small
@@ -227,7 +227,7 @@
                             </div>
                             <div class="l-item mr-n12">
                                 <div>{{LangUtil("接收地址")}}</div>
-                                <div class="cursor-pointer d-flex flex-nowrap">
+                                <div class="d-flex flex-nowrap">
                                     <span class="text-truncate">{{item.third_order_info ? item.third_order_info.to_address : "-"}}</span>
                                     <v-icon
                                         small

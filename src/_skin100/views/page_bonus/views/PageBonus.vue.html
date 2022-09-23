@@ -1,6 +1,6 @@
 <div class="container-b pb-10">
     <v-container :class="$vuetify.breakpoint.xsOnly ? '':'px-0'">
-        <div class="px-0 px-sm-3 py-2 pb-sm-2 pt-0">
+        <div class="px-0 pr-sm-3 py-2 pb-sm-2 pt-0">
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("{0}持币分红", plat_stake_info.coin_name_unique)}}</div>
         </div>
         <v-card
@@ -266,7 +266,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="px-0 px-sm-3 pt-3 pb-2 py-sm-3">
+        <div class="px-0 pr-sm-3 pt-3 pb-2 py-sm-3">
             <div class="text-subtitle-1 text-sm-h6 font-weight-medium">{{LangUtil("分红数据")}}</div>
         </div>
         <v-row no-gutters class="pb-2 pb-sm-3">
@@ -297,7 +297,7 @@
                                     class="d-flex justify-end flex-column mr-lg-3 mb-sm-3"
                                     v-for="(item, index) of bonus_recently.slice().reverse()"
                                     :key="index"
-                                    :class="index != 4 ? 'mr-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'"
+                                    :class="index != 4 ? 'mr-2 mr-sm-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'"
                                 >
                                     <div class="d-flex justify-center">${{ item.total_bonus_amount }}</div>
                                     <div class="d-flex justify-center">
@@ -381,9 +381,12 @@
             id="record"
         >
             <div class="text-sm-h5 colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
-                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4">
-                    <img width="24" height="24" style="vertical-align: middle" src="@/_skin100/assets/bonus/icon-title-3.png" />
-                    <span class="ml-1 text-15" style="vertical-align: middle"> {{LangUtil("分红记录")}} </span>
+                <span class="text-subtitle-1 text-16 white--text font-weight-medium mr-4 dividend-record">
+                    <img width="24" height="24" style="vertical-align: middle;"  src="@/_skin100/assets/bonus/icon-title-3.png" />
+                    <span class="ml-1 text-15"  style="vertical-align: middle;">
+                        {{LangUtil("分红记录")}}
+                    </span>
+                
                 </span>
 
                 <div class="btn-around">
@@ -446,7 +449,7 @@
                                 {{ item.stake_count }}
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:6" class="d-flex justify-center align-center">
-                                <div class="d-flex bonus-width ml-4">
+                                <div class="d-flex bonus-width ml-4 ">
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -463,7 +466,9 @@
                                 </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end align-center">
-                                <div class="d-flex bonus-width">
+                                <div class="d-flex bonus-width "
+                                :class="$vuetify.breakpoint.xsOnly ? 'justify-end':'justify-center'"
+                                >
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
@@ -510,7 +515,7 @@
                             </v-col>
                             <v-col
                                 :cols="$vuetify.breakpoint.width > 600?3:4"
-                                :class="$vuetify.breakpoint.xsOnly?'':'pr-6'"
+                                :class="$vuetify.breakpoint.xsOnly?'':'pr-4'"
                                 class="d-flex justify-end align-center white-text2"
                             >
                                 {{LangUtil("已派发")}}
@@ -543,7 +548,9 @@
                                 </div>
                             </v-col>
                             <v-col :cols="$vuetify.breakpoint.width > 600?3:4" class="d-flex justify-end align-center">
-                                <div class="d-flex bonus-width">
+                                <div class="d-flex bonus-width" 
+                                :class="$vuetify.breakpoint.xsOnly? 'justify-end':'justify-center'"
+                                >
                                     <v-img
                                         class="mr-2"
                                         :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"

@@ -9,11 +9,11 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="items-bg d-inline-flex mb6">
+            <div class="items-bg d-inline-flex mb6 pa-1">
                 <v-btn
                     height="32"
                     width="115"
-                    class="rounded-pill font-weight-bold ma-1"
+                    class="rounded-pill font-weight-bold "
                     elevation="0"
                     :text="listQuery.cate != 1"
                     :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -24,7 +24,7 @@
                 </v-btn>
                 <v-btn
                     height="32"
-                    class="rounded-pill font-weight-bold ma-1"
+                    class="rounded-pill font-weight-bold"
                     elevation="0"
                     :text="listQuery.cate != 2"
                     :color="listQuery.cate == 2 ? 'colorBtnSeleBg' : 'white--text'"
@@ -115,11 +115,11 @@
                     </v-btn>
                 </div>
             </div>
-            <div class="d-inline-flex justify-start  items-bg ml15">
+            <div class="d-inline-flex justify-start items-bg ml15 pa-1">
                 <v-btn
-                    height="40"
+                    height="32"
                     width="115"
-                    class="rounded-pill font-weight-bold mr-2"
+                    class="rounded-pill font-weight-bold"
                     elevation="0"
                     :text="listQuery.cate != 1"
                     :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
@@ -129,7 +129,7 @@
                     {{LangUtil("质押")}}
                 </v-btn>
                 <v-btn
-                    height="40"
+                    height="32"
                     class="rounded-pill font-weight-bold"
                     elevation="0"
                     :text="listQuery.cate != 2"

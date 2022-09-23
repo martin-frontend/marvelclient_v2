@@ -168,7 +168,7 @@
             </div> -->
         </v-card-text>
         <v-card-text class="px-4" v-if="$vuetify.breakpoint.xsOnly">
-            <v-sheet color="transparent" :min-height="isIOSMobile ? 360:'80%'" class="scroll-y">
+            <v-sheet color="transparent" class="scroll_box scroll-y">
                 <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
                 <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished"> -->
                 <vue-loadmore v-if="pageData.list.length > 0" :on-loadmore="onLoad" :finished="pageData.finished">

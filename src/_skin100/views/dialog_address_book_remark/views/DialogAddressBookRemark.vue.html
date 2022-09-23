@@ -1,0 +1,36 @@
+<!-- <v-dialog width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">{{LangUtil("备注")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5 mt-1">
+            <v-textarea class="text-14" v-model="pageData.listQuery.account_name" background-color="colorPanelBg" outlined solo :label="LangUtil('输入备注信息(0-100)')"></v-textarea>
+            <v-btn color="colorBtnBg" height="44" block @click="onSubmit">{{LangUtil("保存设置")}}</v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog> -->
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false"  persistent>
+    <v-card class="rounded-lg bPanelBg">
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("备注")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px20 mt-0 pb30">
+            <div class="input-text py-2 pa-3 mb-5">
+                <textarea class="text-16"  maxlength="100" v-model="pageData.listQuery.account_name" background-color="colorPanelBg"  :placeholder="LangUtil('输入备注信息(0-100)')" />
+            </div>
+            <v-btn class="rounded btnRedBg" height="44"  @click="onSubmit" block>
+                <span class="text-16">{{LangUtil("保存设置")}}</span>
+            </v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

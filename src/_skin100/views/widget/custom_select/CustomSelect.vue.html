@@ -48,7 +48,8 @@
             v-if="options && Object.keys(options).length > 1"
         >
             <div class="d-flex align-center listitem pl-4 cursor-pointer" :class="selectValue == key ? 'item-select':''" v-for="(item, key) of options" :key="key" @click="onChange(key)">
-                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
+                <!-- <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img> -->
+                <v-img v-if="icons" class="mr-2" :src="(icons[key] && icons[key].icon) || icons[key]" max-width="20" height="20"></v-img>
                 <div class="white--text">{{ item.name || item }}</div>
             </div>
         </v-sheet>

@@ -6,9 +6,9 @@ import DialogAddressBookMediator from "../mediator/DialogAddressBookMediator";
 import DialogAddressBookProxy from "../proxy/DialogAddressBookProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import dialog_address_book_remark from "@/views/dialog_address_book_remark";
-import DialogAddressBookRemarkProxy from "@/views/dialog_address_book_remark/proxy/DialogAddressBookRemarkProxy";
-import DialogRechargeProxy from "@/views/dialog_recharge/proxy/DialogRechargeProxy";
+import dialog_address_book_remark from "@/_skin100/views/dialog_address_book_remark";
+import DialogAddressBookRemarkProxy from "@/_skin100/views/dialog_address_book_remark/proxy/DialogAddressBookRemarkProxy";
+import DialogRechargeProxy from "@/_skin100/views/dialog_recharge/proxy/DialogRechargeProxy";
 
 @Component
 export default class DialogAddressBook extends AbstractView {

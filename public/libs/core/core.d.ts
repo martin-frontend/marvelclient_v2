@@ -51,6 +51,8 @@ declare module net {
         api_user_reset_password: string;
         /**--账号--现金密码*/
         api_user_change_password_gold_var: string;
+        /**--账号--用户登陆前置验证*/
+        api_user_login_check: string;
         /**--会员资料--获取用户基本信息*/
         api_user_show_var: string;
         /**--会员资料--修改用户基本信息*/
@@ -73,6 +75,10 @@ declare module net {
         api_user_show_var_gold: string;
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: string;
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: string;
+        /**--会员资料--绑定google验证码*/
+        api_user_bind_google_key_var: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -302,6 +308,8 @@ declare module net {
         api_user_reset_password: string;
         /**--账号--现金密码*/
         api_user_change_password_gold_var: string;
+        /**--账号--用户登陆前置验证*/
+        api_user_login_check: string;
         /**--会员资料--获取用户基本信息*/
         api_user_show_var: string;
         /**--会员资料--修改用户基本信息*/
@@ -324,6 +332,10 @@ declare module net {
         api_user_show_var_gold: string;
         /**--会员资料--钱包地址修改*/
         api_user_change_bsc_address_var: string;
+        /**--会员资料--获取google验证码*/
+        api_user_var_google_key: string;
+        /**--会员资料--绑定google验证码*/
+        api_user_bind_google_key_var: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -840,6 +852,15 @@ declare module net {
     }
 }
 /**
+ * 绑定google验证码
+ */
+declare module net {
+    class cmd_api_user_bind_google_key_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 用户绑定手机
  */
 declare module net {
@@ -880,6 +901,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_login extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户登陆前置验证
+ */
+declare module net {
+    class cmd_api_user_login_check extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1321,6 +1351,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_gold_water_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取google验证码
+ */
+declare module net {
+    class cmd_api_user_var_google_key extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2882,6 +2921,10 @@ declare module core {
         invite_user_business_card?: string;
         /**是否显示代理统计*/
         is_show_agent_statistic?: number;
+        /**是否使用google验证码  */
+        is_google_scan?: number;
+        /**登录是否需要google验证码 */
+        is_login_need_google?: number;
     }
     /**
      * vip 奖励活动相关

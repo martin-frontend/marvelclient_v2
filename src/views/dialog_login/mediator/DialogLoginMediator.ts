@@ -4,10 +4,16 @@ import getProxy from "@/core/global/getProxy";
 import dialog_message from "@/views/dialog_message";
 import SelfProxy from "@/proxy/SelfProxy";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_google_verification from "@/views/dialog_google_verification";
 
 export default class DialogLoginMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_login, net.EventType.api_user_reset_password, net.EventType.api_public_area_code];
+        return [
+            net.EventType.api_user_login,
+            net.EventType.api_user_reset_password,
+            net.EventType.api_public_area_code,
+            net.EventType.api_user_login_check,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -17,6 +23,9 @@ export default class DialogLoginMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_login:
                 dialog_message.success(LangUtil("登录成功"));
+                if(myProxy.pageData.is_login_need_google == 1) {
+                    dialog_google_verification.show(false);
+                }
                 myProxy.hide();
                 this.loginSuccess(body);
                 break;
@@ -26,6 +35,14 @@ export default class DialogLoginMediator extends AbstractMediator {
                 break;
             case net.EventType.api_public_area_code:
                 myProxy.forgetData.areaCode = body;
+                break;
+            case net.EventType.api_user_login_check:
+                myProxy.pageData.is_login_need_google = body.is_login_need_google;
+                if (body.is_login_need_google == 1) {
+                    dialog_google_verification.show();
+                } else {
+                    myProxy.api_user_login();
+                }
                 break;
         }
     }

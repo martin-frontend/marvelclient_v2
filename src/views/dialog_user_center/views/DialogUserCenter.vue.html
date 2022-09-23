@@ -93,6 +93,17 @@
                         <div v-else class="empty_width"></div>
                     </span>
                 </div>
+                <div class="d-flex justify-space-between align-center mb-5">
+                    <span class="d-flex colorBlue--text">
+                        <v-icon class="mr-2" color="colorInfo">mdi-google</v-icon>{{LangUtil("谷歌验证")}}
+                    </span>
+                    <span class="d-flex align-center colorText1--text">
+                        {{userInfo.is_google_scan == 0 ? LangUtil("未设置") : LangUtil("已设置")}}
+                        <v-btn icon class="ml-2" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetGoogleSettings">
+                            <v-icon large>mdi-chevron-right</v-icon>
+                        </v-btn>
+                    </span>
+                </div>
                 <div class="d-flex justify-space-between align-center mb-5" v-if="is_password_gold_transfer.is_open">
                     <span class="d-flex colorBlue--text">
                         <v-icon class="mr-2" color="colorInfo">mdi-lock</v-icon>{{LangUtil("交易密码")}}

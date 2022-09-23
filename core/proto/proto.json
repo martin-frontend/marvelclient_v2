@@ -27,6 +27,7 @@
         ["api/user/change_password/{user_id}",          "修改密码"],
         ["api/user/reset_password",                     "重置密码"],
         ["api/user/change_password_gold/{user_id}",     "现金密码"],
+        ["api/user/login_check",                        "用户登陆前置验证"],
 
         "--会员资料",
         ["api/user/show/{user_id}",                     "获取用户基本信息"],
@@ -39,7 +40,9 @@
         ["api/user/show/{user_id}/bet",                 "投注记录"],
         ["api/user/show/{user_id}/channel_statistic",   "渠道统计"],
         ["api/user/show/{user_id}/gold",                "获取用户账户明细"],
-        ["api/user/change_bsc_address/{user_id}",                "钱包地址修改"],
+        ["api/user/change_bsc_address/{user_id}",       "钱包地址修改"],
+        ["api/user/{user_id}/google_key",               "获取google验证码"],
+        ["api/user/bind_google_key/{user_id}",          "绑定google验证码"],
 
         "--大厅",
         ["api/plat/{plat_id}/lobby/index",                              "获取游戏类型,游戏菜单（大厅菜单）"],

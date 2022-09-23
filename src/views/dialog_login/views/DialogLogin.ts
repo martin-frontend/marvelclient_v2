@@ -2,7 +2,9 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
+import SelfProxy from "@/proxy/SelfProxy";
 import dialog_get_verity from "@/views/dialog_get_verity";
+import dialog_google_verification from "@/views/dialog_google_verification";
 import dialog_message from "@/views/dialog_message";
 import dialog_register from "@/views/dialog_register";
 import { Component, Watch } from "vue-property-decorator";
@@ -13,12 +15,15 @@ import DialogLoginProxy from "../proxy/DialogLoginProxy";
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
     forgetData = this.myProxy.forgetData;
 
     areaCodeMenu = false;
     areaCodeSearch = "";
     areaCodeList: any = [];
+
+    userInfo = this.selfProxy.userInfo;
 
     constructor() {
         super(DialogLoginMediator);
@@ -81,7 +86,7 @@ export default class DialogLogin extends AbstractView {
     }
 
     private onSubmitLogin() {
-        this.myProxy.api_user_login();
+        this.myProxy.api_user_login_check();
     }
 
     private goForget() {

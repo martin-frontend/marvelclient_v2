@@ -10,16 +10,26 @@ export default class CustomInput extends AbstractView {
     @Prop() disabled!: number;
     @Prop() readonly!: number;
     @Prop() height!: string;
+    @Prop() isOnlyNumber!: boolean;
 
     inputValue = "";
 
     @Prop() value!: any;
     @Watch("value", { immediate: true })
     onValueChange(val: string) {
+        if (this.isOnlyNumber) {
+            this.inputValue = val.replace(/[^\d.]/g, "");
+            return;
+        }
         this.inputValue = val;
     }
 
-    onInput(value: any) {
+    onInput(event: any) {
+        if (this.isOnlyNumber) {
+            this.inputValue = event.target.value.replace(/[^\d.]/g, "");
+            this.$emit("input", this.inputValue);
+            return;
+        }
         this.$emit("input", this.inputValue);
     }
 

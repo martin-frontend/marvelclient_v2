@@ -29,6 +29,8 @@ export default class SelfProxy extends AbstractProxy {
         business_card: "",
         invite_user_business_card: "",
         is_show_agent_statistic: 0,
+        is_google_scan: 0,
+        is_login_need_google: 0,
     };
     /**红点信息 */
     red_dot_tips = {

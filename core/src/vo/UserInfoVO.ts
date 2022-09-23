@@ -140,6 +140,10 @@ module core {
         invite_user_business_card?: string;
         /**是否显示代理统计*/
         is_show_agent_statistic?: number;
+        /**是否使用google验证码  */
+        is_google_scan?: number;
+        /**登录是否需要google验证码 */
+        is_login_need_google?: number;
     }
 
     /**

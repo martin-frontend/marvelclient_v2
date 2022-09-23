@@ -13,7 +13,6 @@ export default class DialogBindGoogle extends AbstractView {
     myProxy: DialogBindGoogleProxy = this.getProxy(DialogBindGoogleProxy);
     pageData = this.myProxy.pageData;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
-    test = ''
     userInfo = this.selfProxy.userInfo;
 
     constructor() {
@@ -24,13 +23,21 @@ export default class DialogBindGoogle extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    handlerBindGoogle() {
+        this.myProxy.api_user_bind_google_key_var();
+    }
+
+    get disabled() {
+        return this.userInfo.is_google_scan == 1
+            ? !this.pageData.form.google_code || !this.pageData.form.old_google_code
+            : !this.pageData.form.google_code;
+    }
+
     @Watch("pageData.bShow")
     onWatchShow() {
         if (this.pageData.bShow) {
             BlurUtil(this.pageData.bShow);
-            //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
+            this.myProxy.resetForm();
         }
     }
 }

@@ -7,6 +7,9 @@ import DialogGoogleSettingsProxy from "../proxy/DialogGoogleSettingsProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import OpenLink from "@/core/global/OpenLink";
+import MyCanvas from "@/core/ui/MyCanvas";
+import dialog_preview from "@/views/dialog_preview";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogGoogleSettings extends AbstractView {
@@ -56,17 +59,19 @@ export default class DialogGoogleSettings extends AbstractView {
     }
 
     handlerUpdate(val: any) {
-        console.warn("update", val);
         this.selfProxy.api_user_update_var({ is_login_need_google: val.toString() });
+    }
+
+    handlerCopy() {
+        CopyUtil(this.pageData.list.google_key);
+        dialog_message.info(LangUtil("复制成功"));
     }
 
     @Watch("pageData.bShow")
     onWatchShow() {
         if (this.pageData.bShow) {
             BlurUtil(this.pageData.bShow);
-            //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
+            this.myProxy.api_user_var_google_key();
         }
     }
 }

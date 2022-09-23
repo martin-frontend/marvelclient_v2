@@ -11,14 +11,17 @@
             <CustomInput
                 maxlength="6"
                 v-if="userInfo.is_google_scan == 1"
+                :isOnlyNumber="true"
                 class="mb-3"
-                v-model="test"
+                v-model="pageData.form.old_google_code"
                 :placeholder="LangUtil('请输入原来谷歌验证码')"
             />
-            <CustomInput maxlength="6" v-model="test" :placeholder="LangUtil('请输入新谷歌验证码')" />
+            <CustomInput :isOnlyNumber="true" maxlength="6" v-model="pageData.form.google_code" :placeholder="LangUtil('请输入新谷歌验证码')" />
         </v-card-text>
         <v-card-actions class="d-flex px-6">
-            <v-btn block class="text-sm-subtitle-1 mb-7" color="colorBtnBg" height="50">{{LangUtil('确认')}}</v-btn>
+            <v-btn :disabled="disabled" @click="handlerBindGoogle" block class="text-sm-subtitle-1 mb-7" color="colorBtnBg" height="50"
+                >{{LangUtil('确认')}}</v-btn
+            >
         </v-card-actions>
     </v-card>
     <Overlay v-model="pageData.loading" />

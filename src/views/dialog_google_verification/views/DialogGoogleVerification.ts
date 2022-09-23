@@ -5,11 +5,13 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogGoogleVerificationMediator from "../mediator/DialogGoogleVerificationMediator";
 import DialogGoogleVerificationProxy from "../proxy/DialogGoogleVerificationProxy";
 import LangUtil from "@/core/global/LangUtil";
+import DialogLoginProxy from "@/views/dialog_login/proxy/DialogLoginProxy";
 
 @Component
 export default class DialogGoogleVerification extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogGoogleVerificationProxy = this.getProxy(DialogGoogleVerificationProxy);
+    loginProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
     pageData = this.myProxy.pageData;
 
     constructor() {
@@ -20,13 +22,20 @@ export default class DialogGoogleVerification extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    handlerLogin() {
+        this.loginProxy.api_user_login(this.pageData.form.google_code);
+    }
+
+    get disabled() {
+        return this.pageData.form.google_code == "";
+    }
+
     @Watch("pageData.bShow")
     onWatchShow() {
         if (this.pageData.bShow) {
             BlurUtil(this.pageData.bShow);
-            //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
+        } else {
+            this.myProxy.resetForm();
         }
     }
 }

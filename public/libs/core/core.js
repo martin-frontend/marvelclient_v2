@@ -309,6 +309,8 @@ var net;
         api_plat_var_config: "api/plat/{plat_id}/config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api/test_speed",
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
     };
     /**事件*/
     net.EventType = {
@@ -564,6 +566,8 @@ var net;
         api_plat_var_config: "api_plat_var_config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api_test_speed",
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
     };
     /**注册协议*/
     function initCommand() {
@@ -710,6 +714,8 @@ var net;
         //--平台入口配置获取
         facade.registerCommand(net.HttpType.api_plat_var_config, net.cmd_api_plat_var_config);
         facade.registerCommand(net.HttpType.api_test_speed, net.cmd_api_test_speed);
+        //--直属投注记录列表
+        facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
     }
     net.initCommand = initCommand;
     ;
@@ -1923,6 +1929,28 @@ var net;
         }
     }
     net.cmd_api_user_var_agent_direct_list = cmd_api_user_var_agent_direct_list;
+})(net || (net = {}));
+/**
+ * 直属投注记录列表
+ */
+var net;
+/**
+ * 直属投注记录列表
+ */
+(function (net) {
+    class cmd_api_user_var_agent_var_bet extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_agent_var_bet, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_agent_var_bet, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_agent_var_bet = cmd_api_user_var_agent_var_bet;
 })(net || (net = {}));
 /**
  * 获取代理用户列表

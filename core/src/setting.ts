@@ -268,6 +268,9 @@ module net {
         api_plat_var_config: "api/plat/{plat_id}/config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api/test_speed",
+
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
     };
     /**事件*/
     export var EventType = {
@@ -543,6 +546,9 @@ module net {
         api_plat_var_config: "api_plat_var_config",
         /**--平台入口配置获取--检测接口速度*/
         api_test_speed: "api_test_speed",
+
+        /**--直属投注记录列表--直属投注记录列表*/
+        api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
     };
     /**注册协议*/
     export function initCommand() {
@@ -689,6 +695,8 @@ module net {
         //--平台入口配置获取
         facade.registerCommand(HttpType.api_plat_var_config, cmd_api_plat_var_config);
         facade.registerCommand(HttpType.api_test_speed, cmd_api_test_speed);
+        //--直属投注记录列表
+        facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
     };
 
 }

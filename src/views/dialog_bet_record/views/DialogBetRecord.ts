@@ -31,14 +31,14 @@ export default class DialogBetRecord extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
             this.myProxy.resetQuery();
-            this.myProxy.api_user_show_var_bet();
+            this.myProxy.getApi();
         }
     }
     @Watch("$vuetify.breakpoint.xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
-            this.myProxy.api_user_show_var_bet();
+            this.myProxy.getApi();
         }
     }
 
@@ -47,21 +47,21 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
         this.listQuery.page_count = 1;
-        this.myProxy.api_user_show_var_bet();
+        this.myProxy.getApi();
     }
     onVendorChange() {
         this.listQuery.vendor_id = this.listOptions.vendorSelect;
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
         this.listQuery.page_count = 1;
-        this.myProxy.api_user_show_var_bet();
+        this.myProxy.getApi();
     }
     onStatusChange() {
         this.listQuery.settlement_status = this.listOptions.statusSelect;
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
         this.listQuery.page_count = 1;
-        this.myProxy.api_user_show_var_bet();
+        this.myProxy.getApi();
     }
     onTimeChange() {
         this.myProxy.pageData.list = [];
@@ -86,12 +86,12 @@ export default class DialogBetRecord extends AbstractView {
         }
         this.listQuery.page_count = 1;
         this.myProxy.pageData.list = [];
-        this.myProxy.api_user_show_var_bet();
+        this.myProxy.getApi();
     }
 
     onPageChange(val: any) {
         this.listQuery.page_count = val;
-        this.myProxy.api_user_show_var_bet();
+        this.myProxy.getApi();
     }
 
     onRefresh(done: any) {

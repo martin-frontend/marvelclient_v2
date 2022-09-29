@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <div id="page" style="background-color: #131e36">
-            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
+            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" v-if="!($vuetify.breakpoint.mobile && $route.path == '/page_game_soccer')"/>
             <v-main style="background-color: #131e36">
                 <router-view />
             </v-main>

@@ -1,5 +1,5 @@
-export default class PageGameListProxy extends puremvc.Proxy {
-    static NAME = "PageGameListProxy";
+export default class PageGameListChessProxy extends puremvc.Proxy {
+    static NAME = "PageGameListChessProxy";
 
     public onRegister(): void {
         this.pageData.loading = true;
@@ -16,7 +16,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
             pageTotal: 1006,
         },
     };
-
     /**配置 */
     config = {
         loaded: false,
@@ -27,7 +26,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     /**查询条件 */
     listQuery = {
         plat_id: core.plat_id,
-        vendor_type: 0,
+        vendor_type: 2,
         vendor_id: 0,
         page_count: 1,
         page_size: 30,

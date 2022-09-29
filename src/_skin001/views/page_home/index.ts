@@ -1,7 +1,7 @@
 import router from "@/router";
 
 function show() {
-    router.push("/page_home");
+    router.push("/");
 }
 
 export default { show };

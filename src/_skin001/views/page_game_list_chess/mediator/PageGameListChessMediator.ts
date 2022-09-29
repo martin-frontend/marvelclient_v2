@@ -1,10 +1,10 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
-import PageGameListProxy from "../proxy/PageGameListProxy";
+import PageGameListChessProxy from "../proxy/PageGameListChessProxy";
 import getProxy from "@/core/global/getProxy";
 
-export default class PageGameListMediator extends AbstractMediator {
+export default class PageGameListChessMediator extends AbstractMediator {
     public onRegister(): void {
-        const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
+        const myProxy: PageGameListChessProxy = getProxy(PageGameListChessProxy);
         if (myProxy.config.loaded) {
             if (myProxy.pageData.pageInfo.pageCurrent < 2) myProxy.api_plat_var_game_all_index();
         } else {
@@ -21,7 +21,7 @@ export default class PageGameListMediator extends AbstractMediator {
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
+        const myProxy: PageGameListChessProxy = getProxy(PageGameListChessProxy);
         switch (notification.getName()) {
             case net.EventType.api_plat_var_game_all_config:
                 myProxy.setConfig(body);

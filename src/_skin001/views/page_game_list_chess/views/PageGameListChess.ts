@@ -6,20 +6,20 @@ import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import game_search from "@/views/game_search";
 import { Watch, Component } from "vue-property-decorator";
-import PageGameListMediator from "../mediator/PageGameListMediator";
-import PageGameListProxy from "../proxy/PageGameListProxy";
+import PageGameListChessMediator from "../mediator/PageGameListChessMediator";
+import PageGameListChessProxy from "../proxy/PageGameListChessProxy";
 
 @Component
-export default class PageGameList extends AbstractView {
+export default class PageGameListChess extends AbstractView {
     LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
-    gameProxy: GameProxy = getProxy(GameProxy);
-    myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
+    gameProxy:GameProxy = getProxy(GameProxy);
+    myProxy: PageGameListChessProxy = this.getProxy(PageGameListChessProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
 
     constructor() {
-        super(PageGameListMediator);
+        super(PageGameListChessMediator);
     }
 
     get hotGame(){
@@ -53,7 +53,7 @@ export default class PageGameList extends AbstractView {
         LoginEnter(game_search.show);
     }
 
-    destroyed(){
+    destroyed() {
         super.destroyed();
     }
 }

@@ -15,9 +15,23 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "page_game_list" */ "@/views/page_game_list/views/PageGameList.vue"),
     },
     {
+        path: "/page_game_list_chess",
+        name: "page_game_list_chess",
+        component: () =>
+            import(
+                /* webpackChunkName: "skin001_page_game_list_chess" */ "@/_skin001/views/page_game_list_chess/views/PageGameListChess.vue"
+            ),
+    },
+    {
         path: "/page_game_play",
         name: "page_game_play",
         component: () => import(/* webpackChunkName: "skin001_page_game_play" */ "@/_skin001/views/page_game_play/views/PageGamePlay.vue"),
+    },
+    {
+        path: "/page_game_soccer",
+        name: "page_game_soccer",
+        component: () =>
+            import(/* webpackChunkName: "skin001_page_game_soccer" */ "@/_skin001/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/page_introduce",
@@ -58,7 +72,13 @@ const router = new VueRouter({
 });
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (!core.user_id && to.name !== "page_home" && to.name !== "page_game_list" && to.name !== "page_introduce" && to.name !== "page_swap") {
+if (
+        !core.user_id &&
+        to.name !== "page_home" &&
+        to.name !== "page_game_list" &&
+        to.name !== "page_introduce" &&
+        to.name !== "page_swap"
+    ) {
         next("/");
     } else {
         next();

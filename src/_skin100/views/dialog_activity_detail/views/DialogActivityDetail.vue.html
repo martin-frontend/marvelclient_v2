@@ -1,14 +1,22 @@
-<v-dialog
+<!-- <v-dialog
     v-model="pageData.bShow"
     width="$vuetify.breakpoint.width/2"
     :retain-focus="false"
     :fullscreen="true"
     content-class="activity-detail"
     persistent
+> -->
+<v-dialog
+    v-model="pageData.bShow"
+    width="$vuetify.breakpoint.width/2"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly ? true:false"
+    content-class="activity-detail"
+    persistent
 >
     <v-card color="transparent" class="d-flex align-center justify-center">
         <img v-if="$vuetify.breakpoint.xsOnly" width="100%" :src="pageData.data.link_url" />
-        <img v-else class="imgage" :src="pageData.data.link_url" />
+        <img v-else class="imgage" :src="pageData.data.link_url" style="height:100vh;width:auto;" />
     </v-card>
     <v-btn class="btn-close" icon @click="onClose">
         <v-icon large>mdi-close</v-icon>

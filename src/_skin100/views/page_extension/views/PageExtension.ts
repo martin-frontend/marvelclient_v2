@@ -102,6 +102,7 @@ export default class PageExtension extends AbstractView {
     }
 
     reget() {
+        this.pageData.qrCode = "";
         this.myProxy.api_user_var_short_chain();
     }
 

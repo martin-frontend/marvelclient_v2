@@ -34,13 +34,13 @@
     </v-sheet>
 </v-menu> -->
 <!-- <v-menu offset-y nudge-bottom="5"> -->
-<v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" offset-y>
+<v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" offset-y z-index="1">
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
             class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1 selectbg"
             :class="$vuetify.breakpoint.xsOnly ? 'px-2':'px-5'"
             :height="$vuetify.breakpoint.xsOnly ? '25' :'44'"
-            :width="$vuetify.breakpoint.xsOnly?70:150"
+            :width="$vuetify.breakpoint.xsOnly?95:150"
             v-bind="attrs"
             v-on="on"
         >

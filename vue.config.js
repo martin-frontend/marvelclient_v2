@@ -35,7 +35,7 @@ module.exports = {
             entry: "src/_skin001/main.ts",
             template: "public/index001.html",
             filename: "skin001.html",
-            title: "easybet",
+            title: "BetNow",
         },
         skin100: {
             entry: "src/_skin100/main.ts",

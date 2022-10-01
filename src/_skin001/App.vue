@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <div id="page" style="background-color: #131e36">
-            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" v-if="!($vuetify.breakpoint.mobile && $route.path == '/page_game_soccer')"/>
+            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
             <v-main style="background-color: #131e36">
                 <router-view />
             </v-main>
@@ -15,7 +15,7 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- 用户面板 -->
-        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary width="288" color="#16233B">
+        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app right temporary width="288" color="#16233B">
             <UserPanel />
         </v-navigation-drawer>
         <!-- 客服 -->

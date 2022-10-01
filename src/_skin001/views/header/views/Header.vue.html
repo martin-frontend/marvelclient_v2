@@ -96,6 +96,7 @@
             </v-btn>
             <div v-if="LangConfig.language" class="language">
                 <CustomSelect
+                    class="mr-n2"
                     v-model="core.lang"
                     :options="LangConfig.language"
                     :icons="LangConfig.language"
@@ -115,9 +116,9 @@
             <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
-            <User v-if="core.user_id" />
             <Wallet v-if="core.user_id" />
             <v-spacer />
+            <User v-if="core.user_id" />
             <!-- <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
                 <v-icon>mdi-alpha-f-circle</v-icon>
                 <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>

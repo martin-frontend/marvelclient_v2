@@ -16,9 +16,11 @@ export function scrollControl(bScroll: boolean) {
     if (!bScroll) {
         //禁止滚动
         document.body.addEventListener("touchmove", bodyScroll, { passive: false });
+        document.body.style.overflow = "hidden";
     } else {
         //开启滚动
         document.body.removeEventListener("touchmove", bodyScroll, false);
+        document.body.style.overflow = "";
     }
 }
 function bodyScroll(event: any) {

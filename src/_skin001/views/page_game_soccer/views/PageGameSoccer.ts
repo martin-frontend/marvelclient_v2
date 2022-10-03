@@ -5,7 +5,7 @@ import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { judgeClient } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
-import ScrollUtil from "@/core/global/ScrollUtil";
+import ScrollUtil, { scrollControl } from "@/core/global/ScrollUtil";
 import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
@@ -22,18 +22,19 @@ export default class PageGameSoccer extends AbstractView {
     }
 
     mounted() {
-        if(!this.myProxy.pageData.isAction){
+        if (!this.myProxy.pageData.isAction) {
             this.$router.replace("/");
         }
         this.onWatchHeight();
+        if (self != top) scrollControl(false);
     }
 
     @Watch("$vuetify.breakpoint.height")
     onWatchHeight() {
-        if(this.$vuetify.breakpoint.mobile){
+        if (this.$vuetify.breakpoint.mobile) {
             const gameFrame: any = this.$refs.gameFrame;
             const bodyH = document.body.clientHeight;
-            gameFrame.style.height = (bodyH-75) + "px";
+            gameFrame.style.height = bodyH - 75 + "px";
         }
     }
 
@@ -57,5 +58,6 @@ export default class PageGameSoccer extends AbstractView {
 
     destroyed() {
         super.destroyed();
+        if (self != top) scrollControl(true);
     }
 }

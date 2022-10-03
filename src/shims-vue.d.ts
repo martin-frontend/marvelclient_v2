@@ -4,3 +4,4 @@ declare module "*.vue" {
 }
 declare module 'vuejs-loadmore';
 declare module 'js-base64';
+declare module 'inobounce';

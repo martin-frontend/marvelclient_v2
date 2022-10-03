@@ -10,6 +10,7 @@ import GameProxy from "@/proxy/GameProxy";
 import router from "@/router";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
+import inobounce from 'inobounce'
 
 @Component
 export default class PageGameSoccer extends AbstractView {
@@ -27,6 +28,7 @@ export default class PageGameSoccer extends AbstractView {
         }
         this.onWatchHeight();
         if (self != top) scrollControl(false);
+        inobounce.enable();
     }
 
     @Watch("$vuetify.breakpoint.height")
@@ -59,5 +61,6 @@ export default class PageGameSoccer extends AbstractView {
     destroyed() {
         super.destroyed();
         if (self != top) scrollControl(true);
+        inobounce.disable();
     }
 }

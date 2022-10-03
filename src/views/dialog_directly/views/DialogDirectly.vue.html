@@ -84,7 +84,7 @@
                         >
                             <div class="mb-1">{{LangUtil("保底")}}</div>
                             <div v-if="pageData.enable_set_promotion_floor == 1">
-                                <a href="#" class="text-16 font-weight-regular" @click="handlerSetting(item)"
+                                <a href="javascript:void(0)" class="text-16 font-weight-regular" @click="handlerSetting(item)"
                                     >{{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}</a
                                 >
                             </div>

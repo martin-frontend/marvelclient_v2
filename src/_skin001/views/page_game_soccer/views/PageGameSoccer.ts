@@ -34,7 +34,7 @@ export default class PageGameSoccer extends AbstractView {
         if (this.$vuetify.breakpoint.mobile) {
             const gameFrame: any = this.$refs.gameFrame;
             const bodyH = document.body.clientHeight;
-            gameFrame.style.height = bodyH - 75 + "px";
+            gameFrame.style.height = bodyH - 75 - 80 + "px";
         }
     }
 

@@ -84,9 +84,11 @@
                         >
                             <div class="mb-1">{{LangUtil("保底")}}</div>
                             <div v-if="pageData.enable_set_promotion_floor == 1">
-                                <div class="text-16 font-weight-regular text-decoration-underline cursor-pointer" @click="handlerSetting(item)">
-                                    {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
-                                </div>
+                                <v-btn text @click="handlerSetting(item)">
+                                    <span class="text-16 font-weight-regular text-decoration-underline cursor-pointer" >
+                                        {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
+                                    </span>
+                                </v-btn>
                             </div>
                             <div v-else>-</div>
                         </v-col>

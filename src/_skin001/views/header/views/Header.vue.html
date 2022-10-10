@@ -28,8 +28,9 @@
                 v-if="core.user_id == 0"
                 :small="$vuetify.breakpoint.mobile"
                 color="#ffb01b"
-                class="text-14 black--text"
+                class="text-14 white--text gradient-blue"
                 @click="handlerLogin"
+                elevation="0"
             >
                 <span class="px-2">{{LangUtil("登录")}}</span>
             </v-btn>
@@ -38,8 +39,9 @@
                 v-if="core.user_id == 0"
                 :small="$vuetify.breakpoint.mobile"
                 color="white"
-                class="text-14 mx-4 black--text"
+                class="text-14 mx-4 colorBlueBtn--text"
                 @click="handlerRegister"
+                elevation="0"
             >
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
@@ -86,11 +88,11 @@
         <div class="d-flex align-center">
             <img :src="require(`@/_skin001/assets/logo.png`)" height="20" alt="" />
             <v-spacer />
-            <v-btn height="28" small class="mr-2 rounded-pill gradient-blue white--text" @click="goActivity">
+            <v-btn height="28" small class="mr-2 rounded-pill gradient-blue white--text" @click="goActivity" elevation="0">
                 <!-- <img src="@/assets/activity/icon_activity.png" width="20"/> -->
                 <div class="px-1">{{LangUtil("活动")}}</div>
             </v-btn>
-            <v-btn height="28" small class="rounded-pill gradient-blue white--text" @click="onService">
+            <v-btn height="28" small class="rounded-pill gradient-blue white--text" @click="onService" elevation="0">
                 <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
                 <div class="px-1">{{LangUtil("客服")}}</div>
             </v-btn>
@@ -110,10 +112,10 @@
             </div>
         </div>
         <div class="d-flex align-center mt-1 mb-2">
-            <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin">
+            <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin" elevation="0">
                 <span class="px-1">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister">
+            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister" elevation="0">
                 <span class="px-1">{{LangUtil("注册")}}</span>
             </v-btn>
             <Wallet v-if="core.user_id" />

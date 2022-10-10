@@ -86,13 +86,13 @@
         <div class="d-flex align-center">
             <img :src="require(`@/_skin001/assets/logo.png`)" height="20" alt="" />
             <v-spacer />
-            <v-btn height="20" x-small class="mr-3 rounded-pill colorGoldBg black--text" @click="goActivity">
+            <v-btn height="28" small class="mr-2 rounded-pill gradient-blue white--text" @click="goActivity">
                 <!-- <img src="@/assets/activity/icon_activity.png" width="20"/> -->
-                <div>{{LangUtil("活动")}}</div>
+                <div class="px-1">{{LangUtil("活动")}}</div>
             </v-btn>
-            <v-btn height="20" x-small class="rounded-pill colorGoldBg black--text" @click="onService">
+            <v-btn height="28" small class="rounded-pill gradient-blue white--text" @click="onService">
                 <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
-                <div>{{LangUtil("客服")}}</div>
+                <div class="px-1">{{LangUtil("客服")}}</div>
             </v-btn>
             <div v-if="LangConfig.language" class="language">
                 <CustomSelect
@@ -110,11 +110,11 @@
             </div>
         </div>
         <div class="d-flex align-center mt-1 mb-2">
-            <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
-                <span class="px-2">{{LangUtil("登录")}}</span>
+            <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin">
+                <span class="px-1">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
-                <span class="px-2">{{LangUtil("注册")}}</span>
+            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister">
+                <span class="px-1">{{LangUtil("注册")}}</span>
             </v-btn>
             <Wallet v-if="core.user_id" />
             <v-spacer />

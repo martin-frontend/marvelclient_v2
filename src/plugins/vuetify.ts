@@ -38,6 +38,7 @@ export function getVuetify(): Vuetify {
                         colorBlue2Bg: "#2C3952",
                         colorYellowBg: "#F2A81C",
                         colorGoldBg: "#ffb01b",
+                        colorBlueBtn: "3A66BA",
 
                         // //新增
                         colorBtnSeleBg: "#CD30C1", //used

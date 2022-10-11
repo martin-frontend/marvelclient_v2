@@ -1,11 +1,14 @@
 <template>
     <v-app>
         <div id="page" style="background-color: #131e36">
-            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
-            <v-main style="background-color: #131e36">
+            <Header v-show="isShowHeader" />
+            <v-main
+                style="background-color: #131e36"
+                :class="$vuetify.breakpoint.mobile && $route.path == '/page_game_soccer' ? 'mobile-soccer' : ''"
+            >
                 <router-view />
             </v-main>
-            <Footer v-if="!$vuetify.breakpoint.mobile" class="mt-10"/>
+            <Footer v-if="!$vuetify.breakpoint.mobile" class="mt-10" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
@@ -97,5 +100,8 @@ export default class extends APP {}
     text-align: center;
     position: fixed;
     bottom: 90px;
+}
+.mobile-soccer {
+    padding: 0px !important;
 }
 </style>

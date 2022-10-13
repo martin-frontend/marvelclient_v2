@@ -150,15 +150,15 @@ export default class PageGamePlay extends AbstractView {
                     const ori_vendor_extend = JSON.parse(gameProxy.currGame.ori_vendor_extend);
                     if (ori_vendor_extend.router_bad) {
                         // 导致路由混乱的游戏
-                        router.replace(gameProxy.gamePreData.lastRouter);
+                        this.$router.replace(gameProxy.gamePreData.lastRouter);
                         setTimeout(() => {
                             ScrollUtil(gameProxy.gamePreData.scrollY, 0);
                         });
                     } else {
-                        router.back();
+                        this.$router.back();
                     }
                 } else {
-                    router.back();
+                    this.$router.back();
                 }
             },
         });

@@ -8,7 +8,7 @@
                 <v-icon>mdi-keyboard-backspace</v-icon>
             </v-btn>
         </div>
-        <iframe id="gameFrame" ref="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
+        <iframe id="gameFrame" ref="gameFrame" class="frame" :class="$vuetify.breakpoint.mobile ? 'frame-mobile' : '' " :src="pageData.url" allowfullscreen="true"></iframe>
     </v-sheet>
     <!-- <RecentBetting class="mt-4" v-if="!$vuetify.breakpoint.mobile" /> -->
     <!-- <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$vuetify.breakpoint.mobile">

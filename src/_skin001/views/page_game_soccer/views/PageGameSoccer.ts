@@ -22,23 +22,23 @@ export default class PageGameSoccer extends AbstractView {
         if (!this.myProxy.pageData.isAction) {
             this.$router.replace("/");
         }
-        this.onWatchHeight();
-        if (self != top) scrollControl(false);
-        inobounce.enable();
-        const body =  document.querySelector("body");
+        // this.onWatchHeight();
+        // if (self != top) scrollControl(false);
+        // inobounce.enable();
+        const body =  document.querySelector("html");
         if(body && this.$vuetify.breakpoint.mobile){
             body.style.overflow = "hidden";
         }
     }
 
-    @Watch("$vuetify.breakpoint.height")
-    onWatchHeight() {
-        if (this.$vuetify.breakpoint.mobile) {
-            const gameFrame: any = this.$refs.gameFrame;
-            const bodyH = document.body.clientHeight;
-            gameFrame.style.height = bodyH - 75 + "px";
-        }
-    }
+    // @Watch("$vuetify.breakpoint.height")
+    // onWatchHeight() {
+    //     if (this.$vuetify.breakpoint.mobile) {
+    //         const gameFrame: any = this.$refs.gameFrame;
+    //         const bodyH = document.body.clientHeight;
+    //         gameFrame.style.height = bodyH - 75 + "px";
+    //     }
+    // }
 
     onFullScreen() {
         const gameFrame = document.getElementById("gameFrame");
@@ -60,10 +60,10 @@ export default class PageGameSoccer extends AbstractView {
 
     destroyed() {
         super.destroyed();
-        if (self != top) scrollControl(true);
-        inobounce.disable();
+        // if (self != top) scrollControl(true);
+        // inobounce.disable();
 
-        const body =  document.querySelector("body");
+        const body =  document.querySelector("html");
         if(body){
             body.style.overflow = "auto";
         }

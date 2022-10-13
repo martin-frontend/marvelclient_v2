@@ -3,11 +3,7 @@ import { Watch, Component } from "vue-property-decorator";
 import PageGameSoccerMediator from "../mediator/PageGameSoccerMediator";
 import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import LangUtil from "@/core/global/LangUtil";
-import { judgeClient } from "@/core/global/Functions";
-import getProxy from "@/core/global/getProxy";
 import ScrollUtil, { scrollControl } from "@/core/global/ScrollUtil";
-import GameProxy from "@/proxy/GameProxy";
-import router from "@/router";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
 import inobounce from 'inobounce'
@@ -29,6 +25,10 @@ export default class PageGameSoccer extends AbstractView {
         this.onWatchHeight();
         if (self != top) scrollControl(false);
         inobounce.enable();
+        const body =  document.querySelector("body");
+        if(body && this.$vuetify.breakpoint.mobile){
+            body.style.overflow = "hidden";
+        }
     }
 
     @Watch("$vuetify.breakpoint.height")
@@ -62,5 +62,10 @@ export default class PageGameSoccer extends AbstractView {
         super.destroyed();
         if (self != top) scrollControl(true);
         inobounce.disable();
+
+        const body =  document.querySelector("body");
+        if(body){
+            body.style.overflow = "auto";
+        }
     }
 }

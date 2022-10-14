@@ -25,10 +25,10 @@ export default class PageGameSoccer extends AbstractView {
         // this.onWatchHeight();
         // if (self != top) scrollControl(false);
         // inobounce.enable();
-        const body =  document.querySelector("html");
-        if(body && this.$vuetify.breakpoint.mobile){
-            body.style.overflow = "hidden";
-        }
+        // const body =  document.querySelector("html");
+        // if(body && this.$vuetify.breakpoint.mobile){
+        //     body.style.overflow = "hidden";
+        // }
     }
 
     // @Watch("$vuetify.breakpoint.height")

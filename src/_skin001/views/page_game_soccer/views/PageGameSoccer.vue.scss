@@ -9,14 +9,13 @@
     border: 0;
     width: 100vw;
     height: calc(100vh - 75px);
-    // height: 100vh;
     background: #0d1525;
     overscroll-behavior: contain;
 }
 .frame-mobile-standalone{
     border: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 150px);
     background: #0d1525;
     overscroll-behavior: contain;
 }

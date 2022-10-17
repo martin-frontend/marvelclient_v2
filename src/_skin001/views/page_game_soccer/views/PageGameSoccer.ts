@@ -12,6 +12,19 @@ export default class PageGameSoccer extends AbstractView {
     myProxy: PageGameSoccerProxy = this.getProxy(PageGameSoccerProxy);
     pageData = this.myProxy.pageData;
 
+    get gameFrameClass() {
+        if (this.$vuetify.breakpoint.mobile) {
+            //@ts-ignore
+            if (window.navigator.standalone) {
+                return "frame-mobile-standalone";
+            } else {
+                return "frame-mobile";
+            }
+        } else {
+            return "frame";
+        }
+    }
+
     constructor() {
         super(PageGameSoccerMediator);
     }

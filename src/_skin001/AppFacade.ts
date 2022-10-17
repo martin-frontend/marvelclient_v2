@@ -10,6 +10,8 @@ import NetObserver from "./core/NetObserver";
 import NotificationName from "@/core/NotificationName";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
+import dialog_recharge from "@/views/dialog_recharge";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -33,6 +35,12 @@ export default class AppFacade {
         setInterval(() => {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
         }, 300000);
+
+        window.addEventListener("message", (e) => {
+            if (e.data == EnumPostMessage.TOPUP) {
+                dialog_recharge.show();
+            }
+        });
     }
 
     private initProxy() {

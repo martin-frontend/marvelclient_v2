@@ -11,6 +11,8 @@ import NotificationName from "@/core/NotificationName";
 import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
+import dialog_recharge from "@/views/dialog_recharge";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -34,6 +36,13 @@ export default class AppFacade {
         setInterval(() => {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
         }, 300000);
+
+        //接受iframe消息
+        window.addEventListener("message", function (e: any) {
+            if ((e.data = EnumPostMessage.TOPUP)) {
+                dialog_recharge.show();
+            }
+        });
     }
 
     private initProxy() {

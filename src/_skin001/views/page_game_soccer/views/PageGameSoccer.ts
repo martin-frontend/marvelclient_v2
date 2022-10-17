@@ -23,9 +23,9 @@ export default class PageGameSoccer extends AbstractView {
         // this.onWatchHeight();
         // if (self != top) scrollControl(false);
         // inobounce.enable();
-        const body =  document.querySelector("html");
-        if(body && this.$vuetify.breakpoint.mobile){
-            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+        const body = document.querySelector("html");
+        if (body && this.$vuetify.breakpoint.mobile) {
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
                 body.style.overflow = "hidden";
             }
         }
@@ -63,8 +63,8 @@ export default class PageGameSoccer extends AbstractView {
         // if (self != top) scrollControl(true);
         // inobounce.disable();
 
-        const body =  document.querySelector("html");
-        if(body){
+        const body = document.querySelector("html");
+        if (body) {
             body.style.overflow = "auto";
         }
     }

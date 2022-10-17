@@ -57,13 +57,11 @@ export default class APP extends AbstractView {
 
     get isShowHeader() {
         if (this.$vuetify.breakpoint.mobile) {
-            if (this.$route.path == "/page_game_soccer") {
+            if (this.$route.path == "/page_game_soccer" || this.$route.path == "/page_game_play") {
                 return false;
             }
             return true;
-        } else if (this.$route.path != "/page_game_play") {
-            return true;
-        } else if (!this.$vuetify.breakpoint.mobile) {
+        }  else if (!this.$vuetify.breakpoint.mobile) {
             return true;
         }
     }

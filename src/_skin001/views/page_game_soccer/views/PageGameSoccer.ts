@@ -5,6 +5,8 @@ import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
+import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
+import dialog_recharge from "@/views/dialog_recharge";
 
 @Component
 export default class PageGameSoccer extends AbstractView {
@@ -29,6 +31,13 @@ export default class PageGameSoccer extends AbstractView {
                 body.style.overflow = "hidden";
             }
         }
+
+        //接受iframe消息
+        // window.addEventListener("message", function (e: any) {
+        //     if ((e.data = EnumPostMessage.TOPUP)) {
+        //         dialog_recharge.show();
+        //     }
+        // }, false);
     }
 
     // @Watch("$vuetify.breakpoint.height")

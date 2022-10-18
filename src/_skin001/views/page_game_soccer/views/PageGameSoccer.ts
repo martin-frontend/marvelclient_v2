@@ -39,6 +39,13 @@ export default class PageGameSoccer extends AbstractView {
                 body.style.overflow = "hidden";
             }
         }
+        //@ts-ignore
+        if (window.navigator.standalone) {
+            const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
+            if(gameFrame){
+                gameFrame.style.height = (document.body.clientHeight - 75) + "px";
+            }
+        }
     }
 
     onFullScreen() {

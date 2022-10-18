@@ -11,10 +11,12 @@ import PageGameListProxy from "@/views/page_game_list/proxy/PageGameListProxy";
 import getProxy from "@/core/global/getProxy";
 import page_game_list_chess from "../page_game_list_chess";
 import GameProxy from "@/proxy/GameProxy";
+import PageHomeProxy from "../page_home/proxy/PageHomeProxy";
 
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
+    homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
     pageGameListProxy: PageGameListProxy = getProxy(PageGameListProxy);
     menuList = [
         {
@@ -74,6 +76,7 @@ export default class MobileMenu extends AbstractView {
                 break;
             case 1:
                 // this.$router.push(item.path);
+                this.homeProxy.pageData.event_id = 0;
                 LoginEnter(() => {
                     const gameProxy: GameProxy = this.getProxy(GameProxy);
                     gameProxy.currGame = {

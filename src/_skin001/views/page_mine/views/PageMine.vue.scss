@@ -84,17 +84,17 @@
         background-size: cover;
         position: relative;
         overflow: hidden;
-        &::after {
-            content: "";
-            background: url("~@/assets/mine/right_special.png") no-repeat center center;
-            background-size: contain;
-            position: absolute;
-            width: 162px;
-            height: 100%;
-            right: 0;
-            top: 0;
-            pointer-events: none;
-        }
+        // &::after {
+        //     content: "";
+        //     background: url("~@/assets/mine/right_special.png") no-repeat center center;
+        //     background-size: contain;
+        //     position: absolute;
+        //     width: 162px;
+        //     height: 100%;
+        //     right: 0;
+        //     top: 0;
+        //     pointer-events: none;
+        // }
         &::before {
             content: "";
             background: url("~@/_skin001/assets/mine/img_play.png") no-repeat center center;

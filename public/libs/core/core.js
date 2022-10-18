@@ -311,6 +311,8 @@ var net;
         api_test_speed: "api/test_speed",
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: "api/vendor/96/products",
     };
     /**事件*/
     net.EventType = {
@@ -568,6 +570,8 @@ var net;
         api_test_speed: "api_test_speed",
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: "api_vendor_96_products",
     };
     /**注册协议*/
     function initCommand() {
@@ -716,6 +720,8 @@ var net;
         facade.registerCommand(net.HttpType.api_test_speed, net.cmd_api_test_speed);
         //--直属投注记录列表
         facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
+        //--skin001专属
+        facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
     }
     net.initCommand = initCommand;
     ;
@@ -3359,6 +3365,28 @@ var net;
         }
     }
     net.cmd_api_user_var_withdraw_stake = cmd_api_user_var_withdraw_stake;
+})(net || (net = {}));
+/**
+ * 获取赛事数据
+ */
+var net;
+/**
+ * 获取赛事数据
+ */
+(function (net) {
+    class cmd_api_vendor_96_products extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_vendor_96_products, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_vendor_96_products, result.data);
+            }
+        }
+    }
+    net.cmd_api_vendor_96_products = cmd_api_vendor_96_products;
 })(net || (net = {}));
 /**
  * 获取厂商列表

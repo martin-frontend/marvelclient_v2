@@ -271,6 +271,9 @@ module net {
 
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
+
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: "api/vendor/96/products",
     };
     /**事件*/
     export var EventType = {
@@ -549,6 +552,9 @@ module net {
 
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
+
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: "api_vendor_96_products",
     };
     /**注册协议*/
     export function initCommand() {
@@ -697,6 +703,8 @@ module net {
         facade.registerCommand(HttpType.api_test_speed, cmd_api_test_speed);
         //--直属投注记录列表
         facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
+        //--skin001专属
+        facade.registerCommand(HttpType.api_vendor_96_products, cmd_api_vendor_96_products);
     };
 
 }

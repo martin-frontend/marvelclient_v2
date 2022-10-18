@@ -1,18 +1,25 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import getProxy from "@/core/global/getProxy";
+import GlobalVar from "@/core/global/GlobalVar";
 import router from "@/router";
 import GameProxy from "./GameProxy";
 
 export default class SelfProxy extends AbstractProxy {
     static NAME = "SelfProxy";
 
+    private timerCount = 0;
+
     public onRegister(): void {
         setInterval(() => {
-            if (core.user_id && core.plat_id) {
-                this.api_user_show_var([2]);
-                this.api_user_var_red_dot_tips();
+            if (this.timerCount % 10 == 0) {
+                if (core.user_id && core.plat_id) {
+                    this.api_user_show_var([2]);
+                    this.api_user_var_red_dot_tips();
+                }
             }
-        }, 10000);
+            GlobalVar.server_time++;
+            this.timerCount++;
+        }, 1000);
     }
 
     /**用户个人信息 */

@@ -257,6 +257,8 @@ declare module net {
         api_test_speed: string;
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: string;
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: string;
     };
     /**事件*/
     var EventType: {
@@ -514,6 +516,8 @@ declare module net {
         api_test_speed: string;
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: string;
+        /**--skin001专属--获取赛事数据*/
+        api_vendor_96_products: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1594,6 +1598,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_withdraw_stake extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取赛事数据
+ */
+declare module net {
+    class cmd_api_vendor_96_products extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

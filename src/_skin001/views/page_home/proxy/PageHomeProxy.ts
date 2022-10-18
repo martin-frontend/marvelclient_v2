@@ -1,7 +1,19 @@
 import GameConfig from "@/core/config/GameConfig";
+import { getVuetify } from "@/plugins/vuetify";
+import { CompetitionVO, MatcheVO } from "@/_skin001/vo/CompetitionVO";
 
 export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
+
+    onRegister() {
+        setInterval(() => {
+            //@ts-ignore
+            const $router = window["vm"].$router;
+            if ($router.currentRoute.path == "/") {
+                this.api_vendor_96_products();
+            }
+        }, 5000);
+    }
 
     /**参数 */
     parameter: any = {
@@ -36,6 +48,9 @@ export default class PageHomeProxy extends puremvc.Proxy {
         backwater_setting_info: {
             backwater_max_efficiency: "0", // 平台最大挖矿效率
         },
+        // 赛事数据
+        compData: <CompetitionVO[]>[],
+        event_id: 0, //进入时直接进入内页
     };
 
     setLobbyIndex(body: any) {
@@ -56,6 +71,10 @@ export default class PageHomeProxy extends puremvc.Proxy {
 
     setbackwater(data: any) {
         Object.assign(this.pageData.backwater_setting_info, data);
+    }
+
+    set_vendor_96_products(data:any){
+        this.pageData.compData = data;
     }
 
     api_plat_var_stake_info() {
@@ -80,5 +99,16 @@ export default class PageHomeProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_plat_var_backwater_setting_info, {
             plat_id: core.plat_id,
         });
+    }
+    /**获取赛事信息 */
+    api_vendor_96_products() {
+        let market_type = "";
+        if (getVuetify().framework.breakpoint.mobile) {
+            market_type = "ASIAN_OVER_UNDER,ASIAN_HANDICAP";
+        } else {
+            market_type =
+                "MATCH_ODDS,MATCH_ODDS_HALF_TIME,ASIAN_HANDICAP,ASIAN_HANDICAP_HALF_TIME,ASIAN_OVER_UNDER,ASIAN_OVER_UNDER_HALF_TIME";
+        }
+        this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 5 });
     }
 }

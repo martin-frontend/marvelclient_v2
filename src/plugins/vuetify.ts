@@ -67,6 +67,9 @@ export function getVuetify(): Vuetify {
                         colorTextNext: "#3B5F96", //used
                         colorVipLevelText: "#8C9FC4",
                         colorMarqueeIcon: "#667798",
+
+                        //001皮肤专用
+                        colorTextBlue001: "#849FD8",
                     },
                 },
                 dark: true,

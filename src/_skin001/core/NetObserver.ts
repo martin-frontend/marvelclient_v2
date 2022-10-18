@@ -17,6 +17,7 @@ import OpenLink from "@/core/global/OpenLink";
 import dialog_message_box from "@/views/dialog_message_box";
 import page_game_play from "@/_skin001/views/page_game_play";
 import page_game_soccer from "../views/page_game_soccer";
+import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -107,7 +108,12 @@ export default class NetObserver extends AbstractMediator {
                     this.gameProxy.loading = false;
                     // 如果是体育，直接进入
                     if(this.gameProxy.currGame.vendor_id == 96 && this.gameProxy.currGame.ori_product_id == 1){
-                        page_game_soccer.show(body.url);
+                        const homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
+                        if(homeProxy.pageData.event_id){
+                            page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                        }else{
+                            page_game_soccer.show(body.url);
+                        }
                         return;
                     }
 

@@ -89,12 +89,19 @@ export default class SoccerMatcheItem extends AbstractView {
     }
 
     getSelections(market_type: string) {
-        const selections = this.matche.market[0].fix_markets[market_type]?.selections || [];
-        let len = 2;
-        if (market_type == "MATCH_ODDS" || market_type == "MATCH_ODDS_HALF_TIME") {
-            len = 3;
+        const selections = this.matche.market[0].fix_markets[market_type]?.selections;
+        if (selections) {
+            let len = 2;
+            if (market_type == "MATCH_ODDS" || market_type == "MATCH_ODDS_HALF_TIME") {
+                len = 3;
+            }
+            return selections.slice(0, len);
         }
-        return selections.slice(0, len);
+        if (market_type == "MATCH_ODDS" || market_type == "MATCH_ODDS_HALF_TIME") {
+            return [{ price: {} }, { price: {} }, { price: {} }];
+        } else {
+            return [{ price: {} }, { price: {} }];
+        }
     }
 
     onEnter() {

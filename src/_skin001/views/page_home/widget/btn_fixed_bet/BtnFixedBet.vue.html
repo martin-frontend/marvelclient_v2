@@ -1,11 +1,11 @@
-<div class="d-flex align-center" :class="$vuetify.breakpoint.mobile ? 'item-selection' : 'item-selection-pc' ">
+<div class="d-flex align-center justify-center" :class="$vuetify.breakpoint.mobile ? 'item-selection' : 'item-selection-pc' ">
     <!-- <div class="ml-2">+2.5</div>
     <v-spacer/>
     <div ref="divPrice">{{123}}</div>
     <img ref="imgOdds" :src="iconOdds" width="8" class="odds-img"> -->
 
 
-    <v-icon v-if="selection.status != 0" color="grayBorder" small>mdi-lock</v-icon>
+    <v-icon v-if="selection.status != 0" color="#1B2343">mdi-lock</v-icon>
     <div v-else class="d-flex justify-center align-center" style="width: 100%">
         <slot></slot>
         <v-spacer v-if="$slots.default" />

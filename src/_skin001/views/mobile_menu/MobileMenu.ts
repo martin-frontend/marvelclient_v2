@@ -40,13 +40,13 @@ export default class MobileMenu extends AbstractView {
             icon1: require(`@/_skin001/assets/icon/icon_play1.png`),
             path: "/page_game_list",
         },
-        {
-            id: 3,
-            name: LangUtil("棋牌"),
-            icon: require(`@/_skin001/assets/icon/icon_chess.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
-            path: "/page_game_list_chess",
-        },
+        // {
+        //     id: 3,
+        //     name: LangUtil("棋牌"),
+        //     icon: require(`@/_skin001/assets/icon/icon_chess.png`),
+        //     icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
+        //     path: "/page_game_list_chess",
+        // },
         {
             id: 4,
             name: LangUtil("返水"),

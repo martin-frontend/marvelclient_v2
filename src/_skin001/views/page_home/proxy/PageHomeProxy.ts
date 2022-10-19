@@ -13,6 +13,11 @@ export default class PageHomeProxy extends puremvc.Proxy {
                 this.api_vendor_96_products();
             }
         }, 5000);
+        //@ts-ignore
+        const $router = window["vm"].$router;
+        if ($router.currentRoute.path == "/") {
+            this.api_vendor_96_products();
+        }
     }
 
     /**参数 */

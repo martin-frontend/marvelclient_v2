@@ -7,6 +7,8 @@
 
             <div v-if="!states.phase_minute" class="min-text ml-n3">{{downcount()}}</div>
             <v-spacer />
+            <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="12">
+            <div v-if="states.corners_ft" class="mr-5">{{states.corners_ft}}</div>
             <div class="white--text">{{LangUtil("让球")}}</div>
             <div class="white--text ml-4">{{LangUtil("大小")}}</div>
             <div class="cursor-pointer ml-11" @click="onEnter">{{LangUtil("更多")}}</div>
@@ -30,7 +32,7 @@
                 >{{getValues(states.yellow_cards_ft)[0]}}</v-sheet
             >
             <v-spacer />
-            <div class="mr-1" v-if="states.goals_ft">{{getValues(states.goals_ft)[0]}}</div>
+            <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[0]}}</div>
 
             <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[0]">
                 <div class="ml-1">{{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[0] )}}</div>
@@ -57,7 +59,7 @@
                 >{{getValues(states.yellow_cards_ft)[1]}}</v-sheet
             >
             <v-spacer />
-            <div class="mr-1" v-if="states.goals_ft">{{getValues(states.goals_ft)[1]}}</div>
+            <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[1]}}</div>
 
             <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[1]">
                 <div class="ml-1">{{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[1] )}}</div>

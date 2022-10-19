@@ -30,6 +30,9 @@ export default class Wallet extends AbstractView {
     onCoinIn() {
         dialog_recharge.show();
     }
+    onCoinOut() {
+        dialog_recharge.show(1);
+    }
 
     handlerGameRate() {
         dialog_game_rate.show();

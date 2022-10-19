@@ -1,7 +1,8 @@
 <template>
     <v-app>
         <div id="page" style="background-color: #131e36">
-            <Header v-show="isShowHeader" />
+            <HeaderMobile v-if="$vuetify.breakpoint.xsOnly && isShowHeader" />
+            <Header v-if="!$vuetify.breakpoint.xsOnly" v-show="isShowHeader" />
             <v-main
                 style="background-color: #131e36"
                 :class="$vuetify.breakpoint.mobile && $route.path == '/page_game_soccer' ? 'mobile-soccer' : ''"
@@ -71,11 +72,13 @@ import Orientation from "@/views/widget/orientation/Orientation.vue";
 import UserPanel from "./views/header/widget/user_panel/UserPanel.vue";
 import APP from "./App";
 import GameSearch from "@/views/game_search/views/GameSearch.vue";
+import HeaderMobile from "./views/header_mobile/views/HeaderMobile.vue";
 
 @Component({
     components: {
         DialogMessage,
         Header,
+        HeaderMobile,
         Footer,
         MobileMenu,
         Overlay,

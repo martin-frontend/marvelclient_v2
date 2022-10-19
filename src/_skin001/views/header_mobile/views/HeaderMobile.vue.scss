@@ -1,0 +1,19 @@
+::v-deep .v-toolbar__content{
+    padding: 0px;
+}
+.logo{
+    position:fixed;
+    left: 5px;
+    background-image: linear-gradient(0, #25255D, #243163);
+    z-index: 3;
+}
+.bg-texture{
+    position: fixed;
+}
+.barbg{
+    background-color: #1D2A43;
+    background-image: url("~@/_skin001/assets/header/img_header_texture.png");
+    background-position: left top 0px;
+    background-repeat: no-repeat;
+    background-size: 99px 40px;
+}

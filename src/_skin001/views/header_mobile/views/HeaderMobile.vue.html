@@ -1,0 +1,29 @@
+<v-app-bar height="40" elevation="0" color="#1D2A43" class="pa-0 barbg" :app="routerPath != '/page_game_play'">
+    <v-sheet class="logo rounded-b-lg d-flex align-center justify-center" height="46" width="64">
+        <img src="@/_skin001/assets/header/logo_mobile.png" width="40" />
+    </v-sheet>
+    <v-spacer/>
+    <Wallet v-if="core.user_id" class="ml-12"/>
+    <v-spacer/>
+    <div v-if="LangConfig.language" class="mr-2">
+        <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on" x-small icon>
+                    <img :src="LangConfig.language[core.lang].icon" width="20" />
+                </v-btn>
+            </template>
+            <v-list color="colorPanelTitleBg">
+                <v-list-item v-for="(item, key) in LangConfig.language" :key="key" @click="onLangChange(key)">
+                    <v-list-item-title class="d-flex align-center">
+                        <img :src="item.icon" width="20" />
+                        <div class="ml-2">{{item.name}}</div>
+                    </v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+    </div>
+    <v-btn icon small size="20" class="ml-n1" @click="onService">
+        <img src="@/_skin001/assets/header/icon_service.png" width="20">
+    </v-btn>
+    <User v-if="core.user_id" />
+</v-app-bar>

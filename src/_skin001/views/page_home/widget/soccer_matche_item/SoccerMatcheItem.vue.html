@@ -114,8 +114,8 @@
                             <div class="ml-2 text-truncate">{{matche.home_team}}</div>
                             <v-spacer />
                             <v-sheet
-                                v-if="states.red_cards_ft"
-                                class="d-flex align-center mx-2 rounded white--text num_red_width"
+                                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0]>0"
+                                class="d-flex align-center justify-center mx-2 rounded white--text num_red_width"
                                 color="red"
                                 >{{getValues(states.red_cards_ft)[0]}}</v-sheet
                             >
@@ -126,8 +126,8 @@
                             <div class="ml-2 text-truncate">{{matche.away_team}}</div>
                             <v-spacer />
                             <v-sheet
-                                v-if="states.red_cards_ft"
-                                class="d-flex align-center mx-2 rounded white--text num_red_width"
+                                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[1]>0"
+                                class="d-flex align-center justify-center mx-2 rounded white--text num_red_width"
                                 color="red"
                                 >{{getValues(states.red_cards_ft)[1]}}</v-sheet
                             >

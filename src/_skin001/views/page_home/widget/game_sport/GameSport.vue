@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import GameSport from "./GameSport";
+import GameSportItem from "../game_sport_item/GameSportItem.vue";
 
-@Component
+@Component({
+    components: {
+        GameSportItem,
+    },
+})
 export default class extends GameSport {}
 </script>

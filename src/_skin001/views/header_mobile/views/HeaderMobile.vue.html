@@ -5,6 +5,12 @@
     <v-spacer/>
     <Wallet v-if="core.user_id" class="ml-12"/>
     <v-spacer/>
+    <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin" elevation="0">
+        <span class="px-1">{{LangUtil("登录")}}</span>
+    </v-btn>
+    <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister" elevation="0">
+        <span class="px-1">{{LangUtil("注册")}}</span>
+    </v-btn>
     <div v-if="LangConfig.language" class="mr-2">
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -22,7 +28,7 @@
             </v-list>
         </v-menu>
     </div>
-    <v-btn icon small size="20" class="ml-n1" @click="onService">
+    <v-btn icon small size="20" :class=" core.user_id ? 'ml-n1' : 'mr-2' " @click="onService">
         <img src="@/_skin001/assets/header/icon_service.png" width="20">
     </v-btn>
     <User v-if="core.user_id" />

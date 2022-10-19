@@ -5,6 +5,8 @@ import HeaderMobileProxy from "../proxy/HeaderMobileProxy";
 import LangUtil from "@/core/global/LangUtil";
 import LangConfig from "@/core/config/LangConfig";
 import OpenLink from "@/core/global/OpenLink";
+import dialog_login from "@/views/dialog_login";
+import dialog_register from "@/views/dialog_register";
 
 @Component
 export default class HeaderMobile extends AbstractView {
@@ -23,6 +25,15 @@ export default class HeaderMobile extends AbstractView {
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
+    }
+
+    /**打开登录页面 */
+    handlerLogin() {
+        dialog_login.show();
+    }
+    /**打开注册页面 */
+    handlerRegister() {
+        dialog_register.show();
     }
 
     /**切换语言 */

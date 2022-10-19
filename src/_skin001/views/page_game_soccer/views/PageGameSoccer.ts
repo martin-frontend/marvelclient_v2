@@ -43,7 +43,7 @@ export default class PageGameSoccer extends AbstractView {
         if (window.navigator.standalone) {
             const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
             if(gameFrame){
-                gameFrame.style.height = (document.body.clientHeight - 75) + "px";
+                gameFrame.style.height = (document.body.clientHeight - 55) + "px";
             }
         }
     }

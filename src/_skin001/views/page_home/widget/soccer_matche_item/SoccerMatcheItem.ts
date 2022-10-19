@@ -75,7 +75,7 @@ export default class SoccerMatcheItem extends AbstractView {
         }
     }
 
-    getTeamIcon(url:string){
+    getTeamIcon(url: string) {
         return url || require(`@/_skin001/assets/icon/icon_team_default.png`);
     }
 
@@ -84,15 +84,20 @@ export default class SoccerMatcheItem extends AbstractView {
         return str.split("-").map((item) => parseInt(item));
     }
 
-    getMarket(market_type:string){
+    getMarket(market_type: string) {
         return this.matche.market[0].fix_markets[market_type];
     }
 
-    getSelections(market_type:string){
-        return this.matche.market[0].fix_markets[market_type].selections;
+    getSelections(market_type: string) {
+        const selections = this.matche.market[0].fix_markets[market_type]?.selections || [];
+        let len = 2;
+        if (market_type == "MATCH_ODDS" || market_type == "MATCH_ODDS_HALF_TIME") {
+            len = 3;
+        }
+        return selections.slice(0, len);
     }
 
-    onEnter(){
+    onEnter() {
         this.pageData.event_id = this.matche.id;
         LoginEnter(() => {
             const gameProxy: GameProxy = this.getProxy(GameProxy);
@@ -101,13 +106,13 @@ export default class SoccerMatcheItem extends AbstractView {
                 category: 64,
                 icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
                 index_no: 6,
-                languages: ['zh_CN', 'th_TH', 'jp_JP', 'es_ES', 'ko_Kr', 'vi_VN', 'en_EN', 'zh_TW'],
+                languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
                 list_type: 0,
                 lobby_model_product_id: 369,
                 lobby_product_id: 4857,
                 open_mode: 1,
                 ori_product_id: "1",
-                ori_vendor_extend: "{\"iframe_bad\":false}",
+                ori_vendor_extend: '{"iframe_bad":false}',
                 orientation: 1,
                 plat_id: 30017,
                 status: 1,
@@ -118,9 +123,8 @@ export default class SoccerMatcheItem extends AbstractView {
                 vendor_product_name: "足球",
                 vendor_type: 64,
                 water_rate_accelerate: 0,
-            }
+            };
             gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
         });
     }
-
 }

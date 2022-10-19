@@ -56,7 +56,7 @@ export default class BtnFixedBet extends AbstractView {
             this.cleartimer = setTimeout(() => {
                 imgOdds.style.opacity = "0";
                 imgOdds.classList.remove("animation-translate");
-                divPrice.style.color = "white"
+                divPrice.style.color = "#ffffff"
             }, 5000);
         }
     }

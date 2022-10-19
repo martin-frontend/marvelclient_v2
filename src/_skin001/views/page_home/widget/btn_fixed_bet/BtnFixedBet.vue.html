@@ -1,4 +1,4 @@
-<div class="d-flex align-center item-selection">
+<div class="d-flex align-center" :class="$vuetify.breakpoint.mobile ? 'item-selection' : 'item-selection-pc' ">
     <!-- <div class="ml-2">+2.5</div>
     <v-spacer/>
     <div ref="divPrice">{{123}}</div>
@@ -9,7 +9,7 @@
     <div v-else class="d-flex justify-center align-center" style="width: 100%">
         <slot></slot>
         <v-spacer v-if="$slots.default" />
-        <div ref="divPrice" class=" font-weight-bold">{{getPrice()}}</div>
+        <div ref="divPrice" class=" font-weight-bold" :class="!$vuetify.breakpoint.xsOnly ? '' : 'ml-3' ">{{getPrice()}}</div>
     </div>
     <img v-if="selection.status == 0" ref="imgOdds" class="odds-img opacity-0" :src="iconOdds" width="8"/>
 </div>

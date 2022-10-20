@@ -39,7 +39,7 @@ export default class SoccerMatcheItem extends AbstractView {
             case "HT":
                 return LangUtil("中场");
             case "-":
-                return LangUtil("即交开赛");
+                return LangUtil("即将开赛");
             case "2H":
                 return LangUtil("下半场");
             case "FT":

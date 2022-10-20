@@ -28,13 +28,29 @@ export default class UserPanel extends AbstractView {
         { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
-    menuList1 = [
-        { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
-        // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
-        { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
-        { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
-        // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
-    ];
+    // menuList1 = [
+    //     { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+    //     // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
+    //     { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
+    //     { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+    //     // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
+    // ];
+
+    get menuList1() {
+        const list = [
+            { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+            // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
+            { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
+            { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+            // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
+        ];
+
+        if(GamePlatConfig.config.is_show_commission.is_open == 0) {
+            list.shift();
+        };
+
+        return list;
+    }
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     userInfo = this.selfProxy.userInfo;

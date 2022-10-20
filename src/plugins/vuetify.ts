@@ -70,6 +70,7 @@ export function getVuetify(): Vuetify {
 
                         //001皮肤专用
                         colorTextBlue001: "#849FD8",
+                        colorPcTextBlue001: "#849FD8",
                     },
                 },
                 dark: true,

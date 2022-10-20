@@ -3,5 +3,5 @@
         <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.mobile?15:24">{{ CategoryIcon[1] }}</v-icon>
         <div :class="$vuetify.breakpoint.mobile?'text-14':'text-16'">{{ LangUtil("热门赛事") }}</div>
     </div>
-    <SoccerMatcheItem v-for="(item, index) of matches" :key="index" :matche="item" />
+    <SoccerMatcheItem v-if="index < 3" v-for="(item, index) of matches" :key="index" :matche="item" />
 </div>

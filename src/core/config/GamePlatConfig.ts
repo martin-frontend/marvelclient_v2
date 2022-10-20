@@ -24,6 +24,7 @@ export default class GamePlatConfig {
         language: <any>{},
         main_language: "",
         validate_type: [],
+        is_show_commission: { is_open: 1 },
     };
     /**枚举 */
     static enums: {

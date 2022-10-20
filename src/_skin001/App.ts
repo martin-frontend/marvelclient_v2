@@ -19,8 +19,14 @@ export default class APP extends AbstractView {
     //是否竖屏
     isScreenV = true;
 
+    core = core;
+
     mounted() {
         this.onWatchScreen();
+    }
+
+    get guideImg() {
+        return this.core.lang.includes('zh') ? require('@/assets/guide/img03.png'):require('@/assets/guide/img04.png');
     }
 
     @Watch("$vuetify.breakpoint.width")

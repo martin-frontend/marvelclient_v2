@@ -4,5 +4,5 @@
         <img class="mr-1" src="@/_skin001/assets/icon/icon_fire.png" :width="$vuetify.breakpoint.mobile?14:20" />
         <div :class="$vuetify.breakpoint.mobile?'text-14':'text-16'">{{ LangUtil("热门赛事") }}</div>
     </div>
-    <SoccerMatcheItem v-if="index < 3" v-for="(item, index) of matches" :key="index" :matche="item" />
+    <SoccerMatcheItem v-for="(item, index) of matches" :key="index" :matche="item" />
 </div>

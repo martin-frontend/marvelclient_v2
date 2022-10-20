@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="activity2-min rounded-lg pa-3" @click="goExtension">
+            <div v-if="is_show_commission.is_open == 1" class="activity2-min rounded-lg pa-3" @click="goExtension">
                 <div class="text-24">
                     <span>
                         {{LangUtil("推广赚钱")}}

@@ -12,56 +12,66 @@ import getProxy from "@/core/global/getProxy";
 import page_game_list_chess from "../page_game_list_chess";
 import GameProxy from "@/proxy/GameProxy";
 import PageHomeProxy from "../page_home/proxy/PageHomeProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
     homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
     pageGameListProxy: PageGameListProxy = getProxy(PageGameListProxy);
-    menuList = [
-        {
-            id: 0,
-            name: LangUtil("首页"),
-            icon: require(`@/_skin001/assets/icon/icon_home.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
-            path: "/",
-        },
-        {
-            id: 1,
-            name: LangUtil("足球"),
-            icon: require(`@/_skin001/assets/icon/icon_soccer.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_soccer1.png`),
-            path: "/page_game_soccer",
-        },
-        {
-            id: 2,
-            name: LangUtil("娱乐城"),
-            icon: require(`@/_skin001/assets/icon/icon_play.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_play1.png`),
-            path: "/page_game_list",
-        },
-        // {
-        //     id: 3,
-        //     name: LangUtil("棋牌"),
-        //     icon: require(`@/_skin001/assets/icon/icon_chess.png`),
-        //     icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
-        //     path: "/page_game_list_chess",
-        // },
-        {
-            id: 4,
-            name: LangUtil("返水"),
-            icon: require(`@/_skin001/assets/icon/icon_mine.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
-            path: "/page_mine",
-        },
-        {
-            id: 5,
-            name: LangUtil("推广"),
-            icon: require(`@/_skin001/assets/icon/icon_extension.png`),
-            icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
-            path: "/page_extension",
-        },
-    ];
+
+    get menuList() {
+        const list = [
+            {
+                id: 0,
+                name: LangUtil("首页"),
+                icon: require(`@/_skin001/assets/icon/icon_home.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
+                path: "/",
+            },
+            {
+                id: 1,
+                name: LangUtil("足球"),
+                icon: require(`@/_skin001/assets/icon/icon_soccer.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_soccer1.png`),
+                path: "/page_game_soccer",
+            },
+            {
+                id: 2,
+                name: LangUtil("娱乐城"),
+                icon: require(`@/_skin001/assets/icon/icon_play.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_play1.png`),
+                path: "/page_game_list",
+            },
+            // {
+            //     id: 3,
+            //     name: LangUtil("棋牌"),
+            //     icon: require(`@/_skin001/assets/icon/icon_chess.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
+            //     path: "/page_game_list_chess",
+            // },
+            {
+                id: 4,
+                name: LangUtil("返水"),
+                icon: require(`@/_skin001/assets/icon/icon_mine.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
+                path: "/page_mine",
+            },
+            {
+                id: 5,
+                name: LangUtil("推广"),
+                icon: require(`@/_skin001/assets/icon/icon_extension.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
+                path: "/page_extension",
+            },
+        ];
+
+        if(GamePlatConfig.config.is_show_commission.is_open == 0) {
+            list.pop();
+        }
+ 
+        return list;
+    }
 
     routerPath = this.$router.app.$route.path;
     @Watch("$route")

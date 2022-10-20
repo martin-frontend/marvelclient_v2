@@ -15,6 +15,7 @@ import { number } from "echarts";
 import { id } from "ethers/lib/utils";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import getProxy from "@/core/global/getProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class Activity extends AbstractView {
@@ -26,6 +27,8 @@ export default class Activity extends AbstractView {
     pageData = this.myProxy.pageData;
 
     moneyFormat = moneyFormat;
+
+    is_show_commission = GamePlatConfig.config.is_show_commission;
 
     /**判断登入 */
     get isUserLogin() {

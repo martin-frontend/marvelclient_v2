@@ -41,7 +41,7 @@ module core {
         register_types: number[];
         /**安全设置:1-邮箱验证|2-短信验证 */
         validate_type: number[];
-        /**是否显示推广赚钱 */
+        /**是否显示推广赚钱: 0-不显示 1-显示 */
         is_show_commission: { is_open: number };
     }
 }

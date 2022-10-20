@@ -46,6 +46,9 @@ export default class PageGameSoccer extends AbstractView {
                 gameFrame.style.height = (document.body.clientHeight - 55) + "px";
             }
         }
+        //ios是否能自动隐藏状态栏呢？
+        const bodyTag = document.getElementsByTagName('body')[0];
+        bodyTag.style.height = document.documentElement.clientWidth / screen.width * screen.height + 'px';
     }
 
     onFullScreen() {

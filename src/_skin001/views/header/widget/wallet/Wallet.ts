@@ -4,7 +4,6 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import router from "@/router";
 import dialog_game_rate from "@/views/dialog_game_rate";
 import dialog_recharge from "@/views/dialog_recharge";
 import { Prop, Watch, Component } from "vue-property-decorator";
@@ -21,7 +20,7 @@ export default class Wallet extends AbstractView {
 
     onItemClick(key: string) {
         this.gameProxy.setCoin(key);
-        if (router.currentRoute.path == "/page_game_play") {
+        if (this.$router.currentRoute.path == "/page_game_play" || this.$router.currentRoute.path == "/page_game_soccer") {
             const gameProxy: GameProxy = this.getProxy(GameProxy);
             gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
         }

@@ -15,11 +15,11 @@ export default class PageGameSoccer extends AbstractView {
     get gameFrameClass() {
         if (this.$vuetify.breakpoint.mobile) {
             //@ts-ignore
-            if (window.navigator.standalone) {
-                return "frame-mobile-standalone";
-            } else {
+            // if (window.navigator.standalone) {
+                // return "frame-mobile-standalone";
+            // } else {
                 return "frame-mobile";
-            }
+            // }
         } else {
             return "frame";
         }
@@ -33,12 +33,12 @@ export default class PageGameSoccer extends AbstractView {
         if (!this.myProxy.pageData.isAction) {
             this.$router.replace("/");
         }
-        const body = document.querySelector("html");
-        if (body && this.$vuetify.breakpoint.mobile) {
-            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                body.style.overflow = "hidden";
-            }
-        }
+        // const body = document.querySelector("html");
+        // if (body && this.$vuetify.breakpoint.mobile) {
+        //     if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        //         body.style.overflow = "hidden";
+        //     }
+        // }
         //@ts-ignore
         if (window.navigator.standalone) {
             const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
@@ -46,9 +46,6 @@ export default class PageGameSoccer extends AbstractView {
                 gameFrame.style.height = (document.body.clientHeight - 55) + "px";
             }
         }
-        //ios是否能自动隐藏状态栏呢？
-        const bodyTag = document.getElementsByTagName('body')[0];
-        bodyTag.style.height = document.documentElement.clientWidth / screen.width * screen.height + 'px';
     }
 
     onFullScreen() {
@@ -71,9 +68,9 @@ export default class PageGameSoccer extends AbstractView {
 
     destroyed() {
         super.destroyed();
-        const body = document.querySelector("html");
-        if (body) {
-            body.style.overflow = "auto";
-        }
+        // const body = document.querySelector("html");
+        // if (body) {
+        //     body.style.overflow = "auto";
+        // }
     }
 }

@@ -2,26 +2,26 @@
     class="box rounded-lg d-flex align-center colorTextBlue001--text"
     :class="data.status != 1 ? 'filter-gray' : 'cursor-pointer' "
     width="100%"
-    :height="$vuetify.breakpoint.xsOnly ? 70 : 100"
+    :height="$vuetify.breakpoint.mobile ? 70 : 100"
     @click="goGamePlay"
 >
-    <img :class="$vuetify.breakpoint.xsOnly ? 'mx-3' : 'mx-5'" :src="data.icon" :width="$vuetify.breakpoint.xsOnly ? 38 : 60" />
+    <img :class="$vuetify.breakpoint.mobile ? 'mx-3' : 'mx-5'" :src="data.icon" :width="$vuetify.breakpoint.mobile ? 38 : 60" />
     <div>
-        <div :class="$vuetify.breakpoint.xsOnly ? 'text-16' : 'text-18'">{{data.vendor_product_name}}</div>
-        <div class="colorText2--text" :class="$vuetify.breakpoint.xsOnly ? 'text-12' : 'text-16'">{{data.vendor_name}}</div>
+        <div :class="$vuetify.breakpoint.mobile ? 'text-16' : 'text-18'">{{data.vendor_product_name}}</div>
+        <div class="colorText2--text" :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-16'">{{data.vendor_name}}</div>
     </div>
     <v-spacer />
-    <div v-if="data.status != 1" class="wait-text mr-4" :class="$vuetify.breakpoint.xsOnly ? 'text-12' : 'text-18' ">{{LangUtil("敬请期待")}}....</div>
+    <div v-if="data.status != 1" class="wait-text mr-4" :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-18' ">{{LangUtil("敬请期待")}}....</div>
     <v-sheet
         class="rounded-pill d-flex align-center justify-center"
-        :class="$vuetify.breakpoint.xsOnly ? 'mr-3' : 'mr-7' "
-        :width="$vuetify.breakpoint.xsOnly?30:40"
-        :height="$vuetify.breakpoint.xsOnly?30:40"
+        :class="$vuetify.breakpoint.mobile ? 'mr-3' : 'mr-7' "
+        :width="$vuetify.breakpoint.mobile?30:40"
+        :height="$vuetify.breakpoint.mobile?30:40"
         color="#141F42"
     >
-        <v-icon :size="$vuetify.breakpoint.xsOnly?20:30" color="#31458E">mdi-chevron-right</v-icon>
+        <v-icon :size="$vuetify.breakpoint.mobile?20:30" color="#31458E">mdi-chevron-right</v-icon>
     </v-sheet>
-    <!-- <v-badge dot color="pink" :class="$vuetify.breakpoint.xsOnly ? 'mr-5' : 'mr-7'" v-if="category == 32">
-        <div class="font-weight-bold" :class="$vuetify.breakpoint.xsOnly ? 'text-16' : 'text-30' " style="color: #465fb7">LIVE</div>
+    <!-- <v-badge dot color="pink" :class="$vuetify.breakpoint.mobile ? 'mr-5' : 'mr-7'" v-if="category == 32">
+        <div class="font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'text-16' : 'text-30' " style="color: #465fb7">LIVE</div>
     </v-badge> -->
 </v-sheet>

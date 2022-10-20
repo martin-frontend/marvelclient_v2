@@ -71,18 +71,18 @@
     </div>
 
     <div class="mt-4" v-else>
-        <v-sheet class="item text-18 d-flex align-center px-5 pr-16" height="40">
-            <v-sheet color="transparent" min-width="410">{{competition.competition_name}}</v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%"> {{LangUtil("独赢")}} </v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%"> {{LangUtil("让球")}} </v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%"> {{LangUtil("大小")}} </v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1430">
+        <v-sheet class="item text-16 d-flex align-center px-5 pr-16" height="40">
+            <v-sheet class="d-flex align-center" color="transparent" min-width="410">{{competition.competition_name}}</v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%"> {{LangUtil("独赢")}} </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%"> {{LangUtil("让球")}} </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%"> {{LangUtil("大小")}} </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1430">
                 {{LangUtil("半场独赢")}}
             </v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1580">
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1580">
                 {{LangUtil("半场让球")}}
             </v-sheet>
-            <v-sheet class="d-flex justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1760">
+            <v-sheet class="d-flex align-center justify-center mr-2" color="transparent" width="100%" v-if="$vuetify.breakpoint.width > 1760">
                 {{LangUtil("半场大小")}}
             </v-sheet>
         </v-sheet>

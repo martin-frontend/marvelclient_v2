@@ -8,7 +8,22 @@
                 <v-icon>mdi-keyboard-backspace</v-icon>
             </v-btn>
         </div>
-        <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true"></iframe>
+        <div v-if="$vuetify.breakpoint.mobile">
+            <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        <div style="font-size:150px">123</div>
+        </div>
+        
+        <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true" @touchstart="onTouchStart" @touchmove="onTouchMove"></iframe>
     </v-sheet>
     <!-- <RecentBetting class="mt-4" v-if="!$vuetify.breakpoint.mobile" /> -->
     <!-- <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$vuetify.breakpoint.mobile">

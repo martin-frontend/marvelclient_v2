@@ -66,6 +66,21 @@ export default class PageGameSoccer extends AbstractView {
         });
     }
 
+    scrollY = 0;
+    clientY = 0;
+    onTouchStart(e:any){
+        this.clientY = e.touches[0].clientY;
+        const obj = document.body.scrollTop ? document.body : document.documentElement;
+        this.scrollY = obj.scrollTop;
+    }
+
+    onTouchMove(e:any){
+        console.log(e);
+        const cy = e.touches[0].clientY;
+        const obj = document.body.scrollTop ? document.body : document.documentElement;
+        obj.scrollTop = this.scrollY - (cy - this.clientY);
+    }
+
     destroyed() {
         super.destroyed();
         // const body = document.querySelector("html");

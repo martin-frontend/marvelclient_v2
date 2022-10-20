@@ -49,7 +49,7 @@
                     “{{ LangUtil("添加到主屏幕") }}”
                 </div>
                 <div class="d-flex justify-center mb-3">
-                    <v-img class="ml-2" src="@/assets/guide/img03.png" max-width="200" max-height="150"></v-img>
+                    <v-img class="ml-2" :src="guideImg" max-width="200" max-height="150"></v-img>
                 </div>
                 <div class="d-flex justify-center">
                     <v-icon color="colorTextGold">mdi-arrow-down-bold</v-icon>

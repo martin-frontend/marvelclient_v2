@@ -79,7 +79,9 @@ export default class PageHomeProxy extends puremvc.Proxy {
     }
 
     set_vendor_96_products(data:any){
-        this.pageData.compData = data;
+        if(Object.keys(data).length > 0) {
+            this.pageData.compData = data;
+        }
     }
 
     api_plat_var_stake_info() {
@@ -114,6 +116,6 @@ export default class PageHomeProxy extends puremvc.Proxy {
             market_type =
                 "MATCH_ODDS,MATCH_ODDS_HALF_TIME,ASIAN_HANDICAP,ASIAN_HANDICAP_HALF_TIME,ASIAN_OVER_UNDER,ASIAN_OVER_UNDER_HALF_TIME";
         }
-        this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 5 });
+        this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
     }
 }

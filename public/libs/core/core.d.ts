@@ -2447,6 +2447,10 @@ declare module core {
         register_types: number[];
         /**安全设置:1-邮箱验证|2-短信验证 */
         validate_type: number[];
+        /**是否显示推广赚钱 */
+        is_show_commission: {
+            is_open: number;
+        };
     }
 }
 declare module core {

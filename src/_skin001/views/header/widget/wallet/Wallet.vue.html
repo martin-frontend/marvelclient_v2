@@ -1,9 +1,9 @@
-<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:45" class="rounded-pill d-flex align-center">
+<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.mobile?30:45" class="rounded-pill d-flex align-center">
     <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y nudge-bottom="7">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
-                    v-if="$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    v-if="$vuetify.breakpoint.mobile && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                     class="align-center d-flex rounded-pill ml-2 pr-2"
                     color="colorPanelTitleBg"
                     min-width="80"
@@ -31,7 +31,7 @@
                     color="colorPanelTitleBg"
                     min-width="90"
                     height="45"
-                    v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    v-if="!$vuetify.breakpoint.mobile && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                 >
                     <v-img
                         class="ml-2"
@@ -87,10 +87,10 @@
         </v-sheet>
     </v-menu>
 
-    <v-btn v-if="$vuetify.breakpoint.xsOnly" icon class="rounded-pill white--text gradient-blue mr-1" x-small  @click="onCoinIn" elevation="0">
+    <v-btn v-if="$vuetify.breakpoint.mobile" icon class="rounded-pill white--text gradient-blue mr-1" x-small  @click="onCoinIn" elevation="0">
         <v-icon size="22">mdi-plus-circle</v-icon>
     </v-btn>
-    <v-btn v-if="$vuetify.breakpoint.xsOnly" icon class="rounded-pill white--text gradient-blue mr-1" x-small  @click="onCoinOut" elevation="0">
+    <v-btn v-if="$vuetify.breakpoint.mobile" icon class="rounded-pill white--text gradient-blue mr-1" x-small  @click="onCoinOut" elevation="0">
         <v-icon size="22">mdi-minus-circle</v-icon>
     </v-btn>
     <v-btn v-else class="rounded-pill white--text mr-3 gradient-blue" height="38"  @click="onCoinIn" elevation="0">

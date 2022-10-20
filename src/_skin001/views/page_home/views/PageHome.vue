@@ -5,7 +5,7 @@
 import Component from "vue-class-component";
 import PageHome from "./PageHome";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import GameSlideGroup from "@/views/widget/game_slide_group/GameSlideGroup.vue";
+import GameSlideGroup from "@/_skin001/views/widget/game_slide_group/GameSlideGroup.vue";
 // import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";

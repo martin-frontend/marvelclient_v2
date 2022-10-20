@@ -1,7 +1,7 @@
 <div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" v-if="matches.length>0">
     <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
         <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[1] }}</v-icon>
-        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-16'">{{ LangUtil("热门赛事") }}</div>
+        <div :class="$vuetify.breakpoint.xsOnly?'text-14':'text-16'">{{ LangUtil("热门赛事") }}</div>
     </div>
     <SoccerMatcheItem v-for="(item, index) of matches" :key="index" :matche="item" />
 </div>

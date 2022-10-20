@@ -2,7 +2,7 @@
     <div v-if="$vuetify.breakpoint.mobile">
         <Advertise />
         <Marquee1 class="mt-1" />
-        <Activity />
+        <Activity v-if="$vuetify.breakpoint.xsOnly"/>
     </div>
     <div v-else>
         <Activity />

@@ -1,8 +1,8 @@
 <template>
     <v-app>
         <div id="page" style="background-color: #131e36">
-            <HeaderMobile v-if="$vuetify.breakpoint.xsOnly && isShowHeader" />
-            <Header v-if="!$vuetify.breakpoint.xsOnly" v-show="isShowHeader" />
+            <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
+            <Header v-if="!$vuetify.breakpoint.mobile" v-show="isShowHeader" />
             <v-main
                 style="background-color: #131e36"
                 :class="$vuetify.breakpoint.mobile && $route.path == '/page_game_soccer' ? 'mobile-soccer' : ''"

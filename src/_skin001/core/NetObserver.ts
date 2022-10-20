@@ -18,6 +18,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import page_game_play from "@/_skin001/views/page_game_play";
 import page_game_soccer from "../views/page_game_soccer";
 import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
+import { MapLang } from "@/core/map/MapLang";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -60,9 +61,10 @@ export default class NetObserver extends AbstractMediator {
                         core.lang = userLang;
                     } else {
                         //@ts-ignore
-                        const sysLang = (navigator.browserLanguage || navigator.language).replace("-", "_");
-                        if (LangConfig.language[sysLang]) {
-                            core.lang = sysLang;
+                        const sysLang:string = (navigator.browserLanguage || navigator.language);
+                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0,2)];
+                        if (LangConfig.language[sysLangCode]) {
+                            core.lang = sysLangCode;
                         } else {
                             core.lang = LangConfig.main_language;
                         }

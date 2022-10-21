@@ -48,13 +48,20 @@ export default class PageGameSoccer extends AbstractView {
             }
         }
 
-        const body = document.getElementsByTagName("body")[0];
-        body.addEventListener("touchend", this.onTouchEnd);
+        setInterval(()=>{
+            const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
+            if(gameFrame){
+                gameFrame.style.height = (window.innerHeight -55) + "px";
+            }
+        }, 100);
+
+        // const body = document.getElementsByTagName("body")[0];
+        // body.addEventListener("touchend", this.onTouchEnd);
     }
 
-    onTouchEnd(){
-        ScrollUtil(500, 0);
-    }
+    // onTouchEnd(){
+    //     ScrollUtil(500, 0);
+    // }
 
     onFullScreen() {
         const gameFrame = document.getElementById("gameFrame");
@@ -80,7 +87,7 @@ export default class PageGameSoccer extends AbstractView {
         // if (body) {
         //     body.style.overflow = "auto";
         // }
-        const body = document.getElementsByTagName("body")[0];
-        body.removeEventListener("touchend", this.onTouchEnd);
+        // const body = document.getElementsByTagName("body")[0];
+        // body.removeEventListener("touchend", this.onTouchEnd);
     }
 }

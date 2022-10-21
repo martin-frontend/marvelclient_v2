@@ -67,9 +67,8 @@
                 </div>
                 <div class="px-6 pb-3 d-flex align-center">
                     <v-btn
-                        width="20%"
                         height="40"
-                        class="rounded-pill font-weight-bold mx-1"
+                        class="rounded-pill font-weight-bold flex-1"
                         elevation="0"
                         :text="pageData.tabIndex != 0"
                         :color="pageData.tabIndex == 0 ? 'colorBtnBg' : 'colorText1'"
@@ -78,9 +77,8 @@
                         {{LangUtil("充值")}}
                     </v-btn>
                     <v-btn
-                        width="20%"
                         height="40"
-                        class="rounded-pill font-weight-bold mx-1"
+                        class="rounded-pill font-weight-bold flex-1"
                         elevation="0"
                         :text="pageData.tabIndex != 1"
                         :color="pageData.tabIndex == 1 ? 'colorBtnBg' : 'colorText1'"
@@ -89,9 +87,8 @@
                         {{LangUtil("兑换")}}
                     </v-btn>
                     <v-btn
-                        width="20%"
                         height="40"
-                        class="rounded-pill font-weight-bold mx-1"
+                        class="rounded-pill font-weight-bold flex-1"
                         elevation="0"
                         :text="pageData.tabIndex != 2"
                         :color="pageData.tabIndex == 2 ? 'colorBtnBg' : 'colorText1'"
@@ -100,8 +97,8 @@
                     >
                         {{LangUtil("划转")}}
                     </v-btn>
-                    <v-spacer />
-
+                </div>
+                <div class="ml-6">
                     <v-btn v-if="pageData.tabIndex !== 2" small color="colorText1 colorBlue--text" @click="goRecord">
                         <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
                     </v-btn>

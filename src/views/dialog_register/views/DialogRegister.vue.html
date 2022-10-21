@@ -60,6 +60,7 @@
                     :placeholder="LangUtil('请输入注册账号（4-20位）')"
                     maxlength="20"
                     v-model="form.username"
+                    @blur="onUsernameBlur"
                 />
                 <CustomInput
                     v-if="form.register_type==2"

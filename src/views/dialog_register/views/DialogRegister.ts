@@ -119,6 +119,13 @@ export default class DialogRegister extends AbstractView {
         }
     }
 
+    onUsernameBlur() {
+        if(this.form.username == "") return;
+        if(this.form.username.length < 4) {
+            dialog_message.success(LangUtil("账号太短"));
+        }
+    }
+
     onPasswordBlur() {
         if(this.form.password == "") return;
         if(!checkUserPassword(this.form.password)) {

@@ -5,6 +5,7 @@ import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
+import ScrollUtil from "@/core/global/ScrollUtil";
 
 @Component
 export default class PageGameSoccer extends AbstractView {
@@ -46,6 +47,13 @@ export default class PageGameSoccer extends AbstractView {
                 gameFrame.style.height = (document.body.clientHeight - 55) + "px";
             }
         }
+
+        const body = document.getElementsByTagName("body")[0];
+        body.addEventListener("touchend", this.onTouchEnd);
+    }
+
+    onTouchEnd(){
+        ScrollUtil(500, 0);
     }
 
     onFullScreen() {
@@ -72,5 +80,7 @@ export default class PageGameSoccer extends AbstractView {
         // if (body) {
         //     body.style.overflow = "auto";
         // }
+        const body = document.getElementsByTagName("body")[0];
+        body.removeEventListener("touchend", this.onTouchEnd);
     }
 }

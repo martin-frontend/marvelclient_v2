@@ -9,6 +9,7 @@ import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -115,6 +116,23 @@ export default class DialogRegister extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.api_public_auth_code();
+        }
+    }
+
+    onPasswordBlur() {
+        if(this.form.password == "") return;
+        if(!checkUserPassword(this.form.password)) {
+            dialog_message.success(LangUtil("密码太短"));
+        }
+    }
+
+    onPasswordConfirmBlur() {
+        if(this.form.password == "") return;
+        if(!checkUserPassword(this.form.password)) {
+            dialog_message.success(LangUtil("密码太短"));
+        }
+        if(this.form.password !== this.form.password_confirm) {
+            dialog_message.success(LangUtil("密码不一致"));
         }
     }
 }

@@ -145,12 +145,15 @@
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="form.password"
+                    @blur="onPasswordBlur"
+
                 />
                 <CustomPassword
                     class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="form.password_confirm"
+                    @blur="onPasswordConfirmBlur"
                 />
                 <CustomInput
                     v-if="form.register_type == 1"

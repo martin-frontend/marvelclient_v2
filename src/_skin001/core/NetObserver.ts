@@ -113,6 +113,7 @@ export default class NetObserver extends AbstractMediator {
                         const homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
                         if(homeProxy.pageData.event_id){
                             page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                            homeProxy.pageData.event_id = 0;
                         }else{
                             page_game_soccer.show(body.url);
                         }

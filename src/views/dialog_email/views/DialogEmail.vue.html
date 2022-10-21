@@ -84,7 +84,7 @@
             ></v-pagination>
         </v-card-text>
         <!-- 手机显示方式 -->
-        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="mb-3 pa-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
             <div class="gradient-bg d-flex align-center px-5">
                 <div class="text-18">{{LangUtil("消息中心")}}</div>
                 <v-spacer />
@@ -139,7 +139,7 @@
             class="px-3 listbox-mobile flex-1"
         >
             <ListNodata v-if="pageData.list.length == 0" />
-            <v-sheet class="px-3 py-2 rounded-lg my-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+            <v-sheet class="px-3 py-2 rounded-lg mb-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                 <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                 <div class="ml-4" style="width: 100%">
                     <div class="d-flex justify-space-between mb-2">

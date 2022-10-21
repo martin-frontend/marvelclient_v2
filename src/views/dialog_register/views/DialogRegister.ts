@@ -127,7 +127,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     onPasswordConfirmBlur() {
-        if(this.form.password == "") return;
+        if(this.form.password_confirm == "") return;
         if(!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }

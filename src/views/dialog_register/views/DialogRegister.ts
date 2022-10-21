@@ -122,7 +122,7 @@ export default class DialogRegister extends AbstractView {
     onUsernameBlur() {
         if(this.form.username == "") return;
         if(this.form.username.length < 4) {
-            dialog_message.success(LangUtil("账号太短"));
+            dialog_message.success(LangUtil("账号小于4位，请重新输入"));
         }
     }
 

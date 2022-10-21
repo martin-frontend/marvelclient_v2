@@ -33,7 +33,7 @@ export default class PageGameSoccer extends AbstractView {
 
         this.timer = setInterval(() => {
             const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
-            if (gameFrame) {
+            if (gameFrame && this.$vuetify.breakpoint.mobile) {
                 gameFrame.style.height = window.innerHeight - 55 + "px";
             }
         }, 100);

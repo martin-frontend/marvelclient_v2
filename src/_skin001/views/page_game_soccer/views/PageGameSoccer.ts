@@ -12,15 +12,11 @@ export default class PageGameSoccer extends AbstractView {
     LangUtil = LangUtil;
     myProxy: PageGameSoccerProxy = this.getProxy(PageGameSoccerProxy);
     pageData = this.myProxy.pageData;
+    timer = 0;
 
     get gameFrameClass() {
         if (this.$vuetify.breakpoint.mobile) {
-            //@ts-ignore
-            // if (window.navigator.standalone) {
-                // return "frame-mobile-standalone";
-            // } else {
-                return "frame-mobile";
-            // }
+            return "frame-mobile";
         } else {
             return "frame";
         }
@@ -34,34 +30,14 @@ export default class PageGameSoccer extends AbstractView {
         if (!this.myProxy.pageData.isAction) {
             this.$router.replace("/");
         }
-        // const body = document.querySelector("html");
-        // if (body && this.$vuetify.breakpoint.mobile) {
-        //     if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        //         body.style.overflow = "hidden";
-        //     }
-        // }
-        //@ts-ignore
-        if (window.navigator.standalone) {
-            const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
-            if(gameFrame){
-                gameFrame.style.height = (document.body.clientHeight - 55) + "px";
-            }
-        }
 
-        setInterval(()=>{
-            const gameFrame:HTMLElement = <any>this.$refs.gameFrame;
-            if(gameFrame){
-                gameFrame.style.height = (window.innerHeight -55) + "px";
+        this.timer = setInterval(() => {
+            const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
+            if (gameFrame) {
+                gameFrame.style.height = window.innerHeight - 55 + "px";
             }
         }, 100);
-
-        // const body = document.getElementsByTagName("body")[0];
-        // body.addEventListener("touchend", this.onTouchEnd);
     }
-
-    // onTouchEnd(){
-    //     ScrollUtil(500, 0);
-    // }
 
     onFullScreen() {
         const gameFrame = document.getElementById("gameFrame");
@@ -83,11 +59,6 @@ export default class PageGameSoccer extends AbstractView {
 
     destroyed() {
         super.destroyed();
-        // const body = document.querySelector("html");
-        // if (body) {
-        //     body.style.overflow = "auto";
-        // }
-        // const body = document.getElementsByTagName("body")[0];
-        // body.removeEventListener("touchend", this.onTouchEnd);
+        clearInterval(this.timer);
     }
 }

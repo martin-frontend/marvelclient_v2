@@ -1,39 +1,65 @@
-.item{
-    background-image: linear-gradient(#212A4D, #19244C);
+.item {
+    background-image: linear-gradient(#212a4d, #19244c);
     padding: 8px;
     border-radius: 4px;
     margin-top: 8px;
     // height: 118px;
 }
+.mobile-item {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    // height: 118px;
+}
+.text-gray {
+    color: #302f2f;
+}
+.text-gray1 {
+    color: #9fa3a9;
+}
+.text-gray2 {
+    color: #3b3b3b;
+}
 .custom-hr {
-    border-top: 1px dashed #4C5E7F;
+    border-top: 1px dashed #4c5e7f;
     margin-left: -8px;
     margin-right: -8px;
     margin-top: 4px;
     margin-bottom: 5px;
 }
-.item-selection{
-    width: 85px;
-    height: 25px;
-    border: 1px solid #607497;
-    border-radius: 4px;
-}
-.min-text{
+.min-text {
     transform: scale(0.7);
 }
-.min-card{
+.min-card {
     transform: scale(0.8);
 }
-.odds-img{
-    margin-left:2px;
-    margin-right:2px;
+.odds-img {
+    margin-left: 2px;
+    margin-right: 2px;
 }
-.num_width{
+.num_width {
     min-width: 16px;
 }
-.num_red_width{
+.num_red_width {
     min-width: 16px;
 }
 .flex-1 {
     flex: 1;
+}
+
+.text-green {
+    color: #2B9400;
+}
+
+.text-red {
+    color: #E7314B;
+}
+
+.yellow-card {
+    background-image: url('~@/_skin002/assets/icon/icon_yellow_card.png');
+    background-color: transparent;
+}
+
+.red-card {
+    background-image: url('~@/_skin002/assets/icon/icon_red_card.png');
+    background-color: transparent;
 }

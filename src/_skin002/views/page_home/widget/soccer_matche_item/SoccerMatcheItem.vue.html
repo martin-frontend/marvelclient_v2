@@ -1,72 +1,88 @@
 <div>
-    <div class="item text-12" v-if="$vuetify.breakpoint.mobile" @click="onEnter">
-        <div class="colorTextBlue001--text text-14">{{competition.competition_name}}</div>
-        <div class="d-flex align-center colorText2--text mt-1">
-            <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
-            <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">{{ states.phase_minute }}{{LangUtil("分钟")}}</div>
-
-            <div v-if="!states.phase_minute" class="min-text ml-n3">{{downcount()}}</div>
-            <v-spacer />
-            <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="12" />
-            <div v-if="states.corners_ft" class="mr-5">{{states.corners_ft}}</div>
-            <div class="white--text colorText2--text">{{LangUtil("让球")}}</div>
-            <div class="white--text ml-4 colorText2--text">{{LangUtil("大小")}}</div>
-            <div class="cursor-pointer ml-11">{{LangUtil("进入")}}</div>
+    <div class="mobile-item  text-12 py-2 mt-2" v-if="$vuetify.breakpoint.mobile" @click="onEnter">
+        <div class="d-flex align-center">
+            <v-img src="@/_skin002/assets/icon/icon_blue.png" :max-height="14" :max-width="5" class="mr-1"> </v-img>
+            <div class="text-14 text-gray">{{competition.competition_name}}</div>
         </div>
-        <div class="custom-hr"></div>
-        <div class="d-flex align-center colorTextBlue001--text">
-            <img :src="getTeamIcon(matche.home_team_icon)" width="20" />
-            <div class="ml-1 text-truncate text-14">{{matche.home_team}}</div>
-            <v-sheet
-                class="rounded d-flex justify-center min-card"
-                min-width="14"
-                color="red"
-                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0] != '0'"
-                >{{getValues(states.red_cards_ft)[0]}}</v-sheet
-            >
-            <v-sheet
-                class="rounded d-flex justify-center black--text min-card"
-                min-width="14"
-                color="yellow"
-                v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[0] != '0' "
-                >{{getValues(states.yellow_cards_ft)[0]}}</v-sheet
-            >
-            <v-spacer />
-            <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[0]}}</div>
+        <div class="py-2 px-1 mx-2 mt-1 rounded" style="background-color: #fff">
+            <div class="d-flex align-center text-gray2 rounded pa-1" style="background-color: #f1f1f1">
+                <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
+                <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">{{ states.phase_minute }}{{LangUtil("分钟")}}</div>
 
-            <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[0]">
-                <div class="ml-1 text-14">{{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[0] )}}</div>
-            </BtnFixedBet>
-            <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[0]">
-                <div class="ml-1 text-14">{{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[0] )}}</div>
-            </BtnFixedBet>
-        </div>
-        <div class="d-flex align-center mt-1 colorTextBlue001--text">
-            <img :src="getTeamIcon(matche.away_team_icon)" width="20" />
-            <div class="ml-1 text-truncate text-14">{{matche.away_team}}</div>
-            <v-sheet
-                class="rounded d-flex justify-center min-card"
-                min-width="14"
-                color="red"
-                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[1] != '0' "
-                >{{getValues(states.red_cards_ft)[1]}}</v-sheet
-            >
-            <v-sheet
-                class="rounded d-flex justify-center black--text min-card"
-                min-width="14"
-                color="yellow"
-                v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[1] != '0' "
-                >{{getValues(states.yellow_cards_ft)[1]}}</v-sheet
-            >
-            <v-spacer />
-            <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[1]}}</div>
+                <div v-if="!states.phase_minute" class="min-text ml-n3">{{downcount()}}</div>
+                <v-spacer />
+                <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="12" />
+                <div v-if="states.corners_ft" class="mr-5 text-gray1">{{states.corners_ft}}</div>
+                <div class="text-gray1">{{LangUtil("让球")}}</div>
+                <div class="ml-4 text-gray1">{{LangUtil("大小")}}</div>
+                <div class="cursor-pointer ml-11 text-gray1">{{LangUtil("进入")}}</div>
+            </div>
+            <div class="pt-3 pt-1 text-gray2">
+                <div class="d-flex align-center">
+                    <img :src="getTeamIcon(matche.home_team_icon)" width="20" />
+                    <div class="ml-1 text-truncate text-14">{{matche.home_team}}</div>
+                    <div class="d-flex ml-1">
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card red-card"
+                            min-width="14"
+                            v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0] != '0'"
+                            >{{getValues(states.red_cards_ft)[0]}}</v-sheet
+                        >
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card yellow-card"
+                            min-width="14"
+                            v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[0] != '0' "
+                            >{{getValues(states.yellow_cards_ft)[0]}}</v-sheet
+                        >
+                    </div>
+                    <v-spacer />
+                    <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[0]}}</div>
 
-            <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[1]">
-                <div class="ml-1 text-14">{{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[1] )}}</div>
-            </BtnFixedBet>
-            <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[1]">
-                <div class="ml-1 text-14">{{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[1] )}}</div>
-            </BtnFixedBet>
+                    <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[0]">
+                        <div class="ml-1 text-12 text-green">
+                            {{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[0] )}}
+                        </div>
+                    </BtnFixedBet>
+                    <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[0]">
+                        <div class="ml-1 text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[0] )}}
+                        </div>
+                    </BtnFixedBet>
+                </div>
+                <div class="d-flex align-center mt-1">
+                    <img :src="getTeamIcon(matche.away_team_icon)" width="20" />
+                    <div class="ml-1 text-truncate text-14">{{matche.away_team}}</div>
+                    <div class="d-flex ml-1">
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card red-card"
+                            min-width="14"
+                            color="transparents"
+                            v-if="states.red_cards_ft && getValues(states.red_cards_ft)[1] != '0' "
+                            >{{getValues(states.red_cards_ft)[1]}}</v-sheet
+                        >
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card red-card"
+                            min-width="14"
+                            color="transparents"
+                            v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[1] != '0' "
+                            >{{getValues(states.yellow_cards_ft)[1]}}</v-sheet
+                        >
+                    </div>
+                    <v-spacer />
+                    <div class="mr-1 text-14 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[1]}}</div>
+
+                    <BtnFixedBet class="mr-2" :selection="getSelections('ASIAN_HANDICAP')[1]">
+                        <div class="ml-1 text-12 text-red">
+                            {{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[1] )}}
+                        </div>
+                    </BtnFixedBet>
+                    <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[1]">
+                        <div class="ml-1 text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[1] )}}
+                        </div>
+                    </BtnFixedBet>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -115,16 +131,11 @@
                     </div>
                 </template>
             </v-sheet>
-            <v-divider vertical class="mx-1" style="border-style: dashed;" />
+            <v-divider vertical class="mx-1" style="border-style: dashed" />
 
             <v-sheet width="100%" class="d-flex flex-column align-center cursor-pointer" @click="onEnter" color="transparent">
                 <v-sheet width="100%" class="d-flex" color="transparent">
-                    <v-sheet
-                        class="mx-2 mr-4 d-flex flex-column align-space-around"
-                        color="transparent"
-                        max-width="270"
-                        min-width="270"
-                    >
+                    <v-sheet class="mx-2 mr-4 d-flex flex-column align-space-around" color="transparent" max-width="270" min-width="270">
                         <div class="d-flex align-center mb-1 pt-1 flex-1">
                             <v-img :src="getTeamIcon(matche.home_team_icon)" contain max-width="25" width="25" height="25"></v-img>
                             <div class="ml-2 text-truncate">{{matche.home_team}}</div>
@@ -217,7 +228,9 @@
                                 class="mb-1 text-15"
                                 :class="(skey == 2) ? 'mt-37' : ''"
                             >
-                                <div class="ml-2 colorPcTextBlue001--text">{{MarketUtils.getSelectionName("ASIAN_HANDICAP_HALF_TIME", sel)}}</div>
+                                <div class="ml-2 colorPcTextBlue001--text">
+                                    {{MarketUtils.getSelectionName("ASIAN_HANDICAP_HALF_TIME", sel)}}
+                                </div>
                             </BtnFixedBet>
                         </div>
                     </v-sheet>
@@ -231,13 +244,15 @@
                                 class="mb-1 text-15"
                                 :class="skey == 2 ? 'mt-37' : ''"
                             >
-                                <div class="ml-2 colorPcTextBlue001--text">{{MarketUtils.getSelectionName("ASIAN_OVER_UNDER_HALF_TIME", sel)}}</div>
+                                <div class="ml-2 colorPcTextBlue001--text">
+                                    {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER_HALF_TIME", sel)}}
+                                </div>
                             </BtnFixedBet>
                         </div>
                     </v-sheet>
                     <v-sheet class="d-flex align-center cursor-pointer mx-2" color="transparent">
                         <!-- {{matche.market_amount}} <v-icon>mdi-chevron-right</v-icon> -->
-                        <span style="white-space: nowrap;"> {{LangUtil('进入')}} </span>
+                        <span style="white-space: nowrap"> {{LangUtil('进入')}} </span>
                     </v-sheet>
                 </v-sheet>
                 <!-- <v-sheet

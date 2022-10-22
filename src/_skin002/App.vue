@@ -1,11 +1,14 @@
 <template>
     <v-app>
-        <div id="page" style="background-color: #fff">
+        <div id="page" :class="$vuetify.breakpoint.mobile && $route.path == '/' ? 'mobile-background' : 'background'">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
             <Header v-if="!$vuetify.breakpoint.mobile" v-show="isShowHeader" />
             <v-main
-                style="background-color: #fff"
-                :class="$vuetify.breakpoint.mobile && $route.path == '/page_game_soccer' ? 'mobile-soccer' : ''"
+                class="background"
+                :class="{
+                    'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
+                    'mobile-background': $vuetify.breakpoint.mobile && $route.path == '/',
+                }"
             >
                 <router-view />
             </v-main>
@@ -107,4 +110,12 @@ export default class extends APP {}
 .mobile-soccer {
     padding: 0px !important;
 }
+
+.background {
+    background-color: #131e36;
+}
+.mobile-background {
+    background-color: #fff;
+}
+
 </style>

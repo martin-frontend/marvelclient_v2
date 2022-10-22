@@ -1,7 +1,7 @@
 <div :class="$vuetify.breakpoint.mobile ? 'mt-3' : 'mt-8'">
     <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.mobile?'':'mb-2'">
-        <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.mobile?15:24">{{ CategoryIcon[data.category] }}</v-icon>
-        <div :class="$vuetify.breakpoint.mobile?'text-14':''">{{ data.category_name }}</div>
+        <v-icon class="mr-1" :color="$vuetify.breakpoint.mobile?'#3b3b3b':'colorYellow'" :size="$vuetify.breakpoint.mobile?15:24">{{ CategoryIcon[data.category] }}</v-icon>
+        <div :class="$vuetify.breakpoint.mobile?'text-14 text-gray2':''">{{ data.category_name }}</div>
         <v-spacer />
         <v-btn
             v-if="!$vuetify.breakpoint.mobile"

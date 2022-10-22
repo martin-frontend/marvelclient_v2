@@ -4,6 +4,10 @@
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("消息中心")}}</div>
             <v-spacer />
+            <div class="mr-5">
+                <v-icon class="mr-1" color="#667798">mdi-email</v-icon>
+                <span @click="goMail" class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
+            </div>
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
@@ -89,6 +93,10 @@
             <div class="gradient-bg d-flex align-center px-5">
                 <div class="text-18">{{LangUtil("消息中心")}}</div>
                 <v-spacer />
+                <div class="mr-5">
+                    <v-icon class="mr-1" color="#667798">mdi-email</v-icon>
+                    <span @click="goMail" class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
+                </div>
                 <v-btn icon @click="onClose">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
@@ -127,14 +135,19 @@
             </div>
             <v-divider class="my-3 mx-3" />
             <div class="d-flex mx-3 align-center">
-                <span @click="goMail" class="text-decoration-underline colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
                 <v-spacer />
                 <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
                 <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
             </div>
         </v-card-text>
 
-        <LoadMore v-if="$vuetify.breakpoint.xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+        <LoadMore
+            v-if="$vuetify.breakpoint.xsOnly"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            :listNodata="pageData.list.length == 0"
+        >
             <v-sheet class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                 <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                 <div class="ml-4" style="width: 100%">

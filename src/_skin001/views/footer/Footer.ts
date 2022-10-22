@@ -5,6 +5,7 @@ import OpenLink from "@/core/global/OpenLink";
 import dialog_contract from "@/views/dialog_contract";
 import dialog_service from "@/views/dialog_service";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import dialog_official_mail from "../dialog_official_mail";
 
 @Component
 export default class Footer extends AbstractView {
@@ -18,12 +19,12 @@ export default class Footer extends AbstractView {
         dialog_contract.show();
     }
 
-    goTG(){
+    goTG() {
         OpenLink(LangUtil("TG链接"));
     }
 
-    openLink(url:string){
-        OpenLink(url);
+    openMail() {
+        dialog_official_mail.show();
     }
 
     getChannelID() {

@@ -1,0 +1,11 @@
+.marquee-box {
+    width: 100%;
+    overflow: hidden;
+    div {
+        width: fit-content;
+        white-space: nowrap;
+    }
+}
+.box{
+    background-image: linear-gradient(#212A4D, #19244C);
+}

@@ -1,0 +1,41 @@
+.box {
+    background-image: linear-gradient(180deg, #243a5d 0%, #1f2f4b 100%);
+    border-radius: 16px 0 0 16px;
+}
+::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
+    display: none;
+}
+
+.listbox {
+    .listitem:not(:last-child) {
+        border-bottom: 2px solid #1c2b49 !important;
+    }
+    .listitem:hover {
+        background-color: #33415d !important;
+    }
+}
+
+@media screen and (max-width: 1430px) {
+    ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
+        display: flex;
+    }
+
+    .box {
+        border-radius: 16px;
+    }
+
+    .listbox {
+        display: none;
+    }
+}
+@media screen and (max-width: 750px) {
+    .box {
+        border-radius: 8px;
+    }
+}
+
+::v-deep.v-carousel .v-carousel__controls .v-item-group .v-carousel__controls__item {
+    margin: -5px;
+    margin-top: 25px;
+    transform: scale(0.5);
+}

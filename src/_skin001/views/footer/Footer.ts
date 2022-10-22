@@ -23,7 +23,7 @@ export default class Footer extends AbstractView {
         OpenLink(LangUtil("TG链接"));
     }
 
-    openMail() {
+    goMail() {
         dialog_official_mail.show();
     }
 

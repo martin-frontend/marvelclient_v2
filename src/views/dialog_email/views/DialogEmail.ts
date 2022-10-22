@@ -4,6 +4,7 @@ import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_official_mail from "@/_skin001/views/dialog_official_mail";
 import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
@@ -74,5 +75,9 @@ export default class DialogEmail extends AbstractView {
 
     onDestroyQuick() {
         this.myProxy.api_user_var_destroy_quick();
+    }
+
+    goMail() {
+        dialog_official_mail.show();
     }
 }

@@ -3,7 +3,6 @@
     :class="{'filter-gray': data.status != 1, 'cursor-pointer': data.status == 1, 'mobile-box': $vuetify.breakpoint.mobile, 'box': !$vuetify.breakpoint.mobile}"
     width="100%"
     :height="$vuetify.breakpoint.mobile ? 70 : 100"
-    :elevation="$vuetify.breakpoint.mobile?2:0"
     @click="goGamePlay"
 >
     <img :class="$vuetify.breakpoint.mobile ? 'mx-3' : 'mx-5'" :src="data.icon" :width="$vuetify.breakpoint.mobile ? 38 : 60" />

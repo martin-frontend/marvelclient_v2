@@ -13,7 +13,7 @@
 
     <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
         <GameSlideGroup
-            v-if=" item.category != 32 && item.category != 64"
+            v-if="item.category != 32 && item.category != 64"
             :data="item"
             :bShowAll="true"
             :name="item.category"

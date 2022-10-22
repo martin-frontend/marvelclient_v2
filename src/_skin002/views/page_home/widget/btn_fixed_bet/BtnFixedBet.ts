@@ -27,7 +27,6 @@ export default class BtnFixedBet extends AbstractView {
     watchSelection() {
         const divPrice: HTMLElement = <any>this.$refs.divPrice;
         const imgOdds: HTMLElement = <any>this.$refs.imgOdds;
-        const vuetify = getVuetify();
 
         if (this.oldData) {
             //@ts-ignore
@@ -35,13 +34,13 @@ export default class BtnFixedBet extends AbstractView {
             if (cha > 0) {
                 this.clearOddsStatus();
                 this.iconOdds = require("@/_skin001/assets/icon/icon_odds_up.png");
-                if (divPrice && !vuetify.framework.breakpoint.mobile) divPrice.style.color = "#E7314B";
+                if (divPrice) divPrice.style.color = "#E7314B";
                 if (imgOdds) imgOdds.style.opacity = "1";
                 imgOdds?.classList.add("animation-translate");
             } else if (cha < 0) {
                 this.clearOddsStatus();
                 this.iconOdds = require("@/_skin001/assets/icon/icon_odds_down.png");
-                if (divPrice && !vuetify.framework.breakpoint.mobile) divPrice.style.color = "#2B9400";
+                if (divPrice) divPrice.style.color = "#2B9400";
                 if (imgOdds) imgOdds.style.opacity = "1";
                 imgOdds?.classList.add("animation-translate");
             }

@@ -8,7 +8,7 @@
     <div v-else class="d-flex justify-center align-center" style="width: 100%">
         <slot></slot>
         <v-spacer v-if="$slots.default" />
-        <div ref="divPrice" :class="!$vuetify.breakpoint.mobile ? 'colorPcTextBlue001--text' : 'ml-1 text-gray2 text-12' ">
+        <div ref="divPrice" class="font-weight-bold" :class="!$vuetify.breakpoint.mobile ? 'colorPcTextBlue001--text' : 'ml-1 text-gray2 text-14' ">
             {{getPrice()}}
         </div>
     </div>

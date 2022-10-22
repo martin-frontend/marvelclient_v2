@@ -115,7 +115,7 @@ export default class extends APP {}
     background-color: #131e36;
 }
 .mobile-background {
-    background-color: #fff;
+    background-color: #f7f7f7;
 }
 
 </style>

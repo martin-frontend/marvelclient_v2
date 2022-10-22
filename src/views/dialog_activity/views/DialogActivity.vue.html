@@ -53,7 +53,7 @@
                 </div>
             </v-card-text>
             <v-card-text v-if="$vuetify.breakpoint.xsOnly">
-                <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'">
                     <v-sheet color="transparent">
                         <v-sheet
                             class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
@@ -69,7 +69,35 @@
                             <v-btn color="colorBtnBg" small @click="onDetail(item)">{{LangUtil("查看详情")}}</v-btn>
                         </v-sheet>
                     </v-sheet>
-                </vue-loadmore>
+                </LoadMore>
+                <!-- <vue-loadmore
+                    :on-refresh="onRefresh"
+                    :on-loadmore="onLoad"
+                    :finished="pageData.finished"
+                    :pulling-text="LangUtil('下拉刷新')"
+                    :loosing-text="LangUtil('释放刷新')"
+                    :loading-text="LangUtil('正在刷新')"
+                    :success-text="LangUtil('刷新完成')"
+                    :finished-text="LangUtil('没有更多了')"
+                    :error-text="LangUtil('请求失败，点击重新加载')"
+                    class="listbox-mobile"
+                >
+                    <v-sheet color="transparent">
+                        <v-sheet
+                            class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
+                            color="colorPanelTitleBg"
+                            height="80"
+                            v-for="(item, index) of pageData.list"
+                            :key="index"
+                        >
+                            <div class="text-16">
+                                <div class="colorText2--text mb-2">{{item.activity_name}}</div>
+                                <div class="colorText1--text">{{item.start_time}} ~ {{item.end_time}}</div>
+                            </div>
+                            <v-btn color="colorBtnBg" small @click="onDetail(item)">{{LangUtil("查看详情")}}</v-btn>
+                        </v-sheet>
+                    </v-sheet>
+                </vue-loadmore> -->
             </v-card-text>
         </v-card>
     </v-card>

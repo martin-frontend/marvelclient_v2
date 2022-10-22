@@ -36,9 +36,7 @@
                 >
                     <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
                         <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
-                        <div class="text-truncate">
-                            {{item.payment_method.account}}
-                        </div>
+                        <div class="text-truncate">{{item.payment_method.account}}</div>
                     </v-sheet>
                     <v-spacer />
                     <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
@@ -83,7 +81,24 @@
             </div>
         </v-card-text>
         <v-card-text class="px-3" v-if="$vuetify.breakpoint.xsOnly">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+                <v-sheet
+                    class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
+                    color="colorPanelBg2"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                    @click="onAddress(item.payment_method.account)"
+                >
+                    <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
+                        <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
+                        <div class="text-truncate">{{item.payment_method.account}}</div>
+                    </v-sheet>
+                    <v-spacer />
+                    <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
+                    <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
+                </v-sheet>
+            </LoadMore>
+            <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
                 <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet
                     class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
@@ -100,7 +115,7 @@
                     <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
                     <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
                 </v-sheet>
-            </vue-loadmore>
+            </vue-loadmore> -->
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

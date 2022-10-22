@@ -37,4 +37,8 @@ export default class CustomInput extends AbstractView {
         this.inputValue = "";
         this.$emit("input", this.inputValue);
     }
+
+    onBlur() {
+        this.$emit("blur")
+    }
 }

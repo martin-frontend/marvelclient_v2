@@ -23,7 +23,7 @@
             <UserPanel />
         </v-navigation-drawer>
         <!-- 客服 -->
-        <v-btn
+        <!-- <v-btn
             height="42"
             color="#ffb01b"
             class="customer rounded-xl black--text font-weight-bold d-flex align-center text-h6"
@@ -32,7 +32,7 @@
         >
             <v-icon class="mr-1">mdi-message-text-outline</v-icon>
             <span class="mb-1">{{ LangUtil("客服") }}</span>
-        </v-btn>
+        </v-btn> -->
         <!-- 添加到桌面引导 -->
         <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ guideText }}</v-btn>

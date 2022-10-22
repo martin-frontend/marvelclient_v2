@@ -22,6 +22,10 @@ export default class CustomPassword extends AbstractView {
         this.$emit("input", this.inputValue);
     }
 
+    onBlur() {
+        this.$emit("blur");
+    }
+
     get getValue() {
         return this.value ? this.value : "";
     }

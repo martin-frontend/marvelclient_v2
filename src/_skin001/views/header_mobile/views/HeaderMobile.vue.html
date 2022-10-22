@@ -12,11 +12,11 @@
         <span class="px-1 font-weight-bold">{{LangUtil("注册")}}</span>
     </v-btn>
     <v-spacer/>
-    <div v-if="LangConfig.language" class="mr-2">
+    <div v-if="LangConfig.language" class="mr-4">
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="primary" dark v-bind="attrs" v-on="on" x-small icon>
-                    <img :src="LangConfig.language[core.lang].icon" width="20" />
+                    <img :src="LangConfig.language[core.lang].icon" width="26" />
                 </v-btn>
             </template>
             <v-list color="colorPanelTitleBg">
@@ -29,8 +29,8 @@
             </v-list>
         </v-menu>
     </div>
-    <v-btn icon small size="20" :class=" core.user_id ? 'ml-n1' : 'mr-2' " @click="onService">
+    <!-- <v-btn icon small size="20" :class=" core.user_id ? 'ml-n1' : 'mr-2' " @click="onService">
         <img src="@/_skin001/assets/header/icon_service.png" width="20">
-    </v-btn>
-    <User v-if="core.user_id" />
+    </v-btn> -->
+    <User v-if="core.user_id" class="mr-4" />
 </v-app-bar>

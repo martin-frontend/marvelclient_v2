@@ -67,7 +67,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Header from "@/_skin001/views/header/views/Header.vue";
-import Footer from "@/_skin001/views/footer/Footer.vue";
+import Footer from "@/_skin002/views/footer/Footer.vue";
 import MobileMenu from "@/_skin001/views/mobile_menu/MobileMenu.vue";
 import DialogMessage from "@/views/dialog_message/views/DialogMessage.vue";
 import Overlay from "@/views/widget/overlay/Overlay.vue";

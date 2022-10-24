@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div id="page" :class="$vuetify.breakpoint.mobile && $route.path == '/' ? 'mobile-background' : 'background'">
+        <div id="page">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
             <Header v-if="!$vuetify.breakpoint.mobile" v-show="isShowHeader" />
             <v-main

@@ -12,7 +12,7 @@
             >
                 <router-view />
             </v-main>
-            <Footer v-if="!$vuetify.breakpoint.mobile" class="mt-10" />
+            <Footer class="mt-10 footer" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
@@ -117,5 +117,7 @@ export default class extends APP {}
 .mobile-background {
     background-color: #f7f7f7;
 }
-
+.footer {
+    margin-bottom: 55px;
+}
 </style>

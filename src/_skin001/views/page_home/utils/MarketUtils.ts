@@ -1,7 +1,6 @@
 import LangUtil from "@/core/global/LangUtil";
 import { MatcheVO, SelectionVO } from "@/_skin001/vo/CompetitionVO";
 
-
 const EnumMarketType = {
     MATCH_ODDS: "MATCH_ODDS",
     TOTAL_GOALS: "TOTAL_GOALS",
@@ -33,7 +32,9 @@ const EnumMarketType = {
 function formatAsian(handicap: string, type: string): string {
     if (handicap && type) {
         let value = parseFloat(handicap);
-        const symbol = type == "Home" ? "+" : "-";
+        let symbol = "";
+        if (value > 0) symbol = "+";
+        else if (value < 0) symbol = "-";
         value = Math.abs(value);
         if (value % 0.5 == 0) {
             return symbol + value;
@@ -54,7 +55,11 @@ function getSelectionName(market_type: string, selection: SelectionVO, matche?: 
             return formatAsian(selection.handicap, selection.type);
         case EnumMarketType.ASIAN_OVER_UNDER:
         case EnumMarketType.ASIAN_OVER_UNDER_HALF_TIME:
-            return (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) + "" + formatAsian(selection.handicap, selection.type).substring(1);
+            return (
+                (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) +
+                "" +
+                formatAsian(selection.handicap, selection.type).substring(1)
+            );
         case EnumMarketType.MATCH_ODDS:
         case EnumMarketType.MATCH_ODDS_HALF_TIME:
             return "";

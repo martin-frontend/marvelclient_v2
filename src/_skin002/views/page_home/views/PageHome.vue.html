@@ -1,5 +1,5 @@
 <v-container class="mx-auto pa-0">
-    <div :class="$vuetify.breakpoint.mobile?'px-2 mt-3':'mt-8'">
+    <div :class="$vuetify.breakpoint.mobile?'px-2 mt-3 mb-2':'mt-8'">
         <div v-if="$vuetify.breakpoint.mobile">
             <Advertise />
             <Marquee1 class="mt-1" />
@@ -25,10 +25,10 @@
         <!-- <v-lazy>
             <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
         </v-lazy> -->
-        <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
+        <!-- <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
             <div class="all-rights-reserved">version:{{getVersion()}}</div>
             <div class="all-rights-reserved">{{getChannelID()}}</div>
-        </div>
+        </div> -->
 
     </div>
     <Footer v-if="$vuetify.breakpoint.mobile"></Footer>

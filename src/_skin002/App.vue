@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div id="page" :class="$vuetify.breakpoint.mobile && $route.path == '/' ? 'mobile-background' : 'background'">
+        <div id="page">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
             <Header v-if="!$vuetify.breakpoint.mobile" v-show="isShowHeader" />
             <v-main
@@ -12,7 +12,7 @@
             >
                 <router-view />
             </v-main>
-            <Footer v-if="!$vuetify.breakpoint.mobile" class="mt-10" />
+            <Footer class="footer" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
@@ -67,7 +67,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Header from "@/_skin001/views/header/views/Header.vue";
-import Footer from "@/_skin001/views/footer/Footer.vue";
+import Footer from "@/_skin002/views/footer/Footer.vue";
 import MobileMenu from "@/_skin001/views/mobile_menu/MobileMenu.vue";
 import DialogMessage from "@/views/dialog_message/views/DialogMessage.vue";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
@@ -117,5 +117,7 @@ export default class extends APP {}
 .mobile-background {
     background-color: #f7f7f7;
 }
-
+.footer {
+    margin-bottom: 55px;
+}
 </style>

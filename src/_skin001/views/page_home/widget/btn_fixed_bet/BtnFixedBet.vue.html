@@ -1,15 +1,16 @@
-<div class="d-flex align-center justify-center" :class="$vuetify.breakpoint.mobile ? 'item-selection' : 'item-selection-pc' ">
+<div class="d-flex align-center justify-center pl-1" :class="$vuetify.breakpoint.mobile ? 'item-selection' : 'item-selection-pc' ">
     <!-- <div class="ml-2">+2.5</div>
     <v-spacer/>
     <div ref="divPrice">{{123}}</div>
     <img ref="imgOdds" :src="iconOdds" width="8" class="odds-img"> -->
 
-
-    <v-icon v-if="selection.status != 0" color="#1B2343">mdi-lock</v-icon>
+    <v-icon v-if="selection.status != 0" :size="$vuetify.breakpoint.mobile?20:30" color="#3b3b3b">mdi-lock</v-icon>
     <div v-else class="d-flex justify-center align-center" style="width: 100%">
         <slot></slot>
         <v-spacer v-if="$slots.default" />
-        <div ref="divPrice" class="font-weight-bold" :class="!$vuetify.breakpoint.xsOnly ? 'colorPcTextBlue001--text' : 'ml-1 colorTextBlue001--text text-14' ">{{getPrice()}}</div>
+        <div ref="divPrice" class="font-weight-bold" :class="!$vuetify.breakpoint.mobile ? 'colorPcTextBlue001--text' : 'ml-1 text-gray2 text-14' ">
+            {{getPrice()}}
+        </div>
     </div>
-    <img v-if="selection.status == 0" ref="imgOdds" class="odds-img opacity-0" :src="iconOdds" width="8"/>
+    <img v-if="selection.status == 0" ref="imgOdds" class="odds-img opacity-0" :src="iconOdds" width="9" />
 </div>

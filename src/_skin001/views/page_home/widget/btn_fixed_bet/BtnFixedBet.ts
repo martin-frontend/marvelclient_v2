@@ -1,8 +1,9 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
-import MarketUtils from "../../utils/MarketUtils";
+import MarketUtils from "@/_skin001/views/page_home/utils/MarketUtils";
 import { MarketVO, SelectionVO } from "@/_skin001/vo/CompetitionVO";
+import { getVuetify } from "@/_skin100/plugins/vuetify";
 
 @Component
 export default class BtnFixedBet extends AbstractView {
@@ -26,6 +27,7 @@ export default class BtnFixedBet extends AbstractView {
     watchSelection() {
         const divPrice: HTMLElement = <any>this.$refs.divPrice;
         const imgOdds: HTMLElement = <any>this.$refs.imgOdds;
+
         if (this.oldData) {
             //@ts-ignore
             const cha = this.selection.price.back - this.oldData.price.back;
@@ -52,11 +54,12 @@ export default class BtnFixedBet extends AbstractView {
         clearTimeout(this.cleartimer);
         const imgOdds: HTMLElement = <any>this.$refs.imgOdds;
         const divPrice: HTMLElement = <any>this.$refs.divPrice;
+        const vuetify = getVuetify();
         if (imgOdds && divPrice) {
             this.cleartimer = setTimeout(() => {
                 imgOdds.style.opacity = "0";
                 imgOdds.classList.remove("animation-translate");
-                divPrice.style.color = "#ffffff"
+                divPrice.style.color = vuetify.framework.breakpoint.mobile?"#3b3b3b":"#fffff";
             }, 5000);
         }
     }

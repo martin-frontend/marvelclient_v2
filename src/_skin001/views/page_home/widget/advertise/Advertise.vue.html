@@ -16,7 +16,7 @@
                     class="box"
                     :height="height"
                     @click="onBigItemClick(item)"
-                    :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''"
+                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $vuetify.breakpoint.mobile}"
                 >
                     <template v-slot:placeholder>
                         <v-row class="fill-height ma-0" align="center" justify="center">

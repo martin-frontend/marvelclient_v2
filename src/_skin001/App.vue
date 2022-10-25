@@ -7,7 +7,7 @@
                 class="background"
                 :class="{
                     'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
-                    'mobile-background': $vuetify.breakpoint.mobile,
+                    'mobile-background': $vuetify.breakpoint.mobile && ($route.path == '/' || $route.path == '/page_game_list'),
                 }"
             >
                 <router-view />

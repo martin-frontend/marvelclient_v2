@@ -30,6 +30,14 @@ export default class TabTransfer extends AbstractView {
         }
     }
 
+    get methodList(){
+        const obj:any = {};
+        for(const key of Object.keys(this.plat_coins)){
+            obj[key] = {name: key};
+        }
+        return obj;
+    }
+
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",

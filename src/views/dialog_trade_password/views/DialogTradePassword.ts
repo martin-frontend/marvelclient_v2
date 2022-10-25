@@ -35,7 +35,7 @@ export default class DialogTradePassword extends AbstractView {
     }
 
     getCode() {
-        dialog_message_box.alert("请先绑定邮箱或者手机");
+        dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
     }
 
     @Watch("pageData.bShow")

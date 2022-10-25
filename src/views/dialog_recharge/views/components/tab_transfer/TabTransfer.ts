@@ -77,7 +77,7 @@ export default class TabTransfer extends AbstractView {
         if (phone || email) {
             dialog_trade_password.show();
         } else {
-            dialog_message_box.alert("请先绑定邮箱或者手机");
+            dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
         }
     }
 

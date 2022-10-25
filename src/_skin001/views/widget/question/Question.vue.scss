@@ -1,0 +1,40 @@
+// .v-expansion-panels {
+//     border-radius: 12px;
+// }
+// .v-expansion-panel-header {
+//     border-radius: 12px;
+// }
+// .v-expansion-panel-content {
+//     border-radius: 0 0 12px 12px;
+// }
+// .v-expansion-panel--active > .v-expansion-panel-header {
+//     border-radius: 12px 12px 0px 0px;
+// }
+::v-deep .v-icon.v-icon {
+    @media only screen and (min-width: 1264px) {
+        color: #85a7dc !important;
+    }
+    @media only screen and (max-width: 1263px) {
+        color: #03259C !important;
+    }
+}
+
+.text-black {
+    color: #302f2f;
+}
+
+.text-black1 {
+    color: #3b3b3b;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.mobile-panels {
+    .v-expansion-panel {
+        background-color: unset;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+}

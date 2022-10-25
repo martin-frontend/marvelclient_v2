@@ -1,5 +1,6 @@
-<v-container class="page_mine">
-    <v-sheet class="rounded-xl top-box pa-5" :height="$vuetify.breakpoint.xsOnly? 'auto':300">
+<v-container class="page_mine d-flex flex-column">
+    <!-- 游戏返水 PC-->
+    <v-sheet class="rounded-xl top-box pa-5" height="300" v-if="!$vuetify.breakpoint.mobile">
         <div class="d-flex" style="height: 100%">
             <v-spacer />
             <v-card color="transparent" class="top-box-card d-flex flex-column">
@@ -57,8 +58,69 @@
         </div>
     </v-sheet>
 
-    <!-- 如何挖矿 -->
-    <v-sheet color="transparent" class="mt-8" id="howMine">
+    <!-- 游戏返水 Mobile-->
+    <v-sheet color="#F1F1F1" class="rounded pa-2" v-else>
+        <div class="d-flex align-center ml-n3 mb-1">
+            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+            <span class="text-black font-weight-medium">{{LangUtil('游戏挖矿')}}</span>
+        </div>
+        <div class="d-flex" style="height: 100%; width: 100%">
+            <v-sheet color="#fff" class="d-flex flex-column pa-2" width="100%">
+                <div class="text-black1">
+                    <p class="ma-0">{{LangUtil('今日挖矿待领取收益')}}</p>
+                    <p class="ma-0 mt-1">{{ pageData.trial.date }} 00:00:00～23:59:59</p>
+                </div>
+                <div class="d-flex align-center mt-3 coins_group">
+                    <!-- 主币 -->
+                    <v-img
+                        v-if="pageData.trial.main"
+                        :max-width="mobileChange('coinIcon')"
+                        :height="mobileChange('coinIcon')"
+                        contain
+                        :src="pageData.trial.mainIconSrc"
+                    ></v-img>
+                    <span
+                        v-if="pageData.trial.main"
+                        class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 mr-4 mr-md-8 font-weight-medium"
+                        >{{ pageData.trial.main }}</span
+                    >
+                    <!-- 奖励币 -->
+                    <v-img
+                        v-if="pageData.trial.reward"
+                        :max-width="mobileChange('coinIcon')"
+                        :height="mobileChange('coinIcon')"
+                        contain
+                        :src="pageData.trial.rewardIconSrc"
+                    ></v-img>
+                    <span v-if="pageData.trial.reward" class="colorTextGold--text text-h5 text-md-h4 ml-2 ml-md-4 font-weight-medium"
+                        >{{ pageData.trial.reward }}</span
+                    >
+                </div>
+                <div>
+                    <v-btn
+                        color="colorCoin"
+                        class="rounded-pill text-body-2 text-md-body-1 colorReceive--text mt-3 top-box-getaward"
+                        @click="handlerAward"
+                        >{{LangUtil('领取奖励')}}</v-btn
+                    >
+                </div>
+                <div class="d-flex mt-3 flex-wrap">
+                    <v-btn color="#03259C" class="rounded-pill top-box-btn px-6 my-1 mx-1" @click="jumpTo('#howMine')"
+                        >{{LangUtil('说明')}}</v-btn
+                    >
+                    <v-btn color="#03259C" class="rounded-pill top-box-btn px-6 my-1 mx-1" @click="handlerMineRecord"
+                        >{{LangUtil('奖励记录')}}
+                    </v-btn>
+                    <v-btn color="#03259C" class="rounded-pill top-box-btn px-6 my-1 mx-1" @click="handlerBetRecord"
+                        >{{LangUtil('投注记录')}}</v-btn
+                    >
+                </div>
+            </v-sheet>
+        </div>
+    </v-sheet>
+
+    <!-- 如何挖矿 PC-->
+    <v-sheet color="transparent" class="mt-8" id="howMine" v-if="!$vuetify.breakpoint.mobile">
         <span class="text-h6 text-md-h5">{{LangUtil('如何挖矿')}} </span>
         <p class="ma-0 mt-1 ml-2 ml-md-0 text-caption text-md-body-1 colorBlue--text">
             {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
@@ -169,6 +231,99 @@
                         >
                     </v-card-text>
                     <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3"> </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-sheet>
+
+    <!-- 如何挖矿 Mobile-->
+    <v-sheet color="#F1F1F1" class="mt-2 pa-2 mb-2" id="howMine" v-else>
+        <div class="d-flex align-center ml-n3 mb-1">
+            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+            <span class="text-black">{{LangUtil('如何挖矿')}} </span>
+        </div>
+        <p class="text-black1 ma-0">
+            {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
+        </p>
+        <v-row class="mt-2" dense>
+            <!-- 01 -->
+            <v-col cols="12" md="4">
+                <v-card
+                    width="100%"
+                    color="#fff"
+                    class="rounded pa-4 d-flex flex-wrap flex-column justify-space-between align-center"
+                    height="100%"
+                >
+                    <v-sheet color="transparent" class="pa-0 d-flex align-center justify-space-between" width="100%">
+                        <v-img :max-width="50" :height="50" contain class="mr-3" src="~@/assets/mine/about_01_icon.png"></v-img>
+                        <div class="d-flex flex-column text-14">
+                            <span class="text-orange font-weight-medium">01</span>
+                            <span class="text-black1 font-weight-medium">{{LangUtil('享受游戏之旅')}}</span>
+                        </div>
+                        <v-spacer />
+                        <v-btn :min-width="110" :height="40" color="#03259C" @click="onGoBet" class="rounded-pill ml-auto"
+                            >{{LangUtil('去投注')}}</v-btn
+                        >
+                    </v-sheet>
+                    <v-card-text class="px-0 pb-0">
+                        <span class="text-black1"
+                            >{{LangUtil('参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。')}}</span
+                        >
+                    </v-card-text>
+                    <v-card-actions class="pa-0"> </v-card-actions>
+                </v-card>
+            </v-col>
+
+            <!-- 02 -->
+            <v-col cols="12" md="4">
+                <v-card
+                    width="100%"
+                    color="#fff"
+                    class="rounded pa-4 d-flex flex-wrap flex-column justify-space-between align-center"
+                    height="100%"
+                >
+                    <v-sheet color="transparent" class="pa-0 d-flex align-center justify-space-between" width="100%">
+                        <v-img :max-width="50" :height="50" contain class="mr-3" src="~@/assets/mine/about_02_icon.png"></v-img>
+                        <div class="d-flex flex-column text-14">
+                            <span class="text-orange font-weight-medium">02</span>
+                            <span class="text-black1 font-weight-medium">{{LangUtil('领取个人洗码')}}</span>
+                        </div>
+                        <v-spacer />
+                        <v-btn :min-width="110" :height="40" color="#03259C" @click="onGoBet" class="rounded-pill ml-auto"
+                            >{{LangUtil('去领取')}}</v-btn
+                        >
+                    </v-sheet>
+                    <v-card-text class="px-0 pb-0">
+                        <span class="text-black1"
+                            >{{LangUtil('个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。')}}</span
+                        >
+                    </v-card-text>
+                    <v-card-actions class="pa-0"> </v-card-actions>
+                </v-card>
+            </v-col>
+
+            <!-- 03 -->
+            <v-col cols="12" md="4">
+                <v-card
+                    width="100%"
+                    color="#fff"
+                    class="rounded pa-4 d-flex flex-wrap flex-column justify-space-between align-center"
+                    height="100%"
+                >
+                    <v-sheet color="transparent" class="pa-0 d-flex align-center justify-space-between" width="100%">
+                        <v-img :max-width="50" :height="50" contain class="mr-3" src="~@/assets/mine/about_03_icon.png"></v-img>
+                        <div class="d-flex flex-column text-14">
+                            <span class="text-orange font-weight-medium">03</span>
+                            <span class="text-black1 font-weight-medium">{{LangUtil('自动结算')}}</span>
+                        </div>
+                        <v-spacer />
+                    </v-sheet>
+                    <v-card-text class="px-0 pb-0">
+                        <span class="text-black1"
+                            >{{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}</span
+                        >
+                    </v-card-text>
+                    <v-card-actions class="pa-0"> </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>

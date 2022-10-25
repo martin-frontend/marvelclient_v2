@@ -7,12 +7,12 @@
                 class="background"
                 :class="{
                     'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
-                    'mobile-background': $vuetify.breakpoint.mobile && ($route.path == '/' || $route.path == '/page_game_list'),
+                    'mobile-background': $vuetify.breakpoint.mobile && $route.path != '/page_extension',
                 }"
             >
                 <router-view />
             </v-main>
-            <Footer class="footer" />
+            <Footer class="footer" v-if="$route.path != '/page_game_soccer'"/>
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>

@@ -399,15 +399,8 @@
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('可领取佣金')}}</span>
                         </div>
                         <v-sheet color="#fff " class="rounded d-flex align-center pa-1">
-                            <!-- <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"> </v-img><span class="text-h6 text-sm-h5 mr-5 mr-md-1 colorCoin--text font-weight-medium"> -->
-                            <v-img
-                                class="mr-1"
-                                src="http://sftpuser.starsabc.com/resource/images/vendor/icon/17/77/17775887ad6ae3c618cfd7248ef37d17.png"
-                                max-width="30"
-                                height="30"
-                            >
-                            </v-img
-                            ><span class="text-h6 colorTextOrange--text text-sm-h5 mr-5 mr-md-1 font-weight-medium">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"> </v-img>
+                            <span class="text-h6 colorTextOrange--text text-sm-h5 mr-5 mr-md-1 font-weight-medium">
                                 {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
                             </span>
                             <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
@@ -425,7 +418,12 @@
                                     :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
                                     >{{LangUtil("领取奖励")}}</v-btn
                                 >
-                                <v-btn :height="35" class="ml-2 rounded-pill ma-1" color="colorTextBlue2" elevation="0" @click="handleRecords"
+                                <v-btn
+                                    :height="35"
+                                    class="ml-2 rounded-pill ma-1"
+                                    color="colorTextBlue2"
+                                    elevation="0"
+                                    @click="handleRecords"
                                     >{{LangUtil("领取记录")}}</v-btn
                                 >
                             </div>
@@ -454,7 +452,9 @@
                                 <v-col cols="12">
                                     <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text"> {{LangUtil("今日总业绩")}} </span>
+                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
+                                                {{LangUtil("今日总业绩")}}
+                                            </span>
                                         </v-col>
                                         <v-col cols="3" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ 0.01 }} </span>
@@ -462,7 +462,9 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text"> {{LangUtil("今日团队业绩")}} </span>
+                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
+                                                {{LangUtil("今日团队业绩")}}
+                                            </span>
                                         </v-col>
                                         <v-col cols="3" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -472,7 +474,9 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text"> {{LangUtil("今日直属业绩")}} </span>
+                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
+                                                {{LangUtil("今日直属业绩")}}
+                                            </span>
                                         </v-col>
                                         <v-col cols="3" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -482,7 +486,9 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2 mb-md-0">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text"> {{LangUtil("每万返佣")}} </span>
+                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
+                                                {{LangUtil("每万返佣")}}
+                                            </span>
                                         </v-col>
                                         <v-col cols="3" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -516,9 +522,11 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
                                         <v-col cols="6">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text d-flex justify-end d-flex align-center">
+                                            <span
+                                                class="text-caption text-sm-subtitle-2 colorTextBlack1--text d-flex justify-end d-flex align-center"
+                                            >
                                                 {{LangUtil("我的上级")}}
-    
+
                                                 <span class="text-body-2 text-sm-subtitle-1 ml-1 font-weight-medium text-gray">
                                                     {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
                                                 </span>
@@ -624,15 +632,7 @@
                                         class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 colorTextBlack1--text"
                                     >
                                         <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link }}</span>
-                                        <v-btn
-                                            class="mr-1"
-                                            color="#6FA9FA"
-                                            small
-                                            :width="24"
-                                            min-width="0"
-                                            :height="24"
-                                            @click="copy"
-                                        >
+                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24" @click="copy">
                                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                         </v-btn>
                                     </v-sheet>
@@ -643,15 +643,7 @@
                                         class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1 colorTextBlack1--text"
                                     >
                                         {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
-                                        <v-btn
-                                            class="mr-1"
-                                            color="#6FA9FA"
-                                            small
-                                            :width="24"
-                                            min-width="0"
-                                            :height="24"
-                                            @click="copyMyId"
-                                        >
+                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24" @click="copyMyId">
                                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                         </v-btn>
                                     </v-sheet>
@@ -722,7 +714,10 @@
                     :key="index"
                 >
                     <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center level_col align-center text-gray">
+                        <v-col
+                            :cols="tableData.is_promotion_num_added==1?2:4"
+                            class="d-flex justify-center level_col align-center text-gray"
+                        >
                             <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                                 <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
                             </span>

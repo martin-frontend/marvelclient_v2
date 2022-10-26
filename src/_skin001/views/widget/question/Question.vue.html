@@ -20,19 +20,19 @@
 
     <!-- Mobile -->
     <template v-else>
-        <v-sheet color="#F1F1F1" class="d-flex flex-column rounded pa-2">
+        <v-sheet color="colorBackgroundGray" class="d-flex flex-column rounded pa-2">
             <div class="d-flex align-center ml-n3 mb-1">
                 <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate" />
-                <span class="text-black font-weight-medium">{{LangUtil('常见问题解答')}}</span>
+                <span class="colorTextBlack--text font-weight-medium">{{LangUtil('常见问题解答')}}</span>
             </div>
             <v-row dense class="mt-2">
                 <v-col cols="12" md="6" v-for="(item, index) of questions" :key="index">
                     <v-expansion-panels flat class="mobile-panels">
                         <v-expansion-panel>
-                            <v-expansion-panel-header color="#fff" class="text-black">
+                            <v-expansion-panel-header color="#fff" class="colorTextBlack--text">
                                 {{ item.name }}
                             </v-expansion-panel-header>
-                            <v-expansion-panel-content color="#fff" class="text-black1">
+                            <v-expansion-panel-content color="#fff" class="colorTextBlack1--text">
                                 {{ item.content }}
                             </v-expansion-panel-content>
                         </v-expansion-panel>

@@ -1,9 +1,8 @@
 <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.mobile?'px-2':''">
     <div :class="$vuetify.breakpoint.mobile?'mt-3':'mt-8'" v-if="hotGame.category == 1">
         <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.mobile?'':'mb-2'">
-            <!-- <v-icon class="mr-1" color="#3b3b3b" :size="$vuetify.breakpoint.mobile?15:24">{{ CategoryIcon[hotGame.category] }}</v-icon> -->
             <img class="mr-1" src="@/_skin001/assets/icon/icon_fire.png" :width="$vuetify.breakpoint.mobile?14:20" />
-            <div :class="$vuetify.breakpoint.mobile?'text-12 text-black':''">{{ hotGame.category_name }}</div>
+            <div :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':''">{{ hotGame.category_name }}</div>
         </div>
         <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
             <GameItem v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
@@ -20,7 +19,7 @@
     <v-sheet
         class="d-flex align-center"
         :class="$vuetify.breakpoint.mobile ? 'rounded pr-2 my-2': 'rounded-lg px-5 my-5'"
-        :color="$vuetify.breakpoint.mobile?'#f1f1f1':'colorTitleBg'"
+        :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
         :height="$vuetify.breakpoint.mobile ? '35' : '70'"
     >
         <v-img v-if="$vuetify.breakpoint.mobile" src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate ml-n1"> </v-img>
@@ -64,13 +63,13 @@
                     pageData.pageInfo.pageCurrent)}}
                 </div>
                 <v-progress-linear
-                    :color="$vuetify.breakpoint.mobile?'#03259C':'primary'"
+                    :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'primary'"
                     :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
                     height="2"
                 ></v-progress-linear>
                 <v-btn
                     class="rounded-pill my-5"
-                    :color="$vuetify.breakpoint.mobile?'#03259C':'colorBtnBg'"
+                    :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'colorBtnBg'"
                     :width="$vuetify.breakpoint.mobile?125:196"
                     :height="$vuetify.breakpoint.mobile?25:40"
                     @click="getMore"

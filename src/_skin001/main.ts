@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { getVuetify } from "@/plugins/vuetify";
+import { getVuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";

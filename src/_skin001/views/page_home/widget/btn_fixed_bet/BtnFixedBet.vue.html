@@ -4,7 +4,7 @@
     <div ref="divPrice">{{123}}</div>
     <img ref="imgOdds" :src="iconOdds" width="8" class="odds-img"> -->
 
-    <v-icon v-if="selection.status != 0" :size="$vuetify.breakpoint.mobile?20:30" color="#3b3b3b">mdi-lock</v-icon>
+    <v-icon v-if="selection.status != 0" :size="$vuetify.breakpoint.mobile?20:30" color="colorTextBlack1">mdi-lock</v-icon>
     <div v-else class="d-flex justify-center align-center" style="width: 100%">
         <slot></slot>
         <v-spacer v-if="$slots.default" />

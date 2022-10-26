@@ -660,6 +660,7 @@
                                             class="rounded-pill text-body-2 text-sm-body-1 ma-1"
                                             color="colorTextBlue2"
                                             @click="handlerPromotion"
+                                            v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
                                         >
                                             {{LangUtil("代理统计")}}
                                         </v-btn>

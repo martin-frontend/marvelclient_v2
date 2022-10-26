@@ -20,6 +20,11 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        summary: {
+            direct_water: "",
+            group_water: "",
+            total_water: "",
+        },
         listQuery: {
             start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
             end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
@@ -55,8 +60,9 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
 
     /**写入 业绩查询 */
     setCommissionlist(body: any) {
-        this.pageData.loading = false;
         this.pageData.list = body.list;
+        this.pageData.loading = false;
+        Object.assign(this.pageData.summary, body.summary);
     }
 
     /**--代理推广--业绩查询*/

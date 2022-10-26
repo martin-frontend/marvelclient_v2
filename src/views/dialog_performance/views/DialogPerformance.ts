@@ -16,6 +16,7 @@ export default class DialogPerformance extends AbstractView {
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
+    summary = this.pageData.summary;
     LangUtil = LangUtil;
 
     commonIcon = Assets.commonIcon;

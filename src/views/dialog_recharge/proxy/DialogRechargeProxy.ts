@@ -1,3 +1,4 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
@@ -241,7 +242,8 @@ export class TransferProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
-        const keys = Object.keys(data);
+        // const keys = Object.keys(data);
+        const keys = Object.keys(GamePlatConfig.config.plat_coins);
         // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;

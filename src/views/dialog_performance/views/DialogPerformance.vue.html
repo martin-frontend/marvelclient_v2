@@ -12,6 +12,12 @@
             <div class="d-flex justify-end mb-2">
                 <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
+            <div class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
+                <div>{{LangUtil("总业绩总计")}} {{ summary.total_water }}</div>
+                <div>{{LangUtil("团队业绩总计")}} {{ summary.group_water }}</div>
+                <div>{{LangUtil("直属业绩总计")}} {{ summary.direct_water }}</div>
+                <div>{{LangUtil("总佣金总计")}} {{ summary.total_commission.USDT }}</div>
+            </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                 <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap justify-space-between listitem">

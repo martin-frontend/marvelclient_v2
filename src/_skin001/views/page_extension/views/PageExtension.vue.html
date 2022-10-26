@@ -435,104 +435,92 @@
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('佣金')}}</span>
                         </div>
                         <v-sheet color="#fff" class="rounded pa-4 mobile-commission-background">
-                            <v-row no-gutters class="d-flex flex-row">
+                            <v-row no-gutters class="d-flex flex-row mb-2">
                                 <v-col class="d-flex justify-center align-center">
-                                    <span class="text-caption text-sm-subtitle-1 colorTextBlack1--text"> {{LangUtil("今日预计佣金")}}</span>
-                                    <!-- <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
-                                    <span class="text-body-2 text-sm-h5 mr-5 font-weight-medium">
+                                    <span class="text-16 colorTextBlack1--text"> {{LangUtil("今日预计佣金")}}</span>
+                                    <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
+                                    <span class="text-16 colorTextOrange--text mr-5 font-weight-medium">
                                         {{ statistics_data.total_commission[pageData.platCoins.mainCoin.name] }}
                                     </span>
-                                    <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
-                                    <span class="text-body-2 text-sm-h5 font-weight-medium">
-                                        {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
-                                    </span> -->
+                                    <template v-if="pageData.platCoins.rewardCoin.icon">
+                                        <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                                        <span class="text-16 colorTextOrange--text font-weight-medium">
+                                            {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
+                                        </span>
+                                    </template>
                                 </v-col>
                             </v-row>
                             <v-row no-gutters>
                                 <v-col cols="12">
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-2">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
-                                                {{LangUtil("今日总业绩")}}
-                                            </span>
+                                            <span class="text-14 colorTextBlack1--text"> {{LangUtil("今日总业绩")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ 0.01 }} </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
-                                                {{LangUtil("今日团队业绩")}}
-                                            </span>
+                                            <span class="text-14 colorTextBlack1--text"> {{LangUtil("今日团队业绩")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                                 {{ statistics_data.group_water_summary}}
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
-                                                {{LangUtil("今日直属业绩")}}
-                                            </span>
+                                            <span class="text-14 colorTextBlack1--text"> {{LangUtil("今日直属业绩")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                                 {{statistics_data.direct_water_summary}}
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2 mb-md-0">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2 mb-md-0">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text">
-                                                {{LangUtil("每万返佣")}}
-                                            </span>
+                                            <span class="text-14 colorTextBlack1--text"> {{LangUtil("每万返佣")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                                 {{ promotionData.commission_num }}
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
-                                        <v-col cols="6">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text d-flex justify-end">
-                                                {{LangUtil("直属人数（新增）")}}
-                                            </span>
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
+                                        <v-col cols="6" class="d-flex justify-end">
+                                            <span class="text-14 colorTextBlack1--text"> {{LangUtil("直属人数（新增）")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
-                                            <span class="text-body-2 text-sm-subtitle-1 ml-1 font-weight-medium">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
+                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                                 {{ promotionData.directly_users }} ({{ promotionData.today_directly_users }})
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
-                                        <v-col cols="6">
-                                            <span class="text-caption text-sm-subtitle-2 colorTextBlack1--text d-flex justify-end">
-                                                {{LangUtil("团队人数（新增）")}}
-                                            </span>
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
+                                        <v-col cols="6" class="d-flex justify-end">
+                                            <span class="text-14 colorTextBlack1--text d-flex"> {{LangUtil("团队人数（新增）")}} </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission colorTextBlack1--text">
-                                            <span class="text-body-2 text-sm-subtitle-1 ml-1 font-weight-medium">
+                                        <v-col cols="6" class="commission colorTextBlack1--text">
+                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                                 {{ promotionData.group_users }} ({{ promotionData.today_group_users }})
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1 mb-sm-2">
-                                        <v-col cols="6">
-                                            <span
-                                                class="text-caption text-sm-subtitle-2 colorTextBlack1--text d-flex justify-end d-flex align-center"
-                                            >
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
+                                        <v-col cols="6" class="d-flex justify-end">
+                                            <span class="text-14 colorTextBlack1--text d-flex d-flex align-center">
                                                 {{LangUtil("我的上级")}}
 
-                                                <span class="text-body-2 text-sm-subtitle-1 ml-1 font-weight-medium text-gray">
+                                                <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium text-gray">
                                                     {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
                                                 </span>
                                             </span>
                                         </v-col>
-                                        <v-col cols="3" class="commission">
+                                        <v-col cols="6" class="commission ml-2">
                                             <v-btn
                                                 text
                                                 height="20"
@@ -544,29 +532,21 @@
                                             >
                                                 {{LangUtil("绑定")}}
                                             </v-btn>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row
-                                        v-if="promotionData.invite_user_id"
-                                        no-gutters
-                                        class="d-flex flex-row justify-end align-center mb-1"
-                                    >
-                                        <v-col cols="6"></v-col>
-                                        <v-col cols="3">
                                             <v-btn
+                                                v-if="promotionData.invite_user_id"
                                                 text
                                                 height="20"
                                                 min-width="32"
                                                 class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 font-weight-bold"
-                                                color="colorText4"
+                                                color="colorTextBlue2"
                                                 @click="handlerViewCard"
                                             >
                                                 {{LangUtil("查看上级名片")}}
                                             </v-btn>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row justify-end align-center mb-1">
-                                        <v-col cols="12" class="text-right">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1">
+                                        <v-col cols="12" class="text-right mt-2">
                                             <v-btn
                                                 :height="35"
                                                 class="rounded-pill"
@@ -688,7 +668,7 @@
                 <div class="text-caption text-sm-body-1 colorTextBlack--text mb-2 mb-sm-5">
                     {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
                 </div>
-                <v-sheet height="50" color="#fff" class="rounded-card d-flex align-center mb-2">
+                <v-sheet height="30" color="#fff" class="rounded-card d-flex align-center mb-2">
                     <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorTextBlack1--text">
                         <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                             {{LangUtil("等级")}}
@@ -708,7 +688,7 @@
                     </v-row>
                 </v-sheet>
                 <v-sheet
-                    height="50"
+                    height="30"
                     class="rounded-card mb-2 d-flex align-center"
                     color="#FFFFFF54"
                     v-for="(item, index) of tableData.promotionConfig[0]"

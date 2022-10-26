@@ -40,19 +40,19 @@
         <script>
             window.bannerNight = function () {};
             window.onNightModeChanged = function () {};
-            window.addEventListener(
-                "error",
-                (event) => {
-                    var target = event.target || event.srcElement;
-                    var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
-                    if (isCheck) {
-                        let url = target.src || target.href;
-                        alert("Loading failed, click retry: " + url);
-                        location.reload();
-                    }
-                },
-                true
-            );
+            // window.addEventListener(
+            //     "error",
+            //     (event) => {
+            //         var target = event.target || event.srcElement;
+            //         var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
+            //         if (isCheck) {
+            //             let url = target.src || target.href;
+            //             alert("Loading failed, click retry: " + url);
+            //             location.reload();
+            //         }
+            //     },
+            //     true
+            // );
         </script>
     </head>
 

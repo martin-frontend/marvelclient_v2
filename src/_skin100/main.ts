@@ -32,6 +32,8 @@ Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
 const vuetify = getVuetify();
+Vue["vuetify"] = vuetify;
+Vue["router"] = router;
 const isIOSMobile = judgeClient() == "iOS" && isMobile();
 Vue.prototype.isIOSMobile = isIOSMobile;
 //@ts-ignore

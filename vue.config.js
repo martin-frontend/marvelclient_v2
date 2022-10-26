@@ -37,12 +37,12 @@ module.exports = {
             filename: "skin001.html",
             title: "BetNow",
         },
-        // skin002: {
-        //     entry: "src/_skin002/main.ts",
-        //     template: "public/index002.html",
-        //     filename: "skin002.html",
-        //     title: "BetNow",
-        // },
+        skin002: {
+            entry: "src/_skin002/main.ts",
+            template: "public/index002.html",
+            filename: "skin002.html",
+            title: "BetNow",
+        },
         skin100: {
             entry: "src/_skin100/main.ts",
             template: "public/skin100.html",

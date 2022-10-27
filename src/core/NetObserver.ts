@@ -17,6 +17,7 @@ import OpenLink from "./global/OpenLink";
 import dialog_message_box from "@/views/dialog_message_box";
 import page_game_play from "@/views/page_game_play";
 import { MapLang } from "./map/MapLang";
+import Vue from "vue";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -94,7 +95,9 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert(LangUtil("您的帐号已经退出"));
+                dialog_message_box.alert({message: LangUtil("您的帐号已经退出"), okFun: ()=>{
+                    Vue.router.replace("/");
+                }});
                 break;
             //用户信息
             case net.EventType.api_user_show_var:

@@ -31,6 +31,8 @@ Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
 const vuetify = getVuetify();
+Vue["vuetify"] = vuetify;
+Vue["router"] = router;
 //@ts-ignore
 window["vm"] = new Vue({
     router,

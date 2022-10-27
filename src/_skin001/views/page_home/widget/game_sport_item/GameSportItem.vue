@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import GameSportItem from "./GameSportItem";
+import GameSportItem from "../../widget/game_sport_item/GameSportItem";
 
 @Component
 export default class extends GameSportItem {}

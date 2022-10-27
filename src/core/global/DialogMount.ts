@@ -1,10 +1,9 @@
-import { getVuetify } from "@/plugins/vuetify";
 import Vue from "vue";
 
 const map: any = [];
 
 export default function (pageClass: any, bKeep: boolean = true) {
-    const vuetify = getVuetify();
+    const vuetify = Vue.vuetify;
     const dialog_container = document.getElementById("dialog_container");
     if (bKeep) {
         if (map.indexOf(pageClass) == -1) {

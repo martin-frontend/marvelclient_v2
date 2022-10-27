@@ -49,6 +49,11 @@
         }
     }
 }
+// .mobile-commission-background {
+//     background-image: url("~@/_skin001/assets/extension/commission.png");
+//     background-size: auto 90%;
+// }
+
 .qrcode {
     background-color: white;
     border-radius: 20px;
@@ -61,8 +66,8 @@
     @media (max-width: 600px) {
         border-radius: 10px;
         padding: 4px;
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
     }
 }
 .new {
@@ -90,4 +95,10 @@
 }
 .cursor{
     cursor: pointer;
+}
+.rotate {
+    transform: rotate(90deg);
+}
+.text-gray {
+    color: #646464;
 }

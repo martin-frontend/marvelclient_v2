@@ -1,0 +1,44 @@
+<div class="pb-5">
+    <!-- PC -->
+    <template v-if="!$vuetify.breakpoint.mobile">
+        <div class="text-h6 text-md-h5 mb-md-5">{{LangUtil("常见问题解答")}}</div>
+        <v-row no-gutters class="d-flex flex-row text-body-1 mt-2">
+            <v-col cols="12" md="6" class="mb-2 pr-sm-2" v-for="(item, index) of questions" :key="index">
+                <v-expansion-panels>
+                    <v-expansion-panel>
+                        <v-expansion-panel-header color="colorPanelTitleBg" class="text-body-2 text-md-body-1">
+                            {{ item.name }}
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content color="colorPanelTitleBg" class="colorBlue--text text-caption text-md-body-2">
+                            {{ item.content }}
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
+                </v-expansion-panels>
+            </v-col>
+        </v-row>
+    </template>
+
+    <!-- Mobile -->
+    <template v-else>
+        <v-sheet color="colorBackgroundGray" class="d-flex flex-column rounded pa-2">
+            <div class="d-flex align-center ml-n3 mb-1">
+                <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate" />
+                <span class="colorTextBlack--text font-weight-medium">{{LangUtil('常见问题解答')}}</span>
+            </div>
+            <v-row dense class="mt-2">
+                <v-col cols="12" md="6" v-for="(item, index) of questions" :key="index">
+                    <v-expansion-panels flat class="mobile-panels">
+                        <v-expansion-panel>
+                            <v-expansion-panel-header color="#fff" class="colorTextBlack--text">
+                                {{ item.name }}
+                            </v-expansion-panel-header>
+                            <v-expansion-panel-content color="#fff" class="colorTextBlack1--text">
+                                {{ item.content }}
+                            </v-expansion-panel-content>
+                        </v-expansion-panel>
+                    </v-expansion-panels>
+                </v-col>
+            </v-row>
+        </v-sheet>
+    </template>
+</div>

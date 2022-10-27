@@ -1,12 +1,13 @@
 <v-sheet
     v-if="pageData.list.length>0"
     color="#1d3256"
-    :height="$vuetify.breakpoint.xsOnly?30:35"
-    :class="$vuetify.breakpoint.xsOnly?'rounded':'rounded-lg'"
+    :height="$vuetify.breakpoint.mobile?30:35"
+    :class="{'rounded-lg': !$vuetify.breakpoint.mobile,'rounded' : $vuetify.breakpoint.mobile, 'mobile-box': $vuetify.breakpoint.mobile}"
     class="d-flex align-center pr-3 box"
 >
-    <v-icon class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon">mdi-bullhorn-outline</v-icon>
+    <v-icon v-if="!$vuetify.breakpoint.mobile" class="mx-2 mx-sm-4 marqueeIcon" :color="$vuetify.breakpoint.mobile?'#9FA3A9':'colorMarqueeIcon'">mdi-bullhorn-outline</v-icon>
+    <img class="mx-2" width="20" height="20" v-else src="@/_skin001/assets/icon/icon_music.png" />
     <div ref="marqueeBox" class="marquee-box">
-        <div class="colorTextBlue001--text" ref="marqueeText">{{pageData.text}}</div>
+        <div :class="$vuetify.breakpoint.mobile?'text-gray':'colorTextBlue1--text'" ref="marqueeText">{{pageData.text}}</div>
     </div>
 </v-sheet>

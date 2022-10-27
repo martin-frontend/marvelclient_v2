@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Money from "../money/Money.vue";
+import Money from "../../widget/money/Money.vue";
 import Activity from "./Activity";
 
 @Component({

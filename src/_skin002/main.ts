@@ -1,11 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { getVuetify } from "@/plugins/vuetify";
-import router from "./router";
+import { getVuetify } from "@/_skin001/plugins/vuetify";
+import router from "@/_skin001/router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
-import AppFacade from "./AppFacade";
+import AppFacade from "@/_skin001/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
@@ -29,6 +29,8 @@ Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 
 const vuetify = getVuetify();
+Vue["vuetify"] = vuetify;
+Vue["router"] = router;
 //@ts-ignore
 window["vm"] = new Vue({
     router,

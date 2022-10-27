@@ -53,29 +53,68 @@
         <!-- 导航 -->
         <div class="d-flex mt-5">
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
-            <button
-                v-if="!$vuetify.breakpoint.mobile"
-                class="nav-button"
-                :class="(routerPath == '/' && categoryActive == -1) ? 'active' : ''"
-                @click="goHome"
-            >
-                <v-icon>mdi-home</v-icon>
-                <div>{{LangUtil("首页")}}</div>
-            </button>
+            <template v-if="!$vuetify.breakpoint.mobile">
 
-            <button
-                v-if="!$vuetify.breakpoint.mobile"
-                class="nav-button d-none d-md-flex"
-                v-for="(item, index) of pageData.lobbyIndex"
-                :key="index"
-                @click="goAnchor(item.category)"
-                :class="(routerPath == '/' && categoryActive == index) ? 'active' : ''"
-            >
-                <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
-                <div>{{ item.category_name }}</div>
-            </button>
-
-            <v-spacer />
+                <button class="nav-button" :class="routerPath == '/'? 'active' : ''" @click="goHome">
+                    <v-icon>mdi-home</v-icon>
+                    <div>{{LangUtil("首页")}}</div>
+                </button>
+    
+                <button
+                    v-if="!$vuetify.breakpoint.mobile"
+                    class="nav-button"
+                    :class="routerPath == '/page_game_soccer'? 'active' : ''"
+                    @click="goSoccer"
+                >
+                    <v-icon class="mr-1">{{ CategoryIcon[64] }}</v-icon>
+                    <div>{{LangUtil("足球")}}</div>
+                </button>
+    
+                <button
+                    class="nav-button d-none d-md-flex"
+                    v-for="(item, index) of pageData.lobbyIndex"
+                    :key="index"
+                    @click="goCategory(item.category)"
+                    :class="(routerPath == '/page_game_list' && categoryActive == item.category) ? 'active' : ''"
+                >
+                    <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
+                    <div>{{ item.category_name }}</div>
+                </button>
+    
+                <v-hover v-slot="{ hover }">
+                    <button
+                        class="nav-button"
+                        @click="goMine"
+                        :class="routerPath == '/page_mine' ? 'active' : ''"
+                    >
+                        <v-img
+                            v-if="routerPath == '/page_mine' || hover"
+                            max-width="24"
+                            max-height="24"
+                            src="@/_skin001/assets/icon/icon_mine1.png"
+                        ></v-img>
+                        <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_mine.png"></v-img>
+                        <div class="ml-1">{{ LangUtil("返水") }}</div>
+                    </button>
+                </v-hover>
+    
+                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1">
+                    <button
+                        class="nav-button"
+                        @click="goExtension"
+                        :class="routerPath == '/page_extension' ? 'active' : ''"
+                    >
+                        <v-img
+                            v-if="routerPath == '/page_extension' || hover"
+                            max-width="24"
+                            max-height="24"
+                            src="@/_skin001/assets/icon/icon_extension1.png"
+                        ></v-img>
+                        <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_extension.png"></v-img>
+                        <div class="ml-1">{{ LangUtil("推广") }}</div>
+                    </button>
+                </v-hover>
+            </template>
 
             <!-- <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
                 <v-icon>mdi-alpha-f-circle</v-icon>
@@ -115,7 +154,14 @@
             <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin" elevation="0">
                 <span class="px-1">{{LangUtil("登录")}}</span>
             </v-btn>
-            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister" elevation="0">
+            <v-btn
+                v-if="core.user_id == 0"
+                small
+                color="white"
+                class="text-14 mx-2 colorBlueBtn--text"
+                @click="handlerRegister"
+                elevation="0"
+            >
                 <span class="px-1">{{LangUtil("注册")}}</span>
             </v-btn>
             <Wallet v-if="core.user_id" />

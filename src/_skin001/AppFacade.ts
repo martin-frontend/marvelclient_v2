@@ -12,6 +12,7 @@ import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 import dialog_recharge from "@/views/dialog_recharge";
+import getProxy from "@/core/global/getProxy";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -37,8 +38,16 @@ export default class AppFacade {
         }, 300000);
 
         window.addEventListener("message", (e) => {
-            if (e.data == EnumPostMessage.TOPUP) {
-                dialog_recharge.show();
+            switch(e.data){
+                case EnumPostMessage.TOPUP:
+                    dialog_recharge.show();
+                    break;
+                case EnumPostMessage.TOKEN_TIMEOUT:
+                    {
+                        const gameProxy:GameProxy = getProxy(GameProxy);
+                        gameProxy.go_soccer();
+                    }
+                    break;
             }
         });
     }

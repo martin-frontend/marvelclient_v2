@@ -502,3 +502,20 @@ export function getFileVersion(): string {
 //         return s.toUpperCase();
 //     });
 // };
+/**时区转换 分钟转小时
+ * input: 9 或9:30 output 9 或9.5
+ */
+export function formatTimeZone(zone: any) {
+    if (isNaN(zone - 0)) {
+        const zoneArr = zone.split(":");
+        return zoneArr[0] - 0 + zoneArr[1] / 60 - 0;
+    } else {
+        return zone - 0;
+    }
+}
+/**按时区获取时间, 默认GMT0 */
+export function getDateByTimeZone(time: number, timezone: number = 0) {
+    const offset_gmt = new Date().getTimezoneOffset();
+    const d = new Date(time + offset_gmt * 60 * 1000 + formatTimeZone(timezone) * 60 * 60 * 1000);
+    return d;
+}

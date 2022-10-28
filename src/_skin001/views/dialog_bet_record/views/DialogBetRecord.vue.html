@@ -5,7 +5,7 @@
             <div class="text-18">{{LangUtil("投注记录")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
+                <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
@@ -50,6 +50,13 @@
                     width="140"
                     @change="onTimeChange"
                 />
+                <CustomSelect
+                    class="mb-2 mr-2"
+                    v-model="listOptions.betTimeSelect"
+                    :options="listOptions.betTimeOptions()"
+                    width="140"
+                    @change="onBetTimeChange"
+                />
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -84,7 +91,7 @@
                         </div>
                         <div class="listitem-150" v-if="item.vendor_id == 96">
                             <div>{{LangUtil("结算时间")}}</div>
-                            <div class="text-truncate">{{item.game_info.settle_time}}</div>
+                            <div class="text-truncate">{{item.settlement_at}}</div>
                         </div>
                         <div class="d-flex align-end" v-if="item.vendor_id == 96">
                             <v-btn
@@ -144,7 +151,7 @@
                     @change="onVendorChange"
                 />
             </div>
-            <div class="d-flex justify-space-between mx-5">
+            <div class="d-flex justify-space-between mx-5 mb-2">
                 <CustomSelect
                     class="mr-1"
                     v-model="listOptions.statusSelect"
@@ -158,6 +165,15 @@
                     :options="listOptions.timeOptions()"
                     width="100%"
                     @change="onTimeChange"
+                />
+            </div>
+            <div class="d-flex justify-space-between mx-5">
+                <CustomSelect
+                    class="mr-1"
+                    v-model="listOptions.betTimeSelect"
+                    :options="listOptions.betTimeOptions()"
+                    width="49%"
+                    @change="onBetTimeChange"
                 />
             </div>
         </v-card-text>
@@ -195,7 +211,7 @@
                     </div>
                     <div class="d-flex justify-space-between" v-if="item.vendor_id == 96">
                         <div class="colorText1--text">{{LangUtil("结算时间")}}</div>
-                        <div class="text-truncate">{{item.game_info.settle_time}}</div>
+                        <div class="text-truncate">{{item.settlement_at}}</div>
                     </div>
                     <div class="d-flex justify-end" v-if="item.vendor_id == 96">
                         <v-btn

@@ -3,6 +3,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
+import dialog_order from "@/_skin001/views/dialog_order";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
@@ -29,7 +30,7 @@ export default class DialogBetRecord extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
-            this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
+            this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = this.listOptions.betTimeSelect = 0;
             this.myProxy.resetQuery();
             this.myProxy.getApi();
         }
@@ -88,6 +89,23 @@ export default class DialogBetRecord extends AbstractView {
         this.myProxy.pageData.list = [];
         this.myProxy.getApi();
     }
+    onBetTimeChange() {
+        this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
+        let order_by = {};
+        if (this.listOptions.betTimeSelect == 0) {
+            order_by = {
+                "bet_at": "DESC",
+            };
+        } else {
+            order_by = {
+                "settlement_at": "DESC",
+            };
+        }
+        this.listQuery.order_by = JSON.stringify(order_by);
+        this.myProxy.getApi();
+    }
+
 
     onPageChange(val: any) {
         this.listQuery.page_count = val;
@@ -103,5 +121,6 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     handlerDetail(game_info: string) {
+        dialog_order.show(game_info);
     }
 }

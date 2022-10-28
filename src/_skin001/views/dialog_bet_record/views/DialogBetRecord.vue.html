@@ -1,4 +1,4 @@
-<v-dialog width="820" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="920" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
@@ -21,42 +21,64 @@
             <v-divider class="mt-2" />
         </v-card-text>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap align-center">
                 <CustomSelect
-                    class="mb-2 mr-2"
+                    class="mr-2"
                     v-model="listOptions.typeSelect"
                     :options="listOptions.typeOptions()"
                     width="140"
                     @change="onTypeChange"
                 />
                 <CustomSelect
-                    class="mb-2 mr-2"
+                    class="mr-2"
                     v-model="listOptions.vendorSelect"
                     :options="listOptions.vendorOptions()"
                     width="140"
                     @change="onVendorChange"
                 />
                 <CustomSelect
-                    class="mb-2 mr-2"
+                    class="mr-2"
                     v-model="listOptions.statusSelect"
                     :options="listOptions.statusOptions()"
                     width="140"
                     @change="onStatusChange"
                 />
                 <CustomSelect
-                    class="mb-2 mr-2"
-                    v-model="listOptions.timeSelect"
-                    :options="listOptions.timeOptions()"
-                    width="140"
-                    @change="onTimeChange"
-                />
-                <CustomSelect
-                    class="mb-2 mr-2"
+                    class="mr-2"
                     v-model="listOptions.betTimeSelect"
                     :options="listOptions.betTimeOptions()"
                     width="140"
                     @change="onBetTimeChange"
                 />
+                <v-menu
+                    ref="menu"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomDatePick
+                            height="41"
+                            :placeholder="LangUtil('请选择时间')"
+                            v-model="pageData.search.dateArr"
+                            v-bind="attrs"
+                            v-on="on"
+                            readonly
+                            class="w-280"
+                        >
+                            <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
+                                <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                            </v-btn>
+                        </CustomDatePick>
+                    </template>
+                    <v-date-picker
+                        v-model="pageData.search.dateArr"
+                        range
+                        no-title
+                        scrollable
+                    ></v-date-picker>
+                </v-menu>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -161,20 +183,42 @@
                 />
                 <CustomSelect
                     class="ml-1"
-                    v-model="listOptions.timeSelect"
-                    :options="listOptions.timeOptions()"
+                    v-model="listOptions.betTimeSelect"
+                    :options="listOptions.betTimeOptions()"
                     width="100%"
-                    @change="onTimeChange"
+                    @change="onBetTimeChange"
                 />
             </div>
             <div class="d-flex justify-space-between mx-5">
-                <CustomSelect
-                    class="mr-1"
-                    v-model="listOptions.betTimeSelect"
-                    :options="listOptions.betTimeOptions()"
-                    width="49%"
-                    @change="onBetTimeChange"
-                />
+                <v-menu
+                        ref="menu"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomDatePick
+                                height="41"
+                                :placeholder="LangUtil('请选择时间')"
+                                v-model="pageData.search.dateArr"
+                                v-bind="attrs"
+                                v-on="on"
+                                readonly
+                                class="w-280"
+                            >
+                                <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
+                                    <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                                </v-btn>
+                            </CustomDatePick>
+                        </template>
+                        <v-date-picker
+                            v-model="pageData.search.dateArr"
+                            range
+                            no-title
+                            scrollable
+                        ></v-date-picker>
+                    </v-menu>
             </div>
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">

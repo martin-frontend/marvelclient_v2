@@ -42,6 +42,18 @@ export default class DialogBetRecord extends AbstractView {
             this.myProxy.getApi();
         }
     }
+    @Watch("pageData.search.dateArr")
+    onWatchSearchDate(val: any) {
+        if (val != "") {
+            this.pageData.dateButtonActive = true;
+        } else {
+            this.pageData.dateButtonActive = false;
+        }
+    }
+
+    onQuery() {
+        this.myProxy.getApi();
+    }
 
     onTypeChange() {
         this.listQuery.vendor_type = this.listOptions.typeSelect;
@@ -64,31 +76,31 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = 1;
         this.myProxy.getApi();
     }
-    onTimeChange() {
-        this.myProxy.pageData.list = [];
-        this.listQuery.page_count = 1;
-        switch (this.listOptions.timeSelect) {
-            case 0:
-                this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-                break;
-            case 1:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd");
-                break;
-            case 2:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-                break;
-            case 3:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-                break;
-        }
-        this.listQuery.page_count = 1;
-        this.myProxy.pageData.list = [];
-        this.myProxy.getApi();
-    }
+    // onTimeChange() {
+    //     this.myProxy.pageData.list = [];
+    //     this.listQuery.page_count = 1;
+    //     switch (this.listOptions.timeSelect) {
+    //         case 0:
+    //             this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd");
+    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+    //             break;
+    //         case 1:
+    //             this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd");
+    //             this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd");
+    //             break;
+    //         case 2:
+    //             this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd");
+    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+    //             break;
+    //         case 3:
+    //             this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd");
+    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+    //             break;
+    //     }
+    //     this.listQuery.page_count = 1;
+    //     this.myProxy.pageData.list = [];
+    //     this.myProxy.getApi();
+    // }
     onBetTimeChange() {
         this.myProxy.pageData.list = [];
         this.listQuery.page_count = 1;

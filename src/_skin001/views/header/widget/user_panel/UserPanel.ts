@@ -4,7 +4,7 @@ import LoginEnter from "@/core/global/LoginEnter";
 import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";
-import dialog_bet_record from "@/views/dialog_bet_record";
+import dialog_bet_record from "@/_skin001/views/dialog_bet_record";
 import dialog_email from "@/views/dialog_email";
 import dialog_safety_center from "@/views/dialog_safety_center";
 import dialog_wallet from "@/views/dialog_wallet";
@@ -45,7 +45,7 @@ export default class UserPanel extends AbstractView {
             // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
         ];
 
-        if(GamePlatConfig.config.is_show_commission.is_open == 0) {
+        if (GamePlatConfig.config.is_show_commission.is_open == 0) {
             list.shift();
         };
 

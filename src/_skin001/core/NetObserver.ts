@@ -19,6 +19,7 @@ import page_game_play from "@/_skin001/views/page_game_play";
 import page_game_soccer from "../views/page_game_soccer";
 import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
 import { MapLang } from "@/core/map/MapLang";
+import Vue from "vue";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -102,7 +103,9 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert(LangUtil("您的帐号已经退出"));
+                dialog_message_box.alert({message: LangUtil("您的帐号已经退出"), okFun: ()=>{
+                    Vue.router.replace("/");
+                }});
                 break;
             //用户信息
             case net.EventType.api_user_show_var:

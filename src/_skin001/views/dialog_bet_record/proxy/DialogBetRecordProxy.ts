@@ -1,5 +1,5 @@
 import Constant from "@/core/global/Constant";
-import { objectRemoveNull } from "@/core/global/Functions";
+import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { getVuetify } from "@/plugins/vuetify";
 
@@ -28,6 +28,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             order_by: <any>null,
         },
         list: <any>[],
+        dateButtonActive: false,
+        search: {
+            dateArr: <any>[],
+        },
         total_bet_gold: "",
         total_water: "",
         total_win_gold: "",
@@ -96,6 +100,9 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
+        Object.assign(this.pageData.search, {
+            dateArr: [dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd")],
+        });
     }
 
     setVendors(data: any) {
@@ -146,7 +153,13 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_show_var_bet() {
         this.pageData.loading = true;
+        const { dateArr } = this.pageData.search;
+        const [start_date, end_date] = dateArr;
         const formCopy = { user_id: core.user_id };
+        Object.assign(this.pageData.listQuery, {
+            start_date,
+            end_date,
+        });
         Object.assign(formCopy, this.pageData.listQuery);
 
         // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
@@ -155,7 +168,13 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_var_agent_var_bet() {
         this.pageData.loading = true;
+        const { dateArr } = this.pageData.search;
+        const [start_date, end_date] = dateArr;
         const formCopy = { user_id: core.user_id };
+        Object.assign(this.pageData.listQuery, {
+            start_date,
+            end_date,
+        });
         Object.assign(formCopy, this.pageData.listQuery);
 
         // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);

@@ -2,27 +2,7 @@
     background-image: linear-gradient(to right, #1e2c47, #384f72);
     &.down {
         background-image: url("~@/_skin001/assets/extension/commission.png"), linear-gradient(to right, #1e2c47, #384f72);
-        background-size: 231px 287px, 100% 100%;
-        // background-position: -6% bottom;
-        @media (max-width: 1426px) {
-            background-position: -20% bottom;
-        }
-        @media (max-width: 1264px) {
-            background-position: -6% bottom;
-        }
-        @media (max-width: 700px) {
-            background-position: -17% bottom;
-        }
-        @media (max-width: 400px) {
-            background-image: url("~@/_skin001/assets/extension/commission.png"), url("~@/assets/extension/background.png"),
-                linear-gradient(to right, #1e2c47, #384f72);
-            background-position: -31% bottom, right;
-            background-size: 216px 252px, 60% 65%, 100% 100%;
-            height: unset;
-        }
-        @media (min-width: 400px) and (max-width: 600px) {
-            height: unset;
-        }
+        background-size: contain;
     }
 }
 .horizontal-gradient-right {
@@ -68,14 +48,6 @@
         padding: 4px;
         width: 100px;
         height: 100px;
-    }
-}
-.new {
-    @media (min-width: 1263px) and (max-width: 1426px) {
-        width: 113px;
-    }
-    @media (min-width: 600px) and (max-width: 640px) {
-        width: 113px;
     }
 }
 .rounded-card {

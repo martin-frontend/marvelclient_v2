@@ -10,7 +10,8 @@
         </v-card-title>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="colorText2--text text-16 ml-3 d-flex">
-                <div>{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
+                <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}} </div>
+                <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
                 <div class="ml-5">
                     {{LangUtil("输赢")}} {{pageData.total_win_gold}}
                 </div>
@@ -148,13 +149,14 @@
                 </v-btn>
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
-                <div>{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-                <div class="ml-5">
-                    {{LangUtil("输赢")}} {{pageData.total_win_gold}}
-                </div>
+                <div class="w-120">{{LangUtil("共计{0}条", pageInfo.pageTotal)}} </div>
+                <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
-                <div>{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
+                <div class="w-120">
+                    {{LangUtil("输赢")}} {{pageData.total_win_gold}}
+                </div>
+                <div class="ml-5">{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
             </div>
             <v-divider class="mt-2 mb-4 mx-5" />
             <div class="d-flex justify-space-between mx-5 mb-2">

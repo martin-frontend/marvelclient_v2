@@ -16,6 +16,7 @@ export default class DialogBetRecord extends AbstractView {
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
+    pageInfo = this.myProxy.pageData.pageInfo;
 
     constructor() {
         super(DialogBetRecordMediator);

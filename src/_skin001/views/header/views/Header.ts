@@ -14,6 +14,11 @@ import dialog_register from "@/views/dialog_register";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderMediator from "../mediator/HeaderMediator";
 import HeaderProxy from "../proxy/HeaderProxy";
+import LoginEnter from "@/core/global/LoginEnter";
+import PageHomeProxy from "../../page_home/proxy/PageHomeProxy";
+import page_game_list from "../../page_game_list";
+import page_mine from "../../page_mine";
+import page_extension from "../../page_extension";
 
 @Component
 export default class Header extends AbstractView {
@@ -29,6 +34,7 @@ export default class Header extends AbstractView {
     LangConfig = LangConfig;
     //当前活动的分类
     categoryActive = -1;
+    homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
 
     constructor() {
         super(HeaderMediator);
@@ -49,6 +55,29 @@ export default class Header extends AbstractView {
             this.$router.push("/");
         }
         ScrollUtil(0);
+    }
+    /**打开足球 */
+    goSoccer() {
+        if (this.$router.app.$route.path == "/page_game_soccer") {
+            return;
+        }
+        this.homeProxy.pageData.event_id = 0;
+        LoginEnter(() => {
+            const gameProxy: GameProxy = this.getProxy(GameProxy);
+            gameProxy.go_soccer();
+        });
+    }
+    goCategory(id: any) {
+        this.categoryActive = id;
+        page_game_list.show(id);
+    }
+
+    goMine() {
+        LoginEnter(page_mine.show);
+    }
+
+    goExtension() {
+        LoginEnter(page_extension.show);
     }
     /**打开介绍页面 */
     // goIntroduce() {
@@ -118,5 +147,9 @@ export default class Header extends AbstractView {
         if (!val) {
             this.myProxy.isShowWalletTip = false;
         }
+    }
+
+    get is_show_commission() {
+        return this.GamePlatConfig.config.is_show_commission;
     }
 }

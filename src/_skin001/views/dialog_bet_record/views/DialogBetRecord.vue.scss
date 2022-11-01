@@ -43,3 +43,13 @@
 .w-120 {
     width: 120px;
 }
+
+::v-deep .el-input__inner{
+    background-color: #25324b !important;
+    border-radius: 8px !important;
+    border: none;
+    color: #96AAD0;
+}
+::v-deep .el-input__inner::placeholder {
+    color: #96AAD0;
+  }

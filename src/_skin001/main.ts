@@ -9,6 +9,8 @@ import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
+import { DatePicker } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 LogUtil.init();
 core.init();
@@ -27,6 +29,7 @@ AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
+Vue.use(DatePicker);
 
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;

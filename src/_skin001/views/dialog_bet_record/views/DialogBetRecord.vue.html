@@ -51,7 +51,7 @@
                     width="140"
                     @change="onBetTimeChange"
                 />
-                <v-menu
+                <!-- <v-menu
                     ref="menu"
                     :close-on-content-click="false"
                     transition="scale-transition"
@@ -79,7 +79,35 @@
                         no-title
                         scrollable
                     ></v-date-picker>
-                </v-menu>
+                </v-menu> -->
+            </div>
+            <div class="d-flex flex-wrap align-center mt-2">
+                <el-date-picker
+                    class="mr-2"
+                    v-model="start_date"
+                    type="datetime"
+                    :placeholder="LangUtil('请选择开始日期时间')"
+                    default-time="00:00:00"
+                    value-format="yyyy-MM-dd HH:mm:ss">
+                </el-date-picker>
+                <el-date-picker
+                    class="mr-2"
+                    v-model="end_date"
+                    type="datetime"
+                    :placeholder="LangUtil('请选择结束日期时间')"
+                    default-time="23:59:59"
+                    value-format="yyyy-MM-dd HH:mm:ss">
+                </el-date-picker>
+                <v-btn
+                    class="rounded-lg"
+                    color="colorBtnBg"
+                    min-width="61"
+                    height="40"
+                    @click="onQuery"
+                    :disabled="start_date == null || end_date == null"
+                >
+                    <span class="white--text">{{ LangUtil("查询") }}</span>
+                </v-btn>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -192,35 +220,61 @@
                 />
             </div>
             <div class="d-flex justify-space-between mx-5">
-                <v-menu
-                        ref="menu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <CustomDatePick
-                                height="41"
-                                :placeholder="LangUtil('请选择时间')"
-                                v-model="pageData.search.dateArr"
-                                v-bind="attrs"
-                                v-on="on"
-                                readonly
-                                class="w-280"
-                            >
-                                <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
-                                    <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
-                                </v-btn>
-                            </CustomDatePick>
-                        </template>
-                        <v-date-picker
+                <el-date-picker
+                    class="mr-2"
+                    v-model="start_date"
+                    type="datetime"
+                    :placeholder="LangUtil('请选择开始日期时间')"
+                    default-time="00:00:00"
+                    value-format="yyyy-MM-dd HH:mm:ss">
+                </el-date-picker>
+                <el-date-picker
+                    class="mr-2"
+                    v-model="end_date"
+                    type="datetime"
+                    :placeholder="LangUtil('请选择结束日期时间')"
+                    default-time="23:59:59"
+                    value-format="yyyy-MM-dd HH:mm:ss">
+                </el-date-picker>
+                <v-btn
+                    class="rounded-lg"
+                    color="colorBtnBg"
+                    min-width="61"
+                    height="40"
+                    @click="onQuery"
+                    :disabled="start_date == null || end_date == null"
+                >
+                    <span class="white--text" >{{ LangUtil("查询") }}</span>
+                </v-btn>
+                <!-- <v-menu
+                    ref="menu"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomDatePick
+                            height="41"
+                            :placeholder="LangUtil('请选择时间')"
                             v-model="pageData.search.dateArr"
-                            range
-                            no-title
-                            scrollable
-                        ></v-date-picker>
-                    </v-menu>
+                            v-bind="attrs"
+                            v-on="on"
+                            readonly
+                            class="w-280"
+                        >
+                            <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
+                                <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                            </v-btn>
+                        </CustomDatePick>
+                    </template>
+                    <v-date-picker
+                        v-model="pageData.search.dateArr"
+                        range
+                        no-title
+                        scrollable
+                    ></v-date-picker>
+                </v-menu> -->
             </div>
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">

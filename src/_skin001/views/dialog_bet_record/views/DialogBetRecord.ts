@@ -16,7 +16,19 @@ export default class DialogBetRecord extends AbstractView {
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
+    start_date = this.pageData.listQuery.start_date;
+    end_date = this.pageData.listQuery.end_date;
     pageInfo = this.myProxy.pageData.pageInfo;
+
+    @Watch("start_date")
+    onStartDate() {
+        this.pageData.listQuery.start_date = this.start_date;
+    }
+
+    @Watch("end_date")
+    onEndDate() {
+        this.pageData.listQuery.end_date = this.end_date;
+    }
 
     constructor() {
         super(DialogBetRecordMediator);
@@ -33,6 +45,8 @@ export default class DialogBetRecord extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = this.listOptions.betTimeSelect = 0;
             this.myProxy.resetQuery();
+            this.start_date = this.pageData.listQuery.start_date;
+            this.end_date = this.pageData.listQuery.end_date;
             this.myProxy.getApi();
         }
     }

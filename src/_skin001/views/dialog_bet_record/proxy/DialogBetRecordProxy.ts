@@ -20,8 +20,8 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            start_date: core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd"),
-            end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
+            start_date: new Date(dateFormat(getTodayOffset(), "yyyy-MM-dd hh:mm:ss")),
+            end_date: new Date(dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss")),
             page_count: 1,
             page_size: 20,
             agent_user_id: null,
@@ -95,13 +95,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: null,
             vendor_id: null,
             settlement_status: null,
-            start_date: core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd"),
-            end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
+            start_date: new Date(dateFormat(getTodayOffset(), "yyyy-MM-dd hh:mm:ss")),
+            end_date: new Date(dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss")),
             page_count: 1,
             page_size: 20,
-        });
-        Object.assign(this.pageData.search, {
-            dateArr: [dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd")],
         });
     }
 
@@ -153,13 +150,15 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_show_var_bet() {
         this.pageData.loading = true;
-        const { dateArr } = this.pageData.search;
-        const [start_date, end_date] = dateArr;
+        if (typeof (this.pageData.listQuery.start_date) != 'string' && this.pageData.listQuery.start_date != null) {
+            //@ts-ignore
+            this.pageData.listQuery.start_date = dateFormat(this.pageData.listQuery.start_date, "yyyy-MM-dd hh:mm:ss");
+        }
+        if (typeof (this.pageData.listQuery.end_date) != 'string' && this.pageData.listQuery.end_date != null) {
+            //@ts-ignore
+            this.pageData.listQuery.end_date = dateFormat(this.pageData.listQuery.end_date, "yyyy-MM-dd hh:mm:ss");
+        }
         const formCopy = { user_id: core.user_id };
-        Object.assign(this.pageData.listQuery, {
-            start_date,
-            end_date,
-        });
         Object.assign(formCopy, this.pageData.listQuery);
 
         // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);

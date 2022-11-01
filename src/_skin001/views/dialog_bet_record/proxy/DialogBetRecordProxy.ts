@@ -1,7 +1,7 @@
 import Constant from "@/core/global/Constant";
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
-import { getVuetify } from "@/plugins/vuetify";
+import Vue from "vue";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
@@ -116,7 +116,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_bet_gold = data.total_bet_gold;
         this.pageData.total_water = data.total_water;
         this.pageData.total_win_gold = data.total_win_gold;
-        const vuetify = getVuetify();
+        const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

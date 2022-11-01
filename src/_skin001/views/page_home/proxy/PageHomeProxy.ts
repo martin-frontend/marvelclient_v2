@@ -1,6 +1,5 @@
-import GameConfig from "@/core/config/GameConfig";
-import { getVuetify } from "@/plugins/vuetify";
 import { CompetitionVO, MatcheVO } from "@/_skin001/vo/CompetitionVO";
+import Vue from "vue";
 
 export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
@@ -110,7 +109,7 @@ export default class PageHomeProxy extends puremvc.Proxy {
     /**获取赛事信息 */
     api_vendor_96_products() {
         let market_type = "";
-        if (getVuetify().framework.breakpoint.xsOnly) {
+        if (Vue.vuetify.framework.breakpoint.xsOnly) {
             market_type = "ASIAN_OVER_UNDER,ASIAN_HANDICAP";
         } else {
             market_type =

@@ -3,7 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 // import { vuetify } from "@/plugins/vuetify";
-import { getVuetify } from "@/_skin100/plugins/vuetify";
+import Vue from "vue";
 
 export default class DialogAddressBookProxy extends puremvc.Proxy {
     static NAME = "DialogAddressBookProxy";
@@ -56,7 +56,7 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
     setAdressData(data: any) {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = getVuetify();
+        const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

@@ -1,4 +1,4 @@
-import { getVuetify } from "@/_skin100/plugins/vuetify";
+import Vue from "vue";
 
 export default class DialogRecordMineProxy extends puremvc.Proxy {
     static NAME = "DialogRecordMineProxy";
@@ -33,7 +33,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = getVuetify();
+        const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

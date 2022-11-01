@@ -1,5 +1,5 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
-import { getVuetify } from "@/plugins/vuetify";
+import Vue from "vue";
 
 export default class DialogRecordExchangeProxy extends AbstractProxy {
     static NAME = "DialogRecordExchangeProxy";
@@ -37,7 +37,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = getVuetify();
+        const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {

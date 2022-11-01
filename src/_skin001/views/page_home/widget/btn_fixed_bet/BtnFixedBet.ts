@@ -3,7 +3,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import MarketUtils from "@/_skin001/views/page_home/utils/MarketUtils";
 import { MarketVO, SelectionVO } from "@/_skin001/vo/CompetitionVO";
-import { getVuetify } from "@/_skin100/plugins/vuetify";
+import Vue from "vue";
 
 @Component
 export default class BtnFixedBet extends AbstractView {
@@ -54,7 +54,7 @@ export default class BtnFixedBet extends AbstractView {
         clearTimeout(this.cleartimer);
         const imgOdds: HTMLElement = <any>this.$refs.imgOdds;
         const divPrice: HTMLElement = <any>this.$refs.divPrice;
-        const vuetify = getVuetify();
+        const vuetify = Vue.vuetify;
         if (imgOdds && divPrice) {
             this.cleartimer = setTimeout(() => {
                 imgOdds.style.opacity = "0";

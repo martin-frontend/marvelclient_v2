@@ -144,6 +144,14 @@ module core {
         is_google_scan?: number;
         /**登录是否需要google验证码 */
         is_login_need_google?: number;
+        /**是否显示信用统计 */
+        show_credit_statistic?: number;
+        /**是否显示兑换 */
+        is_exchange?: number;
+        /**是否显示充值 */
+        is_recharge?: number;
+        /**货币互转开关 */
+        is_gold_exchange?: number;
     }
 
     /**

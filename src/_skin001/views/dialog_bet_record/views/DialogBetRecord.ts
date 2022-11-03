@@ -16,22 +16,55 @@ export default class DialogBetRecord extends AbstractView {
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
-    start_date = this.pageData.listQuery.start_date;
-    end_date = this.pageData.listQuery.end_date;
     pageInfo = this.myProxy.pageData.pageInfo;
 
-    @Watch("start_date")
-    onStartDate() {
-        this.pageData.listQuery.start_date = this.start_date;
-    }
-
-    @Watch("end_date")
-    onEndDate() {
-        this.pageData.listQuery.end_date = this.end_date;
-    }
+    timeRange: any = ["", ""];
+    pickerOptions = {
+        shortcuts: [
+            {
+                text: LangUtil("最近一周"),
+                onClick(picker: any) {
+                    const start = getTodayOffset(-6);
+                    const end = getTodayOffset(1, 1);
+                    picker.$emit("pick", [start, end]);
+                },
+            },
+            {
+                text: LangUtil("最近一个月"),
+                onClick(picker: any) {
+                    const start = getTodayOffset(-30);
+                    const end = getTodayOffset(1, 1);
+                    picker.$emit("pick", [start, end]);
+                },
+            },
+        ],
+    };
 
     constructor() {
         super(DialogBetRecordMediator);
+    }
+
+    onTimeChange() {
+        if (this.timeRange) {
+            const startDate: any = this.timeRange[0];
+            const endDate: any = this.timeRange[1];
+            if (startDate) {
+                this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+            } else {
+                this.pageData.listQuery.start_date = "";
+            }
+            if (endDate) {
+                this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
+            } else {
+                this.pageData.listQuery.end_date = "";
+            }
+        } else {
+            this.pageData.listQuery.start_date = "";
+            this.pageData.listQuery.end_date = "";
+        }
+
+        this.pageData.listQuery.page_count = 1;
+        this.myProxy.getApi();
     }
 
     onClose() {
@@ -45,9 +78,17 @@ export default class DialogBetRecord extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = this.listOptions.betTimeSelect = 0;
             this.myProxy.resetQuery();
-            this.start_date = this.pageData.listQuery.start_date;
-            this.end_date = this.pageData.listQuery.end_date;
-            this.myProxy.getApi();
+            if(this.pageData.listQuery.start_date){
+                this.timeRange[0] = new Date(this.pageData.listQuery.start_date);
+            }else{
+                this.timeRange[0] = getTodayOffset();
+            }
+            if(this.pageData.listQuery.end_date){
+                this.timeRange[1] = new Date(this.pageData.listQuery.end_date);
+            }else{
+                this.timeRange[1] = getTodayOffset(1, 1);
+            }
+            this.onTimeChange();
         }
     }
     @Watch("$vuetify.breakpoint.xsOnly")
@@ -91,31 +132,6 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = 1;
         this.myProxy.getApi();
     }
-    // onTimeChange() {
-    //     this.myProxy.pageData.list = [];
-    //     this.listQuery.page_count = 1;
-    //     switch (this.listOptions.timeSelect) {
-    //         case 0:
-    //             this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd");
-    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-    //             break;
-    //         case 1:
-    //             this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd");
-    //             this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd");
-    //             break;
-    //         case 2:
-    //             this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd");
-    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-    //             break;
-    //         case 3:
-    //             this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd");
-    //             this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
-    //             break;
-    //     }
-    //     this.listQuery.page_count = 1;
-    //     this.myProxy.pageData.list = [];
-    //     this.myProxy.getApi();
-    // }
     onBetTimeChange() {
         this.myProxy.pageData.list = [];
         this.listQuery.page_count = 1;

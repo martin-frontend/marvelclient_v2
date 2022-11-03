@@ -277,6 +277,16 @@
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                 class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
                                 color="colorExtensionBtn"
+                                @click="handlerCredit"
+                                v-if="selfProxy.userInfo.show_credit_statistic === 1"
+                            >
+                                {{LangUtil("信用统计")}}
+                            </v-btn>
+                            <v-btn
+                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                :height="$vuetify.breakpoint.mobile? 30 :40"
+                                class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
+                                color="colorExtensionBtn"
                                 @click="handlerPromotion"
                                 v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
                             >
@@ -623,7 +633,17 @@
                                     <div class="text-caption text-sm-body-2 mb-2">
                                         {{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}
                                     </div>
-                                    <div class="d-flex justify-end mt-auto flex-wrap">
+                                    <div class="d-flex justify-end mt-auto">
+                                        <v-btn
+                                            :min-width="90"
+                                            :height="35"
+                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1"
+                                            color="colorTextBlue2"
+                                            @click="handlerCredit"
+                                            v-if="selfProxy.userInfo.show_credit_statistic === 1"
+                                        >
+                                            {{LangUtil("信用统计")}}
+                                        </v-btn>
                                         <v-btn
                                             :min-width="90"
                                             :height="35"

@@ -313,6 +313,8 @@ var net;
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
     };
     /**事件*/
     net.EventType = {
@@ -572,6 +574,8 @@ var net;
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api_user_var_credit_statistic",
     };
     /**注册协议*/
     function initCommand() {
@@ -722,6 +726,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
         //--skin001专属
         facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
+        facade.registerCommand(net.HttpType.api_user_var_credit_statistic, net.cmd_api_user_var_credit_statistic);
     }
     net.initCommand = initCommand;
     ;
@@ -2529,6 +2534,28 @@ var net;
         }
     }
     net.cmd_api_user_var_commission_receive = cmd_api_user_var_commission_receive;
+})(net || (net = {}));
+/**
+ * 信用统计
+ */
+var net;
+/**
+ * 信用统计
+ */
+(function (net) {
+    class cmd_api_user_var_credit_statistic extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_credit_statistic, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_credit_statistic, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_credit_statistic = cmd_api_user_var_credit_statistic;
 })(net || (net = {}));
 /**
  * 用户质押

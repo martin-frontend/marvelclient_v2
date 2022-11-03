@@ -274,6 +274,8 @@ module net {
 
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
     };
     /**事件*/
     export var EventType = {
@@ -555,6 +557,8 @@ module net {
 
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api_user_var_credit_statistic",
     };
     /**注册协议*/
     export function initCommand() {
@@ -705,6 +709,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
         //--skin001专属
         facade.registerCommand(HttpType.api_vendor_96_products, cmd_api_vendor_96_products);
+        facade.registerCommand(HttpType.api_user_var_credit_statistic, cmd_api_user_var_credit_statistic);
     };
 
 }

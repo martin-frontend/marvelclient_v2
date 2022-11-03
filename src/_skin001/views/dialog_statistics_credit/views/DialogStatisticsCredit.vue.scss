@@ -1,0 +1,42 @@
+::v-deep .el-input__inner {
+    background-color: #25324b !important;
+    border-radius: 8px !important;
+    border: none;
+    color: #96aad0;
+}
+::v-deep .el-input__inner::placeholder {
+    color: #606266;
+}
+::v-deep .el-range-input {
+    color: #96aad0;
+    width: auto;
+}
+::v-deep .el-range__icon {
+    margin-top: 3px;
+}
+::v-deep .el-range__close-icon {
+    margin-top: 3px;
+}
+::v-deep .el-range-input::placeholder {
+    color: #606266;
+}
+::v-deep .el-input--suffix .el-input__inner {
+    padding-right: 0px;
+}
+.gmt {
+    z-index: 1;
+}
+
+.input_range {
+    width: 400px;
+}
+
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 180px;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}

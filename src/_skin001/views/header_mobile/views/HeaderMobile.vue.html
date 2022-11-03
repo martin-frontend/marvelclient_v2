@@ -13,7 +13,7 @@
     </v-btn>
     <v-spacer/>
     <div v-if="LangConfig.language" class="mr-4">
-        <v-menu offset-y>
+        <v-menu absolute :position-y="45">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="primary" dark v-bind="attrs" v-on="on" x-small icon>
                     <img :src="LangConfig.language[core.lang].icon" width="26" />

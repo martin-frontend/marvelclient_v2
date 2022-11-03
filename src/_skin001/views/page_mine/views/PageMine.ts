@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Watch, Component } from "vue-property-decorator";
 import PageMineMediator from "../mediator/PageMineMediator";
 import PageMineProxy from "../proxy/PageMineProxy";
-import dialog_record_mine from "@/views/dialog_record_mine";
+import dialog_record_mine from "@/_skin001/views/dialog_record_mine";
 import dialog_bet_record from "@/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
 import page_game_list from "@/views/page_game_list";

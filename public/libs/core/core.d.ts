@@ -259,6 +259,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: string;
     };
     /**事件*/
     var EventType: {
@@ -518,6 +520,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1256,6 +1260,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_commission_receive extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 信用统计
+ */
+declare module net {
+    class cmd_api_user_var_credit_statistic extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2942,6 +2955,14 @@ declare module core {
         is_google_scan?: number;
         /**登录是否需要google验证码 */
         is_login_need_google?: number;
+        /**是否显示信用统计 */
+        show_credit_statistic?: number;
+        /**是否显示兑换 */
+        is_exchange?: number;
+        /**是否显示充值 */
+        is_recharge?: number;
+        /**货币互转开关 */
+        is_gold_exchange?: number;
     }
     /**
      * vip 奖励活动相关

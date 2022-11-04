@@ -32,17 +32,20 @@ export default class Header extends AbstractView {
     commonIcon = Assets.commonIcon;
     GamePlatConfig = GamePlatConfig;
     LangConfig = LangConfig;
-    //当前活动的分类
-    categoryActive = -1;
     homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
 
     constructor() {
         super(HeaderMediator);
     }
 
+    //当前活动的分类
+    get categoryActive() {
+        return this.myProxy.categoryActive
+    }
+
     mounted() {
-        window.addEventListener("scroll", this.scrollHandle, true);
-        this.scrollHandle();
+        // window.addEventListener("scroll", this.scrollHandle, true);
+        // this.scrollHandle();
     }
 
     @Watch("$route")
@@ -68,7 +71,7 @@ export default class Header extends AbstractView {
         });
     }
     goCategory(id: any) {
-        this.categoryActive = id;
+        this.myProxy.categoryActive = id;
         page_game_list.show(id);
     }
 
@@ -124,23 +127,23 @@ export default class Header extends AbstractView {
         }
     }
 
-    scrollHandle() {
-        this.categoryActive = -1;
-        if (!this.$vuetify.breakpoint.mobile) {
-            const len = this.pageData.lobbyIndex.length;
-            for (let i = 0; i < len; i++) {
-                const item = this.pageData.lobbyIndex[i];
-                const div = document.getElementById(item.category.toString());
-                if (div) {
-                    const rect = div.getBoundingClientRect();
-                    if (rect.top <= 250 && rect.bottom - 50 > 155) {
-                        this.categoryActive = i;
-                        break;
-                    }
-                }
-            }
-        }
-    }
+    // scrollHandle() {
+    //     this.categoryActive = -1;
+    //     if (!this.$vuetify.breakpoint.mobile) {
+    //         const len = this.pageData.lobbyIndex.length;
+    //         for (let i = 0; i < len; i++) {
+    //             const item = this.pageData.lobbyIndex[i];
+    //             const div = document.getElementById(item.category.toString());
+    //             if (div) {
+    //                 const rect = div.getBoundingClientRect();
+    //                 if (rect.top <= 250 && rect.bottom - 50 > 155) {
+    //                     this.categoryActive = i;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     @Watch("myProxy.isOpenWalletMenu")
     onWatchMenu(val: boolean) {

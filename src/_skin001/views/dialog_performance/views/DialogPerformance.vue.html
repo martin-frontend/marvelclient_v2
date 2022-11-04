@@ -19,7 +19,7 @@
                 <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
                 <div>{{LangUtil("团队总业绩")}} {{ summary.group_water }}</div>
                 <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
-                <!-- <div>{{LangUtil("总佣金")}} {{ summary.total_commission.USDT }}</div> -->
+                <div v-if="selfProxy.userInfo.is_credit_user == 98">{{LangUtil("总佣金")}} {{ summary.total_commission.USDT }}</div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                 <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
@@ -40,10 +40,10 @@
                             <div>{{LangUtil("直属业绩")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.direct_water }}</div>
                         </div>
-                        <!-- <div class="item-auto">
+                        <div class="item-auto" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div>{{LangUtil("总佣金")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.total_commission.USDT }}</div>
-                        </div> -->
+                        </div>
                         <div class="d-flex align-end justify-end listitem-90">
                             <v-btn
                                 text
@@ -85,9 +85,9 @@
                 <div>{{LangUtil("团队总业绩")}} {{ summary.group_water }}</div>
                 <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
             </div>
-            <!-- <div class="colorText1--text d-flex flex-wrap listinfo mb-3">
+            <div class="colorText1--text d-flex flex-wrap listinfo mb-3" v-if="selfProxy.userInfo.is_credit_user == 98">
                 <div>{{LangUtil("总佣金")}} {{ summary.total_commission.USDT }}</div>
-            </div> -->
+            </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y">
                 <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
@@ -106,10 +106,10 @@
                         <div class="colorText1--text">{{LangUtil("直属业绩")}}</div>
                         <div>{{ item.direct_water }}</div>
                     </div>
-                    <!-- <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                         <div class="colorText1--text">{{LangUtil("总佣金")}}</div>
                         <div>{{ item.total_commission.USDT }}</div>
-                    </div> -->
+                    </div>
                     <div class="d-flex align-end justify-end listitem-90">
                         <v-btn text height="20" 
                             class="text-decoration-underline pa-0 colorBlue--text font-weight-regular"

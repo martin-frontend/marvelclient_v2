@@ -34,6 +34,10 @@ module net {
         api_user_var_block_transfer_out_order_store: "api/user/{API_USER_ID}/block_transfer_out_order/store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api/user/{API_USER_ID}/block_transfer_out_order/index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api/user/coin_exchange_scale/{API_USER_ID}",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api/user/coin_exchange/{API_USER_ID}",
 
         /**--账号--注册*/
         api_user_register: "api/user/register",
@@ -317,6 +321,10 @@ module net {
         api_user_var_block_transfer_out_order_store: "api_user_var_block_transfer_out_order_store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api_user_var_block_transfer_out_order_index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api_user_coin_exchange_scale_var",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api_user_coin_exchange_var",
 
         /**--账号--注册*/
         api_user_register: "api_user_register",
@@ -579,6 +587,8 @@ module net {
         facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_index, cmd_api_user_var_block_transfer_in_order_index);
         facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_store, cmd_api_user_var_block_transfer_out_order_store);
         facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_index, cmd_api_user_var_block_transfer_out_order_index);
+        facade.registerCommand(HttpType.api_user_coin_exchange_scale_var, cmd_api_user_coin_exchange_scale_var);
+        facade.registerCommand(HttpType.api_user_coin_exchange_var, cmd_api_user_coin_exchange_var);
         //--账号
         facade.registerCommand(HttpType.api_user_register, cmd_api_user_register);
         facade.registerCommand(HttpType.api_user_login, cmd_api_user_login);

@@ -7,7 +7,6 @@ import dialog_activity from "@/views/dialog_activity";
 import dialog_bet_record from "@/_skin001/views/dialog_bet_record";
 import dialog_email from "@/views/dialog_email";
 import dialog_safety_center from "@/views/dialog_safety_center";
-import dialog_wallet from "@/views/dialog_wallet";
 import page_extension from "@/views/page_extension";
 import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";
@@ -17,6 +16,7 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_user_center from "@/views/dialog_user_center";
 import dialog_message from "@/views/dialog_message";
+import dialog_wallet from "@/_skin001/views/dialog_wallet";
 
 @Component
 export default class UserPanel extends AbstractView {

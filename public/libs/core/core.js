@@ -93,6 +93,10 @@ var net;
         api_user_var_block_transfer_out_order_store: "api/user/{API_USER_ID}/block_transfer_out_order/store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api/user/{API_USER_ID}/block_transfer_out_order/index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api/user/coin_exchange_scale/{API_USER_ID}",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api/user/coin_exchange/{API_USER_ID}",
         /**--账号--注册*/
         api_user_register: "api/user/register",
         /**--账号--登入*/
@@ -354,6 +358,10 @@ var net;
         api_user_var_block_transfer_out_order_store: "api_user_var_block_transfer_out_order_store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api_user_var_block_transfer_out_order_index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api_user_coin_exchange_scale_var",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api_user_coin_exchange_var",
         /**--账号--注册*/
         api_user_register: "api_user_register",
         /**--账号--登入*/
@@ -596,6 +604,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_in_order_index, net.cmd_api_user_var_block_transfer_in_order_index);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_out_order_store, net.cmd_api_user_var_block_transfer_out_order_store);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_out_order_index, net.cmd_api_user_var_block_transfer_out_order_index);
+        facade.registerCommand(net.HttpType.api_user_coin_exchange_scale_var, net.cmd_api_user_coin_exchange_scale_var);
+        facade.registerCommand(net.HttpType.api_user_coin_exchange_var, net.cmd_api_user_coin_exchange_var);
         //--账号
         facade.registerCommand(net.HttpType.api_user_register, net.cmd_api_user_register);
         facade.registerCommand(net.HttpType.api_user_login, net.cmd_api_user_login);
@@ -1654,6 +1664,50 @@ var net;
         }
     }
     net.cmd_api_user_change_password_var = cmd_api_user_change_password_var;
+})(net || (net = {}));
+/**
+ * 货币互转取得即時匯率
+ */
+var net;
+/**
+ * 货币互转取得即時匯率
+ */
+(function (net) {
+    class cmd_api_user_coin_exchange_scale_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_coin_exchange_scale_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_coin_exchange_scale_var, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_coin_exchange_scale_var = cmd_api_user_coin_exchange_scale_var;
+})(net || (net = {}));
+/**
+ * 货币互转
+ */
+var net;
+/**
+ * 货币互转
+ */
+(function (net) {
+    class cmd_api_user_coin_exchange_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_coin_exchange_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_coin_exchange_var, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_coin_exchange_var = cmd_api_user_coin_exchange_var;
 })(net || (net = {}));
 /**
  * 登入

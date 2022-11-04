@@ -39,6 +39,10 @@ declare module net {
         api_user_var_block_transfer_out_order_store: string;
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: string;
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: string;
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: string;
         /**--账号--注册*/
         api_user_register: string;
         /**--账号--登入*/
@@ -300,6 +304,10 @@ declare module net {
         api_user_var_block_transfer_out_order_store: string;
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: string;
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: string;
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: string;
         /**--账号--注册*/
         api_user_register: string;
         /**--账号--登入*/
@@ -900,6 +908,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_change_password_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 货币互转取得即時匯率
+ */
+declare module net {
+    class cmd_api_user_coin_exchange_scale_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 货币互转
+ */
+declare module net {
+    class cmd_api_user_coin_exchange_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2957,6 +2983,8 @@ declare module core {
         is_login_need_google?: number;
         /**是否显示信用统计 */
         show_credit_statistic?: number;
+        /**是否信用用户 */
+        is_credit_user?: number;
         /**是否显示兑换 */
         is_exchange?: number;
         /**是否显示充值 */

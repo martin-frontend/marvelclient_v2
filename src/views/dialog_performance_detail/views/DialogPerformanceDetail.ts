@@ -5,6 +5,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceDetailMediator from "../mediator/DialogPerformanceDetailMediator";
 import DialogPerformanceDetailProxy from "../proxy/DialogPerformanceDetailProxy";
 import LangUtil from "@/core/global/LangUtil";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
@@ -14,6 +15,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     listQuery = this.pageData.listQuery;
     categoryType = this.myProxy.categoryIcons;
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
     commonIcon = Assets.commonIcon;
 

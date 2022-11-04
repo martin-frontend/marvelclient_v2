@@ -78,6 +78,7 @@ export function getVuetify(): Vuetify {
                         colorBackgroundGray: "#F1F1F1",
                         colorYellow: "#D7A80E",
                         colorGreen: "#25D810",
+                        colorYellow1: "#EDBF00",
                     },
                 },
                 dark: true,

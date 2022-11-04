@@ -1,0 +1,43 @@
+<v-dialog width="410" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <v-card-title class="gradient-bg">
+            <div class="text-18">{{LangUtil("币种转换")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-divider />
+        <v-card-text>
+            <div class="my-2 primary--text d-flex">
+                {{LangUtil("选择币种")}}
+                <v-spacer />
+                <div class="colorBlue--text text-decoration-underline cursor-pointer" @click="onGameRate">{{LangUtil("汇率说明")}}</div>
+            </div>
+            <CustomSelect :icons="plat_coins" :options="optionsCoin1" height="50" v-model="form.from_coin_name_unique"/>
+            <div class="mt-2 mb-4 colorBlue--text">{{LangUtil("余额")}} {{gold_info[form.from_coin_name_unique] && gold_info[form.from_coin_name_unique].plat_money}}</div>
+
+            <div class="my-2 primary--text">{{LangUtil("转化币种")}}</div>
+            <CustomSelect :icons="plat_coins" :options="optionsCoin2" height="50" v-model="form.to_coin_name_unique"/>
+            <div class="mt-2 colorBlue--text">{{LangUtil("余额")}} {{gold_info[form.to_coin_name_unique] && gold_info[form.to_coin_name_unique].plat_money}}</div>
+
+            <CustomInput class="mt-6" v-model="form.amount">
+                <template v-slot:pre>
+                    <img :src="plat_coins[form.from_coin_name_unique].icon" width="30" height="30" class="ml-3 mt-1">
+                </template>
+                <v-btn class="text-12" color="colorBtnBg" small @click="onAll"> {{LangUtil("全部")}} </v-btn>
+            </CustomInput>
+            <div class="d-flex align-center mt-2 colorYellow1--text">
+                <div>{{LangUtil("可获得")}} {{form.amount>0 ? pageData.exchangeData.to_coin_name_unique_amount : '0'}} {{form.to_coin_name_unique}}</div>
+                <v-spacer />
+                <div>
+                    {{LangUtil("汇率")}}{{form.from_coin_name_unique}}/{{form.to_coin_name_unique}} 1:{{exchangeData.scale || "--"}}
+                </div>
+            </div>
+        </v-card-text>
+        <v-card-actions class="mt-16">
+            <v-btn block color="colorBtnBg" height="40" @click="onExchange" :disabled="!form.amount">{{LangUtil("确定")}}</v-btn>
+        </v-card-actions>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -146,6 +146,8 @@ module core {
         is_login_need_google?: number;
         /**是否显示信用统计 */
         show_credit_statistic?: number;
+        /**是否信用用户 */
+        is_credit_user?:number;
         /**是否显示兑换 */
         is_exchange?: number;
         /**是否显示充值 */

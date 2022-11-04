@@ -519,3 +519,24 @@ export function getDateByTimeZone(time: number, timezone: number = 0) {
     const d = new Date(time + offset_gmt * 60 * 1000 + formatTimeZone(timezone) * 60 * 60 * 1000);
     return d;
 }
+
+/**
+ * 給圖片路徑加上host
+ * @param url
+ * @return host + url
+ */
+export function getResponseIcon(url: string) {
+    let resultUrl = "";
+    if (url) {
+        if (url.indexOf("png") !== -1 || url.indexOf("jpg") !== -1) {
+            resultUrl = url;
+        } else {
+            // 預設圖片
+            resultUrl = require(`@/assets/icon/team.png`);
+        }
+    } else {
+        // 預設圖片
+        resultUrl = require(`@/assets/icon/team.png`);
+    }
+    return resultUrl;
+}

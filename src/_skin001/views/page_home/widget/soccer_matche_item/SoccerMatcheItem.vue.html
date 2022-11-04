@@ -19,7 +19,7 @@
             </div>
             <div class="pt-3 pt-1 colorTextBlack1--text">
                 <div class="d-flex align-center">
-                    <img :src="getTeamIcon(matche.home_team_icon)" width="20" />
+                    <img :src="getResponseIcon(matche.home_team_icon)" width="20" height="20" />
                     <div class="ml-1 text-truncate text-14 font-weight-bold">{{matche.home_team}}</div>
                     <div class="d-flex ml-1">
                         <v-sheet
@@ -50,7 +50,7 @@
                     </BtnFixedBet>
                 </div>
                 <div class="d-flex align-center mt-1">
-                    <img :src="getTeamIcon(matche.away_team_icon)" width="20" />
+                    <img :src="getResponseIcon(matche.away_team_icon)" width="20" height="20" />
                     <div class="ml-1 text-truncate text-14 font-weight-bold">{{matche.away_team}}</div>
                     <div class="d-flex ml-1">
                         <v-sheet
@@ -137,8 +137,8 @@
                 <v-sheet width="100%" class="d-flex" color="transparent">
                     <v-sheet class="mx-2 mr-4 d-flex flex-column align-space-around" color="transparent" max-width="270" min-width="270">
                         <div class="d-flex align-center mb-1 pt-1 flex-1">
-                            <v-img :src="getTeamIcon(matche.home_team_icon)" contain max-width="25" width="25" height="25"></v-img>
-                            <div class="ml-2 text-truncate">{{matche.home_team}}</div>
+                            <v-img :src="getResponseIcon(matche.home_team_icon)" contain max-width="25" width="25" height="25"></v-img>
+                            <div class="ml-2 text-truncate">{{matche.home_team}}2222</div>
                             <v-spacer />
                             <v-sheet
                                 v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0]>0"
@@ -149,7 +149,7 @@
                             <div v-if="states.goals_ft" class="num_width">{{getValues(states.goals_ft)[0]}}</div>
                         </div>
                         <div class="d-flex align-center mb-1 flex-1">
-                            <v-img :src="getTeamIcon(matche.away_team_icon)" contain max-width="25" width="25" height="25"></v-img>
+                            <v-img :src="getResponseIcon(matche.away_team_icon)" contain max-width="25" width="25" height="25"></v-img>
                             <div class="ml-2 text-truncate">{{matche.away_team}}</div>
                             <v-spacer />
                             <v-sheet

@@ -6,13 +6,14 @@ import DialogOrderMediator from "../mediator/DialogOrderMediator";
 import DialogOrderProxy from "../proxy/DialogOrderProxy";
 import LangUtil from "@/core/global/LangUtil";
 import OrderTitleUtils from "@/core/global/OrderTitleUtils";
-import { dateFormat, getDateByTimeZone } from "@/core/global/Functions";
+import { amountFormat, dateFormat, formatEventTime, getDateByTimeZone } from "@/core/global/Functions";
 
 @Component
 export default class DialogOrder extends AbstractView {
     LangUtil = LangUtil;
     dateFormat = dateFormat;
     getDateByTimeZone = getDateByTimeZone;
+    amountFormat = amountFormat;
 
     myProxy: DialogOrderProxy = this.getProxy(DialogOrderProxy);
     pageData = this.myProxy.pageData;
@@ -37,6 +38,37 @@ export default class DialogOrder extends AbstractView {
         3: "#7E0000", //拒绝
         4: "#FF2828", //取消
     };
+
+    getWinType(item: any) {
+        //win_type: 1，赢，2 半赢，3 平手，4，输，5 输一半
+        switch (item.win_type) {
+            case 1:
+                return require(`@/_skin001/assets/win_type/win.png`);
+            case 2:
+                return require(`@/_skin001/assets/win_type/halfwin.png`);
+            case 3:
+                return require(`@/_skin001/assets/win_type/draw.png`);
+            case 4:
+                return require(`@/_skin001/assets/win_type/lose.png`);
+            case 5:
+                return require(`@/_skin001/assets/win_type/halflose.png`);
+        }
+    }
+
+    getWinTypeStr(item: any) {
+        switch (item.win_type) {
+            case 1:
+                return LangUtil("赢");
+            case 2:
+                return LangUtil("半赢");
+            case 3:
+                return LangUtil("平手");
+            case 4:
+                return LangUtil("输");
+            case 5:
+                return LangUtil("输一半");
+        }
+    }
 
     onClose() {
         this.pageData.bShow = false;

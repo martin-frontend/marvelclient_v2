@@ -56,6 +56,20 @@
         bottom: 0px;
     }
 }
+.win-type{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    div{
+        margin-top: 37px;
+        color: white;
+        font-size: 18px;
+        transform: rotate(-17deg);
+    }
+}
 
 .custom-hr {
     border-top: 1px dashed #d8d8d8;

@@ -77,6 +77,10 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("结算返水")}}</div>
+                        <div>{{pageData.summary.back_water_except_user}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("实际返水")}}</div>
                         <div>{{pageData.summary.back_water}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
@@ -90,6 +94,15 @@
                             :class="pageData.summary.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
                         >
                         {{pageData.summary.agent_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.agent_amount}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("平台金额")}}</div>
+                        <div
+                            class="text-truncate"
+                            :class="pageData.summary.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        >
+                        {{pageData.summary.plat_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.plat_amount}}
                         </div>
                     </div>
                 </v-sheet>
@@ -117,6 +130,10 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("结算返水")}}</div>
+                        <div>{{item.back_water_except_user}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("实际返水")}}</div>
                         <div>{{item.back_water}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
@@ -127,6 +144,12 @@
                         <div class="colorText1--text">{{LangUtil("代理商金额")}}</div>
                         <div class="text-truncate" :class="item.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">
                             {{item.agent_amount.search('-') == -1 ? "+" : ""}}{{item.agent_amount}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("平台金额")}}</div>
+                        <div class="text-truncate" :class="item.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">
+                            {{item.plat_amount.search('-') == -1 ? "+" : ""}}{{item.plat_amount}}
                         </div>
                     </div>
                 </v-sheet>
@@ -183,10 +206,16 @@
                     >{{LangUtil("结算返水")}}</v-sheet
                 >
                 <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("实际返水")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
                     >{{LangUtil("代理占成")}}</v-sheet
                 >
                 <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
                     >{{LangUtil("代理商金额")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("平台金额")}}</v-sheet
                 >
             </v-sheet>
 
@@ -212,6 +241,9 @@
                         >{{pageData.summary.water}}</v-sheet
                     >
                     <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.back_water_except_user}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
                         >{{pageData.summary.back_water}}</v-sheet
                     >
                     <v-sheet class="d-flex justify-center colorYellow--text" color="transparent" min-width="80"
@@ -223,6 +255,13 @@
                         color="transparent"
                         min-width="80"
                         >{{pageData.summary.agent_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.agent_amount}}</v-sheet
+                    >
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="pageData.summary.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >{{pageData.summary.plat_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.plat_amount}}</v-sheet
                     >
                 </v-sheet>
                 <v-sheet
@@ -251,6 +290,7 @@
                         >{{item.win_gold.search('-') == -1 ? "+" : ""}}{{item.win_gold}}</v-sheet
                     >
                     <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.water}}</v-sheet>
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.back_water_except_user}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.back_water}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorYellow--text" color="transparent" min-width="80"
                         >{{item.credit_rate}}%</v-sheet
@@ -262,6 +302,14 @@
                         min-width="80"
                         >
                         {{item.agent_amount.search('-') == -1 ? "+" : ""}}{{item.agent_amount}}
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="item.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >
+                        {{item.plat_amount.search('-') == -1 ? "+" : ""}}{{item.plat_amount}}
                     </v-sheet>
                 </v-sheet>
                 <ListNodata v-if="pageData.list.length == 0" height="411" />

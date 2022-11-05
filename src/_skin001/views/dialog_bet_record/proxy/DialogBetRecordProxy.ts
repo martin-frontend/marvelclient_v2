@@ -156,8 +156,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_var_agent_var_bet() {
         this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
+        const formCopy:any = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
+        //只显示已结算状态。
+        formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 }

@@ -29,6 +29,7 @@ import lang_vi from "element-ui/lib/locale/lang/vi";
 import lang_zh from "element-ui/lib/locale/lang/zh-CN";
 import lang_zhtw from "element-ui/lib/locale/lang/zh-TW";
 import localeE from "element-ui/lib/locale";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -159,7 +160,7 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     // 如果是体育，直接进入
-                    if (this.gameProxy.currGame.vendor_id == 96 && this.gameProxy.currGame.ori_product_id == 1) {
+                    if (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) {
                         const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
                         if (homeProxy.pageData.event_id) {
                             page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);

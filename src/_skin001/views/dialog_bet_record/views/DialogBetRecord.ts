@@ -1,5 +1,6 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import GameConfig from "@/core/config/GameConfig";
 import BlurUtil from "@/core/global/BlurUtil";
 import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
@@ -11,6 +12,7 @@ import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
+    GameConfig = GameConfig;
     commonIcon = Assets.commonIcon;
     myProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;

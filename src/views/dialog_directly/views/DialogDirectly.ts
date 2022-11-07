@@ -9,6 +9,7 @@ import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_bet_record from "@/views/dialog_bet_record";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_directly_setting from "@/views/dialog_directly_setting";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -89,4 +90,9 @@ export default class DialogDirectly extends AbstractView {
     handlerShowBetRecord(agent_user_id: any) {
         dialog_bet_record.show(agent_user_id);
     }
+
+    handlerShowDialogSet(agent_user: any) {
+        dialog_directly_setting.show(agent_user);
+    }
+
 }

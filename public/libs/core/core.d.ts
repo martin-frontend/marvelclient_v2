@@ -259,6 +259,12 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--直属用户查询操作--查询直属用户金币数量*/
+        api_user_var_fetch_direct_user_info: string;
+        /**--直属用户查询操作--直属用户状态查询和修改*/
+        api_user_var_agent_direct_user_update: string;
+        /**--直属用户查询操作--直属用户直接扣款*/
+        api_user_var_agent_direct_deduction: string;
     };
     /**事件*/
     var EventType: {
@@ -518,6 +524,12 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--直属用户查询操作--查询直属用户金币数量*/
+        api_user_var_fetch_direct_user_info: string;
+        /**--直属用户查询操作--直属用户状态查询和修改*/
+        api_user_var_agent_direct_user_update: string;
+        /**--直属用户查询操作--直属用户直接扣款*/
+        api_user_var_agent_direct_deduction: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1009,10 +1021,28 @@ declare module net {
     }
 }
 /**
+ * 直属用户直接扣款
+ */
+declare module net {
+    class cmd_api_user_var_agent_direct_deduction extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 直属成员
  */
 declare module net {
     class cmd_api_user_var_agent_direct_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 直属用户状态查询和修改
+ */
+declare module net {
+    class cmd_api_user_var_agent_direct_user_update extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1310,6 +1340,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_exchange_order_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 查询直属用户金币数量
+ */
+declare module net {
+    class cmd_api_user_var_fetch_direct_user_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

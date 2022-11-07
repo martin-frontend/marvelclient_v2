@@ -1,0 +1,88 @@
+@import "@/scss/mixin.scss";
+
+.text-rwd-18 {
+    font-size: 16px;
+    @include sm {
+        font-size: 18px;
+    }
+}
+
+.text-rwd-16 {
+    font-size: 14px;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.text-title-color-16 {
+    font-size: 14px;
+    text-align:left;
+    color: #4c5d7f;
+    @include sm {
+        font-size: 16px;
+    }
+}
+.text-text-color-16 {
+    font-size: 14px;
+    text-align:right;
+    color: #ffffff;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.listitem {
+    color: #9db1d8;
+    div:first-child {
+        color: #4c5d7f;
+    }
+    div > a {
+        color: #9db1d8;
+    }
+}
+
+.arrow {
+    margin-bottom: -1px !important;
+}
+.search {
+    width: 207px;
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 125px;
+}
+
+.text_height{
+    height: calc(100% - 190px);
+}
+.empty_width{
+    width: 38px;
+    @media only screen and (max-width: 600px) {
+        width: 32px;
+    }
+}
+
+.nico_height{
+    height: 40px;
+}
+.hackhome{
+    width:666px;
+    height: 1px;
+    background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+}

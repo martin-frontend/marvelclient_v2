@@ -1,0 +1,194 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
+        <!-- pc显示方式 -->
+        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-rwd-18 font-weight-regular">{{LangUtil("我的直属")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="d-flex flex-wrap justify-space-between mb-2">
+                <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
+                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
+                    <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
+                </div>
+                <div class="search">
+                    <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
+                        <v-btn class="rounded-lg" :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            min-width="61" height="30" @click="search">
+                            <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                        </v-btn>
+                    </CustomInput>
+                </div>
+            </div>
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
+                <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list"
+                    :key="key">
+                    <v-row no-gutters class="justify-space-between fill-height">
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
+                            <div class="mb-1">{{LangUtil("注册时间")}}</div>
+                            <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at.replace(/^\d{4}-/,
+                                "") }}</div>
+                        </v-col>
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
+                            <div class="mb-1">{{LangUtil("用户ID")}}</div>
+                            <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
+                        </v-col>
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
+                            <div class="mb-1">{{LangUtil("用户昵称")}}</div>
+                            <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
+                        </v-col>
+
+                        <!-- 非信用用户显示 -->
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user != 1">
+                            <div class="mb-1">{{LangUtil("直属人数")}}</div>
+                            <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
+                        </v-col>
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user != 1">
+                            <div class="mb-1">{{LangUtil("团队人数")}}</div>
+                            <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
+                        </v-col>
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user != 1">
+                            <div class="mb-1">{{LangUtil("团队人数")}}</div>
+                            <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
+                        </v-col>
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user != 1">
+                            <div class="mb-1">{{LangUtil("保底")}}</div>
+                            <div v-if="pageData.enable_set_promotion_floor == 1">
+                                <span class="text-16 font-weight-regular text-decoration-underline cursor-pointer"
+                                    @click="handlerSetting(item)">
+                                    {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
+                                </span>
+                            </div>
+                            <div v-else>-</div>
+                        </v-col>
+
+                        <!-- 信用用户显示 -->
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user == 1">
+                            <div class="mb-1">{{LangUtil("状态")}}</div>
+                            <div class="text-16 font-weight-regular">{{item.status == 1? LangUtil("正常"):LangUtil("关闭")}}
+                            </div>
+                        </v-col>
+
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_credit_user == 1">
+                            <v-btn class="text-14" color="colorBtnBg" width="90" height="30" elevation="0"
+                                @click="handlerShowDialogSet(item)">{{LangUtil("直属设置") }}</v-btn>
+                        </v-col>
+
+                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                            :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                            v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">
+                            <v-btn class="text-14" color="colorBtnBg" width="90" height="30" elevation="0"
+                                @click="handlerShowBetRecord(item.user_id)">{{LangUtil("投注记录") }}</v-btn>
+                        </v-col>
+                    </v-row>
+                </v-sheet>
+            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
+            <v-spacer />
+            <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" @input="onPageChange">
+            </v-pagination>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("我的直属")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="d-flex flex-wrap justify-space-between mb-2">
+                <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
+                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
+                    <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
+                </div>
+                <div class="search mr-5 mr-sm-0">
+                    <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
+                        <v-btn class="rounded-lg" :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            min-width="61" height="30" @click="search">
+                            <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                        </v-btn>
+                    </CustomInput>
+                </div>
+            </div>
+        </v-card-text>
+        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished"
+                class="listbox-mobile">
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F"
+                    v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("注册时间")}}</div>
+                        <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("用户ID")}}</div>
+                        <div>{{ item.user_id }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("用户昵称")}}</div>
+                        <div>{{ item.nick_name }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user != 1">
+                        <div class="colorText1--text">{{LangUtil("直属人数")}}</div>
+                        <div>{{ item.directly_users }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user != 1">
+                        <div class="colorText1--text">{{LangUtil("团队人数")}}</div>
+                        <div>{{ item.group_users }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user != 1">
+                        <div class="colorText1--text">{{LangUtil("保底")}}</div>
+                        <div v-if="pageData.enable_set_promotion_floor == 1">
+                            <div @click="handlerSetting(item)">{{ item.promotion_floor["0"]?
+                                item.promotion_floor["0"]:'设置' }}</div>
+                        </div>
+                        <div v-else>-</div>
+                    </div>
+
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 1">
+                        <div class="colorText1--text">{{LangUtil("状态")}}</div>
+                        <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
+                    </div>
+
+
+
+                    <div class="d-flex justify-end">
+                        <div class="mr-3">
+                            <v-btn class="text-12" color="colorBtnBg" width="80" height="30" elevation="0"
+                                v-if="selfProxy.userInfo.is_credit_user == 1" @click="handlerShowDialogSet(item)">
+                                {{LangUtil("直属设置") }}</v-btn>
+
+                        </div>
+
+                        <v-btn class="text-12" color="colorBtnBg" width="80" height="30" elevation="0"
+                            @click="handlerShowBetRecord(item.user_id)"
+                            v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">{{LangUtil("投注记录") }}</v-btn>
+                    </div>
+                </v-sheet>
+            </vue-loadmore>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

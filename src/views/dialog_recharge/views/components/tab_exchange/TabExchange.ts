@@ -133,7 +133,7 @@ export default class TabExchange extends AbstractView {
 
     onSubmit() {
         dialog_message_box.confirm({
-            message: "确认提交",
+            message: LangUtil("确认提交"),
             okFun: () => {
                 this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
             },

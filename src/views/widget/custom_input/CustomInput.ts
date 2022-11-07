@@ -11,6 +11,8 @@ export default class CustomInput extends AbstractView {
     @Prop() readonly!: number;
     @Prop() height!: string;
     @Prop() isOnlyNumber!: boolean;
+    @Prop({default:true}) isNeedCloseBtn!: boolean;
+    
 
     inputValue = "";
 

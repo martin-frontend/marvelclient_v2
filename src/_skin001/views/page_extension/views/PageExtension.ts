@@ -16,6 +16,7 @@ import MyCanvas from "@/core/ui/MyCanvas";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import dialog_personal_card from "@/views/dialog_personal_card";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_statistics_credit from "../../dialog_statistics_credit";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -56,6 +57,10 @@ export default class PageExtension extends AbstractView {
 
     handlerPromotion() {
         dialog_promotion_statistics.show();
+    }
+
+    handlerCredit() {
+        dialog_statistics_credit.show();
     }
 
     /**领取奖励 */

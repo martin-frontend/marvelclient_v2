@@ -3,7 +3,7 @@
         <template v-if="!$vuetify.breakpoint.mobile">
             <v-row no-gutters class="mb-5">
                 <v-col cols="12" lg="6" class="pr-lg-2">
-                    <!-- <v-card class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6">
+                    <v-card class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6" v-if="selfProxy.userInfo.is_credit_user == 98">
                         <v-row no-gutters>
                             <v-col cols="12" sm="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
                                 <span class="mr-0 mr-md-5 colorText3--text"> {{LangUtil("可领取佣金")}} </span>
@@ -39,14 +39,14 @@
                                 >
                             </v-col>
                         </v-row>
-                    </v-card> -->
+                    </v-card>
                     <v-card
                         min-width="90"
                         class="rounded-xl rounded-card horizontal-gradient-left down text-body-1 mb-lg-0 px-4 px-sm-6 py-4 py-sm-6"
-                        height="100%"
+                        :height="selfProxy.userInfo.is_credit_user == 98 ? '' : '100%'"
                     >
-                        <!-- <v-row no-gutters class="d-flex flex-row mb-4 mb-sm-2">
-                            <v-col class="d-flex justify-center align-center">
+                        <v-row no-gutters class="d-flex flex-row mb-4 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                            <v-col class="d-flex justify-end align-center">
                                 <span class="text-caption text-sm-subtitle-1 colorText3--text"> {{LangUtil("今日预计佣金")}}</span>
                                 <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
                                 <span class="text-body-2 text-sm-h5 mr-5 font-weight-medium">
@@ -57,7 +57,7 @@
                                     {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                                 </span>
                             </v-col>
-                        </v-row> -->
+                        </v-row>
                         <v-row no-gutters class="mb-4 mb-sm-0">
                             <v-col cols="5"> </v-col>
                             <v-col cols="7">
@@ -97,16 +97,16 @@
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <!-- <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2 mb-md-0">
-                                    <v-col cols="7" sm="5" class="d-flex justify-end">
-                                        <span class="text-caption text-sm-subtitle-2 colorText3--text"> {{LangUtil("每万返佣")}} </span>
+                                <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                                    <v-col cols="7" class="d-flex justify-end">
+                                        <span class="text-right text-caption text-sm-subtitle-2 colorText3--text"> {{LangUtil("每万返佣")}} </span>
                                     </v-col>
-                                    <v-col cols="5" sm="4" class="commission">
+                                    <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
                                             {{ promotionData.commission_num }}
                                         </span>
                                     </v-col>
-                                </v-row> -->
+                                </v-row>
                                 <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                     <v-col cols="7" class="d-flex justify-end">
                                         <span class="text-right text-caption text-sm-subtitle-2 colorText3--text">
@@ -277,6 +277,16 @@
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                 class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
                                 color="colorExtensionBtn"
+                                @click="handlerCredit"
+                                v-if="selfProxy.userInfo.show_credit_statistic === 1"
+                            >
+                                {{LangUtil("信用统计")}}
+                            </v-btn>
+                            <v-btn
+                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                :height="$vuetify.breakpoint.mobile? 30 :40"
+                                class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
+                                color="colorExtensionBtn"
                                 @click="handlerPromotion"
                                 v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
                             >
@@ -295,7 +305,7 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <!-- <div class="px-0 px-sm-3 py-5">
+            <div class="px-0 px-sm-3 py-5" v-if="selfProxy.userInfo.is_credit_user == 98">
                 <div class="text-subtitle-1 text-sm-h5 mb-2 mb-sm-3 font-weight-medium">{{LangUtil("返佣等级")}}</div>
                 <div class="text-caption text-sm-body-1 colorBlue--text mb-2 mb-sm-5">
                     {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
@@ -376,12 +386,12 @@
                         </v-col>
                     </v-row>
                 </v-card>
-            </div> -->
+            </div>
         </template>
         <template v-else>
             <v-row no-gutters class="mb-2">
                 <v-col cols="12">
-                    <!-- <v-sheet class="pa-2 mb-2 rounded" color="colorBackgroundGray">
+                    <v-sheet class="pa-2 mb-2 rounded" color="colorBackgroundGray" v-if="selfProxy.userInfo.is_credit_user == 98">
                         <div class="d-flex align-center ml-n3 mb-1">
                             <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('可领取佣金')}}</span>
@@ -416,14 +426,14 @@
                                 >
                             </div>
                         </v-sheet>
-                    </v-sheet> -->
+                    </v-sheet>
                     <v-sheet class="rounded pa-2" color="colorBackgroundGray">
                         <div class="d-flex align-center ml-n3 mb-1">
                             <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('佣金')}}</span>
                         </div>
                         <v-sheet color="#fff" class="rounded pa-4 mobile-commission-background">
-                            <!-- <v-row no-gutters class="d-flex flex-row mb-2">
+                            <v-row no-gutters class="d-flex flex-row mb-2" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <v-col class="d-flex justify-center align-center">
                                     <span class="text-16 colorTextBlack1--text"> {{LangUtil("今日预计佣金")}}</span>
                                     <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
@@ -437,7 +447,7 @@
                                         </span>
                                     </template>
                                 </v-col>
-                            </v-row> -->
+                            </v-row>
                             <v-row no-gutters>
                                 <v-col cols="12">
                                     <v-row no-gutters class="d-flex flex-row align-center mb-2">
@@ -445,7 +455,7 @@
                                             <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("今日总业绩")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
-                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ 0.01 }} </span>
+                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ statistics_data.total_water_summary }} </span>
                                         </v-col>
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
@@ -623,7 +633,17 @@
                                     <div class="text-caption text-sm-body-2 mb-2">
                                         {{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}
                                     </div>
-                                    <div class="d-flex justify-end mt-auto flex-wrap">
+                                    <div class="d-flex justify-end mt-auto">
+                                        <v-btn
+                                            :min-width="90"
+                                            :height="35"
+                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1"
+                                            color="colorTextBlue2"
+                                            @click="handlerCredit"
+                                            v-if="selfProxy.userInfo.show_credit_statistic === 1"
+                                        >
+                                            {{LangUtil("信用统计")}}
+                                        </v-btn>
                                         <v-btn
                                             :min-width="90"
                                             :height="35"
@@ -650,7 +670,7 @@
                     </v-sheet>
                 </v-col>
             </v-row>
-            <!-- <v-sheet class="pa-2 my-3 rounded" color="colorBackgroundGray">
+            <v-sheet class="pa-2 my-3 rounded" color="colorBackgroundGray" v-if="selfProxy.userInfo.is_credit_user == 98">
                 <div class="d-flex align-center ml-n3 mb-1">
                     <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
                     <span class="colorTextBlack--text font-weight-medium">{{LangUtil('返佣等级')}}</span>
@@ -737,7 +757,7 @@
                         </v-col>
                     </v-row>
                 </v-sheet>
-            </v-sheet> -->
+            </v-sheet>
         </template>
         <Question :questions="fagProxy.qData.type1"></Question>
     </v-container>

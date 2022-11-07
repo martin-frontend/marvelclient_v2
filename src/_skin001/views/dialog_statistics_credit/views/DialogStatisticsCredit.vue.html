@@ -1,0 +1,330 @@
+<v-dialog
+    width="929"
+    height="500"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent
+    no-click-animation
+>
+    <v-card class="rounded-lg" color="colorPanelBg">
+        <!-- 手机显示 -->
+        <v-card-text class="px-0 header-mobile pb-0" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="gradient-bg d-flex align-center px-5">
+                <div class="text-18">{{LangUtil("信用统计")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="d-flex justify-space-between align-center mt-2 px-5">
+                <el-date-picker
+                    class="mr-2"
+                    v-model="timeRange[0]"
+                    type="datetime"
+                    :placeholder="LangUtil('开始日期')"
+                    default-time="00:00:00"
+                    format="yyyy-MM-dd HH:mm"
+                    @change="onTimeChange"
+                >
+                </el-date-picker>
+                <el-date-picker
+                    v-model="timeRange[1]"
+                    type="datetime"
+                    :placeholder="LangUtil('结束日期')"
+                    default-time="23:59:59"
+                    format="yyyy-MM-dd HH:mm"
+                    @change="onTimeChange"
+                >
+                </el-date-picker>
+            </div>
+            <div class="d-flex mt-2 px-2 align-center">
+                <v-spacer />
+                <div class="text-right mr-3">
+                    <div class="mb-n1 text-12">(GMT8)</div>
+                    <div class="colorYellow--text text-14">{{LangUtil("统计最大搜索时间范围最近一个月")}}</div>
+                </div>
+
+                <!-- <v-btn class="rounded-lg" min-width="100" @click="onQuery">
+                    <span class="white--text">{{ LangUtil("查询") }}</span>
+                </v-btn> -->
+            </div>
+            <v-divider class="mt-2" />
+        </v-card-text>
+        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("汇总")}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("下注笔数")}}</div>
+                        <div>{{pageData.summary.record_count}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("下注总额")}}</div>
+                        <div>{{pageData.summary.bet_gold}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("玩家输赢")}}</div>
+                        <div :class="pageData.summary.win_gold.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">
+                            {{pageData.summary.win_gold.search('-') == -1 ? "+" : ""}}{{pageData.summary.win_gold}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("结算流水")}}</div>
+                        <div>{{pageData.summary.water}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("结算返水")}}</div>
+                        <div>{{pageData.summary.back_water_except_user}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("实际返水")}}</div>
+                        <div>{{pageData.summary.back_water}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("代理占成")}}</div>
+                        <div class="text-truncate">{{pageData.summary.credit_rate}}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("代理商金额")}}</div>
+                        <div
+                            class="text-truncate"
+                            :class="pageData.summary.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        >
+                        {{pageData.summary.agent_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.agent_amount}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("平台金额")}}</div>
+                        <div
+                            class="text-truncate"
+                            :class="pageData.summary.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        >
+                        {{pageData.summary.plat_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.plat_amount}}
+                        </div>
+                    </div>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="300" />
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("直属会员帐号")}}</div>
+                        <div class="text-decoration-underline cursor-pointer" @click="onUserIdClick(item.user_id)">{{item.user_id}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("下注笔数")}}</div>
+                        <div>{{item.record_count}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("下注总额")}}</div>
+                        <div>{{item.bet_gold}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("玩家输赢")}}</div>
+                        <div :class="item.win_gold.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">{{item.win_gold.search('-') == -1 ? "+" : ""}}{{item.win_gold}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("结算流水")}}</div>
+                        <div>{{item.water}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("结算返水")}}</div>
+                        <div>{{item.back_water_except_user}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("实际返水")}}</div>
+                        <div>{{item.back_water}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("代理占成")}}</div>
+                        <div class="text-truncate">{{item.credit_rate}}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("代理商金额")}}</div>
+                        <div class="text-truncate" :class="item.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">
+                            {{item.agent_amount.search('-') == -1 ? "+" : ""}}{{item.agent_amount}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorText1--text">{{LangUtil("平台金额")}}</div>
+                        <div class="text-truncate" :class="item.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' ">
+                            {{item.plat_amount.search('-') == -1 ? "+" : ""}}{{item.plat_amount}}
+                        </div>
+                    </div>
+                </v-sheet>
+            </vue-loadmore>
+        </v-card-text>
+        <!-- PC显示 -->
+        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("信用统计")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="d-flex align-end">
+                <el-date-picker
+                    v-model="timeRange"
+                    type="datetimerange"
+                    :picker-options="pickerOptions"
+                    range-separator="-"
+                    :start-placeholder="LangUtil('开始日期')"
+                    :end-placeholder="LangUtil('结束日期')"
+                    :default-time="[`00:00:00`, `23:59:00`]"
+                    align="right"
+                    format="yyyy-MM-dd HH:mm"
+                    size="small"
+                    class="input_range align-center"
+                    @change="onTimeChange"
+                >
+                    <template slot="range-separator">-</template>
+                </el-date-picker>
+                <div class="ml-n13 mb-1 text-12 gmt">(GMT8)</div>
+                <v-spacer />
+                <div class="colorYellow--text text-14">{{LangUtil("统计最大搜索时间范围最近一个月")}}</div>
+            </div>
+            <v-divider class="my-2" />
+            <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38" color="#16233F">
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("直属会员帐号")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("下注笔数")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("下注总额")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("玩家输赢")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("结算流水")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("结算返水")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("实际返水")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("代理占成")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("代理商金额")}}</v-sheet
+                >
+                <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                    >{{LangUtil("平台金额")}}</v-sheet
+                >
+            </v-sheet>
+
+            <div style="min-height: 411px">
+                <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 mt-2 text-14" height="38" color="#16233F">
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{LangUtil("汇总")}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.record_count}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.bet_gold}}</v-sheet
+                    >
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="pageData.summary.win_gold.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >{{pageData.summary.win_gold.search('-') == -1 ? "+" : ""}}{{pageData.summary.win_gold}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.water}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.back_water_except_user}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{pageData.summary.back_water}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorYellow--text" color="transparent" min-width="80"
+                        >{{pageData.summary.credit_rate}}%</v-sheet
+                    >
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="pageData.summary.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >{{pageData.summary.agent_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.agent_amount}}</v-sheet
+                    >
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="pageData.summary.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >{{pageData.summary.plat_amount.search('-') == -1 ? "+" : ""}}{{pageData.summary.plat_amount}}</v-sheet
+                    >
+                </v-sheet>
+                <v-sheet
+                    class="d-flex align-center justify-space-around rounded-pill px-1 mt-2 text-14"
+                    height="38"
+                    color="#16233F"
+                    v-for="(item, key) in pageData.list"
+                    :key="key"
+                >
+                    <v-sheet
+                        class="d-flex justify-center colorText1--text text-decoration-underline cursor-pointer"
+                        color="transparent"
+                        min-width="80"
+                        @click="onUserIdClick(item.user_id)"
+                        >{{item.user_id}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80"
+                        >{{item.record_count}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.bet_gold}}</v-sheet>
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="item.win_gold.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >{{item.win_gold.search('-') == -1 ? "+" : ""}}{{item.win_gold}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.water}}</v-sheet>
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.back_water_except_user}}</v-sheet>
+                    <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{item.back_water}}</v-sheet>
+                    <v-sheet class="d-flex justify-center colorYellow--text" color="transparent" min-width="80"
+                        >{{item.credit_rate}}%</v-sheet
+                    >
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="item.agent_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >
+                        {{item.agent_amount.search('-') == -1 ? "+" : ""}}{{item.agent_amount}}
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="item.plat_amount.search('-') == -1 ? 'colorGreen--text' : 'red--text' "
+                        color="transparent"
+                        min-width="80"
+                        >
+                        {{item.plat_amount.search('-') == -1 ? "+" : ""}}{{item.plat_amount}}
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+            </div>
+
+            <v-spacer />
+            <v-pagination
+                class="mt-2"
+                v-if="pageData.pageInfo.pageCount > 1"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -1,4 +1,4 @@
-<v-dialog width="920" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="1020" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
@@ -8,21 +8,17 @@
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px-5 pb-3" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="colorText2--text text-16 ml-3 d-flex">
-                <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}} </div>
+                <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
                 <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-                <div class="ml-5">
-                    {{LangUtil("输赢")}} {{pageData.total_win_gold}}
-                </div>
-                <div class="ml-5">
-                    {{LangUtil("结算流水")}} {{pageData.total_water}}
-                </div>
+                <div class="ml-5">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
+                <div class="ml-5">{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
             </div>
             <v-divider class="mt-2" />
         </v-card-text>
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="d-flex flex-wrap align-center">
+            <div class="d-flex flex-wrap align-center" v-if="pageData.bShowOptions">
                 <CustomSelect
                     class="mr-2"
                     v-model="listOptions.typeSelect"
@@ -51,65 +47,29 @@
                     width="140"
                     @change="onBetTimeChange"
                 />
-                <!-- <v-menu
-                    ref="menu"
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                >
-                    <template v-slot:activator="{ on, attrs }">
-                        <CustomDatePick
-                            height="41"
-                            :placeholder="LangUtil('请选择时间')"
-                            v-model="pageData.search.dateArr"
-                            v-bind="attrs"
-                            v-on="on"
-                            readonly
-                            class="w-280"
-                        >
-                            <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
-                                <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
-                            </v-btn>
-                        </CustomDatePick>
-                    </template>
-                    <v-date-picker
-                        v-model="pageData.search.dateArr"
-                        range
-                        no-title
-                        scrollable
-                    ></v-date-picker>
-                </v-menu> -->
-            </div>
-            <div class="d-flex flex-wrap align-center mt-2">
                 <el-date-picker
-                    class="mr-2"
-                    v-model="start_date"
-                    type="datetime"
-                    :placeholder="LangUtil('请选择开始日期时间')"
-                    default-time="00:00:00"
-                    value-format="yyyy-MM-dd HH:mm:ss">
-                </el-date-picker>
-                <el-date-picker
-                    class="mr-2"
-                    v-model="end_date"
-                    type="datetime"
-                    :placeholder="LangUtil('请选择结束日期时间')"
-                    default-time="23:59:59"
-                    value-format="yyyy-MM-dd HH:mm:ss">
-                </el-date-picker>
-                <v-btn
-                    class="rounded-lg"
-                    color="colorBtnBg"
-                    min-width="61"
-                    height="40"
-                    @click="onQuery"
-                    :disabled="start_date == null || end_date == null"
+                    v-model="timeRange"
+                    type="datetimerange"
+                    :picker-options="pickerOptions"
+                    range-separator="-"
+                    :start-placeholder="LangUtil('开始日期')"
+                    :end-placeholder="LangUtil('结束日期')"
+                    :default-time="[`00:00:00`, `23:59:00`]"
+                    align="right"
+                    format="yyyy-MM-dd HH:mm"
+                    class="input_range align-center"
+                    @change="onTimeChange"
                 >
-                    <span class="white--text">{{ LangUtil("查询") }}</span>
-                </v-btn>
+                    <template slot="range-separator">-</template>
+                </el-date-picker>
             </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
+            <v-sheet
+                v-if="pageData.list.length>0"
+                color="transparent"
+                height="488"
+                class="scroll-y mt-1"
+                :class="pageData.bShowOptions ? '' : 'mt-n3' "
+            >
                 <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div>
@@ -140,11 +100,11 @@
                             <div>{{LangUtil("投注时间")}}</div>
                             <div class="text-truncate">{{item.bet_at}}</div>
                         </div>
-                        <div class="listitem-150" v-if="item.vendor_id == 96">
+                        <div class="listitem-150" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                             <div>{{LangUtil("结算时间")}}</div>
                             <div class="text-truncate">{{item.settlement_at}}</div>
                         </div>
-                        <div class="d-flex align-end" v-if="item.vendor_id == 96">
+                        <div class="d-flex align-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                             <v-btn
                                 text
                                 class="text-decoration-underline pa-0 font-weight-regular text-14 btn mb-n1"
@@ -156,7 +116,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
             <v-spacer />
             <v-pagination
                 class="mt-2"
@@ -168,7 +128,7 @@
             ></v-pagination>
         </v-card-text>
         <!-- 手机显示方式 -->
-        <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="pb-0 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
             <div class="gradient-bg d-flex align-center px-5">
                 <div class="text-18">{{LangUtil("投注记录")}}</div>
                 <v-spacer />
@@ -177,110 +137,73 @@
                 </v-btn>
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
-                <div class="w-120">{{LangUtil("共计{0}条", pageInfo.pageTotal)}} </div>
+                <div class="w-120">{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
                 <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
-                <div class="w-120">
-                    {{LangUtil("输赢")}} {{pageData.total_win_gold}}
-                </div>
+                <div class="w-120">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
                 <div class="ml-5">{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
             </div>
             <v-divider class="mt-2 mb-4 mx-5" />
-            <div class="d-flex justify-space-between mx-5 mb-2">
-                <CustomSelect
-                    class="mr-1"
-                    v-model="listOptions.typeSelect"
-                    :options="listOptions.typeOptions()"
-                    width="100%"
-                    @change="onTypeChange"
-                />
-                <CustomSelect
-                    class="ml-1"
-                    v-model="listOptions.vendorSelect"
-                    :options="listOptions.vendorOptions()"
-                    width="100%"
-                    @change="onVendorChange"
-                />
-            </div>
-            <div class="d-flex justify-space-between mx-5 mb-2">
-                <CustomSelect
-                    class="mr-1"
-                    v-model="listOptions.statusSelect"
-                    :options="listOptions.statusOptions()"
-                    width="100%"
-                    @change="onStatusChange"
-                />
-                <CustomSelect
-                    class="ml-1"
-                    v-model="listOptions.betTimeSelect"
-                    :options="listOptions.betTimeOptions()"
-                    width="100%"
-                    @change="onBetTimeChange"
-                />
-            </div>
-            <div class="d-flex justify-space-between mx-5">
-                <el-date-picker
-                    class="mr-2"
-                    v-model="start_date"
-                    type="datetime"
-                    :placeholder="LangUtil('请选择开始日期时间')"
-                    default-time="00:00:00"
-                    value-format="yyyy-MM-dd HH:mm:ss">
-                </el-date-picker>
-                <el-date-picker
-                    class="mr-2"
-                    v-model="end_date"
-                    type="datetime"
-                    :placeholder="LangUtil('请选择结束日期时间')"
-                    default-time="23:59:59"
-                    value-format="yyyy-MM-dd HH:mm:ss">
-                </el-date-picker>
-                <v-btn
-                    class="rounded-lg"
-                    color="colorBtnBg"
-                    min-width="55"
-                    width="50"
-                    height="40"
-                    @click="onQuery"
-                    :disabled="start_date == null || end_date == null"
-                >
-                    <span class="white--text" >{{ LangUtil("查询") }}</span>
-                </v-btn>
-                <!-- <v-menu
-                    ref="menu"
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                >
-                    <template v-slot:activator="{ on, attrs }">
-                        <CustomDatePick
-                            height="41"
-                            :placeholder="LangUtil('请选择时间')"
-                            v-model="pageData.search.dateArr"
-                            v-bind="attrs"
-                            v-on="on"
-                            readonly
-                            class="w-280"
-                        >
-                            <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
-                                <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
-                            </v-btn>
-                        </CustomDatePick>
-                    </template>
-                    <v-date-picker
-                        v-model="pageData.search.dateArr"
-                        range
-                        no-title
-                        scrollable
-                    ></v-date-picker>
-                </v-menu> -->
+            <div v-if="pageData.bShowOptions">
+                <div class="d-flex justify-space-between mx-5 mb-2">
+                    <CustomSelect
+                        class="mr-1"
+                        v-model="listOptions.typeSelect"
+                        :options="listOptions.typeOptions()"
+                        width="100%"
+                        @change="onTypeChange"
+                    />
+                    <CustomSelect
+                        class="ml-1"
+                        v-model="listOptions.vendorSelect"
+                        :options="listOptions.vendorOptions()"
+                        width="100%"
+                        @change="onVendorChange"
+                    />
+                </div>
+                <div class="d-flex justify-space-between mx-5 mb-2">
+                    <CustomSelect
+                        class="mr-1"
+                        v-model="listOptions.statusSelect"
+                        :options="listOptions.statusOptions()"
+                        width="100%"
+                        @change="onStatusChange"
+                    />
+                    <CustomSelect
+                        class="ml-1"
+                        v-model="listOptions.betTimeSelect"
+                        :options="listOptions.betTimeOptions()"
+                        width="100%"
+                        @change="onBetTimeChange"
+                    />
+                </div>
+                <div class="d-flex justify-space-between mx-5">
+                    <el-date-picker
+                        class="mr-2"
+                        v-model="timeRange[0]"
+                        type="datetime"
+                        :placeholder="LangUtil('开始日期')"
+                        default-time="00:00:00"
+                        format="yyyy-MM-dd HH:mm"
+                        @change="onTimeChange"
+                    >
+                    </el-date-picker>
+                    <el-date-picker
+                        v-model="timeRange[1]"
+                        type="datetime"
+                        :placeholder="LangUtil('结束日期')"
+                        default-time="23:59:59"
+                        format="yyyy-MM-dd HH:mm"
+                        @change="onTimeChange"
+                    >
+                    </el-date-picker>
+                </div>
             </div>
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <ListNodata v-if="pageData.list.length == 0"/>
+            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" :class=" pageData.bShowOptions ? 'listbox-mobile' : 'listbox-mobile-nooptions' ">
+                <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("订单号")}}</div>
@@ -310,11 +233,11 @@
                         <div class="colorText1--text">{{LangUtil("投注时间")}}</div>
                         <div class="text-truncate">{{item.bet_at}}</div>
                     </div>
-                    <div class="d-flex justify-space-between" v-if="item.vendor_id == 96">
+                    <div class="d-flex justify-space-between" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                         <div class="colorText1--text">{{LangUtil("结算时间")}}</div>
                         <div class="text-truncate">{{item.settlement_at}}</div>
                     </div>
-                    <div class="d-flex justify-end" v-if="item.vendor_id == 96">
+                    <div class="d-flex justify-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                         <v-btn
                             text
                             class="text-decoration-underline pa-0 font-weight-regular text-14 btn"

@@ -1,10 +1,13 @@
 import getProxy from "@/core/global/getProxy";
+import HeaderProxy from "@/_skin001/views/header/proxy/HeaderProxy";
 import PageGameListProxy from "./proxy/PageGameListProxy";
 
 function show(category?: number) {
-    if (category && category != 1) {
+    if (category) {
         const proxy: PageGameListProxy = getProxy(PageGameListProxy);
-        proxy.listQuery.vendor_type = category;
+        const headerProxy: HeaderProxy = getProxy(HeaderProxy);
+        headerProxy.categoryActive = category;
+        proxy.listQuery.vendor_type = category == 1 ? 0 : category;
         proxy.listQuery.vendor_id = 0;
     }
 

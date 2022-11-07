@@ -8,6 +8,7 @@ export default class ListNodata extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
     @Prop() height!: number;
+    @Prop({default: LangUtil("暂无记录")}) title!: string;
 
     boxHeight = 0;
 

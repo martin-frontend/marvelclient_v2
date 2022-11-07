@@ -34,6 +34,10 @@ module net {
         api_user_var_block_transfer_out_order_store: "api/user/{API_USER_ID}/block_transfer_out_order/store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api/user/{API_USER_ID}/block_transfer_out_order/index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api/user/coin_exchange_scale/{API_USER_ID}",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api/user/coin_exchange/{API_USER_ID}",
 
         /**--账号--注册*/
         api_user_register: "api/user/register",
@@ -274,13 +278,8 @@ module net {
 
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
-
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: "api/user/{user_id}/fetch_direct_user_info",
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: "api/user/{user_id}/agent_direct_user_update",
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: "api/user/{user_id}/agent_direct_deduction",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
     };
     /**事件*/
     export var EventType = {
@@ -322,6 +321,10 @@ module net {
         api_user_var_block_transfer_out_order_store: "api_user_var_block_transfer_out_order_store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api_user_var_block_transfer_out_order_index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api_user_coin_exchange_scale_var",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api_user_coin_exchange_var",
 
         /**--账号--注册*/
         api_user_register: "api_user_register",
@@ -562,13 +565,8 @@ module net {
 
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
-
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: "api_user_var_fetch_direct_user_info",
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: "api_user_var_agent_direct_user_update",
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: "api_user_var_agent_direct_deduction",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api_user_var_credit_statistic",
     };
     /**注册协议*/
     export function initCommand() {
@@ -589,6 +587,8 @@ module net {
         facade.registerCommand(HttpType.api_user_var_block_transfer_in_order_index, cmd_api_user_var_block_transfer_in_order_index);
         facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_store, cmd_api_user_var_block_transfer_out_order_store);
         facade.registerCommand(HttpType.api_user_var_block_transfer_out_order_index, cmd_api_user_var_block_transfer_out_order_index);
+        facade.registerCommand(HttpType.api_user_coin_exchange_scale_var, cmd_api_user_coin_exchange_scale_var);
+        facade.registerCommand(HttpType.api_user_coin_exchange_var, cmd_api_user_coin_exchange_var);
         //--账号
         facade.registerCommand(HttpType.api_user_register, cmd_api_user_register);
         facade.registerCommand(HttpType.api_user_login, cmd_api_user_login);
@@ -719,10 +719,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
         //--skin001专属
         facade.registerCommand(HttpType.api_vendor_96_products, cmd_api_vendor_96_products);
-        //--直属用户查询操作
-        facade.registerCommand(HttpType.api_user_var_fetch_direct_user_info, cmd_api_user_var_fetch_direct_user_info);
-        facade.registerCommand(HttpType.api_user_var_agent_direct_user_update, cmd_api_user_var_agent_direct_user_update);
-        facade.registerCommand(HttpType.api_user_var_agent_direct_deduction, cmd_api_user_var_agent_direct_deduction);
+        facade.registerCommand(HttpType.api_user_var_credit_statistic, cmd_api_user_var_credit_statistic);
     };
 
 }

@@ -20,4 +20,6 @@ export interface GameConfigVO {
     lang: string;
     /**下载地址 */
     AndroidApkUrl:string;
+    /**足球厂商ID */
+    SportVendorId:number;
 }

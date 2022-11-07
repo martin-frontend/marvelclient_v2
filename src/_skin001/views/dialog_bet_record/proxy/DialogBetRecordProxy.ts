@@ -13,6 +13,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
+        bShowOptions: true,
         // 列表是否加载完成，手机模式专用
         finished: false,
         //如果是列表，使用以下数据，否则删除
@@ -20,8 +21,8 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            start_date: new Date(dateFormat(getTodayOffset(), "yyyy-MM-dd hh:mm:ss").replace(/-/g, "/")),
-            end_date: new Date(dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss").replace(/-/g, "/")),
+            start_date: "",
+            end_date: "",
             page_count: 1,
             page_size: 20,
             agent_user_id: null,
@@ -95,8 +96,6 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: null,
             vendor_id: null,
             settlement_status: null,
-            start_date: new Date(dateFormat(getTodayOffset(), "yyyy-MM-dd hh:mm:ss").replace(/-/g, "/")),
-            end_date: new Date(dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss").replace(/-/g, "/")),
             page_count: 1,
             page_size: 20,
         });
@@ -150,33 +149,17 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_show_var_bet() {
         this.pageData.loading = true;
-        if (typeof (this.pageData.listQuery.start_date) != 'string' && this.pageData.listQuery.start_date != null) {
-            //@ts-ignore
-            this.pageData.listQuery.start_date = dateFormat(this.pageData.listQuery.start_date, "yyyy-MM-dd hh:mm:ss");
-        }
-        if (typeof (this.pageData.listQuery.end_date) != 'string' && this.pageData.listQuery.end_date != null) {
-            //@ts-ignore
-            this.pageData.listQuery.end_date = dateFormat(this.pageData.listQuery.end_date, "yyyy-MM-dd hh:mm:ss");
-        }
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
-
-        // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
         this.sendNotification(net.HttpType.api_user_show_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 
     api_user_var_agent_var_bet() {
         this.pageData.loading = true;
-        const { dateArr } = this.pageData.search;
-        const [start_date, end_date] = dateArr;
-        const formCopy = { user_id: core.user_id };
-        Object.assign(this.pageData.listQuery, {
-            start_date,
-            end_date,
-        });
+        const formCopy:any = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
-
-        // dialog_message_box.alert(this.pageData.listQuery.start_date + "~~~~" + this.pageData.listQuery.end_date);
+        //只显示已结算状态。
+        formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 }

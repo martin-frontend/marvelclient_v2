@@ -20,6 +20,16 @@ import page_game_soccer from "../views/page_game_soccer";
 import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
 import { MapLang } from "@/core/map/MapLang";
 import Vue from "vue";
+import { DatePicker } from 'element-ui';
+import lang_en from "element-ui/lib/locale/lang/en";
+import lang_ja from "element-ui/lib/locale/lang/ja";
+import lang_ko from "element-ui/lib/locale/lang/ko";
+import lang_es from "element-ui/lib/locale/lang/es";
+import lang_vi from "element-ui/lib/locale/lang/vi";
+import lang_zh from "element-ui/lib/locale/lang/zh-CN";
+import lang_zhtw from "element-ui/lib/locale/lang/zh-TW";
+import localeE from "element-ui/lib/locale";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -62,8 +72,8 @@ export default class NetObserver extends AbstractMediator {
                         core.lang = userLang;
                     } else {
                         //@ts-ignore
-                        const sysLang:string = (navigator.browserLanguage || navigator.language);
-                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0,2)];
+                        const sysLang: string = navigator.browserLanguage || navigator.language;
+                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0, 2)];
                         if (LangConfig.language[sysLangCode]) {
                             core.lang = sysLangCode;
                         } else {
@@ -71,6 +81,35 @@ export default class NetObserver extends AbstractMediator {
                         }
                     }
                     locale.use(core.lang);
+                    console.log(">>>>>>>>>>>>core.lang: ", core.lang);
+
+                    // 添加element ui 控件 语言
+                    if ((core.lang == "zh_CN")) {
+                        localeE.use(lang_zh);
+                    } else if (core.lang == "zh_TW") {
+                        localeE.use(lang_zhtw);
+                    } else {
+                        const langT = core.lang.substring(0, 2);
+                        switch (langT) {
+                            case "es":
+                                localeE.use(lang_es);
+                                break;
+                            case "ko":
+                                localeE.use(lang_ko);
+                                break;
+                            case "jp":
+                                localeE.use(lang_ja);
+                                break;
+                            case "vi":
+                                localeE.use(lang_vi);
+                                break;
+                            default:
+                                localeE.use(lang_en);
+                                break;
+                        }
+                    }
+                    Vue.use(DatePicker);
+
                     //获取平台配置信息
                     this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
                 }
@@ -90,7 +129,7 @@ export default class NetObserver extends AbstractMediator {
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
                     //添加客服
-                    const s = document.createElement('script');
+                    const s = document.createElement("script");
                     // s.async = false;
                     s.id = "respondio__widget";
                     s.src = `https://cdn.respond.io/webchat/widget/widget.js?cId=${LangUtil("客服CID")}`;
@@ -103,9 +142,12 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert({message: LangUtil("您的帐号已经退出"), okFun: ()=>{
-                    Vue.router.replace("/");
-                }});
+                dialog_message_box.alert({
+                    message: LangUtil("您的帐号已经退出"),
+                    okFun: () => {
+                        Vue.router.replace("/");
+                    },
+                });
                 break;
             //用户信息
             case net.EventType.api_user_show_var:
@@ -118,12 +160,12 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     // 如果是体育，直接进入
-                    if(this.gameProxy.currGame.vendor_id == 96 && this.gameProxy.currGame.ori_product_id == 1){
-                        const homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
-                        if(homeProxy.pageData.event_id){
+                    if (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) {
+                        const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
+                        if (homeProxy.pageData.event_id) {
                             page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                             homeProxy.pageData.event_id = 0;
-                        }else{
+                        } else {
                             page_game_soccer.show(body.url);
                         }
                         return;
@@ -131,7 +173,10 @@ export default class NetObserver extends AbstractMediator {
 
                     const { coin_name_unique } = this.gameProxy;
                     dialog_message_box.confirm({
-                        message: coin_name_unique == 'USDT' ? LangUtil("进入游戏") : LangUtil(`您当前使用的货币为${coin_name_unique}\n将会折算成等价的美元进入游戏`),
+                        message:
+                            coin_name_unique == "USDT"
+                                ? LangUtil("进入游戏")
+                                : LangUtil(`您当前使用的货币为${coin_name_unique}\n将会折算成等价的美元进入游戏`),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;

@@ -9,6 +9,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import MarketUtils from "../../utils/MarketUtils";
 import LoginEnter from "@/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
+import { getResponseIcon } from "@/core/global/Functions";
 
 @Component
 export default class SoccerMatcheItem extends AbstractView {
@@ -17,6 +18,7 @@ export default class SoccerMatcheItem extends AbstractView {
     dateFormat = dateFormat;
     myProxy: PageHomeProxy = getProxy(PageHomeProxy);
     pageData = this.myProxy.pageData;
+    getResponseIcon = getResponseIcon;
 
     @Prop() matche!: MatcheVO;
 
@@ -73,10 +75,6 @@ export default class SoccerMatcheItem extends AbstractView {
         } else {
             return `(${gmt})` + LangUtil("距开赛") + LangUtil("{0}分", (cha / 60) >> 0);
         }
-    }
-
-    getTeamIcon(url: string) {
-        return url || require(`@/_skin001/assets/icon/icon_team_default.png`);
     }
 
     /**拆分比分/红黄牌/脚球 */

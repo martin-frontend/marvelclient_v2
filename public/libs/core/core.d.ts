@@ -39,6 +39,10 @@ declare module net {
         api_user_var_block_transfer_out_order_store: string;
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: string;
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: string;
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: string;
         /**--账号--注册*/
         api_user_register: string;
         /**--账号--登入*/
@@ -259,12 +263,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: string;
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: string;
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: string;
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: string;
     };
     /**事件*/
     var EventType: {
@@ -304,6 +304,10 @@ declare module net {
         api_user_var_block_transfer_out_order_store: string;
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: string;
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: string;
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: string;
         /**--账号--注册*/
         api_user_register: string;
         /**--账号--登入*/
@@ -524,12 +528,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: string;
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: string;
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: string;
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -913,6 +913,24 @@ declare module net {
     }
 }
 /**
+ * 货币互转取得即時匯率
+ */
+declare module net {
+    class cmd_api_user_coin_exchange_scale_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 货币互转
+ */
+declare module net {
+    class cmd_api_user_coin_exchange_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 登入
  */
 declare module net {
@@ -1021,28 +1039,10 @@ declare module net {
     }
 }
 /**
- * 直属用户直接扣款
- */
-declare module net {
-    class cmd_api_user_var_agent_direct_deduction extends puremvc.SimpleCommand {
-        execute(notification: puremvc.INotification): void;
-        private response;
-    }
-}
-/**
  * 直属成员
  */
 declare module net {
     class cmd_api_user_var_agent_direct_list extends puremvc.SimpleCommand {
-        execute(notification: puremvc.INotification): void;
-        private response;
-    }
-}
-/**
- * 直属用户状态查询和修改
- */
-declare module net {
-    class cmd_api_user_var_agent_direct_user_update extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1291,6 +1291,15 @@ declare module net {
     }
 }
 /**
+ * 信用统计
+ */
+declare module net {
+    class cmd_api_user_var_credit_statistic extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 用户质押
  */
 declare module net {
@@ -1340,15 +1349,6 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_exchange_order_list extends puremvc.SimpleCommand {
-        execute(notification: puremvc.INotification): void;
-        private response;
-    }
-}
-/**
- * 查询直属用户金币数量
- */
-declare module net {
-    class cmd_api_user_var_fetch_direct_user_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2981,6 +2981,16 @@ declare module core {
         is_google_scan?: number;
         /**登录是否需要google验证码 */
         is_login_need_google?: number;
+        /**是否显示信用统计 */
+        show_credit_statistic?: number;
+        /**是否信用用户 */
+        is_credit_user?: number;
+        /**是否显示兑换 */
+        is_exchange?: number;
+        /**是否显示充值 */
+        is_recharge?: number;
+        /**货币互转开关 */
+        is_gold_exchange?: number;
     }
     /**
      * vip 奖励活动相关

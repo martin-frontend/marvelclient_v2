@@ -8,6 +8,7 @@ import DialogPerformanceProxy from "@/views/dialog_performance/proxy/DialogPerfo
 import dialog_performance_detail from "../../dialog_performance_detail";
 import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import LangUtil from "@/core/global/LangUtil";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogPerformance extends AbstractView {
@@ -18,6 +19,7 @@ export default class DialogPerformance extends AbstractView {
     listQuery = this.pageData.listQuery;
     summary = this.pageData.summary;
     LangUtil = LangUtil;
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
     commonIcon = Assets.commonIcon;
 

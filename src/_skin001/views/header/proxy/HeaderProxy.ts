@@ -5,6 +5,8 @@ export default class HeaderProxy extends puremvc.Proxy {
 
     isOpenWalletMenu: boolean = false;
     isShowWalletTip: boolean = false;
+    //当前活动的分类
+    categoryActive = 1;
 
     public onRegister(): void {
         if (GameConfig.config) {

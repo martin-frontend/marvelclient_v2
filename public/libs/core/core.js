@@ -93,6 +93,10 @@ var net;
         api_user_var_block_transfer_out_order_store: "api/user/{API_USER_ID}/block_transfer_out_order/store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api/user/{API_USER_ID}/block_transfer_out_order/index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api/user/coin_exchange_scale/{API_USER_ID}",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api/user/coin_exchange/{API_USER_ID}",
         /**--账号--注册*/
         api_user_register: "api/user/register",
         /**--账号--登入*/
@@ -313,12 +317,8 @@ var net;
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: "api/user/{user_id}/fetch_direct_user_info",
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: "api/user/{user_id}/agent_direct_user_update",
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: "api/user/{user_id}/agent_direct_deduction",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
     };
     /**事件*/
     net.EventType = {
@@ -358,6 +358,10 @@ var net;
         api_user_var_block_transfer_out_order_store: "api_user_var_block_transfer_out_order_store",
         /**--钱包--代币转出订单列表*/
         api_user_var_block_transfer_out_order_index: "api_user_var_block_transfer_out_order_index",
+        /**--钱包--货币互转取得即時匯率*/
+        api_user_coin_exchange_scale_var: "api_user_coin_exchange_scale_var",
+        /**--钱包--货币互转*/
+        api_user_coin_exchange_var: "api_user_coin_exchange_var",
         /**--账号--注册*/
         api_user_register: "api_user_register",
         /**--账号--登入*/
@@ -578,12 +582,8 @@ var net;
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
-        /**--直属用户查询操作--查询直属用户金币数量*/
-        api_user_var_fetch_direct_user_info: "api_user_var_fetch_direct_user_info",
-        /**--直属用户查询操作--直属用户状态查询和修改*/
-        api_user_var_agent_direct_user_update: "api_user_var_agent_direct_user_update",
-        /**--直属用户查询操作--直属用户直接扣款*/
-        api_user_var_agent_direct_deduction: "api_user_var_agent_direct_deduction",
+        /**--skin001专属--信用统计*/
+        api_user_var_credit_statistic: "api_user_var_credit_statistic",
     };
     /**注册协议*/
     function initCommand() {
@@ -604,6 +604,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_in_order_index, net.cmd_api_user_var_block_transfer_in_order_index);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_out_order_store, net.cmd_api_user_var_block_transfer_out_order_store);
         facade.registerCommand(net.HttpType.api_user_var_block_transfer_out_order_index, net.cmd_api_user_var_block_transfer_out_order_index);
+        facade.registerCommand(net.HttpType.api_user_coin_exchange_scale_var, net.cmd_api_user_coin_exchange_scale_var);
+        facade.registerCommand(net.HttpType.api_user_coin_exchange_var, net.cmd_api_user_coin_exchange_var);
         //--账号
         facade.registerCommand(net.HttpType.api_user_register, net.cmd_api_user_register);
         facade.registerCommand(net.HttpType.api_user_login, net.cmd_api_user_login);
@@ -734,10 +736,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
         //--skin001专属
         facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
-        //--直属用户查询操作
-        facade.registerCommand(net.HttpType.api_user_var_fetch_direct_user_info, net.cmd_api_user_var_fetch_direct_user_info);
-        facade.registerCommand(net.HttpType.api_user_var_agent_direct_user_update, net.cmd_api_user_var_agent_direct_user_update);
-        facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction, net.cmd_api_user_var_agent_direct_deduction);
+        facade.registerCommand(net.HttpType.api_user_var_credit_statistic, net.cmd_api_user_var_credit_statistic);
     }
     net.initCommand = initCommand;
     ;
@@ -1667,6 +1666,50 @@ var net;
     net.cmd_api_user_change_password_var = cmd_api_user_change_password_var;
 })(net || (net = {}));
 /**
+ * 货币互转取得即時匯率
+ */
+var net;
+/**
+ * 货币互转取得即時匯率
+ */
+(function (net) {
+    class cmd_api_user_coin_exchange_scale_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_coin_exchange_scale_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_coin_exchange_scale_var, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_coin_exchange_scale_var = cmd_api_user_coin_exchange_scale_var;
+})(net || (net = {}));
+/**
+ * 货币互转
+ */
+var net;
+/**
+ * 货币互转
+ */
+(function (net) {
+    class cmd_api_user_coin_exchange_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_coin_exchange_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_coin_exchange_var, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_coin_exchange_var = cmd_api_user_coin_exchange_var;
+})(net || (net = {}));
+/**
  * 登入
  */
 var net;
@@ -1931,28 +1974,6 @@ var net;
     net.cmd_api_user_var_agent_bonus = cmd_api_user_var_agent_bonus;
 })(net || (net = {}));
 /**
- * 直属用户直接扣款
- */
-var net;
-/**
- * 直属用户直接扣款
- */
-(function (net) {
-    class cmd_api_user_var_agent_direct_deduction extends puremvc.SimpleCommand {
-        execute(notification) {
-            const body = notification.getBody() || {};
-            const url = net.getUrl(net.HttpType.api_user_var_agent_direct_deduction, body);
-            net.Http.request(body || {}, url).then(this.response.bind(this));
-        }
-        response(result) {
-            if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_deduction, result.data);
-            }
-        }
-    }
-    net.cmd_api_user_var_agent_direct_deduction = cmd_api_user_var_agent_direct_deduction;
-})(net || (net = {}));
-/**
  * 直属成员
  */
 var net;
@@ -1973,28 +1994,6 @@ var net;
         }
     }
     net.cmd_api_user_var_agent_direct_list = cmd_api_user_var_agent_direct_list;
-})(net || (net = {}));
-/**
- * 直属用户状态查询和修改
- */
-var net;
-/**
- * 直属用户状态查询和修改
- */
-(function (net) {
-    class cmd_api_user_var_agent_direct_user_update extends puremvc.SimpleCommand {
-        execute(notification) {
-            const body = notification.getBody() || {};
-            const url = net.getUrl(net.HttpType.api_user_var_agent_direct_user_update, body);
-            net.Http.request(body || {}, url).then(this.response.bind(this));
-        }
-        response(result) {
-            if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_user_update, result.data);
-            }
-        }
-    }
-    net.cmd_api_user_var_agent_direct_user_update = cmd_api_user_var_agent_direct_user_update;
 })(net || (net = {}));
 /**
  * 直属投注记录列表
@@ -2591,6 +2590,28 @@ var net;
     net.cmd_api_user_var_commission_receive = cmd_api_user_var_commission_receive;
 })(net || (net = {}));
 /**
+ * 信用统计
+ */
+var net;
+/**
+ * 信用统计
+ */
+(function (net) {
+    class cmd_api_user_var_credit_statistic extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_credit_statistic, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_credit_statistic, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_credit_statistic = cmd_api_user_var_credit_statistic;
+})(net || (net = {}));
+/**
  * 用户质押
  */
 var net;
@@ -2721,28 +2742,6 @@ var net;
         }
     }
     net.cmd_api_user_var_exchange_order_list = cmd_api_user_var_exchange_order_list;
-})(net || (net = {}));
-/**
- * 查询直属用户金币数量
- */
-var net;
-/**
- * 查询直属用户金币数量
- */
-(function (net) {
-    class cmd_api_user_var_fetch_direct_user_info extends puremvc.SimpleCommand {
-        execute(notification) {
-            const body = notification.getBody() || {};
-            const url = net.getUrl(net.HttpType.api_user_var_fetch_direct_user_info, body);
-            net.Http.request(body || {}, url).then(this.response.bind(this));
-        }
-        response(result) {
-            if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_fetch_direct_user_info, result.data);
-            }
-        }
-    }
-    net.cmd_api_user_var_fetch_direct_user_info = cmd_api_user_var_fetch_direct_user_info;
 })(net || (net = {}));
 /**
  * 我的游戏

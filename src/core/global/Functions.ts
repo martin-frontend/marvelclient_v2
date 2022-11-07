@@ -519,3 +519,47 @@ export function getDateByTimeZone(time: number, timezone: number = 0) {
     const d = new Date(time + offset_gmt * 60 * 1000 + formatTimeZone(timezone) * 60 * 60 * 1000);
     return d;
 }
+/**
+ * 金额格式化
+ * input 1000 output 1,000
+ * val 进入的数字
+ * decimal 是否要小数点
+ * decimalLang 小数点几位
+ */
+export function amountFormat(val: any, decimal: boolean = false, decimalLang: number = 2) {
+    const intValue = parseFloat(val);
+    const str = intValue.toFixed(decimalLang) + "";
+    const sum = str.substring(0, str.indexOf(".")).replace(/\B(?=(?:\d{3})+$)/g, ","); //取到整数部分
+    const dot = str.substring(str.length, str.indexOf(".")); //取到小数部分搜索
+
+    return decimal ? sum + dot : sum;
+}
+
+/**
+ * 格式化賽事時間
+ * @param time 年-月-日 時:分:秒
+ * @returns 月-日 時:分
+ */
+export function formatEventTime(time: string) {
+    return time ? time.substring(5, 16) : time;
+}
+/**
+ * 給圖片路徑加上host
+ * @param url
+ * @return host + url
+ */
+export function getResponseIcon(url: string) {
+    let resultUrl = "";
+    if (url) {
+        if (url.indexOf("png") !== -1 || url.indexOf("jpg") !== -1) {
+            resultUrl = url;
+        } else {
+            // 預設圖片
+            resultUrl = require(`@/assets/icon/team.png`);
+        }
+    } else {
+        // 預設圖片
+        resultUrl = require(`@/assets/icon/team.png`);
+    }
+    return resultUrl;
+}

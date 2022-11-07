@@ -1,0 +1,62 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="670">
+        <!-- pc端设置 -->
+        <v-card-title class="gradient-bg" >
+            <div class="text-rwd-18 font-weight-regular">{{LangUtil("直属信息")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="text-sm-subtitle-1 text_height" >
+            <div>
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户ID")}} </span>
+                    <span class="d-flex colorBlue--text mr-5"> {{playerInfo.user_id}} </span>
+                </div>
+                <div class="hackhome"></div>
+
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户昵称")}} </span>
+                    <span class="d-flex align-center colorBlue--text mr-5"> {{playerInfo.nick_name}} </span>
+                </div>
+                <div class="hackhome"></div>
+
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户状态")}} </span>
+                    <span class="d-flex align-center colorBlue--text mr-4">
+                        <v-switch
+                            @change="handlerUpdate"
+                            :true-value="1"
+                            :false-value="98"
+                            v-model="playerInfo.status"
+                            color="colorBtnBg"
+                            inset
+                        ></v-switch>
+                    </span>
+                </div>
+
+                <div class="hackhome"></div>
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}} </span>
+                    <span class="d-flex align-center colorBlue--text mr-5">
+                        <v-btn class="rounded-lg" color="#6FA9FA" min-width="61" height="30" @click="assetSettings">
+                            <span>{{ LangUtil("直属扣款") }}</span>
+                        </v-btn>
+                    </span>
+                </div>
+
+                <div class="hackhome"></div>
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户返水")}} </span>
+                    <span class="d-flex align-center colorBlue--text mr-5">
+                        <v-btn class="rounded-lg" color="#6FA9FA" min-width="61" height="30" @click="backWatherSettings">
+                            <span>{{ LangUtil("返水设置") }}</span>
+                        </v-btn>
+                    </span>
+                </div>
+            </div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -101,4 +101,12 @@ export default class DialogStatisticsCredit extends AbstractView {
         const listQuery = this.pageData.listQuery;
         dialog_bet_record.show(user_id, listQuery.start_date, listQuery.end_date, false);
     }
+
+    getMoneyColor(str:string):string{
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+    }
+    getMoneyValue(str:string):string{
+        if(!!str && str.search('-') == -1) return "+" + str;
+        return str;
+    }
 }

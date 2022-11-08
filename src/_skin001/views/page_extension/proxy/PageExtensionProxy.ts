@@ -80,12 +80,14 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        const aaa = data;
-        console.log(aaa);
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);
         this.pageData.btnBind = !data.invite_user_id;
-        this.pageData.promotionData.commission_num = data.commission_info[2].commission_num.USDT;
+        if (data.commission_info[2].commission_num.USDT != undefined) {
+            this.pageData.promotionData.commission_num = data.commission_info[2].commission_num.USDT;
+        } else {
+            this.pageData.promotionData.commission_num = 0;
+        }
         this.getCurrentCoin();
     }
 

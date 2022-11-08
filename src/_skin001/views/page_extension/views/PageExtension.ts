@@ -27,6 +27,7 @@ export default class PageExtension extends AbstractView {
     tableData = this.myProxy.pageData.tableData;
     LangUtil = LangUtil;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    core = core;
 
     constructor() {
         super(PageExtensionMediator);

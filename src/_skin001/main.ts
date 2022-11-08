@@ -10,6 +10,7 @@ import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
 import 'element-ui/lib/theme-chalk/index.css';
+import Assets from "@/assets/Assets";
 
 LogUtil.init();
 core.init();
@@ -56,3 +57,6 @@ window.onload = function () {
         event.preventDefault();
     });
 };
+
+const commonIcon = Assets.commonIcon;
+commonIcon.loading = require(`@/assets/loading001.gif`)

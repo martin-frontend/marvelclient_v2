@@ -69,7 +69,8 @@
                             </div>
                             <div class="item-auto" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <div>{{LangUtil("每万返佣")}}</div>
-                                <div class="text-16 font-weight-regular">{{ item.commission_num }}</div>
+                                <div class="text-16 font-weight-regular" v-if="item.commission_num !='undefined'">{{ item.commission_num }}</div>
+                                <div class="text-16 font-weight-regular" v-else> 0.00</div>
                             </div>
                             <div class="item-auto" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <div>{{LangUtil("佣金")}}</div>

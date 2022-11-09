@@ -105,7 +105,7 @@ export default class PageExtension extends AbstractView {
     }
 
     reget() {
-        this.myProxy.api_user_var_short_chain();
+        this.myProxy.api_user_var_short_chain(1);
     }
 
     private copy() {

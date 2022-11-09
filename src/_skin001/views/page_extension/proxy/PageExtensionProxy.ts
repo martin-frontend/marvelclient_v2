@@ -167,7 +167,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     /**业绩查询--获取推广链接*/
-    api_user_var_short_chain() {
-        this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin });
+    api_user_var_short_chain(force:number = 0) {
+        this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
     }
 }

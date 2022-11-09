@@ -13,7 +13,7 @@
                 <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
                 <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
                 <div class="ml-5">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
-                <div class="ml-5">{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
+                <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
             </div>
             <v-divider class="mt-2" />
         </v-card-text>
@@ -142,7 +142,7 @@
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
                 <div class="w-120">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
-                <div class="ml-5">{{LangUtil("结算流水")}} {{pageData.total_water}}</div>
+                <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
             </div>
             <v-divider class="mt-2 mb-4 mx-5" />
             <div v-if="pageData.bShowOptions">

@@ -14,7 +14,7 @@
                     <v-btn
                         v-if="registerTypes.includes(1)"
                         height="40"
-                        class="rounded-pill font-weight-bold mr-2"
+                        class="rounded-pill font-weight-bold"
                         elevation="0"
                         :text="form.register_type != 1"
                         :color="form.register_type == 1 ? 'colorBtnBg' : 'colorText1'"
@@ -157,6 +157,7 @@
                     @blur="onPasswordConfirmBlur"
                 />
                 <CustomInput
+                    class="mb-6"
                     v-if="form.register_type == 1"
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（4位）')"

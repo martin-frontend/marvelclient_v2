@@ -1,12 +1,32 @@
-<v-dialog width="596" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg pb-5" color="colorPanelBg">
-        <v-sheet class="d-flex text-18 font-weight-medium align-center px-4 mb-5" color="colorPanelTitleBg" height="60">
-            <div>{{LangUtil("服务条款")}}</div>
-            <v-spacer />
-            <v-btn icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
-            </v-btn>
-        </v-sheet>
-        <v-sheet class="overflow-y-auto mx-4 text-wrapper" color="transparent" height="500">{{LangUtil("服务条款内容")}}</v-sheet>
-    </v-card>
+<v-dialog width="596" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <template v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card class="rounded-lg pb-5" color="colorPanelBg">
+            <v-sheet class="d-flex text-18 font-weight-medium align-center px-4 mb-5" color="colorPanelTitleBg"
+                height="60">
+                <div>{{LangUtil("服务条款")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-sheet>
+            <v-sheet class="overflow-y-auto mx-4 text-wrapper" color="transparent" height="500">{{LangUtil("服务条款内容")}}
+            </v-sheet>
+        </v-card>
+    </template>
+    <template v-else>
+        <v-card class="rounded-lg" color="colorPanelBg">
+            <v-card-title class="d-flex justify-end pt-5 gradient-bg">
+                <div class="ml-5 font-weight-medium white--text text-18">{{LangUtil("服务条款")}}</div>
+                <v-spacer />
+                <v-btn class="mr-2" icon @click="onClose">
+                    <v-icon large>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-sheet class="overflow-auto mx-4 text-wrapper overflow_test" color="transparent">
+                    {{LangUtil("服务条款内容")}}</v-sheet>
+            </v-card-text>
+        </v-card>
+    </template>
 </v-dialog>

@@ -563,3 +563,7 @@ export function getResponseIcon(url: string) {
     }
     return resultUrl;
 }
+/**检测字符串中是否有换行 */
+export function checkMultiline(str:string):boolean{
+    return str.search("\n") != -1;
+}

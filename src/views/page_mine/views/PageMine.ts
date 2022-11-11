@@ -9,6 +9,7 @@ import page_game_list from "@/views/page_game_list";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
+import { checkMultiline } from "@/core/global/Functions";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -16,6 +17,7 @@ export default class PageMine extends AbstractView {
     pageData = this.myProxy.pageData;
     fagProxy: FagProxy = this.getProxy(FagProxy);
     LangUtil = LangUtil;
+    checkMultiline = checkMultiline;
 
     private selfProxy: SelfProxy = this.getProxy(SelfProxy);
     private xsOnly = false;

@@ -30,6 +30,7 @@ import lang_zh from "element-ui/lib/locale/lang/zh-CN";
 import lang_zhtw from "element-ui/lib/locale/lang/zh-TW";
 import localeE from "element-ui/lib/locale";
 import GameConfig from "@/core/config/GameConfig";
+import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -155,6 +156,10 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);
+                {
+                    const headerProxy:HeaderProxy = getProxy(HeaderProxy);
+                    headerProxy.setLobbyIndex(body);
+                }
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {

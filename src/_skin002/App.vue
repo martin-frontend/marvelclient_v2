@@ -2,7 +2,7 @@
     <v-app>
         <div id="page">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
-            <Header v-show="!$vuetify.breakpoint.mobile && isShowHeader" />
+            <Header v-if="!$vuetify.breakpoint.mobile && isShowHeader" />
             <v-main
                 class="background"
                 :class="{

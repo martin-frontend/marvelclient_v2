@@ -52,7 +52,7 @@
             <v-divider class="mt-2" />
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
+            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox-mobile">
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("汇总")}}</div>
@@ -141,7 +141,7 @@
                         <div class="text-truncate" :class="getMoneyColor(item.plat_amount)">{{getMoneyValue(item.plat_amount)}}</div>
                     </div>
                 </v-sheet>
-            </vue-loadmore>
+            </LoadMore>
         </v-card-text>
         <!-- PC显示 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">

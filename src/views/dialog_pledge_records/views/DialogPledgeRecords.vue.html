@@ -163,27 +163,6 @@
                         </div>
                     </v-sheet>
                 </LoadMore>
-                <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                    <ListNodata v-if="pageData.list.length == 0" />
-                    <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                        <div class="d-flex justify-space-between">
-                            <div class="colorText1--text">{{LangUtil("时间")}}</div>
-                            <div>{{ getDateTime(item.created_at) }}</div>
-                        </div>
-                        <div class="d-flex justify-space-between">
-                            <div class="d-flex align-center colorText1--text">{{LangUtil("数量")}}</div>
-                            <div class="d-flex align-center">
-                                <v-img
-                                    class="mr-2"
-                                    max-width="20"
-                                    height="20"
-                                    :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
-                                ></v-img>
-                                {{ item.gold }}
-                            </div>
-                        </div>
-                    </v-sheet>
-                </vue-loadmore> -->
             </div>
             <div v-if="listQuery.cate == 2 && $vuetify.breakpoint.xsOnly">
                 <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
@@ -219,41 +198,6 @@
                         </div>
                     </v-sheet>
                 </LoadMore>
-
-                <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                    <ListNodata v-if="pageData.list.length == 0" />
-                    <v-sheet
-                        class="px-3 py-2 rounded-lg my-3 colorText2--text"
-                        color="#16233F"
-                        v-for="(item, idx) in pageData.list"
-                        :key="idx"
-                    >
-                        <div class="d-flex justify-space-between">
-                            <div class="colorText1--text">{{LangUtil("时间")}}</div>
-                            <div>{{ getDateTime(item.created_at) }}</div>
-                        </div>
-                        <div class="d-flex justify-space-between">
-                            <div class="colorText1--text">{{LangUtil("类型")}}</div>
-                            <div>
-                                <span v-if="item.type == 48">{{LangUtil("质押")}}</span>
-                                <span v-else-if="item.type == 49">{{LangUtil("自动解质押")}}</span>
-                                <span v-else>{{LangUtil("手动解质押")}}</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-space-between">
-                            <div class="ml-sm-8 colorText1--text">{{LangUtil("到账数量")}}</div>
-                            <div class="d-flex align-center">
-                                <v-img
-                                    class="mr-2"
-                                    max-width="20"
-                                    height="20"
-                                    :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
-                                ></v-img>
-                                {{ item.gold }}
-                            </div>
-                        </div>
-                    </v-sheet>
-                </vue-loadmore> -->
             </div>
         </v-card-text>
     </v-card>

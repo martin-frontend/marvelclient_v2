@@ -116,6 +116,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_win_gold = data.total_win_gold;
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
+            console.log(">>>>>>>>>>>>>>>>1111")
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -125,6 +126,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
+            console.log(">>>>>>>>>>>>>>>>22222")
             this.pageData.list = data.list;
         }
     }

@@ -202,8 +202,8 @@
             </div>
         </v-card-text>
         <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
-            <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" :class=" pageData.bShowOptions ? 'listbox-mobile' : 'listbox-mobile-nooptions' ">
-                <ListNodata v-if="pageData.list.length == 0" />
+            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0" :_class=" pageData.bShowOptions ? 'listbox-mobile' : 'listbox-mobile-nooptions' ">
+                <!-- <ListNodata v-if="pageData.list.length == 0" /> -->
                 <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("订单号")}}</div>
@@ -247,7 +247,7 @@
                         </v-btn>
                     </div>
                 </v-sheet>
-            </vue-loadmore>
+            </LoadMore>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

@@ -158,10 +158,12 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     onRefresh(done: any) {
+        console.log(">>>>>>>>.onRefresh")
         this.myProxy.listRefrush(done);
     }
 
     onLoad(done: any) {
+        console.log(">>>>>>>>.onLoad")
         this.myProxy.listMore(done);
     }
 

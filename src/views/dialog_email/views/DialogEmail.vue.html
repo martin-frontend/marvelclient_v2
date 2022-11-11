@@ -166,33 +166,6 @@
                 </div>
             </v-sheet>
         </LoadMore>
-
-        <!-- <vue-loadmore
-            v-if="$vuetify.breakpoint.xsOnly"
-            :on-refresh="onRefresh"
-            :on-loadmore="onLoad"
-            :finished="pageData.finished"
-            class="px-3 listbox-mobile flex-1"
-        >
-            <ListNodata v-if="pageData.list.length == 0" />
-            <v-sheet class="px-3 py-2 rounded-lg mb-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
-                <div class="ml-4" style="width: 100%">
-                    <div class="d-flex justify-space-between mb-2">
-                        <div class="text-16 colorText2--text">{{item.title}}</div>
-                        <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
-                            {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
-                        </v-icon>
-                    </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="text-decoration-underline colorText1--text cursor-pointer" @click="onDetail(item)">
-                            {{LangUtil("点击阅读详情")}}
-                        </div>
-                        <div class="colorText1--text">{{item.created_at}}</div>
-                    </div>
-                </div>
-            </v-sheet>
-        </vue-loadmore> -->
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

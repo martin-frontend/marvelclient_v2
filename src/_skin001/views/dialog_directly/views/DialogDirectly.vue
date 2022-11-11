@@ -7,12 +7,14 @@ import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogDirectly from "./DialogDirectly";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
+import LoadMore from "@/views/widget/loadMore/LoadMore.vue";
 
 @Component({
     components: {
         CustomInput,
         Overlay,
         ListNodata,
+        LoadMore,
     },
 })
 export default class extends DialogDirectly {}

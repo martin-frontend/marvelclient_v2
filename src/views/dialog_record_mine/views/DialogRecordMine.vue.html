@@ -110,43 +110,6 @@
                     </div>
                 </v-sheet>
             </LoadMore>
-
-            <!-- <vue-loadmore :on-refresh="onRefresh" :on-loadmore="onLoad" :finished="pageData.finished" class="listbox-mobile">
-                <ListNodata v-if="pageData.list.length == 0" />
-                <v-sheet
-                    class="px-3 py-2 rounded-lg mb-3 colorText2--text"
-                    color="colorPanelBg2"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                >
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("结算时间")}}</div>
-                        <div>{{ getDateTime(item.created_at) }}</div>
-                    </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("结算有效流水")}}</div>
-                        <div>{{item.total_water}}</div>
-                    </div>
-                    <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
-                        <div class="colorText1--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
-                        <div>{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
-                    </div>
-                    <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">
-                        <div class="colorText1--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
-                        <div>{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
-                    </div>
-                    <div class="d-flex align-end justify-end listitem-110">
-                        <v-btn text height="20" class="text-decoration-underline pa-0 colorBlue--text" @click="handlerDetail(item)">
-                            {{LangUtil("查看详情")}}<v-img
-                                class="arrow"
-                                width="24"
-                                height="24"
-                                src="@/assets/extension/chevrons-right.png"
-                            ></v-img>
-                        </v-btn>
-                    </div>
-                </v-sheet>
-            </vue-loadmore> -->
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

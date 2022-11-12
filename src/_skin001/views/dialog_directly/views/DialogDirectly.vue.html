@@ -1,4 +1,4 @@
-<v-dialog width="900" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+<v-dialog width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
     <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
         <!-- pc显示方式 -->
@@ -33,44 +33,44 @@
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                 <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list"
                     :key="key">
-                    <v-row no-gutters class="justify-space-between fill-height">
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                    <div class="d-flex">
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
                             <div class="mb-1">{{LangUtil("注册时间")}}</div>
                             <div class="text-truncate text-16 font-weight-regular">{{ item.binded_at.replace(/^\d{4}-/,
                                 "") }}</div>
-                        </v-col>
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        </v-sheet>
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
                             <div class="mb-1">{{LangUtil("用户ID")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.user_id }}</div>
-                        </v-col>
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        </v-sheet>
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto">
                             <div class="mb-1">{{LangUtil("用户昵称")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.nick_name }}</div>
-                        </v-col>
+                        </v-sheet>
 
                         <!-- 非信用用户显示 -->
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user != 1">
                             <div class="mb-1">{{LangUtil("直属人数")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.directly_users }}</div>
-                        </v-col>
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        </v-sheet>
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user != 1">
                             <div class="mb-1">{{LangUtil("团队人数")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
-                        </v-col>
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        </v-sheet>
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user != 1">
                             <div class="mb-1">{{LangUtil("团队人数")}}</div>
                             <div class="text-16 font-weight-regular">{{ item.group_users }}</div>
-                        </v-col>
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        </v-sheet>
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user != 1">
                             <div class="mb-1">{{LangUtil("保底")}}</div>
@@ -81,31 +81,31 @@
                                 </span>
                             </div>
                             <div v-else>-</div>
-                        </v-col>
+                        </v-sheet>
 
                         <!-- 信用用户显示 -->
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user == 1">
                             <div class="mb-1">{{LangUtil("状态")}}</div>
                             <div class="text-16 font-weight-regular">{{item.status == 1? LangUtil("正常"):LangUtil("关闭")}}
                             </div>
-                        </v-col>
+                        </v-sheet>
 
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_credit_user == 1">
-                            <v-btn class="text-14" color="colorBtnBg"  height="30" elevation="0"
+                            <v-btn class="text-14 mx-2" color="colorBtnBg"  height="30" elevation="0"
                                 @click="handlerShowDialogSet(item)">{{LangUtil("直属设置") }}</v-btn>
-                        </v-col>
+                        </v-sheet>
 
-                        <v-col class="listitem d-flex justify-center flex-column" cols="6"
+                        <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%" color="transparent"
                             :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
                             v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">
-                            <v-btn class="text-14" color="colorBtnBg"  height="30" elevation="0"
+                            <v-btn class="text-14 mx-2" color="colorBtnBg"  height="30" elevation="0"
                                 @click="handlerShowBetRecord(item.user_id)">{{LangUtil("投注记录") }}</v-btn>
-                        </v-col>
-                    </v-row>
+                        </v-sheet>
+                    </div>
                 </v-sheet>
             </v-sheet>
             <ListNodata v-if="pageData.list.length == 0" height="411" />

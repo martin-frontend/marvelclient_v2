@@ -81,12 +81,12 @@ export default class DialogBetRecord extends AbstractView {
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
             this.myProxy.resetQuery();
             if(this.pageData.listQuery.start_date){
-                this.timeRange[0] = new Date(this.pageData.listQuery.start_date);
+                this.timeRange[0] = this.pageData.listQuery.start_date;
             }else{
                 this.timeRange[0] = getTodayOffset();
             }
             if(this.pageData.listQuery.end_date){
-                this.timeRange[1] = new Date(this.pageData.listQuery.end_date);
+                this.timeRange[1] = this.pageData.listQuery.end_date;
             }else{
                 this.timeRange[1] = getTodayOffset(1, 1);
             }
@@ -169,5 +169,25 @@ export default class DialogBetRecord extends AbstractView {
 
     handlerDetail(game_info: string) {
         dialog_order.show(game_info);
+    }
+    getMoneyColor(str:string):string{
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return ""
+        }
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+    }
+    getMoneyValue(str:string):string{
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return str
+        }
+
+        if(!!str && str.search('-') == -1) return "+" + str;
+        return str;
     }
 }

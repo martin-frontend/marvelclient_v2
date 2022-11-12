@@ -1,0 +1,99 @@
+<v-dialog width="400" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" min-width="100%" height="660">
+        <!-- 标题 和 关闭按钮 -->
+        <v-card-title class="gradient-bg">
+
+            <div class="text-18 font-weight-medium ml-2 white--text">
+                {{LangUtil("EasyBet设置")}}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+
+        <!-- 页面内容 -->
+        <v-card-text class="text-sm-subtitle-1 text_height">
+            <div>
+                <!-- 用户id -->
+                <div class="d-flex justify-space-between align-center empty_height my-3">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户ID")}} </span>
+                    <span class="d-flex colorBlue--text"> {{ playerInfo.user_id}} </span>
+                </div>
+                <div class="hackhome"></div>
+                <!-- 用户昵称 -->
+                <div class="d-flex justify-space-between align-center empty_height my-3">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户昵称")}} </span>
+                    <span class="d-flex align-center colorBlue--text"> {{playerInfo.nick_name}} </span>
+                </div>
+                <div class="hackhome"></div>
+
+                <!-- 用户身上的币种 -->
+                <div class="my-4">
+                    <v-menu content-class="menu" v-model="isOpenWalletMenu" offset-y nudge-bottom="7">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div v-bind="attrs" v-on="on">
+                                <v-sheet class="d-flex align-center justify-space-between rounded-lg pr-3"
+                                color="colorPanelTitleBg" min-width="90" height="50"
+                                    v-if="playerInfo.gold_info[formData.coin_name_unique]">
+                                    <div class="d-flex align-center justify-space-between ">
+                                        <v-img class="ml-3"
+                                            :src="GamePlatConfig.config.plat_coins[formData.coin_name_unique] && GamePlatConfig.config.plat_coins[formData.coin_name_unique].icon"
+                                            max-width="30" max-height="30">
+                                        </v-img>
+
+                                        <div class="colorText2--tex ml-3">{{ formData.coin_name_unique }}</div>
+                                    </div>
+
+                                    <div class="icon-box iconfont text-14 colorText2--text ml-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                                        
+                                    </div>
+                                </v-sheet>
+                                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                            </div>
+                        </template>
+                        <v-sheet width="100%" color="colorPanelTitleBg" class="py-2 px-0">
+                            <template v-for="(item, key) of playerInfo.gold_info">
+                                <v-sheet class="d-flex align-center pl-3 rounded cursor-pointer py-3 listitem"
+                                    :class="{'select-shadow': formData.coin_name_unique == key}" color="transparent"
+                                    width="100%" :key="key" @click="onItemClick(key)">
+                                    <div :class="key == 'CNY'? 'CNY': ''">
+                                        <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30"
+                                            max-height="30"></v-img>
+                                    </div>
+                                    <div class="colorText2--tex ml-3">{{ key }}</div>
+                                </v-sheet>
+                            </template>
+                        </v-sheet>
+                    </v-menu>
+                </div>
+
+                <!-- 当前选择的币种和输入 -->
+                <div class="d-flex justify-space-between align-center empty_height my-3">
+                    <div class="d-flex colorText1--text empty_space text-16">
+                        {{LangUtil("单场累计下注限额") }}
+                    </div>
+
+                    <div class="d-flex justify-space-between align-center text-16">
+
+                        <CustomInput class="empty_width_2 ml-4" height="40" :placeholder="formData.gold"
+                            :isNeedCloseBtn="false" type="number" v-model="formData.gold">
+                        </CustomInput>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- 确定按钮 -->
+            <div class="rounded-lg mb-2">
+                <v-btn class="rounded-lg" color="colorBtnBg" height="40" :disabled="!isChecked" block
+                    @click="onClickSure">
+                    {{LangUtil("确定")}}</v-btn>
+            </div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

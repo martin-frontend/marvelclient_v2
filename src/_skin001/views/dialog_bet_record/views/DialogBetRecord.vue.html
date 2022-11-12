@@ -1,4 +1,4 @@
-<v-dialog width="1020" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
@@ -9,10 +9,13 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5 pb-3" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="colorText2--text text-16 ml-3 d-flex">
+            <div class="colorText2--text text-18 font-weight-medium ml-3 d-flex">
                 <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
                 <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-                <div class="ml-5">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
+                <div class="ml-5 d-flex flex-wrap">{{LangUtil("输赢")}}
+                    <div :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</div>
+                </div>
+                
                 <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
             </div>
             <v-divider class="mt-2" />
@@ -90,7 +93,7 @@
                         </div>
                         <div>
                             <div>{{LangUtil("输赢")}}</div>
-                            <div>{{item.win_gold}}</div>
+                            <div :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
                         </div>
                         <div>
                             <div>{{LangUtil("状态")}}</div>
@@ -141,7 +144,9 @@
                 <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
             </div>
             <div class="colorText2--text text-16 mx-5 d-flex">
-                <div class="w-120">{{LangUtil("输赢")}} {{pageData.total_win_gold}}</div>
+                <div class="w-120 d-flex flex-wrap">{{LangUtil("输赢")}}
+                    <div :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</div>
+                </div>
                 <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
             </div>
             <v-divider class="mt-2 mb-4 mx-5" />
@@ -223,7 +228,7 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("输赢")}}</div>
-                        <div>{{item.win_gold}}</div>
+                        <div :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("状态")}}</div>

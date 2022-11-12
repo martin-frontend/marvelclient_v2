@@ -271,6 +271,10 @@ declare module net {
         api_user_var_agent_direct_deduction: string;
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: string;
+        /**--直属用户查询操作--直属用户加钱*/
+        api_user_var_agent_credit_transfer: string;
+        /**--直属用户查询操作--注册直属*/
+        api_user_var_direct_register: string;
     };
     /**事件*/
     var EventType: {
@@ -542,6 +546,10 @@ declare module net {
         api_user_var_agent_direct_deduction: string;
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: string;
+        /**--直属用户查询操作--直属用户加钱*/
+        api_user_var_agent_credit_transfer: string;
+        /**--直属用户查询操作--注册直属*/
+        api_user_var_direct_register: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1051,6 +1059,15 @@ declare module net {
     }
 }
 /**
+ * 直属用户加钱
+ */
+declare module net {
+    class cmd_api_user_var_agent_credit_transfer extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 直属用户直接扣款
  */
 declare module net {
@@ -1352,6 +1369,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_destroy_quick extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 注册直属
+ */
+declare module net {
+    class cmd_api_user_var_direct_register extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

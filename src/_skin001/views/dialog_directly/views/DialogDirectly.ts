@@ -11,6 +11,7 @@ import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_directly_setting from "../../dialog_directly_setting";
 import dialog_bet_record from "../../dialog_bet_record";
+import dialog_add_user from "../../dialog_directly_adduser";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -20,7 +21,7 @@ export default class DialogDirectly extends AbstractView {
     listQuery = this.pageData.listQuery;
     LangUtil = LangUtil;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
-
+    limitinfo = this.myProxy.limitinfo;
     commonIcon = Assets.commonIcon;
 
     constructor() {
@@ -58,6 +59,10 @@ export default class DialogDirectly extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_agent_direct_list();
         }
+        else
+        {
+            this.myProxy.pageData.list = [];
+        }
     }
 
     @Watch("$vuetify.breakpoint.xsOnly")
@@ -72,6 +77,7 @@ export default class DialogDirectly extends AbstractView {
         this.pageData.loading = true;
         this.myProxy.pageData.list = [];
         this.myProxy.parameter.direct_user_id = this.myProxy.pageData.search;
+        this.pageData.listQuery.page_count = 1;
         this.myProxy.api_user_var_agent_direct_list();
     }
 
@@ -93,7 +99,10 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerShowDialogSet(agent_user: any) {
-        dialog_directly_setting.show(agent_user);
+        //dialog_directly_setting.show(agent_user);
+        dialog_directly_setting.show({userinfo:agent_user,limitinfo:this.limitinfo }   );
     }
-
+    handlerShowAddUser() {
+        dialog_add_user.show();
+    }
 }

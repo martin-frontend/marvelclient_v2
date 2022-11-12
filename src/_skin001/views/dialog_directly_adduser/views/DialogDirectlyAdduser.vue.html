@@ -1,0 +1,36 @@
+<v-dialog class="rounded-xl" width="420" v-model="pageData.bShow" overlay-opacity="0.6"
+    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card color="colorPanelBg" height="660">
+        <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+            <div class="ml-2 font-weight-medium text-18 white--text">{{LangUtil("添加用户")}}
+            </div>
+            <v-spacer />
+            <v-btn class="mr-2" icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-5 px-md-10 mt-5">
+
+            <CustomInput v-if="form.register_type==1" class="mb-6" icon="mdi-account"
+                :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.username"
+                @blur="onUsernameBlur" />
+
+            <CustomPassword class="mb-6" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="form.password"
+                @blur="onPasswordBlur" />
+
+            <CustomInput v-if="form.register_type == 1" icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')"
+                maxlength="4" v-model="form.verify_code">
+                <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
+                    @click="getImageVerity"></v-img>
+            </CustomInput>
+
+            <div class="mt-5">
+                <v-btn class="rounded-lg" color="#6fa9fa" height="48" :disabled="!isCheck" block @click="onRegister">
+                    {{LangUtil("注册")}}</v-btn>
+            </div>
+
+
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

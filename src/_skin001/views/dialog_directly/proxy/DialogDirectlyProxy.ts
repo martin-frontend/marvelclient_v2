@@ -17,6 +17,11 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         page_count: 1,
     };
 
+    limitinfo = {
+        enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+        enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+        is_credit_user:0,
+    }
     pageData = {
         enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
@@ -52,6 +57,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
+        Object.assign(this.limitinfo, {
+            enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+            enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+        });
         this.pageData.search = "";
         this.parameter.direct_user_id = "";
     }
@@ -61,6 +70,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
+        Object.assign(this.limitinfo, data.limit);
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;

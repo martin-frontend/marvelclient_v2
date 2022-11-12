@@ -1,9 +1,12 @@
 import { objectRemoveNull } from "@/core/global/Functions";
+import LangUtil from "@/core/global/LangUtil";
+import dialog_message_box from "@/views/dialog_message_box";
 import Vue from "vue";
 
 export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
     static NAME = "DialogStatisticsCreditProxy";
 
+    userList=<any>[]; //用于存储所有当前查询代理链的信息
     pageData = {
         loading: false,
         bShow: false,
@@ -14,6 +17,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             end_date: "",
             page_count: 1,
             page_size: 20,
+            target_user_id:0,
         },
         list: <any>[],
         summary: {
@@ -22,9 +26,25 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             win_gold: "",
             water: "",
             back_water: "",
-            agent_amount: "",
+            agent_amount: "",//代理商金额
             credit_rate: "",
             user_id: "-",
+            plat_amount:"",//上交金额
+            group_users:"",//团队成员
+            directly_users:"",//直属成员
+        },
+        agent: {
+            record_count: 0,
+            bet_gold: "",
+            win_gold: "",
+            water: "",
+            back_water: "",
+            agent_amount: "",//代理商金额
+            credit_rate: "",
+            user_id: "-",
+            plat_amount:"",//上交金额
+            group_users:"",//团队成员
+            directly_users:"",//直属成员
         },
         pageInfo: {
             pageCurrent: 1,
@@ -36,14 +56,67 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         done: <any>null,
         finished: false,
     };
+    
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
+        
         Object.assign(this.pageData.listQuery, {
             start_date: "",
             end_date: "",
             page_count: 1,
             page_size: 20,
+            target_user_id:0,
         });
+       
+    }
+
+    reseData()
+    {
+        this.pageData.list = []
+        this.clearUserList();
+    }
+    
+    public get userListInfo() : any {
+        // if(this.userList.length > 0)
+        //     return this.userList;
+        // this.userList.push(core.user_id);
+        return this.userList;
+    }
+    
+    addUserList(userid:any)
+    {
+        // if(this.userList.length <= 0)
+        // {
+        //     this.userList.push(core.user_id);
+        // }
+        //检查 当前id是否 包含在 数组中
+        if(this.userList.indexOf(userid) != -1)
+        {
+            return;
+        }
+        
+        this.userList.push(userid);
+        
+    }
+    removeUserList(userid:any)
+    {
+        const res = this.userList.indexOf(userid);
+        if (res == -1)
+        {
+            return;
+        }
+
+        this.userList = this.userList.slice(0,res);
+    }
+    clearUserList()
+    {
+        this.userList = [];
+    }
+    //设置当前账号的数据
+    addAgentData(data:any)
+    {
+        const agentdata = JSON.parse(JSON.stringify(data.agent));
+        this.pageData.list.unshift(agentdata);
     }
 
     setData(data: any) {
@@ -51,11 +124,13 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.pageData.summary, data.summary);
+        Object.assign(this.pageData.agent, data.agent);
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
+                this.addAgentData(data);
             } else {
                 this.pageData.list.push(...data.list);
             }
@@ -63,7 +138,15 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
+            if (this.pageData.pageInfo.pageCurrent == 1)
+            {
+                this.addAgentData(data);
+            }
         }
+
+        this.removeUserList(this.pageData.agent.user_id);
+        this.addUserList(this.pageData.agent.user_id);
+
     }
 
     /**手机下拉刷新 */
@@ -79,9 +162,24 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         this.api_user_var_credit_statistic();
     }
 
-    api_user_var_credit_statistic() {
+    api_user_var_credit_statistic(userid:any = null) {
         this.pageData.loading = true;
+        if(userid)
+        {
+            this.pageData.listQuery.target_user_id = userid;
+        }
         this.pageData.listQuery.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_credit_statistic, objectRemoveNull(this.pageData.listQuery));
+    }
+
+    //错误的回调
+    showErrorMsg(msg:any = null)
+    {
+        if (!msg)
+        {
+            msg =  LangUtil("您无权查看该用户的信用统计！");
+        }
+        dialog_message_box.alert({message: msg, okFun: ()=>{
+        }});
     }
 }

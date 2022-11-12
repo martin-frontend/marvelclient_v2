@@ -3,7 +3,7 @@
 
         <!-- 标题 和 关闭按钮 -->
         <v-card-title class="gradient-bg" >
-            <div class="text-rwd-18 font-weight-regular">{{LangUtil("返水设置")}}</div>
+            <div class="text-18 font-weight-medium ml-2 white--text">{{LangUtil("返水设置")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hackhome"></div>
+                    <div v-if="key!=0" class="hackhome"></div>
                 </template>
 
             <div class=" text-sm-subtitle-1 text_height pb-0">

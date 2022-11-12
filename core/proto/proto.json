@@ -178,6 +178,8 @@
         ["api/user/{user_id}/fetch_direct_user_info",         "查询直属用户金币数量"],
         ["api/user/{user_id}/agent_direct_user_update",         "直属用户状态查询和修改"],
         ["api/user/{user_id}/agent_direct_deduction",         "直属用户直接扣款"],
-        ["api/user/{user_id}/credit_statistic",         "信用统计"]
+        ["api/user/{user_id}/credit_statistic",         "信用统计"],
+        ["api/user/{user_id}/agent_credit_transfer",         "直属用户加钱"],
+        ["api/user/{user_id}/direct_register",         "注册直属"]
     ]
 }

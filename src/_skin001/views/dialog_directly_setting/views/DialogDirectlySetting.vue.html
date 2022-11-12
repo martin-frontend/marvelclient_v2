@@ -1,60 +1,98 @@
-<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
     <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="660">
         <!-- pc端设置 -->
-        <v-card-title class="gradient-bg" >
-            <div class="text-rwd-18 font-weight-regular">{{LangUtil("直属信息")}}</div>
+        <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+            <div class="text-18 font-weight-medium ml-2">
+                {{LangUtil("直属信息")}}
+            </div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="text-sm-subtitle-1 text_height" >
+        <v-card-text class="text-sm-subtitle-1 text_height">
             <div>
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户ID")}} </span>
-                    <span class="d-flex colorBlue--text mr-5"> {{playerInfo.user_id}} </span>
+                    <span class="d-flex colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.user_id}} </span>
                 </div>
                 <div class="hackhome"></div>
 
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户昵称")}} </span>
-                    <span class="d-flex align-center colorBlue--text mr-5"> {{playerInfo.nick_name}} </span>
+                    <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.nick_name}} </span>
+                </div>
+                <div class="hackhome"></div>
+                <!-- 账号状态 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("账号状态")}} </span>
+                    <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-3'">
+                        <v-switch @change="handlerUpdate" :true-value="1" :false-value="98" v-model="playerInfo.status"
+                            color="colorBtnBg" inset></v-switch>
+                    </span>
                 </div>
                 <div class="hackhome"></div>
 
-                <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <span class="d-flex colorText1--text"> {{LangUtil("用户状态")}} </span>
-                    <span class="d-flex align-center colorBlue--text mr-4">
-                        <v-switch
-                            @change="handlerUpdate"
-                            :true-value="1"
-                            :false-value="98"
-                            v-model="playerInfo.status"
-                            color="colorBtnBg"
-                            inset
-                        ></v-switch>
-                    </span>
-                </div>
+                <!-- 代理占比 -->
+                <template v-if="isAgents_rate">
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex colorText1--text"> {{LangUtil("代理占成")}} </span>
+                        <div class="d-flex align-center colorDialogInfo--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <span class="mx-3">
+                                {{playerInfo.credit_rate}}%
+                            </span>
+                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30" @click="agentSetting">
+                                <span>{{ LangUtil("设置") }}</span>
+                            </v-btn>
+                        </div>
+                    </div>
+                    <div class="hackhome"></div>
 
-                <div class="hackhome"></div>
-                <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}} </span>
-                    <span class="d-flex align-center colorBlue--text mr-5">
-                        <v-btn class="rounded-lg" color="#6FA9FA" min-width="61" height="30" @click="assetSettings">
-                            <span>{{ LangUtil("直属扣款") }}</span>
-                        </v-btn>
-                    </span>
-                </div>
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}} </span>
+                        <div class="d-flex align-center justify-space-between colorBlue--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <v-btn class="rounded-lg mx-3" color="#6FA9FA" min-width="100" height="30"
+                                @click="assetSettings_add">
+                                <span>{{ LangUtil("增加额度") }}</span>
+                            </v-btn>
+                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
+                                @click="assetSettings">
+                                <span>{{ LangUtil("减少额度") }}</span>
+                            </v-btn>
+                        </div>
+                    </div>
 
-                <div class="hackhome"></div>
-                <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <span class="d-flex colorText1--text"> {{LangUtil("用户返水")}} </span>
-                    <span class="d-flex align-center colorBlue--text mr-5">
-                        <v-btn class="rounded-lg" color="#6FA9FA" min-width="61" height="30" @click="backWatherSettings">
-                            <span>{{ LangUtil("返水设置") }}</span>
-                        </v-btn>
-                    </span>
-                </div>
+                    <div class="hackhome"></div>
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex colorText1--text"> {{LangUtil("用户返水")}} </span>
+                        <span class="d-flex align-center colorBlue--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
+                                @click="backWatherSettings">
+                                <span>{{ LangUtil("返水设置") }}</span>
+                            </v-btn>
+                        </span>
+                    </div>
+
+                    <div v-if="false">
+                        <div class="hackhome"></div>
+                        <div class="d-flex justify-space-between align-center my-3 empty_height">
+                            <span class="d-flex colorText1--text"> {{LangUtil("EsayBet投注设置")}} </span>
+                            <span class="d-flex align-center colorBlue--text"
+                                :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                                <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
+                                    @click="esayBetSetting">
+                                    <span>{{ LangUtil("设置") }}</span>
+                                </v-btn>
+                            </span>
+                        </div>
+                    </div>
+                </template>
             </div>
         </v-card-text>
     </v-card>

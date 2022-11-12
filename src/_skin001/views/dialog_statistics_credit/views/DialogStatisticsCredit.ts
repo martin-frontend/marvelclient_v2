@@ -16,6 +16,8 @@ export default class DialogStatisticsCredit extends AbstractView {
     myProxy: DialogStatisticsCreditProxy = this.getProxy(DialogStatisticsCreditProxy);
     pageData = this.myProxy.pageData;
 
+    userlist = this.myProxy.userListInfo;
+
     timeRange: any = ["", ""];
     pickerOptions = {
         shortcuts: [
@@ -37,11 +39,31 @@ export default class DialogStatisticsCredit extends AbstractView {
             },
         ],
     };
-
+    
     constructor() {
         super(DialogStatisticsCreditMediator);
     }
-
+    onBtnClickNextPage(item:any)
+    {
+        if(item.directly_users <= 0)
+        {
+            return;
+        }
+        this.pageData.listQuery.page_count = 1;
+        this.myProxy.api_user_var_credit_statistic(item.user_id);
+        //将点击到的 对象的 id 添加进去
+        //this.myProxy.addUserList(item.user_id);
+    }
+    //点击上面显示的 用户代理链上的 其他用户
+    onBtnClickUserInfo(item:any )
+    {
+        //对应的 请求
+        this.pageData.listQuery.page_count = 1;
+        this.myProxy.api_user_var_credit_statistic(item);
+        //将代理链条后面的全部删除掉
+        //this.myProxy.removeUserList(item);
+    }
+    
     onTimeChange() {
         if (this.timeRange) {
             const startDate: any = this.timeRange[0];
@@ -65,6 +87,15 @@ export default class DialogStatisticsCredit extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
+    
+    get isMine() : boolean {
+        if(this.myProxy.userListInfo.length > 1)
+        {
+            return false
+        }
+        return true;
+    }
+    
     onQuery() {
         this.myProxy.api_user_var_credit_statistic();
     }
@@ -95,15 +126,19 @@ export default class DialogStatisticsCredit extends AbstractView {
             this.timeRange = [start, end];
             this.onTimeChange();
         }
+        else
+        {
+            this.myProxy.reseData();
+        }
     }
 
     onUserIdClick(user_id:number){
         const listQuery = this.pageData.listQuery;
-        dialog_bet_record.show(user_id, listQuery.start_date, listQuery.end_date, false);
+        dialog_bet_record.show(user_id, this.timeRange[0],this.timeRange[1], false);
     }
 
     getMoneyColor(str:string):string{
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
     }
     getMoneyValue(str:string):string{
         if(!!str && str.search('-') == -1) return "+" + str;

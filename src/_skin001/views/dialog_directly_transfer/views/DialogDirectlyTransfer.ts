@@ -23,7 +23,7 @@ export default class DialogDirectlyTransfer extends AbstractView {
     /**当前选择的钱包类型 */
     coin_name_unique: string = "";
     pageData = this.myProxy.pageData;
-
+    userInfo = this.myProxy.pageData.playerInfo; //当前登陆用户的 信息， 只有在 增加模式的 时候 才有效
     playerInfo = this.myProxy.playerInfo;
 
     formData = this.myProxy.formData;
@@ -40,22 +40,43 @@ export default class DialogDirectlyTransfer extends AbstractView {
     onItemClick(key: string) {
         this.setCoin(key);
     }
+    
+    public get gold_info():any {
+        if(this.pageData.isAddMode)
+        {
+            return this.userInfo.gold_info;
+        } 
+        else
+        {
+            return this.playerInfo.gold_info;
+        }
+    }
+    
 
     onClose() {
         this.pageData.bShow = false;
     }
-    //确定扣款
+    //确定扣款 和 加钱
     onClickSure()
     {
-        this.myProxy.api_user_var_agent_direct_deduction();
+        if (this.pageData.isAddMode)
+        {
+            //console.log("确定加钱  按钮" ,this.formData);//确定加钱
+            this.myProxy.api_user_var_agent_credit_transfer();
+        }
+        else
+        {
+            this.myProxy.api_user_var_agent_direct_deduction();
+        }     
     }
+    
     search() {
 
     }
     
     onClickGetAll()
     {
-        this.formData.gold = this.playerInfo.gold_info[this.formData.coin_name_unique].sum_money
+        this.formData.gold = this.gold_info[this.formData.coin_name_unique].sum_money
     }
     get isChecked(): boolean {
         if (!this.formData.gold)
@@ -68,7 +89,7 @@ export default class DialogDirectlyTransfer extends AbstractView {
             return false;
         }
 
-        if (this.playerInfo.gold_info[this.formData.coin_name_unique] && num > this.playerInfo.gold_info[this.formData.coin_name_unique].sum_money)
+        if (this.gold_info[this.formData.coin_name_unique] && num > this.gold_info[this.formData.coin_name_unique].sum_money)
         {
             return false;
         }
@@ -88,8 +109,11 @@ export default class DialogDirectlyTransfer extends AbstractView {
         if (this.pageData.bShow) {
             BlurUtil(this.pageData.bShow);
             //如果是列表，使用以下数据，否则删除
-            this.myProxy.resetQuery();
-            // this.myProxy.api_xxx();
+            //this.myProxy.resetQuery();
+            if(this.pageData.isAddMode)
+            {
+                this.myProxy.api_user_show_var();
+            }
         }
     }
 }

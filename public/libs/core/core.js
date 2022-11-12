@@ -325,6 +325,10 @@ var net;
         api_user_var_agent_direct_deduction: "api/user/{user_id}/agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
+        /**--直属用户查询操作--直属用户加钱*/
+        api_user_var_agent_credit_transfer: "api/user/{user_id}/agent_credit_transfer",
+        /**--直属用户查询操作--注册直属*/
+        api_user_var_direct_register: "api/user/{user_id}/direct_register",
     };
     /**事件*/
     net.EventType = {
@@ -596,6 +600,10 @@ var net;
         api_user_var_agent_direct_deduction: "api_user_var_agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api_user_var_credit_statistic",
+        /**--直属用户查询操作--直属用户加钱*/
+        api_user_var_agent_credit_transfer: "api_user_var_agent_credit_transfer",
+        /**--直属用户查询操作--注册直属*/
+        api_user_var_direct_register: "api_user_var_direct_register",
     };
     /**注册协议*/
     function initCommand() {
@@ -753,6 +761,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_user_update, net.cmd_api_user_var_agent_direct_user_update);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction, net.cmd_api_user_var_agent_direct_deduction);
         facade.registerCommand(net.HttpType.api_user_var_credit_statistic, net.cmd_api_user_var_credit_statistic);
+        facade.registerCommand(net.HttpType.api_user_var_agent_credit_transfer, net.cmd_api_user_var_agent_credit_transfer);
+        facade.registerCommand(net.HttpType.api_user_var_direct_register, net.cmd_api_user_var_direct_register);
     }
     net.initCommand = initCommand;
     ;
@@ -1990,6 +2000,28 @@ var net;
     net.cmd_api_user_var_agent_bonus = cmd_api_user_var_agent_bonus;
 })(net || (net = {}));
 /**
+ * 直属用户加钱
+ */
+var net;
+/**
+ * 直属用户加钱
+ */
+(function (net) {
+    class cmd_api_user_var_agent_credit_transfer extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_agent_credit_transfer, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_agent_credit_transfer, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_agent_credit_transfer = cmd_api_user_var_agent_credit_transfer;
+})(net || (net = {}));
+/**
  * 直属用户直接扣款
  */
 var net;
@@ -2736,6 +2768,28 @@ var net;
         }
     }
     net.cmd_api_user_var_destroy_quick = cmd_api_user_var_destroy_quick;
+})(net || (net = {}));
+/**
+ * 注册直属
+ */
+var net;
+/**
+ * 注册直属
+ */
+(function (net) {
+    class cmd_api_user_var_direct_register extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_direct_register, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_direct_register, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_direct_register = cmd_api_user_var_direct_register;
 })(net || (net = {}));
 /**
  * 创建兑换订单

@@ -5,9 +5,14 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         user_id:0,
         nick_name:"",
         plat_id:"",
-        status:"98"
+        status:"98",
+        credit_rate:0,//当前占比
+        parent_credit_rate:0,//当前直属上级信用占比
     }
-    
+    limit = {
+        enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+        enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+    }
     pageData = {
         loading: false,
         bShow: false,
@@ -30,13 +35,19 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         });
+        Object.assign(this.limit, {
+            enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+            enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+        });
     }
 
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.playerInfo, data);
     }
-
+    setLimitinfo(data: any) {
+        Object.assign(this.limit, data);
+    }
     //查询 当前直属用户的 信息
     api_user_var_fetch_direct_user_info(direct_user_id:any) {
         this.pageData.loading = true;

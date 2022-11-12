@@ -105,13 +105,13 @@
                             </div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="colorBlue--text">{{LangUtil("团队成员")}}</div>
+                            <div class="colorBlue--text">{{LangUtil("团队人数")}}</div>
                             <div class="text-truncate">
                                 {{pageData.summary.group_users}}
                             </div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="colorBlue--text">{{LangUtil("直属成员")}}</div>
+                            <div class="colorBlue--text">{{LangUtil("直属人数")}}</div>
                             <div class="text-truncate">
                                 {{pageData.summary.directly_users}}
                             </div>
@@ -174,11 +174,11 @@
                             {{getMoneyValue(item.plat_amount)}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
-                        <div class="colorBlue--text">{{LangUtil("团队成员")}}</div>
+                        <div class="colorBlue--text">{{LangUtil("团队人数")}}</div>
                         <div class="text-truncate">{{item.group_users}}</div>
                     </div>
                     <div class="d-flex justify-space-between">
-                        <div class="colorBlue--text">{{LangUtil("直属成员")}}</div>
+                        <div class="colorBlue--text">{{LangUtil("直属人数")}}</div>
                         <!-- 直属成员以及点击按钮 -->
                         <template v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id">
                             <v-sheet class="d-flex justify-space-between colorYellow2--text cursor-pointer "
@@ -258,9 +258,9 @@
                 <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                     {{LangUtil("上交金额")}}</v-sheet>
                 <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
-                    {{LangUtil("团队成员")}}</v-sheet>
+                    {{LangUtil("团队人数")}}</v-sheet>
                 <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
-                    {{LangUtil("直属成员")}}</v-sheet>
+                    {{LangUtil("直属人数")}}</v-sheet>
             </v-sheet>
 
             <div style="min-height: 411px">

@@ -317,6 +317,8 @@ var net;
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
+        /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
+        api_user_var_invite_user_info: "api/user/{user_id}/invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
         api_user_var_fetch_direct_user_info: "api/user/{user_id}/fetch_direct_user_info",
         /**--直属用户查询操作--直属用户状态查询和修改*/
@@ -592,6 +594,8 @@ var net;
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
+        /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
+        api_user_var_invite_user_info: "api_user_var_invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
         api_user_var_fetch_direct_user_info: "api_user_var_fetch_direct_user_info",
         /**--直属用户查询操作--直属用户状态查询和修改*/
@@ -756,6 +760,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
         //--skin001专属
         facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
+        //--获取推荐人信息是否为信用用户
+        facade.registerCommand(net.HttpType.api_user_var_invite_user_info, net.cmd_api_user_var_invite_user_info);
         //--直属用户查询操作
         facade.registerCommand(net.HttpType.api_user_var_fetch_direct_user_info, net.cmd_api_user_var_fetch_direct_user_info);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_user_update, net.cmd_api_user_var_agent_direct_user_update);
@@ -3010,6 +3016,28 @@ var net;
         }
     }
     net.cmd_api_user_var_google_key = cmd_api_user_var_google_key;
+})(net || (net = {}));
+/**
+ * 查询直属用户金币数量
+ */
+var net;
+/**
+ * 查询直属用户金币数量
+ */
+(function (net) {
+    class cmd_api_user_var_invite_user_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_invite_user_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_invite_user_info, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_var_invite_user_info = cmd_api_user_var_invite_user_info;
 })(net || (net = {}));
 /**
  * 获取用户邮件列表

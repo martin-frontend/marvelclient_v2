@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Watch, Component } from "vue-property-decorator";
 import PageExtensionMediator from "../mediator/PageExtensionMediator";
 import PageExtensionProxy from "../proxy/PageExtensionProxy";
-import dialog_bind_invite from "@/views/dialog_bind_invite";
+import dialog_bind_invite from "@/_skin001/views/dialog_bind_invite";
 import dialog_directly from "@/_skin001/views/dialog_directly";
 import dialog_performance from "../../dialog_performance";
 import dialog_message from "@/views/dialog_message";

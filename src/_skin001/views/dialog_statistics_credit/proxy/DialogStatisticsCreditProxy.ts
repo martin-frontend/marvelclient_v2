@@ -168,6 +168,10 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         {
             this.pageData.listQuery.target_user_id = userid;
         }
+        else
+        {
+            this.pageData.listQuery.target_user_id=core.user_id;
+        }
         this.pageData.listQuery.user_id = core.user_id;
         this.sendNotification(net.HttpType.api_user_var_credit_statistic, objectRemoveNull(this.pageData.listQuery));
     }

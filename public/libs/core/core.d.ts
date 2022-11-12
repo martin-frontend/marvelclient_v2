@@ -263,6 +263,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
+        api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
         api_user_var_fetch_direct_user_info: string;
         /**--直属用户查询操作--直属用户状态查询和修改*/
@@ -538,6 +540,8 @@ declare module net {
         api_user_var_agent_var_bet: string;
         /**--skin001专属--获取赛事数据*/
         api_vendor_96_products: string;
+        /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
+        api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
         api_user_var_fetch_direct_user_info: string;
         /**--直属用户查询操作--直属用户状态查询和修改*/
@@ -1468,6 +1472,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_google_key extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 查询直属用户金币数量
+ */
+declare module net {
+    class cmd_api_user_var_invite_user_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

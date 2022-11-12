@@ -174,6 +174,9 @@
         "--skin001专属",
         ["api/vendor/96/products",                      "获取赛事数据"],
 
+        "--获取推荐人信息是否为信用用户",
+        ["api/user/{user_id}/invite_user_info",         "查询直属用户金币数量"],
+
         "--直属用户查询操作",
         ["api/user/{user_id}/fetch_direct_user_info",         "查询直属用户金币数量"],
         ["api/user/{user_id}/agent_direct_user_update",         "直属用户状态查询和修改"],

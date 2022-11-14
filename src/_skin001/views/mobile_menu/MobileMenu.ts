@@ -13,13 +13,15 @@ import page_game_list_chess from "../page_game_list_chess";
 import GameProxy from "@/proxy/GameProxy";
 import PageHomeProxy from "../page_home/proxy/PageHomeProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import SelfProxy from "@/proxy/SelfProxy";
+import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
     homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
     pageGameListProxy: PageGameListProxy = getProxy(PageGameListProxy);
-
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     get menuList() {
         const list = [
             {
@@ -66,13 +68,38 @@ export default class MobileMenu extends AbstractView {
             },
         ];
 
-        if(GamePlatConfig.config.is_show_commission.is_open == 0) {
+        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
             list.pop();
+        };
+
+        if ( this.isShowDirectly == 2 )
+        {
+            if (list[4])
+            {
+                list[4].name =  LangUtil("代理管理");
+            }
         }
  
         return list;
     }
 
+    public get isShowDirectly() : number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
+        {
+            return 0;
+        }
+        if (this.selfProxy.userInfo.show_promote == 1 )
+        {
+            return 1;
+        }
+        if (this.selfProxy.userInfo.show_promote == 2)
+        {
+            return 2;
+        }
+
+        return 0;
+    }
+    
     routerPath = this.$router.app.$route.path;
     @Watch("$route")
     onWatchRouter() {
@@ -102,6 +129,11 @@ export default class MobileMenu extends AbstractView {
                 LoginEnter(page_mine.show);
                 break;
             case 5:
+                if(this.isShowDirectly == 2)
+                {
+                    LoginEnter(dialog_agent_manager.show);
+                }
+                else if(this.isShowDirectly == 1)
                 LoginEnter(page_extension.show);
                 break;
         }

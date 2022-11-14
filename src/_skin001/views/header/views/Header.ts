@@ -19,6 +19,9 @@ import PageHomeProxy from "../../page_home/proxy/PageHomeProxy";
 import page_game_list from "../../page_game_list";
 import page_mine from "../../page_mine";
 import page_extension from "../../page_extension";
+import SelfProxy from "@/proxy/SelfProxy";
+
+import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 
 @Component
 export default class Header extends AbstractView {
@@ -33,11 +36,29 @@ export default class Header extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     LangConfig = LangConfig;
     homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
-
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     constructor() {
         super(HeaderMediator);
     }
+    
+    public get isShowDirectly() : number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
+        {
+            return 0;
+        }
+        if (this.selfProxy.userInfo.show_promote == 1 )
+        {
+            return 1;
+        }
+        if (this.selfProxy.userInfo.show_promote == 2)
+        {
+            return 2;
+        }
 
+        return 0;
+    }
+
+    
     //当前活动的分类
     get categoryActive() {
         return this.myProxy.categoryActive
@@ -80,7 +101,12 @@ export default class Header extends AbstractView {
     }
 
     goExtension() {
-        LoginEnter(page_extension.show);
+        if(this.isShowDirectly == 2)
+        {
+            LoginEnter(dialog_agent_manager.show);  
+        }
+        else if(this.isShowDirectly == 1)
+            LoginEnter(page_extension.show);
     }
     /**打开介绍页面 */
     // goIntroduce() {

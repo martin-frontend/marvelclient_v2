@@ -17,6 +17,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_user_center from "@/views/dialog_user_center";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
+import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -45,10 +46,14 @@ export default class UserPanel extends AbstractView {
             // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
         ];
 
-        if (GamePlatConfig.config.is_show_commission.is_open == 0) {
+        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
             list.shift();
         };
 
+        if ( this.isShowDirectly == 2 )
+        {
+            list[0].name = LangUtil("代理管理");
+        }
         return list;
     }
 
@@ -58,6 +63,23 @@ export default class UserPanel extends AbstractView {
 
     onLoginOut() {
         this.selfProxy.api_user_logout();
+    }
+
+    public get isShowDirectly() : number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
+        {
+            return 0;
+        }
+        if (this.selfProxy.userInfo.show_promote == 1 )
+        {
+            return 1;
+        }
+        if (this.selfProxy.userInfo.show_promote == 2)
+        {
+            return 2;
+        }
+
+        return 0;
     }
 
     onMenuItem(item: any) {
@@ -78,7 +100,19 @@ export default class UserPanel extends AbstractView {
                 LoginEnter(dialog_email.show);
                 break;
             case 10:
-                LoginEnter(page_extension.show);
+                if(this.isShowDirectly == 2)
+                {
+                    LoginEnter(dialog_agentmanager.show);
+                }
+                else if(this.isShowDirectly == 1)
+                {
+                    LoginEnter(page_extension.show);
+                }
+                else
+                {
+                    console.log("不正确",this.isShowDirectly);
+                }
+                    
                 break;
             case 11:
                 LoginEnter(page_bonus.show);

@@ -17,6 +17,7 @@ import NoticeProxy from "@/proxy/NoticeProxy";
 import getProxy from "@/core/global/getProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 
+
 @Component
 export default class Activity extends AbstractView {
     LangUtil = LangUtil;
@@ -34,6 +35,7 @@ export default class Activity extends AbstractView {
     get isUserLogin() {
         return this.selfProxy.userInfo.user_id ? true : false;
     }
+
 
     /**CF今日涨跌 */
     get coinChangedData() {
@@ -57,7 +59,9 @@ export default class Activity extends AbstractView {
     }
 
     goExtension() {
+
         LoginEnter(page_extension.show);
+
     }
 
     /**游戏挖矿 */

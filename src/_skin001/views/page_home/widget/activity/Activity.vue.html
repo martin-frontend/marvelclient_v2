@@ -48,23 +48,12 @@
         </div>
 
         <v-sheet v-if="!$vuetify.breakpoint.mobile" width="612" min-width="612">
-            <v-carousel
-                cycle
-                :height="316"
-                hide-delimiter-background
-                show-arrows-on-hover
-                delimiter-icon="mdi-minus"
-                :show-arrows="false"
-            >
+            <v-carousel cycle :height="316" hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus"
+                :show-arrows="false">
                 <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i">
                     <v-lazy>
-                        <v-img
-                            :src="item.img_url"
-                            class="box"
-                            :height="316"
-                            @click="onBigItemClick(item)"
-                            :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''"
-                        >
+                        <v-img :src="item.img_url" class="box" :height="316" @click="onBigItemClick(item)"
+                            :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''">
                             <template v-slot:placeholder>
                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                     <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
@@ -135,7 +124,6 @@
                     <span>
                         {{LangUtil("游戏挖矿")}}
                     </span>
-                    
                 </div>
                 <!-- <div class="text-16">
                     <span class="yellow-text text-18 font-weight-bold font-italic">
@@ -146,26 +134,22 @@
                     {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
                 </div>
             </div>
-            <div class="item2 rounded-lg pt-3 pl-3 mt-3" @click="goExtension">
-                <div class="text-32">
-                    <span>
-                        {{LangUtil("推广赚钱")}}
-                    </span>
-                </div>
-            </div>
+
         </div>
 
-        <v-card :img="require(`@/_skin001/assets/img_activity.png`)" class="activity3 rounded-lg" @click="goActivity" v-if="!$vuetify.breakpoint.mobile">
+        <v-card :img="require(`@/_skin001/assets/img_activity.png`)" class="activity3 rounded-lg" @click="goActivity"
+            v-if="!$vuetify.breakpoint.mobile">
             <div class="text-32 mt-3 ml-3">
                 <span>
                     {{LangUtil("精彩活动")}}
                 </span>
             </div>
-            <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35" min-width="110">
+            <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35"
+                min-width="110">
                 {{LangUtil("查看详情")}}
             </v-sheet>
         </v-card>
     </div>
 
-    
+
 </div>

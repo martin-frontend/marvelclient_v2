@@ -116,7 +116,6 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_win_gold = data.total_win_gold;
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.xsOnly) {
-            console.log(">>>>>>>>>>>>>>>>1111")
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -126,7 +125,6 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
-            console.log(">>>>>>>>>>>>>>>>22222")
             this.pageData.list = data.list;
         }
     }
@@ -163,7 +161,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         const formCopy: any = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
         //只显示已结算状态。
-        formCopy.settlement_status = 11;
+        if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 }

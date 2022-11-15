@@ -18,18 +18,20 @@
         </v-sheet>
     </template>
     <v-sheet :color="$vuetify.breakpoint.mobile ? '#fff':'#24314a'" :class="$vuetify.breakpoint.mobile?'':'listbox'">
-        <div
-            class="d-flex align-center cursor-pointer"
-            :class="[key == selectValue ? 'active' : '', $vuetify.breakpoint.mobile? 'mobile-listitem':'listitem']"
-            v-for="(item, key) of options"
-            :key="key"
-            @click="onChange(key)"
-        >
-            <div v-if="key == selectValue" class="icon iconfont icon-control icon__icon text-15"></div>
-            <div v-else class="icon-box iconfont icon-Outlined icon__icon"></div>
-            <div class="ml-2">{{ item.name || item }}</div>
-            <v-spacer />
-            <div v-if="item.amount">{{ item.amount }}</div>
-        </div>
+        <template v-for="(item, key) of getOrders()">
+            <div
+                class="d-flex align-center cursor-pointer"
+                :class="[item == selectValue ? 'active' : '', $vuetify.breakpoint.mobile? 'mobile-listitem':'listitem']"
+                v-if="options[item]"
+                :key="key"
+                @click="onChange(item)"
+            >
+                <div v-if="item == selectValue" class="icon iconfont icon-control icon__icon text-15"></div>
+                <div v-else class="icon-box iconfont icon-Outlined icon__icon"></div>
+                <div class="ml-2">{{ options[item].name || options[item] }}</div>
+                <v-spacer />
+                <div v-if="options[item].amount">{{ options[item].amount }}</div>
+            </div>
+        </template>
     </v-sheet>
 </v-menu>

@@ -126,7 +126,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         Object.assign(this.pageData.summary, data.summary);
         Object.assign(this.pageData.agent, data.agent);
         const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+        if (vuetify.framework.breakpoint.mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

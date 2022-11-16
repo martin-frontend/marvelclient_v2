@@ -71,7 +71,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.limitinfo, data.limit);
         const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+        if (vuetify.framework.breakpoint.mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

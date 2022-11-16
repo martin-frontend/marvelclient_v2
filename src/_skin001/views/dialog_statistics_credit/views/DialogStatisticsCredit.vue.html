@@ -1,8 +1,9 @@
 <v-dialog width="1200" height="500" v-model="pageData.bShow" :retain-focus="false"
-    :fullscreen="$vuetify.breakpoint.xsOnly" persistent no-click-animation>
+    :fullscreen="$vuetify.breakpoint.mobile" persistent no-click-animation>
     <v-card class="rounded-lg" color="colorPanelBg">
+        <template v-if="$vuetify.breakpoint.mobile">
         <!-- 手机显示 -->
-        <v-card-text class="px-0 header-mobile pb-0" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px-0 header-mobile pb-0" >
             <div class="gradient-bg d-flex align-center px-5">
                 <div class="text-18">{{LangUtil("信用统计")}}</div>
                 <v-spacer />
@@ -11,10 +12,10 @@
                 </v-btn>
             </div>
             <div class="d-flex justify-space-between align-center mt-2 px-5">
-                <el-date-picker class="mr-2" v-model="timeRange[0]" type="datetime" :placeholder="LangUtil('开始日期')"
+                <el-date-picker class="mr-2 " v-model="timeRange[0]" type="datetime" :placeholder="LangUtil('开始日期')"
                     default-time="00:00:00" format="yyyy-MM-dd HH:mm" @change="onTimeChange">
                 </el-date-picker>
-                <el-date-picker v-model="timeRange[1]" type="datetime" :placeholder="LangUtil('结束日期')"
+                <el-date-picker class="mr-auto" v-model="timeRange[1]" type="datetime" :placeholder="LangUtil('结束日期')"
                     default-time="23:59:59" format="yyyy-MM-dd HH:mm" @change="onTimeChange">
                 </el-date-picker>
             </div>
@@ -55,7 +56,7 @@
             </div>
             <v-divider class="mt-2" />
         </v-card-text>
-        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px-5">
             <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox_2-mobile">
                 <template v-if="pageData.list.length > 0">
                     <!-- 汇总 -->
@@ -196,15 +197,17 @@
                 </v-sheet>
             </LoadMore>
         </v-card-text>
+    </template>
+    <template v-else>
         <!-- PC显示 -->
-        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-title class="gradient-bg" >
             <div class="text-18">{{LangUtil("信用统计")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px-5">
             <div class="d-flex align-end colorTextBlueLight2--text text-14">
                 <el-date-picker v-model="timeRange" type="datetimerange" :picker-options="pickerOptions"
                     range-separator="-" :start-placeholder="LangUtil('开始日期')" :end-placeholder="LangUtil('结束日期')"
@@ -355,6 +358,7 @@
             <v-pagination class="mt-2" v-if="pageData.pageInfo.pageCount > 1" v-model="pageData.pageInfo.pageCurrent"
                 :length="pageData.pageInfo.pageCount" :total-visible="7" @input="onPageChange"></v-pagination>
         </v-card-text>
+    </template>
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

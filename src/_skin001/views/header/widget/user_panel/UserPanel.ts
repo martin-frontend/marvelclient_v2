@@ -14,10 +14,10 @@ import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import dialog_user_center from "@/views/dialog_user_center";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
 import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
+import dialog_user_center from "@/_skin002/views/dialog_user_center";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -39,20 +39,20 @@ export default class UserPanel extends AbstractView {
 
     get menuList1() {
         const list = [
-            { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+            // { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
             // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
-            { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
+            // { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
             { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
             // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
         ];
 
-        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
-            list.shift();
-        };
+        // if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
+        //     list.shift();
+        // };
 
         if ( this.isShowDirectly == 2 )
         {
-            list[0].name = LangUtil("代理管理");
+            list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" })
         }
         return list;
     }

@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <v-sheet v-if="!$vuetify.breakpoint.mobile" width="612" min-width="612">
+        <v-sheet v-if="!$vuetify.breakpoint.mobile" width="100%" min-width="612">
             <v-carousel cycle :height="316" hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus"
                 :show-arrows="false">
                 <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i">
@@ -118,24 +118,19 @@
             </v-sheet>
         </div> -->
 
-        <div class="activity4 text-24" v-if="!$vuetify.breakpoint.mobile">
+        <!-- <div class="activity4 text-24" v-if="!$vuetify.breakpoint.mobile">
             <div class="item1 rounded-lg pt-3 pl-3" @click="goMine">
                 <div class="text-32">
                     <span>
                         {{LangUtil("游戏挖矿")}}
                     </span>
                 </div>
-                <!-- <div class="text-16">
-                    <span class="yellow-text text-18 font-weight-bold font-italic">
-                        {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
-                    </span>
-                </div> -->
                 <div class="text-16 mt-2" style="width: 50%">
                     {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
         <v-card :img="require(`@/_skin001/assets/img_activity.png`)" class="activity3 rounded-lg" @click="goActivity"
             v-if="!$vuetify.breakpoint.mobile">

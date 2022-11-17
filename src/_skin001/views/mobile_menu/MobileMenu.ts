@@ -9,7 +9,7 @@ import page_mine from "@/views/page_mine";
 import page_game_list from "@/views/page_game_list";
 import PageGameListProxy from "@/views/page_game_list/proxy/PageGameListProxy";
 import getProxy from "@/core/global/getProxy";
-import page_game_list_chess from "../page_game_list_chess";
+// import page_game_list_chess from "../page_game_list_chess";
 import GameProxy from "@/proxy/GameProxy";
 import PageHomeProxy from "../page_home/proxy/PageHomeProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
@@ -52,32 +52,35 @@ export default class MobileMenu extends AbstractView {
             //     icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
             //     path: "/page_game_list_chess",
             // },
-            {
-                id: 4,
-                name: LangUtil("返水"),
-                icon: require(`@/_skin001/assets/icon/icon_mine.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
-                path: "/page_mine",
-            },
-            {
-                id: 5,
-                name: LangUtil("推广"),
-                icon: require(`@/_skin001/assets/icon/icon_extension.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
-                path: "/page_extension",
-            },
+            // {
+            //     id: 4,
+            //     name: LangUtil("返水"),
+            //     icon: require(`@/_skin001/assets/icon/icon_mine.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
+            //     path: "/page_mine",
+            // },
+            // {
+            //     id: 5,
+            //     name: LangUtil("推广"),
+            //     icon: require(`@/_skin001/assets/icon/icon_extension.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
+            //     path: "/page_extension",
+            // },
         ];
 
-        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
-            list.pop();
-        };
+        // if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
+        //     list.pop();
+        // };
 
         if ( this.isShowDirectly == 2 )
         {
-            if (list[4])
-            {
-                list[4].name =  LangUtil("代理管理");
-            }
+            list.push( {
+                    id: 5,
+                    name: LangUtil("代理管理"),
+                    icon: require(`@/_skin001/assets/icon/icon_extension.png`),
+                    icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
+                    path: "/page_extension",
+                },)
         }
  
         return list;
@@ -122,9 +125,9 @@ export default class MobileMenu extends AbstractView {
             case 2:
                 page_game_list.show(0);
                 break;
-            case 3:
-                page_game_list_chess.show(2);
-                break;
+            // case 3:
+                // page_game_list_chess.show(2);
+                // break;
             case 4:
                 LoginEnter(page_mine.show);
                 break;

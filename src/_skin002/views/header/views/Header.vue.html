@@ -98,7 +98,7 @@
                     </button>
                 </v-hover>
     
-                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1">
+                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1 && isShowDirectly != 0">
                     <button
                         class="nav-button"
                         @click="goExtension"
@@ -111,7 +111,8 @@
                             src="@/_skin001/assets/icon/icon_extension1.png"
                         ></v-img>
                         <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_extension2.png"></v-img>
-                        <div class="ml-1">{{ LangUtil("推广") }}</div>
+                        <div v-if="isShowDirectly == 1" class="ml-1">{{ LangUtil("推广") }}</div>
+                        <div v-else-if="isShowDirectly == 2" class="ml-1">{{ LangUtil("代理管理") }}</div>
                     </button>
                 </v-hover>
             </template>

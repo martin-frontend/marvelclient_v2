@@ -6,11 +6,12 @@ import DialogDirectlyProxy from "@/_skin001/views/dialog_directly/proxy/DialogDi
 export default class DialogDirectlySettingMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [
-            net.EventType.api_user_var_fetch_direct_user_info, 
-            net.EventType.api_user_var_agent_direct_user_update, 
+            net.EventType.api_user_var_fetch_direct_user_info,
+            net.EventType.api_user_var_agent_direct_user_update,
             net.EventType.api_user_var_agent_credit_transfer,
             net.EventType.api_user_var_agent_direct_deduction,
-            net.EventType.api_user_var_agent_direct_list
+            net.EventType.api_user_var_agent_direct_list,
+            net.EventType.api_user_var_agent_var_update,
         ];
     }
 
@@ -27,7 +28,6 @@ export default class DialogDirectlySettingMediator extends AbstractMediator {
                 myProxy.pageData.loading = false;
                 myProxy.api_user_var_fetch_direct_user_info(myProxy.playerInfo.user_id);
                 dialogDirectly.api_user_var_agent_direct_list();
-                
                 //console.log(" 收到刷新 下属 信息" ,body);
                 break;
             case net.EventType.api_user_var_agent_direct_deduction: //扣款的回调
@@ -39,6 +39,11 @@ export default class DialogDirectlySettingMediator extends AbstractMediator {
             case net.EventType.api_user_var_agent_direct_list:
                 myProxy.setLimitinfo(body.limit);
                 break;
+            case net.EventType.api_user_var_agent_var_update:  //修改备注回调
+                myProxy.api_user_var_fetch_direct_user_info(myProxy.playerInfo.user_id);
+                dialogDirectly.api_user_var_agent_direct_list();
+                break;
+
         }
     }
 }

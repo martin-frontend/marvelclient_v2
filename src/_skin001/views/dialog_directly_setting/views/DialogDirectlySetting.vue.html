@@ -1,6 +1,6 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
-    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="660">
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
         <!-- pc端设置 -->
         <v-card-title class="d-flex justify-end pb-0 gradient-bg">
             <div class="text-18 font-weight-medium ml-2">
@@ -13,19 +13,125 @@
         </v-card-title>
         <v-card-text class="text-sm-subtitle-1 text_height">
             <div>
+                <!-- 用户ID -->
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户ID")}} </span>
                     <span class="d-flex colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                        {{playerInfo.user_id}} </span>
+                        {{playerInfo.user_id}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.user_id)">
+                            <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
+                        </v-btn>
+                        <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
+                    </span>
+                </div>
+                <div class="hackhome"></div>
+                <!-- 用户账号 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户账号")}} </span>
+                    <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.nick_name}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
+                            <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
+                        </v-btn>
+                    </span>
                 </div>
                 <div class="hackhome"></div>
 
+                <!-- 用户昵称 -->
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户昵称")}} </span>
                     <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                        {{playerInfo.nick_name}} </span>
+                        {{playerInfo.username}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
+                            <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
+                        </v-btn>
+                    </span>
                 </div>
                 <div class="hackhome"></div>
+
+                <template v-if="isAgents">
+                    <!-- 用户备注 -->
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex colorText1--text"> {{LangUtil("用户备注")}} </span>
+                        <span class="d-flex align-center colorBlue--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            {{playerInfo.remark}}
+                            <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30"
+                                min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="onEditRemark">
+                                <!-- <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img> -->
+                                <v-icon>mdi-text-box-edit</v-icon>
+                            </v-btn>
+                        </span>
+                    </div>
+                    <div class="hackhome"></div>
+                </template>
+                <!-- 用户资产 -->
+                <div class="d-flex justify-space-between align-center my-3" min-height="40">
+                    <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}}
+                    </span>
+
+                    <div class="d-flex flex-column">
+                        <!-- 用户身上的币种 -->
+                        <div class="ml-2" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <v-menu content-class="menu" v-model="isOpenWalletMenu" offset-y nudge-bottom="4">
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div v-bind="attrs" v-on="on">
+                                        <v-sheet class="align-center d-flex justify-space-between rounded-pill pr-3"
+                                            color="colorPanelTitleBg" min-width="90" height="40"
+                                            v-if="gold_info[formData.coin_name_unique]">
+                                            <v-img class="ml-2 mr-2"
+                                                :src="GamePlatConfig.config.plat_coins[formData.coin_name_unique] && GamePlatConfig.config.plat_coins[formData.coin_name_unique].icon"
+                                                max-width="30" max-height="30"></v-img>
+                                            <div class="empty_space">
+                                                {{gold_info[formData.coin_name_unique].sum_money}}
+                                            </div>
+
+                                            <div class="icon-box iconfont text-14 colorText2--text ml-2"
+                                                :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                                                
+                                            </div>
+                                        </v-sheet>
+                                        <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                                    </div>
+                                </template>
+                                <v-sheet width="100%" color="colorPanelTitleBg">
+                                    <template v-for="(item, key) of gold_info">
+                                        <v-sheet class="align-center d-flex justify-space-between rounded-lg cursor-pointer py-2"
+                                            :class="{'select-shadow': formData.coin_name_unique == key}"
+                                            color="transparent" width="100%" :key="key" @click="onItemClick(key)">
+
+                                            <v-img class="ml-2" :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30"
+                                                max-height="30"></v-img>
+
+                                            <div class="empty_space text-16">
+                                                {{item.sum_money }}
+                                            </div>
+                                            <div class="text-14 colorText2--text ml-2" >
+                                                
+                                            </div>
+                                        </v-sheet>
+                                    </template>
+                                </v-sheet>
+                            </v-menu>
+                        </div>
+                        <div class="d-flex align-center justify-space-between colorBlue--text mt-5"
+                        :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <v-btn class="rounded-lg mx-3 colorBtnBg" min-width="100" height="30"
+                                @click="assetSettings_add">
+                                <span>{{ LangUtil("增加额度") }}</span>
+                            </v-btn>
+                            <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="assetSettings">
+                                <span>{{ LangUtil("减少额度") }}</span>
+                            </v-btn>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="hackhome"></div>
+
                 <!-- 账号状态 -->
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("账号状态")}} </span>
@@ -36,6 +142,18 @@
                 </div>
                 <div class="hackhome"></div>
 
+                <!-- 允许多层 -->
+                <template v-if="isAgents">
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex colorText1--text"> {{LangUtil("允许多层")}} </span>
+                        <span class="d-flex align-center colorBlue--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-3'">
+                            <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98"
+                                v-model="playerInfo.show_credit_set" color="colorBtnBg" inset></v-switch>
+                        </span>
+                    </div>
+                    <div class="hackhome"></div>
+                </template>
                 <!-- 代理占比 -->
                 <template v-if="isAgents_rate">
                     <div class="d-flex justify-space-between align-center my-3 empty_height">
@@ -45,7 +163,7 @@
                             <span class="mx-3">
                                 {{playerInfo.credit_rate}}%
                             </span>
-                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30" @click="agentSetting">
+                            <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="agentSetting">
                                 <span>{{ LangUtil("设置") }}</span>
                             </v-btn>
                         </div>
@@ -55,39 +173,23 @@
                 <template v-if="isAgents">
 
                     <div class="d-flex justify-space-between align-center my-3 empty_height">
-                        <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}} </span>
-                        <div class="d-flex align-center justify-space-between colorBlue--text"
-                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                            <v-btn class="rounded-lg mx-3" color="#6FA9FA" min-width="100" height="30"
-                                @click="assetSettings_add">
-                                <span>{{ LangUtil("增加额度") }}</span>
-                            </v-btn>
-                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
-                                @click="assetSettings">
-                                <span>{{ LangUtil("减少额度") }}</span>
-                            </v-btn>
-                        </div>
-                    </div>
-
-                    <div class="hackhome"></div>
-                    <div class="d-flex justify-space-between align-center my-3 empty_height">
                         <span class="d-flex colorText1--text"> {{LangUtil("用户返水")}} </span>
                         <span class="d-flex align-center colorBlue--text"
                             :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                            <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
+                            <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30"
                                 @click="backWatherSettings">
                                 <span>{{ LangUtil("返水设置") }}</span>
                             </v-btn>
                         </span>
                     </div>
 
-                    <div v-if="false">
+                    <div v-if="true">
                         <div class="hackhome"></div>
                         <div class="d-flex justify-space-between align-center my-3 empty_height">
                             <span class="d-flex colorText1--text"> {{LangUtil("EsayBet投注设置")}} </span>
                             <span class="d-flex align-center colorBlue--text"
                                 :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                                <v-btn class="rounded-lg" color="#6FA9FA" min-width="100" height="30"
+                                <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30"
                                     @click="esayBetSetting">
                                     <span>{{ LangUtil("设置") }}</span>
                                 </v-btn>

@@ -13,6 +13,7 @@ import dialog_directly_setting from "../../dialog_directly_setting";
 import dialog_bet_record from "../../dialog_bet_record";
 import dialog_add_user from "../../dialog_directly_adduser";
 import dialog_statistics_credit from "../../dialog_statistics_credit";
+import dialog_directly_my from "../../dialog_directly_my";
 
 @Component
 export default class DialogAgentManager extends AbstractView {
@@ -44,6 +45,12 @@ export default class DialogAgentManager extends AbstractView {
         this.pageData.bShow = false;
     }
 
+    //上级id
+    public get invite_user_id() : any {
+        return this.selfProxy.userInfo.invite_user_id;
+        //return 1273623;
+    }
+    
     @Watch("pageData.search")
     onWatchSearch() {
         if (this.pageData.search != "") {
@@ -77,7 +84,7 @@ export default class DialogAgentManager extends AbstractView {
     search() {
         this.pageData.loading = true;
         this.myProxy.pageData.list = [];
-        this.myProxy.parameter.direct_user_id = this.myProxy.pageData.search;
+        this.myProxy.parameter.direct_info = this.myProxy.pageData.search;
         this.pageData.listQuery.page_count = 1;
         this.myProxy.api_user_var_agent_direct_list();
     }
@@ -109,4 +116,19 @@ export default class DialogAgentManager extends AbstractView {
     handlerShowCreditTable() {
         dialog_statistics_credit.show();
     }
+
+    opendialog_my()
+    {
+        dialog_directly_my.show();
+    }
+    fontAuto()
+    {
+        const touzhu_node_parent = document.getElementById("touzhu_node_parent");
+        const touzhu_node = document.getElementById("touzhu_node");
+        
+        //获取投注按钮的宽度
+        const touzhi_width = touzhu_node?.scrollWidth;
+
+    }
+
 }

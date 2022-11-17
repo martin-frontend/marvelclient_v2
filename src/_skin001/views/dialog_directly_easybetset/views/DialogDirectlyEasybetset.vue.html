@@ -3,7 +3,6 @@
     <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" min-width="100%" height="660">
         <!-- 标题 和 关闭按钮 -->
         <v-card-title class="gradient-bg">
-
             <div class="text-18 font-weight-medium ml-2 white--text">
                 {{LangUtil("EasyBet设置")}}</div>
             <v-spacer />
@@ -13,7 +12,7 @@
         </v-card-title>
 
         <!-- 页面内容 -->
-        <v-card-text class="text-sm-subtitle-1 text_height">
+        <v-card-text v-if="input_market_config" class="text-sm-subtitle-1 text_height">
             <div>
                 <!-- 用户id -->
                 <div class="d-flex justify-space-between align-center empty_height my-3">
@@ -34,12 +33,9 @@
                         <template v-slot:activator="{ on, attrs }">
                             <div v-bind="attrs" v-on="on">
                                 <v-sheet class="d-flex align-center justify-space-between rounded-lg pr-3"
-                                color="colorPanelTitleBg" min-width="90" height="50"
-                                    v-if="playerInfo.gold_info[formData.coin_name_unique]">
+                                    color="colorPanelTitleBg" min-width="90" height="50" v-if="isHaveValue">
                                     <div class="d-flex align-center justify-space-between ">
-                                        <v-img class="ml-3"
-                                            :src="GamePlatConfig.config.plat_coins[formData.coin_name_unique] && GamePlatConfig.config.plat_coins[formData.coin_name_unique].icon"
-                                            max-width="30" max-height="30">
+                                        <v-img class="ml-3" :src="getSrcPath" max-width="30" max-height="30">
                                         </v-img>
 
                                         <div class="colorText2--tex ml-3">{{ formData.coin_name_unique }}</div>
@@ -54,41 +50,65 @@
                             </div>
                         </template>
                         <v-sheet width="100%" color="colorPanelTitleBg" class="py-2 px-0">
-                            <template v-for="(item, key) of playerInfo.gold_info">
-                                <v-sheet class="d-flex align-center pl-3 rounded cursor-pointer py-3 listitem"
+                            <template v-for="(item, key) of myProxy.playerInfo.vendor_config.market_type_config">
+                                <v-sheet class="d-flex align-center pl-3 rounded cursor-pointer py-3"
                                     :class="{'select-shadow': formData.coin_name_unique == key}" color="transparent"
                                     width="100%" :key="key" @click="onItemClick(key)">
                                     <div :class="key == 'CNY'? 'CNY': ''">
                                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30"
                                             max-height="30"></v-img>
                                     </div>
-                                    <div class="colorText2--tex ml-3">{{ key }}</div>
+                                    <div class="colorText2--text ml-3">{{ key }}</div>
                                 </v-sheet>
                             </template>
                         </v-sheet>
                     </v-menu>
                 </div>
-
-                <!-- 当前选择的币种和输入 -->
-                <div class="d-flex justify-space-between align-center empty_height my-3">
-                    <div class="d-flex colorText1--text empty_space text-16">
-                        {{LangUtil("单场累计下注限额") }}
-                    </div>
-
-                    <div class="d-flex justify-space-between align-center text-16">
-
-                        <CustomInput class="empty_width_2 ml-4" height="40" :placeholder="formData.gold"
-                            :isNeedCloseBtn="false" type="number" v-model="formData.gold">
-                        </CustomInput>
-
-                    </div>
-                </div>
-
-
             </div>
+            <div v-if="input_market_config.length>0"  class="scroll-y listitem_height" 
+                ref="scrollObj">
+                <v-sheet class="mt-2 py-1 rounded-lg my-0" color="transparent" v-for="(item, key) of input_market_config" :key="key">
+
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div v-if="!myProxy.isShowGropSet" class=" colorText1--text text-16">
+                            {{LangUtil("盘口类型名称") }}
+                        </div>
+                        <div class=" text-16">
+                            {{LangUtil(item.market_type_text) }}
+                        </div>
+                    </div>
+                    <div class="hackhome"></div>
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div class=" colorText1--text text-16">
+                            {{LangUtil("单场累计下注限额") }}
+                        </div>
+                        <div class=" text-16">
+                           
+                            <CustomInput class="input-text ml-4" height="30" :isOnlyInt="true"
+                                :placeholder="item.setting.single_field_max_bet ? item.setting.single_field_max_bet : '-'" :isNeedCloseBtn="false" 
+                                v-model="input_market_config[key].setting.single_field_max_bet">
+                            </CustomInput>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div class="d-flex colorText1--text text-16">
+                            {{LangUtil("单场下注限额") }}
+                        </div>
+                        <div class="text-16">
+                            <CustomInput class="input-text ml-4" height="30"
+                                :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'" :isNeedCloseBtn="false" type="number"
+                                v-model="input_market_config[key].setting.single_max_bet">
+                            </CustomInput>
+                        </div>
+                    </div>
+                </v-sheet>
+            </div>
+            <ListNodata v-if="input_market_config.length == 0" class="listitem_height" />
+            <v-spacer />
 
             <!-- 确定按钮 -->
-            <div class="rounded-lg mb-2">
+            <div class="rounded-lg mb-1 mt-1">
                 <v-btn class="rounded-lg" color="colorBtnBg" height="40" :disabled="!isChecked" block
                     @click="onClickSure">
                     {{LangUtil("确定")}}</v-btn>

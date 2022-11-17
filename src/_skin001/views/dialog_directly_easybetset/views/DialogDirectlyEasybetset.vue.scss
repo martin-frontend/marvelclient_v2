@@ -42,9 +42,45 @@
 }
 
 .hackhome{
-    width:350px;
+
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
+}
+.input-text {
+    width: 130px;
+    height: 30px;
+    ::v-deep input {
+        height: 30px;
+        font-weight:normal !important;
+    }
+}
+
+.listitem {
+    div {
+        width: 120px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+    .listitem-150 {
+        width: 150px;
+        div {
+            width: 150px;
+        }
+    }
+}
+.listitem_height{
+    height: calc(100% - 130px);
 }

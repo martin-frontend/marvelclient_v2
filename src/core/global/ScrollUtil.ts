@@ -8,6 +8,14 @@ export default function (targetOffsetTop: number, duration: number = 0.3) {
         ease: Linear.easeNone,
     });
 }
+export function scrollUtil_div (obj: any, targetOffsetTop: number, duration: number = 0.3) {
+    gsap.to(obj, {
+        duration,
+        scrollTop: targetOffsetTop,
+        ease: Linear.easeNone,
+    });
+}
+/**
 /**
  * 是否允许滚动
  * @param bScroll

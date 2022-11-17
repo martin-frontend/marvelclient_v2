@@ -85,6 +85,7 @@ export function getVuetify(): Vuetify {
                         colorRed2:"#D83710",
                         colorTextBlueLight4:"#7AB0FA",
                         colorExtensionBtn2:"#4A5A77",
+                        color_tips_1:"#97ABD1",
                     },
                 },
                 dark: true,

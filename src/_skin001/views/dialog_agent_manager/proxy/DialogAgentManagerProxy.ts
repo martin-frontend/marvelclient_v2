@@ -11,7 +11,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     parameter: any = {
         user_id: 0,
         agent_user_id: 0,
-        direct_user_id: 0,
+        direct_info: 0,
         page_size: 20,
         page_count: 1,
     };
@@ -61,7 +61,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
             enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
         });
         this.pageData.search = "";
-        this.parameter.direct_user_id = "";
+        this.parameter.direct_info = "";
     }
 
     setData(data: any) {

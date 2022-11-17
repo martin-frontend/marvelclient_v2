@@ -28,7 +28,7 @@
     margin-bottom: -1px !important;
 }
 .search {
-    width: 207px;
+    width: 307px;
     ::v-deep .v-btn__content {
         color: #98acd3;
         font-size: 16px;
@@ -38,6 +38,14 @@
 ::v-deep .input-text input::placeholder {
     font-size: 16px;
     font-weight: 400;
+}
+.search_mobiel {
+
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 16px;
+        font-weight: 400;
+    }
 }
 .header-mobile {
     position: fixed;
@@ -50,5 +58,8 @@
 }
 .listbox_2-mobile {
     overflow: hidden;
-    padding-top: 160px;
+    padding-top: 190px;
+}
+.btn_font{
+    font-size: 16px;
 }

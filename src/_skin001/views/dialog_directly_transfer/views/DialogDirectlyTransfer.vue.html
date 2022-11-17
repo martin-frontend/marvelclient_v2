@@ -78,6 +78,16 @@
                     </v-menu>
                 </div>
 
+                <div class="d-flex justify-space-between align-center my-3 color_tips_1--text text-14">
+                    <span v-if="selfProxy.userInfo.gold_info[formData.coin_name_unique]">
+                        {{LangUtil("我的余额")}}
+                        {{selfProxy.userInfo.gold_info[formData.coin_name_unique].sum_money}}
+                    </span>
+                    <span v-if="playerInfo.gold_info[formData.coin_name_unique]">
+                        {{playerInfo.user_id}}{{LangUtil("直属余额")}}
+                        {{playerInfo.gold_info[formData.coin_name_unique].sum_money}}
+                    </span>
+                </div>
                 <!-- 当前选择的币种和输入 -->
                 <CustomInput class="mb-6" :placeholder="LangUtil('输入金额')" maxlength="20" type="number"
                     v-model="formData.gold" @blur="onUsernameBlur"

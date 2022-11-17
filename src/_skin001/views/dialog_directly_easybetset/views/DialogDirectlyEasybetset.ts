@@ -7,6 +7,8 @@ import DialogDirectlyEasybetsetProxy from "../proxy/DialogDirectlyEasybetsetProx
 import LangUtil from "@/core/global/LangUtil";
 
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_message_box from "@/views/dialog_message_box";
+import ScrollUtil, { scrollUtil_div } from "@/core/global/ScrollUtil";
 
 @Component
 export default class DialogDirectlyEasybetset extends AbstractView {
@@ -18,42 +20,86 @@ export default class DialogDirectlyEasybetset extends AbstractView {
     formData = this.myProxy.formData;
     playerInfo = this.myProxy.playerInfo;
     isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
+
     constructor() {
         super(DialogDirectlyEasybetsetMediator);
     }
     get isChecked(): boolean {
-        
-        if (!this.formData.gold) {
+        if(!this.myProxy.formData.market_type_config)
+        {
             return false;
         }
-        return true
-        const num = parseFloat(this.formData.gold)
-        if (num <= 0) {
-            return false;
-        }
-
-        if (this.playerInfo.gold_info[this.formData.coin_name_unique] && num > this.playerInfo.gold_info[this.formData.coin_name_unique].sum_money) {
-            return false;
-        }
-        return true;
+        return this.myProxy.sclectChangeVaule(this.input_market_config);
+        //return true;
     }
+    
+    public get listValue() : any {
+
+        //return this.myProxy.playerInfo.vendor_config.market_type_config[this.formData.coin_name_unique]
+        return this.myProxy.playerInfo.vendor_config.market_type_config[this.formData.coin_name_unique]
+    }
+    
+    public get input_market_config() : any {
+        //console.log(" 取 值  ---- " , this.myProxy.formData.market_type_config);
+        return this.myProxy.formData.market_type_config || [];
+    }
+    
+    public get isHaveValue() : boolean {
+        if (this.myProxy.playerInfo.vendor_config.market_type_config[this.formData.coin_name_unique])
+        {
+            //console.log("有------值");
+            return true;
+        }
+        //console.log("没有值");
+        return false;
+    }
+    public get getSrcPath() : string {
+        let src = ""
+        if( GamePlatConfig.config.plat_coins[this.formData.coin_name_unique])
+        {
+            src = GamePlatConfig.config.plat_coins[this.formData.coin_name_unique].icon 
+        }
+        //console.log("路径为 .. " ,src);
+        return src;
+    }
+    
     //确定扣款
     onClickSure() {
-
-        console.log("确定加钱  按钮",this.formData);//确定加钱
-
-    }
-    setCoin(coin_name_unique: string) {
-        this.formData.coin_name_unique = coin_name_unique;
-        this.formData.gold = "";
+        const newArr = this.myProxy.sclectChangeVaule(this.input_market_config, true);
+        //console.log("修改之后的 值为" ,newArr );
+        this.myProxy.agent_direct_user_update(newArr);
     }
 
+    onChangeItem(key: string)
+    {
+        scrollUtil_div( this.$refs.scrollObj , 0);
+        this.formData.coin_name_unique = key;
+        this.myProxy.setCurFormMerketData();
+    }
     onItemClick(key: string) {
-        this.setCoin(key);
+        
+        if (this.isChecked) //如果有修改
+        {
+            const str = LangUtil("您当前币种设置发生变动，是否需要提交？")
+            dialog_message_box.confirm({message: str, 
+                okFun: ()=>{
+                this.onClickSure();
+                this.onChangeItem(key);
+            },
+            cancelFun:()=>{
+                this.onChangeItem(key);
+            }
+        });
+        }
+        else
+        {
+            this.onChangeItem(key);
+        }
+        
     }
     onClose() {
         this.pageData.bShow = false;
-        this.myProxy.resetQuery();
+        //this.myProxy.resetQuery();
     }
 
     @Watch("pageData.bShow")

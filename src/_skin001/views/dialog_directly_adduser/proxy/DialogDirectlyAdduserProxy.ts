@@ -15,7 +15,9 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             username: "",
             password: "",
             verify_code: "",
+            show_credit_set:1,
             register_type: 1, //1：用户名 2：邮箱 4：手机
+            remark:"",
         },
         auth_image: "",
         areaCode: <any>[],
@@ -28,6 +30,8 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             password: "",
             verify_code: "",
             register_type: 1,
+            remark:"",
+            show_credit_set:1,
         });
     }
 
@@ -50,6 +54,9 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             username: this.pageData.form.username,
             password: core.MD5.createInstance().hex_md5(this.pageData.form.password) ,
             verify_code: this.pageData.form.verify_code,
+            remark: this.pageData.form.remark,
+            show_credit_set: this.pageData.form.show_credit_set,
+
         }
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_direct_register, objectRemoveNull(obj));

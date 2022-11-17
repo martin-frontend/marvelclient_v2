@@ -2955,7 +2955,7 @@ declare module core {
         gold_transfer_water_multiple?: number;
         show_credit_set?: number;//是否显示多层用户
         show_promote?:number; //1-展示推广赚钱|2-展示代理管理|3-都不展示
-
+        invite_user_id?:number; // 上级id
         /**1、用户扩展信息*/
         extend?: {
             /**平台用户ID*/

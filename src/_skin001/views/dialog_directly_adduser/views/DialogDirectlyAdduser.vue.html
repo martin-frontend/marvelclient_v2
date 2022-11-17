@@ -10,26 +10,44 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5 px-md-10 mt-5">
+            <template v-if="form.register_type==1">
+                <CustomInput class="mb-6" icon="mdi-account" :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20"
+                    v-model="form.username" @blur="onUsernameBlur" />
 
-            <CustomInput v-if="form.register_type==1" class="mb-6" icon="mdi-account"
-                :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.username"
-                @blur="onUsernameBlur" />
+                <CustomPassword class="mb-6" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')"
+                    v-model="form.password" @blur="onPasswordBlur" />
 
-            <CustomPassword class="mb-6" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="form.password"
-                @blur="onPasswordBlur" />
+                <CustomInput class="mb-6" icon="mdi-text-box-edit" :placeholder="LangUtil('请输入备注（0-8位）')" maxlength="8"
+                    v-model="form.remark" />
+                <CustomInput icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')" maxlength="4"
+                    v-model="form.verify_code">
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
+                        @click="getImageVerity"></v-img>
+                </CustomInput>
+                <!-- 允许多层 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <div class="d-flex align-center colorBlue1--text"> {{LangUtil("允许多层")}} 
 
-            <CustomInput v-if="form.register_type == 1" icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')"
-                maxlength="4" v-model="form.verify_code">
-                <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
-                    @click="getImageVerity"></v-img>
-            </CustomInput>
+                        <v-tooltip top color="colorText1">
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                            </template>
+                            <span>{{LangUtil("表示是否允许该用户发展下级用户")}}</span>
+                        </v-tooltip>
 
-            <div class="mt-5">
-                <v-btn class="rounded-lg" color="#6fa9fa" height="48" :disabled="!isCheck" block @click="onRegister">
-                    {{LangUtil("注册")}}</v-btn>
-            </div>
+                    </div>
+                    <span class="d-flex align-center colorBlue--text" >
+                        <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98"
+                            v-model="form.show_credit_set" color="colorBtnBg" inset></v-switch>
+                    </span>
+                </div>
+                <div class="mt-5">
+                    <v-btn class="rounded-lg colorBtnBg" height="48" :disabled="!isCheck" block
+                        @click="onRegister">
+                        {{LangUtil("注册")}}</v-btn>
+                </div>
 
-
+            </template>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

@@ -11,20 +11,36 @@ import dialog_directly_backwater from "../../dialog_directly_backwater";
 import dialog_directly_easybetset from "../../dialog_directly_easybetset";
 import dialog_directly_agentset from "../../dialog_directly_agentset";
 
+import dialog_edit_remark from "../../dialog_edit_remark";
+import dialog_message from "@/views/dialog_message";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
+
 @Component
 export default class DialogDirectlySetting extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogDirectlySettingProxy = this.getProxy(DialogDirectlySettingProxy);
     pageData = this.myProxy.pageData;
-
+    isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     playerInfo = this.myProxy.playerInfo;
+
+    formData = this.myProxy.formData;
+    GamePlatConfig = GamePlatConfig;
+
     limit = this.myProxy.limit;
     constructor() {
         super(DialogDirectlySettingMediator);
     }
 
+    get gold_info():any
+    {
+        return this.myProxy.playerInfo.gold_info;
+    }
     onClose() {
         this.pageData.bShow = false;
+    }
+    onItemClick(item:any)
+    {
+        this.formData.coin_name_unique = item;
     }
     //是否能显示其他
     public get isAgents() : boolean {
@@ -44,7 +60,14 @@ export default class DialogDirectlySetting extends AbstractView {
         return false
 
     }
-    
+    private copy(msg:any) {
+        this.myProxy.copyId(msg);
+        dialog_message.warn(LangUtil("复制成功"));
+    }
+    onEditRemark()
+    {
+        dialog_edit_remark.show(this.myProxy.playerInfo);
+    }
     //用户资产设置
     assetSettings()
     {
@@ -52,7 +75,7 @@ export default class DialogDirectlySetting extends AbstractView {
     }
     agentSetting()
     {
-        console.log("打开---代理占比设置")
+        //console.log("打开---代理占比设置")
         dialog_directly_agentset.show(this.playerInfo);
     }
     //资产设置--  增加
@@ -63,7 +86,7 @@ export default class DialogDirectlySetting extends AbstractView {
     //esayBet投注额设置 按钮
     esayBetSetting()
     {
-        console.log("打开---esayBet投注额设置")
+        //console.log("打开---esayBet投注额设置")
         dialog_directly_easybetset.show(this.playerInfo);
     } 
     //返水设置
@@ -73,11 +96,14 @@ export default class DialogDirectlySetting extends AbstractView {
     }
     search()
     {
-        console.log("点击搜索")
+        //console.log("点击搜索")
     }
 
     handlerUpdate(val: any) {
         this.myProxy.agent_direct_user_update();
+    }
+    handlerUpdate_creditset(val: any) {
+        this.myProxy.agent_direct_user_update_duoceng();
     }
 
     @Watch("pageData.bShow")

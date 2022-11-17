@@ -28,6 +28,10 @@ export default class DialogDirectlyAdduser extends AbstractView {
             checkUserPassword(password)
         );
     }
+    handlerUpdate_creditset()
+    {
+        
+    }
     onClose() {
         this.pageData.bShow = false;
     }
@@ -35,7 +39,7 @@ export default class DialogDirectlyAdduser extends AbstractView {
         this.myProxy.api_public_auth_code();
     }
     onRegister() {
-        console.log(" 点击注册");
+        //console.log(" 点击注册");
         this.myProxy.api_user_var_direct_register();
     }
     onUsernameBlur() {

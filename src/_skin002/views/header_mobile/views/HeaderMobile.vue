@@ -6,7 +6,7 @@ import Component from "vue-class-component";
 import HeaderMobile from "@/_skin001/views/header_mobile/views/HeaderMobile";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
-import User from "@/_skin001/views/header/widget/user/User.vue";
+import User from "@/_skin002/views/header/widget/user/User.vue";
 import Wallet from "@/_skin001/views/header/widget/wallet/Wallet.vue";
 
 @Component({

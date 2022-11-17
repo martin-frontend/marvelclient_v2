@@ -1,0 +1,137 @@
+.box-container {
+    display: grid;
+    gap: 10px;
+}
+.btn {
+    width: fit-content;
+    background-color: white;
+    text-align: center;
+    color: rgb(50, 68, 102);
+    position: absolute;
+    bottom: 20px;
+}
+.activity1 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_pool.png") no-repeat right 0px bottom, linear-gradient(90deg, #2e2998, #4d49f1);
+    background-size: contain;
+    background-size: 147px 154px, 100% 100%;
+}
+.activity1-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: url("~@/_skin001/assets/img_mine.png") no-repeat right -15px center, #1998ef;
+        background-size: contain;
+        background-size: 100%;
+    .btn {
+        bottom: 10px;
+    }
+}
+.activity2 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_swap.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #0052e3, #3b7cff);
+    background-size: 146px 154px, 100% 100%;
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #faca4b;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #081e5f;
+            transform: skewX(10deg);
+        }
+    }
+}
+.activity2-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: url("~@/_skin001/assets/img_extension.png") no-repeat right 0px center, #2d65ef;
+        background-size: contain;
+        background-size: 100%;
+}
+
+.activity3 {
+    position: relative;
+    cursor: pointer;
+    width: 390px;
+    min-width: 390px;
+    height: 316px;
+    background: url("~@/assets/activity/img_mine.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #de2532, #ff5765);
+    background-size: contain;
+    background-size: 192px 155px, 100% 100%;
+}
+
+.activity4 {
+    min-width: 405px;
+    width: 100%;
+    height: 316px;
+    .item1 {
+        cursor: pointer;
+        height: 316px;
+        background: url("~@/_skin001/assets/img_mine.png") no-repeat right -15px center, #1998ef;
+        background-size: contain;
+        background-size: 346px 264px, 100% 100%;
+    }
+    .item2 {
+        cursor: pointer;
+        height: 152px;
+        background: url("~@/_skin001/assets/img_extension.png") no-repeat right 0px center, #2d65ef;
+        background-size: contain;
+        background-size: 75%;
+    }
+}
+
+.btn-disabled {
+    background-color: #a9a9a9;
+    color: #656565;
+}
+
+.activity1:hover,
+.activity1-min:hover,
+.activity2:hover,
+.activity2-min:hover,
+.activity3:hover,
+.activity3-min:hover {
+    .btn {
+        background-color: #ffaf1a;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 1260px) {
+    .activity3 {
+        display: none;
+    }
+}
+@media screen and (max-width: 1260px) {
+    .box-container {
+        flex-direction: column;
+    }
+}
+
+.green-text {
+    color: #ccff00;
+}
+
+.red-text {
+    color: #ff6600;
+}
+
+.yellow-text {
+    color: #ffff00;
+}
+
+
+.box {
+    background-image: linear-gradient(180deg, #243a5d 0%, #1f2f4b 100%);
+    border-radius: 10px;
+}

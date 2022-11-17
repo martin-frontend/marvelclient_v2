@@ -1,0 +1,33 @@
+<v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="288">
+    <v-img class="rounded-pill mx-auto" src="@/_skin001/assets/header/avatar1.png" max-width="56" max-height="56"></v-img>
+    <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer" @click="onCopy(userInfo.user_id)">
+        ID:{{userInfo.user_id}}
+    </div>
+    <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer">
+        VIP {{userInfo.vip_info && userInfo.vip_info.vip_level}}
+    </div>
+
+    <v-sheet class="rounded-lg mt-3 py-1" color="colorPanelTitleBg">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
+            <v-icon small>{{ item.icon }}</v-icon>
+            <div class="ml-2">{{ item.name }}</div>
+            <v-spacer />
+            <v-badge color="red" dot offset-y="5" :value="red_dot_tips.is_user_mail>0 && item.id == 4"></v-badge>
+            <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
+        </div>
+    </v-sheet>
+
+    <v-sheet class="rounded-lg mt-3 py-1" color="colorPanelTitleBg">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
+            <v-icon small>{{ item.icon }}</v-icon>
+            <div class="ml-2">{{ item.name }}</div>
+            <v-spacer />
+            <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
+        </div>
+    </v-sheet>
+
+    <div class="d-flex colorBlue--text mt-3 ml-1 cursor-pointer" @click="onLoginOut">
+        <div>{{LangUtil("退出登录")}}</div>
+        <v-spacer />
+    </div>
+</v-sheet>

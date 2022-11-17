@@ -81,7 +81,7 @@
                     <div>{{ item.category_name }}</div>
                 </button>
     
-                <v-hover v-slot="{ hover }">
+                <!-- <v-hover v-slot="{ hover }">
                     <button
                         class="nav-button"
                         @click="goMine"
@@ -96,9 +96,9 @@
                         <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_mine2.png"></v-img>
                         <div class="ml-1">{{ LangUtil("返水") }}</div>
                     </button>
-                </v-hover>
+                </v-hover> -->
     
-                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1 && isShowDirectly != 0">
+                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1 && isShowDirectly == 2">
                     <button
                         class="nav-button"
                         @click="goExtension"

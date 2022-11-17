@@ -14,10 +14,10 @@ import page_bonus from "@/views/page_bonus";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import dialog_user_center from "@/views/dialog_user_center";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
 import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
+import dialog_user_center from "@/_skin002/views/dialog_user_center";
 
 @Component
 export default class UserPanel extends AbstractView {

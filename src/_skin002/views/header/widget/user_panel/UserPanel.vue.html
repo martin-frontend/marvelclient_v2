@@ -3,9 +3,6 @@
     <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer" @click="onCopy(userInfo.user_id)">
         ID:{{userInfo.user_id}}
     </div>
-    <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer">
-        VIP {{userInfo.vip_info && userInfo.vip_info.vip_level}}
-    </div>
 
     <v-sheet class="rounded-lg mt-3 py-1" color="colorPanelTitleBg">
         <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">

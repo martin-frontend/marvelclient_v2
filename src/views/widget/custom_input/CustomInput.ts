@@ -13,6 +13,7 @@ export default class CustomInput extends AbstractView {
     @Prop() isOnlyNumber!: boolean;
     @Prop({default:true}) isNeedCloseBtn!: boolean;
     @Prop() isOnlyInt!: boolean;
+    @Prop() isOnlyFloat!: boolean;
 
     inputValue = "";
 
@@ -34,6 +35,16 @@ export default class CustomInput extends AbstractView {
         }
         if (this.isOnlyInt) {
             this.inputValue = event.target.value.replace(/[^0-9]/g, "");
+            this.$emit("input", this.inputValue);
+            return;
+        }
+        if (this.isOnlyFloat) {
+            this.inputValue = event.target.value.replace(/[^\d.]/g, "");
+            this.inputValue = this.inputValue.replace("-", "");
+            if(parseFloat( this.inputValue) < 0)
+            {
+                this.inputValue = "0";
+            }
             this.$emit("input", this.inputValue);
             return;
         }

@@ -9,7 +9,7 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
         nick_name: "",
         gold_info:<any>{},
         water_config:<any>{},
-        plat_water_config:<any>{},
+        parent_water_config:<any>{},
     }
     
     formData= {
@@ -24,6 +24,7 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
+        bisMine:false, //是否为我的反水
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -51,11 +52,11 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
 
         this.inputWaterData = JSON.parse(JSON.stringify( this.playerInfo.water_config));
         
-        const coinKeys = Object.keys(this.inputWaterData);
-        for (let index = 0; index < coinKeys.length; index++) {
-            const element = coinKeys[index];
-            this.inputWaterData[element] = ((this.inputWaterData[element] * 10000>>0) / 100)
-        }
+        // const coinKeys = Object.keys(this.inputWaterData);
+        // for (let index = 0; index < coinKeys.length; index++) {
+        //     const element = coinKeys[index];
+        //     this.inputWaterData[element] = ((this.inputWaterData[element] * 10000>>0) / 100)
+        // }
     }
 
     api_user_var_agent_direct_user_update()
@@ -64,7 +65,8 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
         const coinKeys = Object.keys(this.inputWaterData);
         for (let index = 0; index < coinKeys.length; index++) {
             const element = coinKeys[index];
-            sendWaterData[element] = (((parseFloat (this.inputWaterData[element] )*100)>>0) / 10000 )
+            //sendWaterData[element] = (((parseFloat (this.inputWaterData[element] )*100)>>0) / 10000 )
+            sendWaterData[element] = parseFloat (this.inputWaterData[element] )
         }
 
         const formData= {
@@ -73,6 +75,18 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
             water_config:JSON.stringify(sendWaterData),
         }
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(formData));
-
+    }
+    //查询 当前直属用户的 信息
+    api_user_var_fetch_direct_user_info(direct_user_id:any = null) {
+        this.pageData.loading = true;
+        if (!direct_user_id)
+        {
+            direct_user_id = core.user_id;
+        }
+        const data = {
+            user_id: core.user_id,
+            direct_user_id:direct_user_id,
+        };
+        this.sendNotification(net.HttpType.api_user_var_fetch_direct_user_info, objectRemoveNull(data));
     }
 }

@@ -3072,6 +3072,7 @@ declare module core {
         is_recharge?: number;
         /**货币互转开关 */
         is_gold_exchange?: number;
+        water_config?:any;
     }
     /**
      * vip 奖励活动相关

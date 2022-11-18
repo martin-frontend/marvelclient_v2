@@ -17,7 +17,25 @@ export default class DialogDirectlyBackwater extends AbstractView {
     constructor() {
         super(DialogDirectlyBackwaterMediator);
     }
+    //是否为我的反水
+    public get isMineWater() : boolean {
+        //return true;
+        return this.pageData.bisMine;
+    }
+    public get isDisable() : boolean {
+        
+        const coinKeys = Object.keys(this.myProxy.inputWaterData);
 
+        for (let index = 0; index < coinKeys.length; index++) {
+            const element = coinKeys[index];
+            if (this.myProxy.playerInfo.water_config[element] != parseFloat(this.myProxy.inputWaterData[element]) )
+            {
+                return false
+            }
+        }
+
+        return true
+    }
     getConfigName(type:any)
     {
         let str = "";
@@ -63,10 +81,10 @@ export default class DialogDirectlyBackwater extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         if (this.pageData.bShow) {
-            BlurUtil(this.pageData.bShow);
+            
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
-            //this.myProxy.api_xxx();
         }
+        BlurUtil(this.pageData.bShow);
     }
 }

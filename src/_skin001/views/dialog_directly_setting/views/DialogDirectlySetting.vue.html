@@ -30,7 +30,7 @@
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户账号")}} </span>
                     <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                        {{playerInfo.nick_name}}
+                        {{playerInfo.username}}
                         <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
                             :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
@@ -43,7 +43,7 @@
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
                     <span class="d-flex colorText1--text"> {{LangUtil("用户昵称")}} </span>
                     <span class="d-flex align-center colorBlue--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
-                        {{playerInfo.username}}
+                        {{playerInfo.nick_name}}
                         <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
                             :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
@@ -157,12 +157,16 @@
                 <!-- 代理占比 -->
                 <template v-if="isAgents_rate">
                     <div class="d-flex justify-space-between align-center my-3 empty_height">
-                        <span class="d-flex colorText1--text"> {{LangUtil("代理占成")}} </span>
-                        <div class="d-flex align-center colorDialogInfo--text"
+                        <span class="d-flex colorText1--text"> {{LangUtil("我的占成")}}/{{LangUtil("代理占成")}} </span>
+                        <div class="d-flex align-center color_text_1--text"
                             :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
                             <span class="mx-3">
-                                {{playerInfo.credit_rate}}%
+                                {{playerInfo.parent_credit_rate}}%/
+                                <span class="colorDialogInfo--text">
+                                    {{playerInfo.credit_rate}}%
+                                </span>
                             </span>
+                            
                             <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="agentSetting">
                                 <span>{{ LangUtil("设置") }}</span>
                             </v-btn>

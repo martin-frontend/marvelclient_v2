@@ -14,6 +14,7 @@ import dialog_bet_record from "../../dialog_bet_record";
 import dialog_add_user from "../../dialog_directly_adduser";
 import dialog_statistics_credit from "../../dialog_statistics_credit";
 import dialog_directly_my from "../../dialog_directly_my";
+import dialog_directly_backwater from "../../dialog_directly_backwater";
 
 @Component
 export default class DialogAgentManager extends AbstractView {
@@ -50,7 +51,52 @@ export default class DialogAgentManager extends AbstractView {
         return this.selfProxy.userInfo.invite_user_id;
         //return 1273623;
     }
-    
+    getConfigName(type:any)
+    {
+        let str = "";
+        switch (type) {
+            case "2":str ="棋牌"
+                break;
+            case "4":str ="彩票"
+                break;
+            case "8":str ="捕鱼"
+                break;
+            case "16":str ="电子"
+                break;
+            case "32":str ="真人"
+                break;
+            case "64":str ="体育电竞"
+                break;
+            case "128":str ="链游"
+                break;
+            default:
+                str = type;
+                break;
+        }
+        return LangUtil(str)
+    }
+    getBackWaterTxt(water_config:any) :string
+    {
+        let str = "";
+        if (!water_config)
+        {
+            return str;
+        }
+        const coinKeys = Object.keys(water_config);
+        for (let index = 0; index < coinKeys.length; index++) {
+            const element = coinKeys[index];
+            if (element == "0")
+            {
+                continue;
+            }
+            str = str +  this.getConfigName(element) + " " + water_config[element];
+            if (index < coinKeys.length -1)
+            {
+                str = str + "/ "
+            }
+        }
+        return str;
+    }
     @Watch("pageData.search")
     onWatchSearch() {
         if (this.pageData.search != "") {
@@ -124,6 +170,10 @@ export default class DialogAgentManager extends AbstractView {
     {
         dialog_directly_my.show();
     }
+    opendialog_myWater()
+    {
+        dialog_directly_backwater.show(null,true);
+    }
     fontAuto()
     {
         const touzhu_node_parent = document.getElementById("touzhu_node_parent");
@@ -132,6 +182,53 @@ export default class DialogAgentManager extends AbstractView {
         //获取投注按钮的宽度
         const touzhi_width = touzhu_node?.scrollWidth;
 
+    }
+    getMoneyColor(str:any):string{
+        if (typeof str == "number")
+        {
+            if (str < 0)
+            {
+                return "red--text";
+            }
+            else if (str > 0)
+            {
+                return"colorGreen--text"
+            }
+            else
+            {
+                return "";
+            }
+        }
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return ""
+        }
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+    }
+    getMoneyValue(str:any):string{
+        if (typeof str == "number")
+        {
+
+            if (str > 0)
+            {
+                return "+" + str;
+            }
+            else
+            {
+                return str +"";
+            }
+        }
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return str
+        }
+
+        if(!!str && str.search('-') == -1) return "+" + str;
+        return str;
     }
 
 }

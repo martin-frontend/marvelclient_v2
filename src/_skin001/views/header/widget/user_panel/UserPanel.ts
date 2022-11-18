@@ -18,6 +18,7 @@ import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
 import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
 import dialog_user_center from "@/_skin002/views/dialog_user_center";
+import dialog_directly_backwater from "@/_skin001/views/dialog_directly_backwater";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -26,7 +27,7 @@ export default class UserPanel extends AbstractView {
         { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
         { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
         { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
-        { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
+        { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
     // menuList1 = [
@@ -42,7 +43,7 @@ export default class UserPanel extends AbstractView {
             // { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
             // { id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
             // { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
-            { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+            // { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
             // { id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
         ];
 
@@ -53,6 +54,10 @@ export default class UserPanel extends AbstractView {
         if ( this.isShowDirectly == 2 )
         {
             list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" })
+        }
+        if (this.selfProxy.userInfo.is_credit_user == 1)
+        {
+            list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" })
         }
         return list;
     }
@@ -125,6 +130,9 @@ export default class UserPanel extends AbstractView {
                 break;
             case 14:
                 page_introduce.show();
+                break;
+                case 15:
+                    dialog_directly_backwater.show(null,true);
                 break;
         }
     }

@@ -118,4 +118,18 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     api_user_var_agent_var_floor_range() {
         this.sendNotification(net.HttpType.api_user_var_agent_var_floor_range, this.parameter);
     }
+
+    //查询 当前直属用户的 信息
+    api_user_var_fetch_direct_user_info(direct_user_id:any = null) {
+        this.pageData.loading = true;
+        if (!direct_user_id)
+        {
+            direct_user_id = core.user_id;
+        }
+        const data = {
+            user_id: core.user_id,
+            direct_user_id:direct_user_id,
+        };
+        this.sendNotification(net.HttpType.api_user_var_fetch_direct_user_info, objectRemoveNull(data));
+    }
 }

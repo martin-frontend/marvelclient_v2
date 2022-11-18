@@ -18,6 +18,7 @@ import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
 import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
 import dialog_user_center from "@/_skin002/views/dialog_user_center";
+import dialog_directly_backwater from "@/_skin001/views/dialog_directly_backwater";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -50,9 +51,11 @@ export default class UserPanel extends AbstractView {
         //     list.shift();
         // };
 
-        if ( this.isShowDirectly == 2 )
-        {
+        if (this.isShowDirectly == 2) {
             list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" })
+        }
+        if (this.selfProxy.userInfo.is_credit_user == 1) {
+            list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" })
         }
         return list;
     }
@@ -65,17 +68,14 @@ export default class UserPanel extends AbstractView {
         this.selfProxy.api_user_logout();
     }
 
-    public get isShowDirectly() : number {
-        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
-        {
+    public get isShowDirectly(): number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0)) {
             return 0;
         }
-        if (this.selfProxy.userInfo.show_promote == 1 )
-        {
+        if (this.selfProxy.userInfo.show_promote == 1) {
             return 1;
         }
-        if (this.selfProxy.userInfo.show_promote == 2)
-        {
+        if (this.selfProxy.userInfo.show_promote == 2) {
             return 2;
         }
 
@@ -100,19 +100,16 @@ export default class UserPanel extends AbstractView {
                 LoginEnter(dialog_email.show);
                 break;
             case 10:
-                if(this.isShowDirectly == 2)
-                {
+                if (this.isShowDirectly == 2) {
                     LoginEnter(dialog_agentmanager.show);
                 }
-                else if(this.isShowDirectly == 1)
-                {
+                else if (this.isShowDirectly == 1) {
                     LoginEnter(page_extension.show);
                 }
-                else
-                {
-                    console.log("不正确",this.isShowDirectly);
+                else {
+                    console.log("不正确", this.isShowDirectly);
                 }
-                    
+
                 break;
             case 11:
                 LoginEnter(page_bonus.show);
@@ -125,6 +122,9 @@ export default class UserPanel extends AbstractView {
                 break;
             case 14:
                 page_introduce.show();
+                break;
+            case 15:
+                dialog_directly_backwater.show(null, true);
                 break;
         }
     }

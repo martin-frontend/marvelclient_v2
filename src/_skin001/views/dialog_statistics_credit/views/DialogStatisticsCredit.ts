@@ -8,15 +8,22 @@ import LangUtil from "@/core/global/LangUtil";
 import Assets from "@/assets/Assets";
 import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import dialog_bet_record from "@/_skin001/views/dialog_bet_record";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class DialogStatisticsCredit extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
     myProxy: DialogStatisticsCreditProxy = this.getProxy(DialogStatisticsCreditProxy);
+    GamePlatConfig = GamePlatConfig;
+    gameProxy = this.myProxy.gameProxy;
+
+    isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     pageData = this.myProxy.pageData;
 
     userlist = this.myProxy.userListInfo;
+
+    coin_name_unique = this.myProxy.coin_name_unique;
 
     timeRange: any = ["", ""];
     pickerOptions = {
@@ -124,6 +131,7 @@ export default class DialogStatisticsCredit extends AbstractView {
             const start = getTodayOffset(-6);
             const end = getTodayOffset(1, 1);
             this.timeRange = [start, end];
+            this.myProxy.setcoin_name_unique();
             this.onTimeChange();
         }
         else
@@ -134,14 +142,39 @@ export default class DialogStatisticsCredit extends AbstractView {
 
     onUserIdClick(user_id:number){
         const listQuery = this.pageData.listQuery;
-        dialog_bet_record.show(user_id, this.timeRange[0],this.timeRange[1], false);
+        dialog_bet_record.show(user_id, this.timeRange[0],this.timeRange[1], false,{
+            coin_name_unique:this.myProxy.coin_name_unique,
+            bShowMoneyType:true,
+            bShowUserId:true,
+            bShowTimeText:true,
+            bShowOptions:false,
+        });
     }
 
     getMoneyColor(str:string):string{
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return ""
+        }
         return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
     }
     getMoneyValue(str:string):string{
+        const newstr = str.replace("$", "");
+        const amount = Number(newstr);
+        if (amount == 0)
+        {
+            return str
+        }
         if(!!str && str.search('-') == -1) return "+" + str;
         return str;
+    }
+
+    onItemClick(item:any)
+    {
+        console.log("点击 item",item);
+        this.myProxy.coin_name_unique = item;
+        this.onTimeChange();
     }
 }

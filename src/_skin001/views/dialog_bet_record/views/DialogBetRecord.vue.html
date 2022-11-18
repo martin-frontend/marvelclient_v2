@@ -1,259 +1,354 @@
-<v-dialog width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.mobile"
+    persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- pc显示方式 -->
-        <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-18">{{LangUtil("投注记录")}}</div>
-            <v-spacer />
-            <v-btn icon @click="onClose">
-                <v-icon large>mdi-close</v-icon>
-            </v-btn>
-        </v-card-title>
-        <v-card-text class="px-5 pb-3" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="colorText2--text text-18 font-weight-medium ml-3 d-flex">
-                <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
-                <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-                <div class="ml-5 d-flex flex-wrap">{{LangUtil("输赢")}}
-                    <div :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</div>
-                </div>
-                
-                <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
-            </div>
-            <v-divider class="mt-2" />
-        </v-card-text>
-        <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="d-flex flex-wrap align-center" v-if="pageData.bShowOptions">
-                <CustomSelect
-                    class="mr-2"
-                    v-model="listOptions.typeSelect"
-                    :options="listOptions.typeOptions()"
-                    width="140"
-                    @change="onTypeChange"
-                />
-                <CustomSelect
-                    class="mr-2"
-                    v-model="listOptions.vendorSelect"
-                    :options="listOptions.vendorOptions()"
-                    width="140"
-                    @change="onVendorChange"
-                />
-                <CustomSelect
-                    class="mr-2"
-                    v-model="listOptions.statusSelect"
-                    :options="listOptions.statusOptions()"
-                    width="140"
-                    @change="onStatusChange"
-                />
-                <CustomSelect
-                    class="mr-2"
-                    v-model="listOptions.betTimeSelect"
-                    :options="listOptions.betTimeOptions()"
-                    width="140"
-                    @change="onBetTimeChange"
-                />
-                <el-date-picker
-                    v-model="timeRange"
-                    type="datetimerange"
-                    :picker-options="pickerOptions"
-                    range-separator="-"
-                    :start-placeholder="LangUtil('开始日期')"
-                    :end-placeholder="LangUtil('结束日期')"
-                    :default-time="[`00:00:00`, `23:59:00`]"
-                    align="right"
-                    format="yyyy-MM-dd HH:mm"
-                    class="input_range align-center"
-                    @change="onTimeChange"
-                >
-                    <template slot="range-separator">-</template>
-                </el-date-picker>
-            </div>
-            <v-sheet
-                v-if="pageData.list.length>0"
-                color="transparent"
-                height="488"
-                class="scroll-y mt-1"
-                :class="pageData.bShowOptions ? '' : 'mt-n3' "
-            >
-                <v-sheet class="mt-2 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                    <div class="d-flex flex-wrap listitem">
-                        <div>
-                            <div>{{LangUtil("订单号")}}</div>
-                            <div class="text-truncate">{{item.order_no}}</div>
-                        </div>
-                        <div>
-                            <div>{{LangUtil("游戏名称")}}</div>
-                            <div>{{item.vendor_product_name}}</div>
-                        </div>
-                        <div>
-                            <div>{{LangUtil("币种")}}</div>
-                            <div>{{item.coin_name_unique}}</div>
-                        </div>
-                        <div>
-                            <div>{{LangUtil("金额")}}</div>
-                            <div>{{item.bet_gold}}</div>
-                        </div>
-                        <div>
-                            <div>{{LangUtil("输赢")}}</div>
-                            <div :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
-                        </div>
-                        <div>
-                            <div>{{LangUtil("状态")}}</div>
-                            <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
-                        </div>
-                        <div class="listitem-150">
-                            <div>{{LangUtil("投注时间")}}</div>
-                            <div class="text-truncate">{{item.bet_at}}</div>
-                        </div>
-                        <div class="listitem-150" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                            <div>{{LangUtil("结算时间")}}</div>
-                            <div class="text-truncate">{{item.settlement_at}}</div>
-                        </div>
-                        <div class="d-flex align-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                            <v-btn
-                                text
-                                class="text-decoration-underline pa-0 font-weight-regular text-14 btn mb-n1"
-                                @click="handlerDetail(item.game_info)"
-                            >
-                                {{LangUtil("查看详情")}}>>
-                            </v-btn>
-                        </div>
-                    </div>
-                </v-sheet>
-            </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
-            <v-spacer />
-            <v-pagination
-                class="mt-2"
-                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                v-model="pageData.pageInfo.pageCurrent"
-                :length="pageData.pageInfo.pageCount"
-                :total-visible="7"
-                @input="onPageChange"
-            ></v-pagination>
-        </v-card-text>
-        <!-- 手机显示方式 -->
-        <v-card-text class="pb-0 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
-            <div class="gradient-bg d-flex align-center px-5">
+        <template v-if="!$vuetify.breakpoint.mobile">
+            <v-card-title class="gradient-bg">
                 <div class="text-18">{{LangUtil("投注记录")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
+                    <v-icon large>mdi-close</v-icon>
                 </v-btn>
-            </div>
-            <div class="colorText2--text text-16 mx-5 d-flex">
-                <div class="w-120">{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
-                <div class="ml-5">{{LangUtil("总投注额")}} {{pageData.total_bet_gold}}</div>
-            </div>
-            <div class="colorText2--text text-16 mx-5 d-flex">
-                <div class="w-120 d-flex flex-wrap">{{LangUtil("输赢")}}
-                    <div :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</div>
-                </div>
-                <div class="ml-5">{{LangUtil("有效投注")}} {{pageData.total_backwater_game}}</div>
-            </div>
-            <v-divider class="mt-2 mb-4 mx-5" />
-            <div v-if="pageData.bShowOptions">
-                <div class="d-flex justify-space-between mx-5 mb-2">
-                    <CustomSelect
-                        class="mr-1"
-                        v-model="listOptions.typeSelect"
-                        :options="listOptions.typeOptions()"
-                        width="100%"
-                        @change="onTypeChange"
-                    />
-                    <CustomSelect
-                        class="ml-1"
-                        v-model="listOptions.vendorSelect"
-                        :options="listOptions.vendorOptions()"
-                        width="100%"
-                        @change="onVendorChange"
-                    />
-                </div>
-                <div class="d-flex justify-space-between mx-5 mb-2">
-                    <CustomSelect
-                        class="mr-1"
-                        v-model="listOptions.statusSelect"
-                        :options="listOptions.statusOptions()"
-                        width="100%"
-                        @change="onStatusChange"
-                    />
-                    <CustomSelect
-                        class="ml-1"
-                        v-model="listOptions.betTimeSelect"
-                        :options="listOptions.betTimeOptions()"
-                        width="100%"
-                        @change="onBetTimeChange"
-                    />
-                </div>
-                <div class="d-flex justify-space-between mx-5">
-                    <el-date-picker
-                        class="mr-2"
-                        v-model="timeRange[0]"
-                        type="datetime"
-                        :placeholder="LangUtil('开始日期')"
-                        default-time="00:00:00"
-                        format="yyyy-MM-dd HH:mm"
-                        @change="onTimeChange"
-                    >
-                    </el-date-picker>
-                    <el-date-picker
-                        v-model="timeRange[1]"
-                        type="datetime"
-                        :placeholder="LangUtil('结束日期')"
-                        default-time="23:59:59"
-                        format="yyyy-MM-dd HH:mm"
-                        @change="onTimeChange"
-                    >
+            </v-card-title>
+            <v-card-text class="px-5 pb-3">
+                <div class="d-flex flex-wrap align-center mb-2" v-if="pageData.bShowOptions">
+                    <CustomSelect class="mr-2" v-model="listOptions.moneySelect" :options="listOptions.moneyOptions()"
+                        width="140" @change="onMoneyTypeChange" />
+                    <CustomSelect class="mr-2" v-model="listOptions.typeSelect" :options="listOptions.typeOptions()"
+                        width="140" @change="onTypeChange" />
+                    <CustomSelect class="mr-2" v-model="listOptions.vendorSelect" :options="listOptions.vendorOptions()"
+                        width="140" @change="onVendorChange" />
+                    <CustomSelect class="mr-2" v-model="listOptions.statusSelect" :options="listOptions.statusOptions()"
+                        width="140" @change="onStatusChange" />
+                    <CustomSelect class="mr-2" v-model="listOptions.betTimeSelect"
+                        :options="listOptions.betTimeOptions()" width="140" @change="onBetTimeChange" />
+                    <el-date-picker v-model="timeRange" type="datetimerange" :picker-options="pickerOptions"
+                        range-separator="-" :start-placeholder="LangUtil('开始日期')" :end-placeholder="LangUtil('结束日期')"
+                        :default-time="[`00:00:00`, `23:59:00`]" align="right" format="yyyy-MM-dd HH:mm"
+                        class="input_range align-center" @change="onTimeChange">
+                        <template slot="range-separator">-</template>
                     </el-date-picker>
                 </div>
-            </div>
-        </v-card-text>
-        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
-            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0" :_class=" pageData.bShowOptions ? 'listbox-mobile' : 'listbox-mobile-nooptions' ">
-                <!-- <ListNodata v-if="pageData.list.length == 0" /> -->
-                <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("订单号")}}</div>
-                        <div>{{item.order_no}}</div>
+                <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center colorBlue1--text ml-3 mb-2">
+                    <span>
+                        {{LangUtil("结算时间 {0} 至 {1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}}
+                    </span>
+                    <span class="ml-2">
+                        (GMT8)
+                    </span>
+                </div>
+                <div class="colorBlue1--text text-16 ml-3 d-flex mb-2">
+
+                    <div v-if="pageData.bShowMoneyType" class="mr-3">{{LangUtil("结算币种")}}
+                        <span class="colorYellow2--text"> {{listQuery.coin_name_unique}}</span>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("游戏名称")}}</div>
-                        <div>{{item.vendor_product_name}}</div>
+                    <div v-if="pageData.bShowUserId" class="mr-3">{{LangUtil("用户ID")}}
+                        <span class="colorYellow2--text"> {{isOtherUser}}</span>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("币种")}}</div>
-                        <div>{{item.coin_name_unique}}</div>
+
+                    <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
+
+                    <div class="ml-5">
+                        {{LangUtil("总投注额")}}
+                        <span v-if="is_send_coin">
+                            {{pageData.total_bet_gold_coin}}
+                        </span>
+                        <span v-else>
+                            ≈{{pageData.total_bet_gold}}
+                        </span>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("金额")}}</div>
-                        <div>{{item.bet_gold}}</div>
+
+                    <div class="ml-5">{{LangUtil("有效投注")}}
+
+                        <span v-if="is_send_coin">
+                            {{pageData.total_valid_bet_gold_coin}}
+                        </span>
+                        <span v-else>
+                            ≈{{pageData.total_valid_bet_gold}}
+                        </span>
+
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("输赢")}}</div>
-                        <div :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
+
+                    <div class="ml-5 d-flex flex-wrap">{{LangUtil("输赢")}}
+                        <div v-if="!is_send_coin" :class="getMoneyColor(pageData.total_win_gold)">
+                            ≈{{getMoneyValue(pageData.total_win_gold)}}</div>
+                        <div v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
+                            {{getMoneyValue(pageData.total_win_gold_coin)}}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("状态")}}</div>
-                        <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
-                    </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="colorText1--text">{{LangUtil("投注时间")}}</div>
-                        <div class="text-truncate">{{item.bet_at}}</div>
-                    </div>
-                    <div class="d-flex justify-space-between" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                        <div class="colorText1--text">{{LangUtil("结算时间")}}</div>
-                        <div class="text-truncate">{{item.settlement_at}}</div>
-                    </div>
-                    <div class="d-flex justify-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                        <v-btn
-                            text
-                            class="text-decoration-underline pa-0 font-weight-regular text-14 btn"
-                            @click="handlerDetail(item.game_info)"
-                        >
-                            {{LangUtil("查看详情")}}>>
-                        </v-btn>
+                </div>
+                <div class="hackhome"></div>
+
+            </v-card-text>
+            <v-card-text class="px-5">
+                <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38"
+                    color="#16233F">
+                    <div class="d-flex flex-wrap listitem_title">
+                        <div class="listitem-150">
+                            <div>{{LangUtil("订单号")}}</div>
+                        </div>
+                        <div class="listitem-150">
+                            <div>{{LangUtil("游戏名称")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("投注币种")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("投注金额")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("游戏输赢")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("有效投注")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("结算流水")}}</div>
+                        </div>
+                        <div>
+                            <div>{{LangUtil("下注状态")}}</div>
+                        </div>
+                        <div class="listitem-150">
+                            <div>{{LangUtil("投注时间")}}</div>
+                        </div>
+                        <div class="listitem-150">
+                            <div>{{LangUtil("结算时间")}}</div>
+                        </div>
+                        <div class="listitem-40">
+                            <div class="ml-4">
+                                
+                            </div>
+                        </div>
                     </div>
                 </v-sheet>
-            </LoadMore>
-        </v-card-text>
+
+                <v-sheet v-if="pageData.list.length>0" color="transparent" height="488" class="scroll-y mt-1"
+                    :class="pageData.bShowOptions ? '' : 'mt-n3' ">
+
+                    <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 mt-2 text-14"
+                        color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex flex-wrap listitem">
+                            <div class="listitem-150">
+                                <div class="text-truncate">{{item.order_no}}</div>
+                            </div>
+                            <div class="listitem-150">
+                                <div class="text-truncate">{{item.vendor_product_name}}</div>
+                            </div>
+                            <div>
+                                <div>{{item.coin_name_unique}}</div>
+                            </div>
+                            <div>
+                                <div>{{is_send_coin ? item.bet_gold_coin : item.bet_gold}}</div>
+                            </div>
+                            <div>
+                                <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">
+                                    {{getMoneyValue(item.win_gold)}}</div>
+                                <div v-else :class="getMoneyColor(item.win_gold_coin)">
+                                    {{getMoneyValue(item.win_gold_coin)}}
+                                </div>
+                            </div>
+                            <div>
+                                <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
+                            </div>
+                            <div>
+                                <div>{{is_send_coin?item.water_coin:item.water}}</div>
+                            </div>
+                            <div>
+                                <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                            </div>
+                            <div class="listitem-150">
+                                <div class="text-truncate">{{item.bet_at}}</div>
+                            </div>
+                            <div class="listitem-150" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                                <div class="text-truncate">{{item.settlement_at}}</div>
+                            </div>
+                            <div class="listitem-150" v-else>
+                                <div class="text-truncate">-</div>
+                            </div>
+                            <div class="listitem-150" v-else>
+                                <div class="text-truncate"></div>
+                            </div>
+
+                            <div class="listitem-40" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                                <v-btn text class="font-weight-regular text-14 btn mb-n3"
+                                    @click="handlerDetail(item.game_info)">
+                                    <span class="mb-3">></span>
+                                    
+                                </v-btn>
+                            </div>
+                            <div class="listitem-40" v-else="item.vendor_id == GameConfig.config.SportVendorId">
+                                <div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-spacer />
+                <v-pagination class="mt-2" v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" :total-visible="7"
+                    @input="onPageChange"></v-pagination>
+            </v-card-text>
+
+
+        </template>
+         <!-- 手机显示方式 -->
+        <template v-else>
+            <v-card-text class="pb-0 px-0 header-mobile">
+                <!-- 标题 -->
+                <div class="gradient-bg d-flex align-center px-5">
+                    <div class="text-18">{{LangUtil("投注记录")}}</div>
+                    <v-spacer />
+                    <v-btn icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </div>
+
+                <div v-if="pageData.bShowTimeText" class="colorText2--text text-14 mx-5 ">
+                    <div class="text-16">
+                        {{LangUtil("结算时间")}} <span class="ml-2"> (GMT8)</span>
+                    </div>
+                    <div class="text-14">
+                        {{LangUtil("{0}至{1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}}
+                    </div>
+                </div>
+                <div class="colorText2--text text-16 mx-5 d-flex">
+                    <div v-if="pageData.bShowMoneyType" class="mr-2">
+                        {{LangUtil("结算币种")}}
+                        <span class="colorYellow2--text ml-2"> {{listQuery.coin_name_unique}}</span>
+                    </div>
+                    <div v-if="pageData.bShowUserId">{{LangUtil("用户ID")}}
+                        <span class="colorYellow2--text ml-2"> {{isOtherUser}}</span>
+                    </div>
+                </div>
+
+                <div class="colorText2--text text-16 d-flex justify-space-between align-center">
+                    <div class="ml-5" min-width="150">{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
+                    <div class="mr-5" min-width="150">{{LangUtil("总投注额")}}
+                        <span v-if="is_send_coin">
+                            {{pageData.total_bet_gold_coin}}
+                        </span>
+                        <span v-else>
+                            ≈{{pageData.total_bet_gold}}
+                        </span>
+                    </div>
+                </div>
+                <div class="colorText2--text text-16 d-flex justify-space-between align-center">
+                    <div class="ml-5" min-width="150">{{LangUtil("输赢")}}
+                        <span v-if="!is_send_coin" :class="getMoneyColor(pageData.total_win_gold)">
+                            ≈{{getMoneyValue(pageData.total_win_gold)}}</span>
+                        <span v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
+                            {{getMoneyValue(pageData.total_win_gold_coin)}}</span>
+                    </div>
+                    <div class="mr-5" min-width="150">{{LangUtil("有效投注")}}
+                        <span v-if="is_send_coin">
+                            {{pageData.total_valid_bet_gold_coin}}
+                        </span>
+                        <span v-else>
+                            ≈{{pageData.total_valid_bet_gold}}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div v-if="pageData.bShowOptions" class="mt-1">
+                    <div class="d-flex justify-space-between mx-5 mb-2">
+                        <CustomSelect class="mr-1" v-model="listOptions.typeSelect" :options="listOptions.typeOptions()"
+                            width="100%" @change="onTypeChange" />
+                        <CustomSelect class="ml-1" v-model="listOptions.vendorSelect"
+                            :options="listOptions.vendorOptions()" width="100%" @change="onVendorChange" />
+                    </div>
+                    <div class="d-flex justify-space-between mx-5 mb-2">
+                        <CustomSelect class="mr-1" v-model="listOptions.statusSelect"
+                            :options="listOptions.statusOptions()" width="100%" @change="onStatusChange" />
+                        <CustomSelect class="ml-1" v-model="listOptions.betTimeSelect"
+                            :options="listOptions.betTimeOptions()" width="100%" @change="onBetTimeChange" />
+                    </div>
+                    <div class="d-flex justify-space-between mx-5 mb-2">
+
+                        <template >
+                        <el-date-picker class="mr-2 input_range_2" v-model="timeRange[0]" type="datetime"
+                            :placeholder="LangUtil('开始日期')" default-time="00:00:00" format="yyyy-MM-dd HH:mm"
+                            @change="onTimeChange">
+                        </el-date-picker>
+                        <el-date-picker v-model="timeRange[1]" class="input_range_2" type="datetime" :placeholder="LangUtil('结束日期')"
+                            default-time="23:59:59" format="yyyy-MM-dd HH:mm" @change="onTimeChange">
+                        </el-date-picker>
+                    </template>
+                    </div>
+                    <div class="d-flex justify-space-between mx-5 ">
+                        <CustomSelect class="mr-1" v-model="listOptions.moneySelect"
+                            :options="listOptions.moneyOptions()" width="50%" @change="onMoneyTypeChange" />
+
+                    </div>
+                </div>
+                <div class="hackhome mt-2 mb-2"></div>
+            </v-card-text>
+            <v-card-text class="px-5">
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
+                    :listNodata="pageData.list.length == 0"
+                    :_class=" pageData.bShowOptions ? (isOtherUser ?'listbox-mobile_other' : 'listbox-mobile' ): 'listbox-mobile-nooptions' ">
+                    <!-- <ListNodata v-if="pageData.list.length == 0" /> -->
+                    <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F"
+                        v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("订单号")}}</div>
+                            <div>{{item.order_no}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("游戏名称")}}</div>
+                            <div>{{item.vendor_product_name}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("投注币种")}}</div>
+                            <div>{{item.coin_name_unique}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("投注金额")}}</div>
+                            <div>{{is_send_coin?item.bet_gold_coin: item.bet_gold}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("游戏输赢")}}</div>
+                            <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">
+                                {{getMoneyValue(item.win_gold)}}
+                            </div>
+                            <div v-else :class="getMoneyColor(item.win_gold_coin)">{{getMoneyValue(item.win_gold_coin)}}
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("有效投注")}}</div>
+                            <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("结算流水")}}</div>
+                            <div>{{is_send_coin?item.water_coin:item.water}}</div>
+                        </div>
+
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("下注状态")}}</div>
+                            <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorText1--text">{{LangUtil("投注时间")}}</div>
+                            <div class="text-truncate">{{item.bet_at}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between"
+                            v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                            <div class="colorText1--text">{{LangUtil("结算时间")}}</div>
+                            <div class="text-truncate">{{item.settlement_at}}</div>
+                        </div>
+                        <div class="d-flex justify-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                            <v-btn text class="text-decoration-underline pa-0 font-weight-regular text-14 btn"
+                                @click="handlerDetail(item.game_info)">
+                                {{LangUtil("查看详情")}}>>
+                            </v-btn>
+                        </div>
+                    </v-sheet>
+                </LoadMore>
+            </v-card-text>
+        </template>
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

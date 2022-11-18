@@ -42,6 +42,21 @@ export default class DialogBetRecord extends AbstractView {
         ],
     };
 
+
+    public get isOtherUser(): any {
+        return this.listQuery.agent_user_id
+    }
+
+
+    public get is_send_coin(): boolean {
+        //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
+        if (<any>this.listOptions.moneySelect != 0) {
+            return true;
+        }
+        //console.log("全部币种----");
+        return false;
+    }
+
     constructor() {
         super(DialogBetRecordMediator);
     }
@@ -79,21 +94,16 @@ export default class DialogBetRecord extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
+            //this.listOptions.moneySelect = 0; 
             this.myProxy.resetQuery();
-            if(this.pageData.listQuery.start_date){
-                this.timeRange[0] = this.pageData.listQuery.start_date;
-            }else{
-                this.timeRange[0] = getTodayOffset();
-            }
-            if(this.pageData.listQuery.end_date){
-                this.timeRange[1] = this.pageData.listQuery.end_date;
-            }else{
-                this.timeRange[1] = getTodayOffset(1, 1);
-            }
+
+            const start_date = this.pageData.listQuery.start_date ? this.pageData.listQuery.start_date : getTodayOffset();
+            const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
+            this.timeRange = [start_date, end_date]
             this.onTimeChange();
         }
     }
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$vuetify.breakpoint.mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -110,6 +120,18 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     onQuery() {
+        this.myProxy.getApi();
+    }
+
+    onMoneyTypeChange() {
+        this.listQuery.coin_name_unique = <any>this.listOptions.moneySelect;
+        if (this.listQuery.coin_name_unique == "0") {
+            this.listQuery.coin_name_unique = "";
+        }
+
+        this.listQuery.page_count = 1;
+        this.myProxy.pageData.list = [];
+        this.listQuery.page_count = 1;
         this.myProxy.getApi();
     }
 
@@ -158,36 +180,34 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     onRefresh(done: any) {
-        console.log(">>>>>>>>.onRefresh")
+        //console.log(">>>>>>>>.onRefresh")
         this.myProxy.listRefrush(done);
     }
 
     onLoad(done: any) {
-        console.log(">>>>>>>>.onLoad")
+        //console.log(">>>>>>>>.onLoad")
         this.myProxy.listMore(done);
     }
 
     handlerDetail(game_info: string) {
         dialog_order.show(game_info);
     }
-    getMoneyColor(str:string):string{
+    getMoneyColor(str: string): string {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
+        if (amount == 0) {
             return ""
         }
         return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
     }
-    getMoneyValue(str:string):string{
+    getMoneyValue(str: string): string {
+
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
+        if (amount == 0) {
             return str
         }
-
-        if(!!str && str.search('-') == -1) return "+" + str;
+        if (!!str && str.search('-') == -1) return "+" + str;
         return str;
     }
 }

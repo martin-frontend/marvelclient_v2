@@ -103,7 +103,10 @@ export default class DialogAgentManager extends AbstractView {
     }
 
     handlerShowBetRecord(agent_user_id: any) {
-        dialog_bet_record.show(agent_user_id);
+        dialog_bet_record.show(agent_user_id,"","",true,{
+            bShowUserId:true,
+        });
+
     }
 
     handlerShowDialogSet(agent_user: any) {

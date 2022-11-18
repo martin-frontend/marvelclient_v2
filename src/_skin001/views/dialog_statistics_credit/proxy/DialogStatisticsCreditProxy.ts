@@ -2,10 +2,13 @@ import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message_box from "@/views/dialog_message_box";
 import Vue from "vue";
+import GameProxy from "@/proxy/GameProxy";
+import getProxy from "@/core/global/getProxy";
 
 export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
     static NAME = "DialogStatisticsCreditProxy";
-
+    gameProxy: GameProxy = getProxy(GameProxy);
+    isOpenWalletMenu = false;
     userList=<any>[]; //用于存储所有当前查询代理链的信息
     pageData = {
         loading: false,
@@ -15,6 +18,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             user_id: 0,
             start_date: "",
             end_date: "",
+            coin_name_unique:"",  //币种
             page_count: 1,
             page_size: 20,
             target_user_id:0,
@@ -57,21 +61,29 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         finished: false,
     };
     
+    coin_name_unique ="";
+
+    
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         
         Object.assign(this.pageData.listQuery, {
             start_date: "",
             end_date: "",
+            coin_name_unique:"",  //币种
             page_count: 1,
             page_size: 20,
             target_user_id:0,
         });
        
     }
-
+    setcoin_name_unique()
+    {
+        this.coin_name_unique = this.gameProxy.coin_name_unique;
+    }
     reseData()
     {
+        this.coin_name_unique = "";
         this.pageData.list = []
         this.clearUserList();
     }
@@ -171,8 +183,10 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         else
         {
             this.pageData.listQuery.target_user_id=core.user_id;
+            
         }
         this.pageData.listQuery.user_id = core.user_id;
+        this.pageData.listQuery.coin_name_unique = this.coin_name_unique;
         this.sendNotification(net.HttpType.api_user_var_credit_statistic, objectRemoveNull(this.pageData.listQuery));
     }
 

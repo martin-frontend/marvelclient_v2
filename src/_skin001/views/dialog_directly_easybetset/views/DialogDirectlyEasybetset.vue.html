@@ -96,8 +96,8 @@
                             {{LangUtil("单场下注限额") }}
                         </div>
                         <div class="text-16">
-                            <CustomInput class="input-text ml-4" height="30"
-                                :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'" :isNeedCloseBtn="false" type="number"
+                            <CustomInput class="input-text ml-4" height="30" :isOnlyInt="true"
+                                :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'" :isNeedCloseBtn="false"
                                 v-model="input_market_config[key].setting.single_max_bet">
                             </CustomInput>
                         </div>

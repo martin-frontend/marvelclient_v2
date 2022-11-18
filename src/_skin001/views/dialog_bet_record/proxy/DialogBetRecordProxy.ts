@@ -2,10 +2,13 @@ import Constant from "@/core/global/Constant";
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
-
+import GameProxy from "@/proxy/GameProxy";
+import getProxy from "@/core/global/getProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
-
+    gameProxy: GameProxy = getProxy(GameProxy);
+    GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
         this.api_vendor_simple();
     }
@@ -13,7 +16,11 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bShowOptions: true,
+        bShowOptions: true, //是否显示选取框
+        bShowMoneyType:false, //是否显示 结算币种
+        bShowUserId:false,  //是否显示玩家id
+        bShowTimeText:false,//是否显示 时间文字
+
         // 列表是否加载完成，手机模式专用
         finished: false,
         //如果是列表，使用以下数据，否则删除
@@ -21,6 +28,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
+            coin_name_unique:"",  //币种
             start_date: "",
             end_date: "",
             page_count: 1,
@@ -35,8 +43,12 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         },
         total_bet_gold: "",
         total_water: "",
-        total_backwater_game: "",
+        total_valid_bet_gold: "",
         total_win_gold: "",
+        total_bet_gold_coin: "",
+        total_water_coin: "",
+        total_valid_bet_gold_coin: "",
+        total_win_gold_coin: "",
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -54,6 +66,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         statusSelect: 0,
         timeSelect: 0,
         betTimeSelect: 0,
+        moneySelect:0,
         typeOptions: () => {
             return {
                 0: LangUtil("全部类型"),
@@ -90,12 +103,22 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         timeOptions: () => {
             return Constant.TIME_TYPE;
         },
+        moneyOptions: () => {
+            const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
+            const options: any = { 0: LangUtil("全部币种") };
+            for (let index = 0; index < moneyKeys.length; index++) {
+                options[moneyKeys[index]] = moneyKeys[index];
+            }
+            return  options;
+        }
+
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
             vendor_type: null,
             vendor_id: null,
+            //coin_name_unique:"",  //币种
             settlement_status: null,
             page_count: 1,
             page_size: 20,
@@ -105,17 +128,29 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     setVendors(data: any) {
         this.pageData.vendors = data;
     }
-
+    initShowType()
+    {
+        this.pageData.bShowOptions = true;
+        this.pageData.bShowMoneyType = false;
+        this.pageData.bShowTimeText = false;
+        this.pageData.bShowUserId = false;
+    }
     setData(data: any) {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.total_bet_gold = data.total_bet_gold;
         this.pageData.total_water = data.total_water;
-        this.pageData.total_backwater_game = data.total_backwater_game;
+        this.pageData.total_valid_bet_gold = data.total_valid_bet_gold;
         this.pageData.total_win_gold = data.total_win_gold;
+
+        this.pageData.total_bet_gold_coin = data.total_bet_gold_coin;
+        this.pageData.total_water_coin = data.total_water_coin;
+        this.pageData.total_valid_bet_gold_coin = data.total_valid_bet_gold_coin;
+        this.pageData.total_win_gold_coin = data.total_win_gold_coin;
+
         const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+        if (vuetify.framework.breakpoint.mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

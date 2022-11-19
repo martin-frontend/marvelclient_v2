@@ -50,6 +50,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         total_water_coin: "",
         total_valid_bet_gold_coin: "",
         total_win_gold_coin: "",
+        total_backwater_coin: "",
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -150,6 +151,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_water_coin = data.total_water_coin;
         this.pageData.total_valid_bet_gold_coin = data.total_valid_bet_gold_coin;
         this.pageData.total_win_gold_coin = data.total_win_gold_coin;
+        this.pageData.total_backwater_coin = data.total_backwater_coin;
 
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.mobile) {

@@ -49,8 +49,8 @@ export default class DialogBetRecord extends AbstractView {
     }
     
     public get isShowMyWater() : boolean {
-        return false;
-        if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin == false)
+        //return false;
+        if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin )
             return true;
         return false;
     }

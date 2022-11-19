@@ -74,9 +74,9 @@
                             {{getMoneyValue(pageData.total_win_gold_coin)}}</div>
                     </div>
 
-                    <div v-if="isShowMyWater" class="ml-5">{{LangUtil("我的返水")}}
+                    <div v-if="isShowMyWater" class="ml-5">{{LangUtil("用户返水")}}
                         <span >
-                            {{pageData.total_valid_bet_gold_coin}}
+                            {{pageData.total_backwater_coin}}
                         </span>
                     </div>
                 </div>
@@ -255,9 +255,9 @@
                     </div>
                 </div>
                 <div v-if="isShowMyWater" class="colorText2--text text-16 d-flex justify-space-between align-center">
-                    <div class="ml-5" min-width="150">{{LangUtil("我的返水")}}
+                    <div class="ml-5" min-width="150">{{LangUtil("用户返水")}}
                         <span :class="getMoneyColor(pageData.total_win_gold)">
-                            {{getMoneyValue(pageData.total_win_gold)}}</span>
+                            {{getMoneyValue(pageData.total_backwater_coin)}}</span>
                     </div>
 
                 </div>

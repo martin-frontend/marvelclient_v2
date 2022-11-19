@@ -55,7 +55,15 @@ export default class DialogBetRecord extends AbstractView {
         return false;
     }
     
-
+    getBackWater(nub:any)
+    {
+        if (typeof nub == "string")
+        {
+            nub = parseFloat(nub);
+        }
+        nub = nub * 0.01;
+        return nub.toFixed(2);
+    }
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
         if (<any>this.listOptions.moneySelect != 0) {

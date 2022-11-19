@@ -76,7 +76,7 @@
 
                     <div v-if="isShowMyWater" class="ml-5">{{LangUtil("用户返水")}}
                         <span >
-                            {{pageData.total_backwater_coin}}
+                            {{pageData.total_backwater_coin * 0.01}}
                         </span>
                     </div>
                 </div>
@@ -256,8 +256,8 @@
                 </div>
                 <div v-if="isShowMyWater" class="colorText2--text text-16 d-flex justify-space-between align-center">
                     <div class="ml-5" min-width="150">{{LangUtil("用户返水")}}
-                        <span :class="getMoneyColor(pageData.total_win_gold)">
-                            {{getMoneyValue(pageData.total_backwater_coin)}}</span>
+                        <span >
+                            {{pageData.total_backwater_coin * 0.01}}</span>
                     </div>
 
                 </div>

@@ -4,7 +4,7 @@
         <!-- pc显示方式 -->
         <template v-if="!$vuetify.breakpoint.mobile">
             <v-card-title class="gradient-bg">
-                <div class="text-18">{{LangUtil("投注记录")}}</div>
+                <div class="text-18">{{pageData.bShowIsMine?LangUtil("我的投注"): LangUtil("投注记录")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
                     <v-icon large>mdi-close</v-icon>

@@ -27,7 +27,7 @@ export default class UserPanel extends AbstractView {
         { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
         { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
         { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
-        { id: 3, name: LangUtil("投注记录"), icon: "mdi-text-box" },
+        { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
     ];
     // menuList1 = [
@@ -94,7 +94,8 @@ export default class UserPanel extends AbstractView {
                 LoginEnter(dialog_wallet.show);
                 break;
             case 3:
-                LoginEnter(dialog_bet_record.show);
+                //LoginEnter(dialog_bet_record.show);
+                dialog_bet_record.show(null,"","",true,{bShowIsMine : true});
                 break;
             case 4:
                 LoginEnter(dialog_email.show);

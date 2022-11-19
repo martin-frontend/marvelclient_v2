@@ -36,6 +36,10 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         {
             proxy.pageData.bShowTimeText = msg.bShowTimeText;
         }
+        if(msg.bShowIsMine != null)
+        {
+            proxy.pageData.bShowIsMine = msg.bShowIsMine;
+        }
     }
     else
     {

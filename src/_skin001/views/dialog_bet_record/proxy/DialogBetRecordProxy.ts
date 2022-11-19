@@ -20,6 +20,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         bShowMoneyType:false, //是否显示 结算币种
         bShowUserId:false,  //是否显示玩家id
         bShowTimeText:false,//是否显示 时间文字
+        bShowIsMine:false,
 
         // 列表是否加载完成，手机模式专用
         finished: false,
@@ -134,6 +135,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.bShowMoneyType = false;
         this.pageData.bShowTimeText = false;
         this.pageData.bShowUserId = false;
+        this.pageData.bShowIsMine = false;
     }
     setData(data: any) {
         this.pageData.loading = false;

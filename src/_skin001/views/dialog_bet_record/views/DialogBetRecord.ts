@@ -8,6 +8,7 @@ import dialog_order from "@/_skin001/views/dialog_order";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -19,7 +20,7 @@ export default class DialogBetRecord extends AbstractView {
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
     pageInfo = this.myProxy.pageData.pageInfo;
-
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     timeRange: any = ["", ""];
     pickerOptions = {
         shortcuts: [
@@ -46,7 +47,14 @@ export default class DialogBetRecord extends AbstractView {
     public get isOtherUser(): any {
         return this.listQuery.agent_user_id
     }
-
+    
+    public get isShowMyWater() : boolean {
+        return false;
+        if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin == false)
+            return true;
+        return false;
+    }
+    
 
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)

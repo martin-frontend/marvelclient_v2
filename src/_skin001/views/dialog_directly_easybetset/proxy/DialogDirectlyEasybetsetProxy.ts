@@ -144,7 +144,7 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         }
         const newArr = <any>[];
 
-        let field_src, field_dest = null;
+        //let field_src, field_dest = null;
         //console.log("------....curList" , curList);
         for (let index = 0; index < curList.length; index++) {
             const element = curList[index];
@@ -161,53 +161,73 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
                 market_type: element.market_type,
                 setting: <any>{}
             };
-            let isAdd = false;
+            //let isAdd = false;
 
-            if (element.setting.single_field_max_bet != destObj.setting.single_field_max_bet) {
-                //如果两个值不想等  如果输入的需要传的为空  则直接发送空
-                if (!destObj.setting.single_field_max_bet) {
-                    newObj.setting.single_field_max_bet = "-";
-                    isAdd = true;
-                }
-                else {
-                    //如果 传入值 为空， 输入值 不为空 则 需要将输入值 转为数字 写入
-                    if (!element.setting.single_field_max_bet) {
-                        newObj.setting.single_field_max_bet = parseFloat(destObj.setting.single_field_max_bet);
-                        isAdd = true;
-                    }
-                    else {
-                        field_src = parseFloat(element.setting.single_field_max_bet);
-                        field_dest = parseFloat(destObj.setting.single_field_max_bet);
-                        if (field_dest != field_src) {
-                            newObj.setting.single_field_max_bet = field_dest;
-                            isAdd = true;
-                        }
-                    }
-                }
+            if ( !destObj.setting.single_field_max_bet )
+            {
+                newObj.setting.single_field_max_bet = "-";
+            }
+            else
+            {
+                newObj.setting.single_field_max_bet = parseFloat(destObj.setting.single_field_max_bet);
+            }
+            if (!destObj.setting.single_max_bet )
+            {
+                newObj.setting.single_max_bet = "-";
+            }
+            else
+            {
+                newObj.setting.single_max_bet = parseFloat(destObj.setting.single_max_bet);
             }
 
-            if (element.setting.single_max_bet != destObj.setting.single_max_bet) {
-                //如果两个值不想等  如果输入的需要传的为空  则直接发送空
-                if (!destObj.setting.single_max_bet) {
-                    newObj.setting.single_max_bet = "-";
-                    isAdd = true;
-                }
-                else {
-                    //如果 传入值 为空， 输入值 不为空 则 需要将输入值 转为数字 写入
-                    if (!element.setting.single_max_bet) {
-                        newObj.setting.single_max_bet = parseFloat(destObj.setting.single_max_bet);
-                        isAdd = true;
-                    }
-                    else {
-                        field_src = parseFloat(element.setting.single_max_bet);
-                        field_dest = parseFloat(destObj.setting.single_max_bet);
-                        if (field_dest != field_src) {
-                            newObj.setting.single_max_bet = field_dest;
-                            isAdd = true;
-                        }
-                    }
-                }
-            }
+            
+            // if (element.setting.single_field_max_bet != destObj.setting.single_field_max_bet) {
+            //     //如果两个值不想等  如果输入的需要传的为空  则直接发送空
+            //     if (!destObj.setting.single_field_max_bet) {
+            //         newObj.setting.single_field_max_bet = "-";
+            //         isAdd = true;
+            //     }
+            //     else {
+            //         //如果 传入值 为空， 输入值 不为空 则 需要将输入值 转为数字 写入
+            //         if (!element.setting.single_field_max_bet) {
+            //             newObj.setting.single_field_max_bet = parseFloat(destObj.setting.single_field_max_bet);
+            //             isAdd = true;
+            //         }
+            //         else {
+            //             field_src = parseFloat(element.setting.single_field_max_bet);
+            //             field_dest = parseFloat(destObj.setting.single_field_max_bet);
+            //             // if (field_dest != field_src) {
+            //             //     newObj.setting.single_field_max_bet = field_dest;
+            //             //     isAdd = true;
+            //             // }
+            //             newObj.setting.single_field_max_bet = field_dest;
+            //         }
+            //     }
+            // }
+
+            // if (element.setting.single_max_bet != destObj.setting.single_max_bet) {
+            //     //如果两个值不想等  如果输入的需要传的为空  则直接发送空
+            //     if (!destObj.setting.single_max_bet) {
+            //         newObj.setting.single_max_bet = "-";
+            //         isAdd = true;
+            //     }
+            //     else {
+            //         //如果 传入值 为空， 输入值 不为空 则 需要将输入值 转为数字 写入
+            //         if (!element.setting.single_max_bet) {
+            //             newObj.setting.single_max_bet = parseFloat(destObj.setting.single_max_bet);
+            //             isAdd = true;
+            //         }
+            //         else {
+            //             field_src = parseFloat(element.setting.single_max_bet);
+            //             field_dest = parseFloat(destObj.setting.single_max_bet);
+            //             // if (field_dest != field_src) {
+            //             //     newObj.setting.single_max_bet = field_dest;
+            //             //     isAdd = true;
+            //             // }
+            //             newObj.setting.single_max_bet = field_dest;
+            //         }
+            //     }
+            // }
             if (!this.isShowGropSet) {
                 newArr.push(newObj);
             }

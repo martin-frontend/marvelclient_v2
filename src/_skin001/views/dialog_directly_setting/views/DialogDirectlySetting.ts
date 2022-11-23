@@ -11,6 +11,8 @@ import dialog_directly_backwater from "../../dialog_directly_backwater";
 import dialog_directly_easybetset from "../../dialog_directly_easybetset";
 import dialog_directly_agentset from "../../dialog_directly_agentset";
 
+import dialog_directly_gameset from "../../dialog_directly_gameset";
+
 import dialog_edit_remark from "../../dialog_edit_remark";
 import dialog_message from "@/views/dialog_message";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
@@ -35,6 +37,26 @@ export default class DialogDirectlySetting extends AbstractView {
     {
         return this.myProxy.playerInfo.gold_info;
     }
+    
+    public get gameSwitchInfo() : number[] {
+        const keys = Object.keys(this.myProxy.playerInfo.vendor_type_switch);
+        let count = 0;
+        let totleCount = 0;
+        for (let index = 0; index < keys.length; index++) {
+            const element = this.myProxy.playerInfo.vendor_type_switch[keys[index]];
+            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] == 1)
+            {
+                count++;
+            }
+            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] != -1)
+            {
+                totleCount++;
+            }
+        }
+        return [totleCount ,count];
+        //return "";
+    }
+    
     onClose() {
         this.pageData.bShow = false;
     }
@@ -77,6 +99,10 @@ export default class DialogDirectlySetting extends AbstractView {
     {
         //console.log("打开---代理占比设置")
         dialog_directly_agentset.show(this.playerInfo);
+    }
+    openGamesetPanel()
+    {
+        dialog_directly_gameset.show(this.playerInfo);
     }
     //资产设置--  增加
     assetSettings_add()

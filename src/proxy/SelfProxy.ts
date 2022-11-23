@@ -92,6 +92,11 @@ export default class SelfProxy extends AbstractProxy {
             this.sendNotification(net.HttpType.api_user_show_var, { user_id: core.user_id, modules: JSON.stringify(modules) });
         }
     }
+    api_plat_var_game_config()
+    {
+        //获取平台配置信息
+        this.sendNotification(net.HttpType.api_plat_var_game_config, { plat_id: core.plat_id });
+    }
     /**--会员资料--修改用户基本信息*/
     api_user_update_var(data: any) {
         this.sendNotification(net.HttpType.api_user_update_var, {

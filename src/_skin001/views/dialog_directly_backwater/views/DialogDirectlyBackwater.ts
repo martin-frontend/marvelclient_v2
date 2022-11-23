@@ -5,6 +5,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogDirectlyBackwaterMediator from "../mediator/DialogDirectlyBackwaterMediator";
 import DialogDirectlyBackwaterProxy from "../proxy/DialogDirectlyBackwaterProxy";
 import LangUtil from "@/core/global/LangUtil";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class DialogDirectlyBackwater extends AbstractView {
@@ -38,27 +39,7 @@ export default class DialogDirectlyBackwater extends AbstractView {
     }
     getConfigName(type:any)
     {
-        let str = "";
-        switch (type) {
-            case "2":str ="棋牌"
-                break;
-            case "4":str ="彩票"
-                break;
-            case "8":str ="捕鱼"
-                break;
-            case "16":str ="电子"
-                break;
-            case "32":str ="真人"
-                break;
-            case "64":str ="体育电竞"
-                break;
-            case "128":str ="链游"
-                break;
-            default:
-                str = type;
-                break;
-        }
-        return LangUtil(str)
+        return Constant.GameTypeText(type);
     }
 
     onClose() {

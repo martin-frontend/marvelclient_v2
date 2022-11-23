@@ -15,6 +15,7 @@ import dialog_add_user from "../../dialog_directly_adduser";
 import dialog_statistics_credit from "../../dialog_statistics_credit";
 import dialog_directly_my from "../../dialog_directly_my";
 import dialog_directly_backwater from "../../dialog_directly_backwater";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class DialogAgentManager extends AbstractView {
@@ -53,27 +54,7 @@ export default class DialogAgentManager extends AbstractView {
     }
     getConfigName(type:any)
     {
-        let str = "";
-        switch (type) {
-            case "2":str ="棋牌"
-                break;
-            case "4":str ="彩票"
-                break;
-            case "8":str ="捕鱼"
-                break;
-            case "16":str ="电子"
-                break;
-            case "32":str ="真人"
-                break;
-            case "64":str ="体育电竞"
-                break;
-            case "128":str ="链游"
-                break;
-            default:
-                str = type;
-                break;
-        }
-        return LangUtil(str)
+        return Constant.GameTypeText(type);
     }
     getBackWaterTxt(water_config:any) :string
     {

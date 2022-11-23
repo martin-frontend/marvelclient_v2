@@ -16,6 +16,7 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         remark:"",
         username:"",
         gold_info:<any>{},
+        vendor_type_switch:<any>{}, //游戏类型总开关
         invite_user_id:0,//上级id
     }
     formData= {

@@ -182,9 +182,14 @@
                                 <div class="colorYellow2--text">{{item.username}}</div>
                             </template>
                         </div>
-
-                       
-
+                        <template v-if="isMine">
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue--text">{{LangUtil("备注")}}</div>
+                            <div>
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </div>
+                        </div>
+                    </template>
                         <div class="d-flex justify-space-between">
                             <div class="colorBlue--text">{{LangUtil("下注笔数")}}</div>
                             <div>{{item.record_count}}</div>
@@ -323,7 +328,7 @@
                 <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38"
                     color="#16233F">
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
-                        {{LangUtil("ID/账号")}}</v-sheet>
+                        {{isMine ? LangUtil("ID/账号/备注") : LangUtil("直属ID")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                         {{LangUtil("下注笔数")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
@@ -394,10 +399,14 @@
                                 @click.native="onUserIdClick(item.user_id)" color="transparent">
                                 {{item.user_id}}
                             </v-sheet>
+                            <template v-if="isMine">
                             <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
                                 {{item.username}}
                             </v-sheet>
-                  
+                            <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </v-sheet>
+                            </template>
                         </v-sheet>
                         <v-sheet v-else color="transparent" min-width="80">
                             <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
@@ -406,7 +415,9 @@
                             <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
                                 {{item.username}}
                             </v-sheet>
-  
+                            <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </v-sheet>
                         </v-sheet>
 
 

@@ -183,12 +183,7 @@
                             </template>
                         </div>
 
-                        <div class="d-flex justify-space-between">
-                            <div class="colorBlue--text">{{LangUtil("备注")}}</div>
-                            <div>
-                                {{item.remark ? item.remark : LangUtil("-")}}
-                            </div>
-                        </div>
+                       
 
                         <div class="d-flex justify-space-between">
                             <div class="colorBlue--text">{{LangUtil("下注笔数")}}</div>
@@ -328,7 +323,7 @@
                 <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38"
                     color="#16233F">
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
-                        {{LangUtil("ID/账号/备注")}}</v-sheet>
+                        {{LangUtil("ID/账号")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                         {{LangUtil("下注笔数")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
@@ -402,9 +397,7 @@
                             <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
                                 {{item.username}}
                             </v-sheet>
-                            <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
-                                {{item.remark ? item.remark : LangUtil("-")}}
-                            </v-sheet>
+                  
                         </v-sheet>
                         <v-sheet v-else color="transparent" min-width="80">
                             <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
@@ -413,9 +406,7 @@
                             <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
                                 {{item.username}}
                             </v-sheet>
-                            <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
-                                {{item.remark ? item.remark : LangUtil("-")}}
-                            </v-sheet>
+  
                         </v-sheet>
 
 

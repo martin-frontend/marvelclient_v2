@@ -13,7 +13,7 @@ export default class Advertise extends AbstractView {
     };
 
     get height(): number {
-        if(this.$vuetify.breakpoint.width <= 390) return 150;
+        if (this.$vuetify.breakpoint.width <= 390) return 150;
         switch (this.$vuetify.breakpoint.name) {
             case "xs":
                 return 200;

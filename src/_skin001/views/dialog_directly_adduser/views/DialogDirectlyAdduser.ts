@@ -28,10 +28,7 @@ export default class DialogDirectlyAdduser extends AbstractView {
             checkUserPassword(password)
         );
     }
-    handlerUpdate_creditset()
-    {
-        
-    }
+    handlerUpdate_creditset() {}
     onClose() {
         this.pageData.bShow = false;
     }
@@ -43,15 +40,15 @@ export default class DialogDirectlyAdduser extends AbstractView {
         this.myProxy.api_user_var_direct_register();
     }
     onUsernameBlur() {
-        if(this.form.username == "") return;
-        if(this.form.username.length < 4) {
+        if (this.form.username == "") return;
+        if (this.form.username.length < 4) {
             dialog_message.success(LangUtil("账号小于4位，请重新输入"));
         }
     }
 
     onPasswordBlur() {
-        if(this.form.password == "") return;
-        if(!checkUserPassword(this.form.password)) {
+        if (this.form.password == "") return;
+        if (!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }
     }

@@ -1,18 +1,11 @@
 <template>
     <v-app>
-        <div id="page">
-            <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
-            <Header v-if="!$vuetify.breakpoint.mobile && isShowHeader" />
-            <v-main
-                class="background"
-                :class="{
-                    'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
-                    'mobile-background': $vuetify.breakpoint.mobile,
-                }"
-            >
+        <div id="page" style="background-color: #131e36">
+            <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
+            <v-main style="background-color: #131e36">
                 <router-view />
             </v-main>
-            <Footer class="footer" v-if="$route.path != '/page_game_soccer'" />
+            <Footer v-if="!$vuetify.breakpoint.mobile" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>
@@ -22,11 +15,11 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- 用户面板 -->
-        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app right temporary width="288" color="#16233B">
+        <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app temporary width="288" color="#16233B">
             <UserPanel />
         </v-navigation-drawer>
         <!-- 客服 -->
-        <!-- <v-btn
+        <v-btn
             height="42"
             color="#ffb01b"
             class="customer rounded-xl black--text font-weight-bold d-flex align-center text-h6"
@@ -35,7 +28,7 @@
         >
             <v-icon class="mr-1">mdi-message-text-outline</v-icon>
             <span class="mb-1">{{ LangUtil("客服") }}</span>
-        </v-btn> -->
+        </v-btn>
         <!-- 添加到桌面引导 -->
         <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ guideText }}</v-btn>
@@ -52,7 +45,7 @@
                     “{{ LangUtil("添加到主屏幕") }}”
                 </div>
                 <div class="d-flex justify-center mb-3">
-                    <v-img class="ml-2" :src="guideImg" max-width="200" max-height="150"></v-img>
+                    <v-img class="ml-2" src="@/assets/guide/img03.png" max-width="200" max-height="150"></v-img>
                 </div>
                 <div class="d-flex justify-center">
                     <v-icon color="colorTextGold">mdi-arrow-down-bold</v-icon>
@@ -66,22 +59,20 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Header from "./views/header/views/Header.vue";
-import Footer from "@/_skin001/views/footer/Footer.vue";
-import MobileMenu from "@/_skin002/views/mobile_menu/MobileMenu.vue";
+import Header from "@/views/header/views/Header.vue";
+import Footer from "@/views/footer/Footer.vue";
+import MobileMenu from "@/views/mobile_menu/MobileMenu.vue";
 import DialogMessage from "@/views/dialog_message/views/DialogMessage.vue";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Orientation from "@/views/widget/orientation/Orientation.vue";
-import UserPanel from "@/_skin002/views/header/widget/user_panel/UserPanel.vue";
-import APP from "@/_skin001/App";
+import UserPanel from "@/views/header/widget/user_panel/UserPanel.vue";
+import APP from "./App";
 import GameSearch from "@/views/game_search/views/GameSearch.vue";
-import HeaderMobile from "./views/header_mobile/views/HeaderMobile.vue";
 
 @Component({
     components: {
         DialogMessage,
         Header,
-        HeaderMobile,
         Footer,
         MobileMenu,
         Overlay,
@@ -106,18 +97,5 @@ export default class extends APP {}
     text-align: center;
     position: fixed;
     bottom: 90px;
-}
-.mobile-soccer {
-    padding: 0px !important;
-}
-
-.background {
-    background-color: #131e36;
-}
-.mobile-background {
-    background-color: #f7f7f7;
-}
-.footer {
-    margin-bottom: 55px;
 }
 </style>

@@ -52,10 +52,10 @@ export default class UserPanel extends AbstractView {
         // };
 
         if (this.isShowDirectly == 2) {
-            list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" })
+            list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" });
         }
         if (this.selfProxy.userInfo.is_credit_user == 1) {
-            list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" })
+            list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
         }
         return list;
     }
@@ -102,11 +102,9 @@ export default class UserPanel extends AbstractView {
             case 10:
                 if (this.isShowDirectly == 2) {
                     LoginEnter(dialog_agentmanager.show);
-                }
-                else if (this.isShowDirectly == 1) {
+                } else if (this.isShowDirectly == 1) {
                     LoginEnter(page_extension.show);
-                }
-                else {
+                } else {
                     console.log("不正确", this.isShowDirectly);
                 }
 

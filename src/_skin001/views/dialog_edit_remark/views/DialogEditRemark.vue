@@ -10,7 +10,7 @@ import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
     components: {
         Overlay,
         CustomInput,
-    }
+    },
 })
 export default class extends DialogEditRemark {}
 </script>

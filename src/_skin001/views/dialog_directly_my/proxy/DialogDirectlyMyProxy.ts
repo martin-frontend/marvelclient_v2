@@ -14,8 +14,8 @@ export default class DialogDirectlyMyProxy extends puremvc.Proxy {
             page_count: 1,
             page_size: 20,
         },
-         /**我的推广 数据 */
-         promotionData: <any>{
+        /**我的推广 数据 */
+        promotionData: <any>{
             commission_awaiting_num: {},
             commission_received_num: {},
             date: "",
@@ -89,8 +89,8 @@ export default class DialogDirectlyMyProxy extends puremvc.Proxy {
         CopyUtil(pretty_user_id || user_id);
         dialog_message.info(LangUtil("复制成功"));
     }
-     /**业绩查询--获取推广链接*/
-     api_user_var_short_chain(force:number = 0) {
+    /**业绩查询--获取推广链接*/
+    api_user_var_short_chain(force: number = 0) {
         this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
     }
     /**业绩查询--按日期获取佣金详情*/

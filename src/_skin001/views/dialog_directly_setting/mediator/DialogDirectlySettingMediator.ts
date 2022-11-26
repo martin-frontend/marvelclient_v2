@@ -39,11 +39,10 @@ export default class DialogDirectlySettingMediator extends AbstractMediator {
             case net.EventType.api_user_var_agent_direct_list:
                 myProxy.setLimitinfo(body.limit);
                 break;
-            case net.EventType.api_user_var_agent_var_update:  //修改备注回调
+            case net.EventType.api_user_var_agent_var_update: //修改备注回调
                 myProxy.api_user_var_fetch_direct_user_info(myProxy.playerInfo.user_id);
                 dialogDirectly.api_user_var_agent_direct_list();
                 break;
-
         }
     }
 }

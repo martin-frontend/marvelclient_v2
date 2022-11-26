@@ -13,14 +13,11 @@ export default class DialogEditRemark extends AbstractView {
     pageData = this.myProxy.pageData;
 
     inputData = "";
-    get isCheckedId():boolean
-    {
-        if (this.inputData && this.inputData != this.myProxy.playerInfo.remark)
-            return true;
+    get isCheckedId(): boolean {
+        if (this.inputData && this.inputData != this.myProxy.playerInfo.remark) return true;
         return false;
     }
-       
-    
+
     constructor() {
         super(DialogEditRemarkMediator);
     }
@@ -29,10 +26,9 @@ export default class DialogEditRemark extends AbstractView {
         this.pageData.bShow = false;
     }
 
-    onClickSure()
-    {
+    onClickSure() {
         //console.log("确定提交--->>>" ,this.inputData);
-        this.myProxy.agent_direct_user_update( this.inputData);
+        this.myProxy.agent_direct_user_update(this.inputData);
     }
     @Watch("pageData.bShow")
     onWatchShow() {
@@ -40,11 +36,10 @@ export default class DialogEditRemark extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
-            this.inputData =  this.myProxy.playerInfo.remark;
+            this.inputData = this.myProxy.playerInfo.remark;
             //this.myProxy.api_xxx();
-        }
-        else{
-            this.inputData="";
+        } else {
+            this.inputData = "";
         }
     }
 }

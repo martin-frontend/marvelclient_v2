@@ -42,11 +42,9 @@ export default class DialogBetRecord extends AbstractView {
         ],
     };
 
-
     public get isOtherUser(): any {
-        return this.listQuery.agent_user_id
+        return this.listQuery.agent_user_id;
     }
-
 
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
@@ -94,12 +92,12 @@ export default class DialogBetRecord extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
-            //this.listOptions.moneySelect = 0; 
+            //this.listOptions.moneySelect = 0;
             this.myProxy.resetQuery();
 
             const start_date = this.pageData.listQuery.start_date ? this.pageData.listQuery.start_date : getTodayOffset();
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
-            this.timeRange = [start_date, end_date]
+            this.timeRange = [start_date, end_date];
             this.onTimeChange();
         }
     }
@@ -162,17 +160,16 @@ export default class DialogBetRecord extends AbstractView {
         let order_by = {};
         if (this.listOptions.betTimeSelect == 0) {
             order_by = {
-                "bet_at": "DESC",
+                bet_at: "DESC",
             };
         } else {
             order_by = {
-                "settlement_at": "DESC",
+                settlement_at: "DESC",
             };
         }
         this.listQuery.order_by = JSON.stringify(order_by);
         this.myProxy.getApi();
     }
-
 
     onPageChange(val: any) {
         this.listQuery.page_count = val;
@@ -196,18 +193,17 @@ export default class DialogBetRecord extends AbstractView {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return ""
+            return "";
         }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
     }
     getMoneyValue(str: string): string {
-
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return str
+            return str;
         }
-        if (!!str && str.search('-') == -1) return "+" + str;
+        if (!!str && str.search("-") == -1) return "+" + str;
         return str;
     }
 }

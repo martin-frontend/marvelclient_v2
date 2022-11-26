@@ -1,21 +1,22 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { getVuetify } from "@/_skin001/plugins/vuetify";
+import { getVuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
-import AppFacade from "@/_skin001/AppFacade";
+import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
-import Assets from "@/assets/Assets";
+import { js_utils } from "custer-js-utils";
+import GameConfig from "@/core/config/GameConfig";
 
 LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "all.starsabc.com";
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {
@@ -55,6 +56,3 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-
-const commonIcon = Assets.commonIcon;
-commonIcon.loading = require(`@/assets/loading002.gif`);

@@ -40,28 +40,24 @@ export default class Header extends AbstractView {
     constructor() {
         super(HeaderMediator);
     }
-    
-    public get isShowDirectly() : number {
-        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
-        {
+
+    public get isShowDirectly(): number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0)) {
             return 0;
         }
-        if (this.selfProxy.userInfo.show_promote == 1 )
-        {
+        if (this.selfProxy.userInfo.show_promote == 1) {
             return 1;
         }
-        if (this.selfProxy.userInfo.show_promote == 2)
-        {
+        if (this.selfProxy.userInfo.show_promote == 2) {
             return 2;
         }
 
         return 0;
     }
 
-    
     //当前活动的分类
     get categoryActive() {
-        return this.myProxy.categoryActive
+        return this.myProxy.categoryActive;
     }
 
     mounted() {
@@ -101,12 +97,9 @@ export default class Header extends AbstractView {
     }
 
     goExtension() {
-        if(this.isShowDirectly == 2)
-        {
-            LoginEnter(dialog_agent_manager.show);  
-        }
-        else if(this.isShowDirectly == 1)
-            LoginEnter(page_extension.show);
+        if (this.isShowDirectly == 2) {
+            LoginEnter(dialog_agent_manager.show);
+        } else if (this.isShowDirectly == 1) LoginEnter(page_extension.show);
     }
     /**打开介绍页面 */
     // goIntroduce() {

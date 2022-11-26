@@ -2,7 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogAgentManagerProxy from "../proxy/DialogAgentManagerProxy";
 import getProxy from "@/core/global/getProxy";
 
-export default class DialogAgentManagerMediator extends AbstractMediator{
+export default class DialogAgentManagerMediator extends AbstractMediator {
     private myProxy: DialogAgentManagerProxy = getProxy(DialogAgentManagerProxy);
 
     onRegister() {

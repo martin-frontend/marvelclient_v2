@@ -8,7 +8,7 @@ export default function (targetOffsetTop: number, duration: number = 0.3) {
         ease: Linear.easeNone,
     });
 }
-export function scrollUtil_div (obj: any, targetOffsetTop: number, duration: number = 0.3) {
+export function scrollUtil_div(obj: any, targetOffsetTop: number, duration: number = 0.3) {
     gsap.to(obj, {
         duration,
         scrollTop: targetOffsetTop,

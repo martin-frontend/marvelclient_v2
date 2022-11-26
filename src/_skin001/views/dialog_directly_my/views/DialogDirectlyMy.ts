@@ -21,18 +21,15 @@ export default class DialogDirectlyMy extends AbstractView {
     constructor() {
         super(DialogDirectlyMyMediator);
     }
-    
-    public get pretty_user_id() : any {
 
+    public get pretty_user_id(): any {
         //console.log("---->>>" , this.myProxy.pageData.promotionData.pretty_user_id)
-        if (this.myProxy.pageData.promotionData.pretty_user_id == "")
-        {
+        if (this.myProxy.pageData.promotionData.pretty_user_id == "") {
             return this.myProxy.pageData.promotionData.user_id;
         }
 
-        return this.myProxy.pageData.promotionData.pretty_user_id
+        return this.myProxy.pageData.promotionData.pretty_user_id;
     }
-    
 
     async showPreview() {
         if (this.pageData.qrCode) {

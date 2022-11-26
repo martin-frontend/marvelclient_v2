@@ -46,14 +46,12 @@ export default class DialogStatisticsCredit extends AbstractView {
             },
         ],
     };
-    
+
     constructor() {
         super(DialogStatisticsCreditMediator);
     }
-    onBtnClickNextPage(item:any)
-    {
-        if(item.directly_users <= 0)
-        {
+    onBtnClickNextPage(item: any) {
+        if (item.directly_users <= 0) {
             return;
         }
         this.pageData.listQuery.page_count = 1;
@@ -62,15 +60,14 @@ export default class DialogStatisticsCredit extends AbstractView {
         //this.myProxy.addUserList(item.user_id);
     }
     //点击上面显示的 用户代理链上的 其他用户
-    onBtnClickUserInfo(item:any )
-    {
+    onBtnClickUserInfo(item: any) {
         //对应的 请求
         this.pageData.listQuery.page_count = 1;
         this.myProxy.api_user_var_credit_statistic(item);
         //将代理链条后面的全部删除掉
         //this.myProxy.removeUserList(item);
     }
-    
+
     onTimeChange() {
         if (this.timeRange) {
             const startDate: any = this.timeRange[0];
@@ -94,15 +91,13 @@ export default class DialogStatisticsCredit extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
-    
-    get isMine() : boolean {
-        if(this.myProxy.userListInfo.length > 1)
-        {
-            return false
+    get isMine(): boolean {
+        if (this.myProxy.userListInfo.length > 1) {
+            return false;
         }
         return true;
     }
-    
+
     onQuery() {
         this.myProxy.api_user_var_credit_statistic();
     }
@@ -133,47 +128,42 @@ export default class DialogStatisticsCredit extends AbstractView {
             this.timeRange = [start, end];
             this.myProxy.setcoin_name_unique();
             this.onTimeChange();
-        }
-        else
-        {
+        } else {
             this.myProxy.reseData();
         }
     }
 
-    onUserIdClick(user_id:number){
+    onUserIdClick(user_id: number) {
         const listQuery = this.pageData.listQuery;
-        dialog_bet_record.show(user_id, this.timeRange[0],this.timeRange[1], false,{
-            coin_name_unique:this.myProxy.coin_name_unique,
-            bShowMoneyType:true,
-            bShowUserId:true,
-            bShowTimeText:true,
-            bShowOptions:false,
+        dialog_bet_record.show(user_id, this.timeRange[0], this.timeRange[1], false, {
+            coin_name_unique: this.myProxy.coin_name_unique,
+            bShowMoneyType: true,
+            bShowUserId: true,
+            bShowTimeText: true,
+            bShowOptions: false,
         });
     }
 
-    getMoneyColor(str:string):string{
+    getMoneyColor(str: string): string {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
-            return ""
+        if (amount == 0) {
+            return "";
         }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
+        return !!str && str.search("-") == -1 ? "colorGreen--text" : "colorRed2--text";
     }
-    getMoneyValue(str:string):string{
+    getMoneyValue(str: string): string {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
-            return str
+        if (amount == 0) {
+            return str;
         }
-        if(!!str && str.search('-') == -1) return "+" + str;
+        if (!!str && str.search("-") == -1) return "+" + str;
         return str;
     }
 
-    onItemClick(item:any)
-    {
-        console.log("点击 item",item);
+    onItemClick(item: any) {
+        console.log("点击 item", item);
         this.myProxy.coin_name_unique = item;
         this.onTimeChange();
     }

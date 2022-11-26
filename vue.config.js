@@ -49,5 +49,11 @@ module.exports = {
             filename: "skin100.html",
             title: "egame",
         },
+        skin100: {
+            entry: "src/_skin101/main.ts",
+            template: "public/skin101.html",
+            filename: "skin101.html",
+            title: "egame",
+        },
     },
 };

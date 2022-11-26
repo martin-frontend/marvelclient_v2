@@ -31,71 +31,58 @@ export default class DialogDirectlySetting extends AbstractView {
         super(DialogDirectlySettingMediator);
     }
 
-    get gold_info():any
-    {
+    get gold_info(): any {
         return this.myProxy.playerInfo.gold_info;
     }
     onClose() {
         this.pageData.bShow = false;
     }
-    onItemClick(item:any)
-    {
+    onItemClick(item: any) {
         this.formData.coin_name_unique = item;
     }
     //是否能显示其他
-    public get isAgents() : boolean {
-        if(this.limit.enable_all == 1)
-        {
+    public get isAgents(): boolean {
+        if (this.limit.enable_all == 1) {
             return true;
         }
-        return false
+        return false;
     }
     //是否能设置占比
-    public get isAgents_rate() : boolean {
-        
-        if(this.limit.enable_credit_rate == 1)
-        {
+    public get isAgents_rate(): boolean {
+        if (this.limit.enable_credit_rate == 1) {
             return true;
         }
-        return false
-
+        return false;
     }
-    private copy(msg:any) {
+    private copy(msg: any) {
         this.myProxy.copyId(msg);
         dialog_message.warn(LangUtil("复制成功"));
     }
-    onEditRemark()
-    {
+    onEditRemark() {
         dialog_edit_remark.show(this.myProxy.playerInfo);
     }
     //用户资产设置
-    assetSettings()
-    {
+    assetSettings() {
         dialog_directly_transfer.show(this.playerInfo);
     }
-    agentSetting()
-    {
+    agentSetting() {
         //console.log("打开---代理占比设置")
         dialog_directly_agentset.show(this.playerInfo);
     }
     //资产设置--  增加
-    assetSettings_add()
-    {
-        dialog_directly_transfer.show(this.playerInfo,true);
+    assetSettings_add() {
+        dialog_directly_transfer.show(this.playerInfo, true);
     }
     //esayBet投注额设置 按钮
-    esayBetSetting()
-    {
+    esayBetSetting() {
         //console.log("打开---esayBet投注额设置")
         dialog_directly_easybetset.show(this.playerInfo);
-    } 
+    }
     //返水设置
-    backWatherSettings()
-    {
+    backWatherSettings() {
         dialog_directly_backwater.show(this.playerInfo);
     }
-    search()
-    {
+    search() {
         //console.log("点击搜索")
     }
 

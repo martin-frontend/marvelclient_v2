@@ -12,7 +12,7 @@ import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
         Overlay,
         CustomInput,
         ListNodata,
-    }
+    },
 })
 export default class extends DialogDirectlyEasybetset {}
 </script>

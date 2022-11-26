@@ -24,7 +24,7 @@ export default class GameListSelect extends AbstractView {
         this.$emit("change", value);
     }
 
-    getOrders(){
+    getOrders() {
         return this.orders || Object.keys(this.options);
     }
 }

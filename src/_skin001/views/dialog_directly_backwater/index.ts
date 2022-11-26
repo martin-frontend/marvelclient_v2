@@ -10,14 +10,12 @@ function show(agent_user: any = null, ismine: boolean = false) {
     proxy.pageData.bShow = true;
     proxy.pageData.bisMine = ismine;
 
-    if (agent_user)
-        proxy.setData(agent_user);
+    if (agent_user) proxy.setData(agent_user);
     else {
         const selfProxy: SelfProxy = getProxy(SelfProxy);
-        proxy.playerInfo.parent_water_config = JSON.parse(JSON.stringify ( selfProxy.userInfo.water_config));
-        proxy.playerInfo.water_config = JSON.parse(JSON.stringify ( selfProxy.userInfo.water_config));
+        proxy.playerInfo.parent_water_config = JSON.parse(JSON.stringify(selfProxy.userInfo.water_config));
+        proxy.playerInfo.water_config = JSON.parse(JSON.stringify(selfProxy.userInfo.water_config));
     }
-
 }
 
 export default { show };

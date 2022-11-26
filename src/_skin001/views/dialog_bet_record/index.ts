@@ -3,42 +3,34 @@ import getProxy from "@/core/global/getProxy";
 import DialogBetRecordProxy from "./proxy/DialogBetRecordProxy";
 import DialogBetRecord from "./views/DialogBetRecord.vue";
 
-function show(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true,msg:any=null) {
+function show(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true, msg: any = null) {
     DialogMount(DialogBetRecord);
-    
+
     const proxy: DialogBetRecordProxy = getProxy(DialogBetRecordProxy);
-    proxy.initShowType()
+    proxy.initShowType();
     proxy.pageData.listQuery.agent_user_id = agent_user_id;
     proxy.pageData.listQuery.start_date = start_date;
     proxy.pageData.listQuery.end_date = end_date;
     proxy.pageData.bShowOptions = bShowOptions;
     //proxy.pageData.bShowOptions = true;
-    if (msg)
-    {
-        if (msg.coin_name_unique)
-        {
+    if (msg) {
+        if (msg.coin_name_unique) {
             proxy.pageData.listQuery.coin_name_unique = msg.coin_name_unique;
             proxy.listOptions.moneySelect = msg.coin_name_unique;
         }
-        if(msg.bShowOptions != null)
-        {
+        if (msg.bShowOptions != null) {
             proxy.pageData.bShowOptions = msg.bShowOptions;
         }
-        if(msg.bShowMoneyType != null)
-        {
+        if (msg.bShowMoneyType != null) {
             proxy.pageData.bShowMoneyType = msg.bShowMoneyType;
         }
-        if(msg.bShowUserId != null)
-        {
+        if (msg.bShowUserId != null) {
             proxy.pageData.bShowUserId = msg.bShowUserId;
         }
-        if(msg.bShowTimeText != null)
-        {
+        if (msg.bShowTimeText != null) {
             proxy.pageData.bShowTimeText = msg.bShowTimeText;
         }
-    }
-    else
-    {
+    } else {
         proxy.listOptions.moneySelect = 0;
     }
     if (agent_user_id) {

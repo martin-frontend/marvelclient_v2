@@ -3,12 +3,9 @@ import DialogDirectlyMyProxy from "../proxy/DialogDirectlyMyProxy";
 import getProxy from "@/core/global/getProxy";
 import { getTodayGMT } from "@/core/global/Functions";
 
-export default class DialogDirectlyMyMediator extends AbstractMediator{
+export default class DialogDirectlyMyMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_var_short_chain,
-            net.EventType.api_user_var_commission_commissiondetail,
-        ];
+        return [net.EventType.api_user_var_short_chain, net.EventType.api_user_var_commission_commissiondetail];
     }
     private isToday(someDate: any) {
         const today = getTodayGMT();
@@ -17,7 +14,7 @@ export default class DialogDirectlyMyMediator extends AbstractMediator{
     }
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogDirectlyMyProxy = getProxy(DialogDirectlyMyProxy);
+        const myProxy: DialogDirectlyMyProxy = getProxy(DialogDirectlyMyProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 // this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });

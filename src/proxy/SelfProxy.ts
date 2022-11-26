@@ -43,9 +43,9 @@ export default class SelfProxy extends AbstractProxy {
         is_credit_user: 0,
         is_exchange: 0,
         is_recharge: 0,
-        show_credit_set:0,
-        show_promote:0,
-        invite_user_id:0
+        show_credit_set: 0,
+        show_promote: 0,
+        invite_user_id: 0,
     };
     /**红点信息 */
     red_dot_tips = {

@@ -77,8 +77,8 @@ export default class PageHomeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.backwater_setting_info, data);
     }
 
-    set_vendor_96_products(data:any){
-        if(Object.keys(data).length > 0) {
+    set_vendor_96_products(data: any) {
+        if (Object.keys(data).length > 0) {
             this.pageData.compData = data;
         }
     }

@@ -1,11 +1,11 @@
 export default class DialogEditRemarkProxy extends puremvc.Proxy {
     static NAME = "DialogEditRemarkProxy";
     playerInfo = {
-        user_id:0,
-        nick_name:"",
-        plat_id:"",
-        remark:"",
-    }
+        user_id: 0,
+        nick_name: "",
+        plat_id: "",
+        remark: "",
+    };
     pageData = {
         loading: false,
         bShow: false,
@@ -35,13 +35,13 @@ export default class DialogEditRemarkProxy extends puremvc.Proxy {
         Object.assign(this.playerInfo, data);
     }
     //更新 备注的值
-    agent_direct_user_update(msg:any) {
+    agent_direct_user_update(msg: any) {
         this.pageData.loading = true;
-        const formData= {
+        const formData = {
             user_id: core.user_id,
-            agent_user_id:this.playerInfo.user_id,
-            remark:msg,
-        }
+            agent_user_id: this.playerInfo.user_id,
+            remark: msg,
+        };
         this.sendNotification(net.HttpType.api_user_var_agent_var_update, formData);
         this.pageData.bShow = false;
     }

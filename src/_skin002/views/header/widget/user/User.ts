@@ -11,7 +11,7 @@ export default class User extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
 
-    mounted(){
-        console.warn(">>>>>>>User")
+    mounted() {
+        console.warn(">>>>>>>User");
     }
 }

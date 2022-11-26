@@ -19,7 +19,7 @@ import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
-    homeProxy:PageHomeProxy = getProxy(PageHomeProxy);
+    homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
     pageGameListProxy: PageGameListProxy = getProxy(PageGameListProxy);
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     get menuList() {
@@ -72,37 +72,33 @@ export default class MobileMenu extends AbstractView {
         //     list.pop();
         // };
 
-        if ( this.isShowDirectly == 2 )
-        {
-            list.push( {
-                    id: 5,
-                    name: LangUtil("代理管理"),
-                    icon: require(`@/_skin001/assets/icon/icon_extension.png`),
-                    icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
-                    path: "/page_extension",
-                },)
+        if (this.isShowDirectly == 2) {
+            list.push({
+                id: 5,
+                name: LangUtil("代理管理"),
+                icon: require(`@/_skin001/assets/icon/icon_extension.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
+                path: "/page_extension",
+            });
         }
- 
+
         return list;
     }
 
-    public get isShowDirectly() : number {
-        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0 ))
-        {
+    public get isShowDirectly(): number {
+        if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0)) {
             return 0;
         }
-        if (this.selfProxy.userInfo.show_promote == 1 )
-        {
+        if (this.selfProxy.userInfo.show_promote == 1) {
             return 1;
         }
-        if (this.selfProxy.userInfo.show_promote == 2)
-        {
+        if (this.selfProxy.userInfo.show_promote == 2) {
             return 2;
         }
 
         return 0;
     }
-    
+
     routerPath = this.$router.app.$route.path;
     @Watch("$route")
     onWatchRouter() {
@@ -126,18 +122,15 @@ export default class MobileMenu extends AbstractView {
                 page_game_list.show(0);
                 break;
             // case 3:
-                // page_game_list_chess.show(2);
-                // break;
+            // page_game_list_chess.show(2);
+            // break;
             case 4:
                 LoginEnter(page_mine.show);
                 break;
             case 5:
-                if(this.isShowDirectly == 2)
-                {
+                if (this.isShowDirectly == 2) {
                     LoginEnter(dialog_agent_manager.show);
-                }
-                else if(this.isShowDirectly == 1)
-                LoginEnter(page_extension.show);
+                } else if (this.isShowDirectly == 1) LoginEnter(page_extension.show);
                 break;
         }
     }

@@ -8,8 +8,8 @@ import DialogDirectlyMy from "./DialogDirectlyMy";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogDirectlyMy {}
 </script>

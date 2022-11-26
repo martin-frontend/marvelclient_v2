@@ -48,32 +48,27 @@ export default class DialogAgentManager extends AbstractView {
     }
 
     //上级id
-    public get invite_user_id() : any {
+    public get invite_user_id(): any {
         return this.selfProxy.userInfo.invite_user_id;
         //return 1273623;
     }
-    getConfigName(type:any)
-    {
+    getConfigName(type: any) {
         return Constant.GameTypeText(type);
     }
-    getBackWaterTxt(water_config:any) :string
-    {
+    getBackWaterTxt(water_config: any): string {
         let str = "";
-        if (!water_config)
-        {
+        if (!water_config) {
             return str;
         }
         const coinKeys = Object.keys(water_config);
         for (let index = 0; index < coinKeys.length; index++) {
             const element = coinKeys[index];
-            if (element == "0")
-            {
+            if (element == "0") {
                 continue;
             }
-            str = str +  this.getConfigName(element) + " " + water_config[element];
-            if (index < coinKeys.length -1)
-            {
-                str = str + "/ "
+            str = str + this.getConfigName(element) + " " + water_config[element];
+            if (index < coinKeys.length - 1) {
+                str = str + "/ ";
             }
         }
         return str;
@@ -93,9 +88,7 @@ export default class DialogAgentManager extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_agent_direct_list();
-        }
-        else
-        {
+        } else {
             this.myProxy.pageData.list = [];
         }
     }
@@ -130,15 +123,14 @@ export default class DialogAgentManager extends AbstractView {
     }
 
     handlerShowBetRecord(agent_user_id: any) {
-        dialog_bet_record.show(agent_user_id,"","",true,{
-            bShowUserId:true,
+        dialog_bet_record.show(agent_user_id, "", "", true, {
+            bShowUserId: true,
         });
-
     }
 
     handlerShowDialogSet(agent_user: any) {
         //dialog_directly_setting.show(agent_user);
-        dialog_directly_setting.show({userinfo:agent_user,limitinfo:this.limitinfo }   );
+        dialog_directly_setting.show({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
         dialog_add_user.show();
@@ -147,69 +139,51 @@ export default class DialogAgentManager extends AbstractView {
         dialog_statistics_credit.show();
     }
 
-    opendialog_my()
-    {
+    opendialog_my() {
         dialog_directly_my.show();
     }
-    opendialog_myWater()
-    {
-        dialog_directly_backwater.show(null,true);
+    opendialog_myWater() {
+        dialog_directly_backwater.show(null, true);
     }
-    fontAuto()
-    {
+    fontAuto() {
         const touzhu_node_parent = document.getElementById("touzhu_node_parent");
         const touzhu_node = document.getElementById("touzhu_node");
-        
+
         //获取投注按钮的宽度
         const touzhi_width = touzhu_node?.scrollWidth;
-
     }
-    getMoneyColor(str:any):string{
-        if (typeof str == "number")
-        {
-            if (str < 0)
-            {
+    getMoneyColor(str: any): string {
+        if (typeof str == "number") {
+            if (str < 0) {
                 return "red--text";
-            }
-            else if (str > 0)
-            {
-                return"colorGreen--text"
-            }
-            else
-            {
+            } else if (str > 0) {
+                return "colorGreen--text";
+            } else {
                 return "";
             }
         }
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
-            return ""
+        if (amount == 0) {
+            return "";
         }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
+        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
     }
-    getMoneyValue(str:any):string{
-        if (typeof str == "number")
-        {
-
-            if (str > 0)
-            {
+    getMoneyValue(str: any): string {
+        if (typeof str == "number") {
+            if (str > 0) {
                 return "+" + str;
-            }
-            else
-            {
-                return str +"";
+            } else {
+                return str + "";
             }
         }
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
-        if (amount == 0)
-        {
-            return str
+        if (amount == 0) {
+            return str;
         }
 
-        if(!!str && str.search('-') == -1) return "+" + str;
+        if (!!str && str.search("-") == -1) return "+" + str;
         return str;
     }
-
 }

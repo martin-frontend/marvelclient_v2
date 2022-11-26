@@ -17,21 +17,18 @@ export default class DialogDirectlyGameset extends AbstractView {
         super(DialogDirectlyGamesetMediator);
     }
     public get isDisable(): boolean {
-
         const coinKeys = Object.keys(this.myProxy.inputData);
 
         for (let index = 0; index < coinKeys.length; index++) {
             const element = coinKeys[index];
             if (this.myProxy.playerInfo.vendor_type_switch[element] != parseInt(this.myProxy.inputData[element])) {
-                return false
+                return false;
             }
         }
 
-        return true
+        return true;
     }
-    handlerUpdate(val: any) {
-
-    }
+    handlerUpdate(val: any) {}
     getConfigName(type: any) {
         return Constant.GameTypeText(type);
     }

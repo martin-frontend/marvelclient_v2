@@ -36,26 +36,24 @@ export default class DialogDirectlySetting extends AbstractView {
     get gold_info(): any {
         return this.myProxy.playerInfo.gold_info;
     }
-    
-    public get gameSwitchInfo() : number[] {
+
+    public get gameSwitchInfo(): number[] {
         const keys = Object.keys(this.myProxy.playerInfo.vendor_type_switch);
         let count = 0;
         let totleCount = 0;
         for (let index = 0; index < keys.length; index++) {
             const element = this.myProxy.playerInfo.vendor_type_switch[keys[index]];
-            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] == 1)
-            {
+            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] == 1) {
                 count++;
             }
-            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] != -1)
-            {
+            if (this.myProxy.playerInfo.vendor_type_switch[keys[index]] != -1) {
                 totleCount++;
             }
         }
-        return [totleCount ,count];
+        return [totleCount, count];
         //return "";
     }
-    
+
     onClose() {
         this.pageData.bShow = false;
     }
@@ -91,8 +89,7 @@ export default class DialogDirectlySetting extends AbstractView {
         //console.log("打开---代理占比设置")
         dialog_directly_agentset.show(this.playerInfo);
     }
-    openGamesetPanel()
-    {
+    openGamesetPanel() {
         dialog_directly_gameset.show(this.playerInfo);
     }
     //资产设置--  增加

@@ -8,8 +8,8 @@ import DialogDirectlyGameset from "./DialogDirectlyGameset";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogDirectlyGameset {}
 </script>

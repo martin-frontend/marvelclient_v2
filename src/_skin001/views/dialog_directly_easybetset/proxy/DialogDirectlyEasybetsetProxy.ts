@@ -9,19 +9,17 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         user_id: 0,
         nick_name: "",
         vendor_config: {
-            market_type_config: <any>{
-            }
+            market_type_config: <any>{},
         },
-
-    }
+    };
     isShowGropSet: boolean = true; //是否将消息转为 消息组， 整个组的 投注设置
     private compareData = <any>{}; //比较的数据
     formData = {
         user_id: core.user_id,
         direct_user_id: 0,
         coin_name_unique: "",
-        market_type_config: <any>[]
-    }
+        market_type_config: <any>[],
+    };
 
     pageData = {
         loading: false,
@@ -59,29 +57,27 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
     type_4 = ["ODD_OR_EVEN_HALF_TIME", "ODD_OR_EVEN"];
     type_5 = [];
 
-
     setTypeSingleData(arr: any, typestr: any, mainArr: any) {
         if (arr.length > 0) {
             const obj_1 = JSON.parse(JSON.stringify(arr[0]));
             const str = "easybet投注类型" + typestr;
-            obj_1.market_type_text = LangUtil(str)
+            obj_1.market_type_text = LangUtil(str);
             obj_1.srcArr = JSON.parse(JSON.stringify(arr));
             mainArr.push(obj_1);
         }
     }
 
     setCurFormMerketData(inputKey: any = null) {
-        if (!inputKey)
-            inputKey = this.formData.coin_name_unique;
+        if (!inputKey) inputKey = this.formData.coin_name_unique;
 
         //分开的盘口设置
         if (!this.isShowGropSet) {
-            this.formData.market_type_config = JSON.parse(JSON.stringify(this.playerInfo.vendor_config.market_type_config[inputKey]))
-            this.compareData = JSON.parse(JSON.stringify(this.playerInfo.vendor_config.market_type_config[inputKey]))//给比较的对象 赋值， 主要用于检测 是否有修改过
+            this.formData.market_type_config = JSON.parse(JSON.stringify(this.playerInfo.vendor_config.market_type_config[inputKey]));
+            this.compareData = JSON.parse(JSON.stringify(this.playerInfo.vendor_config.market_type_config[inputKey])); //给比较的对象 赋值， 主要用于检测 是否有修改过
             return;
         }
         //组合一起的盘口设置
-        const srcData = this.playerInfo.vendor_config.market_type_config[inputKey]
+        const srcData = this.playerInfo.vendor_config.market_type_config[inputKey];
         const destArr = <any>[];
         const type_1_arr = [];
         const type_2_arr = [];
@@ -93,17 +89,13 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             const element = srcData[index];
             if (this.type_1.indexOf(element.market_type) != -1) {
                 type_1_arr.push(element);
-            }
-            else if (this.type_2.indexOf(element.market_type) != -1) {
+            } else if (this.type_2.indexOf(element.market_type) != -1) {
                 type_2_arr.push(element);
-            }
-            else if (this.type_3.indexOf(element.market_type) != -1) {
+            } else if (this.type_3.indexOf(element.market_type) != -1) {
                 type_3_arr.push(element);
-            }
-            else if (this.type_4.indexOf(element.market_type) != -1) {
+            } else if (this.type_4.indexOf(element.market_type) != -1) {
                 type_4_arr.push(element);
-            }
-            else {
+            } else {
                 type_5_arr.push(element);
             }
         }
@@ -114,14 +106,12 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         this.setTypeSingleData(type_5_arr, "5", destArr);
 
         this.formData.market_type_config = destArr;
-        this.compareData = JSON.parse(JSON.stringify(destArr))//给比较的对象 赋值， 主要用于检测 是否有修改过
+        this.compareData = JSON.parse(JSON.stringify(destArr)); //给比较的对象 赋值， 主要用于检测 是否有修改过
     }
-    setDataGrop() {
-
-    }
+    setDataGrop() {}
     setData(data: any) {
         this.pageData.loading = false;
-        
+
         Object.assign(this.playerInfo, data);
         //设置预设金币种类的值
         const keys = Object.keys(this.playerInfo.vendor_config.market_type_config);
@@ -150,8 +140,10 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             const element = curList[index];
             const destObj = destArr[index];
 
-            if (destObj.setting.single_max_bet == element.setting.single_max_bet &&
-                destObj.setting.single_field_max_bet == element.setting.single_field_max_bet) {
+            if (
+                destObj.setting.single_max_bet == element.setting.single_max_bet &&
+                destObj.setting.single_field_max_bet == element.setting.single_field_max_bet
+            ) {
                 continue;
             }
             if (!isNeedReturn) {
@@ -159,28 +151,21 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             }
             const newObj = {
                 market_type: element.market_type,
-                setting: <any>{}
+                setting: <any>{},
             };
             //let isAdd = false;
 
-            if ( !destObj.setting.single_field_max_bet )
-            {
+            if (!destObj.setting.single_field_max_bet) {
                 newObj.setting.single_field_max_bet = "-";
-            }
-            else
-            {
+            } else {
                 newObj.setting.single_field_max_bet = parseFloat(destObj.setting.single_field_max_bet);
             }
-            if (!destObj.setting.single_max_bet )
-            {
+            if (!destObj.setting.single_max_bet) {
                 newObj.setting.single_max_bet = "-";
-            }
-            else
-            {
+            } else {
                 newObj.setting.single_max_bet = parseFloat(destObj.setting.single_max_bet);
             }
 
-            
             // if (element.setting.single_field_max_bet != destObj.setting.single_field_max_bet) {
             //     //如果两个值不想等  如果输入的需要传的为空  则直接发送空
             //     if (!destObj.setting.single_field_max_bet) {
@@ -230,8 +215,7 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             // }
             if (!this.isShowGropSet) {
                 newArr.push(newObj);
-            }
-            else {
+            } else {
                 if (element.srcArr && element.srcArr.length > 0) {
                     for (let index = 0; index < element.srcArr.length; index++) {
                         const obj = element.srcArr[index];
@@ -265,18 +249,17 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             coin_name_unique: this.formData.coin_name_unique,
             market_type_config: JSON.stringify(formdata),
             //account_status:this.playerInfo.status,
-        }
+        };
         //console.log("发送的值", sendData);
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(sendData));
     }
     agent_direct_user_update_callback(msg: any = null) {
-        const str = LangUtil("修改成功！")
+        const str = LangUtil("修改成功！");
         dialog_message_box.alert({
-            message: str, okFun: () => {
+            message: str,
+            okFun: () => {
                 //this.pageData.bShow = false;
-            }
+            },
         });
-
     }
-
 }

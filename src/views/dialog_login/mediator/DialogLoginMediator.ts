@@ -23,7 +23,7 @@ export default class DialogLoginMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_login:
                 dialog_message.success(LangUtil("登录成功"));
-                if(myProxy.pageData.is_login_need_google == 1) {
+                if (myProxy.pageData.is_login_need_google == 1) {
                     dialog_google_verification.show(false);
                 }
                 myProxy.hide();

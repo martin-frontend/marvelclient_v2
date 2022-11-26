@@ -1,0 +1,72 @@
+<v-dialog width="400" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
+    <v-card class="rounded-xl d-flex flex-column" color="colorPanelBg" min-width="100%" height="660">
+
+        <!-- 标题 和 关闭按钮 -->
+        <v-card-title class="gradient-bg rounded-xl">
+            <div class="text-18 font-weight-medium ml-2 white--text">{{ LangUtil("游戏类型开关") }}</div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+
+        <!-- 页面内容 -->
+        <v-card-text class="text-sm-subtitle-1 text_height">
+            <!-- 用户id -->
+            <div class="d-flex justify-space-between align-center my-2 text-16">
+                <span class="d-flex colorText1--text">
+                    {{LangUtil("用户ID")}}
+                </span>
+                <span class="d-flex  colorBlue--text">
+                    {{playerInfo.user_id}}
+                </span>
+            </div>
+            <div class="hackhome"></div>
+            <!-- 用户昵称 -->
+            <div class="d-flex justify-space-between align-center my-2 text-16">
+                <span class="d-flex colorText1--text">
+                    {{LangUtil("用户昵称")}}
+                </span>
+                <span class="d-flex align-center colorBlue--text">
+                    {{playerInfo.nick_name}}
+                </span>
+            </div>
+            <div class="hackhome"></div>
+
+            <v-sheet
+                class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill ml-n2 mr-n2 mt-2 text-14">
+                <v-sheet class="d-flex justify-center colorText1--text ml-2" min-width="120" color="transparent">
+                    {{LangUtil("游戏类型")}}
+                </v-sheet>
+
+                <v-sheet class="d-flex justify-center colorText1--text" min-width="80" color="transparent">
+                    {{LangUtil("开关")}}
+                </v-sheet>
+            </v-sheet>
+
+            <template v-for="(item, key) of gameSwitchInfo">
+                <v-sheet
+                    class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill  my-3 ml-n2 mr-n2 mt-2 text-14"
+                    :key="key" v-if="key!=0 && item!=-1">
+                    <v-sheet class="d-flex justify-center colorBlue1--text text-16 ml-2 empty_height" min-width="120"
+                        color="transparent">
+                        {{getConfigName(key) }}
+                    </v-sheet>
+                    <v-switch class="empty_height d-flex align-center" :true-value="1" :false-value="0"
+                        v-model="myProxy.inputData[key]" :disabled="item < 0" color="colorBtnBg" inset></v-switch>
+                </v-sheet>
+                <div v-if="false && key!=0" class="hackhome"></div>
+            </template>
+
+            <div>
+                <!-- 确定按钮 -->
+                <v-btn class="rounded-lg" color="colorBtnBg" height="40" block @click="onClickSure"
+                    :disabled="isDisable">
+                    {{LangUtil("确定")}}</v-btn>
+            </div>
+
+        </v-card-text>
+
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -94,7 +94,8 @@ export default class UserPanel extends AbstractView {
                 LoginEnter(dialog_wallet.show);
                 break;
             case 3:
-                LoginEnter(dialog_bet_record.show);
+                //LoginEnter(dialog_bet_record.show);
+                dialog_bet_record.show(null,"","",true,{bShowIsMine : true});
                 break;
             case 4:
                 LoginEnter(dialog_email.show);

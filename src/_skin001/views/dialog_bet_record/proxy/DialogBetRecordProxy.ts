@@ -17,9 +17,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         loading: false,
         bShow: false,
         bShowOptions: true, //是否显示选取框
-        bShowMoneyType: false, //是否显示 结算币种
-        bShowUserId: false, //是否显示玩家id
-        bShowTimeText: false, //是否显示 时间文字
+        bShowMoneyType:false, //是否显示 结算币种
+        bShowUserId:false,  //是否显示玩家id
+        bShowTimeText:false,//是否显示 时间文字
+        bShowIsMine:false,
 
         // 列表是否加载完成，手机模式专用
         finished: false,
@@ -28,7 +29,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            coin_name_unique: "", //币种
+            coin_name_unique:"",  //币种
             start_date: "",
             end_date: "",
             page_count: 1,
@@ -49,6 +50,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         total_water_coin: "",
         total_valid_bet_gold_coin: "",
         total_win_gold_coin: "",
+        total_backwater_coin: "",
         pageInfo: {
             pageCurrent: 1,
             pageCount: 1,
@@ -66,7 +68,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         statusSelect: 0,
         timeSelect: 0,
         betTimeSelect: 0,
-        moneySelect: 0,
+        moneySelect:0,
         typeOptions: () => {
             return {
                 0: LangUtil("全部类型"),
@@ -109,8 +111,9 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             for (let index = 0; index < moneyKeys.length; index++) {
                 options[moneyKeys[index]] = moneyKeys[index];
             }
-            return options;
-        },
+            return  options;
+        }
+
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -127,11 +130,13 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     setVendors(data: any) {
         this.pageData.vendors = data;
     }
-    initShowType() {
+    initShowType()
+    {
         this.pageData.bShowOptions = true;
         this.pageData.bShowMoneyType = false;
         this.pageData.bShowTimeText = false;
         this.pageData.bShowUserId = false;
+        this.pageData.bShowIsMine = false;
     }
     setData(data: any) {
         this.pageData.loading = false;
@@ -146,6 +151,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_water_coin = data.total_water_coin;
         this.pageData.total_valid_bet_gold_coin = data.total_valid_bet_gold_coin;
         this.pageData.total_win_gold_coin = data.total_win_gold_coin;
+        this.pageData.total_backwater_coin = data.total_backwater_coin;
 
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.mobile) {

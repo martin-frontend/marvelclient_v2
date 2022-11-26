@@ -85,6 +85,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     // 直属扣款 信息
     api_user_var_agent_direct_deduction()
     {
+        this.formData.user_id = core.user_id;
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_agent_direct_deduction, objectRemoveNull(this.formData));
         this.formData.gold="";
@@ -101,6 +102,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     // 直属加钱 信息
     api_user_var_agent_credit_transfer()
     {
+        this.formData.user_id = core.user_id;
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_agent_credit_transfer, objectRemoveNull(this.formData));
         this.formData.gold="";

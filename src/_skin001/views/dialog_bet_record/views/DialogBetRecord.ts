@@ -8,6 +8,7 @@ import dialog_order from "@/_skin001/views/dialog_order";
 import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -19,7 +20,7 @@ export default class DialogBetRecord extends AbstractView {
     listOptions = this.myProxy.listOptions;
     listQuery = this.pageData.listQuery;
     pageInfo = this.myProxy.pageData.pageInfo;
-
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
     timeRange: any = ["", ""];
     pickerOptions = {
         shortcuts: [
@@ -42,10 +43,27 @@ export default class DialogBetRecord extends AbstractView {
         ],
     };
 
-    public get isOtherUser(): any {
-        return this.listQuery.agent_user_id;
-    }
 
+    public get isOtherUser(): any {
+        return this.listQuery.agent_user_id
+    }
+    
+    public get isShowMyWater() : boolean {
+        //return false;
+        if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin )
+            return true;
+        return false;
+    }
+    
+    getBackWater(nub:any)
+    {
+        if (typeof nub == "string")
+        {
+            nub = parseFloat(nub);
+        }
+        nub = nub * 0.01;
+        return nub.toFixed(2);
+    }
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
         if (<any>this.listOptions.moneySelect != 0) {
@@ -92,12 +110,12 @@ export default class DialogBetRecord extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
-            //this.listOptions.moneySelect = 0;
+            //this.listOptions.moneySelect = 0; 
             this.myProxy.resetQuery();
 
             const start_date = this.pageData.listQuery.start_date ? this.pageData.listQuery.start_date : getTodayOffset();
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
-            this.timeRange = [start_date, end_date];
+            this.timeRange = [start_date, end_date]
             this.onTimeChange();
         }
     }
@@ -160,16 +178,17 @@ export default class DialogBetRecord extends AbstractView {
         let order_by = {};
         if (this.listOptions.betTimeSelect == 0) {
             order_by = {
-                bet_at: "DESC",
+                "bet_at": "DESC",
             };
         } else {
             order_by = {
-                settlement_at: "DESC",
+                "settlement_at": "DESC",
             };
         }
         this.listQuery.order_by = JSON.stringify(order_by);
         this.myProxy.getApi();
     }
+
 
     onPageChange(val: any) {
         this.listQuery.page_count = val;
@@ -193,17 +212,18 @@ export default class DialogBetRecord extends AbstractView {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return "";
+            return ""
         }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "red--text";
     }
     getMoneyValue(str: string): string {
+
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return str;
+            return str
         }
-        if (!!str && str.search("-") == -1) return "+" + str;
+        if (!!str && str.search('-') == -1) return "+" + str;
         return str;
     }
 }

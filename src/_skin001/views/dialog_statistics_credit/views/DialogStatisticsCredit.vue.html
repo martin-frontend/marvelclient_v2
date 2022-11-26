@@ -158,18 +158,38 @@
                         v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex justify-space-between">
                             <template v-if="pageData.agent.user_id != item.user_id || !isMine">
-                                <div class="colorBlue--text">{{LangUtil("直属会员帐号")}}</div>
+                                <div class="colorBlue--text">{{LangUtil("直属会员ID")}}</div>
                                 <div class="text-decoration-underline cursor-pointer"
                                     @click="onUserIdClick(item.user_id)">
                                     {{item.user_id}}
                                 </div>
                             </template>
                             <template v-else>
-                                <div class="colorBlue--text">{{LangUtil("当前会员帐号")}}</div>
+                                <div class="colorBlue--text">{{LangUtil("当前会员ID")}}</div>
                                 <div class="colorYellow2--text">{{item.user_id}}</div>
                             </template>
 
                         </div>
+                        <div class="d-flex justify-space-between">
+                            <template v-if="pageData.agent.user_id != item.user_id || !isMine">
+                                <div class="colorBlue--text">{{LangUtil("直属会员帐号")}}</div>
+                                <div>
+                                    {{item.username}}
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="colorBlue--text">{{LangUtil("当前会员帐号")}}</div>
+                                <div class="colorYellow2--text">{{item.username}}</div>
+                            </template>
+                        </div>
+                        <template v-if="isMine">
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue--text">{{LangUtil("备注")}}</div>
+                            <div>
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </div>
+                        </div>
+                    </template>
                         <div class="d-flex justify-space-between">
                             <div class="colorBlue--text">{{LangUtil("下注笔数")}}</div>
                             <div>{{item.record_count}}</div>
@@ -272,10 +292,10 @@
                             </v-sheet>
                         </v-menu>
                     </div>
-                    <el-date-picker v-model="timeRange" type="datetimerange" :picker-options="pickerOptions" :clearable="false"
-                        range-separator="-" :start-placeholder="LangUtil('开始日期')" :end-placeholder="LangUtil('结束日期')"
-                        :default-time="[`00:00:00`, `23:59:00`]" align="right" format="yyyy-MM-dd HH:mm" size="large"
-                        class="input_range align-center" @change="onTimeChange">
+                    <el-date-picker v-model="timeRange" type="datetimerange" :picker-options="pickerOptions"
+                        :clearable="false" range-separator="-" :start-placeholder="LangUtil('开始日期')"
+                        :end-placeholder="LangUtil('结束日期')" :default-time="[`00:00:00`, `23:59:00`]" align="right"
+                        format="yyyy-MM-dd HH:mm" size="large" class="input_range align-center" @change="onTimeChange">
                         <template slot="range-separator">-</template>
                     </el-date-picker>
                     <div class="ml-n16  gmt">(GMT8)</div>
@@ -308,7 +328,7 @@
                 <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38"
                     color="#16233F">
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
-                        {{LangUtil("直属会员帐号")}}</v-sheet>
+                        {{isMine ? LangUtil("ID/账号/备注") : LangUtil("直属ID")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                         {{LangUtil("下注笔数")}}</v-sheet>
                     <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
@@ -343,8 +363,9 @@
                             {{pageData.summary.record_count}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{pageData.summary.bet_gold}}</v-sheet>
-                        <v-sheet class="d-flex justify-center colorBlue--text" :class="getMoneyColor(pageData.summary.win_gold)"
-                            color="transparent" min-width="80">{{getMoneyValue(pageData.summary.win_gold)}}</v-sheet>
+                        <v-sheet class="d-flex justify-center colorBlue--text"
+                            :class="getMoneyColor(pageData.summary.win_gold)" color="transparent" min-width="80">
+                            {{getMoneyValue(pageData.summary.win_gold)}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{pageData.summary.valid_bet_gold}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
@@ -353,11 +374,13 @@
                             {{pageData.summary.back_water}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent" min-width="80">
                             {{pageData.summary.credit_rate}}%</v-sheet>
-                        <v-sheet class="d-flex justify-center colorBlue--text" :class="getMoneyColor(pageData.summary.agent_amount)"
-                            color="transparent" min-width="80">{{getMoneyValue(pageData.summary.agent_amount)}}
+                        <v-sheet class="d-flex justify-center colorBlue--text"
+                            :class="getMoneyColor(pageData.summary.agent_amount)" color="transparent" min-width="80">
+                            {{getMoneyValue(pageData.summary.agent_amount)}}
                         </v-sheet>
-                        <v-sheet class="d-flex justify-center colorBlue--text" :class="getMoneyColor(pageData.summary.plat_amount)"
-                            color="transparent" min-width="80">{{getMoneyValue(pageData.summary.plat_amount)}}</v-sheet>
+                        <v-sheet class="d-flex justify-center colorBlue--text"
+                            :class="getMoneyColor(pageData.summary.plat_amount)" color="transparent" min-width="80">
+                            {{getMoneyValue(pageData.summary.plat_amount)}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{pageData.summary.group_users}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
@@ -366,25 +389,44 @@
 
 
                     <!-- 下属用户的 -->
-                    <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 mt-2 text-14" height="38"
-                        color="#16233F" v-for="(item, key) in pageData.list" :key="key">
+                    <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 mt-2 text-14"
+                        min-height="38" color="#16233F" v-for="(item, key) in pageData.list" :key="key">
 
-                        <v-sheet v-if="pageData.agent.user_id!=item.user_id || !isMine"
-                            class="d-flex justify-center colorBlue--text text-decoration-underline cursor-pointer"
-                            color="transparent" min-width="80" @click.native="onUserIdClick(item.user_id)">
-                            {{item.user_id}}
-                        </v-sheet>
-                        <v-sheet v-else class="d-flex justify-center colorYellow2--text" color="transparent"
+                        <v-sheet v-if="pageData.agent.user_id!=item.user_id || !isMine" color="transparent"
                             min-width="80">
-                            {{item.user_id}}
+                            <v-sheet
+                                class="d-flex justify-center colorBlue--text text-decoration-underline cursor-pointer"
+                                @click.native="onUserIdClick(item.user_id)" color="transparent">
+                                {{item.user_id}}
+                            </v-sheet>
+                            <template v-if="isMine">
+                            <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
+                                {{item.username}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center colorBlue--text" color="transparent">
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </v-sheet>
+                            </template>
                         </v-sheet>
+                        <v-sheet v-else color="transparent" min-width="80">
+                            <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
+                                {{item.user_id}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
+                                {{item.username}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center colorYellow2--text" color="transparent">
+                                {{item.remark ? item.remark : LangUtil("-")}}
+                            </v-sheet>
+                        </v-sheet>
+
 
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{item.record_count}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{item.bet_gold}}</v-sheet>
-                        <v-sheet class="d-flex justify-center colorBlue--text" :class="getMoneyColor(item.win_gold)" color="transparent"
-                            min-width="80">{{getMoneyValue(item.win_gold)}}</v-sheet>
+                        <v-sheet class="d-flex justify-center colorBlue--text" :class="getMoneyColor(item.win_gold)"
+                            color="transparent" min-width="80">{{getMoneyValue(item.win_gold)}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">
                             {{item.valid_bet_gold}}</v-sheet>
                         <v-sheet class="d-flex justify-center colorBlue--text" color="transparent" min-width="80">

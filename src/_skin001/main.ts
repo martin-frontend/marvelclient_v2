@@ -11,6 +11,7 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
 import 'element-ui/lib/theme-chalk/index.css';
 import Assets from "@/assets/Assets";
+import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 
 LogUtil.init();
 core.init();
@@ -29,7 +30,7 @@ AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
-
+Vue.component("custom-tree", CustomTree);
 
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;

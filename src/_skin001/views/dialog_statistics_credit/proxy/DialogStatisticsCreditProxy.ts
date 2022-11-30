@@ -24,6 +24,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             target_user_id: 0,
         },
         list: <any>[],
+        bind_relation:"",
         summary: {
             record_count: 0,
             bet_gold: "",
@@ -125,6 +126,8 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.pageData.summary, data.summary);
         Object.assign(this.pageData.agent, data.agent);
+        this.pageData.bind_relation = data.bind_relation;
+
         const vuetify = Vue.vuetify;
         if (vuetify.framework.breakpoint.mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;

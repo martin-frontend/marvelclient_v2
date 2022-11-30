@@ -5,12 +5,15 @@ import Vue from "vue";
 import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+
+
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
     gameProxy: GameProxy = getProxy(GameProxy);
     GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
         this.api_vendor_simple();
+
     }
 
     pageData = {
@@ -18,10 +21,11 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         bShow: false,
         bShowOptions: true, //是否显示选取框
         bShowMoneyType: false, //是否显示 结算币种
-        bShowUserId: false, //是否显示玩家id
-        bShowTimeText: false, //是否显示 时间文字
+        bShowUserId: false,  //是否显示玩家id
+        bShowTimeText: false,//是否显示 时间文字
         bShowIsMine: false,
-
+        bShowFilterBtn: false,// 是否显示筛选按钮
+        filterBtnInfo: <any>{}, //筛选按钮需要用到的信息
         // 列表是否加载完成，手机模式专用
         finished: false,
         //如果是列表，使用以下数据，否则删除
@@ -29,13 +33,14 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            coin_name_unique: "", //币种
+            coin_name_unique: "",  //币种
             start_date: "",
             end_date: "",
             page_count: 1,
             page_size: 20,
             agent_user_id: null,
             order_by: <any>null,
+            is_group: 1,
         },
         list: <any>[],
         dateButtonActive: false,
@@ -112,7 +117,8 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
                 options[moneyKeys[index]] = moneyKeys[index];
             }
             return options;
-        },
+        }
+
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -123,9 +129,20 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             settlement_status: null,
             page_count: 1,
             page_size: 20,
+            is_group: 1,
         });
-    }
 
+    }
+    clearFilterInfo() {
+        this.pageData.filterBtnInfo = {};
+    }
+    //设置筛选信息
+    setFilterInfo(data: any) {
+        this.pageData.bShowFilterBtn = true;
+        Object.assign(this.pageData.filterBtnInfo, data);
+        this.pageData.filterBtnInfo = JSON.parse(JSON.stringify(data));
+        //console.log("传入的代理链的值为", this.pageData.filterBtnInfo);
+    }
     setVendors(data: any) {
         this.pageData.vendors = data;
     }
@@ -135,6 +152,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.bShowTimeText = false;
         this.pageData.bShowUserId = false;
         this.pageData.bShowIsMine = false;
+        this.pageData.bShowFilterBtn = false;
     }
     setData(data: any) {
         this.pageData.loading = false;
@@ -177,6 +195,30 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.listQuery.page_count++;
         this.getApi();
     }
+    //点击了筛选之后 根据 筛选结果刷新
+    refrushFilter(data: any = null) {
+        //console.log("  根据 筛选结果刷新", data);
+        this.pageData.listQuery.agent_user_id = data.user_id;
+        if (data.is_group) {
+            this.pageData.listQuery.is_group = data.is_group;
+        }
+        if (data.parents && data.parents.length > 0) {
+            this.setFilterInfo(data);
+        }
+        else {
+            this.removeUserList(data.user_id);
+        }
+        this.getApi();
+        //this.setFilterInfo(data);
+    }
+    removeUserList(userid: any) {
+        const res = this.pageData.filterBtnInfo.parents.indexOf(userid);
+        //console.log(typeof userid);
+        if (res == -1) {
+            return;
+        }
+        this.pageData.filterBtnInfo.parents = this.pageData.filterBtnInfo.parents.slice(0, res + 1);
+    }
 
     api_vendor_simple() {
         this.sendNotification(net.HttpType.api_vendor_simple);
@@ -201,4 +243,5 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
+
 }

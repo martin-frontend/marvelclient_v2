@@ -91,9 +91,10 @@ export default class DialogStatisticsCredit extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
+
     get isMine(): boolean {
         if (this.myProxy.userListInfo.length > 1) {
-            return false;
+            return false
         }
         return true;
     }
@@ -128,19 +129,30 @@ export default class DialogStatisticsCredit extends AbstractView {
             this.timeRange = [start, end];
             this.myProxy.setcoin_name_unique();
             this.onTimeChange();
-        } else {
+        }
+        else {
             this.myProxy.reseData();
         }
     }
 
     onUserIdClick(user_id: number) {
         const listQuery = this.pageData.listQuery;
+        const userlist = JSON.parse(JSON.stringify(this.myProxy.userListInfo));
+        //console.log("点击的代理链为userlist" , userlist);
+        //判断当前点击的对象是否 包含在 其中
+        userlist.push(user_id + "");
+        const filterInfo = {
+            bind_relation: this.pageData.bind_relation,
+            parents: userlist,
+            target_user_id: user_id,
+        }
         dialog_bet_record.show(user_id, this.timeRange[0], this.timeRange[1], false, {
             coin_name_unique: this.myProxy.coin_name_unique,
             bShowMoneyType: true,
             bShowUserId: true,
             bShowTimeText: true,
             bShowOptions: false,
+            filterBtnInfo: filterInfo,
         });
     }
 
@@ -148,22 +160,22 @@ export default class DialogStatisticsCredit extends AbstractView {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return "";
+            return ""
         }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "colorRed2--text";
+        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
     }
     getMoneyValue(str: string): string {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return str;
+            return str
         }
-        if (!!str && str.search("-") == -1) return "+" + str;
+        if (!!str && str.search('-') == -1) return "+" + str;
         return str;
     }
 
     onItemClick(item: any) {
-        console.log("点击 item", item);
+        //console.log("点击 item",item);
         this.myProxy.coin_name_unique = item;
         this.onTimeChange();
     }

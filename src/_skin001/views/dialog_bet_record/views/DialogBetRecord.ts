@@ -9,6 +9,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import dialog_bet_filter from "../../dialog_bet_filter";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -44,9 +45,28 @@ export default class DialogBetRecord extends AbstractView {
     };
 
     public get isOtherUser(): any {
-        return this.listQuery.agent_user_id;
+
+        if (!this.groupsTitle) {
+            //return this.curShowId;
+            return "";
+        }
+        else {
+            return this.listQuery.agent_user_id + "(" + this.groupsTitle + ")";
+        }
+
     }
 
+    public get showMultUserList(): any {
+        if (!this.pageData.bShowFilterBtn) {
+            return [];
+        }
+        return this.myProxy.pageData.filterBtnInfo.parents;
+    }
+
+    onBtnClickUserInfo(item: any) {
+        //console.log("收到点击" , item);
+        this.myProxy.refrushFilter({ user_id: item });
+    }
     public get isShowMyWater(): boolean {
         //return false;
         if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin) return true;
@@ -67,6 +87,15 @@ export default class DialogBetRecord extends AbstractView {
         }
         //console.log("全部币种----");
         return false;
+    }
+
+    public get groupsTitle(): string {
+        if (this.pageData.filterBtnInfo && this.pageData.filterBtnInfo.is_group == 2) {
+            return LangUtil("团队");
+        }
+        else {
+            return "";
+        }
     }
 
     constructor() {
@@ -113,6 +142,9 @@ export default class DialogBetRecord extends AbstractView {
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
             this.timeRange = [start_date, end_date];
             this.onTimeChange();
+        }
+        else {
+            this.myProxy.clearFilterInfo();
         }
     }
     @Watch("$vuetify.breakpoint.mobile")
@@ -219,5 +251,10 @@ export default class DialogBetRecord extends AbstractView {
         }
         if (!!str && str.search("-") == -1) return "+" + str;
         return str;
+    }
+    //筛选按钮点击
+    onFilterBtnClick() {
+        //console.log("打开筛选 页面");
+        dialog_bet_filter.show();
     }
 }

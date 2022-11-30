@@ -29,21 +29,64 @@
                         <template slot="range-separator">-</template>
                     </el-date-picker>
                 </div>
-                <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center colorBlue1--text ml-3 mb-2">
-                    <span>
-                        {{LangUtil("结算时间 {0} 至 {1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}}
-                    </span>
-                    <span class="ml-2">
-                        (GMT8)
-                    </span>
+
+                <div class="d-flex justify-start align-center ml-3 mb-2">
+
+                    <v-btn v-if="pageData.bShowFilterBtn"
+                        class="d-flex align-center rounded-lg colorPanelBg5 colorTextBlueLight2--text mr-2"
+                        :disabled="false" @click="onFilterBtnClick">
+                        {{LangUtil("层级筛选")}}</v-btn>
+
+                    <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center colorBlue1--text">
+                        <span>
+                            {{LangUtil("结算时间 {0} 至 {1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}}
+                        </span>
+                        <span class="ml-2">
+                            (GMT8)
+                        </span>
+                    </div>
                 </div>
+
                 <div class="colorBlue1--text text-16 ml-3 d-flex mb-2">
 
                     <div v-if="pageData.bShowMoneyType" class="mr-3">{{LangUtil("结算币种")}}
                         <span class="colorYellow2--text"> {{listQuery.coin_name_unique}}</span>
                     </div>
                     <div v-if="pageData.bShowUserId" class="mr-3">{{LangUtil("用户ID")}}
-                        <span class="colorYellow2--text"> {{isOtherUser}}</span>
+
+                        <template v-if="isOtherUser">
+                            <span class="colorYellow2--text"> {{isOtherUser}}</span>
+                        </template>
+                        <template v-else>
+                            <template v-for="(item, key) in showMultUserList">
+
+                                <template v-if="showMultUserList.length - key < 4">
+                                    <span v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                                        class="colorYellow2--text" color="transparent">
+                                        {{item}}
+                                    </span>
+                                    <span v-else class="text-decoration-underline cursor-pointer colorYellow2--text"
+                                        color="transparent" @click="onBtnClickUserInfo(item)">
+                                        {{item}}
+                                    </span>
+                                </template>
+                                <template v-else>
+                                    <span v-if="key==0" class="colorYellow2--text ml-0 mr-0" color="transparent">
+                                        ..
+                                    </span>
+                                    <span v-else
+                                        class="text-decoration-underline cursor-pointer colorYellow2--text ml-0 mr-0"
+                                        color="transparent" @click="onBtnClickUserInfo(item)">
+                                        ..
+                                    </span>
+                                </template>
+                                <span v-if="key!= showMultUserList.length-1" class="colorYellow2--text ml-0 mr-0 ">
+                                    >
+                                </span>
+
+                            </template>
+                        </template>
+
                     </div>
 
                     <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
@@ -220,9 +263,40 @@
                         {{LangUtil("结算币种")}}
                         <span class="colorYellow2--text ml-2"> {{listQuery.coin_name_unique}}</span>
                     </div>
-                    <div v-if="pageData.bShowUserId">{{LangUtil("用户ID")}}
-                        <span class="colorYellow2--text ml-2"> {{isOtherUser}}</span>
+
+                </div>
+
+                <div v-if="pageData.bShowUserId " class="colorText2--text mx-5 text-16">
+                    <div class="mr-2">
+                        {{LangUtil("用户ID")}}
+                        <template v-if="!isOtherUser" v-for="(item, key) in showMultUserList">
+                            <template v-if="showMultUserList.length - key < 3">
+                                <span v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                                    class="colorYellow2--text" color="transparent">
+                                    {{item}}
+                                </span>
+                                <span v-else class="text-decoration-underline cursor-pointer colorYellow2--text"
+                                    color="transparent" @click="onBtnClickUserInfo(item)">
+                                    {{item}}
+                                </span>
+                            </template>
+                            <template v-else>
+                                <span v-if="key==0" class="colorYellow2--text" color="transparent">
+                                    ..
+                                </span>
+                                <span v-else
+                                    class="text-decoration-underline cursor-pointer colorYellow2--text "
+                                    color="transparent" @click="onBtnClickUserInfo(item)">
+                                    ..
+                                </span>
+                            </template>
+                            <span v-if="key!= showMultUserList.length-1" class="colorYellow2--text  ">
+                                >
+                            </span>
+                        </template>
+                        <span v-if="isOtherUser" class="colorYellow2--text ml-2"> {{isOtherUser}}</span>
                     </div>
+                    
                 </div>
 
                 <div class="colorText2--text text-16 d-flex justify-space-between align-center">
@@ -257,7 +331,10 @@
                         <span>
                             {{ getBackWater(pageData.total_backwater_coin)}}</span>
                     </div>
-
+                    <v-btn v-if="pageData.bShowFilterBtn"
+                        class="d-flex align-center rounded-lg colorPanelBg5 colorTextBlueLight2--text mr-5"
+                        :disabled="false" @click="onFilterBtnClick">
+                        {{LangUtil("层级筛选")}}</v-btn>
                 </div>
 
 

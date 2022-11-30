@@ -62,7 +62,7 @@
                     </v-sheet>
 
                     <CustomInput v-if="!isMineWater" class="d-flex justify-center empty_width_2 " height="40" :placeholder="item" :isNeedCloseBtn="false" 
-                        v-model="myProxy.inputWaterData[key]" :isOnlyFloat="true">
+                        v-model="myProxy.inputWaterData[key]" :isOnlyFloat="true" :disabled="true">
 
                     </CustomInput>
    
@@ -70,7 +70,7 @@
                 <div v-if="false && key!=0" class="hackhome"></div>
             </template>
 
-            <div v-if="!isMineWater">
+            <div v-if="!isMineWater && false">
                 <div class="red--text">
                     {{LangUtil("注意：如有修改流水配置要70分钟后才生效，需要记录更改时间。")}}
                 </div>

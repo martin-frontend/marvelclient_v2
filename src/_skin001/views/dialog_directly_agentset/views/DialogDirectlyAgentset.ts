@@ -17,33 +17,30 @@ export default class DialogDirectlyAgentset extends AbstractView {
     constructor() {
         super(DialogDirectlyAgentsetMediator);
     }
-    
-    public get isDisable() : boolean {
-        if(!this.formData.inputrate)
-        {
+
+    public get isDisable(): boolean {
+        if (!this.formData.inputrate) {
             return true;
         }
-        const res = parseFloat( this.formData.inputrate) ;
-        console.log("当前输入值" ,res)
-        if (res <0)
+        const res = parseFloat(this.formData.inputrate);
+        //console.log("当前输入值" ,res)
+        if (res < 0)
             return true
 
-        console.log(typeof res , typeof this.playerInfo.parent_credit_rate)
-        if (res > parseFloat( this.playerInfo.parent_credit_rate))
-        {
-            console.log("比自己的 大" ,this.playerInfo.parent_credit_rate)
+        console.log(typeof res, typeof this.playerInfo.parent_credit_rate)
+        if (res > parseFloat(this.playerInfo.parent_credit_rate)) {
+            //console.log("比自己的 大" ,this.playerInfo.parent_credit_rate)
             return true;
         }
         return false
     }
-    
-    onClickSure()
-    {
+
+    onClickSure() {
 
         //const res = ((this.formData.inputrate *100)>>0) / 10000 
         const res = this.formData.inputrate;
         this.myProxy.agent_direct_user_update(<any>res);
-      
+
     }
     onClose() {
         this.pageData.bShow = false;

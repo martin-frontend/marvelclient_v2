@@ -1,6 +1,6 @@
 <v-dialog class="rounded-xl" width="420" v-model="pageData.bShow" overlay-opacity="0.6"
     :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card color="colorPanelBg" height="660">
+    <v-card color="colorPanelBg">
         <v-card-title class="d-flex justify-end pb-0 gradient-bg">
             <div class="ml-2 font-weight-medium text-18 white--text">{{LangUtil("添加用户")}}
             </div>
@@ -26,24 +26,91 @@
                 </CustomInput>
                 <!-- 允许多层 -->
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <div class="d-flex align-center colorBlue1--text"> {{LangUtil("允许多层")}} 
-
+                    <div class="d-flex align-center colorBlue1--text"> {{LangUtil("允许多层")}}
                         <v-tooltip top color="colorText1">
                             <template v-slot:activator="{ on, attrs }">
-                                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1">
+                                    <v-icon>mdi-help-circle</v-icon>
+                                </v-btn>
                             </template>
                             <span>{{LangUtil("表示是否允许该用户发展下级用户")}}</span>
                         </v-tooltip>
-
                     </div>
-                    <span class="d-flex align-center colorBlue--text" >
+                    <span class="d-flex align-center colorBlue--text">
                         <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98"
                             v-model="form.show_credit_set" color="colorBtnBg" inset></v-switch>
                     </span>
                 </div>
+                <div class="hackhome"></div>
+                <!-- 代理占成 -->
+                <div class="d-flex justify-space-between align-center mt-2">
+                    <div class="d-flex colorBlue1--text empty_space ">
+                        {{LangUtil("代理占成") }}
+                    </div>
+                    <div class="d-flex justify-space-between align-center ">
+                        <div class="colorBlue1--text pl-5 empty_space">
+                            0-{{playerInfo.credit_rate}} %
+                        </div>
+                        <CustomInput class="empty_width_2 ml-4 empty_height_3" :isOnlyInt="true" height="30"
+                            placeholder="0" :isNeedCloseBtn="false"
+                            v-model="myProxy.formData.inputrate" :disabled="false">
+                        </CustomInput>
+                        <div class="colorBlue1--text ml-2 empty_space">
+                            %
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-center color_yellow_text_2--text mb-1">
+                    {{LangUtil("创建账户后，占成不能修改") }}
+                </div>
+                <div class="hackhome"></div>
+                <!-- 反水设置 -->
+                <div class="d-flex align-center colorBlue1--text mt-2">
+                    {{LangUtil("返水设置") }}
+                </div>
+                <v-sheet
+                    class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill ml-n2 mr-n2 mt-2 text-14">
+                    <v-sheet class="d-flex justify-center colorText1--text ml-2" min-width="120" color="transparent">
+                        {{LangUtil("返水类型")}}
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center colorText1--text" min-width="100" color="transparent">
+                        {{LangUtil("我的返水")}}
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center colorText1--text" min-width="80" color="transparent">
+                        {{LangUtil("直属设置")}}
+                    </v-sheet>
+                </v-sheet>
+
+                <template v-for="(item, key) of playerInfo.water_config">
+                    <v-sheet
+                        class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill my-3 ml-n2 mr-n2 mt-2 text-14"
+                        :key="key" v-if="key!=0">
+                        <v-sheet class="d-flex justify-center align-center colorBlue1--text text-16 ml-2 empty_height"
+                            min-width="120" color="transparent">
+                            {{getConfigName(key) }}
+                        </v-sheet>
+
+                        <v-sheet class="d-flex justify-center colorBlue1--text" min-width="100" color="transparent">
+                            {{item }}
+                        </v-sheet>
+
+                        <CustomInput class="d-flex justify-center empty_width_2 input-text_2" height="40"
+                            placeholder="0" :isNeedCloseBtn="false" v-model="myProxy.inputWaterData[key]"
+                            :isOnlyFloat="true" :disabled="false">
+
+                        </CustomInput>
+
+                    </v-sheet>
+                    <div v-if="false && key!=0" class="hackhome"></div>
+                </template>
+
+                <div class="d-flex align-center color_yellow_text_2--text">
+                    {{LangUtil("创建账户后，返水不能修改") }}
+                </div>
+
+                <!-- 注册按钮 -->
                 <div class="mt-5">
-                    <v-btn class="rounded-lg colorBtnBg" height="48" :disabled="!isCheck" block
-                        @click="onRegister">
+                    <v-btn class="rounded-lg colorBtnBg" height="48" :disabled="!isCheck" block @click="onRegister">
                         {{LangUtil("注册")}}</v-btn>
                 </div>
 

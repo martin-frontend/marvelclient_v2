@@ -7,6 +7,7 @@ import DialogDirectlyAdduserMediator from "../mediator/DialogDirectlyAdduserMedi
 import DialogDirectlyAdduserProxy from "../proxy/DialogDirectlyAdduserProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class DialogDirectlyAdduser extends AbstractView {
@@ -14,12 +15,24 @@ export default class DialogDirectlyAdduser extends AbstractView {
     myProxy: DialogDirectlyAdduserProxy = this.getProxy(DialogDirectlyAdduserProxy);
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
+    formData = this.myProxy.formData;
+    playerInfo = this.myProxy.playerInfo;
 
     constructor() {
         super(DialogDirectlyAdduserMediator);
     }
+    getConfigName(type: any) {
+        return Constant.GameTypeText(type);
+    }
     get isCheck(): boolean {
         const { username, password, verify_code, register_type } = this.form;
+
+        if (this.isDisable_agent) {
+            return false;
+        }
+        if (!this.isDisable) {
+            return false;
+        }
         return (
             ((register_type == 1 && checkUserName(username)) ||
                 (register_type == 2 && checkMail(username)) ||
@@ -28,7 +41,47 @@ export default class DialogDirectlyAdduser extends AbstractView {
             checkUserPassword(password)
         );
     }
-    handlerUpdate_creditset() {}
+    public get isDisable(): boolean {
+
+        const coinKeys = Object.keys(this.myProxy.inputWaterData);
+
+        for (let index = 0; index < coinKeys.length; index++) {
+            const element = coinKeys[index];
+            if (!this.myProxy.inputWaterData[element] || this.myProxy.inputWaterData[element] == "") {
+                continue;
+            }
+            const res = parseFloat(this.myProxy.inputWaterData[element]);
+            if (res < 0) {
+                return false;
+            }
+            if (this.myProxy.playerInfo.water_config[element] < res) {
+                return false
+            }
+        }
+
+        return true
+    }
+
+    public get isDisable_agent(): boolean {
+        if (!this.formData.inputrate) {
+            return false;
+        }
+        const res = parseFloat(this.formData.inputrate);
+        //console.log("当前输入值" ,res)
+        if (res < 0)
+            return true
+
+        //console.log(typeof res , typeof this.playerInfo.parent_credit_rate)
+        if (res > this.playerInfo.credit_rate) {
+            //console.log("比自己的 大", this.playerInfo.credit_rate)
+            return true;
+        }
+        return false
+    }
+
+    handlerUpdate_creditset() {
+
+    }
     onClose() {
         this.pageData.bShow = false;
     }

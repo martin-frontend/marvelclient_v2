@@ -10,6 +10,8 @@ import DialogBetRecordMediator from "../mediator/DialogBetRecordMediator";
 import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_bet_filter from "../../dialog_bet_filter";
+import CopyUtil from "@/core/global/CopyUtil";
+import dialog_message from "@/views/dialog_message";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -232,6 +234,12 @@ export default class DialogBetRecord extends AbstractView {
         this.myProxy.listMore(done);
     }
 
+    onCopyOrderClick(order:any)
+    {
+        CopyUtil(order+"");
+        dialog_message.info(LangUtil("复制成功"));
+    }
+    
     handlerDetail(game_info: string) {
         dialog_order.show(game_info);
     }

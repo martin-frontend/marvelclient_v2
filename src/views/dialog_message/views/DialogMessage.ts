@@ -9,4 +9,16 @@ export default class DialogMessage extends AbstractView {
     constructor() {
         super(DialogMessageMediator);
     }
+
+    animation = {
+        enter: {
+            opacity: [1, 0],
+            translateX: [0, 300],
+            scale: [1, 0.2],
+        },
+        leave: {
+            opacity: 0,
+            height: 0,
+        },
+    };
 }

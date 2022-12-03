@@ -9,8 +9,8 @@ import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "./core/global/LogUtil";
-import { js_utils } from "custer-js-utils";
-import GameConfig from "./core/config/GameConfig";
+import Notifications from "vue-notification";
+import velocity from "velocity-animate";
 
 LogUtil.init();
 core.init();
@@ -29,6 +29,8 @@ AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
+Vue.use(VueLoadmore);
+Vue.use(Notifications, { velocity });
 
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;

@@ -3,3 +3,4 @@ declare module "vuetify/lib/framework" {
     export default Vuetify;
 }
 declare module "vuetify/es5/locale/*" {}
+declare module 'velocity-animate';

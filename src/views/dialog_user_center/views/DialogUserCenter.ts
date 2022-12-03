@@ -5,7 +5,6 @@ import DialogUserCenterMediator from "../mediator/DialogUserCenterMediator";
 import DialogUserCenterProxy from "../proxy/DialogUserCenterProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_message from "@/views/dialog_message";
 import page_mine from "@/views/page_mine";
 import dialog_nick_name from "@/views/dialog_nick_name";
 import dialog_safety_center from "@/views/dialog_safety_center";
@@ -55,7 +54,6 @@ export default class DialogUserCenter extends AbstractView {
 
     private copy() {
         this.myProxy.copyId();
-        dialog_message.warn(LangUtil("复制成功"));
     }
 
     goMine() {

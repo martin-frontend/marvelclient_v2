@@ -10,6 +10,8 @@ import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
 import Assets from "@/assets/Assets";
+import Notifications from "vue-notification";
+import velocity from "velocity-animate";
 
 LogUtil.init();
 core.init();
@@ -28,6 +30,8 @@ AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
+Vue.use(VueLoadmore);
+Vue.use(Notifications, { velocity });
 
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;

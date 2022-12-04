@@ -23,11 +23,19 @@ function getOrderTitle({ market_type, s_type, home_name, away_name, content, sid
         case marketType.TOTAL_GOALS_HALF_TIME: //半场 - 总入球
         case marketType.ASIAN_OVER_UNDER: //亚洲大小盘
         case marketType.ASIAN_OVER_UNDER_HALF_TIME: //半场 - 亚洲大小盘
+        case marketType.CR_ASIAN_OVER_UNDER:
+        case marketType.ASIAN_OVER_UNDER_EXTRA_TIME:
+        case marketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME:
+        case marketType.ASIAN_OVER_UNDER_AFTER_PENALTIES:
             return `${s_type == "Overs" ? LangUtil("大") : LangUtil("小")} ${formatAsian(handicap, s_type).substring(1)}`;
         case marketType.ASIAN_HANDICAP: //亚洲让球盘
         case marketType.ASIAN_HANDICAP_HALF_TIME: //半场 - 亚洲让球盘
         case marketType.DRAW_NO_BET: //平局退款
         case marketType.DRAW_NO_BET_HALF_TIME: //半场-平局退款
+        case marketType.CR_ASIAN_HANDICAP:
+        case marketType.ASIAN_HANDICAP_EXTRA_TIME:
+        case marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME:
+        case marketType.ASIAN_HANDICAP_AFTER_PENALTIES:
             return `${s_type == "Home" ? home_name : away_name} ${formatAsian(handicap, s_type)}`;
         case marketType.HALF_TIME_FULL_TIME: //半场/全场
             return ` ${formatAsian(handicap, s_type)}`;

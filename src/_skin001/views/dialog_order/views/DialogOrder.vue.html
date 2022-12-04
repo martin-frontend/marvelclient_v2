@@ -23,7 +23,8 @@
                 </div>
                 <v-sheet class="mx-3 rounded pa-3 order-content">
                     <div class="d-flex text-14 font-weight-bold top-text">
-                        <div>{{ OrderTitleUtils.getTeamName(pageData.data, false)}}{{ OrderTitleUtils.getOrderTitle(pageData.data,true)}}</div>
+                        <div v-if="pageData.data.c_type == 2">{{pageData.data.content}}</div>
+                        <div v-else>{{ OrderTitleUtils.getTeamName(pageData.data, false)}}{{ OrderTitleUtils.getOrderTitle(pageData.data,true)}}</div>
                         <v-spacer />
                         <div class="mr-2">@{{pageData.data.odds}}</div>
                     </div>

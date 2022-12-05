@@ -54,8 +54,8 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     private copy() {
+        console.warn("########")
         this.myProxy.copyId();
-        dialog_message.warn(LangUtil("复制成功"));
     }
 
     goMine() {

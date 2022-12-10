@@ -44,6 +44,14 @@ export default class DialogStatisticsCredit extends AbstractView {
                     picker.$emit("pick", [start, end]);
                 },
             },
+            {
+                text: LangUtil("最近两个月"),
+                onClick(picker: any) {
+                    const start = getTodayOffset(-60);
+                    const end = getTodayOffset(1, 1);
+                    picker.$emit("pick", [start, end]);
+                },
+            },
         ],
     };
 

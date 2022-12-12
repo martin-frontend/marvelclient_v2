@@ -62,9 +62,17 @@ function getSelectionName(market_type: string, selection: FixSelectionVO, matche
     switch (market_type) {
         case EnumMarketType.ASIAN_HANDICAP:
         case EnumMarketType.ASIAN_HANDICAP_HALF_TIME:
+        case EnumMarketType.CR_ASIAN_HANDICAP:
+        case EnumMarketType.ASIAN_HANDICAP_EXTRA_TIME:
+        case EnumMarketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME:
+        case EnumMarketType.ASIAN_HANDICAP_AFTER_PENALTIES:
             return formatAsian(selection.handicap, selection.type);
         case EnumMarketType.ASIAN_OVER_UNDER:
         case EnumMarketType.ASIAN_OVER_UNDER_HALF_TIME:
+        case EnumMarketType.CR_ASIAN_OVER_UNDER:
+        case EnumMarketType.ASIAN_OVER_UNDER_EXTRA_TIME:
+        case EnumMarketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME:
+        case EnumMarketType.ASIAN_OVER_UNDER_AFTER_PENALTIES:
             return (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) + " " + formatAsian(selection.handicap, selection.type).substring(1);
         case EnumMarketType.MATCH_ODDS:
         case EnumMarketType.MATCH_ODDS_HALF_TIME:
@@ -135,3 +143,12 @@ export default MarketUtils;
 // 22: {id: 254, market_type: 'CORRECT_SCORE_HALF_TIME', title: '半场 - 波胆'}
 // 23: {id: 74, market_type: 'HANDICAP', title: '让球'}
 // 24: {id: 231, market_type: 'OVER_UNDER', title: '大/小球'}
+// 25: {id: 250, market_type: 'ODD_OR_EVEN_HALF_TIME', parent_id: 231, title: '半场 - 单/双 ', title_new: '半场 - 单/双 '}
+// 26: {id: 254, market_type: 'CORRECT_SCORE_HALF_TIME', parent_id: 1, title: '半场 - 波胆', title_new: '半场 - 波胆'}
+// 27: {id: 261, market_type: 'ASIAN_HANDICAP_EXTRA_TIME', parent_id: 74, title: '亚洲让球盘 超时', title_new: '亚洲让球盘 超时'}
+// 28: {id: 263, market_type: 'ASIAN_OVER_UNDER_EXTRA_TIME', parent_id: 231, title: '亚洲大小球-  超時- 半場 ', title_new: '亚洲大小球-  超時- 半場 '}
+// 29: {id: 262, market_type: 'ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME', parent_id: 0, title: '亚洲让球盘 超时- 半场 ', title_new: '亚洲让球盘 超时- 半场 '}
+// 30: {id: 249, market_type: 'ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME', parent_id: 231, title: '亚洲大小盘- 半场加时赛', title_new: '亚洲大小盘- 半场加时赛'}
+// 31: {id: 260, market_type: 'ASIAN_HANDICAP_AFTER_PENALTIES', parent_id: 74, title: '亚洲让球盘 - 点球对决后', title_new: '亚洲让球盘 - 点球对决后'}
+// 32: {id: 247, market_type: 'ASIAN_OVER_UNDER_AFTER_PENALTIES', parent_id: 231, title: '亚洲大小盘－罚球', title_new: '亚洲大小盘－罚球'}
+// 33: {id: 286, market_type: 'RMM_OUTRIGHTS', parent_id: 0, title: '冠军', title_new: '冠军'}

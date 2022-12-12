@@ -32,6 +32,7 @@ export default class DialogOrder extends AbstractView {
         4: LangUtil("已取消"), //拒绝
         5: LangUtil("无效"), //无效
     };
+
     statusMapColor = {
         0: "#FF7128", //确认中
         1: "#007E29", //确认成功
@@ -77,5 +78,13 @@ export default class DialogOrder extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+    }
+
+    //根据盘口展示已结算的赛果角球还是比分等
+    getHadResultStr(item: any) {
+        const copyitem = JSON.parse(JSON.stringify(item));
+        copyitem.state = copyitem.real_time_state;
+
+        return OrderTitleUtils.getScoreStr(copyitem);
     }
 }

@@ -33,14 +33,16 @@
                         <span v-if="pageData.data.state && Object.keys(pageData.data.state).length > 0">
                             {{LangUtil("滚球")}}({{pageData.data.score}})
                         </span>
+                        <span class="font-weight-bold " v-if="pageData.data.state && Object.keys(pageData.data.state).length > 0">{{OrderTitleUtils.getScoreStr(pageData.data)}}</span>
                         {{pageData.data.market_type_text}}
                     </div>
                     <div class="text-14 d-flex flex-wrap">
                         <span class="mr-1"> {{pageData.data.home_name}} <span class="font-weight-bold mx-1">VS</span> {{pageData.data.away_name}} </span>
-                        <!-- <span class="font-weight-black mr-2 scoreColor--text" v-if="pageData.data.is_settle == 1 && pageData.data.status !== 3"
-                            >{{LangUtil("赛果")}}({{pageData.data.home_score}}-{{pageData.data.away_score}})</span
-                        > -->
+                        <span class="font-weight-black mr-2 scoreColor--text" v-if="pageData.data.is_settle == 1 && pageData.data.status !== 3 && pageData.data.c_type != 2"
+                        >{{getHadResultStr(pageData.data)}}</span
+                    >
                     </div>
+
                     <div class="my-2 custom-hr"></div>
 
                     <v-sheet width="100%">

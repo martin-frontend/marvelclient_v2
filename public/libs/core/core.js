@@ -137,6 +137,8 @@ var net;
         api_user_var_google_key: "api/user/{user_id}/google_key",
         /**--会员资料--绑定google验证码*/
         api_user_bind_google_key_var: "api/user/bind_google_key/{user_id}",
+        /**--会员资料--投注记录详情【只用于配置的体育】*/
+        api_vendor_var_bet_log_detail: "api/vendor/{vendor_id}/bet_log_detail",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
         /**--大厅--获取厂商列表*/
@@ -414,6 +416,8 @@ var net;
         api_user_var_google_key: "api_user_var_google_key",
         /**--会员资料--绑定google验证码*/
         api_user_bind_google_key_var: "api_user_bind_google_key_var",
+        /**--会员资料--投注记录详情【只用于配置的体育】*/
+        api_vendor_var_bet_log_detail: "api_vendor_var_bet_log_detail",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
         /**--大厅--获取厂商列表*/
@@ -652,6 +656,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_change_bsc_address_var, net.cmd_api_user_change_bsc_address_var);
         facade.registerCommand(net.HttpType.api_user_var_google_key, net.cmd_api_user_var_google_key);
         facade.registerCommand(net.HttpType.api_user_bind_google_key_var, net.cmd_api_user_bind_google_key_var);
+        facade.registerCommand(net.HttpType.api_vendor_var_bet_log_detail, net.cmd_api_vendor_var_bet_log_detail);
         //--大厅
         facade.registerCommand(net.HttpType.api_plat_var_lobby_index, net.cmd_api_plat_var_lobby_index);
         facade.registerCommand(net.HttpType.api_vendor_simple, net.cmd_api_vendor_simple);
@@ -3654,6 +3659,28 @@ var net;
         }
     }
     net.cmd_api_vendor_simple = cmd_api_vendor_simple;
+})(net || (net = {}));
+/**
+ * 投注记录详情【只用于配置的体育】
+ */
+var net;
+/**
+ * 投注记录详情【只用于配置的体育】
+ */
+(function (net) {
+    class cmd_api_vendor_var_bet_log_detail extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_vendor_var_bet_log_detail, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_vendor_var_bet_log_detail, result.data);
+            }
+        }
+    }
+    net.cmd_api_vendor_var_bet_log_detail = cmd_api_vendor_var_bet_log_detail;
 })(net || (net = {}));
 /**
  * 获取厂商配置游戏菜单（大厅厂商二级游戏菜单）

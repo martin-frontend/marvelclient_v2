@@ -45,6 +45,7 @@
         ["api/user/change_bsc_address/{user_id}",       "钱包地址修改"],
         ["api/user/{user_id}/google_key",               "获取google验证码"],
         ["api/user/bind_google_key/{user_id}",          "绑定google验证码"],
+        ["api/vendor/{vendor_id}/bet_log_detail",       "投注记录详情【只用于配置的体育】"],
 
         "--大厅",
         ["api/plat/{plat_id}/lobby/index",                              "获取游戏类型,游戏菜单（大厅菜单）"],
@@ -178,11 +179,11 @@
         ["api/user/{user_id}/invite_user_info",         "查询直属用户金币数量"],
 
         "--直属用户查询操作",
-        ["api/user/{user_id}/fetch_direct_user_info",         "查询直属用户金币数量"],
-        ["api/user/{user_id}/agent_direct_user_update",         "直属用户状态查询和修改"],
-        ["api/user/{user_id}/agent_direct_deduction",         "直属用户直接扣款"],
-        ["api/user/{user_id}/credit_statistic",         "信用统计"],
+        ["api/user/{user_id}/fetch_direct_user_info",        "查询直属用户金币数量"],
+        ["api/user/{user_id}/agent_direct_user_update",      "直属用户状态查询和修改"],
+        ["api/user/{user_id}/agent_direct_deduction",        "直属用户直接扣款"],
+        ["api/user/{user_id}/credit_statistic",              "信用统计"],
         ["api/user/{user_id}/agent_credit_transfer",         "直属用户加钱"],
-        ["api/user/{user_id}/direct_register",         "注册直属"]
+        ["api/user/{user_id}/direct_register",               "注册直属"]
     ]
 }

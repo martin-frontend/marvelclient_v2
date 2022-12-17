@@ -1,3 +1,5 @@
+import GameConfig from "@/core/config/GameConfig";
+
 export default class DialogOrderProxy extends puremvc.Proxy {
     static NAME = "DialogOrderProxy";
 
@@ -16,6 +18,7 @@ export default class DialogOrderProxy extends puremvc.Proxy {
             pageSize: 20,
             pageTotal: 9,
         },
+        url: "",
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -30,5 +33,13 @@ export default class DialogOrderProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         // Object.assign(this.pageData.pageInfo, data.pageInfo);
         // this.pageData.list = data.list;
+    }
+
+    api_vendor_var_bet_log_detail(order_no: any) {
+        const formCopy = {
+            order_no: order_no,
+            vendor_id: GameConfig.config.SportVendorId,
+        };
+        this.sendNotification(net.HttpType.api_vendor_var_bet_log_detail, formCopy);
     }
 }

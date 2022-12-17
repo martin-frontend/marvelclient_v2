@@ -40,7 +40,8 @@ module core {
         gold_transfer_fee?: number;
         /**流水倍数 */
         gold_transfer_water_multiple?: number;
-
+        show_credit_set?: number;//是否显示多层用户
+        show_promote?: number; //1-展示推广赚钱|2-展示代理管理|3-都不展示
         /**1、用户扩展信息*/
         extend?: {
             /**平台用户ID*/
@@ -147,14 +148,14 @@ module core {
         /**是否显示信用统计 */
         show_credit_statistic?: number;
         /**是否信用用户 */
-        is_credit_user?:number;
+        is_credit_user?: number;
         /**是否显示兑换 */
         is_exchange?: number;
         /**是否显示充值 */
         is_recharge?: number;
         /**货币互转开关 */
         is_gold_exchange?: number;
-        water_config?:any;
+        water_config?: any;
     }
 
     /**

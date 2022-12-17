@@ -83,6 +83,8 @@ declare module net {
         api_user_var_google_key: string;
         /**--会员资料--绑定google验证码*/
         api_user_bind_google_key_var: string;
+        /**--会员资料--投注记录详情【只用于配置的体育】*/
+        api_vendor_var_bet_log_detail: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -360,6 +362,8 @@ declare module net {
         api_user_var_google_key: string;
         /**--会员资料--绑定google验证码*/
         api_user_bind_google_key_var: string;
+        /**--会员资料--投注记录详情【只用于配置的体育】*/
+        api_vendor_var_bet_log_detail: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -1738,6 +1742,15 @@ declare module net {
     }
 }
 /**
+ * 投注记录详情【只用于配置的体育】
+ */
+declare module net {
+    class cmd_api_vendor_var_bet_log_detail extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 获取厂商配置游戏菜单（大厅厂商二级游戏菜单）
  */
 declare module net {
@@ -2953,9 +2966,8 @@ declare module core {
         gold_transfer_fee?: number;
         /**流水倍数 */
         gold_transfer_water_multiple?: number;
-        show_credit_set?: number;//是否显示多层用户
-        show_promote?:number; //1-展示推广赚钱|2-展示代理管理|3-都不展示
-        invite_user_id?:number; // 上级id
+        show_credit_set?: number;
+        show_promote?: number;
         /**1、用户扩展信息*/
         extend?: {
             /**平台用户ID*/
@@ -3072,7 +3084,7 @@ declare module core {
         is_recharge?: number;
         /**货币互转开关 */
         is_gold_exchange?: number;
-        water_config?:any;
+        water_config?: any;
     }
     /**
      * vip 奖励活动相关

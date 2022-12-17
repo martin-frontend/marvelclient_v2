@@ -234,14 +234,13 @@ export default class DialogBetRecord extends AbstractView {
         this.myProxy.listMore(done);
     }
 
-    onCopyOrderClick(order:any)
-    {
-        CopyUtil(order+"");
+    onCopyOrderClick(order: any) {
+        CopyUtil(order + "");
         dialog_message.info(LangUtil("复制成功"));
     }
-    
-    handlerDetail(game_info: string) {
-        dialog_order.show(game_info);
+
+    handlerDetail(data: string) {
+        dialog_order.show(data);
     }
     getMoneyColor(str: string): string {
         const newstr = str.replace("$", "");

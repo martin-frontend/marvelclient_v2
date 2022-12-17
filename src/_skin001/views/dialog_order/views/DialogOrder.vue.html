@@ -9,7 +9,13 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5" >
-            <v-sheet class="mx-2 mt-3 pt-1 pb-3 text-12 rounded default-color" >
+            <iframe 
+                height="260"
+                width="100%"
+                frameborder="0"
+                :src="pageData.url" >
+            </iframe>
+            <!-- <v-sheet class="mx-2 mt-3 pt-1 pb-3 text-12 rounded default-color" >
                 <div class="d-flex align-center">
                     <v-img
                         src="@/_skin001/assets/icon/icon_blue1.png"
@@ -52,12 +58,10 @@
                     <div v-if="pageData.data.status==3" class="font-weight-bold" :style="{ 'color': statusMapColor[pageData.data.status]} ">{{LangUtil(pageData.data.mark)}}</div>
 
                     <v-sheet width="100%">{{LangUtil("投注金额")}}<span class="font-weight-bold"> 
-                        <!-- {{GlobalVar.currency}}  -->
                         {{pageData.data.stake }}</span> </v-sheet>
 
                     <v-sheet width="100%" v-if="pageData.data.is_settle == 0"
                         >{{LangUtil("预计可赢")}} <span class="primary--text font-weight-bold">
-                            <!-- {{GlobalVar.currency}}  -->
                             {{pageData.data.expected_win}}</span></v-sheet
                     >
                     <v-sheet width="100%">{{LangUtil("订单编号")}} <span class="font-weight-bold"> {{pageData.data.order_no}}</span></v-sheet>
@@ -78,7 +82,6 @@
 
                     <v-sheet width="100%" class="d-flex justify-end" v-if="pageData.data.is_settle && pageData.data.status == 1">
                         <span class="mr-1">{{LangUtil("输赢")}} 
-                            <!-- {{GlobalVar.currency}} -->
                         </span>
                         <span class="font-weight-bold" :class="pageData.data.win>=0 ? 'success--text' : 'error--text' ">
                             {{pageData.data.win>=0 ? "+" : ""}}{{amountFormat(pageData.data.win,true,3)}}
@@ -88,22 +91,9 @@
                     <v-img :src="getWinType(pageData.data)" class="win-type" v-if="pageData.data.is_settle && pageData.data.win_type">
                         <div>{{getWinTypeStr(pageData.data)}}</div>
                     </v-img>
-                </v-sheet>
+                </v-sheet> -->
             </v-sheet>
         </v-card-text>
-         <!-- 手机显示方式 -->
-         <!-- <v-card-text class="pb-3 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
-            <div class="gradient-bg d-flex align-center px-5">
-                <div class="text-18">{{LangUtil("注单记录")}}</div>
-                <v-spacer />
-                <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </div>
-        </v-card-text>
-        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
-
-        </v-card-text> -->
     </v-card>
     <Overlay v-model="pageData.loading"/>
 </v-dialog>

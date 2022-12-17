@@ -7,7 +7,7 @@ function show(data: any) {
     DialogMount(DialogOrder);
     const proxy: DialogOrderProxy = getProxy(DialogOrderProxy);
     proxy.pageData.bShow = true;
-    proxy.pageData.data = data;
+    proxy.api_vendor_var_bet_log_detail(data.order_no);
 }
 
 export default { show };

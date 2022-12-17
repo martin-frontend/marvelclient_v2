@@ -78,6 +78,9 @@ export default class DialogOrder extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if (!this.pageData.bShow) {
+            this.pageData.url = "";
+        }
     }
 
     //根据盘口展示已结算的赛果角球还是比分等

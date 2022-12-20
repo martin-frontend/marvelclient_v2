@@ -11,7 +11,7 @@
                 </v-btn>
             </v-card-title>
             <v-card-text class="px-5">
-                <div class="d-flex flex-wrap justify-space-between mb-2">
+                <div class="d-flex flex-wrap justify-space-between">
                     <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
                         <div v-if="limitinfo.enable_all == 1">
                             <v-btn v-if="limitinfo.is_credit_user == 1" class="btn_font rounded-lg btn_gradient"
@@ -51,6 +51,18 @@
                     </div>
 
                 </div>
+
+                <v-sheet class="d-flex  align-center justify-start mx-4" color="transparent" height="40">
+                    <div class="d-flex align-center colorTextBlueLight2--text text-16">
+                        {{LangUtil("用户筛选")}}
+                    </div>
+
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" :label="LangUtil('正常')"
+                        color="colorTextBlueLight2" value="1"></v-checkbox>
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" :label="LangUtil('禁用')"
+                        color="colorTextBlueLight2" value="98"></v-checkbox>
+                </v-sheet>
+
                 <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38"
                     color="#16233F">
                     <v-sheet class="d-flex justify-center colorBlue1--text" color="transparent" min-width="115">
@@ -122,7 +134,8 @@
                                 <v-sheet class="d-flex justify-start colorBlue--text ml-4" color="transparent"
                                     min-width="80">
                                     <div class="font-weight-bold">{{LangUtil("返水:")}}</div>
-                                    {{getBackWaterTxt(item.water_config)}}</v-sheet>
+                                    {{getBackWaterTxt(item.water_config)}}
+                                </v-sheet>
                                 <v-sheet class="d-flex justify-end colorBlue--text mr-3" color="transparent">
                                     <v-sheet class="d-flex justify-center colorBlue--text font-weight-bold"
                                         color="transparent">
@@ -189,6 +202,17 @@
                         </CustomInput>
                     </div>
                 </div>
+
+                <v-sheet class="d-flex align-center justify-end mx-4 pr-8 mb-2" color="transparent" height="30">
+                    <div class="d-flex align-center colorTextBlueLight2--text text-16">
+                        {{LangUtil("用户筛选")}}
+                    </div>
+
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" :label="LangUtil('正常')"
+                        color="colorTextBlueLight2" value="1"></v-checkbox>
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" :label="LangUtil('禁用')"
+                        color="colorTextBlueLight2" value="98"></v-checkbox>
+                </v-sheet>
                 <div class="d-flex justify-end pr-8">
                     <v-btn v-if="limitinfo.enable_all == 1" class="text-12 mr-3 btn_gradient"
                         color="colorTextBlueLight4" width="115" height="30" elevation="0" @click="handlerShowAddUser">
@@ -267,27 +291,27 @@
                                 {{ getBackWaterTxt(item.water_config) }}
                             </div>
                         </div>
-                        
+
                         <v-sheet class="d-flex align-center justify-space-between text-14" height="38"
-                                color="transparent">
-                                <v-sheet class="d-flex justify-end colorBlue1--text mr-3" color="transparent">
-                                    <v-sheet class="d-flex justify-center colorBlue1--text font-weight-bold"
-                                        color="transparent">
-                                        {{LangUtil("近24小时")}}
-                                    </v-sheet>
-                                    <v-sheet class="d-flex justify-center colorBlue1--text ml-1" color="transparent">
-                                        {{LangUtil("投注额")}}
-                                    </v-sheet>
-                                    <v-sheet class="d-flex justify-center colorBlue1--text" color="transparent">
-                                        ≈{{item.bet_gold}}
-                                    </v-sheet>
-                                    <v-sheet class="d-flex justify-center colorBlue1--text ml-2" color="transparent">
-                                        {{LangUtil("输赢")}}≈
-                                    </v-sheet>
-                                    <div class="d-flex justify-center " :class="getMoneyColor(item.win_gold)"
-                                        color="transparent">{{getMoneyValue(item.win_gold)}}</div>
+                            color="transparent">
+                            <v-sheet class="d-flex justify-end colorBlue1--text mr-3" color="transparent">
+                                <v-sheet class="d-flex justify-center colorBlue1--text font-weight-bold"
+                                    color="transparent">
+                                    {{LangUtil("近24小时")}}
                                 </v-sheet>
+                                <v-sheet class="d-flex justify-center colorBlue1--text ml-1" color="transparent">
+                                    {{LangUtil("投注额")}}
+                                </v-sheet>
+                                <v-sheet class="d-flex justify-center colorBlue1--text" color="transparent">
+                                    ≈{{item.bet_gold}}
+                                </v-sheet>
+                                <v-sheet class="d-flex justify-center colorBlue1--text ml-2" color="transparent">
+                                    {{LangUtil("输赢")}}≈
+                                </v-sheet>
+                                <div class="d-flex justify-center " :class="getMoneyColor(item.win_gold)"
+                                    color="transparent">{{getMoneyValue(item.win_gold)}}</div>
                             </v-sheet>
+                        </v-sheet>
 
                         <div class="d-flex justify-end">
                             <div class="mr-3">

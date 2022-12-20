@@ -2,7 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogDirectlyTransferProxy from "../proxy/DialogDirectlyTransferProxy";
 import getProxy from "@/core/global/getProxy";
 
-export default class DialogDirectlyTransferMediator extends AbstractMediator{
+export default class DialogDirectlyTransferMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_var_agent_direct_deduction,
@@ -14,7 +14,7 @@ export default class DialogDirectlyTransferMediator extends AbstractMediator{
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogDirectlyTransferProxy = getProxy(DialogDirectlyTransferProxy);
+        const myProxy: DialogDirectlyTransferProxy = getProxy(DialogDirectlyTransferProxy);
         myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_var_agent_direct_deduction: //扣款的回调
@@ -24,10 +24,9 @@ export default class DialogDirectlyTransferMediator extends AbstractMediator{
                 myProxy.api_user_var_agent_credit_transfer_call_back(body);
                 break;
             case net.EventType.api_user_show_var: //增加金币模式才会接受 玩家 信息刷新值
-                if (myProxy.pageData.isAddMode)
-                {
+                if (myProxy.pageData.isAddMode) {
                     console.log("接受玩家信息刷新值");
-                    
+
                     myProxy.setUserData(body);
                 }
                 break;

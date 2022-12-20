@@ -10,11 +10,13 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     /**参数 */
     parameter: any = {
         user_id: 0,
+        status: "",
         agent_user_id: 0,
         direct_info: 0,
         page_size: 20,
         page_count: 1,
     };
+    checkboxValue = ['1'];//用户筛选的值，
 
     limitinfo = {
         enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
@@ -45,10 +47,10 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() {}
+    enter() { }
 
     /**离开页面时调用 */
-    leave() {}
+    leave() { }
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -110,7 +112,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
         this.parameter.page_count = this.pageData.listQuery.page_count;
-
+        this.parameter.status = JSON.stringify(this.checkboxValue);
         this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
     }
 

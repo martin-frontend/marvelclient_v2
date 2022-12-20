@@ -107,6 +107,13 @@
                     </v-btn>
 
                 </CustomInput>
+
+                <!-- 记录查询 -->
+                <v-sheet class="d-flex align-end flex-column mt-4 mb-6" color="transparent">
+                    <div class="text-decoration-underline cursor-pointer colorBlue--text" @click="onDetailBtnClick()">
+                        {{LangUtil("查询记录")}}
+                    </div>
+                </v-sheet>
             </div>
 
             <!-- 确定按钮 -->

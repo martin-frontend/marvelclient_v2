@@ -70,8 +70,16 @@
                 <!-- 用户资产 -->
                 <template v-if="isAgents">
                     <div class="d-flex justify-space-between align-center my-3" min-height="40">
-                        <span class="d-flex colorText1--text"> {{LangUtil("用户资产")}}
-                        </span>
+                        <div class="d-flex  flex-column"> 
+
+                            <v-sheet class="colorText1--text d-flex align-center" min-height="40" color="transparent">
+                                {{LangUtil("用户资产")}}
+                            </v-sheet>
+                            <v-btn class="rounded-lg colorBtnBg mt-5 d-flex align-center" min-width="100" height="30"
+                                    @click="assetSettings_clear">
+                                    <span>{{ LangUtil("清空额度") }}</span>
+                                </v-btn>
+                        </div>
 
                         <div class="d-flex flex-column">
                             <!-- 用户身上的币种 -->

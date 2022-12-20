@@ -16,6 +16,7 @@ import dialog_directly_gameset from "../../dialog_directly_gameset";
 import dialog_edit_remark from "../../dialog_edit_remark";
 import dialog_message from "@/views/dialog_message";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_message_box from "@/views/dialog_message_box";
 
 @Component
 export default class DialogDirectlySetting extends AbstractView {
@@ -96,6 +97,25 @@ export default class DialogDirectlySetting extends AbstractView {
     assetSettings_add() {
         dialog_directly_transfer.show(this.playerInfo, true);
     }
+
+    //资产设置--  清空
+    assetSettings_clear() {
+        //console.log("清空资产");
+
+        const str = LangUtil("您是否要清空该代理下所有用户的资产？");
+        dialog_message_box.confirm({
+            message: str,
+            okFun: () => {
+                //console.log("点击确定，发送消息出去");
+                this.myProxy.api_user_var_agent_direct_deduction_all();
+            },
+            cancelFun: () => {
+                console.log("点击取消，将值变换回去");
+            }
+        });
+
+    }
+
     //esayBet投注额设置 按钮
     esayBetSetting() {
         //console.log("打开---esayBet投注额设置")
@@ -110,6 +130,23 @@ export default class DialogDirectlySetting extends AbstractView {
     }
 
     handlerUpdate(val: any) {
+        //console.log("val   ", val);
+        if (val == '98') {
+            const str = LangUtil("您是否禁用此帐号，如果禁用，该用户所有下级都禁用");
+            dialog_message_box.confirm({
+                message: str, okFun: () => {
+                    //console.log("点击确定，发送消息出去");
+                    this.myProxy.agent_direct_user_update();
+                },
+                cancelFun: () => {
+                    console.log("点击取消，将值变换回去");
+                    //@ts-ignore
+                    this.myProxy.playerInfo.status = 1;
+                    //console.log("this.playerInfo.status  " ,this.playerInfo.status);
+                }
+            });
+        }
+        else
         this.myProxy.agent_direct_user_update();
     }
     handlerUpdate_creditset(val: any) {

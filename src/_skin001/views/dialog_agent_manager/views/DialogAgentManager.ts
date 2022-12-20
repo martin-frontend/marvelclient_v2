@@ -73,6 +73,15 @@ export default class DialogAgentManager extends AbstractView {
         }
         return str;
     }
+    @Watch("myProxy.checkboxValue")
+    onWatchCheckboxValue() {
+        console.log("筛选修改");
+        if (this.myProxy.checkboxValue.length > 0) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_var_agent_direct_list();
+        }
+    }
+
     @Watch("pageData.search")
     onWatchSearch() {
         if (this.pageData.search != "") {

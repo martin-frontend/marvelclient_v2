@@ -9,6 +9,7 @@ import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_wallet from "../../dialog_wallet";
 
 
 
@@ -40,65 +41,55 @@ export default class DialogDirectlyTransfer extends AbstractView {
     onItemClick(key: string) {
         this.setCoin(key);
     }
-    
-    public get gold_info():any {
-        if(this.pageData.isAddMode)
-        {
+
+    public get gold_info(): any {
+        if (this.pageData.isAddMode) {
             return this.userInfo.gold_info;
-        } 
-        else
-        {
+        }
+        else {
             return this.playerInfo.gold_info;
         }
     }
-    
+
 
     onClose() {
         this.pageData.bShow = false;
     }
     //确定扣款 和 加钱
-    onClickSure()
-    {
-        if (this.pageData.isAddMode)
-        {
+    onClickSure() {
+        if (this.pageData.isAddMode) {
             //console.log("确定加钱  按钮" ,this.formData);//确定加钱
             this.myProxy.api_user_var_agent_credit_transfer();
         }
-        else
-        {
+        else {
             this.myProxy.api_user_var_agent_direct_deduction();
-        }     
+        }
     }
-    
+
     search() {
 
     }
-    
-    onClickGetAll()
-    {
+
+    onClickGetAll() {
         this.formData.gold = this.gold_info[this.formData.coin_name_unique].sum_money
     }
     get isChecked(): boolean {
-        if (!this.formData.gold)
-        {
+        if (!this.formData.gold) {
             return false;
         }
         const num = parseFloat(this.formData.gold)
-        if ( num <= 0)
-        {   
+        if (num <= 0) {
             return false;
         }
 
-        if (this.gold_info[this.formData.coin_name_unique] && num > this.gold_info[this.formData.coin_name_unique].sum_money)
-        {
+        if (this.gold_info[this.formData.coin_name_unique] && num > this.gold_info[this.formData.coin_name_unique].sum_money) {
             return false;
         }
         return true;
     }
 
-    onUsernameBlur()
-    {
-        
+    onUsernameBlur() {
+
     }
     handlerUpdate(val: any) {
 
@@ -110,10 +101,17 @@ export default class DialogDirectlyTransfer extends AbstractView {
             BlurUtil(this.pageData.bShow);
             //如果是列表，使用以下数据，否则删除
             //this.myProxy.resetQuery();
-            if(this.pageData.isAddMode)
-            {
+            if (this.pageData.isAddMode) {
                 this.myProxy.api_user_show_var();
             }
         }
     }
+    onDetailBtnClick() {
+        console.log("查询记录");//确定加钱
+        if (this.pageData.isAddMode) {
+            dialog_wallet.show(2, 63, this.formData.coin_name_unique);
+        } else
+            dialog_wallet.show(2, 62, this.formData.coin_name_unique);
+    }
+
 }

@@ -2,6 +2,7 @@ import { objectRemoveNull } from "@/core/global/Functions";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
+import dialog_message_box from "@/views/dialog_message_box";
 export default class DialogDirectlySettingProxy extends puremvc.Proxy {
     static NAME = "DialogDirectlySettingProxy";
     isOpenWalletMenu: boolean = false;
@@ -94,6 +95,43 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         };
         console.log("发送修改 是否显示多层用户", formData);
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(formData));
+    }
+    //清除所有的币种的余额
+    api_user_var_agent_direct_deduction_all()
+    {
+        this.pageData.loading = true;
+        const formData = {
+            user_id: core.user_id,
+            direct_user_id: this.playerInfo.user_id,
+        };
+        this.sendNotification(net.HttpType.api_user_var_agent_direct_deduction_all, objectRemoveNull(formData));
+    }
+    api_user_var_agent_direct_deduction_all_callback(msg:any = null)
+    {
+        this.pageData.loading = false;
+        console.log("清空 回调信息",msg);
+
+        const showmsg = [LangUtil("资产清空成功，归还资产:")];
+
+        const keys = Object.keys(msg);
+        for (let index = 0; index < keys.length; index++) {
+            const element = msg[keys[index]];
+            showmsg.push(LangUtil("币种:{0}  金额:{1}",element.coin_name_unique ,element.actual_deduction_gold) )
+        }
+
+
+        // const showmsg = {
+        //     1: LangUtil("“资产清空成功，归还资产:"),
+        //     2: LangUtil("{0}") + ":" ,
+        //     3: LangUtil("密码") + ":" ,
+        // }
+        //const str = LangUtil("添加用户成功！用户名:{0} 密码:{1}",this.pageData.form.username,this.pageData.form.password)
+        dialog_message_box.alert_mult({
+            message: showmsg, okFun: () => {
+                //this.pageData.bShow = false;
+            }
+        });
+        
     }
     copyId(msg: any) {
         //CopyUtil(this.playerInfo.user_id.toString());

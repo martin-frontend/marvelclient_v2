@@ -296,6 +296,8 @@ module net {
         api_user_var_agent_credit_transfer: "api/user/{user_id}/agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
+        /**--直属用户查询操作--清空直属所有额度*/
+        api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
     };
     /**事件*/
     export var EventType = {
@@ -599,6 +601,8 @@ module net {
         api_user_var_agent_credit_transfer: "api_user_var_agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
         api_user_var_direct_register: "api_user_var_direct_register",
+        /**--直属用户查询操作--清空直属所有额度*/
+        api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
     };
     /**注册协议*/
     export function initCommand() {
@@ -761,6 +765,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_credit_statistic, cmd_api_user_var_credit_statistic);
         facade.registerCommand(HttpType.api_user_var_agent_credit_transfer, cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(HttpType.api_user_var_direct_register, cmd_api_user_var_direct_register);
+        facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);
     };
 
 }

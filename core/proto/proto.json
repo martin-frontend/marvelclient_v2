@@ -184,6 +184,7 @@
         ["api/user/{user_id}/agent_direct_deduction",        "直属用户直接扣款"],
         ["api/user/{user_id}/credit_statistic",              "信用统计"],
         ["api/user/{user_id}/agent_credit_transfer",         "直属用户加钱"],
-        ["api/user/{user_id}/direct_register",               "注册直属"]
+        ["api/user/{user_id}/direct_register",         "注册直属"],
+        ["api/user/{user_id}/agent_direct_deduction_all",         "清空直属所有额度"]
     ]
 }

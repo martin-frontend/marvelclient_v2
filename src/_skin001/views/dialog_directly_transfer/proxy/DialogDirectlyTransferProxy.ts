@@ -91,7 +91,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     //扣款的回调
     agent_direct_deduction_call_back(msg: any) {
         const str = LangUtil("扣款成功！金额：{0} {1}！", msg.actual_deduction_gold, msg.coin_name_unique);
-        dialog_message_box.alert({ message: str, okFun: () => {} });
+        dialog_message_box.alert({ message: str, okFun: () => { } });
     }
     // 直属加钱 信息
     api_user_var_agent_credit_transfer() {
@@ -104,7 +104,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     //加钱的回调
     api_user_var_agent_credit_transfer_call_back(msg: any) {
         const str = LangUtil("加钱成功！金额：{0} {1}！", msg.actual_deduction_gold, msg.coin_name_unique);
-        dialog_message_box.alert({ message: str, okFun: () => {} });
+        dialog_message_box.alert({ message: str, okFun: () => { } });
         this.api_user_show_var(); //刷新当前玩家金币
     }
 

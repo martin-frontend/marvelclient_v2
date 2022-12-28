@@ -1,0 +1,11 @@
+<v-sheet class="rounded-lg mt-3 pa-0 box" :max-height="bShow ? '1000' : '38'" color="#24314A">
+    <div class="d-flex align-center ml-2 item-group-title" @click="bShow = !bShow">
+        <v-img v-if="icon" :src="icon" max-width="15" max-height="15"></v-img>
+        <div class="ml-2">{{ title }}</div>
+        <v-spacer />
+        <div class="icon-box iconfont mx-4 mr-5 text-14" :class="bShow ? 'arrow-show' : 'arrow'"></div>
+    </div>
+    <div v-if="$slots.default">
+        <slot></slot>
+    </div>
+</v-sheet>

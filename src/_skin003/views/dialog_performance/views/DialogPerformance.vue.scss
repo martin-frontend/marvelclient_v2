@@ -1,0 +1,49 @@
+@mixin com {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #fff;
+    @media only screen and (max-width: 750px) {
+        width: 100%;
+    }
+    div:first-child {
+        color: #bebebe;
+        margin-bottom: 5px;
+    }
+    div > a {
+        color: #bebebe;
+    }
+}
+.listinfo {
+    div {
+        width: auto;
+        margin-left: 10px;
+    }
+    div:first-child {
+        margin-left: 0;
+    }
+}
+.listitem {
+    position: relative;
+    .item-auto {
+        width: auto;
+        @include com;
+    }
+    .item-110 {
+        width: 110px;
+        @include com;
+    }
+    .listitem-90 {
+        @media only screen and (max-width: 750px) {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+        }
+    }
+}
+.arrow {
+    margin-bottom: -1px !important;
+}
+::v-deep .v-btn__content {
+    color: #bebebe;
+    font-weight: 400;
+}

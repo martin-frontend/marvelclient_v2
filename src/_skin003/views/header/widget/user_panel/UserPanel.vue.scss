@@ -1,0 +1,56 @@
+@import "@/style/params.scss";
+.bg {
+    background-color: #18191C;
+    background-image: linear-gradient(175.8deg, #18191C 0%, #18191C 100px);
+    text-align: center;
+}
+
+::v-deep.v-icon.v-icon {
+    color: #ffffff !important;
+}
+
+.item {
+    cursor: pointer;
+    font-weight: 600;
+    height: 38px;
+    width: 100%;
+    color: #BEBEBE;
+}
+.item:hover {
+    color: #DE1213;
+    i {
+        color: #DE1213 !important;
+    }
+}
+.item-group-title {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: #BEBEBE;
+    .arrow {
+        font-weight: 600;
+    }
+}
+.item1 {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: #BEBEBE;
+}
+.circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #9db1d8;
+    box-sizing: border-box;
+    position: relative;
+    .img {
+        display: none;
+    }
+}
+.circle-active {
+    border: 0px solid #9db1d8;
+    .img {
+        display: block;
+    }
+}

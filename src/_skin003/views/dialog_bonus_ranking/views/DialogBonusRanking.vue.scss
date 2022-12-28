@@ -1,0 +1,12 @@
+.horizontal-gradient {
+    background: linear-gradient(to right, #BA1B1A, #D02728);
+}
+.horizontal-gradient_item {
+    background: linear-gradient(to right, #272424, #272424);
+}
+.content{
+    height: 620px;
+    @media (max-width: 600px) {
+        height: calc(100vh - 120px);
+    }
+}

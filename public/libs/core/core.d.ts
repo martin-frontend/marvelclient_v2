@@ -283,6 +283,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--skin003--三方登录*/
+        api_user_third_login: string;
     };
     /**事件*/
     var EventType: {
@@ -566,6 +568,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--skin003--三方登录*/
+        api_user_third_login: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1052,6 +1056,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_show_var_gold extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 三方登录
+ */
+declare module net {
+    class cmd_api_user_third_login extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

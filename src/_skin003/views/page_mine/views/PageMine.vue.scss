@@ -1,0 +1,349 @@
+.page_mine {
+    .font_18 {
+        font-size: 18px !important;
+    }
+
+    ::v-deep .v-slide-group__prev {
+        right: 50px;
+        border-radius: 12pt 0pt 0pt 12pt;
+    }
+
+    ::v-deep .v-slide-group__next {
+        right: 0;
+        border-radius: 0pt 12pt 12pt 0pt;
+    }
+
+    ::v-deep .theme--dark.v-sheet--outlined {
+        border-color: #747373 !important;
+    }
+
+    ::v-deep .theme--dark {
+
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            top: -43px;
+            min-width: 32px;
+            width: 32px;
+            height: 24px;
+            position: absolute;
+            background: rgba(243, 231, 231, 0.098);
+
+            i {
+                font-size: 30px;
+            }
+
+            @media only screen and (max-width: 750px) {
+                display: none;
+            }
+        }
+    }
+
+    ::v-deep .theme--light {
+
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            top: -43px;
+            min-width: 32px;
+            width: 32px;
+            height: 24px;
+            position: absolute;
+            background: rgba(243, 231, 231, 0.098);
+
+            i {
+                font-size: 30px;
+            }
+
+            @media only screen and (max-width: 750px) {
+                display: none;
+            }
+        }
+    }
+
+    ::v-deep .v-progress-linear__determinate {
+        border-radius: 20px;
+    }
+
+    ::v-deep .v-progress-linear__buffer {
+        background: #111010;
+    }
+
+    ::v-deep .v-progress-linear__determinate {
+        height: 8px;
+        top: 4px;
+        transform: scale(0.98);
+
+        @media only screen and (max-width: 1264px) {
+            transform: scale(0.96);
+        }
+
+        @media only screen and (max-width: 750px) {
+            height: 6px;
+            top: 2px;
+            transform: scale(0.97);
+        }
+    }
+
+    .top_col_left {
+        width: 100%;
+        max-width: 530px !important;
+    }
+
+    .top_col_right {
+        width: 100%;
+        max-width: 880px !important;
+    }
+
+    .down_box {
+        .colorBorderBlue {
+            background-color: transparent !important;
+            border-width: 1px;
+        }
+    }
+
+    // .left_bg {
+    //     background: url("~@/assets/mine/left_bg.png") no-repeat center center;
+    //     background-size: cover;
+    // }
+    .right_banner {
+        // background: url("~@/assets/mine/right_bg.png") no-repeat center center;
+        // background-size: cover;
+        // position: relative;
+        // overflow: hidden;
+
+        &::before {
+            content: "";
+            background: url("~@/_skin003/assets/mine/right_special.png") no-repeat center center;
+            background-size: contain;
+            position: absolute;
+            width: 162px;
+            height: 100%;
+            right: 0;
+            top: 0;
+
+            @media screen and (max-width: 1260px) {
+                display: none;
+            }
+        }
+
+        .get_award {
+            //border: 1px solid #5e2e2e;
+            background-color: #BA1B1A !important;
+
+            @media only screen and (min-width: 960px) and (max-width: 1260px) {
+                position: absolute;
+                bottom: 76px;
+                right: 28px;
+            }
+
+            ::v-deep .v-btn__content {
+                opacity: 1 !important;
+                color: #fff !important;
+            }
+        }
+
+        .coins_group {
+            @media only screen and (min-width: 960px) and (max-width: 1260px) {
+                position: absolute;
+                right: 28px;
+                top: 17%;
+            }
+        }
+
+        .game_mine_info {
+            @media only screen and (min-width: 768px) and (max-width: 1024px) {
+                padding-left: 11% !important;
+            }
+        }
+
+        .right_btn_group {
+            @media only screen and (min-width: 960px) and (max-width: 1260px) {
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                right: 30px;
+                margin: auto;
+            }
+
+            @media only screen and (max-width: 960px) {
+                margin-bottom: 18px;
+            }
+
+            @media only screen and (min-width: 768px) and (max-width: 1024px) {
+                padding-left: 50%;
+            }
+        }
+
+        .cat_icon {
+            position: absolute;
+            bottom: 0;
+            left: -20px;
+        }
+
+        ::v-deep .v-btn__content {
+            color: #5e2e2e;
+        }
+
+        .btn_group {
+            ::v-deep .v-btn__content {
+                color: #fff;
+            }
+        }
+    }
+
+    .vip_config_box {
+        height: 135px;
+    }
+
+    .v-card,
+    .v-btn {
+        box-shadow: none !important;
+    }
+
+    .cursop_pointer {
+        cursor: pointer;
+    }
+
+    .linear_bg {
+        background: linear-gradient(#1c2647, #25324b);
+    }
+
+    .how_num {
+        font-size: 24px !important;
+    }
+
+    .how_title {
+        font-size: 18px !important;
+    }
+
+    #howMine {
+        @media only screen and (max-width: 960px) {
+            ::v-deep .v-card {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: flex-start;
+
+                >.v-card__text {
+                    width: 100%;
+                }
+
+                .v-card__actions {
+                    width: 30%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                }
+            }
+        }
+    }
+    
+    /**宽750 以下算H5 */
+    @media only screen and (max-width: 750px) {
+        .right_banner {
+            overflow: inherit;
+
+            .game_mine_title {
+                font-size: 18px !important;
+                line-height: 1;
+            }
+
+            &::after {
+                content: url("~@/_skin003/assets/mine/cat_icon_750.png");
+                height: 142px;
+                width: 134px;
+                position: absolute;
+                left: -75px;
+                top: -3px;
+                transform: scale(0.12);
+            }
+
+            .cat_icon {
+                visibility: hidden;
+            }
+
+            .right_btn_group {
+                @media only screen and (orientation: landscape) {
+                    max-width: 60%;
+                }
+            }
+        }
+
+        .left_bg {
+            .mine_level_title {
+                font-size: 18px !important;
+            }
+
+            .next_group {
+                .next_title {
+                    font-size: 14px !important;
+                }
+
+                span {
+                    font-size: 18px !important;
+                }
+            }
+        }
+
+        .level_box {
+            background: linear-gradient(#18181D, #18181D);
+
+            ::v-deep .v-image__image {
+                transform: scale(0.87);
+            }
+        }
+
+        #vipLevel {
+            .rounded_customized {
+                border-radius: 4px;
+            }
+        }
+
+        #howMine {
+            .how_item {
+                margin-bottom: -12px;
+            }
+        }
+
+        .how_num {
+            font-size: 18px !important;
+        }
+
+        .how_title {
+            font-size: 14px !important;
+        }
+
+        // #howMine {
+        //     ::v-deep .v-card__title {
+        //         width: 66%;
+        //     }
+        //     .how_title_box {
+        //         width: 62%;
+        //         line-height: 1.3;
+        //     }
+        // }
+        // .liheight {
+        //     line-height: 1.2;
+        // }
+    }
+}
+
+.vip_img{
+    position: relative;
+    .img_bottom{
+        position: absolute;
+        z-index: 1;
+        bottom: 0px;
+        left: 23px;
+    }
+    .img_icon{
+        position: absolute;
+        z-index: 2;
+        bottom:22px;
+        left: 42px;
+    }
+    .img_light{
+        position: absolute;
+        z-index: 3;
+        bottom: 18px;
+        left: 0px;
+    }
+}

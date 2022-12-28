@@ -1,0 +1,100 @@
+.horizontal-gradient-top {
+    background-image: linear-gradient(to right, #26272D, #26272D);
+}
+.horizontal-gradient {
+    background: linear-gradient(to right, #18191C, #18191C);
+}
+.gradient-type1 {
+    background-image: linear-gradient(to bottom, #C19251, #6F5F4F);
+    &:hover {
+        background-image: linear-gradient(to bottom, #c08737, #74583d);
+    }
+}
+.daily-radius {
+    border-radius: 10px 10px 0px 0px;
+    @media (max-width: 600px) {
+        border-radius: 5px 5px 0px 0px;
+    }
+}
+.rank-height {
+    height: 40px;
+    @media (max-width: 600px) {
+        height: 40px;
+    }
+    &.mobile {
+        height: 40px;
+    }
+}
+.daily-height {
+    height: 348px;
+    @media (max-width: 600px) {
+        height: 180px;
+    }
+}
+.bonus-card {
+    @media (max-width: 1264px) {
+        background-color: #111010;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+}
+.btn-left {
+    margin-left: -22px;
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}
+.stake-width {
+    min-width: 120px;
+}
+.arrow-width {
+    width: 100%;
+}
+.listitem {
+    div {
+        font-size: 18px;
+        color: white;
+        @media (max-width: 700px) {
+            font-size: 12px;
+        }
+    }
+    &.head {
+        div {
+            color: #506080;
+            font-size: 16px;
+            @media (max-width: 700px) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+.man {
+    background: url("~@/_skin003/assets/bonus/man@3x.png") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    height: 400px;
+    bottom: 28px;
+    right: 15px;
+    min-width: 87px;
+    max-width: 235px;
+
+}
+.bonus-width {
+    width: 105px;
+    @media (max-width: 700px) {
+        width: 75px;
+    }
+}
+.hundred-bonus-width {
+    width: 85px;
+}
+.redRow_item{
+    background-color: #D02628;
+    border-radius: 4px !important;
+}
+.blackRow_item{
+    background-color: #272424;
+    border-radius: 4px !important;
+}

@@ -1,0 +1,48 @@
+<div class="d-flex">
+    <v-carousel
+        v-model="selectIndex"
+        cycle
+        :height="height"
+        hide-delimiter-background
+        show-arrows-on-hover
+        :show-arrows="false"
+        @change="onChange"
+        interval="5000"
+    >
+        <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i">
+            <v-lazy>
+                <v-img
+                    :src="item.img_url"
+                    class="box"
+                    :height="height"
+                    @click="onBigItemClick(item)"
+                    :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''"
+                >
+                    <template v-slot:placeholder>
+                        <v-row class="fill-height ma-0" align="center" justify="center">
+                            <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+            </v-lazy>
+        </v-carousel-item>
+    </v-carousel>
+    
+    <!-- <v-sheet class="pa-0 ml-2 rounded-r-lg listbox scroll-y" color="color_marquee_1" width="315" height="450" max-width="315" min-width="315">
+        <v-sheet
+            v-for="(item, index) of noticeProxy.data.listType1"
+            :key="index"
+            @click="onItemClick(item)"
+            height="90"
+            :color="selectIndex == index ? '#33415d':'transparent'"
+            class="listitem cursor-pointer"
+        >
+            <v-sheet class="d-flex align-center" color="transparent" height="89">
+                <img :src="item.thumbnail_url" alt="" width="88" class="rounded-lg mx-4" />
+                <div class="text-truncate">{{ item.name }}</div>
+            </v-sheet>
+
+            <v-progress-linear v-if="selectIndex == index" color="colorTextGold" height="1" :value="progressObj.value"></v-progress-linear>
+        </v-sheet>
+    </v-sheet> -->
+</div>

@@ -1,0 +1,26 @@
+.listitem {
+    div {
+        min-width: 117px;
+        max-width: 117px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #bebebe;
+        div:first-child {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+}
+.header-mobile {
+    position: fixed;
+    z-index: 999;
+    background-color: #101010;
+    padding-top: 130px;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 205px;
+}

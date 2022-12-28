@@ -1,0 +1,58 @@
+@import "@/style/params.scss";
+.password-operate {
+    margin: 8px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    color: $color-info;
+    font-size: 12px;
+    line-height: 16px;
+}
+.tips-box {
+    margin-top: 16px;
+    font-size: 12px;
+    color: $color-info;
+    font-size: 14px;
+}
+.tips-box_org {
+    color: #6fa9fa;
+    font-size: 13px;
+}
+
+.loginWrap {
+    display: flex;
+    justify-content: center;
+    .loginBtn {
+        display: block;
+        width: 124px;
+        height: 44px;
+        margin: 24px auto 0;
+        border-radius: 8px;
+        font-size: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+}
+.loginTip {
+    font-size: 12px;
+    color: $color-info;
+}
+.tips-box_blue {
+    color: #1b9fff;
+}
+
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+::v-deep.v-text-field--outlined fieldset {
+    color: #314361 !important;
+}

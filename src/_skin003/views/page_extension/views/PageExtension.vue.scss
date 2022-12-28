@@ -1,0 +1,93 @@
+.horizontal-gradient-left {
+    background-image: linear-gradient(to right, #18191C, #18191C);
+    &.down {
+        background-image: url("~@/_skin003/assets/extension/commission@2x.png"), linear-gradient(to right, #18191C, #18191C);
+        background-size: 196px 275px, 100% 100%;
+        background-position: -0% bottom;
+        // @media (max-width: 1426px) {
+        //     background-position: -0% bottom;
+        // }
+        // @media (max-width: 1264px) {
+        //     background-position: -6% bottom;
+        // }
+        // @media (max-width: 700px) {
+        //     background-position: -14% bottom;
+        // }
+        @media (max-width: 400px) {
+            background-image: url("~@/_skin003/assets/extension/commission@2x.png"), 
+                linear-gradient(to right, #18191C, #18191C);
+            background-position: -24% bottom, right;
+            background-size: 196px 275px, 60% 65%, 100% 100%;
+            height: unset;
+        }
+        @media (min-width: 400px) and (max-width: 600px) {
+            height: unset;
+        }
+    }
+}
+.horizontal-gradient-right {
+    background: linear-gradient(to right, #18191C, #18191C);
+}
+.level_title {
+    background-image: linear-gradient(to right, #BA1B1A, #D02728);
+}
+.level_col {
+    position: relative;
+    .level_icon {
+        position: absolute;
+        left: 15px;
+        max-width: 30px;
+        @media (max-width: 750px) {
+            left: 15px;
+            top: 3px;
+            max-width: 20px;
+        }
+        @media (max-width: 600px) {
+            left: 3px;
+            top: 2px;
+            max-width: 15px;
+        }
+    }
+}
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    width: 180px;
+    height: 180px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 90px;
+        height: 90px;
+    }
+}
+.new {
+    @media (min-width: 1263px) and (max-width: 1426px) {
+        width: 113px;
+    }
+    @media (min-width: 600px) and (max-width: 640px) {
+        width: 113px;
+    }
+}
+.rounded-card {
+    @media (max-width: 600px) {
+        border-radius: 4px !important;
+    }
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}
+.commission{
+    @media (max-width: 600px) {
+        max-width: 85px !important;
+    }
+}
+.cursor{
+    cursor: pointer;
+}

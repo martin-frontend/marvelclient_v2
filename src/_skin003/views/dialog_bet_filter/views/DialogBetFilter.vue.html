@@ -1,0 +1,38 @@
+<v-dialog width="830" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
+        <!-- 标题 -->
+        <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+            <div class="text-18 font-weight-medium ml-2">
+                {{LangUtil("层级筛选")}}
+            </div>
+            <v-spacer />
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <!-- 内容 -->
+        <v-card-text class="text-sm-subtitle-1 text_height">
+            <!-- 单选框 -->
+            <div>
+                <v-radio-group v-model="radios" row class="colorTextBlueLight2--text">
+                    <v-radio v-for="(item, key) of radiosInfo" :key="key" :label="`${item.name}`" :value="item.value"
+                        color="#6A83B4"></v-radio>
+                </v-radio-group>
+            </div>
+
+            <!-- 层级内容 -->
+            <div v-if="false">
+                <custom-tree :dataarr="myProxy.teamDirectlyInfo" @onClickSure="onClickSure" @onClick="onClick" />
+            </div>
+            <!-- 去掉自己的第一层，直接显示直属 -->
+            <div v-for="(item, key) of myProxy.teamDirectlyInfo.childs" :key="key">
+                <custom-tree :dataarr="item" @onClickSure="onClickSure" :selfLayer="0" :directlyLayer="1"
+                    @onClick="onClick" />
+            </div>
+
+        </v-card-text>
+
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

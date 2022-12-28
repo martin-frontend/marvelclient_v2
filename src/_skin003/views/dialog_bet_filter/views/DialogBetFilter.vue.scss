@@ -1,0 +1,7 @@
+.text_height{
+    height: calc(100% - 190px);
+}
+
+::v-deep .v-input--selection-controls__input .v-icon{
+    color: #6A83B4;
+}

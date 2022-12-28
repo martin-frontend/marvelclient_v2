@@ -337,6 +337,8 @@ var net;
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
+        /**--skin003--三方登录*/
+        api_user_third_login: "/api/user/third_login",
     };
     /**事件*/
     net.EventType = {
@@ -620,6 +622,8 @@ var net;
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
+        /**--skin003--三方登录*/
+        api_user_third_login: "api_user_third_login",
     };
     /**注册协议*/
     function initCommand() {
@@ -784,6 +788,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_credit_transfer, net.cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(net.HttpType.api_user_var_direct_register, net.cmd_api_user_var_direct_register);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
+        //--skin003
+        facade.registerCommand(net.HttpType.api_user_third_login, net.cmd_api_user_third_login);
     }
     net.initCommand = initCommand;
     ;
@@ -1975,6 +1981,28 @@ var net;
         }
     }
     net.cmd_api_user_show_var_gold = cmd_api_user_show_var_gold;
+})(net || (net = {}));
+/**
+ * 三方登录
+ */
+var net;
+/**
+ * 三方登录
+ */
+(function (net) {
+    class cmd_api_user_third_login extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_third_login, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_third_login, result.data);
+            }
+        }
+    }
+    net.cmd_api_user_third_login = cmd_api_user_third_login;
 })(net || (net = {}));
 /**
  * 修改用户基本信息

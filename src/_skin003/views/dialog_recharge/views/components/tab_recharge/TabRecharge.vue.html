@@ -1,0 +1,158 @@
+<v-card-text class="mt-5 overflow-auto">
+    <div class="white--text mb-2">{{LangUtil("想使用人民币充值？")}}</div>
+    <div class="colorText1--text">
+        {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
+        <a class="text-decoration-underline colorBtnBg--text" @click="onLink(LangUtil('法币教程链接'))" href="#">
+            {{LangUtil("人民币充值教程")}}
+        </a>
+    </div>
+    <div class="d-flex mt-3">
+        <CustomSelect class="mr-3" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange1" />
+        <!-- <CustomSelect
+            v-if="pageData.methodList[form.coin_name_unique]"
+            :options="pageData.methodList[form.coin_name_unique].options"
+            v-model="form.block_network_id"
+            @change="onChange2"
+        /> -->
+    </div>
+
+    <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+        <v-btn
+            class="mb-2 mx-2"
+            min-width="100"
+            height="30"
+            :color="form.block_network_id==key ? 'colorBtnBg' : 'colorPanelTitleBg'"
+            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
+            :key="key"
+            @click="onChange2(key)"
+        >
+            {{item.name}}
+        </v-btn>
+    </div>
+
+    <v-card color="transparent">
+        <!-- 数字货币 -->
+        <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 4"
+        >
+            <div class="colorText1--text mt-3" v-if="pageData.methodList[form.coin_name_unique]">
+                {{LangUtil("你的{0} {1}充值地址", form.coin_name_unique,
+                pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
+            </div>
+            <div class="d-flex align-center address-box pa-2 mt-1">
+                <div class="info-text ml-1">{{ pageData.address }}</div>
+                <v-spacer />
+                <v-btn color="color_bg_title_1" small width="24" min-width="0" height="24" @click="onCopy">
+                    <v-img src="@/assets/icon/icon_copy.png" width="24" height="24"></v-img>
+                </v-btn>
+            </div>
+        </div>
+        <!-- okpay topay -->
+        <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 5"
+        >
+            <div class="colorText1--text mt-3">{{LangUtil("常用充值金额")}}</div>
+            <div class="d-flex flex-wrap my-2 mx-n2">
+                <v-btn
+                    class="mb-2 mx-2"
+                    min-width="100"
+                    height="30"
+                    :color="pageData.gold_index==index ? 'colorBtnBg' : 'colorPanelTitleBg'"
+                    v-for="(item, index) of pageData.methodList[form.coin_name_unique].options[form.block_network_id].fixed_gold_list"
+                    :key="index"
+                    @click="onGoldClick(index, item)"
+                    >{{item}}</v-btn
+                >
+                <v-spacer />
+            </div>
+            <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number">
+                <div>
+                    <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
+                        >{{LangUtil("提交充值")}}</v-btn
+                    >
+                </div>
+            </CustomInput>
+        </div>
+        <!-- alipay wechat bank -->
+        <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6"
+        >
+            <div class="colorText1--text mt-3">{{LangUtil("选择支付通道")}}</div>
+            <div class="d-flex flex-wrap my-2 mx-n2">
+                <v-btn
+                    class="mb-2 mx-2"
+                    min-width="100"
+                    height="51"
+                    color="colorPanelTitleBg"
+                    :style="{border: form.third_id==item.third_id ? 'solid 1px #bebebe !important' : 'none'}"
+                    v-for="(item, index) of pageData.methodList[form.coin_name_unique].options[form.block_network_id].channel"
+                    :key="index"
+                    @click="paymethod6ThirdClick(item)"
+                >
+                    <v-sheet color="transparent">
+                        <div class="text-truncate text-16">{{item.subtitle}}</div>
+                        <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
+                    </v-sheet>
+                </v-btn>
+                <v-spacer />
+            </div>
+            <v-divider></v-divider>
+
+            <div class="colorText1--text mt-3">{{LangUtil("常用充值金额")}}</div>
+            <div class="d-flex flex-wrap my-2 mx-n2">
+                <v-btn
+                    class="mb-2 mx-2"
+                    min-width="100"
+                    height="30"
+                    :color="pageData.gold_index==index ? 'colorBtnBg' : 'colorPanelTitleBg'"
+                    v-for="(item, index) of getPaymethod6_fixed_gold_list()"
+                    :key="index"
+                    @click="onGoldClick(index, item)"
+                    >{{item}}</v-btn
+                >
+                <v-spacer />
+            </div>
+            <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number" :disabled="isInputDisabled">
+                <div>
+                    <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
+                        >{{LangUtil("提交充值")}}</v-btn
+                    >
+                </div>
+            </CustomInput>
+        </div>
+
+        <v-sheet class="d-flex flex-wrap rounded-lg pa-4 mt-4 text-14" color="colorPanelTitleBg">
+            <div class="white-text d-flex">
+                <span class="mr-1">⚠️</span>
+                <div>
+                    <div
+                        v-for="item of transformExplain(getExplain())"
+                    >
+                        {{item}}
+                    </div>
+                </div>
+            </div>
+            <v-spacer />
+            <v-sheet
+                class="rounded-lg ml-3"
+                width="100"
+                min-width="100"
+                height="100"
+                color="white"
+                v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
+            >
+                <div ref="qrcode" class="qrcode" @click="showPreview">
+                    <v-img :src="pageData.qrcode"></v-img>
+                </div>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <v-divider class="mx-5" />
+    <v-card-text class="d-flex justify-end mt-3">
+        <div class="mr-2 white-text">{{LangUtil("已支持币种")}}</div>
+        <div v-for="(item, key) of pageData.methodList" :key="key">
+            <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+        </div>
+    </v-card-text>
+    <Overlay v-model="pageData.loading" />
+</v-card-text>

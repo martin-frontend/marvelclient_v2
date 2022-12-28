@@ -1,0 +1,18 @@
+::v-deep.v-text-field--outlined fieldset {
+    color: #314361 !important;
+}
+::v-deep.v-text-field {
+    width: 100%;
+}
+.btn-all {
+    position: absolute;
+    margin-top: -33px;
+    margin-right: 10px;
+}
+.color-blue {
+    color: #bebebe;
+}
+::v-deep.input-text{
+    height: 44px;
+    border-radius: 8px;
+}

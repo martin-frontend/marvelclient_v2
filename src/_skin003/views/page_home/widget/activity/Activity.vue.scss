@@ -1,0 +1,137 @@
+.box-container {
+    display: grid;
+    gap: 10px;
+}
+.btn {
+    width: fit-content;
+    background-color: #BA1B1A;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    //position: relative;
+    //bottom: 20px;
+}
+.activity1 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/_skin003/assets/activity/img_pool.png") no-repeat right 0px bottom, linear-gradient(121deg, #2B2B2B 0%, #2B2B2B 100%);
+    background-size: 117px 161px;
+}
+.activity1-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(135deg, #2B2B2B 0, #1C2127 50% , #24272A 100%);
+    .btn {
+        bottom: 10px;
+    }
+}
+.activity2 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/_skin003/assets/activity/img_swap.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #343042 0%, #211E2F 51% ,#242232 100%);
+    background-size: 144px 144px, 100% 100%;
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #48496D;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #FFCE4E;
+            transform: skewX(10deg);
+        }
+    }
+}
+.activity2-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(135deg, #343042 0, #211E2F 50% , #242232 100%);
+    .btn {
+        bottom: 10px;
+    }
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #48496D;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #FFCE4E;
+            transform: skewX(10deg);
+        }
+    }
+}
+
+.activity3 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/_skin003/assets/activity/img_mine.png") no-repeat right 10px bottom 10px, linear-gradient(90deg, #293248 0%, #232A3B 51%,#353D53 100%);
+    background-size: contain;
+    background-size: 183px 183px, 100% 100%;
+}
+
+.activity4 {
+    min-width: 360px;
+    height: 360px;
+    .item1 {
+        cursor: pointer;
+        height: 49%;
+        background: url("~@/_skin003/assets/activity/img_extension.png") no-repeat right 10px center, linear-gradient(135deg, #3C3C53, #211F39);
+        background-size: contain;
+        background-size: 97px 71px, 100% 100%;
+    }
+    .item2 {
+        cursor: pointer;
+        height: 49%;
+        background: url("~@/_skin003/assets/activity/img_activity.png") no-repeat right 10px center, linear-gradient(135deg, #173D44, #36646B);
+        background-size: contain;
+        background-size: 94px 94px, 100% 100%;
+    }
+}
+
+.btn-disabled {
+    background-color: #a9a9a9;
+    color: #656565;
+}
+
+.activity1:hover,
+.activity1-min:hover,
+.activity2:hover,
+.activity2-min:hover,
+.activity3:hover,
+.activity3-min:hover {
+    .btn {
+        background-color: #ffaf1a;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 1263px) {
+    .activity4 {
+        display: none;
+    }
+}
+@media screen and (max-width: 1153px) {
+    .box-container {
+        flex-direction: column;
+    }
+}
+
+.green-text {
+    color: #ccff00;
+}
+
+.red-text {
+    color: #ff6600;
+}
+
+.yellow-text {
+    color: #ffff00;
+}

@@ -300,6 +300,9 @@ module net {
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
+
+        /**--skin003--三方登录*/
+        api_user_third_login: "/api/user/third_login",
     };
     /**事件*/
     export var EventType = {
@@ -607,6 +610,9 @@ module net {
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
+
+        /**--skin003--三方登录*/
+        api_user_third_login: "api_user_third_login",
     };
     /**注册协议*/
     export function initCommand() {
@@ -771,6 +777,8 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_credit_transfer, cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(HttpType.api_user_var_direct_register, cmd_api_user_var_direct_register);
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);
+        //--skin003
+        facade.registerCommand(HttpType.api_user_third_login, cmd_api_user_third_login);
     };
 
 }

@@ -1,0 +1,8 @@
+.marquee-box {
+    width: 100%;
+    overflow: hidden;
+    div {
+        width: fit-content;
+        white-space: nowrap;
+    }
+}

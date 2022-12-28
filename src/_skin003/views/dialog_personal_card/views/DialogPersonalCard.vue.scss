@@ -1,0 +1,18 @@
+.input-text {
+    border-radius: 4px;
+    // height: 150px;
+    border: solid 1px #272424;
+    background-color:#272424 ;
+    textarea {
+        vertical-align: middle;
+        height: 150px;
+        width: 100%;
+        color: #fff;
+        resize: none;
+        border: none;
+        outline: none;
+    }
+}
+textarea::placeholder, textarea[disabled] {
+    color: #bebebe;
+}

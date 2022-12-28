@@ -1,0 +1,24 @@
+<v-container class="mx-auto pa-0 dasdass" :class="$vuetify.breakpoint.mobile?'px-2 mt-3':'mt-2'">
+    <div v-if="$vuetify.breakpoint.mobile">
+        <Advertise />
+        <Marquee1 class="mt-2" />
+        <Activity />
+    </div>
+    <div v-else>
+        <Activity />
+        <Marquee1 class="mt-2" />
+
+    </div>
+    <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
+        <GameSlideGroup v-if=" item.category != 32 && item.category != 64" :data="item" :bShowAll="true"
+            :name="item.category" :id="item.category" />
+        <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
+    </div>
+    <v-lazy>
+        <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
+    </v-lazy>
+    <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
+        <div class="all-rights-reserved">version:{{getVersion()}}</div>
+        <div class="all-rights-reserved">{{getChannelID()}}</div>
+    </div>
+</v-container>

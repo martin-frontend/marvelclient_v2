@@ -1,0 +1,97 @@
+<v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.xsOnly?30:45" class="rounded-lg d-flex align-center ml-0">
+    <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y nudge-bottom="7">
+        <template v-slot:activator="{ on, attrs }">
+            <div v-bind="attrs" v-on="on">
+                <v-sheet
+                    v-if="$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    class="align-center d-flex rounded-pill ml-2 pr-2"
+                    color="colorPanelTitleBg"
+                    min-width="80"
+                    height="30"
+                >
+                    <v-img
+                        :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
+                        max-width="20"
+                        max-height="20"
+                    ></v-img>
+                    <span class="text-16 ml-2"
+                        >{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{
+                        selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span
+                    >
+                    <v-spacer />
+                    <div
+                        class="icon-box iconfont text-14 colorText2--text ml-2"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                    >
+                        
+                    </div>
+                </v-sheet>
+                <v-sheet
+                    class="align-center d-flex rounded-pill pr-3"
+                    color="colorPanelTitleBg"
+                    min-width="90"
+                    height="45"
+                    v-if="!$vuetify.breakpoint.xsOnly && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                >
+                    <v-img
+                        class="ml-2"
+                        :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
+                        max-width="30"
+                        max-height="30"
+                    ></v-img>
+                    <span class="text-16 ml-2 mr-5"
+                        >{{gameProxy.coin_name_unique == 'USDT' ? "$" : ""}}{{
+                        selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span
+                    >
+                    <v-spacer />
+                    <div
+                        class="icon-box iconfont text-14  ml-2"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                    >
+                        
+                    </div>
+                </v-sheet>
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+            </div>
+        </template>
+        <v-sheet width="100%" color="colorPanelTitleBg" class="py-2 px-0 " >
+            <template v-for="(item, key) of selfProxy.userInfo.gold_info">
+                <v-sheet
+                    class="d-flex align-center pl-3 rounded cursor-pointer py-1 listitem"
+                    :class="{'select-shadow': gameProxy.coin_name_unique == key}"
+                    color="transparent"
+                    width="100%"
+                    :key="key"
+                    @click="onItemClick(key)"
+                >
+                    <div :class="key == 'CNY'? 'CNY': ''"><v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="40" max-height="40"></v-img></div>
+                    <div class="ml-3">
+                        <div class="font-weight-bold ">{{ key }}{{LangUtil("钱包")}}</div>
+                        <div>{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div>
+                        <div v-if="key == 'CNY'" class="colorGoldBg--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
+                    </div>
+
+                     <CoinTip v-if="gameProxy.coin_name_unique == key"/>
+
+                </v-sheet>
+            </template>
+            <v-btn
+                text
+                height="20"
+                min-width="32"
+                class="pa-0 my-1 ml-5"
+                color="colorText1"
+                @click="handlerGameRate"
+            >
+            {{LangUtil("游戏汇率查询")}}
+            </v-btn>
+        </v-sheet>
+    </v-menu>
+
+    <v-btn v-if="$vuetify.breakpoint.xsOnly" class=" mr-2" x-small color="#BA1B1A" @click="onCoinIn">
+        <div>{{LangUtil("充值")}}</div>
+    </v-btn>
+    <v-btn v-else class="rounded-lg mr-3" height="30" color="color_red_1" @click="onCoinIn">
+        <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
+    </v-btn>
+</v-sheet>

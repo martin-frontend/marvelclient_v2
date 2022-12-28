@@ -1,0 +1,50 @@
+@import "@/scss/mixin.scss";
+
+.text-rwd-18 {
+    font-size: 16px;
+    @include sm {
+        font-size: 18px;
+    }
+}
+
+.text-rwd-16 {
+    font-size: 14px;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.listitem {
+    color: #fff;
+    div:first-child {
+        color: #bebebe;
+    }
+    div > a {
+        color: #bebebe;
+    }
+}
+
+.arrow {
+    margin-bottom: -1px !important;
+}
+.search {
+    width: 207px;
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    //background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 125px;
+}

@@ -26,4 +26,6 @@ export interface GameConfigVO {
     SportVendorId:number;
 
     menuType:string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
+    /**三方登录地址 */
+    ThirdLoginUrl:string;
 }

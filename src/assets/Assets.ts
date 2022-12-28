@@ -26,7 +26,7 @@ const CategoryIcon = Object.freeze({
     16: "mdi-gamepad-variant",
     32: "mdi-video",
     64: "mdi-soccer",
-    128: "mdi-cards-playing",
+    128: "mdi-link-variant",
     256: "mdi-cards-playing",
     512: "mdi-cards-playing",
 });

@@ -21,19 +21,31 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType1: <core.PlatNoticeVO[]>[],
         listType2: <core.PlatNoticeVO[]>[],
         listType3: <core.PlatNoticeVO[]>[],
+        listType4: <core.PlatNoticeVO[]>[],
+        listType5: <core.PlatNoticeVO[]>[],
+        listType6: <core.PlatNoticeVO[]>[],
+        listType7: <core.PlatNoticeVO[]>[],
+        listType8: <core.PlatNoticeVO[]>[],
+        listType9: <core.PlatNoticeVO[]>[],
+        listType10: <core.PlatNoticeVO[]>[],
     };
 
     setData(data: core.PlatNoticeVO[]) {
         for (const item of data) {
             this.data.listAll.push(item);
-            if (item.type_position == 1) {
-                this.data.listType1.push(item);
-            }
-            if (item.type_position == 2) {
-                this.data.listType2.push(item);
-            }
-            if (item.type_position == 3) {
-                this.data.listType3.push(item);
+            switch (item.type_position) {
+                case 1: this.data.listType1.push(item); break;
+                case 2: this.data.listType2.push(item); break;
+                case 3: this.data.listType3.push(item); break;
+                case 4: this.data.listType4.push(item); break;
+                case 5: this.data.listType5.push(item); break;
+                case 6: this.data.listType6.push(item); break;
+                case 7: this.data.listType7.push(item); break;
+                case 8: this.data.listType8.push(item); break;
+                case 9: this.data.listType9.push(item); break;
+                case 10: this.data.listType10.push(item); break;
+                default:
+                    break;
             }
         }
         this.data = Object.freeze(this.data);

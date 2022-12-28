@@ -147,6 +147,8 @@ var net;
         api_vendor_var_lobby_simple: "api/vendor/{vendor_id}/lobby/simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: "api/plat/{plat_id}/game/menu",
         /**--搜索--我的游戏*/
         api_user_var_game_index: "api/user/{user_id}/game/index",
         /**--搜索--收藏游戏*/
@@ -428,6 +430,8 @@ var net;
         api_vendor_var_lobby_simple: "api_vendor_var_lobby_simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api_vendor_var_ori_product_show_var",
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: "api_plat_var_game_menu",
         /**--搜索--我的游戏*/
         api_user_var_game_index: "api_user_var_game_index",
         /**--搜索--收藏游戏*/
@@ -666,6 +670,7 @@ var net;
         facade.registerCommand(net.HttpType.api_vendor_simple, net.cmd_api_vendor_simple);
         facade.registerCommand(net.HttpType.api_vendor_var_lobby_simple, net.cmd_api_vendor_var_lobby_simple);
         facade.registerCommand(net.HttpType.api_vendor_var_ori_product_show_var, net.cmd_api_vendor_var_ori_product_show_var);
+        facade.registerCommand(net.HttpType.api_plat_var_game_menu, net.cmd_api_plat_var_game_menu);
         //--搜索
         facade.registerCommand(net.HttpType.api_user_var_game_index, net.cmd_api_user_var_game_index);
         facade.registerCommand(net.HttpType.api_user_var_game_update_var, net.cmd_api_user_var_game_update_var);
@@ -1134,6 +1139,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_game_config = cmd_api_plat_var_game_config;
+})(net || (net = {}));
+/**
+ * 获取平台首页菜单游戏列表
+ */
+var net;
+/**
+ * 获取平台首页菜单游戏列表
+ */
+(function (net) {
+    class cmd_api_plat_var_game_menu extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_game_menu, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_game_menu, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_game_menu = cmd_api_plat_var_game_menu;
 })(net || (net = {}));
 /**
  * 获取语言列表

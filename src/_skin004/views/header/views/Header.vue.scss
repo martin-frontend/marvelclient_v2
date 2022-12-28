@@ -1,0 +1,66 @@
+a {
+    text-decoration: none;
+}
+::v-deep .v-toolbar__content {
+    padding: 0px;
+}
+.nav-button {
+    display: flex;
+    padding: 0 32px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 60px;
+    transition: color 0.2s ease-in-out;
+    color: rgba(157, 177, 216, 0.6);
+    white-space: nowrap;
+    height: 60px;
+    svg {
+        max-height: 22px;
+        max-width: 22px;
+        transition: all 0.2s ease-in-out;
+        margin-right: 4px;
+        fill: rgba(157, 177, 216, 0.6);
+    }
+    i {
+        color: rgba(157, 177, 216, 0.6);
+    }
+}
+.nav-button.active {
+    border-radius: 8px;
+    color: #ffcc68;
+    background-image: linear-gradient(0deg, #2c4a7ab2 0%, #2c4a7a00 100%);
+    svg {
+        fill: #ffcc68;
+    }
+    i {
+        color: #ffcc68;
+    }
+}
+.nav-button:hover {
+    border-radius: 8px;
+    color: #ffcc68;
+    background-image: linear-gradient(0deg, #2c4a7ab2 0%, #2c4a7a00 100%);
+    svg {
+        fill: #ffcc68;
+    }
+    i {
+        color: #ffcc68;
+    }
+}
+
+.app-bar {
+    background: url("~@/assets/header/wenli.png") no-repeat left top;
+}
+.language{
+    ::v-deep .colorPanelTitleBg {
+        background-color: transparent !important;
+    }
+}
+.gradient-blue{
+    background: linear-gradient(to top, #2853A6, #406CC0);
+}
+::v-deep .v-menu__content{
+    max-width: 100% !important;
+    min-width: 100% !important;
+    left: 0px !important;
+}

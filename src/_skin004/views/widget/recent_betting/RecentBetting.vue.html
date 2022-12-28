@@ -1,0 +1,74 @@
+<div class="mb-5">
+    <div class="text-16 mb-2 ml-2 mr-4 d-flex">
+        <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.mobile?15:24">mdi-chess-queen</v-icon>
+        <div :class="$vuetify.breakpoint.mobile?'text-14 colorTextBlack1--text':''">{{LangUtil("近期投注")}}</div>
+    </div>
+
+    <v-sheet :color="$vuetify.breakpoint.mobile? '#fff' :'#192B4E'" rounded :height="$vuetify.breakpoint.mobile?30:60" class="mb-2 d-flex align-center">
+        <v-sheet
+            v-if="!$vuetify.breakpoint.mobile || (key == 0 || key ==1 || key==4)"
+            class=" d-flex justify-center"
+            :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':'text-18 colorText7--text'"
+            width="300"
+            color="transparent"
+            v-for="(item, key) of titles"
+            :key="key"
+            >{{item}}</v-sheet
+        >
+    </v-sheet>
+    <v-sheet class="listbox" color="transparent" :max-height="$vuetify.breakpoint.mobile?372:672">
+        <div ref="listbox">
+            <v-sheet
+                :color="$vuetify.breakpoint.mobile? '#fff' :'#192B4E'"
+                rounded
+                :height="$vuetify.breakpoint.mobile?30:60"
+                class="mb-2 d-flex align-center"
+                v-for="(item, key) of pageData.list"
+                :key="key"
+            >
+                <v-sheet
+                    class=" d-flex justify-center"
+                    :class="$vuetify.breakpoint.mobile?'text-12 colorText2--text colorTextBlack1--text':'text-18 colorText2--text'"
+                    width="300"
+                    color="transparent"
+                >
+                    {{item.game_name}}
+                </v-sheet>
+                <v-sheet
+                    class=" d-flex justify-center"
+                    :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                    width="300"
+                    color="transparent"
+                >
+                    {{item.username}}
+                </v-sheet>
+                <v-sheet
+                    v-if="!$vuetify.breakpoint.mobile"
+                    class=" d-flex justify-center"
+                    :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                    width="300"
+                    color="transparent"
+                >
+                    {{item.bet_time}}
+                </v-sheet>
+                <v-sheet
+                    v-if="!$vuetify.breakpoint.mobile"
+                    class=" d-flex justify-center"
+                    :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                    width="300"
+                    color="transparent"
+                >
+                    {{item.bet_gold}}
+                </v-sheet>
+                <v-sheet
+                    class=" d-flex justify-center"
+                    :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                    width="300"
+                    color="transparent"
+                >
+                    {{item.win_gold}}
+                </v-sheet>
+            </v-sheet>
+        </div>
+    </v-sheet>
+</div>

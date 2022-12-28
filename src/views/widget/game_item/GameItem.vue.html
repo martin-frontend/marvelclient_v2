@@ -28,7 +28,7 @@
                 </v-img>
                 <v-img v-if="getTag != ''" class="float-right" width="50px" :src="getTag"></v-img>
             </template>
-
+            <div v-if="item.status==98" class="d-flex justify-center align-end d-sm-flex align-sm-center justify-sm-center game-title_disable font-weight-bold">{{LangUtil("维护中")}}</div>
             <div class="d-flex justify-center align-end d-sm-flex align-sm-center justify-sm-center game-title font-weight-bold">{{ item.vendor_product_name }}</div>
             <div class="vendor-title">{{ item.vendor_name }}</div>
             <div class="egame__item__mask">

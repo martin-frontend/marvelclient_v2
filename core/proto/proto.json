@@ -53,6 +53,8 @@
         ["api/vendor/{vendor_id}/lobby/simple",                         "获取厂商配置游戏菜单（大厅厂商二级游戏菜单）"],
         ["api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",    "获取进入厂商的游戏URL，获取厂商游戏凭证"],
 
+        ["api/plat/{plat_id}/game/menu",                              "获取平台首页菜单游戏列表"],
+
         "--搜索",
         ["api/user/{user_id}/game/index",                       "我的游戏"],
         ["api/user/{user_id}/game/update/{vendor_product_id}",  "收藏游戏"],

@@ -93,6 +93,8 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: string;
         /**--搜索--我的游戏*/
         api_user_var_game_index: string;
         /**--搜索--收藏游戏*/
@@ -374,6 +376,8 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: string;
         /**--搜索--我的游戏*/
         api_user_var_game_index: string;
         /**--搜索--收藏游戏*/
@@ -706,6 +710,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_game_config extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取平台首页菜单游戏列表
+ */
+declare module net {
+    class cmd_api_plat_var_game_menu extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2714,6 +2727,8 @@ declare module core {
         list: VendorVO[];
         /** 第几个 */
         index: number;
+        vendor_type: number;
+        vendor_type_name: string;
     }
     /**
      * 厂商产品
@@ -2751,6 +2766,14 @@ declare module core {
         /**厂商名称*/
         vendor_name: string;
         vendor_product_id: number;
+        id: number;
+        alias: string;
+        entrance_game: string;
+        entrance_game_name: string;
+        entrance_type: number;
+        desc: string;
+        menu_icon: string;
+        entrance_icon: string;
     }
 }
 declare module core {

@@ -1,0 +1,64 @@
+<v-app-bar height="70" elevation="0" color="#1D2A43" class="pa-0 barbg pl-4" :app="routerPath != '/page_game_play'">
+    <!-- <v-sheet class="logo rounded-b-lg d-flex align-center justify-center" height="56" width="64">
+        <img :src="require(`@/_skin004/assets/logo.png`)" height="25" alt="" />
+    </v-sheet> -->
+    <div class="d-flex flex-column">
+        <div class="d-flex justify-space-between">
+            <img class=" " :src="require(`@/_skin004/assets/logo.png`)" height="25" alt="" />
+
+            <div class="d-flex class_icon">
+                <!-- 客服 -->
+                <!-- <v-btn icon small size="20" class="mr-2 d-flex align-center" @click="onService" >
+                    <img src="@/_skin001/assets/header/icon_service.png" width="20">
+                </v-btn> -->
+
+                <!-- <v-btn  small class="text-14 white--text gradient-blue ml-0" @click="onService" elevation="0">
+                    <span class="px-1 font-weight-bold">{{LangUtil("客服")}}</span>
+                </v-btn>
+                <v-btn  small color="white" class="text-14 mx-2  colorBlueBtn--text" @click="onNoticeShow" elevation="0">
+                    <span class="px-1 font-weight-bold">{{LangUtil("公告")}}</span>
+                </v-btn> -->
+
+                <v-btn color="#FFFFFF" class="rounded-pill accent--text mr-1" x-small  @click="onService" elevation="0">
+                    {{LangUtil("客服")}}
+                </v-btn>
+                <v-btn color="#FFFFFF" class="rounded-pill accent--text mr-1" x-small  @click="onNoticeShow" elevation="0">
+                    {{LangUtil("公告")}}
+                </v-btn>
+
+                <!-- 语言 -->
+                <div v-if="LangConfig.language" class="mr-4 d-flex align-center">
+                    <v-menu absolute :position-y="45">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn color="primary" dark v-bind="attrs" v-on="on" x-small icon>
+                                <img :src="LangConfig.language[core.lang].icon" width="20" />
+                            </v-btn>
+                        </template>
+                        <v-list color="colorPanelTitleBg">
+                            <v-list-item v-for="(item, key) in LangConfig.language" :key="key" @click="onLangChange(key)">
+                                <v-list-item-title class="d-flex align-center">
+                                    <img :src="item.icon" width="20" />
+                                    <div class="ml-2">{{item.name}}</div>
+                                </v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex mt-1">
+        
+            <User v-if="core.user_id" class="mr-0" />
+            <Wallet v-if="core.user_id" class=""/>
+            
+            <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue ml-0" @click="handlerLogin" elevation="0">
+                <span class="px-1 font-weight-bold">{{LangUtil("登录")}}</span>
+            </v-btn>
+            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2  colorBlueBtn--text" @click="handlerRegister" elevation="0">
+                <span class="px-1 font-weight-bold">{{LangUtil("注册")}}</span>
+            </v-btn>
+        </div>
+
+    </div>
+</v-app-bar>

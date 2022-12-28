@@ -12,7 +12,7 @@
             <div class="d-flex justify-end mb-2">
                 <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
-            <div class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
+            <div v-if="pageData.list.length>0" class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
                 <div>{{LangUtil("总计")}} {{ pageData.list[pageData.list.length-1].date }} {{LangUtil("至")}} {{ pageData.list[0].date }}</div>
             </div>
             <div class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">

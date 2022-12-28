@@ -91,6 +91,8 @@ module net {
         api_vendor_var_lobby_simple: "api/vendor/{vendor_id}/lobby/simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: "api/plat/{plat_id}/game/menu",
 
         /**--搜索--我的游戏*/
         api_user_var_game_index: "api/user/{user_id}/game/index",
@@ -396,6 +398,8 @@ module net {
         api_vendor_var_lobby_simple: "api_vendor_var_lobby_simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api_vendor_var_ori_product_show_var",
+        /**--大厅--获取平台首页菜单游戏列表*/
+        api_plat_var_game_menu: "api_plat_var_game_menu",
 
         /**--搜索--我的游戏*/
         api_user_var_game_index: "api_user_var_game_index",
@@ -653,6 +657,7 @@ module net {
         facade.registerCommand(HttpType.api_vendor_simple, cmd_api_vendor_simple);
         facade.registerCommand(HttpType.api_vendor_var_lobby_simple, cmd_api_vendor_var_lobby_simple);
         facade.registerCommand(HttpType.api_vendor_var_ori_product_show_var, cmd_api_vendor_var_ori_product_show_var);
+        facade.registerCommand(HttpType.api_plat_var_game_menu, cmd_api_plat_var_game_menu);
         //--搜索
         facade.registerCommand(HttpType.api_user_var_game_index, cmd_api_user_var_game_index);
         facade.registerCommand(HttpType.api_user_var_game_update_var, cmd_api_user_var_game_update_var);

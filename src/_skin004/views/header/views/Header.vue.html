@@ -1,0 +1,160 @@
+<v-app-bar class="app-bar" :height="$vuetify.breakpoint.xsOnly?80:155" color="colorTitleBg" elevation="0"
+    :app="routerPath != '/page_game_play'">
+    <v-container class="ma-auto px-6 py-0" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="d-flex align-center mt-2">
+            <img :src="require(`@/_skin004/assets/logo.png`)" height="40" class="ml-3 mt-4 mb-2" alt="" />
+            <v-spacer />
+
+            <!-- 语言 -->
+            <div v-if="LangConfig.language">
+                <CustomSelect v-model="core.lang" :options="LangConfig.language" :icons="LangConfig.language"
+                    :width="160" :height="45" :isPill="true" class="mr-4" @change="onLangChange" />
+            </div>
+            <!-- 登录 -->
+            <v-btn v-if="core.user_id == 0" :small="$vuetify.breakpoint.mobile" color="#ffb01b"
+                class="text-14 white--text gradient-blue" @click="handlerLogin" elevation="0">
+                <span class="px-2">{{LangUtil("登录")}}</span>
+            </v-btn>
+            <!-- 注册 -->
+            <v-btn v-if="core.user_id == 0" :small="$vuetify.breakpoint.mobile" color="white"
+                class="text-14 mx-4 colorBlueBtn--text" @click="handlerRegister" elevation="0">
+                <span class="px-2">{{LangUtil("注册")}}</span>
+            </v-btn>
+            <!-- 钱包 -->
+            <Wallet v-if="core.user_id" />
+            <!-- 用户中心 -->
+            <User v-if="core.user_id && !$vuetify.breakpoint.mobile" />
+        </div>
+        <!-- 导航 -->
+        <div class="d-flex mt-5">
+            <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
+            <template v-if="!$vuetify.breakpoint.mobile">
+
+                <button class="nav-button" :class="routerPath == '/'? 'active' : ''" @click="goHome">
+                    <v-icon>mdi-home</v-icon>
+                    <div>{{LangUtil("首页")}}</div>
+                </button>
+                <!-- 足球 -->
+                <!-- <button
+                    v-if="!$vuetify.breakpoint.mobile"
+                    class="nav-button"
+                    :class="routerPath == '/page_game_soccer'? 'active' : ''"
+                    @click="goSoccer"
+                >
+                    <v-icon class="mr-1">{{ CategoryIcon[64] }}</v-icon>
+                    <div>{{LangUtil("足球")}}</div>
+                </button> -->
+
+                <template v-if="!isNeetMenu">
+                    <button class="nav-button d-none d-md-flex" v-for="(item, index) of pageData.lobbyIndex"
+                        :key="index" @click="goCategory(item.category)"
+                        :class="(routerPath == '/page_game_list' && categoryActive == item.category) ? 'active' : ''">
+                        <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
+                        <div>{{ item.category_name }}</div>
+                    </button>
+                </template>
+                <template v-else>
+                    <v-menu open-on-hover bottom offset-y v-for="(item, index) of pageData.lobbyMenuIndex" :key="index"
+                        max-width="100%" attach>
+                        <template v-slot:activator="{ on, attrs,value }">
+                            <button class="nav-button d-none d-md-flex" v-bind="attrs" v-on="on"
+                                @click="goCategory(getItemCategory(item))"
+                                :class="(routerPath == '/page_game_list' && categoryActive == getItemCategory(item)) ? 'active' : ''">
+                                <v-icon class="mr-1">{{ CategoryIcon[getItemCategory(item)] }}</v-icon>
+                                <div>{{ getItemCategoryName(item) }}</div>
+                            </button>
+                            <!-- {{setIsFilter(value)}} -->
+                            {{setFilters(index,value)}}
+                        </template>
+                        <GameMenu :data="item" />
+                    </v-menu>
+                </template>
+
+
+                <v-spacer />
+                <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goActivity">
+                    <v-icon>mdi-gift</v-icon>
+                    <div class="ml-1">{{LangUtil("优惠活动")}}</div>
+                </button>
+                <button class="nav-button" :class="routerPath == '/page_extension' ? 'active' : ''"
+                    @click="goExtension">
+                    <v-icon>mdi-hand-extended</v-icon>
+                    <div class="ml-1">{{LangUtil("推广赚钱")}}</div>
+                </button>
+
+                <!-- <v-hover v-slot="{ hover }">
+                    <button
+                        class="nav-button"
+                        @click="goMine"
+                        :class="routerPath == '/page_mine' ? 'active' : ''"
+                    >
+                        <v-img
+                            v-if="routerPath == '/page_mine' || hover"
+                            max-width="24"
+                            max-height="24"
+                            src="@/_skin001/assets/icon/icon_mine1.png"
+                        ></v-img>
+                        <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_mine2.png"></v-img>
+                        <div class="ml-1">{{ LangUtil("返水") }}</div>
+                    </button>
+                </v-hover> -->
+
+                <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1 && isShowDirectly == 2">
+                    <button class="nav-button" @click="goExtension"
+                        :class="routerPath == '/page_extension' ? 'active' : ''">
+                        <v-img v-if="routerPath == '/page_extension' || hover" max-width="24" max-height="24"
+                            src="@/_skin001/assets/icon/icon_extension1.png"></v-img>
+                        <v-img v-else max-width="24" max-height="24" src="@/_skin001/assets/icon/icon_extension2.png">
+                        </v-img>
+                        <!-- <div v-if="isShowDirectly == 1" class="ml-1">{{ LangUtil("推广") }}</div>
+                        <div v-else-if="isShowDirectly == 2" class="ml-1">{{ LangUtil("代理管理") }}</div> -->
+                        <div class="ml-1">{{ LangUtil("推广") }}</div>
+                    </button>
+                </v-hover>
+            </template>
+
+            <!-- <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goIntroduce">
+                <v-icon>mdi-alpha-f-circle</v-icon>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
+            </button> -->
+        </div>
+    </v-container>
+    <!-- 手机 -->
+    <v-container v-else class="mt-3">
+        <div class="d-flex align-center">
+            <img :src="require(`@/_skin004/assets/logo.png`)" height="20" alt="" />
+            <v-spacer />
+            <v-btn height="28" small class="mr-2 rounded-pill gradient-blue white--text" @click="goActivity"
+                elevation="0">
+                <!-- <img src="@/assets/activity/icon_activity.png" width="20"/> -->
+                <div class="px-1">{{LangUtil("活动")}}</div>
+            </v-btn>
+            <v-btn height="28" small class="rounded-pill gradient-blue white--text" @click="onService" elevation="0">
+                <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
+                <div class="px-1">{{LangUtil("客服")}}</div>
+            </v-btn>
+            <div v-if="LangConfig.language" class="language">
+                <CustomSelect class="mr-n2" v-model="core.lang" :options="LangConfig.language"
+                    :icons="LangConfig.language" :width="$vuetify.breakpoint.xsOnly? 45 : 130" :height="30"
+                    fontSize="12" iconSize="20" :isPill="true" @change="onLangChange" />
+            </div>
+        </div>
+        <div class="d-flex align-center mt-1 mb-2">
+            <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue" @click="handlerLogin"
+                elevation="0">
+                <span class="px-1">{{LangUtil("登录")}}</span>
+            </v-btn>
+            <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text"
+                @click="handlerRegister" elevation="0">
+                <span class="px-1">{{LangUtil("注册")}}</span>
+            </v-btn>
+            <Wallet v-if="core.user_id" />
+            <v-spacer />
+            <User v-if="core.user_id" />
+            <!-- <v-btn class="mt-1 rounded-pill" small plain @click="goIntroduce">
+                <v-icon>mdi-alpha-f-circle</v-icon>
+                <div class="ml-1">{{LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin())}}</div>
+            </v-btn> -->
+        </div>
+    </v-container>
+</v-app-bar>

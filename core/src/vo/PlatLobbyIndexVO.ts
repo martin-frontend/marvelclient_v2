@@ -11,6 +11,9 @@ module core {
         list: VendorVO[];
         /** 第几个 */
         index: number;
+        //game_menu
+        vendor_type: number; //厂商游戏类型
+        vendor_type_name: string;
     }
 
     /**
@@ -51,6 +54,16 @@ module core {
         /**厂商名称*/
         vendor_name: string;
         vendor_product_id: number;
+
+        //game_menu
+        id: number;
+        alias: string;//别名
+        entrance_game: string;// //厂商游戏id
+        entrance_game_name: string;//厂商游戏名称
+        entrance_type: number,   //入口类型：1厂商入口 | 2游戏入口
+        desc: string,    //描述
+        menu_icon: string,   //菜单icon
+        entrance_icon: string,     //入口icon
     }
 
 

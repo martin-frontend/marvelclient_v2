@@ -1,0 +1,134 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+
+    <!-- pc显示 -->
+    <template v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card class="rounded-lg" color="colorPanelBg">
+            <v-card-title class="gradient-bg">
+                <div class="text-18">{{LangUtil("公告")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon large>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text class="d-flex">
+                <v-sheet class="mr-3" color="transparent" width="200">
+                    <v-sheet class="overflow-y-auto" color="transparent" width="100%" height="420">
+                        <button class="nav-button d-none d-md-flex" v-for="(item, index) of myProxy.noticeData"
+                            :key="item.id" @click="onBtnClick(item)" :class="curindex==item.id ? 'active' : ''">
+                            <!-- <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon> -->
+                            <div class="text-truncate">{{ item.name }}</div>
+                        </button>
+                    </v-sheet>
+                </v-sheet>
+                <!-- <div class="hackhome ml-2 mr-2"></div> -->
+                <v-divider vertical></v-divider>
+
+                <v-sheet class="overflow-y-auto ml-2" color="transparent" width="100%" height="420">
+                    
+                    <!-- 图片 -->
+                    <v-sheet v-if="isShowImg" color="transparent" width="100%">
+                        <v-img class="rounded-lg " :src="curShowData.img_url" width="482"></v-img>
+                    </v-sheet>
+
+                    <!-- 视频 -->
+                    <v-sheet v-else-if="videoUrl != '' && pageData.bShow" color="transparent" class="colorBlue--text" width="100%" height="100%">
+                        <iframe 
+                        ref="videoFrame"
+                        width="100%" 
+                        height="100%" 
+                        :src="videoUrl" 
+                        title="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                        </iframe>
+                    </v-sheet>
+                    
+                    <!-- 文字 -->
+                    <v-sheet v-else="!isShowImg" color="transparent" class="colorBlue--text" width="100%" height="100%">
+                        <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
+                            {{ noticeDetialInfo.content}}
+                        </v-sheet>
+                    </v-sheet>
+
+                </v-sheet>
+
+            </v-card-text>
+        </v-card>
+    </template>
+
+    <!-- 手机显示 -->
+    <template v-else>
+        <v-card class="rounded-lg" color="transparent">
+            <v-card-text>
+
+                <v-sheet class="pt-2" color="transparent">
+                    <v-sheet class="pb-2 mt-4 rounded-lg" color="colorPanelBg">
+                        <!-- 关闭按钮 -->
+                        <v-sheet class="d-flex justify-end mr-3 pt-2" color="transparent">
+                            <v-btn icon @click="onClose">
+                                <v-icon large>mdi-close</v-icon>
+                            </v-btn>
+                        </v-sheet>
+                        <!-- 标题 -->
+
+                        <v-sheet v-if="curShowData" class="d-flex justify-center mr-3 text-18 mb-5" color="transparent">
+                            {{curShowData.name}}
+                        </v-sheet>
+                        <!-- 内容 -->
+                        <v-sheet class="overflow-y-auto ml-2 mr-2 mt-2 page_main " color="colorPanelTitleBg">
+
+                            <!-- 图片 -->
+                            <v-sheet v-if="isShowImg" color="transparent" width="100%">
+                                <v-img class="rounded-lg " :src="curShowData.img_url" width="482"></v-img>
+                            </v-sheet>
+
+                            <!-- 视频 -->
+                            <v-sheet v-else-if="videoUrl != '' && pageData.bShow" color="transparent" class="colorBlue--text" width="100%" height="100%">
+                                <iframe 
+                                ref="videoFrame"
+                                width="100%" 
+                                height="100%" 
+                                :src="videoUrl" 
+                                title="" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                                </iframe>
+                            </v-sheet>
+                            
+                            <!-- 文字 -->
+                            <v-sheet v-else="!isShowImg" color="transparent" class="colorBlue--text" width="100%" height="100%">
+                                <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
+                                    {{ noticeDetialInfo.content}}
+                                </v-sheet>
+                            </v-sheet>
+
+                        </v-sheet>
+
+                    </v-sheet>
+
+                    <!-- 翻译按钮 -->
+                    <v-sheet v-if="isShowPageBtn" class="mt-auto " color="transparent">
+                        <v-sheet class="mt-5 d-flex justify-space-around" color="transparent">
+
+                            <v-btn class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
+                            color="colorPanelBg"
+                                min-width="100" :disabled="lastPageInfo==null" @click="onLastPageBtnClick">
+                                {{LangUtil("上一页")}}</v-btn>
+
+                            <v-btn class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2" 
+                            color="colorPanelBg"
+                                min-width="100" :disabled="nextPageInfo==null" @click="onNextPageBtnClick">
+                                {{LangUtil("下一页")}}</v-btn>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+            </v-card-text>
+        </v-card>
+    </template>
+
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

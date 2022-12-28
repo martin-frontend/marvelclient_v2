@@ -1,0 +1,27 @@
+
+.info_bg{
+    background-image: linear-gradient(to right, rgba(28,38,77,100) 0%, rgba(25,36,72,78) 20%, rgba(20,30,54,0) 100% );;
+}
+
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    width: 155px;
+    height: 155px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.qrcode_text{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}

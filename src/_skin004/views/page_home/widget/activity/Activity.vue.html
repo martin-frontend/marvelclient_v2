@@ -1,0 +1,153 @@
+<div class="font-weight-black" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-2'">
+    <div class="d-flex box-container">
+        <!-- <div class="d-flex" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goMine">
+                <div class="text-16">
+                    <span>
+                        {{LangUtil("游戏挖矿")}}
+                    </span>
+                    <span class="yellow-text text-18 font-weight-bold font-italic">
+                        {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
+                    </span>
+                </div>
+                <div class="text-12 mt-2" style="width: 50%">
+                    {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
+                </div>
+            </div>
+
+            <div class="activity2-min rounded-lg pa-3" @click="goExtension">
+                <div class="text-16">
+                    <span>
+                        {{LangUtil("推广赚钱")}}
+                    </span>
+                </div>
+            </div>
+        </div> -->
+        <div class="d-flex" v-if="false && $vuetify.breakpoint.mobile && !$vuetify.breakpoint.xsOnly">
+            <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goMine">
+                <div class="text-24">
+                    <span>
+                        {{LangUtil("游戏挖矿")}}
+                    </span>
+                    <!-- <span class="yellow-text text-18 font-weight-bold font-italic">
+                        {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
+                    </span> -->
+                </div>
+                <div class="text-16 mt-2" style="width: 50%">
+                    {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
+                </div>
+            </div>
+
+            <div v-if="is_show_commission.is_open == 1" class="activity2-min rounded-lg pa-3" @click="goExtension">
+                <div class="text-24">
+                    <span>
+                        {{LangUtil("推广赚钱")}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <v-sheet v-if="!$vuetify.breakpoint.mobile && getShowData && getShowData.length > 0" width="100%" min-width="612">
+            <v-carousel cycle :height="316" hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus"
+                :show-arrows="false">
+                <v-carousel-item v-for="(item,i) in getShowData" :key="i">
+                    <v-lazy>
+                        <v-img :src="item.img_url" class="box" :height="316" @click="onBigItemClick(item)"
+                            :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''">
+                            <template v-slot:placeholder>
+                                <v-row class="fill-height ma-0" align="center" justify="center">
+                                    <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
+                    </v-lazy>
+                </v-carousel-item>
+            </v-carousel>
+        </v-sheet>
+
+        <!-- <div class="activity1 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageBouns">
+            <div class="text-24 mt-5 ml-5">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
+            <div class="text-16 ml-5 mt-2">
+                <span>
+                    {{LangUtil("当前分红池")}}:
+                </span>
+                <span class="green-text font-italic font-weight-bold text-18">
+                    {{`APR ${pageData.stakeInfo.apr}`}}
+                </span>
+            </div>
+            <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5 mt-3" />
+            <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35" min-width="110">
+                {{LangUtil("领取分红")}}
+            </v-sheet>
+        </div> -->
+
+        <!-- <div class="activity2 rounded-lg" v-if="!$vuetify.breakpoint.xsOnly" @click="goPageSwap">
+            <div class="text-24 mt-5 ml-5">
+                <span>
+                    {{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}
+                </span>
+                <span class="text-18 font-weight-bold font-italic" v-if="coinChangedData" :class="coinChangedData[0] >= 0 ? 'green-text': 'red-text'">
+                    {{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
+                </span>
+            </div>
+
+            <div class="d-flex align-center rounded-lg px-5 price ml-5 my-9">
+                <div class="text-16 mr-2">{{LangUtil("价格")}}</div>
+                <div class="text-28 font-weight-bold price">${{ pageData.swap_setting_info.coin_a_b_price }}</div>
+            </div>
+
+            <v-sheet class="btn text-18 ml-5 mt-2 px-2 rounded-pill d-flex align-center justify-center" height="35" min-width="110">
+                {{LangUtil("前往交易")}}
+            </v-sheet>
+        </div> -->
+
+        <!-- <div class="activity3 rounded-lg" @click="goMine" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-24 mt-5 ml-5">
+                <span>
+                    {{LangUtil("游戏挖矿")}}
+                </span>
+                <span class="yellow-text text-18 font-weight-bold font-italic">
+                    {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
+                </span>
+            </div>
+            <div class="text-20 ml-5 mt-2" style="width: 50%">
+                {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
+            </div>
+            <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35" min-width="110">
+                {{LangUtil("查看奖励")}}
+            </v-sheet>
+        </div> -->
+
+        <!-- <div class="activity4 text-24" v-if="!$vuetify.breakpoint.mobile">
+            <div class="item1 rounded-lg pt-3 pl-3" @click="goMine">
+                <div class="text-32">
+                    <span>
+                        {{LangUtil("游戏挖矿")}}
+                    </span>
+                </div>
+                <div class="text-16 mt-2" style="width: 50%">
+                    {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
+                </div>
+            </div>
+
+        </div> -->
+        <!-- <div class="activity4 text-24" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="item1 rounded-t-lg pt-10 pl-5" @click="goExtension">{{LangUtil("推广赚钱")}}</div>
+            <div class="item2 rounded-b-lg pt-10 pl-5 mt-2" @click="goActivity">{{LangUtil("精彩活动")}}</div>
+        </div> -->
+        <!-- <v-card :img="require(`@/_skin001/assets/img_activity.png`)" class="activity3 rounded-lg" @click="goActivity"
+            v-if="!$vuetify.breakpoint.mobile">
+            <div class="text-32 mt-3 ml-3">
+                <span>
+                    {{LangUtil("精彩活动")}}
+                </span>
+            </div>
+            <v-sheet class="btn text-18 ml-5 mt-2 px-3 rounded-pill d-flex align-center justify-center" height="35"
+                min-width="110">
+                {{LangUtil("查看详情")}}
+            </v-sheet>
+        </v-card> -->
+    </div>
+
+
+</div>

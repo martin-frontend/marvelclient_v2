@@ -43,6 +43,12 @@ module.exports = {
             filename: "skin002.html",
             title: "11.club",
         },
+        skin004: {
+            entry: "src/_skin004/main.ts",
+            template: "public/skin004.html",
+            filename: "skin004.html",
+            title: "越南",
+        },
         skin100: {
             entry: "src/_skin100/main.ts",
             template: "public/skin100.html",

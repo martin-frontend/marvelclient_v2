@@ -78,6 +78,8 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         this.pageData.list = data.list;
     }
 
+    curCoinName = "USDT";
+
     /**写入 详情 */
     setCommissionDetail(body: any) {
         this.pageData.loading = false;
@@ -87,6 +89,12 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         this.pageData.directly_users = data.directly_users;
         this.pageData.today_group_users = data.today_group_users;
         this.pageData.today_directly_users = data.today_directly_users;
+
+        const coinname = Object.keys( body.commission_awaiting_num);
+        this.curCoinName = coinname[0];
+
+        console.log("当前币种  为" , this.curCoinName );
+        
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.original, data);
         Object.keys(data.commission_info).forEach((key) => {
@@ -96,8 +104,8 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
                 self_water: data.commission_info[key].self_water,
                 direct_water: data.commission_info[key].direct_water,
                 group_water: data.commission_info[key].group_water,
-                commission_num: `${data.commission_info[key].commission_num[`USDT`]}`,
-                total_commission: `${data.commission_info[key].total_commission[`USDT`]}`,
+                commission_num: `${data.commission_info[key].commission_num[this.curCoinName]}`,
+                total_commission: `${data.commission_info[key].total_commission[this.curCoinName]}`,
             });
         });
     }

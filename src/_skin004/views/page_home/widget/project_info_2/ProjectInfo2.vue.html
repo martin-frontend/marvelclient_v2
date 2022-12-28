@@ -1,0 +1,41 @@
+<v-sheet color="transparent" class="d-flex align-center justify-space-around info_bg" width="100%">
+
+    <!-- 右边文字 -->
+    <v-sheet class="d-flex justify-center" color="transparent" min-width="50%">
+        <div>
+            <!-- 上面的标题 -->
+            <div class="text-32 font-weight-bold ml-4">
+                {{LangUtil("品牌名")}} {{LangUtil("WEB")}}
+            </div>
+
+            <!-- 内容 -->
+            <div class="d-flex ">
+                <!-- 左边的二维码 -->
+                <div ref="qrcode" class="qrcode">
+                    <v-img :src="qrCode"></v-img>
+                </div>
+                <!-- 右边的文字 -->
+                <div class="color_tips_1--text text-14 ml-4">
+                    <div class="mb-2">
+                        {{LangUtil("一户通：一个账号玩遍PC端与手机端")}}
+                    </div>
+
+                    <div class="mb-2">
+                        {{LangUtil("打通平台：告别单客户端")}}
+                    </div>
+
+                    <div>
+                        {{LangUtil("支持IOS版和Android版")}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </v-sheet>
+
+    <!-- 左边大图 -->
+    <v-sheet class="d-flex justify-center" color="transparent" min-width="50%">
+        <v-img max-width="462" contain src="~@/_skin004/assets/page_home/project_info_2.png" class="mt-4"></v-img>
+    </v-sheet>
+
+
+</v-sheet>

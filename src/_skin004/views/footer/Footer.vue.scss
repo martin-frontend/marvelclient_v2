@@ -1,0 +1,61 @@
+
+.app-footer-single-content {
+    height: 60px;
+}
+.innerbox {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+.website-info {
+    color: #5f6888;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+    padding: 24px 0 0 0;
+    max-width: 1420px;
+    margin: 0 auto;
+}
+.all-rights-reserved {
+    font-size: 12px;
+    color: #5f6888;
+    text-align: center;
+    font-weight: 500;
+}
+.lang-color {
+    color: rgba(255, 255, 255, 0.6);
+}
+.img-vendor {
+    max-width: 90px;
+    max-height: 40px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+.flex-1 {
+    flex: 1;
+}
+
+.hackhome{
+    height: 1px;
+    background-image: linear-gradient(to right, #303F57 0%, #303F57 50%, transparent 50%);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+}
+.project_info{
+    text-align: center;
+    white-space: normal;
+    max-width: 80%;
+}
+
+.project_ad{
+    text-align: center;
+}
+
+.project_img{
+    ::v-deep .v-responsive__content{
+        width: auto !important;
+    }
+}

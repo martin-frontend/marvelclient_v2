@@ -20,6 +20,10 @@ export interface GameConfigVO {
     lang: string;
     /**下载地址 */
     AndroidApkUrl:string;
+    ios_download_link:string;//ios包下载的地址
+    android_download_link:string; //android下载地址
     /**足球厂商ID */
     SportVendorId:number;
+
+    menuType:string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
 }

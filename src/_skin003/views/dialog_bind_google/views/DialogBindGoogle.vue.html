@@ -9,20 +9,20 @@
             </v-btn>
         </v-card-title>
         <v-sheet color="color_black_2" class="ma-2 rounded-lg mb-0">
-            <v-card-text class="px-4 px-md-7 my-7 text-sm-subtitle-1 text_height">
+            <v-card-text class="px-4 px-md-7 my-7   text_height">
                 <CustomInput maxlength="6" v-if="userInfo.is_google_scan == 1" :isOnlyNumber="true" class="mb-3"
                     v-model="pageData.form.old_google_code" :placeholder="LangUtil('请输入原来谷歌验证码')" />
                 <CustomInput :isOnlyNumber="true" maxlength="6" v-model="pageData.form.google_code"
                     :placeholder="LangUtil('请输入新谷歌验证码')" />
             </v-card-text>
             <v-card-actions v-if="!$vuetify.breakpoint.xsOnly" class="d-flex px-6">
-                <v-btn :disabled="disabled" @click="handlerBindGoogle" block class="text-sm-subtitle-1 mb-7"
+                <v-btn :disabled="disabled" @click="handlerBindGoogle" block class="  mb-7"
                     color="colorBtnBg" height="50">{{LangUtil('确认')}}</v-btn>
             </v-card-actions>
         </v-sheet>
         <v-sheet color="transparent" class="mt-7 rounded-lg mb-0">
             <v-card-actions v-if="$vuetify.breakpoint.xsOnly" class="d-flex px-6">
-                <v-btn :disabled="disabled" @click="handlerBindGoogle" block class="text-sm-subtitle-1 mb-7"
+                <v-btn :disabled="disabled" @click="handlerBindGoogle" block class="  mb-7"
                     color="colorBtnBg" height="50">{{LangUtil('确认')}}</v-btn>
             </v-card-actions>
 

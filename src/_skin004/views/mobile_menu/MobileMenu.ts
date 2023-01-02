@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import router from "@/router";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import page_bonus from "@/views/page_bonus";

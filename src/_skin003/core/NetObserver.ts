@@ -74,8 +74,8 @@ export default class NetObserver extends AbstractMediator {
                         core.lang = userLang;
                     } else {
                         //@ts-ignore
-                        const sysLang:string = (navigator.browserLanguage || navigator.language);
-                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0,2)];
+                        const sysLang: string = (navigator.browserLanguage || navigator.language);
+                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0, 2)];
                         if (LangConfig.language[sysLangCode]) {
                             core.lang = sysLangCode;
                         } else {
@@ -140,13 +140,16 @@ export default class NetObserver extends AbstractMediator {
                     if (core.app_type == core.EnumAppType.APP) {
                         WebViewBridge.getInstance().enterHall();
                     }
+                    this.setLanguageFont();
                 }
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                dialog_message_box.alert({message: LangUtil("您的帐号已经退出"), okFun: ()=>{
-                    Vue.router.replace("/");
-                }});
+                dialog_message_box.alert({
+                    message: LangUtil("您的帐号已经退出"), okFun: () => {
+                        Vue.router.replace("/");
+                    }
+                });
                 break;
             //用户信息
             case net.EventType.api_user_show_var:
@@ -155,7 +158,7 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);
                 {
-                    const headerProxy:HeaderProxy = getProxy(HeaderProxy);
+                    const headerProxy: HeaderProxy = getProxy(HeaderProxy);
                     headerProxy.setLobbyIndex(body);
                 }
                 break;
@@ -274,5 +277,28 @@ export default class NetObserver extends AbstractMediator {
 
     private insertStr(soure: string, start: number, newStr: string): string {
         return soure.slice(0, start) + newStr + soure.slice(start);
+    }
+    //根据选择的语言 设置 不同的字体
+    private setLanguageFont() {
+        //console.log("page 对象", page);
+        const langT = core.lang.substring(0, 2);
+        if (langT == "en")
+        {
+            const page = document.getElementById("app")
+            if (page) {
+                console.log("切换英语字体 Kanit");
+                page.style.fontFamily = "Kanit";
+            } 
+        }
+        // switch (langT) {
+        //     case "en":
+        //         if (page) {
+        //             console.log("切换英语字体 Kanit");
+        //             page.style.fontFamily = "Kanit";
+        //         }
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 }

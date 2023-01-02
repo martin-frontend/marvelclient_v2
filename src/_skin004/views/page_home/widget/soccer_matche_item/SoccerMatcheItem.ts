@@ -7,7 +7,7 @@ import getProxy from "@/core/global/getProxy";
 import { dateFormat } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";
 import MarketUtils from "../../utils/MarketUtils";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import { getResponseIcon } from "@/core/global/Functions";
 

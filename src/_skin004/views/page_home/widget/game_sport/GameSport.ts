@@ -1,7 +1,7 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import page_game_list from "@/_skin004/views/page_game_list";
 import { Prop, Watch, Component } from "vue-property-decorator";

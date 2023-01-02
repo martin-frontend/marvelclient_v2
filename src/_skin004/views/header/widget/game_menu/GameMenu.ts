@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import BlurUtil from "@/core/global/BlurUtil";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import page_game_list from "@/_skin004/views/page_game_list";
 

@@ -5,8 +5,8 @@ import HeaderMobileProxy from "../proxy/HeaderMobileProxy";
 import LangUtil from "@/core/global/LangUtil";
 import LangConfig from "@/core/config/LangConfig";
 import OpenLink from "@/core/global/OpenLink";
-import dialog_login from "@/views/dialog_login";
-import dialog_register from "@/views/dialog_register";
+import dialog_login from "@/_skin004/views/dialog_login";
+import dialog_register from "@/_skin004/views/dialog_register";
 import dialog_notice from "../../dialog_notice";
 
 @Component

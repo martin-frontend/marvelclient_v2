@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 
 @Component
 export default class GameSportItem extends AbstractView {

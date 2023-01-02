@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import CopyUtil from "@/core/global/CopyUtil";
-import LoginEnter from "@/core/global/LoginEnter";
+import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import SelfProxy from "@/proxy/SelfProxy";
 import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";

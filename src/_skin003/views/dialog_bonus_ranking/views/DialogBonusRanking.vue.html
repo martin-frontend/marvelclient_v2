@@ -11,13 +11,13 @@
         <v-sheet color="color_black_2" class="ma-2 rounded-lg mb-0">
             <v-card-text class="px-5">
                 <v-sheet v-if="dataList.length>0" color="transparent" class="scroll-y content">
-                    <div class="mx-1 mb-1 white--text text-caption text-sm-subtitle-1 font-weight-bold">
+                    <div class="mx-1 mb-1 white--text     font-weight-bold">
                         <span v-if="dataRank == 0">{{LangUtil("您当日分红没有进入排名")}}</span>
                         <span v-else>{{LangUtil("您当前排名第{0}名", dataRank)}}</span>
                     </div>
                     <v-card height="40" class="horizontal-gradient rounded-lg rounded-card d-flex align-center mb-2">
                         <v-row no-gutters
-                            class="white--text text-caption text-sm-subtitle-1 rank-height mobile font-weight-bold">
+                            class="white--text     rank-height mobile font-weight-bold">
                             <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>
                             <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("用户")}} </v-col>
                             <v-col cols="4" class="d-flex justify-center align-center">
@@ -29,13 +29,13 @@
                     <v-card height="50"
                         class="horizontal-gradient_item rounded-lg rounded-card d-flex align-center mb-1"
                         v-for="(item, index) of dataList" :key="index">
-                        <v-row no-gutters class=" text-caption text-sm-subtitle-1">
+                        <v-row no-gutters class="    ">
                             <v-col cols="2" class="d-flex justify-center align-center">
                                 <div v-if="index < 3">
                                     <v-img :max-width="$vuetify.breakpoint.xsOnly? 45 :50" contain
                                         :src="iconsPrize[index]"> </v-img>
                                 </div>
-                                <div v-else class="d-flex justify-center align-center white--text text-18 text-sm-h5">{{
+                                <div v-else class="d-flex justify-center align-center white--text text-18  ">{{
                                     index + 1 }}</div>
                             </v-col>
                             <v-col cols="3" class="text-truncate d-flex justify-center align-center">

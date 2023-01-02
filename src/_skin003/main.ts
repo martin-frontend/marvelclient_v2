@@ -14,6 +14,7 @@ import Assets from "@/_skin003/assets/Assets";
 import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
+import "@/_skin003/assets/text/text.css";
 LogUtil.init();
 core.init();
 //@ts-ignore

@@ -67,7 +67,7 @@ module.exports = {
             entry: "src/_skin004/main.ts",
             template: "public/skin004.html",
             filename: "skin004.html",
-            title: "越南",
+            title: "MG188",
         },
         skin003: {
             entry: "src/_skin003/main.ts",

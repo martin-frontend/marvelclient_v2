@@ -4,7 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_game_rate from "@/views/dialog_game_rate";
+import dialog_game_rate from "@/_skin004/views/dialog_game_rate";
 import dialog_recharge from "@/_skin004/views/dialog_recharge";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderProxy from "../../proxy/HeaderProxy";

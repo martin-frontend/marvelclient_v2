@@ -182,7 +182,7 @@ export default class NetObserver extends AbstractMediator {
                         message:
                             coin_name_unique == "USDT"
                                 ? LangUtil("进入游戏")
-                                : LangUtil(`您当前使用的货币为${coin_name_unique}将会折算成等价的美元进入游戏`),
+                                : LangUtil("您当前使用的货币为{0}将会折算成等价的美元进入游戏",coin_name_unique),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;

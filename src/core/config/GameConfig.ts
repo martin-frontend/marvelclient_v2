@@ -11,8 +11,13 @@ export default class GameConfig {
 
     static load() {
         const platformConfig = core.getQueryVariable("platformConfig");
-        const plat_id = core.getQueryVariable("plat_id");
-        const channel_id = core.getQueryVariable("channel_id");
+        let plat_id = core.getQueryVariable("plat_id");
+        let channel_id = core.getQueryVariable("channel_id");
+        const channelCode = core.getQueryVariable("channelCode");
+        if(channelCode && channelCode.length == 8){
+            plat_id = channelCode.substring(0, 5);
+            channel_id = channelCode;
+        }
         plat_id && (core.plat_id = plat_id);
         channel_id && (core.channel_id = channel_id);
         if (platformConfig) {

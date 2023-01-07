@@ -17,7 +17,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_message from "@/views/dialog_message";
 import dialog_wallet from "@/_skin001/views/dialog_wallet";
 import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
-import dialog_user_center from "@/_skin002/views/dialog_user_center";
+import dialog_user_center from "@/_skin004/views/dialog_user_center";
 import dialog_directly_backwater from "@/_skin001/views/dialog_directly_backwater";
 import dialog_notice from "@/_skin004/views/dialog_notice";
 

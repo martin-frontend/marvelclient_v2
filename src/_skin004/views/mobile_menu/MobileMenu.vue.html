@@ -1,7 +1,7 @@
 <v-footer class="justify-space-around pa-0" height="55" color="#1D2A43" app>
     <v-sheet
         class="d-flex flex-column align-center cursor-pointer pt-2 rounded-b"
-        width="60"
+        width="65"
         height="55"
         v-for="(item, index) of menuList"
         :key="index"
@@ -10,7 +10,10 @@
         color="transparent"
     >
         <!-- <v-icon size="26" :color="routerPath == item.path ? 'colorTextGold' : 'colorText2'">{{item.icon}}</v-icon> -->
-        <v-img max-width="18" max-height="18" :src="routerPath == item.path ? item.icon1 : item.icon"></v-img>
-        <div class="text-12" :class="routerPath == item.path ? 'colorTextGold--text': 'colorText2--text'">{{item.name}}</div>
+        
+        <v-img v-if="item.id!=4" max-width="18" max-height="18" :src="routerPath == item.path ? item.icon1 : item.icon"></v-img>
+        <v-icon v-else class="gift_icon">mdi-gift</v-icon>
+
+        <div class="text-12 item" :class="routerPath == item.path ? 'colorTextGold--text': 'colorText2--text'">{{item.name}}</div>
     </v-sheet>
 </v-footer>

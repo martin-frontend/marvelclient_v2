@@ -154,3 +154,11 @@ input {
 .el-icon-d-arrow-right{
     display: none;
 }
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
+    -webkit-text-fill-color: #96a9d0 !important;
+    transition: background-color 500s ease-in-out 0s ;
+}

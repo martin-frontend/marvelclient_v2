@@ -38,10 +38,10 @@
             <v-icon class="mr-1">mdi-message-text-outline</v-icon>
             <span class="mb-1">{{ LangUtil("客服") }}</span>
         </v-btn> -->
-        <v-sheet class="customer  d-flex flex-column" color="colorPanelTitleBg" elevation="0">
+        <v-sheet v-if="!$vuetify.breakpoint.mobile" class="customer  d-flex flex-column" color="colorPanelTitleBg" elevation="0">
 
             <v-btn min-height="110" color="transparent" class=" info--text" @click="onNoticeShow"
-                v-if="!$vuetify.breakpoint.mobile" elevation="0">
+                 elevation="0">
                 <div class="d-flex flex-column align-center mt-2">
                     <v-img class=" " src="@/_skin004/assets/notice.png" max-width="40"></v-img>
                     <!-- <v-icon class="mr-1">mdi-message-text-outline</v-icon> -->
@@ -50,14 +50,14 @@
             </v-btn>
             <div class="ml-2 mr-2 hackhome"></div>
             <v-btn min-height="110" color="transparent" class=" info--text " @click="onService"
-                v-if="!$vuetify.breakpoint.mobile" elevation="0">
+                elevation="0">
                 <div class="d-flex flex-column align-center mt-2">
                     <v-img src="@/_skin004/assets/kefu.png" max-width="40"></v-img>
                     <!-- <v-icon class="mr-1">mdi-message-text-outline</v-icon> -->
                     <div class="mt-2 item text-12">{{ LangUtil("客服") }}</div>
                 </div>
             </v-btn>
-        </v-sheet>>
+        </v-sheet>
         <!-- 添加到桌面引导 -->
         <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ guideText }}</v-btn>
@@ -125,7 +125,8 @@ export default class extends APP { }
     z-index: 100;
     border-radius:50pt;
     .item{
-        width: 55px;
+        width: 60px;
+        position: relative;
         white-space: normal;
         word-break:break-all;
     }

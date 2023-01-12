@@ -9,6 +9,8 @@ import { isMobile, judgeClient } from "@/core/global/Functions";
 import CopyUtil from "@/core/global/CopyUtil";
 import GameConfig from "@/core/config/GameConfig";
 import dialog_notice from "./views/dialog_notice";
+import WebViewBridge from "@/core/native/WebViewBridge";
+import ServiceUtil from "./core/global/ServiceUtil";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -131,17 +133,9 @@ export default class APP extends AbstractView {
         form.submit();
     }
 
+
     onService() {
-        const link = LangUtil("客服链接") + "?id=" + core.user_id;
-        try {
-            window.open(
-                link,
-                LangUtil("客服"),
-                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
-            );
-        } catch (e: any) {
-            OpenLink(link);
-        }
+        ServiceUtil();
     }
     /**公告 */
     onNoticeShow() {

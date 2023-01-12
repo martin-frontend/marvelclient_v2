@@ -25,6 +25,8 @@ import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 import BlurUtil from "@/core/global/BlurUtil";
 import GameConfig from "@/core/config/GameConfig";
 import dialog_notice from "../../dialog_notice";
+import WebViewBridge from "@/core/native/WebViewBridge";
+import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 
 @Component
 export default class Header extends AbstractView {
@@ -195,16 +197,7 @@ export default class Header extends AbstractView {
     }
 
     onService() {
-        const link = LangUtil("客服链接") + "?id=" + core.user_id;
-        try {
-            window.open(
-                link,
-                LangUtil("客服"),
-                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
-            );
-        } catch (e: any) {
-            OpenLink(link);
-        }
+        ServiceUtil();
     }
 
     // scrollHandle() {

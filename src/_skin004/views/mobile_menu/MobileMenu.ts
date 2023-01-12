@@ -15,6 +15,7 @@ import PageHomeProxy from "../page_home/proxy/PageHomeProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
+import dialog_activity from "@/views/dialog_activity";
 
 @Component
 export default class MobileMenu extends AbstractView {
@@ -52,12 +53,19 @@ export default class MobileMenu extends AbstractView {
             //     icon1: require(`@/_skin001/assets/icon/icon_chess1.png`),
             //     path: "/page_game_list_chess",
             // },
+            // {
+            //     id: 4,
+            //     name: LangUtil("返水"),
+            //     icon: require(`@/_skin001/assets/icon/icon_mine.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
+            //     path: "/page_mine",
+            // },
             {
                 id: 4,
-                name: LangUtil("返水"),
+                name: LangUtil("优惠活动"),
                 icon: require(`@/_skin001/assets/icon/icon_mine.png`),
                 icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
-                path: "/page_mine",
+                path: "/xxx",
             },
             {
                 id: 5,
@@ -104,6 +112,10 @@ export default class MobileMenu extends AbstractView {
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
     }
+  /**打开活动页面 */
+  goActivity() {
+    dialog_activity.show();
+}
 
     onItemClick(item: any) {
         switch (item.id) {
@@ -125,7 +137,8 @@ export default class MobileMenu extends AbstractView {
             // page_game_list_chess.show(2);
             // break;
             case 4:
-                LoginEnter(page_mine.show);
+                //LoginEnter(page_mine.show);
+                this.goActivity();
                 break;
             case 5:
                 // if (this.isShowDirectly == 2) {

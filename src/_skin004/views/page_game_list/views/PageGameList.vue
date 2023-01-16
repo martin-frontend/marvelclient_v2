@@ -9,6 +9,7 @@ import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
 import GameItem from "@/views/widget/game_item/GameItem.vue";
 import Activity from "@/_skin004/views/page_home/widget/activity/Activity.vue";
 import Advertise from "@/_skin004/views/page_home/widget/advertise/Advertise.vue";
+import Marquee1 from "@/_skin004/views/page_home/widget/marquee1/Marquee1.vue";
 
 @Component({
     components: {
@@ -17,6 +18,7 @@ import Advertise from "@/_skin004/views/page_home/widget/advertise/Advertise.vue
         GameItem,
         Activity,
         Advertise,
+        Marquee1,
     },
 })
 export default class extends PageGameList {

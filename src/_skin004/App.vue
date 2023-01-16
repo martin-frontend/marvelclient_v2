@@ -59,10 +59,10 @@
             </v-btn>
         </v-sheet>
         <!-- 添加到桌面引导 -->
-        <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
-            <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ guideText }}</v-btn>
+        <div class="btn-guide" v-if="false && $vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
+            <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ myProxy.guideText }}</v-btn>
         </div>
-        <v-navigation-drawer v-if="guideDrawer" v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary
+        <v-navigation-drawer v-if="myProxy.guideDrawer" v-model="myProxy.guideDrawer" color="colorTitleBg" height="290" bottom temporary
             fixed>
             <div class="colorTextGold--text text-14 pt-5">
                 <div class="d-flex justify-center mb-3">

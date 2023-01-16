@@ -277,4 +277,11 @@ $prev-right: var(--prev-right);
     //filter: drop-shadow(none);
 }
 
+// 样式二
+.item_nomal{
+    background-image: linear-gradient(to bottom, #2A6EF9 0%, #86B2F2 100%) !important;
+}
+.item_active{
+    background-image: linear-gradient(to bottom, #F16958 0%, #F9901B 100%) !important;
+}
 

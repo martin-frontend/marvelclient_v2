@@ -3,11 +3,12 @@
     <!-- 手机版 需要显示分类 -->
     <template v-if="$vuetify.breakpoint.mobile">
         <Advertise class="mt-2" :showDataType="listQuery.vendor_type" />
+        <Marquee1 class="mt-1" />
         <v-sheet v-if="isNeetMenu" color="transparent" class="d-flex mt-2">
             <v-slide-group class="mt-0" center-active v-model="myProxy.curMenuIndex">
                 <v-slide-item v-for="(item, key) of tableMenu" :key="key" v-slot="{ active, toggle }">
-                    <v-card color="transparent" @click="toggle" elevation="0">
-                        <button class="d-flex align-center flex-column mr-2" @click="goCategory(getItemCategory(item))">
+                    <v-card color="transparent" @click="toggle" elevation="0" class="mr-1">
+                        <!-- <button class="d-flex align-center flex-column mr-2" @click="goCategory(getItemCategory(item))">
                             <div class="tableMenuIcon d-flex align-center"
                                 :class="isCurMenu(item) ? 'tableMenuIcon_cur' : 'tableMenuIcon_no'">
                                 <v-img :class="item.vendor_type==16 ? 'img_16' : 'img'" class="ma-1 d-flex align-center"
@@ -15,7 +16,26 @@
                             </div>
                             <div :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorTextBlack--text'">
                                 {{ getItemCategoryName(item) }}</div>
-                        </button>
+                        </button> -->
+                        <v-sheet color="transparent" @click="goCategory(getItemCategory(item))" class="d-flex flex-column align-center" 
+                        width="50">
+                            <v-sheet class="rounded-circle "  width="45" height="45" 
+                                :class="isCurMenu(item) ? 'item_active' : 'item_nomal'">
+                                <v-img :src="getLocalIconPath(item.vendor_type)" width="30" height="30" style="top: 8px;left: 8px;"></v-img>
+                            </v-sheet>
+                            <div :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorTextBlack--text'" style="text-align: center;">
+                                {{ getItemCategoryName(item) }}</div>
+                        </v-sheet>
+                        <!-- <button class="d-flex align-center flex-column mr-2" @click="goCategory(getItemCategory(item))">
+                            <div class="tableMenuIcon d-flex align-center"
+                                :class="isCurMenu(item) ? 'tableMenuIcon_cur' : 'tableMenuIcon_no'">
+                                <v-img :class="item.vendor_type==16 ? 'img_16' : 'img'" class="ma-1 d-flex align-center"
+                                    max-width="30" max-height="40" :src="getLocalIconPath(item.vendor_type)"></v-img>
+                            </div>
+                            <div :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorTextBlack--text'">
+                                {{ getItemCategoryName(item) }}</div>
+                        </button> -->
+
                     </v-card>
                 </v-slide-item>
             </v-slide-group>

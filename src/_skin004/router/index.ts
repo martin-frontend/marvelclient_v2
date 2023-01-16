@@ -1,3 +1,4 @@
+
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 
@@ -81,6 +82,16 @@ router.beforeEach((to: any, from: any, next: any) => {
     ) {
         next("/");
     } else {
+        // console.log("去向 的 地址1" , Vue.vuetify);
+        //  console.log("去向 的 地址" , Vue.vuetify.framework.breakpoint.mobile);
+
+        // if (Vue.vuetify.framework.breakpoint.mobile && to.name == "page_home")
+        // {
+        //     next("page_game_list");
+        //     //page_game_list.show();
+        //     return;
+        // }
+
         next();
     }
 });

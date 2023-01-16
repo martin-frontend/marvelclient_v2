@@ -32,6 +32,7 @@ import localeE from "element-ui/lib/locale";
 import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "../views/header/proxy/HeaderProxy";
 import dialog_notice from "@/_skin004/views/dialog_notice";
+import page_game_list from "@/_skin004/views/page_game_list";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -145,9 +146,15 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
+                console.log("是否为 手机版" ,Vue.vuetify.framework.breakpoint.mobile);
                 dialog_message_box.alert({
                     message: LangUtil("您的帐号已经退出"),
                     okFun: () => {
+                        if ( Vue.vuetify.framework.breakpoint.mobile)
+                        {
+                            page_game_list.show();
+                            return;
+                        }
                         Vue.router.replace("/");
                     },
                 });

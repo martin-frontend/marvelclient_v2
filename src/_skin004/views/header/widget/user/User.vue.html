@@ -18,7 +18,7 @@
 
 <div>
     <div v-if="!$vuetify.breakpoint.mobile">
-        <v-menu offset-y nudge-bottom="20" nudge-left="190" content-class="content-style">
+        <v-menu offset-y nudge-bottom="2" nudge-left="190" content-class="content-style">
             <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
                     <v-sheet class="d-flex align-center rounded-pill ml-4" color="colorPanelTitleBg" width="100" height="45">
@@ -39,12 +39,23 @@
             <UserPanel />
         </v-menu>
     </div>
-    <div v-else>
+    <div v-else class="d-flex align-center" >
         <v-btn icon small size="20" style="margin-right:2px" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
+            <!-- <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0"> -->
+                <!-- <v-icon size="25" style="margin-top: 2.5px">mdi-account-circle</v-icon> -->
+                <v-img :max-width="30" contain :src="vipMap[curVipLevel]"></v-img>
+            <!-- </v-badge> -->
+        </v-btn>
+        <div class="text-truncate text-16" style="max-width: 120px;" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
+            {{userShowName}}
+        </div>
+
+        <v-btn icon small size="20" style="margin-right:2px" @click.stop="openMail()">
             <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
-                <v-icon size="25" style="margin-top: 2.5px">mdi-account-circle</v-icon>
+                <v-icon size="25" style="margin-top: 2.5px">mdi-email</v-icon>
             </v-badge>
         </v-btn>
+
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <!-- <v-navigation-drawer v-model="drawer" app temporary absolute width="288" overlay-color="red" color="#16233B">
             <UserPanel />

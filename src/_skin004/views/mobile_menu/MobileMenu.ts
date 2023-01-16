@@ -16,6 +16,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 import dialog_activity from "@/views/dialog_activity";
+import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 
 @Component
 export default class MobileMenu extends AbstractView {
@@ -25,12 +26,19 @@ export default class MobileMenu extends AbstractView {
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     get menuList() {
         const list = [
+            // {
+            //     id: 0,
+            //     name: LangUtil("首页"),
+            //     icon: require(`@/_skin001/assets/icon/icon_home.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
+            //     path: "/",
+            // },
             {
-                id: 0,
-                name: LangUtil("首页"),
-                icon: require(`@/_skin001/assets/icon/icon_home.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
-                path: "/",
+                id: 4,
+                name: LangUtil("优惠活动"),
+                icon: require(`@/_skin001/assets/icon/icon_mine.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
+                path: "/xxx",
             },
             {
                 id: 1,
@@ -61,8 +69,8 @@ export default class MobileMenu extends AbstractView {
             //     path: "/page_mine",
             // },
             {
-                id: 4,
-                name: LangUtil("优惠活动"),
+                id: 6,
+                name: LangUtil("客服"),
                 icon: require(`@/_skin001/assets/icon/icon_mine.png`),
                 icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
                 path: "/xxx",
@@ -93,6 +101,16 @@ export default class MobileMenu extends AbstractView {
         return list;
     }
 
+    //手动调用，进入直接进 游戏列表
+    mounted(){
+        setTimeout(() => {
+            
+           this.onItemClick( {id:2})
+        }, 200);
+       
+    }
+
+
     public get isShowDirectly(): number {
         if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0)) {
             return 0;
@@ -112,10 +130,10 @@ export default class MobileMenu extends AbstractView {
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
     }
-  /**打开活动页面 */
-  goActivity() {
-    dialog_activity.show();
-}
+    /**打开活动页面 */
+    goActivity() {
+        dialog_activity.show();
+    }
 
     onItemClick(item: any) {
         switch (item.id) {
@@ -146,6 +164,16 @@ export default class MobileMenu extends AbstractView {
                 // } else if (this.isShowDirectly == 1) 
                 LoginEnter(page_extension.show);
                 break;
+            case 6:
+                // if (this.isShowDirectly == 2) {
+                //     LoginEnter(dialog_agent_manager.show);
+                // } else if (this.isShowDirectly == 1) 
+                this.onService();
+                break;
         }
+    }
+
+    onService() {
+        ServiceUtil();
     }
 }

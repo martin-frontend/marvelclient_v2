@@ -31,7 +31,7 @@ export default class SoccerMatcheItem extends AbstractView {
     }
 
     get startTime() {
-        return this.dateFormat(new Date(this.matche.sb_time * 1000), "MM-dd hh:mm");
+        return this.dateFormat(new Date(this.matche.sb_time * 1000), "MM/dd hh:mm");
     }
 
     get statusString() {

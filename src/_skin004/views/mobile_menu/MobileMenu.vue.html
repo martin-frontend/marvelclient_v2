@@ -10,9 +10,10 @@
         color="transparent"
     >
         <!-- <v-icon size="26" :color="routerPath == item.path ? 'colorTextGold' : 'colorText2'">{{item.icon}}</v-icon> -->
-        
-        <v-img v-if="item.id!=4" max-width="18" max-height="18" :src="routerPath == item.path ? item.icon1 : item.icon"></v-img>
-        <v-icon v-else class="gift_icon">mdi-gift</v-icon>
+        <v-icon v-if="item.id==4" class="gift_icon">mdi-gift</v-icon>
+        <v-icon v-else-if="item.id==6" class="gift_icon">mdi-card-account-phone-outline</v-icon>
+        <v-img v-else max-width="18" max-height="18" :src="routerPath == item.path ? item.icon1 : item.icon"></v-img>
+
 
         <div class="text-12 item" :class="routerPath == item.path ? 'colorTextGold--text': 'colorText2--text'">{{item.name}}</div>
     </v-sheet>

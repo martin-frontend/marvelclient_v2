@@ -3,56 +3,56 @@
         <template v-if="!$vuetify.breakpoint.mobile">
             <v-row no-gutters class="mb-5">
                 <v-col cols="12" lg="6" class="pr-lg-2">
-                    <v-card class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6" v-if="selfProxy.userInfo.is_credit_user == 98">
+                    <v-card
+                        class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6"
+                        v-if="selfProxy.userInfo.is_credit_user == 98">
                         <v-row no-gutters>
-                            <v-col cols="12" sm="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
+                            <v-col cols="12" sm="auto"
+                                class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
                                 <span class="mr-0 mr-md-5 colorText3--text"> {{LangUtil("可领取佣金")}} </span>
                             </v-col>
-                            <v-col cols="12" sm="auto" class="d-flex flex-row justify-center justify-md-start align-center mb-4 mb-sm-0">
-                                <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img
-                                ><span class="text-h6 text-sm-h5 mr-5 mr-md-1 colorCoin--text font-weight-medium">
+                            <v-col cols="12" sm="auto"
+                                class="d-flex flex-row justify-center justify-md-start align-center mb-4 mb-sm-0">
+                                <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30"
+                                    height="30"></v-img><span
+                                    class="text-h6 text-sm-h5 mr-5 mr-md-1 colorCoin--text font-weight-medium">
                                     {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
                                 </span>
-                                <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                                <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30"
+                                    height="30"></v-img>
                                 <span class="text-h6 text-sm-h5 colorCoin--text font-weight-medium">
                                     {{ promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] }}
                                 </span>
                             </v-col>
                             <v-spacer></v-spacer>
                             <v-col cols="12" sm="auto" class="d-flex justify-center justify-md-end">
-                                <v-btn
-                                    :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                     :height="$vuetify.breakpoint.mobile? 30 :40"
                                     class="mr-3 rounded-lg text-body-2 text-sm-body-1 colorReceive--text rounded-button"
-                                    color="colorCoin"
-                                    @click="handlerAward"
-                                    :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
-                                    >{{LangUtil("领取奖励")}}</v-btn
-                                >
-                                <v-btn
-                                    :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                    color="colorCoin" @click="handlerAward"
+                                    :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0">{{LangUtil("领取奖励")}}</v-btn>
+                                <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                     :height="$vuetify.breakpoint.mobile? 30 :40"
                                     class="rounded-lg text-body-2 text-sm-body-1 rounded-button"
-                                    color="colorExtensionBtn"
-                                    @click="handleRecords"
-                                    >{{LangUtil("领取记录")}}</v-btn
-                                >
+                                    color="colorExtensionBtn" @click="handleRecords">{{LangUtil("领取记录")}}</v-btn>
                             </v-col>
                         </v-row>
                     </v-card>
-                    <v-card
-                        min-width="90"
+                    <v-card min-width="90"
                         class="rounded-xl rounded-card horizontal-gradient-left down text-body-1 mb-lg-0 px-4 px-sm-6 py-4 py-sm-6"
-                        :height="selfProxy.userInfo.is_credit_user == 98 ? '' : '100%'"
-                    >
-                        <v-row no-gutters class="d-flex flex-row mb-4 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                        :height="selfProxy.userInfo.is_credit_user == 98 ? '' : '100%'">
+                        <v-row no-gutters class="d-flex flex-row mb-4 mb-sm-2"
+                            v-if="selfProxy.userInfo.is_credit_user == 98">
                             <v-col class="d-flex justify-end align-center">
-                                <span class="text-caption text-sm-subtitle-1 colorText3--text"> {{LangUtil("今日预计佣金")}}</span>
-                                <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
+                                <span class="text-caption text-sm-subtitle-1 colorText3--text">
+                                    {{LangUtil("今日预计佣金")}}</span>
+                                <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30"
+                                    height="30"></v-img>
                                 <span class="text-body-2 text-sm-h5 mr-5 font-weight-medium">
                                     {{ statistics_data.total_commission[pageData.platCoins.mainCoin.name] }}
                                 </span>
-                                <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                                <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30"
+                                    height="30"></v-img>
                                 <span class="text-body-2 text-sm-h5 font-weight-medium">
                                     {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                                 </span>
@@ -97,9 +97,11 @@
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                                <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2"
+                                    v-if="selfProxy.userInfo.is_credit_user == 98">
                                     <v-col cols="7" class="d-flex justify-end">
-                                        <span class="text-right text-caption text-sm-subtitle-2 colorText3--text"> {{LangUtil("每万返佣")}} </span>
+                                        <span class="text-right text-caption text-sm-subtitle-2 colorText3--text">
+                                            {{LangUtil("每万返佣")}} </span>
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -115,7 +117,8 @@
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                            {{ promotionData.directly_users }} ({{ promotionData.today_directly_users }})
+                                            {{ promotionData.directly_users }} ({{ promotionData.today_directly_users
+                                            }})
                                         </span>
                                     </v-col>
                                 </v-row>
@@ -139,32 +142,23 @@
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                            {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
-                                            <v-btn
-                                                text
-                                                height="20"
-                                                min-width="32"
+                                            {{ promotionData.invite_user_id? promotionData.invite_user_id:
+                                            LangUtil("未绑定") }}
+                                            <v-btn text height="20" min-width="32"
                                                 class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1"
-                                                color="colorText4"
-                                                v-if="myProxy.pageData.btnBind"
-                                                @click="handlerBind"
-                                            >
+                                                color="colorText4" v-if="myProxy.pageData.btnBind" @click="handlerBind">
                                                 {{LangUtil("绑定")}}
                                             </v-btn>
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <v-row v-if="promotionData.invite_user_id" no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
+                                <v-row v-if="promotionData.invite_user_id" no-gutters
+                                    class="d-flex flex-row align-center mb-1 mb-sm-2">
                                     <v-col cols="7"></v-col>
                                     <v-col cols="5">
-                                        <v-btn
-                                            text
-                                            height="20"
-                                            min-width="32"
+                                        <v-btn text height="20" min-width="32"
                                             class="ml-2 text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 font-weight-bold"
-                                            color="colorText4"
-                                            @click="handlerViewCard"
-                                        >
+                                            color="colorText4" @click="handlerViewCard">
                                             {{LangUtil("查看上级名片")}}
                                         </v-btn>
                                     </v-col>
@@ -175,20 +169,18 @@
                             </v-col>
                         </v-row>
                         <div class="d-flex justify-end mt-0 mt-sm-7">
-                            <v-btn
-                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
-                                class="rounded-lg text-body-2 text-sm-body-1 rounded-button"
-                                color="colorExtensionBtn"
-                                @click="handlerPerformance"
-                            >
+                                class="rounded-lg text-body-2 text-sm-body-1 rounded-button" color="colorExtensionBtn"
+                                @click="handlerPerformance">
                                 {{LangUtil("业绩查询")}}
                             </v-btn>
                         </div>
                     </v-card>
                 </v-col>
                 <v-col cols="12" lg="6" class="mt-2 mt-lg-0">
-                    <v-card class="rounded-xl rounded-card horizontal-gradient-right px-4 px-sm-6 py-4 py-sm-6" height="100%">
+                    <v-card class="rounded-xl rounded-card horizontal-gradient-right px-4 px-sm-6 py-4 py-sm-6"
+                        height="100%">
                         <v-row no-gutters class="d-flex flex-row">
                             <v-col cols="4">
                                 <v-row no-gutters class="d-flex flex-column align-center mt-7 mt-sm-0">
@@ -201,23 +193,17 @@
                                     </v-col>
                                     <v-col cols="12" class="d-flex flex-column">
                                         <div class="d-flex justify-center">
-                                            <v-btn
-                                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                                 class="rounded-lg text-body-2 text-sm-body-1 mb-5 rounded-button"
-                                                color="colorExtensionBtn"
-                                                @click="reget"
-                                                >{{LangUtil("重新获取")}}
+                                                color="colorExtensionBtn" @click="reget">{{LangUtil("重新获取")}}
                                             </v-btn>
                                         </div>
                                         <div class="d-flex justify-center">
-                                            <v-btn
-                                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                                 class="rounded-lg text-body-2 text-sm-body-1 rounded-button"
-                                                color="colorExtensionBtn"
-                                                @click="showPreview"
-                                            >
+                                                color="colorExtensionBtn" @click="showPreview">
                                                 {{LangUtil("保存图片")}}
                                             </v-btn>
                                         </div>
@@ -226,40 +212,26 @@
                             </v-col>
                             <v-col cols="8" class="colorText4--text text-subtitle-1 pl-4 pl-sm-6">
                                 <div class="ml-4 mb-2 text-body-2 text-sm-body-1">{{LangUtil("推广链接")}}</div>
-                                <v-sheet
-                                    color="colorPanelBg3 colorText4--text"
+                                <v-sheet color="colorPanelBg3 colorText4--text"
                                     :height="$vuetify.breakpoint.mobile? 35 :46"
-                                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2"
-                                >
-                                    <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link }}</span>
-                                    <v-btn
-                                        class="mr-1"
-                                        color="#6FA9FA"
-                                        small
-                                        :width="$vuetify.breakpoint.mobile? 24 :30"
-                                        min-width="0"
-                                        :height="$vuetify.breakpoint.mobile? 24 :30"
-                                        @click="copy"
-                                    >
+                                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2">
+                                    <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link
+                                        }}</span>
+                                    <v-btn class="mr-1" color="#6FA9FA" small
+                                        :width="$vuetify.breakpoint.mobile? 24 :30" min-width="0"
+                                        :height="$vuetify.breakpoint.mobile? 24 :30" @click="copy">
                                         <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                     </v-btn>
                                 </v-sheet>
                                 <div class="ml-4 mb-2 text-body-2 text-sm-body-1">{{LangUtil("邀请码")}}</div>
-                                <v-sheet
-                                    color="colorPanelBg3 colorText4--text"
+                                <v-sheet color="colorPanelBg3 colorText4--text"
                                     :height="$vuetify.breakpoint.mobile? 35 :46"
-                                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1"
-                                >
-                                    {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
-                                    <v-btn
-                                        class="mr-1"
-                                        color="#6FA9FA"
-                                        small
-                                        :width="$vuetify.breakpoint.mobile? 24 :30"
-                                        min-width="0"
-                                        :height="$vuetify.breakpoint.mobile? 24 :30"
-                                        @click="copyMyId"
-                                    >
+                                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1">
+                                    {{ promotionData.pretty_user_id == ""?
+                                    promotionData.user_id:promotionData.pretty_user_id }}
+                                    <v-btn class="mr-1" color="#6FA9FA" small
+                                        :width="$vuetify.breakpoint.mobile? 24 :30" min-width="0"
+                                        :height="$vuetify.breakpoint.mobile? 24 :30" @click="copyMyId">
                                         <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                     </v-btn>
                                 </v-sheet>
@@ -272,33 +244,24 @@
                             </v-col>
                         </v-row>
                         <div class="d-flex justify-end mt-2 mt-lg-0">
-                            <v-btn
-                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                 class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
-                                color="colorExtensionBtn"
-                                @click="handlerCredit"
-                                v-if="selfProxy.userInfo.show_credit_statistic === 1"
-                            >
+                                color="colorExtensionBtn" @click="handlerCredit"
+                                v-if="selfProxy.userInfo.show_credit_statistic === 1">
                                 {{LangUtil("信用统计")}}
                             </v-btn>
-                            <v-btn
-                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
                                 class="rounded-lg text-body-2 text-sm-body-1 mr-5 rounded-button"
-                                color="colorExtensionBtn"
-                                @click="handlerPromotion"
-                                v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
-                            >
+                                color="colorExtensionBtn" @click="handlerPromotion"
+                                v-if="selfProxy.userInfo.is_show_agent_statistic === 1">
                                 {{LangUtil("代理统计")}}
                             </v-btn>
-                            <v-btn
-                                :min-width="$vuetify.breakpoint.mobile? 90 : 120"
+                            <v-btn :min-width="$vuetify.breakpoint.mobile? 90 : 120"
                                 :height="$vuetify.breakpoint.mobile? 30 :40"
-                                class="rounded-lg text-body-2 text-sm-body-1 rounded-button"
-                                color="colorExtensionBtn"
-                                @click="handlerDirectly"
-                            >
+                                class="rounded-lg text-body-2 text-sm-body-1 rounded-button" color="colorExtensionBtn"
+                                @click="handlerDirectly">
                                 {{LangUtil("我的直属")}}
                             </v-btn>
                         </div>
@@ -310,33 +273,100 @@
                 <div class="text-caption text-sm-body-1 colorBlue--text mb-2 mb-sm-5">
                     {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
                 </div>
-                <v-card height="50" class="rounded-xl rounded-card mb-1 d-flex align-center mb-2 level_title">
-                    <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                <v-card height="50"
+                    class="rounded-xl rounded-card mb-1 d-flex align-center mb-2 level_title justify-space-around">
+
+                    <v-sheet color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        {{LangUtil("等级")}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        {{LangUtil("总业绩")}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="240"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        {{LangUtil("返佣额度(每万)")}}
+                    </v-sheet>
+
+                    <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        {{LangUtil("级差")}}
+                    </v-sheet>
+
+                    <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        {{LangUtil("CF奖励")}}
+                    </v-sheet>
+
+                    <!-- <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
+                        <v-col :cols="colsnub" class="d-flex justify-center align-center">
                             {{LangUtil("等级")}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                        <v-col :cols="colsnub" class="d-flex justify-center align-center">
                             {{LangUtil("总业绩")}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center">
+                        <v-col :cols="colsnub + 1" class="d-flex justify-center align-center">
                             {{LangUtil("返佣额度(每万)")}}
                         </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        <v-col :cols="colsnub + 1" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
                             {{LangUtil("级差")}}
                         </v-col>
-                        <v-col cols="2" class="d-flex justify-center align-center" v-if="pageData.platCoins.rewardCoin.name">
+                        <v-col :cols="colsnub" class="d-flex justify-center align-center" v-if="pageData.platCoins.rewardCoin.name">
                             {{LangUtil("CF奖励")}}
                         </v-col>
-                    </v-row>
+                    </v-row> -->
                 </v-card>
-                <v-card
-                    height="50"
-                    class="rounded-xl rounded-card mb-2 d-flex align-center"
-                    color="colorPanelTitleBg"
-                    v-for="(item, index) of tableData.promotionConfig[0]"
-                    :key="index"
-                >
-                    <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
+                <v-card height="50" class="rounded-xl rounded-card mb-2 d-flex align-center  justify-space-around"
+                    color="colorPanelTitleBg" v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
+                    <v-sheet color="transparent" min-width="200"
+                        class="level_col d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
+                            <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
+                        </span>
+                        {{LangUtil("{0}级", item.level)}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
+                            10000)}} </span>
+                        <span v-else>{{ item.total_performance }}</span>
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="240"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
+                            :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                            :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                        <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                    </v-sheet>
+
+                    <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0">- </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
+                                :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                                :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                            <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                        </span>
+                    </v-sheet>
+
+                    <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="200"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
+                        <span v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0">- </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon"
+                                :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                                :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                            <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
+                        </span>
+                    </v-sheet>
+
+                    <!-- <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
                         <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center level_col align-center">
                             <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                                 <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
@@ -384,64 +414,60 @@
                                 <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
                             </span>
                         </v-col>
-                    </v-row>
+                    </v-row> -->
                 </v-card>
             </div>
         </template>
         <template v-else>
             <v-row no-gutters class="mb-2">
                 <v-col cols="12">
-                    <v-sheet class="pa-2 mb-2 rounded" color="colorBackgroundGray" v-if="selfProxy.userInfo.is_credit_user == 98">
+                    <v-sheet class="pa-2 mb-2 rounded" color="colorBackgroundGray"
+                        v-if="selfProxy.userInfo.is_credit_user == 98">
                         <div class="d-flex align-center ml-n3 mb-1">
-                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15"
+                                class="mr-1 rotate"> </v-img>
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('可领取佣金')}}</span>
                         </div>
                         <v-sheet color="#fff " class="rounded d-flex align-center pa-1">
-                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"> </v-img>
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30">
+                            </v-img>
                             <span class="text-h6 colorTextOrange--text text-sm-h5 mr-5 mr-md-1 font-weight-medium">
                                 {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
                             </span>
-                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30"
+                                height="30"></v-img>
                             <span class="colorTextOrange--text font-weight-medium">
                                 {{ promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] }}
                             </span>
                             <v-spacer></v-spacer>
                             <div class="d-flex align-center flex-wrap justify-end">
-                                <v-btn
-                                    :height="35"
-                                    class="rounded-pill ma-1"
-                                    color="colorTextYellow"
-                                    @click="handlerAward"
-                                    elevation="0"
-                                    :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
-                                    >{{LangUtil("领取奖励")}}</v-btn
-                                >
-                                <v-btn
-                                    :height="35"
-                                    class="ml-2 rounded-pill ma-1"
-                                    color="colorTextBlue2"
-                                    elevation="0"
-                                    @click="handleRecords"
-                                    >{{LangUtil("领取记录")}}</v-btn
-                                >
+                                <v-btn :height="35" class="rounded-pill ma-1" color="colorTextYellow"
+                                    @click="handlerAward" elevation="0"
+                                    :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0">{{LangUtil("领取奖励")}}</v-btn>
+                                <v-btn :height="35" class="ml-2 rounded-pill ma-1" color="colorTextBlue2" elevation="0"
+                                    @click="handleRecords">{{LangUtil("领取记录")}}</v-btn>
                             </div>
                         </v-sheet>
                     </v-sheet>
                     <v-sheet class="rounded pa-2" color="colorBackgroundGray">
                         <div class="d-flex align-center ml-n3 mb-1">
-                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15"
+                                class="mr-1 rotate"> </v-img>
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('佣金')}}</span>
                         </div>
                         <v-sheet color="#fff" class="rounded pa-4 mobile-commission-background">
-                            <v-row no-gutters class="d-flex flex-row mb-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                            <v-row no-gutters class="d-flex flex-row mb-2"
+                                v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <v-col class="d-flex justify-center align-center">
                                     <span class="text-16 colorTextBlack1--text"> {{LangUtil("今日预计佣金")}}</span>
-                                    <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30" height="30"></v-img>
+                                    <v-img class="ml-2 mr-1" :src="pageData.platCoins.mainCoin.icon" max-width="30"
+                                        height="30"></v-img>
                                     <span class="text-16 colorTextOrange--text mr-5 font-weight-medium">
                                         {{ statistics_data.total_commission[pageData.platCoins.mainCoin.name] }}
                                     </span>
                                     <template v-if="pageData.platCoins.rewardCoin.icon">
-                                        <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30" height="30"></v-img>
+                                        <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon" max-width="30"
+                                            height="30"></v-img>
                                         <span class="text-16 colorTextOrange--text font-weight-medium">
                                             {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                                         </span>
@@ -452,15 +478,18 @@
                                 <v-col cols="12">
                                     <v-row no-gutters class="d-flex flex-row align-center mb-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("今日总业绩")}} </span>
+                                            <span class="text-right text-14 colorTextBlack1--text">
+                                                {{LangUtil("今日总业绩")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
-                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ statistics_data.total_water_summary }} </span>
+                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{
+                                                statistics_data.total_water_summary }} </span>
                                         </v-col>
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("今日团队业绩")}} </span>
+                                            <span class="text-right text-14 colorTextBlack1--text">
+                                                {{LangUtil("今日团队业绩")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -470,7 +499,8 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("今日直属业绩")}} </span>
+                                            <span class="text-right text-14 colorTextBlack1--text">
+                                                {{LangUtil("今日直属业绩")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -480,7 +510,8 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2 mb-md-0">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("每万返佣")}} </span>
+                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("每万返佣")}}
+                                            </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -490,11 +521,13 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("直属人数（新增）")}} </span>
+                                            <span class="text-right text-14 colorTextBlack1--text">
+                                                {{LangUtil("直属人数（新增）")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                                {{ promotionData.directly_users }} ({{ promotionData.today_directly_users }})
+                                                {{ promotionData.directly_users }} ({{
+                                                promotionData.today_directly_users }})
                                             </span>
                                         </v-col>
                                     </v-row>
@@ -512,48 +545,35 @@
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
                                         <v-col cols="6" class="d-flex justify-end">
-                                            <span class="text-right text-14 colorTextBlack1--text d-flex d-flex align-center">
+                                            <span
+                                                class="text-right text-14 colorTextBlack1--text d-flex d-flex align-center">
                                                 {{LangUtil("我的上级")}}
 
-                                                <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium text-gray">
-                                                    {{ promotionData.invite_user_id? promotionData.invite_user_id: LangUtil("未绑定") }}
+                                                <span
+                                                    class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium text-gray">
+                                                    {{ promotionData.invite_user_id? promotionData.invite_user_id:
+                                                    LangUtil("未绑定") }}
                                                 </span>
                                             </span>
                                         </v-col>
                                         <v-col cols="6" class="commission">
-                                            <v-btn
-                                                text
-                                                height="20"
-                                                min-width="32"
+                                            <v-btn text height="20" min-width="32"
                                                 class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 ml-2"
-                                                color="colorTextBlue2"
-                                                v-if="myProxy.pageData.btnBind"
-                                                @click="handlerBind"
-                                            >
+                                                color="colorTextBlue2" v-if="myProxy.pageData.btnBind"
+                                                @click="handlerBind">
                                                 {{LangUtil("绑定")}}
                                             </v-btn>
-                                            <v-btn
-                                                v-if="promotionData.invite_user_id"
-                                                text
-                                                height="20"
-                                                min-width="32"
+                                            <v-btn v-if="promotionData.invite_user_id" text height="20" min-width="32"
                                                 class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 font-weight-bold ml-2"
-                                                color="colorTextBlue2"
-                                                @click="handlerViewCard"
-                                            >
+                                                color="colorTextBlue2" @click="handlerViewCard">
                                                 {{LangUtil("查看上级名片")}}
                                             </v-btn>
                                         </v-col>
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1">
                                         <v-col cols="12" class="text-right mt-2">
-                                            <v-btn
-                                                :height="35"
-                                                class="rounded-pill"
-                                                color="colorTextBlue2"
-                                                elevation="0"
-                                                @click="handlerPerformance"
-                                            >
+                                            <v-btn :height="35" class="rounded-pill" color="colorTextBlue2"
+                                                elevation="0" @click="handlerPerformance">
                                                 {{LangUtil("业绩查询")}}
                                             </v-btn>
                                         </v-col>
@@ -566,7 +586,8 @@
                 <v-col cols="12" lg="6" class="mt-2 mt-lg-0">
                     <v-sheet class="rounded pa-2" color="colorBackgroundGray">
                         <div class="d-flex align-center ml-n3 mb-1">
-                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+                            <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15"
+                                class="mr-1 rotate"> </v-img>
                             <span class="colorTextBlack--text font-weight-medium">{{LangUtil('推广')}}</span>
                         </div>
 
@@ -583,47 +604,38 @@
                                         </v-col>
                                         <v-col cols="12" class="d-flex flex-column">
                                             <div class="d-flex justify-center">
-                                                <v-btn
-                                                    :height="35"
-                                                    class="rounded-pill text-body-2 text-sm-body-1 ma-1"
-                                                    color="colorTextBlue2"
-                                                    @click="reget"
-                                                    >{{LangUtil("重新获取")}}
+                                                <v-btn :height="35" class="rounded-pill text-body-2 text-sm-body-1 ma-1"
+                                                    color="colorTextBlue2" @click="reget">{{LangUtil("重新获取")}}
                                                 </v-btn>
                                             </div>
                                             <div class="d-flex justify-center">
-                                                <v-btn
-                                                    :height="35"
-                                                    class="rounded-pill text-body-2 text-sm-body-1 ma-1"
-                                                    color="colorTextBlue2"
-                                                    @click="showPreview"
-                                                >
+                                                <v-btn :height="35" class="rounded-pill text-body-2 text-sm-body-1 ma-1"
+                                                    color="colorTextBlue2" @click="showPreview">
                                                     {{LangUtil("保存图片")}}
                                                 </v-btn>
                                             </div>
                                         </v-col>
                                     </v-row>
                                 </v-col>
-                                <v-col cols="8" class="d-flex flex-column colorTextBlack1--text text-subtitle-1 pl-4 pl-sm-6">
+                                <v-col cols="8"
+                                    class="d-flex flex-column colorTextBlack1--text text-subtitle-1 pl-4 pl-sm-6">
                                     <div class="mb-2 text-body-2 text-sm-body-1">{{LangUtil("推广链接")}}</div>
-                                    <v-sheet
-                                        color="colorBackgroundGray"
-                                        :height="35"
-                                        class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 colorTextBlack1--text"
-                                    >
-                                        <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link }}</span>
-                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24" @click="copy">
+                                    <v-sheet color="colorBackgroundGray" :height="35"
+                                        class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 colorTextBlack1--text">
+                                        <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link
+                                            }}</span>
+                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24"
+                                            @click="copy">
                                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                         </v-btn>
                                     </v-sheet>
                                     <div class="mb-2 text-body-2 text-sm-body-1">{{LangUtil("邀请码")}}</div>
-                                    <v-sheet
-                                        color="colorBackgroundGray"
-                                        :height="35"
-                                        class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1 colorTextBlack1--text"
-                                    >
-                                        {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
-                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24" @click="copyMyId">
+                                    <v-sheet color="colorBackgroundGray" :height="35"
+                                        class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1 colorTextBlack1--text">
+                                        {{ promotionData.pretty_user_id == ""?
+                                        promotionData.user_id:promotionData.pretty_user_id }}
+                                        <v-btn class="mr-1" color="#6FA9FA" small :width="24" min-width="0" :height="24"
+                                            @click="copyMyId">
                                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                                         </v-btn>
                                     </v-sheet>
@@ -634,33 +646,21 @@
                                         {{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}
                                     </div>
                                     <div class="d-flex justify-end mt-auto">
-                                        <v-btn
-                                            :min-width="90"
-                                            :height="35"
-                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1"
-                                            color="colorTextBlue2"
+                                        <v-btn :min-width="90" :height="35"
+                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1" color="colorTextBlue2"
                                             @click="handlerCredit"
-                                            v-if="selfProxy.userInfo.show_credit_statistic === 1"
-                                        >
+                                            v-if="selfProxy.userInfo.show_credit_statistic === 1">
                                             {{LangUtil("信用统计")}}
                                         </v-btn>
-                                        <v-btn
-                                            :min-width="90"
-                                            :height="35"
-                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1"
-                                            color="colorTextBlue2"
+                                        <v-btn :min-width="90" :height="35"
+                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1" color="colorTextBlue2"
                                             @click="handlerPromotion"
-                                            v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
-                                        >
+                                            v-if="selfProxy.userInfo.is_show_agent_statistic === 1">
                                             {{LangUtil("代理统计")}}
                                         </v-btn>
-                                        <v-btn
-                                            :min-width="90"
-                                            :height="35"
-                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1"
-                                            color="colorTextBlue2"
-                                            @click="handlerDirectly"
-                                        >
+                                        <v-btn :min-width="90" :height="35"
+                                            class="rounded-pill text-body-2 text-sm-body-1 ma-1" color="colorTextBlue2"
+                                            @click="handlerDirectly">
                                             {{LangUtil("我的直属")}}
                                         </v-btn>
                                     </div>
@@ -670,92 +670,159 @@
                     </v-sheet>
                 </v-col>
             </v-row>
-            <v-sheet class="pa-2 my-3 rounded" color="colorBackgroundGray" v-if="selfProxy.userInfo.is_credit_user == 98">
+            <v-sheet class="pa-2 my-3 rounded" color="colorBackgroundGray"
+                v-if="selfProxy.userInfo.is_credit_user == 98">
                 <div class="d-flex align-center ml-n3 mb-1">
-                    <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate"> </v-img>
+                    <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15"
+                        class="mr-1 rotate"> </v-img>
                     <span class="colorTextBlack--text font-weight-medium">{{LangUtil('返佣等级')}}</span>
                 </div>
                 <div class="text-caption text-sm-body-1 colorTextBlack--text mb-2 mb-sm-5">
                     {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
                 </div>
-                <v-sheet min-height="30"  color="#fff" class="rounded-card d-flex align-center mb-2">
-                    <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorTextBlack1--text">
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                <v-sheet min-height="30" color="#fff"
+                    class="rounded-card d-flex align-center mb-2 justify-space-around">
+
+                    <v-sheet color="transparent" min-width="50"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text">
+                        {{LangUtil("等级")}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="50"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text">
+                        {{LangUtil("总业绩")}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="100"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text">
+                        {{LangUtil("返佣额度(每万)")}}
+                    </v-sheet>
+
+                    <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="40"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text">
+                        {{LangUtil("级差")}}
+                    </v-sheet>
+
+                    <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="40"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text">
+                        {{LangUtil("CF奖励")}}
+                    </v-sheet>
+
+                    <!-- <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorTextBlack1--text">
+                        <v-col :cols="tableData.is_promotion_num_added==1?2:4"
+                            class="d-flex justify-center align-center">
                             {{LangUtil("等级")}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
+                        <v-col :cols="tableData.is_promotion_num_added==1?2:4"
+                            class="d-flex justify-center align-center">
                             {{LangUtil("总业绩")}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center" :class="core.lang == 'en_EN'?'pl-5':''">
+                        <v-col :cols="tableData.is_promotion_num_added==1?3:4"
+                            class="d-flex justify-center align-center" :class="core.lang == 'en_EN'?'pl-5':''">
                             {{LangUtil("返佣额度(每万)")}}
                         </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">
+                        <v-col cols="3" class="d-flex justify-center align-center"
+                            v-if="tableData.is_promotion_num_added==1">
                             {{LangUtil("级差")}}
                         </v-col>
-                        <v-col cols="2" class="d-flex justify-center align-center" v-if="pageData.platCoins.rewardCoin.name">
+                        <v-col cols="2" class="d-flex justify-center align-center"
+                            v-if="pageData.platCoins.rewardCoin.name">
                             {{LangUtil("CF奖励")}}
                         </v-col>
-                    </v-row>
+                    </v-row> -->
                 </v-sheet>
-                <v-sheet
-                    height="30"
-                    class="rounded-card mb-2 d-flex align-center"
-                    color="#FFFFFF54"
-                    v-for="(item, index) of tableData.promotionConfig[0]"
-                    :key="index"
-                >
-                    <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
-                        <v-col
-                            :cols="tableData.is_promotion_num_added==1?2:4"
-                            class="d-flex justify-center level_col align-center text-gray"
-                        >
-                            <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
+                <v-sheet height="30" class="rounded-card mb-2 d-flex align-center justify-space-around"
+                    color="#FFFFFF54" v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
+                    <v-sheet color="transparent" min-width="50"
+                        class="level_col d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
+                        <span class="level_icon"
+                                v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
+                                <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
+                            </span>
+                        {{LangUtil("{0}级", item.level)}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="50"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
+                        <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
+                            10000)}} </span>
+                        <span v-else>{{ item.total_performance }}</span>
+                    </v-sheet>
+
+                    <v-sheet color="transparent" min-width="100"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
+                        <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
+                            :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                            :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                        <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                    </v-sheet>
+
+                    <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="40"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
+                        <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0">- </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
+                                :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                                :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                            <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                        </span>
+                    </v-sheet>
+
+                    <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="40"
+                        class="d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
+                        <span v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0">- </span>
+                        <span v-else class="d-flex flex-row align-center">
+                            <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon"
+                                :max-width="$vuetify.breakpoint.mobile? 15 : 30"
+                                :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                            <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
+                        </span>
+                    </v-sheet>
+
+                    <!-- <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1">
+                        <v-col :cols="tableData.is_promotion_num_added==1?2:4"
+                            class="d-flex justify-center level_col align-center text-gray">
+                            <span class="level_icon"
+                                v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                                 <v-img contain src="@/assets/extension/star@4x.png"> </v-img>
                             </span>
                             {{LangUtil("{0}级", item.level)}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center text-gray">
-                            <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
+                        <v-col :cols="tableData.is_promotion_num_added==1?2:4"
+                            class="d-flex justify-center align-center text-gray">
+                            <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
+                                10000)}} </span>
                             <span v-else>{{ item.total_performance }}</span>
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center text-gray">
-                            <v-img
-                                class="mr-1"
-                                :src="pageData.platCoins.mainCoin.icon"
+                        <v-col :cols="tableData.is_promotion_num_added==1?3:4"
+                            class="d-flex justify-center align-center text-gray">
+                            <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
                                 :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                                :height="$vuetify.breakpoint.mobile? 15 : 30"
-                            ></v-img>
+                                :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
                             <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
                         </v-col>
-                        <v-col cols="3" class="d-flex justify-center align-center text-gray" v-if="tableData.is_promotion_num_added==1">
+                        <v-col cols="3" class="d-flex justify-center align-center text-gray"
+                            v-if="tableData.is_promotion_num_added==1">
                             <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0">- </span>
                             <span v-else class="d-flex flex-row align-center">
-                                <v-img
-                                    class="mr-1"
-                                    :src="pageData.platCoins.mainCoin.icon"
+                                <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
                                     :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                                    :height="$vuetify.breakpoint.mobile? 15 : 30"
-                                ></v-img>
+                                    :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
                                 <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
                             </span>
                         </v-col>
-                        <v-col
-                            :cols="tableData.is_promotion_num_added==1?2:3"
+                        <v-col :cols="tableData.is_promotion_num_added==1?2:3"
                             class="d-flex justify-center align-center text-gray"
-                            v-if="item.commission_num[pageData.platCoins.rewardCoin.name]"
-                        >
+                            v-if="item.commission_num[pageData.platCoins.rewardCoin.name]">
                             <span v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0">- </span>
                             <span v-else class="d-flex flex-row align-center">
-                                <v-img
-                                    class="mr-1"
-                                    :src="pageData.platCoins.rewardCoin.icon"
+                                <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon"
                                     :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                                    :height="$vuetify.breakpoint.mobile? 15 : 30"
-                                ></v-img>
+                                    :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
                                 <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
                             </span>
                         </v-col>
-                    </v-row>
+                    </v-row> -->
                 </v-sheet>
             </v-sheet>
         </template>

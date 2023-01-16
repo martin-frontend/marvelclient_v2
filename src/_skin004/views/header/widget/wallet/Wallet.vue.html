@@ -1,5 +1,5 @@
 <v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.mobile?30:45" class="rounded-pill d-flex align-center">
-    <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y nudge-bottom="7">
+    <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y nudge-bottom="2">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet v-if="$vuetify.breakpoint.mobile && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
@@ -64,15 +64,19 @@
             <v-icon size="22">mdi-minus-circle</v-icon>
         </v-btn> -->
 
-        <v-btn v-if="$vuetify.breakpoint.mobile" color="#EE1C25" class="rounded-pill white--text mr-1" x-small  @click="onCoinIn" elevation="0">
-            {{LangUtil("充值")}}
-        </v-btn>
-        <v-btn v-if="$vuetify.breakpoint.mobile" color="#FFFFFF" class="rounded-pill accent--text mr-1" x-small  @click="onCoinOut" elevation="0">
-            {{LangUtil("提现")}}
-        </v-btn>
+        <template v-if="$vuetify.breakpoint.mobile && false">
+            <v-btn color="#EE1C25" class="rounded-pill white--text mr-1" x-small @click="onCoinIn" elevation="0">
+                {{LangUtil("充值")}}
+            </v-btn>
+            <v-btn color="#FFFFFF" class="rounded-pill accent--text mr-1" x-small @click="onCoinOut" elevation="0">
+                {{LangUtil("提现")}}
+            </v-btn>
+        </template>
 
-        <v-btn v-else class="rounded-pill white--text mr-3 gradient-blue" height="38"  @click="onCoinIn" elevation="0">
-            <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
-        </v-btn>
+        <template v-if="!$vuetify.breakpoint.mobile">
+            <v-btn class="rounded-pill white--text mr-3 gradient-blue" height="38" @click="onCoinIn" elevation="0">
+                <div class="mx-1 text-16">{{LangUtil("充值")}}</div>
+            </v-btn>
+        </template>
     </template>
 </v-sheet>

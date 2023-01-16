@@ -8,7 +8,10 @@ import dialog_login from "@/_skin004/views/dialog_login";
 import dialog_register from "@/_skin004/views/dialog_register";
 import dialog_notice from "../../dialog_notice";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
-
+import AppProxy from "@/_skin004/AppProxy";
+import dialog_recharge from "@/_skin004/views/dialog_recharge";
+import dialog_email from "@/views/dialog_email";
+import SelfProxy from "@/proxy/SelfProxy";
 @Component
 export default class HeaderMobile extends AbstractView {
     LangUtil = LangUtil;
@@ -16,8 +19,11 @@ export default class HeaderMobile extends AbstractView {
     core = core;
     myProxy: HeaderMobileProxy = this.getProxy(HeaderMobileProxy);
     pageData = this.myProxy.pageData;
-
+    selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    appProxy :AppProxy = this.getProxy(AppProxy);
     routerPath = this.$router.app.$route.path;
+
+    red_dot_tips = this.selfProxy.red_dot_tips;
 
     constructor() {
         super(HeaderMobileMediator);
@@ -50,4 +56,37 @@ export default class HeaderMobile extends AbstractView {
     onService() {
         ServiceUtil();
     }
+
+    isdownloadShow = true;
+    
+    
+    public get isshowTop() : boolean {
+        return this.isdownloadShow && this.appProxy.isShowGuide;
+    }
+    
+    onClose()
+    {
+        this.isdownloadShow = false;
+    }
+
+    public get guideText() : string {
+        return this.appProxy.guideText;
+    }
+
+    onGuide()
+    {
+        this.appProxy.onGuide();
+    }
+    
+    onCoinIn() {
+        dialog_recharge.show();
+    }
+    onCoinOut() {
+        dialog_recharge.show(1);
+    }
+    openMail()
+    {
+        dialog_email.show();
+    }
+    
 }

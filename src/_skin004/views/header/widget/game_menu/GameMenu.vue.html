@@ -1,12 +1,14 @@
-<v-card class="pt-2 mb-0 menu_bg"  width="100%" elevation="0">
+<v-card class="pt-2 mb-0 menu_bg" width="100%" elevation="0">
 
     <v-container class="d-flex flex-wrap justify-center  " color="transparent" elevation="0">
-        <div v-for="(item, key) of data.list" :key="key" class="mx-2">
-            <v-card class="transparent" elevation="0" >
+        <div v-for="(item, key) of data.list" :key="key" class="mx-2 ml-4">
+            <!-- 样式一 -->
+            <v-card v-if="false" class="transparent" flat>
                 <div class="d-flex align-center flex-column">
-                    <v-img v-if="item" class="d-flex game-icon cursor-pointer rounded-lg" :src="getIcon(item)" :class="!isNomalState(item) ? 'game_icon_disable' : ''"
-                        @click="onClick(item)">
-                        <div v-if="!isNomalState(item)" class="game-title_diable d-flex align-center flex-column"> {{LangUtil("维护中")}} </div>
+                    <v-img v-if="item" class="d-flex game-icon cursor-pointer rounded-lg" :src="getIcon(item)"
+                        :class="!isNomalState(item) ? 'game_icon_disable' : ''" @click="onClick(item)">
+                        <div v-if="!isNomalState(item)" class="game-title_diable d-flex align-center flex-column">
+                            {{LangUtil("维护中")}} </div>
                         <div class="game-title d-flex align-center flex-column">{{item.alias}}</div>
                         <div class="egame__item__mask">
                             <div class="egame__item__play-icon">
@@ -18,8 +20,38 @@
                     </v-img>
                     <div v-if="false" class="d-flex align-center mt-n6 mb-2 text-18">{{item.alias}}
                     </div>
-
                 </div>
+            </v-card>
+
+            <v-card class="transparent" flat>
+                <!-- 样式二 -->
+                <v-card flat color="transparent" class="d-flex align-center " height="200">
+                    <v-img v-if="item" class="d-flex rounded-lg" :src="getIcon(item)" width="180" height="180"
+                        :class="!isNomalState(item) ? 'game_icon_disable' : ''" @click="onClick(item)">
+                    </v-img>
+
+                    <v-card flat color="transparent" class="d-flex flex-column justify-space-around ml-4" height="100" min-width="120">
+                        <div v-if="!isNomalState(item)" class="text-24 d-flex align-center flex-column">
+                            {{LangUtil("维护中")}} </div>
+
+                        <div class="d-flex align-center flex-column text-24 " style="color: #FFAE35;">{{item.alias}}</div>
+
+                        <v-btn class="rounded-pill mt-2 entergame_btn_bg" color="colorBtnBg" min-width="100" height="36" :disabled="!isNomalState(item)" @click="onClick(item)">
+                            {{LangUtil("进入游戏")}}
+                        </v-btn>
+
+                    </v-card>
+
+                </v-card>
+
+                <!-- <div class="egame__item__mask">
+                    <div class="egame__item__play-icon">
+                        <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                            <div class="icon-chevron-right icon__icon mt-n1"></div>
+                        </div>
+                    </div>
+                </div> -->
+
             </v-card>
         </div>
 

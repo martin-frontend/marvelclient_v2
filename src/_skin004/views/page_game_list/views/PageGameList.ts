@@ -10,10 +10,12 @@ import PageGameListMediator from "../mediator/PageGameListMediator";
 import PageGameListProxy from "../proxy/PageGameListProxy";
 import HeaderProxy from "@/_skin004/views/header/proxy/HeaderProxy";
 import GameConfig from "@/core/config/GameConfig";
+import { getVersion } from "@/core/global/Functions";
 
 @Component
 export default class PageGameList extends AbstractView {
     LangUtil = LangUtil;
+    getVersion = getVersion;
     CategoryIcon = Assets.CategoryIcon;
     gameProxy: GameProxy = getProxy(GameProxy);
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
@@ -205,5 +207,8 @@ export default class PageGameList extends AbstractView {
 
     destroyed() {
         super.destroyed();
+    }
+    getChannelID() {
+        return core.channel_id;
     }
 }

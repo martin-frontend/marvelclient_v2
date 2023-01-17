@@ -208,4 +208,9 @@
         </v-card>
     </template>
 
+<v-container v-if="$vuetify.breakpoint.mobile">
+    <div class="all-rights-reserved">version:{{getVersion()}}</div>
+    <div class="all-rights-reserved">{{getChannelID()}}</div>
+</v-container>
+
 </v-container>

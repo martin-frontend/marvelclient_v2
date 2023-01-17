@@ -34,6 +34,33 @@ export default class DialogRegister extends AbstractView {
 
     private registerTypes = GamePlatConfig.config.register_types;
 
+    tempSelectCode = null;
+
+    public get areaCodeArr() : any {
+        return this.myProxy.pageData.areaCode;
+    }
+    
+    public get curShowCode() : string {
+        return "+" + this.form.area_code
+    }
+    
+    @Watch("tempSelectCode")
+    onBankInfoChange() {
+        console.log("区号值变化了", this.tempSelectCode);
+        if ( ! this.tempSelectCode) return;
+        //@ts-ignore
+        this.form.area_code = this.tempSelectCode.area_code;
+    }
+
+    customFilter (item:any, queryText:any, itemText:any) {
+        const textOne = item.name.toLowerCase()
+        const textTwo = item.area_code +"";
+        const searchText = queryText.toLowerCase()
+
+        return textOne.indexOf(searchText) > -1 ||
+          textTwo.indexOf(searchText) > -1
+      }
+
     hasInviteUser() {
         return !!core.invite_user_id;
     }

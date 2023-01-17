@@ -8,13 +8,14 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message from "@/views/dialog_message";
 import page_mine from "@/views/page_mine";
 import dialog_nick_name from "@/_skin004/views/dialog_nick_name";
-import dialog_safety_center from "@/views/dialog_safety_center";
+import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
 import dialog_personal_card from "@/views/dialog_personal_card";
-import DialogSafetyCenterProxy from "@/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
+import DialogSafetyCenterProxy from "@/_skin004/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_trade_password from "@/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_real_name from "@/_skin004/views/dialog_real_name";
 import dialog_google_settings from "@/views/dialog_google_settings";
+import getProxy from "@/core/global/getProxy";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -22,7 +23,7 @@ export default class DialogUserCenter extends AbstractView {
     myProxy: DialogUserCenterProxy = this.getProxy(DialogUserCenterProxy);
     pageData = this.myProxy.pageData;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
-    safetyCenterProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
+    
     userInfo = this.selfProxy.userInfo;
     validate_type = GamePlatConfig.config.validate_type;
     is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
@@ -64,12 +65,14 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     goSetPhone() {
-        this.safetyCenterProxy.pageData.tabIndex = 0
+        const safetyCenterProxy = getProxy(DialogSafetyCenterProxy);
+        safetyCenterProxy.pageData.tabIndex = 0
         dialog_safety_center.show()
     }
 
     goSetEmail() {
-        this.safetyCenterProxy.pageData.tabIndex = 1
+        const safetyCenterProxy = getProxy(DialogSafetyCenterProxy);
+        safetyCenterProxy.pageData.tabIndex = 1
         dialog_safety_center.show()
     }
 

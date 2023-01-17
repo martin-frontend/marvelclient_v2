@@ -104,7 +104,7 @@ export default class MobileMenu extends AbstractView {
     //手动调用，进入直接进 游戏列表
     mounted(){
         setTimeout(() => {
-            
+            console.log("开始跳转 游戏列表");
            this.onItemClick( {id:2})
         }, 200);
        

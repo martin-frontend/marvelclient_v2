@@ -6,7 +6,7 @@ import router from "@/router";
 import dialog_activity from "@/views/dialog_activity";
 import dialog_bet_record from "@/_skin001/views/dialog_bet_record";
 import dialog_email from "@/views/dialog_email";
-import dialog_safety_center from "@/views/dialog_safety_center";
+import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
 import page_extension from "@/_skin004/views/page_extension";
 import page_introduce from "@/views/page_introduce";
 import page_mine from "@/views/page_mine";

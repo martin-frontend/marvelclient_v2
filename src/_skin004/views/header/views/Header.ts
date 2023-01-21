@@ -116,15 +116,20 @@ export default class Header extends AbstractView {
     @Watch("isFilterChange")
     filterChange(val: boolean) {
         //console.log("状态切换" , val);
-        const ele = document.getElementById("gamelist");
-        if (ele) {
-            ele.style.filter = this.isFilterChange ? "blur(10px)" : "none";
+        // const ele = document.getElementById("gamelist");
+        // if (ele) {
+        //     ele.style.filter = this.isFilterChange ? "blur(10px)" : "none";
+        // }
+        // const ele_home = document.getElementById("pagehome");
+        // if (ele_home) {
+        //     ele_home.style.filter = this.isFilterChange ? "blur(10px)" : "none";
+        // }
+
+        const ele_main = document.getElementById("mainpage");
+        if (ele_main) {
+            ele_main.style.filter = this.isFilterChange ? "blur(10px)" : "none";
         }
-        const ele_home = document.getElementById("pagehome");
-        if (ele_home) {
-            ele_home.style.filter = this.isFilterChange ? "blur(10px)" : "none";
-        }
-        //page_game_list.
+       
     }
     setIsFilter(val: boolean) {
         this.isFilterChange = val;

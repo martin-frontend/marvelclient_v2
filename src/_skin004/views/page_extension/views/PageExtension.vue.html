@@ -331,9 +331,10 @@
 
                     <v-sheet color="transparent" min-width="200"
                         class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text">
-                        <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
+                        <!-- <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
                             10000)}} </span>
-                        <span v-else>{{ item.total_performance }}</span>
+                        <span v-else>{{ item.total_performance }}</span> -->
+                        <span>{{ item.total_performance }}</span>
                     </v-sheet>
 
                     <v-sheet color="transparent" min-width="240"
@@ -744,9 +745,11 @@
 
                     <v-sheet color="transparent" min-width="50"
                         class="d-flex justify-center align-center text-caption text-sm-body-1 text-gray">
-                        <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
+                        <!-- <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
                             10000)}} </span>
-                        <span v-else>{{ item.total_performance }}</span>
+                        <span v-else>{{ item.total_performance }}</span> -->
+
+                        <span>{{ item.total_performance }}</span>
                     </v-sheet>
 
                     <v-sheet color="transparent" min-width="100"

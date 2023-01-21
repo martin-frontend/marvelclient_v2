@@ -1,4 +1,5 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { convert_vi_to_en } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
@@ -308,6 +309,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             account_name,
             account_bank,
         };
+        sendObj.account_name = convert_vi_to_en(sendObj.account_name);;
         console.log("发送的数据为", sendObj);
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
     }

@@ -164,7 +164,7 @@
         <v-col class="mr-1">
             <v-sheet color="transparent" min-width="300" class="mb-2">
                 <div class="colorText1--text">{{LangUtil("提取金额")}}</div>
-                <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyInt="true">
                     <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onAll">{{LangUtil("全部")}}</v-btn>
                 </CustomInput>
             </v-sheet>

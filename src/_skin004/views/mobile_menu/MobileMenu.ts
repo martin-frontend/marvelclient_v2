@@ -40,19 +40,27 @@ export default class MobileMenu extends AbstractView {
                 icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
                 path: "/xxx",
             },
-            {
-                id: 1,
-                name: LangUtil("足球"),
-                icon: require(`@/_skin001/assets/icon/icon_soccer.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_soccer1.png`),
-                path: "/page_game_soccer",
-            },
+            // {
+            //     id: 1,
+            //     name: LangUtil("足球"),
+            //     icon: require(`@/_skin001/assets/icon/icon_soccer.png`),
+            //     icon1: require(`@/_skin001/assets/icon/icon_soccer1.png`),
+            //     path: "/page_game_soccer",
+            // },
             {
                 id: 2,
                 name: LangUtil("娱乐城"),
                 icon: require(`@/_skin001/assets/icon/icon_play.png`),
                 icon1: require(`@/_skin001/assets/icon/icon_play1.png`),
                 path: "/page_game_list",
+            },
+
+             {
+                id: 0,
+                name: LangUtil("首页"),
+                icon: require(`@/_skin001/assets/icon/icon_home.png`),
+                icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
+                path: "/",
             },
             // {
             //     id: 3,

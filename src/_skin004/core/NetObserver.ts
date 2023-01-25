@@ -151,11 +151,11 @@ export default class NetObserver extends AbstractMediator {
                 dialog_message_box.alert({
                     message: LangUtil("您的帐号已经退出"),
                     okFun: () => {
-                        if ( Vue.vuetify.framework.breakpoint.mobile)
-                        {
-                            page_game_list.show();
-                            return;
-                        }
+                        // if ( Vue.vuetify.framework.breakpoint.mobile)
+                        // {
+                        //     page_game_list.show();
+                        //     return;
+                        // }
                         Vue.router.replace("/");
                     },
                 });
@@ -178,9 +178,9 @@ export default class NetObserver extends AbstractMediator {
                     headerProxy.setGameMenu(body);
                 }
                 // 手机模式，跳到游戏列表页
-                if(Vue.vuetify.framework.breakpoint.mobile){
-                    page_game_list.show(0);
-                }
+                // if(Vue.vuetify.framework.breakpoint.mobile){
+                //     page_game_list.show(0);
+                // }
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {

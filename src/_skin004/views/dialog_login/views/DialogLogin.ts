@@ -29,6 +29,33 @@ export default class DialogLogin extends AbstractView {
         super(DialogLoginMediator);
     }
 
+    tempSelectCode = <any>null;
+
+    public get areaCodeArr() : any {
+        return this.myProxy.forgetData.areaCode;
+    }
+    
+    public get curShowCode() : string {
+        return "+" + this.forgetData.form.area_code
+    }
+    
+    @Watch("tempSelectCode")
+    onBankInfoChange() {
+        console.log("区号值变化了", this.tempSelectCode);
+        if ( ! this.tempSelectCode) return;
+
+        this.forgetData.form.area_code = this.tempSelectCode.area_code;
+    }
+
+    customFilter (item:any, queryText:any, itemText:any) {
+        const textOne = item.name.toLowerCase()
+        const textTwo = item.area_code +"";
+        const searchText = queryText.toLowerCase()
+
+        return textOne.indexOf(searchText) > -1 ||
+          textTwo.indexOf(searchText) > -1
+      }
+      
     private checkMail = checkMail;
     private checkPhone = checkPhone;
     ///////////////////忘记密码//////////////////////

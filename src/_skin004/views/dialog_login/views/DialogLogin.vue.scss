@@ -44,3 +44,32 @@
 ::v-deep .v-icon.v-icon {
     color: #4c5d7f;
 }
+
+.codeSelect {
+
+    ::v-deep .v-input input {
+        color: #96a9d0;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    ::v-deep .theme--dark.v-icon {
+        color: #4c5d7f;
+    }
+
+    ::v-deep .v-label {
+        color: #4c5d7f;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    ::v-deep .v-list {
+        background: #25324B;
+        border-radius: 10px !important;
+        //color:#96AAD0;
+    }
+
+    .mytest {
+        min-width: 200px !important;
+    }
+}

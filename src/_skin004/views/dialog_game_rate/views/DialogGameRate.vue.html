@@ -58,8 +58,14 @@
                         <v-img :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon" max-width="25" max-height="25" class="ml-3 mr-2"></v-img>
                         {{item.coin_name_unique}}
                     </v-col>
-                    <v-col cols="6" class="d-flex justify-end align-center pr-3">
+                    <!-- <v-col cols="6" class="d-flex justify-end align-center pr-3">
                         1{{item.coin_name_unique}} = {{item.scale}}<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                    </v-col> -->
+                    <v-col v-if="item.coin_name_unique != 'VND'" cols="6" class="d-flex justify-end align-center pr-5">
+                        1 {{item.coin_name_unique}} = {{item.scale}}<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                    </v-col>
+                    <v-col v-else cols="6" class="d-flex justify-end align-center pr-5">
+                       {{vndCount(item)}} {{item.coin_name_unique}} = 1<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
                     </v-col>
                 </v-row>
             </v-card>

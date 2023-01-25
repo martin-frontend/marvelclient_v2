@@ -213,8 +213,9 @@ export default class TabExchangeBankVnd extends AbstractView {
     }
 
     onAll() {
+        console.log("全部");
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+            this.form.amount = Math.floor( this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
         } else {
             this.form.amount = "0.00";
         }

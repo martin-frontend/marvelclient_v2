@@ -60,7 +60,34 @@
                     v-model="forgetData.form.username"
                 >
                     <template v-slot:pre>
-                        <v-menu v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+
+                        <v-sheet color="transparent" min-width="80" class="codeSelect">  
+                            <v-autocomplete
+                            class=""
+                                    v-model="tempSelectCode"
+                                    :items="areaCodeArr"
+                                    item-text="area_code"
+                                    :label="curShowCode"
+                                    hide-details
+                                    solo
+                                    flat
+                                    background-color="transparent"
+                                    attach
+                                    return-object
+                                    :no-data-text="LangUtil('没有更多数据')"
+                                    auto-select-first
+                                    :filter="customFilter"
+                                >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent"  width="100%"  class="d-flex justify-space-between colorText2--text text-14">
+                                        <div> {{data.item.area_code}}</div>
+                                        <div> {{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            
+                            </v-autocomplete>
+                             </v-sheet>
+                        <v-menu v-if="false" v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="colorBtnBg--text mx-2">+{{forgetData.form.area_code}}</div>

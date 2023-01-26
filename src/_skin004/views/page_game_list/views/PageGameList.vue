@@ -6,7 +6,7 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import PageGameList from "./PageGameList";
 import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
-import GameItem from "@/views/widget/game_item/GameItem.vue";
+import GameItem from "@/_skin004/views/widget/game_item/GameItem.vue";
 import Activity from "@/_skin004/views/page_home/widget/activity/Activity.vue";
 import Advertise from "@/_skin004/views/page_home/widget/advertise/Advertise.vue";
 import Marquee1 from "@/_skin004/views/page_home/widget/marquee1/Marquee1.vue";

@@ -2,7 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
-import LoginEnter from "@/_skin004/core/global/LoginEnter";
+import LoginEnter, { EnterGame } from "@/_skin004/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import game_search from "@/views/game_search";
 import { Watch, Component } from "vue-property-decorator";
@@ -58,14 +58,14 @@ export default class PageGameList extends AbstractView {
         }
         return item.entrance_icon;
     }
-    onClick( item:any) {
+    onClick(item: any) {
         if (item) {
             LoginEnter(() => {
-                const gameProxy: GameProxy = this.getProxy(GameProxy);
-                gameProxy.api_vendor_var_ori_product_show_var(item);
+                EnterGame(item);
             });
         }
     }
+
     //手机版的时候 加载的本地图片地址
     getLocalIconPath(vendor_type: any) {
         return require(`@/_skin004/assets/categoryicon/${vendor_type}.png`);

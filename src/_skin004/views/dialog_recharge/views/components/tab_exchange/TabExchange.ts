@@ -116,7 +116,8 @@ export default class TabExchange extends AbstractView {
 
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+            //this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+            this.form.amount = Math.floor( this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
         } else {
             this.form.amount = "0.00";
         }

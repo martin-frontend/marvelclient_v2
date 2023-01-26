@@ -1,8 +1,8 @@
-import CheckSpeedCMD from "@/core/command/CheckSpeedCMD";
-import IOErrorCMD from "@/core/command/IOErrorCMD";
-import RequestEndCMD from "@/core/command/RequestEndCMD";
-import RequestErrorCMD from "@/core/command/RequestErrorCMD";
-import RequestStartCMD from "@/core/command/RequestStartCMD";
+import CheckSpeedCMD from "@/_skin004/core/command/CheckSpeedCMD";
+import IOErrorCMD from "@/_skin004/core/command/IOErrorCMD";
+import RequestEndCMD from "@/_skin004/core/command/RequestEndCMD";
+import RequestErrorCMD from "@/_skin004/core/command/RequestErrorCMD";
+import RequestStartCMD from "@/_skin004/core/command/RequestStartCMD";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";

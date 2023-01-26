@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 // import GameItem from "../game_item/GameItem.vue";
-import GameItem from "@/views/widget/game_item/GameItem.vue";
+import GameItem from "@/_skin004/views/widget/game_item/GameItem.vue";
 import GameSlideGroup from "./GameSlideGroup";
 
 @Component({

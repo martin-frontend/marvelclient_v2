@@ -6,7 +6,7 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import PageGameListChess from "./PageGameListChess";
 import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
-import GameItem from "@/views/widget/game_item/GameItem.vue";
+import GameItem from "@/_skin004/views/widget/game_item/GameItem.vue";
 
 @Component({
     components: {

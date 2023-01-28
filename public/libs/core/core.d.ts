@@ -2993,6 +2993,7 @@ declare module core {
         nick_name?: string;
         /**真实姓名*/
         real_name?: string;
+        real_name_decrypt?:string;
         /**邮箱*/
         email?: string;
         /**手机号*/

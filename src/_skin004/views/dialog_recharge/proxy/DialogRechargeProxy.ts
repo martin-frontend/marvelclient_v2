@@ -3,6 +3,7 @@ import { convert_vi_to_en } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 import DialogAddressBookProxy from "@/_skin004/views/dialog_address_book/proxy/DialogAddressBookProxy";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
@@ -126,7 +127,7 @@ export class RechargeProxy extends puremvc.Proxy {
 
 export class ExchangeProxy extends puremvc.Proxy {
     static NAME = "ExchangeProxy";
-
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     /**钱包信息 */
     gold_info = <any>{};
 
@@ -162,9 +163,18 @@ export class ExchangeProxy extends puremvc.Proxy {
             password_gold: "",
             bank_id:"",
             bank:"",
-            account_name:"",
+            //account_name:"",
         });
         this.curBankinfo = null;
+            if (this.selfProxy.userInfo.real_name_decrypt)
+            {
+                this.pageData.form.account_name = this.selfProxy.userInfo.real_name_decrypt;
+            }
+            else
+            {
+                this.pageData.form.account_name = "";
+            }
+            console.log("设置真实信命" + this.pageData.form.account_name );
     }
 
     setData(data: any) {

@@ -29,6 +29,7 @@ export default class SelfProxy extends AbstractProxy {
         phone: "",
         email: "",
         real_name: "",
+        real_name_decrypt:"",
         password_gold_exists: 0,
         bsc_address: "",
         gold_info: <any>{},

@@ -30,6 +30,7 @@
                     height="40"
                     :placeholder="LangUtil('姓名')"
                     v-model="form.account_name"
+                    :disabled="true"
                 ></CustomInput>
 
                 <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
@@ -98,6 +99,7 @@
                     @input="onNameInputInput"
                     :placeholder="LangUtil('姓名')"
                     v-model="form.account_name"
+                    :disabled="true"
                 ></CustomInput>
 
                 <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">

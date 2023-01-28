@@ -98,7 +98,8 @@ export default class TabExchangeBankVnd extends AbstractView {
     {
         if (!this.myProxy.pageData.bShow)
         {
-            this.bank_info = null;
+            //this.bank_info = null;
+            this.myProxy.exchangeProxy.curBankinfo = null;
         }
         
     }

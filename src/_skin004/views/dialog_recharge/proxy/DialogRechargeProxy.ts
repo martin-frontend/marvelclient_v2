@@ -164,6 +164,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             bank:"",
             account_name:"",
         });
+        this.curBankinfo = null;
     }
 
     setData(data: any) {

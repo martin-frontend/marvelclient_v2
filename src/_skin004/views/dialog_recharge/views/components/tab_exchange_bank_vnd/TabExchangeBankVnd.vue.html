@@ -24,15 +24,17 @@
             ></v-autocomplete>
 
             <v-sheet color="transparent" min-width="150" class="name_select">
-                <CustomInput
+                <!-- <CustomInput
                     @blur="onNameInputBlur"
                     @input="onNameInputInput"
                     height="40"
                     :placeholder="LangUtil('姓名')"
                     v-model="form.account_name"
                     :disabled="true"
-                ></CustomInput>
-
+                ></CustomInput> -->
+                <div class="colorBlue--text">
+                    {{form.account_name}}
+                </div>
                 <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
                     <v-list-item-group color="primary">
                         <v-list-item v-for="(item, i) in allNames" :key="i" @click="onClickNameSelect(item)">
@@ -93,14 +95,17 @@
             ></v-autocomplete>
 
             <v-sheet color="transparent" min-width="150" class="name_select mb-2">
-                <CustomInput
+                <!-- <CustomInput
                     class="input_mob"
                     @blur="onNameInputBlur"
                     @input="onNameInputInput"
                     :placeholder="LangUtil('姓名')"
                     v-model="form.account_name"
                     :disabled="true"
-                ></CustomInput>
+                ></CustomInput> -->
+                <div class="colorBlue--text ml-3">
+                    {{form.account_name}}
+                </div>
 
                 <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
                     <v-list-item-group color="primary">

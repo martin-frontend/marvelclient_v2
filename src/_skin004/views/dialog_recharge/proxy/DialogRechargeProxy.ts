@@ -166,17 +166,21 @@ export class ExchangeProxy extends puremvc.Proxy {
             //account_name:"",
         });
         this.curBankinfo = null;
-            if (this.selfProxy.userInfo.real_name_decrypt)
-            {
-                this.pageData.form.account_name = this.selfProxy.userInfo.real_name_decrypt;
-            }
-            else
-            {
-                this.pageData.form.account_name = "";
-            }
-            console.log("设置真实信命" + this.pageData.form.account_name );
+        this.setRealName();
     }
 
+    setRealName()
+    {
+        if (this.selfProxy.userInfo.real_name_decrypt)
+        {
+            this.pageData.form.account_name = this.selfProxy.userInfo.real_name_decrypt;
+        }
+        else
+        {
+            this.pageData.form.account_name = "";
+        }
+        console.log("设置真实信命" + this.pageData.form.account_name );
+    }
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -209,6 +213,7 @@ export class ExchangeProxy extends puremvc.Proxy {
                 this.sendAddressInfo();
             }
         }
+        this.setRealName();
     }
 
     //设置地址，发送 请求

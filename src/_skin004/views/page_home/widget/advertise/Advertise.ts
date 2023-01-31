@@ -15,6 +15,9 @@ export default class Advertise extends AbstractView {
     };
 
     get height(): number {
+
+        //return this.$vuetify.breakpoint.width* (316 / 1185);
+
         if(this.$vuetify.breakpoint.width <= 390) return 150;
         switch (this.$vuetify.breakpoint.name) {
             case "xs":
@@ -28,6 +31,26 @@ export default class Advertise extends AbstractView {
         }
     }
 
+    public  img_url( item:any): string {
+        if (this.$vuetify.breakpoint.mobile) {
+            return item.img_url_phone;
+        }
+        else {
+            return item.img_url;
+        }
+    }
+
+    
+    public get isHaveData() : boolean {
+        for (let index = 0; index < this.getShowData.length; index++) {
+            if (this.img_url( this.getShowData[index]))
+            {
+                return true;
+            }
+        } 
+        return false;
+    }
+    
     public get getShowData() : any {
         if (!this.showDataType || this.showDataType == 0)
             return this.noticeProxy.data.listType1

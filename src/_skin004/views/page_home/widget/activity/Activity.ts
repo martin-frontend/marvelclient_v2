@@ -37,6 +37,26 @@ export default class Activity extends AbstractView {
         return this.selfProxy.userInfo.user_id ? true : false;
     }
 
+    public  img_url( item:any): string {
+        if (this.$vuetify.breakpoint.mobile) {
+            return item.img_url_phone;
+        }
+        else {
+            return item.img_url;
+        }
+    }
+
+    
+    public get isHaveData() : boolean {
+        for (let index = 0; index < this.getShowData.length; index++) {
+            if (this.img_url( this.getShowData[index]))
+            {
+                return true;
+            }
+        } 
+        return false;
+    }
+    
     /**CF今日涨跌 */
     get coinChangedData() {
         const str = this.pageData.swap_k.coin_a_b_changed;

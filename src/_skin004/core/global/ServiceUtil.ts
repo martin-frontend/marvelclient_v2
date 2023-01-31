@@ -17,7 +17,8 @@ export default function() {
             OpenLink(link);
         }
     } else {
-        WebViewBridge.getInstance().openBrowser(link);
+    //     WebViewBridge.getInstance().openBrowser(link);
+        WebViewBridge.getInstance().openStstemBrowser(link);
     }
 
 }

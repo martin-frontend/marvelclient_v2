@@ -37,6 +37,11 @@ export default class TabRecharge extends AbstractView {
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
         this.changeMoney();
     }
+
+    public get datalist(): any {
+        return this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id];
+    }
+
     onChange2(value: any) {
         if (value) this.form.block_network_id = value;
         const { methodList } = this.pageData;
@@ -59,10 +64,30 @@ export default class TabRecharge extends AbstractView {
     changeMoney() {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
-        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 5) {
-            const fixed_gold_list = methodList[coin_name_unique].options[block_network_id].fixed_gold_list;
-            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+
+        const data = methodList[coin_name_unique].options[block_network_id];
+
+        if (data.payemthod_id == 6) {
+            const fixed_gold_list = data.fixed_gold_list;
+
+            if (fixed_gold_list && fixed_gold_list.length > 0) {
+                this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+            }
+        }
+
+        if (data.payemthod_id == 6) {
+            const channel = data.channel;
+            if (channel && channel.length > 0) {
+                this.pageData.form.third_id = channel[0].third_id;
+                this.pageData.form.subtitle = channel[0].subtitle;
+
+                const fixed_gold_list = channel[0].fixed_gold_list;
+                if (fixed_gold_list && fixed_gold_list.length > 0) {
+                    this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                    this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                }
+            }
         }
     }
 

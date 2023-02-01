@@ -35,7 +35,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     resetForm() {
         Object.assign(this.pageData.formBindPhone, {
             user_id: core.user_id,
-            area_code: "86",
+            area_code: "84",
             mobile: "",
             code: "",
         });

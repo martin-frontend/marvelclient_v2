@@ -36,30 +36,30 @@ export default class DialogRegister extends AbstractView {
 
     tempSelectCode = null;
 
-    public get areaCodeArr() : any {
+    public get areaCodeArr(): any {
         return this.myProxy.pageData.areaCode;
     }
-    
-    public get curShowCode() : string {
+
+    public get curShowCode(): string {
         return "+" + this.form.area_code
     }
-    
+
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
-        if ( ! this.tempSelectCode) return;
+        if (!this.tempSelectCode) return;
         //@ts-ignore
         this.form.area_code = this.tempSelectCode.area_code;
     }
 
-    customFilter (item:any, queryText:any, itemText:any) {
+    customFilter(item: any, queryText: any, itemText: any) {
         const textOne = item.name.toLowerCase()
-        const textTwo = item.area_code +"";
+        const textTwo = item.area_code + "";
         const searchText = queryText.toLowerCase()
 
         return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
-      }
+            textTwo.indexOf(searchText) > -1
+    }
 
     hasInviteUser() {
         return !!core.invite_user_id;
@@ -143,29 +143,39 @@ export default class DialogRegister extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.api_public_auth_code();
+
+            //没有账号注册
+            if (!this.registerTypes.includes(1)) {
+                if (this.registerTypes.includes(4)) {
+                    this.onTabClick(4);
+                }
+                else {
+                    this.onTabClick(2);
+                }
+            }
         }
     }
 
     onUsernameBlur() {
-        if(this.form.username == "") return;
-        if(this.form.username.length < 4) {
+        if (this.form.username == "") return;
+        if (this.form.username.length < 4) {
             dialog_message.success(LangUtil("账号小于4位，请重新输入"));
         }
     }
 
     onPasswordBlur() {
-        if(this.form.password == "") return;
-        if(!checkUserPassword(this.form.password)) {
+        if (this.form.password == "") return;
+        if (!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }
     }
 
     onPasswordConfirmBlur() {
-        if(this.form.password_confirm == "") return;
-        if(!checkUserPassword(this.form.password)) {
+        if (this.form.password_confirm == "") return;
+        if (!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }
-        if(this.form.password !== this.form.password_confirm) {
+        if (this.form.password !== this.form.password_confirm) {
             dialog_message.success(LangUtil("密码不一致"));
         }
     }

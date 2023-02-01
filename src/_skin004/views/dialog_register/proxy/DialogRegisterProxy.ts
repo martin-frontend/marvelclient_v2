@@ -16,7 +16,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             password_confirm: "",
             verify_code: "",
             register_type: 1, //1：用户名 2：邮箱 4：手机
-            area_code: "86",
+            area_code: "84",
             backup_phone:"", //账号注册里面的手机号
         },
         auth_image: "",

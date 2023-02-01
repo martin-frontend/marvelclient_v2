@@ -23,7 +23,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
         bShow: false,
         tabIndex: 0, //0:手机找回 1:邮箱找回
         form: {
-            area_code: "86",
+            area_code: "84",
             username: "",
             password: "",
             password_confirm: "",
@@ -40,7 +40,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: "",
         });
         Object.assign(this.forgetData.form, {
-            area_code: "86",
+            area_code: "84",
             username: "",
             password: "",
             password_confirm: "",

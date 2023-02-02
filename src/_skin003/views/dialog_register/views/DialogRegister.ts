@@ -4,7 +4,7 @@ import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVod
 import LangUtil from "@/core/global/LangUtil";
 import dialog_get_verity from "@/views/dialog_get_verity";
 import dialog_login from "@/views/dialog_login";
-import dialog_service from "@/views/dialog_service";
+import dialog_service from "@/_skin003/views/dialog_service";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";

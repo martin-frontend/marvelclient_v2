@@ -17,6 +17,14 @@
     <v-lazy>
         <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
     </v-lazy>
+
+    <v-sheet class="d-flex justify-center align-center flex-wrap" v-if="$vuetify.breakpoint.mobile" color="transparent" width="100%">
+        <div class="mr-4" @click="goService_2(1)"><a class="info--text text-12">{{LangUtil("AML政策")}}</a></div>
+        <div class="mr-4" @click="goService_2(2)"><a class="info--text text-12">{{LangUtil("隐私政策")}}</a> </div>
+        <div class="mr-4" @click="goService_2(3)"><a class="info--text text-12">{{LangUtil("负责任的赌博")}}</a></div>
+        <div class="mr-4" @click="goService_2(4)"><a class="info--text text-12">{{LangUtil("条款和条件")}}</a></div>
+    </v-sheet>
+
     <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
         <div class="all-rights-reserved">version:{{getVersion()}}</div>
         <div class="all-rights-reserved">{{getChannelID()}}</div>

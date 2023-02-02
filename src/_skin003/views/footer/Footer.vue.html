@@ -8,9 +8,17 @@
                     <div class="mr-4" @click="openLink(LangUtil('客服链接'))">
                         <a class="info--text">{{LangUtil("联系我们")}}</a>
                     </div>
-                    <div class="mr-4" @click="goService"><a class="info--text">{{LangUtil("服务条款")}}</a></div>
-                    <div class="mr-4" @click="goTG"><a class="info--text">{{LangUtil("TG官方频道")}}</a></div>
+                    <div v-if="false" class="mr-4" @click="goService"><a class="info--text">{{LangUtil("服务条款")}}</a></div>
+                    <div v-if="false" class="mr-4" @click="goTG"><a class="info--text">{{LangUtil("TG官方频道")}}</a></div>
                 </div>
+
+                <div class="d-flex">
+                    <div class="mr-4" @click="goService_2(1)"><a class="info--text">{{LangUtil("AML政策")}}</a></div>
+                    <div class="mr-4" @click="goService_2(2)"> <a class="info--text">{{LangUtil("隐私政策")}}</a> </div>
+                    <div class="mr-4" @click="goService_2(3)"><a class="info--text">{{LangUtil("负责任的赌博")}}</a></div>
+                    <div class="mr-4" @click="goService_2(4)"><a class="info--text">{{LangUtil("条款和条件")}}</a></div>
+                </div>
+
                 <div class="text-16 mt-4 mb-1">{{LangUtil("数字货币交易")}}</div>
                 <div class="d-flex">
                     <div class="mr-4" @click="openLink(LangUtil('法币教程链接'))">
@@ -21,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <v-spacer />
+            <!-- <v-spacer />
             <div>
                 <div class="text-16 mb-1">{{LangUtil("游戏提供商")}}</div>
                 <div class="d-flex align-center mr-2" style="display: grid; gap: 25px; width: 100%">
@@ -33,7 +41,7 @@
                     <img width="96" height="22" src="@/assets/footer/PG.png" />
                     <img width="65" height="35" src="@/assets/footer/JBD.png" />
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- <div class="d-flex">

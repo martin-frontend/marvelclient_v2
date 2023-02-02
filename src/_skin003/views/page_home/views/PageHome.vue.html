@@ -26,6 +26,8 @@
     </v-sheet>
 
     <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
+        <p class="website-info">{{LangUtil("网页底部信息说明")}}</p>
+        <div class="all-rights-reserved">{{LangUtil("网页底部公司说明")}}</div>
         <div class="all-rights-reserved">version:{{getVersion()}}</div>
         <div class="all-rights-reserved">{{getChannelID()}}</div>
     </div>

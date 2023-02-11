@@ -10,7 +10,7 @@ import dialog_notice from "../../dialog_notice";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 import AppProxy from "@/_skin004/AppProxy";
 import dialog_recharge from "@/_skin004/views/dialog_recharge";
-import dialog_email from "@/views/dialog_email";
+import dialog_email from "@/_skin004/views/dialog_email";
 import SelfProxy from "@/proxy/SelfProxy";
 @Component
 export default class HeaderMobile extends AbstractView {

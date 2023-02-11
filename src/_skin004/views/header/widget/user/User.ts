@@ -1,7 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
-import dialog_email from "@/views/dialog_email";
+import dialog_email from "@/_skin004/views/dialog_email";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import HeaderProxy from "../../proxy/HeaderProxy";
 

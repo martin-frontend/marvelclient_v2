@@ -132,8 +132,8 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.trial.main = body.total_backwater[this.pageData.platCoins.mainCoin.name];
         this.pageData.trial.mainIconSrc = this.pageData.platCoins.mainCoin.icon;
 
-        this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
-        this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
+        // this.pageData.trial.reward = body.total_backwater[this.pageData.platCoins.rewardCoin.name];
+        // this.pageData.trial.rewardIconSrc = this.pageData.platCoins.rewardCoin.icon;
     }
 
     /**游戏挖矿 试算 */

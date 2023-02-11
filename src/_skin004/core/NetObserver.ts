@@ -273,7 +273,8 @@ export default class NetObserver extends AbstractMediator {
                     const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
                     noticeProxy.setData(body);
 
-                    if(noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0)
+                    console.log("当前的路径位" , Vue.router.history.current.path);
+                    if(noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0 && Vue.router.history.current.path=="/")
                         dialog_notice.show();
                 }
                 break;

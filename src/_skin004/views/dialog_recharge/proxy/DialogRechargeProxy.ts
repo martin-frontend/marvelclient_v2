@@ -231,7 +231,7 @@ export class ExchangeProxy extends puremvc.Proxy {
     setCurBankInfo(bank_id:number)
     {
         console.log("需要搜索的银行id " ,bank_id );
-        const arr = this.pageData.methodList.VND.bank_list;
+        const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
         for (let index = 0; index < arr.length; index++) {
             const element = arr[index];
             if (element.bank_id == bank_id)

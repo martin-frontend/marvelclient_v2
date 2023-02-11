@@ -103,9 +103,15 @@ export default class TabExchangeBankVnd extends AbstractView {
         }
         
     }
+
+    
+    public get methodlist_data() : any {
+        return this.pageData.methodList[this.form.coin_name_unique];
+    }
+    
     public get bank_list(): any {
-        if (this.pageData && this.pageData.methodList && this.pageData.methodList.VND && this.pageData.methodList.VND.bank_list)
-            return this.pageData.methodList.VND.bank_list;
+        if (this.pageData && this.pageData.methodList && this.methodlist_data && this.methodlist_data.bank_list)
+            return this.methodlist_data.bank_list;
         return null;
     }
 

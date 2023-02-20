@@ -1,0 +1,53 @@
+<v-sheet width="100%" color="transparent" class="">
+    <v-card v-if="!$vuetify.breakpoint.mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68">
+        <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
+            <v-btn class="rounded-pill mr-2" height="36" width="90" value="0">
+                <span class="text-14"> {{LangUtil("代理首页")}} </span>
+            </v-btn>
+            <v-btn class="rounded-pill mr-2" height="36" width="90" value="1">
+
+                <span class=" text-14"> {{LangUtil("代理管理")}} </span>
+            </v-btn>
+            <v-btn class="rounded-pill mr-2" height="36" width="90" value="11">
+
+                <span class=" text-14"> {{LangUtil("信用报表")}} </span>
+            </v-btn>
+        </v-btn-toggle>
+
+        <v-sheet v-if="pageData.tabIndex==1" min-width="234" color="transparent" class="ml-auto mr-4">
+            <CustomInput :placeholder="LangUtil('输入查询ID/备注/账号')" v-model="pageData.search" :isBottomLine="false">
+                <btn-yellow class="ml-auto mr-n5 text-16" min_width="61" height="41" :btn_type="4"
+                    @click.native="search">{{LangUtil("查询")}}</btn-yellow>
+            </CustomInput>
+        </v-sheet>
+    </v-card>
+
+    <v-card v-else flat class="d-flex flex-column rounded10 mt-2" min-height="68" color="bgBanner">
+        <v-sheet class="d-flex align-center" min-height="68" color="transparent">
+            <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
+                <v-btn class="rounded-pill mr-2" height="30" min_width="72" value="0">
+                    <span class="text-12"> {{LangUtil("代理首页")}} </span>
+                </v-btn>
+                <v-btn class="rounded-pill mr-2" height="30" min_width="72" value="1">
+                    <span class=" text-12"> {{LangUtil("代理管理")}} </span>
+                </v-btn>
+                <v-btn class="rounded-pill mr-2" height="30" min_width="72" value="11">
+                    <span class=" text-12"> {{LangUtil("信用报表")}} </span>
+                </v-btn>
+            </v-btn-toggle>
+        </v-sheet>
+
+        <v-sheet v-if="pageData.tabIndex==1" width="100%" color="transparent" class="px-2 pb-4  mobel_input">
+            <CustomInput :placeholder="LangUtil('输入查询ID/备注/账号')" v-model="pageData.search" :isBottomLine="false">
+                <btn-yellow class="ml-auto mr-n5 text-12" min_width="61" height="36" :btn_type="4"
+                    @click.native="search">{{LangUtil("查询")}}</btn-yellow>
+            </CustomInput>
+        </v-sheet>
+    </v-card>
+
+    <!-- <HomePage v-if="pageData.tabIndex==0" ></HomePage> -->
+    <HomePage v-if="pageData.tabIndex==0" class="mt-4"></HomePage>
+    <Agents v-if="pageData.tabIndex==1" :class="$vuetify.breakpoint.mobile ? 'mt-2' : 'mt-4'"></Agents>
+    <Statistice v-if="pageData.tabIndex==11" class=" mt-4"></Statistice>
+
+</v-sheet>

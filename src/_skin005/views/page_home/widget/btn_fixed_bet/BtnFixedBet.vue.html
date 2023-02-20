@@ -1,0 +1,22 @@
+<div ref="divbox" class="d-flex align-center justify-center pl-1"
+    :class="{'item-selection': $vuetify.breakpoint.mobile, 
+    'item-selection-pc': !$vuetify.breakpoint.mobile, 
+    'divbox-light': !$vuetify.theme.dark, 
+    'divbox-dark': $vuetify.theme.dark}">
+    <svg-icon icon="lock" v-if="selection.status != 0" class="primary--text"
+        :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14' "></svg-icon>
+    <div v-else class="d-flex justify-center align-center " :class="$vuetify.breakpoint.mobile ? 'text-12' :'text-14'"
+        style="width: 100%">
+        <slot></slot>
+        <v-spacer v-if="$slots.default" />
+        <div ref="divPrice" class="font-weight-bold"
+            :class="!$vuetify.breakpoint.mobile ? 'mr-2' : 'ml-1 text-12' ">
+            {{getPrice()}}
+        </div>
+    </div>
+    <!-- <img v-if="selection.status == 0" ref="imgOdds" class="odds-img opacity-0 mr-2" :src="iconOdds" width="9" /> -->
+    <div ref="imgOdds" class="opacity-0 odds-img">
+        <svg-icon v-if="selection.status == 0" :icon="iconOdds"
+            :class="$vuetify.breakpoint.mobile ? 'mr-1 text-12' : 'mr-2 text-14'"></svg-icon>
+    </div>
+</div>

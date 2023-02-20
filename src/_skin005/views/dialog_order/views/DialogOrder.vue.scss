@@ -1,0 +1,91 @@
+.box {
+    background-color: white;
+    overflow: hidden;
+}
+.box-scroll {
+    overflow-y: scroll;
+}
+.theme--light.v-sheet {
+    .default-color {
+        color: #302f2f !important;
+        box-shadow: 0px 2px 4px 0px #9f9f9f !important;
+    }
+}
+._title {
+    color: #8d9199;
+}
+.active {
+    position: relative;
+    ::v-deep .v-btn__content {
+        color: #03259c !important;
+        opacity: 1 !important;
+        &::after {
+            content: "";
+            width: 100%;
+            background: url("~@/_skin001/assets/icon/icon_rectangle.png") no-repeat center;
+            background-size: cover;
+            height: 3px;
+            position: absolute;
+            top: 21px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+}
+.bgtexture2 {
+    background: url("~@/_skin001/assets/img_texture2.png") no-repeat right 0px;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+.primary.btn-background {
+    background: linear-gradient(to right, #03259c, #074ccb) !important;
+}
+.flex-1 {
+    flex: 1;
+}
+.order-content {
+    position: relative;
+    .order-result-icon {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+}
+.win-type{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    div{
+        margin-top: 37px;
+        color: white;
+        font-size: 18px;
+        transform: rotate(-17deg);
+    }
+}
+
+.custom-hr {
+    border-top: 1px dashed #d8d8d8;
+}
+::v-deep .theme--dark {
+    .v-sheet {
+        background-color: #FFFFFF !important;
+        border-color: #FFFFFF !important;
+        color: rgba(0, 0, 0, 0.87) !important;
+    }
+    .default-color {
+        background-color: #F1F1F1 !important;
+        border-color: #F1F1F1 !important;
+    }
+}
+.title{
+    font-size: 18px !important;
+    color:hsla(0,0%,100%,.7);
+}

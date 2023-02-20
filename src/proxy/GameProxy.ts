@@ -1,5 +1,7 @@
+import Vue from "vue";
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
+import GlobalVar from "@/core/global/GlobalVar";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
@@ -53,39 +55,45 @@ export default class GameProxy extends AbstractProxy {
         this.loading = true;
         this.currGame = data;
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
-        this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, {
+        const form:any = {
             user_id: core.user_id,
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
-        });
+        };
+        if(GlobalVar.skin)
+            form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
+        this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
     }
     /**直接进入体育页面，skin001专用 */
-    go_soccer() {
-        this.currGame = {
-            app_type: 2,
-            category: 64,
-            icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
-            index_no: 6,
-            languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
-            list_type: 0,
-            lobby_model_product_id: 369,
-            lobby_product_id: 4857,
-            open_mode: 1,
-            ori_product_id: "1",
-            ori_vendor_extend: '{"iframe_bad":false}',
-            orientation: 1,
-            plat_id: 30017,
-            status: 1,
-            tags: [],
-            vendor_id: GameConfig.config.SportVendorId,
-            vendor_name: "金利体育-测试",
-            vendor_product_id: 8271,
-            vendor_product_name: "足球",
-            vendor_type: 64,
-            water_rate_accelerate: 0,
-        };
+    go_soccer(data: any = null) {
+        if (data) {
+            this.currGame = data;
+        } else
+            this.currGame = {
+                app_type: 2,
+                category: 64,
+                icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
+                index_no: 6,
+                languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
+                list_type: 0,
+                lobby_model_product_id: 369,
+                lobby_product_id: 4857,
+                open_mode: 1,
+                ori_product_id: "1",
+                ori_vendor_extend: '{"iframe_bad":false}',
+                orientation: 1,
+                plat_id: 30017,
+                status: 1,
+                tags: [],
+                vendor_id: GameConfig.config.SportVendorId,
+                vendor_name: "金利体育-测试",
+                vendor_product_id: 8271,
+                vendor_product_name: "足球",
+                vendor_type: 64,
+                water_rate_accelerate: 0,
+            };
         this.api_vendor_var_ori_product_show_var(this.currGame);
     }
 }

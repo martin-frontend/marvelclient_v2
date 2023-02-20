@@ -1,0 +1,82 @@
+@import "@/style/params.scss";
+::v-deep.v-menu__content {
+    border-radius: 10px !important;
+    width: 180px !important;
+    min-width: 0 !important;
+}
+.btn-topup {
+    position: absolute !important;
+    margin-left: 230px;
+}
+
+.listitem {
+    border: solid 1px #D6DDE3 !important;
+    border-radius: 10px !important;
+}
+// .listitem:hover {
+//     color: white;
+// }
+
+ .theme--dark {
+    .box{
+        background-color: #282827;
+        border: solid 1px #3E3F41 !important;
+    }
+    .listitem {
+        border: solid 1px #3E3F41 !important;
+    }
+    .select-shadow {
+        border: solid 1px #FEBA00 !important;
+    }
+    ::v-deep .listitem:hover {
+        border: solid 1px #FEBA00 !important;
+    }
+}
+
+ .theme--light {
+    .box{
+        background-color: #F4F4F4;
+    }
+    ::v-deep .listitem:hover {
+        border: solid 1px #FEBA00 !important;
+    }
+}
+
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 7;
+    cursor: default;
+}
+
+.select-shadow {
+    //box-shadow: inset 0 0 3px 2px #FFCD43;
+    //border: solid 2px #ffcd43 !important;
+    border: solid 1px #FEBA00 !important;
+}
+
+.menu {
+    overflow: unset;
+    contain: unset;
+}
+
+// .CNY{
+//     height: 105px;
+// }
+
+.box-pc {
+    margin-right:160px;
+}

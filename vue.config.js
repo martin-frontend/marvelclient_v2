@@ -31,6 +31,7 @@ module.exports = {
         // 修改images loader 添加svg处理
         const imagesRule = config.module.rule("images");
         imagesRule.exclude.add(resolve("src/_skin003/icons"));
+        imagesRule.exclude.add(resolve("src/_skin005/icons"));
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
     },
     css: {
@@ -63,6 +64,12 @@ module.exports = {
             filename: "skin002.html",
             title: "11.club",
         },
+        skin003: {
+            entry: "src/_skin003/main.ts",
+            template: "public/index003.html",
+            filename: "skin003.html",
+            title: "skin003",
+        },
         skin004: {
             entry: "src/_skin004/main.ts",
             template: "public/skin004.html",
@@ -82,11 +89,11 @@ module.exports = {
                 twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
             },
         },
-        skin003: {
-            entry: "src/_skin003/main.ts",
-            template: "public/index003.html",
-            filename: "skin003.html",
-            title: "skin003",
+        skin005: {
+            entry: "src/_skin005/main.ts",
+            template: "public/skin005.html",
+            filename: "skin005.html",
+            title: "skin005",
         },
         skin100: {
             entry: "src/_skin100/main.ts",

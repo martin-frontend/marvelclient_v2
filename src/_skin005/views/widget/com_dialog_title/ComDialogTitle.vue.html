@@ -1,0 +1,30 @@
+<!-- 弹框出来，非全屏的 小标题 针对超小型的 弹窗 -->
+<v-card-title v-if="isDialog && !isMoble" class="gradient-bg d-flex justify-start">
+    <div class="text-20">{{LangUtil(title)}}</div>
+    <v-btn v-if="isNeedClose" class="mr-2" icon @click="onClose">
+        <v-icon>mdi-close</v-icon>
+    </v-btn>
+</v-card-title>
+<!-- 超小弹窗 手机版 -->
+<v-card-title v-else-if="isDialog && isMoble" class="gradient-bg d-flex justify-start">
+    <div class="text-16">{{LangUtil(title)}}</div>
+    <v-btn v-if="isNeedClose" class="mr-2" icon @click="onClose">
+        <v-icon>mdi-close</v-icon>
+    </v-btn>
+</v-card-title>
+
+<!-- 正常弹窗 手机版 -->
+<v-sheet v-else-if="isMoble" class="gradient-bg_mob d-flex align-center  justify-center"
+    color="bgNavigation">
+    <div class="text-16 primary--text">{{LangUtil(title)}}</div>
+    <v-btn v-if="isNeedClose" icon @click="onClose">
+        <svg-icon icon="arrow_right" class="text-16 back_btn_icon primary--text"></svg-icon>
+    </v-btn>
+</v-sheet>
+<!-- 正常弹窗 pc 版 -->
+<v-card-title v-else class="gradient-bg d-flex justify-center">
+    <div class="text-20">{{LangUtil(title)}}</div>
+    <v-btn v-if="isNeedClose" class="ml-auto" icon @click="onClose">
+        <v-icon>mdi-close</v-icon>
+    </v-btn>
+</v-card-title>

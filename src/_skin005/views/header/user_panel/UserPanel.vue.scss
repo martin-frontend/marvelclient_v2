@@ -1,0 +1,76 @@
+@import "@/style/params.scss";
+// .bg {
+//     background-color: #16233b;
+//     background-image: linear-gradient(175.8deg, #5199fd42 0%, #5199fd00 100px);
+//     text-align: center;
+// }
+
+::v-deep.v-icon.v-icon {
+    color: #5a5a5a !important;
+}
+
+.item {
+    cursor: pointer;
+    font-weight: 600;
+    height: 38px;
+    width: 100%;
+    color: #5a5a5a;
+}
+// .item:hover {
+//     color: white;
+//     i {
+//         color: white !important;
+//     }
+// }
+
+::v-deep .theme--dark {
+    .item:hover {
+        color: white;
+        i {
+            color: white !important;
+        }
+    }
+}
+
+::v-deep .theme--light {
+    .item:hover {
+        color: #FEBA00;
+        i {
+            color: #FEBA00 !important;
+        }
+    }
+}
+
+
+.item-group-title {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+    .arrow {
+        font-weight: 600;
+    }
+}
+.item1 {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+}
+.circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #9db1d8;
+    box-sizing: border-box;
+    position: relative;
+    .img {
+        display: none;
+    }
+}
+.circle-active {
+    border: 0px solid #9db1d8;
+    .img {
+        display: block;
+    }
+}

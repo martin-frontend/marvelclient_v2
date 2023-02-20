@@ -1,0 +1,105 @@
+.egame__item__mask {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    //background-image: linear-gradient(0deg, #243A5E 0%, #1B2941 100%);
+    opacity: 0;
+    transition: opacity 200ms linear;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+}
+
+.egame__item__mask:hover {
+    opacity: 1;
+}
+
+//样式二 使用的
+.title_icon {
+    background: linear-gradient(0deg, #fcb131, #ffe64d) !important;
+}
+
+
+::v-deep  .theme--dark {
+    .game_item_bg {
+        background: linear-gradient(to bottom, #363636, #252525) !important;
+    }
+
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        background: #363636;
+        min-width: 30px !important;
+        height: 90px;
+        border-radius: 10px;
+        position: relative;
+        top: 60px;
+    }
+
+    .v-slide-group__prev {
+        right: 10px;
+    }
+
+    .v-slide-group__next {
+        left: 10px;
+    }
+
+    .btn_stly{
+        background: #333435 !important;
+    }
+
+}
+
+::v-deep  .theme--light {
+    .game_item_bg {
+        background: linear-gradient(to bottom, #E2E9FD, #F6F6F4) !important;
+    }
+
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        background: #F6F6F4;
+        min-width: 30px !important;
+        height: 90px;
+        border-radius: 10px;
+        position: relative;
+        top: 60px;
+    }
+
+    .v-slide-group__prev {
+        right: 10px;
+    }
+
+    .v-slide-group__next {
+        left: 10px;
+    }
+    .btn_stly{
+        background: #fff !important;
+        border: solid 2px #E8E8E2;
+    
+    }
+}
+
+.game_item_text {
+    position: absolute;
+}
+
+::v-deep {
+    .v-icon.v-icon {
+        font-size: 34px;
+    }
+}
+.v-card--link:before{
+    background: transparent !important;
+}
+
+
+//样式三 使用的
+.btn_stly:hover{
+    background: linear-gradient(90deg, #fcb131 0%, #ffe64d 100%) !important;
+    color: #252525;
+    border: none;
+}

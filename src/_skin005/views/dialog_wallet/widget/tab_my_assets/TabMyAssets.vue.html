@@ -1,0 +1,25 @@
+<v-card-text class="mt-sm-3 px-0" >
+    <v-sheet class="d-flex align-center justify-space-between  mx-5 px-5" height="40" color="transparent">
+        <v-sheet class="d-flex justify-center primary--text" color="transparent" width="100">{{LangUtil("币种")}}</v-sheet>
+        <v-sheet class="d-flex justify-center primary--text" color="transparent" width="100">{{LangUtil("可用")}}</v-sheet>
+        <v-sheet class="d-flex justify-center primary--text" color="transparent" width="100">{{LangUtil("厂商")}}</v-sheet>
+    </v-sheet>
+    <!-- <v-divider class="mb-2 " /> -->
+    <v-sheet class="listbox" color="transparent" min-height="400">
+        <v-sheet
+            class="d-flex align-center justify-space-between rounded-lg mx-5 px-5 mb-3"
+            height="50"
+            outlined
+            v-for="(item, key) of pageData.gold_info"
+            :key="key"
+            style="background-color: transparent !important"
+        >
+            <v-sheet class="d-flex align-center textGray--text font-weight-bold" color="transparent" width="100">
+                <v-img :src="plat_coins[key].icon" max-width="25" height="25"></v-img>
+                <div class="ml-2">{{key}}</div>
+            </v-sheet>
+            <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="100">{{item.plat_money}}</v-sheet>
+            <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="100">{{item.vendors_money}}</v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-card-text>

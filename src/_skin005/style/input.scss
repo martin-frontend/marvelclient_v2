@@ -1,0 +1,41 @@
+.input-text {
+    border-radius: 12px;
+    height: 50px;
+    border: solid 2px #333435;
+    input {
+        vertical-align: middle;
+        height: 50px;
+        width: 100%;
+        color: #8E8F91;
+        font-weight: bold;
+    }
+}
+input::placeholder {
+    color: #8E8F91;
+}
+
+.input-text-border-bottom {
+    //border-radius: 12px;
+    height: 50px;
+    border-bottom: solid 2px #333435;
+    input {
+        vertical-align: middle;
+        height: 50px;
+        width: 100%;
+        color: #8E8F91;
+        font-weight: bold;
+    }
+}
+.input-text-border-bottom_focus {
+    height: 50px;
+    //border-bottom: solid 2px #ebaa05;
+    border-bottom: solid 2px;
+    border-image: linear-gradient(90deg, rgba(158, 100, 0, 1) 0%, rgba(209, 167, 0, 1) 100%) 2 2 2 2;
+    input {
+        vertical-align: middle;
+        height: 50px;
+        width: 100%;
+        color: #8E8F91;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,181 @@
+@import "@/_skin005/style/el_data_select_style.scss";
+
+.testdiv {
+    width: 150px;
+
+    @media only screen and (max-width: 750px) {
+        width: 100%;
+    }
+}
+
+.listitem {
+    div {
+        width: 80px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        // color: #7A95CA;
+
+        // div > a {
+        //     color: #9db1d8;
+        // }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+
+    .listitem-150 {
+        width: 150px;
+
+        div {
+            width: 150px;
+        }
+    }
+
+    .listitem-80 {
+        width: 80px;
+
+        div {
+            width: 80px;
+        }
+    }
+
+    .listitem-40 {
+        width: 40px;
+
+        div {
+            width: 40px;
+        }
+    }
+}
+
+.listitem_title {
+    div {
+        width: 80px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        //color: #7A95CA;
+
+        // div > a {
+        //     color: #7A95CA;
+        // }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+
+    .listitem-150 {
+        width: 150px;
+
+        div {
+            width: 150px;
+        }
+    }
+
+    .listitem-80 {
+        width: 80px;
+
+        div {
+            width: 80px;
+        }
+    }
+
+    .listitem-40 {
+        width: 40px;
+
+        div {
+            width: 40px;
+        }
+    }
+
+}
+
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 0px;
+
+}
+
+// .listbox-mobile_other {
+//     overflow: hidden;
+//     padding-top: 360px;
+//     @media only screen and (max-width: 600px) {
+//         padding-top: 360px;
+//     }
+// }
+// .listbox-mobile-nooptions {
+//     overflow: hidden;
+//     padding-top: 240px;
+//     @media only screen and (max-width: 600px) {
+//         padding-top: 240px;
+//     }
+// }
+.btn {
+    color: #9db1d8;
+}
+
+.w-280 {
+    width: 280px;
+}
+
+.w-120 {
+    width: 120px;
+}
+
+::v-deep .el-date-editor .el-input__inner {
+    width: 100%;
+}
+
+
+// ::v-deep .el-date-editor.el-input, .el-date-editor.el-input__inner{
+//     width: 100%;
+// }
+.input_range {
+    width: 380px;
+}
+
+.input_range_2 {
+    width: 100%;
+}
+
+.hackhome {
+
+    height: 1px;
+    background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+}
+
+.mobile_main {
+    height: calc(100vh - 300px);
+}
+
+.mobile_main_2 {
+    height: calc(100vh - 250px);
+}
+
+.mobile_main_3 {
+    height: calc(100vh - 250px);
+}
+
+// .select-text {
+//     border: solid 1px #5A5A5A !important;
+//     border-radius: 10px !important;
+// }
+.theme--light {
+    .timeRange {
+        ::v-deep .el-input__inner {
+            background-color: #fff !important;
+        }
+
+        ::v-deep .el-input {
+            font-size: 12px !important;
+        }
+    }
+
+}

@@ -1,0 +1,18 @@
+
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+.input-text{
+    height: 41px !important;
+}
+
+.mobel_input{
+    .input-text{
+        height: 36px !important;
+    }
+    ::v-deep .input-text input::placeholder {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}

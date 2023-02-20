@@ -1,0 +1,59 @@
+<v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+    :class="getBoxClass()" class="rounded-lg" flat>
+    <v-lazy>
+        <v-sheet v-if="item" color="transparent" class="game-icon1">
+            <v-img v-if="item" class="game-icon1 cursor-pointer rounded-lg" :src="getIcon(item)">
+                <!-- 手机显示 -->
+                <template v-if="$vuetify.breakpoint.xsOnly">
+                    <v-img v-if="item.water_rate_accelerate" class="float-left" contain
+                        content-class="d-flex flex-column align-start pl-1" width="80px"
+                        src="@/assets/tag/tag_background.png">
+                        <span class="text-12 font-italic text-yellow">{{ LangUtil('挖矿加速') }}</span>
+                        <span class="text-12 d-flex">
+                            <span class="mt-n1">{{ `＋${item.water_rate_accelerate * 100}%` }}</span>
+                            <v-img class="mt-n2" width="10px" contain src="@/assets/tag/arrow.png"></v-img>
+                        </span>
+                    </v-img>
+                    <v-img v-if="getTag != ''" class="float-right" width="30px" :src="getTag"></v-img>
+                </template>
+                <!-- pc显示 -->
+                <template v-else>
+                    <v-img v-if="item.water_rate_accelerate" class="float-left mt-1"
+                        content-class="d-flex flex-column align-start pl-1" contain width="110px"
+                        src="@/assets/tag/tag_background.png">
+                        <span class="font-italic text-yellow">{{ LangUtil('挖矿加速') }}</span>
+                        <span class="d-flex">
+                            <span class="mt-n1">{{ `＋${item.water_rate_accelerate * 100}%` }}</span>
+                            <v-img class="mt-n2" width="13px" contain src="@/assets/tag/arrow.png"></v-img>
+                        </span>
+                    </v-img>
+                    <v-img v-if="getTag != ''" class="float-right" width="50px" :src="getTag"></v-img>
+                </template>
+
+                <!-- <div class="egame__item__mask">
+                <div class="egame__item__play-icon">
+                    <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                        <div class="icon-chevron-right icon__icon mt-n1"></div>
+                    </div>
+                </div>
+            </div> -->
+
+            </v-img>
+
+            <v-sheet class="text_bg rounded-b-lg d-flex justify-center align-center" width="100%" :height="$vuetify.breakpoint.mobile ? '30' : '44'"
+                color="bgBanner" flat>
+                <!-- <div class="d-flex justify-center align-end d-sm-flex align-sm-center justify-sm-center game-title font-weight-bold">{{ item.vendor_product_name }}</div>
+            <div class="vendor-title">{{ item.vendor_name }}</div> -->
+                <!-- <div class="d-flex justify-center align-end vendor-title">{{ item.vendor_name }}</div> -->
+                <div class=" game-title font-weight-bold " :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-16'">
+                    {{useMenuData ? item.alias : item.vendor_product_name }}</div>
+            </v-sheet>
+
+            <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="bgNavigation"></v-progress-circular>
+                </v-row>
+            </template>
+        </v-sheet>
+    </v-lazy>
+</v-card>

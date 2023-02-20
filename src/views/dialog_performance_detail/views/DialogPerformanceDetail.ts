@@ -22,6 +22,13 @@ export default class DialogPerformanceDetail extends AbstractView {
     constructor() {
         super(DialogPerformanceDetailMediator);
     }
+    typechange=0;
+
+    /**图标时间选择 */
+    onTimeChange(val: any) {
+       this.listQuery.cate= parseInt(val);
+       this.onTabClick(this.listQuery.cate);
+   }
 
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
@@ -38,6 +45,7 @@ export default class DialogPerformanceDetail extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.api_user_var_commission_commissiondetail();
             this.myProxy.api_user_var_commission_directswater();
+            //this.typechange=0;
             //如果是列表，使用以下数据，否则删除
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();

@@ -1,0 +1,92 @@
+
+.gradient-type1 {
+    background-image: linear-gradient(180deg, #FCB131, #FFE64D);
+    &:hover {
+        background-image: linear-gradient(180deg, #fac770, #fce96a);
+    }
+}
+.daily-radius {
+    border-radius: 10px 10px 0px 0px;
+    @media (max-width: 600px) {
+        border-radius: 5px 5px 0px 0px;
+    }
+}
+.rank-height {
+    height: 55px;
+    @media (max-width: 600px) {
+        height: 40px;
+    }
+    &.mobile {
+        height: 30px;
+    }
+}
+.daily-height {
+    height: 300px;
+    @media (max-width: 600px) {
+        height: 180px;
+    }
+}
+.bonus-card {
+    @media (max-width: 1264px) {
+        background-color: #172237;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+}
+.btn-left {
+    margin-left: -22px;
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}
+.stake-width {
+    min-width: 120px;
+}
+.arrow-width {
+    width: 100%;
+}
+.listitem {
+    div {
+        font-size: 18px;
+        color: white;
+        @media (max-width: 700px) {
+            font-size: 12px;
+        }
+    }
+    &.head {
+        div {
+            color: #506080;
+            font-size: 16px;
+            @media (max-width: 700px) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+.man {
+    background: url("~@/assets/bonus/man@3x.png") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    height: 370px;
+    top: 55px;
+    right: 5px;
+    min-width: 260px;
+
+}
+.bonus-width {
+    width: 105px;
+    @media (max-width: 700px) {
+        width: 75px;
+    }
+}
+.hundred-bonus-width {
+    width: 85px;
+}
+.bg_test{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+}

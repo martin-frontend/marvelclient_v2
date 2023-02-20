@@ -1,0 +1,159 @@
+@import "@/style/fontsize.scss";
+
+@media screen and (min-width: 1430px) {
+    .container {
+        max-width: 1072px !important;
+    }
+}
+// .container{
+//     padding-left: 0 !important;
+//     padding-right: 0 !important;
+// }
+.gradient-yellow{
+    background-image: linear-gradient(to right, #FCB131, #FFE64D);
+}
+
+.rounded16{
+    border-radius: 16px !important;
+}
+.rounded10{
+    border-radius: 10px !important;
+}
+
+pre{
+    font-family: 'GOTHAM_BOLD' ,'GOTHAM_BOOK' ;
+}
+.gradient-bg {
+    height: 70px;
+    background-color: transparent !important;
+    background-image: none !important;
+    text-align: center;
+    :nth-child(2)
+    {
+        position: absolute;
+        right: 10px;
+    }
+}
+.gradient-bg_mob {
+    height: 64px;
+    background-color: transparent !important;
+    background-image: none !important;
+    text-align: center;
+    :nth-child(2)
+    {
+        position: absolute;
+        left: 10px;
+    }
+}
+.back_btn_icon{
+    transform: rotateZ(180deg);
+}
+// .v-dialog{
+//     border-radius: 20px !important;
+// }
+.theme--dark {
+    .v-btn-toggle--group{
+        .v-btn{
+            border: solid 1px #5A5A5A !important;
+            color: #8E8F91 !important;
+        } 
+        .v-btn::before{
+            background-color: transparent !important;
+        }
+        .v-btn.v-btn--active{
+            border: solid 1px #FFCD43 !important;
+            color: #ffffff !important;
+        }
+    }
+    .sheetOutlined{
+        border: solid 1px #333435 !important;
+        border-radius: 10px !important;
+    }
+    .sheetOutlined_bg{
+        background-color: #272828;
+    }
+    .input-text{
+        background-color: #2F3030;
+    }
+
+    .select-text {
+        background-color: #2F3030 !important;
+        border-radius: 10px !important;
+    }
+}
+
+.theme--light {
+    .v-btn-toggle--group{
+        .v-btn{
+            border: solid 2px #5A5A5A !important;
+            color: #8E8F91 !important;
+        } 
+        .v-btn::before{
+            background-color: #fff !important;
+            opacity: 1;
+        }
+        .v-btn.v-btn--active{
+            border: solid 2px #FFCD43 !important;
+            color: #0F1213 !important;
+        } 
+    }
+    .sheetOutlined{
+        border: solid 1px #D6DDE3 !important;
+        border-radius: 10px !important;
+    }
+    .sheetOutlined_bg{
+        background-color: #fff;
+    }
+    .v-divider{
+        border-color:#D6DDE3;
+    }
+
+    .input-text{
+        background-color: #F4F4F4;
+    }
+    .select-text {
+        background-color: #fff !important;
+        border-radius: 10px !important;
+    }
+}
+
+.vuejs-loadmore-wrap .vuejs-refresh-track .vuejs-refresh-head {
+    .vuejs-loading {
+        color: #8E8F91;
+        .vuejs-loading-text {
+            color: #8E8F91;
+        }
+    }
+    .vuejs-refresh-text {
+        color: #8E8F91;
+    }
+}
+.vuejs-loadmore .vuejs-loadmore-loading .vuejs-loading {
+    .vuejs-loading {
+        color: #8E8F91;
+        .vuejs-loading-text {
+            color: #8E8F91;
+        }
+    }
+    .vuejs-loading-text {
+        color: #8E8F91;
+    }
+}
+.vuejs-loadmore .vuejs-loadmore-finished-text {
+    color: #8E8F91;
+}
+
+//针对google 自动填充的问题
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
+    -webkit-text-fill-color: #96a9d0 !important;
+    transition: background-color 500s ease-in-out 0s ;
+}
+.input-text{
+    height: 36px !important;
+    width: 100%;
+    //background-color: #F4F4F4;
+}
+//通用外框设置

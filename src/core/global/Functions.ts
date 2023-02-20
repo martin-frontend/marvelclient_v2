@@ -588,3 +588,24 @@ export function convert_vi_to_en(str:string):string{
     //$str = str_replace(" ", "-", str_replace("&*#39;","",$str)); 
     return str; 
 }
+/**将时间中的 - 换成 /  */
+export function changeDateShow(str:string ,isshowData:boolean = false):string{
+    if (!str)
+    {
+        return str;
+    }
+    if (typeof(str) !="string")
+    {
+        return str;
+    }
+    let newstr = str.replace(/^\d{4}-/,"")
+
+    // const re = /(\w+)\s(\w+)/; 
+    // let newstr = str.replace(re, "$1"); 
+    // console.log("3333",newstr);
+
+    const re_1 = /-/gi;
+    newstr = newstr.replace(re_1,"/" );
+
+    return newstr;
+}

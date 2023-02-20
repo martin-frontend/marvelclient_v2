@@ -1,0 +1,542 @@
+<v-dialog v-if="!pageData.bHidden" width="750" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <v-card v-if="!$vuetify.breakpoint.xsOnly" class="rounded10 d-flex flex-column" color="bgColor">
+        <!-- pc端设置 -->
+        <com-dialog-title title="直属信息" @onClose="onClose" />
+        <v-divider class="mb-2 " />
+
+        <v-sheet class="d-flex px-2 py-2 mb-4" color="transparent" width="100%">
+
+            <v-card flat color="bgBanner" min-width="336" min-height="350"
+                class="d-flex flex-column justify-space-between rounded10 px-4 py-4">
+                <!-- 用户ID -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("用户ID")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex textGray--text">
+                        <div>{{playerInfo.user_id}}</div>
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                            @click="copy(playerInfo.user_id)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 用户账号 -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("用户账号")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex textGray--text">
+                        <div>{{playerInfo.username}}</div>
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                            @click="copy(playerInfo.username)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 用户昵称 -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("用户昵称")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex textGray--text">
+                        <div>{{playerInfo.nick_name}}</div>
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                            @click="copy(playerInfo.nick_name)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 用户备注 -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("用户备注")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex textGray--text">
+                        <div>{{playerInfo.remark}}</div>
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                            @click="onEditRemark">
+                            <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 游戏类型 -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("游戏类型 总/开")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex textGray--text">
+                        <div class="">
+                            {{gameSwitchInfo[0]}}/
+                            <span class="textYellow--text">
+                                {{gameSwitchInfo[1]}}
+                            </span>
+                        </div>
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                            @click="openGamesetPanel">
+                            <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+
+                    </v-sheet>
+                </v-sheet>
+                <!-- 账号状态 -->
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("账号状态")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex mr-n2">
+                        <v-switch @change="handlerUpdate" :true-value="1" :false-value="98" v-model="playerInfo.status"
+                            hide-details color="textYellow" inset></v-switch>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 允许多层 -->
+                <template v-if="isAgents">
+                    <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                        min-height="35">
+                        <v-sheet color="transparent" class="d-flex textGray--text">{{LangUtil("允许多层")}}</v-sheet>
+                        <v-sheet color="transparent" class="d-flex mr-n2 textGray--text">
+                            <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98" hide-details
+                                flat v-model="playerInfo.show_credit_set" color="textYellow" inset></v-switch>
+                        </v-sheet>
+                    </v-sheet>
+                </template>
+
+            </v-card>
+
+
+            <v-card flat color="transparent" width="100%" class="pl-2">
+                <!-- 代理占比 -->
+                <v-sheet v-if="isAgents_rate" color="bgBanner" class="py-4 px-4 rounded10">
+                    <v-sheet color="transparent" class="d-flex align-center justify-space-between">
+                        <v-sheet color="transparent" class="d-flex primary--text">
+                            <div>{{LangUtil("我的占成")}}/{{LangUtil("代理占成")}} </div>
+                            <div class="mx-4">
+                                {{playerInfo.credit_rate_invited}}/
+                                <span class="textYellow--text">
+                                    {{playerInfo.credit_rate}}
+                                </span>
+
+                            </div>
+                        </v-sheet>
+
+                        <btn-yellow class="text-14 " min_width="100" height="30" :btn_type="2"
+                            @click.native="agentSetting">{{LangUtil("查看")}}</btn-yellow>
+                    </v-sheet>
+                </v-sheet>
+
+                <v-sheet v-if="isAgents" color="bgBanner" class="py-4 px-4 mt-2 rounded10">
+
+                    <v-sheet color="transparent" width="100%"
+                        class="d-flex align-center justify-space-between primary--text">
+                        <div>
+                            {{LangUtil("用户资产")}}
+                        </div>
+                        <v-sheet color="transparent" min-width="200">
+                            <goldinfo_util :goldInfoData="gold_info" :coin_name_unique="formData.coin_name_unique"
+                                @onItemClick="onItemClick"></goldinfo_util>
+                        </v-sheet>
+
+                    </v-sheet>
+
+                    <v-sheet color="transparent" width="100%" class="mt-4 d-flex align-center justify-space-between">
+                        <btn-yellow class="text-14 " min_width="100" height="30" :btn_type="2"
+                            @click.native="assetSettings_clear">{{LangUtil("清空额度")}}</btn-yellow>
+                        <btn-yellow class="text-14  mx-3" min_width="100" height="30" :btn_type="2"
+                            @click.native="assetSettings_add">{{LangUtil("增加额度")}}</btn-yellow>
+                        <btn-yellow class="text-14 " min_width="100" height="30" :btn_type="2"
+                            @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
+                    </v-sheet>
+
+
+                </v-sheet>
+
+                <v-sheet color="bgBanner" class="py-4 px-4 mt-2 rounded10">
+                    <v-sheet color="transparent" class="d-flex align-center justify-space-between primary--text" min-height="35">
+                        <div>
+                            {{LangUtil("用户返水")}}
+                        </div>
+                        <btn-yellow class="text-14 " min_width="100" height="30" :btn_type="2"
+                            @click.native="backWatherSettings">{{LangUtil("查看")}}</btn-yellow>
+                    </v-sheet>
+
+
+                    <v-sheet class="d-flex" color="transparent">
+                        <template v-for="(item, key) of playerInfo.water_config">
+                            <v-sheet :key="key" v-if="key!=0" class="primary--text mr-2 mt-2" color="transparent">
+                                <span>{{getConfigName(key)}}</span>
+                                <span class="ml-1 primary--text">{{item}}</span>
+                            </v-sheet>
+                        </template>
+                    </v-sheet>
+
+
+                </v-sheet>
+
+                <v-sheet color="bgBanner" class="py-4 px-4 mt-2 rounded10">
+
+                    <v-sheet color="transparent" class="d-flex align-center justify-space-between primary--text" min-height="35">
+                        <div>
+                            {{LangUtil("EsayBet投注设置")}}
+                        </div>
+                        <btn-yellow class="text-14 " min_width="100" height="30" :btn_type="2"
+                            @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
+                    </v-sheet>
+
+                </v-sheet>
+            </v-card>
+
+        </v-sheet>
+
+        <v-card-text v-if="false" class=" text_height">
+            <div>
+                <!-- 用户ID -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex textGray--text"> {{LangUtil("用户ID")}} </span>
+                    <span class="d-flex primary--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.user_id}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            depressed :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.user_id)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                        <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
+                    </span>
+                </div>
+                <v-divider class="mb-2 " />
+                <!-- 用户账号 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex textGray--text"> {{LangUtil("用户账号")}} </span>
+                    <span class="d-flex align-center primary--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.username}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            depressed :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </span>
+                </div>
+                <v-divider class="mb-2 " />
+
+                <!-- 用户昵称 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex textGray--text"> {{LangUtil("用户昵称")}} </span>
+                    <span class="d-flex align-center primary--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.nick_name}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            depressed :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.nick_name)">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </span>
+                </div>
+                <v-divider class="mb-2 " />
+
+
+                <!-- 用户备注 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex textGray--text"> {{LangUtil("用户备注")}} </span>
+                    <span class="d-flex align-center primary--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                        {{playerInfo.remark}}
+                        <v-btn class="ml-2 colorBtnBg" small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
+                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="onEditRemark">
+                            <!-- <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img> -->
+                            <v-icon>mdi-text-box-edit</v-icon>
+                        </v-btn>
+                    </span>
+                </div>
+                <v-divider class="mb-2 " />
+
+                <!-- 用户资产 -->
+                <template v-if="isAgents">
+                    <div class="d-flex justify-space-between align-center my-3" min-height="40">
+                        <div class="d-flex  flex-column">
+
+                            <v-sheet class="textGray--text d-flex align-center" min-height="40" color="transparent">
+                                {{LangUtil("用户资产")}}
+                            </v-sheet>
+                            <!-- <v-btn class="rounded-lg colorBtnBg mt-5 d-flex align-center" min-width="100" height="30"
+                                    @click="assetSettings_clear">
+                                    <span>{{ LangUtil("清空额度") }}</span>
+                                </v-btn> -->
+
+                            <btn-yellow class="text-14 " min_width="100" height="30"
+                                @click.native="assetSettings_clear">{{LangUtil("清空额度")}}</btn-yellow>
+
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <!-- 用户身上的币种 -->
+                            <v-sheet color="transparent" class="ml-2 mr-5">
+                                <goldinfo_util :goldInfoData="gold_info" :coin_name_unique="formData.coin_name_unique"
+                                    @onItemClick="onItemClick"></goldinfo_util>
+                            </v-sheet>
+                            <div class="d-flex align-center justify-space-between primary--text mt-5"
+                                :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+
+                                <btn-yellow class="text-14  mx-3" min_width="100" height="30"
+                                    @click.native="assetSettings_add">{{LangUtil("增加额度")}}</btn-yellow>
+
+                                <btn-yellow class="text-14 " min_width="100" height="30"
+                                    @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
+
+                                <!-- <v-btn class="rounded-lg mx-3 colorBtnBg" min-width="100" height="30"
+                                    @click="assetSettings_add">
+                                    <span>{{ LangUtil("增加额度") }}</span>
+                                </v-btn>
+                                <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="assetSettings">
+                                    <span>{{ LangUtil("减少额度") }}</span>
+                                </v-btn> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <v-divider class="mb-2 " />
+                </template>
+                <!-- 游戏类型 -->
+                <template>
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex textGray--text"> {{LangUtil("游戏类型 总/开")}} </span>
+                        <div class="d-flex align-center color_text_1--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <span class="mx-3">
+                                {{gameSwitchInfo[0]}}/
+                                <span class="colorDialogInfo--text">
+                                    {{gameSwitchInfo[1]}}
+                                </span>
+                            </span>
+
+                            <!-- <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="openGamesetPanel">
+                                <span>{{ LangUtil("设置") }}</span>
+                            </v-btn> -->
+
+                            <btn-yellow class="text-14 " min_width="100" height="30"
+                                @click.native="openGamesetPanel">{{LangUtil("设置")}}</btn-yellow>
+                        </div>
+                    </div>
+                </template>
+                <!-- 账号状态 -->
+                <div class="d-flex justify-space-between align-center my-3 empty_height">
+                    <span class="d-flex textGray--text"> {{LangUtil("账号状态")}} </span>
+                    <span class="d-flex align-center primary--text" :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-3'">
+                        <v-switch @change="handlerUpdate" :true-value="1" :false-value="98" v-model="playerInfo.status"
+                            color="textYellow" inset></v-switch>
+                    </span>
+                </div>
+                <v-divider class="mb-2 " />
+
+                <!-- 允许多层 -->
+                <template v-if="isAgents">
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex textGray--text"> {{LangUtil("允许多层")}} </span>
+                        <span class="d-flex align-center primary--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-3'">
+                            <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98"
+                                v-model="playerInfo.show_credit_set" color="textYellow" inset></v-switch>
+                        </span>
+                    </div>
+                    <v-divider class="mb-2 " />
+                </template>
+                <!-- 代理占比 -->
+                <template v-if="isAgents_rate">
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex textGray--text"> {{LangUtil("我的占成")}}/{{LangUtil("代理占成")}} </span>
+                        <div class="d-flex align-center color_text_1--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <span class="mx-3">
+                                {{playerInfo.parent_credit_rate}}%/
+                                <span class="colorDialogInfo--text">
+                                    {{playerInfo.credit_rate}}%
+                                </span>
+                            </span>
+
+                            <!-- <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30" @click="agentSetting">
+                                <span>{{ LangUtil("查看") }}</span>
+                            </v-btn> -->
+                            <btn-yellow class="text-14 " min_width="100" height="30"
+                                @click.native="agentSetting">{{LangUtil("查看")}}</btn-yellow>
+                        </div>
+                    </div>
+                    <v-divider class="mb-2 " />
+                </template>
+                <template v-if="true">
+
+                    <div class="d-flex justify-space-between align-center my-3 empty_height">
+                        <span class="d-flex textGray--text"> {{LangUtil("用户返水")}} </span>
+                        <span class="d-flex align-center primary--text"
+                            :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                            <!-- <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30"
+                                @click="backWatherSettings">
+                                <span>{{ LangUtil("查看") }}</span>
+                            </v-btn> -->
+                            <btn-yellow class="text-14 " min_width="100" height="30"
+                                @click.native="backWatherSettings">{{LangUtil("查看")}}</btn-yellow>
+                        </span>
+                    </div>
+
+                    <div v-if="true">
+                        <v-divider class="mb-2 " />
+                        <div class="d-flex justify-space-between align-center my-3 empty_height">
+                            <span class="d-flex textGray--text"> {{LangUtil("EsayBet投注设置")}} </span>
+                            <span class="d-flex align-center primary--text"
+                                :class="$vuetify.breakpoint.xsOnly?'mr-0':'mr-5'">
+                                <!-- <v-btn class="rounded-lg colorBtnBg" min-width="100" height="30"
+                                    @click="esayBetSetting">
+                                    <span>{{ LangUtil("设置") }}</span>
+                                </v-btn> -->
+
+                                <btn-yellow class="text-14 " min_width="100" height="30"
+                                    @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
+                            </span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </v-card-text>
+    </v-card>
+
+    <!-- 手机版的显示 -->
+    <v-card v-else class="rounded-lg d-flex flex-column" color="bgColor">
+        <com-dialog-title title="直属信息" @onClose="onClose" />
+
+        <v-sheet color="bgBanner" class="py-2 px-4 mx-2 mt-2 rounded10">
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("用户ID")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div>{{playerInfo.user_id}}</div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="copy(playerInfo.user_id)">
+                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("用户账号")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div>{{playerInfo.username}}</div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="copy(playerInfo.username)">
+                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("用户昵称")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div>{{playerInfo.nick_name}}</div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="copy(playerInfo.nick_name)">
+                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("用户备注")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div>{{playerInfo.remark}}</div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="onEditRemark">
+                        <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("游戏类型 总/开")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div class="">
+                        {{gameSwitchInfo[0]}}/
+                        <span class="textYellow--text">
+                            {{gameSwitchInfo[1]}}
+                        </span>
+                    </div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="openGamesetPanel">
+                        <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("账号状态")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex mr-n2">
+                    <v-switch @change="handlerUpdate" :true-value="1" :false-value="98" v-model="playerInfo.status"
+                        hide-details color="textYellow" inset></v-switch>
+                </v-sheet>
+            </v-sheet>
+            <template v-if="isAgents">
+                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between"
+                    min-height="35">
+                    <v-sheet color="transparent" class="d-flex">{{LangUtil("允许多层")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex mr-n2">
+                        <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98" hide-details flat
+                            v-model="playerInfo.show_credit_set" color="textYellow" inset></v-switch>
+                    </v-sheet>
+                </v-sheet>
+            </template>
+
+        </v-sheet>
+
+        <!-- 代理占比 -->
+        <v-sheet v-if="isAgents_rate" color="bgBanner" class="py-4 px-4 mx-2 mt-2 rounded10">
+            <v-sheet color="transparent" class="d-flex align-center justify-space-between">
+                <v-sheet color="transparent" class="d-flex">
+                    <div>{{LangUtil("我的占成")}}/{{LangUtil("代理占成")}} </div>
+                    <div class="mx-4">
+                        {{playerInfo.parent_credit_rate}}%/
+                        <span class="textYellow--text">
+                            {{playerInfo.credit_rate}}%
+                        </span>
+
+                    </div>
+                </v-sheet>
+
+                <btn-yellow class="text-14 " min_width="100" height="30"
+                    @click.native="agentSetting">{{LangUtil("查看")}}</btn-yellow>
+            </v-sheet>
+        </v-sheet>
+
+        <v-sheet v-if="isAgents" color="bgBanner" class="py-4 px-4 mx-2 mt-2 rounded10">
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between textGray--text">
+                <div>
+                    {{LangUtil("用户资产")}}
+                </div>
+                <v-sheet color="transparent" width="150">
+                    <goldinfo_util :goldInfoData="gold_info" :coin_name_unique="formData.coin_name_unique"
+                        @onItemClick="onItemClick"></goldinfo_util>
+                </v-sheet>
+
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="mt-2 d-flex align-center justify-space-between">
+                <btn-yellow class="text-14 " min_width="100" height="30"
+                    @click.native="assetSettings_clear">{{LangUtil("清空额度")}}</btn-yellow>
+                <btn-yellow class="text-14  mx-3" min_width="100" height="30"
+                    @click.native="assetSettings_add">{{LangUtil("增加额度")}}</btn-yellow>
+                <btn-yellow class="text-14 " min_width="100" height="30"
+                    @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
+            </v-sheet>
+
+
+        </v-sheet>
+
+        <v-sheet color="bgBanner" class="py-4 px-4 mx-2 mt-2 rounded10">
+            <v-sheet color="transparent" class="d-flex align-center justify-space-between" min-height="35">
+                <div>
+                    {{LangUtil("用户返水")}}
+                </div>
+                <btn-yellow class="text-14 " min_width="100" height="30"
+                    @click.native="backWatherSettings">{{LangUtil("查看")}}</btn-yellow>
+            </v-sheet>
+
+            <v-sheet color="transparent" class="d-flex align-center justify-space-between" min-height="35">
+                <div>
+                    {{LangUtil("EsayBet投注设置")}}
+                </div>
+                <btn-yellow class="text-14 " min_width="100" height="30"
+                    @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
+            </v-sheet>
+
+        </v-sheet>
+
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

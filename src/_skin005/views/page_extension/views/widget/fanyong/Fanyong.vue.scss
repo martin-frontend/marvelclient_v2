@@ -1,0 +1,26 @@
+.level_col {
+    position: relative;
+    .level_icon {
+        position: absolute;
+        left: 15px;
+        max-width: 24px;
+        @media (max-width: 750px) {
+            left: 15px;
+            top: 3px;
+            max-width: 20px;
+        }
+        @media (max-width: 600px) {
+            left: 3px;
+            top: 2px;
+            max-width: 15px;
+        }
+    }
+}
+
+.hackhome{
+
+    height: 1px;
+    background-image: linear-gradient(to right, #333435 0%, #333435 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+}

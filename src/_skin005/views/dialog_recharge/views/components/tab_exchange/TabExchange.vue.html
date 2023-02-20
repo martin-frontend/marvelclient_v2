@@ -1,0 +1,133 @@
+<v-card-text class="mt-5 overflow-auto">
+    <div class="primary--text" v-html="bindHtml">
+        <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
+        <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
+    </div>
+    <div class="d-flex mt-3">
+        <CustomSelect class="mr-3" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" />
+        <!-- <CustomSelect
+            v-if="pageData.methodList[form.coin_name_unique]"
+            :options="pageData.methodList[form.coin_name_unique].options"
+            v-model="form.block_network_id"
+            @change="onChangeSub"
+        /> -->
+    </div>
+
+    <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+
+        <btn-yellow v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
+        class="mb-2 mx-2" min-width="80" height="30" :btn_type="2" :disabled="form.block_network_id==key"
+        @click.native="onChangeSub(key)">
+        {{item.name}}
+         </btn-yellow>
+
+        <!-- <v-btn
+            class="mb-2 mx-2"
+            min-width="100"
+            height="30"
+            :color="form.block_network_id==key ? 'colorBtnBg' : 'colorPanelTitleBg'"
+            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
+            :key="key"
+            @click="onChangeSub(key)"
+        >
+            {{item.name}}
+        </v-btn> -->
+    </div>
+
+    <div class="primary--text mt-3">{{LangUtil("你的钱包地址")}}</div>
+    <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+        <div class="d-flex align-center mr-n2">
+            <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                        <svg-icon icon="help" class="text-16"></svg-icon>
+                    </v-sheet>
+                </template>
+                <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+            </v-tooltip>
+
+            <btn-yellow class="mr-2 ml-2 text-14" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                {{LangUtil("地址薄")}}
+            </btn-yellow>
+
+            <btn-yellow v-if="!$vuetify.breakpoint.mobile" class="text-14" min_width="80" height="30" :btn_type="2" @click.native="onPaste">
+                {{LangUtil("粘贴")}}
+            </btn-yellow>
+
+        </div>
+    </CustomInput>
+
+    <div class="primary--text mt-3">{{LangUtil("平台余额")}}</div>
+    <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="water_bg" height="44">
+        <v-img
+            class="mr-2"
+            :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+            max-width="20"
+            height="20"
+        ></v-img>
+        <div>{{ balance }}</div>
+        <v-spacer />
+
+        <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                    <svg-icon icon="help" class="text-16"></svg-icon>
+                </v-sheet>
+            </template>
+            <span>{{LangUtil("余额可能在厂商资产里，如兑换请先从厂商提取")}}</span>
+        </v-tooltip>
+
+        <!-- <v-btn color="transparent" x-small height="30" class="mr-2" @click="onWallet">
+            <span class="text-decoration-underline text-14 textYellow--text">{{LangUtil("平台钱包")}}</span>
+        </v-btn> -->
+
+        <btn-yellow class="mr-2 ml-2 text-14" min_width="80" height="30" :btn_type="2" @click.native="onWallet">
+            {{LangUtil("平台钱包")}}
+        </btn-yellow>
+        <!-- <btn-yellow class="text-14 " width="80" height="30" @click.native="onWallet" :outlined="true">{{LangUtil("平台钱包")}}</btn-yellow> -->
+    </v-sheet>
+
+    <v-row class="primary--text mt-3" dense>
+        <v-col class="mr-1">
+            <v-sheet color="transparent" min-width="300" class="mb-2">
+                <div class="primary--text">{{LangUtil("提取金额")}}</div>
+                <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                    <v-btn class=" mr-n2" text x-small height="30" color="primary" @click="onAll">
+                        <span class="text-decoration-underline text-14 textYellow--text">{{LangUtil("全部")}}</span></v-btn>
+                </CustomInput>
+            </v-sheet>
+        </v-col>
+        <v-col>
+            <div>{{LangUtil("交易密码")}}</div>
+            <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                <v-btn class=" mr-n2" text  height="30" color="primary" @click="onSetPassword"
+                    ><span class="text-decoration-underline  text-14 textYellow--text"> {{LangUtil("设置")}} </span></v-btn
+                >
+            </CustomPassword>
+        </v-col>
+    </v-row>
+    <div class="text-14 mt-3  mb-2 d-flex textGray--text" v-if="pageData.methodList[form.coin_name_unique]">
+        <span class="mr-1">⚠️</span>
+        <div>
+            <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
+                {{item}}
+            </div>
+        </div>
+    </div>
+    <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
+    <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn> -->
+    <btn-yellow class="text-16 mb-4" width="100%" height="48" :disabled="!isChecked" @click.native="onSubmit">{{LangUtil("提交")}}</btn-yellow>
+    <v-divider class="mx-5" />
+    <v-card-text class="d-flex justify-end mt-3">
+        <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
+        <v-img
+            class="mr-2"
+            :src="plat_coins[key].icon"
+            max-width="20"
+            height="20"
+            v-for="(item, key) of pageData.methodList"
+            :key="key"
+        ></v-img>
+    </v-card-text>
+    <Overlay v-model="pageData.loading" />
+</v-card-text>

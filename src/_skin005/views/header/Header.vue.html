@@ -1,0 +1,99 @@
+<v-sheet v-if="!$vuetify.breakpoint.mobile" height="74" color="head_color" elevation="0" width="100%"
+    class="header mx-0 d-flex align-center">
+    <v-sheet class="d-flex align-center" width="100%" color="transparent">
+        <v-img v-if="isMini" class="ml-4 " max-width="36" height="26" :src="commonIcon.logo_m"></v-img>
+        <div ref="tabBox" color="transparent" class="ml-4">
+            <v-tabs slider-size="2" v-model="pagetab" optional>
+                <v-tabs-slider color="textYellow"></v-tabs-slider>
+                <v-tab ref="tab1" class="text-14 mr-8 " :ripple="false"
+                    :disabled="pagetab == 0">{{LangUtil("首页")}}</v-tab>
+                <v-tab ref="tab3" class="text-14 mr-8" :ripple="false"
+                    :disabled="pagetab == 1">{{LangUtil("体育运动")}}</v-tab>
+                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 " :ripple="false"
+                    :disabled="pagetab == 2">{{LangUtil("代理管理")}}</v-tab>
+            </v-tabs>
+        </div>
+        <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">
+            <Marquee1 />
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex align-center">
+            <template v-if="selfProxy.userInfo.user_id">
+                <User />
+                <Wallet class="ml-5" />
+                <btn-yellow class="btn-topup mx-4 text-16" height="36" min_width="72"
+                    @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
+
+                <v-btn icon small @click="onService" class="navIcon--text">
+                    <svg-icon class="text-24" icon="service"></svg-icon>
+                </v-btn>
+                <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
+                    <v-btn class="ml-4 navIcon--text" icon small @click="handlerMail">
+                        <svg-icon class="text-24" icon="mail"></svg-icon>
+                    </v-btn>
+                </v-badge>
+            </template>
+
+            <template v-else>
+                <btn-yellow class="ml-3 text-16" height="36" min_width="72"
+                    @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+                <btn-yellow class="ml-3 text-16" height="36" min_width="72"
+                    @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+                <v-btn class="ml-3" icon small @click="onService">
+                    <svg-icon class="text-24" icon="service"></svg-icon>
+                </v-btn>
+            </template>
+
+        </v-sheet>
+    </v-sheet>
+</v-sheet>
+
+<!-- v-app-bar  -->
+<!-- 手机版的显示 -->
+<v-app-bar v-else height="50" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center"
+    :app="routerPath != '/page_game_soccer' && routerPath != '/page_game_play'">
+    <v-sheet class="d-flex align-center" color="transparent" width="100%">
+        <v-sheet color="transparent" class="d-flex" >
+            <v-sheet color="transparent" @click="showNovPanel">
+                <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
+            </v-sheet>
+            <v-sheet color="transparent" @click="goHome">
+                <v-img class=" mr-2" max-width="36" height="26" :src="commonIcon.logo_m"></v-img>
+            </v-sheet>
+        </v-sheet>
+        <!-- 登录 -->
+        <template v-if="selfProxy.userInfo.user_id">
+            <v-sheet color="transparent" class=" d-flex align-center " width="100%">
+
+                <v-sheet color="transparent">
+                    <Wallet class="ml-2" min-width="120" />
+                </v-sheet>
+                <!-- <User /> -->
+                <v-spacer />
+                <v-btn class="mr-2" icon small @click="onService">
+                    <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
+                </v-btn>
+                <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
+                    <v-btn icon small @click="handlerMail">
+                        <svg-icon class="text-24 head_btn--text" icon="mail"></svg-icon>
+                    </v-btn>
+                </v-badge>
+            </v-sheet>
+        </template>
+        <!-- 未登录 -->
+        <template v-else>
+            <v-spacer style="min-width: 0;" />
+            <btn-yellow class="ml-3 text-14" height="30" :min_width="60"
+                @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+
+            <!-- <v-sheet color="transparent" class="btn_regi"> -->
+            <btn-yellow class="ml-3 text-14" height="30" :min_width="60" :btn_type="2"
+                @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+            <!-- </v-sheet> -->
+
+            <v-btn class="ml-3" icon small @click="onService">
+                <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
+            </v-btn>
+        </template>
+    </v-sheet>
+</v-app-bar>

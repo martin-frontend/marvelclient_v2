@@ -1,0 +1,32 @@
+<v-dialog width="300" v-model="pageData.bShow" :retain-focus="false" persistent overlay-opacity="0.8">
+    <v-card class="rounded-lg" color="bgBanner">
+        <v-card-title class="gradient-bg justify-center">
+            <div class="text-20">{{LangUtil("提示")}}</div>
+        </v-card-title>
+        <v-divider />
+        <template v-if="isMultMessage">
+
+            <template v-for="(item, key) of pageData.data.message">
+                <v-card-text class="d-flex justify-center primary--text" :key="key" >{{item}}
+                </v-card-text>
+            </template>
+
+        </template>
+        <template v-else>
+            <v-card-text class="my-3 d-flex justify-center primary--text" style="white-space: pre-line;">
+                {{pageData.data.message}}</v-card-text>
+        </template>
+
+        <v-card-actions class="justify-center pb-5">
+            <btn-yellow v-if="pageData.data.bConfirm" class="text-14" width="100" height="36" 
+            @click.native="onCancel">{{LangUtil("取消")}}</btn-yellow>
+
+            <btn-yellow  class="text-14 mx-2" width="100" height="36" 
+            @click.native="onOK">{{LangUtil("确定")}}</btn-yellow>
+
+            <!-- <v-btn v-if="pageData.data.bConfirm" class="mx-2" width="100" height="36" color="colorBtnBg" outlined
+                @click="onCancel">{{LangUtil("取消")}}</v-btn>
+            <v-btn class="mx-2" width="100" height="36" color="colorBtnBg" @click="onOK">{{LangUtil("确定")}}</v-btn> -->
+        </v-card-actions>
+    </v-card>
+</v-dialog>

@@ -156,6 +156,9 @@ module core {
         /**货币互转开关 */
         is_gold_exchange?: number;
         water_config?:any;
+        credit_rate_max ?:number;
+        credit_rate_min ?:number;
+        credit_rate_invited ?:number;
     }
 
     /**

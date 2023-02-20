@@ -1,0 +1,336 @@
+<v-sheet color="transparent" id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.mobile?'':''">
+    <template v-if="!$vuetify.breakpoint.mobile">
+        <Activity :showDataType="listQuery.vendor_type" />
+        <v-sheet v-if="isNeedVendor && gameMenuData && gameMenuData.length >0" class="mt-6 rounded10 px-4" color="bgBanner">
+            <v-slide-group ref="slidegroup" class="mt-0" show-arrows center-active v-model="myProxy.curItemIndex">
+                <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
+                    <v-card flat color="transparent" class="d-flex justify-center align-center">
+                        <v-card
+                            :class="vendor_id == item.vendor_id ? 'item_btn_active' : 'item_btn'"
+                            class="mx-1 mt-1 mb-1 d-flex align-center justify-center"
+                            @click="toggle"
+                            height="30"
+                            elevation="0"
+                            color="transparent"
+                        >
+                            <v-sheet
+                                color="transparent"
+                                class="text-14 d-flex align-center justify-center"
+                                height="25"
+                                @click="onBtnClick(item)"
+                            >
+                                <v-sheet color="transparent" :class="vendor_id == item.vendor_id ? 'textYellow--text' : 'textGray--text'">
+                                    {{item.alias}}
+                                </v-sheet>
+                            </v-sheet>
+                        </v-card>
+
+                        <!-- 后面的圆点 -->
+                        <v-sheet color="transparent" class="d-flex justify-center align-center" width="30">
+                            <v-sheet v-if="key!=gameMenuData.length-1 " class="rounded-circle" color="textGray" width="6" height="6" />
+                        </v-sheet>
+                    </v-card>
+                </v-slide-item>
+            </v-slide-group>
+        </v-sheet>
+
+        <template v-if=" !isUseMenuData">
+            <v-card
+                class="d-flex flex-wrap mb-2 mt-4"
+                :class="$vuetify.breakpoint.xsOnly ? 'justify-center' : 'justify-start'"
+                color="transparent"
+                flat
+                tile
+            >
+                <template v-if="!isUseMenuData">
+                    <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mx-0">
+                        <v-lazy>
+                            <GameItem :item="item" />
+                        </v-lazy>
+                    </div>
+                </template>
+                <template v-else>
+                    <div v-for="(item, key) of menudata" :key="key" class="mx-0">
+                        <v-lazy>
+                            <GameItem :item="item" :useMenuData="true" />
+                        </v-lazy>
+                    </div>
+                </template>
+
+                <template v-for="key of 10">
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                </template>
+            </v-card>
+            <v-lazy>
+                <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                    <div class="d-flex flex-column justify-center align-center">
+                        <div class="mb-3 textGray--text">
+                            {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
+                            pageData.pageInfo.pageCurrent)}}
+                        </div>
+                        <v-progress-linear
+                            color="primary"
+                            :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
+                            height="4"
+                        >
+                        </v-progress-linear>
+                        <!-- <v-btn class="rounded-pill my-5" :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'colorBtnBg'"
+                            :width="$vuetify.breakpoint.mobile?125:196" :height="$vuetify.breakpoint.mobile?25:40"
+                            @click="getMore">{{LangUtil("加载更多")}}</v-btn> -->
+
+                        <btn-yellow class="text-16 my-5" min_width="104" height="36" @click.native="getMore"
+                            >{{LangUtil("加载更多")}}</btn-yellow
+                        >
+                    </div>
+                </div>
+            </v-lazy>
+        </template>
+        <template v-else>
+            <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
+                <v-sheet
+                    v-for="(item, key) of menudata"
+                    :key="key"
+                    class="mb-3"
+                    color="transparent"
+                    :width="$vuetify.breakpoint.mobile ? '100%' : '49.5%'"
+                >
+                    <v-lazy>
+                        <!-- <v-card v-if="false" class="transparent" elevation="0">
+                            <v-img v-if="item" class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
+                                :src="getGameIcon(item)" @click="onClick(item)">
+                                <v-sheet color="transparent" class="text-30 menu_title ">
+                                    {{item.alias}}
+                                </v-sheet>
+                                <v-sheet color="transparent" class="text-14 mt-4 menu_title_1 " max-width="55%">
+                                    {{item.game_desc}}
+                                </v-sheet>
+                                <btn-yellow class="text-16 mb-6 mt-auto ml-6" width="104" height="36">
+                                    {{LangUtil("点击进入")}}
+                                </btn-yellow>
+                            </v-img>
+                        </v-card> -->
+                        <v-card class="d-flex align-end" elevation="0" height="260" color="transparent">
+                            <v-img
+                                v-if="item"
+                                class="d-flex cursor-pointer rounded-lg align-end"
+                                :src="item.menu_icon"
+                                @click="onClick(item)"
+                                height="200"
+                                max-height="200"
+                            >
+                                <v-sheet color="transparent" class="text-30 menu_title"> {{item.alias}} </v-sheet>
+                                <v-sheet color="transparent" class="text-14 mt-4 menu_title_1" max-width="55%">
+                                    {{item.game_desc}}
+                                </v-sheet>
+                                <btn-yellow class="text-16 mb-6 mt-auto ml-6" width="104" height="36">
+                                    {{LangUtil("点击进入")}}
+                                </btn-yellow>
+                            </v-img>
+                            <!-- 
+                            <v-img v-if="item" class="d-flex rounded-lg align-end ball_class " :src="getGameIcon(item)"
+                                height="260" max-height="260">
+                            </v-img> -->
+
+                            <div class="test_ball d-flex align-end justify-end">
+                                <v-sheet color="transparent">
+                                    <v-img v-if="item" class="" :src="getGameIcon(item)" height="260" width="420"> </v-img>
+                                </v-sheet>
+                            </div>
+                        </v-card>
+                    </v-lazy>
+                </v-sheet>
+            </v-card>
+        </template>
+    </template>
+    <!-- 手机版 -->
+    <template v-if="$vuetify.breakpoint.mobile">
+        <Advertise class="mt-2" :showDataType="listQuery.vendor_type" />
+
+        <!-- 内容 -->
+        <v-sheet color="transparent" class="d-flex mt-2" width="100%" height="100%">
+            <!-- 左边导航 -->
+            <v-sheet color="bgBanner" class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg" width="60" height="100%">
+                <v-card
+                    color="transparent"
+                    elevation="0"
+                    v-for="(item, key) of tableMenu"
+                    :key="key"
+                    class="mt-2 d-flex align-center"
+                    min-height="70"
+                >
+                    <v-sheet
+                        color="transparent"
+                        @click="goCategory(getItemCategory(item))"
+                        class="d-flex flex-column align-center text-12"
+                        width="50"
+                        min-height="50"
+                    >
+                        <svg-icon
+                            :icon="CategoryIcon[getItemCategory(item)]"
+                            class="text-23 mb-2"
+                            :class="isCurMenu(item) ? 'textYellow--text' :'textGray--text'"
+                        ></svg-icon>
+                        <div :class="isCurMenu(item) ? 'textYellow--text' :'textGray--text'" style="text-align: center">
+                            {{ getItemCategoryName(item) }}
+                        </div>
+                    </v-sheet>
+                </v-card>
+            </v-sheet>
+            <!-- 右边内容 -->
+            <v-sheet color="transparent" class="d-flex flex-column" style="width: calc(100vw - 65px)">
+                <!-- 上面的 厂商选择 -->
+                <v-sheet
+                    v-if="isNeedVendor && gameMenuData && gameMenuData.length >0"
+                    class="mx-1 rounded10 d-flex align-center"
+                    min-height="49"
+                    color="bgBanner"
+                >
+                    <v-slide-group class="mt-0 mr-2">
+                        <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
+                            <v-card flat color="transparent" class="d-flex justify-center align-center">
+                                <v-card
+                                    :class="vendor_id == item.vendor_id ? 'item_btn_active' : 'item_btn'"
+                                    class="mx-1 mt-1 mb-1 d-flex align-center justify-center"
+                                    @click="toggle"
+                                    height="30"
+                                    elevation="0"
+                                    color="transparent"
+                                >
+                                    <v-sheet
+                                        color="transparent"
+                                        class="text-14 d-flex align-center justify-center"
+                                        height="25"
+                                        @click="onBtnClick(item)"
+                                    >
+                                        <v-sheet
+                                            color="transparent"
+                                            :class="vendor_id == item.vendor_id ? 'textYellow--text' : 'textGray--text'"
+                                        >
+                                            {{item.alias}}
+                                        </v-sheet>
+                                    </v-sheet>
+                                </v-card>
+
+                                <!-- 后面的圆点 -->
+                                <v-sheet color="transparent" class="d-flex justify-center align-center" width="30">
+                                    <v-sheet
+                                        v-if="key!=gameMenuData.length-1 "
+                                        class="rounded-circle"
+                                        color="textGray"
+                                        width="6"
+                                        height="6"
+                                    />
+                                </v-sheet>
+                            </v-card>
+                        </v-slide-item>
+                    </v-slide-group>
+                </v-sheet>
+
+                <!-- 下方的列表 -->
+                <template v-if=" !isUseMenuData">
+                    <v-row dense style="margin:0">
+                        <template v-if="!isUseMenuData">
+                            <v-col v-for="(item , key) of pageData.list" :key="item.vendor_prodcut_id" cols="4" sm="2">
+                                <v-lazy>
+                                    <GameItem :item="item" />
+                                </v-lazy>
+                            </v-col>
+                        </template>
+                        <template v-else>
+                            <v-col v-for="(item , key) of menudata" :key="key" cols="12" sm="3" xs="4">
+                                <v-lazy>
+                                    <GameItem :item="item" />
+                                </v-lazy>
+                            </v-col>
+                        </template>
+                    </v-row>
+
+                    <v-lazy>
+                        <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                            <div class="d-flex flex-column justify-center align-center">
+                                <div class="mb-3 textGray--text">
+                                    {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
+                                    pageData.pageInfo.pageCurrent)}}
+                                </div>
+                                <v-progress-linear
+                                    color="primary"
+                                    :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
+                                    height="2"
+                                >
+                                </v-progress-linear>
+                                <!-- <v-btn class="rounded-pill my-5" :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'colorBtnBg'"
+                                    :width="$vuetify.breakpoint.mobile?125:196" :height="$vuetify.breakpoint.mobile?25:40"
+                                    @click="getMore">{{LangUtil("加载更多")}}</v-btn> -->
+
+                                <btn-yellow class="text-16 my-5" min-width="110" height="36" @click.native="getMore"
+                                    >{{LangUtil("加载更多")}}</btn-yellow
+                                >
+                            </div>
+                        </div>
+                    </v-lazy>
+                </template>
+                <template v-else>
+                    <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
+                        <v-sheet
+                            v-for="(item, key) of menudata"
+                            :key="key"
+                            class="mb-3"
+                            color="transparent"
+                            :width="$vuetify.breakpoint.mobile ? '100%' : '49.5%'"
+                        >
+                            <v-card v-if="false" class="transparent" elevation="0">
+                                <v-img
+                                    v-if="item"
+                                    class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
+                                    :src="getGameIcon(item)"
+                                    @click="onClick(item)"
+                                    :height="$vuetify.breakpoint.mobile ? img_width : ''"
+                                >
+                                    <div class="menu_title d-flex align-center flex-column text-14">{{item.alias}}</div>
+                                    <div class="menu_title_1 d-flex align-center flex-column text-12">{{item.game_desc}}</div>
+                                    <btn-yellow class="text-12 mb-2 mt-auto ml-6" min-width="70" height="30">
+                                        {{LangUtil("点击进入")}}
+                                    </btn-yellow>
+
+                                    <!-- <div class="egame__item__mask_menu">
+                                            <div class="egame__item__play-icon">
+                                                <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                                                    <div class="icon-chevron-right icon__icon mt-n1"></div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                </v-img>
+                            </v-card>
+
+                            <v-card class="d-flex align-end" elevation="0" height="150" color="transparent">
+                                <v-img
+                                    v-if="item"
+                                    class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
+                                    :src="item.menu_icon"
+                                    @click="onClick(item)"
+                                    height="130"
+                                    max-height="130"
+                                >
+                                    <div class="menu_title d-flex align-center flex-column text-14">{{item.alias}}</div>
+                                    <div class="menu_title_1 d-flex align-center flex-column text-12">{{item.game_desc}}</div>
+                                    <btn-yellow class="text-12 mb-2 mt-auto ml-6" min-width="70" height="30">
+                                        {{LangUtil("点击进入")}}
+                                    </btn-yellow>
+                                </v-img>
+
+                                <div class="test_ball d-flex align-end justify-end">
+                                    <v-sheet color="transparent">
+                                        <v-img v-if="item" class="" :src="getGameIcon(item)" height="150" width="250"> </v-img>
+                                    </v-sheet>
+                                </div>
+                            </v-card>
+                        </v-sheet>
+                    </v-card>
+                </template>
+            </v-sheet>
+        </v-sheet>
+    </template>
+    <Overlay v-model="pageData.loading" />
+</v-sheet>

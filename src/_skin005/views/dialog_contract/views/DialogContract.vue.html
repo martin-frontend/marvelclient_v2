@@ -1,0 +1,16 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="596" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded-lg pb-5" color="bgBanner">
+
+        <com-dialog-title title="关于我们" @onClose="onClose"/>
+
+        <!-- <v-sheet class="d-flex text-18 font-weight-medium justify-center px-4 mb-5" color="transparent" height="60">
+            <div>{{LangUtil("关于我们")}}</div>
+    
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-sheet> -->
+        <v-divider class="mb-2 " />
+        <v-sheet class="overflow-y-auto mx-4 text-wrapper" color="transparent" height="300">{{LangUtil("联系我们内容")}}</v-sheet>
+    </v-card>
+</v-dialog>

@@ -1,0 +1,127 @@
+import AbstractView from "@/core/abstract/AbstractView";
+import { Watch, Component } from "vue-property-decorator";
+import PageMineMediator from "../mediator/PageMineMediator";
+import PageMineProxy from "../proxy/PageMineProxy";
+
+import LangUtil from "@/core/global/LangUtil";
+import FagProxy from "@/proxy/FagProxy";
+import { checkMultiline } from "@/core/global/Functions";
+import PanelUtil from "@/_skin005/core/PanelUtil";
+import Assets from "@/_skin005/assets/Assets";
+
+@Component
+export default class PageMine extends AbstractView {
+    myProxy: PageMineProxy = this.getProxy(PageMineProxy);
+    pageData = this.myProxy.pageData;
+    fagProxy: FagProxy = this.getProxy(FagProxy);
+    LangUtil = LangUtil;
+    checkMultiline = checkMultiline;
+
+    private xsOnly = false;
+    private progressLinear = 6;
+
+    constructor() {
+        super(PageMineMediator);
+    }
+
+    mounted() {
+        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
+    }
+
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWAtchXsOnly() {
+        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.checkProgress();
+    }
+
+    checkProgress() {
+        this.progressLinear = this.xsOnly ? 6 : 6;
+    }
+
+    vipMap = Assets.VipMap;
+
+    mobileChange(key: any) {
+        const mapPC = <any>{
+            coinIcon: 30,
+            minRewardBtn: {
+                w: 102,
+                h: 36,
+            },
+            leftBgVipIcon: {
+                w: 75,
+                h: 75,
+            },
+            howIcon: 72,
+            howBtn: {
+                w: 102,
+                h: 36,
+            },
+        };
+        const mapMobile = <any>{
+            coinIcon: 30,
+            minRewardBtn: {
+                w: 90,
+                h: 30,
+            },
+            leftBgVipIcon: {
+                w: 60,
+                h: 60,
+            },
+            howIcon: 65,
+            howBtn: {
+                w: 90,
+                h: 30,
+            },
+        };
+        return this.$vuetify.breakpoint.xsOnly ? mapMobile[key] : mapPC[key];
+    }
+
+    /**奖励记录 */
+    handlerMineRecord() {
+        PanelUtil.openpanel_record_mine();
+    }
+    /**投注记录 */
+    handlerBetRecord() {
+        PanelUtil.openpanel_bet_record();
+    }
+    /**领取奖励 */
+    handlerAward() {
+        PanelUtil.message_confirm({
+            message: LangUtil("确定要领取?"),
+            okFun: () => {
+                this.myProxy.api_user_var_backwater_trial_receive();
+            },
+        });
+    }
+    /**获取vip icon */
+    getVipIcon(vip: any) {
+        return `~@/assets/mine/vip${vip}.png`;
+    }
+
+    jumpTo(target: string) {
+        window.scrollTo({
+            //@ts-ignore
+            top: document.querySelector(target).offsetTop,
+            behavior: "smooth",
+        });
+    }
+
+    onGoBet() {
+        //PanelUtil.openpanel_gamelist();
+        PanelUtil.openpage_home();
+    }
+
+    destroyed() {
+        super.destroyed();
+    }
+
+    get vip_bg_path() {
+        if (this.$vuetify.theme.dark) {
+            return require(`@/_skin005/assets/mine/item_bg_dark.png`);
+        }
+        else {
+            return require(`@/_skin005/assets/mine/item_bg.png`);
+        }
+    }
+}

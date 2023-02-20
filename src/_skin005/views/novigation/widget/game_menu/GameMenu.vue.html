@@ -1,0 +1,138 @@
+<v-card class="pt-2 mb-0 rounded-lg" color="menu_color" width="100%" elevation="0">
+    <!-- 样式一 ， 竖向的 排列 -->
+    <v-container v-if="false" class="d-flex flex-column justify-start  " color="transparent" elevation="0">
+        <div v-for="(item, key) of data.list" :key="key" class="my-2">
+            <v-card color="transparent" class="d-flex align-center game_item " elevation="0" width="281" height="40"
+                @click="onClick(item)">
+
+                <v-sheet v-if="item" min-width="120" min-height="40"
+                    class="menu_bg_dark cursor-pointer rounded-lg d-flex align-center justify-center">
+                    <v-img max-height="35" max-width="80" :src="getIcon(item)"
+                        :class="!isNomalState(item) ? 'game_icon_disable' : ''">
+                    </v-img>
+                </v-sheet>
+                <div class="text-18 font-weight-regular textGray--text ml-4">{{item.alias}}</div>
+                <!-- <div v-if="!isNomalState(item)" class="text-18 font-weight-bold"> {{LangUtil("维护中")}} </div> -->
+                <!-- <div class="egame__item__mask">
+                    <div class="egame__item__play-icon">
+                        <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                            <div class="icon-chevron-right icon__icon mt-n1"></div>
+                        </div>
+                    </div>
+                </div> -->
+            </v-card>
+        </div>
+    </v-container>
+
+    <!-- 样式二  -->
+    <v-container v-if="false" class="d-flex flex-column justify-start  " color="transparent" elevation="0">
+        <!-- 标题 -->
+        <v-sheet color="transparent" width="100%" class="d-flex align-center ml-4">
+            <v-sheet width="5" height="30" class="mr-4 title_icon rounded-pill"></v-sheet>
+            <div class="text-20 font-weight-bold primary--text"> {{LangUtil(data.vendor_type_name)}}</div>
+        </v-sheet>
+        <!-- 内容 -->
+        <v-sheet color="transparent" class="d-flex ma-4">
+            <!-- 描述内容 -->
+            <v-card flat color="transparent" class="" :width="cardSize.width" :height="cardSize.height">
+                <div class="text-16 textGray--text">
+                    {{text_detail}}
+                </div>
+            </v-card>
+            <!-- 滑动的游戏内容 -->
+            <v-card v-if="reflush" flat color="transparent" class="mt-4"
+                :max-width="(cardSize.width + card_offset.width) * 3.45" :height="cardSize.height"
+                :class="data.list.length < 4 ? 'ml-8' : ''">
+                <v-slide-group ref="slidegroup" class="mt-0" show-arrows center-active v-model="gameSelectIdx">
+                    <v-slide-item v-for="(item, key) of data.list" :key="key" v-slot="{ active, toggle }">
+                        <v-card class="d-flex justify-center" @click="toggle" flat :ripple="false" color="transparent"
+                            :width="cardSize.width + card_offset.width" :height="cardSize.height">
+                            <v-sheet class="game_item_bg rounded-lg" :width="cardSize.width" :height="cardSize.height"
+                                @click="onClick(item)">
+                                <v-img :max-height="cardSize.height" :max-width="cardSize.width" :src="getIcon(item)"
+                                    style="text-align: center; color: #fff;"
+                                    :class="!isNomalState(item) ? 'game_icon_disable' : ''">
+                                    <div class="text-24 font-weight-regular  mt-6 ">{{item.alias}}</div>
+
+                                    <div class="egame__item__mask">
+                                        <div class="egame__item__play-icon">
+                                            <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                                                <div class="icon-chevron-right icon__icon mt-n1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </v-img>
+
+                            </v-sheet>
+                        </v-card>
+                    </v-slide-item>
+                </v-slide-group>
+            </v-card>
+        </v-sheet>
+    </v-container>
+
+    <!-- 样式三 -->
+    <v-container v-if="false" class="d-flex justify-space-between  " color="transparent" elevation="0">
+        <!-- 标题 -->
+        <v-sheet color="transparent" :width="hangshu * 110 +70" max-width="520" min-width="250">
+            <v-sheet color="transparent" width="100%" class="d-flex align-center ml-4">
+                <v-sheet width="5" height="30" class="mr-4 title_icon rounded-pill"></v-sheet>
+                <div class="text-20 font-weight-bold primary--text"> {{LangUtil(data.vendor_type_name)}}</div>
+            </v-sheet>
+            <!-- 内容 -->
+            <v-sheet color="transparent" class="d-flex flex-column ma-4">
+                <!-- 描述内容 -->
+                <v-card flat color="transparent" class="" min-width="230" >
+                    <div class="text-16 textGray--text">
+                        {{text_detail}}
+                    </div>
+                </v-card>
+
+                <v-card flat color="transparent" class="mt-4 d-flex flex-column " >
+                    <template v-for="n in cardMinheight">
+                        <v-card flat color="transparent" class="d-flex flex-column flex-wrap" 
+                            height="115">
+                            <v-sheet v-for="i in 8" color="transparent">
+                                <v-sheet v-if="((n-1)*8 + i -1) < data.list.length" color="transparent" class="mr-4 mt-4">
+                                    <v-btn class="text-16 rounded-lg btn_stly" width="110" height="40" depressed
+                                        @click="onClick(data.list[(n-1)*8 + i -1])">
+                                        {{data.list[(n-1)*8 + i-1].alias}}</v-btn>
+                                </v-sheet>
+                            </v-sheet>
+                        </v-card>
+                    </template>
+                </v-card>
+
+            </v-sheet>
+        </v-sheet>
+        <v-card class="d-flex align-center" color="transparent" flat>
+            <v-img :src="getImgPath" height="234" width="169" class="mr-3 "></v-img>
+        </v-card>
+
+    </v-container>
+    
+    <!-- 样式四 -->
+    <v-container class="d-flex justify-space-between  " color="transparent" elevation="0">
+        <!-- 标题 -->
+        <v-sheet color="transparent" width="300" max-width="520" min-width="250">
+            <v-sheet color="transparent" width="100%" class="d-flex align-center ml-4">
+                <v-sheet width="5" height="30" class="mr-4 title_icon rounded-pill"></v-sheet>
+                <div class="text-20 font-weight-bold primary--text"> {{LangUtil(data.vendor_type_name)}}</div>
+            </v-sheet>
+            <!-- 内容 -->
+            <v-sheet color="transparent" class="d-flex flex-column ma-4">
+                <!-- 描述内容 -->
+                <v-card flat color="transparent" class="" min-width="230" >
+                    <div class="text-14 nomal_text_1--text">
+                        {{text_detail}}
+                    </div>
+                </v-card>
+            </v-sheet>
+        </v-sheet>
+        <v-card class="d-flex align-center" color="transparent" flat>
+            <v-img :src="getImgPath" height="234" width="169" class="mr-3 "></v-img>
+        </v-card>
+
+    </v-container>
+
+</v-card>

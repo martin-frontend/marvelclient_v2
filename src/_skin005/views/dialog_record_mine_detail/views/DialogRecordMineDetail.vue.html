@@ -1,0 +1,138 @@
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <v-card class="rounded10" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'" v-if="!pageData.loading">
+        <!-- pc显示方式 -->
+        <template v-if="!$vuetify.breakpoint.xsOnly">
+            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$vuetify.breakpoint.xsOnly">
+                <div class="text-20">{{LangUtil("奖励详情")}}</div>
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title> -->
+            <com-dialog-title title="奖励详情" @onClose="onClose" />
+
+            <v-divider />
+            <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+                <div class="d-flex title_ mb-3 mt-3 d-flex align-center">
+                    <div class="text-14 primary--text">
+                        <span>
+                            {{LangUtil("结算时间")}} <span class="nomal_text_1--text mx-2">{{ pageData.data.title.endTime
+                                }}</span>
+                        </span>
+                        <span>
+                            {{LangUtil("结算有效流水")}} <span class="nomal_text_1--text mx-2">{{ pageData.data.title.endWater
+                                }}
+                            </span>
+                        </span>
+                        <span> {{LangUtil("奖励")}} <span class="nomal_text_1--text mx-2">{{ pageData.data.title.award
+                                }}</span>
+                        </span>
+                    </div>
+                </div>
+                <v-divider />
+
+                <v-sheet color="transparent"
+                    class="d-flex flex-wrap px-2 justify-space-between text-14 font-weight-bold mt-3">
+                    <v-sheet color="transparent" class="" min-width="60">{{LangUtil("类型")}}</v-sheet>
+                    <v-sheet color="transparent" class="" min-width="130">{{LangUtil("有效流水")}}</v-sheet>
+                    <v-sheet color="transparent" class="" min-width="200">{{LangUtil("返水比例")}}</v-sheet>
+                    <v-sheet color="transparent" class="" min-width="200">{{LangUtil("奖励")}}</v-sheet>
+                </v-sheet>
+
+
+                <div class="listbox mt-3" v-if="pageData.data.detail.length > 0">
+                    <v-sheet class="px-2 py-2 rounded-lg mb-3" color="transparent"
+                        v-for="(item, key) of pageData.data.detail" :key="key"
+                        :class="{'btninfo-light': !$vuetify.theme.dark, 'btninfo-dark': $vuetify.theme.dark}"
+                        height="48">
+
+                        <v-sheet class="d-flex flex-wrap justify-space-between" width="100%" color="transparent">
+
+                            <v-sheet color="transparent" class="text-14 nomal_text_1--text"
+                                min-width="60">{{typeOptions(item.vendor_type)}}</v-sheet>
+                            <v-sheet color="transparent" class="text-14 nomal_text_1--text"
+                                min-width="130">{{item.water}}</v-sheet>
+
+                            <!-- 返水比例 -->
+                            <v-sheet color="transparent" class="text-14 nomal_text_1--text" min-width="200">
+                                <span v-if="item.main_coin_backwater_rate > 0">
+                                    {{item.main_coin_name_unique }}:{{ (item.main_coin_backwater_rate *
+                                    100).toFixed(2)}}%
+                                </span>
+                                <span v-if="item.reward_coin_backwater_rate > 0">
+                                    {{item.reward_coin_name_unique }}:{{ (item.reward_coin_backwater_rate *
+                                    100).toFixed(2)}}%
+                                </span>
+                            </v-sheet>
+
+                            <!-- 奖励 -->
+                            <v-sheet color="transparent" class="text-14 nomal_text_1--text" min-width="200">
+                                <span v-if="item.main_coin_backwater_rate > 0">
+                                    {{item.main_coin_name_unique }}:{{ item.main_coin_backwater }}
+                                </span>
+                                <span v-if="item.reward_coin_backwater_rate > 0">
+                                    {{item.reward_coin_name_unique }}:{{ item.reward_coin_backwater }}
+                                </span>
+                            </v-sheet>
+
+                        </v-sheet>
+                    </v-sheet>
+                </div>
+                <v-spacer />
+            </v-card-text>
+        </template>
+        <template v-else>
+            <!-- 手机显示方式 -->
+            <com-dialog-title title="奖励详情" @onClose="onClose" />
+
+            <!-- <v-divider class="mb-2" /> -->
+            <v-card-text class="px-2">
+
+                <v-sheet class="d-flex flex-column mb-2 px-4" width="100%" color="transparent">
+                    <v-sheet width="100%" color="transparent" class="d-flex align-center justify-space-between">
+                        <div class="text-12 primary--text">{{LangUtil("结算时间")}}</div>
+                        <div class="text-12 textGray--text">{{pageData.data.title.endTime}}</div>
+                    </v-sheet>
+                    <v-sheet width="100%" color="transparent" class="d-flex align-center justify-space-between">
+                        <div class="text-12 primary--text">{{LangUtil("结算有效流水")}}</div>
+                        <div class="text-12 textGray--text">{{pageData.data.title.endWater}}</div>
+                    </v-sheet>
+                    <v-sheet width="100%" color="transparent" class="d-flex align-center justify-space-between">
+                        <div class="text-12 primary--text">{{LangUtil("奖励")}}</div>
+                        <div class="text-12 textGray--text">{{pageData.data.title.award}}</div>
+                    </v-sheet>
+                </v-sheet>
+                <!-- <div class="listbox" v-if="pageData.data.detail.length > 0"> -->
+                <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto"
+                    style="height: calc(100vh - 170px);">
+                    <v-sheet class="px-4 py-2 rounded10 mb-2 textGray--text text-12" color="bgBanner"
+                        v-for="(item, key) of pageData.data.detail" :key="key">
+                        <div class="d-flex justify-space-between">
+                            <div class="primary--text">{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
+                            <div>{{ item.water }}</div>
+                        </div>
+                        <div class="d-flex justify-space-between" v-if="item.main_coin_backwater_rate > 0">
+                            <div class="primary--text">{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                            <div>{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                        </div>
+                        <div class="d-flex justify-space-between" v-if="item.main_coin_backwater > 0">
+                            <div class="primary--text">{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
+                            <div>{{ item.main_coin_backwater }}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="primary--text">{{ item.reward_coin_name_unique }}{{LangUtil("返水比例")}}</div>
+                            <div>{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="primary--text">{{LangUtil("奖励")}}{{ item.reward_coin_name_unique }}</div>
+                            <div>{{ item.reward_coin_backwater }}</div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <!-- </div> -->
+                <!-- <v-spacer /> -->
+            </v-card-text>
+        </template>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -1,0 +1,94 @@
+.bg-yellow {
+    background-color: #feda7c;
+}
+
+.coin-tip_test {
+    position: absolute;
+    right: 135px;
+    top:-22px;
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+
+    &:after {
+        position: absolute;
+        right: -10px;
+        top: 15px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px 10px 5px 0px;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        //border-right-color: #f4f4f4;
+        transform: rotateY(180deg);
+
+    }
+}
+
+.coin-tip_test_right {
+    position: absolute;
+    left: 70px;
+    top:-22px;
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+
+    &:after {
+        position: absolute;
+        left: -10px;
+        top: 18px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px 10px 5px 0px;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        //border-right-color: #f4f4f4;
+    }
+}
+
+.tip_test{
+    position: relative;
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translatex(0);
+    }
+
+    50% {
+        transform: translatex(4px);
+    }
+}
+
+.theme--dark {
+    .coin-tip_test {
+        &:after {
+            border-right-color: #f4f4f4;
+        }
+    }
+    .coin-tip_test_right {
+        &:after {
+            border-right-color: #f4f4f4;
+        }
+    }
+}
+
+.theme--light {
+    .coin-tip_test {
+        &:after {
+            border-right-color: #d6dde3;
+        }
+    }
+    .coin-tip_test_right {
+        &:after {
+            border-right-color: #d6dde3;
+        }
+    }
+}

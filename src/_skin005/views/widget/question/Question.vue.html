@@ -1,0 +1,17 @@
+<div class="pb-5">
+    <div class=" font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'text-16 mt-4' : 'text-20'">{{LangUtil("常见问题解答")}}</div>
+    <v-row no-gutters class="d-flex flex-row  mt-2">
+        <v-col cols="12" md="6" class="mb-2 pr-sm-2" v-for="(item, index) of questions" :key="index">
+            <v-expansion-panels :class="{'btninfo-light': !$vuetify.theme.dark, 'btninfo-dark': $vuetify.theme.dark}" flat>
+                <v-expansion-panel :class="$vuetify.breakpoint.mobile ? 'text_mob': ''">
+                    <v-expansion-panel-header  class="primary--text" >
+                        {{ item.name }}
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content  class="nomal_text_1--text" :class="$vuetify.breakpoint.mobile ? 'text-12': 'text-14'">
+                        {{ item.content }}
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+            </v-expansion-panels>
+        </v-col>
+    </v-row>
+</div>

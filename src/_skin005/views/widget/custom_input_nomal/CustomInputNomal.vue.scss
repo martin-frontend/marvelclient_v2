@@ -1,0 +1,23 @@
+@import "@/_skin005/style/input_nomal.scss";
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  height: 100%;
+}
+
+.text-disabled{
+  // color: #4c5d7f !important;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+::v-deep .v-btn__content {
+        color: #8E8F91;
+        font-size: 16px;
+        font-weight: 400;
+    }

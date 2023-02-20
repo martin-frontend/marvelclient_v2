@@ -1,0 +1,10 @@
+<template src="./Statistice.vue.html" lang="html"></template>
+<style src="./Statistice.vue.scss" lang="scss" scoped></style>
+
+<script lang="ts">
+import Component from "vue-class-component";
+import Statistice from "./Statistice";
+
+@Component
+export default class extends Statistice {}
+</script>

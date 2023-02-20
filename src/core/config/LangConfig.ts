@@ -9,9 +9,9 @@ export default class LangConfig {
     static main_language: string;
     //语言包
     static config: any;
-
+    static lang_type  = 1;
     static load() {
-        const file_name = core.MD5.createInstance().hex_md5(`plat-${core.plat_id}-${core.lang}-1`);
+        const file_name = core.MD5.createInstance().hex_md5(`plat-${core.plat_id}-${core.lang}-${LangConfig.lang_type}`);
         const url = `${core.cdnUrl}/resource/language_web/${file_name}.json?` + getFileVersion();
         axios
             .get(url)

@@ -1,0 +1,34 @@
+.codeSelect {
+
+    ::v-deep .v-input input {
+        color: #FFCD43;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    ::v-deep .theme--dark.v-icon {
+        color: #8E8F91;
+    }
+
+    ::v-deep .v-label {
+        color: #FFCD43;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    ::v-deep .theme--dark {
+        .v-list {
+            background: #272828;
+            border-radius: 10px !important;
+        }
+    }
+    ::v-deep .theme--light {
+        .v-list {
+            background: #fff;
+            border-radius: 10px !important;
+        }
+    }
+    .mytest {
+        min-width: 200px !important;
+    }
+}

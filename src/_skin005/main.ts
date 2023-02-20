@@ -1,0 +1,81 @@
+import Vue from "vue";
+import App from "./App.vue";
+import { getVuetify } from "./plugins/vuetify";
+import router from "./router";
+import "@/_skin005/style/common.scss";
+import AppFacade from "./AppFacade";
+import VueLoadmore from "vuejs-loadmore";
+import WebViewBridge from "@/core/native/WebViewBridge";
+import LogUtil from "@/core/global/LogUtil";
+import Notifications from "vue-notification";
+import velocity from "velocity-animate";
+import "./icons";
+import "@/_skin005/assets/text/text.css";
+
+//注册 自定义的 组件
+import BtnYellow from "./views/widget/btn_yellow/BtnYellow.vue";
+import BtnUtil from "./views/widget/btn_util/BtnUtil.vue";
+import BtnInfo from "./views/widget/btn_info/BtnInfo.vue";
+import Overlay from "@/_skin005/views/widget/overlay/Overlay.vue";
+import LoadMore from "@/_skin005/views/widget/loadMore/LoadMore.vue";
+import ListNodata from "@/_skin005/views/widget/list_nodata/ListNodata.vue";
+import CustomTree from "@/_skin005/views/widget/custom_tree/CustomTree.vue";
+import ComDialogTitle from "@/_skin005/views/widget/com_dialog_title/ComDialogTitle.vue";
+
+import GoldInfoUtil from "@/_skin005/views/widget/gold_info_util/GoldInfoUtil.vue";
+import GlobalVar from "@/core/global/GlobalVar";
+import LangConfig from "@/core/config/LangConfig";
+
+LogUtil.init();
+core.init();
+//@ts-ignore
+core.plat_id = core.channel_id = undefined;
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
+AppFacade.inst.startup();
+
+Vue.config.productionTip = false;
+Vue.use(VueLoadmore);
+Vue.use(VueLoadmore);
+Vue.use(Notifications, { velocity });
+
+LangConfig.lang_type = 18;
+// 注册到全局
+// Vue.component("btn-yellow", BtnYellow);
+// Vue.component("btn-util", BtnUtil);
+Vue.component("btn-yellow", BtnUtil);
+Vue.component("btn-info", BtnInfo);
+Vue.component("Overlay", Overlay);
+Vue.component("LoadMore", LoadMore);
+Vue.component("ListNodata", ListNodata);
+Vue.component("custom-tree", CustomTree);
+Vue.component("com-dialog-title", ComDialogTitle);
+
+Vue.component("goldinfo_util", GoldInfoUtil);
+
+GlobalVar.skin = "skin005";
+
+const vuetify = getVuetify();
+Vue["vuetify"] = vuetify;
+Vue["router"] = router;
+//@ts-ignore
+window["vm"] = new Vue({
+    router,
+    vuetify,
+    render: (h) => h(App),
+});
+
+//native调用
+//@ts-ignore
+window["receiveNative"] = WebViewBridge.getInstance().receiveNative;
+
+window.onload = function () {
+    document.addEventListener("touchstart", function (event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    });
+
+    document.addEventListener("gesturestart", function (event) {
+        event.preventDefault();
+    });
+};

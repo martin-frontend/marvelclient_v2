@@ -1,0 +1,28 @@
+<v-sheet class="mt-8 px-3 px-md-0" style="overflow-x: hidden" color="transparent" :class="$vuetify.breakpoint.smAndDown ? 'ml-2 mr-2' : ''">
+
+    <!-- 介绍 -->
+    <template v-if="!$vuetify.breakpoint.mobile">
+        <v-row class="d-flex justify-center flex-wrap" dense>
+            <v-col cols="12" md="8">
+                <Jieshao />
+                <Guihua />
+            </v-col>
+            <v-col cols="12" md="4" >
+                <Infoline></Infoline>
+            </v-col>
+        </v-row>
+    </template>
+    <template v-else>
+        <Jieshao />
+        <Guihua />
+        <Infoline />
+    </template>
+
+    <!-- 用途 -->
+    <Yongtu class="mt-4"/>  
+    <!-- 如何获得 -->
+    <Howget class="mt-4" />  
+    <!-- 产品线路图 -->
+    <Planmap class="mt-4" />  
+
+</v-sheet>

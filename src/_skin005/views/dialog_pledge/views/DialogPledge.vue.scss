@@ -1,0 +1,12 @@
+
+.confirm-btn {
+    &::v-deep .v-btn__content {
+        color: white;
+        font-weight: 400;
+        font-size: 18px;
+    }
+}
+// .input-text{
+//     height: 36px !important;
+//     background-color: #F4F4F4;
+// }

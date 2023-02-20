@@ -28,4 +28,5 @@ export interface GameConfigVO {
     menuType:string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
     /**三方登录地址 */
     ThirdLoginUrl:string;
+    modules_switch:any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
 }

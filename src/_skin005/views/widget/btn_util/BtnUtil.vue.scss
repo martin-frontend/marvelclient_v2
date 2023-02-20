@@ -1,0 +1,228 @@
+$base_radius: 10px; //圆角
+$moble_radius:6px;
+$yellow_color_1: #fcb131;
+$yellow_color_2: #ffe64d;
+
+$hover_text: #fff;
+$nomal_text: #0f1213;
+
+$disable_text_dark: #5a5a5a;
+$disable_text_light: #a4a4a4;
+
+$sss: #3e3f41;
+
+.base_border {
+    border-radius: $base_radius;
+}
+.base_border::before {
+    border-radius: $base_radius;
+}
+.border_5 {
+    border-radius: $moble_radius;
+}
+.border_5::before {
+    border-radius: $moble_radius;
+}
+
+.helf_border {
+    border-radius: 0px $base_radius $base_radius 0px;
+}
+
+.helf_border::before {
+    border-radius: 0px $base_radius $base_radius 0px;
+}
+
+.game_border {
+    border-radius: 0px 0px $base_radius $base_radius ;
+}
+
+.game_border::before {
+    border-radius: 0px 0px $base_radius $base_radius ;
+}
+
+.btn_base::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1px;
+}
+
+.btn_base {
+    padding: 4px;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.disable_base {
+    pointer-events: none;
+}
+
+.disable_base::before {
+    pointer-events: none;
+}
+
+//------------    样式一  ----------------------
+.btn_nomal {
+    color: $nomal_text;
+}
+
+.btn_nomal:before {
+    content: "";
+    background: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.theme--dark {
+    .btn_nomal:hover:before {
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    .btn_nomal:hover {
+        color: $hover_text;
+    }
+
+    .btn_nomal_disable {
+        color: $disable_text_dark;
+    }
+
+    .btn_nomal_disable::before {
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+
+    .btn_three_disable {
+        color: $disable_text_dark;
+    }
+
+    .btn_three_disable::before {
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+}
+
+.theme--light {
+    .btn_nomal:hover:before {
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    .btn_nomal_disable {
+        color: $disable_text_light;
+    }
+
+    .btn_nomal_disable::before {
+        background: linear-gradient(90deg, #d5dce2 0%, #F4F4F4 100%);
+    }
+
+    .btn_three_disable {
+        color: $disable_text_light;
+    }
+
+    .btn_three_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+}
+
+//------------    样式一  end ----------------------
+
+
+//------------    样式二  ----------------------
+.btn_two:before {
+    content: "";
+    background: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.btn_two:hover {
+    color: $nomal_text !important;
+}
+
+.btn_two:hover:before {
+    -webkit-mask: none;
+    -webkit-mask-composite: none;
+    mask-composite: none;
+}
+
+.btn_two_disable::before {
+    -webkit-mask: none;
+    -webkit-mask-composite: none;
+    mask-composite: none;
+}
+
+.btn_two_disable {
+    color: $disable_text_light;
+}
+
+.theme--dark {
+    .btn_two_disable::before {
+        background: linear-gradient(to right, #333435, #3d3d3d);
+    }
+
+    .btn_two {
+        color: $hover_text;
+    }
+
+
+}
+
+.theme--light {
+    .btn_two_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+
+    .btn_two {
+        color: $nomal_text;
+    }
+}
+
+.test_my {
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    //background-image: linear-gradient(to right, #222, #222), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.test_my:hover
+    {
+        color: $nomal_text !important;
+        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+    }
+
+
+.theme--dark {
+    .test_my {
+        color: $hover_text;
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+
+    .test_my_disable{
+        color: $disable_text_dark;
+        background: linear-gradient(to right, #333435, #3d3d3d);
+    }
+}
+.theme--light {
+    .test_my {
+        color: $nomal_text;
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+    .test_my_disable{
+        color: $disable_text_light;
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+}
+//------------    样式二  end ----------------------
+//------------    样式三     ----------------------
+
+
+
+//------------    样式三  end ----------------------

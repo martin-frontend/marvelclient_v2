@@ -14,61 +14,61 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_game_list",
         name: "page_game_list",
-        component: () => import(/* webpackChunkName: "page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
     },
     {
         path: "/page_game_list_chess",
         name: "page_game_list_chess",
         component: () =>
             import(
-                /* webpackChunkName: "skin001_page_game_list_chess" */ "@/_skin001/views/page_game_list_chess/views/PageGameListChess.vue"
+                /* webpackChunkName: "skin005_page_game_list_chess" */ "@/_skin001/views/page_game_list_chess/views/PageGameListChess.vue"
             ),
     },
     {
         path: "/page_game_play",
         name: "page_game_play",
-        component: () => import(/* webpackChunkName: "skin001_page_game_play" */ "@/_skin005/views/page_game_play/views/PageGamePlay.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_play" */ "@/_skin005/views/page_game_play/views/PageGamePlay.vue"),
     },
     {
         path: "/page_game_soccer",
         name: "page_game_soccer",
         component: () =>
-            import(/* webpackChunkName: "skin001_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/page_introduce",
         name: "page_introduce",
-        component: () => import(/* webpackChunkName: "page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
     },
     {
         path: "/page_extension",
         name: "page_extension",
-        component: () => import(/* webpackChunkName: "page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
     },
     {
         path: "/page_mine",
         name: "page_mine",
-        component: () => import(/* webpackChunkName: "page_mine" */ "@/_skin005/views/page_mine/views/PageMine.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_mine" */ "@/_skin005/views/page_mine/views/PageMine.vue"),
     },
     {
         path: "/page_bonus",
         name: "page_bonus",
-        component: () => import(/* webpackChunkName: "page_bonus" */ "@/_skin005/views/page_bonus/views/PageBonus.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_bonus" */ "@/_skin005/views/page_bonus/views/PageBonus.vue"),
     },
     {
         path: "/page_swap",
         name: "page_swap",
-        component: () => import(/* webpackChunkName: "page_swap" */ "@/_skin005/views/page_swap/views/PageSwap.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_swap" */ "@/_skin005/views/page_swap/views/PageSwap.vue"),
     },
     {
         path: "/page_statistice_credit",
         name: "page_statistice_credit",
-        component: () => import(/* webpackChunkName: "page_swap" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
     },
     {
         path: "/page_my_info",
         name: "page_my_info",
-        component: () => import(/* webpackChunkName: "page_swap" */ "@/_skin005/views/page_my_info/views/PageMyInfo.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_my_info" */ "@/_skin005/views/page_my_info/views/PageMyInfo.vue"),
     },
 ];
 

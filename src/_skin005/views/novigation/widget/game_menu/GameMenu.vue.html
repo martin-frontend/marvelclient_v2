@@ -90,9 +90,9 @@
 
                 <v-card flat color="transparent" class="mt-4 d-flex flex-column " >
                     <template v-for="n in cardMinheight">
-                        <v-card flat color="transparent" class="d-flex flex-column flex-wrap" 
+                        <v-card flat color="transparent" class="d-flex flex-column flex-wrap" :key="n"
                             height="115">
-                            <v-sheet v-for="i in 8" color="transparent">
+                            <v-sheet v-for="i in 8" :key="n" color="transparent">
                                 <v-sheet v-if="((n-1)*8 + i -1) < data.list.length" color="transparent" class="mr-4 mt-4">
                                     <v-btn class="text-16 rounded-lg btn_stly" width="110" height="40" depressed
                                         @click="onClick(data.list[(n-1)*8 + i -1])">

@@ -6,7 +6,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogPerformanceMediator from "@/views/dialog_performance/mediator/DialogPerformanceMediator";
 import DialogPerformanceProxy from "@/views/dialog_performance/proxy/DialogPerformanceProxy";
 import dialog_performance_detail from "../../dialog_performance_detail";
-import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
+import DialogPerformanceDetailProxy from "@/_skin004/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";

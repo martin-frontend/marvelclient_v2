@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
-import DialogPerformanceDetail from "@/views/dialog_performance_detail/views/DialogPerformanceDetail";
+import DialogPerformanceDetail from "./DialogPerformanceDetail";
 import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
 
 @Component({

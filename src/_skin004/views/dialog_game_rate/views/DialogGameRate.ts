@@ -37,5 +37,13 @@ export default class DialogGameRate extends AbstractView {
         return ((1 / item.scale ) / 1000).toFixed(0) + "K";
 
     }
+
+    
+    public vndkCount(item:any)  {
+        //const count = 1 / item.scale 
+
+        return (1 / item.scale );
+
+    }
     
 }

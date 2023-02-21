@@ -21,8 +21,9 @@
                         <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
                         <div>{{LangUtil("团队总业绩")}} {{ summary.group_water }}</div>
                         <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
-                        <div v-if="selfProxy.userInfo.is_credit_user == 98">{{LangUtil("总佣金")}} {{
-                            summary.total_commission && summary.total_commission[coinName] }}</div>
+                        <div v-if="selfProxy.userInfo.is_credit_user == 98">{{LangUtil("总佣金")}} 
+                            <span class="mr-1" v-for="(val, key) of summary.total_commission">{{ key }}: {{val}}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-end mb-2">
@@ -52,7 +53,9 @@
                         </div>
                         <div class="item-auto" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div>{{LangUtil("总佣金")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.total_commission[coinName] }}</div>
+                            <div class="text-16 font-weight-regular">
+                                <span class="mr-1" v-for="(val, key) of item.total_commission">{{ key }}: {{val}}</span>
+                            </div>
                         </div>
                         <div class="d-flex align-end justify-end listitem-90">
                             <v-btn text class="text-decoration-underline pa-0 colorBlue--text font-weight-regular"
@@ -91,7 +94,9 @@
                 <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
             </div>
             <div class="colorText1--text d-flex flex-wrap listinfo mb-3" v-if="selfProxy.userInfo.is_credit_user == 98">
-                <div>{{LangUtil("总佣金")}} {{ summary.total_commission[coinName] }}</div>
+                <div>{{LangUtil("总佣金")}}
+                    <span class="mr-1" v-for="(val, key) of summary.total_commission">{{ key }}: {{val}}</span>
+                </div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y">
                 <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="#16233F"
@@ -114,7 +119,9 @@
                     </div>
                     <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                         <div class="colorText1--text">{{LangUtil("总佣金")}}</div>
-                        <div>{{ item.total_commission[coinName] }}</div>
+                        <div>
+                            <span class="mr-1" v-for="(val, key) of item.total_commission">{{ key }}: {{val}}</span>
+                        </div>
                     </div>
                     <div class="d-flex align-end justify-end listitem-90">
                         <v-btn text height="20"

@@ -1,6 +1,6 @@
 import DialogMount from "@/core/global/DialogMount";
 import getProxy from "@/core/global/getProxy";
-import DialogPerformanceDetailProxy from "@/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
+import DialogPerformanceDetailProxy from "./proxy/DialogPerformanceDetailProxy";
 import DialogPerformanceDetail from "./views/DialogPerformanceDetail.vue";
 
 function show() {

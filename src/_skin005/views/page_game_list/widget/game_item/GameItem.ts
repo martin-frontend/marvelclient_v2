@@ -9,6 +9,7 @@ export default class GameItem extends AbstractView {
 
     @Prop() item!: any;
     @Prop({ default: false }) useMenuData!: Boolean;
+    @Prop() width!:number;
 
     getIcon(item: any) {
         if (this.useMenuData) {

@@ -36,6 +36,7 @@
 
         <template v-if=" !isUseMenuData">
             <v-card
+                ref="pcItemBox"
                 class="d-flex flex-wrap mb-2 mt-4"
                 :class="$vuetify.breakpoint.xsOnly ? 'justify-center' : 'justify-start'"
                 color="transparent"
@@ -45,14 +46,14 @@
                 <template v-if="!isUseMenuData">
                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mx-0">
                         <v-lazy>
-                            <GameItem :item="item" />
+                            <GameItem :item="item" :width="itemWidth"/>
                         </v-lazy>
                     </div>
                 </template>
                 <template v-else>
                     <div v-for="(item, key) of menudata" :key="key" class="mx-0">
                         <v-lazy>
-                            <GameItem :item="item" :useMenuData="true" />
+                            <GameItem :item="item" :useMenuData="true" :width="itemWidth"/>
                         </v-lazy>
                     </div>
                 </template>

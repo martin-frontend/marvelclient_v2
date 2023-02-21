@@ -16,15 +16,35 @@ export default class PageGameList extends AbstractView {
 
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
+
+    itemWidth = 181;
+
     constructor() {
         super(PageGameListMediator);
+    }
+
+    mounted(){
+        this.$nextTick(()=>{
+            this.onWatchWidth();
+        })
+    }
+
+    @Watch("$vuetify.breakpoint.width")
+    onWatchWidth() {
+        const pcItemBox = this.$refs.pcItemBox;
+        if (pcItemBox) {
+            //@ts-ignore
+            const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
+            console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / 181));
+            this.itemWidth = boxWidth / Math.round(boxWidth / 181);
+            console.warn(">>>>>itemWidth: ", this.itemWidth);
+        }
     }
 
     //是否为新的 需要 菜单栏
     public get isNeetMenu(): boolean {
         return true;
         //return GameConfig.config.menuType == "1";
-        
     }
     //是否需要显示 厂商 列表
     public get isNeedVendor(): boolean {
@@ -32,10 +52,8 @@ export default class PageGameList extends AbstractView {
     }
     //体育/真人/彩票 使用 game/menu里面的数据
     public get isUseMenuData(): boolean {
-        if (!this.isNeetMenu)
-            return false;
-        if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64)
-            return true;
+        if (!this.isNeetMenu) return false;
+        if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
 
         return false;
     }
@@ -76,26 +94,20 @@ export default class PageGameList extends AbstractView {
             return "";
         }
         return LangUtil(this.curTotleData.vendor_type_name);
-
     }
 
     public get img_width(): number {
-
         if (this.listQuery.vendor_type == 4) {
             return 110;
-        }
-        else if (this.listQuery.vendor_type == 32) {
+        } else if (this.listQuery.vendor_type == 32) {
             return 110;
-        }
-        else if (this.listQuery.vendor_type == 64) {
+        } else if (this.listQuery.vendor_type == 64) {
             return 190;
-        }
-        else {
+        } else {
             return 110;
         }
         // }
     }
-
 
     //获取当前的菜单的数据
     getCurMenuData(isVendor: boolean = false) {
@@ -111,7 +123,7 @@ export default class PageGameList extends AbstractView {
     getIcon(item: any) {
         //return require(`@/_skin004/assets/2211.png`);
         if (!item || !item.vendor_icon) {
-            return ""
+            return "";
         }
         return item.vendor_icon;
     }
@@ -137,16 +149,14 @@ export default class PageGameList extends AbstractView {
     getItemCategory(item: any) {
         if (item.category) {
             return item.category;
-        }
-        else {
+        } else {
             return item.vendor_type;
         }
     }
     getItemCategoryName(item: any) {
         if (item.category_name) {
             return item.category_name;
-        }
-        else {
+        } else {
             return item.vendor_type_name;
         }
     }

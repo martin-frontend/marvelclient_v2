@@ -1,8 +1,8 @@
-<v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+<v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}" :width="width-15"
     :class="getBoxClass()" class="rounded-lg" flat>
     <v-lazy>
         <v-sheet v-if="item" color="transparent" class="game-icon1">
-            <v-img v-if="item" class="game-icon1 cursor-pointer rounded-lg" :src="getIcon(item)">
+            <v-img v-if="item" class="game-icon1 cursor-pointer rounded-lg" min-height="100" :src="getIcon(item)">
                 <!-- 手机显示 -->
                 <template v-if="$vuetify.breakpoint.xsOnly">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain

@@ -2,11 +2,14 @@ import Vue from "vue";
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
 
     public onRegister(): void {
+        console.warn("GamePlatConfig", GamePlatConfig.config);
+
         this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
     }
 
@@ -55,15 +58,14 @@ export default class GameProxy extends AbstractProxy {
         this.loading = true;
         this.currGame = data;
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
-        const form:any = {
+        const form: any = {
             user_id: core.user_id,
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
         };
-        if(GlobalVar.skin)
-            form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
+        if (GlobalVar.skin) form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
         this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
     }
     /**直接进入体育页面，skin001专用 */

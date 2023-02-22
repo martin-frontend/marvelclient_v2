@@ -37,6 +37,7 @@
             <template v-for="(item, key) of selfProxy.userInfo.gold_info">
                 <v-sheet class="d-flex align-center pl-3 rounded cursor-pointer py-1 listitem"
                     :class="{'select-shadow': gameProxy.coin_name_unique == key}" color="transparent" width="100%"
+                    v-if="GamePlatConfig.config.plat_coins[key].is_display == 1"
                     :key="key" @click="onItemClick(key)">
                     <div :class="key == 'CNY'? '': ''">
                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="40" max-height="40"></v-img>

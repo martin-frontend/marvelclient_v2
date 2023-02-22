@@ -63,6 +63,7 @@
                     width="100%"
                     :key="key"
                     @click="onItemClick(key)"
+                    v-if="GamePlatConfig.config.plat_coins[key].is_display == 1"
                 >
                     <div :class="key == 'CNY'? 'CNY': ''"><v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="40" max-height="40"></v-img></div>
                     <div class="ml-3">
@@ -70,7 +71,6 @@
                         <div>{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div>
                         <div v-if="key == 'CNY'" class="colorGoldBg--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
                     </div>
-
                     <CoinTip v-if="gameProxy.coin_name_unique == key"/>
                 </v-sheet>
             </template>

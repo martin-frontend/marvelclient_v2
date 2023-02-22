@@ -29,6 +29,7 @@
                     color="transparent"
                     v-for="(item, index) of pageData.list"
                     :key="index"
+                    v-if="GamePlatConfig.config.plat_coins[item.coin_name_unique].is_display == 1"
                 >
                     <v-row no-gutters class="colorTextNormal3--text">
                         <v-col cols="4" class="d-flex justify-left align-center">
@@ -71,6 +72,7 @@
                     color="transparent"
                     v-for="(item, index) of pageData.list"
                     :key="index"
+                    v-if="GamePlatConfig.config.plat_coins[item.coin_name_unique].is_display == 1"
                 >
                     <v-row no-gutters class="white--text">
                         <v-col cols="4" class="d-flex justify-left align-center">

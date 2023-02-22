@@ -43,7 +43,7 @@
                     :key="key"
                     @click="onItemClick(key)"
                     color="transparent"
-
+                    v-if="GamePlatConfig.config.plat_coins[key].is_display == 1"
                 >
                     <div >
                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>

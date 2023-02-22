@@ -1,4 +1,5 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
 import router from "@/router";
@@ -64,9 +65,26 @@ export default class SelfProxy extends AbstractProxy {
 
         if (value.gold_info) {
             const gameProxy: GameProxy = getProxy(GameProxy);
-            const keys = Object.keys(value.gold_info);
-            if (gameProxy.coin_name_unique == "") gameProxy.coin_name_unique = keys[0];
+            const coin = this.defaultCoin(gameProxy.coin_name_unique);
+            gameProxy.setCoin(coin);
         }
+    }
+
+    defaultCoin(coin: string): string {
+        const { plat_coins } = GamePlatConfig.config;
+
+        if(plat_coins[coin]?.is_display == 1) {
+            return coin;
+        }
+
+        const coinKeys = Object.keys(plat_coins);
+        let result = "";
+        coinKeys.forEach((key: string) => {
+            if(plat_coins[key].is_display == 1) {
+                return result = key;
+            }
+        })
+        return result;
     }
 
     loginout() {

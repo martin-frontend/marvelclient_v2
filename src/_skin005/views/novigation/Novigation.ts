@@ -33,46 +33,45 @@ export default class Novigation extends AbstractView {
         //this.$nextTick(()=>{
         this.resetPageSize();
         //})
-
     }
     //基础菜单
     get menu() {
-        const newlist=<any>[];
+        const newlist = <any>[];
         const list = {
-            0:{ icon: "coin", name: "币种介绍", id: 5, path: "/page_introduce" },
-            1:{ icon: "chips", name: "质押分红", id: 1, path: "/page_bonus" },
-            2:{ icon: "extension", name: "推广赚钱", id: 6, path: "/page_extension" },
-            3:{ icon: "water", name: "游戏返水", id: 2, path: "/page_mine" },
-            4:{ icon: "swap", name: "SWAP交易", id: 3, path: "/page_swap" },
-            5:{ icon: "activity", name: "精彩活动", id: 4, path: "" },
+            0: { icon: "coin", name: "币种介绍", id: 5, path: "/page_introduce" },
+            1: { icon: "chips", name: "质押分红", id: 1, path: "/page_bonus" },
+            2: { icon: "extension", name: "推广赚钱", id: 6, path: "/page_extension" },
+            3: { icon: "water", name: "游戏返水", id: 2, path: "/page_mine" },
+            4: { icon: "swap", name: "SWAP交易", id: 3, path: "/page_swap" },
+            5: { icon: "activity", name: "精彩活动", id: 4, path: "" },
         };
-    //币种介绍
-    if (ModulesHelper.IsShow_CoinIntroduce()) {
-        newlist.push(list[0]);
-    }
-    //质押分红
-    if (ModulesHelper.IsShow_PledgeDividend()) {
-        newlist.push(list[1]);
-    }
-    //推广赚钱
-    if (ModulesHelper.IsShow_Promotion()) {
-        newlist.push(list[2]);
-    }
-    //游戏返水
-    if (ModulesHelper.IsShow_GameWater()) {
-        newlist.push(list[3]);
-    }
-    //SWAP交易
-    if (ModulesHelper.IsShow_Swap()) {
-        newlist.push(list[4]);
-    }
-    //精彩活动
-    if (ModulesHelper.IsShow_ActivityDisplay()) {
-        newlist.push(list[5]);
-    }
+        //币种介绍
+        if (ModulesHelper.IsShow_CoinIntroduce()) {
+            newlist.push(list[0]);
+        }
+        //质押分红
+        if (ModulesHelper.IsShow_PledgeDividend()) {
+            newlist.push(list[1]);
+        }
+        //推广赚钱
+        if (ModulesHelper.IsShow_Promotion()) {
+            newlist.push(list[2]);
+        }
+        //游戏返水
+        if (ModulesHelper.IsShow_GameWater()) {
+            newlist.push(list[3]);
+        }
+        //SWAP交易
+        if (ModulesHelper.IsShow_Swap()) {
+            newlist.push(list[4]);
+        }
+        //精彩活动
+        if (ModulesHelper.IsShow_ActivityDisplay()) {
+            newlist.push(list[5]);
+        }
 
-    return newlist;
-};
+        return newlist;
+    }
     //抽屉状态
     mini = false;
     bTween = false;
@@ -85,7 +84,6 @@ export default class Novigation extends AbstractView {
         //return GameConfig.config.menuType == "1";
     }
 
-
     public get categoryActive(): number {
         return this.myProxy.categoryActive;
     }
@@ -93,9 +91,7 @@ export default class Novigation extends AbstractView {
     public get lobbyMenuIndex(): core.PlatLobbyIndexVO[] {
         if (this.isNeetMenu) {
             return this.gameProxy.lobbyMenuIndex;
-        }
-        else
-            return this.gameProxy.lobbyIndex;
+        } else return this.gameProxy.lobbyIndex;
     }
 
     @Watch("$route")
@@ -122,33 +118,36 @@ export default class Novigation extends AbstractView {
     }
     Change() {
         if (this.bTween) return;
-        //this.mini = !this.mini;
-        this.bTween = true;
-        gsap.to(
-            ".navbox",
-            {
+        if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)) {
+            this.$nextTick(() => {
+                const navbox = document.getElementsByClassName("navbox");
+                //@ts-ignore
+                if (navbox[0]) navbox[0].style.minWidth = (this.mini ? 60 : 188) + "px";
+                const navscroll = document.getElementsByClassName("navscroll");
+                //@ts-ignore
+                if (navscroll[0]) navscroll[0].style.width = (this.mini ? 60 : 188) + "px";
+            });
+        } else {
+            this.bTween = true;
+            gsap.to(".navbox", {
                 minWidth: this.mini ? 60 : 188,
                 duration: 0.3,
                 ease: Linear.easeNone,
                 onComplete: () => {
                     this.bTween = false;
                 },
-            }
-        );
-        gsap.to(
-            ".navscroll",
-            {
+            });
+            gsap.to(".navscroll", {
                 width: this.mini ? 60 : 188,
                 duration: 0.3,
                 ease: Linear.easeNone,
                 onComplete: () => {
                     this.bTween = false;
                 },
-            }
-        );
+            });
+        }
 
         this.resetPageSize();
-
     }
 
     resetPageSize() {
@@ -163,12 +162,10 @@ export default class Novigation extends AbstractView {
             if (this.mini) {
                 item.classList.remove("mainpage");
                 item.classList.add("mainpage_mini");
-            }
-            else {
+            } else {
                 item.classList.remove("mainpage_mini");
                 item.classList.add("mainpage");
             }
-
         }
 
         const header_pc = document.getElementById("pc_header");
@@ -176,8 +173,7 @@ export default class Novigation extends AbstractView {
             if (this.mini) {
                 header_pc.classList.remove("head_test");
                 header_pc.classList.add("head_test_mini");
-            }
-            else {
+            } else {
                 header_pc.classList.remove("head_test_mini");
                 header_pc.classList.add("head_test");
             }
@@ -192,16 +188,14 @@ export default class Novigation extends AbstractView {
     getItemCategory(item: any) {
         if (item.category) {
             return item.category;
-        }
-        else {
+        } else {
             return item.vendor_type;
         }
     }
     getItemCategoryName(item: any) {
         if (item.category_name) {
             return item.category_name;
-        }
-        else {
+        } else {
             return item.vendor_type_name;
         }
     }
@@ -268,11 +262,9 @@ export default class Novigation extends AbstractView {
     isShowActive(item: any) {
         let isShow = false;
 
-        if (this.routerPath == '/page_game_list' && this.categoryActive == this.getItemCategory(item))
-            isShow = true;
+        if (this.routerPath == "/page_game_list" && this.categoryActive == this.getItemCategory(item)) isShow = true;
 
-        if (this.myProxy.isMenuOpen[item.vendor_type] && this.myProxy.isMenuOpen[item.vendor_type] == true)
-            isShow = true;
+        if (this.myProxy.isMenuOpen[item.vendor_type] && this.myProxy.isMenuOpen[item.vendor_type] == true) isShow = true;
 
         return isShow;
     }
@@ -280,13 +272,10 @@ export default class Novigation extends AbstractView {
     getChannelID() {
         return core.channel_id;
     }
-    onLightChange()
-    {
+    onLightChange() {
         console.log("明暗切换了");
-        this.$nextTick( ()=>{
+        this.$nextTick(() => {
             this.resetPageSize();
         });
-        
     }
-
 }

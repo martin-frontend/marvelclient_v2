@@ -13,6 +13,7 @@ import PageBlur from "./core/PageBlur";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
+    PageBlur = PageBlur;
 
     myProxy: AppProxy = this.getProxy(AppProxy);
 

@@ -2,12 +2,12 @@
     <v-app class="d-flex app">
         <!-- pc版的显示 -->
         <template v-if="!$vuetify.breakpoint.mobile">
-            <v-sheet id="page" class="d-flex " color="transparent">
+            <v-sheet id="page" class="d-flex" color="transparent">
                 <Novigation />
 
                 <v-sheet color="transparent" class="d-flex justify-center" width="100%">
                     <Header id="pc_header" class="head_test" />
-                    <v-sheet id="mainpage" color="transparent" class="mainpage ">
+                    <v-sheet id="mainpage" color="transparent" class="mainpage">
                         <v-main id="router_page" class="router_test">
                             <router-view />
                             <Footer v-if="!$vuetify.breakpoint.mobile" />
@@ -19,20 +19,18 @@
         <!-- 手机版 -->
         <template v-else>
             <div id="page">
-                <Header v-if="isShowHeader"/>
+                <Header v-if="isShowHeader" />
                 <v-main id="mainpage" color="transparent" class="overflow-x-hidden">
-
                     <div id="router_page" class="overflow-x-hidden">
                         <router-view />
                     </div>
                 </v-main>
-                <MobileMenu v-if="$route.path != '/page_game_play'"/>
+                <MobileMenu v-if="$route.path != '/page_game_play'" />
             </div>
         </template>
         <!-- 用户面板 -->
         <template v-if="$vuetify.breakpoint.mobile">
-            <v-navigation-drawer v-if="isShowHeader" v-model="myProxy.bshowNovigationPanel" left
-                temporary width="188" app color="bgBanner">
+            <v-navigation-drawer v-if="isShowHeader" v-model="myProxy.bshowNovigationPanel" left temporary width="188" app color="bgBanner">
                 <Novigation />
             </v-navigation-drawer>
 
@@ -62,6 +60,8 @@
                 </btn-yellow>
             </v-btn>
         </template>
+
+        <div v-show="PageBlur.isBlur" class="blur-mask" :class="{'blur-mask-bottom': PageBlur.bottom, 'blur-mask-right': PageBlur.right}"></div>
     </v-app>
 </template>
 
@@ -86,7 +86,7 @@ import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
         Orientation,
     },
 })
-export default class extends App { }
+export default class extends App {}
 </script>
 
 <style lang="scss" scoped>
@@ -111,7 +111,6 @@ export default class extends App { }
     right: 25px;
     z-index: 100;
 }
-
 
 //以下都是在代码中调用的样式 Novigation.ts
 .mainpage {
@@ -139,5 +138,23 @@ export default class extends App { }
 .router_test {
     position: relative;
     top: 65px;
+}
+
+.blur-mask {
+    pointer-events: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 11;
+}
+.blur-mask-right {
+    z-index: 9 !important;
+}
+.blur-mask-bottom {
+    z-index: 11;
+    top: 74px;
 }
 </style>

@@ -1,15 +1,15 @@
-<v-footer class="justify-space-around pa-0 foot_bg" height="66"  app>
+<v-footer class="justify-space-around pa-0 foot_bg" height="60"  app>
     <v-sheet
-        class="d-flex flex-column align-center cursor-pointer mt-2 rounded-b "
+        class="d-flex flex-column align-center cursor-pointer  rounded-b "
         width="60"
-        height="75"
+        height="70"
         v-for="(item, index) of menuList"
         :key="index"
         @click="onItemClick(item)"
         :class="routerPath == item.path ? 'active ':' nomal'"
         color="transparent"
     >
-        <svg-icon :icon="item.icon" class="text-20 "></svg-icon>
-        <div class="text-12 mt-1" >{{item.name}}</div>
+        <svg-icon :icon="item.icon" class="text-18 mt-2"></svg-icon>
+        <div class="text-12 " >{{item.name}}</div>
     </v-sheet>
 </v-footer>

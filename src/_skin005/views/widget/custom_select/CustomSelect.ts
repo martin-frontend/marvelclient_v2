@@ -32,7 +32,10 @@ export default class CustomSelect extends AbstractView {
     public get inputClass(): string {
         // let str = "";
         // str = "select-text";
-
-        return "select-text";
+        if (this.$vuetify.breakpoint.xsOnly)
+        {
+            return "select-text";
+        }
+        return "select-text select_bg-text";
     }
 }

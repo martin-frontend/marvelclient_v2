@@ -214,7 +214,7 @@
     </v-card>
 
     <!-- 手机版 -->
-    <v-card v-else class="rounded10 " color="bgColor">
+    <v-card v-else class=" " color="bgColor">
 
             <com-dialog-title title="安全中心" @onClose="onClose" />
 
@@ -336,7 +336,7 @@
                         {{LangUtil("绑定")}}
                     </v-btn> -->
 
-                    <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isCheckFormMobile"
+                    <btn-yellow class="text-14 " width="100%" height="36" :disabled="!isCheckFormMobile"
                     @click.native="onBindMobile">{{LangUtil("绑定")}}</btn-yellow>
                 </div>
             </v-sheet>
@@ -370,7 +370,7 @@
                         {{LangUtil("绑定")}}
                     </v-btn> -->
 
-                    <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isChckFormEmail"
+                    <btn-yellow class="text-14 " width="100%" height="36" :disabled="!isChckFormEmail"
                     @click.native="onBindEmail">{{LangUtil("绑定")}}</btn-yellow>
                 </div>
             </v-sheet>
@@ -397,7 +397,7 @@
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
                     {{LangUtil("确定修改")}}
                 </v-btn> -->
-                <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isCheckFormPassword"
+                <btn-yellow class="text-14 " width="100%" height="36" :disabled="!isCheckFormPassword"
                 @click.native="onChangePassword">{{LangUtil("确定修改")}}</btn-yellow>
             </v-sheet>
         </v-card>

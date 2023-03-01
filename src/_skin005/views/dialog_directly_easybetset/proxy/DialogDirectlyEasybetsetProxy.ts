@@ -11,6 +11,7 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         vendor_config: {
             market_type_config: <any>{},
         },
+        gold_info:<any>{},
     };
     isShowGropSet: boolean = true; //是否将消息转为 消息组， 整个组的 投注设置
     private compareData = <any>{}; //比较的数据
@@ -110,15 +111,32 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         this.compareData = JSON.parse(JSON.stringify(destArr)); //给比较的对象 赋值， 主要用于检测 是否有修改过
     }
     setDataGrop() {}
+
+    //设置当前显示的币种
+    setCurShowCoinNameUnique()
+    {
+        //查找当前用户身上 哪些币种 有余额
+        const keys = Object.keys( this.playerInfo.gold_info);
+        
+        for (let index = 0; index < keys.length; index++) {
+            const element = this.playerInfo.gold_info[keys[index]];
+            if ( element && element.sum_money && element.sum_money > 0)
+            {
+                this.formData.coin_name_unique = keys[index];
+                return;
+            }
+        }
+    }
     setData(data: any) {
         this.pageData.loading = false;
-
         Object.assign(this.playerInfo, data);
+        this.playerInfo.gold_info =  JSON.parse( JSON.stringify(data.gold_info));
         //设置预设金币种类的值
         const keys = Object.keys(this.playerInfo.vendor_config.market_type_config);
 
         if (!this.formData.coin_name_unique || keys.indexOf(this.formData.coin_name_unique) == -1) {
             this.formData.coin_name_unique = keys[0];
+            this.setCurShowCoinNameUnique();
         }
         //this.formData.coin_name_unique = keys[0];
         //Object.assign(this.formData.market_type_config, this.playerInfo.vendor_config.market_type_config);

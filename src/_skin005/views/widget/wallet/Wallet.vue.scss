@@ -1,8 +1,8 @@
 @import "@/style/params.scss";
-::v-deep.v-menu__content {
+::v-deep .v-menu__content {
     border-radius: 10px !important;
-    width: 180px !important;
-    min-width: 0 !important;
+    //min-width: 180px !important;
+    //min-width: 0 !important;
 }
 .btn-topup {
     position: absolute !important;
@@ -71,6 +71,7 @@
 .menu {
     overflow: unset;
     contain: unset;
+    z-index: 12 !important;
 }
 
 // .CNY{

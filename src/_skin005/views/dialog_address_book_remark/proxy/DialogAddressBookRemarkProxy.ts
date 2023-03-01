@@ -1,4 +1,5 @@
 import { objectRemoveNull } from "@/core/global/Functions";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
     static NAME = "DialogAddressBookRemarkProxy";
 
@@ -28,6 +29,7 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
 
     hide() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 
     setRemark(data: any) {

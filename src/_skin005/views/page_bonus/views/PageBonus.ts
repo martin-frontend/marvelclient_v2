@@ -83,6 +83,8 @@ export default class PageBonus extends AbstractView {
         this.timer = setInterval(() => {
             this.countdown();
         }, 1000);
+
+        PanelUtil.showAppLoading(false);
     }
 
     destroyed() {

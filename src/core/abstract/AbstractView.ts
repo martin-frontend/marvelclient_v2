@@ -2,7 +2,7 @@ import { Vue } from "vue-property-decorator";
 import { js_utils } from "custer-js-utils";
 
 export default class AbstractView extends Vue {
-    private facade = puremvc.Facade.getInstance();
+    protected facade = puremvc.Facade.getInstance();
     private mediatorName!: string;
     private eventMaps: any = {};
 

@@ -11,6 +11,28 @@
         border-radius: 10px !important;
     }
 
+    .v-pagination {
+        li {
+            .v-pagination__item {
+                border: none !important;
+                width: 32px !important;
+                height: 32px !important;
+                box-shadow: none !important;
+                border-radius:10px;
+            }
+            .v-pagination__item--active,
+            .v-pagination__navigation {
+                box-shadow: none ;
+                background-color: transparent !important;
+                //color: #fff !important;
+            }
+            // .v-pagination__item--active{
+            //     color: #fff !important;
+            //     background-color:#febe00 !important;
+            // }
+        }
+    }
+
     pre {
         font-family: "GOTHAM_BOLD", "GOTHAM_BOOK";
     }
@@ -25,7 +47,7 @@
         }
     }
     .gradient-bg_mob {
-        height: 64px;
+        min-height: 64px;
         background-color: transparent !important;
         background-image: none !important;
         text-align: center;
@@ -33,6 +55,14 @@
             position: absolute;
             left: 10px;
         }
+    }
+    .regular_text {
+        >* {
+            font-family: 'GOTHAM_BOOK' !important;
+        }
+    }
+    .bold_text{
+        font-family: 'GOTHAM_BOLD' !important;
     }
     .back_btn_icon {
         transform: rotateZ(180deg);
@@ -69,20 +99,40 @@
             background-color: #2f3030 !important;
             border-radius: 10px !important;
         }
-    }
 
+        .v-pagination {
+            li {
+                .v-pagination__item {
+                    color: #8e8f91 !important;
+                    background-color: #2f3030 !important;
+                }
+                .v-pagination__item--active,
+                .v-pagination__navigation {
+                    color: #8e8f91 !important;
+                }
+                .v-pagination__item--active{
+                    color: #fff !important;
+                    background-color:#febe00 !important;
+                }
+            }
+        }
+    }
+    .v-dialog
+    {
+        box-shadow: none !important;
+    }
     .theme--light {
         .v-btn-toggle--group {
             .v-btn {
-                border: solid 2px #5a5a5a !important;
+                border: solid 1px #d6dde3 !important;
                 color: #8e8f91 !important;
             }
             .v-btn::before {
-                background-color: #fff !important;
+                background-color: #ffffff !important;
                 opacity: 1;
             }
             .v-btn.v-btn--active {
-                border: solid 2px #ffcd43 !important;
+                border: solid 1px #ffcd43 !important;
                 color: #0f1213 !important;
             }
         }
@@ -103,6 +153,25 @@
         .select-text {
             background-color: #fff !important;
             border-radius: 10px !important;
+        }
+        .select_bg-text{
+            background-color: #f4f4f4 !important;
+        }
+        .v-pagination {
+            li {
+                .v-pagination__item {
+                    color: #0F1213 ;
+                    background: #f4f4f4 ;
+                }
+                .v-pagination__item--active,
+                .v-pagination__navigation {
+                    color: #8e8f91 !important;
+                }
+                .v-pagination__item--active{
+                    color: #fff !important;
+                    background-color:#febe00 !important;
+                }
+            }
         }
     }
 
@@ -145,5 +214,24 @@
         width: 100%;
         //background-color: #F4F4F4;
     }
+
+    .v-navigation-drawer--bottom.v-navigation-drawer--is-mobile{
+        max-height: 80% !important;
+    }
+    .v-input--switch .v-input--switch__track{
+        color: transparent !important;
+        border: solid 1px #d6dce3 !important;
+    }
+    .v-input--switch .v-input--switch__thumb{
+        color: #a4a4a4 ;
+    }
+    .v-input--switch--inset .v-input--switch__track{
+        opacity: 1;
+    }
+
+    .element::-webkit-scrollbar { width: 0 !important }
+    .element { -ms-overflow-style: none; }
+    .element { overflow: -moz-scrollbars-none; }
+    
     //通用外框设置
 }

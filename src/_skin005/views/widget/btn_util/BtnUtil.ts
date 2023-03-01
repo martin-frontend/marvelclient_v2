@@ -8,7 +8,7 @@ export default class BtnUtil extends AbstractView {
     @Prop({ default: "fit-content" }) width!: number | string;
     @Prop({ default: "auto" }) height!: number | string;
     @Prop({ default: 90 }) min_width!: number;
-    @Prop({ default: 3 }) btn_type!: number | string;
+    @Prop({ default: 9 }) btn_type!: number | string;
     @Prop({ default: false }) disabled!: boolean;
     
     public get cur_btn_class() : string {
@@ -26,7 +26,8 @@ export default class BtnUtil extends AbstractView {
         }
         else if (this.btn_type == "four" || this.btn_type == 4)//样式四  黄色渐变 黑白一样 禁用 单色   半角 
         {
-            return "btn_base helf_border btn_nomal ";
+            //return "btn_base helf_border btn_nomal ";
+            return "btn_base helf_border btn_helf_new ";
         }
         else if (this.btn_type == "five" || this.btn_type == 5)//样式五  渐变边框 透明底  禁用 单色
         {
@@ -39,6 +40,14 @@ export default class BtnUtil extends AbstractView {
         else if (this.btn_type == "game_btn" || this.btn_type == 7)//样式七 首页 游戏开始按钮
         {
             return "btn_base game_border btn_nomal";
+        }
+        else if (this.btn_type == "ebet_btn" || this.btn_type == 8)//样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
+        {
+            return "btn_base base_border buttton_yellow";
+        }
+        else if (this.btn_type == "btn_9" || this.btn_type == 9)//样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
+        {
+            return "btn_base base_border btn_9";
         }
         return "";
     }
@@ -60,7 +69,7 @@ export default class BtnUtil extends AbstractView {
         }
         else if (this.btn_type == "four" || this.btn_type == 4)//样式四  黄色渐变 黑白一样 禁用 单色   半角 
         {
-            str = "disable_base btn_three_disable";
+            str = "disable_base btn_helf_new_disable";
         }
         else if (this.btn_type == "five" || this.btn_type == 5)
         {
@@ -74,7 +83,14 @@ export default class BtnUtil extends AbstractView {
         {
             str = "disable_base btn_nomal_disable";
         }
-
+        else if (this.btn_type == "ebet_btn" || this.btn_type == 8)//样式七 首页 游戏开始按钮
+        {
+            str = "disable_base btn_nomal_disable";
+        }
+        else if (this.btn_type == "btn_9" || this.btn_type == 9)//样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
+        {
+            str = "disable_base btn_9_disable";
+        }
         return this.cur_btn_class + " " + str;
         
     }

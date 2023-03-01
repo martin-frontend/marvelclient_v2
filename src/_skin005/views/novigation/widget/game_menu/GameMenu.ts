@@ -55,7 +55,7 @@ export default class GameMenu extends AbstractView {
 
 
     public get text_detail(): string {
-        const str = this.data.vendor_type_name + "选择描述信息";
+        const str = this.data.vendor_type + "选择描述信息";
         return LangUtil(str);
     }
 

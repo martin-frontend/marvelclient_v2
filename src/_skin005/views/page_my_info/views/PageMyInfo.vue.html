@@ -68,7 +68,7 @@
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex justify-space-between align-center mt-2">
-            <v-sheet class="" color="transparent" width="120">
+            <v-sheet class="" color="transparent" width="150">
                 <v-menu content-class="menu" offset-y nudge-bottom="2">
                     <template v-slot:activator="{ on, attrs,value }">
                         <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
@@ -120,10 +120,10 @@
                 </v-menu>
             </v-sheet>
             <v-sheet color="transparent" class="d-flex">
-                <btn-yellow class="text-12 ml-2 mr-4" min_width="60" height="30" :btn_type="2"
+                <btn-yellow v-if="GlobalVar.instance.isShowRecharge" class="text-12 ml-2 mr-2" min_width="60" height="30" :btn_type="2"
                     @click.native="onRechargeBtnClick">{{LangUtil("充值")}}</btn-yellow>
 
-                <btn-yellow class="text-12" min_width="60" height="30" :btn_type="2"
+                <btn-yellow v-if="GlobalVar.instance.isShowExchange" class="text-12" min_width="60" height="30" :btn_type="2"
                     @click.native="onExchargeBtnClick">{{LangUtil("提现")}}</btn-yellow>
             </v-sheet>
         </v-sheet>

@@ -12,7 +12,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     gameProxy :GameProxy = getProxy(GameProxy);
     GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
-        this.api_vendor_simple();
+        //this.api_vendor_simple();
 
     }
 
@@ -132,7 +132,22 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             page_size: 20,
             is_group: 1,
         });
-
+        Object.assign(this.pageData.pageInfo, {
+            pageCurrent: 1,
+            pageCount: 1,
+            pageSize: 20,
+            pageTotal: 9,
+        });
+        this.pageData.list = <any>[];
+        this.pageData.total_bet_gold =  "";
+        this.pageData.total_water=  "";
+        this.pageData.total_valid_bet_gold=  "";
+        this.pageData.total_win_gold=  "";
+        this.pageData.total_bet_gold_coin=  "";
+        this.pageData.total_water_coin=  "";
+        this.pageData.total_valid_bet_gold_coin=  "";
+        this.pageData.total_win_gold_coin=  "";
+        this.pageData.total_backwater_coin=  "";
     }
     clearFilterInfo() {
         this.pageData.filterBtnInfo = {};

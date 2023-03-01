@@ -2,7 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GameConfig from "@/core/config/GameConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { dateFormat, getTodayOffset } from "@/core/global/Functions";
+import { changeDateShow, dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
 import { Watch, Component } from "vue-property-decorator";
@@ -12,12 +12,16 @@ import DialogBetRecordProxy from "../proxy/DialogBetRecordProxy";
 import CopyUtil from "@/core/global/CopyUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
+import { scrollUtil_div } from "@/core/global/ScrollUtil";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
     GameConfig = GameConfig;
     commonIcon = Assets.commonIcon;
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
     myProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
@@ -45,6 +49,66 @@ export default class DialogBetRecord extends AbstractView {
             },
         ],
     };
+    mounted() {
+
+        setTimeout(() => {
+           this.setDatePiker();
+        }, 400);
+        this.myProxy.api_vendor_simple();
+    }
+    @Watch("pageData.bShowOptions")
+    watchShowOptions() {
+        console.log("-----创建 ----");
+        if (this.pageData.bShowOptions) {
+            const keyNode = document.querySelector(".el-date-editor");
+            if (!keyNode) return;
+            console.log("-----创建 --22222--");
+            //for (let index = 0; index < keyNode.length; index++) {
+            const element = keyNode;
+
+            const iNode = document.createElement("i");
+            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+            element.appendChild(iNode);
+
+            iNode.style.position = "absolute";
+            iNode.style.top = "13px";
+            iNode.style.right = "12px";
+            iNode.style.color = "#f00";
+            iNode.style.pointerEvents = "none";
+        }
+    }
+
+    setDatePiker() {
+        console.log("-----创建 ----");
+        //const keyNode = document.querySelector(".el-date-editor");
+
+        // const refs = this.$refs.options;
+        // if (!refs) {
+        //     return;
+        // }
+        // //@ts-ignore
+        // const test = refs.querySelector(".el-date-editor");
+        // console.log("ssssss", test);
+        // return;
+
+        const keyNode = document.querySelectorAll(".el-date-editor");
+        if (!keyNode) return;
+        console.log("-----创建 --22222--");
+        for (let index = 0; index < keyNode.length; index++) {
+        const element = keyNode[index];
+
+        const iNode = document.createElement("i");
+        iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+        element.appendChild(iNode);
+
+        iNode.style.position = "absolute";
+        iNode.style.top = "12px";
+        iNode.style.right = "12px";
+        iNode.style.color = "#8E8F91";
+        iNode.style.pointerEvents = "none";
+
+        }
+    }
 
     public get isOtherUser(): any {
 
@@ -139,7 +203,7 @@ export default class DialogBetRecord extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
             //this.listOptions.moneySelect = 0;
-            this.myProxy.resetQuery();
+            //this.myProxy.resetQuery();
 
             const start_date = this.pageData.listQuery.start_date ? this.pageData.listQuery.start_date : getTodayOffset();
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
@@ -148,6 +212,8 @@ export default class DialogBetRecord extends AbstractView {
         }
         else {
             this.myProxy.clearFilterInfo();
+            this.myProxy.resetQuery();
+
         }
     }
     @Watch("$vuetify.breakpoint.mobile")
@@ -223,6 +289,12 @@ export default class DialogBetRecord extends AbstractView {
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.getApi();
+        if (this.$refs.scrollObj)
+        {
+            //@ts-ignore
+            scrollUtil_div(this.$refs.scrollObj.$el, 0);
+        }
+        
     }
 
     onRefresh(done: any) {
@@ -244,26 +316,12 @@ export default class DialogBetRecord extends AbstractView {
         //dialog_order.show(data);
         PanelUtil.openpanel_order(data);
     }
-    getMoneyColor(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return "";
-        }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
-    }
-    getMoneyValue(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return str;
-        }
-        if (!!str && str.search("-") == -1) return "+" + str;
-        return str;
-    }
     //筛选按钮点击
     onFilterBtnClick() {
         //console.log("打开筛选 页面");
         PanelUtil.openpanel_bet_filter();
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
     }
 }

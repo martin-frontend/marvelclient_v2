@@ -6,19 +6,43 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import { List } from "echarts";
 
 
 @Component
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
-    menuList = [
+
+    get menuList(){
+
+        const list = [
         { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
         { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
         { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
         { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
-    ];
+       
+        ];
+
+        if( ModulesHelper.isShow_Fan_shui())
+        {
+            const obj = {id: 15, name: LangUtil("我的返水"), icon: "mdi-medal"};
+            list.splice(4, 0, obj);  
+        }
+    //list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
+
+        return list;
+    };
+
+    // menuList = [
+    //     { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
+    //     { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
+    //     { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
+    //     { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
+    //     { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
+    //     list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
+    // ];
     get menuList1() {
         return [];
     }
@@ -28,7 +52,13 @@ export default class UserPanel extends AbstractView {
     red_dot_tips = this.selfProxy.red_dot_tips;
 
     onLoginOut() {
-        this.selfProxy.api_user_logout();
+        //this.selfProxy.api_user_logout();
+        PanelUtil.message_confirm({
+            message:LangUtil("是否退出登录"),
+            okFun:() =>{
+                this.selfProxy.api_user_logout();
+            }
+        })
     }
 
     onMenuItem(item: any) {

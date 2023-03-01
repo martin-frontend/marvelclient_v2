@@ -22,6 +22,19 @@ export default class DialogDirectlyAdduser extends AbstractView {
     constructor() {
         super(DialogDirectlyAdduserMediator);
     }
+
+    // radiosInfo = [
+    //     {
+    //         name: LangUtil("玩家"),
+    //         value: 98,
+    //     },
+    //     {
+    //         name: LangUtil("代理"),
+    //         value: 1,
+    //     },
+    // ]
+    radiosInfo = <any>[];
+
     getConfigName(type: any) {
         return Constant.GameTypeText(type);
     }
@@ -166,12 +179,52 @@ export default class DialogDirectlyAdduser extends AbstractView {
             PanelUtil.message_success(LangUtil("密码太短"));
         }
     }
+
+    
+    public get isShowCredit_use() : boolean {
+        // if (!this.playerInfo.create_credit_user_type || this.playerInfo.create_credit_user_type.length < 1)
+        // {
+        //     return false;
+        // } 
+        return true;
+    }
+    
+    setRadioInfo()
+    {
+        this.radiosInfo = <any>[ ];
+        
+        if (!this.playerInfo.create_credit_user_type || this.playerInfo.create_credit_user_type.length < 1)
+        {
+            return;
+        }
+        if ( this.playerInfo.create_credit_user_type.includes(1))
+        {
+            const obj = {
+                name: LangUtil("代理"),
+                value: 1,
+            }
+            this.radiosInfo.push(obj);
+        }
+        if ( this.playerInfo.create_credit_user_type.includes(2))
+        {
+            const obj = {
+                name: LangUtil("玩家"),
+                value: 98,
+            }
+            this.radiosInfo.push(obj);
+        }
+        this.form.show_credit_set = this.radiosInfo[0].value;
+        //console.log("----asdasd",this.playerInfo.create_credit_user_type);
+    }
+
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetForm();
+            this.setRadioInfo();
+            //this.form.show_credit_set = this.radiosInfo[0].value;
             this.myProxy.api_public_auth_code();
             this.initCreditData(this.playerInfo.credit_rate_min, this.playerInfo.credit_rate_max)
         }

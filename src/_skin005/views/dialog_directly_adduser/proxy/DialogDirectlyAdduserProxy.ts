@@ -1,6 +1,7 @@
 
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
@@ -44,6 +45,7 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         credit_rate_min:0, // 信用占比-最小
         credit_rate_max:0, // 信用占比-最大
         credit_rate_invited: "",      // 上级占比
+        create_credit_user_type:<any>[],
     }
     //如果是列表，使用以下数据，否则删除
     resetForm() {
@@ -72,10 +74,10 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         this.playerInfo.credit_rate_min = data.credit_rate_min;
         this.playerInfo.credit_rate_max = data.credit_rate_max;
         this.playerInfo.credit_rate_invited = data.credit_rate_invited;
-
-
         Object.assign(this.playerInfo.water_config, data.water_config);
 
+        Object.assign(this.playerInfo.create_credit_user_type, data.create_credit_user_type);
+        //this.playerInfo.create_credit_user_type =[];
         this.formData.inputrate = data.credit_rate;
         this.inputWaterData = JSON.parse(JSON.stringify(data.water_config));
         //Object.assign(this.inputWaterData, data.water_config);
@@ -122,13 +124,12 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             remark: this.pageData.form.remark,
             show_credit_set: this.pageData.form.show_credit_set,
             water_config: JSON.stringify(pushData),
-            credit_rate: this.pageData.form.credit_rate_invited,
-            credit_rate_invited:this.pageData.form.credit_rate,
-
+            credit_rate: this.pageData.form.credit_rate_invited + "",
+            credit_rate_invited:this.pageData.form.credit_rate + "",            
         }
         console.log("发送的数据为", obj);
         this.pageData.loading = true;
-        this.sendNotification(net.HttpType.api_user_var_direct_register, objectRemoveNull(obj));
+        this.sendNotification(net.HttpType.api_user_var_direct_register, obj);
     }
     //回调
     api_user_var_direct_registe_callback(msg: any = null) {
@@ -141,6 +142,7 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         PanelUtil.message_alert_mult({
             message: showmsg, okFun: () => {
                 this.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
             }
         });
     }

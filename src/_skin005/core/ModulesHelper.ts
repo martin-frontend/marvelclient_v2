@@ -63,8 +63,23 @@ function IsShow_ActivityDisplay() {
  * @returns 
  */
 function IsShow_AgentManager() {
-    return IsShow_Directly() == 2;
+    //return IsShow_Directly() == 2;
+
+    if (IsShow_Directly() == 2)
+    {
+        const selfProxy = PanelUtil.getProxy_selfproxy;
+        if (!(selfProxy && selfProxy.userInfo && selfProxy.userInfo.user_id != 0)) {
+            return false;
+        }
+        // 1-信用代理|98-信用玩家
+        if (selfProxy.userInfo.show_credit_set == 1) {
+            return true;
+        }
+        return false;
+    }
+    return false;
 }
+
 
 /**
  * 是否显示 代理管理
@@ -86,6 +101,18 @@ function IsShow_Directly() {
     return 0;
 }
 
+function isShow_Fan_shui() {
+    const selfProxy = PanelUtil.getProxy_selfproxy;
+    if (!(selfProxy && selfProxy.userInfo && selfProxy.userInfo.user_id != 0)) {
+        return false;
+    }
+    if (selfProxy.userInfo.is_credit_user == 1) {
+        return true;
+    }
+
+    return false;
+}
+
 export default {
     IsShow_VipInfo ,
     IsShow_CoinIntroduce,
@@ -96,4 +123,5 @@ export default {
     IsShow_ActivityDisplay,
     //IsShow_Directly,
     IsShow_AgentManager,
+    isShow_Fan_shui,
 }

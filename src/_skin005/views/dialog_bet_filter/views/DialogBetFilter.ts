@@ -30,7 +30,13 @@ export default class DialogBetFilter extends AbstractView {
     constructor() {
         super(DialogBetFilterMediator);
     }
+    typechange=1;
 
+    /**图标时间选择 */
+    onTimeChange(val: any) {
+    //    this.pageData.tabIndex= parseInt(val);
+    //    this.onTabClick(this.pageData.tabIndex);
+   }
 
     public get teamDirectlyInfo(): any {
         //return JSON.parse(JSON.stringify(this.myProxy.teamDirectlyInfo ));
@@ -41,11 +47,10 @@ export default class DialogBetFilter extends AbstractView {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
     }
-    @Watch("radios")
-    onWatchRadioChange()
-    {
-        //console.log("radios值变化了" , this.radios);
-    }
+    // @Watch("radios")
+    // onWatchRadioChange()
+    // {
+    // }
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
@@ -53,6 +58,7 @@ export default class DialogBetFilter extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
             this.myProxy.clearData();
+            this.typechange=1;
             this.radios = this.radiosInfo[1].value;
             this.myProxy.api_user_var_agent_direct_list();
             //this.myProxy.api_xxx();

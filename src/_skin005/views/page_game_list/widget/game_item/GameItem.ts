@@ -11,6 +11,7 @@ export default class GameItem extends AbstractView {
     @Prop({ default: false }) useMenuData!: Boolean;
     @Prop() width!:number;
 
+    
     getIcon(item: any) {
         if (this.useMenuData) {
             return item.entrance_icon;
@@ -58,4 +59,10 @@ export default class GameItem extends AbstractView {
             PanelUtil.openpage_soccer(this.item);
         }
     }
+
+    @Watch("item")
+    filterChange(val: boolean) {
+
+    }
+
 }

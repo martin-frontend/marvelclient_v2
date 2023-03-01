@@ -1,6 +1,6 @@
 <v-dialog v-if="!pageData.bHidden" width="500" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
-    <v-card class="rounded-lg" color="bgBanner">
+    <v-card :class="$vuetify.breakpoint.xsOnly ? '' : 'rounded10'"  :color="$vuetify.breakpoint.xsOnly ? 'bgColor'  :  'bgBanner'">
         <!-- <v-card-title v-if="!$vuetify.breakpoint.xsOnly" class="gradient-bg  d-flex flex-column">
             <div class="text-20">{{LangUtil("谷歌设定")}}</div>
             <v-btn class="ml-auto" icon @click="onClose">

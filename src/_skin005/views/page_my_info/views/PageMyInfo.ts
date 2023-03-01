@@ -9,7 +9,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
-
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class PageMyInfo extends AbstractView {
     LangUtil = LangUtil;
@@ -19,8 +19,15 @@ export default class PageMyInfo extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
     GamePlatConfig = GamePlatConfig;
+    GlobalVar= GlobalVar;
     constructor() {
         super(PageMyInfoMediator);
+    }
+    destroyed() {
+        super.destroyed();
+    }
+    mounted() {
+        PanelUtil.showAppLoading(false);
     }
     get menuList() {
         const newlist = [];
@@ -29,7 +36,7 @@ export default class PageMyInfo extends AbstractView {
             1: { id: 1, name: LangUtil("安全中心"), icon: "sefety" },
             2: { id: 2, name: LangUtil("我的余额"), icon: "yue" },
             3: { id: 3, name: LangUtil("我的投注"), icon: "bet_my" },
-            4: { id: 4, name: LangUtil("消息中心"), icon: "service" },
+            4: { id: 4, name: LangUtil("消息中心"), icon: "mail" },
             5: { id: 5, name: LangUtil("币种介绍"), icon: "coin" },
             6: { id: 6, name: LangUtil("质押分红"), icon: "chips" },
             7: { id: 7, name: LangUtil("推广赚钱"), icon: "extension" },
@@ -37,6 +44,7 @@ export default class PageMyInfo extends AbstractView {
             9: { id: 9, name: LangUtil("SWAP交易"), icon: "swap" },
             10: { id: 10, name: LangUtil("精彩活动"), icon: "activity" },
             11: { id: 11, name: LangUtil("代理管理"), icon: "agentmenger" },
+            12: { id: 12, name: LangUtil("我的返水"), icon: "water" },
         };
         newlist.push(list[0]);
         newlist.push(list[1]);
@@ -72,6 +80,10 @@ export default class PageMyInfo extends AbstractView {
         if (ModulesHelper.IsShow_AgentManager()) {
             newlist.push(list[11]);
         }
+        //代理管理
+        if (ModulesHelper.isShow_Fan_shui()) {
+            newlist.push(list[12]);
+        }
         return newlist;
     }
 
@@ -100,6 +112,8 @@ export default class PageMyInfo extends AbstractView {
             case 10: PanelUtil.openpanel_activity();
                 break;
             case 11: PanelUtil.openpage_statist_credit();
+                break;
+                case 12: PanelUtil.openpanel_directly_backwater(null, true);
                 break;
         }
     }
@@ -165,7 +179,13 @@ export default class PageMyInfo extends AbstractView {
     }
 
     onLoginOut() {
-        this.selfProxy.api_user_logout();
+        //this.selfProxy.api_user_logout();
+        PanelUtil.message_confirm({
+            message:LangUtil("是否退出登录"),
+            okFun:() =>{
+                this.selfProxy.api_user_logout();
+            }
+        })
     }
 
 

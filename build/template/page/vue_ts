@@ -13,4 +13,7 @@ export default class ${className} extends AbstractView {
     constructor() {
         super(${className}Mediator);
     }
+    destroyed() {
+        super.destroyed();
+    }
 }

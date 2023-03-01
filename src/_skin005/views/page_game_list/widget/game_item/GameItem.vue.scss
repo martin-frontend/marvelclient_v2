@@ -34,7 +34,12 @@ $box_width_mini: 98px;
 // .box-height {
 //     height: $box_height;
 // }
-
+.rounded_img{
+    border-radius: 10px 10px 14px 14px !important;
+}
+.rounded_text{
+    border-radius: 0px 0px 10px 10px !important;
+}
 .game-icon {
     width: $box_width;
     height: $box_height;
@@ -111,4 +116,19 @@ $box_width_mini: 98px;
 
 .text-yellow {
     color: #f8ff3d;
+}
+
+::v-deep .loader_class{
+    .img_loader{
+        border-radius: 20px !important;
+    }
+}
+
+.loader_class_mob{
+    ::v-deep .loader_class{
+        .img_loader{
+            height: 115px !important;
+            border-radius: 12px !important;
+        }
+    }
 }

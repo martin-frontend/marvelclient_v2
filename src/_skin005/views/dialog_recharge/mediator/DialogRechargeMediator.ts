@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 
 export default class DialogRechargeMediator extends AbstractMediator {
@@ -54,6 +55,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_exchange_create_order:
                 myProxy.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
                 PanelUtil.message_success(LangUtil("创建成功"));
                 break;
             case net.EventType.api_user_var_recharge_create:

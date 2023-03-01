@@ -54,9 +54,9 @@
                 <com-dialog-title title="精彩活动" @onClose="onClose" />
 
                 <v-divider class="mb-2 " />
-                <v-sheet v-if="$vuetify.breakpoint.xsOnly" color="transparent" class="overflow-y-auto px-5 "
-                    style="height: calc(100vh - 90px);">
-                    <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
+                <!-- <v-sheet v-if="$vuetify.breakpoint.xsOnly" color="transparent" class="overflow-y-auto px-5 "
+                    style="height: calc(100vh - 90px);"> -->
+                    <LoadMore v-if="$vuetify.breakpoint.xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
                         :_class="'listbox-mobile'">
                         <v-sheet color="transparent">
                             <v-sheet class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
@@ -74,7 +74,7 @@
                             </v-sheet>
                         </v-sheet>
                     </LoadMore>
-                </v-sheet>
+                <!-- </v-sheet> -->
             </template>
         </v-card>
     </v-card>

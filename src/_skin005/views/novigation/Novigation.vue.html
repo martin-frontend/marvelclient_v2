@@ -31,7 +31,7 @@
                                     } " @click="goCategory_game(getItemCategory(item))">
                                     <svg-icon :icon="CategoryIcon[getItemCategory(item)]"
                                         :class="$vuetify.breakpoint.mobile ? 'text-18' :'text-20'"></svg-icon>
-                                    <div v-if="!mini" class=" ml-5 text-no-wrap font-weight-medium"
+                                    <div v-if="!mini" class=" ml-5 text-no-wrap font-weight-bold"
                                         :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' ">
                                         {{LangUtil(getItemCategoryName(item))}}
                                     </div>
@@ -61,7 +61,7 @@
                         } " @click="goCategory(item)">
                         <svg-icon :icon="item.icon"
                             :class="$vuetify.breakpoint.mobile ? 'text-18' :'text-20'"></svg-icon>
-                        <div v-if="!mini" class=" text-no-wrap font-weight-medium" :class="{
+                        <div v-if="!mini" class=" text-no-wrap font-weight-bold" :class="{
                                 'navTextHover--text' : (hover || routerPath==item.path),
                                 'navText--text' : !(hover || routerPath==item.path),
                                 'ml-5': !$vuetify.breakpoint.mobile,

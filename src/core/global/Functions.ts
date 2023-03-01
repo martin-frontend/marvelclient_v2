@@ -598,7 +598,12 @@ export function changeDateShow(str:string ,isshowData:boolean = false):string{
     {
         return str;
     }
-    let newstr = str.replace(/^\d{4}-/,"")
+    //let newstr = str.replace(/^\d{4}-/,"")
+    if (str.length < 8) 
+    {
+        return str;
+    }
+    let newstr = str.substring(5, str.length-3);
 
     // const re = /(\w+)\s(\w+)/; 
     // let newstr = str.replace(re, "$1"); 

@@ -13,7 +13,6 @@ import "@/_skin005/icons";
 import "@/_skin005/assets/text/text.css";
 
 //注册 自定义的 组件
-import BtnYellow from "@/_skin005/views/widget/btn_yellow/BtnYellow.vue";
 import BtnUtil from "@/_skin005/views/widget/btn_util/BtnUtil.vue";
 import BtnInfo from "@/_skin005/views/widget/btn_info/BtnInfo.vue";
 import Overlay from "@/_skin005/views/widget/overlay/Overlay.vue";
@@ -26,6 +25,15 @@ import GoldInfoUtil from "@/_skin005/views/widget/gold_info_util/GoldInfoUtil.vu
 import GlobalVar from "@/core/global/GlobalVar";
 import LangConfig from "@/core/config/LangConfig";
 
+import Assets from "@/_skin005/assets/Assets";
+import SkinVariable from "@/_skin005/core/SkinVariable";
+
+Assets.commonIcon.loading_img = "img/loding_icon_6.png";
+Assets.commonIcon.logo = require(`@/_skin006/assets/logo.png`);
+Assets.commonIcon.logo_m = require(`@/_skin006/assets/logo_m.png`);
+
+SkinVariable.isShowFootDetail = false;
+SkinVariable.loadingType = "006";
 LogUtil.init();
 core.init();
 //@ts-ignore

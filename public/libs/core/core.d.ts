@@ -3016,8 +3016,8 @@ declare module core {
         gold_transfer_fee?: number;
         /**流水倍数 */
         gold_transfer_water_multiple?: number;
-        show_credit_set?: number;
         show_promote?: number;
+        show_credit_set?: number;// 1-信用代理|98-信用玩家
         /**1、用户扩展信息*/
         extend?: {
             /**平台用户ID*/
@@ -3138,6 +3138,7 @@ declare module core {
         credit_rate_max?: number;
         credit_rate_min?: number;
         credit_rate_invited?: number;
+        create_credit_user_type?:[];// 信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家
     }
     /**
      * vip 奖励活动相关

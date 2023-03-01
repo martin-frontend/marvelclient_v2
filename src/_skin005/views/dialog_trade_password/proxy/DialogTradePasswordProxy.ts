@@ -1,3 +1,5 @@
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+
 export default class DialogTradePasswordProxy extends puremvc.Proxy {
     static NAME = "DialogTradePasswordProxy";
 
@@ -28,6 +30,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
 
     hide() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 
     api_user_change_password_gold_var() {

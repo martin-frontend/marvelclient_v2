@@ -4,6 +4,7 @@
     width: 400px;
     height: 40px;
 }
+
 .select-shadow {
     box-shadow: inset 0 0 3px 2px #feda7c;
 }
@@ -19,12 +20,15 @@
         }
     }
 }
-.timeRange_pc
-{
-    .el-date-editor.el-input, .el-date-editor.el-input__inner{
+
+.timeRange_pc {
+
+    .el-date-editor.el-input,
+    .el-date-editor.el-input__inner {
         width: 190px;
     }
 }
+
 .theme--light {
     .timeRange_pc {
         ::v-deep .el-input__inner {
@@ -32,6 +36,52 @@
         }
     }
 }
-::v-deep .money_class{
-    color:#8E8F91 !important;
+
+::v-deep .money_class {
+    color: #8E8F91 !important;
+}
+
+
+
+::v-deep .el-date-editor {
+    position: relative;
+
+    .el-input__prefix {
+        display: none;
+    }
+}
+
+::v-deep .el-range__icon {
+    display: none;
+}
+
+::v-deep .el-input--prefix .el-input__inner { 
+    padding-left: 20px;
+}
+
+::v-deep .el-icon-date{
+    font-size: 16px;
+}
+
+.phone_datapicker{
+    ::v-deep .el-input__inner{
+        padding-left: 8px;
+    }
+    ::v-deep .el-icon-date{
+        display: none;
+    }
+}
+.mydivider{
+    max-width: 120%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+.title{
+    display: grid;
+    align-content: center;
+}
+
+.pad_top_mob{
+    padding-top: 70px;
 }

@@ -13,12 +13,24 @@ export default class PageGameList extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     gameProxy = PanelUtil.getProxy_gameproxy;
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
-
+    noticeProxy = PanelUtil.getProxy_noticeProxy;
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
 
     itemWidth = 181;
+    public get viewWidth(): number {
 
+        if (this.$vuetify.breakpoint.mobile) {
+            return 170;
+        }
+        if (this.$vuetify.breakpoint.width > 1400) {
+            return 340;
+        }
+        else if (this.$vuetify.breakpoint.width > 1280) {
+            return 290;
+        }
+        return 240;
+    }
     constructor() {
         super(PageGameListMediator);
     }
@@ -173,7 +185,12 @@ export default class PageGameList extends AbstractView {
         } else {
             this.myProxy.getFirstItemVendor();
             this.listQuery.page_count = 1;
-            this.myProxy.api_plat_var_game_all_index();
+            if (!this.isUseMenuData)
+            {
+                console.log("------asdas");
+                this.myProxy.api_plat_var_game_all_index();
+            }
+            
             this.myProxy.getCurItemIndex();
         }
     }
@@ -199,19 +216,5 @@ export default class PageGameList extends AbstractView {
         super.destroyed();
     }
 
-    leftnovWidth = 65;
-    gameItemWidth = 100;
-    gameItemHeight = 130;
 
-    public get item_count(): number {
-        const realWidth = this.$vuetify.breakpoint.width - this.leftnovWidth;
-        const count = Math.floor(realWidth / this.gameItemWidth);
-        const idx = this.pageData.list.length % count;
-        const needCount = count - idx;
-        console.log("count :  " + count + " -- needCount--" + needCount);
-        if (idx <= 0) {
-            return 0;
-        }
-        return needCount;
-    }
 }

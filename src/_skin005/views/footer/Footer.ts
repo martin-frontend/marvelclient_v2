@@ -4,13 +4,15 @@ import LangUtil from "@/core/global/LangUtil";
 import Assets from "@/_skin005/assets/Assets";
 import { getVersion } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class Footer extends AbstractView {
     LangUtil = LangUtil;
     getVersion = getVersion;
     commonIcon = Assets.commonIcon;
-
+    isShowFootDetail = SkinVariable.isShowFootDetail;
+    
     gameProxy = PanelUtil.getProxy_gameproxy;
     getChannelID() {
         return core.channel_id;

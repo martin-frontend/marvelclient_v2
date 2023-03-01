@@ -50,6 +50,7 @@ export default class PageGameSoccer extends AbstractView {
                 gameFrame.style.height = window.innerHeight - 70 + "px";
             }
         }, 100);
+        PanelUtil.showAppLoading(false);
     }
 
     onFullScreen() {

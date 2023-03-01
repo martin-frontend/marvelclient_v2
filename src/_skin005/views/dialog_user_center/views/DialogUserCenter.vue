@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import DialogUserCenter from "./DialogUserCenter";
-import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
+import AdvertiseInLogin from "@/_skin005/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 
 @Component({
     components: {

@@ -294,3 +294,16 @@ $prev-right: var(--prev-right);
     pointer-events: none;
 }
 
+
+.loader_class_mob{
+    ::v-deep .loader_class{
+        .img_loader{
+            height: 110px !important;
+        }
+    }
+}
+.mob_row{
+    ::v-deep .row{
+        flex: none !important;
+    }
+}

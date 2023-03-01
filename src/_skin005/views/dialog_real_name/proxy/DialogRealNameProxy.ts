@@ -1,3 +1,5 @@
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+
 export default class DialogRealNameProxy extends puremvc.Proxy {
     static NAME = "DialogRealNameProxy";
 
@@ -14,5 +16,6 @@ export default class DialogRealNameProxy extends puremvc.Proxy {
 
     hide() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 }

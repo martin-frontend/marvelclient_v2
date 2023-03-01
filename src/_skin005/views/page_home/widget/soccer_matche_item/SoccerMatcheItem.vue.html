@@ -123,7 +123,7 @@
                     <div>{{ startTime.substring(5, 11) }}</div>
                 </template>
                 <template v-else>
-                    <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
+                    <div :class="{'red--text': states.match_phase == '-'}" style="text-align: center;">{{ statusString }}</div>
                     <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">
                         {{ states.phase_minute }}{{LangUtil("分钟")}}
                     </div>
@@ -136,7 +136,7 @@
                     <v-sheet class="mx-2 mr-4 d-flex flex-column align-space-around" color="transparent" max-width="170"
                         min-width="170">
                         <v-sheet class="d-flex align-center mb-1 pt-1 flex-1 mb-2" min-height="38" color="transparent">
-                            <v-sheet outlined width="34" height="34"
+                            <v-sheet outlined min-width="34" max-width="34" height="34"
                                 class="rounded-circle overflow-hidden d-flex align-center justify-center"
                                 style="background: transparent !important;">
                                 <v-img :src="getResponseIcon(matche.home_team_icon)" contain max-width="34" width="34"
@@ -151,7 +151,7 @@
                                 {{getValues(states.goals_ft)[0]}}</div>
                         </v-sheet>
                         <v-sheet class="d-flex align-center mb-1 flex-1 mb-2" min-height="38" color="transparent">
-                            <v-sheet outlined width="34" height="34"
+                            <v-sheet outlined min-width="34" max-width="34" height="34"
                                 class="rounded-circle overflow-hidden d-flex align-center justify-center"
                                 style="background: transparent !important;">
                                 <v-img :src="getResponseIcon(matche.away_team_icon)" contain max-width="34" width="34"
@@ -165,9 +165,9 @@
                             <div v-if="states.goals_ft" class="num_width text-16 ml-2 primary--text">
                                 {{getValues(states.goals_ft)[1]}}</div>
                         </v-sheet>
-                        <v-sheet class="d-flex align-center justify-end" min-height="38" color="transparent">
-                            <v-sheet class="d-flex align-center justify-center rounded-pill white--text text-14"
-                                width="26" height="26" color="red">{{LangUtil("和")}}</v-sheet>
+                        <v-sheet class="d-flex align-center justify-start" min-height="38" color="transparent">
+                            <v-sheet class="d-flex align-center justify-center rounded-pill primary--text text-14"
+                                width="26" height="26" color="transparent">{{LangUtil("和")}}</v-sheet>
                         </v-sheet>
                     </v-sheet>
                 </v-sheet>

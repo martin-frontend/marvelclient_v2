@@ -24,7 +24,9 @@ export default class PageSwap extends AbstractView {
     constructor() {
         super(PageSwapMediator);
     }
-
+    mounted() {
+        PanelUtil.showAppLoading(false);
+    }
     // mounted() {
     //     /**更新折线图 */
     //     setInterval(

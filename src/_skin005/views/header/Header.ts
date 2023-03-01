@@ -8,6 +8,7 @@ import ScrollUtil from "@/core/global/ScrollUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import ServiceUtil from "@/_skin005/core/global/ServiceUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class Header extends AbstractView {
@@ -15,10 +16,11 @@ export default class Header extends AbstractView {
     commonIcon = Assets.commonIcon;
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
-
+    GlobalVar = GlobalVar;
     //当前路由
     routerPath = this.$router.app.$route.path;
     pagetab = -1;
+
 
     mounted() {
         this.onWatchWidth();

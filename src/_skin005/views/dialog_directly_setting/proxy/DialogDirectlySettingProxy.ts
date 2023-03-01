@@ -57,6 +57,21 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         Object.assign(this.formData, {
             coin_name_unique: "",
         });
+
+        Object.assign(this.playerInfo, {
+            user_id: 0,
+            nick_name: "",
+            plat_id: "",
+            status: "98",
+            credit_rate: 0, //当前占比
+            show_credit_set: 98, //是否显示多层
+            parent_credit_rate: 0, //当前直属上级信用占比
+            remark: "",
+            username: "",
+            gold_info: <any>{},
+            vendor_type_switch: <any>{}, //游戏类型总开关
+            invite_user_id: 0, //上级id
+        });
     }
 
     setData(data: any) {

@@ -1,15 +1,9 @@
 <v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
-    <v-card class="rounded10 d-flex flex-column" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'">
+   
         <!-- pc显示方式 -->
         <template v-if="!$vuetify.breakpoint.xsOnly">
-            <!-- <v-card-title class="gradient-bg d-flex flex-column" v-if="!$vuetify.breakpoint.xsOnly">
-                <div class="text-20 font-weight-regular">{{LangUtil("交易记录")}}</div>
-                <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </v-card-title> -->
+            <v-card class="rounded10 d-flex flex-column" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'">
             <com-dialog-title title="交易记录" @onClose="onClose" />
-
             <v-divider class="mb-2 " />
             <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
                 <template v-if="pageData.list.length>0">
@@ -67,8 +61,11 @@
                     v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount"
                     @input="onPageChange"></v-pagination>
             </v-card-text>
+            </v-card>
         </template>
+
         <template v-else>
+            <v-card class="d-flex flex-column" color="bgColor">
             <!-- 手机显示方式 -->
             <com-dialog-title title="交易记录" @onClose="onClose" />
 
@@ -110,7 +107,8 @@
                     </v-sheet>
                 </LoadMore>
             </v-sheet>
+        </v-card>
         </template>
-    </v-card>
+    
     <Overlay v-model="pageData.loading" />
 </v-dialog>

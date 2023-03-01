@@ -1,4 +1,4 @@
-<v-card flat class="rounded10 px-4" color="bgBanner">
+<v-sheet :width="$vuetify.breakpoint.mobile ? '95.5%':'100%'" flat class="rounded10 " :class="$vuetify.breakpoint.mobile ? 'pad_top_mob':'px-4'" color="transparent">
     <!-- pc显示 -->
     <template v-if="!$vuetify.breakpoint.mobile">
         <v-sheet class="" color="transparent">
@@ -15,7 +15,8 @@
                     </template>
                     <div class="ml-3 text-16 d-flex align-center">
                         <div class="primary--text font-weight-bold">{{LangUtil("直属玩家数量")}}</div>
-                        <div class="ml-2 textYellow--text font-weight-bold  text-18">{{ pageData.pageInfo.pageTotal }}</div>
+                        <div class="ml-2 textYellow--text font-weight-bold  text-18">{{ pageData.pageInfo.pageTotal }}
+                        </div>
                     </div>
                 </div>
 
@@ -24,24 +25,25 @@
                         {{LangUtil("用户筛选")}}
                     </div>
 
-                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" 
-                        color="textYellow" value="1">
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" color="textYellow"
+                        value="1">
                         <template v-slot:label>
-                            <div :class="includeNomal ? 'textYellow--text' : 'primary--text'">{{LangUtil('正常')}}</div>
+                            <div :class="includeNomal ? 'primary--text' : 'disable_text--text'">{{LangUtil('正常')}}</div>
                         </template>
                     </v-checkbox>
-                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" 
-                        color="textYellow" value="98">
+                    <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" color="textYellow"
+                        value="98">
                         <template v-slot:label>
-                            <div :class="includeDisable ? 'textYellow--text' : 'primary--text'">{{LangUtil('禁用')}}</div>
+                            <div :class="includeDisable ? 'primary--text' : 'disable_text--text'">{{LangUtil('禁用')}}
+                            </div>
                         </template>
                     </v-checkbox>
                 </v-sheet>
             </div>
             <v-divider class="mb-2 " />
 
-            <v-sheet class="d-flex align-center justify-space-around rounded-pill text-14 " height="38" width="100%"
-                color="transparent">
+            <v-sheet class="d-flex align-center justify-space-around rounded-pill text-14 regular_text" height="38"
+                width="100%" color="transparent">
                 <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="115">
                     {{LangUtil("注册时间")}}</v-sheet>
                 <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
@@ -52,6 +54,8 @@
                     {{LangUtil("用户昵称")}}</v-sheet>
                 <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="115">
                     {{LangUtil("直属备注")}}</v-sheet>
+                    <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                        {{LangUtil("信用类型")}}</v-sheet>
                 <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
                     {{LangUtil("我的占成")}}</v-sheet>
 
@@ -70,15 +74,15 @@
         </v-sheet>
 
         <div style="min-height: 450px">
-            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" width="100%">
+            <v-sheet ref="scrollObj" v-if="pageData.list.length>0" color="transparent" class="scroll-y" width="100%">
                 <v-sheet class="d-flex flex-column align-center rounded-lg mt-2 text-14 " color="transparent"
                     v-for="(item, key) in pageData.list" :key="key" width="100%">
 
                     <!-- 第一排 -->
-                    <v-sheet class="d-flex align-center justify-space-around text-14 sheetOutlined" width="100%"
-                        height="48" color="transparent">
+                    <v-sheet class="d-flex align-center justify-space-around text-14 sheetOutlined regular_text"
+                        width="100%" height="48" color="transparent">
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="115">
-                            {{getDta(item.binded_at)}}</v-sheet>
+                            {{getDate(item.binded_at)}}</v-sheet>
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80">
                             {{item.user_id}}</v-sheet>
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="100">
@@ -87,6 +91,11 @@
                             {{item.nick_name}}</v-sheet>
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="115">
                             {{item.remark ? item.remark : LangUtil("-")}}</v-sheet>
+
+                            <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80">
+                                {{ item.show_credit_set == 1 ? LangUtil("代理") : LangUtil("玩家")}}
+                                <!-- <span v-if="item.credit_rate_invited!='-'">%</span> -->
+                            </v-sheet>
 
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80">
                             {{ item.credit_rate_invited}}
@@ -108,17 +117,17 @@
                             {{item.group_users}}</v-sheet>
 
                         <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80">
-                            <v-btn class="mr-1" color="bgBanner" small depressed
+                            <v-btn class="mr-1" color="transparent" small depressed
                                 :width="$vuetify.breakpoint.mobile? 24 :30" min-width="0"
                                 :height="$vuetify.breakpoint.mobile? 24 :30" @click="handlerShowDialogSet(item)">
-                                <svg-icon icon="edit" class="text-16 arrow_color--text"></svg-icon>
+                                <svg-icon icon="edit" class="text-16 textGray--text"></svg-icon>
                             </v-btn>
 
-                            <v-btn class="mr-1" color="bgBanner" small depressed
+                            <v-btn class="mr-1" color="transparent" small depressed
                                 :width="$vuetify.breakpoint.mobile? 24 :30" min-width="0"
                                 :height="$vuetify.breakpoint.mobile? 24 :30"
                                 @click="handlerShowBetRecord(item.user_id)">
-                                <svg-icon icon="info" class="text-16 arrow_color--text"></svg-icon>
+                                <svg-icon icon="info" class="text-16 textGray--text"></svg-icon>
                             </v-btn>
                         </v-sheet>
                     </v-sheet>
@@ -141,7 +150,7 @@
                             <v-sheet class="d-flex" color="transparent">
 
                                 <v-sheet v-for="(item, key) of item.water_config" :key="key"
-                                    class="disable_text_2--text ml-1 mr-1" color="transparent">
+                                    class="disable_text_2--text ml-1 mr-1 regular_text" color="transparent">
                                     <template v-if="key!=0">
                                         <span>{{getConfigName(key)}}</span>
                                         <span class="ml-1 disable_text--text">{{item}}</span>
@@ -187,38 +196,39 @@
                 </v-sheet>
             </v-sheet>
 
-            </v-sheet>
+        
             <ListNodata v-if="pageData.list.length == 0" height="411" />
         </div>
         <v-spacer />
         <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1"
             v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" @input="onPageChange">
         </v-pagination>
-        </v-sheet>
+   
     </template>
     <!-- 手机版的显示 -->
     <template v-else>
-
-        <v-sheet class="py-0" color="transparent">
-            <div class="d-flex flex-wrap justify-space-between">
-                <div class="text-14 mt-2 ml-3 d-flex align-center">
+        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" class="text-12 listbox-mobile" >
+        <v-sheet color="bgBanner rounded10" class=" text-12" >
+        <v-sheet class="py-0 search_head" color="transparent">
+            <div class="d-flex flex-wrap mb-2 justify-space-between">
+                <v-sheet color="transparent" height="46" width="100%" class="text-14 mt-2 ml-3 d-flex align-center font-weight-bold">
                     <template v-if="invite_user_id!=0">
                         <div class="primary--text">{{LangUtil("上级ID")}}</div>
                         <div class="ml-3 mr-3 textYellow--text">{{ invite_user_id }}</div>
                     </template>
                     <div class="primary--text">{{LangUtil("直属玩家数量")}}</div>
                     <div class="ml-3 textYellow--text">{{ pageData.pageInfo.pageTotal }}</div>
-                </div>
+                </v-sheet>
 
-                <v-sheet class="d-flex align-center justify-start mx-3 " color="transparent" height="40" width="100%">
+                <v-sheet class="d-flex align-center justify-start mx-3 " color="transparent" height="46" width="100%">
 
-                    <v-sheet class="d-flex align-center ml-n5" color="transparent" style="transform: scale(0.8);">
-                        <div class="d-flex align-center primary--text text-16">
+                    <v-sheet class="d-flex align-center ml-n5 text-14" color="transparent" style="transform: scale(0.8);">
+                        <div class="d-flex align-center primary--text ">
                             {{LangUtil("用户筛选")}}
                         </div>
-                        <v-checkbox class="d-flex align-center ml-2 " v-model="myProxy.checkboxValue"
+                        <v-checkbox class="d-flex align-center ml-3 " v-model="myProxy.checkboxValue"
                             :label="LangUtil('正常')" color="textYellow" value="1"></v-checkbox>
-                        <v-checkbox class="d-flex align-center ml-2 " v-model="myProxy.checkboxValue"
+                        <v-checkbox class="d-flex align-center ml-3 " v-model="myProxy.checkboxValue"
                             :label="LangUtil('禁用')" color="textYellow" value="98"></v-checkbox>
                     </v-sheet>
                     <div v-if="limitinfo.enable_all == 1" class="ml-auto">
@@ -227,76 +237,83 @@
                     </div>
                 </v-sheet>
             </div>
-            <v-divider class="my-2 " />
+            <v-divider  />
         </v-sheet>
 
-        <v-sheet color="transparent" class="overflow-y-auto px-2" style="height: calc(100vh - 200px)">
-            <ListNodata v-if="pageData.list.length == 0" />
-            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
-                :class="limitinfo.enable_all == 1 ? 'listbox_2-mobile' :'listbox-mobile'">
-                <v-sheet class="px-3 py-2 rounded-lg my-0 textGray--text" color="bgBanner"
+       
+            
+            <!-- <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" class="text-12 "
+                :class="limitinfo.enable_all == 1 ? 'listbox_2-mobile' :'listbox-mobile'"> -->
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet class="px-3 py-2 rounded-lg my-0 textGray--text" color=" transparent"
                     v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="primary--text">{{LangUtil("注册时间")}}</div>
-                        <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                        <div class="userInfo_color--text" >{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("用户ID")}}</div>
-                        <div>{{ item.user_id }}</div>
+                        <div class="userInfo_color--text" >{{ item.user_id }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("用户账号")}}</div>
-                        <div>{{ item.username }}</div>
+                        <div class="userInfo_color--text" >{{ item.username }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("用户昵称")}}</div>
-                        <div>{{ item.nick_name }}</div>
+                        <div class="userInfo_color--text" >{{ item.nick_name }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("直属备注")}}</div>
-                        <div>{{ item.remark ? item.remark : LangUtil("-")}}</div>
+                        <div class="userInfo_color--text" >{{ item.remark ? item.remark : LangUtil("-")}}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
+                        <div class="primary--text">{{LangUtil("信用类型")}}</div>
+                        <div class="userInfo_color--text"> {{ item.show_credit_set == 1 ? LangUtil("代理") : LangUtil("玩家")}}
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("我的占成")}}</div>
-                        <div class="colorDialogInfo--text">{{ item.credit_rate_invited }}
+                        <div class="userInfo_color--text">{{ item.credit_rate_invited }}
                             <span v-if="item.credit_rate_invited!='-'">%</span>
                         </div>
                     </div>
 
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("代理占成")}}</div>
-                        <div class="colorDialogInfo--text">{{ item.credit_rate }}
+                        <div class="userInfo_color--text">{{ item.credit_rate }}
                             <span v-if="item.credit_rate!='-'">%</span>
                         </div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("状态")}}</div>
-                        <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
+                        <div class="userInfo_color--text">{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("直属人数")}}</div>
-                        <div>{{ item.directly_users }}</div>
+                        <div class="userInfo_color--text">{{ item.directly_users }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between mt-1">
                         <div class="primary--text">{{LangUtil("团队人数")}}</div>
-                        <div>{{ item.group_users }}</div>
+                        <div class="userInfo_color--text">{{ item.group_users }}</div>
                     </div>
 
-                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 1">
+                    <div class="d-flex justify-space-between mt-1" v-if="selfProxy.userInfo.is_credit_user == 1">
                         <div class="primary--text">{{LangUtil("状态")}}</div>
-                        <div :class="item.status == 1 ? '' : 'red--text'">{{ item.status == 1?
+                        <div class="userInfo_color--text" :class="item.status == 1 ? '' : 'red--text'">{{ item.status == 1?
                             LangUtil("正常"):LangUtil("关闭") }}</div>
                     </div>
 
-                    <div class="d-flex justify-space-between primary--text">
+                    <div class="d-flex justify-space-between primary--text mt-1">
                         <div>
                             <span class="font-weight-bold">{{LangUtil("返水:")}}
-                            </span>
+                            </span >
                             {{ getBackWaterTxt(item.water_config) }}
                         </div>
                     </div>
 
-                    <v-sheet class="d-flex align-center justify-space-between text-14" height="38" color="transparent">
+                    <v-sheet class="d-flex align-center justify-space-between text-12" height="28" color="transparent">
                         <v-sheet class="d-flex justify-end primary--text mr-3" color="transparent">
                             <v-sheet class="d-flex justify-center primary--text font-weight-bold" color="transparent">
                                 {{LangUtil("近24小时")}}
@@ -332,8 +349,9 @@
                     </v-sheet>
                     <v-divider class="my-2 " />
                 </v-sheet>
-            </LoadMore>
-        </v-sheet>
+            </v-sheet>
+        </LoadMore>
+        
 
         <!-- <v-spacer />
         <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1"
@@ -341,4 +359,4 @@
         </v-pagination> -->
 
     </template>
-</v-card>
+</v-sheet>

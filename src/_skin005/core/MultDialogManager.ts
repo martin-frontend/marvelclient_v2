@@ -21,16 +21,24 @@ export default class MultDialogManager {
 
     public static onClosePanel()
     {
-        
         //关闭的时候  从前向后关闭   先将 元素 最开始的 一个 从数组中 取出来 
+        if (MultDialogManager.obj_list.length < 1)
+        {
+            return;
+        }
         MultDialogManager.obj_list.shift();
+
+        console.log("22关闭界面",MultDialogManager.obj_list.length);
         if(MultDialogManager.obj_list.length > 0)
         {
             MultDialogManager.obj_list[0].hidden(false);
         }
-        console.log("22关闭界面",MultDialogManager.obj_list.length);
-       
     }
-   
-
+   /**
+    * 强制关闭 所有
+    */
+    public static forceClosePanel()
+    {
+        MultDialogManager.obj_list = <any>[];
+    }
 }

@@ -1,5 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import GlobalVar from "@/core/global/GlobalVar";
 import LangUtil from "@/core/global/LangUtil";
 import router from "@/router";
 import PageBlur from "@/_skin005/core/PageBlur";
@@ -11,7 +12,7 @@ export default class Wallet extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
-
+    GlobalVar = GlobalVar;
     GamePlatConfig = GamePlatConfig;
 
     onItemClick(key: string) {

@@ -1,5 +1,5 @@
 $base_radius: 10px; //圆角
-$moble_radius:6px;
+$moble_radius: 6px;
 $yellow_color_1: #fcb131;
 $yellow_color_2: #ffe64d;
 
@@ -14,12 +14,15 @@ $sss: #3e3f41;
 .base_border {
     border-radius: $base_radius;
 }
+
 .base_border::before {
     border-radius: $base_radius;
 }
+
 .border_5 {
     border-radius: $moble_radius;
 }
+
 .border_5::before {
     border-radius: $moble_radius;
 }
@@ -192,11 +195,10 @@ $sss: #3e3f41;
     //background-image: linear-gradient(to right, #222, #222), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 }
 
-.test_my:hover
-    {
-        color: $nomal_text !important;
-        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
-    }
+.test_my:hover {
+    color: $nomal_text !important;
+    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+}
 
 
 .theme--dark {
@@ -205,21 +207,128 @@ $sss: #3e3f41;
         background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
 
-    .test_my_disable{
+    .test_my_disable {
         color: $disable_text_dark;
         background: linear-gradient(to right, #333435, #3d3d3d);
     }
 }
+
 .theme--light {
     .test_my {
         color: $nomal_text;
         background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
-    .test_my_disable{
+
+    .test_my_disable {
         color: $disable_text_light;
         background: linear-gradient(to right, #e8e8e2, #e8e8e2);
     }
 }
+
+.buttton_yellow {
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: $nomal_text ;
+    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.theme--dark {
+    .buttton_yellow:hover {
+        color: $hover_text !important;
+        background-image: linear-gradient(to right, #333435, #333435) !important;
+    }
+
+}
+
+.theme--light {
+    .buttton_yellow:hover {
+        color: $nomal_text !important;
+        background-image: linear-gradient(to right, #fff, #fff) !important;
+    }
+
+}
+
+.btnweight {
+    font-weight: var(--font-weight, 500);
+}
+
+.btn_9 {
+    cursor: pointer;
+    //border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: $nomal_text ;
+    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.theme--dark {
+    .btn_9:hover {
+        color: $hover_text !important;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+    .btn_9_disable {
+        color: $disable_text_light;
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+}
+
+.theme--light {
+    .btn_9:hover {
+        color: $nomal_text !important;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+    .btn_9_disable {
+        color: $disable_text_light;
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+}
+
+// .btn_9_disable {
+//     color: $disable_text_light;
+//     //background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+//     background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+//     background: linear-gradient(to right, #3e3f41, #3e3f41);
+// }
+
+.btn_helf_new{
+    cursor: pointer;
+    //border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: $nomal_text ;
+    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.theme--dark {
+    .btn_helf_new:hover {
+        color: $hover_text !important;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+    .btn_helf_new_disable {
+        color: $disable_text_light;
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+}
+
+.theme--light {
+    .btn_helf_new:hover {
+        color: $nomal_text !important;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    }
+
+    .btn_helf_new_disable {
+        color: $disable_text_light;
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+}
+
+
 //------------    样式二  end ----------------------
 //------------    样式三     ----------------------
 

@@ -53,3 +53,24 @@
     margin-top:0px;
     padding-top: 0px;
 }
+
+.radio_mob{
+    ::v-deep .v-label{
+        font-size: 12px;
+    }
+    .v-icon.v-icon{
+        font-size: 18px;
+    }
+}
+.theme--light{
+
+    .v-label{
+        color: #0F1213;
+    }
+}
+.theme--dark{
+
+    .v-label{
+        color: #fff;
+    }
+}

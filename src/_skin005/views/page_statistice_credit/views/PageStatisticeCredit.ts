@@ -13,10 +13,14 @@ export default class PageStatisticeCredit extends AbstractView {
 
     constructor() {
         super(PageStatisticeCreditMediator);
-
-        this.onOpenPageHome();
     }
-
+    destroyed() {
+        super.destroyed();
+    }
+    mounted() {
+        PanelUtil.showAppLoading(false);
+        this.pageData.tabIndex = 0;
+    }
 
     typechange = 0;
 
@@ -28,47 +32,21 @@ export default class PageStatisticeCredit extends AbstractView {
     onTabClick(idx: number) {
 
         this.pageData.tabIndex = idx;
-        //PanelUtil.getProxy_statistics_credit.reseData();
-        PanelUtil.getProxy_statistics_credit.pageData.bShow=false;
-        if (idx == 0 )
-        {
-            this.onOpenPageHome();
-        }
-        // else if (idx == 11)
+
+        // if ( this.pageData.tabIndex == 0)
         // {
-        //     this.onOpenAgente();
+        //     this.onEnterHomePage();
         // }
+        
     }
-
-    onOpenPageHome()
+    onEnterHomePage()
     {
-        PanelUtil.getProxy_directly_my.resetQuery();
-        PanelUtil.getProxy_directly_my.api_user_var_commission_commissiondetail();
-        // this.myProxy.resetQuery();
-        // this.myProxy.api_user_var_commission_commissiondetail();
+        this.myProxy.api_user_var_commission_commissiondetail();
     }
-
-    onOpenAgente()
-    {
-        console.log("-----打开  信用统计---");
-        PanelUtil.getProxy_statistics_credit.pageData.bShow=true;
-        //PanelUtil.getProxy_statistics_credit.reseData();
-        //PanelUtil.getProxy_statistics_credit.onInit();
-    }
-
     search()
     {
         PanelUtil.getProxy_agentmanager.search(this.pageData.search);
     }
 
-    // @Watch("pageData.tabIndex")
-    // onWatchShow() {
-    //     if (this.pageData.tabIndex != this.typechange)
-    //     {
-    //         console.log("不想等  this.pageData.tabIndex  " , this.pageData.tabIndex );
-    //         console.log("不想等  this.typechange  " , this.typechange );
-    //         this.typechange = this.pageData.tabIndex ;
-    //     }
-    // }
 
 }

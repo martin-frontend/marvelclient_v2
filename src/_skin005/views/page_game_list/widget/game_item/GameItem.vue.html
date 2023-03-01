@@ -1,8 +1,8 @@
-<v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}" :width="width-15"
+<v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}" :width="width-13.5"
     :class="getBoxClass()" class="rounded-lg" flat>
     <v-lazy>
-        <v-sheet v-if="item" color="transparent" class="game-icon1">
-            <v-img v-if="item" class="game-icon1 cursor-pointer rounded-lg" min-height="100" :src="getIcon(item)">
+        <v-sheet v-if="item" color="transparent" class="game-icon1" :class="$vuetify.breakpoint.xsOnly ? 'loader_class_mob' : ''">
+            <ImgLoader v-if="item" class="cursor-pointer rounded_img"  min-height="100" :src="getIcon(item)">
                 <!-- 手机显示 -->
                 <template v-if="$vuetify.breakpoint.xsOnly">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain
@@ -38,14 +38,14 @@
                 </div>
             </div> -->
 
-            </v-img>
+            </ImgLoader>
 
-            <v-sheet class="text_bg rounded-b-lg d-flex justify-center align-center" width="100%" :height="$vuetify.breakpoint.mobile ? '30' : '44'"
+            <v-sheet class="text_bg rounded_text d-flex justify-center align-center" width="100%" :height="$vuetify.breakpoint.mobile ? '30' : '44'"
                 color="bgBanner" flat>
                 <!-- <div class="d-flex justify-center align-end d-sm-flex align-sm-center justify-sm-center game-title font-weight-bold">{{ item.vendor_product_name }}</div>
             <div class="vendor-title">{{ item.vendor_name }}</div> -->
                 <!-- <div class="d-flex justify-center align-end vendor-title">{{ item.vendor_name }}</div> -->
-                <div class=" game-title font-weight-bold " :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-16'">
+                <div class=" game-title font-weight-bold " :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-16'" style="text-align: center;">
                     {{useMenuData ? item.alias : item.vendor_product_name }}</div>
             </v-sheet>
 

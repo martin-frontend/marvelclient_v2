@@ -1,3 +1,7 @@
+import LangUtil from "@/core/global/LangUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PanelUtil from "@/_skin005/core/PanelUtil";
+
 export default class DialogEditRemarkProxy extends puremvc.Proxy {
     static NAME = "DialogEditRemarkProxy";
     playerInfo = {
@@ -44,6 +48,17 @@ export default class DialogEditRemarkProxy extends puremvc.Proxy {
             remark: msg,
         };
         this.sendNotification(net.HttpType.api_user_var_agent_var_update, formData);
-        this.pageData.bShow = false;
+        //this.pageData.bShow = false;
+    }
+    update_callback(data:any = null)
+    {
+        const str = LangUtil("设置成功")
+        
+        PanelUtil.message_alert({
+            message: str, okFun: () => {
+                this.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
+            }
+        });
     }
 }

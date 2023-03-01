@@ -17,6 +17,7 @@ export default class CustomInputNomal extends AbstractView {
     @Prop() isOnlyInt!: boolean;
     @Prop() isOnlyFloat!: boolean;
     @Prop({ default: true }) isBottomLine!: boolean;
+    @Prop() inputColor!: string;
 
     inputValue = "";
 

@@ -2,7 +2,7 @@
     <v-menu content-class="menu" offset-y nudge-bottom="4" activator>
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
-                <v-sheet class="align-center d-flex  rounded10 pr-3 money_class" color="water_bg" 
+                <v-sheet class="align-center d-flex  rounded10 pr-3 money_class" :color="bgColor" 
                     :class="is_center ? 'justify-center' : 'justify-space-between'"
                     :min-height="items_min_height" width="100%" height="100%" v-if="goldInfoData[coin_name_unique]">
                     <v-img class="ml-2" v-if="is_show_coin_icon"
@@ -12,7 +12,7 @@
                         {{coin_name_unique}}
                     </div>
                     <div v-if="is_show_money" :class="detail_class">
-                        <span v-if="inside_str"> {{LangUtil(inside_str)}}</span>
+                        <span :class="balanceStrColor" v-if="inside_str"> {{LangUtil(inside_str)}}</span>
                         {{goldInfoData[coin_name_unique].sum_money}}
                     </div>
                     <svg-icon icon="arrow_down_2" class="textGray--text ml-2 text-14"
@@ -21,7 +21,7 @@
                 <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
             </div>
         </template>
-        <v-sheet color="water_bg" class="rounded10 d-flex flex-column justify-center px-1">
+        <v-sheet :color="bgColor" class="rounded10 d-flex flex-column justify-center px-1">
             <template v-for="(item, key) of goldInfoData">
                 <v-sheet class="align-center d-flex justify-space-between rounded-lg cursor-pointer py-1 mb-2"
                     :class="coin_name_unique == key ? 'select-shadow' : 'listitem'" :min-height="items_min_height"

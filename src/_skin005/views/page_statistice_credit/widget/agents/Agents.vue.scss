@@ -2,13 +2,25 @@
 
 .text-rwd-18 {
     font-size: 16px;
+
     @include sm {
         font-size: 18px;
     }
 }
+.theme--light{
+ 
+      --my-color: #0F1213; 
+  
+  }
+  
+  .theme--dark {
 
+      --my-color: #ffff; 
+
+  }
 .text-rwd-16 {
     font-size: 14px;
+
     @include sm {
         font-size: 16px;
     }
@@ -16,10 +28,12 @@
 
 .listitem {
     color: #9db1d8;
+
     div:first-child {
         color: #4c5d7f;
     }
-    div > a {
+
+    div>a {
         color: #9db1d8;
     }
 }
@@ -27,6 +41,7 @@
 .arrow {
     margin-bottom: -1px !important;
 }
+
 .search {
     width: 307px;
     // ::v-deep .v-btn__content {
@@ -44,49 +59,65 @@
         font-weight: 400;
     }
 }
+
 .header-mobile {
     position: fixed;
     z-index: 1000;
     background-color: #121e36;
 }
+
 .listbox-mobile {
     overflow: hidden;
     padding-top: 0px;
 }
+
 .listbox_2-mobile {
     overflow: hidden;
     padding-top: 0px;
 }
 
-.hackhome{
+.hackhome {
 
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
 }
-::v-deep .theme--dark.v-icon{
+
+::v-deep .theme--dark.v-icon {
     color: #8E8F91;
 }
-::v-deep .v-input--selection-controls .v-input__slot>.v-label, .v-input--selection-controls .v-radio>.v-label{
+
+::v-deep .v-input--selection-controls .v-input__slot>.v-label,
+.v-input--selection-controls .v-radio>.v-label {
     color: #8E8F91;
 }
 
 
-.input-text{
+.input-text {
     height: 36px !important;
 }
+
 ::v-deep .input-text input::placeholder {
     font-size: 16px;
     font-weight: 400;
 }
 
-
-
-
-
-.moble_radio{
-    ::v-deep .v-label{
+.moble_radio {
+    ::v-deep .v-label {
         font-size: 12px;
     }
+}
+
+::v-deep .v-input--selection-controls .v-input__slot > .v-label {
+    font-size: 14px;
+    color: var(--my-color);
+  }
+
+  .pad_top_mob{
+    padding-top: 100px;
+}
+
+.search_head {
+    border-radius:10px 10px 0px 0px;
 }

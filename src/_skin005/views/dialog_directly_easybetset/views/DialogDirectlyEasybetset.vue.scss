@@ -84,3 +84,7 @@
 .listitem_height{
     height: calc(100% );
 }
+
+::v-deep .money_class{
+    background-color: #fff;
+}

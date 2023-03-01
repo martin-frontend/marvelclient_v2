@@ -55,11 +55,23 @@
             //     true
             // );
             </script>
+
+            <script>
+                //获取设备当前时间
+                const timenow_hour = (new Date()).getHours();
+                //白天
+                if (timenow_hour > 5 && timenow_hour < 18) {
+                    document.getElementsByTagName("html")[0].style.backgroundColor = "#fff";
+                }
+                else {
+                    document.getElementsByTagName("html")[0].style.backgroundColor = "#202121";
+                }
+            </script>
 </head>
 
 <style>
     html {
-        background-color: #202121;
+        /* background-color: #202121; */
         height: 100%;
     }
 
@@ -70,7 +82,7 @@
     }
 
     #app {
-        height: 100%;
+        /* height: 100%; */
         box-sizing: border-box;
     }
 
@@ -137,12 +149,13 @@
     }
 
     @keyframes color {
+
         100%,
         0% {
             stroke: #ffc130;
         }
 
-        50%{
+        50% {
             stroke: #838486;
         }
     }
@@ -153,8 +166,9 @@
     } */
 
     .showbox {
-        position: flex;
+        position: absolute;
         width: 100%;
+        height: 100%;
     }
 
     .loading_2 {

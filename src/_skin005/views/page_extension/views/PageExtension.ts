@@ -22,6 +22,10 @@ export default class PageExtension extends AbstractView {
         super(PageExtensionMediator);
     }
 
+    mounted() {
+        PanelUtil.showAppLoading(false);
+    }
+
     destroyed() {
         super.destroyed();
         this.pageData.link = "";

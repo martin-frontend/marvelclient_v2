@@ -108,7 +108,7 @@
     </v-row>
     <div class="text-14 mt-3  mb-2 d-flex textGray--text" v-if="pageData.methodList[form.coin_name_unique]">
         <span class="mr-1">⚠️</span>
-        <div>
+        <div v-if="pageData.methodList[form.coin_name_unique].options[form.block_network_id]">
             <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
                 {{item}}
             </div>

@@ -2,6 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogManuallyUnstakingProxy from "../proxy/DialogManuallyUnstakingProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 export default class DialogManuallyUnstakingMediator extends AbstractMediator {
     private bonusProxy = PanelUtil.getProxy_page_bonus;
@@ -21,6 +22,7 @@ export default class DialogManuallyUnstakingMediator extends AbstractMediator {
                 this.bonusProxy.api_user_var_stake_info();
                 this.bonusProxy.api_plat_var_stake_info();
                 myProxy.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
                 break;
         }
     }

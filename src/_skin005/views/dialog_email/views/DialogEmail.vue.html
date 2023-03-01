@@ -1,48 +1,37 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" 
-    persistent>
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <!-- pc显示方式 -->
     <v-card v-if="!$vuetify.breakpoint.xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" height="100%">
 
         <com-dialog-title title="消息中心" @onClose="onClose" />
 
-        <v-divider class="mb-2 " />
+        <v-divider class="mb-4 " />
         <v-card-text>
-            <div>
+            <v-sheet color="transparent" width="100%"  class="d-flex align-center justify-space-between mb-6">
                 <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                    <v-btn class="rounded-pill mr-2" height="36" width="104" value="0">
+                    <v-btn class="rounded-pill mr-2" height="36" min_width="90" value="0">
                         <span class="text-14"> {{LangUtil("全部消息")}} </span>
                     </v-btn>
-                    <v-btn class="rounded-pill mr-2" height="36" width="104" value="1">
-
+                    <v-btn class="rounded-pill mr-2" height="36" min_width="90" value="1">
                         <span class=" text-14"> {{LangUtil("平台消息")}} </span>
                     </v-btn>
-                    <v-btn class="rounded-pill mr-2" height="36" width="104" value="11">
-
+                    <v-btn class="rounded-pill mr-2" height="36" min_width="90" value="11">
                         <span class=" text-14"> {{LangUtil("活动消息")}} </span>
                     </v-btn>
                 </v-btn-toggle>
-            </div>
 
-            <v-divider class="my-3" />
+                <v-sheet color="transparent" class="d-flex ">
+                    <btn-yellow class="text-16 " min-width="104" height="36" 
+                        @click.native="onReceiveQuick">{{LangUtil("一键领取")}}</btn-yellow>
 
-            <div class="d-flex mb-3 align-center">
-                <span @click="goMail"
-                    class="text-decoration-underline colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
-                <v-spacer />
-                <!-- <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
-                <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn> -->
+                    <btn-yellow class="text-16 ml-2" min-width="104" height="36" 
+                        @click.native="onDestroyQuick">{{LangUtil("删除已读")}}</btn-yellow>
+                </v-sheet>
+            </v-sheet>
 
-                <btn-yellow class="text-16 " min-width="104" height="36" :btn_type="2"
-                    @click.native="onReceiveQuick">{{LangUtil("一键领取")}}</btn-yellow>
-
-                <btn-yellow class="text-16 ml-2" min-width="104" height="36" :btn_type="2"
-                    @click.native="onDestroyQuick">{{LangUtil("删除已读")}}</btn-yellow>
-
-            </div>
-
-            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
-                <v-sheet class="px-4 py-3 sheetOutlined mb-3 d-flex cursor-pointer" v-for="(item, key) of pageData.list" :key="key"
-                    color="transparent" @click="onDetail(item)">
+            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y " height="450">
+                <v-sheet class="px-4 py-3 sheetOutlined mb-3 d-flex cursor-pointer" v-for="(item, key) of pageData.list"
+                    :key="key" color="transparent" @click="onDetail(item)">
                     <!-- <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> -->
 
                     <v-img v-if="item.is_read" max-width="50" width="50" height="100%" class="mr-1" contain
@@ -52,7 +41,7 @@
                         src="~@/_skin005/assets/mail/mail_close.png">
 
                     </v-img>
-                    <div class="ml-4" style="width: 100%">
+                    <div class="ml-4 regular_text" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">
                             <div class="text-16 primary--text">{{item.title}}</div>
                             <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
@@ -64,17 +53,18 @@
                             </v-img>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="textGray--text">{{item.created_at}}</div>
-                            <div class="text-decoration-underline textYellow--text cursor-pointer">
+                            <div class="userInfo_color--text">{{item.created_at}}</div>
+                            <div class="text-decoration-underline cursor-pointer" 
+                                :class="item.is_read ? 'userInfo_color--text' : 'textYellow--text'">
                                 {{item.is_read ? LangUtil("已读") : LangUtil("点击阅读详情")}}
                             </div>
                         </div>
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="445" />
+            <ListNodata v-if="pageData.list.length == 0" height="450" />
             <v-spacer />
-            <v-pagination class="mt-4" v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+            <v-pagination class="mt-4" v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 838"
                 v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" :total-visible="7"
                 @input="onPageChange"></v-pagination>
         </v-card-text>
@@ -106,7 +96,7 @@
             </div> -->
 
 
-        <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto" style="height: calc(100vh - 230px);">
+        <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-hidden" style="height: calc(100vh - 230px);"> -->
 
             <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
                 :listNodata="pageData.list.length == 0">
@@ -123,7 +113,7 @@
                     </v-img>
                     <div class="ml-4 text-12" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">
-                            <div class="text-14 primary--text">{{item.title}}</div>
+                            <div class="text-14 primary--text font-weight-bold">{{item.title}}</div>
                             <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
                                     {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
                                 </v-icon> -->
@@ -161,9 +151,9 @@
                     </div> -->
                 </v-sheet>
             </LoadMore>
-        </v-sheet>
 
-        <v-sheet class="mt-auto" color="bgNavigation" width="100%" height="90">
+
+        <v-sheet class="mt-auto" color="bgNavigation" width="100%" min-height="90">
             <v-sheet class="d-flex align-center justify-center px-3 mt-4" color="transparent" width="100%">
                 <btn-yellow class="text-14 " min_width="90" height="30" :btn_type="2"
                     @click.native="onDestroyQuick">{{LangUtil("删除已读")}}</btn-yellow>

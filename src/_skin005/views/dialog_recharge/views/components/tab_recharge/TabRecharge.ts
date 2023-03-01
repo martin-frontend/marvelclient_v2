@@ -147,14 +147,18 @@ export default class TabRecharge extends AbstractView {
         const { coin_name_unique, block_network_id, third_id } = this.form;
         let explain;
         if (this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].options) {
-            explain = this.pageData.methodList[coin_name_unique].options[block_network_id].explain;
-            if (!explain) {
-                const channel = this.pageData.methodList[coin_name_unique].options[block_network_id].channel;
-                if (channel) {
-                    const item = channel.find((item: any) => item.third_id == third_id);
-                    explain = item.explain;
+            if (this.pageData.methodList[coin_name_unique].options[block_network_id])
+            {
+                explain = this.pageData.methodList[coin_name_unique].options[block_network_id].explain;
+                if (!explain) {
+                    const channel = this.pageData.methodList[coin_name_unique].options[block_network_id].channel;
+                    if (channel) {
+                        const item = channel.find((item: any) => item.third_id == third_id);
+                        explain = item.explain;
+                    }
                 }
             }
+
         }
 
         return explain;

@@ -11,6 +11,7 @@ import LangUtil from "@/core/global/LangUtil";
 import Constant from "@/core/global/Constant";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 
 @Component
 export default class DialogAgentManager extends AbstractView {
@@ -24,6 +25,9 @@ export default class DialogAgentManager extends AbstractView {
     limitinfo = this.myProxy.limitinfo;
     commonIcon = Assets.commonIcon;
 
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
+    
     constructor() {
         super(DialogAgentManagerMediator);
     }
@@ -158,39 +162,5 @@ export default class DialogAgentManager extends AbstractView {
 
         //获取投注按钮的宽度
         const touzhi_width = touzhu_node?.scrollWidth;
-    }
-    getMoneyColor(str: any): string {
-        if (typeof str == "number") {
-            if (str < 0) {
-                return "red--text";
-            } else if (str > 0) {
-                return "colorGreen--text";
-            } else {
-                return "";
-            }
-        }
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return "";
-        }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
-    }
-    getMoneyValue(str: any): string {
-        if (typeof str == "number") {
-            if (str > 0) {
-                return "+" + str;
-            } else {
-                return str + "";
-            }
-        }
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return str;
-        }
-
-        if (!!str && str.search("-") == -1) return "+" + str;
-        return str;
     }
 }

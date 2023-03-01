@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogBindInviteProxy extends puremvc.Proxy {
@@ -17,6 +18,7 @@ export default class DialogBindInviteProxy extends puremvc.Proxy {
 
     hide() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
     /**--会员资料--修改用户基本信息*/
     api_user_update_var(data: any) {

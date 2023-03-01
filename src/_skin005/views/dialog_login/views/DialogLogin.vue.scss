@@ -35,13 +35,14 @@
 //     color: #4c5d7f;
 // }
 .codeSelect {
-
+    width: 56px;
     ::v-deep .v-input input {
         color: #FFCD43;
         font-size: 14px;
         font-weight: 600;
+        padding: 0 0 !important;
     }
-
+   
     ::v-deep .theme--dark.v-icon {
         color: #8E8F91;
     }
@@ -64,8 +65,17 @@
             border-radius: 10px !important;
         }
     }
-
+    ::v-deep .v-autocomplete.v-input>.v-input__control>.v-input__slot{
+        padding: 0;
+    }
     .mytest {
         min-width: 200px !important;
     }
 }
+
+.icon_mob{
+    ::v-deep .v-icon.v-icon{
+        font-size: 20px;
+    }
+}
+

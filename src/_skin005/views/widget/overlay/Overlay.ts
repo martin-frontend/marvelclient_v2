@@ -1,13 +1,16 @@
-import Assets from "@/assets/Assets";
+import Assets from "@/_skin005/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import OverlayMediator from "./OverlayMediator";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class Overlay extends AbstractView {
     commonIcon = Assets.commonIcon;
+    SkinVariable = SkinVariable;
     constructor() {
         super(OverlayMediator);
+        
     }
 
     inputValue = this.getValue;
@@ -26,4 +29,5 @@ export default class Overlay extends AbstractView {
         this.inputValue = false;
         this.$emit("input", this.inputValue);
     }
+
 }

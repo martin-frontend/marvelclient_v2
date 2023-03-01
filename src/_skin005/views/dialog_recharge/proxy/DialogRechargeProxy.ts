@@ -13,7 +13,7 @@ export default class DialogRechargeProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         tabIndex: 0, // 0充值 1兑换 2划转
     };
 
@@ -71,21 +71,25 @@ export class RechargeProxy extends puremvc.Proxy {
                 this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
-                //如果payemthod_id == 5 则选择输入金额
-                if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
-                    const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
-                    this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-                    this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-                }
-                if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
-                    const channel = data[coin_name_unique].options[block_network_id].channel;
-                    if (channel.length > 0) {
-                        this.pageData.form.third_id = channel[0].third_id;
-                        this.pageData.form.subtitle = channel[0].subtitle;
 
-                        const fixed_gold_list = channel[0].fixed_gold_list;
+                if (data[coin_name_unique].options[block_network_id]) {
+
+                    //如果payemthod_id == 5 则选择输入金额
+                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
+                        const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
                         this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                    }
+                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+                        const channel = data[coin_name_unique].options[block_network_id].channel;
+                        if (channel.length > 0) {
+                            this.pageData.form.third_id = channel[0].third_id;
+                            this.pageData.form.subtitle = channel[0].subtitle;
+
+                            const fixed_gold_list = channel[0].fixed_gold_list;
+                            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                        }
                     }
                 }
             }

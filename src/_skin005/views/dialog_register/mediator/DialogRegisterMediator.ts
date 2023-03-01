@@ -3,6 +3,7 @@ import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -23,6 +24,7 @@ export default class DialogRegisterMediator extends AbstractMediator {
             case net.EventType.api_user_register:
                 PanelUtil.message_success(LangUtil("注册成功"));
                 myProxy.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
                 this.loginSuccess(body);
                 //headerProxy.openMenu();
                 break;

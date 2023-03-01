@@ -84,18 +84,99 @@ const PageBlur = {
     isBlur: false,
     right: false,
     bottom: false,
+    curBlurCount_main: 0,
+    curBlurCount_right: 0,
+    curBlurCount_bottom: 0,
+
+    setPageScroll:(isScroll:boolean) =>
+    {
+        if (!isScroll) {
+            document.documentElement.style.overflow = "hidden";
+            //@ts-ignore
+            document.body.scroll = "no";
+        } else {
+            //document.documentElement.style.overflow = "scroll";
+            document.documentElement.style.overflowY = "scroll";
+            //@ts-ignore
+            document.body.scroll = "yes";
+        }
+    },
+
+    onChangeBlur: () => {
+
+        //两个计数的值 修复 ，放置小于 0 
+        if (PageBlur.curBlurCount_right < 0) {
+            PageBlur.curBlurCount_right = 0;
+        }
+        if (PageBlur.curBlurCount_bottom < 0) {
+            PageBlur.curBlurCount_bottom = 0;
+        }
+        if (PageBlur.curBlurCount_main < 0) {
+            PageBlur.curBlurCount_main = 0;
+        }
+        //如果 其中 有一个 还有值 则 显示
+        if (PageBlur.curBlurCount_right > 0 || PageBlur.curBlurCount_bottom > 0 || PageBlur.curBlurCount_main > 0) {
+            PageBlur.isBlur = true;
+            PageBlur.setPageScroll(false);
+        }
+
+        if (PageBlur.curBlurCount_right < 1) {
+            PageBlur.right = false;
+        }
+        if (PageBlur.curBlurCount_bottom < 1) {
+            PageBlur.bottom = false;
+        }
+        if (PageBlur.curBlurCount_right < 1 && PageBlur.curBlurCount_bottom < 1 && PageBlur.curBlurCount_main < 1) {
+            PageBlur.isBlur = false;
+            PageBlur.setPageScroll(true);
+        }
+    },
     blur_mainpage: (isBlur: boolean, isAll = true) => {
-        PageBlur.isBlur = isBlur;
-        PageBlur.right = isBlur;
-        PageBlur.bottom = isBlur;
+
+        if (isBlur) {
+            //PageBlur.isBlur = isBlur;
+            PageBlur.right = isBlur;
+            PageBlur.bottom = isBlur;
+            PageBlur.curBlurCount_right++;
+            PageBlur.curBlurCount_bottom++;
+            PageBlur.curBlurCount_main++;
+        }
+        else {
+            PageBlur.curBlurCount_right--;
+            PageBlur.curBlurCount_bottom--;
+            PageBlur.curBlurCount_main--;
+        }
+        PageBlur.onChangeBlur();
+
     },
     blur_novigation: (isBlur: boolean, isAll = true) => {
-        PageBlur.isBlur = isBlur;
-        PageBlur.bottom = isBlur;
+        if (isBlur) {
+            PageBlur.bottom = isBlur;
+            PageBlur.curBlurCount_bottom++;
+            PageBlur.curBlurCount_main++;
+        }
+        else {
+            PageBlur.curBlurCount_bottom--;
+            PageBlur.curBlurCount_main--;
+        }
+        PageBlur.onChangeBlur();
     },
     blur_page: (isBlur: boolean) => {
-        PageBlur.isBlur = isBlur;
-        PageBlur.bottom = PageBlur.right = false;
+        if (isBlur) {
+            PageBlur.curBlurCount_main++;
+        }
+        else {
+            PageBlur.curBlurCount_main--;
+        }
+        PageBlur.onChangeBlur();
+
+    },
+    //强力 关闭
+    blur_force_close :()=>{
+        PageBlur.curBlurCount_main = 0;
+        PageBlur.curBlurCount_right = 0;
+        PageBlur.curBlurCount_bottom = 0;
+        PageBlur.onChangeBlur();
     },
 };
 

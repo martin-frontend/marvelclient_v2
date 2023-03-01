@@ -5,9 +5,9 @@ function show(nub:number = 0) {
     //@ts-ignore
     window["vm"].$router.push("/page_statistice_credit");
 
-    const proxy: PageStatisticeCreditProxy = getProxy(PageStatisticeCreditProxy);
+    // const proxy: PageStatisticeCreditProxy = getProxy(PageStatisticeCreditProxy);
 
-    proxy.setShowType(nub);
+    // proxy.setShowType(nub);
 }
 
 export default { show };

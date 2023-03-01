@@ -31,6 +31,17 @@ export default class DialogDirectlySetting extends AbstractView {
     get gold_info(): any {
         return this.myProxy.playerInfo.gold_info;
     }
+    radiosInfo = [
+        {
+            name: LangUtil("玩家"),
+            value: 98,
+        },
+        {
+            name: LangUtil("代理"),
+            value: 1,
+        },
+
+    ]
 
     public get gameSwitchInfo(): number[] {
         const keys = Object.keys(this.myProxy.playerInfo.vendor_type_switch);
@@ -154,6 +165,10 @@ export default class DialogDirectlySetting extends AbstractView {
     onWatchShow() {
 
         PageBlur.blur_page(this.pageData.bShow);
+        if (!this.pageData.bShow)
+        {
+            this.myProxy.resetQuery();
+        }
     }
 
     getConfigName(type: any) {

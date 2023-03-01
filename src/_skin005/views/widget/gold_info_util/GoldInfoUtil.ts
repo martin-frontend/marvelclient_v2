@@ -21,6 +21,9 @@ export default class GoldInfoUtil extends AbstractView {
 
     @Prop({ default: false }) is_center!: boolean; //是否剧中
 
+    @Prop() balanceStrColor!: string;
+    @Prop({ default: "water_bg" }) bgColor!: string;
+
 
 
 

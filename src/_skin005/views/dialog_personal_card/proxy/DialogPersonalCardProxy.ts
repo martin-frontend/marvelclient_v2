@@ -1,3 +1,5 @@
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+
 export default class DialogPersonalCardProxy extends puremvc.Proxy {
     static NAME = "DialogPersonalCardProxy";
 
@@ -15,5 +17,6 @@ export default class DialogPersonalCardProxy extends puremvc.Proxy {
 
     hide() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 }

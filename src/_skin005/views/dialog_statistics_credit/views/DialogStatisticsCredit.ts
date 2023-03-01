@@ -11,6 +11,7 @@ import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 
 @Component
 export default class DialogStatisticsCredit extends AbstractView {
@@ -19,7 +20,9 @@ export default class DialogStatisticsCredit extends AbstractView {
     myProxy: DialogStatisticsCreditProxy = this.getProxy(DialogStatisticsCreditProxy);
     GamePlatConfig = GamePlatConfig;
     gameProxy = this.myProxy.gameProxy;
-
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
+    
     isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     pageData = this.myProxy.pageData;
 
@@ -168,25 +171,6 @@ export default class DialogStatisticsCredit extends AbstractView {
 
         
     }
-
-    getMoneyColor(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return ""
-        }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
-    }
-    getMoneyValue(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return str
-        }
-        if (!!str && str.search('-') == -1) return "+" + str;
-        return str;
-    }
-
     onItemClick(item: any) {
         //console.log("点击 item",item);
         this.myProxy.coin_name_unique = item;

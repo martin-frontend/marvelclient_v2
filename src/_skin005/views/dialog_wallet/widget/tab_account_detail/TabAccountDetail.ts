@@ -14,6 +14,27 @@ export default class TabAccountDetail extends AbstractView {
 
     commonIcon = Assets.commonIcon;
 
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_show_var_gold();
+        }
+    }
+
+    onPageChange(val: any) {
+        this.listQuery.page_count = val;
+        this.myProxy.api_user_show_var_gold();
+    }
+
+    onRefresh(done: any) {
+        this.myProxy.listRefrush(done);
+    }
+
+    onLoad(done: any) {
+        this.myProxy.listMore(done);
+    }
+
     onTimeChange() {
         this.pageData.list = [];
         this.listQuery.page_count = 1;
@@ -58,26 +79,5 @@ export default class TabAccountDetail extends AbstractView {
             this.listQuery.type = this.listOptions.typeSelect;
         }
         this.myProxy.api_user_show_var_gold();
-    }
-
-    @Watch("$vuetify.breakpoint.xsOnly")
-    onWatchXS() {
-        if (this.pageData.bShow) {
-            this.pageData.listQuery.page_count = 1;
-            this.myProxy.api_user_show_var_gold();
-        }
-    }
-
-    onPageChange(val: any) {
-        this.listQuery.page_count = val;
-        this.myProxy.api_user_show_var_gold();
-    }
-
-    onRefresh(done: any) {
-        this.myProxy.listRefrush(done);
-    }
-
-    onLoad(done: any) {
-        this.myProxy.listMore(done);
     }
 }

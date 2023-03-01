@@ -8,7 +8,7 @@ import { Component, Watch } from "vue-property-decorator";
 import DialogLoginMediator from "../mediator/DialogLoginMediator";
 import DialogLoginProxy from "../proxy/DialogLoginProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
@@ -16,7 +16,7 @@ export default class DialogLogin extends AbstractView {
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
     forgetData = this.myProxy.forgetData;
-
+    GlobalVar = GlobalVar;
     areaCodeMenu = false;
     areaCodeSearch = "";
     areaCodeList: any = [];

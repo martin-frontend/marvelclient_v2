@@ -4,7 +4,8 @@ const commonIcon = {
     loading: require(`@/_skin005/assets/loading.gif`),
     nodata: require(`@/_skin005/assets/nodata.png`),
     avatar_default: require(`@/_skin005/assets/avatar_default.png`),
-    arrow_right: "arrow_right"
+    arrow_right: "arrow_right",
+    loading_img: "img/loding_icon_5.png",
 };
 
 /**游戏分类图标	

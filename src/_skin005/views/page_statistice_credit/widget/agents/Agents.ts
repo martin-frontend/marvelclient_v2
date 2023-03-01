@@ -7,6 +7,8 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import DialogAgentManagerMediator from "@/_skin005/views/dialog_agent_manager/mediator/DialogAgentManagerMediator";
 import { changeDateShow } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
+import { scrollUtil_div } from "@/core/global/ScrollUtil";
 @Component
 export default class Agents extends AbstractView {
     LangUtil = LangUtil;
@@ -17,9 +19,13 @@ export default class Agents extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     limitinfo = this.myProxy.limitinfo;
     GamePlatConfig = GamePlatConfig;
-
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
     constructor() {
         super(DialogAgentManagerMediator);
+    }
+    destroyed() {
+        super.destroyed();
     }
     
     handlerSetting(data: any) {
@@ -112,6 +118,11 @@ export default class Agents extends AbstractView {
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_var_agent_direct_list();
+        if (this.$refs.scrollObj)
+        {
+            //@ts-ignore
+            scrollUtil_div(this.$refs.scrollObj.$el, 0);
+        }
     }
 
     onRefresh(done: any) {
@@ -129,7 +140,7 @@ export default class Agents extends AbstractView {
     }
 
     handlerShowDialogSet(agent_user: any) {
-        
+
         PanelUtil.openpanel_directly_setting({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
@@ -153,64 +164,28 @@ export default class Agents extends AbstractView {
         //获取投注按钮的宽度
         const touzhi_width = touzhu_node?.scrollWidth;
     }
-    getMoneyColor(str: any): string {
-        if (typeof str == "number") {
-            if (str < 0) {
-                return "red--text";
-            } else if (str > 0) {
-                return "colorGreen--text";
-            } else {
-                return "";
-            }
-        }
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return "";
-        }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
-    }
-    getMoneyValue(str: any): string {
-        if (typeof str == "number") {
-            if (str > 0) {
-                return "+" + str;
-            } else {
-                return str + "";
-            }
-        }
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return str;
-        }
 
-        if (!!str && str.search("-") == -1) return "+" + str;
-        return str;
-    }
-    getDta(str:string)
-    {
+    getDate(str: string) {
         return changeDateShow(str);
     }
 
     onItemClick(item: any) {
-        console.log("点击 item",item);
+        console.log("点击 item", item);
         this.coin_name_unique = item;
     }
-    
-    public get includeNomal() : boolean {
-        if (this.myProxy.checkboxValue.includes("1"))
-        {
+
+    public get includeNomal(): boolean {
+        if (this.myProxy.checkboxValue.includes("1")) {
             return true;
         }
         return false;
     }
 
-    public get includeDisable() : boolean {
-        if (this.myProxy.checkboxValue.includes("98"))
-        {
+    public get includeDisable(): boolean {
+        if (this.myProxy.checkboxValue.includes("98")) {
             return true;
         }
         return false;
     }
-    
+
 }

@@ -1,4 +1,5 @@
 import LangUtil from "@/core/global/LangUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogPromotionFloorProxy extends puremvc.Proxy {
@@ -51,6 +52,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
         if (data) {
             PanelUtil.message_warn(LangUtil("设置成功"));
             this.pageData.bShow = false;
+            MultDialogManager.onClosePanel();
         }
     }
 

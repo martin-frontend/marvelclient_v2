@@ -6,6 +6,8 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { dateFormat, getTodayOffset } from "@/core/global/Functions";
 import DialogStatisticsCreditMediator from "@/_skin005/views/dialog_statistics_credit/mediator/DialogStatisticsCreditMediator";
 import PageBlur from "@/_skin005/core/PageBlur";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
+import { scrollUtil_div } from "@/core/global/ScrollUtil";
 
 @Component
 export default class Statistice extends AbstractView {
@@ -14,6 +16,9 @@ export default class Statistice extends AbstractView {
     myProxy = PanelUtil.getProxy_statistics_credit;
     GamePlatConfig = GamePlatConfig;
     gameProxy = this.myProxy.gameProxy;
+
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
 
     isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     pageData = this.myProxy.pageData;
@@ -56,6 +61,7 @@ export default class Statistice extends AbstractView {
         super(DialogStatisticsCreditMediator);
     }
     mounted() {
+        this.setDatePiker();
         //console.log("    创建 ---  创建");
         const start = getTodayOffset(-6);
         const end = getTodayOffset(1, 1);
@@ -64,9 +70,30 @@ export default class Statistice extends AbstractView {
         this.onTimeChange();
     }
 
+    setDatePiker()
+    {
+        const keyNode = document.querySelectorAll(".el-date-editor");
+        if (!keyNode || keyNode.length < 1) return;
+
+        for (let index = 0; index < keyNode.length; index++) {
+            const element = keyNode[index];
+            
+            const iNode = document.createElement("i");
+            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+            element.appendChild(iNode);
+
+            iNode.style.position = "absolute";
+            iNode.style.top = "13px";
+            iNode.style.right = "12px";
+            iNode.style.color="#8E8F91";
+            iNode.style.pointerEvents="none";
+
+        }
+    }
     destroyed() {
-        console.log("    销毁 -- 销毁");
+        console.log(" ---销毁 ----");
         super.destroyed();
+        this.myProxy.reseData();
 
     }
     onBtnClickNextPage(item: any) {
@@ -178,25 +205,6 @@ export default class Statistice extends AbstractView {
 
 
     }
-
-    getMoneyColor(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return ""
-        }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
-    }
-    getMoneyValue(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
-        if (amount == 0) {
-            return str
-        }
-        if (!!str && str.search('-') == -1) return "+" + str;
-        return str;
-    }
-
     onItemClick(item: any) {
         console.log("点击 item", item);
         this.myProxy.coin_name_unique = item;

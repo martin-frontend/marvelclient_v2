@@ -3,6 +3,7 @@ import DialogBindGoogleProxy from "../proxy/DialogBindGoogleProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 export default class DialogBindGoogleMediator extends AbstractMediator{
     public listNotificationInterests(): string[] {
@@ -16,6 +17,7 @@ export default class DialogBindGoogleMediator extends AbstractMediator{
             case net.EventType.api_user_bind_google_key_var:
                 myProxy.pageData.loading = false;
                 myProxy.pageData.bShow = false;
+                MultDialogManager.onClosePanel();
                 PanelUtil.message_success(LangUtil("操作成功"));
                 break;
         }

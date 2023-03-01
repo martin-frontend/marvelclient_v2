@@ -5,12 +5,7 @@
 .box-scroll {
     overflow-y: scroll;
 }
-.theme--light.v-sheet {
-    .default-color {
-        color: #302f2f !important;
-        box-shadow: 0px 2px 4px 0px #9f9f9f !important;
-    }
-}
+
 ._title {
     color: #8d9199;
 }
@@ -74,17 +69,7 @@
 .custom-hr {
     border-top: 1px dashed #d8d8d8;
 }
-::v-deep .theme--dark {
-    .v-sheet {
-        background-color: #FFFFFF !important;
-        border-color: #FFFFFF !important;
-        color: rgba(0, 0, 0, 0.87) !important;
-    }
-    .default-color {
-        background-color: #F1F1F1 !important;
-        border-color: #F1F1F1 !important;
-    }
-}
+
 .title{
     font-size: 18px !important;
     color:hsla(0,0%,100%,.7);

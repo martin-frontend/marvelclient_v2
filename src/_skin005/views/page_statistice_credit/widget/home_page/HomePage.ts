@@ -5,23 +5,24 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Constant from "@/core/global/Constant";
 import PageStatisticeCreditProxy from "../../proxy/PageStatisticeCreditProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
-import DialogDirectlyMyMediator from "@/_skin005/views/dialog_directly_my/mediator/DialogDirectlyMyMediator";
-import SelfProxy from "@/proxy/SelfProxy";
+
+import CopyUtil from "@/core/global/CopyUtil";
 
 
 @Component
 export default class HomePage extends AbstractView {
     LangUtil = LangUtil;
     playerInfo = PanelUtil.getProxy_selfproxy;
-    //playerInfo:SelfProxy = this.getProxy(SelfProxy);
-    //myProxy: PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
-    myProxy = PanelUtil.getProxy_directly_my;
+    myProxy : PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
     pageData = this.myProxy.pageData;
 
-    constructor() {
-        super(DialogDirectlyMyMediator);
+    // constructor() {
+    //     super(DialogDirectlyMyMediator);
+    // }
+    mounted() {
+        console.log("创建发送请求");
+        this.myProxy.api_user_var_commission_commissiondetail();
     }
-
     getConfigName(type: any) {
         return Constant.GameTypeText(type);
     }
@@ -74,8 +75,11 @@ export default class HomePage extends AbstractView {
     reget() {
         this.myProxy.api_user_var_short_chain(1);
     }
-    private copy() {
-        this.myProxy.copy();
+    private copy( msg:any) {
+        CopyUtil(msg);
+        PanelUtil.message_info(LangUtil("复制成功"));
+
+        //this.myProxy.copy();
     }
     handlerDirectly() {
         PanelUtil.openpanel_directly();

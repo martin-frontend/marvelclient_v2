@@ -133,9 +133,9 @@
             </v-card-text>
 
             <!-- <v-card-text class="px-5" > -->
-            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2"
-                :class="limitinfo.enable_all == 1 ? 'mobile_main' :'mobile_main_2'">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished">
+            <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2"
+                :class="limitinfo.enable_all == 1 ? 'mobile_main' :'mobile_main_2'"> -->
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :class="limitinfo.enable_all == 1 ? 'mobile_main' :'mobile_main_2'" class="px-2">
                     <ListNodata v-if="pageData.list.length == 0" />
                     <v-sheet class="px-3 py-2 rounded10 my-2 textGray--text" color="bgBanner"
                         v-for="(item, key) of pageData.list" :key="key">
@@ -204,7 +204,7 @@
                         </v-sheet>
                     </v-sheet>
                 </LoadMore>
-            </v-sheet>
+            <!-- </v-sheet> -->
             <!-- </v-card-text> -->
         </template>
     </v-card>

@@ -97,7 +97,7 @@
                 />
             </div>
         </v-card-text>
-        <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-3" style="height: calc(100vh - 140px);">
+        <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-3" style="height: calc(100vh - 140px);"> -->
             <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
                 <v-sheet
                     class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
@@ -119,7 +119,7 @@
                     <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn> -->
                 </v-sheet>
             </LoadMore>
-       </v-sheet>
+       <!-- </v-sheet> -->
     </template>
     </v-card>
     <Overlay v-model="pageData.loading" />

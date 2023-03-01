@@ -2,13 +2,13 @@
     <v-app class="d-flex app">
         <!-- pc版的显示 -->
         <template v-if="!$vuetify.breakpoint.mobile">
-            <v-sheet id="page" class="d-flex " color="transparent">
+            <v-sheet id="page" class="d-flex" color="transparent">
                 <Novigation />
 
-                <v-sheet color="transparent" class="d-flex justify-center" width="100%">
+                <v-sheet id="mainpage" color="transparent" class="d-flex justify-center mainpage" >
                     <Header id="pc_header" class="head_test" />
-                    <v-sheet id="mainpage" color="transparent" class="mainpage ">
-                        <v-main id="router_page" class="router_test">
+                    <v-sheet  color="transparent" class="px-2" width="100%">
+                        <v-main  id="router_page" class="router_test">
                             <router-view />
                             <Footer v-if="!$vuetify.breakpoint.mobile" />
                         </v-main>
@@ -19,20 +19,19 @@
         <!-- 手机版 -->
         <template v-else>
             <div id="page">
-                <Header v-if="isShowHeader"/>
-                <v-main id="mainpage" color="transparent" class="overflow-x-hidden">
-
-                    <div id="router_page" class="overflow-x-hidden">
+                <Header v-if="isShowHeader" />
+                <v-main id="mainpage" color="transparent" class="overflow-hidden">
+                    <div id="router_page" class="overflow-hidden">
                         <router-view />
                     </div>
                 </v-main>
-                <MobileMenu v-if="$route.path != '/page_game_play'"/>
+                <MobileMenu v-if="$route.path != '/page_game_play'" />
             </div>
         </template>
         <!-- 用户面板 -->
         <template v-if="$vuetify.breakpoint.mobile">
-            <v-navigation-drawer v-if="isShowHeader" v-model="myProxy.bshowNovigationPanel" left
-                temporary width="188" app color="bgBanner">
+            <v-navigation-drawer v-if="isShowHeader" v-model="myProxy.bshowNovigationPanel" left temporary width="188" app class="mob_navigation"
+                color="bgBanner">
                 <Novigation />
             </v-navigation-drawer>
 
@@ -62,6 +61,25 @@
                 </btn-yellow>
             </v-btn>
         </template>
+
+        <div v-if="PageBlur.isBlur" class="blur-mask"
+            :class="{ 
+                'blur-mask-bottom': PageBlur.bottom && !$vuetify.breakpoint.mobile ,
+                'blur-mask-bottom_mob': PageBlur.bottom && $vuetify.breakpoint.mobile,
+                'blur-mask-right': PageBlur.right 
+            }"></div>
+
+        <!-- 添加到桌面引导 -->
+        <div class="btn-guide d-flex justify-center"
+            v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
+
+            <btn-yellow class="text-14" height="36" min_width="90" :btn_type="8"
+                @click.native="onGuide">{{ myProxy.guideText }}</btn-yellow>
+        </div>
+        <v-navigation-drawer v-if="myProxy.guideDrawer" v-model="myProxy.guideDrawer" 
+        color="transparent" height="432" bottom temporary fixed>
+            <GuideDrawer @onClose="onCloseGuide"/>
+        </v-navigation-drawer>
     </v-app>
 </template>
 
@@ -75,6 +93,7 @@ import DialogMessage from "@/_skin005/views/dialog_message/views/DialogMessage.v
 import MobileMenu from "@/_skin005/views/mobile_menu/MobileMenu.vue";
 import Novigation from "@/_skin005/views/novigation/Novigation.vue";
 import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
+import GuideDrawer from '@/_skin005/views/widget/guide_drawer/GuideDrawer.vue'
 @Component({
     components: {
         Header,
@@ -84,6 +103,7 @@ import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
         UserPanel,
         DialogMessage,
         Orientation,
+        GuideDrawer,
     },
 })
 export default class extends App { }
@@ -94,10 +114,19 @@ export default class extends App { }
     background-color: transparent;
 }
 
+.btn-guide {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 80px;
+}
+
 .main-pc {
     padding-left: 94px;
 }
-
+.mob_navigation{
+    z-index: 12 !important;
+}
 .btn-service {
     position: fixed;
     bottom: 20px;
@@ -112,32 +141,55 @@ export default class extends App { }
     z-index: 100;
 }
 
-
 //以下都是在代码中调用的样式 Novigation.ts
 .mainpage {
-    width: calc(100vw - 218px);
+    width: calc(100% - 188px);
 }
 
 .mainpage_mini {
-    width: calc(100vw - 85px);
+    width: calc(100% - 60px);
 }
 
 .head_test {
     position: fixed;
     top: 0;
     z-index: 10;
-    width: calc(100vw - 202px) !important;
+    width: calc(100% - 188px) !important;
 }
 
 .head_test_mini {
     position: fixed;
     top: 0;
     z-index: 10;
-    width: calc(100vw - 76px) !important;
+    width: calc(100% - 60px) !important;
 }
 
 .router_test {
     position: relative;
     top: 65px;
+}
+
+.blur-mask {
+    pointer-events: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 11;
+}
+
+.blur-mask-right {
+    z-index: 9 !important;
+}
+
+.blur-mask-bottom {
+    z-index: 11;
+    top: 74px;
+}
+.blur-mask-bottom_mob {
+    z-index: 11;
+    top: 50px;
 }
 </style>

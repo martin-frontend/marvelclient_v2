@@ -9,13 +9,16 @@ import GameItem from "../widget/game_item/GameItem.vue";
 
 import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
 import Advertise from "@/_skin005/views/page_home/widget/advertise/Advertise.vue";
-
+import ImgLoader from '@/_skin005/views/widget/img_loader/ImgLoader.vue'
+import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 @Component({
     components: {
         GameListSelect,
         GameItem,
         Activity,
         Advertise,
+        ImgLoader,
+        Marquee1,
     },
 })
 export default class extends PageGameList {

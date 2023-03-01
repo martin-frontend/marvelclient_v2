@@ -1,0 +1,45 @@
+
+<v-card flat width="100%" color="bgBanner" class="rounded10" height="432">
+    <!-- 标题 -->
+    <v-sheet class=" d-flex justify-start align-center px-4 pt-3" color="transparent" >
+        <div class="text-16 font-weight-bold primary--text">{{LangUtil("添加到桌面")}}</div>
+        <v-btn class="ml-auto mr-n2" icon @click="onClose">
+            <v-icon>mdi-close</v-icon>
+        </v-btn>
+    </v-sheet>
+
+
+    <v-divider class="mb-4 mt-2" />
+    <v-sheet color="transparent" width="100%" class="d-flex flex-column px-4">
+        <v-sheet color="transparent" width="100%" class="d-flex primary--text text-14">
+            <div>
+                {{LangUtil("第一步:")}}
+            </div>
+            <div>
+                {{ LangUtil("点击下方工具栏的")}}
+            </div>
+            <v-img class="ml-2" src="@/_skin005/assets/guide/img01.png" max-width="25"></v-img>
+        </v-sheet>
+
+        <v-sheet color="transparent" width="100%" class="d-flex primary--text text-14 mt-6">
+            <div>
+                {{LangUtil("第二步:")}}
+            </div>
+            <div>
+                {{ LangUtil("选择")}}
+            </div>
+            <div>
+                “{{ LangUtil("添加到主屏幕") }}”
+            </div>
+            <v-img class="mx-2" src="@/_skin005/assets/guide/img02.png" max-width="25"></v-img>
+        </v-sheet>
+        <v-sheet class="d-flex justify-center mb-3 mt-5">
+            <v-img class="ml-2" :src="guideImg" max-width="280" max-height="220"></v-img>
+        </v-sheet>
+        <div class="d-flex justify-center">
+            <!-- <v-icon color="colorTextGold">mdi-arrow-down-bold</v-icon> -->
+            <svg-icon icon="arrow_next" class="text-30 textYellow--text"
+                                        style="transform: rotateZ(90deg);"></svg-icon>
+        </div>
+    </v-sheet>
+</v-card>

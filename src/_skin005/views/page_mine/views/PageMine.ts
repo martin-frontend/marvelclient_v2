@@ -23,8 +23,8 @@ export default class PageMine extends AbstractView {
     constructor() {
         super(PageMineMediator);
     }
-
     mounted() {
+        PanelUtil.showAppLoading(false);
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
         this.checkProgress();
     }

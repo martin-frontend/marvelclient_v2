@@ -43,7 +43,8 @@ export default class DialogAddressBook extends AbstractView {
     }
 
     onAddress(address: any) {
-        this.myProxy.pageData.bShow = false;
+        //this.myProxy.pageData.bShow = false;
+        this.onClose();
         this.rechargeProxy.exchangeProxy.pageData.form.account = address;
     }
 

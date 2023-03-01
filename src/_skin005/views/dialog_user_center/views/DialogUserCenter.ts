@@ -51,8 +51,16 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     onLoginOut() {
-        this.selfProxy.api_user_logout();
-        this.pageData.bShow = false;
+        
+        PanelUtil.message_confirm({
+            message:LangUtil("是否退出登录"),
+            okFun:() =>{
+                this.selfProxy.api_user_logout();
+                //this.pageData.bShow = false;
+                this.onClose();
+            }
+        })
+
     }
 
     checkValidateType(val: any) {
@@ -65,7 +73,8 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     goMine() {
-        this.pageData.bShow = false;
+        //this.pageData.bShow = false;
+        this.onClose();
         //page_mine.show()
         PanelUtil.openpage_mine();
     }

@@ -68,7 +68,7 @@
     background-repeat: repeat-x;
 }
 .empty_width_2{
-    width: 80px;
+    width: 80px !important;
 }
 .input-text_2 {
     height: 30px;
@@ -90,4 +90,25 @@
     border-radius:2px;
     height: 4px ;
     background: linear-gradient(to right, #fcb131, #ffe64d);
+}
+
+.radio_mob{
+    ::v-deep .v-label{
+        font-size: 12px;
+    }
+    .v-icon.v-icon{
+        font-size: 18px;
+    }
+}
+.theme--light{
+
+    .v-label{
+        color: #0F1213;
+    }
+}
+.theme--dark{
+
+    .v-label{
+        color: #fff;
+    }
 }

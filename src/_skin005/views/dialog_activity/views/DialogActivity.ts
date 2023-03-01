@@ -35,10 +35,11 @@ export default class DialogActivity extends AbstractView {
     }
 
     onDetail(item: any) {
-        this.pageData.bShow = false;
+        //this.pageData.bShow = false;
         setTimeout(() => {
             PanelUtil.openpanel_activity_detail(item);
         }, 100);
+        this.onClose();
     }
 
     @Watch("$vuetify.breakpoint.xsOnly")

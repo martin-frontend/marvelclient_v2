@@ -33,9 +33,9 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         if (msg.bShowIsMine != null) {
             proxy.pageData.bShowIsMine = msg.bShowIsMine;
         }
-        if (msg.filterBtnInfo != null) {
-            proxy.setFilterInfo(msg.filterBtnInfo);
-        }
+        // if (msg.filterBtnInfo != null) {
+        //     proxy.setFilterInfo(msg.filterBtnInfo);
+        // }
     }
     else {
         proxy.listOptions.moneySelect = 0;

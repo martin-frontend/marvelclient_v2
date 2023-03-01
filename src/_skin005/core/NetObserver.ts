@@ -191,12 +191,16 @@ export default class NetObserver extends AbstractMediator {
                     }
 
                     const { coin_name_unique } = this.gameProxy;
-
+                    let settle_coin_name_unique = "USDT";
+                    if (body.settle_coin_name_unique)
+                    {
+                        settle_coin_name_unique = body.settle_coin_name_unique;
+                    }
                     PanelUtil.message_confirm({
                         message:
                             coin_name_unique == "USDT"
                                 ? LangUtil("进入游戏")
-                                : LangUtil("您当前使用的货币为{0}将会折算成等价的美元进入游戏", coin_name_unique),
+                                : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏",coin_name_unique,settle_coin_name_unique),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
@@ -285,7 +289,8 @@ export default class NetObserver extends AbstractMediator {
             const page = document.getElementById("app")
             if (page) {
                 //console.log("切换英语字体 GOTHAM_BOOK");
-                page.style.fontFamily = "'GOTHAM_BOLD' ,'GOTHAM_BOOK' ";
+                //page.style.fontFamily = "'GOTHAM_BOLD' ,'GOTHAM_BOOK' ";
+                page.style.fontFamily = "'GOTHAM_BOOK' ,'GOTHAM_BOLD' ";
                 //page.style.fontFamily = "GOTHAM_BOLD";
             }
         }

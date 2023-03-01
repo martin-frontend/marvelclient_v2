@@ -9,6 +9,7 @@ import DialogRechargeMediator from "../mediator/DialogRechargeMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogRecharge extends AbstractView {
@@ -16,7 +17,7 @@ export default class DialogRecharge extends AbstractView {
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     selfProxy = PanelUtil.getProxy_selfproxy;
     pageData = this.myProxy.pageData;
-
+    GlobalVar = GlobalVar;
     constructor() {
         super(DialogRechargeMediator);
     }

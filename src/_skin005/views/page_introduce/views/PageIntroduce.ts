@@ -22,7 +22,9 @@ export default class PageIntroduce extends AbstractView {
     constructor() {
         super(PageIntroduceMediator);
     }
-
+    mounted() {
+        PanelUtil.showAppLoading(false);
+    }
     getTextWrapClass(): string {
         if (this.$vuetify.breakpoint.width > 1264 && this.$vuetify.breakpoint.width < 1460) {
             return "textWrap-ctDown";

@@ -27,7 +27,7 @@
                 @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20"
                     height="20"></v-img>
-                <div :class="($vuetify.breakpoint.mobile && key == selectValue) ? 'primary--text' : ''">{{ item.name || item }}</div>
+                <div :class="(key == selectValue) ? 'primary--text' : ''">{{ item.name || item }}</div>
             </div>
         </v-sheet>
     </v-menu>

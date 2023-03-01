@@ -1,13 +1,5 @@
-<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" persistent>
+<v-dialog v-if="!pageData.bHidden" width="350" v-model="pageData.bShow" :retain-focus="false" persistent>
     <v-card class="rounded10" color="bgBanner">
-        <!-- pc显示方式 -->
-        <!-- <v-card-title class="gradient-bg">
-            <div class="text-20">{{LangUtil("游戏汇率查询")}}</div>
-            <v-spacer />
-            <v-btn class="ml-auto" icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
-            </v-btn>
-        </v-card-title> -->
         <com-dialog-title title="游戏汇率查询" @onClose="onClose" :isDialog="true"/>
 
         <v-divider class="mb-2 " />
@@ -15,7 +7,7 @@
             <div class="mx-1 mb-5 textGray--text">
                 {{LangUtil("Coinfans为数字货币娱乐平台。进入游戏使用当前选中的币种，不同币种进入游戏时可以兑换的筹码数量不同，但都是币本位游戏结算。详细兑换比例如下表：")}}
             </div>
-            <v-sheet height="42" class="  my-2 d-flex align-center justify-space-between sheetOutlined" color="transparent"
+            <v-sheet height="42" class="  my-2 d-flex align-center justify-space-between sheetOutlined regular_text" color="transparent"
                 v-for="(item, index) of pageData.list" :key="index" >
 
                 <v-sheet class="d-flex ml-2" color="transparent">

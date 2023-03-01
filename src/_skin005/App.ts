@@ -1,9 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
-import OpenLink from "@/core/global/OpenLink";
 import { Component, Watch } from "vue-property-decorator";
 import Assets from "./assets/Assets";
-import router from "@/router";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import AppProxy from "./AppProxy";
 import ServiceUtil from "./core/global/ServiceUtil";
@@ -14,9 +12,9 @@ import PageBlur from "./core/PageBlur";
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
     PageBlur = PageBlur;
-
+    LangUtil = LangUtil;
     myProxy: AppProxy = this.getProxy(AppProxy);
-
+    core = core;
     constructor() {
         super();
         this.onWatchTheme();
@@ -34,7 +32,7 @@ export default class APP extends AbstractView {
         else {
             this.$vuetify.theme.dark = true;
         }
-        console.log("当前 时间----小时 ", timenow_hour);
+        //console.log("当前 时间----小时 ", timenow_hour);
         //this.$vuetify.theme.dark = true;
     }
 
@@ -42,8 +40,6 @@ export default class APP extends AbstractView {
     autoChangeDarkByTime()
     {
         //获取 之前玩家保存之后的 明暗 的值 的 时间
-        
-
         const userLang = window.localStorage.getItem("lang");
     }
 
@@ -110,5 +106,19 @@ export default class APP extends AbstractView {
     @Watch("myProxy.bshowNovigationPanel")
     novigationPanelShow() {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
+    }
+    get isShowGuide() {
+        //return true;
+        return this.myProxy.isShowGuide;
+     }
+     onGuide() {
+        this.myProxy.onGuide();
+    }
+    get guideImg() {
+        return this.core.lang.includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
+    }
+    onCloseGuide()
+    {
+        this.myProxy.guideDrawer = false;
     }
 }

@@ -23,15 +23,15 @@ export default class DialogRegister extends AbstractView {
 
     public get btn_width(): number {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return 100;
+            return 78;
         }
         else {
-            return 110;
+            return 90;
         }
     }
     public get btn_height(): number {
         if (this.$vuetify.breakpoint.xsOnly) {
-            return 36;
+            return 30;
         }
         else {
             return 36;

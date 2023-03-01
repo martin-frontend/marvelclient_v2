@@ -12,13 +12,16 @@ export default class DialogWallet extends AbstractView {
     myProxy: DialogWalletProxy = this.getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
 
+    listQuery = this.pageData.listQuery;
+    listOptions = this.pageData.listOptions;
+    
     constructor() {
         super(DialogWalletMediator);
     }
     typechange=0;
 
     /**图标时间选择 */
-    onTimeChange(val: any) {
+    onBtnChange(val: any) {
        this.pageData.tabIndex = parseInt(val);
        this.onTabClick(this.pageData.tabIndex);
    }
@@ -39,4 +42,51 @@ export default class DialogWallet extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
     }
+
+    onTimeChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1;
+        switch (this.listOptions.timeSelect) {
+            case 0:
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                break;
+            case 1:
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-1), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(0, 1), "yyyy-MM-dd");
+                break;
+            case 2:
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                break;
+            case 3:
+                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
+                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                break;
+        }
+        this.myProxy.api_user_show_var_gold();
+    }
+
+    onCoinChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1
+        if (this.listOptions.coinSelect == 0) {
+            this.listQuery.coin_name_unique = null;
+        } else {
+            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect];
+        }
+        this.myProxy.api_user_show_var_gold();
+    }
+
+    onTypeChange() {
+        this.pageData.list = [];
+        this.listQuery.page_count = 1
+        if (this.listOptions.typeSelect == 0) {
+            this.listQuery.type = 0;
+        } else {
+            this.listQuery.type = this.listOptions.typeSelect;
+        }
+        this.myProxy.api_user_show_var_gold();
+    }
+
 }

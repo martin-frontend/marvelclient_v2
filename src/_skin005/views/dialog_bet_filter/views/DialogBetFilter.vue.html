@@ -1,25 +1,27 @@
 <v-dialog width="830" v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
-    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg">
-        <!-- 标题 -->
-        <!-- <v-card-title class="d-flex justify-end pb-0 gradient-bg">
-            <div class="text-18 font-weight-medium ml-2">
-                {{LangUtil("层级筛选")}}
-            </div>
-            <v-spacer />
-            <v-btn icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
-            </v-btn>
-        </v-card-title> -->
+    <v-card class="d-flex flex-column rounded10" color="bgBanner">
+
         <com-dialog-title title="层级筛选" @onClose="onClose" />
+        <v-divider class="mb-2 " />
         <!-- 内容 -->
-        <v-card-text class="text-sm-subtitle-1 text_height">
+        <v-card-text class=" text_height">
             <!-- 单选框 -->
             <div>
-                <v-radio-group v-model="radios" row class="colorTextBlueLight2--text">
+                <!-- <v-radio-group v-model="radios" row class="colorTextBlueLight2--text">
                     <v-radio v-for="(item, key) of radiosInfo" :key="key" :label="`${item.name}`" :value="item.value"
                         color="#6A83B4"></v-radio>
-                </v-radio-group>
+                </v-radio-group> -->
+
+                <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn class="rounded-pill mr-2" height="36" min_width="90" value="0">
+                        <span class="text-14"> {{LangUtil("团队投注")}} </span>
+                    </v-btn>
+                    <v-btn  class="rounded-pill mr-2" height="36" min_width="90" value="1">
+                        <span class=" text-14"> {{LangUtil("个人投注")}} </span>
+                    </v-btn>
+                </v-btn-toggle>
+
             </div>
 
             <!-- 层级内容 -->

@@ -7,8 +7,10 @@ import GameProxy from "@/proxy/GameProxy";
 import AppProxy from "@/_skin005/AppProxy";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
 
+import NoticeProxy from "@/proxy/NoticeProxy";
+
 /** 系统提示相关 */
-import dialog_preview from "@/views/dialog_preview";
+import dialog_preview from "@/_skin005/views/dialog_preview";
 import dialog_message_box from "@/_skin005/views/dialog_message_box";
 import dialog_message from "@/_skin005/views/dialog_message";
 
@@ -88,8 +90,8 @@ import dialog_record_mine_detail from "@/_skin005/views/dialog_record_mine_detai
 import DialogRecordMineDetailProxy from "@/_skin005/views/dialog_record_mine_detail/proxy/DialogRecordMineDetailProxy";
 
 /** 信用 代理  信用统计 */
-import dialog_statistics_credit from "@/_skin005/views/dialog_statistics_credit";
-import dialog_agent_manager from "@/_skin005/views/dialog_agent_manager";
+// import dialog_statistics_credit from "@/_skin005/views/dialog_statistics_credit";
+// import dialog_agent_manager from "@/_skin005/views/dialog_agent_manager";
 import dialog_directly_adduser from "@/_skin005/views/dialog_directly_adduser";
 import dialog_directly_agentset from "@/_skin005/views/dialog_directly_agentset";
 import dialog_directly_backwater from "@/_skin005/views/dialog_directly_backwater";
@@ -118,6 +120,9 @@ import dialog_performance_detail from "@/_skin005/views/dialog_performance_detai
 
 import DialogPerformanceDetailProxy from "@/_skin005/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import MultDialogManager from "./MultDialogManager";
+import GlobalVar from "@/core/global/GlobalVar";
+import LangUtil from "@/core/global/LangUtil";
+import PageBlur from "./PageBlur";
 
 
 export default class PanelUtil {
@@ -141,12 +146,17 @@ export default class PanelUtil {
     static openpage_extension() {
         LoginEnter(() => {
             Vue.router.push("/page_extension");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
         }
         );
     }
     //币种介绍
     static openpage_introduce() {
         Vue.router.push("/page_introduce");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
 
     //打开 主页
@@ -155,15 +165,23 @@ export default class PanelUtil {
             Vue.router.push("/");
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
     //打开游戏列表 界面
     static openpage_gamelist() {
-        Vue.router.push("/page_game_list");
+        //Vue.router.push("/page_game_list");
+        page_game_list.show();
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
+        //PanelUtil.showAppLoading(true);
     }
 
     //打开游戏列表 界面
     static openpage_game_play(url: string) {
         PanelUtil.getProxy_novigation.setMiniMenu(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
         page_game_play.show(url);
     }
 
@@ -171,6 +189,9 @@ export default class PanelUtil {
     static openpage_bonus() {
         LoginEnter(() => {
             Vue.router.push("/page_bonus");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
         }
         );
     }
@@ -179,7 +200,10 @@ export default class PanelUtil {
     static openpage_statist_credit(nub: number = 0) {
         LoginEnter(() => {
             //Vue.router.push("/page_statistice_credit");
+            PanelUtil.showAppLoading(true);
             page_statistice_credit.show(nub);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
         }
         );
     }
@@ -194,16 +218,24 @@ export default class PanelUtil {
     //打开 游戏返水 界面
     static openpage_mine() {
         Vue.router.push("/page_mine");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
 
     //打开 SWAP交易 界面
     static openpage_swap() {
         Vue.router.push("/page_swap");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
 
     //打开 我的界面 界面
     static openpage_my_info() {
         Vue.router.push("/page_my_info");
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
 
     /**打开 足球 界面  */
@@ -254,11 +286,23 @@ export default class PanelUtil {
     //打开充值窗口
     static openpanel_recharge(options: any = null) {
         MultDialogManager.onOpenPanel(dialog_recharge);
-        dialog_recharge.show();
+
+        //不显示充值
+        // if (!GlobalVar.instance.isShowRecharge)
+        // {
+        //     PanelUtil.message_info(LangUtil("充值通道关闭!"));
+        // }
+        // else    
+            dialog_recharge.show();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
         MultDialogManager.onOpenPanel(dialog_recharge);
+        if (!GlobalVar.instance.isShowRecharge)
+        {
+            PanelUtil.message_info(LangUtil("兑换通道关闭!"));
+        }
+        else  
         dialog_recharge.show(1);
     }
     //打开精彩活动窗口
@@ -344,11 +388,11 @@ export default class PanelUtil {
 
     //打开 交换记录 窗口
     static openpanel_swap_record() {
-        
-        LoginEnter(()=>{
+
+        LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_swap_record);
             dialog_swap_record.show();
-        } );
+        });
     }
 
     //打开 奖励排行榜 窗口
@@ -667,6 +711,11 @@ export default class PanelUtil {
     //地址的的数据
     public static get getProxy_addressBook(): DialogAddressBookProxy {
         return getProxy(DialogAddressBookProxy);
+    }
+
+    //通知的消息
+    public static get getProxy_noticeProxy(): NoticeProxy {
+        return getProxy(NoticeProxy);
     }
 
 

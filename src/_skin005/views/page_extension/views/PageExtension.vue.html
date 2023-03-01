@@ -1,9 +1,10 @@
-<v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile? 'pl-2 pr-2' : ''" style="min-height: calc(100vh - 505px);">
+<v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile? 'pl-2 pr-2' : ''"
+    style="min-height: calc(100vh - 505px);">
     <template v-if="!$vuetify.breakpoint.mobile">
         <v-row no-gutters class="mb-5 mt-4">
             <v-col cols="12" lg="6" class="pr-lg-2">
                 <v-card class="mb-2 rounded10 d-flex flex-column px-5 py-3" flat
-                    v-if="selfProxy.userInfo.is_credit_user == 98" color="bgBanner">
+                    v-if="selfProxy.userInfo.is_credit_user != 1" color="bgBanner">
 
                     <v-sheet color="transparent" class="">
                         <div class="text-16 primary--text">{{LangUtil("可领取佣金")}}</div>
@@ -31,6 +32,7 @@
                                 @click.native="handleRecords">{{LangUtil("领取记录")}}</btn-yellow>
                         </v-sheet>
                     </v-sheet>
+                    <MaskTool />
                 </v-card>
 
                 <v-card class="rounded10 px-4 px-sm-6 " color="bgBanner" min-height="320" flat>
@@ -90,19 +92,21 @@
                                             v-if="selfProxy.userInfo.show_credit_statistic === 1"
                                             @click.native="handlerCredit">{{LangUtil("信用统计")}}</btn-yellow>
 
-                                        <btn-yellow class="text-16" min-width="104" height="36" :btn_type="2"
+                                        <btn-yellow class="text-16 ml-2" min-width="104" height="36" :btn_type="2"
                                             v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
                                             @click.native="handlerPromotion">{{LangUtil("代理统计")}}</btn-yellow>
 
-                                        <btn-yellow class="text-16 " min-width="104" height="36" :btn_type="2"
+                                        <btn-yellow class="text-16 ml-2" min-width="104" height="36" :btn_type="2"
                                             @click.native="handlerDirectly">{{LangUtil("我的直属")}}</btn-yellow>
                                     </div>
                                 </v-sheet>
                             </v-card>
                         </v-col>
                     </v-row>
+                    <MaskTool />
                 </v-card>
 
+                    
             </v-col>
             <v-col cols="12" lg="6" class="mt-2 mt-lg-0">
                 <v-card min-width="90" class="rounded10 px-4 py-4 d-flex flex-column" height="100%" color="bgBanner"
@@ -127,7 +131,7 @@
                                     {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                                 </span>
                             </v-sheet>
-                            <btn-yellow class="text-16 " min-width="104" height="36" :btn_type="2"
+                            <btn-yellow class="text-16 " min_width="104" height="36" :btn_type="2"
                                 @click.native="handlerPerformance">{{LangUtil("业绩查询")}}</btn-yellow>
                         </v-sheet>
                     </v-sheet>
@@ -146,7 +150,7 @@
                                 </div>
                             </v-sheet>
                             <v-sheet color="transparent" class="d-flex align-center" min-width="104">
-                                <btn-yellow class="text-16 " min-width="104" height="36" :btn_type="2"
+                                <btn-yellow class="text-16 " min_width="104" height="36" :btn_type="2"
                                     v-if="myProxy.pageData.btnBind"
                                     @click.native="handlerBind">{{LangUtil("绑定")}}</btn-yellow>
 
@@ -233,6 +237,7 @@
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>
+                    <MaskTool />
                 </v-card>
             </v-col>
         </v-row>
@@ -242,7 +247,7 @@
         <v-row no-gutters class="mb-5 mt-4">
             <v-col cols="12" lg="6" class="pr-lg-2">
                 <v-card class="mb-2 rounded10 d-flex flex-column px-4 py-3" flat
-                    v-if="selfProxy.userInfo.is_credit_user == 98" color="bgBanner">
+                    v-if="selfProxy.userInfo.is_credit_user != 1" color="bgBanner">
 
                     <v-sheet color="transparent" class="d-flex">
                         <div class="text-16 primary--text font-weight-bold">{{LangUtil("可领取佣金")}}</div>
@@ -275,17 +280,18 @@
                         </v-sheet>
 
                     </v-sheet>
-
+                    <MaskTool />
                 </v-card>
 
-                <v-card min-width="90" class="rounded10 px-4 py-4 d-flex flex-column"  color="bgBanner"
-                    flat>
+                <v-card min-width="90" class="rounded10 px-4 py-4 d-flex flex-column" color="bgBanner" flat>
                     <!-- 今日预计佣金 -->
                     <div class="primary--text text-14 mb-2">
                         {{LangUtil("今日预计佣金")}}
                     </div>
-                    <v-sheet class="d-flex align-center sheetOutlined mb-4" min-height="50" width="100%" color="transparent">
-                        <v-sheet class="d-flex align-center justify-space-between mx-2" color="transparent" width="100%" height="100%">
+                    <v-sheet class="d-flex align-center sheetOutlined mb-4" min-height="50" width="100%"
+                        color="transparent">
+                        <v-sheet class="d-flex align-center justify-space-between mx-2" color="transparent" width="100%"
+                            height="100%">
                             <v-sheet color="transparent" class="d-flex align-center">
                                 <v-img class="ml-2 mr-2" :src="pageData.platCoins.mainCoin.icon" max-width="24"
                                     height="24"></v-img>
@@ -307,8 +313,10 @@
                     <div class="primary--text text-14 mb-2">
                         {{LangUtil("我的上级")}}
                     </div>
-                    <v-sheet class="d-flex align-center sheetOutlined mb-4 " min-height="50" width="100%" color="transparent">
-                        <v-sheet class="d-flex align-center justify-space-between mx-2" color="transparent" width="100%" height="100%">
+                    <v-sheet class="d-flex align-center sheetOutlined mb-4 " min-height="50" width="100%"
+                        color="transparent">
+                        <v-sheet class="d-flex align-center justify-space-between mx-2" color="transparent" width="100%"
+                            height="100%">
                             <v-sheet color="transparent" class="d-flex align-center">
                                 <div class="textGray--text text-12 ml-4 font-weight-medium">
                                     {{ promotionData.invite_user_id? promotionData.invite_user_id:
@@ -388,9 +396,10 @@
                         </v-sheet>
 
                     </v-sheet>
+                    <MaskTool />
                 </v-card>
             </v-col>
-            <v-col  cols="12" lg="6" class="mt-2">
+            <v-col cols="12" lg="6" class="mt-2">
                 <v-card class="rounded10 px-4 px-sm-6" color="bgBanner" min-height="320" flat>
                     <v-sheet color="transparent" width="100%" class="d-flex pt-4">
                         <v-sheet class="d-flex justify-center  cursor" @click="showPreview" min-width="120"
@@ -415,7 +424,7 @@
                         <v-col cols="12" class="textGray--text ">
                             <v-card flat class="d-flex flex-column text-14" color="transparent" height="100%">
                                 <div class=" mb-2 primary--text">{{LangUtil("推广链接")}}</div>
-                                <v-sheet color="transparent"  :height="$vuetify.breakpoint.mobile? 42 :46"
+                                <v-sheet color="transparent" :height="$vuetify.breakpoint.mobile? 42 :46"
                                     class="pl-2 pl-sm-4  d-flex align-center justify-space-between mb-2 sheetOutlined textGray--text">
                                     <span class="text-truncate ">{{ myProxy.pageData.link
                                         }}</span>
@@ -426,8 +435,7 @@
                                 </v-sheet>
 
                                 <div class=" mb-2 primary--text">{{LangUtil("邀请码")}}</div>
-                                <v-sheet color="transparent" 
-                                    :height="$vuetify.breakpoint.mobile? 42 :46"
+                                <v-sheet color="transparent" :height="$vuetify.breakpoint.mobile? 42 :46"
                                     class=" textGray--text pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined">
                                     {{ promotionData.pretty_user_id == ""?
                                     promotionData.user_id:promotionData.pretty_user_id }}
@@ -460,6 +468,7 @@
                             </v-card>
                         </v-col>
                     </v-row>
+                    <MaskTool />
                 </v-card>
             </v-col>
         </v-row>
@@ -468,7 +477,7 @@
     </template>
 
     <!-- 返佣等级 -->
-    <div class="px-0 px-sm-3 " v-if="selfProxy.userInfo.is_credit_user == 98">
+    <div class="px-0 px-sm-3 " v-if="!GlobalVar.instance.isNullUser && selfProxy.userInfo.is_credit_user == 98">
         <Fanyong> </Fanyong>
     </div>
 

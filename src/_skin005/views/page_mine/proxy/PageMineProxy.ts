@@ -1,5 +1,6 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
+import GlobalVar from "@/core/global/GlobalVar";
 import SelfProxy from "@/proxy/SelfProxy";
 
 export default class PageMineProxy extends puremvc.Proxy {
@@ -76,7 +77,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         const backwater_info = <any>this.userInfo.backwater_info;
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
-        console.log("最大 等级" ,vip_info.max_vip_level );
+        console.log("最大 等级", vip_info.max_vip_level);
         // 流水等级
         if (vip_progress[0]) {
             this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
@@ -91,7 +92,7 @@ export default class PageMineProxy extends puremvc.Proxy {
             ((vip_progress[0].user_exp - vip_progress[0].cur_vip_level_need_exp) /
                 (vip_progress[0].next_vip_level_need_exp - vip_progress[0].cur_vip_level_need_exp)) *
             100;
-            //this.pageData.vipProgress = 85;
+        //this.pageData.vipProgress = 85;
         // 目前vip等级
         this.pageData.vipLevel = vip_info.vip_level;
         this.pageData.vipConfig = vip_config_info?.vip_config;
@@ -126,6 +127,42 @@ export default class PageMineProxy extends puremvc.Proxy {
         }
     }
 
+    clearData()
+    {
+        Object.assign(this.pageData, {
+            nextExp: 0, //等级还差
+            nextUSDT: 0, //,USDT充值
+            vipProgress: 0, //vip 进度条
+            vipLevel: 0, //目前vip等级
+            vipNextLevel: 0, //vip下一等
+            vipConfig: [], //vip 所有等级
+            vipMaxLevel: 0, //最大等级
+        });
+
+        Object.assign(this.pageData.backwaterConfigMain, {
+            now: 0,
+            next: 0,
+        });
+        Object.assign(this.pageData.backwaterConfigReward, {
+            now: 0,
+            next: 0,
+        });
+        Object.assign(this.pageData.totalBackwater, {
+            LCC: "0",
+            USDT: "0",
+        });
+        Object.assign(this.pageData.trial, {
+            main: "",
+            mainIconSrc: "",
+            reward: "",
+            rewardIconSrc: "",
+            date: "",
+        });
+        Object.assign(this.pageData.platCoins, {
+            mainCoin: {},
+            rewardCoin: {},
+        });
+    }
     setTrial(body: any) {
         this.getCurrentCoin();
 
@@ -138,15 +175,19 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     /**游戏挖矿 试算 */
     api_user_var_backwater_trial() {
-        this.sendNotification(net.HttpType.api_user_var_backwater_trial, {
-            user_id: core.user_id,
-        });
+        if (!GlobalVar.instance.isNullUser) {
+            this.sendNotification(net.HttpType.api_user_var_backwater_trial, {
+                user_id: core.user_id,
+            });
+        }
     }
     /**返水试算领取接口 */
     api_user_var_backwater_trial_receive() {
-        this.sendNotification(net.HttpType.api_user_var_backwater_trial_receive, {
-            user_id: core.user_id,
-        });
+        if (!GlobalVar.instance.isNullUser) {
+            this.sendNotification(net.HttpType.api_user_var_backwater_trial_receive, {
+                user_id: core.user_id,
+            });
+        }
     }
 
     getVipLevel(level: any) {

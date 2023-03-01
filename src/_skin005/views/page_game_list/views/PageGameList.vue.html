@@ -95,7 +95,7 @@
                         </v-card> -->
                         <v-card class="d-flex align-end" elevation="0" height="260" color="transparent">
                             <ImgLoader v-if="item" class="d-flex cursor-pointer rounded-lg align-end"
-                                :src="item.menu_icon" @click="onClick(item)" :height="200">
+                                :src="item.menu_icon" @click.native="onClick(item)" :height="200">
                                 <v-sheet color="transparent" class="text-30 menu_title">{{item.alias}}</v-sheet>
                                 <v-sheet color="transparent" class="text-14 mt-4 menu_title_1" max-width="55%">
                                     {{item.game_desc}}
@@ -259,7 +259,7 @@
                                 <v-card class="d-flex align-end loader_class_mob" elevation="0" height="150" color="transparent">
                                     <ImgLoader v-if="item"
                                         class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
-                                        :src="item.menu_icon" @click="onClick(item)" :height="130" max-height="130">
+                                        :src="item.menu_icon" @click.native="onClick(item)" :height="130" max-height="130">
                                         <div class="menu_title d-flex align-center flex-column text-14">{{item.alias}}
                                         </div>
                                         <div class="menu_title_1 d-flex align-center flex-column text-12">

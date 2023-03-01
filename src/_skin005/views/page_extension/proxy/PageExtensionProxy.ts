@@ -80,6 +80,57 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         this.pageData.qrCode = imgBase64;
     }
 
+    clearData()
+    {
+        Object.assign(this.pageData.promotionData, {
+            commission_awaiting_num: {},
+            commission_received_num: {},
+            date: "",
+            directly_users: 0,
+            group_users: 0,
+            invite_user_id: 0,
+            is_agent_bonus: 0,
+            is_promotion_statistics_display: 0,
+            plat_id: 0,
+            promotion_floor_unit: "",
+            promotion_status: 1,
+            promotion_tutorial_url: "",
+            promotion_url: "",
+            today_directly_users: 0,
+            today_group_users: 0,
+            user_id: 0,
+            total_water: 0,
+            commission_info: {},
+            commission_num: 0,
+            pretty_user_id: 0,
+        });
+
+        Object.assign(this.pageData.statistics_data, {
+            total_commission: {}, // 预计今日总佣金
+            total_water_summary: 0, // 今日总业绩
+            self_water_summary: 0, // 自营业绩
+            group_water_summary: 0, // 今日团队业绩
+            direct_water_summary: 0, // 今日直属业绩
+        });
+        Object.assign(this.pageData.tableData, {
+            myCommissionNum: {
+                0: {},
+                2: {},
+                4: {},
+                8: {},
+                16: {},
+                32: {},
+                64: {},
+                128: {},
+            },
+            promotionConfig: {},
+            defaultPromotionConfig: {},
+            is_promotion_num_added: 1,
+            type: 0,
+        });
+
+    }
+
     setData(data: any) {
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);
@@ -150,9 +201,11 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     /**领取佣金 */
     api_user_var_commission_receive() {
-        this.sendNotification(net.HttpType.api_user_var_commission_receive, {
-            user_id: core.user_id,
-        });
+        if (core.user_id) {
+            this.sendNotification(net.HttpType.api_user_var_commission_receive, {
+                user_id: core.user_id,
+            });
+        }
     }
 
     /**业绩查询--按日期获取佣金详情*/
@@ -164,11 +217,15 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     /**业绩查询--返佣等级*/
     api_user_var_commission_commissionnum() {
-        this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, { user_id: core.user_id });
+        if (core.user_id) {
+            this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, { user_id: core.user_id });
+        }
     }
 
     /**业绩查询--获取推广链接*/
-    api_user_var_short_chain(force:number = 0) {
-        this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
+    api_user_var_short_chain(force: number = 0) {
+        if (core.user_id) {
+            this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
+        }
     }
 }

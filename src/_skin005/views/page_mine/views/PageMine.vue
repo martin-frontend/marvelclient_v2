@@ -5,13 +5,14 @@
 import Component from "vue-class-component";
 import PageMine from "./PageMine";
 import Question from "@/_skin005/views/widget/question/Question.vue";
-
+import MaskTool from "@/_skin005/views/widget/mask_tool/MaskTool.vue";
 
 
 
 @Component({
     components: {
         Question,
+        MaskTool,
 
     },
 })

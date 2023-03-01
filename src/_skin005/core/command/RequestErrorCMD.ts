@@ -43,6 +43,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                         }
 
                         if (result.status != 1100143 || result.status != 1100173) 
+                            PanelUtil.openpage_home();
                             location.reload();
                         
                     },

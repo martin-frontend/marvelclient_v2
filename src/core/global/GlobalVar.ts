@@ -62,5 +62,15 @@ export default class GlobalVar {
         return false;
 
     }
+    /**用户是否登录 */
+    public get isNullUser() : boolean {
+        return core.user_id == 0;
+        // if (core.user_id)
+        // {
+        //     return false;
+        // }
 
+        // return true; 
+    }
+    
 }

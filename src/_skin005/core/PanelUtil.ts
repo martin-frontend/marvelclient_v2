@@ -144,19 +144,20 @@ export default class PanelUtil {
     */
     //打开推广赚钱页面
     static openpage_extension() {
-        LoginEnter(() => {
+        //LoginEnter(() => {
             Vue.router.push("/page_extension");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
-        }
-        );
+        //});
     }
     //币种介绍
     static openpage_introduce() {
-        Vue.router.push("/page_introduce");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
+        LoginEnter(() => {
+            Vue.router.push("/page_introduce");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        });
     }
 
     //打开 主页
@@ -171,10 +172,12 @@ export default class PanelUtil {
     //打开游戏列表 界面
     static openpage_gamelist() {
         //Vue.router.push("/page_game_list");
-        page_game_list.show();
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
-        //PanelUtil.showAppLoading(true);
+        LoginEnter(() => {
+            page_game_list.show();
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+            //PanelUtil.showAppLoading(true);
+        });
     }
 
     //打开游戏列表 界面
@@ -204,8 +207,7 @@ export default class PanelUtil {
             page_statistice_credit.show(nub);
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
-        }
-        );
+        });
     }
 
     //请求  体育的链接 界面
@@ -217,25 +219,31 @@ export default class PanelUtil {
     }
     //打开 游戏返水 界面
     static openpage_mine() {
-        Vue.router.push("/page_mine");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
+        //LoginEnter(() => {
+            Vue.router.push("/page_mine");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        //});
     }
 
     //打开 SWAP交易 界面
     static openpage_swap() {
-        Vue.router.push("/page_swap");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
+        LoginEnter(() => {
+            Vue.router.push("/page_swap");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        });
     }
 
     //打开 我的界面 界面
     static openpage_my_info() {
-        Vue.router.push("/page_my_info");
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
+        LoginEnter(() => {
+            Vue.router.push("/page_my_info");
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        });
     }
 
     /**打开 足球 界面  */
@@ -293,17 +301,16 @@ export default class PanelUtil {
         //     PanelUtil.message_info(LangUtil("充值通道关闭!"));
         // }
         // else    
-            dialog_recharge.show();
+        dialog_recharge.show();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
         MultDialogManager.onOpenPanel(dialog_recharge);
-        if (!GlobalVar.instance.isShowRecharge)
-        {
+        if (!GlobalVar.instance.isShowRecharge) {
             PanelUtil.message_info(LangUtil("兑换通道关闭!"));
         }
-        else  
-        dialog_recharge.show(1);
+        else
+            dialog_recharge.show(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {

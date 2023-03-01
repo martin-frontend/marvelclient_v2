@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -17,7 +18,7 @@ export default class PageExtension extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
-
+    GlobalVar  = GlobalVar;
     constructor() {
         super(PageExtensionMediator);
     }
@@ -30,6 +31,7 @@ export default class PageExtension extends AbstractView {
         super.destroyed();
         this.pageData.link = "";
         this.pageData.qrCode = "";
+        this.myProxy.clearData();
     }
 
     handlerBind() {
@@ -121,4 +123,5 @@ export default class PageExtension extends AbstractView {
         const { invite_user_business_card } = this.selfProxy.userInfo;
         PanelUtil.openpanel_personal_card(invite_user_business_card, false );
     }
+    
 }

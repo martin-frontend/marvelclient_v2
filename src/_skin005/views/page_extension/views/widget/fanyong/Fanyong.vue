@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Fanyong from "./Fanyong";
+import MaskTool from "@/_skin005/views/widget/mask_tool/MaskTool.vue";
 
-@Component
+@Component({
+    components: {
+        MaskTool,
+    },
+})
 export default class extends Fanyong {}
 </script>

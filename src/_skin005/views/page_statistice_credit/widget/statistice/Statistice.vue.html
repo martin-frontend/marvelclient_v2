@@ -7,7 +7,7 @@
 
             <v-sheet class="d-flex align-center text-14 py-4 regular_text" color="transparent">
 
-                <div class="mr-1 primary--text">{{LangUtil("用户ID:")}}</div>
+                <div class="mr-1 primary--text">{{LangUtil("ID:")}}</div>
                 <div v-for="(item, key) in myProxy.userListInfo" class="primary--text ">
                     <span v-if="myProxy.userListInfo.length<2 || key==myProxy.userListInfo.length-1"
                         class="primary--text" color="transparent">
@@ -72,7 +72,7 @@
                     {{LangUtil("用户备注")}}</v-sheet> -->
 
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="150" max-width="150">
-                {{isMine ? LangUtil("用户ID") : LangUtil("直属ID")}}/{{LangUtil("账号")}}/{{LangUtil("备注")}}
+                {{LangUtil("ID")}}/{{LangUtil("账号")}}/{{LangUtil("备注")}}
                 </v-sheet>
 
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="80">
@@ -256,7 +256,7 @@
                 <v-sheet color="bgBanner" class="rounded10 d-flex flex-column " width="100%">
                     <v-sheet color="transparent" width="100%" class="d-flex align-center text-14 mt-2 ml-4"
                         min-height="40">
-                        <div class="mr-5 primary--text font-weight-regular">{{LangUtil("用户ID:")}}</div>
+                        <div class="mr-5 primary--text font-weight-regular">{{LangUtil("ID:")}}</div>
                         <div v-for="(item, key) in myProxy.userListInfo"
                             class="colorBlue1--text font-weight-regular ml-1">
                             <span v-if="myProxy.userListInfo.length<2 || key==myProxy.userListInfo.length-1"

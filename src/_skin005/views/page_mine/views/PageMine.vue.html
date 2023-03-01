@@ -101,6 +101,7 @@
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>
+                    <MaskTool />
                 </v-card>
             </v-col>
             <!-- 游戏挖矿 -->
@@ -189,12 +190,12 @@
                             </v-btn>
                         </v-col>
                     </v-row>
-
+                    <MaskTool />
                 </v-card>
             </v-col>
         </v-row>
         <!-- vip 等级 -->
-        <v-sheet color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
+        <v-card flat color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
             <span class="text-20 font-weight-bold">{{LangUtil('VIP等级')}} </span>
             <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text">
                 {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
@@ -235,8 +236,8 @@
                     </v-card>
                 </v-slide-item>
             </v-slide-group>
-            
-        </v-sheet>
+            <MaskTool />
+        </v-card>
         <!-- 如何挖矿 -->
         <v-sheet color="transparent" class="mt-8" id="howMine">
             <span class="text-20 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>
@@ -430,7 +431,7 @@
                                 @click.native="handlerBetRecord">{{LangUtil("投注记录")}}</btn-yellow>
                         </v-col>
                     </v-row>
-
+                    <MaskTool />
                 </v-card>
             </v-col>
             <!-- 我的等级 -->
@@ -533,12 +534,13 @@
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>
+                    <MaskTool />
                 </v-card>
             </v-col>
 
         </v-row>
         <!-- vip 等级 -->
-        <v-sheet color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
+        <v-card flat color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
             <span class="text-16 font-weight-bold">{{LangUtil('VIP等级')}} </span>
             <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text">
                 {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
@@ -574,7 +576,8 @@
                     </div>
                 </v-sheet>
             </div>
-        </v-sheet>
+            <MaskTool />
+        </v-card>
         <!-- 如何挖矿 -->
         <v-sheet color="transparent" class="mt-8" id="howMine">
             <span class="text-16 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>

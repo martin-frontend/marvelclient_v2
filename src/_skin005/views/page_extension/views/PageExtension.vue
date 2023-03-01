@@ -6,11 +6,12 @@ import Component from "vue-class-component";
 import PageExtension from "./PageExtension";
 import Question from "@/_skin005/views/widget/question/Question.vue";
 import Fanyong from "@/_skin005/views/page_extension/views/widget/fanyong/Fanyong.vue";
-
+import MaskTool from "@/_skin005/views/widget/mask_tool/MaskTool.vue";
 @Component({
     components: {
         Question,
         Fanyong,
+        MaskTool,
     },
 })
 export default class extends PageExtension {

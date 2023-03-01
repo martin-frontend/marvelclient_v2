@@ -150,6 +150,7 @@ export default class NetObserver extends AbstractMediator {
                     okFun: () => {
                         //Vue.router.replace("/");
                         PanelUtil.openpage_home();
+                        location.reload();
                     },
                 });
                 break;

@@ -14,16 +14,21 @@ export default class MobileMenu extends AbstractView {
             0: { id: 0, name: LangUtil("首页"), icon: "home", path: "/" },
             1: { id: 1, name: LangUtil("足球"), icon: "soccer", path: "/page_game_soccer" },
             2: { id: 2, name: LangUtil("娱乐城"), icon: "c16", path: "/page_game_list" },
-            3: { id: 3, name: LangUtil("返水"), icon: "water", path: "/page_extension" },
+            3: { id: 3, name: LangUtil("推广"), icon: "extension", path: "/page_extension" },
             4: { id: 4, name: LangUtil("分红"), icon: "bouns", path: "/page_bonus" },
             5: { id: 5, name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
+            7: { id: 7, name: LangUtil("返水"), icon: "water", path: "/page_mine" },
         };
         newlist.push(list[1]);
         newlist.push(list[2]);
 
         //是否显示 游戏反水
         if (ModulesHelper.IsShow_GameWater()) {
+            newlist.push(list[7]);
+        }
+        //是否显示 游戏反水
+        if (ModulesHelper.IsShow_Promotion()) {
             newlist.push(list[3]);
         }
         //质押分红
@@ -69,6 +74,9 @@ export default class MobileMenu extends AbstractView {
                 break;
             case 6:
                 PanelUtil.openpage_statist_credit();
+                break;
+            case 7:
+                PanelUtil.openpage_mine();
                 break;
         }
     }

@@ -10,7 +10,9 @@
     .rounded10 {
         border-radius: 10px !important;
     }
-
+    .canntSelect{
+        user-select: none;
+    }
     .v-pagination {
         li {
             .v-pagination__item {

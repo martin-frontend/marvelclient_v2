@@ -114,6 +114,7 @@ export default class PageMine extends AbstractView {
 
     destroyed() {
         super.destroyed();
+        this.myProxy.clearData();
     }
 
     get vip_bg_path() {

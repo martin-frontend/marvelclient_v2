@@ -200,7 +200,7 @@ export default class Novigation extends AbstractView {
         }
     }
     goCategory(item: any) {
-        //console.log("收到点击");
+        console.log("收到点击");
         switch (item.id) {
             case 1:
                 PanelUtil.openpage_bonus();

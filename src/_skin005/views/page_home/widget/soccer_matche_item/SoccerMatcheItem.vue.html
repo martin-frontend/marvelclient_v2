@@ -1,5 +1,5 @@
 <div>
-    <v-sheet color="bgBanner" class="rounded10 text-12 py-2 mt-2" v-if="$vuetify.breakpoint.mobile">
+    <v-sheet color="bgBanner" class="rounded10 text-12 py-2 mt-2" v-if="$vuetify.breakpoint.mobile" @click.native="onEnter">
         <div class="d-flex align-center">
             <v-sheet class="mx-2 rounded" min-width="2" height="16" color="textYellow"></v-sheet>
             <div class="text-14 font-weight-bold">{{competition.competition_name}}</div>
@@ -90,7 +90,7 @@
         </div>
     </v-sheet>
 
-    <div v-else class="mt-4 text-14">
+    <div v-else class="mt-4 text-14 "  >
         <v-sheet class="d-flex align-center pl-3 pt-2 rounded-t-lg text-14" style="padding-right: 65px"
             color="bgHeaderBox" height="50">
             <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet>
@@ -115,7 +115,7 @@
                 {{LangUtil("半场大小")}}
             </v-sheet>
         </v-sheet>
-        <v-sheet class="d-flex rounded-b-lg pb-2" color="bgHeaderBox">
+        <v-sheet class="d-flex rounded-b-lg pb-2 cursor-pointer" color="bgHeaderBox" @click.native="onEnter">
             <v-sheet class="d-flex flex-column  align-center text-14" width="80" min-width="80" color="transparent">
                 <template v-if="!states.match_phase">
                     <div>{{LangUtil("未开赛")}}</div>

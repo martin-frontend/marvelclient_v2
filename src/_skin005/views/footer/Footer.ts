@@ -33,21 +33,27 @@ export default class Footer extends AbstractView {
 
             for (let n = 0; n < element.list.length; n++) {
                 const ele = element.list[n];
-                if (ele.entrance_type == 1) {
+                if (ele.vendor_icon && ele.vendor_icon !="" && ele.vendor_icon !="-") {
                     let ishave = false;
+                   // console.log("---添加的 id --",ele.vendor_id);
                     for (let p = 0; p < data.length; p++) {
-                        if (data[p].vendor_id == ele.vendor_id) {
+                        
+                        if (data[p].vendor_id === ele.vendor_id) {
                             ishave = true;
                             break;
                         }
                     }
                     if (!ishave) {
                         data.push(ele);
+                        //console.log(" 当前里面 存在的  ", data);
                     }
                 }
             }
-
         }
+        // for (let index = 0; index < data.length; index++) {
+        //     const element = data[index];
+        //     console.log("  ---- index----" ,element.vendor_id);
+        // }
         //console.log("所有厂商的数据", data);
         return data;
     }

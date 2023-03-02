@@ -31,7 +31,7 @@ export default class SelfProxy extends AbstractProxy {
         phone: "",
         email: "",
         real_name: "",
-        real_name_decrypt:"",
+        real_name_decrypt: "",
         password_gold_exists: 0,
         bsc_address: "",
         gold_info: <any>{},
@@ -74,17 +74,17 @@ export default class SelfProxy extends AbstractProxy {
     defaultCoin(coin: string): string {
         const { plat_coins } = GamePlatConfig.config;
 
-        if(plat_coins[coin]?.is_display == 1) {
+        if (plat_coins[coin]?.is_display == 1) {
             return coin;
         }
 
         const coinKeys = Object.keys(plat_coins);
         let result = "";
-        coinKeys.forEach((key: string) => {
-            if(plat_coins[key].is_display == 1) {
-                return result = key;
+        for (const iterator of coinKeys) {
+            if (plat_coins[iterator].is_display == 1) {
+                return result = iterator;
             }
-        })
+        }
         return result;
     }
 

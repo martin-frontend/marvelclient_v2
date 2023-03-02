@@ -307,3 +307,31 @@ $prev-right: var(--prev-right);
         flex: none !important;
     }
 }
+
+
+::v-deep .v-btn--icon.v-size--small{
+    height: 8px !important;
+    width: 8px !important;
+}
+::v-deep .v-btn__content
+{
+    :first-child {
+        font-size: 16px !important;
+        transform: scale(0.5);
+    }
+}
+::v-deep .v-carousel__controls
+{
+    height: 30px;
+}
+::v-deep .v-carousel__controls__item .v-icon
+{
+    opacity: 1;
+}
+.bannritem_mob{
+    height: 170px;
+}
+
+.bannritem{
+    height: 240px !important;
+}

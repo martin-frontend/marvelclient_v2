@@ -1,5 +1,5 @@
 <v-container :class="$vuetify.breakpoint.mobile?'pa-0':''">
-    <v-sheet class="rounded-lg" color="#192b4d">
+    <v-sheet :class="{'rounded-lg': !$vuetify.breakpoint.mobile}" color="#192b4d">
         <div class="d-flex justify-end my-2 mr-3" v-if="!$vuetify.breakpoint.mobile">
             <v-btn class="my-2 ml-3" icon @click="onFullScreen">
                 <v-icon>mdi-fullscreen</v-icon>

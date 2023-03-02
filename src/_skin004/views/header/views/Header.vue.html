@@ -70,6 +70,10 @@
                     </v-menu>
                 </template>
 
+                <button class="nav-button" @click="goYellowWeb" v-if="GameConfig.config.pornWebsite">
+                    <v-icon>mdi-filmstrip</v-icon>
+                    <div>{{LangUtil("成人影院")}}</div>
+                </button>
 
                 <v-spacer />
                 <button class="nav-button" :class="routerPath == '/page_introduce' ? 'active' : ''" @click="goActivity">

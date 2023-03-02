@@ -17,6 +17,9 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_agent_manager from "@/_skin001/views/dialog_agent_manager";
 import dialog_activity from "@/views/dialog_activity";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
+import GameConfig from "@/core/config/GameConfig";
+import OpenLink from "@/core/global/OpenLink";
+import YellowWeb from "@/_skin004/core/global/YellowWeb";
 
 @Component
 export default class MobileMenu extends AbstractView {
@@ -55,7 +58,7 @@ export default class MobileMenu extends AbstractView {
                 path: "/page_game_list",
             },
 
-             {
+            {
                 id: 0,
                 name: LangUtil("首页"),
                 icon: require(`@/_skin001/assets/icon/icon_home.png`),
@@ -92,6 +95,17 @@ export default class MobileMenu extends AbstractView {
             },
         ];
 
+        //@ts-ignore
+        if (GameConfig.config.pornWebsite) {
+            list.push({
+                id: 99,
+                name: LangUtil("成人影院"),
+                icon: "",
+                icon1: "",
+                path: "/xxx",
+            });
+        }
+
         // if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
         //     list.pop();
         // };
@@ -115,9 +129,8 @@ export default class MobileMenu extends AbstractView {
     //         console.log("开始跳转 游戏列表");
     //        this.onItemClick( {id:2})
     //     }, 200);
-       
-    // }
 
+    // }
 
     public get isShowDirectly(): number {
         if (!(this.selfProxy && this.selfProxy.userInfo && this.selfProxy.userInfo.user_id != 0)) {
@@ -169,14 +182,18 @@ export default class MobileMenu extends AbstractView {
             case 5:
                 // if (this.isShowDirectly == 2) {
                 //     LoginEnter(dialog_agent_manager.show);
-                // } else if (this.isShowDirectly == 1) 
+                // } else if (this.isShowDirectly == 1)
                 LoginEnter(page_extension.show);
                 break;
             case 6:
                 // if (this.isShowDirectly == 2) {
                 //     LoginEnter(dialog_agent_manager.show);
-                // } else if (this.isShowDirectly == 1) 
+                // } else if (this.isShowDirectly == 1)
                 this.onService();
+                break;
+            case 99:
+                //@ts-ignore
+                YellowWeb(GameConfig.config.pornWebsite);
                 break;
         }
     }

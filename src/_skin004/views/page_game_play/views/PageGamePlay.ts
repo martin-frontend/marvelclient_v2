@@ -146,6 +146,11 @@ export default class PageGamePlay extends AbstractView {
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
                 const gameProxy: GameProxy = getProxy(GameProxy);
+                //如果不是游戏，就直接返回到首页, 这是成人影院
+                if(!gameProxy.currGame){
+                    this.$router.replace(gameProxy.gamePreData.lastRouter);
+                    return;
+                }
                 if (gameProxy.currGame.ori_vendor_extend) {
                     const ori_vendor_extend = JSON.parse(gameProxy.currGame.ori_vendor_extend);
                     if (ori_vendor_extend.router_bad) {

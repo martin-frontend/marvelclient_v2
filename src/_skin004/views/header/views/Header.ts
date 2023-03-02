@@ -27,6 +27,7 @@ import GameConfig from "@/core/config/GameConfig";
 import dialog_notice from "../../dialog_notice";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
+import YellowWeb from "@/_skin004/core/global/YellowWeb";
 
 @Component
 export default class Header extends AbstractView {
@@ -40,6 +41,7 @@ export default class Header extends AbstractView {
     commonIcon = Assets.commonIcon;
     GamePlatConfig = GamePlatConfig;
     LangConfig = LangConfig;
+    GameConfig = GameConfig;
     homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     constructor() {
@@ -203,6 +205,11 @@ export default class Header extends AbstractView {
 
     onService() {
         ServiceUtil();
+    }
+
+    goYellowWeb(){
+        // @ts-ignore
+        YellowWeb(GameConfig.config.pornWebsite);
     }
 
     // scrollHandle() {

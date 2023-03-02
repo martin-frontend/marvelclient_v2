@@ -130,7 +130,7 @@ export default class NetObserver extends AbstractMediator {
                     
 
                     //获取用户信息
-                    this.selfProxy.api_user_show_var([2, 3, 6]);
+                    this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
                     //添加客服

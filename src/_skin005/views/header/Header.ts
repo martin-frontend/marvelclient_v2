@@ -17,6 +17,7 @@ export default class Header extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
+    ModulesHelper=ModulesHelper;
     //当前路由
     routerPath = this.$router.app.$route.path;
     pagetab = -1;

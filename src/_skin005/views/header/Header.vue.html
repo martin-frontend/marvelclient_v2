@@ -24,7 +24,7 @@
                 <btn-yellow v-if="GlobalVar.instance.isShowBtnRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72"
                     @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
 
-                <v-btn icon small @click="onService" class="navIcon--text ml-4">
+                <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
                 <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
@@ -39,7 +39,7 @@
                     @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
                 <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-16" height="36" min_width="72" :btn_type="2"
                     @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
-                <v-btn class="ml-3" icon small @click="onService">
+                <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
             </template>
@@ -70,7 +70,7 @@
                 </v-sheet>
                 <!-- <User /> -->
                 <v-spacer />
-                <v-btn class="mr-2" icon small @click="onService">
+                <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
                     <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                 </v-btn>
                 <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
@@ -91,7 +91,7 @@
                 @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
             <!-- </v-sheet> -->
 
-            <v-btn class="ml-3" icon small @click="onService">
+            <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
                 <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
             </v-btn>
         </template>

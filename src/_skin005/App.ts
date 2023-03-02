@@ -7,6 +7,7 @@ import AppProxy from "./AppProxy";
 import ServiceUtil from "./core/global/ServiceUtil";
 import { isMobile, isSafari, judgeClient } from "@/core/global/Functions";
 import PageBlur from "./core/PageBlur";
+import ModulesHelper from "./core/ModulesHelper";
 
 @Component
 export default class APP extends AbstractView {
@@ -14,6 +15,7 @@ export default class APP extends AbstractView {
     PageBlur = PageBlur;
     LangUtil = LangUtil;
     isSafari = isSafari;
+    ModulesHelper = ModulesHelper;
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
     constructor() {

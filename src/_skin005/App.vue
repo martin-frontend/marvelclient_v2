@@ -55,7 +55,7 @@
                 </btn-yellow>
             </v-btn>
 
-            <v-btn class="btn-service" icon @click="onService">
+            <v-btn v-if="ModulesHelper.isShow_Kefu()" class="btn-service" icon @click="onService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
                     <svg-icon icon="service"></svg-icon>
                 </btn-yellow>

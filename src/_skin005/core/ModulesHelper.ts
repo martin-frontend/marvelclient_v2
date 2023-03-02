@@ -112,6 +112,13 @@ function isShow_Fan_shui() {
 
     return false;
 }
+/**
+ * 是否显示客服
+ * @returns 
+ */
+function isShow_Kefu() {
+    return _isValueTrue("sysService")
+}
 
 export default {
     IsShow_VipInfo ,
@@ -124,4 +131,5 @@ export default {
     //IsShow_Directly,
     IsShow_AgentManager,
     isShow_Fan_shui,
+    isShow_Kefu,
 }

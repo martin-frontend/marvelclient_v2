@@ -62,7 +62,7 @@
             </v-btn>
         </template>
 
-        <div v-if="PageBlur.isBlur" class="blur-mask"
+        <div v-if="PageBlur.isBlur && !isSafari" class="blur-mask"
             :class="{ 
                 'blur-mask-bottom': PageBlur.bottom && !$vuetify.breakpoint.mobile ,
                 'blur-mask-bottom_mob': PageBlur.bottom && $vuetify.breakpoint.mobile,

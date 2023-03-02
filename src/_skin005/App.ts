@@ -5,7 +5,7 @@ import Assets from "./assets/Assets";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import AppProxy from "./AppProxy";
 import ServiceUtil from "./core/global/ServiceUtil";
-import { isMobile, judgeClient } from "@/core/global/Functions";
+import { isMobile, isSafari, judgeClient } from "@/core/global/Functions";
 import PageBlur from "./core/PageBlur";
 
 @Component
@@ -13,6 +13,7 @@ export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
     PageBlur = PageBlur;
     LangUtil = LangUtil;
+    isSafari = isSafari;
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
     constructor() {

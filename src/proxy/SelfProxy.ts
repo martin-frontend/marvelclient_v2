@@ -1,4 +1,5 @@
 import AbstractProxy from "@/core/abstract/AbstractProxy";
+import GameConfig from "@/core/config/GameConfig";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
@@ -13,7 +14,7 @@ export default class SelfProxy extends AbstractProxy {
     public onRegister(): void {
         setInterval(() => {
             if (this.timerCount % 10 == 0) {
-                if (core.user_id && core.plat_id) {
+                if (core.user_id && core.plat_id && GameConfig.config) {
                     this.api_user_show_var([2]);
                     this.api_user_var_red_dot_tips();
                 }

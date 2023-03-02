@@ -614,3 +614,7 @@ export function changeDateShow(str:string ,isshowData:boolean = false):string{
 
     return newstr;
 }
+/**判断浏览器是否为safari */
+export function isSafari(){
+    return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+}

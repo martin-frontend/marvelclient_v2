@@ -1,5 +1,7 @@
 // export default class PageBlur {
 
+import { isSafari } from "@/core/global/Functions";
+
 //     static blurRight = false;
 
 //     private static setPageScroll(isScroll:boolean)
@@ -88,8 +90,7 @@ const PageBlur = {
     curBlurCount_right: 0,
     curBlurCount_bottom: 0,
 
-    setPageScroll:(isScroll:boolean) =>
-    {
+    setPageScroll: (isScroll: boolean) => {
         if (!isScroll) {
             document.documentElement.style.overflow = "hidden";
             //@ts-ignore
@@ -103,8 +104,7 @@ const PageBlur = {
     },
 
     onChangeBlur: () => {
-
-        //两个计数的值 修复 ，放置小于 0 
+        //两个计数的值 修复 ，放置小于 0
         if (PageBlur.curBlurCount_right < 0) {
             PageBlur.curBlurCount_right = 0;
         }
@@ -132,7 +132,7 @@ const PageBlur = {
         }
     },
     blur_mainpage: (isBlur: boolean, isAll = true) => {
-
+        if (isSafari()) return;
         if (isBlur) {
             //PageBlur.isBlur = isBlur;
             PageBlur.right = isBlur;
@@ -140,39 +140,36 @@ const PageBlur = {
             PageBlur.curBlurCount_right++;
             PageBlur.curBlurCount_bottom++;
             PageBlur.curBlurCount_main++;
-        }
-        else {
+        } else {
             PageBlur.curBlurCount_right--;
             PageBlur.curBlurCount_bottom--;
             PageBlur.curBlurCount_main--;
         }
         PageBlur.onChangeBlur();
-
     },
     blur_novigation: (isBlur: boolean, isAll = true) => {
+        if (isSafari()) return;
         if (isBlur) {
             PageBlur.bottom = isBlur;
             PageBlur.curBlurCount_bottom++;
             PageBlur.curBlurCount_main++;
-        }
-        else {
+        } else {
             PageBlur.curBlurCount_bottom--;
             PageBlur.curBlurCount_main--;
         }
         PageBlur.onChangeBlur();
     },
     blur_page: (isBlur: boolean) => {
+        if (isSafari()) return;
         if (isBlur) {
             PageBlur.curBlurCount_main++;
-        }
-        else {
+        } else {
             PageBlur.curBlurCount_main--;
         }
         PageBlur.onChangeBlur();
-
     },
     //强力 关闭
-    blur_force_close :()=>{
+    blur_force_close: () => {
         PageBlur.curBlurCount_main = 0;
         PageBlur.curBlurCount_right = 0;
         PageBlur.curBlurCount_bottom = 0;

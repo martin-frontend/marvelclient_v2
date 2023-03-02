@@ -10,7 +10,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
 import NovigationProxy from "./NovigationProxy";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { getVersion } from "@/core/global/Functions";
+import { getVersion, isSafari } from "@/core/global/Functions";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
@@ -118,7 +118,7 @@ export default class Novigation extends AbstractView {
     }
     Change() {
         if (this.bTween) return;
-        if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)) {
+        if (isSafari()) {
             this.$nextTick(() => {
                 const navbox = document.getElementsByClassName("navbox");
                 //@ts-ignore

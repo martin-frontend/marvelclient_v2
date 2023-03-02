@@ -136,8 +136,8 @@ export default class extends App { }
 
 .btn-top {
     position: fixed;
-    bottom: 80px;
-    right: 25px;
+    bottom: 30px;
+    right: 20px;
     z-index: 100;
 }
 

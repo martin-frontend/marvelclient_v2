@@ -25,7 +25,8 @@
             <template v-for="(item, key) of goldInfoData">
                 <v-sheet class="align-center d-flex justify-space-between rounded-lg cursor-pointer py-1 mb-2"
                     :class="coin_name_unique == key ? 'select-shadow' : 'listitem'" :min-height="items_min_height"
-                    color="transparent" width="100%" :key="key" @click="onItemClick(key)">
+                    color="transparent" width="100%" :key="key" @click="onItemClick(key)"
+                    v-if="GamePlatConfig.config.plat_coins[key].is_display == 1">
 
                     <v-img v-if="is_show_coin_icon" class="ml-1 mr-2" :src="GamePlatConfig.config.plat_coins[key].icon" :max-width="img_size"
                         :max-height="img_size">

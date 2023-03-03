@@ -11,6 +11,7 @@ import page_game_play from "@/_skin004/views/page_game_play";
 import Vue from "vue";
 
 export default function (url: string) {
+    url += "?gOrientation=2";
     if (core.user_id) {
         //@ts-ignore
         const { pornFree, pornWebsite } = GameConfig.config;

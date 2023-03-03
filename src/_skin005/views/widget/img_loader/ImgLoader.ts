@@ -9,7 +9,6 @@ export default class ImgLoader extends AbstractView {
     @Prop() height!: number | string;
     @Prop() width!: number | string;
 
-
     img_isload = false;
     onClick() {
         this.$emit("onClick");
@@ -20,9 +19,6 @@ export default class ImgLoader extends AbstractView {
     }
     loadstart() {
         this.img_isload = true;
+        this.$forceUpdate();
     }
-
 }
-
-
-

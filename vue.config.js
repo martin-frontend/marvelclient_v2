@@ -93,13 +93,13 @@ module.exports = {
             entry: "src/_skin005/main.ts",
             template: "public/skin005.html",
             filename: "skin005.html",
-            title: "skin005",
+            title: "96",
         },
         skin006: {
             entry: "src/_skin006/main.ts",
             template: "public/skin006.html",
             filename: "skin006.html",
-            title: "skin006",
+            title: "BetNow",
         },
         skin100: {
             entry: "src/_skin100/main.ts",

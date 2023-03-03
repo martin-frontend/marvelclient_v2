@@ -172,12 +172,12 @@ export default class PanelUtil {
     //打开游戏列表 界面
     static openpage_gamelist() {
         //Vue.router.push("/page_game_list");
-        LoginEnter(() => {
+        //LoginEnter(() => {
             page_game_list.show();
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
             //PanelUtil.showAppLoading(true);
-        });
+        //});
     }
 
     //打开游戏列表 界面

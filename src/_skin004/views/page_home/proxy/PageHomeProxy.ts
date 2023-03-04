@@ -59,6 +59,7 @@ export default class PageHomeProxy extends puremvc.Proxy {
 
     setLobbyIndex(body: any) {
         this.pageData.lobbyIndex = Object.freeze(body.class);
+        console.log( "-----" ,body);
     }
 
     setStakeInfo(data: any) {

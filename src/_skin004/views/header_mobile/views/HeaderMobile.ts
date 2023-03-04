@@ -12,10 +12,12 @@ import AppProxy from "@/_skin004/AppProxy";
 import dialog_recharge from "@/_skin004/views/dialog_recharge";
 import dialog_email from "@/_skin004/views/dialog_email";
 import SelfProxy from "@/proxy/SelfProxy";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 @Component
 export default class HeaderMobile extends AbstractView {
     LangUtil = LangUtil;
     LangConfig = LangConfig;
+    SkinVariable=SkinVariable;
     core = core;
     myProxy: HeaderMobileProxy = this.getProxy(HeaderMobileProxy);
     pageData = this.myProxy.pageData;

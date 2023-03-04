@@ -3,12 +3,13 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import Utils from "@/core/global/Utils";
 import GameConfig from "@/core/config/GameConfig";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class ProjectInfo1 extends AbstractView {
     LangUtil = LangUtil;
 
-    
+    SkinVariable = SkinVariable;
     mounted() {
         this.setLink_android();
         this.setLink_ios();

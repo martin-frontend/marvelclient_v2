@@ -10,7 +10,7 @@
             <Marquee1 class="mt-1" />
         </div>
         
-        <SoccerMatche/>
+        <SoccerMatche v-if="SkinVariable.isShowSoccerMatche"/>
     
         <div v-for="(item, index) of pageData.lobbyIndex" :key="index" class="mt-n3">
             <GameSlideGroup

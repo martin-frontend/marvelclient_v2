@@ -28,6 +28,7 @@ import dialog_notice from "../../dialog_notice";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 import YellowWeb from "@/_skin004/core/global/YellowWeb";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class Header extends AbstractView {
@@ -37,6 +38,7 @@ export default class Header extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     routerPath = this.$router.app.$route.path;
     core = core;
+    SkinVariable = SkinVariable;
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
     GamePlatConfig = GamePlatConfig;

@@ -89,6 +89,12 @@ module.exports = {
                 twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
             },
         },
+        skin004_1: {
+            entry: "src/_skin004_1/main.ts",
+            template: "public/skin004_1.html",
+            filename: "skin004_1.html",
+            title: "CF亚娱",
+        },
         skin005: {
             entry: "src/_skin005/main.ts",
             template: "public/skin005.html",

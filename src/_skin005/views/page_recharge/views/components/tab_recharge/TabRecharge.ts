@@ -16,6 +16,9 @@ export default class TabRecharge extends AbstractView {
 
     plat_coins = GamePlatConfig.config.plat_coins;
 
+    mounted() {
+
+    }
     onChange1(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
@@ -145,19 +148,18 @@ export default class TabRecharge extends AbstractView {
     /**获取说明 */
     getExplain() {
         const { coin_name_unique, block_network_id, third_id } = this.form;
-        console.log("-- this.form" , this.form);
+        console.log("-- this.form", this.form);
         let explain;
         if (this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].options) {
             const option = this.pageData.methodList[coin_name_unique].options[block_network_id];
-            if (option)
-            {   
-                console.log("----saaaaa----",option);
+            if (option) {
+                console.log("----saaaaa----", option);
                 explain = option.explain;
                 if (!explain) {
                     const channel = option.channel;
                     if (channel) {
                         const item = channel.find((item: any) => item.third_id == third_id);
-                        console.log("----sa1231231aaaa----",item);
+                        console.log("----sa1231231aaaa----", item);
                         explain = item.explain;
                     }
                 }
@@ -168,7 +170,6 @@ export default class TabRecharge extends AbstractView {
     }
 
     transformExplain(str: string) {
-        console.log("  ----str-----" ,str);
         if (str) {
             return str.split("\n");
         }
@@ -189,5 +190,62 @@ export default class TabRecharge extends AbstractView {
             }
         }
         return false;
+    }
+
+    addInputMoney(data: number) {
+        console.log("增加  " + data);
+        let nub = 0 ;
+        if (this.form.amount)
+        {
+            nub = parseFloat(this.form.amount);
+        }
+        
+        nub += data;
+        this.form.amount = nub + "";
+    }
+
+    onItemClick(key: string) {
+        console.log("   ----当前  点击----", key);
+        this.form.coin_name_unique = key;
+
+        //this.changeMoney();
+        //this.payChannelList();
+    }
+
+
+    public get curShowChannel(): any {
+        const { methodList } = this.pageData;
+        const { coin_name_unique, block_network_id } = this.form;
+        if (!methodList[coin_name_unique] || !methodList[coin_name_unique].options) {
+            console.log("充值数据  空");
+            return [];
+        }
+        console.log(" from -- 数据", this.form);
+        console.log("读取的值", methodList[coin_name_unique].options);
+        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 9) {
+            const channel = methodList[coin_name_unique].options[block_network_id].channel;
+            console.log("channel---", channel);
+            if (channel && channel.length > 0) {
+                this.form.third_id = channel[0].third_id;
+                this.form.requires = channel[0].requires;
+            }
+            return channel;
+        }
+        return [];
+    }
+
+    onChannelItemClick(item: any) {
+        console.log(" 渠道 选择 ---", item);
+        if (!item) {
+            console.log("item为 空");
+            return;
+        }
+        this.form.third_id = item.third_id;
+        this.form.requires = item.requires;
+    }
+    get gold_info() {
+        //this.payChannelList();
+        //console.log("-----this.pageData.methodList---- ", this.pageData.methodList);
+        return this.pageData.methodList;
     }
 }

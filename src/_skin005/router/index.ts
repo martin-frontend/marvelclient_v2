@@ -70,6 +70,11 @@ const routes: Array<RouteConfig> = [
         name: "page_my_info",
         component: () => import(/* webpackChunkName: "skin005_page_my_info" */ "@/_skin005/views/page_my_info/views/PageMyInfo.vue"),
     },
+    {
+        path: "/page_recharge",
+        name: "page_recharge",
+        component: () => import(/* webpackChunkName: "skin005_page_recharge" */ "@/_skin005/views/page_recharge/views/PageRecharge.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
@@ -84,18 +89,13 @@ const router = new VueRouter({
 });
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    // if (
-    //     !core.user_id &&
-    //     to.name !== "page_home" &&
-    //     to.name !== "page_game_list" &&
-    //     to.name !== "page_introduce" &&
-    //     to.name !== "page_swap"
-    // ) {
-    //     next("/");
-    //     LoginEnter(() => { })
-    // } else {
-    //     next();
-    // }
-    next();
+
+    if (!core.user_id && (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_game_soccer" || to.name == "page_my_info"
+    || to.name == "page_statistice_credit" )) {
+        next("/");
+    } else {
+        next();
+    }
+    // next();
 });
 export default router;

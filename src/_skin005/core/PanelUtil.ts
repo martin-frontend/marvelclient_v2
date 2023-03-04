@@ -245,6 +245,14 @@ export default class PanelUtil {
             MultDialogManager.forceClosePanel();
         });
     }
+    //打开 充值 界面
+    static openpage_recharge() {
+        LoginEnter(() => {
+            Vue.router.push("/page_recharge");
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        });
+    }
 
     /**打开 足球 界面  */
     static openpage_sport(url: string) {
@@ -293,15 +301,10 @@ export default class PanelUtil {
 
     //打开充值窗口
     static openpanel_recharge(options: any = null) {
-        MultDialogManager.onOpenPanel(dialog_recharge);
+        // MultDialogManager.onOpenPanel(dialog_recharge);
+        // dialog_recharge.show();
+        PanelUtil.openpage_recharge();
 
-        //不显示充值
-        // if (!GlobalVar.instance.isShowRecharge)
-        // {
-        //     PanelUtil.message_info(LangUtil("充值通道关闭!"));
-        // }
-        // else    
-        dialog_recharge.show();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {

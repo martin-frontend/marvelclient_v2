@@ -2,11 +2,13 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class GoldInfoUtil extends AbstractView {
     LangUtil = LangUtil;
     GamePlatConfig = GamePlatConfig;
+    selfProxy  =  PanelUtil.getProxy_selfproxy;
     @Prop({ default: {} }) goldInfoData!: any; // 金币的数据
     @Prop({ default: {} }) coin_name_unique!: string; // 当前选择 或者 当前显示的 币种的名字
     @Prop({ default: 40 }) items_min_height!: number | string; //每个对象的 最小高度
@@ -24,7 +26,7 @@ export default class GoldInfoUtil extends AbstractView {
     @Prop() balanceStrColor!: string;
     @Prop({ default: "water_bg" }) bgColor!: string;
 
-
+    @Prop({ default: false }) is_recharge!: boolean; //是否为 充值中的 金币
 
 
     public get iconfontsize_str(): string {
@@ -54,7 +56,21 @@ export default class GoldInfoUtil extends AbstractView {
         return str
     }
     
-
+    public get userGoldInfo() : any {
+        return this.selfProxy.userInfo.gold_info;
+    }
+    getUserMoney(coinName:string)
+    {
+         //@ts-ignore
+        if (this.selfProxy.userInfo.gold_info && this.selfProxy.userInfo.gold_info[coinName])
+        {
+            //@ts-ignore
+            return this.selfProxy.userInfo.gold_info[coinName].sum_money;
+        }
+        return 0;
+        
+    }
+    
     //点击事件
     onItemClick(item: any) {
         this.$emit("onItemClick", item);

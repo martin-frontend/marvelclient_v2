@@ -8,6 +8,7 @@ export default class CustomPasswordNomal extends AbstractView {
     @Prop() placeholder!: string;
     @Prop({ default: 20 }) maxlength!: number;
     @Prop({ default: false }) isBottomLine!: boolean;
+    @Prop({ default: false }) isReadonly!: boolean; //
     inputValue = this.getValue;
     bShowPassword = true;
 
@@ -65,5 +66,67 @@ export default class CustomPasswordNomal extends AbstractView {
 
     onToggle() {
         this.bShowPassword = !this.bShowPassword;
+    }
+    mounted() {
+        if (this.isReadonly) {
+            //@ts-ignore
+            window['removeAttr'] = this.removeAttr.bind(this);
+            //@ts-ignore
+            window['setAttr'] = this.setAttr.bind(this);
+        }
+    }
+    public removeAttr(idName: string) {
+        document.getElementById(idName)?.addEventListener('click',this.handleClick);
+        document.getElementById(idName)?.addEventListener('keydown',this.handleKeydown);
+        document.getElementById(idName)?.addEventListener('mousedown',this.handleMousedown);
+        setTimeout(() => {
+            console.log("移除 节点");
+            document.getElementById(idName)?.removeAttribute("readonly");
+        }, 300);
+    }
+    public setAttr(idName: string) {
+        setTimeout(() => {
+            console.log("添加  节点");
+            document.getElementById(idName)?.setAttribute("readonly", "true");
+        }, 300);
+    }
+    handleClick(e:any)
+    {
+        if (e.type ==='click')
+        {   
+            document.getElementById(e.target.id)?.blur();
+            document.getElementById(e.target.id)?.focus();
+        }
+    }
+    handleKeydown(e:any)
+    {
+        if(e.type === 'keydown')
+        {
+            const keyCode =  e.keyCode;
+            const passwordText = (<HTMLInputElement>document.getElementById(e.target.id));
+            if(keyCode === 8 || keyCode === 46)
+            {
+                const len = passwordText.value.length;
+                if(len === 1)
+                {
+                    passwordText.value = "";
+                    return false;
+                }
+                if(e.target.selectionStart === 0 && e.target.selectionEnd ===  len)
+                {
+                    passwordText.value = "";
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    handleMousedown(e:any)
+    {
+        if (e.type === 'mousedown')
+        {
+            document.getElementById(e.target.id)?.blur();
+            document.getElementById(e.target.id)?.focus();
+        }
     }
 }

@@ -13,7 +13,9 @@
                     </div>
                     <div v-if="is_show_money" :class="detail_class">
                         <span :class="balanceStrColor" v-if="inside_str"> {{LangUtil(inside_str)}}</span>
-                        {{goldInfoData[coin_name_unique].sum_money}}
+                        <span v-if="!is_recharge">{{goldInfoData[coin_name_unique].sum_money}}</span>
+                        <!-- <span v-else>{{userGoldInfo[coin_name_unique].sum_money}}</span> -->
+                        <span v-else class="ml-2 bold_text">{{getUserMoney(coin_name_unique)}}</span>
                     </div>
                     <svg-icon icon="arrow_down_2" class="textGray--text ml-2 text-14"
                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'" />
@@ -38,7 +40,10 @@
 
                     <div v-if="is_show_money" :class="detail_class">
                         <span v-if="inside_str"> {{LangUtil(inside_str)}}</span>
-                        {{item.sum_money }}
+                        <span v-if="!is_recharge">{{item.sum_money }}</span>
+                        <!-- <span v-else>{{userGoldInfo[key].sum_money  }}</span> -->
+                        <span v-else class="ml-2 bold_text">{{getUserMoney(key)}}</span>
+
                     </div>
                     <svg-icon icon="arrow_down_2" class="textGray--text ml-1 text-14" style="opacity: 0;"></svg-icon>
                 </v-sheet>

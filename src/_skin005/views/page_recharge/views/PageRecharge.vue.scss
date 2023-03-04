@@ -1,0 +1,70 @@
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input-text {
+    height: 41px !important;
+}
+
+
+
+.theme--light .mobel_input {
+    .input-text {
+        height: 36px !important;
+        background-color: white !important;
+    }
+
+    ::v-deep .input-text input {
+        margin-left: 12px !important;
+        margin-top: -3px;
+       
+    }
+    ::v-deep .input-text button {
+        right: -77px;
+       
+    }
+
+    ::v-deep .input-text input::placeholder {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}
+
+.theme--dark .mobel_input {
+    .input-text {
+        height: 36px !important;
+        background-color: #2F3030 !important;
+    }
+
+    ::v-deep .input-text input {
+        margin-left: 12px !important;
+        margin-top: -3px;
+    }
+
+    ::v-deep .input-text input::placeholder {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}
+
+.px-2-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fix_head_mob{
+    position: fixed;
+    z-index: 2;
+    top: 50px;
+}
+.theme--light{
+    .fix_head_mob{
+        background-color: #f4f4f4;
+    }
+}
+.theme--dark{
+    .fix_head_mob{
+        background-color: #202121;
+    }
+}

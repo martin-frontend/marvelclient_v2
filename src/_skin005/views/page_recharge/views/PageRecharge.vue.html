@@ -1,0 +1,52 @@
+<v-sheet width="100%" color="transparent" class="" >
+    <v-card v-if="!$vuetify.breakpoint.mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" width="100%">
+        <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
+            <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="36" width="90" value="0">
+                <span class="text-14"> {{LangUtil("充值")}} </span>
+            </v-btn>
+            <v-btn v-if="GlobalVar.instance.isShowExchange" class="rounded-pill mr-2" height="36" width="90" value="1">
+
+                <span class=" text-14"> {{LangUtil("兑换")}} </span>
+            </v-btn>
+            <v-btn v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1" class="rounded-pill mr-2" height="36" width="90" value="11">
+
+                <span class=" text-14"> {{LangUtil("划转")}} </span>
+            </v-btn>
+        </v-btn-toggle>
+
+        <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1"  color="transparent" class="ml-auto ">
+            
+            <btn-yellow class="text-16 ml-2" min_width="104" height="36"
+            @click.native="goRecord">{{pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录")}}</btn-yellow>
+
+        </v-sheet>
+    </v-card>
+
+    <v-sheet v-else flat class="d-flex fix_head_mob px-2 align-center" min-height="62" width="100%">
+        <v-sheet class="d-flex align-center" min-height="62" color="transparent">
+            <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
+                <v-btn  v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="30" min_width="78" value="0">
+                    <span class="text-12"> {{LangUtil("充值")}} </span>
+                </v-btn>
+                <v-btn v-if="GlobalVar.instance.isShowExchange" class="rounded-pill mr-2" height="30" min_width="78" value="1">
+                    <span class=" text-12"> {{LangUtil("兑换")}} </span>
+                </v-btn>
+                <v-btn v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1" class="rounded-pill mr-2" height="30" min_width="78" value="11">
+                    <span class=" text-12"> {{LangUtil("划转")}} </span>
+                </v-btn>
+            </v-btn-toggle>
+        </v-sheet>
+
+        <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="ml-auto mobel_input">
+            <btn-yellow class="text-12 ml-2" min_width="78" height="30"
+            @click.native="goRecord">{{pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录")}}</btn-yellow>
+
+        </v-sheet>
+    </v-sheet>
+
+    <!-- <HomePage v-if="pageData.tabIndex==0" ></HomePage> -->
+    <TabRecharge v-if="pageData.tabIndex==0" :class="$vuetify.breakpoint.mobile ? 'px-2-5' : 'mt-4'"></TabRecharge>
+    <TabExchange v-if="pageData.tabIndex==1"  :class="$vuetify.breakpoint.mobile ? 'px-2-5' : 'mt-4'"></TabExchange>
+    <TabTransfer v-if="pageData.tabIndex==11" :class="$vuetify.breakpoint.mobile ? ' ml-2' : 'mt-4'"></TabTransfer>
+
+</v-sheet>

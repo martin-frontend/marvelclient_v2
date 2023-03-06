@@ -46,7 +46,8 @@
                     </v-btn>
                 </div>
 
-                <CustomInput
+                <CustomInput 
+                    v-if="!core.invite_user_id"
                     class="mb-6"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"

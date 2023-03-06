@@ -22,6 +22,28 @@
         color: white !important;
     }
 }
+
+
+.mob_item_class{
+    ::v-deep.v-icon.v-icon {
+        color: #fff !important;
+    }
+    
+    .item {
+        cursor: pointer;
+        font-weight: 600;
+        height: 38px;
+        width: 100%;
+        color: #fff;
+    }
+    .item:hover {
+        color: white;
+        i {
+            color: white !important;
+        }
+    }
+}
+
 .item-group-title {
     cursor: pointer;
     height: 38px;

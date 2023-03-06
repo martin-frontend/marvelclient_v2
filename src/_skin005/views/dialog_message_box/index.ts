@@ -5,7 +5,7 @@ import DialogMessageBoxProxy from "./proxy/DialogMessageBoxProxy";
 import DialogMessageBox from "./views/DialogMessageBox.vue";
 
 function show(data: MessageVO) {
-    DialogMount(DialogMessageBox);
+    //DialogMount(DialogMessageBox);
     const proxy: DialogMessageBoxProxy = getProxy(DialogMessageBoxProxy);
     proxy.pageData.bShow = true;
     proxy.pageData.data = data;

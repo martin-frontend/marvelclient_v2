@@ -42,6 +42,8 @@
         </template>
 
         <DialogMessage />
+        <DialogMessageBox />
+
         <Overlay v-model="myProxy.loading" />
         <!-- <UserPanel /> -->
         <!-- dialog的挂载点 -->
@@ -90,10 +92,12 @@ import Footer from "./views/footer/Footer.vue";
 import Header from "./views/header/Header.vue";
 import UserPanel from "./views/header/user_panel/UserPanel.vue";
 import DialogMessage from "./views/dialog_message/views/DialogMessage.vue";
+
 import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
 import Novigation from "./views/novigation/Novigation.vue";
 import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
 import GuideDrawer from '@/_skin005/views/widget/guide_drawer/GuideDrawer.vue'
+import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMessageBox.vue";
 @Component({
     components: {
         Header,
@@ -104,6 +108,7 @@ import GuideDrawer from '@/_skin005/views/widget/guide_drawer/GuideDrawer.vue'
         DialogMessage,
         Orientation,
         GuideDrawer,
+        DialogMessageBox,
     },
 })
 export default class extends App { }

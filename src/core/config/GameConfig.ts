@@ -84,7 +84,7 @@ export default class GameConfig {
                     apiUrl = "http://" + location.hostname + ":28001";
                 }
             } else {
-                apiUrl = "http://api.starsabc.com";
+                apiUrl = "https://api.starsabc.com";
             }
         }
         return apiUrl;

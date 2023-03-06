@@ -43,15 +43,29 @@ export default class GameConfig {
             game_domain: core.game_domain,
         };
         axios.post(core.host + "/api/game_address", data).then((response: any) => {
+            
             const data = response.data.data;
+            console.log("__game_address" ,data);
             if (!core.plat_id) core.plat_id = data.plat_id;
             if (!core.channel_id) core.channel_id = data.channel_id;
+
+            if (!core.plat_id || !core.channel_id)
+            {
+                alert("game_address_data_error");
+                return;
+            }
+
             core.cdnUrl = data.cdn_domain;
             GlobalVar.host_urls = data.api_domain;
             // if (data.api_domain) core.host = data.api_domain;
             core.host = "";
             puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
-        });
+        })
+        .catch( (e)=>{
+            //alert(e);
+            alert("get game_address fail");
+    
+        })
     }
 
     static loadPlatConfig() {

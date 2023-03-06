@@ -1,23 +1,23 @@
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import PanelUtil from "../core/PanelUtil";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
-        path: "/",
+        path: "/:lang",
         name: "page_home",
         component: () => import(/* webpackChunkName: "skin005_page_home" */ "@/_skin005/views/page_home/views/PageHome.vue"),
     },
     {
-        path: "/page_game_list",
+        path: "/page_game_list/:lang",
         name: "page_game_list",
         component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
     },
     {
-        path: "/page_game_list_chess",
+        path: "/page_game_list_chess/:lang",
         name: "page_game_list_chess",
         component: () =>
             import(
@@ -25,53 +25,53 @@ const routes: Array<RouteConfig> = [
             ),
     },
     {
-        path: "/page_game_play",
+        path: "/page_game_play/:lang",
         name: "page_game_play",
         component: () => import(/* webpackChunkName: "skin005_page_game_play" */ "@/_skin005/views/page_game_play/views/PageGamePlay.vue"),
     },
     {
-        path: "/page_game_soccer",
+        path: "/page_game_soccer/:lang",
         name: "page_game_soccer",
         component: () =>
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
-        path: "/page_introduce",
+        path: "/page_introduce/:lang",
         name: "page_introduce",
         component: () => import(/* webpackChunkName: "skin005_page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
     },
     {
-        path: "/page_extension",
+        path: "/page_extension/:lang",
         name: "page_extension",
         component: () => import(/* webpackChunkName: "skin005_page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
     },
     {
-        path: "/page_mine",
+        path: "/page_mine/:lang",
         name: "page_mine",
         component: () => import(/* webpackChunkName: "skin005_page_mine" */ "@/_skin005/views/page_mine/views/PageMine.vue"),
     },
     {
-        path: "/page_bonus",
+        path: "/page_bonus/:lang",
         name: "page_bonus",
         component: () => import(/* webpackChunkName: "skin005_page_bonus" */ "@/_skin005/views/page_bonus/views/PageBonus.vue"),
     },
     {
-        path: "/page_swap",
+        path: "/page_swap/:lang",
         name: "page_swap",
         component: () => import(/* webpackChunkName: "skin005_page_swap" */ "@/_skin005/views/page_swap/views/PageSwap.vue"),
     },
     {
-        path: "/page_statistice_credit",
+        path: "/page_statistice_credit/:lang",
         name: "page_statistice_credit",
         component: () => import(/* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
     },
     {
-        path: "/page_my_info",
+        path: "/page_my_info/:lang",
         name: "page_my_info",
         component: () => import(/* webpackChunkName: "skin005_page_my_info" */ "@/_skin005/views/page_my_info/views/PageMyInfo.vue"),
     },
     {
-        path: "/page_recharge",
+        path: "/page_recharge/:lang",
         name: "page_recharge",
         component: () => import(/* webpackChunkName: "skin005_page_recharge" */ "@/_skin005/views/page_recharge/views/PageRecharge.vue"),
     },
@@ -85,6 +85,8 @@ VueRouter.prototype.push = function push(location: any) {
 };
 
 const router = new VueRouter({
+    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? 'history' : 'hash',
+    // mode: 'history',
     routes,
 });
 // /**没登入 重新导向 */

@@ -285,6 +285,10 @@ declare module net {
         api_user_var_agent_direct_deduction_all: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: string;
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: string;
     };
     /**事件*/
     var EventType: {
@@ -570,6 +574,10 @@ declare module net {
         api_user_var_agent_direct_deduction_all: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: string;
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -773,6 +781,15 @@ declare module net {
     }
 }
 /**
+ * 返佣等级配置
+ */
+declare module net {
+    class cmd_api_plat_var_promotion_config extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 近期投注
  */
 declare module net {
@@ -822,6 +839,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_swap_trial extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * VIP等级配置
+ */
+declare module net {
+    class cmd_api_plat_var_vip_config extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2993,7 +3019,8 @@ declare module core {
         nick_name?: string;
         /**真实姓名*/
         real_name?: string;
-        real_name_decrypt?:string;
+        /** */
+        real_name_decrypt?: string;
         /**邮箱*/
         email?: string;
         /**手机号*/
@@ -3016,8 +3043,11 @@ declare module core {
         gold_transfer_fee?: number;
         /**流水倍数 */
         gold_transfer_water_multiple?: number;
+        /**
+         * 1-信用代理|98-信用玩家
+         */
+        show_credit_set?: number;
         show_promote?: number;
-        show_credit_set?: number;// 1-信用代理|98-信用玩家
         /**1、用户扩展信息*/
         extend?: {
             /**平台用户ID*/
@@ -3138,7 +3168,8 @@ declare module core {
         credit_rate_max?: number;
         credit_rate_min?: number;
         credit_rate_invited?: number;
-        create_credit_user_type?:[];// 信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家
+        /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
+        create_credit_user_type?: any;
     }
     /**
      * vip 奖励活动相关

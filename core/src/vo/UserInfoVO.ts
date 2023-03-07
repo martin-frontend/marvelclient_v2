@@ -17,6 +17,8 @@ module core {
         nick_name?: string;
         /**真实姓名*/
         real_name?: string;
+        /** */
+        real_name_decrypt?:string;
         /**邮箱*/
         email?: string;
         /**手机号*/
@@ -40,6 +42,9 @@ module core {
         gold_transfer_fee?: number;
         /**流水倍数 */
         gold_transfer_water_multiple?: number;
+        /**
+         * 1-信用代理|98-信用玩家
+         */
         show_credit_set?: number;//是否显示多层用户
         show_promote?: number; //1-展示推广赚钱|2-展示代理管理|3-都不展示
         /**1、用户扩展信息*/
@@ -159,6 +164,8 @@ module core {
         credit_rate_max ?:number;
         credit_rate_min ?:number;
         credit_rate_invited ?:number;
+        /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
+        create_credit_user_type?:any;
     }
 
     /**

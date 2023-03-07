@@ -126,9 +126,14 @@ export default class PageMineProxy extends puremvc.Proxy {
             console.log("error", error);
         }
     }
-
-    clearData()
-    {
+    setVipConfig(data: any) {
+        console.log("--- 设置vip 数据", data);
+        this.getCurrentCoin();
+        this.pageData.vipConfig = JSON.parse(JSON.stringify(data.vip_config));
+        // 等级Max
+        this.pageData.vipMaxLevel = data.vip_config.length;
+    }
+    clearData() {
         Object.assign(this.pageData, {
             nextExp: 0, //等级还差
             nextUSDT: 0, //,USDT充值
@@ -187,6 +192,15 @@ export default class PageMineProxy extends puremvc.Proxy {
             this.sendNotification(net.HttpType.api_user_var_backwater_trial_receive, {
                 user_id: core.user_id,
             });
+        }
+    }
+
+    /**返水试算领取接口 */
+    api_plat_var_vip_config() {
+        if (GlobalVar.instance.isNullUser) {
+            this.sendNotification(net.HttpType.api_plat_var_vip_config,
+                { plat_id: core.plat_id }
+            );
         }
     }
 

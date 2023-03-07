@@ -339,6 +339,10 @@ var net;
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
         /**--skin003--三方登录*/
         api_user_third_login: "/api/user/third_login",
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: "api/plat/{plat_id}/promotion_config",
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: "api/plat/{plat_id}/vip_config",
     };
     /**事件*/
     net.EventType = {
@@ -624,6 +628,10 @@ var net;
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
         /**--skin003--三方登录*/
         api_user_third_login: "api_user_third_login",
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: "api_plat_var_promotion_config",
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: "api_plat_var_vip_config",
     };
     /**注册协议*/
     function initCommand() {
@@ -790,6 +798,9 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
         //--skin003
         facade.registerCommand(net.HttpType.api_user_third_login, net.cmd_api_user_third_login);
+        //--推广
+        facade.registerCommand(net.HttpType.api_plat_var_promotion_config, net.cmd_api_plat_var_promotion_config);
+        facade.registerCommand(net.HttpType.api_plat_var_vip_config, net.cmd_api_plat_var_vip_config);
     }
     net.initCommand = initCommand;
     ;
@@ -1279,6 +1290,28 @@ var net;
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
 })(net || (net = {}));
 /**
+ * 返佣等级配置
+ */
+var net;
+/**
+ * 返佣等级配置
+ */
+(function (net) {
+    class cmd_api_plat_var_promotion_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_promotion_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_promotion_config, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_promotion_config = cmd_api_plat_var_promotion_config;
+})(net || (net = {}));
+/**
  * 近期投注
  */
 var net;
@@ -1409,6 +1442,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_swap_trial = cmd_api_plat_var_swap_trial;
+})(net || (net = {}));
+/**
+ * VIP等级配置
+ */
+var net;
+/**
+ * VIP等级配置
+ */
+(function (net) {
+    class cmd_api_plat_var_vip_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_vip_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_vip_config, result.data);
+            }
+        }
+    }
+    net.cmd_api_plat_var_vip_config = cmd_api_plat_var_vip_config;
 })(net || (net = {}));
 /**
  * 获取手机区号

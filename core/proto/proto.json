@@ -190,6 +190,10 @@
         ["api/user/{user_id}/agent_direct_deduction_all",         "清空直属所有额度"],
 
         "--skin003",
-        ["/api/user/third_login", "三方登录"]
+        ["/api/user/third_login", "三方登录"],
+
+        "--推广",
+        ["api/plat/{plat_id}/promotion_config",             "返佣等级配置"],
+        ["api/plat/{plat_id}/vip_config",         "VIP等级配置"]
     ]
 }

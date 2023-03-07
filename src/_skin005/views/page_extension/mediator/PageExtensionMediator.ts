@@ -27,6 +27,8 @@ export default class PageExtensionMediator extends AbstractMediator {
             net.EventType.api_user_var_short_chain,
             net.EventType.api_user_update_var,
             net.EventType.api_user_var_commission_receive,
+            net.EventType.api_plat_var_promotion_config,
+
         ];
     }
 
@@ -51,7 +53,11 @@ export default class PageExtensionMediator extends AbstractMediator {
             case net.EventType.api_user_var_commission_receive:
                 myProxy.api_user_var_commission_commissiondetail();
                 PanelUtil.message_success(LangUtil("领取成功"));
-                
+
+                break;
+            case net.EventType.api_plat_var_promotion_config:
+                console.log(" 配置信息回复", body);
+                myProxy.setPromotionConfig(body);
                 break;
         }
     }

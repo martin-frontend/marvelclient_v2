@@ -477,7 +477,7 @@
     </template>
 
     <!-- 返佣等级 -->
-    <div class="px-0 px-sm-3 " v-if="!GlobalVar.instance.isNullUser && selfProxy.userInfo.is_credit_user == 98">
+    <div class="px-0 px-sm-3 " v-if="GlobalVar.instance.isNullUser || selfProxy.userInfo.is_credit_user == 98">
         <Fanyong> </Fanyong>
     </div>
 

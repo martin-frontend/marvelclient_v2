@@ -303,6 +303,11 @@ module net {
 
         /**--skin003--三方登录*/
         api_user_third_login: "/api/user/third_login",
+
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: "api/plat/{plat_id}/promotion_config",
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: "api/plat/{plat_id}/vip_config",
     };
     /**事件*/
     export var EventType = {
@@ -613,6 +618,11 @@ module net {
 
         /**--skin003--三方登录*/
         api_user_third_login: "api_user_third_login",
+
+        /**--推广--返佣等级配置*/
+        api_plat_var_promotion_config: "api_plat_var_promotion_config",
+        /**--推广--VIP等级配置*/
+        api_plat_var_vip_config: "api_plat_var_vip_config",
     };
     /**注册协议*/
     export function initCommand() {
@@ -779,6 +789,9 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);
         //--skin003
         facade.registerCommand(HttpType.api_user_third_login, cmd_api_user_third_login);
+        //--推广
+        facade.registerCommand(HttpType.api_plat_var_promotion_config, cmd_api_plat_var_promotion_config);
+        facade.registerCommand(HttpType.api_plat_var_vip_config, cmd_api_plat_var_vip_config);
     };
 
 }

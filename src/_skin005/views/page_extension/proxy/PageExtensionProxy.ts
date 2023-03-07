@@ -80,8 +80,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         this.pageData.qrCode = imgBase64;
     }
 
-    clearData()
-    {
+    clearData() {
         Object.assign(this.pageData.promotionData, {
             commission_awaiting_num: {},
             commission_received_num: {},
@@ -162,6 +161,21 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         });
     }
 
+    setPromotionConfig(data: any) {
+        this.getCurrentCoin();
+        this.pageData.tableData.promotionConfig = JSON.parse(JSON.stringify(data));
+        this.pageData.tableData.defaultPromotionConfig = JSON.parse(JSON.stringify(data));
+
+        Object.keys(data).forEach((key: any) => {
+            this.pageData.tableData.promotionConfig[key].forEach((config: any, idx: any) => {
+                config["level"] = idx + 1;
+            });
+
+            this.pageData.tableData.defaultPromotionConfig[key].forEach((config: any, idx: any, arr: any) => {
+                config["level"] = idx + 1;
+            });
+        });
+    }
     /**取目前的主币 奖励币 */
     getCurrentCoin() {
         const plat_coins = <any>GamePlatConfig.config.plat_coins;
@@ -219,6 +233,9 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     api_user_var_commission_commissionnum() {
         if (core.user_id) {
             this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, { user_id: core.user_id });
+        }
+        else {
+            this.sendNotification(net.HttpType.api_plat_var_promotion_config, { plat_id: core.plat_id }); /**没有登录时候 获取 返佣数据 */
         }
     }
 

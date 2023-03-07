@@ -17,6 +17,7 @@ function show(tabIndex: number = 0) {
     const proxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     proxy.show();
     proxy.pageData.tabIndex = tabIndex;
+    proxy.pageData.bShow = true;
 
     if((selfProxy.userInfo.is_recharge != 1 && tabIndex == 0) || (selfProxy.userInfo.is_exchange != 1 && tabIndex == 1) || (selfProxy.userInfo.is_gold_transfer != 1 && tabIndex == 2) ){
         if(selfProxy.userInfo.is_recharge == 1){

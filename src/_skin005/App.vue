@@ -117,6 +117,9 @@ export default class extends App { }
 <style lang="scss" scoped>
 .app {
     background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2560px;
 }
 
 .btn-guide {
@@ -160,6 +163,7 @@ export default class extends App { }
     top: 0;
     z-index: 10;
     width: calc(100% - 188px) !important;
+    max-width: 2360px;
 }
 
 .head_test_mini {
@@ -167,6 +171,7 @@ export default class extends App { }
     top: 0;
     z-index: 10;
     width: calc(100% - 60px) !important;
+    max-width: 2500px;
 }
 
 .router_test {

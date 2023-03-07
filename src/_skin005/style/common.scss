@@ -58,6 +58,12 @@
             left: 10px;
         }
     }
+    .v-btn__content {
+        text-transform: none;
+    }
+    .v-tab{
+        text-transform: none !important;
+    }
     .regular_text {
         >* {
             font-family: 'GOTHAM_BOOK' !important;

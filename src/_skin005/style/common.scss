@@ -1,5 +1,10 @@
 @import "@/style/fontsize.scss";
 .skin005 {
+
+    .v-application {
+        background-color: transparent !important;
+    }
+
     .gradient-yellow {
         background-image: linear-gradient(to right, #fcb131, #ffe64d);
     }

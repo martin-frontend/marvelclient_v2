@@ -132,12 +132,15 @@ export default class NetObserver extends AbstractMediator {
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
-                    //添加客服
-                    const s = document.createElement("script");
-                    // s.async = false;
-                    s.id = "respondio__widget";
-                    s.src = `https://cdn.respond.io/webchat/widget/widget.js?cId=${LangUtil("客服CID")}`;
-                    document.body.appendChild(s);
+
+                    if (LangUtil("客服CID") && LangUtil("客服CID") != "客服CID") {
+                        //添加客服
+                        const s = document.createElement("script");
+                        // s.async = false;
+                        s.id = "respondio__widget";
+                        s.src = `https://cdn.respond.io/webchat/widget/widget.js?cId=${LangUtil("客服CID")}`;
+                        document.body.appendChild(s);
+                    }
 
                     if (core.app_type == core.EnumAppType.APP) {
                         WebViewBridge.getInstance().enterHall();

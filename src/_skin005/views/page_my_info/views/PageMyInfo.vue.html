@@ -35,7 +35,7 @@
                 </v-sheet>
                 <v-progress-linear :value="pageData.vipProgress" color="textYellow" height="6"
                     class="rounded-xl mt-2 mb-2"></v-progress-linear>
-                <div class=" mt-1 textGray--text text-12">
+                <div v-if="pageData.vipMaxLevel" class=" mt-1 textGray--text text-12">
                     <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
                         {{LangUtil('您已经升级早最高等级')}} </p>
                     <span

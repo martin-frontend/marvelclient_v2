@@ -5,13 +5,13 @@
         <div ref="tabBox" color="transparent" class="ml-8">
             <v-tabs slider-size="2" v-model="pagetab" optional>
                 <v-tabs-slider color="textYellow"></v-tabs-slider>
-                <v-tab ref="tab1" class="text-14 mr-8 font-weight-bold" :ripple="false"
+                <v-tab ref="tab1" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false" 
                     :disabled="pagetab == 0">{{LangUtil("首页")}}</v-tab>
-                <v-tab ref="tab3" class="text-14 mr-8 font-weight-bold" :ripple="false"
+                <v-tab ref="tab3" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false"
                     :disabled="pagetab == 1">{{LangUtil("体育运动")}}</v-tab>
-                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 font-weight-bold" :ripple="false"
+                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap" :ripple="false"
                     :disabled="pagetab == 2">{{LangUtil("代理管理")}}</v-tab>
-            </v-tabs>
+            </v-tabs> 
         </div>
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">
             <Marquee1 />

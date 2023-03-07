@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from "./App.vue";
+import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
 import router from "@/_skin006/router";
 import "@/_skin005/style/common.scss";

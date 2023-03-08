@@ -1,0 +1,30 @@
+<v-sheet width="100%" color="transparent" class="px-4 pad_height">
+    <v-card flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68"
+        color="bgBanner" width="100%">
+        <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange" width="100%" class="overflow-x-auto">
+
+            <v-btn v-for="(item, key) of myProxy.pageData.categoryData" :key="key" class="rounded-pill mr-2" height="36" :min-width="$vuetify.breakpoint.xsOnly ? 72 : 90">
+                <span :class="$vuetify.breakpoint.xsOnly ? 'text-12' : 'text-14'" > {{LangUtil(item.title)}} </span>
+            </v-btn>
+        </v-btn-toggle>
+
+    </v-card>
+
+    <v-card v-if="curActivityData" flat class="mt-4" color="transparent" width="100%">
+        <v-row>
+            <template v-for="(item, key) of curActivityData.data">
+            <v-col :cols="$vuetify.breakpoint.xsOnly ? 12 : 6" :key="item.id">
+                <v-card flat class="rounded10 cursor-pointer" color="bgBanner" @click.native="onItemClick(item)">
+                    <v-sheet color="transparent" width="100%" class="font-weight-bold px-4 py-4 bold_text" :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-16'">
+                        {{item.activity_name}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" width="100%" :height="$vuetify.breakpoint.xsOnly ? 190 : 230">
+                        <v-img class="rounded_img"  :max-height="$vuetify.breakpoint.xsOnly ? 190 : 230" :src="item.icon"></v-img>
+                    </v-sheet>
+                </v-card>
+            </v-col>
+        </template>
+        </v-row>
+    </v-card>
+</v-sheet>

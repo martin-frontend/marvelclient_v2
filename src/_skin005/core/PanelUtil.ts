@@ -331,8 +331,22 @@ export default class PanelUtil {
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {
-        MultDialogManager.onOpenPanel(dialog_activity);
-        dialog_activity.show();
+        // MultDialogManager.onOpenPanel(dialog_activity);
+        // dialog_activity.show();
+
+        //LoginEnter(() => {
+            const sss = Vue.router.history.current.path
+            console.log("当前路径" ,sss);
+            if (sss == "/page_activity")
+            {
+                return;
+            }
+            
+            Vue.router.push("/page_activity");
+            PanelUtil.showAppLoading(true);
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        //});
     }
 
     //打开游戏列表窗口

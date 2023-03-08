@@ -122,7 +122,7 @@ export class RechargeProxy extends puremvc.Proxy {
     }
 
     api_user_var_recharge_address() {
-        if (this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4) {
+        if (this.pageData.methodList[this.pageData.form.coin_name_unique] && this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4) {
             this.pageData.loading = true;
             const formCopy = { user_id: core.user_id };
             Object.assign(formCopy, this.pageData.form);

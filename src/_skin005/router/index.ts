@@ -75,6 +75,11 @@ const routes: Array<RouteConfig> = [
         name: "page_recharge",
         component: () => import(/* webpackChunkName: "skin005_page_recharge" */ "@/_skin005/views/page_recharge/views/PageRecharge.vue"),
     },
+    {
+        path: "/page_activity/:lang",
+        name: "page_activity",
+        component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */

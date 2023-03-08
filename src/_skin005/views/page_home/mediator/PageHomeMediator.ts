@@ -1,15 +1,21 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageHomeProxy from "../proxy/PageHomeProxy";
 import getProxy from "@/core/global/getProxy";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageHomeMediator extends AbstractMediator{
 
     public onRegister(): void {
+        PanelUtil.showAppLoading(false);
         const myProxy: PageHomeProxy = getProxy(PageHomeProxy);
         myProxy.api_plat_var_stake_info();
         myProxy.api_plat_var_swap_setting_info();
         myProxy.api_plat_var_swap_k();
         myProxy.api_plat_var_backwater_setting_info();
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageHomeProxy.NAME);
     }
 
     public listNotificationInterests(): string[] {

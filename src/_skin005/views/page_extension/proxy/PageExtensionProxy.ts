@@ -12,7 +12,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.pageData.loading = true;
-        PanelUtil.showAppLoading(false);
     }
 
     pageData = {

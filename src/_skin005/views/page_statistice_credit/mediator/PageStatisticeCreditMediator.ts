@@ -2,8 +2,18 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageStatisticeCreditProxy from "../proxy/PageStatisticeCreditProxy";
 import getProxy from "@/core/global/getProxy";
 import { getTodayGMT } from "@/core/global/Functions";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageStatisticeCreditMediator extends AbstractMediator{
+
+    onRegister(){
+        PanelUtil.showAppLoading(false);
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageStatisticeCreditProxy.NAME);
+    }
+
     public listNotificationInterests(): string[] {
         return [
             net.EventType.api_user_var_short_chain, 

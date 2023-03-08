@@ -7,6 +7,14 @@ import GlobalVar from "@/core/global/GlobalVar";
 export default class PageMineMediator extends AbstractMediator {
     private pageMineProxy: PageMineProxy = this.getProxy(PageMineProxy);
 
+    onRegister(){
+        PanelUtil.showAppLoading(false);
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageMineProxy.NAME);
+    }
+
     protected initViewData(): void {
         this.pageMineProxy.api_user_var_backwater_trial();
         PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);

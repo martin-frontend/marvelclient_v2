@@ -5,6 +5,14 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageMyInfoMediator extends AbstractMediator{
 
+    onRegister(){
+        PanelUtil.showAppLoading(false);
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageMyInfoProxy.NAME);
+    }
+
     protected initViewData(): void {
         PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
     }

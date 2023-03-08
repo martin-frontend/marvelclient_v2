@@ -1,9 +1,11 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import PageGameListProxy from "../proxy/PageGameListProxy";
 import getProxy from "@/core/global/getProxy";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageGameListMediator extends AbstractMediator {
     public onRegister(): void {
+        PanelUtil.showAppLoading(false);
         const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
         if (myProxy.config.loaded) {
             if (myProxy.pageData.pageInfo.pageCurrent < 2) myProxy.api_plat_var_game_all_index();
@@ -11,6 +13,10 @@ export default class PageGameListMediator extends AbstractMediator {
             myProxy.api_plat_var_game_all_config();
         }
         //myProxy.api_plat_var_game_menu();
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageGameListProxy.NAME);
     }
 
     public listNotificationInterests(): string[] {

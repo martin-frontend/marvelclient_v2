@@ -7,15 +7,20 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import WebViewBridge from "@/core/native/WebViewBridge";
 
-export default class PageRechargeMediator extends AbstractMediator{
-    private selfProxy = PanelUtil.getProxy_selfproxy
+export default class PageRechargeMediator extends AbstractMediator {
+    private selfProxy = PanelUtil.getProxy_selfproxy;
 
-    onRegister(){
+    onRegister() {
+        PanelUtil.showAppLoading(false);
         const myProxy: PageRechargeProxy = getProxy(PageRechargeProxy);
         myProxy.exchangeProxy.gold_info = this.selfProxy.userInfo.gold_info;
         myProxy.transferProxy.gold_info = this.selfProxy.userInfo.gold_info;
         myProxy.init();
-    }    
+    }
+
+    onRemove() {
+        this.facade.removeProxy(PageRechargeProxy.NAME);
+    }
 
     public listNotificationInterests(): string[] {
         return [
@@ -31,7 +36,7 @@ export default class PageRechargeMediator extends AbstractMediator{
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:PageRechargeProxy = getProxy(PageRechargeProxy);
+        const myProxy: PageRechargeProxy = getProxy(PageRechargeProxy);
         const addressBookProxy = PanelUtil.getProxy_addressBook;
         myProxy.exchangeProxy.pageData.loading = false;
         myProxy.rechargeProxy.pageData.loading = false;

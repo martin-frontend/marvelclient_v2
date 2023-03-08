@@ -4,6 +4,15 @@ import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageIntroduceMediator extends AbstractMediator {
+
+    onRegister(){
+        PanelUtil.showAppLoading(false);
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageIntroduceProxy.NAME);
+    }
+
     protected initViewData(): void {
         const myProxy: PageIntroduceProxy = getProxy(PageIntroduceProxy);
         myProxy.api_plat_var_reward_coin_info();

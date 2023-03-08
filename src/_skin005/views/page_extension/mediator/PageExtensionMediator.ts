@@ -8,6 +8,14 @@ export default class PageExtensionMediator extends AbstractMediator {
     private myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
     LangUtil = LangUtil;
 
+    onRegister(){
+        PanelUtil.showAppLoading(false);
+    }
+
+    onRemove(){
+        this.facade.removeProxy(PageExtensionProxy.NAME);
+    }
+
     protected initViewData(): void {
         this.myProxy.api_user_var_short_chain();
         this.myProxy.api_user_var_commission_commissiondetail();

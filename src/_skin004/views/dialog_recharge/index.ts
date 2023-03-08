@@ -6,16 +6,17 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_message_box from "@/views/dialog_message_box";
 import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
 import LangUtil from "@/core/global/LangUtil";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 function show(tabIndex: number = 0) {
     const selfProxy:SelfProxy = getProxy(SelfProxy);
-    if(!selfProxy.userInfo.phone) {
+    const is_bind_phone_recharge = GamePlatConfig.config.is_bind_phone_recharge;
+    if(is_bind_phone_recharge && is_bind_phone_recharge.is_open == 1 && !selfProxy.userInfo.phone) {
         dialog_message_box.confirm({ message: LangUtil("该账号未绑定手机，不能打开充值页面"), okFun: dialog_safety_center.show });
         return;
     }
     DialogMount(DialogRecharge);
     const proxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
-    proxy.show();
     proxy.pageData.tabIndex = tabIndex;
     proxy.pageData.bShow = true;
 

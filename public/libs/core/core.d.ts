@@ -2602,6 +2602,10 @@ declare module core {
         is_bind_phone_exchange: {
             is_open: number;
         };
+        /**打开充值页面是否需要绑定手机 */
+        is_bind_phone_recharge: {
+            is_open: number;
+        };
         /**金币划转是否需要手机验证 */
         is_bind_phone_transfer: {
             is_open: number;

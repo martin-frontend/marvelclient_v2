@@ -2,6 +2,7 @@ import LoginEnter from "@/_skin005/core/global/LoginEnter";
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LangConfig from "@/core/config/LangConfig";
 
 Vue.use(VueRouter);
 
@@ -100,7 +101,7 @@ const router = new VueRouter({
 
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (to.path.search(core.lang) == -1) {
+    if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
         if (to.path == "/") {
             next(`/${core.lang}`);
         } else {

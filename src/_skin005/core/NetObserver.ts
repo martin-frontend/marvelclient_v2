@@ -67,9 +67,9 @@ export default class NetObserver extends AbstractMediator {
                     LangConfig.main_language = body.main_language;
                     //确定语言
 
-                    let userLang = Vue.router.history.current.params.lang;
-                    if (!userLang) {
-                        userLang = window.localStorage.getItem("lang");
+                    let userLang = location.href.split("/").reverse()[0];
+                    if (!LangConfig.language[userLang]) {
+                        userLang = <any>window.localStorage.getItem("lang");
                     }
                     if (userLang && LangConfig.language[userLang]) {
                         core.lang = userLang;

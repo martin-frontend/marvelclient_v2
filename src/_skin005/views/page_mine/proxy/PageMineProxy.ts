@@ -75,6 +75,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
         const backwater_info = <any>this.userInfo.backwater_info;
+        if (!vip_info) return;
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
         console.log("最大 等级", vip_info.max_vip_level);

@@ -16,9 +16,10 @@ export default class ImgLoader extends AbstractView {
 
     load() {
         this.img_isload = false;
+        this.$forceUpdate();
     }
     loadstart() {
         this.img_isload = true;
-        this.$forceUpdate();
+        //this.$forceUpdate();
     }
 }

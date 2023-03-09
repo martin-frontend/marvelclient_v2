@@ -180,9 +180,15 @@ export default class Novigation extends AbstractView {
         }
     }
     /**切换语言 */
-    onLangChange() {
+    @Watch("core.lang")
+    onWatchLang(value: any, oldValue: any) {
+        const path = this.$router.currentRoute.path.replace("/" + oldValue, "");
         window.localStorage.setItem("lang", core.lang);
-        this.$router.replace(`/${this.$router.currentRoute.name}/${core.lang}`);
+        if (path == "") {
+            this.$router.replace("/" + this.core.lang);
+        } else {
+            this.$router.replace(`${path}/${core.lang}`);
+        }
         location.reload();
     }
 

@@ -177,16 +177,10 @@ export default class TabExchange extends AbstractView {
         //this.changeMoney();
         //this.payChannelList();
     }
-    @Watch("form.requires")
-    onWatchRequires() {
-        this.setRequiresData();
-    }
-    showRequires = <any>[];
-    setRequiresData()
-    {
-        this.showRequires = <any>[];
+    public get showRequires(): any {
+        const list = <any>[];
         if (!this.form.requires || this.form.requires.length < 1) {
-            return ;
+            return list;
         }
         //根据 当前需要的条件 设置  转为对应的对象数据
         for (let index = 0; index < this.form.requires.length; index++) {
@@ -196,10 +190,34 @@ export default class TabExchange extends AbstractView {
                 placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
                 inputValue: "",//用户的输入值
             }
-            this.showRequires.push(obj);
+            list.push(obj);
         }
 
+        return list;
     }
+    // @Watch("form.requires")
+    // onWatchRequires() {
+    //     this.setRequiresData();
+    // }
+    // showRequires = <any>[];
+    // setRequiresData()
+    // {
+    //     this.showRequires = <any>[];
+    //     if (!this.form.requires || this.form.requires.length < 1) {
+    //         return ;
+    //     }
+    //     //根据 当前需要的条件 设置  转为对应的对象数据
+    //     for (let index = 0; index < this.form.requires.length; index++) {
+    //         const element = this.form.requires[index];
+    //         const obj = {
+    //             title: element,   //显示的标题名字
+    //             placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
+    //             inputValue: "",//用户的输入值
+    //         }
+    //         this.showRequires.push(obj);
+    //     }
+
+    // }
     //显示的需要填入的条件
     // public get showRequires(): any {
 

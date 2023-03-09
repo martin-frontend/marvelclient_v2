@@ -9,6 +9,7 @@ export default class AppProxy extends puremvc.Proxy {
     /** 加载中 动画的显示 */
     loading = false;
     refCount = 0;
+    timeHandle =0;
     setLoading(isLoad: boolean = true) {
         if (isLoad) {
             this.refCount++;
@@ -21,11 +22,18 @@ export default class AppProxy extends puremvc.Proxy {
         }
         //this.loading = isLoad;
         if (this.refCount == 0 && isLoad == false) {
+            clearTimeout(this.timeHandle);
             this.loading = false;
         }
 
         if (isLoad) {
             this.loading = true;
+            this.timeHandle =  setTimeout(() => {
+                console.log("自动关闭");
+                this.refCount = 0;
+                this.loading = false;
+            }, 10000);
+           
         }
     }
 

@@ -38,9 +38,9 @@ export default class PageRechargeMediator extends AbstractMediator {
         const body = notification.getBody();
         const myProxy: PageRechargeProxy = getProxy(PageRechargeProxy);
         const addressBookProxy = PanelUtil.getProxy_addressBook;
-        myProxy.exchangeProxy.pageData.loading = false;
-        myProxy.rechargeProxy.pageData.loading = false;
-        myProxy.transferProxy.pageData.loading = false;
+        // myProxy.exchangeProxy.pageData.loading = false;
+        // myProxy.rechargeProxy.pageData.loading = false;
+        // myProxy.transferProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_var_recharge_method_list:
                 console.log("----接收消息--api_user_var_recharge_method_list----");
@@ -54,16 +54,19 @@ export default class PageRechargeMediator extends AbstractMediator {
                 myProxy.transferProxy.gold_info = body.gold_info;
                 break;
             case net.EventType.api_user_var_exchange_method_list:
+                PanelUtil.showAppLoading(false);
                 addressBookProxy.setData(body);
                 myProxy.exchangeProxy.setData(body);
                 myProxy.transferProxy.setData(body);
                 break;
             case net.EventType.api_user_var_exchange_create_order:
                 myProxy.pageData.bShow = false;
+                PanelUtil.showAppLoading(false);
                 MultDialogManager.onClosePanel();
                 PanelUtil.message_success(LangUtil("创建成功"));
                 break;
             case net.EventType.api_user_var_recharge_create:
+                PanelUtil.showAppLoading(false);
                 PanelUtil.message_alert({
                     message: LangUtil("点击进入充值通道"),
                     okFun: () => {
@@ -76,6 +79,7 @@ export default class PageRechargeMediator extends AbstractMediator {
                 });
                 break;
             case net.EventType.api_user_var_gold_transfer:
+                PanelUtil.showAppLoading(false);
                 this.selfProxy.api_user_show_var([2]);
                 myProxy.transferProxy.resetform();
                 PanelUtil.message_success(LangUtil("划转成功"));

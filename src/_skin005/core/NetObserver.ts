@@ -133,7 +133,9 @@ export default class NetObserver extends AbstractMediator {
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
 
-                    if (LangUtil("客服CID") && LangUtil("客服CID") != "客服CID") {
+                    //console.log("-----客服cid" ,LangUtil("客服CID" ));
+                    if (LangUtil("客服CID").trim() && LangUtil("客服CID") != "客服CID" ) {
+                        console.log("添加客服cid");
                         //添加客服
                         const s = document.createElement("script");
                         // s.async = false;

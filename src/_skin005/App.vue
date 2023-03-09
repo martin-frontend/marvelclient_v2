@@ -64,7 +64,7 @@
             </v-btn>
         </template>
 
-        <div v-if="PageBlur.isBlur && !isSafari" class="blur-mask"
+        <div v-if="PageBlur.isBlur && !isSafari()" class="blur-mask"
             :class="{ 
                 'blur-mask-bottom': PageBlur.bottom && !$vuetify.breakpoint.mobile ,
                 'blur-mask-bottom_mob': PageBlur.bottom && $vuetify.breakpoint.mobile,
@@ -137,8 +137,8 @@ export default class extends App { }
 }
 .btn-service {
     position: fixed;
-    bottom: 20px;
-    right: 25px;
+    bottom: 85px;
+    right: 20px;
     z-index: 100;
 }
 

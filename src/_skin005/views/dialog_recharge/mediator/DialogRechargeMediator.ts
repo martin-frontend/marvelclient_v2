@@ -34,11 +34,12 @@ export default class DialogRechargeMediator extends AbstractMediator {
         const body = notification.getBody();
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
         const addressBookProxy = PanelUtil.getProxy_addressBook;
-        myProxy.exchangeProxy.pageData.loading = false;
-        myProxy.rechargeProxy.pageData.loading = false;
-        myProxy.transferProxy.pageData.loading = false;
+        // myProxy.exchangeProxy.pageData.loading = false;
+        // myProxy.rechargeProxy.pageData.loading = false;
+        // myProxy.transferProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_var_recharge_method_list:
+                PanelUtil.showAppLoading(false);
                 myProxy.rechargeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_recharge_address:
@@ -54,7 +55,8 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.transferProxy.setData(body);
                 break;
             case net.EventType.api_user_var_exchange_create_order:
-                myProxy.pageData.bShow = false;
+                //myProxy.pageData.bShow = false;
+                PanelUtil.showAppLoading(false);
                 MultDialogManager.onClosePanel();
                 PanelUtil.message_success(LangUtil("创建成功"));
                 break;

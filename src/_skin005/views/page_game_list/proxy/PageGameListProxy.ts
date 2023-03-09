@@ -8,7 +8,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     public onRegister(): void {
         console.log("注册---");
         this.readData();
-        this.pageData.loading = true;
+        //this.pageData.loading = true;
         this.api_plat_var_game_all_config();
     }
     tableData = <any>{};
@@ -60,7 +60,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     setGameList(data: any) {
-        this.pageData.loading = false;
+        //this.pageData.loading = false;
+        PanelUtil.showAppLoading(false);
         const { list, pageInfo } = data;
         if (pageInfo.pageCurrent == 1) {
             Object.assign(this.pageData, data);
@@ -94,14 +95,16 @@ export default class PageGameListProxy extends puremvc.Proxy {
 
     api_plat_var_game_all_index() {
         this.saveData();
-        this.pageData.loading = true;
+        //this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
         this.listQuery.plat_id = core.plat_id;
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
     api_vendor_var_ori_product_show_var(data: core.VendorVO | core.VendorProductVO) {
-        this.pageData.loading = true;
+        //this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
         this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, {
             user_id: core.user_id,

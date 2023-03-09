@@ -129,7 +129,33 @@ export default class TabRecharge extends AbstractView {
 
     // 创建充值订单
     onSumbit() {
-        this.myProxy.rechargeProxy.api_user_var_recharge_create();
+
+        if (!this.form.amount || !this.form.amount.trim()) {
+            PanelUtil.message_alert(LangUtil("充值金额不能为空"));
+            return;
+        }
+        const amount_num = parseFloat(this.form.amount);
+
+        if (amount_num <= 0) {
+            PanelUtil.message_alert(LangUtil("充值金额不正确"));
+            return;
+        }
+
+        //检查 是否 符合要求
+        if (this.showRequires && this.showRequires.length > 0) {
+            //console.log(" 必须的数据" ,this.showRequires);
+            for (let index = 0; index < this.showRequires.length; index++) {
+                const element = this.showRequires[index];
+                if (!element.inputValue || !element.inputValue.trim()) {
+
+                    PanelUtil.message_alert(LangUtil("{0} 不能为空", element.title));
+                    return false;
+                }
+            }
+        }
+
+
+        this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
 
     destroyed() {
@@ -194,15 +220,55 @@ export default class TabRecharge extends AbstractView {
 
     addInputMoney(data: number) {
         console.log("增加  " + data);
-        let nub = 0 ;
-        if (this.form.amount)
-        {
+        let nub = 0;
+        if (this.form.amount) {
             nub = parseFloat(this.form.amount);
         }
-        
+
         nub += data;
         this.form.amount = nub + "";
     }
+    // @Watch("form.requires")
+    // onWatchRequires() {
+    //     this.setRequiresData();
+    // }
+    // showRequires = <any>[];
+    // setRequiresData() {
+    //     this.showRequires = <any>[];
+    //     if (!this.form.requires || this.form.requires.length < 1) {
+    //         return;
+    //     }
+    //     //根据 当前需要的条件 设置  转为对应的对象数据
+    //     for (let index = 0; index < this.form.requires.length; index++) {
+    //         const element = this.form.requires[index];
+    //         const obj = {
+    //             title: element,   //显示的标题名字
+    //             placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
+    //             inputValue: "",//用户的输入值
+    //         }
+    //         this.showRequires.push(obj);
+    //     }
+    // }
+
+    public get showRequires(): any {
+        const list = <any>[];
+        if (!this.form.requires || this.form.requires.length < 1) {
+            return list;
+        }
+        //根据 当前需要的条件 设置  转为对应的对象数据
+        for (let index = 0; index < this.form.requires.length; index++) {
+            const element = this.form.requires[index];
+            const obj = {
+                title: element,   //显示的标题名字
+                placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
+                inputValue: "",//用户的输入值
+            }
+            list.push(obj);
+        }
+
+        return list;
+    }
+
 
     onItemClick(key: string) {
         console.log("   ----当前  点击----", key);

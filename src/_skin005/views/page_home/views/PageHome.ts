@@ -53,7 +53,7 @@ export default class PageHome extends AbstractView {
     public get viewWidth(): number {
 
         if (this.$vuetify.breakpoint.mobile) {
-            return 170;
+            return 100;
         }
         if (this.$vuetify.breakpoint.width > 1400) {
             return 340;

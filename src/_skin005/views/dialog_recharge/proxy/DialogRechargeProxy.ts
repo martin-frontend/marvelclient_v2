@@ -2,6 +2,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -131,8 +132,9 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    api_user_var_recharge_create() {
-        this.pageData.loading = true;
+    api_user_var_recharge_create(requires:any = null) {
+        //this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
         //const data = <any>{ user_id: core.user_id };
         const { coin_name_unique, block_network_id, recharge_channel_id, amount, third_id, subtitle } = this.pageData.form;
         //Object.assign(data, this.pageData.form);
@@ -146,15 +148,22 @@ export class RechargeProxy extends puremvc.Proxy {
             third_id: third_id,
             subtitle: subtitle,
         };
-        if (this.pageData.form.requires && this.pageData.form.requires.length > 0) {
-            const requires = this.pageData.form.requires;
-            const keys = Object.keys(requires);
-            for (let index = 0; index < keys.length; index++) {
-                const element = keys[index];
-                data[requires[keys[index]]] = "-";
+
+        if (requires && requires.length > 0)
+        {
+            for (let index = 0; index < requires.length; index++) {
+                const element = requires[index];
+                data[element.title] =  element.inputValue;
             }
         }
-
+        // if (this.pageData.form.requires && this.pageData.form.requires.length > 0) {
+        //     const requires = this.pageData.form.requires;
+        //     const keys = Object.keys(requires);
+        //     for (let index = 0; index < keys.length; index++) {
+        //         const element = keys[index];
+        //         data[requires[keys[index]]] = "-";
+        //     }
+        // }
         console.log("请求 充值 数据", data);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
@@ -193,7 +202,8 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        this.pageData.loading = false;
+        PanelUtil.showAppLoading(false);
+        //this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
@@ -227,12 +237,14 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     api_user_var_exchange_method_list() {
-        this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
+        //this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_exchange_method_list, { plat_id: core.plat_id });
     }
 
     api_user_var_exchange_create_order(requires: any = null) {
-        this.pageData.loading = true;
+        //this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
         if (!requires) {
             const {
                 amount,
@@ -322,7 +334,8 @@ export class TransferProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        this.pageData.loading = false;
+        PanelUtil.showAppLoading(false);
+        //this.pageData.loading = false;
         this.pageData.methodList = data;
         // const keys = Object.keys(data);
         const keys = Object.keys(GamePlatConfig.config.plat_coins);
@@ -339,7 +352,8 @@ export class TransferProxy extends puremvc.Proxy {
     }
 
     api_user_var_gold_transfer() {
-        this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
+        //this.pageData.loading = true;
         const { to_user_id, gold, coin_name_unique, password_gold } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_var_gold_transfer, {
             user_id: core.user_id,

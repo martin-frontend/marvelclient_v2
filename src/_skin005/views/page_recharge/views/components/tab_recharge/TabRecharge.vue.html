@@ -29,7 +29,7 @@
                     </v-col>
                     <v-col cols="6">
                         <div class="text-16 primary--text  mb-2">{{LangUtil("输入金额")}}</div>
-                        <v-sheet color="transparent" width="100%" class="d-flex ">
+                        <v-sheet color="transparent" width="100%" class="d-flex input_pc">
                             <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount">
 
                             </CustomInput>
@@ -70,19 +70,42 @@
                                     </v-sheet>
                                 </v-sheet>
 
-                                <v-sheet v-if="item.requires" color="transparent" width="100%" class="d-flex mt-2">
+                                <!-- <v-sheet v-if="item.requires" color="transparent" width="100%" class="d-flex mt-2">
                                     <template v-for="(requeasd, d_key) of item.requires">
                                         <v-sheet color="transparent" :key="d_key" class="mr-4">
                                             {{requeasd}}
                                         </v-sheet>
                                     </template>
-                                </v-sheet>
+                                </v-sheet> -->
                             </v-card>
                         </v-col>
                     </v-row>
                 </v-card>
+
+                <!-- 下面的需要填的选项 -->
+                <v-card flat class="d-flex flex-column mt-6" color="transparent">
+                    <v-row>
+                        <template v-if="showRequires &&  showRequires.length > 0">
+                            <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
+                                <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+                                    <!-- 标题 -->
+                                    <v-sheet color="transparent" class="d-flex">
+                                        {{LangUtil(item.title)}}
+                                    </v-sheet>
+                                    <v-sheet color="transparent" class="py-1  input_pc">
+                                        <CustomInput class="" :placeholder="item.placeholder" v-model="item.inputValue">
+
+                                        </CustomInput>
+                                    </v-sheet>
+
+                                </v-card>
+                            </v-col>
+                        </template>
+                    </v-row>
+                </v-card>
+
                 <v-sheet color="transparent" width="100%" class="d-flex mt-4">
-                    <btn-yellow class="ml-auto text-16" min_width="104" height="36"
+                    <btn-yellow class="ml-auto text-16" min_width="104" height="36" 
                         @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
                 </v-sheet>
             </v-card>
@@ -140,10 +163,10 @@
                     <v-card flat class="d-flex flex-column" color="transparent">
 
                         <v-sheet v-for="(item, key) of curShowChannel" :key="key" color="transparent"
-                            class="d-flex  flex-column justify-center">
+                            class="d-flex  flex-column justify-center mb-2">
 
                             <v-sheet color="transparent" width="100%" @click.native="onChannelItemClick(item)"
-                                class="d-flex justify-space-between rounded10 px-2 py-2 align-center"  min-height="45"
+                                class="d-flex justify-space-between rounded10 px-2 py-2 align-center" min-height="45"
                                 :class="form.third_id == item.third_id ? 'onItemSelect'  : 'sheetOutlined'">
                                 <v-sheet color="transparent" class="d-flex align-center">
                                     <v-img v-if="item.icon_url" max-width="25" :src="item.icon_url" class="mr-2">
@@ -159,17 +182,40 @@
 
                             </v-sheet>
 
-                            <v-sheet v-if="item.requires" color="transparent" width="100%" class="d-flex mt-2 mb-2">
+                            <!-- <v-sheet v-if="item.requires" color="transparent" width="100%" class="d-flex mt-2 mb-2">
                                 <template v-for="(requeasd, d_key) of item.requires">
                                     <v-sheet color="transparent" :key="d_key" class="mr-4">
                                         {{requeasd}}
                                     </v-sheet>
                                 </template>
-                            </v-sheet>
+                            </v-sheet> -->
 
                         </v-sheet>
 
                     </v-card>
+
+                                    <!-- 下面的需要填的选项 -->
+                <v-card flat class="d-flex flex-column mt-6" color="transparent">
+                    <v-row no-gutters>
+                        <template v-if="showRequires &&  showRequires.length > 0">
+                            <v-col cols="12" v-for="(item, key) of showRequires" :key="key">
+                                <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+                                    <!-- 标题 -->
+                                    <v-sheet color="transparent" class="d-flex">
+                                        {{LangUtil(item.title)}}
+                                    </v-sheet>
+                                    <v-sheet color="transparent" class="py-1  input_pc">
+                                        <CustomInput class="" :placeholder="item.placeholder" v-model="item.inputValue">
+
+                                        </CustomInput>
+                                    </v-sheet>
+
+                                </v-card>
+                            </v-col>
+                        </template>
+                    </v-row>
+                </v-card>
+
                 </v-card>
             </v-card>
 

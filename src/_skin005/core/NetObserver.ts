@@ -126,7 +126,8 @@ export default class NetObserver extends AbstractMediator {
             case NotificationName.LANG_CONFIG:
                 {
                     //@ts-ignore
-                    window["vm"].$mount("#app");
+                    // window["vm"].$mount("#app");
+                    window["vueInit"]();
 
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);

@@ -63,7 +63,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_statistice_credit/:lang",
         name: "page_statistice_credit",
-        component: () => import(/* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
+        component: () =>
+            import(
+                /* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"
+            ),
     },
     {
         path: "/page_my_info/:lang",
@@ -90,19 +93,32 @@ VueRouter.prototype.push = function push(location: any) {
 };
 
 const router = new VueRouter({
-    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? 'history' : 'hash',
+    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
     // mode: 'history',
     routes,
 });
+
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-
-    if (!core.user_id && (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_game_soccer" || to.name == "page_my_info"
-    || to.name == "page_statistice_credit" )) {
-        next("/");
+    if (to.path.search(core.lang) == -1) {
+        if (to.path == "/") {
+            next(`/${core.lang}`);
+        } else {
+            next(`${to.path}/${core.lang}`);
+        }
     } else {
-        next();
+        if (
+            !core.user_id &&
+            (to.name == "page_recharge" ||
+                to.name == "page_game_play" ||
+                to.name == "page_game_soccer" ||
+                to.name == "page_my_info" ||
+                to.name == "page_statistice_credit")
+        ) {
+            next(`/${core.lang}`);
+        } else {
+            next();
+        }
     }
-    // next();
 });
 export default router;

@@ -58,11 +58,21 @@ const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;
 Vue["router"] = router;
 //@ts-ignore
-window["vm"] = new Vue({
-    router,
-    vuetify,
-    render: (h) => h(App),
-});
+// window["vm"] = new Vue({
+//     router,
+//     vuetify,
+//     render: (h) => h(App),
+// });
+
+//@ts-ignore
+window["vueInit"] = () => {
+    //@ts-ignore
+    window["vm"] = new Vue({
+        router,
+        vuetify,
+        render: (h) => h(App),
+    }).$mount("#app");
+};
 
 //native调用
 //@ts-ignore

@@ -182,6 +182,7 @@ export default class Novigation extends AbstractView {
     /**切换语言 */
     onLangChange() {
         window.localStorage.setItem("lang", core.lang);
+        this.$router.replace(`/${this.$router.currentRoute.name}/${core.lang}`);
         location.reload();
     }
 

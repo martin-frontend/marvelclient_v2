@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_plat_var_bonus_rank, result.data);
+                this.sendNotification(EventType.api_plat_var_bonus_rank, result.data, result.unique);
             }
         }
     }

@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_user_change_bsc_address_var, result.data);
+                this.sendNotification(EventType.api_user_change_bsc_address_var, result.data, result.unique);
             }
         }
     }

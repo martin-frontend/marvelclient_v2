@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_user_var_agent_direct_user_update, result.data);
+                this.sendNotification(EventType.api_user_var_agent_direct_user_update, result.data, result.unique);
             }
         }
     }

@@ -8,5 +8,6 @@ module core {
         msg: string;
         extend: { microtime: number; unique: string; version: string };
         data: any;
+        unique: any;
     }
 }

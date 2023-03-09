@@ -2911,6 +2911,7 @@ declare module core {
             version: string;
         };
         data: any;
+        unique: any;
     }
 }
 declare module core {

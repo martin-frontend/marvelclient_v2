@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_user_var_recharge_list, result.data);
+                this.sendNotification(EventType.api_user_var_recharge_list, result.data, result.unique);
             }
         }
     }

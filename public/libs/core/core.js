@@ -821,7 +821,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_activity, result.data);
+                this.sendNotification(net.EventType.api_plat_activity, result.data, result.unique);
             }
         }
     }
@@ -843,7 +843,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_activity_index_everyday, result.data);
+                this.sendNotification(net.EventType.api_plat_activity_index_everyday, result.data, result.unique);
             }
         }
     }
@@ -865,7 +865,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_activity_show_binding, result.data);
+                this.sendNotification(net.EventType.api_plat_activity_show_binding, result.data, result.unique);
             }
         }
     }
@@ -887,7 +887,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_activity_var, result.data);
+                this.sendNotification(net.EventType.api_plat_activity_var, result.data, result.unique);
             }
         }
     }
@@ -909,7 +909,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_activity_var_receive, result.data);
+                this.sendNotification(net.EventType.api_plat_activity_var_receive, result.data, result.unique);
             }
         }
     }
@@ -931,7 +931,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_fag_index, result.data);
+                this.sendNotification(net.EventType.api_plat_fag_index, result.data, result.unique);
             }
         }
     }
@@ -953,7 +953,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_sign_index, result.data);
+                this.sendNotification(net.EventType.api_plat_sign_index, result.data, result.unique);
             }
         }
     }
@@ -975,7 +975,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_backwater_setting_info, result.data);
+                this.sendNotification(net.EventType.api_plat_var_backwater_setting_info, result.data, result.unique);
             }
         }
     }
@@ -997,7 +997,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_block_transfer_in_order_account, result.data);
+                this.sendNotification(net.EventType.api_plat_var_block_transfer_in_order_account, result.data, result.unique);
             }
         }
     }
@@ -1019,7 +1019,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_bonus_log, result.data);
+                this.sendNotification(net.EventType.api_plat_var_bonus_log, result.data, result.unique);
             }
         }
     }
@@ -1041,7 +1041,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_bonus_rank, result.data);
+                this.sendNotification(net.EventType.api_plat_var_bonus_rank, result.data, result.unique);
             }
         }
     }
@@ -1063,7 +1063,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_bonus_recently, result.data);
+                this.sendNotification(net.EventType.api_plat_var_bonus_recently, result.data, result.unique);
             }
         }
     }
@@ -1085,7 +1085,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_config, result.data, result.unique);
             }
         }
     }
@@ -1107,7 +1107,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_game_all_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_game_all_config, result.data, result.unique);
             }
         }
     }
@@ -1129,7 +1129,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_game_all_index, result.data);
+                this.sendNotification(net.EventType.api_plat_var_game_all_index, result.data, result.unique);
             }
         }
     }
@@ -1151,7 +1151,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_game_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_game_config, result.data, result.unique);
             }
         }
     }
@@ -1173,7 +1173,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_game_menu, result.data);
+                this.sendNotification(net.EventType.api_plat_var_game_menu, result.data, result.unique);
             }
         }
     }
@@ -1195,7 +1195,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_language_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_language_config, result.data, result.unique);
             }
         }
     }
@@ -1217,7 +1217,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_lobby_index, result.data);
+                this.sendNotification(net.EventType.api_plat_var_lobby_index, result.data, result.unique);
             }
         }
     }
@@ -1239,7 +1239,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_marquee_index, result.data);
+                this.sendNotification(net.EventType.api_plat_var_marquee_index, result.data, result.unique);
             }
         }
     }
@@ -1261,7 +1261,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_notice_index, result.data);
+                this.sendNotification(net.EventType.api_plat_var_notice_index, result.data, result.unique);
             }
         }
     }
@@ -1283,7 +1283,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_notice_show_var, result.data);
+                this.sendNotification(net.EventType.api_plat_var_notice_show_var, result.data, result.unique);
             }
         }
     }
@@ -1305,7 +1305,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_promotion_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_promotion_config, result.data, result.unique);
             }
         }
     }
@@ -1327,7 +1327,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_recently_bet_info, result.data);
+                this.sendNotification(net.EventType.api_plat_var_recently_bet_info, result.data, result.unique);
             }
         }
     }
@@ -1349,7 +1349,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_reward_coin_info, result.data);
+                this.sendNotification(net.EventType.api_plat_var_reward_coin_info, result.data, result.unique);
             }
         }
     }
@@ -1371,7 +1371,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_stake_info, result.data);
+                this.sendNotification(net.EventType.api_plat_var_stake_info, result.data, result.unique);
             }
         }
     }
@@ -1393,7 +1393,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_swap_k, result.data);
+                this.sendNotification(net.EventType.api_plat_var_swap_k, result.data, result.unique);
             }
         }
     }
@@ -1415,7 +1415,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_swap_setting_info, result.data);
+                this.sendNotification(net.EventType.api_plat_var_swap_setting_info, result.data, result.unique);
             }
         }
     }
@@ -1437,7 +1437,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_swap_trial, result.data);
+                this.sendNotification(net.EventType.api_plat_var_swap_trial, result.data, result.unique);
             }
         }
     }
@@ -1459,7 +1459,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_vip_config, result.data);
+                this.sendNotification(net.EventType.api_plat_var_vip_config, result.data, result.unique);
             }
         }
     }
@@ -1481,7 +1481,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_public_area_code, result.data);
+                this.sendNotification(net.EventType.api_public_area_code, result.data, result.unique);
             }
         }
     }
@@ -1503,7 +1503,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_public_auth_code, result.data);
+                this.sendNotification(net.EventType.api_public_auth_code, result.data, result.unique);
             }
         }
     }
@@ -1525,7 +1525,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_public_email_send, result.data);
+                this.sendNotification(net.EventType.api_public_email_send, result.data, result.unique);
             }
         }
     }
@@ -1547,7 +1547,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_public_sms_send, result.data);
+                this.sendNotification(net.EventType.api_public_sms_send, result.data, result.unique);
             }
         }
     }
@@ -1569,7 +1569,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_sms_exchange, result.data);
+                this.sendNotification(net.EventType.api_sms_exchange, result.data, result.unique);
             }
         }
     }
@@ -1591,7 +1591,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_sms_reset_password_sent, result.data);
+                this.sendNotification(net.EventType.api_sms_reset_password_sent, result.data, result.unique);
             }
         }
     }
@@ -1613,7 +1613,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_sms_send, result.data);
+                this.sendNotification(net.EventType.api_sms_send, result.data, result.unique);
             }
         }
     }
@@ -1635,7 +1635,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_sms_transfer, result.data);
+                this.sendNotification(net.EventType.api_sms_transfer, result.data, result.unique);
             }
         }
     }
@@ -1657,7 +1657,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_test_speed, result.data);
+                this.sendNotification(net.EventType.api_test_speed, result.data, result.unique);
             }
         }
     }
@@ -1679,7 +1679,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_bind_email_var, result.data);
+                this.sendNotification(net.EventType.api_user_bind_email_var, result.data, result.unique);
             }
         }
     }
@@ -1701,7 +1701,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_bind_google_key_var, result.data);
+                this.sendNotification(net.EventType.api_user_bind_google_key_var, result.data, result.unique);
             }
         }
     }
@@ -1723,7 +1723,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_bind_mobile_var, result.data);
+                this.sendNotification(net.EventType.api_user_bind_mobile_var, result.data, result.unique);
             }
         }
     }
@@ -1745,7 +1745,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_change_bsc_address_var, result.data);
+                this.sendNotification(net.EventType.api_user_change_bsc_address_var, result.data, result.unique);
             }
         }
     }
@@ -1767,7 +1767,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_change_password_gold_var, result.data);
+                this.sendNotification(net.EventType.api_user_change_password_gold_var, result.data, result.unique);
             }
         }
     }
@@ -1789,7 +1789,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_change_password_var, result.data);
+                this.sendNotification(net.EventType.api_user_change_password_var, result.data, result.unique);
             }
         }
     }
@@ -1811,7 +1811,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_coin_exchange_scale_var, result.data);
+                this.sendNotification(net.EventType.api_user_coin_exchange_scale_var, result.data, result.unique);
             }
         }
     }
@@ -1833,7 +1833,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_coin_exchange_var, result.data);
+                this.sendNotification(net.EventType.api_user_coin_exchange_var, result.data, result.unique);
             }
         }
     }
@@ -1855,7 +1855,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_login, result.data);
+                this.sendNotification(net.EventType.api_user_login, result.data, result.unique);
             }
         }
     }
@@ -1877,7 +1877,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_login_check, result.data);
+                this.sendNotification(net.EventType.api_user_login_check, result.data, result.unique);
             }
         }
     }
@@ -1899,7 +1899,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_logout, result.data);
+                this.sendNotification(net.EventType.api_user_logout, result.data, result.unique);
             }
         }
     }
@@ -1921,7 +1921,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_register, result.data);
+                this.sendNotification(net.EventType.api_user_register, result.data, result.unique);
             }
         }
     }
@@ -1943,7 +1943,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_reset_password, result.data);
+                this.sendNotification(net.EventType.api_user_reset_password, result.data, result.unique);
             }
         }
     }
@@ -1965,7 +1965,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_show_var, result.data);
+                this.sendNotification(net.EventType.api_user_show_var, result.data, result.unique);
             }
         }
     }
@@ -1987,7 +1987,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_show_var_bet, result.data);
+                this.sendNotification(net.EventType.api_user_show_var_bet, result.data, result.unique);
             }
         }
     }
@@ -2009,7 +2009,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_show_var_channel_statistic, result.data);
+                this.sendNotification(net.EventType.api_user_show_var_channel_statistic, result.data, result.unique);
             }
         }
     }
@@ -2031,7 +2031,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_show_var_gold, result.data);
+                this.sendNotification(net.EventType.api_user_show_var_gold, result.data, result.unique);
             }
         }
     }
@@ -2053,7 +2053,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_third_login, result.data);
+                this.sendNotification(net.EventType.api_user_third_login, result.data, result.unique);
             }
         }
     }
@@ -2075,7 +2075,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_update_var, result.data);
+                this.sendNotification(net.EventType.api_user_update_var, result.data, result.unique);
             }
         }
     }
@@ -2097,7 +2097,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_update_var_safe_gold, result.data);
+                this.sendNotification(net.EventType.api_user_update_var_safe_gold, result.data, result.unique);
             }
         }
     }
@@ -2119,7 +2119,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_bonus, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_bonus, result.data, result.unique);
             }
         }
     }
@@ -2141,7 +2141,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_credit_transfer, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_credit_transfer, result.data, result.unique);
             }
         }
     }
@@ -2163,7 +2163,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_deduction, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_direct_deduction, result.data, result.unique);
             }
         }
     }
@@ -2185,7 +2185,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_deduction_all, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_direct_deduction_all, result.data, result.unique);
             }
         }
     }
@@ -2207,7 +2207,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_direct_list, result.data, result.unique);
             }
         }
     }
@@ -2229,7 +2229,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_direct_user_update, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_direct_user_update, result.data, result.unique);
             }
         }
     }
@@ -2251,7 +2251,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_var_bet, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_var_bet, result.data, result.unique);
             }
         }
     }
@@ -2273,7 +2273,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_var_direct_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_var_direct_list, result.data, result.unique);
             }
         }
     }
@@ -2295,7 +2295,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_var_floor_range, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_var_floor_range, result.data, result.unique);
             }
         }
     }
@@ -2317,7 +2317,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_var_statistic_promotion, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_var_statistic_promotion, result.data, result.unique);
             }
         }
     }
@@ -2339,7 +2339,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_agent_var_update, result.data);
+                this.sendNotification(net.EventType.api_user_var_agent_var_update, result.data, result.unique);
             }
         }
     }
@@ -2361,7 +2361,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_backwater, result.data);
+                this.sendNotification(net.EventType.api_user_var_backwater, result.data, result.unique);
             }
         }
     }
@@ -2383,7 +2383,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_backwater_trial, result.data);
+                this.sendNotification(net.EventType.api_user_var_backwater_trial, result.data, result.unique);
             }
         }
     }
@@ -2405,7 +2405,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_backwater_trial_receive, result.data);
+                this.sendNotification(net.EventType.api_user_var_backwater_trial_receive, result.data, result.unique);
             }
         }
     }
@@ -2427,7 +2427,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_backwater_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_backwater_var, result.data, result.unique);
             }
         }
     }
@@ -2449,7 +2449,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_beat, result.data);
+                this.sendNotification(net.EventType.api_user_var_beat, result.data, result.unique);
             }
         }
     }
@@ -2471,7 +2471,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_block_coins_scale, result.data);
+                this.sendNotification(net.EventType.api_user_var_block_coins_scale, result.data, result.unique);
             }
         }
     }
@@ -2493,7 +2493,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_block_transfer_in_order_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_block_transfer_in_order_index, result.data, result.unique);
             }
         }
     }
@@ -2515,7 +2515,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_block_transfer_in_order_store, result.data);
+                this.sendNotification(net.EventType.api_user_var_block_transfer_in_order_store, result.data, result.unique);
             }
         }
     }
@@ -2537,7 +2537,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_block_transfer_out_order_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_block_transfer_out_order_index, result.data, result.unique);
             }
         }
     }
@@ -2559,7 +2559,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_block_transfer_out_order_store, result.data);
+                this.sendNotification(net.EventType.api_user_var_block_transfer_out_order_store, result.data, result.unique);
             }
         }
     }
@@ -2581,7 +2581,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_all_config, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_all_config, result.data, result.unique);
             }
         }
     }
@@ -2603,7 +2603,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_all_direct, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_all_direct, result.data, result.unique);
             }
         }
     }
@@ -2625,7 +2625,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_all_history, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_all_history, result.data, result.unique);
             }
         }
     }
@@ -2647,7 +2647,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_all_receive_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_all_receive_var, result.data, result.unique);
             }
         }
     }
@@ -2669,7 +2669,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_all_statistic, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_all_statistic, result.data, result.unique);
             }
         }
     }
@@ -2691,7 +2691,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_bonus_log, result.data);
+                this.sendNotification(net.EventType.api_user_var_bonus_log, result.data, result.unique);
             }
         }
     }
@@ -2713,7 +2713,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_coin_recharge_confirm, result.data);
+                this.sendNotification(net.EventType.api_user_var_coin_recharge_confirm, result.data, result.unique);
             }
         }
     }
@@ -2735,7 +2735,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_commission_commissiondetail, result.data);
+                this.sendNotification(net.EventType.api_user_var_commission_commissiondetail, result.data, result.unique);
             }
         }
     }
@@ -2757,7 +2757,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_commission_commissionlist, result.data);
+                this.sendNotification(net.EventType.api_user_var_commission_commissionlist, result.data, result.unique);
             }
         }
     }
@@ -2779,7 +2779,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_commission_commissionnum, result.data);
+                this.sendNotification(net.EventType.api_user_var_commission_commissionnum, result.data, result.unique);
             }
         }
     }
@@ -2801,7 +2801,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_commission_directswater, result.data);
+                this.sendNotification(net.EventType.api_user_var_commission_directswater, result.data, result.unique);
             }
         }
     }
@@ -2823,7 +2823,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_commission_receive, result.data);
+                this.sendNotification(net.EventType.api_user_var_commission_receive, result.data, result.unique);
             }
         }
     }
@@ -2845,7 +2845,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_credit_statistic, result.data);
+                this.sendNotification(net.EventType.api_user_var_credit_statistic, result.data, result.unique);
             }
         }
     }
@@ -2867,7 +2867,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_deposit_stake, result.data);
+                this.sendNotification(net.EventType.api_user_var_deposit_stake, result.data, result.unique);
             }
         }
     }
@@ -2889,7 +2889,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_destroy_batch, result.data);
+                this.sendNotification(net.EventType.api_user_var_destroy_batch, result.data, result.unique);
             }
         }
     }
@@ -2911,7 +2911,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_destroy_quick, result.data);
+                this.sendNotification(net.EventType.api_user_var_destroy_quick, result.data, result.unique);
             }
         }
     }
@@ -2933,7 +2933,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_direct_register, result.data);
+                this.sendNotification(net.EventType.api_user_var_direct_register, result.data, result.unique);
             }
         }
     }
@@ -2955,7 +2955,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_exchange_create_order, result.data);
+                this.sendNotification(net.EventType.api_user_var_exchange_create_order, result.data, result.unique);
             }
         }
     }
@@ -2977,7 +2977,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_exchange_method_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_exchange_method_list, result.data, result.unique);
             }
         }
     }
@@ -2999,7 +2999,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_exchange_order_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_exchange_order_list, result.data, result.unique);
             }
         }
     }
@@ -3021,7 +3021,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_fetch_direct_user_info, result.data);
+                this.sendNotification(net.EventType.api_user_var_fetch_direct_user_info, result.data, result.unique);
             }
         }
     }
@@ -3043,7 +3043,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_game_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_game_index, result.data, result.unique);
             }
         }
     }
@@ -3065,7 +3065,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_game_search, result.data);
+                this.sendNotification(net.EventType.api_user_var_game_search, result.data, result.unique);
             }
         }
     }
@@ -3087,7 +3087,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_game_update_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_game_update_var, result.data, result.unique);
             }
         }
     }
@@ -3109,7 +3109,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_gold_transfer, result.data);
+                this.sendNotification(net.EventType.api_user_var_gold_transfer, result.data, result.unique);
             }
         }
     }
@@ -3131,7 +3131,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_gold_water_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_gold_water_index, result.data, result.unique);
             }
         }
     }
@@ -3153,7 +3153,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_google_key, result.data);
+                this.sendNotification(net.EventType.api_user_var_google_key, result.data, result.unique);
             }
         }
     }
@@ -3175,7 +3175,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_invite_user_info, result.data);
+                this.sendNotification(net.EventType.api_user_var_invite_user_info, result.data, result.unique);
             }
         }
     }
@@ -3197,7 +3197,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_mail, result.data);
+                this.sendNotification(net.EventType.api_user_var_mail, result.data, result.unique);
             }
         }
     }
@@ -3219,7 +3219,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_mail_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_mail_var, result.data, result.unique);
             }
         }
     }
@@ -3241,7 +3241,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_mail_var_receive, result.data);
+                this.sendNotification(net.EventType.api_user_var_mail_var_receive, result.data, result.unique);
             }
         }
     }
@@ -3263,7 +3263,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_messages_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_messages_index, result.data, result.unique);
             }
         }
     }
@@ -3285,7 +3285,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_messages_show_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_messages_show_var, result.data, result.unique);
             }
         }
     }
@@ -3307,7 +3307,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_payment_method_bank_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_payment_method_bank_list, result.data, result.unique);
             }
         }
     }
@@ -3329,7 +3329,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_payment_method_index, result.data);
+                this.sendNotification(net.EventType.api_user_var_payment_method_index, result.data, result.unique);
             }
         }
     }
@@ -3351,7 +3351,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_payment_method_store, result.data);
+                this.sendNotification(net.EventType.api_user_var_payment_method_store, result.data, result.unique);
             }
         }
     }
@@ -3373,7 +3373,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_payment_method_update_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_payment_method_update_var, result.data, result.unique);
             }
         }
     }
@@ -3395,7 +3395,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_receiveQuick, result.data);
+                this.sendNotification(net.EventType.api_user_var_receiveQuick, result.data, result.unique);
             }
         }
     }
@@ -3417,7 +3417,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_receive_agent_bonus_var, result.data);
+                this.sendNotification(net.EventType.api_user_var_receive_agent_bonus_var, result.data, result.unique);
             }
         }
     }
@@ -3439,7 +3439,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_recharge_address, result.data);
+                this.sendNotification(net.EventType.api_user_var_recharge_address, result.data, result.unique);
             }
         }
     }
@@ -3461,7 +3461,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_recharge_create, result.data);
+                this.sendNotification(net.EventType.api_user_var_recharge_create, result.data, result.unique);
             }
         }
     }
@@ -3483,7 +3483,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_recharge_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_recharge_list, result.data, result.unique);
             }
         }
     }
@@ -3505,7 +3505,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_recharge_method_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_recharge_method_list, result.data, result.unique);
             }
         }
     }
@@ -3527,7 +3527,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_red_dot_tips, result.data);
+                this.sendNotification(net.EventType.api_user_var_red_dot_tips, result.data, result.unique);
             }
         }
     }
@@ -3549,7 +3549,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_short_chain, result.data);
+                this.sendNotification(net.EventType.api_user_var_short_chain, result.data, result.unique);
             }
         }
     }
@@ -3571,7 +3571,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_sign_receive, result.data);
+                this.sendNotification(net.EventType.api_user_var_sign_receive, result.data, result.unique);
             }
         }
     }
@@ -3593,7 +3593,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_sign_store, result.data);
+                this.sendNotification(net.EventType.api_user_var_sign_store, result.data, result.unique);
             }
         }
     }
@@ -3615,7 +3615,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_stake_draw, result.data);
+                this.sendNotification(net.EventType.api_user_var_stake_draw, result.data, result.unique);
             }
         }
     }
@@ -3637,7 +3637,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_stake_info, result.data);
+                this.sendNotification(net.EventType.api_user_var_stake_info, result.data, result.unique);
             }
         }
     }
@@ -3659,7 +3659,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_stake_log, result.data);
+                this.sendNotification(net.EventType.api_user_var_stake_log, result.data, result.unique);
             }
         }
     }
@@ -3681,7 +3681,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_swap_create_order, result.data);
+                this.sendNotification(net.EventType.api_user_var_swap_create_order, result.data, result.unique);
             }
         }
     }
@@ -3703,7 +3703,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_swap_order_list, result.data);
+                this.sendNotification(net.EventType.api_user_var_swap_order_list, result.data, result.unique);
             }
         }
     }
@@ -3725,7 +3725,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_vendor_withdraw, result.data);
+                this.sendNotification(net.EventType.api_user_var_vendor_withdraw, result.data, result.unique);
             }
         }
     }
@@ -3747,7 +3747,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_user_var_withdraw_stake, result.data);
+                this.sendNotification(net.EventType.api_user_var_withdraw_stake, result.data, result.unique);
             }
         }
     }
@@ -3769,7 +3769,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_96_products, result.data);
+                this.sendNotification(net.EventType.api_vendor_96_products, result.data, result.unique);
             }
         }
     }
@@ -3791,7 +3791,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_simple, result.data);
+                this.sendNotification(net.EventType.api_vendor_simple, result.data, result.unique);
             }
         }
     }
@@ -3813,7 +3813,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_var_bet_log_detail, result.data);
+                this.sendNotification(net.EventType.api_vendor_var_bet_log_detail, result.data, result.unique);
             }
         }
     }
@@ -3835,7 +3835,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_var_lobby_simple, result.data);
+                this.sendNotification(net.EventType.api_vendor_var_lobby_simple, result.data, result.unique);
             }
         }
     }
@@ -3857,7 +3857,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_var_ori_product_show_var, result.data);
+                this.sendNotification(net.EventType.api_vendor_var_ori_product_show_var, result.data, result.unique);
             }
         }
     }

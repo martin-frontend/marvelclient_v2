@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_plat_var_game_menu, result.data);
+                this.sendNotification(EventType.api_plat_var_game_menu, result.data, result.unique);
             }
         }
     }

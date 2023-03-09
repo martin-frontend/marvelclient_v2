@@ -99,6 +99,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         this.pageData.vipNextLevel =
             this.pageData.vipLevel + 1 > vip_info.max_vip_level - 1 ? vip_info.max_vip_level - 1 : this.pageData.vipLevel + 1;
 
+        if (!backwater_info) return;
         try {
             // 主币
             if (backwater_info.backwater_config[2]) {

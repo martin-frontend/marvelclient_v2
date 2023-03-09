@@ -1,7 +1,7 @@
 <v-card @click="goGamePlay" :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}" :width="width-13.5"
     :class="getBoxClass()" class="rounded-lg" flat>
     <!-- <v-lazy> -->
-        <v-sheet v-if="item" color="transparent" class="game-icon1" :class="$vuetify.breakpoint.xsOnly ? 'loader_class_mob' : ''">
+        <v-sheet v-if="item" color="transparent" class="game-icon" :class="$vuetify.breakpoint.xsOnly ? 'loader_class_mob' : ''">
             <ImgLoader v-if="item" class="cursor-pointer rounded_img"  min-height="100" :src="getIcon(item)">
                 <!-- 手机显示 -->
                 <template v-if="$vuetify.breakpoint.xsOnly">

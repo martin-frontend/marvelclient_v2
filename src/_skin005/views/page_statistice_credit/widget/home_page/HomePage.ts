@@ -75,7 +75,7 @@ export default class HomePage extends AbstractView {
     reget() {
         this.myProxy.api_user_var_short_chain(1);
     }
-    private copy( msg:any) {
+    copy( msg:any) {
         CopyUtil(msg);
         PanelUtil.message_info(LangUtil("复制成功"));
 

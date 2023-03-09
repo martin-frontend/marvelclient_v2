@@ -29,7 +29,8 @@ export interface GameConfigVO {
     /**三方登录地址 */
     ThirdLoginUrl:string;
     modules_switch:any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
-
+    /** 板球厂商id */
+    CricketVendorId:number;
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

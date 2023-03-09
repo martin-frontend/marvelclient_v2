@@ -188,8 +188,8 @@ export default class NetObserver extends AbstractMediator {
                     PanelUtil.showAppLoading(false);
                     // 如果是体育，直接进入
                     if (
-                        this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&
-                        this.gameProxy.currGame.ori_product_id == 1
+                        (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) || 
+                        (this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId)
                     ) {
                         const homeProxy = PanelUtil.getProxy_page_home;
 

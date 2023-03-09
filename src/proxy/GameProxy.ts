@@ -17,7 +17,9 @@ export default class GameProxy extends AbstractProxy {
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     lobbyMenuIndex: core.PlatLobbyIndexVO[] = [];
     /**当前正在玩的游戏 */
-    currGame: any;
+    currGame: any ={
+        vendor_id:0,
+    }
     /**当前选择的钱包类型 */
     coin_name_unique: string = "";
     // /**进入游戏页面的上一个路由 */

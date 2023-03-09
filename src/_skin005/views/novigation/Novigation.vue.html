@@ -54,16 +54,16 @@
                 :key="item.name" color="transparent">
                 <v-hover v-slot="{ hover }">
                     <div class="d-flex align-center box" :class="{ 
-                            'navTextHover--text active' : (hover || routerPath==item.path),
-                            'navIcon--text' : !(hover || routerPath==item.path),
+                            'navTextHover--text active' : (hover || routerPath.includes(item.path)),
+                            'navIcon--text' : !(hover || routerPath.includes(item.path)),
                             'text-14': $vuetify.breakpoint.mobile,
                             'text-14': !$vuetify.breakpoint.mobile,
                         } " @click="goCategory(item)">
                         <svg-icon :icon="item.icon"
                             :class="$vuetify.breakpoint.mobile ? 'text-18' :'text-20'"></svg-icon>
                         <div v-if="!mini" class=" text-no-wrap font-weight-bold" :class="{
-                                'navTextHover--text' : (hover || routerPath==item.path),
-                                'navText--text' : !(hover || routerPath==item.path),
+                                'navTextHover--text' : (hover || routerPath.includes(item.path)),
+                                'navText--text' : !(hover || routerPath.includes(item.path)),
                                 'ml-5': !$vuetify.breakpoint.mobile,
                                 'ml-2': $vuetify.breakpoint.mobile,
                             }">

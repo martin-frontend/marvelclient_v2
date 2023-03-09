@@ -56,7 +56,8 @@ export default class DialogLoginMediator extends AbstractMediator {
 
         const selfProxy: SelfProxy = this.getProxy(SelfProxy);
         selfProxy.api_user_show_var([2, 3, 6]);
-        selfProxy.api_plat_var_game_config();
-        PanelUtil.openpage_home();
+        //PanelUtil.openpage_home();
+        //location.reload();
+        
     }
 }

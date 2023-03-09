@@ -2,17 +2,38 @@
     class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
         <v-img v-if="isMini" class="ml-4 " max-width="42" height="30" :src="commonIcon.logo_m"></v-img>
-        <div ref="tabBox" color="transparent" class="ml-8">
+        <!-- <div ref="tabBox" color="transparent" class="ml-8">
             <v-tabs slider-size="2" v-model="pagetab" optional>
                 <v-tabs-slider color="textYellow"></v-tabs-slider>
-                <v-tab ref="tab1" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false" 
+                <v-tab ref="tab1" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false"
                     :disabled="pagetab == 0">{{LangUtil("首页")}}</v-tab>
                 <v-tab ref="tab3" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false"
                     :disabled="pagetab == 1">{{LangUtil("体育运动")}}</v-tab>
-                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap" :ripple="false"
-                    :disabled="pagetab == 2">{{LangUtil("代理管理")}}</v-tab>
-            </v-tabs> 
-        </div>
+                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap"
+                    :ripple="false" :disabled="pagetab == 2">{{LangUtil("代理管理")}}</v-tab>
+
+                <v-tab v-if="SkinVariable.isShowBanqiu" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap"
+                    :value="3" :ripple="false" :disabled="pagetab == 2">{{LangUtil("板球")}}</v-tab>
+            </v-tabs>
+        </div> -->
+
+        <v-sheet color="transparent">
+            <v-btn-toggle group v-model="pagetab" @change="onTimeChange">
+                <v-btn class=" mr-2" height="36"  :ripple="false" value="0" :disabled="pagetab == 0">
+                    <span class="text-14"> {{LangUtil("首页")}} </span>
+                </v-btn>
+                <v-btn class="mr-2" height="36"  :ripple="false"  value="1" :disabled="pagetab == 1">
+                    <span class=" text-14"> {{LangUtil("体育运动")}} </span>
+                </v-btn>
+                <v-btn v-if="isShowCricket" class=" mr-2" height="36"  :ripple="false" value="22"  :disabled="pagetab == 22">
+                    <span class=" text-14"> {{LangUtil("板球")}} </span>
+                </v-btn>
+                <v-btn v-if="isShowStatistice" class=" mr-2" height="36"  :ripple="false"  value="11" :disabled="pagetab == 11">
+                    <span class=" text-14"> {{LangUtil("代理管理")}} </span>
+                </v-btn>
+            </v-btn-toggle>
+        </v-sheet>
+
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">
             <Marquee1 />
         </v-sheet>
@@ -21,8 +42,8 @@
             <template v-if="selfProxy.userInfo.user_id">
                 <User />
                 <Wallet class="ml-5" />
-                <btn-yellow v-if="GlobalVar.instance.isShowBtnRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72"
-                    @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
+                <btn-yellow v-if="GlobalVar.instance.isShowBtnRecharge" class="btn-topup ml-4 text-16" height="36"
+                    min_width="72" @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
 
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
                     <svg-icon class="text-24" icon="service"></svg-icon>
@@ -37,8 +58,8 @@
             <template v-else>
                 <btn-yellow class="ml-3 text-16" height="36" min_width="72"
                     @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
-                <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-16" height="36" min_width="72" :btn_type="2"
-                    @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+                <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-16" height="36" min_width="72"
+                    :btn_type="2" @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
@@ -50,10 +71,9 @@
 
 <!-- v-app-bar  -->
 <!-- 手机版的显示 -->
-<v-app-bar v-else height="50" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center"
-    :app="routerPath != '/page_game_soccer' && routerPath != '/page_game_play'">
+<v-app-bar v-else height="50" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center" :app="isShowHeader">
     <v-sheet class="d-flex align-center" color="transparent" width="100%">
-        <v-sheet color="transparent" class="d-flex" >
+        <v-sheet color="transparent" class="d-flex">
             <v-sheet color="transparent" @click="showNovPanel">
                 <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
             </v-sheet>
@@ -87,8 +107,8 @@
                 @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
 
             <!-- <v-sheet color="transparent" class="btn_regi"> -->
-            <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-14" height="30" :min_width="60" :btn_type="2"
-                @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+            <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-14" height="30" :min_width="60"
+                :btn_type="2" @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
             <!-- </v-sheet> -->
 
             <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">

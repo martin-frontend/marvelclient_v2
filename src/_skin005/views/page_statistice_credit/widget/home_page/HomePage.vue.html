@@ -83,7 +83,7 @@
                                 <div class="text-truncate regular_text">{{ myProxy.pageData.link }}</div>
                                 <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
                                     depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                    @click="copy(playerInfo.user_id)">
+                                    @click="copy(myProxy.pageData.link)">
                                     <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                                 </v-btn>
 
@@ -96,7 +96,7 @@
                                 {{ pretty_user_id }}
                                 <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
                                     depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                    @click="copy(playerInfo.user_id)">
+                                    @click="copy(pretty_user_id)">
                                     <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                                 </v-btn>
                             </v-sheet>
@@ -109,79 +109,6 @@
                         </v-card>
                     </v-card>
 
-                    <v-card v-if="false" class="rounded10 px-2 py-4" flat height="100%" width="100%" color="bgBanner">
-                        <v-row no-gutters>
-                            <v-col cols="3" class="d-flex justify-center">
-                                <v-sheet color="transparent">
-                                    <v-row no-gutters class="d-flex flex-column align-center mt-7 mt-sm-0">
-                                        <v-col cols="12">
-                                            <div class="d-flex justify-center mb-2 cursor" @click="showPreview">
-                                                <div ref="qrcode" class="qrcode">
-                                                    <v-img :src="pageData.qrCode"></v-img>
-                                                </div>
-                                            </div>
-
-                                        </v-col>
-                                        <v-col cols="12" class="d-flex flex-column">
-                                            <div class="d-flex justify-center">
-                                                <btn-yellow class="text-16 mb-2" min_width="104" height="36"
-                                                    :btn_type="2"
-                                                    @click.native="reget">{{LangUtil("重新获取")}}</btn-yellow>
-                                            </div>
-                                            <div class="d-flex justify-center">
-                                                <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2"
-                                                    @click.native="showPreview">{{LangUtil("保存图片")}}</btn-yellow>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-
-                                </v-sheet>
-
-                            </v-col>
-
-                            <v-col cols="1" class="d-flex justify-center">
-                                <v-divider vertical />
-                            </v-col>
-
-                            <v-col cols="8">
-
-                                <v-card flat class="primary--text fill-height d-flex flex-column" color="transparent">
-                                    <div class="mb-2 ">{{LangUtil("推广链接")}}</div>
-
-                                    <v-sheet color="" height="40"
-                                        class="pl-2 mr-2 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined sheetOutlined_bg textGray--text">
-                                        <span class="text-truncate regular_text">{{ myProxy.pageData.link }}</span>
-                                        <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                                            min-width="0" depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                            @click="copy(playerInfo.user_id)">
-                                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                                        </v-btn>
-
-                                    </v-sheet>
-                                    <div class="mb-2 ">{{LangUtil("邀请码")}}</div>
-                                    <v-sheet color="" height="40"
-                                        class="pl-2 mr-2 regular_text rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined sheetOutlined_bg textGray--text">
-                                        {{ pretty_user_id }}
-                                        <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                                            min-width="0" depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                            @click="copy(playerInfo.user_id)">
-                                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                                        </v-btn>
-                                    </v-sheet>
-                                    <div class=" nomal_text--text text-14">
-                                        {{LangUtil("1.通过以上链接或者二维码的用户既为您的直属代理;")}}
-                                    </div>
-                                    <div class=" nomal_text--text text-14">
-                                        {{LangUtil("2.用户注册时填写此邀请码，既可成为您的直属代理;")}}
-                                    </div>
-                                    <!-- <v-sheet color="transparent" class=" mt-auto">
-                                        <btn-yellow class="text-16 " min-width="104" height="36" :btn_type="2"
-                                            @click.native="handlerDirectly">{{LangUtil("我的直属")}}</btn-yellow>
-                                    </v-sheet> -->
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-card>
                 </v-col>
             </v-row>
         </v-sheet>
@@ -256,7 +183,7 @@
                     class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined">
                     <span class="text-truncate textGray--text regular_text">{{ myProxy.pageData.link }}</span>
                     <v-btn color="transparent" class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 18 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(playerInfo.user_id)">
+                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(myProxy.pageData.link)">
                         <svg-icon icon="copy" class="text-18 copy_icon--text mr-3"></svg-icon>
                     </v-btn>
 
@@ -266,7 +193,7 @@
                     class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined">
                     <span class="textGray--text regular_text"> {{ pretty_user_id }} </span>
                     <v-btn color="transparent" class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 18 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(playerInfo.user_id)">
+                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(pretty_user_id)">
                         <svg-icon icon="copy" class="text-18 copy_icon--text mr-3"></svg-icon>
                     </v-btn>
                 </v-sheet>
@@ -276,12 +203,7 @@
                 <div class="text-caption userInfo_color--text">
                     {{LangUtil("2.用户注册时填写此邀请码，既可成为您的直属代理;")}}
                 </div>
-
-
-
             </v-card>
-
         </v-sheet>
-
     </template>
 </v-sheet>

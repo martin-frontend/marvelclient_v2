@@ -6,11 +6,11 @@ export default class PageHomeProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         setInterval(() => {
-            if (Vue.router.currentRoute.path == "/") {
+            if (Vue.router.currentRoute.path == "/"+ core.lang) {
                 this.api_vendor_96_products();
             }
         }, 5000);
-        if (Vue.router.currentRoute.path == "/") {
+        if (Vue.router.currentRoute.path == "/" + core.lang) {
             this.api_vendor_96_products();
         }
     }

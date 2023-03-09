@@ -63,3 +63,38 @@
 //         background: linear-gradient(to right, #F64D55, #FFB95D);
 //     }
 // }
+
+.skin005 .theme--light .v-btn-toggle--group {
+    .v-btn {
+        border: none !important;
+        
+    }
+    .v-btn::before {
+        background-color: transparent !important;
+        opacity: 1;
+    }
+    .v-btn.v-btn--active {
+        border: none !important;
+        border-bottom: 2px solid #ffcd43 !important;
+    }
+    .v-btn.v-btn--disabled.v-btn--has-bg{
+        background-color:transparent !important;
+    }
+}
+.skin005 .theme--dark .v-btn-toggle--group {
+    .v-btn {
+        border: none !important;
+        
+    }
+    .v-btn::before {
+        background-color: transparent !important;
+        opacity: 1;
+    }
+    .v-btn.v-btn--active {
+        border: none !important;
+        border-bottom: 2px solid #ffcd43 !important;
+    }
+    .v-btn.v-btn--disabled.v-btn--has-bg{
+        background-color:transparent !important;
+    }
+}

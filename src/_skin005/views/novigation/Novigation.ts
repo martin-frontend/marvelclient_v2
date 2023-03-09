@@ -38,12 +38,12 @@ export default class Novigation extends AbstractView {
     get menu() {
         const newlist = <any>[];
         const list = {
-            0: { icon: "coin", name: "币种介绍", id: 5, path: "/page_introduce" },
-            1: { icon: "chips", name: "质押分红", id: 1, path: "/page_bonus" },
-            2: { icon: "extension", name: "推广赚钱", id: 6, path: "/page_extension" },
-            3: { icon: "water", name: "游戏返水", id: 2, path: "/page_mine" },
-            4: { icon: "swap", name: "SWAP交易", id: 3, path: "/page_swap" },
-            5: { icon: "activity", name: "精彩活动", id: 4, path: "" },
+            0: { icon: "coin", name: "币种介绍", id: 5, path: "page_introduce" },
+            1: { icon: "chips", name: "质押分红", id: 1, path: "page_bonus" },
+            2: { icon: "extension", name: "推广赚钱", id: 6, path: "page_extension" },
+            3: { icon: "water", name: "游戏返水", id: 2, path: "page_mine" },
+            4: { icon: "swap", name: "SWAP交易", id: 3, path: "page_swap" },
+            5: { icon: "activity", name: "精彩活动", id: 4, path: "page_activity" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {
@@ -269,7 +269,7 @@ export default class Novigation extends AbstractView {
     isShowActive(item: any) {
         let isShow = false;
 
-        if (this.routerPath == "/page_game_list" && this.categoryActive == this.getItemCategory(item)) isShow = true;
+        if (this.routerPath.includes("page_game_list") && this.categoryActive == this.getItemCategory(item)) isShow = true;
 
         if (this.myProxy.isMenuOpen[item.vendor_type] && this.myProxy.isMenuOpen[item.vendor_type] == true) isShow = true;
 

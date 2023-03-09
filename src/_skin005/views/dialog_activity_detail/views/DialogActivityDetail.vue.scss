@@ -7,3 +7,10 @@
     max-width: 100vw;
     width: fit-content;
 }
+.detail_dialog{
+    height: calc(100% - 200px);
+   
+}
+.v-dialog:not(.v-dialog--fullscreen){
+    max-height: calc(100% - 200px);
+}

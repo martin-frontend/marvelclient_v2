@@ -8,6 +8,7 @@ import FagProxy from "@/proxy/FagProxy";
 import { checkMultiline } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -16,7 +17,7 @@ export default class PageMine extends AbstractView {
     fagProxy: FagProxy = this.getProxy(FagProxy);
     LangUtil = LangUtil;
     checkMultiline = checkMultiline;
-
+    core = core;
     private xsOnly = false;
     private progressLinear = 6;
 
@@ -24,7 +25,7 @@ export default class PageMine extends AbstractView {
         super(PageMineMediator);
     }
     mounted() {
-        PanelUtil.showAppLoading(false);
+        //PanelUtil.showAppLoading(false);
         this.xsOnly = this.$vuetify.breakpoint.xsOnly;
         this.checkProgress();
     }
@@ -123,6 +124,16 @@ export default class PageMine extends AbstractView {
         }
         else {
             return require(`@/_skin005/assets/mine/item_bg.png`);
+        }
+    }
+
+    @Watch("core.user_id")
+    onWatchUserId() {
+        console.log("  用户信息 变化 ， 请求数据");
+        this.myProxy.api_user_var_backwater_trial();
+        PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
+        if (GlobalVar.instance.isNullUser) {
+            this.myProxy.api_plat_var_vip_config();
         }
     }
 }

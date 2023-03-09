@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
+<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded10" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'">
         <!-- pc显示方式 -->
         <template v-if="!$vuetify.breakpoint.xsOnly">

@@ -123,6 +123,7 @@ import MultDialogManager from "./MultDialogManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "./PageBlur";
+import GameConfig from "@/core/config/GameConfig";
 
 
 export default class PanelUtil {
@@ -146,7 +147,7 @@ export default class PanelUtil {
     static openpage_extension() {
         //LoginEnter(() => {
 
-            if (Vue.router.history.current.path == "/page_extension")  return;
+            if (Vue.router.history.current.path.includes("page_extension"))  return;
             Vue.router.push("/page_extension");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
@@ -155,7 +156,7 @@ export default class PanelUtil {
     //币种介绍
     static openpage_introduce() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_introduce")  return;
+            if (Vue.router.history.current.path.includes("page_introduce"))  return;
             Vue.router.push("/page_introduce");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
@@ -165,7 +166,7 @@ export default class PanelUtil {
 
     //打开 主页
     static openpage_home() {
-        if (Vue.router.app.$route.path != "/") {
+        if (Vue.router.app.$route.path != "/" + core.lang) {
             Vue.router.push("/");
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
@@ -195,7 +196,7 @@ export default class PanelUtil {
     //打开 质押分红 界面
     static openpage_bonus() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_bonus")  return;
+            if (Vue.router.history.current.path.includes("page_bonus"))  return;
             Vue.router.push("/page_bonus");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
@@ -208,7 +209,7 @@ export default class PanelUtil {
     static openpage_statist_credit(nub: number = 0) {
         LoginEnter(() => {
             //Vue.router.push("/page_statistice_credit");
-            if (Vue.router.history.current.path == "/page_statistice_credit")  return;
+            if (Vue.router.history.current.path.includes("page_statistice_credit"))  return;
             PanelUtil.showAppLoading(true);
             page_statistice_credit.show(nub);
             PageBlur.blur_force_close();
@@ -223,10 +224,42 @@ export default class PanelUtil {
             PanelUtil.getProxy_gameproxy.go_soccer(data);
         });
     }
+    //请求  板球的链接 界面
+    static openpage_soccer_cricket(data: any = null) {
+        LoginEnter(() => {
+            PanelUtil.showAppLoading(true);
+            if (!data) {
+                data = {
+                    app_type: 2,
+                    category: 64,
+                    icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
+                    index_no: 49,
+                    languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
+                    list_type: 0,
+                    lobby_model_product_id: 369,
+                    lobby_product_id: 4857,
+                    open_mode: 1,
+                    ori_product_id: "Cricket",
+                    ori_vendor_extend: '{"iframe_bad":false}',
+                    orientation: 1,
+                    plat_id: 30017,
+                    status: 1,
+                    tags: [],
+                    vendor_id: GameConfig.config.CricketVendorId,
+                    vendor_name: "板球-测试",
+                    vendor_product_id: 8271,
+                    vendor_product_name: "板球",
+                    vendor_type: 64,
+                    water_rate_accelerate: 0,
+                }
+            }
+            PanelUtil.getProxy_gameproxy.go_soccer(data);
+        });
+    }
     //打开 游戏返水 界面
     static openpage_mine() {
         //LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_mine")  return;
+            if (Vue.router.history.current.path.includes("page_mine"))  return;
 
             Vue.router.push("/page_mine");
             PanelUtil.showAppLoading(true);
@@ -238,7 +271,7 @@ export default class PanelUtil {
     //打开 SWAP交易 界面
     static openpage_swap() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_swap")  return;
+            if (Vue.router.history.current.path.includes("page_swap") )  return;
 
             Vue.router.push("/page_swap");
             PanelUtil.showAppLoading(true);
@@ -250,8 +283,7 @@ export default class PanelUtil {
     //打开 我的界面 界面
     static openpage_my_info() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_my_info")  return;
-
+            if (Vue.router.history.current.path.includes("page_my_info") )  return;
             Vue.router.push("/page_my_info");
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
@@ -260,7 +292,7 @@ export default class PanelUtil {
     //打开 充值 界面
     static openpage_recharge() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path == "/page_recharge")  return;
+            if (Vue.router.history.current.path.includes("page_recharge") )  return;
 
             Vue.router.push("/page_recharge");
             PageBlur.blur_force_close();
@@ -335,12 +367,7 @@ export default class PanelUtil {
         // dialog_activity.show();
 
         //LoginEnter(() => {
-            const sss = Vue.router.history.current.path
-            console.log("当前路径" ,sss);
-            if (sss == "/page_activity")
-            {
-                return;
-            }
+            if (Vue.router.history.current.path.includes("page_activity") )  return;
             
             Vue.router.push("/page_activity");
             PanelUtil.showAppLoading(true);

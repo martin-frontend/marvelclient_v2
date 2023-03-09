@@ -23,10 +23,6 @@ export default class PageExtension extends AbstractView {
         super(PageExtensionMediator);
     }
 
-    mounted() {
-        PanelUtil.showAppLoading(false);
-    }
-
     destroyed() {
         super.destroyed();
         this.pageData.link = "";
@@ -123,5 +119,11 @@ export default class PageExtension extends AbstractView {
         const { invite_user_business_card } = this.selfProxy.userInfo;
         PanelUtil.openpanel_personal_card(invite_user_business_card, false );
     }
-    
+    @Watch("core.user_id")
+    onWatchUserId() {
+        console.log("  用户信息 变化 ， 请求数据");
+        //this.myProxy.api_user_var_short_chain();
+        this.myProxy.api_user_var_commission_commissiondetail();
+        this.myProxy.api_user_var_commission_commissionnum();
+    }
 }

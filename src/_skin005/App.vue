@@ -25,7 +25,7 @@
                         <router-view />
                     </div>
                 </v-main>
-                <MobileMenu v-if="$route.path != '/page_game_play'" />
+                <MobileMenu v-if="!$route.path.includes('page_game_play')" />
             </div>
         </template>
         <!-- 用户面板 -->
@@ -48,7 +48,7 @@
         <!-- <UserPanel /> -->
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
-        <Orientation v-if="!isScreenV && $route.path != '/page_game_play'" />
+        <Orientation v-if="!isScreenV && $route.path.includes('page_game_play')" />
         <template v-if="!$vuetify.breakpoint.mobile">
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
@@ -73,7 +73,7 @@
 
         <!-- 添加到桌面引导 -->
         <div class="btn-guide d-flex justify-center"
-            v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
+            v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/' + core.lang">
 
             <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9"
                 @click.native="onGuide">{{ myProxy.guideText }}</btn-yellow>

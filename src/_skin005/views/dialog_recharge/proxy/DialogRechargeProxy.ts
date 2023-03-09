@@ -45,11 +45,13 @@ export class RechargeProxy extends puremvc.Proxy {
             requires: <any>{},
         },
         gold_index: 0,
+        isLoadData:true, //是否正在加载数据，或者是否正在等待 数据
     };
 
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
+        this.pageData.isLoadData = false;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
@@ -191,6 +193,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             subtitle: "",
             requires: <any>{},
         },
+        isLoadData:true, //是否正在加载数据，或者是否正在等待 数据
     };
 
     resetform() {
@@ -202,6 +205,7 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
+        this.pageData.isLoadData = false;
         PanelUtil.showAppLoading(false);
         //this.pageData.loading = false;
         this.pageData.methodList = data;

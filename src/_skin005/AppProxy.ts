@@ -28,6 +28,7 @@ export default class AppProxy extends puremvc.Proxy {
 
         if (isLoad) {
             this.loading = true;
+            clearTimeout(this.timeHandle);
             this.timeHandle =  setTimeout(() => {
                 console.log("自动关闭");
                 this.refCount = 0;

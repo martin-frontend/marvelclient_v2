@@ -17,7 +17,8 @@ export default class PageExtensionMediator extends AbstractMediator {
     }
 
     protected initViewData(): void {
-        this.myProxy.api_user_var_short_chain();
+        console.log("-------initViewData---- ");
+        //this.myProxy.api_user_var_short_chain();
         this.myProxy.api_user_var_commission_commissiondetail();
         this.myProxy.api_user_var_commission_commissionnum();
     }

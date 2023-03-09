@@ -145,7 +145,7 @@ export default class PageMyInfo extends AbstractView {
     onItemClick(key: string) {
         this.gameProxy.setCoin(key);
         //PanelUtil.openpage_game_play();
-        if (this.$route.path == "/page_game_play" || this.$route.path == "/page_game_soccer") {
+        if (this.$route.path.includes("page_game_play") || this.$route.path.includes("page_game_soccer") ) {
             this.gameProxy.api_vendor_var_ori_product_show_var(this.gameProxy.currGame);
         }
     }

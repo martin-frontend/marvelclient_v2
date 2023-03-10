@@ -8,4 +8,6 @@ export default class SkinVariable {
     public static isShowFootDetail = false;
 
     public static loadingType = "005";
+    /**是否需要添加 消息推送的 代码 */
+    public static isNeedPush = false;
 }

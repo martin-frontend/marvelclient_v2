@@ -27,6 +27,7 @@ import lang_zhtw from "element-ui/lib/locale/lang/zh-TW";
 import localeE from "element-ui/lib/locale";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
+import SkinVariable from "./SkinVariable";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -129,13 +130,17 @@ export default class NetObserver extends AbstractMediator {
                     // window["vm"].$mount("#app");
                     window["vueInit"]();
 
+                    if (SkinVariable.isNeedPush) {
+                        this.addPushNode();
+                    }
+
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
 
                     //console.log("-----客服cid" ,LangUtil("客服CID" ));
-                    if (LangUtil("客服CID").trim() && LangUtil("客服CID") != "客服CID" ) {
+                    if (LangUtil("客服CID").trim() && LangUtil("客服CID") != "客服CID") {
                         console.log("添加客服cid");
                         //添加客服
                         const s = document.createElement("script");
@@ -188,7 +193,7 @@ export default class NetObserver extends AbstractMediator {
                     PanelUtil.showAppLoading(false);
                     // 如果是体育，直接进入
                     if (
-                        (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) || 
+                        (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) ||
                         (this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId)
                     ) {
                         const homeProxy = PanelUtil.getProxy_page_home;
@@ -307,5 +312,28 @@ export default class NetObserver extends AbstractMediator {
                 //page.style.fontFamily = "GOTHAM_BOLD";
             }
         }
+    }
+    addPushNode() {
+        console.log("添加推送 代码");
+        //添加客服
+        const s = document.createElement("script");
+        s.async = false;
+        s.id = "push__widget";
+        s.src = "https://cdn.onesignal.com/sdks/OneSignalSDK.js";
+        s.addEventListener('load', function f() {
+
+            //@ts-ignore
+            window.OneSignal = window.OneSignal || [];
+            //@ts-ignore
+            window.OneSignal.push(function () {
+                //@ts-ignore
+                window.OneSignal.init({
+                    appId: "a000754a-4200-4698-bfba-5931035d5441",
+                });
+            });
+        }, false);
+
+        document.body.appendChild(s);
+
     }
 }

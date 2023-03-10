@@ -7,7 +7,7 @@
         v-for="(item, index) of menuList"
         :key="index"
         @click="onItemClick(item)"
-        :class="routerPath.includes(item.path) ? 'active ':' nomal'"
+        :class="isActiveItem(item) ? 'active ':' nomal'"
         color="transparent"
     >
         <svg-icon :icon="item.icon" class="text-18 mt-2"></svg-icon>

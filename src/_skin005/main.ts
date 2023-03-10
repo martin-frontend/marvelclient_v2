@@ -25,19 +25,21 @@ import ComDialogTitle from "@/_skin005/views/widget/com_dialog_title/ComDialogTi
 import GoldInfoUtil from "@/_skin005/views/widget/gold_info_util/GoldInfoUtil.vue";
 import GlobalVar from "@/core/global/GlobalVar";
 import LangConfig from "@/core/config/LangConfig";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
+//core.game_domain =  "96in.com";
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
-
+SkinVariable.isNeedPush = true;
 LangConfig.lang_type = 18;
 // 注册到全局
 // Vue.component("btn-yellow", BtnYellow);

@@ -19,7 +19,7 @@ export default class Header extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
-    GameConfig=GameConfig;
+    GameConfig = GameConfig;
     ModulesHelper = ModulesHelper;
     //当前路由
     routerPath = this.$router.app.$route.path;
@@ -48,7 +48,7 @@ export default class Header extends AbstractView {
     //是否显示 板球
     public get isShowCricket(): boolean {
 
-        if (GameConfig.config.CricketVendorId && GameConfig.config.CricketVendorId != 0) {
+        if (this.GameConfig.config.CricketVendorId && this.GameConfig.config.CricketVendorId != 0) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ export default class Header extends AbstractView {
     /**是否为板球 */
     public get isCricket(): boolean {
         console.log("---- 数据 变化------");
-        return (!!this.GameConfig.config.CricketVendorId  && this.gameProxy.currGame.vendor_id == this.GameConfig.config.CricketVendorId)
+        return (!!this.GameConfig.config.CricketVendorId && this.gameProxy.currGame.vendor_id == this.GameConfig.config.CricketVendorId)
     }
 
     // @Watch("gameProxy.currGame.vendor_id")
@@ -85,8 +85,8 @@ export default class Header extends AbstractView {
 
     lastTabValue = "";
     @Watch("pagetab")
-    onWatchPagetab(val:any,val_2:any) {
-        console.log("当前  tab 变化了" +   val +"----" , val_2);
+    onWatchPagetab(val: any, val_2: any) {
+        console.log("当前  tab 变化了" + val + "----", val_2);
         // if (val!= val_2 && (val == 1 || val == 22))
         // {
         //     console.log(" 修改值");
@@ -94,7 +94,7 @@ export default class Header extends AbstractView {
         // }
         this.lastTabValue = val_2;
     }
-    
+
     @Watch("$route")
     onWatchRouter() {
         console.log("修改");
@@ -113,28 +113,27 @@ export default class Header extends AbstractView {
         else {
             this.pagetab = "-1";
         }
-        if (!this.routerPath || this.routerPath == "/"  + core.lang) {
+        if (!this.routerPath || this.routerPath == "/" + core.lang) {
             this.pagetab = "0";
         }
     }
 
     /**图标时间选择 */
-    onTimeChange(val: any ) {
-        console.log("----val--" ,val);
+    onTimeChange(val: any) {
+        console.log("----val--", val);
         //this.pagetab = parseInt(val);
         console.log("---标题 切换", this.pagetab);
         switch (this.pagetab) {
             case "0": { this.goHome(); } break;
             //case 1: { this.goGameList(); } break;
             case "1": {
-                if (!this.routerPath.includes("page_game_soccer") || this.isCricket)
-                {
+                if (!this.routerPath.includes("page_game_soccer") || this.isCricket) {
                     this.goSport();
                 }
-                    
+
             } break;
             case "11": {
-                if (!this.routerPath.includes("page_statistice_credit") )
+                if (!this.routerPath.includes("page_statistice_credit"))
                     PanelUtil.openpage_statist_credit();
             } break;
             case "22": {
@@ -242,10 +241,10 @@ export default class Header extends AbstractView {
         ServiceUtil();
     }
 
-    
-    public get isShowHeader() : boolean {
+
+    public get isShowHeader(): boolean {
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
-        return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play") );
+        return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
-    
+
 }

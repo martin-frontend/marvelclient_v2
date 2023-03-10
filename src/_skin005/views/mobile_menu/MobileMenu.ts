@@ -3,10 +3,13 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GameConfig from "@/core/config/GameConfig";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
+    GameConfig = GameConfig;
+    gameProxy = PanelUtil.getProxy_gameproxy;
     get menuList() {
 
         const newlist = [];
@@ -19,8 +22,12 @@ export default class MobileMenu extends AbstractView {
             5: { id: 5, name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
             7: { id: 7, name: LangUtil("返水"), icon: "water", path: "/page_mine" },
+            8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/page_game_soccer" },
         };
         newlist.push(list[1]);
+        if (this.isShowCricket) {
+            newlist.push(list[8]);
+        }
         newlist.push(list[2]);
 
         //是否显示 游戏反水
@@ -78,6 +85,39 @@ export default class MobileMenu extends AbstractView {
             case 7:
                 PanelUtil.openpage_mine();
                 break;
+            case 8:
+                PanelUtil.openpage_soccer_cricket();
+                break;
         }
+    }
+
+    //是否显示 板球
+    public get isShowCricket(): boolean {
+
+        if (GameConfig.config.CricketVendorId && GameConfig.config.CricketVendorId != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**是否为板球 */
+    public get isCricket(): boolean {
+        console.log("---- 数据 变化------");
+        return (!!this.GameConfig.config.CricketVendorId && this.gameProxy.currGame.vendor_id == this.GameConfig.config.CricketVendorId)
+    }
+
+    isActiveItem(item: any) {
+        if (!item) return false;
+
+        if (item.id == 8 ) //板球的判断
+        {
+            return this.routerPath.includes(item.path) && this.isCricket;
+        }
+        else if (item.id == 1)
+        {
+            return this.routerPath.includes(item.path) && !this.isCricket;  
+        }
+        else
+            return this.routerPath.includes(item.path);
     }
 }

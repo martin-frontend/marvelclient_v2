@@ -10,10 +10,10 @@
     <div class="foot_text_color">{{LangUtil("合作商")}}</div>
     
     <v-sheet v-if="imgData.length > 0" class=" d-flex flex-wrap justify-center" width="100%" color="transparent">
-        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" height="50" flat color="transparent">
+        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" height="70" flat color="transparent">
             <!-- <v-img :src="getIcon(item)" width="90" height="40"></v-img> -->
             <!-- <v-img :src="item.vendor_icon" height="50" contain content-class="mx-2"></v-img> -->
-            <img :src="item.vendor_icon"  height="40" class="mx-2"  ></img>
+            <img :src="item.vendor_icon"  height="70" class="mx-2"  ></img>
         </v-card>
     </v-sheet>
     <template v-if="isShowFootDetail">

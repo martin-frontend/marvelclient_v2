@@ -13,7 +13,7 @@
                             <v-sheet color="transparent" class="text-14 d-flex align-center justify-center" height="25"
                                 @click="onBtnClick(item)">
                                 <v-sheet color="transparent"
-                                    :class="vendor_id == item.vendor_id ? 'textYellow--text' : 'textGray--text'">
+                                    :class="vendor_id == item.vendor_id ? 'textYellow--text bold_text font-weight-bold' : 'textGray--text'">
                                     {{item.alias}}
                                 </v-sheet>
                             </v-sheet>
@@ -169,8 +169,8 @@
                                         height="30" elevation="0" color="transparent">
                                         <v-sheet color="transparent" class="text-14 d-flex align-center justify-center"
                                             height="25" @click="onBtnClick(item)">
-                                            <v-sheet color="transparent" class="font-weight-bold"
-                                                :class="vendor_id == item.vendor_id ? 'textYellow--text' : 'textGray--text'">
+                                            <v-sheet color="transparent" class=""
+                                                :class="vendor_id == item.vendor_id ? 'textYellow--text bold_text' : 'textGray--text'">
                                                 {{item.alias}}
                                             </v-sheet>
                                         </v-sheet>

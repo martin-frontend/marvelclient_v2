@@ -94,7 +94,7 @@ VueRouter.prototype.push = function push(location: any) {
 };
 
 const router = new VueRouter({
-    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
+    // mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
     // mode: 'history',
     routes,
 });

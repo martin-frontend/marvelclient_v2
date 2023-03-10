@@ -1,14 +1,14 @@
 <v-sheet width="100%" color="transparent" class="" >
     <v-card v-if="!$vuetify.breakpoint.mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" width="100%" color="bgBanner">
         <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
-            <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="36" width="90" value="0">
+            <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="36"min-width="90" value="0">
                 <span class="text-14"> {{LangUtil("充值")}} </span>
             </v-btn>
-            <v-btn v-if="GlobalVar.instance.isShowExchange" class="rounded-pill mr-2" height="36" width="90" value="1">
+            <v-btn v-if="GlobalVar.instance.isShowExchange" class="rounded-pill mr-2" height="36" min-width="90" value="1">
 
                 <span class=" text-14"> {{LangUtil("兑换")}} </span>
             </v-btn>
-            <v-btn v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1" class="rounded-pill mr-2" height="36" width="90" value="11">
+            <v-btn v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1" class="rounded-pill mr-2" height="36" min-width="90" value="11">
 
                 <span class=" text-14"> {{LangUtil("划转")}} </span>
             </v-btn>

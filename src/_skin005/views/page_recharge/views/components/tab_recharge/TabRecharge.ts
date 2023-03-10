@@ -259,8 +259,8 @@ export default class TabRecharge extends AbstractView {
         for (let index = 0; index < this.form.requires.length; index++) {
             const element = this.form.requires[index];
             const obj = {
-                title: "pay_" +  element,   //显示的标题名字
-                placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
+                title: element,   //显示的标题名字
+                //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
                 inputValue: "",//用户的输入值
             }
             list.push(obj);

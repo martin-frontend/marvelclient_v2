@@ -48,6 +48,10 @@ export class RechargeProxy extends puremvc.Proxy {
         isLoadData:true, //是否正在加载数据，或者是否正在等待 数据
     };
 
+    public get isHaveData() : boolean {
+        return (Object.keys(this.pageData.methodList)).length > 0;
+    }
+    
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -203,7 +207,9 @@ export class ExchangeProxy extends puremvc.Proxy {
             password_gold: "",
         });
     }
-
+    public get isHaveData() : boolean {
+        return (Object.keys(this.pageData.methodList)).length > 0;
+    }
     setData(data: any) {
         this.pageData.isLoadData = false;
         PanelUtil.showAppLoading(false);

@@ -31,6 +31,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
 
         tabIndex: -1, //用于  切换标签的 
         categoryData: <any>[],
+        isLoadData:true,
     };
 
     setTestData() {
@@ -119,7 +120,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
     }
     setData(data: any) {
         this.pageData.loading = false;
-
+        this.pageData.isLoadData  = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
@@ -133,6 +134,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
     /**获取活动列表 */
     api_plat_activity() {
         this.pageData.loading = true;
+        this.pageData.isLoadData  = true;
         this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id });
     }
 }

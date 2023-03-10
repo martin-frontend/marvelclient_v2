@@ -132,17 +132,10 @@ export default class TabExchange extends AbstractView {
             console.log("兑换数据  空");
             return [];
         }
-        console.log(" from 兑换 -- 数据", this.form);
-        console.log("读取的值--兑换", methodList[coin_name_unique]);
-
-        // if (methodList[coin_name_unique].options[block_network_id].payment_method_type == 7) {
         const channel = methodList[coin_name_unique].options[block_network_id];
-        console.log("channel-兑换--", channel);
+        //console.log("channel-兑换--", channel);
         if (channel && channel.length > 0) {
-            // this.form.third_id = channel[0].third_id;
-            // this.form.requires = channel[0].requires;
             this.setFormData(channel[0]);
-            //this.setRequiresData();
         }
         return channel;
         // }
@@ -163,15 +156,15 @@ export default class TabExchange extends AbstractView {
         this.form.password_gold ="";
     }
     onChannelItemClick(item: any) {
-        console.log(" 渠道 选择 ---", item);
+        //console.log(" 渠道 选择 ---", item);
         if (!item) {
-            console.log("item为 空");
+           // console.log("item为 空");
             return;
         }
         this.setFormData(item);
     }
     onItemClick(key: string) {
-        console.log("   ----当前  点击----", key);
+        //console.log("   ----当前  点击----", key);
         this.form.coin_name_unique = key;
 
         //this.changeMoney();
@@ -186,8 +179,8 @@ export default class TabExchange extends AbstractView {
         for (let index = 0; index < this.form.requires.length; index++) {
             const element = this.form.requires[index];
             const obj = {
-                title: "exc_" +  element,   //显示的标题名字
-                placeholder: LangUtil("请输入{0}","exc_" +  element),// 没有值的时候 显示的
+                title: element,   //显示的标题名字
+                //placeholder: LangUtil("请输入{0}","exc_" +  element),// 没有值的时候 显示的
                 inputValue: "",//用户的输入值
             }
             list.push(obj);
@@ -195,48 +188,7 @@ export default class TabExchange extends AbstractView {
 
         return list;
     }
-    // @Watch("form.requires")
-    // onWatchRequires() {
-    //     this.setRequiresData();
-    // }
-    // showRequires = <any>[];
-    // setRequiresData()
-    // {
-    //     this.showRequires = <any>[];
-    //     if (!this.form.requires || this.form.requires.length < 1) {
-    //         return ;
-    //     }
-    //     //根据 当前需要的条件 设置  转为对应的对象数据
-    //     for (let index = 0; index < this.form.requires.length; index++) {
-    //         const element = this.form.requires[index];
-    //         const obj = {
-    //             title: element,   //显示的标题名字
-    //             placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
-    //             inputValue: "",//用户的输入值
-    //         }
-    //         this.showRequires.push(obj);
-    //     }
 
-    // }
-    //显示的需要填入的条件
-    // public get showRequires(): any {
-
-    //     if (!this.form.requires || this.form.requires.length < 1) {
-    //         return null;
-    //     }
-    //     const list = <any>[];
-    //     //根据 当前需要的条件 设置  转为对应的对象数据
-    //     for (let index = 0; index < this.form.requires.length; index++) {
-    //         const element = this.form.requires[index];
-    //         const obj = {
-    //             title: element,   //显示的标题名字
-    //             placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
-    //             inputValue: "",//用户的输入值
-    //         }
-    //         list.push(obj);
-    //     }
-    //     return list;
-    // }
     openLink(url: string) {
         OpenLink(url);
     }

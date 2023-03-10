@@ -1,58 +1,171 @@
 <v-card flat class="" color="transparent" width="100%"
     :class="$vuetify.breakpoint.mobile ? 'pad_top_mob' : 'pad_height'">
-    <template v-if="!$vuetify.breakpoint.mobile">
-        <template v-if="!pageData.isLoadData">
-            <v-sheet color="transparent" width="100%" class="mt-6 mb-4">
-                <div class="primary--text mb-2 bold_text font-weight-bold text-16">{{LangUtil("想使用人民币充值？")}}</div>
-                <div class="textGray--text text-14">
-                    {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
-                    <a class="text-decoration-underline textYellow--text" @click="onLink(LangUtil('法币教程链接'))" href="#">
-                        {{LangUtil("人民币充值教程")}}
-                    </a>
-                </div>
-            </v-sheet>
-            <v-card flat class="rounded10 px-4 py-4" color="bgBanner">
-                <!-- 选择币种与金额 -->
-                <v-card flat color="transparent">
-                    <v-row>
-                        <v-col cols="6">
-                            <v-card flat color="transparent">
-                                <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}
-                                </div>
-                                <v-sheet color="transparent">
-                                    <goldinfo_util :class="{'regular_text':false}" balanceStrColor="textGray--text"
-                                        :is_need_coin_name="true" inside_str="我的余额" :goldInfoData="gold_info"
-                                        :is_recharge="true" :coin_name_unique="form.coin_name_unique"
-                                        :items_min_height="36" @onItemClick="onItemClick">
-                                    </goldinfo_util>
-
-                                </v-sheet>
-                            </v-card>
-                        </v-col>
-                        <v-col cols="6">
-                            <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}
-                            </div>
-                            <v-sheet color="transparent" width="100%" class="d-flex input_pc">
-                                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"></CustomInput>
-
-                                <btn-yellow class="text-16 ml-2" min_width="72" height="36"
-                                    @click.native="addInputMoney(100)">{{LangUtil("+100")}}</btn-yellow>
-
-                                <btn-yellow class="text-16 ml-2" min_width="72" height="36"
-                                    @click.native="addInputMoney(500)">{{LangUtil("+500")}}</btn-yellow>
-                            </v-sheet>
-                        </v-col>
-                    </v-row>
-                </v-card>
-
-                <!-- 选择付款方式 -->
-                <v-card flat color="transparent" class="mt-6">
-                    <div class="text-16 primary--text mb-2">{{LangUtil("选择付款方式")}}</div>
-
-                    <v-card flat class="d-flex flex-column" color="transparent">
+    <template v-if="!pageData.isLoadData">
+        <template v-if="myProxy.rechargeProxy.isHaveData">
+            <template v-if="!$vuetify.breakpoint.mobile">
+                <v-sheet color="transparent" width="100%" class="mt-6 mb-4">
+                    <div class="primary--text mb-2 bold_text font-weight-bold text-16">{{LangUtil("想使用人民币充值？")}}</div>
+                    <div class="textGray--text text-14">
+                        {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
+                        <a class="text-decoration-underline textYellow--text" @click="onLink(LangUtil('法币教程链接'))"
+                            href="#">
+                            {{LangUtil("人民币充值教程")}}
+                        </a>
+                    </div>
+                </v-sheet>
+                <v-card flat class="rounded10 px-4 py-4" color="bgBanner">
+                    <!-- 选择币种与金额 -->
+                    <v-card flat color="transparent">
                         <v-row>
-                            <v-col cols="6" v-for="(item, key) of curShowChannel" :key="key">
+                            <v-col cols="6">
+                                <v-card flat color="transparent">
+                                    <div class="text-16 primary--text mb-2 bold_text font-weight-bold">
+                                        {{LangUtil("选择币种")}}
+                                    </div>
+                                    <v-sheet color="transparent">
+                                        <goldinfo_util :class="{'regular_text':false}" balanceStrColor="textGray--text"
+                                            :is_need_coin_name="true" inside_str="我的余额" :goldInfoData="gold_info"
+                                            :is_recharge="true" :coin_name_unique="form.coin_name_unique"
+                                            :items_min_height="36" @onItemClick="onItemClick">
+                                        </goldinfo_util>
+
+                                    </v-sheet>
+                                </v-card>
+                            </v-col>
+                            <v-col cols="6">
+                                <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}
+                                </div>
+                                <v-sheet color="transparent" width="100%" class="d-flex input_pc">
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"></CustomInput>
+
+                                    <btn-yellow class="text-16 ml-2" min_width="72" height="36"
+                                        @click.native="addInputMoney(100)">{{LangUtil("+100")}}</btn-yellow>
+
+                                    <btn-yellow class="text-16 ml-2" min_width="72" height="36"
+                                        @click.native="addInputMoney(500)">{{LangUtil("+500")}}</btn-yellow>
+                                </v-sheet>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <!-- 选择付款方式 -->
+                    <v-card flat color="transparent" class="mt-6">
+                        <div class="text-16 primary--text mb-2">{{LangUtil("选择付款方式")}}</div>
+
+                        <v-card flat class="d-flex flex-column" color="transparent">
+                            <v-row>
+                                <v-col cols="6" v-for="(item, key) of curShowChannel" :key="key">
+                                    <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+
+                                        <v-sheet color="transparent" width="100%"
+                                            @click.native="onChannelItemClick(item)"
+                                            class="d-flex justify-space-between rounded10 px-2 py-2 align-center"
+                                            min-height="45"
+                                            :class="form.third_id == item.third_id ? 'onItemSelect'  : 'sheetOutlined'">
+                                            <v-sheet color="transparent" class="d-flex align-center">
+                                                <img v-if="item.icon_url" height="25" :src="item.icon_url"
+                                                    class="mr-2" />
+                                                <span v-else class="">{{item.subtitle}}</span>
+                                            </v-sheet>
+                                            <v-sheet color="transparent">
+                                                {{item.min_gold}}-{{item.max_gold}}
+                                                <span v-if="form.third_id == item.third_id">
+                                                    <svg-icon icon="select" class=" ml-2 text-14" />
+                                                </span>
+                                            </v-sheet>
+                                        </v-sheet>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+
+                        <v-sheet v-if="!(showRequires &&  showRequires.length > 0)" color="transparent" width="100%"
+                            class="d-flex mt-4">
+                            <btn-yellow class="ml-auto text-16" min_width="104" height="36"
+                                @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+                        </v-sheet>
+                    </v-card>
+
+                </v-card>
+                 <!-- 下面的需要填的选项 -->
+                <v-card v-if="showRequires &&  showRequires.length > 0" flat class="rounded10 px-4 py-4 mt-4"
+                    color="bgBanner">
+                    <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("请输入支付信息")}}</div>
+                    <v-card flat class="d-flex flex-column mt-6" color="transparent">
+                        <v-row>
+                            <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
                                 <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+                                    <!-- 标题 -->
+                                    <v-sheet color="transparent" class="d-flex">
+                                        {{LangUtil("pay_" + item.title)}}
+                                    </v-sheet>
+                                    <v-sheet color="transparent" class="py-1  input_pc">
+                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'pay_' +  item.title)" v-model="item.inputValue">
+
+                                        </CustomInput>
+                                    </v-sheet>
+
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <v-sheet color="transparent" width="100%" class="d-flex mt-4">
+                        <btn-yellow class="ml-auto text-16" min_width="104" height="36"
+                            @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+                    </v-sheet>
+                </v-card>
+            </template>
+            <template v-else>
+                <v-card flat color="transparent" width="100%">
+
+                    <v-card flat width="100%" color="bgBanner" class="d-flex flex-column rounded10 px-4 py-4">
+                        <v-sheet color="transparent" width="100%">
+                            <div class="primary--text mb-2 bold_text font-weight-bold text-14">{{LangUtil("想使用人民币充值？")}}
+                            </div>
+                            <div class="textGray--text text-12">
+                                {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
+                                <a class="text-decoration-underline textYellow--text"
+                                    @click="onLink(LangUtil('法币教程链接'))" href="#">
+                                    {{LangUtil("人民币充值教程")}}
+                                </a>
+                            </div>
+                        </v-sheet>
+                        <v-card flat color="transparent" class="mt-4">
+                            <div class="text-14 primary--text mb-2">{{LangUtil("选择币种")}}</div>
+                            <v-sheet color="transparent">
+                                <goldinfo_util :class="{'regular_text':false}" balanceStrColor="textGray--text"
+                                    :is_need_coin_name="true" inside_str="我的余额" :goldInfoData="gold_info" :img_size="22"
+                                    :is_recharge="true" :coin_name_unique="form.coin_name_unique" :items_min_height="36"
+                                    @onItemClick="onItemClick">
+                                </goldinfo_util>
+
+                            </v-sheet>
+                        </v-card>
+
+                        <v-card flat color="transparent" class="mt-4">
+                            <div class="text-14 primary--text  mb-2">{{LangUtil("输入金额")}}</div>
+                            <v-sheet color="transparent" width="100%" class="d-flex ">
+                                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"> </CustomInput>
+
+                                <btn-yellow class="text-14 ml-2" min_width="72" height="36"
+                                    @click.native="addInputMoney(100)">
+                                    <span class="bold_text">{{LangUtil("+100")}}</span>
+
+                                </btn-yellow>
+
+                                <btn-yellow class="text-14 ml-2" min_width="72" height="36"
+                                    @click.native="addInputMoney(500)"><span
+                                        class="bold_text">{{LangUtil("+500")}}</span></btn-yellow>
+                            </v-sheet>
+                        </v-card>
+
+                        <v-card flat color="transparent" class="mt-4">
+                            <div class="text-14 primary--text mb-2">{{LangUtil("选择付款方式")}}</div>
+                            <v-card flat class="d-flex flex-column" color="transparent">
+
+                                <v-sheet v-for="(item, key) of curShowChannel" :key="key" color="transparent"
+                                    class="d-flex  flex-column justify-center mb-2">
 
                                     <v-sheet color="transparent" width="100%" @click.native="onChannelItemClick(item)"
                                         class="d-flex justify-space-between rounded10 px-2 py-2 align-center"
@@ -69,153 +182,47 @@
                                             </span>
                                         </v-sheet>
                                     </v-sheet>
-                                </v-card>
-                            </v-col>
-                        </v-row>
+                                </v-sheet>
+                            </v-card>
+                        </v-card>
+                    </v-card>
+                    <v-card v-if="showRequires &&  showRequires.length > 0" flat width="100%" color="bgBanner"
+                        class="d-flex flex-column rounded10 px-4 py-4 mt-4">
+                        <div class="primary--text mb-2 bold_text font-weight-bold text-14">{{LangUtil("请输入支付信息")}}</div>
+                        <!-- 下面的需要填的选项 -->
+                        <v-card flat class="d-flex flex-column " color="transparent">
+                            <v-row no-gutters>
+
+                                <v-col cols="12" v-for="(item, key) of showRequires" :key="key">
+                                    <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+                                        <!-- 标题 -->
+                                        <v-sheet color="transparent" class="d-flex">
+                                            {{LangUtil("pay_" + item.title)}}
+                                        </v-sheet>
+                                        <v-sheet color="transparent" class="py-1  input_pc">
+                                            <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'pay_' +  item.title)"
+                                                v-model="item.inputValue">
+
+                                            </CustomInput>
+                                        </v-sheet>
+
+                                    </v-card>
+                                </v-col>
+
+                            </v-row>
+                        </v-card>
                     </v-card>
 
-                    <v-sheet v-if="!(showRequires &&  showRequires.length > 0)" color="transparent" width="100%"
-                        class="d-flex mt-4">
-                        <btn-yellow class="ml-auto text-16" min_width="104" height="36"
+                    <v-sheet color="transparent" width="100%" class="d-flex mt-4 mb-4">
+                        <btn-yellow class="ml-auto text-14" min_width="100%" height="36"
                             @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
                     </v-sheet>
                 </v-card>
-
-            </v-card>
-            <v-card v-if="showRequires &&  showRequires.length > 0" flat class="rounded10 px-4 py-4 mt-4"
-                color="bgBanner">
-                <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("请输入支付信息")}}</div>
-                <!-- 下面的需要填的选项 -->
-                <v-card flat class="d-flex flex-column mt-6" color="transparent">
-                    <v-row>
-                        <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
-                            <v-card flat color="transparent" class="d-flex  flex-column justify-center">
-                                <!-- 标题 -->
-                                <v-sheet color="transparent" class="d-flex">
-                                    {{LangUtil(item.title)}}
-                                </v-sheet>
-                                <v-sheet color="transparent" class="py-1  input_pc">
-                                    <CustomInput class="" :placeholder="item.placeholder" v-model="item.inputValue">
-
-                                    </CustomInput>
-                                </v-sheet>
-
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </v-card>
-
-                <v-sheet color="transparent" width="100%" class="d-flex mt-4">
-                    <btn-yellow class="ml-auto text-16" min_width="104" height="36"
-                        @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
-                </v-sheet>
-            </v-card>
+            </template>
         </template>
-        <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto" type="image"></v-skeleton-loader>
+        <ListNodata v-if="!myProxy.rechargeProxy.isHaveData" height="500" />
     </template>
 
-    <template v-else>
-
-        <v-card v-if="!pageData.isLoadData" flat color="transparent" width="100%">
-
-            <v-card flat width="100%" color="bgBanner" class="d-flex flex-column rounded10 px-4 py-4">
-                <v-sheet color="transparent" width="100%">
-                    <div class="primary--text mb-2 bold_text font-weight-bold text-14">{{LangUtil("想使用人民币充值？")}}</div>
-                    <div class="textGray--text text-12">
-                        {{LangUtil("主流交易所均支持人民币购买数字货币，点击教程了解如何使用人民币充值。")}}
-                        <a class="text-decoration-underline textYellow--text" @click="onLink(LangUtil('法币教程链接'))"
-                            href="#">
-                            {{LangUtil("人民币充值教程")}}
-                        </a>
-                    </div>
-                </v-sheet>
-                <v-card flat color="transparent" class="mt-4">
-                    <div class="text-14 primary--text mb-2">{{LangUtil("选择币种")}}</div>
-                    <v-sheet color="transparent">
-                        <goldinfo_util :class="{'regular_text':false}" balanceStrColor="textGray--text"
-                            :is_need_coin_name="true" inside_str="我的余额" :goldInfoData="gold_info" :img_size="22"
-                            :is_recharge="true" :coin_name_unique="form.coin_name_unique" :items_min_height="36"
-                            @onItemClick="onItemClick">
-                        </goldinfo_util>
-
-                    </v-sheet>
-                </v-card>
-
-                <v-card flat color="transparent" class="mt-4">
-                    <div class="text-14 primary--text  mb-2">{{LangUtil("输入金额")}}</div>
-                    <v-sheet color="transparent" width="100%" class="d-flex ">
-                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"> </CustomInput>
-
-                        <btn-yellow class="text-14 ml-2" min_width="72" height="36" @click.native="addInputMoney(100)">
-                            <span class="bold_text">{{LangUtil("+100")}}</span>
-
-                        </btn-yellow>
-
-                        <btn-yellow class="text-14 ml-2" min_width="72" height="36"
-                            @click.native="addInputMoney(500)"><span
-                                class="bold_text">{{LangUtil("+500")}}</span></btn-yellow>
-                    </v-sheet>
-                </v-card>
-
-                <v-card flat color="transparent" class="mt-4">
-                    <div class="text-14 primary--text mb-2">{{LangUtil("选择付款方式")}}</div>
-                    <v-card flat class="d-flex flex-column" color="transparent">
-
-                        <v-sheet v-for="(item, key) of curShowChannel" :key="key" color="transparent"
-                            class="d-flex  flex-column justify-center mb-2">
-
-                            <v-sheet color="transparent" width="100%" @click.native="onChannelItemClick(item)"
-                                class="d-flex justify-space-between rounded10 px-2 py-2 align-center" min-height="45"
-                                :class="form.third_id == item.third_id ? 'onItemSelect'  : 'sheetOutlined'">
-                                <v-sheet color="transparent" class="d-flex align-center">
-                                    <img v-if="item.icon_url" height="25" :src="item.icon_url" class="mr-2" />
-                                    <span v-else class="">{{item.subtitle}}</span>
-                                </v-sheet>
-                                <v-sheet color="transparent">
-                                    {{item.min_gold}}-{{item.max_gold}}
-                                    <span v-if="form.third_id == item.third_id">
-                                        <svg-icon icon="select" class=" ml-2 text-14" />
-                                    </span>
-                                </v-sheet>
-                            </v-sheet>
-                        </v-sheet>
-                    </v-card>
-                </v-card>
-            </v-card>
-            <v-card v-if="showRequires &&  showRequires.length > 0" flat width="100%" color="bgBanner"
-                class="d-flex flex-column rounded10 px-4 py-4 mt-4">
-                <div class="primary--text mb-2 bold_text font-weight-bold text-14">{{LangUtil("请输入支付信息")}}</div>
-                <!-- 下面的需要填的选项 -->
-                <v-card flat class="d-flex flex-column " color="transparent">
-                    <v-row no-gutters>
-
-                        <v-col cols="12" v-for="(item, key) of showRequires" :key="key">
-                            <v-card flat color="transparent" class="d-flex  flex-column justify-center">
-                                <!-- 标题 -->
-                                <v-sheet color="transparent" class="d-flex">
-                                    {{LangUtil(item.title)}}
-                                </v-sheet>
-                                <v-sheet color="transparent" class="py-1  input_pc">
-                                    <CustomInput class="" :placeholder="item.placeholder" v-model="item.inputValue">
-
-                                    </CustomInput>
-                                </v-sheet>
-
-                            </v-card>
-                        </v-col>
-
-                    </v-row>
-                </v-card>
-            </v-card>
-
-            <v-sheet color="transparent" width="100%" class="d-flex mt-4 mb-4">
-                <btn-yellow class="ml-auto text-14" min_width="100%" height="36"
-                    @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
-            </v-sheet>
-        </v-card>
-
-        <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto" type="image"></v-skeleton-loader>
-    </template>
-
+    <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto" type="image"></v-skeleton-loader>
 
 </v-card>

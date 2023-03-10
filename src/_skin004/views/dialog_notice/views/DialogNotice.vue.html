@@ -46,10 +46,11 @@
                     </v-sheet>
                     
                     <!-- 文字 -->
-                    <v-sheet v-else="!isShowImg" color="transparent" class="colorBlue--text" width="100%" height="100%">
-                        <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
+                    <v-sheet v-else="!isShowImg" color="transparent" class="" width="100%" height="100%">
+                        <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
                             {{ noticeDetialInfo.content}}
-                        </v-sheet>
+                        </v-sheet> -->
+                        <div v-if="noticeDetialInfo" class="" v-html="noticeDetialInfo.content"></div>
                     </v-sheet>
 
                 </v-sheet>
@@ -99,10 +100,11 @@
                             </v-sheet>
                             
                             <!-- 文字 -->
-                            <v-sheet v-else="!isShowImg" color="transparent" class="colorBlue--text" width="100%" height="100%">
-                                <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
+                            <v-sheet v-else="!isShowImg" color="transparent" class="" width="100%" height="100%">
+                                <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
                                     {{ noticeDetialInfo.content}}
-                                </v-sheet>
+                                </v-sheet> -->
+                                <div v-if="noticeDetialInfo" class="" v-html="noticeDetialInfo.content"></div>
                             </v-sheet>
 
                         </v-sheet>

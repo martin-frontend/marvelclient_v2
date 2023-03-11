@@ -45,10 +45,14 @@ export default class PageGameList extends AbstractView {
     onWatchWidth() {
         const pcItemBox = this.$refs.pcItemBox;
         if (pcItemBox) {
+            const baseWidth = this.$vuetify.breakpoint.mobile ? 120 : 181;
             //@ts-ignore
             const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
-            console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / 181));
-            this.itemWidth = boxWidth / Math.round(boxWidth / 181);
+            console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / baseWidth));
+            this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
+            if(this.$vuetify.breakpoint.mobile){
+                this.itemWidth += 5;
+            }
             console.warn(">>>>>itemWidth: ", this.itemWidth);
         }
     }

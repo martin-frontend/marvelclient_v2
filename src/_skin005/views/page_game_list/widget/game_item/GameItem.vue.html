@@ -2,9 +2,9 @@
     :class="getBoxClass()" class="rounded-lg" flat>
     <!-- <v-lazy> -->
         <v-sheet v-if="item" color="transparent" class="game-icon" :class="$vuetify.breakpoint.xsOnly ? 'loader_class_mob' : ''">
-            <ImgLoader v-if="item" class="cursor-pointer rounded_img"  min-height="100" :src="getIcon(item)">
+            <ImgLoader v-if="item" class="cursor-pointer rounded_img"  min-height="100" :width="width-13.5" :height="height" :src="getIcon(item)">
                 <!-- 手机显示 -->
-                <template v-if="$vuetify.breakpoint.xsOnly">
+                <!-- <template v-if="$vuetify.breakpoint.xsOnly">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain
                         content-class="d-flex flex-column align-start pl-1" width="80px"
                         src="@/assets/tag/tag_background.png">
@@ -15,9 +15,9 @@
                         </span>
                     </v-img>
                     <v-img v-if="getTag != ''" class="float-right" width="30px" :src="getTag"></v-img>
-                </template>
+                </template> -->
                 <!-- pc显示 -->
-                <template v-else>
+                <!-- <template v-else> -->
                     <v-img v-if="item.water_rate_accelerate" class="float-left mt-1"
                         content-class="d-flex flex-column align-start pl-1" contain width="110px"
                         src="@/assets/tag/tag_background.png">
@@ -28,7 +28,7 @@
                         </span>
                     </v-img>
                     <v-img v-if="getTag != ''" class="float-right" width="50px" :src="getTag"></v-img>
-                </template>
+                <!-- </template> -->
 
                 <!-- <div class="egame__item__mask">
                 <div class="egame__item__play-icon">

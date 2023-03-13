@@ -38,7 +38,7 @@ export default class PageRecharge extends AbstractView {
         // {
         //     this.onEnterHomePage();
         // }
-        
+
     }
     goRecord() {
         if (this.pageData.tabIndex == 0) {
@@ -47,5 +47,9 @@ export default class PageRecharge extends AbstractView {
             PanelUtil.openpanel_record_exchange();
         }
         //this.pageData.bShow = false;
+    }
+
+    openGoldWater() {
+        PanelUtil.openpanel_gold_waterl();
     }
 }

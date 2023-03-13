@@ -60,6 +60,7 @@ import dialog_record_recharge from "@/_skin005/views/dialog_record_recharge";
 import dialog_address_book from "@/_skin005/views/dialog_address_book";
 import dialog_address_book_remark from "@/_skin005/views/dialog_address_book_remark";
 
+import dialog_gold_water from "@/_skin005/views/dialog_gold_water";
 import DialogRechargeProxy from "@/_skin005/views/dialog_recharge/proxy/DialogRechargeProxy";
 import DialogAddressBookProxy from "@/_skin005/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import DialogAddressBookRemarkProxy from "@/_skin005/views/dialog_address_book_remark/proxy/DialogAddressBookRemarkProxy";
@@ -691,6 +692,14 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_performance_detail);
         dialog_performance_detail.show();
     }
+    /** 审核流水 页面 */
+    static openpanel_gold_waterl() {
+        MultDialogManager.onOpenPanel(dialog_gold_water);
+        dialog_gold_water.show();
+    }
+
+
+
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {
         return getProxy(DialogPerformanceDetailProxy);
@@ -795,7 +804,7 @@ export default class PanelUtil {
     }
 
 
-    
+
     public static get message_confirm(): Function {
         return dialog_message_box.confirm;
     }

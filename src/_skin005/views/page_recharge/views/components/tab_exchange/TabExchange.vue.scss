@@ -1,29 +1,34 @@
 ::v-deep.v-text-field--outlined fieldset {
     color: #314361 !important;
 }
+
 ::v-deep.v-text-field {
     width: 100%;
 }
+
 .btn-all {
     position: absolute;
     margin-top: -33px;
     margin-right: 10px;
 }
+
 .color-blue {
     color: #97abd1;
 }
-.onItemSelect{
+
+.onItemSelect {
     border: solid 1px #ffcd43 !important;
 }
 
-::v-deep .money_class
-{
+::v-deep .money_class {
     height: 36px;
 }
-.pad_top_mob{
-    padding-top: 70px;
+
+.pad_top_mob {
+    padding-top: 110px;
 }
-.pad_height{
+
+.pad_height {
     min-height: calc(100vh - 600px);
 }
 

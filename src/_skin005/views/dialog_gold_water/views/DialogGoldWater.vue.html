@@ -1,0 +1,94 @@
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+    <v-card class="rounded10 pb-3" color="bgBanner">
+        <!-- pc显示方式 -->
+        <template v-if="!$vuetify.breakpoint.xsOnly">
+
+            <com-dialog-title title="流水审核" @onClose="onClose" />
+
+            <v-divider class="mb-2 " />
+            <v-card-text class="px-5">
+
+                <v-sheet color="transparent"
+                    class="d-flex justify-space-between align-center justify-center px-2 text_center" width="100%"
+                    min-height="40">
+                    <v-sheet color="transparent" class="textGray--text " width="180">{{LangUtil("流水时间")}}</v-sheet>
+                    <v-sheet color="transparent" class="textGray--text "
+                        min-width="120">{{LangUtil("获得金币类型")}}</v-sheet>
+                    <v-sheet color="transparent" class="textGray--text " min-width="100">{{LangUtil("审核流水")}}</v-sheet>
+                    <v-sheet color="transparent" class="textGray--text " min-width="100">{{LangUtil("实际打码")}}</v-sheet>
+                    <v-sheet color="transparent" class="textGray--text " min-width="100">{{LangUtil("状态")}}</v-sheet>
+                </v-sheet>
+
+                <v-sheet v-if="pageData.list.length>0 " color="transparent" height="450" class="scroll-y">
+                    <v-sheet class="px-2 py-2 rounded10 my-3 sheetOutlined" v-for="(item, key) of pageData.list"
+                        :key="key" color="transparent">
+
+                        <v-sheet color="transparent" class="d-flex justify-space-between align-center text_center"
+                            width="100%">
+                            <v-sheet color="transparent" class="primary--text"
+                                min-width="180">{{getDate(item.created_at)}}</v-sheet>
+
+                            <v-sheet color="transparent" class="primary--text" min-width="120">{{item.type}}</v-sheet>
+                            <v-sheet color="transparent" class="primary--text"
+                                min-width="100">{{item.water_limit}}</v-sheet>
+                            <v-sheet color="transparent" class="primary--text" min-width="100">{{item.water}}</v-sheet>
+                            <v-sheet color="transparent" :class="getStateColor(item.pass_type)"
+                                min-width="100">{{getStateText(item.pass_type)}}</v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="445" />
+                <v-spacer />
+                <v-pagination v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" :total-visible="7"
+                    @input="onPageChange"></v-pagination>
+            </v-card-text>
+        </template>
+        <template v-else>
+            <!-- 手机显示方式 -->
+            <com-dialog-title title="流水审核" @onClose="onClose" />
+
+            <v-divider class="mb-2 " />
+            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-5"
+                style="height: calc(100vh - 100px);">
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0"
+                    :finished="pageData.finished">
+                    <v-sheet class="px-3 py-2 my-3 textGray--text sheetOutlined rounded10" color="transparent"
+                        v-for="(item, key) of pageData.list" :key="key">
+
+                        <v-sheet color="transparent" class="d-flex flex-column" width="100%">
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("流水时间")}}</div>
+                                <div class="my-0">{{getDate(item.created_at)}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("获得金币类型")}}</div>
+                                <div class="my-0">{{item.type}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("审核流水")}}</div>
+                                <div class="my-0">{{item.water_limit}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("实际打码")}}</div>
+                                <div class="my-0">{{item.water}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("状态")}}</div>
+                                <div class="my-0" :class="getStateColor(item.pass_type)">
+                                    {{getStateText(item.pass_type)}}</div>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                </LoadMore>
+            </v-sheet>
+        </template>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

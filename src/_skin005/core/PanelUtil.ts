@@ -37,7 +37,7 @@ import DialogLoginProxy from "@/_skin005/views/dialog_login/proxy/DialogLoginPro
 import dialog_email from "@/_skin005/views/dialog_email";
 import dialog_email_detail from "@/_skin005/views/dialog_email_detail";
 import dialog_official_mail from "@/_skin005/views/dialog_official_mail";
-import dialog_activity from "@/_skin005/views/dialog_activity";
+//import dialog_activity from "@/_skin005/views/dialog_activity";
 import dialog_activity_detail from "@/_skin005/views/dialog_activity_detail";
 
 /**用户 信息 */
@@ -51,7 +51,7 @@ import dialog_google_verification from "@/_skin005/views/dialog_google_verificat
 import dialog_personal_card from "@/_skin005/views/dialog_personal_card";
 
 /**充值 提现 */
-import dialog_recharge from "@/_skin005/views/dialog_recharge";
+//import dialog_recharge from "@/_skin005/views/dialog_recharge";
 import dialog_wallet from "@/_skin005/views/dialog_wallet";
 import dialog_game_rate from "@/_skin005/views/dialog_game_rate";
 import dialog_trade_password from "@/_skin005/views/dialog_trade_password";
@@ -59,6 +59,7 @@ import dialog_record_exchange from "@/_skin005/views/dialog_record_exchange";
 import dialog_record_recharge from "@/_skin005/views/dialog_record_recharge";
 import dialog_address_book from "@/_skin005/views/dialog_address_book";
 import dialog_address_book_remark from "@/_skin005/views/dialog_address_book_remark";
+import page_recharge from "@/_skin005/views/page_recharge";
 
 import dialog_gold_water from "@/_skin005/views/dialog_gold_water";
 import DialogRechargeProxy from "@/_skin005/views/dialog_recharge/proxy/DialogRechargeProxy";
@@ -294,11 +295,12 @@ export default class PanelUtil {
         });
     }
     //打开 充值 界面
-    static openpage_recharge() {
+    static openpage_recharge(tabIdx: number = 0) {
         LoginEnter(() => {
             if (Vue.router.history.current.path.includes("page_recharge")) return;
 
-            Vue.router.push("/page_recharge");
+            page_recharge.show(tabIdx);
+            //Vue.router.push("/page_recharge");
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
         });
@@ -358,12 +360,13 @@ export default class PanelUtil {
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
-        MultDialogManager.onOpenPanel(dialog_recharge);
+
+        //MultDialogManager.onOpenPanel(dialog_recharge);
         if (!GlobalVar.instance.isShowRecharge) {
             PanelUtil.message_info(LangUtil("兑换通道关闭!"));
         }
         else
-            dialog_recharge.show(1);
+            PanelUtil.openpage_recharge(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {

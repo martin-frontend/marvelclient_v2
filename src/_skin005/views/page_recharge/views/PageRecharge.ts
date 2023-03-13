@@ -21,27 +21,19 @@ export default class PageRecharge extends AbstractView {
     }
     mounted() {
         PanelUtil.showAppLoading(false);
-        this.pageData.tabIndex = 0;
     }
     typechange = 0;
 
-    /**图标时间选择 */
-    onTimeChange(val: any) {
-        //this.pageData.tabIndex = parseInt(val);
-        this.onTabClick(this.pageData.tabIndex);
-    }
-    onTabClick(idx: number) {
+    // /**图标时间选择 */
+    // onTimeChange(val: any) {
+    //     this.onTabClick(this.pageData.tabIndex);
+    // }
+    // onTabClick(idx: number) {
 
-        this.pageData.tabIndex = idx;
-
-        // if ( this.pageData.tabIndex == 0)
-        // {
-        //     this.onEnterHomePage();
-        // }
-
-    }
+    //     this.pageData.tabIndex = idx;
+    // }
     goRecord() {
-        if (this.pageData.tabIndex == 0) {
+        if (this.pageData.tabIndex == "0") {
             PanelUtil.openpanel_record_recharge();
         } else {
             PanelUtil.openpanel_record_exchange();

@@ -25,6 +25,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
             pageSize: 30,
             pageTotal: 1006,
         },
+        updateCount: 0,
     };
 
     /**配置 */
@@ -42,8 +43,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         page_count: 1,
         page_size: 30,
     };
-    init()
-    {
+    init() {
         console.log("初始化");
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
@@ -69,6 +69,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
             Object.assign(this.pageData.pageInfo, pageInfo);
             this.pageData.list.push(...list);
         }
+        this.pageData.updateCount++;
     }
     setTableData(data: any) {
         this.tableData = <any>[];
@@ -170,7 +171,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
             PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
             //this.curMenuIndex =
         }
-
     }
     //判断是否点击的当前的对象
     isCurItem(item: any) {
@@ -194,7 +194,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
                 const obj = {
                     vendor_id: 0,
                     alias: LangUtil("全部厂商"),
-                }
+                };
                 list.unshift(obj);
             }
 

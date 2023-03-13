@@ -10,21 +10,10 @@ export default class GameItem extends AbstractView {
     @Prop() item!: any;
     @Prop({ default: false }) useMenuData!: Boolean;
     @Prop() width!: number;
-    @Prop() height!:number;
+    @Prop() height!: number;
 
     getIcon(item: any) {
-        if (this.useMenuData) {
-            return item.entrance_icon;
-        }
-        if (item.icon.indexOf("http") != -1) {
-            return item.icon;
-        } else {
-            if (item.list_type == 0) {
-                return `img/productimage/${item.icon}`;
-            } else {
-                return `img/changlogo/${item.icon}`;
-            }
-        }
+        return this.useMenuData ? item.entrance_icon : item.icon;
     }
 
     get getTag() {
@@ -46,7 +35,7 @@ export default class GameItem extends AbstractView {
                 }
             }
             // if (!this.$vuetify.breakpoint.mobile) {
-                classStr += " box_margin";
+            classStr += " box_margin";
             // } else {
             //     classStr += " box_margin_mob";
             // }
@@ -61,5 +50,5 @@ export default class GameItem extends AbstractView {
     }
 
     @Watch("item")
-    filterChange(val: boolean) {}
+    filterChange(val: boolean) { }
 }

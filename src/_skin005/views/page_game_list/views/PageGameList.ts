@@ -17,16 +17,15 @@ export default class PageGameList extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
 
+    timer = 0;
     itemWidth = 181;
     public get viewWidth(): number {
-
         if (this.$vuetify.breakpoint.mobile) {
             return 100;
         }
         if (this.$vuetify.breakpoint.width > 1400) {
             return 340;
-        }
-        else if (this.$vuetify.breakpoint.width > 1280) {
+        } else if (this.$vuetify.breakpoint.width > 1280) {
             return 290;
         }
         return 240;
@@ -36,35 +35,26 @@ export default class PageGameList extends AbstractView {
     }
 
     mounted() {
-        this.$nextTick(() => {
-            this.onWatchWidth();
-        })
+        this.resetItemWidth();
     }
 
-    isInit = false;
-
-    resetWidthNode(isForce = false) {
-        if (!isForce && this.isInit) return;
-
-        if (isForce || !this.isInit) {
-            const pcItemBox = this.$refs.pcItemBox;
-            if (pcItemBox) {
-                const baseWidth = this.$vuetify.breakpoint.mobile ? 110 : 181;
-                //@ts-ignore
-                const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
-                console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / baseWidth));
-                this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
-                if (this.$vuetify.breakpoint.mobile) {
-                    this.itemWidth += 5;
-                }
-                console.warn(">>>>>itemWidth: ", this.itemWidth);
-                this.isInit = true;
+    @Watch("$vuetify.breakpoint.width")
+    resetItemWidth() {
+        const pcItemBox = this.$refs.pcItemBox;
+        if (pcItemBox) {
+            const baseWidth = this.$vuetify.breakpoint.mobile ? 110 : 181;
+            //@ts-ignore
+            const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
+            this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
+            if (this.$vuetify.breakpoint.mobile) {
+                this.itemWidth += 5;
             }
         }
     }
-    @Watch("$vuetify.breakpoint.width")
-    onWatchWidth() {
-        this.resetWidthNode(true);
+
+    @Watch("pageData.updateCount")
+    onWatchUpdate() {
+        this.resetItemWidth();
     }
 
     //是否为新的 需要 菜单栏
@@ -81,7 +71,6 @@ export default class PageGameList extends AbstractView {
         if (!this.isNeetMenu) return false;
         if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
 
-        this.resetWidthNode();
         return false;
     }
     //判断是否点击的当前的对象
@@ -207,6 +196,7 @@ export default class PageGameList extends AbstractView {
 
             this.myProxy.getCurItemIndex();
         }
+        this.myProxy.pageData.list = <any>[];
     }
 
     @Watch("listQuery.vendor_id")
@@ -227,8 +217,7 @@ export default class PageGameList extends AbstractView {
     }
 
     destroyed() {
+        clearInterval(this.timer);
         super.destroyed();
     }
-
-
 }

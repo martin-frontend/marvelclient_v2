@@ -45,7 +45,7 @@ export default class PageGameList extends AbstractView {
     onWatchWidth() {
         const pcItemBox = this.$refs.pcItemBox;
         if (pcItemBox) {
-            const baseWidth = this.$vuetify.breakpoint.mobile ? 120 : 181;
+            const baseWidth = this.$vuetify.breakpoint.mobile ? 100 : 181;
             //@ts-ignore
             const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
             console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / baseWidth));

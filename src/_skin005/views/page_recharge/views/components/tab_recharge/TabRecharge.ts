@@ -148,13 +148,11 @@ export default class TabRecharge extends AbstractView {
                 const element = this.showRequires[index];
                 if (!element.inputValue || !element.inputValue.trim()) {
 
-                    PanelUtil.message_alert(LangUtil("{0} 不能为空", "pay_" +  element.title));
+                    PanelUtil.message_alert(LangUtil("{0} 不能为空", "pay_" + element.title));
                     return false;
                 }
             }
         }
-
-
         this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
 
@@ -228,27 +226,6 @@ export default class TabRecharge extends AbstractView {
         nub += data;
         this.form.amount = nub + "";
     }
-    // @Watch("form.requires")
-    // onWatchRequires() {
-    //     this.setRequiresData();
-    // }
-    // showRequires = <any>[];
-    // setRequiresData() {
-    //     this.showRequires = <any>[];
-    //     if (!this.form.requires || this.form.requires.length < 1) {
-    //         return;
-    //     }
-    //     //根据 当前需要的条件 设置  转为对应的对象数据
-    //     for (let index = 0; index < this.form.requires.length; index++) {
-    //         const element = this.form.requires[index];
-    //         const obj = {
-    //             title: element,   //显示的标题名字
-    //             placeholder: LangUtil("请输入{0}", element),// 没有值的时候 显示的
-    //             inputValue: "",//用户的输入值
-    //         }
-    //         this.showRequires.push(obj);
-    //     }
-    // }
 
     public get showRequires(): any {
         const list = <any>[];
@@ -278,7 +255,7 @@ export default class TabRecharge extends AbstractView {
         //this.payChannelList();
     }
 
-
+    curSelectItem = null;
     public get curShowChannel(): any {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
@@ -294,6 +271,7 @@ export default class TabRecharge extends AbstractView {
             if (channel && channel.length > 0) {
                 this.form.third_id = channel[0].third_id;
                 this.form.requires = channel[0].requires;
+                this.curSelectItem = channel[0];
             }
             return channel;
         }
@@ -308,6 +286,7 @@ export default class TabRecharge extends AbstractView {
         }
         this.form.third_id = item.third_id;
         this.form.requires = item.requires;
+        this.curSelectItem = item;
     }
     get gold_info() {
         //this.payChannelList();

@@ -9,6 +9,7 @@ import { Watch } from "vue-property-decorator";
 import DialogRecordExchangeMediator from "../mediator/DialogRecordExchangeMediator";
 import DialogRecordExchangeProxy from "../proxy/DialogRecordExchangeProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogRecordExchange extends AbstractView {
@@ -23,7 +24,7 @@ export default class DialogRecordExchange extends AbstractView {
 
     onCopy(value: string) {
         CopyUtil(value);
-       PanelUtil.message_info(LangUtil("复制成功"));
+        PanelUtil.message_info(LangUtil("复制成功"));
     }
 
     onClose() {
@@ -63,5 +64,35 @@ export default class DialogRecordExchange extends AbstractView {
 
     onLoad(done: any) {
         this.myProxy.listMore(done);
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
+    }
+    getStateColor(state: number) {
+
+        switch (state) {
+            case 4:
+            case 9: return "textGreen--text";
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 13: return "red--text";
+            default:
+                return "textYellow--text";
+        }
+    }
+    getStateText(state: number) {
+        switch (state) {
+            case 4:
+            case 9: return LangUtil("成功");
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 13: return LangUtil("失败");
+            default:
+                return LangUtil("进行中");
+        }
     }
 }

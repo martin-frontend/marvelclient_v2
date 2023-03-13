@@ -41,7 +41,7 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     {
         const obj={
             order_no:"1231235423",
-            created_at:"1231235423",
+            created_at:"2023-03-10 12:44:49",
             third_order_info:{
                 block_name:"12312",
                 token_name:"12312",
@@ -49,11 +49,12 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
                 to_address:"dfdsfsdfs",
                 tx_scan_url:"dfdsfsdfs",
             },
+            coin_name_unique:"usdt",
             gold:"12423",
             status:0,
         }
         const list = [];
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 20; index++) {
             list.push(obj);
             
         }

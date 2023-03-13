@@ -118,6 +118,9 @@ import dialog_swap_record from "@/_skin005/views/dialog_swap_record";
 import dialog_bonus_ranking from "@/_skin005/views/dialog_bonus_ranking";
 import dialog_performance_detail from "@/_skin005/views/dialog_performance_detail";
 
+import dialog_get_verity from "@/_skin005/views/dialog_get_verity";
+import DialogGetVerityProxy from "@/_skin005/views/dialog_get_verity/proxy/DialogGetVerityProxy";
+
 import DialogPerformanceDetailProxy from "@/_skin005/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import MultDialogManager from "./MultDialogManager";
 import GlobalVar from "@/core/global/GlobalVar";
@@ -147,16 +150,16 @@ export default class PanelUtil {
     static openpage_extension() {
         //LoginEnter(() => {
 
-            if (Vue.router.history.current.path.includes("page_extension"))  return;
-            Vue.router.push("/page_extension");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
+        if (Vue.router.history.current.path.includes("page_extension")) return;
+        Vue.router.push("/page_extension");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
         //});
     }
     //币种介绍
     static openpage_introduce() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_introduce"))  return;
+            if (Vue.router.history.current.path.includes("page_introduce")) return;
             Vue.router.push("/page_introduce");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
@@ -177,11 +180,11 @@ export default class PanelUtil {
     static openpage_gamelist() {
         //Vue.router.push("/page_game_list");
         //LoginEnter(() => {
-            PanelUtil.showAppLoading(true);
-            page_game_list.show();
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
-            //PanelUtil.showAppLoading(true);
+        PanelUtil.showAppLoading(true);
+        page_game_list.show();
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
+        //PanelUtil.showAppLoading(true);
         //});
     }
 
@@ -196,7 +199,7 @@ export default class PanelUtil {
     //打开 质押分红 界面
     static openpage_bonus() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_bonus"))  return;
+            if (Vue.router.history.current.path.includes("page_bonus")) return;
             Vue.router.push("/page_bonus");
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
@@ -209,7 +212,7 @@ export default class PanelUtil {
     static openpage_statist_credit(nub: number = 0) {
         LoginEnter(() => {
             //Vue.router.push("/page_statistice_credit");
-            if (Vue.router.history.current.path.includes("page_statistice_credit"))  return;
+            if (Vue.router.history.current.path.includes("page_statistice_credit")) return;
             PanelUtil.showAppLoading(true);
             page_statistice_credit.show(nub);
             PageBlur.blur_force_close();
@@ -259,19 +262,19 @@ export default class PanelUtil {
     //打开 游戏返水 界面
     static openpage_mine() {
         //LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_mine"))  return;
+        if (Vue.router.history.current.path.includes("page_mine")) return;
 
-            Vue.router.push("/page_mine");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
+        Vue.router.push("/page_mine");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
         //});
     }
 
     //打开 SWAP交易 界面
     static openpage_swap() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_swap") )  return;
+            if (Vue.router.history.current.path.includes("page_swap")) return;
 
             Vue.router.push("/page_swap");
             PanelUtil.showAppLoading(true);
@@ -283,7 +286,7 @@ export default class PanelUtil {
     //打开 我的界面 界面
     static openpage_my_info() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_my_info") )  return;
+            if (Vue.router.history.current.path.includes("page_my_info")) return;
             Vue.router.push("/page_my_info");
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
@@ -292,7 +295,7 @@ export default class PanelUtil {
     //打开 充值 界面
     static openpage_recharge() {
         LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_recharge") )  return;
+            if (Vue.router.history.current.path.includes("page_recharge")) return;
 
             Vue.router.push("/page_recharge");
             PageBlur.blur_force_close();
@@ -367,12 +370,12 @@ export default class PanelUtil {
         // dialog_activity.show();
 
         //LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_activity") )  return;
-            
-            Vue.router.push("/page_activity");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
+        if (Vue.router.history.current.path.includes("page_activity")) return;
+
+        Vue.router.push("/page_activity");
+        PanelUtil.showAppLoading(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
         //});
     }
 
@@ -556,7 +559,11 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_address_book_remark);
         dialog_address_book_remark.show();
     }
-
+    /** 获取验证码 */
+    static openpanel_get_verity(data: any) {
+        //MultDialogManager.onOpenPanel(dialog_get_verity);
+        dialog_get_verity.show(data);
+    }
 
     /**
      * 筛选
@@ -782,8 +789,13 @@ export default class PanelUtil {
     public static get getProxy_noticeProxy(): NoticeProxy {
         return getProxy(NoticeProxy);
     }
+    /**获取验证码  */
+    public static get getProxy_get_verityProxy(): DialogGetVerityProxy {
+        return getProxy(DialogGetVerityProxy);
+    }
 
 
+    
     public static get message_confirm(): Function {
         return dialog_message_box.confirm;
     }

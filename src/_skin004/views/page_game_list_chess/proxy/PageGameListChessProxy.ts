@@ -70,6 +70,7 @@ export default class PageGameListChessProxy extends puremvc.Proxy {
 
     api_plat_var_game_all_index() {
         this.pageData.loading = true;
+        this.listQuery.plat_id = core.plat_id;
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
     }
 

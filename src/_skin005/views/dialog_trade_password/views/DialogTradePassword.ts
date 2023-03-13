@@ -13,7 +13,7 @@ export default class DialogTradePassword extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogTradePasswordProxy = this.getProxy(DialogTradePasswordProxy);
     selfProxy=PanelUtil.getProxy_selfproxy;
-
+    getverityProxy = PanelUtil.getProxy_get_verityProxy;
     userInfo = this.selfProxy.userInfo;
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
@@ -59,5 +59,37 @@ export default class DialogTradePassword extends AbstractView {
 
     goSetEmail() {
         PanelUtil.openpanel_safety_center(1);
+    }
+    public get verityString(): string {
+        if (this.getverityProxy.pageData.downcount > 0) {
+            return this.getverityProxy.pageData.downcount + "";
+        }
+        else {
+            return LangUtil("获取验证码");
+        }
+    }
+
+    public get isdeisable(): boolean {
+        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
+
+        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
+        return this.getverityProxy.pageData.downcount > 0;
+    }
+    //发送 手机验证码
+    sendVerith() {
+
+        if (this.userInfo.phone || this.userInfo.email)
+        {
+            const obj = {
+                category: this.userInfo.phone ? 1 : 0,
+                type: 5,
+            }
+            PanelUtil.openpanel_get_verity(obj);
+        }
+        else
+        {
+            PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
+        }
+        
     }
 }

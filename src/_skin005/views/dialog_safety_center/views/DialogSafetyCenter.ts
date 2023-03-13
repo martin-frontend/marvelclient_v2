@@ -9,6 +9,7 @@ import DialogSafetyCenterMediator from "../mediator/DialogSafetyCenterMediator";
 import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class DialogSafetyCenter extends AbstractView {
@@ -21,7 +22,7 @@ export default class DialogSafetyCenter extends AbstractView {
     validate_type = GamePlatConfig.config.validate_type;
     selfProxy: SelfProxy = getProxy(SelfProxy);
     userInfo = this.selfProxy.userInfo;
-
+    getverityProxy = PanelUtil.getProxy_get_verityProxy;
     areaCodeSearch = "";
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
@@ -150,5 +151,39 @@ export default class DialogSafetyCenter extends AbstractView {
         {
             this.typechange = this.pageData.tabIndex +"";
         }
+    }
+    public get verityString(): string {
+        if (this.getverityProxy.pageData.downcount > 0) {
+            return this.getverityProxy.pageData.downcount + "";
+        }
+        else {
+            return LangUtil("获取验证码");
+        }
+    }
+
+    public get isdeisable(): boolean {
+        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
+
+        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
+        return this.getverityProxy.pageData.downcount > 0;
+    }
+    //发送 手机验证码
+    sendVerithMobile() {
+        const obj = {
+            category: 1,
+            type: 1,
+            area_code: this.formBindPhone.area_code,
+            mobile: this.formBindPhone.mobile,
+        }
+        PanelUtil.openpanel_get_verity(obj);
+    }
+    //发送 邮件 验证码
+    sendVerithMail() {
+        const obj = {
+            category: 0,
+            type: 7,
+            email: this.formBindEmail.email,
+        }
+        PanelUtil.openpanel_get_verity(obj);
     }
 }

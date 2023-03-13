@@ -296,7 +296,7 @@ $sss: #3e3f41;
 
 .btn_helf_new{
     cursor: pointer;
-    //border: 1px solid transparent;
+    border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     color: $nomal_text ;
@@ -306,7 +306,7 @@ $sss: #3e3f41;
 .theme--dark {
     .btn_helf_new:hover {
         color: $hover_text !important;
-        border: 1px solid transparent;
+
         background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
     .btn_helf_new_disable {
@@ -318,7 +318,7 @@ $sss: #3e3f41;
 .theme--light {
     .btn_helf_new:hover {
         color: $nomal_text !important;
-        border: 1px solid transparent;
+
         background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
 

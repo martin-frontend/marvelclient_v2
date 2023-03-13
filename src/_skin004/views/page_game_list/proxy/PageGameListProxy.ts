@@ -85,6 +85,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     api_plat_var_game_all_index() {
         this.saveData();
         this.pageData.loading = true;
+        this.listQuery.plat_id = core.plat_id;
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
     }
 

@@ -144,9 +144,10 @@ export default class TabExchange extends AbstractView {
     get gold_info() {
         return this.pageData.methodList;
     }
-
+    curSelectItem = null;
     setFormData(item:any)
     {
+        this.curSelectItem = item;
         this.form.subtitle = item.subtitle;
         this.form.third_id = item.third_id;
         this.form.requires = item.requires;

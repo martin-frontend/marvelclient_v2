@@ -42,7 +42,14 @@
         font-weight: 600;
         padding: 0 0 !important;
     }
-   
+   ::v-deep .v-menu__content
+   {
+    min-width: 120px !important;
+   }
+   ::v-deep .v-autocomplete.v-select.v-input--is-focused input
+   {
+    min-width: 10px !important;
+   }
     ::v-deep .theme--dark.v-icon {
         color: #8E8F91;
     }

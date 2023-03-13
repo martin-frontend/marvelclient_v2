@@ -38,7 +38,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
     {
         const obj={
             order_no:"1231235423",
-            created_at:"1231235423",
+            created_at:"2023-03-10 12:44:49",
             third_order_info:{
                 block_name:"12312",
                 token_name:"12312",
@@ -47,6 +47,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
                 tx_scan_url:"dfdsfsdfs",
             },
             gold:"12423",
+            coin_name_unique:"usdt",
             status:0,
         }
         const list = [];

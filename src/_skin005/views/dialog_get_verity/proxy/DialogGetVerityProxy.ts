@@ -34,6 +34,31 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         downcount: 0,
     };
 
+    setData(data:any)
+    {
+        if (!data) return;
+        if (data.category)
+        {
+            this.pageData.category = data.category;
+        }
+        if (data.type)
+        {
+            this.pageData.form.type = data.type;
+        }
+        if (data.area_code)
+        {
+            this.pageData.form.area_code = data.area_code;
+        }
+        if (data.mobile)
+        {
+            this.pageData.form.mobile = data.mobile;
+        }
+        if (data.email)
+        {
+            this.pageData.form.email = data.email;
+        }
+        
+    }
     resetForm() {
         Object.assign(this.pageData.form, {
             type: 0,
@@ -43,9 +68,15 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
             uuid: core.device,
             user_id: core.user_id,
         });
+        this.pageData.category = 0 ;
         this.api_public_auth_code();
     }
 
+    
+    public get isCanClick() : boolean {
+        return this.pageData.downcount < 1;
+    }
+    
     beginDowncount(){
         this.pageData.downcount = 60;
         this.timer = setInterval(this.downcountHandler.bind(this), 1000);

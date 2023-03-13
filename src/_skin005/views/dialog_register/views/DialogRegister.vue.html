@@ -33,11 +33,9 @@
                     @blur="onUsernameBlur" />
                 <CustomInput v-if="form.register_type==2" class="mb-6" icon="mdi-account"
                     :placeholder="LangUtil('请输入邮箱')" maxlength="30" v-model="form.username">
-                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
-                        {{LangUtil("验证码")}}
-                    </v-btn> -->
-                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6"
-                        :email="form.username" />
+                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
+                    @click.native="sendVerithMail">{{verityString}}</btn-yellow>
+
                 </CustomInput>
 
                 <CustomInput v-if="form.register_type==4" class="mb-6" icon="mdi-phone" type="tel"
@@ -87,11 +85,8 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                    <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
-                        {{LangUtil("验证码")}}
-                    </v-btn> -->
-                    <DialogGetVerity :isCheck="checkPhone(form.username)" :category="1" :type="6"
-                        :area_code="form.area_code" :mobile="form.username" />
+                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
+                        @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
                 </CustomInput>
 
                 <CustomInput class="mb-6" v-if="form.register_type != 1" icon="mdi-shield-check"
@@ -179,10 +174,9 @@
                 @blur="onUsernameBlur" />
             <CustomInput  v-if="form.register_type==2"  icon="mdi-account" :placeholder="LangUtil('请输入邮箱')"
                 maxlength="30" v-model="form.username">
-                <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
-                        {{LangUtil("验证码")}}
-                    </v-btn> -->
-                <DialogGetVerity class="text-14" :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username" />
+                    <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
+                    @click.native="sendVerithMail">{{verityString}}</btn-yellow>
+
             </CustomInput>
 
             <CustomInput  v-if="form.register_type==4" class="mb-4" icon="mdi-phone" type="tel"
@@ -232,11 +226,8 @@
                         </v-sheet>
                     </v-menu>
                 </template>
-                <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
-                        {{LangUtil("验证码")}}
-                    </v-btn> -->
-                <DialogGetVerity :isCheck="checkPhone(form.username)" :category="1" :type="6"
-                    :area_code="form.area_code" :mobile="form.username" />
+                    <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
+                    @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
             </CustomInput>
 
             <CustomInput  class="mb-4  mt-4" v-if="form.register_type != 1" icon="mdi-shield-check"

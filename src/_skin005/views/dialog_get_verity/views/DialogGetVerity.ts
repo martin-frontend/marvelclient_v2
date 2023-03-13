@@ -65,7 +65,7 @@ export default class DialogGetVerity extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
-        MultDialogManager.onClosePanel();
+        //MultDialogManager.onClosePanel();
     }
 
     @Watch("pageData.bShow")

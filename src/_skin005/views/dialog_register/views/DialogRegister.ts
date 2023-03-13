@@ -15,7 +15,7 @@ export default class DialogRegister extends AbstractView {
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
-
+    getverityProxy = PanelUtil.getProxy_get_verityProxy;
     constructor() {
         super(DialogRegisterMediator);
     }
@@ -62,37 +62,38 @@ export default class DialogRegister extends AbstractView {
 
     tempSelectCode = null;
 
-    public get areaCodeArr() : any {
+    public get areaCodeArr(): any {
         return this.myProxy.pageData.areaCode;
     }
-    
-    public get curShowCode() : string {
+
+    public get curShowCode(): string {
         return "+" + this.form.area_code
     }
-    
+
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
-        if ( ! this.tempSelectCode) return;
+        if (!this.tempSelectCode) return;
         //@ts-ignore
         this.form.area_code = this.tempSelectCode.area_code;
     }
 
-    customFilter (item:any, queryText:any, itemText:any) {
+    customFilter(item: any, queryText: any, itemText: any) {
         const textOne = item.name.toLowerCase()
-        const textTwo = item.area_code +"";
+        const textTwo = item.area_code + "";
         const searchText = queryText.toLowerCase()
 
         return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
-      }
-      
+            textTwo.indexOf(searchText) > -1
+    }
+
     hasInviteUser() {
         return !!core.invite_user_id;
     }
 
     mounted() {
         console.warn(this.registerTypes);
+        this.myProxy.api_public_area_code();
     }
 
     @Watch("pageData.areaCode")
@@ -196,5 +197,39 @@ export default class DialogRegister extends AbstractView {
         if (this.form.password !== this.form.password_confirm) {
             PanelUtil.message_success(LangUtil("密码不一致"));
         }
+    }
+    public get verityString(): string {
+        if (this.getverityProxy.pageData.downcount > 0) {
+            return this.getverityProxy.pageData.downcount + "";
+        }
+        else {
+            return LangUtil("获取验证码");
+        }
+    }
+
+    public get isdeisable(): boolean {
+        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
+
+        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
+        return this.getverityProxy.pageData.downcount > 0;
+    }
+    //发送 手机验证码
+    sendVerithMobile() {
+        const obj = {
+            category: 1,
+            type: 6,
+            area_code: this.form.area_code,
+            mobile: this.form.username,
+        }
+        PanelUtil.openpanel_get_verity(obj);
+    }
+    //发送 邮件 验证码
+    sendVerithMail() {
+        const obj = {
+            category: 0,
+            type: 6,
+            email: this.form.username,
+        }
+        PanelUtil.openpanel_get_verity(obj);
     }
 }

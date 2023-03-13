@@ -9,6 +9,7 @@ import { Watch } from "vue-property-decorator";
 import DialogRecordRechargeMediator from "../mediator/DialogRecordRechargeMediator";
 import DialogRecordRechargeProxy from "../proxy/DialogRecordRechargeProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogRecordRecharge extends AbstractView {
@@ -64,5 +65,17 @@ export default class DialogRecordRecharge extends AbstractView {
 
     onLoad(done: any) {
         this.myProxy.listMore(done);
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
+    }
+    getStateColor(state:number)
+    {
+        switch (state) {
+            case 1: return "textGreen--text";
+            case 2: return "red--text";
+            default:
+                return "textYellow--text";
+        }
     }
 }

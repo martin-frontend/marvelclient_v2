@@ -1,15 +1,15 @@
 <v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" max-width="400" persistent>
-    <template v-slot:activator="{ on, attrs }">
+    <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn class="text-12 mr-n4" color="transparent" elevation="0" text width="90"
             :disabled="!isCheck || pageData.downcount > 0" v-bind="attrs" v-on="on">
-            <!-- <span :class="(!isCheck || pageData.downcount > 0) ? 'textGray--text' : 'textYellow--text'"> {{pageData.downcount > 0 ? pageData.downcount : LangUtil("验证码")}}</span> -->
+           
             <btn-yellow class="text-14" min_width="90" height="36" :btn_type="4"
                 :disabled="!isCheck || pageData.downcount > 0">
                 <span >{{pageData.downcount > 0 ? pageData.downcount :
                     LangUtil("获取验证码")}}</span>
             </btn-yellow>
         </v-btn>
-    </template>
+    </template> -->
     <v-card class="rounded10" color="bgBanner" width="400" height="207">
 
         <com-dialog-title class="primary--text" :title="pageData.category == 0 ? '获取邮箱验证码' : '获取短信验证码'"
@@ -27,5 +27,5 @@
             <btn-yellow class="text-14" min_width="90" height="30" @click.native="onSend">{{LangUtil("确定")}}</btn-yellow>
         </v-card-actions>
     </v-card>
-    <Overlay v-model="pageData.loading" />
+    <!-- <Overlay v-model="pageData.loading" /> -->
 </v-dialog>

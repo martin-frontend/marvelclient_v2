@@ -23,44 +23,67 @@ export default class DialogLogin extends AbstractView {
 
     userInfo = this.selfProxy.userInfo;
 
+    getverityProxy = PanelUtil.getProxy_get_verityProxy;
     constructor() {
         super(DialogLoginMediator);
     }
+    mounted() {
+        this.myProxy.api_public_area_code();
+    }
+
+
+    public get verityString(): string {
+        if (this.getverityProxy.pageData.downcount > 0) {
+            return this.getverityProxy.pageData.downcount + "";
+        }
+        else {
+            return LangUtil("获取验证码");
+        }
+    }
+
+    public get isdeisable(): boolean {
+        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
+
+        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
+        return this.getverityProxy.pageData.downcount > 0;
+    }
+
 
     tempSelectCode = <any>null;
 
-    public get areaCodeArr() : any {
+    public get areaCodeArr(): any {
         return this.myProxy.forgetData.areaCode;
     }
-    
-    public get curShowCode() : string {
+
+    public get curShowCode(): string {
         return "+" + this.forgetData.form.area_code
     }
-    
+
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
-        if ( ! this.tempSelectCode) return;
+        if (!this.tempSelectCode) return;
 
         this.forgetData.form.area_code = this.tempSelectCode.area_code;
     }
 
-    customFilter (item:any, queryText:any, itemText:any) {
+    customFilter(item: any, queryText: any, itemText: any) {
         const textOne = item.name.toLowerCase()
-        const textTwo = item.area_code +"";
+        const textTwo = item.area_code + "";
         const searchText = queryText.toLowerCase()
 
         return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
-      }
-      
+            textTwo.indexOf(searchText) > -1
+    }
 
-    typechange=0;
 
-     /**图标时间选择 */
-     onTimeChange(val: any) {
-        this.forgetData.form.type= parseInt(val) *2 + 2;
+    typechange = 0;
+
+    /**图标时间选择 */
+    onTimeChange(val: any) {
+        this.forgetData.form.type = parseInt(val) * 2 + 2;
         this.onTabClick(this.forgetData.form.type);
+        this.myProxy.resetForm();
     }
 
     private checkMail = checkMail;
@@ -142,11 +165,30 @@ export default class DialogLogin extends AbstractView {
             this.myProxy.hide();
         }
 
-        
+
     }
 
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
+    }
+    //发送 手机验证码
+    sendVerithMobile() {
+        const obj = {
+            category: 1,
+            type: 2,
+            area_code: this.forgetData.form.area_code,
+            mobile: this.forgetData.form.username,
+        }
+        PanelUtil.openpanel_get_verity(obj);
+    }
+    //发送 邮件 验证码
+    sendVerithMail() {
+        const obj = {
+            category: 0,
+            type: 2,
+            email: this.forgetData.form.username,
+        }
+        PanelUtil.openpanel_get_verity(obj);
     }
 }

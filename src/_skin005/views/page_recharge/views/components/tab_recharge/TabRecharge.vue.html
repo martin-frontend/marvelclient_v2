@@ -91,6 +91,7 @@
                 <v-card v-if="showRequires &&  showRequires.length > 0" flat class="rounded10 px-4 py-4 mt-4"
                     color="bgBanner">
                     <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("请输入支付信息")}}</div>
+                    <div class="text-14 primary--text mb-2 ">{{LangUtil(curSelectItem.explain)}}</div>
                     <v-card flat class="d-flex flex-column mt-6" color="transparent">
                         <v-row>
                             <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
@@ -189,6 +190,7 @@
                     <v-card v-if="showRequires &&  showRequires.length > 0" flat width="100%" color="bgBanner"
                         class="d-flex flex-column rounded10 px-4 py-4 mt-4">
                         <div class="primary--text mb-2 bold_text font-weight-bold text-14">{{LangUtil("请输入支付信息")}}</div>
+                        <div class="primary--text mb-2 text-12">{{LangUtil(curSelectItem.explain)}}</div>
                         <!-- 下面的需要填的选项 -->
                         <v-card flat class="d-flex flex-column " color="transparent">
                             <v-row no-gutters>

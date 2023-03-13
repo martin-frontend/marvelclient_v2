@@ -5,7 +5,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
     static NAME = "DialogLoginProxy";
 
     public onRegister(): void {
-        this.api_public_area_code();
+        
     }
 
     pageData = {

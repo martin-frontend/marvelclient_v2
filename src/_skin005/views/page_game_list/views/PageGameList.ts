@@ -35,26 +35,36 @@ export default class PageGameList extends AbstractView {
         super(PageGameListMediator);
     }
 
-    mounted(){
-        this.$nextTick(()=>{
+    mounted() {
+        this.$nextTick(() => {
             this.onWatchWidth();
         })
     }
 
+    isInit = false;
+
+    resetWidthNode(isForce = false) {
+        if (!isForce && this.isInit) return;
+
+        if (isForce || !this.isInit) {
+            const pcItemBox = this.$refs.pcItemBox;
+            if (pcItemBox) {
+                const baseWidth = this.$vuetify.breakpoint.mobile ? 110 : 181;
+                //@ts-ignore
+                const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
+                console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / baseWidth));
+                this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
+                if (this.$vuetify.breakpoint.mobile) {
+                    this.itemWidth += 5;
+                }
+                console.warn(">>>>>itemWidth: ", this.itemWidth);
+                this.isInit = true;
+            }
+        }
+    }
     @Watch("$vuetify.breakpoint.width")
     onWatchWidth() {
-        const pcItemBox = this.$refs.pcItemBox;
-        if (pcItemBox) {
-            const baseWidth = this.$vuetify.breakpoint.mobile ? 100 : 181;
-            //@ts-ignore
-            const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
-            console.warn("Math.round(boxWidth / 181): ", Math.round(boxWidth / baseWidth));
-            this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
-            if(this.$vuetify.breakpoint.mobile){
-                this.itemWidth += 5;
-            }
-            console.warn(">>>>>itemWidth: ", this.itemWidth);
-        }
+        this.resetWidthNode(true);
     }
 
     //是否为新的 需要 菜单栏
@@ -71,6 +81,7 @@ export default class PageGameList extends AbstractView {
         if (!this.isNeetMenu) return false;
         if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
 
+        this.resetWidthNode();
         return false;
     }
     //判断是否点击的当前的对象
@@ -189,12 +200,11 @@ export default class PageGameList extends AbstractView {
         } else {
             this.myProxy.getFirstItemVendor();
             this.listQuery.page_count = 1;
-            if (!this.isUseMenuData)
-            {
+            if (!this.isUseMenuData) {
                 console.log("------asdas");
                 this.myProxy.api_plat_var_game_all_index();
             }
-            
+
             this.myProxy.getCurItemIndex();
         }
     }

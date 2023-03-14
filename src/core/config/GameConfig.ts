@@ -14,7 +14,7 @@ export default class GameConfig {
         let plat_id = core.getQueryVariable("plat_id");
         let channel_id = core.getQueryVariable("channel_id");
         const channelCode = core.getQueryVariable("channelCode");
-        if(channelCode && channelCode.length == 8){
+        if (channelCode && channelCode.length == 8) {
             plat_id = channelCode.substring(0, 5);
             channel_id = channelCode;
         }
@@ -39,33 +39,48 @@ export default class GameConfig {
         }
 
         core.host = this.getApiUrl();
+
         const data = {
             game_domain: core.game_domain,
         };
-        axios.post(core.host + "/api/game_address", data).then((response: any) => {
-            
-            const data = response.data.data;
-            console.log("__game_address" ,data);
-            if (!core.plat_id) core.plat_id = data.plat_id;
-            if (!core.channel_id) core.channel_id = data.channel_id;
-
-            if (!core.plat_id || !core.channel_id)
-            {
-                alert("game_address_data_error");
-                return;
+        // skin005获取配置文件的方式不同
+        let url = "";
+        let myAxios;
+        if (GlobalVar.game_address_method == 1) {
+            url = `/resource/game_address/${core.MD5.createInstance().hex_md5(core.game_domain)}.json?${getFileVersion()}`;
+            if (process.env.VUE_APP_ENV == "production") {
+                url = location.origin + url;
+            } else {
+                url = "https://sftpuser.starsabc.com" + url;
             }
+            myAxios = axios.get(url);
+        } else {
+            url = core.host + "/api/game_address";
+            myAxios = axios.post(url, data);
+        }
 
-            core.cdnUrl = data.cdn_domain;
-            GlobalVar.host_urls = data.api_domain;
-            // if (data.api_domain) core.host = data.api_domain;
-            core.host = "";
-            puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
-        })
-        .catch( (e)=>{
-            //alert(e);
-            alert("get game_address fail");
-    
-        })
+        myAxios
+            .then((response: any) => {
+                const data = response.data.data ?? response.data;
+                console.log("__game_address", data);
+                if (!core.plat_id) core.plat_id = data.plat_id;
+                if (!core.channel_id) core.channel_id = data.channel_id;
+
+                if (!core.plat_id || !core.channel_id) {
+                    alert("game_address_data_error");
+                    return;
+                }
+
+                core.cdnUrl = data.cdn_domain;
+                GlobalVar.host_urls = data.api_domain;
+                // if (data.api_domain) core.host = data.api_domain;
+                core.host = "";
+                puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
+            })
+            .catch((e) => {
+                //alert(e);
+                alert("get game_address fail");
+            });
     }
 
     static loadPlatConfig() {

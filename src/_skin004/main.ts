@@ -14,6 +14,7 @@ import Assets from "@/assets/Assets";
 import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 
 
@@ -33,7 +34,7 @@ core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_E
 AppFacade.inst.startup();
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
-
+SkinVariable.isExchargeVndk = true;
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);

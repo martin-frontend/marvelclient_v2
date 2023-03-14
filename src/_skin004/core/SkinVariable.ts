@@ -20,4 +20,5 @@ export default class SkinVariable {
 
     /**是否显示热门赛事 */
     public static isShowSoccerMatche = true ;
+    public static isExchargeVndk = false;
 }

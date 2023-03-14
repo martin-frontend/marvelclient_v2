@@ -14,7 +14,13 @@ import GameSlideGroup from "./GameSlideGroup";
 export default class extends GameSlideGroup {
     mounted() {
         this.data.list.forEach((item: any) => {
-            if (item.vendor_product_id == 7678) {
+            // console.log("itemtst", item);
+            // if (item.vendor_product_id == 7678) {
+            if (
+                item.vendor_product_name == "疯狂竞拍" ||
+                item.vendor_product_name == "Crazy bidding" ||
+                item.vendor_product_name == "瘋狂競拍"
+            ) {
                 this.crazyItem = item;
             }
         });

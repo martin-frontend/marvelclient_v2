@@ -25,6 +25,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             //注册失败
             const ERROR_CODE_REGISTER_FAIL = [1100114, 1100119, 1100117];
 
+            //1104811 该账号未绑定手机，不能打开充值页面
+            const ERROR_CODE_NO_PHONE = [1104811];
             const selfProxy: SelfProxy = <any>this.facade.retrieveProxy(SelfProxy.NAME);
 
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
@@ -40,6 +42,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 });
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 dialog_message_box.alert(body.result.msg);
+            } else if (ERROR_CODE_NO_PHONE.includes(result.status)) {
+                dialog_message_box.confirm({ message: body.result.msg, okFun: dialog_safety_center.show });
             } else if (ERROR_CODE_PHONE.includes(result.status)) {
                 // TODO 绑定手机
                 dialog_message_box.alert(body.result.msg);

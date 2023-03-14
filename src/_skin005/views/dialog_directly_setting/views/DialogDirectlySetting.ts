@@ -88,6 +88,10 @@ export default class DialogDirectlySetting extends AbstractView {
     onEditRemark() {
         PanelUtil.openpanel_edit_remark(this.myProxy.playerInfo);
     }
+    onEditPassword()
+    {
+        PanelUtil.openpanel_directly_password(this.playerInfo);
+    }
     //用户资产设置
     assetSettings() {
         PanelUtil.openpanel_directly_transfer(this.playerInfo);

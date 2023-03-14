@@ -102,6 +102,7 @@ import dialog_directly_gameset from "@/_skin005/views/dialog_directly_gameset";
 import dialog_directly_my from "@/_skin005/views/dialog_directly_my";
 import dialog_directly_setting from "@/_skin005/views/dialog_directly_setting";
 import dialog_directly_transfer from "@/_skin005/views/dialog_directly_transfer";
+import dialog_directly_password from "@/_skin005/views/dialog_directly_password";
 import dialog_edit_remark from "@/_skin005/views/dialog_edit_remark";
 import dialog_promotion_statistics from "@/_skin005/views/dialog_promotion_statistics";
 
@@ -700,7 +701,11 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_gold_water);
         dialog_gold_water.show();
     }
-
+    /** 修改直属密码 页面 */
+    static openpanel_directly_password(data:any) {
+        MultDialogManager.onOpenPanel(dialog_directly_password);
+        dialog_directly_password.show(data);
+    }
 
 
 

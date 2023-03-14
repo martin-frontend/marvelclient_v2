@@ -1,0 +1,72 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <!-- <v-card class="rounded-lg d-flex flex-column bPanelBg"> -->
+    <v-card class="rounded-lg d-flex flex-column sheet-bg">
+        <!-- pc显示方式 -->
+        <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("平台钱包")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="d-flex align-center padding_bottom px-8" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="d-inline-flex align-center justify-center pa-1 rounded-pill items-bg">
+                <!-- <v-btn width="100" height="32" class="rounded-pill font-weight-medium white--text" elevation="0"
+                    :text="pageData.tabIndex != 0" :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)"> -->
+                <v-btn height="32" class="rounded-pill font-weight-medium white--text PingFang" elevation="0"
+                    :text="pageData.tabIndex != 0" :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)">
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>{{LangUtil("我的资产")}} -->
+                    <span class="text-16"> {{LangUtil("我的资产")}} </span>
+                </v-btn>
+                <v-btn height="32" class="rounded-pill font-weight-medium white--text PingFang" elevation="0"
+                    :text="pageData.tabIndex != 1" :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(1)">
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-wallet</v-icon>{{LangUtil("厂商资产")}} -->
+                    <span class="text-16"> {{LangUtil("厂商资产")}} </span>
+                </v-btn>
+                <v-btn height="32" class="rounded-pill font-weight-medium white--text PingFang" elevation="0"
+                    :text="pageData.tabIndex != 2" :color="pageData.tabIndex == 2 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(2)">
+                    <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly" class="mr-1">mdi-database</v-icon>{{LangUtil("账户明细")}} -->
+                    <span class="text-16"> {{LangUtil("账户明细")}} </span>
+                </v-btn>
+            </div>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb10 px-0 header-mobile" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex align-center px-5 pt-5 pb15">
+                <div class="font-weight-medium white--text text-17">{{LangUtil("平台钱包")}}</div>
+                <v-spacer />
+                <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                </v-btn>
+            </div>
+            <div class="d-inline-flex align-center justify-center pa-1 ml-4 rounded-pill items-bg">
+                <v-btn width="100" height="32" class="rounded-pill font-weight-medium white--text" elevation="0"
+                    :text="pageData.tabIndex != 0" :color="pageData.tabIndex == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)">
+                    <span class="text-15"> {{LangUtil("我的资产")}} </span>
+                </v-btn>
+                <v-btn width="100" height="32" class="rounded-pill font-weight-medium white--text" elevation="0"
+                    :text="pageData.tabIndex != 1" :color="pageData.tabIndex == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(1)">
+                    <span class="text-15"> {{LangUtil("厂商资产")}} </span>
+                </v-btn>
+                <v-btn width="100" height="32" class="rounded-pill font-weight-medium white--text" elevation="0"
+                    :text="pageData.tabIndex != 2" :color="pageData.tabIndex == 2 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(2)">
+                    <span class="text-15"> {{LangUtil("账户明细")}} </span>
+                </v-btn>
+            </div>
+        </v-card-text>
+        <TabMyAssets v-if="pageData.tabIndex == 0" />
+        <TabVendorAssets v-if="pageData.tabIndex == 1" />
+        <TabAccountDetail v-show="pageData.tabIndex == 2" />
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

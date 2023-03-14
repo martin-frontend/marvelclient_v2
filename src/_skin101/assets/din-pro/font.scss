@@ -1,0 +1,64 @@
+.DINPro {
+  font-family: "DINPro";
+}
+
+.DINPro-Regular {
+  font-family: "DINPro-Regular";
+}
+
+.DINPro-Medium {
+  font-family: "DINPro-Medium";
+}
+
+.DINPro-Bold {
+  font-family: "DINPro-Bold";
+}
+
+.Montserrat-Black {
+  font-family: "Montserrat-Black";
+}
+
+.Montserrat-ExtraBold {
+  font-family: "Montserrat-ExtraBold";
+}
+
+@font-face {
+  font-family: "DINPro";
+  src: url('./DINPro-Regular.otf');
+  src: url('./DINPro-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "DINPro-Regular";
+  src: url('./DINPro-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DINPro-Medium";
+  src: url('./DINPro-Medium.ttf');
+  font-weight:900;
+}
+
+@font-face {
+  font-family: "DINPro-Bold";
+  src: url('./DINPro-Bold.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Black";
+  src: url('./Montserrat-Black.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+  src: url('./Montserrat-ExtraBold.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: "PingFang SC";
+  src: url('./PingFang-SC.ttf');
+  font-weight: normal;
+}

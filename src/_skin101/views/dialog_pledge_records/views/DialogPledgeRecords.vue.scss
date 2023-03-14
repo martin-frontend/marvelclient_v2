@@ -1,0 +1,103 @@
+.listitem {
+    .list-item-1 {
+        width: 50%;
+    }
+    div {
+        // width: 50%;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+}
+.listitem-h5 {
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-evenly;
+    .list-item-1 {
+        width: 50%;
+    }
+    div {
+        // width: 50%;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+}
+.dialog-pledge-records {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
+    border-radius: 8px;
+}
+.items-bg {
+    border-radius: 20px;
+    // width: 238px;
+    // padding: 0 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.list-item {
+    background: rgba(0, 0, 0, 0.1);
+}
+.white-color-a {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+.list-item-h5 {
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+.listitem-de {
+    div {
+        width: 300px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        div:first-child {
+            // margin-bottom: 5px;
+        }
+    }
+    .listitem-180 {
+        width: 180px;
+        div {
+            text-align: center;
+            width: 180px;
+        }
+    }
+    .listitem-150 {
+        text-align: right;
+        width: 310px;
+        div {
+            text-align: right;
+            width: 310px;
+        }
+    }
+}
+::v-deep .v-btn__content {
+    font-size: 16px;
+    font-weight: 400;
+}
+.scroll_box {
+    max-height: calc(100vh - 155px);
+}
+.header-mobile {
+    // position: fixed;
+    // z-index: 1000;
+    position: sticky;
+    z-index: 1000;
+    // background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 132px;
+}

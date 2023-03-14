@@ -1,0 +1,148 @@
+@import "@/scss/mixin.scss";
+
+.text-rwd-18 {
+    font-size: 16px;
+    @include sm {
+        font-size: 18px;
+    }
+}
+
+.text-rwd-16 {
+    font-size: 14px;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.listitem {
+    color: #9db1d8;
+    div:first-child {
+        color: #4c5d7f;
+    }
+    div > a {
+        color: #9db1d8;
+    }
+}
+
+.arrow {
+    margin-bottom: -1px !important;
+}
+.search {
+    width: 78%;
+    ::v-deep .v-btn__content {
+        // color: #98acd3;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    ::v-deep .input-text {
+        height: 40px;
+        border: 0px;
+    }
+    ::v-deep .input-text input {
+        height: 40px;
+        // color: #8f7ac0;
+        // color: #8f7ac0;
+        color: #fff;
+    }
+}
+.mobile-search {
+    width: 55%;
+    ::v-deep .v-btn__content {
+        // color: #98acd3;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 400;
+    }
+    ::v-deep .input-text {
+        height: 38px;
+        border: 0px;
+    }
+    ::v-deep .input-text input {
+        height: 38px;
+        // color: #8f7ac0;
+        color: #fff;
+    }
+    ::v-deep .input-text input::placeholder {
+        font-size: 14px;
+    }
+}
+::v-deep .input-text input::placeholder {
+    font-size: 15px;
+    font-weight: 400;
+    // color: #8f7ac0;
+    color: rgba(255, 255, 255, 0.2);
+}
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+    // background-color: #592cb7;
+}
+.listitem-mobile {
+    div {
+        width: 30%;
+        div {
+            width: 100%;
+        }
+    }
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 125px;
+}
+.playnum-search {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.scroll_box {
+    max-height: calc(100vh - 260px);
+}
+// .text-rwd-18 {
+//     font-size: 16px;
+//     @include sm {
+//         font-size: 18px;
+//     }
+// }
+
+// .text-rwd-16 {
+//     font-size: 14px;
+//     @include sm {
+//         font-size: 16px;
+//     }
+// }
+
+// .listitem {
+//     color: #9db1d8;
+//     div:first-child {
+//         color: #4c5d7f;
+//     }
+//     div > a {
+//         color: #9db1d8;
+//     }
+// }
+
+// .arrow {
+//     margin-bottom: -1px !important;
+// }
+// .search {
+//     width: 207px;
+//     ::v-deep .v-btn__content {
+//         color: #98acd3;
+//         font-size: 16px;
+//         font-weight: 400;
+//     }
+// }
+// ::v-deep .input-text input::placeholder {
+//     font-size: 16px;
+//     font-weight: 400;
+// }
+// .header-mobile {
+//     position: fixed;
+//     z-index: 1000;
+//     background-color: #121e36;
+// }
+// .listbox-mobile {
+//     overflow: hidden;
+//     padding-top: 125px;
+// }

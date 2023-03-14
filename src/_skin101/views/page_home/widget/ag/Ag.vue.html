@@ -1,0 +1,108 @@
+<div class="d-inline-flex ag-area" v-if="!$vuetify.breakpoint.xsOnly">
+    <div class="game-wrapper">
+        <div class="game-wrapper_agbox">
+            <div class="game-wrapper_ag game-wrapper_agbg2">
+                <div class="game-wrapper_ag-list">
+                    <ul>
+                        <li><i>·</i>{{ LangUtil("包桌百家乐") }}</li>
+                        <li><i>·</i>{{ LangUtil("经典百家乐") }}</li>
+                        <li><i>·</i>{{ LangUtil("竞咪百家乐") }}</li>
+                    </ul>
+                </div>
+                <div class="game-wrapper_ag-join">
+                    <!-- <h2 class="ag-font">{{ LangUtil("AG旗舰厅") }}</h2> -->
+                    <h2 class="ag-font">{{ data && data.list && data.list[0].vendor_product_name }}</h2>
+                    <p>{{ LangUtil("百万限额，多台下注 | 单注限红高达70万USDT") }}</p>
+                </div>
+                <button class="style1 bubbly-button" @mouseenter="()=>{isEnter1=true;}"
+                    @mouseleave="()=>{isEnter1=false;}" @click="goGamePlay(data && data.list && data.list[0])"
+                    :class="isEnter1?'button-animate':''">{{ LangUtil("进入游戏") }}<span
+                        class="icon iconfont"></span></button>
+            </div>
+            <div class="video_div">
+                <video id="video" loop="" autoplay muted style="object-fit: fill;">
+                    <source src="~@/_skin101/assets/img/ag/ag_bg.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="ag-card" @click="goGamePlay(data && data.list && data.list[1])">
+            <!-- <div class="ag-card-img ag-card-img_ag"></div> -->
+            <img class="ag-card-img ag-card-img_ag" :src="getIcon(data && data.list && data.list[1])"></img>
+            <div class="ag-card-content">
+                <!-- <h5 class="ag-font">{{ LangUtil("AG国际厅") }}</h5> -->
+                <h5 class="ag-font">{{ data && data.list && data.list[1].vendor_product_name }}</h5>
+                <ul>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '47%')}">{{ LangUtil("万人同场") }}</li>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("美女互动") }}</li>
+                </ul>
+                <p>{{ LangUtil("单注限红高达30万USDT") }}</p>
+            </div>
+            <div class="ag-card-arrow"><span class="icon iconfont"></span></div>
+        </div>
+        <div class="ag-card" @click="goGamePlay(data && data.list && data.list[2])">
+            <!-- <div class="ag-card-img ag-card-img_evo"></div> -->
+            <img class="ag-card-img ag-card-img_evo" :src="getIcon(data && data.list && data.list[2])"></img>
+            <div class="ag-card-content">
+                <!-- <h5 class="ag-font">EVO</h5> -->
+                <h5 class="ag-font">{{ data && data.list && data.list[2].vendor_product_name }}</h5>
+                <ul>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '47%')}">{{ LangUtil("多游戏同屏") }}</li>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("投注新体验") }}</li>
+                </ul>
+                <p>{{ LangUtil("单注限红高达5万USDT") }}</p>
+            </div>
+            <div class="ag-card-arrow"><span class="icon iconfont"></span></div>
+        </div>
+    </div>
+</div>
+<div class="ag-area-h5" v-else>
+    <div class="game-wrapper">
+        <div class="game-wrapper_agbox">
+            <div class="game-wrapper_ag game-wrapper_agbg2">
+                <div class="game-wrapper_ag-list">
+                    <ul>
+                        <li><i>·</i>{{ LangUtil("包桌百家乐") }}</li>
+                        <li><i>·</i>{{ LangUtil("经典百家乐") }}</li>
+                        <li><i>·</i>{{ LangUtil("竞咪百家乐") }}</li>
+                    </ul>
+                </div>
+                <div class="game-wrapper_ag-join">
+                    <!-- <h2 class="ag-font">AGQJ</h2> -->
+                    <h2 class="ag-font">{{ data && data.list && data.list[0].vendor_product_name }}</h2>
+                    <p>{{ LangUtil("百万限额，多台下注 | 单注限红高达70万USDT") }}</p>
+                </div>
+                <button class="style1 bubbly-button"
+                    @click="goGamePlay(data && data.list && data.list[0])">{{ LangUtil("进入游戏") }}<span
+                        class="icon iconfont"></span></button>
+            </div>
+        </div>
+        <div class="ag-card" @click="goGamePlay(data && data.list && data.list[1])">
+            <!-- <div class="ag-card-img ag-card-img_ag"></div> -->
+            <img class="ag-card-img ag-card-img_ag" :src="getIcon(data && data.list && data.list[1])"></img>
+            <div class="ag-card-content">
+                <!-- <h5 class="ag-font">AG国际厅</h5> -->
+                <h5 class="ag-font">{{ data && data.list && data.list[1].vendor_product_name }}</h5>
+                <ul>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '50%')}">{{ LangUtil("万人同场") }}</li>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("美女互动") }}</li>
+                </ul>
+                <p>{{ LangUtil("单注限红高达30万USDT") }}</p>
+            </div>
+            <div class="ag-card-arrow"><span class="icon iconfont"></span></div>
+        </div>
+        <div class="ag-card" @click="goGamePlay(data && data.list && data.list[2])">
+            <!-- <div class="ag-card-img ag-card-img_evo"></div> -->
+            <img class="ag-card-img ag-card-img_evo" :src="getIcon(data && data.list && data.list[2])"></img>
+            <div class="ag-card-content">
+                <!-- <h5 class="ag-font">EVO</h5> -->
+                <h5 class="ag-font">{{ data && data.list && data.list[2].vendor_product_name }}</h5>
+                <ul>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '50%')}">{{ LangUtil("多游戏同屏") }}</li>
+                    <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("投注新体验") }}</li>
+                </ul>
+                <p>{{ LangUtil("单注限红高达5万USDT") }}</p>
+            </div>
+            <div class="ag-card-arrow"><span class="icon iconfont"></span></div>
+        </div>
+    </div>
+</div>

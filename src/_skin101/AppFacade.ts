@@ -1,12 +1,13 @@
 import CheckSpeedCMD from "@/core/command/CheckSpeedCMD";
 import IOErrorCMD from "@/core/command/IOErrorCMD";
 import RequestEndCMD from "@/core/command/RequestEndCMD";
-import RequestErrorCMD from "@/core/command/RequestErrorCMD";
+// import RequestErrorCMD from "@/core/command/RequestErrorCMD";
+import RequestErrorCMD from "@/_skin101/core/command/RequestErrorCMD";
 import RequestStartCMD from "@/core/command/RequestStartCMD";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";
-import NetObserver from "@/core/NetObserver";
+import NetObserver from "./core/NetObserver";
 import NotificationName from "@/core/NotificationName";
 import GameProxy from "@/proxy/GameProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";

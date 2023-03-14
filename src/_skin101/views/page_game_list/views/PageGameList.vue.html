@@ -1,0 +1,174 @@
+<!-- <div class="container-b"> -->
+<div>
+    <v-container id="gamelist" class="pa-0 pb-5" :class="$vuetify.breakpoint.xsOnly?'px-2':''"
+        v-if="!$vuetify.breakpoint.xsOnly">
+        <!-- <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-8'" v-if="hotGame.category == 1"> -->
+        <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-8'" v-if="hotGame.category == 1">
+            <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+                <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[hotGame.category] }}</v-icon> -->
+                <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'" class="game-cate">
+                    {{ hotGame.category_name }}{{LangUtil("游戏")}}
+                </div>
+            </div>
+            <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
+                <GameItemSmall v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
+            </v-sheet>
+            <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
+                <v-slide-group show-arrows>
+                    <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                        <GameItemSmall :item="item" />
+                    </v-slide-item>
+                </v-slide-group>
+            </v-sheet>
+        </div>
+
+        <!-- <v-sheet class="d-flex align-center tranbg"
+            :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-2 my-5 mb-0'"
+            :height="$vuetify.breakpoint.xsOnly ? '35' : '70'">
+            <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20'" class="game-cate">{{LangUtil("全部游戏")}}</div>
+            <v-spacer />
+            <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
+            <GameListSelect v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+                :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]" v-model="listQuery.vendor_id" />
+            <v-btn class="ml-1 rounded-pill searchbg" :small="$vuetify.breakpoint.xsOnly"
+                :height="$vuetify.breakpoint.xsOnly?22.5:35" @click="showGameSearch">
+                <v-img src="@/_skin100/assets/game-search/cx_white.png" max-width="20" max-height="20" class="mr-1">
+                </v-img>
+                {{LangUtil("搜索")}}
+            </v-btn>
+        </v-sheet> -->
+        <v-sheet class="d-flex align-center"
+            :class="$vuetify.breakpoint.xsOnly ? 'rounded px-2 my-2': 'rounded-lg px-6 my-5'" color="#252e43"
+            :height="$vuetify.breakpoint.xsOnly ? '35' : '85'">
+            <v-img src="~@/_skin101/assets/img/game_list/all.png" max-width="24" max-height="24" />
+            <span class="all-title">{{LangUtil("全部游戏")}}</span>
+            <v-spacer />
+            <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
+            <GameListSelect v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+                :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]" v-model="listQuery.vendor_id" />
+
+            <v-btn class="ml-5 search-btn " :small="$vuetify.breakpoint.xsOnly"
+                :height="$vuetify.breakpoint.xsOnly?22.5:48" color="#7ca7f4" @click="showGameSearch">
+                <v-img src="~@/_skin101/assets/img/game_list/search.png" max-width="20" max-height="20" class="mr-1">
+                </v-img>
+                <!-- <v-icon v-if="!$vuetify.breakpoint.xsOnly">mdi-search-web</v-icon> -->
+                <!-- {{LangUtil("搜索")}} -->
+            </v-btn>
+        </v-sheet>
+        <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+            <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
+                <!-- <v-lazy> -->
+                <GameItemSmall :item="item" />
+                <!-- </v-lazy> -->
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+        </v-card>
+        <v-lazy>
+            <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                <div class="d-flex flex-column justify-center align-center">
+                    <div class="mb-3 text-14" style="color: #ffffff80">
+                        {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
+                        pageData.pageInfo.pageCurrent)}}
+                    </div>
+                    <v-progress-linear :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
+                        height="2"></v-progress-linear>
+                    <v-btn class="rounded-pill my-5" color="colorBtnBg" :width="$vuetify.breakpoint.xsOnly?125:196"
+                        :height="$vuetify.breakpoint.xsOnly?25:40" @click="getMore">{{LangUtil("加载更多")}}</v-btn>
+                </div>
+            </div>
+        </v-lazy>
+    </v-container>
+    <!-- 手机 -->
+    <v-container id="gamelist" class="pa-0 pb-5 px-2" v-if="$vuetify.breakpoint.xsOnly">
+        <div class="pt-3" v-if="hotGame.category == 1">
+            <div class="ml-2 my-2 d-flex align-center">
+                <div class="text-17 font-weight-medium">{{ hotGame.category_name }}{{LangUtil("游戏")}}</div>
+            </div>
+            <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
+                <GameItemSmall v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
+            </v-sheet>
+            <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
+                <v-slide-group show-arrows>
+                    <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                        <GameItemSmall :item="item" />
+                    </v-slide-item>
+                </v-slide-group>
+            </v-sheet>
+        </div>
+
+        <v-sheet class="d-flex align-center tranbg rounded ma-2 gameselect-mobile" height="35">
+            <div class="text-17 font-weight-medium mr-2">{{LangUtil("全部游戏")}}</div>
+            <GameListSelect :options="myProxy.config.vendor_type" v-model="listQuery.vendor_type" />
+            <GameListSelect v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+                :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]" v-model="listQuery.vendor_id" />
+            <v-spacer />
+            <v-btn class="ml-1 rounded-pill search-btn-h5 " :small="$vuetify.breakpoint.xsOnly" color="#7ca7f4"
+                :text="false" height="24" min-width="40" @click="showGameSearch">
+                <v-icon color="rgba(255,255,255,1)" size="17" class="mr-1">mdi-magnify</v-icon>
+                <!-- {{LangUtil("搜索")}} -->
+            </v-btn>
+        </v-sheet>
+        <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+            <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
+                <!-- <v-lazy> -->
+                <GameItemSmall :item="item" />
+                <!-- </v-lazy> -->
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+            <div class="mx-n1">
+                <GameItemSmall />
+            </div>
+        </v-card>
+        <v-lazy>
+            <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                <div class="d-flex flex-column justify-center align-center">
+                    <div class="mb-3 text-14" style="color: #ffffff80">
+                        {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
+                        pageData.pageInfo.pageCurrent)}}
+                    </div>
+                    <v-progress-linear :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
+                        height="2"></v-progress-linear>
+                    <v-btn class="rounded-pill my-5" color="colorBtnBg" width="127.5" height="35" @click="getMore">
+                        {{LangUtil("加载更多")}}</v-btn>
+                </div>
+            </div>
+        </v-lazy>
+    </v-container>
+</div>

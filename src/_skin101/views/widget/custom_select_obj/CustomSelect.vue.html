@@ -1,0 +1,31 @@
+<v-sheet :width="width" color="transparent">
+    <!-- <v-menu offset-y nudge-bottom="5" rounded="lg" content-class="custom-select"> -->
+    <v-menu :open-on-hover="!$vuetify.breakpoint.xsOnly" offset-y rounded="lg" content-class="custom-select">
+        <template v-slot:activator="{ on, attrs }">
+            <v-sheet class="d-flex align-center rounded-lg px-3 colorText2--text" :rounded="isPill ? 'pill':''"
+                width="100%" :height="height" color="rgba(255,255,255,0.1)" v-bind="attrs" v-on="on">
+                <img v-if="icons" class="mr-2" :width="iconSize"
+                    :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" />
+                <div class="text-truncate white--text ml-1" style="width: 100%" :class="'text-'+fontSize">
+                    {{ LangUtil(options[selectValue] && options[selectValue].name) || options[selectValue] }}
+                </div>
+                <v-spacer />
+                <div v-if="options && Object.keys(options).length > 1"
+                    class="icon-box iconfont ml-0 text-14 colorIconArrow--text"
+                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                    
+                </div>
+            </v-sheet>
+        </template>
+        <div class="menu-space-5"></div>
+        <v-sheet class="rounded-lg py-2 scroll-y" max-height="420" color="#252e43"
+            v-if="options && Object.keys(options).length > 1">
+            <div class="d-flex align-center listitem pl-4 cursor-pointer" :class="selectValue == key ? 'item-select':''"
+                v-for="(item, key) of options" :key="key" @click="onChange(key,item.value)">
+                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20">
+                </v-img>
+                <div class="white--text">{{ LangUtil(item.name) || item }}</div>
+            </div>
+        </v-sheet>
+    </v-menu>
+</v-sheet>

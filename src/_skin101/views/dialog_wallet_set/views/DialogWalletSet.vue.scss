@@ -1,0 +1,180 @@
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    // padding-top: 80px !important;
+    margin-top: 80px !important;
+}
+.listbox-contain {
+    overflow-y: auto;
+    height: calc(500px - 80px);
+}
+.select-row:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.minHei {
+    min-height: 450px;
+}
+.title-bg{
+    background-color: #0e1a31;
+}
+.hidden-rechange{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .hr-title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .hrt-main{
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            @media only screen and (max-width: 750px) {
+                font-size: 14px;
+            }
+        }
+        .hrt-sub{
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            opacity: 0.6;
+            @media only screen and (max-width: 750px) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+::v-deep .v-input--selection-controls__input{
+    width: 55px;
+    height: 26px;
+    input {
+        max-height: 26px;
+        width: 55px;
+    }
+    .v-input--selection-controls__ripple{
+        // width:18px;
+        // height:18px;
+        display: none;
+    }
+    .v-input--switch__thumb{
+        width:18px;
+        height:18px;
+    }
+    .v-input--switch__track {
+        // color: #0e1a31 !important;
+        color: #000 !important;
+        border-radius: 13px;
+        height: 26px;
+        width: 55px;
+        left: -8px;
+    }
+}
+.sheet-wallet-bg{
+    background-image: linear-gradient(134deg, #1e2d4e 1%, #10182c 100%) !important;
+}
+.curr-items{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    .c-item{
+        width:25%;
+        margin: 16px 0;
+        display: flex;
+        align-items: center;
+        .normal-active{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:20px;
+            height:20px;
+            border-radius: 100%;
+            border-width: 2px;
+            border-color: #34415e;
+            // border-color: #fff;
+            border-style: solid;
+            .active{
+                width:10px;
+                height:10px;
+                border-radius: 100%;
+                background-color: #ffcc68;
+            }
+        }
+        .curr-name{
+            margin-left:9px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+        }
+        .curr-icon{
+            margin-left:9px;
+            display: inline-block;
+            width:18px;
+            height:18px;
+        }
+    }
+}
+.curr-tips{
+    margin-top:4px;
+    opacity: 0.6;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+}
+.split{
+    width:100%;
+    height:1px;
+    margin:17px 0 30px;
+    opacity: 0.1;
+    background-color: #a1b0d5;
+}
+.btn-out{
+    padding: 0 5%;
+}
+@media only screen and (max-width: 750px) {
+    .curr-items{
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        .c-item{
+            width:25%;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            .normal-active{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width:18px;
+                height:18px;
+                border-radius: 100%;
+                border-width: 1px;
+                border-color: #34415e;
+                // border-color: #fff;
+                border-style: solid;
+                .active{
+                    width:11px;
+                    height:11px;
+                    border-radius: 100%;
+                    background-color: #ffcc68;
+                }
+            }
+            .curr-name{
+                margin-left:6.5px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #fff;
+            }
+            .curr-icon{
+                margin-left:7px;
+                display: inline-block;
+                width:14px;
+                height:14px;
+            }
+        }
+    }
+}

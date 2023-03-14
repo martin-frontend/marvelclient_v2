@@ -1,0 +1,24 @@
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    // padding-top: 80px !important;
+    margin-top: 80px !important;
+}
+.listbox-contain {
+    overflow-y: auto;
+    height: calc(500px - 80px);
+}
+.select-row:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.minHei {
+    min-height: 450px;
+}
+.title-bg{
+    background-color: #0e1a31;
+}

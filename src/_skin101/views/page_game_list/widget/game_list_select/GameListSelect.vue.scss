@@ -1,0 +1,97 @@
+.listbox {
+    border-radius: 16px;
+    // padding: 16px 8px;
+    flex-grow: 0;
+    padding: 18px 26.5px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(138deg, #1e2d4e 1%, #10182c 100%);
+}
+
+.listitem {
+    padding: 8px 16px;
+    height: 36px;
+    color: rgb(157, 177, 216);
+    &:hover{
+        color: white;
+    }
+}
+
+.listitem-active {
+    // color: white;
+    .icon {
+        color: rgb(111, 169, 250);
+    }
+}
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.active-filter{
+    width: 16px;
+    height: 16px;
+    flex-grow: 0;
+    border-radius: 50%;
+    border: solid 1px #fff;
+    background-color: #7ca7f4;
+}
+.none-filter{
+    width: 16px;
+    height: 16px;
+    flex-grow: 0;
+    border-radius: 50%;
+    border: solid 1px #fff;
+    background-color: transparent;
+}
+@media screen and (max-width: 750px) {
+    .listbox-h5 {
+        padding: 14px 22px;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        background-color: #252e43;
+    }
+    .listitem {
+        padding: 8px 0px;
+        height: 34px;
+        color: #a1b0d5;
+        &:hover{
+            color: white;
+        }
+    }
+    .active-filter{
+        width: 13px;
+        height: 13px;
+        padding:2px;
+        flex-grow: 0;
+        border-radius: 50%;
+        border: solid 1px #fff;
+        background-color: transparent;
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .active-filter-inner{
+            flex-grow: 0;
+            flex-shrink: 0;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #ffcc68;
+        }
+    }
+    .none-filter{
+        width: 13px;
+        height: 13px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        border-radius: 50%;
+        border: solid 1px #fff;
+        background-color: transparent;
+    }
+}

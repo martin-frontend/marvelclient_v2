@@ -1,0 +1,103 @@
+.listitem {
+    .l-item {
+        min-width: 120px;
+        max-width: 120px;
+        @media only screen and (max-width: 600px) {
+            max-width: unset;
+        }
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            @media only screen and (max-width: 600px) {
+                min-width: 100px;
+            }
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        div:nth-child(2) {
+            @media only screen and (max-width: 600px) {
+                min-width: 100px;
+            }
+            margin-top: -2px;
+            color: white;
+        }
+        div > a {
+            color: white;
+        }
+    }
+}
+.listitem-mobile {
+    .l-item {
+        width: calc(100% / 3);
+        @media only screen and (max-width: 600px) {
+            max-width: unset;
+        }
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            @media only screen and (max-width: 600px) {
+                min-width: 100px;
+            }
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        div:nth-child(2) {
+            @media only screen and (max-width: 600px) {
+                min-width: 100px;
+            }
+            margin-top: -2px;
+            color: white;
+        }
+        div > a {
+            color: white;
+        }
+    }
+}
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 70px;
+}
+.coin-status-change {
+    width: 100%;
+}
+// .listitem {
+//     div {
+//         min-width: 150px;
+//         max-width: 150px;
+//         @media only screen and (max-width: 600px) {
+//             max-width: unset;
+//         }
+//         margin-top: 2px;
+//         margin-bottom: 2px;
+//         color: #9db1d8;
+//         div:first-child {
+//             @media only screen and (max-width: 600px) {
+//                 min-width: 100px;
+//             }
+//             color: #4c5d7f;
+//             margin-bottom: 5px;
+//         }
+//         div > a {
+//             color: #9db1d8;
+//         }
+//     }
+// }
+// .header-mobile {
+//     position: fixed;
+//     z-index: 1000;
+//     background-color: #121e36;
+// }
+// .listbox-mobile {
+//     overflow: hidden;
+//     padding-top: 70px;
+// }

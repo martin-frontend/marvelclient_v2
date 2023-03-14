@@ -1,0 +1,18 @@
+
+.rounded_img{
+    border-radius: 0px 0px 10px 10px !important;
+}
+.pad_height{
+    min-height: calc(100vh - 600px);
+}
+.theme--dark.v-btn--active:before {
+    opacity: 0;
+}
+.active{
+    border: 1px solid #ffcc68 !important;
+    color:#ffcc68 !important; 
+}
+.nomal{
+    border: 1px solid #415a7c !important;
+    color:#415a7c !important; 
+}

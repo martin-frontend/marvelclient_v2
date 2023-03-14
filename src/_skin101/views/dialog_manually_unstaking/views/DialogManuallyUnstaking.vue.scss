@@ -1,0 +1,18 @@
+.input-btn-text {
+    &::v-deep .v-btn__content {
+        color: #9db1d8;
+    }
+}
+.confirm-btn {
+    &::v-deep .v-btn__content {
+        color: white;
+        font-weight: 400;
+        font-size: 18px;
+    }
+}
+.ip {
+    border-width: 0;
+    border-radius: 4px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+}

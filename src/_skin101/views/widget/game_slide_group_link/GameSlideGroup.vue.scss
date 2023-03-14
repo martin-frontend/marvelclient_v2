@@ -1,0 +1,183 @@
+$next-right: var(--next-right);
+$prev-right: var(--prev-right);
+
+::v-deep .v-slide-group__prev {
+    position: absolute;
+    top: -33px;
+    right: 35px;
+    // right: $prev-right;
+    min-width: 0;
+    border-radius: 12pt 0pt 0pt 12pt;
+    width: 32px;
+    height: 24px;
+    i {
+        font-size: 30px;
+    }
+}
+::v-deep .v-slide-group__next {
+    position: absolute;
+    top: -33px;
+    right: 0px;
+    // right: $next-right;
+    min-width: 0;
+    border-radius: 0pt 12pt 12pt 0pt;
+    width: 32px;
+    height: 24px;
+    i {
+        font-size: 30px;
+    }
+}
+
+::v-deep .theme--dark {
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        // background: rgba(243, 231, 231, 0.098);
+        background: #252e43;
+    }
+}
+::v-deep .theme--light {
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        // background: rgba(243, 231, 231, 0.098);
+        background: #252e43;
+    }
+}
+.small-group{
+    // margin-top:30px;
+}
+.game-intro{
+    position: relative;
+    width: 100%;
+    margin-left: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background: no-repeat top / cover url('~@/_skin101/assets/img/group_link/crazy_bg.png'), linear-gradient(180deg, #22073D00 0%, #8104A0 100%);
+    cursor: pointer;
+    .rocket-eject{
+        pointer-events: none;
+        position: absolute;
+        right: -14%;
+        bottom: -12%;
+        width: 85%;
+    }
+    .game-intro-info{
+        padding: 34px 41px;
+        .info{
+            background-color: transparent !important;
+            border-color: transparent !important;
+            h5{
+                color: #fff;
+                font-size: 18px;
+                line-height: 2;
+                margin-bottom: 8px;
+            }
+            p{
+                margin: 0;
+                margin-bottom: 8px;
+                max-width: 386px;
+                font-size: 14px;
+                color: rgba(202, 202, 255, 0.6);
+                line-height: 28px;
+                letter-spacing: 0.5px;
+            }
+        }
+        .game-name{
+            margin-top: 0px;
+            color: #F1C44A;
+        h2{
+            font-size: 48px;
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+        p{
+            margin: 0;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+    .style1 {
+        // padding: 0 24px;
+        // line-height: 44px;
+        // background-color: #fff;
+        width: 112px;
+        height: 40px;
+        color: #324466;
+        font-size: 16px;
+        border-radius: 6px;
+        margin-top: 29px;
+
+        padding: 9px 17px;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+ }
+}
+
+// @media screen and (max-width: 750px) {
+@media screen and (max-width: 1200px) {
+    .game-intro-out{
+        margin-top:27px;
+        margin-bottom:15px;
+    }
+    .game-intro{
+        margin-left:0;
+        overflow: hidden;
+        .game-intro-info{
+            // padding: 43px 21.5px 57.75px;
+            padding: 23px 21.5px 57.75px;
+            z-index: 2;
+            .info{
+                h5{
+                    color: #fff;
+                    font-size: 18px;
+                    margin-bottom: 20px; 
+                }
+                p{
+                    margin: 0;
+                    // margin-bottom: 57px;
+                    margin-bottom: 20px;
+                    line-height: normal;
+                    letter-spacing:normal;
+                    max-width: 275px;
+                    flex-grow: 0;
+                    opacity: 0.6;
+                    font-size: 14px;
+                    color: #abacfd;
+                }
+            }
+            .game-name{
+                margin-top: 0px;
+                color: #F1C44A;
+                h2{
+                    font-size: 30px;
+                    font-weight: 600;
+                    line-height: normal;
+                    margin-bottom: 11px;
+                }
+                p{
+                    margin: 0;
+                    font-size: 14px;
+                    line-height: normal;
+                }
+            }
+            .style1 {
+                width: 112px;
+                height: 40px;
+                color: #252e43;
+                font-size: 15px;
+                border-radius: 3px;
+                margin-top: 48.5px;
+                background-color: #fff;
+            }
+        }
+        .rocket-eject {
+            pointer-events: none;
+            position: absolute;
+            right: -26%;
+            bottom: -5%;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+}

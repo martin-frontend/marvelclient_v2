@@ -1,0 +1,15 @@
+.gradient-text {
+    background: linear-gradient(#eef5fe, #89c0fb);
+    -webkit-background-clip: text;
+    color: transparent;
+    // font-family:  "Arial-BoldMT";
+    font-family:  "Montserrat-ExtraBold";
+    // font-family:  "Montserrat-Black";
+    // font-family:  "DINPro-Bold";
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+.doller{
+    margin-right: 5px;
+}

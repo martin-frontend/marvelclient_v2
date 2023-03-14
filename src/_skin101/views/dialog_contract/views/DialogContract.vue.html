@@ -1,0 +1,26 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true" :transition="$vuetify.breakpoint.xsOnly?'slide-y-reverse-transition':'dialog-transition'"
+    persistent>
+    <v-card class="rounded-lg pb-5 sheet-bg" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-sheet class="d-flex text-20 font-weight-medium align-center px-10 mb20 pt26" color="transparent">
+            <div class="text-18">{{LangUtil("关于我们")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-sheet>
+        <v-sheet class="overflow-y-auto mx-10 text-wrapper" color="transparent" min-height="200"><span
+                style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("联系我们内容")}}</span></v-sheet>
+    </v-card>
+    <v-card class="rounded-lg pb-5 sheet-bg" v-if="$vuetify.breakpoint.xsOnly">
+        <v-sheet class="d-flex text-20 font-weight-medium align-center px-5 mb13 pt-5" color="transparent">
+            <div class="font-weight-medium white--text text-17">{{LangUtil("联系我们")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-sheet>
+        <v-sheet class="overflow-y-auto mx-5 text-wrapper" color="transparent" height="525"><span
+                style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("联系我们内容")}}</span></v-sheet>
+    </v-card>
+</v-dialog>

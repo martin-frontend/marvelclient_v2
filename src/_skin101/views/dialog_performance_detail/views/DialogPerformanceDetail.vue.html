@@ -1,0 +1,328 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true" persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <!-- <v-card class="rounded-lg bPanelBg"> -->
+    <v-card class="rounded-lg sheet-bg">
+        <!-- pc显示方式 -->
+        <v-card-title class="px30" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("业绩详情")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px30" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="d-inline-flex align-center justify-center pa-1 mb-3 rounded-pill bPanelOpacityBg">
+                <v-btn width="115" height="32" class="rounded-pill font-weight-bold white--text text-16" elevation="0"
+                    :text="listQuery.cate != 0" :color="listQuery.cate == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)">
+                    <!-- <v-icon class="mr-1">mdi-chart-line</v-icon> -->
+                    {{LangUtil("业绩概况")}}
+                </v-btn>
+                <v-btn width="115" height="32" class="rounded-pill font-weight-bold white--text text-16" elevation="0"
+                    :text="listQuery.cate != 1" :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(1)">
+                    <!-- <v-icon class="mr-1">mdi-chart-tree</v-icon> -->
+                    {{LangUtil("直属明细")}}
+                </v-btn>
+            </div>
+            <v-sheet v-if="listQuery.cate == 0" class="mb-3 px-5 py-3 rounded-lg totalPanelBg">
+                <div class="d-flex flex-wrap justify-space-between listitem">
+                    <div class="item-all-width">
+                        <div class="text-truncate text-13 font-weight-medium mb-n1">{{ parameter.date }}</div>
+                    </div>
+                    <div class="item-auto">
+                        <div class="white--text text-14">{{LangUtil("团队人数(新增)")}}</div>
+                        <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">
+                            {{ pageData.group_users }} ({{ pageData.today_group_users }})
+                        </div>
+                    </div>
+                    <div class="item-auto">
+                        <div class="white--text text-14">{{LangUtil("直属用户(新增)")}}</div>
+                        <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">
+                            {{ pageData.directly_users }} ({{ pageData.today_directly_users }})
+                        </div>
+                    </div>
+                    <div class="item-auto">
+                        <div class="white--text text-14">{{LangUtil("总业绩")}}</div>
+                        <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">
+                            {{ pageData.statistics_data.total_water_summary }}
+                        </div>
+                    </div>
+                    <div class="item-auto">
+                        <div class="white--text text-14">{{LangUtil("佣金总额")}}</div>
+                        <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">
+                            {{ pageData.statistics_data.total_commission.USDT }}
+                        </div>
+                    </div>
+                </div>
+            </v-sheet>
+            <div v-if="listQuery.cate == 0" class="scroll-y scroll_box">
+                <!-- <v-sheet class="mb-3 px-5 py-3 rounded-lg totalPanelBg">
+                    <div class="d-flex flex-wrap justify-space-between listitem">
+                        <div class="item-all-width" >
+                            <div class="text-truncate text-13 font-weight-medium mb-n1">
+                                {{ parameter.date }}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("团队人数(新增)")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">{{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("直属用户(新增)")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">{{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("总业绩")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">{{ pageData.statistics_data.total_water_summary }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("佣金总额")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium mt-n1">{{ pageData.statistics_data.total_commission.USDT }}</div>
+                        </div>
+                    </div>
+                </v-sheet> -->
+                <v-sheet v-if="pageData.list.length>0" height="420" color="transparent" class="listbox">
+                    <v-sheet class="mb-3 px-5 py-3 rounded-lg" color="rgba(0,0,0,0.1)"
+                        v-for="(item, key) of pageData.list" :key="key">
+                        <div class="d-flex flex-wrap justify-space-between listitem">
+                            <div class="item-all-width">
+                                <div class="text-truncate text-14 font-weight-medium">
+                                    {{ categoryType[item.type].label }}{{LangUtil("业绩")}}
+                                </div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("总业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.total_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("自营业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.self_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("直属业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.direct_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("团队业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.group_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("每万返佣")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.commission_num }}
+                                </div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("佣金")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n2">{{ item.total_commission }}
+                                </div>
+                            </div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
+                <div style="width: 100%; height: 411px" v-if="pageData.list.length == 0 && pageData.loading"></div>
+            </div>
+            <v-sheet v-if="listQuery.cate == 1" height="525" color="transparent" class="listbox scroll-y">
+                <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg px-5 py-4 pb-1 mb-3">
+                    <div class="colorText1--text text-14 font-weight-medium mb-2 d-flex flex-wrap align-center"
+                        :key="'u' + idx">
+                        <div class="d-flex align-center mr-3">
+                            <v-icon class="white--text mr-2">mdi-account-circle</v-icon>
+                            <div class="opacity4-white mr-1">{{LangUtil("昵称")}}</div>
+                            <div class="white--text">{{ item.nick_name }}</div>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="opacity4-white mr-1">{{LangUtil("ID")}}</div>
+                            <div class="white--text">{{ item.user_id }}</div>
+                        </div>
+                    </div>
+
+                    <v-sheet class="mb-2 rounded-lg" color="transparent" v-for="(val, name) in item.water_info"
+                        :key="'s' + name + idx">
+                        <div class="d-flex flex-wrap justify-space-between listitem_b pb-3">
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("业绩类型")}}</div>
+                                <div class="text-truncate white--text text-14 font-weight-medium">
+                                    {{ categoryType[name].label }}业绩</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("团队人数")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ item.group_users }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("团队业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ val.group_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("自营业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium">{{ val.self_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("每万返佣")}}</div>
+                                <div class="white--text text-14 font-weight-medium">
+                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
+                                </div>
+                            </div>
+                        </div>
+                        <v-divider v-if="Object.keys(item.water_info)[item.water_info.length - 1] != name" />
+                    </v-sheet>
+                </div>
+                <ListNodata v-if="pageData.directList.length == 0 && !pageData.loading" height="480" />
+                <div style="width: 100%; height: 480px" v-if="pageData.directList.length == 0 && pageData.loading">
+                </div>
+            </v-sheet>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex align-center px15 pt-5">
+                <div class="font-weight-medium white--text text-17">{{LangUtil("业绩详情")}}</div>
+                <v-spacer />
+                <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                </v-btn>
+            </div>
+        </v-card-text>
+        <v-card-text class="px15" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-inline-flex align-center justify-center pa-1 mb-3 rounded-pill bPanelOpacityBg">
+                <v-btn width="115" height="32" class="rounded-pill font-weight-bold white--text text-15" elevation="0"
+                    :text="listQuery.cate != 0" :color="listQuery.cate == 0 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(0)">
+                    {{LangUtil("业绩概况")}}
+                </v-btn>
+                <v-btn width="115" height="32" class="rounded-pill font-weight-bold white--text text-15" elevation="0"
+                    :text="listQuery.cate != 1" :color="listQuery.cate == 1 ? 'colorBtnSeleBg' : 'white--text'"
+                    @click="onTabClick(1)">
+                    {{LangUtil("直属明细")}}
+                </v-btn>
+            </div>
+
+            <v-sheet v-if="listQuery.cate == 0" color="transparent" class="scroll-y scroll_box">
+                <v-sheet class="mb-3 px-5 py-3 rounded-lg totalPanelBg">
+                    <div class="d-flex flex-wrap justify-space-between listitem-mobile-h">
+                        <div class="item-all-width">
+                            <div class="text-truncate text-13 font-weight-medium mb-n1">{{ parameter.date }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("团队人数(新增)")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium">
+                                {{ pageData.group_users }} ({{ pageData.today_group_users }})
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("直属用户(新增)")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium">
+                                {{ pageData.directly_users }} ({{ pageData.today_directly_users }})
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("总业绩")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium">
+                                {{ pageData.statistics_data.total_water_summary }}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="white--text text-14">{{LangUtil("佣金总额")}}</div>
+                            <div class="colorTextYellow--text text-12 font-weight-medium">
+                                {{ pageData.statistics_data.total_commission.USDT }}
+                            </div>
+                        </div>
+                    </div>
+                </v-sheet>
+
+                <v-sheet v-if="pageData.list.length>0" color="transparent" class="listbox">
+                    <v-sheet
+                        class="px-4 py-3 rounded-lg mb-3 opacity4-white d-flex flex-wrap justify-space-between listitem_b_mobile"
+                        color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                        <div class="item-all-width">
+                            <div class="text-truncate white--text text-14 font-weight-medium">
+                                {{ categoryType[item.type].label }}{{LangUtil("业绩")}}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12">{{LangUtil("总业绩")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1">{{ item.total_water }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12 text-center">{{LangUtil("自营业绩")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1 text-center">{{ item.self_water }}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12 text-right">{{LangUtil("直属业绩")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1 text-right">{{ item.direct_water }}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12">{{LangUtil("团队业绩")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1">{{ item.group_water }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12 text-center">{{LangUtil("每万返佣")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1 text-center">
+                                {{ item.commission_num }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="text-12 text-right">{{LangUtil("佣金")}}</div>
+                            <div class="white--text text-14 font-weight-medium mt-n1 text-right">
+                                {{ item.total_commission }}</div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
+            </v-sheet>
+            <v-sheet v-if="listQuery.cate == 1" :min-height="isIOSMobile ? 360:'80%'" color="transparent"
+                class="listbox scroll-y">
+                <div v-for="(item, idx) in pageData.directList" class="bPanelOpacityBg rounded-lg pa-4 mb-3">
+                    <div class="colorText1--text text-14 font-weight-medium mb-2 d-flex flex-wrap align-center"
+                        :key="'u' + idx">
+                        <div class="d-flex align-center mr-3">
+                            <v-icon class="white--text mr-2" size="24">mdi-account-circle</v-icon>
+                            <div class="opacity4-white mr-1">{{LangUtil("昵称")}}</div>
+                            <div class="white--text">{{ item.nick_name }}</div>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="opacity4-white mr-1">{{LangUtil("ID")}}</div>
+                            <div class="white--text">{{ item.user_id }}</div>
+                        </div>
+                    </div>
+                    <v-sheet class="mb-2 rounded-lg" color="transparent" v-for="(val, name) in item.water_info"
+                        :key="'s' + name + idx">
+                        <div class="d-flex flex-wrap justify-start listitem_b_mobile pb-3">
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("业绩类型")}}</div>
+                                <div class="text-truncate white--text text-14 font-weight-medium mt-n1">
+                                    {{ categoryType[name].label }}业绩
+                                </div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12 text-center">{{LangUtil("团队人数")}}</div>
+                                <div class="white--text text-14 font-weight-medium text-center mt-n1">
+                                    {{ item.group_users }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12 text-right">{{LangUtil("团队业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium text-right mt-n1">
+                                    {{ val.group_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12">{{LangUtil("自营业绩")}}</div>
+                                <div class="white--text text-14 font-weight-medium mt-n1">{{ val.self_water }}</div>
+                            </div>
+                            <div class="item-auto">
+                                <div class="opacity4-white text-12 text-center">{{LangUtil("每万返佣")}}</div>
+                                <div class="white--text text-14 font-weight-medium text-center mt-n1">
+                                    {{ val.commission_num.USDT }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
+                                </div>
+                            </div>
+                        </div>
+                        <v-divider v-if="Object.keys(item.water_info)[item.water_info.length - 1] != name" />
+                    </v-sheet>
+                </div>
+                <ListNodata v-if="pageData.directList.length == 0 && !pageData.loading" />
+            </v-sheet>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

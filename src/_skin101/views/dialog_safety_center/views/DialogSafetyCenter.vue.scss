@@ -1,0 +1,40 @@
+.dialog-background {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
+}
+.items-bg {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.safety-ip {
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.colorPanelBg4 {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
+}
+// .on-safety-bg {
+//     background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%);
+// }
+// .on-safety-bg {
+//     background-color: #7ca7f4;
+// }
+::v-deep.v-text-field--outlined fieldset {
+    // color: #314361 !important;
+    color: transparent !important;
+}
+.login-ip {
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.arrow-color {
+    color: rgba(255, 255, 255, 0.2) !important;
+    caret-color: rgba(255, 255, 255, 0.3) !important;
+}
+.search-area {
+    border: 0;
+    height: 32px;
+    border-radius: 16px !important;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
+    color: white !important;
+}

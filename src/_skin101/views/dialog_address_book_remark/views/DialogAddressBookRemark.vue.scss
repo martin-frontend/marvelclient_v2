@@ -1,0 +1,17 @@
+.input-text {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    textarea {
+        vertical-align: middle;
+        height: 150px;
+        width: 100%;
+        color: #fff;
+        resize: none;
+        border: none;
+        outline: none;
+    }
+}
+textarea::placeholder,
+textarea[disabled] {
+    color: rgba(255, 255, 255, 0.2);
+}

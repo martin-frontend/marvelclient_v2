@@ -1,0 +1,90 @@
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" v-if="!$vuetify.breakpoint.xsOnly">
+    <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+        <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">
+            {{ CategoryIcon[data.category] }}</v-icon> -->
+        <div :class="$vuetify.breakpoint.xsOnly?'text-12':'text-20 font-weight-bold'">{{ data.category_name }}</div>
+        <v-spacer />
+        <!-- <v-btn v-if="!$vuetify.breakpoint.xsOnly" class="text-12 rounded-pill" style="padding: 8px"
+            color="rgba(243, 231, 231, 0.098)" height="24" @click="onShowAll">
+            {{LangUtil("查看全部")}}
+        </v-btn> -->
+    </div>
+    <!-- <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap listbox" color="transparent"> -->
+    <v-sheet max-width="1442" class="mx-auto d-flex flex-wrap listbox" color="transparent">
+        <!-- <v-card :width="width" :height="279/697*width" color="colorTitleBg" class="rounded-lg mr-3 my-1 mt-2 box"
+            :class="item.status != 1 ? 'filter-gray' : ''" v-for="item of data.list" :key="item.vendor_prodcut_id"
+            @click="goGamePlay(item)"> -->
+        <v-card :width="index == activeIndex ? 545:278" @mouseenter="mouseenter(index)" :height="200"
+            color="colorTitleBg" class="rounded-diy my-1 mt-2 box"
+            :class="[(item.status != 1 ? 'filter-gray' : ''),(index == 3 ? '':'mr-3')]"
+            v-for="(item,index) of data.list" :key="item.vendor_prodcut_id" @click="goGamePlay(item)">
+            <v-lazy>
+                <!-- <v-img class="cursor-pointer d-flex align-center rounded" :height="279/697*width" :src="getIcon(item)"> -->
+                <v-img class="cursor-pointer d-flex align-center rounded-diy" :height="200" :src="getIcon(item)">
+                    <div class="game-icon">
+                        <div class="game-title text-32 font-weight-bold">{{item.vendor_product_name}}</div>
+                        <div class="vendor-title text-16 mt18">{{item.vendor_name}}</div>
+                    </div>
+                    <div class="egame__item__mask">
+                        <div class="egame__item__play-icon">
+                            <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                                <div class="icon-chevron-right icon__icon mt-n1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <template v-slot:placeholder>
+                        <v-row class="fill-height ma-0" align="center" justify="center">
+                            <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+            </v-lazy>
+        </v-card>
+    </v-sheet>
+</div>
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt25' : 'mt-8'" v-else>
+    <div class="text-16 d-flex align-center" :class="$vuetify.breakpoint.xsOnly?'mx-1':'mb-2 ml-2 mr-4'">
+        <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">
+            {{ CategoryIcon[data.category] }}</v-icon> -->
+        <div :class="$vuetify.breakpoint.xsOnly?'text-18':''">{{ data.category_name }}</div>
+        <v-spacer />
+        <!-- <v-btn v-if="!$vuetify.breakpoint.xsOnly" class="text-12 rounded-pill" style="padding: 8px"
+            color="rgba(243, 231, 231, 0.098)" height="24" @click="onShowAll">
+            {{LangUtil("查看全部")}}
+        </v-btn> -->
+        <v-btn v-if="$vuetify.breakpoint.mobile" class="text-12 rounded-pill"
+            style="padding: 0 16px;margin-right:0px;font-size: 12px;" color="#252e43" height="24" @click="onShowAll">
+            {{LangUtil("更多")}}
+        </v-btn>
+    </div>
+    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap listbox mb38" color="transparent">
+        <!-- <v-card :width="width" :height="279/697*width" color="colorTitleBg" class="rounded-lg mr-3 my-1 mt-2 box"
+            :class="item.status != 1 ? 'filter-gray' : ''" v-for="item of data.list" :key="item.vendor_prodcut_id"
+            @click="goGamePlay(item)"> -->
+        <v-card :width="width" :height="257/700*width" color="colorTitleBg" class="rounded-lg mr-3 my-1 mt-2 box"
+            :class="item.status != 1 ? 'filter-gray' : ''" v-for="item of data.list" :key="item.vendor_prodcut_id"
+            @click="goGamePlay(item)">
+            <v-lazy>
+                <!-- <v-img class="cursor-pointer d-flex align-center rounded" :height="279/697*width" :src="getIcon(item)"> -->
+                <v-img class="cursor-pointer d-flex  rounded" :height="257/700*width" :src="getIcon(item)">
+                    <div class="game-icon">
+                        <div class="game-title font-weight-bold">{{item.vendor_product_name}}</div>
+                        <div class="vendor-title ">{{item.vendor_name}}</div>
+                    </div>
+                    <div class="egame__item__mask">
+                        <div class="egame__item__play-icon">
+                            <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                                <div class="icon-chevron-right icon__icon mt-n1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <template v-slot:placeholder>
+                        <v-row class="fill-height ma-0" align="center" justify="center">
+                            <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+            </v-lazy>
+        </v-card>
+    </v-sheet>
+</div>

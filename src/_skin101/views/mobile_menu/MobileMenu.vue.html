@@ -1,0 +1,13 @@
+<!-- <v-footer class="justify-space-around pa-0" height="75" color="#1D2A43" app> -->
+<v-footer class="justify-space-around pa-0" height="75" color="#0e1a31" app>
+    <v-sheet class="d-flex flex-column align-center cursor-pointer pt-3 rounded-b" width="70" height="75"
+        v-for="(item, index) of menuList" :key="index" @click="onItemClick(item)"
+        :class="routerPath == item.path ? 'active':''" color="transparent">
+        <!-- <v-icon size="26" :color="routerPath == item.path ? 'colorTextGold' : 'colorText2'">{{item.icon}}</v-icon> -->
+        <img v-show="routerPath == item.path" width="27" height="27" :src="item.activeIcon" alt="" />
+        <img v-show="routerPath != item.path" width="27" height="27" :src="item.icon" alt="" />
+        <div class="text-10" :class="routerPath == item.path ? 'colorTextGold101--text': 'colorTextFoot101--text'">
+            {{item.name}}
+        </div>
+    </v-sheet>
+</v-footer>

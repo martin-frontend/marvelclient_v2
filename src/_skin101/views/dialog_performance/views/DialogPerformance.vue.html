@@ -1,0 +1,120 @@
+<v-dialog width="860" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    :no-click-animation="true" persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <!-- <v-card class="rounded-lg bPanelBg"> -->
+    <v-card class="rounded-lg sheet-bg">
+        <!-- pc显示方式 -->
+        <v-card-title class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="text-18">{{LangUtil("业绩查询")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text class="px-8" v-if="!$vuetify.breakpoint.xsOnly">
+            <div class="d-flex justify-start mb-3">
+                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="260"
+                    height="35" @change="onTimeChange" />
+            </div>
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="495" class="scroll-y">
+                <v-sheet class="mb-3 px-5 py-3 rounded-lg" color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list"
+                    :key="key">
+                    <div class="d-flex flex-wrap justify-space-between listitem">
+                        <div class="item-110">
+                            <div class="mb-1 opacity4-white text-12">{{LangUtil("时间")}}</div>
+                            <div class="text-truncate white--text text-14 font-weight-regular mt-n1">{{ item.date }}
+                            </div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="mb-1 opacity4-white text-12">{{LangUtil("总业绩")}}</div>
+                            <div class="white--text text-14 font-weight-regular mt-n1">{{ item.total_water }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="mb-1 opacity4-white text-12">{{LangUtil("团队业绩")}}</div>
+                            <div class="white--text text-14 font-weight-regular mt-n1">{{ item.group_water }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="mb-1 opacity4-white text-12">{{LangUtil("直属业绩")}}</div>
+                            <div class="white--text text-14 font-weight-regular mt-n1">{{ item.direct_water }}</div>
+                        </div>
+                        <div class="item-auto">
+                            <div class="mb-1 opacity4-white text-12">{{LangUtil("总佣金")}}</div>
+                            <div class="white--text text-14 font-weight-regular mt-n1">{{ item.total_commission.USDT }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-center justify-end listitem-90">
+                            <v-btn text class="text-decoration-underline pa-0 white--text font-weight-regular"
+                                @click="handlerDetail(item.date)">
+                                <span class="text-12">{{LangUtil("查看详情")}}>></span>
+                                <!-- <v-img
+                                    class="arrow"
+                                    width="24"
+                                    height="24"
+                                    src="@/assets/extension/chevrons-right.png"
+                                ></v-img> -->
+                            </v-btn>
+                        </div>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" height="411" />
+            <div style="width: 100%; height: 411px" v-if="pageData.list.length == 0 && pageData.loading"></div>
+        </v-card-text>
+        <!-- 手机显示方式 -->
+        <v-card-text class="pb-3 px-0" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex align-center px15 pt-5">
+                <div class="font-weight-medium white--text text-17">{{LangUtil("业绩查询")}}</div>
+                <v-spacer />
+                <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                </v-btn>
+            </div>
+        </v-card-text>
+        <v-card-text class="px15" v-if="$vuetify.breakpoint.xsOnly">
+            <div class="d-flex justify-start mb-3">
+                <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="125"
+                    height="35" @change="onTimeChange" />
+            </div>
+            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y">
+                <v-sheet class="px-4 py-4 rounded-lg mb-3 opacity4-white d-flex flex-wrap listitem-mobile"
+                    color="rgba(0,0,0,0.1)" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-center flex-column">
+                        <div class="text-12">{{LangUtil("时间")}}</div>
+                        <div class="white--text text-14 font-weight-medium">{{ item.date }}</div>
+                    </div>
+                    <div class="d-flex justify-center flex-column">
+                        <div class="text-12 text-center">{{LangUtil("总业绩")}}</div>
+                        <div class="white--text text-14 font-weight-medium text-center">{{ item.total_water }}</div>
+                    </div>
+                    <div class="d-flex justify-center flex-column">
+                        <div class="text-12 text-right">{{LangUtil("团队业绩")}}</div>
+                        <div class="white--text text-14 font-weight-medium text-right">{{ item.group_water }}</div>
+                    </div>
+                    <div class="d-flex justify-center flex-column">
+                        <div class="text-12">{{LangUtil("直属业绩")}}</div>
+                        <div class="white--text text-14 font-weight-medium">{{ item.direct_water }}</div>
+                    </div>
+                    <div class="d-flex justify-center flex-column">
+                        <div class="text-12 text-center">{{LangUtil("总佣金")}}</div>
+                        <div class="white--text text-14 font-weight-medium text-center">{{ item.total_commission.USDT }}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-end align-end">
+                        <v-btn text height="20" class="text-decoration-underline pa-0 white--text  font-weight-medium"
+                            @click="handlerDetail(item.date)">
+                            <span class="text-14">{{LangUtil("查看详情")}}>></span>
+                            <!-- <v-img
+                                class="arrow"
+                                width="24"
+                                height="24"
+                                src="@/assets/extension/chevrons-right.png"
+                            ></v-img> -->
+                        </v-btn>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0 && !pageData.loading" />
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

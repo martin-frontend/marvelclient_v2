@@ -1,0 +1,44 @@
+<v-menu offset-y nudge-bottom="5" :max-height="$vuetify.breakpoint.xsOnly ? '370' :'600'" z-index="1">
+    <template v-slot:activator="{ on, attrs }">
+        <v-sheet class="rounded-pill d-flex align-center colorText2--text cursor-pointer mx-1"
+            :class="$vuetify.breakpoint.xsOnly ? 'px-0':'px-5'"
+            :color="$vuetify.breakpoint.xsOnly? '#252e43':'#0e1a31' " :height="$vuetify.breakpoint.xsOnly ? '25' :'48'"
+            :width="$vuetify.breakpoint.xsOnly?80:336" v-bind="attrs" v-on="on">
+            <!-- <div class="icon-box iconfont icon-Filter icon__icon" :class="$vuetify.breakpoint.xsOnly?'text-18':'text-30'"></div> -->
+            <v-img src="~@/_skin101/assets/img/game_list/filter.png" max-width="20" max-height="20"
+                v-if="!$vuetify.breakpoint.xsOnly"></v-img>
+            <div class="ml13 text-truncate colorFilter101-text" :class="$vuetify.breakpoint.xsOnly?'text-14':'text-14'"
+                v-if="options[selectValue]">
+                {{options[selectValue].name || options[selectValue]}}
+            </div>
+            <v-spacer />
+            <div class="icon-box iconfont colorFilter101-text text-13" v-if="!$vuetify.breakpoint.xsOnly"
+                :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
+            <div class="icon-box iconfont colorFilter101-text text-13 mr-2" v-else
+                :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
+        </v-sheet>
+    </template>
+    <!-- <v-sheet color="#24314a" class="listbox"> -->
+    <v-sheet class="listbox" v-if="!$vuetify.breakpoint.xsOnly">
+        <div class="d-flex align-center listitem cursor-pointer" :class="key == selectValue ? 'listitem-active' : ''"
+            v-for="(item, key) of options" :key="key" @click="onChange(key)">
+            <div v-if="key == selectValue" class="active-filter"></div>
+            <div v-else class="none-filter"></div>
+            <div class="ml11 text-14">{{ item.name || item }}</div>
+            <v-spacer />
+            <div v-if="item.amount">{{ item.amount }}</div>
+        </div>
+    </v-sheet>
+    <v-sheet class="listbox-h5" v-else>
+        <div class="d-flex align-center listitem cursor-pointer" :class="key == selectValue ? 'listitem-active' : ''"
+            v-for="(item, key) of options" :key="key" @click="onChange(key)">
+            <div v-if="key == selectValue" class="active-filter">
+                <div class="active-filter-inner"></div>
+            </div>
+            <div v-else class="none-filter"></div>
+            <div class="ml11 text-14">{{ item.name || item }}</div>
+            <v-spacer />
+            <div v-if="item.amount">{{ item.amount }}</div>
+        </div>
+    </v-sheet>
+</v-menu>

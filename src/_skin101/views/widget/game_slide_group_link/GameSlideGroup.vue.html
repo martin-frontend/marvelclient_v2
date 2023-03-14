@@ -1,0 +1,95 @@
+<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" ref="box" v-if="!$vuetify.breakpoint.xsOnly">
+    <div class="text-16 ml-2 mr-4 d-flex align-center font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
+        <!-- <v-icon class="mr-1" color="colorYellow" :size="$vuetify.breakpoint.xsOnly?15:24">{{ CategoryIcon[data.category] }}</v-icon> -->
+        <div :class="$vuetify.breakpoint.xsOnly?'text-17':'text-20'">{{ data.category_name }}</div>
+        <v-spacer />
+        <div ref="viewBtn">
+            <v-btn v-if="bShowAll && !$vuetify.breakpoint.mobile" class="text-12 rounded-pill"
+                style="padding: 8px;margin-right:-15px;" color="#252e43" height="24" @click="onShowAll">
+                {{LangUtil("更多")}}
+            </v-btn>
+        </div>
+    </div>
+    <!-- <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex scroll-x">
+        <GameItem v-for="item of data.list" :key="item.vendor_prodcut_id" :item="item" />
+    </v-sheet> -->
+    <!-- <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
+        <v-slide-group :show-arrows="!$vuetify.breakpoint.mobile" prev-icon="mdi-menu-left" next-icon="mdi-menu-right">
+            <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
+                <GameItem :item="item" />
+            </v-slide-item>
+        </v-slide-group>
+    </v-sheet> -->
+    <v-sheet class="d-inline-flex align-center" color="transparent">
+        <v-sheet max-width="716" class="d-inline-flex flex-wrap scroll-x  small-group" color="transparent">
+            <GameItem v-for="item of dataEight" :key="item.vendor_prodcut_id" :item="item" />
+        </v-sheet>
+        <v-sheet width="720" height="420" class="d-inline-flex small-group" color="transparent">
+            <div class="game-intro">
+                <img class="rocket-eject" src="~@/_skin101/assets/img/group_link/crazy.gif" alt="">
+
+                <div class="game-intro-info">
+                    <div class="info">
+                        <h5>{{ LangUtil("可验证博彩，所有结果上链可查") }}</h5>
+                        <p>{{ LangUtil("可验证博彩的算法通过提供完全透明和可验证的方式来促进真正随机性的生成，可供所有玩家审核。") }}</p>
+                        <p>{{ LangUtil("区块链游戏所有的结果无法预先确定，庄家无法针对下注情况进行修改，所有结果通过加密算法验证工具进行验证。") }}</p>
+                    </div>
+                    <div class="game-name">
+                        <h2>{{ LangUtil("疯狂竞拍") }}</h2>
+                        <p>{{ LangUtil("目前最火爆的可验证博彩游戏") }}</p>
+                    </div>
+                    <button class="game-btn style1 bubbly-button" @click="goGamePlay(crazyItem)"
+                        @mouseenter="()=>{isEnter1=true;}" @mouseleave="()=>{isEnter1=false;}"
+                        :class="isEnter1?'button-animate':''">{{ LangUtil("试一试") }}<span
+                            class="icon iconfont icon-chevron-right"></span></button>
+                </div>
+            </div>
+        </v-sheet>
+    </v-sheet>
+</div>
+<div class="mt24" ref="box" v-else>
+    <!-- <div class="text-16 ml-2 mr-4 d-flex align-center font-weight-bold"> -->
+    <div class="text-16 mx-1 d-flex align-center font-weight-bold" style="margin-bottom:13px;">
+        <div class="text-18">{{ data.category_name }}</div>
+        <v-spacer />
+        <div ref="viewBtn">
+            <v-btn v-if="bShowAll && $vuetify.breakpoint.mobile" class="text-12 rounded-pill"
+                style="padding: 0 16px;margin-right:0px;font-size: 12px;" color="#252e43" height="24"
+                @click="onShowAll">
+                {{LangUtil("更多")}}
+            </v-btn>
+        </div>
+    </div>
+    <v-sheet class="d-flex flex-column align-center" color="transparent">
+        <!-- <v-sheet max-width="390" class="d-inline-flex flex-wrap justify-space-between scroll-x  small-group"
+            color="transparent">
+            <GameItem v-for="item of dataSix" :key="item.vendor_prodcut_id" :item="item" />
+        </v-sheet> -->
+        <v-sheet width="100%" class="d-inline-flex flex-wrap justify-space-between scroll-x  small-group"
+            color="transparent">
+            <GameItem v-for="item of dataSix" :key="item.vendor_prodcut_id" :item="item" />
+        </v-sheet>
+        <!-- <v-sheet width="350" height="426.25" class="d-inline-flex small-group game-intro-out" color="transparent"> -->
+        <v-sheet width="100%" height="426.25" class="d-inline-flex small-group game-intro-out" color="transparent">
+            <div class="game-intro">
+                <img class="rocket-eject" src="~@/_skin101/assets/img/group_link/crazy.gif" alt="">
+
+                <div class="game-intro-info">
+                    <div class="info">
+                        <h5>{{ LangUtil("可验证博彩，所有结果上链可查") }}</h5>
+                        <p>{{ LangUtil("可验证博彩的算法通过提供完全透明和可验证的方式来促进真正随机性的生成，可供所有玩家审核。") }}</p>
+                        <!-- <p>{{ LangUtil("区块链游戏所有的结果无法预先确定，庄家无法针对下注情况进行修改，所有结果通过加密算法验证工具进行验证。") }}</p> -->
+                    </div>
+                    <div class="game-name">
+                        <h2>{{ LangUtil("疯狂竞拍") }}</h2>
+                        <p>{{ LangUtil("目前最火爆的可验证博彩游戏") }}</p>
+                    </div>
+                    <button class="game-btn style1 bubbly-button" @click="goGamePlay(crazyItem)"
+                        @mouseenter="()=>{isEnter1=true;}" @mouseleave="()=>{isEnter1=false;}"
+                        :class="isEnter1?'button-animate':''">{{ LangUtil("试一试") }}<span
+                            class="icon iconfont icon-chevron-right"></span></button>
+                </div>
+            </div>
+        </v-sheet>
+    </v-sheet>
+</div>

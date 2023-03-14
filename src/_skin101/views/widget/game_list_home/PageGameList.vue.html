@@ -1,0 +1,91 @@
+<div class="container-c">
+<div id="gamelist" class="pa-0 pb-5"  >
+    <div :class="$vuetify.breakpoint.xsOnly?'pt-3':'pt-6'" >
+        <!-- <div class="d-flex align-center tranbg font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'"
+        >
+            <div :class="$vuetify.breakpoint.xsOnly?'text-17 ':'text-20'">{{LangUtil("棋牌游戏")}}</div>
+            <v-spacer />
+            <v-btn
+            class="text-12 rounded-pill "
+            :class="$vuetify.breakpoint.xsOnly?'':'mt-2'"
+            style="padding: 8px"
+            color="rgba(243, 231, 231, 0.098)"
+            height="24"
+            @click="onShowAll"
+        >
+            {{LangUtil("查看全部")}}
+        </v-btn>
+        </div> -->
+
+
+        <v-sheet
+        class="d-flex align-center tranbg font-weight-bold"
+        :class="$vuetify.breakpoint.xsOnly ? 'rounded mt-1  mb-2': 'rounded-lg  mt-3 mb-0'"
+        :height="$vuetify.breakpoint.xsOnly ? '35' : '50'"
+    >
+        <div :class="$vuetify.breakpoint.xsOnly?'text-17 font-weight-bold':'text-20'">{{LangUtil("棋牌游戏")}}</div>
+        <v-spacer />
+        <v-btn
+        class="text-12 rounded-pill mt-2"
+        style="padding: 8px"
+        color="rgba(243, 231, 231, 0.098)"
+        height="24"
+        @click="onShowAll"
+    >
+        {{LangUtil("查看全部")}}
+    </v-btn>
+    </v-sheet>
+        <v-sheet  max-width="1430" class="mx-auto" color="transparent">
+            <v-slide-group show-arrows class="game-group">
+                <v-slide-item v-for="item of qpGame.list" :key="item.vendor_prodcut_id">
+                    <GameItemSmall :item="item" />
+                </v-slide-item>
+                <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="colorBtnSeleBg"></v-progress-circular>
+                    </v-row>
+                </template>
+            </v-slide-group>
+        </v-sheet>
+    </div>
+
+    <v-sheet
+        class="d-flex align-center tranbg font-weight-bold"
+        :class="$vuetify.breakpoint.xsOnly ? 'rounded  my-2 mt-4': 'rounded-lg mt-9 mb-0'"
+        :height="$vuetify.breakpoint.xsOnly ? '35' : '50'"
+    >
+        <div :class="$vuetify.breakpoint.xsOnly?'text-17 font-weight-bold pt-2':'text-20'">{{LangUtil("电子游戏")}}</div>
+        <v-spacer />
+        <v-btn
+        class="text-12 rounded-pill mt-2"
+        style="padding: 8px"
+        color="rgba(243, 231, 231, 0.098)"
+        height="24"
+        @click="onShowAll"
+    >
+        {{LangUtil("查看全部")}}
+    </v-btn>
+    </v-sheet>
+    <v-sheet  max-width="1430" class="mx-auto" color="transparent">
+        <v-slide-group show-arrows class="game-group">
+            <v-slide-item v-for="item of dzGame.list" :key="item.vendor_prodcut_id">
+                <GameItemSmall :item="item" />
+            </v-slide-item>
+        </v-slide-group>
+    </v-sheet>
+     <div class="d-flex justify-center pt-2" >
+         <v-btn
+                    class="rounded-pill morebg font-weight-bold"
+                    :width="$vuetify.breakpoint.xsOnly?150:196"
+                    :height="$vuetify.breakpoint.xsOnly?35:46"
+                    :class="$vuetify.breakpoint.mobile?'morebg-h5 mt-4 mb-3':'text-16 my-8'"
+                    @click="onShowAll"
+                    >
+                    {{LangUtil("更多游戏")}}
+                    <img class="ml-2"  width="9" height="14" src="../../../assets/arrow.png" alt=""></img>
+                    </v-btn
+                >
+      </div>
+</div>
+
+</div>

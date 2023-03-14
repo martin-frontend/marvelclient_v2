@@ -1,0 +1,118 @@
+<!-- <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px-4 pt-7 bPanelOpacityBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityBg rounded-t-lg overflow-auto'" style="padding-bottom:90px;"> -->
+<v-card-text
+    :class="$vuetify.breakpoint.xsOnly ? 'mt-2 px30 pt20 bPanelOpacityRechargeBg rounded-t-xl overflow-auto':'mt-2 px30 pt20 bPanelOpacityRechargeBg rounded-t-lg overflow-auto'">
+    <div class="opacity4-white text-14" v-html="bindHtml">
+        <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
+        <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
+    </div>
+    <div class="d-flex mt-3">
+        <CustomSelect fontSize="14" iconSize="22" height="40" :background="'rgba(255,255,255,0.06)'" :icons="plat_coins"
+            :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" />
+        <!-- <CustomSelect
+            v-if="pageData.methodList[form.coin_name_unique]"
+            :options="pageData.methodList[form.coin_name_unique].options"
+            v-model="form.block_network_id"
+            @change="onChangeSub"
+        /> -->
+    </div>
+
+    <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+        <v-btn class="mb-2 mx-1 rounded-pill font-weight-regular" elevation="0" min-width="70" height="30"
+            :class="form.block_network_id==key ? 'btnBlueBg' : 'btnWhiteBg'"
+            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
+            @click="onChangeSub(key)">
+            {{item.name}}
+        </v-btn>
+    </div>
+
+    <div class="opacity4-white mt-1">{{LangUtil("你的钱包地址")}}</div>
+    <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+        <div class="d-flex align-center mr-n2">
+            <v-tooltip top color="colorIcontNormal">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn v-bind="attrs" v-on="on" color="rgba(255,255,255,0.5)" icon small class="mr-0">
+                        <v-icon color="colorTextNormal2" small>mdi-help-circle</v-icon>
+                    </v-btn>
+                </template>
+                <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+            </v-tooltip>
+
+            <!-- <v-btn elevation="0" class="rounded-pill btnWhiteBg " width="62" height="28"
+                :class="!$vuetify.breakpoint.mobile? 'mr-2':''" @click="onAddressBook"><span class="text-12"
+                    style="color:rgba(255,255,255,0.5);">{{LangUtil("地址薄")}}</span></v-btn> -->
+            <v-btn elevation="0" class="rounded-pill btnWhiteBg " height="28"
+                :class="!$vuetify.breakpoint.mobile? 'mr-2':''" @click="onAddressBook"><span class="text-12"
+                    style="color:rgba(255,255,255,0.5);">{{LangUtil("地址薄")}}</span></v-btn>
+            <v-btn v-if="!$vuetify.breakpoint.mobile" elevation="0" class="rounded-pill btnWhiteBg" width="50"
+                height="28" @click="onPaste"><span class="text-12"
+                    style="color:rgba(255,255,255,0.5);">{{LangUtil("粘贴")}}</span></v-btn>
+        </div>
+    </CustomInput>
+
+    <div class="opacity4-white mt-3">{{LangUtil("平台余额")}}</div>
+    <v-sheet class="d-flex align-center pl-4 mt-1 rounded bPanelWhiteOpacityBg" height="40">
+        <v-img class="mr-2" :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+            max-width="22" height="22"></v-img>
+        <div>{{ balance }}</div>
+        <v-spacer />
+        <v-tooltip top color="colorIcontNormal">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" color="rgba(255,255,255,0.5)" icon small class="mr-1">
+                    <v-icon color="colorTextNormal2" small>mdi-help-circle</v-icon>
+                </v-btn>
+            </template>
+            <span>{{LangUtil("余额可能在厂商资产里，如兑换请先从厂商提取")}}</span>
+        </v-tooltip>
+        <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-2" x-small width="74" height="28" @click="onWallet"><span
+                class="text-12" style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("平台钱包")}}</span></v-btn>
+    </v-sheet>
+
+    <v-row class="colorText1--text mt-3 d-flex" dense>
+        <v-col cols="6">
+            <v-sheet color="transparent" class="mb-2">
+                <div class="opacity4-white">{{LangUtil("提取金额")}}</div>
+                <CustomInput class="mt-1 input_b" :diglength="8" :isNum="true" :placeholder="LangUtil('输入金额')"
+                    v-model="form.amount">
+                    <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small width="50" height="28"
+                        @click="onAll"><span class="text-12"
+                            style="color:rgba(255,255,255,0.5);">{{LangUtil("全部")}}</span></v-btn>
+                </CustomInput>
+            </v-sheet>
+        </v-col>
+        <v-col cols="6">
+            <div class="opacity4-white">{{LangUtil("交易密码")}}</div>
+            <CustomPassword class="mt-1 input_b" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                <v-btn elevation="0" class="rounded-pill btnWhiteBg mr-n2" x-small height="30" @click="onSetPassword">
+                    <span class="text-12" style="color: rgba(255, 255, 255, 0.5)">{{LangUtil("设置")}}</span></v-btn>
+            </CustomPassword>
+        </v-col>
+    </v-row>
+
+    <v-sheet class="d-flex flex-wrap rounded px-4 py-3 mt-2 text-12" color="rgba(255,255,255,0.06)"
+        v-if="pageData.methodList[form.coin_name_unique]">
+        <div class="d-flex">
+            <!-- <span class="mr-1">⚠️</span> -->
+            <div>
+                <div style="color: #f04a5a"
+                    v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
+                    {{item}}
+                </div>
+            </div>
+        </div>
+        <v-spacer />
+    </v-sheet>
+    <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
+    <div class="d-flex justify-center mt-5">
+        <v-btn class="white--text btnBlueBg rounded6" width="315" height="44" :disabled="!isChecked" @click="onSubmit">
+            {{LangUtil("确认兑换")}}</v-btn>
+    </div>
+
+    <v-card-text class="d-flex justify-start align-center px-3 py-2 mt-5 coins-area">
+        <div class="mr-3 opacity4-white text-13" style="font-family: Roboto, sans-serif !important;">
+            {{LangUtil("已支持币种")}}</div>
+        <div v-for="(item, key) of pageData.methodList" :key="key">
+            <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="18" height="18"></v-img>
+        </div>
+    </v-card-text>
+    <Overlay v-model="pageData.loading" />
+</v-card-text>

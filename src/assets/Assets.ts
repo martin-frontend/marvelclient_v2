@@ -31,4 +31,30 @@ const CategoryIcon = Object.freeze({
     512: "mdi-cards-playing",
 });
 
-export default { commonIcon, CategoryIcon };
+const CategoryIcon101 = Object.freeze({
+    1: require(`@/_skin101/assets/img/navi_icon/qp.png`),
+    2: require(`@/_skin101/assets/img/navi_icon/qp.png`),
+    4: require(`@/_skin101/assets/img/navi_icon/cp.png`),
+    8: require(`@/_skin101/assets/img/navi_icon/by.png`),
+    16: require(`@/_skin101/assets/img/navi_icon/dz.png`),
+    32: require(`@/_skin101/assets/img/navi_icon/zr.png`),
+    64: require(`@/_skin101/assets/img/navi_icon/ty.png`),
+    128: require(`@/_skin101/assets/img/navi_icon/ly.png`),
+    1001: require(`@/_skin101/assets/img/navi_icon/sy.png`),
+    1002: require(`@/_skin101/assets/img/navi_icon/bz.png`),
+});
+
+const CategoryIconActive101 = Object.freeze({
+    1: require(`@/_skin101/assets/img/navi_icon/qp_a.png`),
+    2: require(`@/_skin101/assets/img/navi_icon/qp_a.png`),
+    4: require(`@/_skin101/assets/img/navi_icon/cp_a.png`),
+    8: require(`@/_skin101/assets/img/navi_icon/by_a.png`),
+    16: require(`@/_skin101/assets/img/navi_icon/dz_a.png`),
+    32: require(`@/_skin101/assets/img/navi_icon/zr_a.png`),
+    64: require(`@/_skin101/assets/img/navi_icon/ty_a.png`),
+    128: require(`@/_skin101/assets/img/navi_icon/ly_a.png`),
+    1001: require(`@/_skin101/assets/img/navi_icon/sy_a.png`),
+    1002: require(`@/_skin101/assets/img/navi_icon/bz_a.png`),
+});
+
+export default { commonIcon, CategoryIcon, CategoryIcon101, CategoryIconActive101 };

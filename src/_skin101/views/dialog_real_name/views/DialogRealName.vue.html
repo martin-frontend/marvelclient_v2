@@ -1,0 +1,23 @@
+<v-dialog width="360" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" persistent>
+    <!-- <v-card class="rounded-lg bPanelBg"> -->
+    <v-card class="rounded-lg sheet-bg-small">
+        <!-- <v-card-title class="gradient-bg"> -->
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("设置真实姓名")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <!-- <v-card-text v-if="pageData.bShow" class="px-10 mt-5"> -->
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput maxlength="10" class="ip" :placeholder="LangUtil('昵称为1-10位字符')" v-model="pageData.real_name" />
+            <div class="mt10 mb20 real-name-text">
+                {{LangUtil("请绑定您的真实姓名，玩家姓名与付款姓名相同、否则支付不到账；（绑定后不能修改）")}}
+            </div>
+            <v-btn class="rounded" color="colorBtnBg" height="40" :disabled="!isCheckedId" @click="onSubmit" block><span
+                    class="text-16">{{LangUtil("保存设置")}}</span></v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

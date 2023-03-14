@@ -8,6 +8,7 @@ import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 import { isMobile, judgeClient } from "@/core/global/Functions";
 import CopyUtil from "@/core/global/CopyUtil";
 import GameConfig from "@/core/config/GameConfig";
+import Utils from "@/core/global/Utils";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -18,6 +19,31 @@ export default class APP extends AbstractView {
     guideDrawer = false;
     //是否竖屏
     isScreenV = true;
+
+    qrCode_android = null;
+    qrCode_ios = null;
+    qrCode_app = null;
+
+    public get androidUrl(): string {
+        return GameConfig.config.android_download_link;
+        // return GameConfig.config.AndroidApkUrl;
+    }
+    public get iosUrl(): string {
+        return GameConfig.config.ios_download_link;
+    }
+
+    async setLink_android() {
+        const imgBase64 = await Utils.generateQrcode(this.androidUrl);
+        this.qrCode_android = imgBase64;
+    }
+    async setLink_ios() {
+        const imgBase64 = await Utils.generateQrcode(this.iosUrl);
+        this.qrCode_ios = imgBase64;
+    }
+    async setLink_app() {
+        const imgBase64 = await Utils.generateQrcode(window.location.href.split("#/")[0] + "#/" + "page_qrcode");
+        this.qrCode_app = imgBase64;
+    }
 
     mounted() {
         this.onWatchScreen();
@@ -96,5 +122,9 @@ export default class APP extends AbstractView {
         } catch (e: any) {
             OpenLink(link);
         }
+    }
+
+    onTop() {
+        window.scrollTo(0, 0);
     }
 }

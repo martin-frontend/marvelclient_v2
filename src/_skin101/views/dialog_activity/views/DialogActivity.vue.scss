@@ -1,0 +1,16 @@
+.header-mobile {
+    // position: fixed;
+    position: sticky;
+    z-index: 1000;
+    // background-color: #121e36;
+}
+// .listbox-mobile {
+//     overflow: hidden;
+//     padding-top: 70px;
+// }
+.theme--dark.v-btn:hover::before {
+    opacity: 0;
+}
+.theme--dark.v-btn:focus::before {
+    opacity: 0;
+}

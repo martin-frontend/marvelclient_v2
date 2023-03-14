@@ -1,0 +1,138 @@
+.box-container {
+    display: grid;
+    gap: 10px;
+}
+.btn {
+    width: fit-content;
+    background-color: white;
+    text-align: center;
+    color: rgb(50, 68, 102);
+    position: absolute;
+    bottom: 20px;
+}
+.activity1 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_pool.png") no-repeat right 0px bottom, linear-gradient(90deg, #2e2998, #4d49f1);
+    background-size: contain;
+    background-size: 147px 154px, 100% 100%;
+}
+.activity1-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #2e2998, #4d49f1);
+    .btn {
+        bottom: 10px;
+    }
+}
+.activity2 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_swap.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #0052e3, #3b7cff);
+    background-size: 146px 154px, 100% 100%;
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #faca4b;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #081e5f;
+            transform: skewX(10deg);
+        }
+    }
+}
+.activity2-min {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(90deg, #0052e3, #3b7cff);
+    .btn {
+        bottom: 10px;
+    }
+    .price {
+        width: fit-content;
+        transform: skewX(-10deg);
+        background-color: #faca4b;
+        font-family: "Arial-BoldMT";
+        div {
+            color: #081e5f;
+            transform: skewX(10deg);
+        }
+    }
+}
+
+.activity3 {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 230px;
+    background: url("~@/assets/activity/img_mine.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #de2532, #ff5765);
+    background-size: contain;
+    background-size: 192px 155px, 100% 100%;
+}
+
+.activity4 {
+    min-width: 261px;
+    height: 230px;
+    .item1 {
+        cursor: pointer;
+        height: 111px;
+        background: url("~@/assets/activity/img_extension.png") no-repeat right 10px center, linear-gradient(90deg, #ff5a7e, #ff74b3);
+        background-size: contain;
+        background-size: 106px 81px, 100% 100%;
+    }
+    .item2 {
+        cursor: pointer;
+        height: 111px;
+        background: url("~@/assets/activity/img_activity.png") no-repeat right 10px center, linear-gradient(90deg, #ff7a45, #fdb25a);
+        background-size: contain;
+        background-size: 106px 81px, 100% 100%;
+    }
+}
+
+.btn-disabled {
+    background-color: #a9a9a9;
+    color: #656565;
+}
+
+.activity1:hover,
+.activity1-min:hover,
+.activity2:hover,
+.activity2-min:hover,
+.activity3:hover,
+.activity3-min:hover {
+    .btn {
+        background-color: #ffaf1a;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 1460px) {
+    .activity4 {
+        display: none;
+    }
+}
+@media screen and (max-width: 1153px) {
+    .box-container {
+        flex-direction: column;
+    }
+}
+
+.green-text {
+    color: #ccff00;
+}
+
+.red-text {
+    color: #ff6600;
+}
+
+.yellow-text {
+    color: #ffff00;
+}

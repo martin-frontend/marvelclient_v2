@@ -1,0 +1,89 @@
+// .listitem {
+//     .item {
+//         width: 130px;
+//         margin-top: 2px;
+//         margin-bottom: 2px;
+//         color: #9db1d8;
+//         &.item_4 {
+//             width: 196px;
+//             &:nth-child(3) {
+//                 width: 128px;
+//             }
+//         }
+
+//         @media only screen and (max-width: 750px) {
+//             width: calc(100% / 2);
+//         }
+//         div:first-child {
+//             color: #4c5d7f;
+//             margin-bottom: 5px;
+//         }
+//         div > a {
+//             color: #9db1d8;
+//         }
+//     }
+//     .listitem-110 {
+//         width: 110px;
+//         @media only screen and (max-width: 750px) {
+//             width: 100%;
+//         }
+//     }
+// }
+.listitem {
+    .item {
+        width: 20%;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        &.item_4 {
+            width: 25%;
+        }
+        div:first-child {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        div:nth-child(2) {
+            margin-top: -2px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+    .listitem-150 {
+        width: 150px;
+        div {
+            width: 150px;
+        }
+    }
+}
+.listbox {
+    height: 530px;
+    overflow-y: auto;
+}
+.arrow {
+    margin-bottom: -1px !important;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+
+.listitem-mobile {
+    overflow: hidden;
+    div {
+        width: 33.33%;
+        div {
+            width: 100%;
+        }
+    }
+}
+.mobile {
+    overflow: hidden;
+}
+// .listbox-mobile {
+//     overflow: hidden;
+//     padding-top: 85px;
+// }

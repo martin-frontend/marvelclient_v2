@@ -4,14 +4,19 @@ import { getVuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
-import "@/style/common.scss";
+// import "@/style/common.scss";
+import "@/_skin101/style/common.scss";
+import "@/_skin101/assets/din-pro/font.scss";
 import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
 import { js_utils } from "custer-js-utils";
 import GameConfig from "@/core/config/GameConfig";
+import { isMobile, judgeClient } from "@/core/global/Functions";
+import GlobalVar from "@/core/global/GlobalVar";
 
+GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -33,6 +38,8 @@ Vue.use(VueLoadmore);
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;
 Vue["router"] = router;
+const isIOSMobile = judgeClient() == "iOS" && isMobile();
+Vue.prototype.isIOSMobile = isIOSMobile;
 //@ts-ignore
 window["vm"] = new Vue({
     router,

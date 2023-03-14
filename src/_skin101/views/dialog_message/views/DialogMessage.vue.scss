@@ -1,0 +1,17 @@
+::v-deep .v-snack__content {
+    text-align: center;
+}
+::v-deep .v-snack__wrapper {
+    min-height: 40px;
+    min-width: 310px;
+    // background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%) !important;
+    background-color: #252e43 !important;
+    border-radius: 4px;
+    .v-snack__content {
+        color: #ffffff;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

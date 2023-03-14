@@ -1,0 +1,19 @@
+<v-dialog width="360" v-model="pageData.bShow" :retain-focus="false" :no-click-animation="true" persistent>
+    <v-card class="rounded-lg sheet-bg-small">
+        <v-card-title class="px20 pt15 pb15">
+            <div class="text-18">{{LangUtil("设置保底")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-card-text v-if="pageData.bShow" class="px20 mt-0 pb30">
+            <CustomInput class="ip" v-model="pageData.amount" key="promotion_floor" />
+            <div class="colorLoss--text mt10 mb20">
+                {{LangUtil("每万保底金额")}}{{pageData.origin_amount}}-{{pageData.range.max}}</div>
+            <v-btn class="rounded" color="colorBtnBg" height="40" :disabled="!isCheckedAmount" block @click="setFloor">
+                {{LangUtil("保存设置")}}</v-btn>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

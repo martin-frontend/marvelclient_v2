@@ -1,0 +1,29 @@
+<!-- <v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px12-5 mt-3':'mt-8'" style="min-height:100vh;"> -->
+<v-container class="mx-auto pa-0" :class="$vuetify.breakpoint.mobile?'px-2 mt-3':'mt-8'" style="min-height:100vh;">
+    <Advertise />
+    <Ag id="32" :data="pageData.lobbyIndex[0]" />
+    <!-- <Marquee1 class="mt-1" /> -->
+    <!-- <Activity /> -->
+    <!-- 跳转 -->
+    <!-- <div>
+        <GameSlideGroupLink :data="pageData.lobbyIndex[0]" :bShowAll="true" :name="pageData.lobbyIndex[0].category"
+            :id="pageData.lobbyIndex[0].category" />
+    </div> -->
+    <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
+        <!-- <GameSlideGroup v-if=" item.category != 32 && item.category != 64" :data="item" :bShowAll="true"
+            :name="item.category" :id="item.category" /> -->
+        <!-- <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport> -->
+        <GameSlideGroupLink v-if="item.category == 128" :data="item" :bShowAll="true" :name="item.category"
+            :id="item.category" />
+        <GameSlideGroup v-else-if="item.category != 64 && item.category != 128 && item.category != 32" :data="item"
+            :bShowAll="true" :name="item.category" :id="item.category" />
+        <GameSport v-else-if="item.category == 64" :data="item" :name="item.category" :id="item.category"></GameSport>
+    </div>
+    <!-- <v-lazy>
+        <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
+    </v-lazy> -->
+    <!-- <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
+        <div class="all-rights-reserved">version:{{getVersion()}}</div>
+        <div class="all-rights-reserved">{{getChannelID()}}</div>
+    </div> -->
+</v-container>

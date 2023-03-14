@@ -1,0 +1,56 @@
+.address-box {
+    // border-radius: 10px;
+    // border: 2px solid #24314a;
+    // height: 44px;
+    // div {
+    //     width: 90%;
+    //     line-height: 18px;
+    // }
+    border-radius: 4px;
+    // border: 2px solid #24314a;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.06);
+    div {
+        // width: 90%;
+        line-height: 18px;
+    }
+}
+.info-text {
+    color: #97abd1;
+}
+.qrcode {
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 8px;
+    width: 70px;
+    height: 70px;
+    canvas {
+        display: none;
+    }
+    ::v-deep img {
+        width: 100%;
+    }
+}
+.r-before {
+    width: 6px;
+    height: 6px;
+    // background-color: #cd30c1;
+    background-color: #ffcc68;
+    border-radius: 100%;
+    margin-right: 6px;
+}
+.coins-area {
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+::v-deep .input-text {
+    border-radius: 4px;
+    height: 40px;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.third-fee{
+    color:#FFAE0A;
+}

@@ -1,0 +1,22 @@
+.text_height {
+    height: calc(100% - 190px);
+}
+.empty_width {
+    width: 22px;
+    @media only screen and (max-width: 600px) {
+        width: 32px;
+    }
+}
+.dialog-background {
+    background-image: linear-gradient(147deg, #6432c4 0%, #10045c 76%);
+}
+.on-register-bg {
+    margin-top: 10px;
+    background-image: linear-gradient(151deg, #cd30c1 0%, #215ed6 100%);
+}
+.mb18 {
+    margin-bottom: 18px !important;
+}
+.hei44 {
+    height: 44px;
+}

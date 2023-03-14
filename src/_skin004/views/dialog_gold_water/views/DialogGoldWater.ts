@@ -1,0 +1,78 @@
+import AbstractView from "@/core/abstract/AbstractView";
+
+import { Watch, Component } from "vue-property-decorator";
+import DialogGoldWaterMediator from "../mediator/DialogGoldWaterMediator";
+import DialogGoldWaterProxy from "../proxy/DialogGoldWaterProxy";
+import LangUtil from "@/core/global/LangUtil";
+import { changeDateShow } from "@/core/global/Functions";
+
+@Component
+export default class DialogGoldWater extends AbstractView {
+    LangUtil = LangUtil;
+    myProxy: DialogGoldWaterProxy = this.getProxy(DialogGoldWaterProxy);
+    pageData = this.myProxy.pageData;
+
+    constructor() {
+        super(DialogGoldWaterMediator);
+    }
+
+    onClose() {
+        this.pageData.bShow = false;
+       
+
+    }
+
+    @Watch("pageData.bShow")
+    onWatchShow() {
+       
+        if (this.pageData.bShow) {
+            this.myProxy.resetQuery();
+            this.myProxy.api_user_var_gold_water_index();
+        }
+    }
+    @Watch("$vuetify.breakpoint.xsOnly")
+    onWatchXS() {
+        if (this.pageData.bShow) {
+            this.pageData.listQuery.page_count = 1;
+            this.myProxy.api_user_var_gold_water_index();
+        }
+    }
+
+    onPageChange(val: any) {
+        this.pageData.listQuery.page_count = val;
+        this.myProxy.api_user_var_gold_water_index();
+    }
+
+    onRefresh(done: any) {
+        this.myProxy.listRefrush(done);
+    }
+
+    onLoad(done: any) {
+        this.myProxy.listMore(done);
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
+    }
+    getStateColor(state: number) {
+        switch (state) {
+            case 0: return "red--text";
+            case 1:
+            case 2:
+            case 3: return "textGreen--text";
+            default:
+                return "";
+
+        }
+    }
+    getStateText(state: number) {
+        switch (state) {
+            case 0: return LangUtil("失败");
+            case 1:
+            case 2:
+            case 3: return LangUtil("成功");
+            default:
+                return LangUtil("未知");
+        }
+    }
+
+}

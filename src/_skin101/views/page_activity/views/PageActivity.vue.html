@@ -2,6 +2,8 @@
     <v-sheet width="100%" color="transparent" class="px-4 pad_height">
         <template v-if="!pageData.isLoadData">
             <template v-if="myProxy.pageData.list && myProxy.pageData.list.length > 0">
+                <!-- <v-card flat class="d-flex mt-5 align-center rounded15 px-4" min-height="68" color="#252e43"
+                    width="100%"> -->
                 <v-card flat class="d-flex mt-5 align-center rounded15 px-4" min-height="68" color="#252e43"
                     width="100%">
                     <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange"
@@ -29,15 +31,18 @@
                             <v-col :cols="$vuetify.breakpoint.xsOnly ? 12 : 6" :key="item.id">
                                 <v-card flat class="rounded15 cursor-pointer" color="#252e43"
                                     @click.native="onItemClick(item)">
-                                    <v-sheet color="transparent" width="100%" class="px-4 py-4 "
-                                        :class="$vuetify.breakpoint.xsOnly ? 'text-14' : 'text-18'">
+                                    <v-sheet color="transparent" width="100%" class=" "
+                                        :class="$vuetify.breakpoint.xsOnly ? 'text-14 px-4 py-4' : 'text-18 pa-4'">
                                         {{item.activity_name}}
                                     </v-sheet>
 
-                                    <v-sheet color="transparent" width="100%"
+                                    <!-- <v-sheet color="transparent" width="100%"
                                         :height="$vuetify.breakpoint.xsOnly ? 190 : 230">
                                         <v-img class="rounded_img" :max-height="$vuetify.breakpoint.xsOnly ? 190 : 230"
                                             :src="item.icon"></v-img>
+                                    </v-sheet> -->
+                                    <v-sheet color="transparent" width="100%">
+                                        <v-img class="rounded_img" :src="item.icon"></v-img>
                                     </v-sheet>
                                 </v-card>
                             </v-col>

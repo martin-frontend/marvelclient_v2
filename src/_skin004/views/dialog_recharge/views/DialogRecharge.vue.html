@@ -119,8 +119,8 @@
         <v-divider class="mx-5" />
         
         <TabRecharge v-show="pageData.tabIndex == 0 && selfProxy.userInfo.is_recharge == 1" />
-        <TabExchange v-show="pageData.tabIndex == 1 && selfProxy.userInfo.is_exchange == 1 && !isShowBankVnd" />
-        <TabExchangeBankVnd v-show="pageData.tabIndex == 1 && selfProxy.userInfo.is_exchange == 1 && isShowBankVnd" />
+        <TabExchange v-show="pageData.tabIndex == 1 && selfProxy.userInfo.is_exchange == 1" />
+      
         <TabTransfer v-if="pageData.tabIndex == 2 && selfProxy.userInfo.is_gold_transfer == 1" />
 
         <ListNodata v-if="selfProxy.userInfo.is_recharge != 1 && selfProxy.userInfo.is_exchange != 1 && selfProxy.userInfo.is_gold_transfer != 1" :title="LangUtil(`暂无内容`)"/>

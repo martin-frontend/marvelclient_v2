@@ -12,6 +12,7 @@ import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
 import dialog_trade_password from "@/views/dialog_trade_password";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
+import dialog_bankcard_info from "@/_skin004/views/dialog_bankcard_info";
 
 @Component
 export default class TabExchange extends AbstractView {
@@ -21,7 +22,7 @@ export default class TabExchange extends AbstractView {
     addressBooProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
-
+    
     plat_coins = GamePlatConfig.config.plat_coins;
 
     mounted() {
@@ -71,8 +72,7 @@ export default class TabExchange extends AbstractView {
 
     onChangeSub(value: any) {
         this.form.block_network_id = value;
-        this.form.exchange_channel_method_id =
-            this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
+        this.form.exchange_channel_method_id = this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.block_network_id = value;
     }
@@ -87,7 +87,14 @@ export default class TabExchange extends AbstractView {
         }
         return false;
     }
-
+    public get methodlist_data() : any {
+        return this.pageData.methodList[this.form.coin_name_unique];
+    }
+    public get bank_list(): any {
+        if (this.pageData && this.pageData.methodList && this.methodlist_data && this.methodlist_data.bank_list)
+            return this.methodlist_data.bank_list;
+        return null;
+    }
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
@@ -146,5 +153,66 @@ export default class TabExchange extends AbstractView {
             return str.split("\n");
         }
         return [];
+    }
+
+    bshowAllNameList = false; //是否显示 名字的下拉菜单
+    onNameInputInput() {
+        this.bshowAllNameList = true;
+        //console.log("正在编辑");
+    }
+    onNameInputBlur() {
+        //console.log("失去焦点");
+        setTimeout(() => {
+            this.bshowAllNameList = false;
+        }, 100);
+    }
+
+    public get allNames(): any {
+        if (!this.form.account_name || this.form.account_name == "") {
+            return [];
+            //return this.myProxy.exchangeProxy.bankCard_nameArr;
+        }
+        const newArr = [];
+        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_nameArr.length; index++) {
+            const element = this.myProxy.exchangeProxy.bankCard_nameArr[index];
+            if (element.indexOf(this.form.account_name) > -1) {
+                newArr.push(element);
+            }
+        }
+        return newArr;
+    }
+    onClickNameSelect(item: any) {
+        //console.log("收到点击", item);
+        this.form.account_name = item;
+    }
+    bshowNumberList = false; //是否显示 名字的下拉菜单
+    onNumberInputInput() {
+        this.bshowNumberList = true;
+    }
+    onNumberInputBlur() {
+        setTimeout(() => {
+            this.bshowNumberList = false;
+        }, 100);
+    }
+    onClickNumberSelect(item: any) {
+        //console.log("收到点击", item);
+        this.form.account = item;
+    }
+    onBankcardInfo() {
+        dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo);
+    }
+    public get allCardNub(): any {
+        if (!this.form.account || this.form.account == "") {
+            return [];
+            //return this.myProxy.exchangeProxy.bankCard_numberArr;
+        }
+        const newArr = [];
+        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_numberArr.length; index++) {
+            const element = this.myProxy.exchangeProxy.bankCard_numberArr[index];
+            if (element.indexOf(this.form.account) > -1) {
+                newArr.push(element);
+            }
+        }
+        return newArr;
     }
 }

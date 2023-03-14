@@ -26,24 +26,83 @@
             {{item.name}}
         </v-btn>
     </div>
+    <div v-if="form.payment_method_type==5">
+        <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
+        <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+            <div class="d-flex align-center mr-n2">
+                <v-tooltip top color="colorText1">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                    </template>
+                    <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                </v-tooltip>
 
-    <div class="colorText1--text mt-3">{{LangUtil("你的钱包地址")}}</div>
-    <CustomInput class="mt-1" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
-        <div class="d-flex align-center mr-n2">
-            <v-tooltip top color="colorText1">
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
-                </template>
-                <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
-            </v-tooltip>
+                <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook"
+                    >{{LangUtil("地址薄")}}</v-btn
+                >
+                <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
+                    >{{LangUtil("粘贴")}}</v-btn
+                >
+            </div>
+        </CustomInput>
+    </div>
+    <div v-if="form.payment_method_type==6">
+        <div class="colorText1--text mt-3">{{LangUtil("您的银行卡")}}</div>
+        <v-sheet color="transparent" height="50" width="100%" class="mt-1 mb-4 d-flex align-center bank_box rounded-lg" outlined>
+            <v-autocomplete
+                v-model="myProxy.exchangeProxy.curBankinfo"
+                :items="bank_list"
+                item-text="bank_name"
+                :label="LangUtil('银行信息')"
+                hide-details
+                solo
+                flat
+                background-color="transparent"
+                color="colorText1 colorBlue--text"
+                attach
+                menu-props="{class='test_cloas'}"
+                return-object
+                :no-data-text="LangUtil('没有找到数据')"
+            ></v-autocomplete>
 
-            <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook">{{LangUtil("地址薄")}}</v-btn>
-            <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
-                >{{LangUtil("粘贴")}}</v-btn
+            <v-sheet color="transparent" min-width="150" class="name_select">
+                <div class="colorBlue--text">{{form.account_name}}</div>
+                <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
+                    <v-list-item-group color="primary">
+                        <v-list-item v-for="(item, i) in allNames" :key="i" @click="onClickNameSelect(item)">
+                            <v-list-item-content>
+                                <v-list-item-title v-text="item"></v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-item-group>
+                </v-list>
+            </v-sheet>
+            <v-sheet color="transparent" min-width="250" class="name_select">
+                <CustomInput
+                    @blur="onNumberInputBlur"
+                    @input="onNumberInputInput"
+                    height="40"
+                    :isOnlyNumber="true"
+                    :placeholder="LangUtil('银行卡号')"
+                    v-model="form.account"
+                >
+                </CustomInput>
+
+                <v-list v-if="bshowNumberList && allCardNub && allCardNub.length > 0" class="name_list" width="100%">
+                    <v-list-item-group color="primary">
+                        <v-list-item v-for="(item, i) in allCardNub" :key="i" @click="onClickNumberSelect(item)">
+                            <v-list-item-content>
+                                <v-list-item-title v-text="item"></v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-item-group>
+                </v-list>
+            </v-sheet>
+            <v-btn color="colorText1 colorBlue--text d-flex justify-end" x-small height="30" class="mr-2" @click="onBankcardInfo"
+                >{{LangUtil("银行卡信息")}}</v-btn
             >
-        </div>
-    </CustomInput>
-
+        </v-sheet>
+    </div>
     <div class="colorText1--text mt-3">{{LangUtil("平台余额")}}</div>
     <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
         <v-img

@@ -57,5 +57,10 @@ export default class DialogRecharge extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if (this.pageData.bShow)
+        {
+            this.myProxy.exchangeProxy.resetform();
+            this.myProxy.transferProxy.resetform();
+        }
     }
 }

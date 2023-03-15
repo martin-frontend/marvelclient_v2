@@ -22,9 +22,9 @@ export default class TabExchange extends AbstractView {
     addressBooProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
-    
-    plat_coins = GamePlatConfig.config.plat_coins;
 
+    plat_coins = GamePlatConfig.config.plat_coins;
+    bank_info = this.myProxy.exchangeProxy.curBankinfo;
     mounted() {
         const aLink = document.getElementById("aLink");
         if (aLink) {
@@ -40,7 +40,15 @@ export default class TabExchange extends AbstractView {
             `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
         );
     }
-
+    @Watch("myProxy.exchangeProxy.curBankinfo")
+    onBankInfoChange() {
+        console.log("银行值呗修改了", this.myProxy.exchangeProxy.curBankinfo);
+        if (!this.myProxy.exchangeProxy.curBankinfo) {
+            return;
+        }
+        this.form.bank_id = this.myProxy.exchangeProxy.curBankinfo.bank_id;
+        this.form.bank = this.myProxy.exchangeProxy.curBankinfo.bank_name;
+    }
     @Watch("form.block_network_id")
     onWatchNetwwork() {
         const coinObj = this.pageData.methodList[this.form.coin_name_unique];
@@ -48,6 +56,12 @@ export default class TabExchange extends AbstractView {
             const obj = coinObj.options[this.form.block_network_id];
             this.form.exchange_channel_id = obj.exchange_channel_id;
             this.form.payment_method_type = obj.payment_method_type;
+        }
+    }
+    @Watch("myProxy.pageData.bShow")
+    onWatchpageShow() {
+        if (!this.myProxy.pageData.bShow) {
+            this.myProxy.exchangeProxy.curBankinfo = null;
         }
     }
 
@@ -87,7 +101,7 @@ export default class TabExchange extends AbstractView {
         }
         return false;
     }
-    public get methodlist_data() : any {
+    public get methodlist_data(): any {
         return this.pageData.methodList[this.form.coin_name_unique];
     }
     public get bank_list(): any {
@@ -124,7 +138,7 @@ export default class TabExchange extends AbstractView {
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             //this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
-            this.form.amount = Math.floor( this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
+            this.form.amount = Math.floor(this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
         } else {
             this.form.amount = "0.00";
         }
@@ -143,6 +157,11 @@ export default class TabExchange extends AbstractView {
         dialog_message_box.confirm({
             message: LangUtil("确认提交"),
             okFun: () => {
+                if (this.myProxy.exchangeProxy.pageData.form.payment_method_type == 6)
+                {
+                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order_VND();
+                }
+                else    
                 this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
             },
         });

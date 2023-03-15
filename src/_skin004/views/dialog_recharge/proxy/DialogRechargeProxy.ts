@@ -181,7 +181,43 @@ export class ExchangeProxy extends puremvc.Proxy {
         }
         console.log("设置真实信命" + this.pageData.form.account_name );
     }
+    addusdt(){
+        const  data:any={};
+       
+        data.name = "USDT";
+        data.payment_method_type = 5;
+        data.options={};
+        data.options["2"]={};
+        data.options["2"].name="BSC";
+        data.options["2"].payment_method_type = 4;
+        data.options["2"].exchange_channel_id = 2;
+        data.options["2"].exchange_channel_method_id = 7;
+        data.options["2"].subtitle="";
+        data.options["2"].explain="";
+        data.options["2"].balance="";
+        data.options["2"].free_time=1;
+        data.options["2"].fee="2%";
+        data.options["2"].min_out="10.0000";
+        data.options["2"].max_out="10000.000";
+        data.options["2"].index_no = 2;
+        data.options["6"]={};
+        data.options["6"].name="TRC20";
+        data.options["6"].payment_method_type = 4;
+        data.options["6"].exchange_channel_id = 2;
+        data.options["6"].exchange_channel_method_id = 8;
+        data.options["6"].subtitle="";
+        data.options["6"].explain="";
+        data.options["6"].balance="";
+        data.options["6"].free_time=1;
+        data.options["6"].fee="2%";
+        data.options["6"].min_out="10.0000";
+        data.options["6"].max_out="10000.000";
+        data.options["6"].index_no = 3;
+        return data;
+
+    }
     setData(data: any) {
+    //    data["USDT"] = this.addusdt();
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);

@@ -33,10 +33,13 @@ export default class DialogDirectlyPasswordProxy extends puremvc.Proxy {
         Object.assign(this.formData, {
             direct_user_id: 0,
             inputrate: "",
+            password:"",
+            password_confirm:"",
         });
     }
 
     setData(data: any) {
+        this.resetQuery();
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.playerInfo, data);

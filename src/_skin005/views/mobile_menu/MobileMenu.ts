@@ -60,6 +60,7 @@ export default class MobileMenu extends AbstractView {
     }
 
     onItemClick(item: any) {
+        if (this.isActiveItem(item))  return;
         switch (item.id) {
             case 0:
                 PanelUtil.openpage_home();

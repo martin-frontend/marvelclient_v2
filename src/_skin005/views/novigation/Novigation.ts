@@ -233,6 +233,7 @@ export default class Novigation extends AbstractView {
     }
 
     goCategory_game(id: any) {
+        if (this.myProxy.categoryActive == id) return;
         //console.log("----id--",id);
         if (this.$vuetify.breakpoint.mobile) {
             PanelUtil.showNovigation(false);

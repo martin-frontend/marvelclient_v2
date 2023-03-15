@@ -31,6 +31,11 @@ export interface GameConfigVO {
     modules_switch:any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
     /** 板球厂商id */
     CricketVendorId:number;
+
+    /**第一次 设置交易密码 使用的类型 */
+    changeGoldPasswordFirstSetting:number;
+    /**第一次以后 设置交易密码 使用的类型 */
+    changeGoldPasswordFollowSetting:number;
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

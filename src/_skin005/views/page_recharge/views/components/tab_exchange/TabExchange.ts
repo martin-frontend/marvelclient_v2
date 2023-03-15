@@ -203,18 +203,18 @@ export default class TabExchange extends AbstractView {
 
     onSetPassword() {
         const { phone, email } = this.selfProxy.userInfo;
-        if (phone || email) {
+        // if (phone || email) {
 
-            PanelUtil.openpanel_trade_password();
-        } else {
-            //PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
-            PanelUtil.message_confirm({
-                message: LangUtil("请先绑定邮箱或者手机"),
-                okFun: () => {
-                    PanelUtil.openpanel_safety_center();
-                },
-            });
-        }
+             PanelUtil.openpanel_trade_password();
+        // } else {
+        //     //PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
+        //     PanelUtil.message_confirm({
+        //         message: LangUtil("请先绑定邮箱或者手机"),
+        //         okFun: () => {
+        //             PanelUtil.openpanel_safety_center();
+        //         },
+        //     });
+        // }
     }
 
     onSubmit() {

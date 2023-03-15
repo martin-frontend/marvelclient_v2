@@ -98,9 +98,10 @@ export default class PageGameSoccer extends AbstractView {
     }
 
     destroyed() {
-        super.destroyed();
         clearInterval(this.timer);
         const ifr: any = document.getElementById("gameFrame");
-        ifr.onload = null;
+        if (ifr)
+            ifr.onload = null;
+        super.destroyed();
     }
 }

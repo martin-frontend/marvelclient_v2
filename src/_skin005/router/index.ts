@@ -112,13 +112,16 @@ router.beforeEach((to: any, from: any, next: any) => {
             !core.user_id &&
             (to.name == "page_recharge" ||
                 to.name == "page_game_play" ||
-                to.name == "page_game_soccer" ||
                 to.name == "page_my_info" ||
                 to.name == "page_statistice_credit")
         ) {
             next(`/${core.lang}`);
         } else {
-            next();
+            if (to.name == "page_game_soccer" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                next(`/${core.lang}`);
+            }
+            else
+                next();
         }
     }
 });

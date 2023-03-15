@@ -78,20 +78,18 @@ export default class Header extends AbstractView {
         return (!!this.GameConfig.config.CricketVendorId && this.gameProxy.currGame.vendor_id == this.GameConfig.config.CricketVendorId)
     }
 
-    // @Watch("gameProxy.currGame.vendor_id")
-    // onWatchcurrGame() {
-    //     console.log("当前游戏 名字变化了");
-    // }
-
     lastTabValue = "";
     @Watch("pagetab")
     onWatchPagetab(val: any, val_2: any) {
         console.log("当前  tab 变化了" + val + "----", val_2);
-        // if (val!= val_2 && (val == 1 || val == 22))
-        // {
-        //     console.log(" 修改值");
-        //     this.pagetab = val_2;
-        // }
+        if (!core.user_id && val == 1) {
+            this.$nextTick(
+                () => {
+                    console.log("还原值", val_2);
+                    this.pagetab = val_2;
+                }
+            )
+        }
         this.lastTabValue = val_2;
     }
 
@@ -137,86 +135,13 @@ export default class Header extends AbstractView {
                     PanelUtil.openpage_statist_credit();
             } break;
             case "22": {
-
-                //if (!this.routerPath.includes("page_game_cricket") )
-                {
-                    console.log("打开  板球 界面");//this.goSport();
-                    this.goCricket();
-                }
-
+                console.log("打开  板球 界面");//this.goSport();
+                this.goCricket();
             } break;
             default:
                 break;
         }
-
-        if (!core.user_id && (this.pagetab == "1" || this.pagetab == "22")) {
-            this.$nextTick(() => {
-                this.pagetab = "0";
-            })
-        }
-        // if (core.user_id && (this.pagetab == "1" || this.pagetab == "22"))
-        // {
-        //     this.pagetab = this.lastTabValue;
-        // }
-
     }
-
-    // @Watch("pagetab")
-    // onWatchPageTabChange(vul_1: number, vul_2: number) {
-    //     console.log("表头的值", this.pagetab);
-    //     // if (this.pagetab == undefined){
-    //     //     console.log("控制" ,vul_2);
-    //     //     this.pagetab = vul_2;
-    //     // }
-    //     switch (this.pagetab) {
-    //         case 0: { this.goHome(); } break;
-    //         //case 1: { this.goGameList(); } break;
-    //         case 1: {
-    //             if (this.routerPath != "/page_game_soccer")
-    //                 this.goSport();
-    //         } break;
-    //         case 2: {
-    //             if (this.routerPath != "/page_statistice_credit")
-    //                 PanelUtil.openpage_statist_credit();
-    //         } break;
-
-    //         default:
-    //             break;
-    //     }
-
-    //     if (!core.user_id && vul_1 == 1) {
-    //         this.$nextTick(() => {
-    //             this.pagetab = 0;
-    //         })
-
-    //     }
-    //     //console.log("表头的值", this.pagetab);   
-
-    // }
-    // @Watch("$vuetify.breakpoint.width")
-    // onWatchWidth() {
-    //     this.$nextTick(() => {
-    //         if (this.getElement("tabBox")) {
-
-    //             if (this.isShowStatistice || SkinVariable.isShowBanqiu) {
-    //                 this.getElement("tabBox").style.minWidth =
-    //                     this.getElement("tab1").$el.clientWidth +
-    //                     this.getElement("tab2").$el.clientWidth +
-    //                     this.getElement("tab3").$el.clientWidth +
-    //                     40 * 2 +
-    //                     "px";
-    //             }
-    //             else {
-    //                 this.getElement("tabBox").style.minWidth =
-    //                     this.getElement("tab1").$el.clientWidth +
-    //                     // this.getElement("tab2").$el.clientWidth +
-    //                     this.getElement("tab3").$el.clientWidth +
-    //                     40 * 2 +
-    //                     "px";
-    //             }
-    //         }
-    //     });
-    // }
 
     showNovPanel() {
         PanelUtil.showNovigation(true);

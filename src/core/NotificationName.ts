@@ -5,4 +5,6 @@ export default class NotificationName {
     static LANG_CONFIG = "LANG_CONFIG";
     /**检测线路速度 */
     static CHECK_SPEED = "CHECK_SPEED";
+    /**币种改变 */
+    static UPDATE_COIN = "UPDATE_COIN";
 }

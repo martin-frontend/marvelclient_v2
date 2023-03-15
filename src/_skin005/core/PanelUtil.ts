@@ -225,42 +225,50 @@ export default class PanelUtil {
 
     //请求  体育的链接 界面
     static openpage_soccer(data: any = null) {
-        LoginEnter(() => {
+        //不需要登录限制 可以请求
+        if (data && data.visitor_allowed && data.visitor_allowed == 1) {
             PanelUtil.showAppLoading(true);
             PanelUtil.getProxy_gameproxy.go_soccer(data);
-        });
+        }
+        else {
+            LoginEnter(() => {
+                PanelUtil.showAppLoading(true);
+                PanelUtil.getProxy_gameproxy.go_soccer(data);
+            });
+        }
     }
     //请求  板球的链接 界面
     static openpage_soccer_cricket(data: any = null) {
-        LoginEnter(() => {
-            PanelUtil.showAppLoading(true);
-            if (!data) {
-                data = {
-                    app_type: 2,
-                    category: 64,
-                    icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
-                    index_no: 49,
-                    languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
-                    list_type: 0,
-                    lobby_model_product_id: 369,
-                    lobby_product_id: 4857,
-                    open_mode: 1,
-                    ori_product_id: "Cricket",
-                    ori_vendor_extend: '{"iframe_bad":false}',
-                    orientation: 1,
-                    plat_id: 30017,
-                    status: 1,
-                    tags: [],
-                    vendor_id: GameConfig.config.CricketVendorId,
-                    vendor_name: "板球-测试",
-                    vendor_product_id: 8271,
-                    vendor_product_name: "板球",
-                    vendor_type: 64,
-                    water_rate_accelerate: 0,
-                }
+        //LoginEnter(() => {
+        PanelUtil.showAppLoading(true);
+        if (!data) {
+            data = {
+                app_type: 2,
+                category: 64,
+                icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
+                index_no: 49,
+                languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
+                list_type: 0,
+                lobby_model_product_id: 369,
+                lobby_product_id: 4857,
+                open_mode: 1,
+                ori_product_id: "Cricket",
+                ori_vendor_extend: '{"iframe_bad":false}',
+                orientation: 1,
+                plat_id: 30017,
+                status: 1,
+                tags: [],
+                vendor_id: GameConfig.config.CricketVendorId,
+                vendor_name: "板球-测试",
+                vendor_product_id: 8271,
+                vendor_product_name: "板球",
+                vendor_type: 64,
+                visitor_allowed: 1,
+                water_rate_accelerate: 0,
             }
-            PanelUtil.getProxy_gameproxy.go_soccer(data);
-        });
+        }
+        PanelUtil.getProxy_gameproxy.go_soccer(data);
+        //});
     }
     //打开 游戏返水 界面
     static openpage_mine() {

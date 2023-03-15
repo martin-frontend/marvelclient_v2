@@ -6,6 +6,7 @@ import TabExchange from "./components/tab_exchange/TabExchange.vue";
 import TabExchangeBankVnd from "./components/tab_exchange_bank_vnd/TabExchangeBankVnd.vue";
 import TabRecharge from "./components/tab_recharge/TabRecharge.vue";
 import TabTransfer from "./components/tab_transfer/TabTransfer.vue";
+import DialogBankchar from "../../dialog_recharge_bankcharge/views/DialogRechargeBankcharge.vue"
 import Component from "vue-class-component";
 import DialogRecharge from "./DialogRecharge";
 import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
@@ -17,6 +18,7 @@ import ListNodata from "@/views/widget/list_nodata/ListNodata.vue";
         TabRecharge,
         TabTransfer,
         ListNodata,
+        DialogBankchar
     },
 })
 export default class extends DialogRecharge {}

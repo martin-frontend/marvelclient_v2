@@ -33,6 +33,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
+        const _type = notification.getType();
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
         //const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
         myProxy.exchangeProxy.pageData.loading = false;
@@ -59,16 +60,21 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 dialog_message.success(LangUtil("创建成功"));
                 break;
             case net.EventType.api_user_var_recharge_create:
-                dialog_message_box.alert({
-                    message: LangUtil("点击进入充值通道"),
-                    okFun: () => {
-                        if (core.app_type == core.EnumAppType.WEB) {
-                            OpenLink(body);
-                        } else {
-                            WebViewBridge.getInstance().openStstemBrowser(body);
-                        }
-                    },
-                });
+                if (_type=="8") {//8是银行卡转账的payemthod_id
+                    myProxy.rechargeProxy.set_user_var_recharge_create(body);
+                }else{
+                    dialog_message_box.alert({
+                        message: LangUtil("点击进入充值通道"),
+                        okFun: () => {
+                            if (core.app_type == core.EnumAppType.WEB) {
+                                OpenLink(body);
+                            } else {
+                                WebViewBridge.getInstance().openStstemBrowser(body);
+                            }
+                        },
+                    });
+                }
+                
                 break;
             case net.EventType.api_user_var_gold_transfer:
                 this.selfProxy.api_user_show_var([2]);

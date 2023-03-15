@@ -15,10 +15,15 @@
     </div>
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
-        <v-btn class="mb-2 mx-2" min-width="100" height="30"
-            :color="form.block_network_id==key ? 'colorBtnBg' : 'colorPanelTitleBg'"
-            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
-            @click="onChangeSub(key)">
+        <v-btn
+            class="mb-2 mx-2"
+            min-width="100"
+            height="30"
+            :color="form.block_network_id==item.strkey ? 'colorBtnBg' : 'colorPanelTitleBg'"
+            v-for="(item, key) of myProxy.exchangeProxy.optionsSort(pageData.methodList[form.coin_name_unique].options)"
+            :key="key"
+            @click="onChangeSub(item)"
+        >
             {{item.name}}
         </v-btn>
     </div>

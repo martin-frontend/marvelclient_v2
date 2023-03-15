@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_user_var_commission_commissionlist, result.data, result.unique);
+                this.sendNotification(EventType.api_user_var_commission_commissionlist, result.data, result.extend.request_unique);
             }
         }
     }

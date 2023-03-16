@@ -28,7 +28,9 @@ export default class DialogLogin extends AbstractView {
     constructor() {
         super(DialogLoginMediator);
     }
-
+    mounted() {
+        this.myProxy.api_public_area_code();
+    }
     tempSelectCode = <any>null;
 
     public get areaCodeArr() : any {

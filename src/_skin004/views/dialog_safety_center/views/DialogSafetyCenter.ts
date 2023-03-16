@@ -28,6 +28,10 @@ export default class DialogSafetyCenter extends AbstractView {
 
     tempSelectCode = null;
 
+    mounted() {
+        this.myProxy.api_public_area_code();
+    }
+
     public get areaCodeArr() : any {
         return this.myProxy.pageData.areaCode;
     }

@@ -6,7 +6,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
 
     public onRegister(): void {
-        this.api_public_area_code();
+      
     }
 
     pageData = {

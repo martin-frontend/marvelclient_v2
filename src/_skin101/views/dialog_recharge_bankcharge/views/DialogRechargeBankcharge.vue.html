@@ -1,8 +1,8 @@
 <v-dialog width="660" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
     <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
-    <v-card class="rounded-lg sheet-bg">
-        <v-card-title class="px-6">
+    <v-card class="rounded-lg sheet-bg" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-title class="px30">
             <!-- <div class="text-16 text-left">{{LangUtil("银行卡转账1")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
@@ -58,10 +58,80 @@
         </div>
         <div class="px-6">{{LangUtil("付款流程")}}</div>
         <v-sheet class="payinfo pa-3 mt-2 ">
-            <span>{{LangUtil("第一步:根据提供的收款银行卡信息，使用银行卡付款")}}<br>
-                {{LangUtil("第二步:付款成功后，将付款卡姓名输入到【支付凭证】")}}<br>
-                {{LangUtil("第三步:点击【我已转账】后系统将会自动转账")}}
+            <span>第一步:根据提供的收款银行卡信息，使用银行卡付款<br>
+                第二步:付款成功后，将付款卡姓名输入到【支付凭证】。<br>
+                第三步:点击【我已转账】后系统将会自动转账
+            </span>
+        </v-sheet>
+        <div class="d-flex justify-center py-9 ">
+            <v-btn class="white--text " x-small min-width="245" height="45" color="colorBtnBg" @click="onSumbit">
+                {{LangUtil("我已转账")}}</v-btn>
+        </div>
 
+    </v-card>
+    <v-card class="rounded-lg sheet-bg" v-else>
+        <v-card-title class="px30">
+            <div class="text-18">{{LangUtil("银行卡转账")}}</div>
+            <v-spacer />
+            <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+            </v-btn>
+
+        </v-card-title>
+        <div class="px-6 d-flex justify-space-between mb-3">
+            <div class="d-flex align-center">
+                <span>{{LangUtil("银行卡号")}}:</span>
+                <input v-model="fixcontent[0]" min-width="200" class="cusinput px-2 ml-2" type="text" readonly></input>
+                <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg"
+                    @click="copytext(0)">{{LangUtil("复制")}}</v-btn>
+            </div>
+        </div>
+
+        <div class="px-6 d-flex justify-space-between mb-3">
+            <div class="d-flex align-center">
+                <span>{{LangUtil("收款银行")}}:</span>
+                <input v-model="fixcontent[2]" min-width="200" class="cusinput px-2 ml-2" type="text" readonly></input>
+                <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg"
+                    @click="copytext(2)">{{LangUtil("复制")}}</v-btn>
+            </div>
+        </div>
+
+        <div class="px-6 d-flex justify-space-between mb-4">
+            <div class="d-flex align-center">
+                <span>{{LangUtil("充值金额")}}:</span>
+                <input v-model="fixcontent[4]" min-width="200" class="cusinput px-2 ml-2" type="text" readonly></input>
+                <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg"
+                    @click="copytext(4)">{{LangUtil("复制")}}</v-btn>
+            </div>
+        </div>
+        <div class="px-6 d-flex justify-space-between mb-3">
+            <div class="d-flex align-center">
+                <span>{{LangUtil("收款人")}}:</span>
+                <input v-model="fixcontent[1]" min-width="130" class="cusinput2 px-2 ml-2" type="text" readonly></input>
+                <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg"
+                    @click="copytext(1)">{{LangUtil("复制")}}</v-btn>
+            </div>
+        </div>
+        <div class="px-6 d-flex justify-space-between mb-3">
+            <div class="d-flex align-center ">
+                <span>{{LangUtil("开户行")}}:</span>
+                <input v-model="fixcontent[3]" min-width="130" class="cusinput2 px-2 ml-2" type="text" readonly></input>
+                <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg"
+                    @click="copytext(3)">{{LangUtil("复制")}}</v-btn>
+            </div>
+        </div>
+        <div class="px-6 d-flex justify-space-between mb-3">
+            <div class="d-flex align-center">
+                <span>{{LangUtil("支付凭证")}}:</span>
+                <input v-model="fixcontent[5]" @input="onInput" maxlength="24" pattern="^[\u4e00-\u9fa5]{1,12}$"
+                    :placeholder="LangUtil('请输入姓名(中文)')" class="cusinput3 px-2 ml-2" type="text"></input>
+            </div>
+        </div>
+        <div class="px-6">{{LangUtil("付款流程")}}</div>
+        <v-sheet class="payinfo pa-3 mt-2 ">
+            <span>第一步:根据提供的收款银行卡信息，使用银行卡付款<br>
+                第二步:付款成功后，将付款卡姓名输入到【支付凭证】。<br>
+                第三步:点击【我已转账】后系统将会自动转账
             </span>
         </v-sheet>
         <div class="d-flex justify-center py-9 ">

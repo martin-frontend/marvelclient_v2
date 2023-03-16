@@ -1,4 +1,5 @@
 import { objectRemoveNull } from "@/core/global/Functions";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 import Cookies from "js-cookie";
 export default class DialogLoginProxy extends puremvc.Proxy {
     static NAME = "DialogLoginProxy";
@@ -23,7 +24,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
         bShow: false,
         tabIndex: 0, //0:手机找回 1:邮箱找回
         form: {
-            area_code: "84",
+            area_code: SkinVariable.defaultCode,
             username: "",
             password: "",
             password_confirm: "",
@@ -40,7 +41,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: "",
         });
         Object.assign(this.forgetData.form, {
-            area_code: "84",
+            area_code: SkinVariable.defaultCode,
             username: "",
             password: "",
             password_confirm: "",

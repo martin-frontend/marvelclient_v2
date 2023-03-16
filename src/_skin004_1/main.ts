@@ -40,6 +40,7 @@ SkinVariable.pageHome_project_1 = require(`@/_skin004_1/assets/page_home/project
 SkinVariable.pageHome_project_2 = require(`@/_skin004_1/assets/page_home/project_info_2.png`);
 SkinVariable.isSavePhoto = true;
 SkinVariable.savePhotoBg = require(`@/_skin004_1/assets/extension/poster.jpg`);
+SkinVariable.defaultCode="86";
 //SkinVariable.isShowSoccerMatche = false ;
 
 Vue.config.productionTip = false;

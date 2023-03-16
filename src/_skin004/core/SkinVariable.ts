@@ -25,4 +25,6 @@ export default class SkinVariable {
     /**是否显示 显示保存推广图片的背景 */
     public static isSavePhoto = false; 
     public static savePhotoBg = require(`@/assets/extension/poster.jpg`);
+    /**默认区号 */
+    public static defaultCode = "84";
 }

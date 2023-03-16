@@ -84,6 +84,11 @@ const routes: Array<RouteConfig> = [
         name: "page_activity",
         component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
     },
+    {
+        path: "/page_rules_hidden/:lang",
+        name: "page_rules_hidden",
+        component: () => import(/* webpackChunkName: "skin005_page_rules_hidden" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */

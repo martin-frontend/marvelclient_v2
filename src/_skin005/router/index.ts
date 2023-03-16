@@ -85,9 +85,10 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
     },
     {
-        path: "/page_rules_hidden/:lang",
-        name: "page_rules_hidden",
-        component: () => import(/* webpackChunkName: "skin005_page_rules_hidden" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
+        path: "/page_rules/:lang",
+        name: "page_rules",
+        component: () =>
+            import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
     },
 ];
 
@@ -115,18 +116,13 @@ router.beforeEach((to: any, from: any, next: any) => {
     } else {
         if (
             !core.user_id &&
-            (to.name == "page_recharge" ||
-                to.name == "page_game_play" ||
-                to.name == "page_my_info" ||
-                to.name == "page_statistice_credit")
+            (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_my_info" || to.name == "page_statistice_credit")
         ) {
             next(`/${core.lang}`);
         } else {
             if (to.name == "page_game_soccer" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                 next(`/${core.lang}`);
-            }
-            else
-                next();
+            } else next();
         }
     }
 });

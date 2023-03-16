@@ -229,12 +229,12 @@ export default class TabExchangeBankVnd extends AbstractView {
     }
 
     onSetPassword() {
-        const { phone, email } = this.selfProxy.userInfo;
-        if (phone || email) {
+        // const { phone, email } = this.selfProxy.userInfo;
+        // if (phone || email) {
             dialog_trade_password.show();
-        } else {
-            dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
-        }
+        // } else {
+        //     dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
+        // }
     }
 
     onSubmit() {

@@ -109,10 +109,14 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
         this.pageData.loading = true;
+        const parameter = {
+            user_id: core.user_id,
+            page_size: this.parameter.page_size,
+            page_count: this.pageData.listQuery.page_count,
+        };
         this.parameter.user_id = core.user_id;
         this.parameter.page_count = this.pageData.listQuery.page_count;
-
-        this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...this.parameter }));
+        this.sendNotification(net.HttpType.api_user_var_agent_direct_list, objectRemoveNull({ ...parameter }));
     }
 
     /**--代理推广--直属保底范围查询*/

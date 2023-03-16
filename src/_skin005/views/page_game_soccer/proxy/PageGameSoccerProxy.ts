@@ -5,5 +5,6 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
         isAction: false,
         loading: false,
         url: "",
+        token: "",
     };
 }

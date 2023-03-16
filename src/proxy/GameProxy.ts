@@ -3,6 +3,7 @@ import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import NotificationName from "@/core/NotificationName";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
@@ -17,9 +18,9 @@ export default class GameProxy extends AbstractProxy {
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     lobbyMenuIndex: core.PlatLobbyIndexVO[] = [];
     /**当前正在玩的游戏 */
-    currGame: any ={
-        vendor_id:0,
-    }
+    currGame: any = {
+        vendor_id: 0,
+    };
     /**当前选择的钱包类型 */
     coin_name_unique: string = "";
     // /**进入游戏页面的上一个路由 */
@@ -45,8 +46,10 @@ export default class GameProxy extends AbstractProxy {
         this.lobbyMenuIndex = body;
     }
     setCoin(coin_name_unique: string) {
+        const old_coin = this.coin_name_unique;
         window.localStorage.setItem("coin_name_unique", coin_name_unique);
         this.coin_name_unique = coin_name_unique;
+        if (old_coin != this.coin_name_unique) this.sendNotification(NotificationName.UPDATE_COIN);
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
@@ -68,7 +71,11 @@ export default class GameProxy extends AbstractProxy {
             coin_name_unique: this.coin_name_unique,
         };
         if (GlobalVar.skin) form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
-        this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
+        if (core.user_id) {
+            this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
+        } else {
+            this.sendNotification(net.HttpType.api_vendor_var_ori_product_visitor_show_var, form);
+        }
     }
     /**直接进入体育页面，skin001专用 */
     go_soccer(data: any = null) {

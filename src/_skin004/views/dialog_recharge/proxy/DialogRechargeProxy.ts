@@ -5,7 +5,7 @@ import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import DialogAddressBookProxy from "@/_skin004/views/dialog_address_book/proxy/DialogAddressBookProxy";
-
+import DialogRechargeBankcharge from "@/_skin004/views/dialog_recharge_bankcharge";
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
 
@@ -42,11 +42,35 @@ export class RechargeProxy extends puremvc.Proxy {
             recharge_channel_id: "",
             amount: "",
             third_id: "",
+            payemthod_id:"",
             subtitle: "",
         },
         gold_index: 0,
+        //银行卡转账信息
+        bankTransInfo:<any>{},
     };
-
+    setTestData()
+    {
+        const obj={
+            explain:"asdasdas",
+            fee:"",
+            icon:"CNY_13_6_31630.png",
+            icon_url:"",
+            is_fixed_gold:1,
+            max_gold:"1000.00",
+            min_gold:"100.00",
+            subtitle:"永恒支付-coinfans560-支付宝zfbbc-34",
+            third_id:31630,
+            fixed_gold_list:["100", "200", "300", "500", "1000"]
+        }
+        const list = <any>[];
+        for (let index = 0; index < 3; index++) {
+            obj.third_id = obj.third_id+index;
+           list.push(JSON.parse(JSON.stringify(obj)));
+           
+        }
+        return list;
+    }
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -62,13 +86,13 @@ export class RechargeProxy extends puremvc.Proxy {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             // 默认选择trc20
-            let block_network_id = optionsKeys[0];
+            let block_network_id = this.setFirstBtn();
             for (const key of optionsKeys) {
                 if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
                     block_network_id = key;
                 }
             }
-
+           
             if (block_network_id) {
                 this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
@@ -79,7 +103,7 @@ export class RechargeProxy extends puremvc.Proxy {
                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                 }
-                if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+                if (data[coin_name_unique].options[block_network_id].payemthod_id == 6 || data[coin_name_unique].options[block_network_id].payemthod_id == 8) {
                     const channel = data[coin_name_unique].options[block_network_id].channel;
                     if (channel.length > 0) {
                         this.pageData.form.third_id = channel[0].third_id;
@@ -90,11 +114,39 @@ export class RechargeProxy extends puremvc.Proxy {
                         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                     }
                 }
+                
             }
+
+            // if (data[coin_name_unique].options[31].payemthod_id == 8) {
+            //     const banktran = data[coin_name_unique].options[31];
+            //     if (banktran) {
+            //         banktran.channel = this.setTestData();
+            //     }
+            // }
+            
         }
         this.api_user_var_recharge_address();
+     //   this.setFirstBtn();
     }
-
+    setFirstBtn(){
+        const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
+        const sortedOptions:any[] = Object.values(coinObj).sort((a:any, b:any) => a.sort - b.sort);
+        return sortedOptions[0].strkey;
+    }
+    optionsSort(data:any) {
+        const tempdata = JSON.parse(JSON.stringify(data))
+        for (const iterator of Object.entries(tempdata)) {
+            const item1 = <any>iterator[1];
+            item1.strkey=iterator[0];
+            if (!item1.sort) {
+                
+                item1.sort = 1000;
+            }
+        }
+        const sortedOptions = Object.values(tempdata).sort((a:any, b:any) => a.sort - b.sort);
+        
+        return sortedOptions;
+    }
     async setAddress(data: string) {
         this.pageData.loading = false;
         this.pageData.address = data;
@@ -103,7 +155,7 @@ export class RechargeProxy extends puremvc.Proxy {
 
     api_user_var_recharge_method_list() {
         this.pageData.loading = true;
-        this.sendNotification(net.HttpType.api_user_var_recharge_method_list, { user_id: core.user_id });
+        this.sendNotification(net.HttpType.api_user_var_recharge_method_list, { user_id: core.user_id});
     }
 
     api_user_var_recharge_address() {
@@ -117,11 +169,20 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    api_user_var_recharge_create() {
+    api_user_var_recharge_create(payemthod_id:any) {
         this.pageData.loading = true;
-        const data = { user_id: core.user_id };
+        const data = {user_id: core.user_id,request_unique:payemthod_id };
         Object.assign(data, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
+    }
+    set_user_var_recharge_create(data: string){
+        Object.assign(this.pageData.bankTransInfo, data);
+        this.showbankDialog();
+    }
+    showbankDialog(){
+        Object.assign(this.pageData.bankTransInfo, {amount:this.pageData.form.amount});
+        DialogRechargeBankcharge.show(this.pageData.bankTransInfo);
+
     }
 }
 
@@ -181,7 +242,43 @@ export class ExchangeProxy extends puremvc.Proxy {
         }
         console.log("设置真实信命" + this.pageData.form.account_name );
     }
+    addusdt(){
+        const  data:any={};
+       
+        data.name = "USDT";
+        data.payment_method_type = 5;
+        data.options={};
+        data.options["2"]={};
+        data.options["2"].name="BSC";
+        data.options["2"].payment_method_type = 4;
+        data.options["2"].exchange_channel_id = 2;
+        data.options["2"].exchange_channel_method_id = 7;
+        data.options["2"].subtitle="";
+        data.options["2"].explain="";
+        data.options["2"].balance="";
+        data.options["2"].free_time=1;
+        data.options["2"].fee="2%";
+        data.options["2"].min_out="10.0000";
+        data.options["2"].max_out="10000.000";
+        data.options["2"].index_no = 2;
+        data.options["6"]={};
+        data.options["6"].name="TRC20";
+        data.options["6"].payment_method_type = 4;
+        data.options["6"].exchange_channel_id = 2;
+        data.options["6"].exchange_channel_method_id = 8;
+        data.options["6"].subtitle="";
+        data.options["6"].explain="";
+        data.options["6"].balance="";
+        data.options["6"].free_time=1;
+        data.options["6"].fee="2%";
+        data.options["6"].min_out="10.0000";
+        data.options["6"].max_out="10000.000";
+        data.options["6"].index_no = 3;
+        return data;
+
+    }
     setData(data: any) {
+    //    data["USDT"] = this.addusdt();
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
@@ -208,14 +305,35 @@ export class ExchangeProxy extends puremvc.Proxy {
 
                 this.pageData.form.exchange_channel_method_id = obj.exchange_channel_method_id;
                 this.pageData.form.payment_method_type = obj.payment_method_type;
-                
+
                 //设置地址，发送 请求
                 this.sendAddressInfo();
             }
+            
+           
         }
         this.setRealName();
+        this.setFirstBtn();
     }
-
+    setFirstBtn(){
+        const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
+        const sortedOptions:any = Object.values(coinObj).sort((a:any, b:any) => a.sort - b.sort);
+        this.pageData.form.block_network_id=sortedOptions[0]?.strkey;
+    }
+    optionsSort(data:any) {
+        const tempdata = JSON.parse(JSON.stringify(data))
+        for (const iterator of Object.entries(tempdata)) {
+            const item1 = <any>iterator[1];
+            item1.strkey=iterator[0];
+            if (!item1.sort) {
+                
+                item1.sort = 1000;
+            }
+        }
+        const sortedOptions = Object.values(tempdata).sort((a:any, b:any) => a.sort - b.sort);
+        
+        return sortedOptions;
+    }
     //设置地址，发送 请求
     sendAddressInfo()
     {

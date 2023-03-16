@@ -58,6 +58,10 @@ export default class SelfProxy extends AbstractProxy {
         is_today_sign: 0,
         is_user_mail: 0,
         is_vip: 0,
+        is_user_mail_num:{
+            status: 1,  // 状态:1-不提示|2-提示
+            num: 0       // 数量
+        }
     };
 
     setUserInfo(value: any) {

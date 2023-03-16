@@ -1,7 +1,7 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogPromotionFloorProxy from "../proxy/DialogPromotionFloorProxy";
 import getProxy from "@/core/global/getProxy";
-import DialogDirectlyProxy from "@/views/dialog_directly/proxy/DialogDirectlyProxy";
+import DialogDirectlyProxy from "@/_skin001/views/dialog_directly/proxy/DialogDirectlyProxy";
 
 export default class DialogPromotionFloorMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {

@@ -48,6 +48,20 @@
                         </v-btn>
                     </v-sheet>
                 </v-sheet>
+                 <!-- 用户密码 -->
+                 <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between text-16"
+                 min-height="35">
+                 <v-sheet color="transparent"
+                     class="d-flex textGray--text font-weight-bold">{{LangUtil("用户密码")}}</v-sheet>
+                 <v-sheet color="transparent" class="d-flex primary--text">
+                     <div>********</div>
+                     <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                         @click="onEditPassword">
+                         <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
+                     </v-btn>
+                 </v-sheet>
+             </v-sheet>
+
                 <!-- 用户备注 -->
                 <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between text-16"
                     min-height="35">
@@ -254,6 +268,17 @@
                     <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
                         @click="copy(playerInfo.nick_name)">
                         <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between" min-height="35">
+                <v-sheet color="transparent" class="d-flex">{{LangUtil("用户密码")}}</v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <div>********</div>
+                    <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24"
+                        @click="onEditPassword">
+                        <svg-icon icon="edit" class="text-16 copy_icon--text"></svg-icon>
                     </v-btn>
                 </v-sheet>
             </v-sheet>

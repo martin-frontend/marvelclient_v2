@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_user_reset_password, result.data, result.unique);
+                this.sendNotification(EventType.api_user_reset_password, result.data, result.extend.request_unique);
             }
         }
     }

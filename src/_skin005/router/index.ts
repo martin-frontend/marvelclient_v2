@@ -84,6 +84,12 @@ const routes: Array<RouteConfig> = [
         name: "page_activity",
         component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
     },
+    {
+        path: "/page_rules/:lang",
+        name: "page_rules",
+        component: () =>
+            import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
@@ -110,15 +116,13 @@ router.beforeEach((to: any, from: any, next: any) => {
     } else {
         if (
             !core.user_id &&
-            (to.name == "page_recharge" ||
-                to.name == "page_game_play" ||
-                to.name == "page_game_soccer" ||
-                to.name == "page_my_info" ||
-                to.name == "page_statistice_credit")
+            (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_my_info" || to.name == "page_statistice_credit")
         ) {
             next(`/${core.lang}`);
         } else {
-            next();
+            if (to.name == "page_game_soccer" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                next(`/${core.lang}`);
+            } else next();
         }
     }
 });

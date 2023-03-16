@@ -5,10 +5,12 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_record_exchange from "@/_skin004/views/dialog_record_exchange";
 import dialog_record_recharge from "@/_skin004/views/dialog_record_recharge";
+import dialog_gold_water from "@/_skin004/views/dialog_gold_water";
 import dialog_wallet from "@/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRechargeMediator from "../mediator/DialogRechargeMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class DialogRecharge extends AbstractView {
@@ -16,7 +18,7 @@ export default class DialogRecharge extends AbstractView {
     myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
     selfProxy: SelfProxy = getProxy(SelfProxy);
     pageData = this.myProxy.pageData;
-
+    SkinVariable = SkinVariable;
     constructor() {
         super(DialogRechargeMediator);
     }
@@ -48,7 +50,9 @@ export default class DialogRecharge extends AbstractView {
         }
         //this.pageData.bShow = false;
     }
-
+    gowater(){
+        dialog_gold_water.show();
+    }
     viewDetail() {
         dialog_wallet.show(2, 0);
     }
@@ -56,5 +60,10 @@ export default class DialogRecharge extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if (this.pageData.bShow)
+        {
+            this.myProxy.exchangeProxy.resetform();
+            this.myProxy.transferProxy.resetform();
+        }
     }
 }

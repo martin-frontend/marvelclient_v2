@@ -49,7 +49,8 @@ export default class GameConfig {
         if (GlobalVar.game_address_method == 1) {
             url = `/resource/game_address/${core.MD5.createInstance().hex_md5(core.game_domain)}.json?${getFileVersion()}`;
             if (process.env.VUE_APP_ENV == "production") {
-                url = location.origin + url;
+                // url = location.origin + url;
+                url = location.protocol + "//uxdz.wfxdmj1990.com" + url;
             } else {
                 url = "https://sftpuser.starsabc.com" + url;
             }

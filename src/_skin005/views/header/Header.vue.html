@@ -48,7 +48,8 @@
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
-                <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
+                <!-- <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap> -->
+                <v-badge color="red" overlap :content="red_dot_tips.is_user_mail_num.num" :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num">
                     <v-btn class="ml-4 navIcon--text" icon small @click="handlerMail">
                         <svg-icon class="text-24" icon="mail"></svg-icon>
                     </v-btn>
@@ -93,7 +94,7 @@
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
                     <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                 </v-btn>
-                <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap>
+                <v-badge color="red" overlap :content="red_dot_tips.is_user_mail_num.num" :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num">
                     <v-btn icon small @click="handlerMail">
                         <svg-icon class="text-24 head_btn--text" icon="mail"></svg-icon>
                     </v-btn>

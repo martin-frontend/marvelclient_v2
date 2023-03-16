@@ -106,6 +106,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
 
     /**用户登陆前置验证 */
     api_user_login_check() {
+        this.pageData.loading = true;
         const { username, password } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_login_check, {
             username,

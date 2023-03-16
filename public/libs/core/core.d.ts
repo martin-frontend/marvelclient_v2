@@ -93,6 +93,8 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
         /**--搜索--我的游戏*/
@@ -382,6 +384,8 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
         /**--搜索--我的游戏*/
@@ -1829,6 +1833,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_vendor_var_ori_product_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取进入厂商的游戏URL，获取厂商游戏凭证，未登录
+ */
+declare module net {
+    class cmd_api_vendor_var_ori_product_visitor_show_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

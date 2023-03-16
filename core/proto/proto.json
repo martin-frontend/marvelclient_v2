@@ -1,199 +1,591 @@
 {
     "document": "http://18.166.154.73:8090/pages/viewpage.action?pageId=66514",
-    "list":[
+    "list": [
         "--新加的",
-        ["api/plat/{plat_id}/language/config",          "获取语言列表"],
-        ["api/public/auth_code",                        "获取验证码图片"],
-        ["api/public/email/send",                       "发送邮件"],
-        ["api/public/sms/send",                         "发送短信"],
-        ["api/public/area_code",                        "获取手机区号"],
-        ["api/plat/{plat_id}/game/all/config",          "获取所有游戏的查询配置"],
-        ["api/plat/{plat_id}/game/all/index",           "所有游戏的查询"],
-        ["api/user/{user_id}/block_coins_scale ",       "获取币种游戏比率"],
-        ["api/plat/{plat_id}/backwater_setting_info",   "获取平台最大挖矿效率"],
-        
-
+        [
+            "api/plat/{plat_id}/language/config",
+            "获取语言列表"
+        ],
+        [
+            "api/public/auth_code",
+            "获取验证码图片"
+        ],
+        [
+            "api/public/email/send",
+            "发送邮件"
+        ],
+        [
+            "api/public/sms/send",
+            "发送短信"
+        ],
+        [
+            "api/public/area_code",
+            "获取手机区号"
+        ],
+        [
+            "api/plat/{plat_id}/game/all/config",
+            "获取所有游戏的查询配置"
+        ],
+        [
+            "api/plat/{plat_id}/game/all/index",
+            "所有游戏的查询"
+        ],
+        [
+            "api/user/{user_id}/block_coins_scale ",
+            "获取币种游戏比率"
+        ],
+        [
+            "api/plat/{plat_id}/backwater_setting_info",
+            "获取平台最大挖矿效率"
+        ],
         "--钱包",
-        ["api/plat/{API_PLAT_ID}/block_transfer_in_order/account",                       "获取转入账号信息"],
-        ["api/user/{API_USER_ID}/block_transfer_in_order/store",                         "代币转入订单提交"],
-        ["api/user/{API_USER_ID}/block_transfer_in_order/index",                         "代币转入订单列表"],
-        ["api/user/{API_USER_ID}/block_transfer_out_order/store",                         "代币转出订单提交"],
-        ["api/user/{API_USER_ID}/block_transfer_out_order/index",                         "代币转出订单列表"],
-        ["api/user/coin_exchange_scale/{API_USER_ID}",                                  "货币互转取得即時匯率"],
-        ["api/user/coin_exchange/{API_USER_ID}",                                        "货币互转"],
-
+        [
+            "api/plat/{API_PLAT_ID}/block_transfer_in_order/account",
+            "获取转入账号信息"
+        ],
+        [
+            "api/user/{API_USER_ID}/block_transfer_in_order/store",
+            "代币转入订单提交"
+        ],
+        [
+            "api/user/{API_USER_ID}/block_transfer_in_order/index",
+            "代币转入订单列表"
+        ],
+        [
+            "api/user/{API_USER_ID}/block_transfer_out_order/store",
+            "代币转出订单提交"
+        ],
+        [
+            "api/user/{API_USER_ID}/block_transfer_out_order/index",
+            "代币转出订单列表"
+        ],
+        [
+            "api/user/coin_exchange_scale/{API_USER_ID}",
+            "货币互转取得即時匯率"
+        ],
+        [
+            "api/user/coin_exchange/{API_USER_ID}",
+            "货币互转"
+        ],
         "--账号",
-        ["api/user/register",                           "注册"],
-        ["api/user/login",                              "登入"],
-        ["api/user/logout",                             "登出"],
-        ["api/user/change_password/{user_id}",          "修改密码"],
-        ["api/user/reset_password",                     "重置密码"],
-        ["api/user/change_password_gold/{user_id}",     "现金密码"],
-        ["api/user/login_check",                        "用户登陆前置验证"],
-
+        [
+            "api/user/register",
+            "注册"
+        ],
+        [
+            "api/user/login",
+            "登入"
+        ],
+        [
+            "api/user/logout",
+            "登出"
+        ],
+        [
+            "api/user/change_password/{user_id}",
+            "修改密码"
+        ],
+        [
+            "api/user/reset_password",
+            "重置密码"
+        ],
+        [
+            "api/user/change_password_gold/{user_id}",
+            "现金密码"
+        ],
+        [
+            "api/user/login_check",
+            "用户登陆前置验证"
+        ],
         "--会员资料",
-        ["api/user/show/{user_id}",                     "获取用户基本信息"],
-        ["api/user/update/{user_id}",                   "修改用户基本信息"],
-        ["api/user/bind_mobile/{user_id}",              "用户绑定手机"],
-        ["api/user/bind_email/{user_id}",               "用户绑定邮箱"],
-        ["api/user/{user_id}/vendor/withdraw",          "提取用户所有厂商的余额"],
-        ["api/user/update/{user_id}/safe_gold",         "用户保险箱存取款"],
-        ["api/user/{user_id}/gold_transfer",            "金币划转"],
-        ["api/user/show/{user_id}/bet",                 "投注记录"],
-        ["api/user/show/{user_id}/channel_statistic",   "渠道统计"],
-        ["api/user/show/{user_id}/gold",                "获取用户账户明细"],
-        ["api/user/change_bsc_address/{user_id}",       "钱包地址修改"],
-        ["api/user/{user_id}/google_key",               "获取google验证码"],
-        ["api/user/bind_google_key/{user_id}",          "绑定google验证码"],
-        ["api/vendor/{vendor_id}/bet_log_detail",       "投注记录详情【只用于配置的体育】"],
-
+        [
+            "api/user/show/{user_id}",
+            "获取用户基本信息"
+        ],
+        [
+            "api/user/update/{user_id}",
+            "修改用户基本信息"
+        ],
+        [
+            "api/user/bind_mobile/{user_id}",
+            "用户绑定手机"
+        ],
+        [
+            "api/user/bind_email/{user_id}",
+            "用户绑定邮箱"
+        ],
+        [
+            "api/user/{user_id}/vendor/withdraw",
+            "提取用户所有厂商的余额"
+        ],
+        [
+            "api/user/update/{user_id}/safe_gold",
+            "用户保险箱存取款"
+        ],
+        [
+            "api/user/{user_id}/gold_transfer",
+            "金币划转"
+        ],
+        [
+            "api/user/show/{user_id}/bet",
+            "投注记录"
+        ],
+        [
+            "api/user/show/{user_id}/channel_statistic",
+            "渠道统计"
+        ],
+        [
+            "api/user/show/{user_id}/gold",
+            "获取用户账户明细"
+        ],
+        [
+            "api/user/change_bsc_address/{user_id}",
+            "钱包地址修改"
+        ],
+        [
+            "api/user/{user_id}/google_key",
+            "获取google验证码"
+        ],
+        [
+            "api/user/bind_google_key/{user_id}",
+            "绑定google验证码"
+        ],
+        [
+            "api/vendor/{vendor_id}/bet_log_detail",
+            "投注记录详情【只用于配置的体育】"
+        ],
         "--大厅",
-        ["api/plat/{plat_id}/lobby/index",                              "获取游戏类型,游戏菜单（大厅菜单）"],
-        ["api/vendor/simple",                                           "获取厂商列表"],
-        ["api/vendor/{vendor_id}/lobby/simple",                         "获取厂商配置游戏菜单（大厅厂商二级游戏菜单）"],
-        ["api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",    "获取进入厂商的游戏URL，获取厂商游戏凭证"],
-
-        ["api/plat/{plat_id}/game/menu",                              "获取平台首页菜单游戏列表"],
-
+        [
+            "api/plat/{plat_id}/lobby/index",
+            "获取游戏类型,游戏菜单（大厅菜单）"
+        ],
+        [
+            "api/vendor/simple",
+            "获取厂商列表"
+        ],
+        [
+            "api/vendor/{vendor_id}/lobby/simple",
+            "获取厂商配置游戏菜单（大厅厂商二级游戏菜单）"
+        ],
+        [
+            "api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",
+            "获取进入厂商的游戏URL，获取厂商游戏凭证"
+        ],
+        [
+            "api/vendor/{vendor_id}/ori_product/visitor/show/{ori_product_id}",
+            "获取进入厂商的游戏URL，获取厂商游戏凭证，未登录"
+        ],
+        [
+            "api/plat/{plat_id}/game/menu",
+            "获取平台首页菜单游戏列表"
+        ],
         "--搜索",
-        ["api/user/{user_id}/game/index",                       "我的游戏"],
-        ["api/user/{user_id}/game/update/{vendor_product_id}",  "收藏游戏"],
-        ["api/user/{user_id}/game/search",                      "搜索游戏"],
-
+        [
+            "api/user/{user_id}/game/index",
+            "我的游戏"
+        ],
+        [
+            "api/user/{user_id}/game/update/{vendor_product_id}",
+            "收藏游戏"
+        ],
+        [
+            "api/user/{user_id}/game/search",
+            "搜索游戏"
+        ],
         "--返水",
-        ["api/user/{user_id}/backwater",                "获取用户返水记录"],
-        ["api/user/{user_id}/backwater/{id}",           "获取用户返水详情"],
-        ["api/user/{user_id}/backwater/trial",          "返水试算接口"],
-        ["api/user/{user_id}/backwater/trial/receive",  "返水试算领取接口"],
-
+        [
+            "api/user/{user_id}/backwater",
+            "获取用户返水记录"
+        ],
+        [
+            "api/user/{user_id}/backwater/{id}",
+            "获取用户返水详情"
+        ],
+        [
+            "api/user/{user_id}/backwater/trial",
+            "返水试算接口"
+        ],
+        [
+            "api/user/{user_id}/backwater/trial/receive",
+            "返水试算领取接口"
+        ],
         "--邮件",
-        ["api/user/{user_id}/mail",                     "获取用户邮件列表"],
-        ["api/user/{user_id}/mail/{id}",                "获取用户邮件详细信息"],
-        ["api/user/{user_id}/mail/{id}/receive",        "领取邮件对应的奖励"],
-        ["api/user/{user_id}/receiveQuick",             "一键领取所有邮件对应的奖励"],
-        ["api/user/{user_id}/destroy/batch",            "批量删除邮件"],
-        ["api/user/{user_id}/destroy/quick",            "一键删除邮件"],
-
+        [
+            "api/user/{user_id}/mail",
+            "获取用户邮件列表"
+        ],
+        [
+            "api/user/{user_id}/mail/{id}",
+            "获取用户邮件详细信息"
+        ],
+        [
+            "api/user/{user_id}/mail/{id}/receive",
+            "领取邮件对应的奖励"
+        ],
+        [
+            "api/user/{user_id}/receiveQuick",
+            "一键领取所有邮件对应的奖励"
+        ],
+        [
+            "api/user/{user_id}/destroy/batch",
+            "批量删除邮件"
+        ],
+        [
+            "api/user/{user_id}/destroy/quick",
+            "一键删除邮件"
+        ],
         "--活动",
-        ["api/plat/activity",                           "获取活动列表数据"],
-        ["api/plat/activity/{id}",                      "plat_activity_detail"],
-        ["api/plat/activity/{id}/receive",              "领取活动奖励"],
-        ["api/plat/activity/index/everyday",            "每日任务"],
-        ["api/plat/sign/index",                         "获取用户签到信息"],
-        ["api/user/{user_id}/sign/store",               "每日签到"],
-        ["api/user/{user_id}/sign/receive",             "领取用户签到奖励"],
-        ["api/plat/activity/show/binding",              "绑定赠金"],
-        
+        [
+            "api/plat/activity",
+            "获取活动列表数据"
+        ],
+        [
+            "api/plat/activity/{id}",
+            "plat_activity_detail"
+        ],
+        [
+            "api/plat/activity/{id}/receive",
+            "领取活动奖励"
+        ],
+        [
+            "api/plat/activity/index/everyday",
+            "每日任务"
+        ],
+        [
+            "api/plat/sign/index",
+            "获取用户签到信息"
+        ],
+        [
+            "api/user/{user_id}/sign/store",
+            "每日签到"
+        ],
+        [
+            "api/user/{user_id}/sign/receive",
+            "领取用户签到奖励"
+        ],
+        [
+            "api/plat/activity/show/binding",
+            "绑定赠金"
+        ],
         "--公告",
-        ["api/plat/{plat_id}/notice/index",             "平台公告"],
-        ["api/plat/{plat_id}/notice/show/{id}",         "平台公告数据详细数据"],
-
+        [
+            "api/plat/{plat_id}/notice/index",
+            "平台公告"
+        ],
+        [
+            "api/plat/{plat_id}/notice/show/{id}",
+            "平台公告数据详细数据"
+        ],
         "--代理推广",
-        ["api/user/{user_id}/commission/commissionnum",                     "我的返佣比"],
-        ["api/user/{user_id}/agent/direct/list",                            "直属成员"],
-        ["api/user/{user_id}/commission/commissiondetail",                  "按日期获取佣金详情"],
-        ["api/user/{user_id}/commission/commissionlist",                    "业绩查询"],
-        ["api/user/{user_id}/commission/directswater",                      "按日期查询直属代理流水详情"],
-        ["api/user/{user_id}/commission/receive",                           "领取佣金"],
-        ["api/user/{user_id}/agent/{agent_user_id}/floor_range",            "直属保底范围查询"],
-        ["api/user/{user_id}/agent/{agent_user_id}/update",                 "设置直属保底"],
-        ["api/user/{user_id}/agent/{agent_user_id}/statistic_promotion",    "获取用户推广统计信息"],
-        ["api/user/{user_id}/agent/{agent_user_id}/direct/list",            "获取代理用户列表"],
-        ["api/user/{user_id}/short_chain",                                  "获取推广链接"],
-        ["api/user/{user_id}/agent_bonus",                                  "获取总代分红列表"],
-        ["api/user/{user_id}/receive_agent_bonus/{id}",                     "领取分红"],
-        ["api/user/{user_id}/bonus_all/config",                             "整盘分红等级表"],
-        ["api/user/{user_id}/bonus_all/statistic",                          "整盘分红统计"],
-        ["api/user/{user_id}/bonus_all/receive/{id}",                       "领取整盘分红"],
-        ["api/user/{user_id}/bonus_all/direct",                             "获取下级整盘分红列表"],
-        ["api/user/{user_id}/bonus_all/history",                            "获取整盘分红历史记录"],
-
+        [
+            "api/user/{user_id}/commission/commissionnum",
+            "我的返佣比"
+        ],
+        [
+            "api/user/{user_id}/agent/direct/list",
+            "直属成员"
+        ],
+        [
+            "api/user/{user_id}/commission/commissiondetail",
+            "按日期获取佣金详情"
+        ],
+        [
+            "api/user/{user_id}/commission/commissionlist",
+            "业绩查询"
+        ],
+        [
+            "api/user/{user_id}/commission/directswater",
+            "按日期查询直属代理流水详情"
+        ],
+        [
+            "api/user/{user_id}/commission/receive",
+            "领取佣金"
+        ],
+        [
+            "api/user/{user_id}/agent/{agent_user_id}/floor_range",
+            "直属保底范围查询"
+        ],
+        [
+            "api/user/{user_id}/agent/{agent_user_id}/update",
+            "设置直属保底"
+        ],
+        [
+            "api/user/{user_id}/agent/{agent_user_id}/statistic_promotion",
+            "获取用户推广统计信息"
+        ],
+        [
+            "api/user/{user_id}/agent/{agent_user_id}/direct/list",
+            "获取代理用户列表"
+        ],
+        [
+            "api/user/{user_id}/short_chain",
+            "获取推广链接"
+        ],
+        [
+            "api/user/{user_id}/agent_bonus",
+            "获取总代分红列表"
+        ],
+        [
+            "api/user/{user_id}/receive_agent_bonus/{id}",
+            "领取分红"
+        ],
+        [
+            "api/user/{user_id}/bonus_all/config",
+            "整盘分红等级表"
+        ],
+        [
+            "api/user/{user_id}/bonus_all/statistic",
+            "整盘分红统计"
+        ],
+        [
+            "api/user/{user_id}/bonus_all/receive/{id}",
+            "领取整盘分红"
+        ],
+        [
+            "api/user/{user_id}/bonus_all/direct",
+            "获取下级整盘分红列表"
+        ],
+        [
+            "api/user/{user_id}/bonus_all/history",
+            "获取整盘分红历史记录"
+        ],
         "--分红",
-        ["api/user/{user_id}/deposit_stake",         "用户质押"],
-        ["api/user/{user_id}/withdraw_stake",        "用户手动解质押"],
-        ["api/plat/{plat_id}/stake_info",            "平台币分红信息"],
-        ["api/user/{user_id}/stake_info",            "用户币分红信息"],
-        ["api/plat/{plat_id}/bonus_recently",        "平台近5日分红金额列表"],
-        ["api/plat/{plat_id}/bonus_rank",            "昨日分红排行榜"],
-        ["api/user/{user_id}/stake_draw",            "领取分红"],
-        ["api/user/{user_id}/stake_log",             "用户质押记录"],
-        ["api/plat/{plat_id}/bonus_log",             "分红记录-全站记录"],
-        ["api/user/{user_id}/bonus_log",             "分红记录-个人纪录"],
-
+        [
+            "api/user/{user_id}/deposit_stake",
+            "用户质押"
+        ],
+        [
+            "api/user/{user_id}/withdraw_stake",
+            "用户手动解质押"
+        ],
+        [
+            "api/plat/{plat_id}/stake_info",
+            "平台币分红信息"
+        ],
+        [
+            "api/user/{user_id}/stake_info",
+            "用户币分红信息"
+        ],
+        [
+            "api/plat/{plat_id}/bonus_recently",
+            "平台近5日分红金额列表"
+        ],
+        [
+            "api/plat/{plat_id}/bonus_rank",
+            "昨日分红排行榜"
+        ],
+        [
+            "api/user/{user_id}/stake_draw",
+            "领取分红"
+        ],
+        [
+            "api/user/{user_id}/stake_log",
+            "用户质押记录"
+        ],
+        [
+            "api/plat/{plat_id}/bonus_log",
+            "分红记录-全站记录"
+        ],
+        [
+            "api/user/{user_id}/bonus_log",
+            "分红记录-个人纪录"
+        ],
         "--兑换",
-        ["api/user/{plat_id}/exchange/method/list",         "兑换方式列表"],
-        ["api/user/{user_id}/exchange/order_list",          "用户兑换订单"],
-        ["api/user/{user_id}/exchange/create_order",        "创建兑换订单"],
-        ["api/user/{user_id}/gold_water/index",             "流水审核"],
-
+        [
+            "api/user/{plat_id}/exchange/method/list",
+            "兑换方式列表"
+        ],
+        [
+            "api/user/{user_id}/exchange/order_list",
+            "用户兑换订单"
+        ],
+        [
+            "api/user/{user_id}/exchange/create_order",
+            "创建兑换订单"
+        ],
+        [
+            "api/user/{user_id}/gold_water/index",
+            "流水审核"
+        ],
         "--收款管理",
-        ["api/user/{user_id}/payment_method/index",         "收款方式列表"],
-        ["api/user/{user_id}/payment_method/store",         "添加收款方式"],
-        ["api/user/{user_id}/payment_method/bank_list",     "银行列表"],
-        ["api/user/{user_id}/payment_method/update/{id}",   "更新银行卡/支付宝"],
-
+        [
+            "api/user/{user_id}/payment_method/index",
+            "收款方式列表"
+        ],
+        [
+            "api/user/{user_id}/payment_method/store",
+            "添加收款方式"
+        ],
+        [
+            "api/user/{user_id}/payment_method/bank_list",
+            "银行列表"
+        ],
+        [
+            "api/user/{user_id}/payment_method/update/{id}",
+            "更新银行卡/支付宝"
+        ],
         "--短信",
-        ["api/sms/send",                                "发送短信 [验证码和获取注册验证码调用同一方法即可]"],
-        ["api/sms/reset_password_sent",                 "重置密码发送短信"],
-        ["api/sms/exchange",                            "收款方式发送短信"],
-        ["api/sms/transfer",                            "金币划转发送短信"],
-
+        [
+            "api/sms/send",
+            "发送短信 [验证码和获取注册验证码调用同一方法即可]"
+        ],
+        [
+            "api/sms/reset_password_sent",
+            "重置密码发送短信"
+        ],
+        [
+            "api/sms/exchange",
+            "收款方式发送短信"
+        ],
+        [
+            "api/sms/transfer",
+            "金币划转发送短信"
+        ],
         "--商城",
-        ["api/user/{user_id}/recharge/method/list",     "获取商城支付列表"],
-        ["api/user/{user_id}/recharge/create",          "创建订单"],
-        ["api/user/{user_id}/coin_recharge/confirm",    "币商充值订单确认转账"],
-        ["api/user/{user_id}/recharge/list",            "充值记录"],
-        ["api/user/{user_id}/recharge/address",         "获取数字货币充值地址"],
-
+        [
+            "api/user/{user_id}/recharge/method/list",
+            "获取商城支付列表"
+        ],
+        [
+            "api/user/{user_id}/recharge/create",
+            "创建订单"
+        ],
+        [
+            "api/user/{user_id}/coin_recharge/confirm",
+            "币商充值订单确认转账"
+        ],
+        [
+            "api/user/{user_id}/recharge/list",
+            "充值记录"
+        ],
+        [
+            "api/user/{user_id}/recharge/address",
+            "获取数字货币充值地址"
+        ],
         "--介绍页",
-        ["api/plat/{plat_id}/reward_coin_info",         "奖励币介绍"],
-        
+        [
+            "api/plat/{plat_id}/reward_coin_info",
+            "奖励币介绍"
+        ],
         "--其它",
-        ["api/plat/{plat_id}/game/config",              "配置数据 枚举"],
-        ["api/plat/fag/index",                          "常见问题"],
-        ["api/plat/{plat_id}/marquee/index",            "跑马灯"],
-        ["api/user/{user_id}/messages/index",           "获取未读取的消息列表"],
-        ["api/user/{user_id}/messages/show/{id}",       "获取消息详情"],
-        ["api/user/{user_id}/beat",                     "用户心跳"],
-        ["api/user/{user_id}/red_dot_tips",             "获取红点提示信息"],
-
-        ["api/plat/{plat_id}/recently_bet_info",        "近期投注"],
-
+        [
+            "api/plat/{plat_id}/game/config",
+            "配置数据 枚举"
+        ],
+        [
+            "api/plat/fag/index",
+            "常见问题"
+        ],
+        [
+            "api/plat/{plat_id}/marquee/index",
+            "跑马灯"
+        ],
+        [
+            "api/user/{user_id}/messages/index",
+            "获取未读取的消息列表"
+        ],
+        [
+            "api/user/{user_id}/messages/show/{id}",
+            "获取消息详情"
+        ],
+        [
+            "api/user/{user_id}/beat",
+            "用户心跳"
+        ],
+        [
+            "api/user/{user_id}/red_dot_tips",
+            "获取红点提示信息"
+        ],
+        [
+            "api/plat/{plat_id}/recently_bet_info",
+            "近期投注"
+        ],
         "--Swap",
-        ["api/plat/{plat_id}/swap_setting_info",         "Swap基础信息"],
-        ["api/plat/{plat_id}/swap_k",                    "Swap价格图"],
-        ["api/plat/{plat_id}/swap/trial",                "Swap试算"],
-        ["api/user/{user_id}/swap/order_list",           "Swap兑换订单"],
-        ["api/user/{user_id}/swap/create_order",         "Swap创建订单"],
-
-
+        [
+            "api/plat/{plat_id}/swap_setting_info",
+            "Swap基础信息"
+        ],
+        [
+            "api/plat/{plat_id}/swap_k",
+            "Swap价格图"
+        ],
+        [
+            "api/plat/{plat_id}/swap/trial",
+            "Swap试算"
+        ],
+        [
+            "api/user/{user_id}/swap/order_list",
+            "Swap兑换订单"
+        ],
+        [
+            "api/user/{user_id}/swap/create_order",
+            "Swap创建订单"
+        ],
         "--平台入口配置获取",
-        ["api/plat/{plat_id}/config",                   "平台入口配置获取"],
-        ["api/test_speed",                              "检测接口速度"],
-
+        [
+            "api/plat/{plat_id}/config",
+            "平台入口配置获取"
+        ],
+        [
+            "api/test_speed",
+            "检测接口速度"
+        ],
         "--直属投注记录列表",
-        ["api/user/{user_id}/agent/{agent_user_id}/bet", "直属投注记录列表"],
-
+        [
+            "api/user/{user_id}/agent/{agent_user_id}/bet",
+            "直属投注记录列表"
+        ],
         "--skin001专属",
-        ["api/vendor/96/products",                      "获取赛事数据"],
-
+        [
+            "api/vendor/96/products",
+            "获取赛事数据"
+        ],
         "--获取推荐人信息是否为信用用户",
-        ["api/user/{user_id}/invite_user_info",         "查询直属用户金币数量"],
-
+        [
+            "api/user/{user_id}/invite_user_info",
+            "查询直属用户金币数量"
+        ],
         "--直属用户查询操作",
-        ["api/user/{user_id}/fetch_direct_user_info",        "查询直属用户金币数量"],
-        ["api/user/{user_id}/agent_direct_user_update",      "直属用户状态查询和修改"],
-        ["api/user/{user_id}/agent_direct_deduction",        "直属用户直接扣款"],
-        ["api/user/{user_id}/credit_statistic",              "信用统计"],
-        ["api/user/{user_id}/agent_credit_transfer",         "直属用户加钱"],
-        ["api/user/{user_id}/direct_register",         "注册直属"],
-        ["api/user/{user_id}/agent_direct_deduction_all",         "清空直属所有额度"],
-
+        [
+            "api/user/{user_id}/fetch_direct_user_info",
+            "查询直属用户金币数量"
+        ],
+        [
+            "api/user/{user_id}/agent_direct_user_update",
+            "直属用户状态查询和修改"
+        ],
+        [
+            "api/user/{user_id}/agent_direct_deduction",
+            "直属用户直接扣款"
+        ],
+        [
+            "api/user/{user_id}/credit_statistic",
+            "信用统计"
+        ],
+        [
+            "api/user/{user_id}/agent_credit_transfer",
+            "直属用户加钱"
+        ],
+        [
+            "api/user/{user_id}/direct_register",
+            "注册直属"
+        ],
+        [
+            "api/user/{user_id}/agent_direct_deduction_all",
+            "清空直属所有额度"
+        ],
         "--skin003",
-        ["/api/user/third_login", "三方登录"],
-
+        [
+            "/api/user/third_login",
+            "三方登录"
+        ],
         "--推广",
-        ["api/plat/{plat_id}/promotion_config",             "返佣等级配置"],
-        ["api/plat/{plat_id}/vip_config",         "VIP等级配置"]
+        [
+            "api/plat/{plat_id}/promotion_config",
+            "返佣等级配置"
+        ],
+        [
+            "api/plat/{plat_id}/vip_config",
+            "VIP等级配置"
+        ]
     ]
 }

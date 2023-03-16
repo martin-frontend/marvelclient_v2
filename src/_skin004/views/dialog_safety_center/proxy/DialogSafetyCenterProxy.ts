@@ -1,11 +1,12 @@
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
 
     public onRegister(): void {
-        this.api_public_area_code();
+      
     }
 
     pageData = {
@@ -35,7 +36,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     resetForm() {
         Object.assign(this.pageData.formBindPhone, {
             user_id: core.user_id,
-            area_code: "84",
+            area_code: SkinVariable.defaultCode,
             mobile: "",
             code: "",
         });

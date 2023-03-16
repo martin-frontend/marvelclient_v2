@@ -17,6 +17,7 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 import dialog_personal_card from "@/views/dialog_personal_card";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_statistics_credit from "@/_skin001/views/dialog_statistics_credit";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -83,8 +84,13 @@ export default class PageExtension extends AbstractView {
     }
 
     async savePhoto() {
+        if (!SkinVariable.isSavePhoto)
+        {
+            this.showPreview();
+            return;
+        }
         if (this.pageData.qrCode) {
-            const bg = require(`@/assets/extension/poster.jpg`);
+            const bg = SkinVariable.savePhotoBg;
             let imgData: any;
             if (bg) {
                 const myCanvas = new MyCanvas(750, 1334);

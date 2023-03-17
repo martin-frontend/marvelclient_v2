@@ -9,7 +9,7 @@ import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
-import 'element-ui/lib/theme-chalk/index.css';
+import "element-ui/lib/theme-chalk/index.css";
 import Assets from "@/assets/Assets";
 import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 import Notifications from "vue-notification";
@@ -19,12 +19,12 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {
-//     core.host = "http://api.starsabc.com/";
-//     core.cdnUrl = "http://sftpuser.starsabc.com";
+//     core.host = "http://api.testjj9.com/";
+//     core.cdnUrl = "http://sftpuser.testjj9.com";
 //     core.plat_id = js_utils.getQueryVariable("plat_id") || "30000";
 //     core.channel_id = js_utils.getQueryVariable("channel_id") || "30000001";
 // }
@@ -64,4 +64,4 @@ window.onload = function () {
 };
 
 const commonIcon = Assets.commonIcon;
-commonIcon.loading = require(`@/assets/loading001.gif`)
+commonIcon.loading = require(`@/assets/loading001.gif`);

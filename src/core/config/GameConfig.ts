@@ -52,7 +52,7 @@ export default class GameConfig {
                 // url = location.origin + url;
                 url = location.protocol + "//uxdz.wfxdmj1990.com" + url;
             } else {
-                url = "https://sftpuser.starsabc.com" + url;
+                url = "https://sftpuser.testjj9.com" + url;
             }
             myAxios = axios.get(url);
         } else {
@@ -114,7 +114,7 @@ export default class GameConfig {
                     apiUrl = "http://" + location.hostname + ":28001";
                 }
             } else {
-                apiUrl = "https://api.starsabc.com";
+                apiUrl = "https://api.testjj9.com";
             }
         }
         return apiUrl;

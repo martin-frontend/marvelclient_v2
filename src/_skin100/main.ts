@@ -17,12 +17,12 @@ LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin100.starsabc.com";
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin100.testjj9.com";
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {
-//     core.host = "http://api.starsabc.com/";
-//     core.cdnUrl = "http://sftpuser.starsabc.com";
+//     core.host = "http://api.testjj9.com/";
+//     core.cdnUrl = "http://sftpuser.testjj9.com";
 //     core.plat_id = js_utils.getQueryVariable("plat_id") || "30012";
 //     core.channel_id = js_utils.getQueryVariable("channel_id") || "30012001";
 // }

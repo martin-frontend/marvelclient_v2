@@ -85,7 +85,7 @@ export default class GameProxy extends AbstractProxy {
             this.currGame = {
                 app_type: 2,
                 category: 64,
-                icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
+                icon: "http://sftpuser.testjj9.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
                 index_no: 6,
                 languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
                 list_type: 0,

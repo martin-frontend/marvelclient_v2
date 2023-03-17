@@ -114,8 +114,6 @@ import DialogDirectlyMyProxy from "@/_skin005/views/dialog_directly_my/proxy/Dia
 
 import PageStatisticeCreditProxy from "@/_skin005/views/page_statistice_credit/proxy/PageStatisticeCreditProxy";
 
-
-
 /** 其他  */
 import dialog_swap_record from "@/_skin005/views/dialog_swap_record";
 import dialog_bonus_ranking from "@/_skin005/views/dialog_bonus_ranking";
@@ -131,9 +129,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "./PageBlur";
 import GameConfig from "@/core/config/GameConfig";
 
-
 export default class PanelUtil {
-
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
     }
@@ -207,8 +203,7 @@ export default class PanelUtil {
             PanelUtil.showAppLoading(true);
             PageBlur.blur_force_close();
             MultDialogManager.forceClosePanel();
-        }
-        );
+        });
     }
 
     //打开 信用统计 界面
@@ -229,8 +224,7 @@ export default class PanelUtil {
         if (data && data.visitor_allowed && data.visitor_allowed == 1) {
             PanelUtil.showAppLoading(true);
             PanelUtil.getProxy_gameproxy.go_soccer(data);
-        }
-        else {
+        } else {
             LoginEnter(() => {
                 PanelUtil.showAppLoading(true);
                 PanelUtil.getProxy_gameproxy.go_soccer(data);
@@ -245,7 +239,7 @@ export default class PanelUtil {
             data = {
                 app_type: 2,
                 category: 64,
-                icon: "http://sftpuser.starsabc.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
+                icon: "http://sftpuser.testjj9.com/resource/load_page_domain/d8/a7/d8a7883ef7beb56973362b0ab85b2402.jpg",
                 index_no: 49,
                 languages: ["zh_CN", "th_TH", "jp_JP", "es_ES", "ko_Kr", "vi_VN", "en_EN", "zh_TW"],
                 list_type: 0,
@@ -265,7 +259,7 @@ export default class PanelUtil {
                 vendor_type: 64,
                 visitor_allowed: 1,
                 water_rate_accelerate: 0,
-            }
+            };
         }
         PanelUtil.getProxy_gameproxy.go_soccer(data);
         //});
@@ -323,7 +317,6 @@ export default class PanelUtil {
         page_game_soccer.show(url);
     }
 
-
     /*
         弹框页面打开
     */
@@ -344,8 +337,7 @@ export default class PanelUtil {
         LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_email);
             dialog_email.show();
-        }
-        );
+        });
 
         //LoginEnter(dialog_email.show);
     }
@@ -365,17 +357,13 @@ export default class PanelUtil {
         // MultDialogManager.onOpenPanel(dialog_recharge);
         // dialog_recharge.show();
         PanelUtil.openpage_recharge();
-
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
-
         //MultDialogManager.onOpenPanel(dialog_recharge);
         if (!GlobalVar.instance.isShowRecharge) {
             PanelUtil.message_info(LangUtil("兑换通道关闭!"));
-        }
-        else
-            PanelUtil.openpage_recharge(1);
+        } else PanelUtil.openpage_recharge(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {
@@ -405,7 +393,13 @@ export default class PanelUtil {
     }
 
     //打开 投注记录 窗口
-    static openpanel_bet_record(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true, msg: any = null) {
+    static openpanel_bet_record(
+        agent_user_id: any = null,
+        start_date: string = "",
+        end_date: string = "",
+        bShowOptions = true,
+        msg: any = null
+    ) {
         MultDialogManager.onOpenPanel(dialog_bet_record);
         dialog_bet_record.show(agent_user_id, start_date, end_date, bShowOptions, msg);
     }
@@ -427,7 +421,6 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_google_verification);
         dialog_google_verification.show(type);
     }
-
 
     //打开 开启弹窗: 平台钱包/账户明细/推广返佣 窗口
     static openpanel_wallet(tabIdx: number = 0, type?: number, coinName?: string) {
@@ -469,7 +462,6 @@ export default class PanelUtil {
 
     //打开 交换记录 窗口
     static openpanel_swap_record() {
-
         LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_swap_record);
             dialog_swap_record.show();
@@ -580,16 +572,16 @@ export default class PanelUtil {
 
     /**
      * 筛选
-     * @param data 
+     * @param data
      */
     static openpanel_bet_filter(data: any = null) {
         MultDialogManager.onOpenPanel(dialog_bet_filter);
         dialog_bet_filter.show(data);
     }
     /**
-    * 订单  
-    * @param data 
-    */
+     * 订单
+     * @param data
+     */
     static openpanel_order(data: any = null) {
         MultDialogManager.onOpenPanel(dialog_order);
         dialog_order.show(data);
@@ -612,8 +604,8 @@ export default class PanelUtil {
         PanelUtil.openpage_statist_credit(1);
     }
     /**
-        * 添加用户
-        */
+     * 添加用户
+     */
     static openpanel_directly_adduser() {
         MultDialogManager.onOpenPanel(dialog_directly_adduser);
         dialog_directly_adduser.show();
@@ -710,12 +702,10 @@ export default class PanelUtil {
         dialog_gold_water.show();
     }
     /** 修改直属密码 页面 */
-    static openpanel_directly_password(data:any) {
+    static openpanel_directly_password(data: any) {
         MultDialogManager.onOpenPanel(dialog_directly_password);
         dialog_directly_password.show(data);
     }
-
-
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {
         return getProxy(DialogPerformanceDetailProxy);
@@ -767,8 +757,6 @@ export default class PanelUtil {
         return getProxy(DialogLoginProxy);
     }
 
-
-
     //导航的数据
     public static get getProxy_novigation(): NovigationProxy {
         return getProxy(NovigationProxy);
@@ -819,8 +807,6 @@ export default class PanelUtil {
         return getProxy(DialogGetVerityProxy);
     }
 
-
-
     public static get message_confirm(): Function {
         return dialog_message_box.confirm;
     }
@@ -843,6 +829,4 @@ export default class PanelUtil {
     public static get message_error(): Function {
         return dialog_message.error;
     }
-
-
 }

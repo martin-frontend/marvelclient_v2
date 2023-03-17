@@ -127,6 +127,9 @@ export default class Header extends AbstractView {
             case "1": {
                 if (!this.routerPath.includes("page_game_soccer") || this.isCricket) {
                     this.goSport();
+                    this.$nextTick(() => {
+                        this.pagetab = this.lastTabValue;
+                    });
                 }
 
             } break;
@@ -137,6 +140,9 @@ export default class Header extends AbstractView {
             case "22": {
                 console.log("打开  板球 界面");//this.goSport();
                 this.goCricket();
+                this.$nextTick(() => {
+                    this.pagetab = this.lastTabValue;
+                });
             } break;
             default:
                 break;

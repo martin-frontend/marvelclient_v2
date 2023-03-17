@@ -3884,7 +3884,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_vendor_var_ori_product_visitor_show_var, result.data, result.unique);
+                this.sendNotification(net.EventType.api_vendor_var_ori_product_visitor_show_var, result.data, result.extend.request_unique);
             }
         }
     }

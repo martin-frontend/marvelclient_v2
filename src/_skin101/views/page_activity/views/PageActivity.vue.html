@@ -4,8 +4,7 @@
             <template v-if="myProxy.pageData.list && myProxy.pageData.list.length > 0">
                 <!-- <v-card flat class="d-flex mt-5 align-center rounded15 px-4" min-height="68" color="#252e43"
                     width="100%"> -->
-                <v-card flat class="d-flex mt-5 align-center rounded15 px-4" min-height="68" color="#252e43"
-                    width="100%">
+                <v-card flat class="d-flex mt-5 align-center rounded15 px-4 activity-bg" min-height="68" width="100%">
                     <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange"
                         width="100%" class="overflow-x-auto">
                         <!-- <v-btn v-for="(item, key) of myProxy.pageData.categoryData" :key="key" class="rounded-pill mr-2"
@@ -29,7 +28,7 @@
                     <v-row>
                         <template v-for="(item, key) of curActivityData.data">
                             <v-col :cols="$vuetify.breakpoint.xsOnly ? 12 : 6" :key="item.id">
-                                <v-card flat class="rounded15 cursor-pointer" color="#252e43"
+                                <v-card flat class="rounded15 cursor-pointer activity-bg"
                                     @click.native="onItemClick(item)">
                                     <v-sheet color="transparent" width="100%" class=" "
                                         :class="$vuetify.breakpoint.xsOnly ? 'text-14 px-4 py-4' : 'text-18 pa-4'">

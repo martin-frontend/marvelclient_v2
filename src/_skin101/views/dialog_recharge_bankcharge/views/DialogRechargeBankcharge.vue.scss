@@ -25,3 +25,23 @@
     min-width: 183px;
     width: 198px;
 }
+
+.full-width{
+    width:100%;
+}
+.formlabel{
+    display: inline-flex;
+    width:70px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+}
+
+.cusinput4{
+    border-radius: 4px;
+    height: 29px;
+    border: solid 1px #4c5d7f;
+    color: white;
+    min-width: 183px;
+    width: 200px;
+}

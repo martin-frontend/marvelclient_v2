@@ -11,7 +11,7 @@ module net {
 
         private response(result: core.ResponseVO) {
             if (result.status === 0) {
-                this.sendNotification(EventType.api_vendor_var_ori_product_visitor_show_var, result.data, result.unique);
+                this.sendNotification(EventType.api_vendor_var_ori_product_visitor_show_var, result.data, result.extend.request_unique);
             }
         }
     }

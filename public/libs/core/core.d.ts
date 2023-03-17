@@ -2922,6 +2922,7 @@ declare module core {
             microtime: number;
             unique: string;
             version: string;
+            request_unique: string;
         };
         data: any;
         unique: any;

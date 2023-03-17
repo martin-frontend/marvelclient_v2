@@ -43,7 +43,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
             open_mode_url: "",
             activity_name: "96富文本测试",
             activity_category: "测试文职",
-            icon: "https://sftpuser.starsabc.com/resource/images/activity/26/77/267767291b03b46ca9900f689332bcc5.jpg",
+            icon: "https://sftpuser.testjj9.com/resource/images/activity/26/77/267767291b03b46ca9900f689332bcc5.jpg",
             start_time: "2023-03-07",
             end_time: "2040-03-08",
             settlement_period: 0,

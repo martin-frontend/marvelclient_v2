@@ -16,18 +16,16 @@ import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import SkinVariable from "@/_skin004/core/SkinVariable";
 
-
-
 LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
-core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.starsabc.com";
+core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {
-//     core.host = "http://api.starsabc.com/";
-//     core.cdnUrl = "http://sftpuser.starsabc.com";
+//     core.host = "http://api.testjj9.com/";
+//     core.cdnUrl = "http://sftpuser.testjj9.com";
 //     core.plat_id = js_utils.getQueryVariable("plat_id") || "30000";
 //     core.channel_id = js_utils.getQueryVariable("channel_id") || "30000001";
 // }
@@ -35,12 +33,12 @@ AppFacade.inst.startup();
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
 
-SkinVariable.pageHead_logo = require(`@/_skin004_1/assets/logo.png`)
+SkinVariable.pageHead_logo = require(`@/_skin004_1/assets/logo.png`);
 SkinVariable.pageHome_project_1 = require(`@/_skin004_1/assets/page_home/project_info_1.png`);
 SkinVariable.pageHome_project_2 = require(`@/_skin004_1/assets/page_home/project_info_2.png`);
 SkinVariable.isSavePhoto = true;
 SkinVariable.savePhotoBg = require(`@/_skin004_1/assets/extension/poster.jpg`);
-SkinVariable.defaultCode="86";
+SkinVariable.defaultCode = "86";
 //SkinVariable.isShowSoccerMatche = false ;
 
 Vue.config.productionTip = false;

@@ -11,11 +11,13 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
+import HeaderProxy from "./HeaderProxy";
 
 @Component
 export default class Header extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
+    myProxy: HeaderProxy = getProxy(HeaderProxy);
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
@@ -91,6 +93,11 @@ export default class Header extends AbstractView {
             )
         }
         this.lastTabValue = val_2;
+        this.myProxy.tempTabIndex =  this.pagetab;
+    }
+    @Watch("myProxy.tempTabIndex")
+    onWatchProxyTab(val: any, val_2: any) {
+        this.pagetab = this.myProxy.tempTabIndex;
     }
 
     @Watch("$route")

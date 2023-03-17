@@ -28,6 +28,7 @@ import localeE from "element-ui/lib/locale";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
+import HeaderProxy from "../views/header/HeaderProxy";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -199,7 +200,10 @@ export default class NetObserver extends AbstractMediator {
                         (this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId)
                     ) {
                         const homeProxy = PanelUtil.getProxy_page_home;
-
+                        const isCricket = this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId;
+                        const headerProxy = getProxy(HeaderProxy); 
+                        headerProxy.resetTab(isCricket ? 22 : 1 )
+                    
                         const url = body.url;
                         if (homeProxy.pageData.event_id) {
                             //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);

@@ -361,9 +361,10 @@ export default class PanelUtil {
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
         //MultDialogManager.onOpenPanel(dialog_recharge);
-        if (!GlobalVar.instance.isShowRecharge) {
-            PanelUtil.message_info(LangUtil("兑换通道关闭!"));
-        } else PanelUtil.openpage_recharge(1);
+        // if (!GlobalVar.instance.isShowRecharge) {
+        //     PanelUtil.message_info(LangUtil("兑换通道关闭!"));
+        // } else 
+        PanelUtil.openpage_recharge(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {

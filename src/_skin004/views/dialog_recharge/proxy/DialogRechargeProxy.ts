@@ -138,7 +138,7 @@ export class RechargeProxy extends puremvc.Proxy {
         for (const iterator of Object.entries(tempdata)) {
             const item1 = <any>iterator[1];
             item1.strkey=iterator[0];
-            if (!item1.sort) {
+            if (!item1["sort"]) {
                 
                 item1.sort = 1000;
             }
@@ -325,7 +325,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         for (const iterator of Object.entries(tempdata)) {
             const item1 = <any>iterator[1];
             item1.strkey=iterator[0];
-            if (!item1.sort) {
+            if (!item1["sort"]) {
                 
                 item1.sort = 1000;
             }

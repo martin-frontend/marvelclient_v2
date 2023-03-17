@@ -16,7 +16,7 @@
 
         <v-sheet v-if="pageData.tabIndex==1" min-width="334" color="transparent" class="ml-auto mr-4">
             <CustomInput :placeholder="LangUtil('输入查询ID/备注/账号')" v-model="pageData.search" :isBottomLine="false">
-                <btn-yellow class="ml-auto mr-n5 text-14" min_width="61" height="41" :btn_type="4"
+                <btn-yellow class="ml-auto text-14" min_width="61" height="41" :btn_type="4"
                     @click.native="search">{{LangUtil("查询")}}</btn-yellow>
             </CustomInput>
         </v-sheet>

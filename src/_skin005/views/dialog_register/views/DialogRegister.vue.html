@@ -33,7 +33,7 @@
                     @blur="onUsernameBlur" />
                 <CustomInput v-if="form.register_type==2" class="mb-6" icon="mdi-account"
                     :placeholder="LangUtil('请输入邮箱')" maxlength="30" v-model="form.username">
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
                     @click.native="sendVerithMail">{{verityString}}</btn-yellow>
 
                 </CustomInput>
@@ -41,7 +41,7 @@
                 <CustomInput v-if="form.register_type==4" class="mb-6" icon="mdi-phone" type="tel"
                     :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                     <template v-slot:pre>
-                        <v-sheet color="transparent" class="codeSelect" min-width="80">
+                        <v-sheet color="transparent" class="codeSelect" >
                             <v-autocomplete class="" v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
                                 :label="curShowCode" hide-details solo flat background-color="transparent" attach
                                 return-object :no-data-text="LangUtil('没有更多数据')" :filter="customFilter">
@@ -85,7 +85,7 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
                 </CustomInput>
 
@@ -174,7 +174,7 @@
                 @blur="onUsernameBlur" />
             <CustomInput  v-if="form.register_type==2"  icon="mdi-account" :placeholder="LangUtil('请输入邮箱')"
                 maxlength="30" v-model="form.username">
-                    <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
+                    <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(form.username) || isdeisable"
                     @click.native="sendVerithMail">{{verityString}}</btn-yellow>
 
             </CustomInput>
@@ -182,7 +182,7 @@
             <CustomInput  v-if="form.register_type==4" class="mb-4" icon="mdi-phone" type="tel"
                 :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                 <template v-slot:pre>
-                    <v-sheet color="transparent" class="codeSelect" min-width="80">
+                    <v-sheet color="transparent" class="codeSelect" >
                         <v-autocomplete v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
                             :label="curShowCode" hide-details solo flat background-color="transparent" attach
                             return-object :no-data-text="LangUtil('没有更多数据')" :filter="customFilter">
@@ -226,7 +226,7 @@
                         </v-sheet>
                     </v-menu>
                 </template>
-                    <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
+                    <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
                     @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
             </CustomInput>
 

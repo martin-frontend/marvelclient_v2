@@ -7,6 +7,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import page_bonus from "../page_bonus";
 import page_extension from "../page_extension";
 import page_mine from "../page_mine";
+import page_activity from "../page_activity";
 
 import f_1_a from "../../assets/img/mobile_menu/f_1_a.png";
 import f_1 from "../../assets/img/mobile_menu/f_1.png";
@@ -27,7 +28,8 @@ export default class MobileMenu extends AbstractView {
         { id: 1, name: LangUtil("大厅"), icon: f_2, activeIcon: f_2_a, path: "/page_game_list" },
         { id: 2, name: LangUtil("挖矿"), icon: f_3, activeIcon: f_3_a, path: "/page_mine" },
         { id: 3, name: LangUtil("推广"), icon: f_4, activeIcon: f_4_a, path: "/page_extension" },
-        { id: 4, name: LangUtil("分红"), icon: f_5, activeIcon: f_5_a, path: "/page_bonus" },
+        // { id: 4, name: LangUtil("分红"), icon: f_5, activeIcon: f_5_a, path: "/page_bonus" },
+        { id: 4, name: LangUtil("活动"), icon: f_5, activeIcon: f_5_a, path: "/page_activity" },
     ];
 
     routerPath = this.$router.app.$route.path;
@@ -51,7 +53,8 @@ export default class MobileMenu extends AbstractView {
                 LoginEnter(page_extension.show);
                 break;
             case 4:
-                LoginEnter(page_bonus.show);
+                // LoginEnter(page_bonus.show);
+                this.$router.push(item.path);
                 break;
         }
     }

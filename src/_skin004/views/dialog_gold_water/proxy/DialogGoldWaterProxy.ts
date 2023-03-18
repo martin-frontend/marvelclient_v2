@@ -47,7 +47,7 @@ export default class DialogGoldWaterProxy extends puremvc.Proxy {
         } else {
             this.pageData.list = data.list;
         }
-        this.pageData.list = this.setTestData();
+      //  this.pageData.list = this.setTestData();
     }
     /**测试数据 */
     setTestData()

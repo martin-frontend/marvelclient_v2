@@ -56,6 +56,7 @@ export default class DialogUserCenter extends AbstractView {
             message:LangUtil("是否退出登录"),
             okFun:() =>{
                 this.selfProxy.api_user_logout();
+                PanelUtil.showAppLoading(true);
                 //this.pageData.bShow = false;
                 this.onClose();
             }

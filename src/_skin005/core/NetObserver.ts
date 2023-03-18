@@ -160,6 +160,7 @@ export default class NetObserver extends AbstractMediator {
                 }
                 break;
             case net.EventType.api_user_logout:
+                PanelUtil.showAppLoading(false);
                 this.selfProxy.loginout();
 
                 PanelUtil.message_alert({

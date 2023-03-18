@@ -56,6 +56,7 @@ export default class UserPanel extends AbstractView {
         PanelUtil.message_confirm({
             message:LangUtil("是否退出登录"),
             okFun:() =>{
+                PanelUtil.showAppLoading(true);
                 this.selfProxy.api_user_logout();
             }
         })

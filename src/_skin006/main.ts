@@ -34,11 +34,14 @@ Assets.commonIcon.logo_m = require(`@/_skin006/assets/logo_m.png`);
 
 SkinVariable.isShowFootDetail = false;
 SkinVariable.loadingType = "006";
+SkinVariable.isUsedDialogRecharge  = true;
+SkinVariable.isForeShowRecharge = true;
 LogUtil.init();
 core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
+//core.game_domain =  "betnow.co";
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;

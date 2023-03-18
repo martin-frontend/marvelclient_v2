@@ -5,6 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import router from "@/router";
 import PageBlur from "@/_skin005/core/PageBlur";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
@@ -52,4 +53,7 @@ export default class Wallet extends AbstractView {
         }
     }
     
+    public get isShowRecharge() : boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
+    } 
 }

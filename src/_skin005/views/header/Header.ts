@@ -184,5 +184,7 @@ export default class Header extends AbstractView {
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
         return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
-
+    public get isShowRecharge() : boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
+    } 
 }

@@ -120,10 +120,10 @@
                 </v-menu>
             </v-sheet>
             <v-sheet color="transparent" class="d-flex">
-                <btn-yellow v-if="GlobalVar.instance.isShowRecharge" class="text-12 ml-2 mr-2" min_width="60" height="30" :btn_type="2"
+                <btn-yellow v-if="isShowRecharge" class="text-12 ml-2 mr-2" min_width="60" height="30" :btn_type="2"
                     @click.native="onRechargeBtnClick">{{LangUtil("充值")}}</btn-yellow>
 
-                <btn-yellow v-if="GlobalVar.instance.isShowExchange || selfProxy.userInfo.is_credit_user == 98" class="text-12" min_width="60" height="30" :btn_type="2"
+                <btn-yellow v-if="isShowRecharge" class="text-12" min_width="60" height="30" :btn_type="2"
                     @click.native="onExchargeBtnClick">{{LangUtil("提现")}}</btn-yellow>
             </v-sheet>
         </v-sheet>

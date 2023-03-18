@@ -10,4 +10,8 @@ export default class SkinVariable {
     public static loadingType = "005";
     /**是否需要添加 消息推送的 代码 */
     public static isNeedPush = false;
+    /**使用旧的弹窗类型的充值兑换 */
+    public static isUsedDialogRecharge =  false;
+
+    public static isForeShowRecharge = false;
 }

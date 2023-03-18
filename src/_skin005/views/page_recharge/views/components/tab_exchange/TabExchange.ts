@@ -136,8 +136,9 @@ export default class TabExchange extends AbstractView {
         //console.log("channel-兑换--", channel);
         if (channel && channel.length > 0) {
             this.setFormData(channel[0]);
+            return channel;
         }
-        return channel;
+      
         // }
         return [];
     }

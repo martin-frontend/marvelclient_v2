@@ -9,7 +9,7 @@ import dialog_message from "@/views/dialog_message";
 import page_mine from "@/views/page_mine";
 import dialog_nick_name from "@/_skin004/views/dialog_nick_name";
 import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
-import dialog_personal_card from "@/views/dialog_personal_card";
+import dialog_personal_card from "@/_skin004/views/dialog_personal_card";
 import DialogSafetyCenterProxy from "@/_skin004/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
 import dialog_trade_password from "@/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";

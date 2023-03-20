@@ -305,6 +305,8 @@ var net;
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: "api/plat/{plat_id}/plat_big_award",
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: "api/plat/{plat_id}/swap_setting_info",
         /**--Swap--Swap价格图*/
@@ -596,6 +598,8 @@ var net;
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: "api_plat_var_plat_big_award",
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: "api_plat_var_swap_setting_info",
         /**--Swap--Swap价格图*/
@@ -778,6 +782,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_beat, net.cmd_api_user_var_beat);
         facade.registerCommand(net.HttpType.api_user_var_red_dot_tips, net.cmd_api_user_var_red_dot_tips);
         facade.registerCommand(net.HttpType.api_plat_var_recently_bet_info, net.cmd_api_plat_var_recently_bet_info);
+        facade.registerCommand(net.HttpType.api_plat_var_plat_big_award, net.cmd_api_plat_var_plat_big_award);
         //--Swap
         facade.registerCommand(net.HttpType.api_plat_var_swap_setting_info, net.cmd_api_plat_var_swap_setting_info);
         facade.registerCommand(net.HttpType.api_plat_var_swap_k, net.cmd_api_plat_var_swap_k);
@@ -1293,6 +1298,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_notice_show_var = cmd_api_plat_var_notice_show_var;
+})(net || (net = {}));
+/**
+ * 近期爆奖
+ */
+var net;
+/**
+ * 近期爆奖
+ */
+(function (net) {
+    class cmd_api_plat_var_plat_big_award extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_plat_big_award, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_plat_big_award, result.data, result.unique);
+            }
+        }
+    }
+    net.cmd_api_plat_var_plat_big_award = cmd_api_plat_var_plat_big_award;
 })(net || (net = {}));
 /**
  * 返佣等级配置

@@ -251,6 +251,8 @@ declare module net {
         api_user_var_red_dot_tips: string;
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: string;
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: string;
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: string;
         /**--Swap--Swap价格图*/
@@ -542,6 +544,8 @@ declare module net {
         api_user_var_red_dot_tips: string;
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: string;
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: string;
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: string;
         /**--Swap--Swap价格图*/
@@ -780,6 +784,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_notice_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 近期爆奖
+ */
+declare module net {
+    class cmd_api_plat_var_plat_big_award extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

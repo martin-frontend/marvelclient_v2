@@ -50,7 +50,6 @@ export class RechargeProxy extends puremvc.Proxy {
         //银行卡转账信息
         bankTransInfo: <any>{},
     };
-
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -66,7 +65,7 @@ export class RechargeProxy extends puremvc.Proxy {
             this.pageData.form.coin_name_unique = coin_name_unique;
             const optionsKeys = Object.keys(data[coin_name_unique].options);
             // 默认选择trc20
-            let block_network_id = optionsKeys[0];
+            let block_network_id = this.setFirstBtn();
             for (const key of optionsKeys) {
                 if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
                     block_network_id = key;
@@ -78,47 +77,147 @@ export class RechargeProxy extends puremvc.Proxy {
                 this.pageData.form.recharge_channel_id =
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
                 //如果payemthod_id == 5 则选择输入金额
-                if (data[coin_name_unique].payemthod_id == 5) {
+                if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
                     const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                 }
+                if (
+                    data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
+                    data[coin_name_unique].options[block_network_id].payemthod_id == 8
+                ) {
+                    const channel = data[coin_name_unique].options[block_network_id].channel;
+                    if (channel.length > 0) {
+                        this.pageData.form.third_id = channel[0].third_id;
+                        this.pageData.form.subtitle = channel[0].subtitle;
 
-                if (data[coin_name_unique].options[block_network_id]) {
-                    //如果payemthod_id == 5 则选择输入金额
-                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
-                        const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
+                        const fixed_gold_list = channel[0].fixed_gold_list;
                         this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                     }
-                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
-                        const channel = data[coin_name_unique].options[block_network_id].channel;
-                        if (channel.length > 0) {
-                            this.pageData.form.third_id = channel[0].third_id;
-                            this.pageData.form.subtitle = channel[0].subtitle;
-
-                            const fixed_gold_list = channel[0].fixed_gold_list;
-                            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-                            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-                        }
-                    }
-                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 9) {
-                        const channel = data[coin_name_unique].options[block_network_id].channel;
-                        if (channel.length > 0) {
-                            this.pageData.form.third_id = channel[0].third_id;
-                            this.pageData.form.subtitle = channel[0].subtitle;
-
-                            const fixed_gold_list = channel[0].fixed_gold_list;
-                            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-                            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-                        }
-                    }
                 }
             }
+
+            // if (data[coin_name_unique].options[31].payemthod_id == 8) {
+            //     const banktran = data[coin_name_unique].options[31];
+            //     if (banktran) {
+            //         banktran.channel = this.setTestData();
+            //     }
+            // }
         }
         this.api_user_var_recharge_address();
+        //   this.setFirstBtn();
     }
+    // setData(data: any) {
+    //     this.pageData.loading = false;
+    //     this.pageData.methodList = data;
+    //     const keys = Object.keys(data);
+    //     // 默认选中用户当前选择的币种
+    //     const gameProxy: GameProxy = getProxy(GameProxy);
+    //     let coin_name_unique = gameProxy.coin_name_unique;
+    //     if (keys.indexOf(coin_name_unique) == -1) {
+    //         coin_name_unique = keys[0];
+    //     }
 
+    //     if (coin_name_unique) {
+    //         this.pageData.form.coin_name_unique = coin_name_unique;
+    //         const optionsKeys = Object.keys(data[coin_name_unique].options);
+    //         // 默认选择trc20
+    //         let block_network_id = optionsKeys[0];
+    //         for (const key of optionsKeys) {
+    //             if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
+    //                 block_network_id = key;
+    //             }
+    //         }
+
+    //         // if (block_network_id) {
+    //         //     this.pageData.form.block_network_id = block_network_id;
+    //         //     this.pageData.form.recharge_channel_id =
+    //         //         data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
+    //         //     //如果payemthod_id == 5 则选择输入金额
+    //         //     if (data[coin_name_unique].payemthod_id == 5) {
+    //         //         const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
+    //         //         this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //         //         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //         //     }
+
+    //         //     if (data[coin_name_unique].options[block_network_id]) {
+    //         //         //如果payemthod_id == 5 则选择输入金额
+    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
+    //         //             const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
+    //         //             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //         //             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //         //         }
+    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+    //         //             const channel = data[coin_name_unique].options[block_network_id].channel;
+    //         //             if (channel.length > 0) {
+    //         //                 this.pageData.form.third_id = channel[0].third_id;
+    //         //                 this.pageData.form.subtitle = channel[0].subtitle;
+
+    //         //                 const fixed_gold_list = channel[0].fixed_gold_list;
+    //         //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //         //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //         //             }
+    //         //         }
+    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 9) {
+    //         //             const channel = data[coin_name_unique].options[block_network_id].channel;
+    //         //             if (channel.length > 0) {
+    //         //                 this.pageData.form.third_id = channel[0].third_id;
+    //         //                 this.pageData.form.subtitle = channel[0].subtitle;
+
+    //         //                 const fixed_gold_list = channel[0].fixed_gold_list;
+    //         //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //         //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //         //             }
+    //         //         }
+    //         //     }
+    //         // }
+    //         if (block_network_id) {
+    //             this.pageData.form.block_network_id = block_network_id;
+    //             this.pageData.form.recharge_channel_id =
+    //                 data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
+    //             //如果payemthod_id == 5 则选择输入金额
+    //             if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
+    //                 const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
+    //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //             }
+    //             if (
+    //                 data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
+    //                 data[coin_name_unique].options[block_network_id].payemthod_id == 8
+    //             ) {
+    //                 const channel = data[coin_name_unique].options[block_network_id].channel;
+    //                 if (channel.length > 0) {
+    //                     this.pageData.form.third_id = channel[0].third_id;
+    //                     this.pageData.form.subtitle = channel[0].subtitle;
+
+    //                     const fixed_gold_list = channel[0].fixed_gold_list;
+    //                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+    //                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     this.api_user_var_recharge_address();
+    // }
+    setFirstBtn() {
+        const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
+        const sortedOptions: any[] = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
+        return sortedOptions[0].strkey;
+    }
+    optionsSort(data: any) {
+        const tempdata = JSON.parse(JSON.stringify(data));
+        for (const iterator of Object.entries(tempdata)) {
+            const item1 = <any>iterator[1];
+            item1.strkey = iterator[0];
+            if (!item1["sort"]) {
+                item1.sort = 1000;
+            }
+        }
+        const sortedOptions = Object.values(tempdata).sort((a: any, b: any) => a.sort - b.sort);
+
+        return sortedOptions;
+    }
     async setAddress(data: string) {
         this.pageData.loading = false;
         this.pageData.address = data;

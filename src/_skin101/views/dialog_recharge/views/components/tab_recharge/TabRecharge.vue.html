@@ -24,18 +24,27 @@
         /> -->
     </div>
 
-    <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+    <!-- <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
         <v-btn class="mb-2 mx-2 rounded-pill font-weight-regular" elevation="0" min-width="70" height="30"
             :class="form.block_network_id==key ? 'btnBlueBg' : 'btnWhiteBg'"
             v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
             @click="onChange2(key)">
             {{item.name}}
         </v-btn>
+    </div> -->
+    <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+        <v-btn class="mb-2 mx-2" min-width="100" height="30"
+            :color="form.block_network_id==item.strkey ? 'colorBtnBg' : 'colorPanelTitleBg'"
+            v-for="(item, key) of myProxy.rechargeProxy.optionsSort(pageData.methodList[form.coin_name_unique].options)"
+            :key="key" @click="onChange2(item)">
+            {{item.name}}
+        </v-btn>
     </div>
 
     <v-card color="transparent" elevation="0">
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
+        <!-- <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"> -->
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 4">
             <div class="opacity4-white mt-2" v-if="pageData.methodList[form.coin_name_unique]">
                 {{LangUtil("你的{0} {1}充值地址", form.coin_name_unique,
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
@@ -50,9 +59,10 @@
                 </v-btn>
             </div>
         </div>
-        <!-- no  alipay wechat-->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id != 6 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id != 8)">
+        <!-- okpay topay no  alipay wechat-->
+        <!-- <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id != 6 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id != 8)"> -->
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 5">
             <div class="opacity4-white mt-3">{{LangUtil("常用充值金额")}}</div>
             <!-- <div class="d-flex flex-wrap my-2 mx-n2"> -->
             <div class="d-flex flex-wrap my-2 mx-n1">
@@ -67,8 +77,9 @@
         </div>
         <!--  -->
         <!-- alipay wechat -->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6">
+        <!-- <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6"> -->
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 6">
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn class="mb-2 mx-2" min-width="100" height="51" color="colorPanelTitleBg"
                     :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
@@ -97,8 +108,10 @@
         </div>
         <!--  -->
         <!-- bank card -->
+        <!-- <div
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8"> -->
         <div
-            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 5 && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8">
+            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8">
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn class="mb-2 mx-2" min-width="100" height="51" color="colorPanelTitleBg"
                     :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"

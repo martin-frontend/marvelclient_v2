@@ -42,13 +42,33 @@ export default class TabRecharge extends AbstractView {
         return this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id];
     }
 
-    onChange2(value: any) {
-        if (value) this.form.block_network_id = value;
+    // onChange2(value: any) {
+    //     if (value) this.form.block_network_id = value;
+    //     const { methodList } = this.pageData;
+    //     const { coin_name_unique, block_network_id } = this.form;
+    //     this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
+    //     this.myProxy.rechargeProxy.api_user_var_recharge_address();
+    //     // this.changeMoney();
+    //     const channel = methodList[coin_name_unique].options[block_network_id].channel;
+    //     if (channel) {
+    //         if (channel.length > 0) {
+    //             this.form.third_id = channel[0].third_id;
+    //             this.form.subtitle = channel[0].subtitle;
+    //             this.paymethodChangeMoney();
+    //         }
+    //     } else {
+    //         this.changeMoney();
+    //     }
+    // }
+
+    onChange2(item: any) {
+        if (item) this.form.block_network_id = item.strkey;
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
         this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
+        this.form.payemthod_id = <string>methodList[coin_name_unique].options[block_network_id].payemthod_id;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
-        // this.changeMoney();
+
         const channel = methodList[coin_name_unique].options[block_network_id].channel;
         if (channel) {
             if (channel.length > 0) {

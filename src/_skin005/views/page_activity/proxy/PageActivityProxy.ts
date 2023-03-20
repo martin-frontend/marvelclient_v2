@@ -1,5 +1,4 @@
-import LangUtil from "@/core/global/LangUtil";
-import Vue from "vue";
+
 
 export default class PageActivityProxy extends puremvc.Proxy {
     static NAME = "PageActivityProxy";
@@ -33,6 +32,9 @@ export default class PageActivityProxy extends puremvc.Proxy {
         categoryData: <any>[],
         isLoadData: true,
     };
+    
+    //保存 活动详情数据
+    activityDetailData = <any>{};
 
     setTestData() {
         const newobj = {
@@ -90,23 +92,31 @@ export default class PageActivityProxy extends puremvc.Proxy {
             for (let index = 0; index < this.pageData.list.length; index++) {
                 const element = this.pageData.list[index];
 
-                let addObj;
-                //检查 数组中 是否包含 此元素的 分类
-                for (let p = 0; p < this.pageData.categoryData.length; p++) {
-                    const tempEle = this.pageData.categoryData[p];
-                    if (element.activity_category == tempEle.title) {
-                        addObj = tempEle;
-                    }
-                }
+                //检查分类标题是否有效
                 if (element.activity_category.trim()) {
-                    if (!addObj) {
-                        addObj = {
-                            title: element.activity_category,
-                            data: <any>[],
-                        };
-                        this.pageData.categoryData.push(addObj);
+                    //将标题  用  # 分成数组
+                    const titleArr = element.activity_category.split("#");
+                    for (let n = 0; n < titleArr.length; n++) {
+                        //如果为空字符串不添加
+                        if (!titleArr[n].trim()) {
+                            continue;
+                        }
+                        let addObj;
+                        for (let p = 0; p < this.pageData.categoryData.length; p++) {
+                            const tempEle = this.pageData.categoryData[p];
+                            if (titleArr[n] == tempEle.title) {
+                                addObj = tempEle;
+                            }
+                        }
+                        if (!addObj) {
+                            addObj = {
+                                title: titleArr[n],
+                                data: <any>[],
+                            };
+                            this.pageData.categoryData.push(addObj);
+                        }
+                        addObj.data.push(element);
                     }
-                    addObj.data.push(element);
                 }
             }
         }
@@ -133,6 +143,11 @@ export default class PageActivityProxy extends puremvc.Proxy {
     api_plat_activity() {
         this.pageData.loading = true;
         this.pageData.isLoadData = true;
-        this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id });
+        this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
+    }
+    /**获取活动列表 */
+    api_plat_activity_var(idx: any) {
+        this.pageData.loading = true;
+        this.sendNotification(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
     }
 }

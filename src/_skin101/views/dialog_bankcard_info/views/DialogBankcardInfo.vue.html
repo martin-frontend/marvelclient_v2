@@ -48,7 +48,7 @@
                     </v-sheet>
                 </v-sheet>
 
-                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <ListNodata v-if="JSON.stringify(pageData.list) == '{}' || pageData.list.length == 0" height="411" />
                 <v-spacer />
                 <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1"
                     v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" @input="onPageChange">
@@ -76,7 +76,7 @@
             <!-- <v-divider class="mx-5" /> -->
             <v-card-text class="px-5">
                 <v-sheet color="transparent" class="listbox-mobile overflow-y-auto">
-                    <ListNodata v-if="pageData.list.length == 0" />
+                    <ListNodata v-if="JSON.stringify(pageData.list) == '{}' || pageData.list.length == 0" />
                     <v-sheet class="px-3 py-2 rounded-lg my-3 colorBlue--text cursor" color="colorPanelBg2"
                         v-for="(item, key) of pageData.list" :key="key" @click="onAddress(item)">
                         <div class="d-flex justify-space-between">

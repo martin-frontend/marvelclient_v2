@@ -83,12 +83,19 @@ export default class TabExchange extends AbstractView {
         this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
     }
 
-    onChangeSub(value: any) {
-        this.form.block_network_id = value;
-        this.form.exchange_channel_method_id =
-            this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
+    // onChangeSub(value: any) {
+    //     this.form.block_network_id = value;
+    //     this.form.exchange_channel_method_id =
+    //         this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
+    //     // 地址簿
+    //     this.addressBooProxy.pageData.listQuery.block_network_id = value;
+    // }
+
+    onChangeSub(item: any) {
+        this.form.block_network_id = item.strkey;
+        this.form.exchange_channel_method_id = item.exchange_channel_method_id;
         // 地址簿
-        this.addressBooProxy.pageData.listQuery.block_network_id = value;
+        this.addressBooProxy.pageData.listQuery.block_network_id = item.strkey;
     }
 
     get isChecked(): boolean {

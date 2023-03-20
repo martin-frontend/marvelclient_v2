@@ -18,12 +18,20 @@
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
         <v-btn class="mb-2 mx-1 rounded-pill font-weight-regular" elevation="0" min-width="70" height="30"
-            :class="form.block_network_id==key ? 'btnBlueBg' : 'btnWhiteBg'"
-            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
-            @click="onChangeSub(key)">
+            :class="form.block_network_id==item.strkey  ? 'btnBlueBg' : 'btnWhiteBg'"
+            v-for="(item, key) of myProxy.exchangeProxy.optionsSort(pageData.methodList[form.coin_name_unique].options)"
+            :key="key" @click="onChangeSub(item)">
             {{item.name}}
         </v-btn>
     </div>
+    <!-- <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
+        <v-btn class="mb-2 mx-2" min-width="100" height="30"
+            :color="form.block_network_id==item.strkey ? 'colorBtnBg' : 'colorPanelTitleBg'"
+            v-for="(item, key) of myProxy.exchangeProxy.optionsSort(pageData.methodList[form.coin_name_unique].options)"
+            :key="key" @click="onChangeSub(item)">
+            {{item.name}}
+        </v-btn>
+    </div> -->
     <div v-if="form.payment_method_type==4 || form.payment_method_type==5">
         <div class="opacity4-white mt-1">{{LangUtil("你的钱包地址")}}</div>
         <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">

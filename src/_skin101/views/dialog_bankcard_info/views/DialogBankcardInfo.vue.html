@@ -1,0 +1,106 @@
+<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent>
+    <!-- <v-card class="rounded-lg" color="colorPanelBg"> -->
+    <v-card class="rounded-lg sheet-bg">
+        <template v-if="!$vuetify.breakpoint.xsOnly">
+            <!-- <v-card-title class="gradient-bg"> -->
+            <v-card-title class="px-8">
+                <!-- <div class="text-rwd-18 font-weight-regular">{{LangUtil("银行卡信息")}}</div>
+                <v-spacer />
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn> -->
+                <div class="text-18">{{LangUtil("银行卡信息")}}</div>
+                <v-spacer />
+                <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                    <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <!-- <v-divider class="mx-5" /> -->
+            <v-card-text class="px-5 mt-2">
+                <v-sheet color="colorPanelBg2" class="d-flex align-center justify-space-around rounded-lg" height="38">
+                    <v-sheet class="text-14 colorBlue1--text d-flex justify-center" min-width="150" color="transparent">
+                        {{LangUtil("银行")}}</v-sheet>
+                    <v-sheet class="text-14 colorBlue1--text d-flex justify-center" min-width="150" color="transparent">
+                        {{LangUtil("姓名")}}</v-sheet>
+                    <v-sheet class="text-14 colorBlue1--text d-flex justify-center" min-width="200" color="transparent">
+                        {{LangUtil("卡号")}}</v-sheet>
+                    <v-sheet class="text-14 colorBlue1--text d-flex justify-center" min-width="100" color="transparent">
+                        {{LangUtil("操作")}}</v-sheet>
+                </v-sheet>
+                <v-sheet v-if="pageData.list.length > 0" color="transparent"
+                    class="overflow-y-auto d-flex flex-column mt-2" height="411">
+                    <v-sheet color="colorPanelBg2"
+                        class="d-flex align-center justify-space-around mb-2 rounded-lg cursor" min-height="38"
+                        v-for="(item, key) in pageData.list" :key="key" @click="onAddress(item)">
+                        <v-sheet class="text-14 colorBlue--text d-flex justify-center text-truncat" color="transparent"
+                            min-width="150">{{item.payment_method.bank}}</v-sheet>
+                        <v-sheet class="text-14 colorBlue--text d-flex justify-center text-truncat" color="transparent"
+                            min-width="150">{{item.payment_method.account_name}}</v-sheet>
+                        <v-sheet class="text-14 colorBlue--text d-flex justify-center" color="transparent"
+                            min-width="200">{{item.payment_method.account}}</v-sheet>
+                        <v-sheet class="text-14 colorBlue--text d-flex justify-space-around" color="transparent"
+                            min-width="100">
+                            <!-- <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn> -->
+                            <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}
+                            </v-btn>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-spacer />
+                <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1"
+                    v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" @input="onPageChange">
+                </v-pagination>
+            </v-card-text>
+        </template>
+        <!-- 手机显示方式 -->
+        <template v-else>
+            <v-card-text class="pb-3 px-0 header-mobile">
+                <!-- <div class="gradient-bg d-flex align-center px-5">
+                    <div class="text-18">{{LangUtil("银行卡信息")}}</div>
+                    <v-spacer />
+                    <v-btn icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </div> -->
+                <div class="d-flex align-center px-5 pt-5 pb15">
+                    <div class="font-weight-medium white--text text-17">{{LangUtil("银行卡信息")}}</div>
+                    <v-spacer />
+                    <v-btn icon width="26px" height="26px" class="exit-icon" @click="onClose">
+                        <v-icon size="26" class="font-weight-bold close-icon">mdi-close</v-icon>
+                    </v-btn>
+                </div>
+            </v-card-text>
+            <!-- <v-divider class="mx-5" /> -->
+            <v-card-text class="px-5">
+                <v-sheet color="transparent" class="listbox-mobile overflow-y-auto">
+                    <ListNodata v-if="pageData.list.length == 0" />
+                    <v-sheet class="px-3 py-2 rounded-lg my-3 colorBlue--text cursor" color="colorPanelBg2"
+                        v-for="(item, key) of pageData.list" :key="key" @click="onAddress(item)">
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue1--text">{{LangUtil("银行")}}</div>
+                            <div>{{item.payment_method.bank}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue1--text">{{LangUtil("姓名")}}</div>
+                            <div>{{ item.payment_method.account_name }}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue1--text">{{LangUtil("卡号")}}</div>
+                            <div>{{item.payment_method.account}}</div>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="colorBlue1--text">{{LangUtil("操作")}}</div>
+                            <!-- <div>{{ item.remark ?item.remark : '-' }}</div> -->
+                            <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}
+                            </v-btn>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+            </v-card-text>
+        </template>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

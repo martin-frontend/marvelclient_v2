@@ -12,6 +12,7 @@ import dialog_safety_center from "@/_skin101/views/dialog_safety_center";
 import dialog_trade_password from "@/_skin101/views/dialog_trade_password";
 import dialog_wallet from "@/_skin101/views/dialog_wallet";
 import { Component, Watch } from "vue-property-decorator";
+import dialog_bankcard_info from "@/_skin101/views/dialog_bankcard_info";
 
 @Component
 export default class TabExchange extends AbstractView {
@@ -23,7 +24,7 @@ export default class TabExchange extends AbstractView {
     form = this.pageData.form;
 
     plat_coins = GamePlatConfig.config.plat_coins;
-
+    bank_info = this.myProxy.exchangeProxy.curBankinfo;
     mounted() {
         const aLink = document.getElementById("aLink");
         if (aLink) {
@@ -39,7 +40,15 @@ export default class TabExchange extends AbstractView {
             `<a id="aLink" class="text-decoration-underline colorTextGold101--text">${LangUtil("安全中心")}</a>`
         );
     }
-
+    @Watch("myProxy.exchangeProxy.curBankinfo")
+    onBankInfoChange() {
+        // console.log("银行值呗修改了", this.myProxy.exchangeProxy.curBankinfo);
+        if (!this.myProxy.exchangeProxy.curBankinfo) {
+            return;
+        }
+        this.form.bank_id = this.myProxy.exchangeProxy.curBankinfo.bank_id;
+        this.form.bank = this.myProxy.exchangeProxy.curBankinfo.bank_name;
+    }
     @Watch("form.block_network_id")
     onWatchNetwwork() {
         const coinObj = this.pageData.methodList[this.form.coin_name_unique];
@@ -49,7 +58,12 @@ export default class TabExchange extends AbstractView {
             this.form.payment_method_type = obj.payment_method_type;
         }
     }
-
+    @Watch("myProxy.pageData.bShow")
+    onWatchpageShow() {
+        if (!this.myProxy.pageData.bShow) {
+            this.myProxy.exchangeProxy.curBankinfo = null;
+        }
+    }
     onChange(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
@@ -88,6 +102,15 @@ export default class TabExchange extends AbstractView {
         return false;
     }
 
+    public get methodlist_data(): any {
+        return this.pageData.methodList[this.form.coin_name_unique];
+    }
+    public get bank_list(): any {
+        if (this.pageData && this.pageData.methodList && this.methodlist_data && this.methodlist_data.bank_list)
+            return this.methodlist_data.bank_list;
+        return null;
+    }
+
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
@@ -123,27 +146,97 @@ export default class TabExchange extends AbstractView {
     }
 
     onSetPassword() {
-        const { phone, email } = this.selfProxy.userInfo;
-        if (phone || email) {
-            dialog_trade_password.show();
-        } else {
-            dialog_message_box.alert("请先绑定邮箱或者手机");
-        }
+        // const { phone, email } = this.selfProxy.userInfo;
+        // if (phone || email) {
+        dialog_trade_password.show();
+        // } else {
+        //     dialog_message_box.alert("请先绑定邮箱或者手机");
+        // }
     }
-
     onSubmit() {
         dialog_message_box.confirm({
-            message: "确认提交",
+            message: LangUtil("确认提交"),
             okFun: () => {
-                this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+                if (this.myProxy.exchangeProxy.pageData.form.payment_method_type == 6) {
+                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order_VND();
+                } else this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
             },
         });
     }
+    // onSubmit() {
+    //     dialog_message_box.confirm({
+    //         message: "确认提交",
+    //         okFun: () => {
+    //             this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+    //         },
+    //     });
+    // }
 
     transformExplain(str: string) {
         if (str) {
             return str.split("\n");
         }
         return [];
+    }
+
+    bshowAllNameList = false; //是否显示 名字的下拉菜单
+    onNameInputInput() {
+        this.bshowAllNameList = true;
+        //console.log("正在编辑");
+    }
+    onNameInputBlur() {
+        //console.log("失去焦点");
+        setTimeout(() => {
+            this.bshowAllNameList = false;
+        }, 100);
+    }
+
+    public get allNames(): any {
+        if (!this.form.account_name || this.form.account_name == "") {
+            return [];
+            //return this.myProxy.exchangeProxy.bankCard_nameArr;
+        }
+        const newArr = [];
+        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_nameArr.length; index++) {
+            const element = this.myProxy.exchangeProxy.bankCard_nameArr[index];
+            if (element.indexOf(this.form.account_name) > -1) {
+                newArr.push(element);
+            }
+        }
+        return newArr;
+    }
+    onClickNameSelect(item: any) {
+        //console.log("收到点击", item);
+        this.form.account_name = item;
+    }
+    bshowNumberList = false; //是否显示 名字的下拉菜单
+    onNumberInputInput() {
+        this.bshowNumberList = true;
+    }
+    onNumberInputBlur() {
+        setTimeout(() => {
+            this.bshowNumberList = false;
+        }, 100);
+    }
+    onClickNumberSelect(item: any) {
+        //console.log("收到点击", item);
+        this.form.account = item;
+    }
+    onBankcardInfo() {
+        dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo);
+    }
+    public get allCardNub(): any {
+        if (!this.form.account || this.form.account == "") {
+            return [];
+            //return this.myProxy.exchangeProxy.bankCard_numberArr;
+        }
+        const newArr = [];
+        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_numberArr.length; index++) {
+            const element = this.myProxy.exchangeProxy.bankCard_numberArr[index];
+            if (element.indexOf(this.form.account) > -1) {
+                newArr.push(element);
+            }
+        }
+        return newArr;
     }
 }

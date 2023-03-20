@@ -46,8 +46,16 @@ export default class DialogRecharge extends AbstractView {
         dialog_wallet.show(2, 0);
     }
 
+    // @Watch("pageData.bShow")
+    // onWatchShow() {
+    //     BlurUtil(this.pageData.bShow);
+    // }
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
+        if (this.pageData.bShow) {
+            this.myProxy.exchangeProxy.resetform();
+            this.myProxy.transferProxy.resetform();
+        }
     }
 }

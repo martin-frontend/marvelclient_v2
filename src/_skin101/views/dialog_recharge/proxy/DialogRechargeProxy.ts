@@ -1,8 +1,10 @@
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
+import { convert_vi_to_en } from "@/core/global/Functions";
 import DialogRechargeBankcharge from "@/_skin101/views/dialog_recharge_bankcharge";
-
+import SelfProxy from "@/proxy/SelfProxy";
+import DialogAddressBookProxy from "@/_skin101/views/dialog_address_book/proxy/DialogAddressBookProxy";
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
 
@@ -193,7 +195,7 @@ export class RechargeProxy extends puremvc.Proxy {
 
 export class ExchangeProxy extends puremvc.Proxy {
     static NAME = "ExchangeProxy";
-
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     /**钱包信息 */
     gold_info = <any>{};
 
@@ -209,18 +211,75 @@ export class ExchangeProxy extends puremvc.Proxy {
             account: "",
             exchange_channel_method_id: 0,
             password_gold: "",
-            third_id: "",
-            subtitle: "",
-            requires: <any>{},
+            // third_id: "",
+            // subtitle: "",
+            // requires: <any>{},
+            bank_id: "", //银行编号
+            bank: "", //银行名称
+            account_name: "", //银行开户名
+            account_bank: "-", //
         },
     };
+    curBankinfo = <any>{};
+
+    bankCardInfo = <any>{}; //所有银行卡信息
+    bankCard_nameArr = <any>{};
+    bankCard_numberArr = <any>{};
 
     resetform() {
         Object.assign(this.pageData.form, {
             amount: "",
             account: "",
             password_gold: "",
+            bank_id: "",
+            bank: "",
         });
+        this.curBankinfo = null;
+        this.setRealName();
+    }
+
+    setRealName() {
+        if (this.selfProxy.userInfo.real_name_decrypt) {
+            this.pageData.form.account_name = this.selfProxy.userInfo.real_name_decrypt;
+        } else {
+            this.pageData.form.account_name = "";
+        }
+        // console.log("设置真实信命" + this.pageData.form.account_name);
+    }
+
+    addusdt() {
+        const data: any = {};
+
+        data.name = "USDT";
+        data.payment_method_type = 5;
+        data.options = {};
+        data.options["2"] = {};
+        data.options["2"].name = "BSC";
+        data.options["2"].payment_method_type = 4;
+        data.options["2"].exchange_channel_id = 2;
+        data.options["2"].exchange_channel_method_id = 7;
+        data.options["2"].subtitle = "";
+        data.options["2"].explain = "";
+        data.options["2"].balance = "";
+        data.options["2"].free_time = 1;
+        data.options["2"].fee = "2%";
+        data.options["2"].min_out = "10.0000";
+        data.options["2"].max_out = "10000.000";
+        data.options["2"].index_no = 2;
+        data.options["6"] = {};
+        data.options["6"].name = "TRC20";
+        data.options["6"].payment_method_type = 4;
+        data.options["6"].exchange_channel_id = 2;
+        data.options["6"].exchange_channel_method_id = 8;
+        data.options["6"].subtitle = "";
+        data.options["6"].explain = "";
+        data.options["6"].balance = "";
+        data.options["6"].free_time = 1;
+        data.options["6"].fee = "2%";
+        data.options["6"].min_out = "10.0000";
+        data.options["6"].max_out = "10000.000";
+        data.options["6"].index_no = 3;
+        return data;
     }
 
     setData(data: any) {
@@ -247,10 +306,81 @@ export class ExchangeProxy extends puremvc.Proxy {
 
             if (block_network_id) {
                 this.pageData.form.block_network_id = block_network_id;
-                this.pageData.form.exchange_channel_method_id =
-                    this.pageData.methodList[this.pageData.form.coin_name_unique].options[
-                        this.pageData.form.block_network_id
-                    ].exchange_channel_method_id;
+                // this.pageData.form.exchange_channel_method_id =
+                //     this.pageData.methodList[this.pageData.form.coin_name_unique].options[
+                //         this.pageData.form.block_network_id
+                //     ].exchange_channel_method_id;
+
+                const obj = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id];
+
+                this.pageData.form.exchange_channel_method_id = obj.exchange_channel_method_id;
+                this.pageData.form.payment_method_type = obj.payment_method_type;
+
+                //设置地址，发送 请求
+                this.sendAddressInfo();
+            }
+        }
+        this.setRealName();
+        this.setFirstBtn();
+    }
+
+    setFirstBtn() {
+        const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
+        const sortedOptions: any = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
+        this.pageData.form.block_network_id = sortedOptions[0]?.strkey;
+    }
+    optionsSort(data: any) {
+        const tempdata = JSON.parse(JSON.stringify(data));
+        for (const iterator of Object.entries(tempdata)) {
+            const item1 = <any>iterator[1];
+            item1.strkey = iterator[0];
+            if (!item1["sort"]) {
+                item1.sort = 1000;
+            }
+        }
+        const sortedOptions = Object.values(tempdata).sort((a: any, b: any) => a.sort - b.sort);
+
+        return sortedOptions;
+    }
+    //设置地址，发送 请求
+    sendAddressInfo() {
+        // console.log("发送  请求地址消息")
+        //设置地址，发送 请求
+        const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
+        addressBookProxy.pageData.listQuery.type = this.pageData.form.payment_method_type;
+        addressBookProxy.pageData.listQuery.block_network_id = this.pageData.form.block_network_id;
+        addressBookProxy.pageData.listQuery.coin_name_unique = this.pageData.form.coin_name_unique;
+        addressBookProxy.setData(this.pageData.methodList);
+    }
+
+    setCurBankInfo(bank_id: number) {
+        // console.log("需要搜索的银行id " ,bank_id );
+        const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
+        for (let index = 0; index < arr.length; index++) {
+            const element = arr[index];
+            if (element.bank_id == bank_id) {
+                this.curBankinfo = element;
+                // console.log("设置  银行 " ,element);
+                return;
+            }
+        }
+    }
+
+    setAddress(data: any) {
+        // console.log("收到 银行卡 信息 回调" );
+        this.bankCardInfo = data;
+        this.bankCard_nameArr = [];
+        this.bankCard_numberArr = [];
+        if (!this.bankCardInfo) return;
+
+        for (let index = 0; index < this.bankCardInfo.length; index++) {
+            const element = this.bankCardInfo[index];
+            if (this.bankCard_nameArr.indexOf(element.payment_method.account_name) == -1) {
+                this.bankCard_nameArr.push(element.payment_method.account_name);
+            }
+
+            if (this.bankCard_numberArr.indexOf(element.payment_method.account) == -1) {
+                this.bankCard_numberArr.push(element.payment_method.account);
             }
         }
     }
@@ -259,91 +389,127 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_exchange_method_list, { plat_id: core.plat_id });
     }
-
-    // api_user_var_exchange_create_order() {
+    // api_user_var_exchange_create_order(requires: any = null) {
     //     this.pageData.loading = true;
-    //     const {
-    //         amount,
-    //         exchange_channel_id,
-    //         payment_method_type,
-    //         coin_name_unique,
-    //         block_network_id,
-    //         account,
-    //         exchange_channel_method_id,
-    //         password_gold,
-    //     } = this.pageData.form;
-    //     this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
-    //         amount,
-    //         exchange_channel_id,
-    //         payment_method_type,
-    //         coin_name_unique,
-    //         block_network_id,
-    //         account,
-    //         exchange_channel_method_id,
-    //         user_id: core.user_id,
-    //         password_gold: core.MD5.createInstance().hex_md5(password_gold),
-    //     });
+    //     if (!requires) {
+    //         const {
+    //             amount,
+    //             exchange_channel_id,
+    //             payment_method_type,
+    //             coin_name_unique,
+    //             block_network_id,
+    //             account,
+    //             exchange_channel_method_id,
+    //             password_gold,
+    //         } = this.pageData.form;
+
+    //         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
+    //             amount,
+    //             exchange_channel_id,
+    //             payment_method_type,
+    //             coin_name_unique,
+    //             block_network_id,
+    //             account,
+    //             exchange_channel_method_id,
+    //             user_id: core.user_id,
+    //             password_gold: core.MD5.createInstance().hex_md5(password_gold),
+    //         });
+    //     } else {
+    //         const {
+    //             amount,
+    //             exchange_channel_id,
+    //             payment_method_type,
+    //             coin_name_unique,
+    //             block_network_id,
+    //             account,
+    //             exchange_channel_method_id,
+    //             password_gold,
+    //             third_id,
+    //             subtitle,
+    //         } = this.pageData.form;
+
+    //         const data = <any>{
+    //             amount,
+    //             exchange_channel_id,
+    //             payment_method_type,
+    //             coin_name_unique,
+    //             block_network_id,
+    //             account,
+    //             third_id,
+    //             subtitle,
+    //             exchange_channel_method_id,
+    //             user_id: core.user_id,
+    //             password_gold: core.MD5.createInstance().hex_md5(password_gold),
+    //         };
+
+    //         for (let index = 0; index < requires.length; index++) {
+    //             const element = requires[index];
+    //             data[element.title] = element.inputValue;
+    //         }
+    //         console.log(" 兑换发送的数据", data);
+    //         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
+    //     }
     // }
-    api_user_var_exchange_create_order(requires: any = null) {
+
+    api_user_var_exchange_create_order() {
         this.pageData.loading = true;
-        if (!requires) {
-            const {
-                amount,
-                exchange_channel_id,
-                payment_method_type,
-                coin_name_unique,
-                block_network_id,
-                account,
-                exchange_channel_method_id,
-                password_gold,
-            } = this.pageData.form;
+        const {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            password_gold,
+        } = this.pageData.form;
+        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+        });
+    }
+    api_user_var_exchange_create_order_VND() {
+        this.pageData.loading = true;
+        const {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            password_gold,
+            bank_id,
+            bank,
+            account_name,
+            account_bank,
+        } = this.pageData.form;
 
-            this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
-                amount,
-                exchange_channel_id,
-                payment_method_type,
-                coin_name_unique,
-                block_network_id,
-                account,
-                exchange_channel_method_id,
-                user_id: core.user_id,
-                password_gold: core.MD5.createInstance().hex_md5(password_gold),
-            });
-        } else {
-            const {
-                amount,
-                exchange_channel_id,
-                payment_method_type,
-                coin_name_unique,
-                block_network_id,
-                account,
-                exchange_channel_method_id,
-                password_gold,
-                third_id,
-                subtitle,
-            } = this.pageData.form;
-
-            const data = <any>{
-                amount,
-                exchange_channel_id,
-                payment_method_type,
-                coin_name_unique,
-                block_network_id,
-                account,
-                third_id,
-                subtitle,
-                exchange_channel_method_id,
-                user_id: core.user_id,
-                password_gold: core.MD5.createInstance().hex_md5(password_gold),
-            };
-
-            for (let index = 0; index < requires.length; index++) {
-                const element = requires[index];
-                data[element.title] = element.inputValue;
-            }
-            console.log(" 兑换发送的数据", data);
-            this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
-        }
+        const sendObj = {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+            bank_id,
+            bank,
+            account_name,
+            account_bank,
+        };
+        sendObj.account_name = convert_vi_to_en(sendObj.account_name);
+        // console.log("发送的数据为", sendObj);
+        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
     }
 }
 

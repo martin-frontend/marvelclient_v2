@@ -30,14 +30,18 @@ export default class TabTransfer extends AbstractView {
         }
     }
 
+    get methodList() {
+        const obj: any = {};
+        for (const key of Object.keys(this.plat_coins)) {
+            obj[key] = { name: key };
+        }
+        return obj;
+    }
+
     get bindHtml() {
-        // return LangUtil(
-        //     "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-        //     `<a id="safetyLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
-        // );
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a id="aLink" class="text-decoration-underline colorTextGold101--text">${LangUtil("安全中心")}</a>`
+            `<a id="safetyLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
         );
     }
 
@@ -81,7 +85,7 @@ export default class TabTransfer extends AbstractView {
         if (phone || email) {
             dialog_trade_password.show();
         } else {
-            dialog_message_box.alert("请先绑定邮箱或者手机");
+            dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
         }
     }
 

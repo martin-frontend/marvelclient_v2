@@ -7,8 +7,10 @@
     <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
     </div>
     <div class="d-flex mt-3">
+        <!-- <CustomSelect fontSize="14" iconSize="22" height="40" :background="'rgba(255,255,255,0.06)'" :icons="plat_coins"
+            :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" /> -->
         <CustomSelect fontSize="14" iconSize="22" height="40" :background="'rgba(255,255,255,0.06)'" :icons="plat_coins"
-            :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" />
+            :options="methodList" v-model="form.coin_name_unique" @change="onChange" />
         <!-- <CustomSelect class="mr-3" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange" /> -->
     </div>
 
@@ -93,7 +95,7 @@
 
     <!-- <v-btn class="rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("划转")}}</v-btn> -->
     <div class="d-flex justify-center mt-5">
-        <v-btn class="white--text btnRedBg rounded6" width="315" height="44" :disabled="!isChecked" @click="onSubmit">
+        <v-btn class="white--text btnBlueBg rounded6" width="315" height="44" :disabled="!isChecked" @click="onSubmit">
             {{LangUtil("划转")}}</v-btn>
     </div>
     <!-- <v-divider class="mx-5" />
@@ -111,7 +113,7 @@
     <v-card-text class="d-flex justify-start align-center px-3 py-2 mt-5 coins-area">
         <div class="mr-3 opacity4-white text-13 " style="font-family: Roboto, sans-serif !important;">
             {{LangUtil("已支持币种")}}</div>
-        <div v-for="(item, key) of pageData.methodList" :key="key">
+        <div v-for="(item, key) of methodList" :key="key">
             <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="18" height="18"></v-img>
         </div>
     </v-card-text>

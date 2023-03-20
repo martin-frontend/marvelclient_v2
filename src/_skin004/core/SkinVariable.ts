@@ -9,6 +9,9 @@ export default class SkinVariable {
 
     public static loadingType = "004";
 
+    /** 004_1的特殊需求，注册的时候不管有没有邀请码都显示邀请码栏 */
+    public static mustShowInvite = false;
+
     public static pageHead_logo = require(`@/_skin004/assets/logo.png`); //主页 logo图片
     //public static pageHead_logo_mob="@/_skin004/assets/logo.png" //主页 logo图片
 

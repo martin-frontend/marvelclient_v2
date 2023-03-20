@@ -47,7 +47,7 @@
                 </div>
 
                 <CustomInput 
-                    v-if="!core.invite_user_id"
+                    v-if="!core.invite_user_id || SkinVariable.mustShowInvite"
                     class="mb-6"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"

@@ -10,12 +10,14 @@ import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
 import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_message from "@/views/dialog_message";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class DialogRegister extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
     pageData = this.myProxy.pageData;
+    SkinVariable=SkinVariable;
     form = this.pageData.form;
     core = core;
     constructor() {

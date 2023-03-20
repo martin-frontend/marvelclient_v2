@@ -1,3 +1,4 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
@@ -16,7 +17,6 @@ export default class DialogRechargeProxy extends puremvc.Proxy {
         loading: false,
         bShow: false,
         tabIndex: 0, // 0充值 1兑换 2划转
-        bHidden: false, //暂时隐藏 新增
     };
 
     show() {
@@ -44,12 +44,31 @@ export class RechargeProxy extends puremvc.Proxy {
             third_id: "",
             payemthod_id: "",
             subtitle: "",
-            // requires: <any>{},
         },
         gold_index: 0,
         //银行卡转账信息
         bankTransInfo: <any>{},
     };
+    setTestData() {
+        const obj = {
+            explain: "asdasdas",
+            fee: "",
+            icon: "CNY_13_6_31630.png",
+            icon_url: "",
+            is_fixed_gold: 1,
+            max_gold: "1000.00",
+            min_gold: "100.00",
+            subtitle: "永恒支付-coinfans560-支付宝zfbbc-34",
+            third_id: 31630,
+            fixed_gold_list: ["100", "200", "300", "500", "1000"],
+        };
+        const list = <any>[];
+        for (let index = 0; index < 3; index++) {
+            obj.third_id = obj.third_id + index;
+            list.push(JSON.parse(JSON.stringify(obj)));
+        }
+        return list;
+    }
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -108,98 +127,6 @@ export class RechargeProxy extends puremvc.Proxy {
         this.api_user_var_recharge_address();
         //   this.setFirstBtn();
     }
-    // setData(data: any) {
-    //     this.pageData.loading = false;
-    //     this.pageData.methodList = data;
-    //     const keys = Object.keys(data);
-    //     // 默认选中用户当前选择的币种
-    //     const gameProxy: GameProxy = getProxy(GameProxy);
-    //     let coin_name_unique = gameProxy.coin_name_unique;
-    //     if (keys.indexOf(coin_name_unique) == -1) {
-    //         coin_name_unique = keys[0];
-    //     }
-
-    //     if (coin_name_unique) {
-    //         this.pageData.form.coin_name_unique = coin_name_unique;
-    //         const optionsKeys = Object.keys(data[coin_name_unique].options);
-    //         // 默认选择trc20
-    //         let block_network_id = optionsKeys[0];
-    //         for (const key of optionsKeys) {
-    //             if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
-    //                 block_network_id = key;
-    //             }
-    //         }
-
-    //         // if (block_network_id) {
-    //         //     this.pageData.form.block_network_id = block_network_id;
-    //         //     this.pageData.form.recharge_channel_id =
-    //         //         data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
-    //         //     //如果payemthod_id == 5 则选择输入金额
-    //         //     if (data[coin_name_unique].payemthod_id == 5) {
-    //         //         const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
-    //         //         this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //         //         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //         //     }
-
-    //         //     if (data[coin_name_unique].options[block_network_id]) {
-    //         //         //如果payemthod_id == 5 则选择输入金额
-    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
-    //         //             const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
-    //         //             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //         //             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //         //         }
-    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
-    //         //             const channel = data[coin_name_unique].options[block_network_id].channel;
-    //         //             if (channel.length > 0) {
-    //         //                 this.pageData.form.third_id = channel[0].third_id;
-    //         //                 this.pageData.form.subtitle = channel[0].subtitle;
-
-    //         //                 const fixed_gold_list = channel[0].fixed_gold_list;
-    //         //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //         //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //         //             }
-    //         //         }
-    //         //         if (data[coin_name_unique].options[block_network_id].payemthod_id == 9) {
-    //         //             const channel = data[coin_name_unique].options[block_network_id].channel;
-    //         //             if (channel.length > 0) {
-    //         //                 this.pageData.form.third_id = channel[0].third_id;
-    //         //                 this.pageData.form.subtitle = channel[0].subtitle;
-
-    //         //                 const fixed_gold_list = channel[0].fixed_gold_list;
-    //         //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //         //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //         //             }
-    //         //         }
-    //         //     }
-    //         // }
-    //         if (block_network_id) {
-    //             this.pageData.form.block_network_id = block_network_id;
-    //             this.pageData.form.recharge_channel_id =
-    //                 data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
-    //             //如果payemthod_id == 5 则选择输入金额
-    //             if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
-    //                 const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
-    //                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //             }
-    //             if (
-    //                 data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
-    //                 data[coin_name_unique].options[block_network_id].payemthod_id == 8
-    //             ) {
-    //                 const channel = data[coin_name_unique].options[block_network_id].channel;
-    //                 if (channel.length > 0) {
-    //                     this.pageData.form.third_id = channel[0].third_id;
-    //                     this.pageData.form.subtitle = channel[0].subtitle;
-
-    //                     const fixed_gold_list = channel[0].fixed_gold_list;
-    //                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-    //                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     this.api_user_var_recharge_address();
-    // }
     setFirstBtn() {
         const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
         const sortedOptions: any[] = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
@@ -240,48 +167,12 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    // api_user_var_recharge_create() {
-    //     this.pageData.loading = true;
-    //     const data = { user_id: core.user_id };
-    //     Object.assign(data, this.pageData.form);
-    //     this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
-    // }
-
-    // api_user_var_recharge_create() {
-    //     this.pageData.loading = true;
-    //     //const data = <any>{ user_id: core.user_id };
-    //     const { coin_name_unique, block_network_id, recharge_channel_id, amount, third_id, subtitle } = this.pageData.form;
-    //     //Object.assign(data, this.pageData.form);
-
-    //     const data = <any>{
-    //         user_id: core.user_id,
-    //         coin_name_unique: coin_name_unique,
-    //         block_network_id: block_network_id,
-    //         recharge_channel_id: recharge_channel_id,
-    //         amount: amount,
-    //         third_id: third_id,
-    //         subtitle: subtitle,
-    //     };
-    //     if (this.pageData.form.requires && this.pageData.form.requires.length > 0) {
-    //         const requires = this.pageData.form.requires;
-    //         const keys = Object.keys(requires);
-    //         for (let index = 0; index < keys.length; index++) {
-    //             const element = keys[index];
-    //             data[requires[keys[index]]] = "-";
-    //         }
-    //     }
-
-    //     console.log("请求 充值 数据", data);
-    //     this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
-    // }
-
     api_user_var_recharge_create(payemthod_id: any) {
         this.pageData.loading = true;
         const data = { user_id: core.user_id, request_unique: payemthod_id };
         Object.assign(data, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
-
     set_user_var_recharge_create(data: string) {
         Object.assign(this.pageData.bankTransInfo, data);
         this.showbankDialog();
@@ -307,12 +198,10 @@ export class ExchangeProxy extends puremvc.Proxy {
             payment_method_type: 0,
             coin_name_unique: "",
             block_network_id: "",
-            account: "",
+            account: "", //  银行卡号
             exchange_channel_method_id: 0,
             password_gold: "",
-            // third_id: "",
-            // subtitle: "",
-            // requires: <any>{},
+            //越南盾 银行卡兑换
             bank_id: "", //银行编号
             bank: "", //银行名称
             account_name: "", //银行开户名
@@ -332,6 +221,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             password_gold: "",
             bank_id: "",
             bank: "",
+            //account_name:"",
         });
         this.curBankinfo = null;
         this.setRealName();
@@ -343,9 +233,8 @@ export class ExchangeProxy extends puremvc.Proxy {
         } else {
             this.pageData.form.account_name = "";
         }
-        // console.log("设置真实信命" + this.pageData.form.account_name);
+        console.log("设置真实信命" + this.pageData.form.account_name);
     }
-
     addusdt() {
         const data: any = {};
 
@@ -380,8 +269,8 @@ export class ExchangeProxy extends puremvc.Proxy {
         data.options["6"].index_no = 3;
         return data;
     }
-
     setData(data: any) {
+        //    data["USDT"] = this.addusdt();
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
@@ -398,18 +287,12 @@ export class ExchangeProxy extends puremvc.Proxy {
             // 默认选择trc20
             let block_network_id = optionsKeys[0];
             for (const key of optionsKeys) {
-                if (data[coin_name_unique].options[key].name && data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
+                if (data[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
                     block_network_id = key;
                 }
             }
-
             if (block_network_id) {
                 this.pageData.form.block_network_id = block_network_id;
-                // this.pageData.form.exchange_channel_method_id =
-                //     this.pageData.methodList[this.pageData.form.coin_name_unique].options[
-                //         this.pageData.form.block_network_id
-                //     ].exchange_channel_method_id;
-
                 const obj = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id];
 
                 this.pageData.form.exchange_channel_method_id = obj.exchange_channel_method_id;
@@ -422,11 +305,12 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.setRealName();
         this.setFirstBtn();
     }
-
     setFirstBtn() {
         const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
         const sortedOptions: any = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
         this.pageData.form.block_network_id = sortedOptions[0]?.strkey;
+        this.pageData.form.exchange_channel_method_id = sortedOptions[0]?.exchange_channel_method_id;
+        this.pageData.form.payment_method_type = sortedOptions[0]?.payment_method_type;
     }
     optionsSort(data: any) {
         const tempdata = JSON.parse(JSON.stringify(data));
@@ -443,7 +327,7 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
     //设置地址，发送 请求
     sendAddressInfo() {
-        // console.log("发送  请求地址消息")
+        console.log("发送  请求地址消息");
         //设置地址，发送 请求
         const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
         addressBookProxy.pageData.listQuery.type = this.pageData.form.payment_method_type;
@@ -453,20 +337,19 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     setCurBankInfo(bank_id: number) {
-        // console.log("需要搜索的银行id " ,bank_id );
+        console.log("需要搜索的银行id ", bank_id);
         const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
         for (let index = 0; index < arr.length; index++) {
             const element = arr[index];
             if (element.bank_id == bank_id) {
                 this.curBankinfo = element;
-                // console.log("设置  银行 " ,element);
+                console.log("设置  银行 ", element);
                 return;
             }
         }
     }
-
     setAddress(data: any) {
-        // console.log("收到 银行卡 信息 回调" );
+        console.log("收到 银行卡 信息 回调");
         this.bankCardInfo = data;
         this.bankCard_nameArr = [];
         this.bankCard_numberArr = [];
@@ -488,67 +371,6 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_exchange_method_list, { plat_id: core.plat_id });
     }
-    // api_user_var_exchange_create_order(requires: any = null) {
-    //     this.pageData.loading = true;
-    //     if (!requires) {
-    //         const {
-    //             amount,
-    //             exchange_channel_id,
-    //             payment_method_type,
-    //             coin_name_unique,
-    //             block_network_id,
-    //             account,
-    //             exchange_channel_method_id,
-    //             password_gold,
-    //         } = this.pageData.form;
-
-    //         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
-    //             amount,
-    //             exchange_channel_id,
-    //             payment_method_type,
-    //             coin_name_unique,
-    //             block_network_id,
-    //             account,
-    //             exchange_channel_method_id,
-    //             user_id: core.user_id,
-    //             password_gold: core.MD5.createInstance().hex_md5(password_gold),
-    //         });
-    //     } else {
-    //         const {
-    //             amount,
-    //             exchange_channel_id,
-    //             payment_method_type,
-    //             coin_name_unique,
-    //             block_network_id,
-    //             account,
-    //             exchange_channel_method_id,
-    //             password_gold,
-    //             third_id,
-    //             subtitle,
-    //         } = this.pageData.form;
-
-    //         const data = <any>{
-    //             amount,
-    //             exchange_channel_id,
-    //             payment_method_type,
-    //             coin_name_unique,
-    //             block_network_id,
-    //             account,
-    //             third_id,
-    //             subtitle,
-    //             exchange_channel_method_id,
-    //             user_id: core.user_id,
-    //             password_gold: core.MD5.createInstance().hex_md5(password_gold),
-    //         };
-
-    //         for (let index = 0; index < requires.length; index++) {
-    //             const element = requires[index];
-    //             data[element.title] = element.inputValue;
-    //         }
-    //         console.log(" 兑换发送的数据", data);
-    //         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
-    //     }
-    // }
 
     api_user_var_exchange_create_order() {
         this.pageData.loading = true;
@@ -607,7 +429,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             account_bank,
         };
         sendObj.account_name = convert_vi_to_en(sendObj.account_name);
-        // console.log("发送的数据为", sendObj);
+        console.log("发送的数据为", sendObj);
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
     }
 }
@@ -640,7 +462,8 @@ export class TransferProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
-        const keys = Object.keys(data);
+        // const keys = Object.keys(data);
+        const keys = Object.keys(GamePlatConfig.config.plat_coins);
         // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
         let coin_name_unique = gameProxy.coin_name_unique;

@@ -37,7 +37,7 @@ export default class TabExchange extends AbstractView {
     get bindHtml() {
         return LangUtil(
             "为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。",
-            `<a id="aLink" class="text-decoration-underline colorTextGold101--text">${LangUtil("安全中心")}</a>`
+            `<a id="aLink" class="text-decoration-underline colorBtnBg--text">${LangUtil("安全中心")}</a>`
         );
     }
     @Watch("myProxy.exchangeProxy.curBankinfo")
@@ -64,6 +64,7 @@ export default class TabExchange extends AbstractView {
             this.myProxy.exchangeProxy.curBankinfo = null;
         }
     }
+
     onChange(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
@@ -83,14 +84,6 @@ export default class TabExchange extends AbstractView {
         this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
     }
 
-    // onChangeSub(value: any) {
-    //     this.form.block_network_id = value;
-    //     this.form.exchange_channel_method_id =
-    //         this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
-    //     // 地址簿
-    //     this.addressBooProxy.pageData.listQuery.block_network_id = value;
-    // }
-
     onChangeSub(item: any) {
         this.form.block_network_id = item.strkey;
         this.form.exchange_channel_method_id = item.exchange_channel_method_id;
@@ -108,7 +101,6 @@ export default class TabExchange extends AbstractView {
         }
         return false;
     }
-
     public get methodlist_data(): any {
         return this.pageData.methodList[this.form.coin_name_unique];
     }
@@ -117,7 +109,6 @@ export default class TabExchange extends AbstractView {
             return this.methodlist_data.bank_list;
         return null;
     }
-
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
@@ -146,7 +137,8 @@ export default class TabExchange extends AbstractView {
 
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+            //this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+            this.form.amount = Math.floor(this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
         } else {
             this.form.amount = "0.00";
         }
@@ -157,9 +149,10 @@ export default class TabExchange extends AbstractView {
         // if (phone || email) {
         dialog_trade_password.show();
         // } else {
-        //     dialog_message_box.alert("请先绑定邮箱或者手机");
+        //     dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
         // }
     }
+
     onSubmit() {
         dialog_message_box.confirm({
             message: LangUtil("确认提交"),
@@ -170,14 +163,6 @@ export default class TabExchange extends AbstractView {
             },
         });
     }
-    // onSubmit() {
-    //     dialog_message_box.confirm({
-    //         message: "确认提交",
-    //         okFun: () => {
-    //             this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
-    //         },
-    //     });
-    // }
 
     transformExplain(str: string) {
         if (str) {

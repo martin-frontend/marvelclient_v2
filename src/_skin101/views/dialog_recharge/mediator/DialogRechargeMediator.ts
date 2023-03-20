@@ -1,16 +1,21 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogRechargeProxy from "../proxy/DialogRechargeProxy";
 import getProxy from "@/core/global/getProxy";
-import dialog_message from "@/_skin101/views/dialog_message";
+import dialog_message from "@/views/dialog_message";
 import LangUtil from "@/core/global/LangUtil";
-import DialogAddressBookProxy from "@/_skin101/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import OpenLink from "@/core/global/OpenLink";
-import dialog_message_box from "@/_skin101/views/dialog_message_box";
+import dialog_message_box from "@/views/dialog_message_box";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import SelfProxy from "@/proxy/SelfProxy";
 
 export default class DialogRechargeMediator extends AbstractMediator {
     private selfProxy: SelfProxy = getProxy(SelfProxy);
+
+    onRegister() {
+        const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
+        myProxy.exchangeProxy.gold_info = this.selfProxy.userInfo.gold_info;
+        myProxy.transferProxy.gold_info = this.selfProxy.userInfo.gold_info;
+    }
 
     public listNotificationInterests(): string[] {
         return [
@@ -21,6 +26,8 @@ export default class DialogRechargeMediator extends AbstractMediator {
             net.EventType.api_user_var_exchange_create_order,
             net.EventType.api_user_var_recharge_create,
             net.EventType.api_user_var_gold_transfer,
+            net.EventType.api_user_var_payment_method_index,
+            net.EventType.api_user_var_payment_method_update_var,
         ];
     }
 
@@ -28,7 +35,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
         const body = notification.getBody();
         const _type = notification.getType();
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
-        const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
+        //const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
         myProxy.exchangeProxy.pageData.loading = false;
         myProxy.rechargeProxy.pageData.loading = false;
         myProxy.transferProxy.pageData.loading = false;
@@ -44,7 +51,7 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 myProxy.transferProxy.gold_info = body.gold_info;
                 break;
             case net.EventType.api_user_var_exchange_method_list:
-                addressBookProxy.setData(body);
+                //addressBookProxy.setData(body);
                 myProxy.exchangeProxy.setData(body);
                 myProxy.transferProxy.setData(body);
                 break;
@@ -53,17 +60,6 @@ export default class DialogRechargeMediator extends AbstractMediator {
                 dialog_message.success(LangUtil("创建成功"));
                 break;
             case net.EventType.api_user_var_recharge_create:
-                // dialog_message_box.alert({
-                //     message: LangUtil("点击进入充值通道"),
-                //     okFun: () => {
-                //         if (core.app_type == core.EnumAppType.WEB) {
-                //             OpenLink(body);
-                //         } else {
-                //             WebViewBridge.getInstance().openStstemBrowser(body);
-                //         }
-                //     },
-                // });
-                // console.log("_type", _type);
                 if (_type == "8") {
                     //8是银行卡转账的payemthod_id
                     myProxy.rechargeProxy.set_user_var_recharge_create(body);
@@ -79,11 +75,22 @@ export default class DialogRechargeMediator extends AbstractMediator {
                         },
                     });
                 }
+
                 break;
             case net.EventType.api_user_var_gold_transfer:
                 this.selfProxy.api_user_show_var([2]);
                 myProxy.transferProxy.resetform();
                 dialog_message.success(LangUtil("划转成功"));
+                break;
+            case net.EventType.api_user_var_payment_method_index:
+                myProxy.exchangeProxy.setAddress(body);
+                break;
+            case net.EventType.api_user_var_payment_method_update_var:
+                // console.log(" 更新 信息 回调");
+                //myProxy.api_user_var_payment_method_index();
+                //myProxy.pageData.loading = false;
+                //dialog_message.success(LangUtil("操作成功"));
+                myProxy.exchangeProxy.sendAddressInfo();
                 break;
         }
     }

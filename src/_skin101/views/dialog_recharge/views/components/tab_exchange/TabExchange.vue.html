@@ -32,7 +32,7 @@
             {{item.name}}
         </v-btn>
     </div> -->
-    <div v-if="form.payment_method_type==4 || form.payment_method_type==5">
+    <div v-if="form.payment_method_type == 4 || form.payment_method_type == 5">
         <div class="opacity4-white mt-1">{{LangUtil("你的钱包地址")}}</div>
         <CustomInput class="mt-1 input_b" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
             <div class="d-flex align-center mr-n2">
@@ -57,8 +57,7 @@
             </div>
         </CustomInput>
     </div>
-
-    <div v-if="form.payment_method_type==6">
+    <div v-if="form.payment_method_type == 6">
         <template v-if="!$vuetify.breakpoint.xsOnly">
             <div class="opacity4-white mt-3">{{LangUtil("您的银行卡")}}</div>
             <v-sheet color="transparent" height="50" width="100%" class="mt-1 mb-4 d-flex align-center bank_box rounded"

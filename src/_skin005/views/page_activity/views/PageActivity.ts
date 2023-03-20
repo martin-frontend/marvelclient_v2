@@ -12,7 +12,7 @@ export default class PageActivity extends AbstractView {
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;
 
-    
+
     constructor() {
         super(PageActivityMediator);
     }
@@ -23,15 +23,15 @@ export default class PageActivity extends AbstractView {
         this.myProxy.api_plat_activity();
 
     }
-    
-    public get curActivityData() : any {
+
+    public get curActivityData(): any {
         const { tabIndex } = this.pageData;
-        console.log("--",tabIndex);
-        console.log("--this.categoryData---",this.myProxy.pageData.categoryData);
-        console.log("当前使用的数据",this.myProxy.pageData.categoryData[tabIndex]);
+        // console.log("--",tabIndex);
+        // console.log("--this.categoryData---",this.myProxy.pageData.categoryData);
+        // console.log("当前使用的数据",this.myProxy.pageData.categoryData[tabIndex]);
         return this.myProxy.pageData.categoryData[tabIndex];
     }
-    
+
     /**图标时间选择 */
     onTimeChange(val: any) {
         //this.pageData.tabIndex = parseInt(val);
@@ -45,11 +45,18 @@ export default class PageActivity extends AbstractView {
         // {
         //     this.onEnterHomePage();
         // }
-        
+
     }
-    onItemClick(item:any)
-    {
-        console.log("收到点击。。。" ,item);
-        PanelUtil.openpanel_activity_detail(item);
+    onItemClick(item: any) {
+        console.log("收到点击。。。", item);
+        //PanelUtil.openpanel_activity_detail(item);
+        if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
+            PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
+        }
+        else {
+            PanelUtil.showAppLoading(true);
+            this.myProxy.api_plat_activity_var(item.id);
+        }
+
     }
 }

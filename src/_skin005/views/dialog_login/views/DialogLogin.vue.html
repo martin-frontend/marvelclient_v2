@@ -23,7 +23,7 @@
 
                 <CustomInput v-if="forgetData.form.type == 2" class="mb-6" icon="mdi-email"
                     :placeholder="LangUtil('请输入邮箱')" v-model="forgetData.form.username">
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="((!checkMail(forgetData.form.username)) || isdeisable)"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="((!checkMail(forgetData.form.username)) || isdeisable)"
                     @click.native="sendVerithMail">{{verityString}}</btn-yellow>
                 </CustomInput>
 
@@ -74,7 +74,7 @@
                             </v-sheet>
                         </v-menu>
                     </template>
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(forgetData.form.username) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(forgetData.form.username) || isdeisable"
                     @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
 
                 </CustomInput>
@@ -138,7 +138,7 @@
                 <CustomInput v-if="forgetData.form.type == 2" class="mb-4" icon="mdi-email"
                     :placeholder="LangUtil('请输入邮箱')" v-model="forgetData.form.username">
 
-                    <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="((!checkMail(forgetData.form.username)) || isdeisable)"
+                    <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="((!checkMail(forgetData.form.username)) || isdeisable)"
                     @click.native="sendVerithMail">{{verityString}}</btn-yellow>
 
                 </CustomInput>
@@ -191,7 +191,7 @@
                         </v-menu>
                     </template>
                     
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(forgetData.form.username) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(forgetData.form.username) || isdeisable"
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
 
                     </CustomInput>

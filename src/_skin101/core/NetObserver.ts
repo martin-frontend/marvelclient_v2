@@ -16,6 +16,7 @@ import { judgeClient } from "@/core/global/Functions";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_message_box from "../views/dialog_message_box";
 import page_game_play from "../views/page_game_play";
+import { MapLang } from "@/core/map/MapLang";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -55,12 +56,17 @@ export default class NetObserver extends AbstractMediator {
                     //确定语言
                     const userLang = window.localStorage.getItem("lang");
                     if (userLang) {
-                        core.lang = userLang;
+                        if (LangConfig.language[userLang]) {
+                            core.lang = userLang;
+                        } else {
+                            core.lang = LangConfig.main_language;
+                        }
                     } else {
                         //@ts-ignore
-                        const sysLang = (navigator.browserLanguage || navigator.language).replace("-", "_");
-                        if (LangConfig.language[sysLang]) {
-                            core.lang = sysLang;
+                        const sysLang: string = navigator.browserLanguage || navigator.language;
+                        const sysLangCode = MapLang[sysLang] || MapLang[sysLang.substring(0, 2)];
+                        if (LangConfig.language[sysLangCode]) {
+                            core.lang = sysLangCode;
                         } else {
                             core.lang = LangConfig.main_language;
                         }

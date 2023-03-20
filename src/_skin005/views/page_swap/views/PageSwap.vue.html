@@ -98,7 +98,7 @@
                             </template>
                             <template v-else>
                                 <CustomInput :placeholder="0" type="number" v-model="form.inputA" @input="onInputA">
-                                    <btn-yellow v-if="userInfo.user_id" class="ml-auto mr-n5 " min_width="61" 
+                                    <btn-yellow v-if="userInfo.user_id" class="ml-auto " min_width="61" 
                                         height="36" :btn_type="4" :class="$vuetify.breakpoint.xsOnly ? 'text-12' : 'text-14'"
                                         @click.native="handlerAll">{{LangUtil("全部")}}</btn-yellow>
                                 </CustomInput>

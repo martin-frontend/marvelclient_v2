@@ -1,18 +1,20 @@
 .codeSelect {
-
+    width: 56px;
     ::v-deep .v-input input {
         color: #FFCD43;
         font-size: 14px;
         font-weight: 600;
+        padding: 0 0 !important;
     }
-    ::v-deep .v-menu__content
-    {
-     min-width: 120px !important;
+
+    ::v-deep .v-menu__content {
+        min-width: 120px !important;
     }
-    ::v-deep .v-autocomplete.v-select.v-input--is-focused input
-    {
-     min-width: 10px !important;
+
+    ::v-deep .v-autocomplete.v-select.v-input--is-focused input {
+        min-width: 10px !important;
     }
+
     ::v-deep .theme--dark.v-icon {
         color: #8E8F91;
     }
@@ -29,12 +31,18 @@
             border-radius: 10px !important;
         }
     }
+
     ::v-deep .theme--light {
         .v-list {
             background: #fff;
             border-radius: 10px !important;
         }
     }
+
+    ::v-deep .v-autocomplete.v-input>.v-input__control>.v-input__slot {
+        padding: 0;
+    }
+
     .mytest {
         min-width: 200px !important;
     }

@@ -28,6 +28,10 @@ export default class PageMyInfoProxy extends puremvc.Proxy {
         {
             return;
         }
+        if (!vip_info.is_open || vip_info.is_open == 0)
+        {
+            return;
+        }
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level ? vip_info.max_vip_level : 0;
         //console.log("最大 等级", vip_info.max_vip_level);

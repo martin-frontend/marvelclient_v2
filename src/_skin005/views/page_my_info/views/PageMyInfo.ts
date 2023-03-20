@@ -10,6 +10,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 @Component
 export default class PageMyInfo extends AbstractView {
     LangUtil = LangUtil;
@@ -201,5 +202,7 @@ export default class PageMyInfo extends AbstractView {
         }
         return needCount;
     }
-
+    public get isShowRecharge() : boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
+    } 
 }

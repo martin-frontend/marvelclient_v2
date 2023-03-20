@@ -64,7 +64,7 @@
                         v-model="formBindPhone.mobile"
                     >
                         <template v-slot:pre>
-                            <v-sheet color="transparent" class="codeSelect" min-width="80">  
+                            <v-sheet color="transparent" class="codeSelect" >  
                                 <v-autocomplete
                              
                                     v-model="tempSelectCode"
@@ -130,7 +130,7 @@
                                 </v-sheet>
                             </v-menu>
                         </template>
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
 
                     </CustomInput>
@@ -163,7 +163,7 @@
                 </v-sheet>
                 <div v-else>
                     <CustomInput class="mb-6" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(formBindEmail.email) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(formBindEmail.email) || isdeisable"
                         @click.native="sendVerithMail">{{verityString}}</btn-yellow>
                     </CustomInput>
                     <CustomInput
@@ -251,7 +251,7 @@
                         v-model="formBindPhone.mobile"
                     >
                         <template v-slot:pre>
-                            <v-sheet color="transparent" class="codeSelect" min-width="80">  
+                            <v-sheet color="transparent" class="codeSelect" >  
                                 <v-autocomplete
                              
                                     v-model="tempSelectCode"
@@ -317,7 +317,7 @@
                                 </v-sheet>
                             </v-menu>
                         </template>
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
                     </CustomInput>
                     <CustomInput
@@ -349,7 +349,7 @@
                 </v-sheet>
                 <div v-else>
                     <CustomInput class="mb-6" icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email">
-                        <btn-yellow class="ml-auto mr-n5 text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(formBindEmail.email) || isdeisable"
+                        <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkMail(formBindEmail.email) || isdeisable"
                         @click.native="sendVerithMail">{{verityString}}</btn-yellow>
                     </CustomInput>
                     <CustomInput

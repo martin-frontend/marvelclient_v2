@@ -262,6 +262,8 @@ module net {
         api_user_var_red_dot_tips: "api/user/{user_id}/red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api/plat/{plat_id}/recently_bet_info",
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: "api/plat/{plat_id}/plat_big_award",
 
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: "api/plat/{plat_id}/swap_setting_info",
@@ -579,6 +581,8 @@ module net {
         api_user_var_red_dot_tips: "api_user_var_red_dot_tips",
         /**--其它--近期投注*/
         api_plat_var_recently_bet_info: "api_plat_var_recently_bet_info",
+        /**--其它--近期爆奖*/
+        api_plat_var_plat_big_award: "api_plat_var_plat_big_award",
 
         /**--Swap--Swap基础信息*/
         api_plat_var_swap_setting_info: "api_plat_var_swap_setting_info",
@@ -769,6 +773,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_beat, cmd_api_user_var_beat);
         facade.registerCommand(HttpType.api_user_var_red_dot_tips, cmd_api_user_var_red_dot_tips);
         facade.registerCommand(HttpType.api_plat_var_recently_bet_info, cmd_api_plat_var_recently_bet_info);
+        facade.registerCommand(HttpType.api_plat_var_plat_big_award, cmd_api_plat_var_plat_big_award);
         //--Swap
         facade.registerCommand(HttpType.api_plat_var_swap_setting_info, cmd_api_plat_var_swap_setting_info);
         facade.registerCommand(HttpType.api_plat_var_swap_k, cmd_api_plat_var_swap_k);

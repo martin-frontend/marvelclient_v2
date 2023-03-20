@@ -1,4 +1,4 @@
-<div class="input-text  d-flex align-center pr-2 regular_text">
+<div class="input-text  d-flex align-center regular_text">
     <v-icon v-if="icon" color="disable_text" class="ml-2 " >{{ icon }}</v-icon>
     <div v-if="$slots.pre">
         <slot name="pre"></slot>
@@ -7,7 +7,7 @@
     <v-btn v-if="inputValue && !disabled && isNeedCloseBtn" class="mr-2" icon width="20" height="20" @click="onClear">
         <v-icon color="disable_text" class="mx-3" size="20" >mdi-close-circle</v-icon>
     </v-btn>
-    <div v-if="$slots.default" class="mr-2">
+    <div v-if="$slots.default" class="">
         <slot></slot>
     </div>
 </div>

@@ -20,7 +20,7 @@ import page_game_soccer from "../views/page_game_soccer";
 import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
 import { MapLang } from "@/core/map/MapLang";
 import Vue from "vue";
-import { DatePicker } from 'element-ui';
+import { DatePicker } from "element-ui";
 import lang_en from "element-ui/lib/locale/lang/en";
 import lang_ja from "element-ui/lib/locale/lang/ja";
 import lang_ko from "element-ui/lib/locale/lang/ko";
@@ -73,7 +73,11 @@ export default class NetObserver extends AbstractMediator {
                     //确定语言
                     const userLang = window.localStorage.getItem("lang");
                     if (userLang) {
-                        core.lang = userLang;
+                        if (LangConfig.language[userLang]) {
+                            core.lang = userLang;
+                        } else {
+                            core.lang = LangConfig.main_language;
+                        }
                     } else {
                         //@ts-ignore
                         const sysLang: string = navigator.browserLanguage || navigator.language;
@@ -88,7 +92,7 @@ export default class NetObserver extends AbstractMediator {
                     console.log(">>>>>>>>>>>>core.lang: ", core.lang);
 
                     // 添加element ui 控件 语言
-                    if ((core.lang == "zh_CN")) {
+                    if (core.lang == "zh_CN") {
                         localeE.use(lang_zh);
                     } else if (core.lang == "zh_TW") {
                         localeE.use(lang_zhtw);
@@ -127,7 +131,6 @@ export default class NetObserver extends AbstractMediator {
                 {
                     //@ts-ignore
                     window["vm"].$mount("#app");
-                    
 
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
@@ -147,7 +150,7 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_logout:
                 this.selfProxy.loginout();
-                console.log("是否为 手机版" ,Vue.vuetify.framework.breakpoint.mobile);
+                console.log("是否为 手机版", Vue.vuetify.framework.breakpoint.mobile);
                 dialog_message_box.alert({
                     message: LangUtil("您的帐号已经退出"),
                     okFun: () => {
@@ -186,7 +189,10 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     // 如果是体育，直接进入
-                    if (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) {
+                    if (
+                        this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&
+                        this.gameProxy.currGame.ori_product_id == 1
+                    ) {
                         const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
                         if (homeProxy.pageData.event_id) {
                             page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
@@ -200,16 +206,15 @@ export default class NetObserver extends AbstractMediator {
                     const { coin_name_unique } = this.gameProxy;
 
                     let settle_coin_name_unique = "USDT";
-                    if (body.settle_coin_name_unique)
-                    {
+                    if (body.settle_coin_name_unique) {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
                     dialog_message_box.confirm({
                         message:
                             coin_name_unique == settle_coin_name_unique
                                 ? LangUtil("进入游戏")
-                                : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏",coin_name_unique,settle_coin_name_unique),
-                                //LangUtil("进入游戏"),
+                                : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique),
+                        //LangUtil("进入游戏"),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
@@ -222,8 +227,11 @@ export default class NetObserver extends AbstractMediator {
                                 if (judgeClient() == "PC" || window.navigator.standalone) {
                                     if (this.gameProxy.currGame.ori_vendor_extend) {
                                         const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                                        //@ts-ignore
-                                        if ((window.navigator.standalone && ori_vendor_extend.iframe_bad) || ori_vendor_extend.iframe_all_bad) {
+                                        if (
+                                            //@ts-ignore
+                                            (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
+                                            ori_vendor_extend.iframe_all_bad
+                                        ) {
                                             // iframe无法正常显示的游戏
                                             OpenLink(body.url);
                                         } else {
@@ -273,8 +281,8 @@ export default class NetObserver extends AbstractMediator {
                     const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
                     noticeProxy.setData(body);
 
-                    console.log("当前的路径位" , Vue.router.history.current.path);
-                    if(noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0 && Vue.router.history.current.path=="/")
+                    console.log("当前的路径位", Vue.router.history.current.path);
+                    if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0 && Vue.router.history.current.path == "/")
                         dialog_notice.show();
                 }
                 break;

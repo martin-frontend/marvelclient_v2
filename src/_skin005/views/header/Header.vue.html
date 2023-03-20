@@ -42,7 +42,7 @@
             <template v-if="selfProxy.userInfo.user_id">
                 <User />
                 <Wallet class="ml-5" />
-                <btn-yellow v-if="GlobalVar.instance.isShowBtnRecharge || selfProxy.userInfo.is_credit_user == 98" class="btn-topup ml-4 text-16" height="36"
+                <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36"
                     min_width="72" @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
 
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">

@@ -3,6 +3,8 @@ import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import NotificationName from "@/core/NotificationName";
+import GameProxy from "@/proxy/GameProxy";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class PageGameSoccerMediator extends AbstractMediator {
     onRegister() {
@@ -22,7 +24,17 @@ export default class PageGameSoccerMediator extends AbstractMediator {
         const myProxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
         switch (notification.getName()) {
             case NotificationName.UPDATE_COIN:
-                PanelUtil.openpage_soccer_cricket();
+                {
+                    const gameProxy: GameProxy = getProxy(GameProxy);
+                    if (gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId) {
+
+                        PanelUtil.openpage_soccer_cricket();
+                    }
+                    else {
+                        PanelUtil.openpage_soccer();
+                    }
+                }
+
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 myProxy.pageData.token = body.token;

@@ -319,6 +319,8 @@ export class ExchangeProxy extends puremvc.Proxy {
         const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
         const sortedOptions:any = Object.values(coinObj).sort((a:any, b:any) => a.sort - b.sort);
         this.pageData.form.block_network_id=sortedOptions[0]?.strkey;
+        this.pageData.form.exchange_channel_method_id = sortedOptions[0]?.exchange_channel_method_id;
+        this.pageData.form.payment_method_type = sortedOptions[0]?.payment_method_type;
     }
     optionsSort(data:any) {
         const tempdata = JSON.parse(JSON.stringify(data))

@@ -5,8 +5,8 @@
                 <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange" width="100%"
                     class="overflow-x-auto">
                     <v-btn v-for="(item, key) of myProxy.pageData.categoryData" :key="key" class="rounded-pill mr-2"
-                        height="36" :min-width="$vuetify.breakpoint.xsOnly ? 72 : 90">
-                        <span :class="$vuetify.breakpoint.xsOnly ? 'text-12' : 'text-14'"> {{LangUtil(item.title)}}
+                        height="36" :min-width="$vuetify.breakpoint.mobile ? 72 : 90">
+                        <span :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'"> {{LangUtil(item.title)}}
                         </span>
                     </v-btn>
                 </v-btn-toggle>
@@ -23,10 +23,12 @@
                                     {{item.activity_name}}
                                 </v-sheet>
 
-                                <v-sheet color="transparent" width="100%"
-                                    :height="$vuetify.breakpoint.xsOnly ? 190 : 230">
-                                    <v-img class="rounded_img" :max-height="$vuetify.breakpoint.xsOnly ? 190 : 230"
-                                        :src="item.icon"></v-img>
+                                <v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile ? 'loader_class_mob' : ''"
+                                    :height="$vuetify.breakpoint.mobile ? 120 : 230">
+                                    <!-- <v-img class="rounded_img" :height="$vuetify.breakpoint.mobile ? 120 : 230"
+                                        :src="item.icon"></v-img> -->
+                                    <ImgLoader class="rounded_img" :height="$vuetify.breakpoint.mobile ? 120 : 230" 
+                                        :src="item.icon"></ImgLoader>
                                 </v-sheet>
                             </v-card>
                         </v-col>

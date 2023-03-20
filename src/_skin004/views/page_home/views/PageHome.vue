@@ -7,6 +7,7 @@ import PageHome from "../views/PageHome";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import GameSlideGroup from "@/_skin004/views/widget/game_slide_group/GameSlideGroup.vue";
 import RecentBetting from "@/_skin004/views/widget/recent_betting/RecentBetting.vue";
+import RecentAwards from "@/_skin004/views/widget/recent_awards/RecentAwards.vue";
 import Activity from "../widget/activity/Activity.vue";
 import Advertise from "../widget/advertise/Advertise.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
@@ -24,6 +25,7 @@ import Footer from "@/_skin001/views/footer/Footer.vue";
         Activity,
         GameSport,
         RecentBetting,
+        RecentAwards,
         Marquee1,
         SoccerMatche,
         Footer,

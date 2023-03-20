@@ -11,11 +11,13 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
+import HeaderProxy from "./HeaderProxy";
 
 @Component
 export default class Header extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
+    myProxy: HeaderProxy = getProxy(HeaderProxy);
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
@@ -91,6 +93,11 @@ export default class Header extends AbstractView {
             )
         }
         this.lastTabValue = val_2;
+        this.myProxy.tempTabIndex =  this.pagetab;
+    }
+    @Watch("myProxy.tempTabIndex")
+    onWatchProxyTab(val: any, val_2: any) {
+        this.pagetab = this.myProxy.tempTabIndex;
     }
 
     @Watch("$route")
@@ -127,6 +134,9 @@ export default class Header extends AbstractView {
             case "1": {
                 if (!this.routerPath.includes("page_game_soccer") || this.isCricket) {
                     this.goSport();
+                    this.$nextTick(() => {
+                        this.pagetab = this.lastTabValue;
+                    });
                 }
 
             } break;
@@ -137,6 +147,9 @@ export default class Header extends AbstractView {
             case "22": {
                 console.log("打开  板球 界面");//this.goSport();
                 this.goCricket();
+                this.$nextTick(() => {
+                    this.pagetab = this.lastTabValue;
+                });
             } break;
             default:
                 break;
@@ -171,5 +184,7 @@ export default class Header extends AbstractView {
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
         return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
-
+    public get isShowRecharge() : boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
+    } 
 }

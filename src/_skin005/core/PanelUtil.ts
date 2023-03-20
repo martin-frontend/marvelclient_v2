@@ -51,7 +51,7 @@ import dialog_google_verification from "@/_skin005/views/dialog_google_verificat
 import dialog_personal_card from "@/_skin005/views/dialog_personal_card";
 
 /**充值 提现 */
-//import dialog_recharge from "@/_skin005/views/dialog_recharge";
+import dialog_recharge from "@/_skin005/views/dialog_recharge";
 import dialog_wallet from "@/_skin005/views/dialog_wallet";
 import dialog_game_rate from "@/_skin005/views/dialog_game_rate";
 import dialog_trade_password from "@/_skin005/views/dialog_trade_password";
@@ -128,6 +128,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "./PageBlur";
 import GameConfig from "@/core/config/GameConfig";
+import SkinVariable from "./SkinVariable";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -354,17 +355,21 @@ export default class PanelUtil {
 
     //打开充值窗口
     static openpanel_recharge(options: any = null) {
-        // MultDialogManager.onOpenPanel(dialog_recharge);
-        // dialog_recharge.show();
-        PanelUtil.openpage_recharge();
+        if (SkinVariable.isUsedDialogRecharge) {
+            MultDialogManager.onOpenPanel(dialog_recharge);
+            dialog_recharge.show();
+        }
+        else
+            PanelUtil.openpage_recharge();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
-        //MultDialogManager.onOpenPanel(dialog_recharge);
-        // if (!GlobalVar.instance.isShowRecharge) {
-        //     PanelUtil.message_info(LangUtil("兑换通道关闭!"));
-        // } else 
-        PanelUtil.openpage_recharge(1);
+        if (SkinVariable.isUsedDialogRecharge) {
+            MultDialogManager.onOpenPanel(dialog_recharge);
+            dialog_recharge.show(1);
+        }
+        else
+            PanelUtil.openpage_recharge(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {

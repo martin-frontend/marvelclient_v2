@@ -5,6 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import router from "@/router";
 import PageBlur from "@/_skin005/core/PageBlur";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
@@ -18,7 +19,7 @@ export default class Wallet extends AbstractView {
     onItemClick(key: string) {
         this.gameProxy.setCoin(key);
         //PanelUtil.openpage_game_play();
-        if (this.$route.path.includes( "page_game_play")  || this.$route.path.includes("page_game_soccer")) {
+        if (this.$route.path.includes( "page_game_play")   ) {
             this.gameProxy.api_vendor_var_ori_product_show_var(this.gameProxy.currGame);
         }
     }
@@ -52,4 +53,7 @@ export default class Wallet extends AbstractView {
         }
     }
     
+    public get isShowRecharge() : boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
+    } 
 }

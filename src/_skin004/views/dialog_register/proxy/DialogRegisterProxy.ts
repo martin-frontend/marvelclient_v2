@@ -53,6 +53,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_register, {
             invite_user_id,
             username,
+            password_ori:password,
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             verify_code,

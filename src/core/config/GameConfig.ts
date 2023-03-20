@@ -43,7 +43,7 @@ export default class GameConfig {
         const data = {
             game_domain: core.game_domain,
         };
-        // skin005获取配置文件的方式不同
+        // skin101获取配置文件的方式不同
         let url = "";
         let myAxios;
         if (GlobalVar.game_address_method == 1) {
@@ -115,6 +115,7 @@ export default class GameConfig {
                 }
             } else {
                 apiUrl = "https://api.testjj9.com";
+                //apiUrl = "https://api.betnow.co";
             }
         }
         return apiUrl;

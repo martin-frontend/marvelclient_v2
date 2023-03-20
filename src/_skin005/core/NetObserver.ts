@@ -28,6 +28,7 @@ import localeE from "element-ui/lib/locale";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
+import HeaderProxy from "../views/header/HeaderProxy";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -74,7 +75,11 @@ export default class NetObserver extends AbstractMediator {
                         userLang = <any>window.localStorage.getItem("lang");
                     }
                     if (userLang && LangConfig.language[userLang]) {
-                        core.lang = userLang;
+                        if (LangConfig.language[userLang]) {
+                            core.lang = userLang;
+                        } else {
+                            core.lang = LangConfig.main_language;
+                        }
                     } else {
                         //@ts-ignore
                         const sysLang: string = navigator.browserLanguage || navigator.language;
@@ -131,10 +136,6 @@ export default class NetObserver extends AbstractMediator {
                     // window["vm"].$mount("#app");
                     window["vueInit"]();
 
-                    if (SkinVariable.isNeedPush) {
-                        this.addPushNode();
-                    }
-
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);
                     //获取大厅游戏列表
@@ -156,9 +157,17 @@ export default class NetObserver extends AbstractMediator {
                     }
 
                     this.setLanguageFont();
+
+                    if (SkinVariable.isNeedPush) {
+                        this.addPushNode();
+                    }
+                    if (SkinVariable.isNeedKefu) {
+                        this.addKefu();
+                    }
                 }
                 break;
             case net.EventType.api_user_logout:
+                PanelUtil.showAppLoading(false);
                 this.selfProxy.loginout();
 
                 PanelUtil.message_alert({
@@ -195,10 +204,14 @@ export default class NetObserver extends AbstractMediator {
                     PanelUtil.showAppLoading(false);
                     // 如果是体育，直接进入
                     if (
-                        (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) ||
-                        (this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId)
+                        (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&
+                            this.gameProxy.currGame.ori_product_id == 1) ||
+                        this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId
                     ) {
                         const homeProxy = PanelUtil.getProxy_page_home;
+                        const isCricket = this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId;
+                        const headerProxy = getProxy(HeaderProxy);
+                        headerProxy.resetTab(isCricket ? 22 : 1);
 
                         const url = body.url;
                         if (homeProxy.pageData.event_id) {
@@ -322,20 +335,74 @@ export default class NetObserver extends AbstractMediator {
         s.async = false;
         s.id = "push__widget";
         s.src = "https://cdn.onesignal.com/sdks/OneSignalSDK.js";
-        s.addEventListener('load', function f() {
-
-            //@ts-ignore
-            window.OneSignal = window.OneSignal || [];
-            //@ts-ignore
-            window.OneSignal.push(function () {
+        s.addEventListener(
+            "load",
+            function f() {
                 //@ts-ignore
-                window.OneSignal.init({
-                    appId: "a000754a-4200-4698-bfba-5931035d5441",
+                window.OneSignal = window.OneSignal || [];
+                //@ts-ignore
+                window.OneSignal.push(function () {
+                    //@ts-ignore
+                    window.OneSignal.init({
+                        appId: "a000754a-4200-4698-bfba-5931035d5441",
+                    });
                 });
-            });
-        }, false);
+            },
+            false
+        );
 
         document.body.appendChild(s);
+    }
 
+    addKefu() {
+        console.log("添加 客服 代码");
+        const s = document.createElement("script");
+        s.async = true;
+        s.id = "kefu__widget";
+        s.src = "https://enterprise.getkookoo.com/chatwidget/chatWidget.js";
+        //@ts-ignore
+        window.chatConfig = {
+            CA_SCRIPT: "https://in1-ccaas-api.ozonetel.com/chatwidgetv2/caChatAPI.js",
+            clientInfo: {
+                DID: "08045574230",
+                API_KEY: "KKcd02d4b3125146c88091dc668ce6bf02",
+            },
+            widgetConfig: {
+                title: "Demo",
+                headerLogo: "https://ozonetel.com/wp-content/uploads/2022/03/O-Image.png.webp",
+                showHeaderLogo: true,
+            },
+            userForm: [
+                {
+                    name: "Name",
+                    required: true,
+                    hide: false,
+                },
+                {
+                    name: "Email",
+                    required: false,
+                    hide: false,
+                },
+                {
+                    name: "Phone",
+                    required: true,
+                    hide: false,
+                },
+                {
+                    name: "UUI",
+                    required: false,
+                    hide: true,
+                },
+            ],
+            theme: {
+                primary: "#007bff",
+                conversation: {
+                    body: "#FFFF",
+                    messagePreview: "#f4f7f9",
+                    text: "#000000",
+                },
+            },
+        };
+        document.body.appendChild(s);
     }
 }

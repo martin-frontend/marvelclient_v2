@@ -263,8 +263,10 @@
                                         <div class="mt-4 font-weight-medium textColor1"
                                             v-if="item.backwater_config[3].backwater_rate > 0">
                                             {{ pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}</div>
+                                        <!-- <div class="font-weight-medium textColor1">(
+                                            {{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$ )</div> -->
                                         <div class="font-weight-medium textColor1">(
-                                            {{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$ )</div>
+                                            {{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$ )</div>
                                         <div class="mt-2 font-weight-medium colorYellowBg2--text text-h5"
                                             v-if="item.backwater_config[3].backwater_rate > 0">
                                             {{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}
@@ -299,7 +301,8 @@
                     </div>
                     <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
                         <span
-                            class="text-13 colorYellowBg2--text">{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}%</span>
+                            class="text-13 colorYellowBg2--text">{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}
+                            {{pageData.platCoins.mainCoin.name}}</span>
                     </div>
                     <!-- 奖励币 -->
                     <div class="d-flex justify-center align-center" v-if="item.backwater_config[3].backwater_rate > 0">

@@ -21,6 +21,7 @@ export default class PageHome extends AbstractView {
     IsShow_GameWater = ModulesHelper.IsShow_GameWater();
     IsShow_Swap = ModulesHelper.IsShow_Swap();
     IsShow_ActivityDisplay = ModulesHelper.IsShow_ActivityDisplay();
+    IsShow_FootBallHot = ModulesHelper.IsShow_FootBallHot();
 
     constructor() {
         super(PageHomeMediator);

@@ -64,7 +64,12 @@ function IsShow_ActivityDisplay() {
 function IsShow_FootBall() {
     return _isValueTrue("menuFootball")
 }
-
+/**
+ * 是否显示 首页的足球热门赛事
+ */
+function IsShow_FootBallHot() {
+    return _isValueTrue("footballHot")
+}
 /**
  * //是否显示 代理管理
  * @returns 
@@ -140,4 +145,5 @@ export default {
     isShow_Fan_shui,
     isShow_Kefu,
     IsShow_FootBall,
+    IsShow_FootBallHot,
 }

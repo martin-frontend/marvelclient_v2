@@ -99,7 +99,7 @@
         <Marquee1 />
     </v-sheet>
 
-    <SoccerMatche :class="{'boxpadding': $vuetify.breakpoint.mobile}" />
+    <SoccerMatche v-if="IsShow_FootBallHot" :class="{'boxpadding': $vuetify.breakpoint.mobile}" />
 
     <div v-for="(item, index) of gameProxy.lobbyIndex" :key="index" :class="{'boxpadding': $vuetify.breakpoint.mobile}">
         <GameSlideGroup v-if=" item.category != 32" :data="item" :bShowAll="true" :name="item.category"

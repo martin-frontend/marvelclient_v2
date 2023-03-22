@@ -31,7 +31,7 @@
                     v-model="forgetData.form.username">
                     <template v-slot:pre>
                         <v-sheet color="transparent" class="codeSelect">
-                            <v-autocomplete class="" v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
+                            <v-autocomplete class="ml-1" v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
                                 :label="curShowCode" hide-details solo flat background-color="transparent" attach
                                 return-object :no-data-text="LangUtil('没有更多数据')" :filter="customFilter">
                                 <template v-slot:item="data">
@@ -147,7 +147,7 @@
                     v-model="forgetData.form.username">
                     <template v-slot:pre>
                         <v-sheet color="transparent" class="codeSelect" min-width="60">
-                            <v-autocomplete  v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
+                            <v-autocomplete class="ml-1" v-model="tempSelectCode" :items="areaCodeArr" item-text="area_code"
                                 :label="curShowCode" hide-details solo flat background-color="transparent" attach
                                 return-object :no-data-text="LangUtil('没有更多数据')" :filter="customFilter">
                                 <template v-slot:item="data">

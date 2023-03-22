@@ -24,7 +24,10 @@ export default class MobileMenu extends AbstractView {
             7: { id: 7, name: LangUtil("返水"), icon: "water", path: "/page_mine" },
             8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/page_game_soccer" },
         };
-        newlist.push(list[1]);
+        if (ModulesHelper.IsShow_FootBall()) {
+            newlist.push(list[1]);
+        }
+
         if (this.isShowCricket) {
             newlist.push(list[8]);
         }
@@ -60,7 +63,7 @@ export default class MobileMenu extends AbstractView {
     }
 
     onItemClick(item: any) {
-        if (this.isActiveItem(item))  return;
+        if (this.isActiveItem(item)) return;
         switch (item.id) {
             case 0:
                 PanelUtil.openpage_home();
@@ -110,13 +113,12 @@ export default class MobileMenu extends AbstractView {
     isActiveItem(item: any) {
         if (!item) return false;
 
-        if (item.id == 8 ) //板球的判断
+        if (item.id == 8) //板球的判断
         {
             return this.routerPath.includes(item.path) && this.isCricket;
         }
-        else if (item.id == 1)
-        {
-            return this.routerPath.includes(item.path) && !this.isCricket;  
+        else if (item.id == 1) {
+            return this.routerPath.includes(item.path) && !this.isCricket;
         }
         else
             return this.routerPath.includes(item.path);

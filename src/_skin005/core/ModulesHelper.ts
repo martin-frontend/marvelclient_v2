@@ -59,6 +59,13 @@ function IsShow_ActivityDisplay() {
     return _isValueTrue("activityDisplay")
 }
 /**
+ * 是否显示 顶部的足球 页签 以及 手机版 底部的页签
+ */
+function IsShow_FootBall() {
+    return _isValueTrue("menuFootball")
+}
+
+/**
  * //是否显示 代理管理
  * @returns 
  */
@@ -132,4 +139,5 @@ export default {
     IsShow_AgentManager,
     isShow_Fan_shui,
     isShow_Kefu,
+    IsShow_FootBall,
 }

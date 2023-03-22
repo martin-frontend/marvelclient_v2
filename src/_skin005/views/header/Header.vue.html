@@ -9,7 +9,7 @@
                 <v-btn text class=" mr-2" height="36"  :ripple="false" :disabled="myProxy.pagetab == 0" @click="onTimeChange(0)">
                     <span class="text-14"> {{LangUtil("首页")}} </span>
                 </v-btn>
-                <v-btn text class="mr-2" height="36"  :ripple="false" :disabled="myProxy.pagetab == 1" @click="onTimeChange(1)">
+                <v-btn text v-if="ModulesHelper.IsShow_FootBall()" class="mr-2" height="36"  :ripple="false" :disabled="myProxy.pagetab == 1" @click="onTimeChange(1)">
                     <span class=" text-14 "> {{LangUtil("体育运动")}} </span>
                 </v-btn>
                 <v-btn text v-if="isShowCricket" class=" mr-2" height="36" :ripple="false" :disabled="myProxy.pagetab == 22" @click="onTimeChange(22)">

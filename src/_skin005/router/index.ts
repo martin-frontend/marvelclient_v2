@@ -37,6 +37,12 @@ const routes: Array<RouteConfig> = [
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
+        path: "/page_game_soccer_cricket/:lang",
+        name: "page_game_soccer_cricket",
+        component: () =>
+            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+    },
+    {
         path: "/page_introduce/:lang",
         name: "page_introduce",
         component: () => import(/* webpackChunkName: "skin005_page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
@@ -109,20 +115,24 @@ const router = new VueRouter({
 router.beforeEach((to: any, from: any, next: any) => {
     if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
         if (to.path == "/") {
-            next(`/${core.lang}`);
+            //next(`/${core.lang}`);
+            PanelUtil.openpage_soccer_cricket();
+            PanelUtil.openpage_sport("", true);
         } else {
             next(`${to.path}/${core.lang}`);
         }
     } else {
         if (
             !core.user_id &&
-            (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_my_info" || to.name == "page_statistice_credit")
+            (to.name == "page_recharge" || to.name == "page_game_play" || to.name == "page_my_info" || to.name == "page_statistice_credit" || to.name == "page_game_soccer")
         ) {
             next(`/${core.lang}`);
         } else {
-            if (to.name == "page_game_soccer" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-                next(`/${core.lang}`);
-            } else next();
+            if (to.name == "page_game_soccer_cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                PanelUtil.openpage_soccer_cricket();
+            }
+            else
+                next();
         }
     }
 });

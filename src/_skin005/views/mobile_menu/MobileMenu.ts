@@ -22,7 +22,7 @@ export default class MobileMenu extends AbstractView {
             5: { id: 5, name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
             7: { id: 7, name: LangUtil("返水"), icon: "water", path: "/page_mine" },
-            8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/page_game_soccer" },
+            8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/page_game_soccer_cricket" },
         };
         if (ModulesHelper.IsShow_FootBall()) {
             newlist.push(list[1]);

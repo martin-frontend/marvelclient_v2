@@ -216,10 +216,10 @@ export default class NetObserver extends AbstractMediator {
                         const url = body.url;
                         if (homeProxy.pageData.event_id) {
                             //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
-                            PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                            PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`, isCricket);
                             homeProxy.pageData.event_id = 0;
                         } else {
-                            PanelUtil.openpage_sport(url);
+                            PanelUtil.openpage_sport(url, isCricket);
                         }
                         return;
                     }

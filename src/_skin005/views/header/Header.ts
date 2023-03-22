@@ -81,15 +81,13 @@ export default class Header extends AbstractView {
 
     @Watch("$route")
     onWatchRouter() {
-        console.log("修改");
         this.routerPath = this.$router.app.$route.path;
-
-        if (this.routerPath.includes("page_game_soccer")) {
-            if (this.isCricket) {
-                this.myProxy.pagetab = "22";
-            }
-            else
-                this.myProxy.pagetab = "1";
+        console.log("路由 修改", this.routerPath);
+        if (this.routerPath.includes("page_game_soccer_cricket")) {
+            this.myProxy.pagetab = "22";
+        }
+        else if (this.routerPath.includes("page_game_soccer")) {
+            this.myProxy.pagetab = "1";
         }
         else if (this.routerPath.includes("page_statistice_credit")) {
             this.myProxy.pagetab = "11";
@@ -100,6 +98,7 @@ export default class Header extends AbstractView {
         if (!this.routerPath || this.routerPath == "/" + core.lang) {
             this.myProxy.pagetab = "0";
         }
+        console.log("页签标签 修改为 ", this.myProxy.pagetab);
     }
 
     /**图标时间选择 */
@@ -149,7 +148,7 @@ export default class Header extends AbstractView {
 
     public get isShowHeader(): boolean {
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
-        return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
+        return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_soccer_cricket") || this.routerPath.includes("page_game_play"));
     }
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);

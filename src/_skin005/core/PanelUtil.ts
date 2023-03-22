@@ -170,7 +170,7 @@ export default class PanelUtil {
     //打开 主页
     static openpage_home() {
         if (Vue.router.app.$route.path != "/" + core.lang) {
-            Vue.router.push("/");
+            Vue.router.push("/" + core.lang);
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();
@@ -311,11 +311,11 @@ export default class PanelUtil {
     }
 
     /**打开 足球 界面  */
-    static openpage_sport(url: string) {
+    static openpage_sport(url: string,isCricket: boolean = false) {
         //Vue.router.push("/page_game_soccer");
         PanelUtil.getProxy_novigation.setMiniMenu(true);
         console.log("  进入 体育", url);
-        page_game_soccer.show(url);
+        page_game_soccer.show(url,isCricket);
     }
 
     /*

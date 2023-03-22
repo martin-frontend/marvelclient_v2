@@ -97,6 +97,11 @@ export default class Novigation extends AbstractView {
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
+
+        if (!this.routerPath.includes("page_game_list"))
+        {
+            this.myProxy.categoryActive = -1;
+        }
     }
 
     /**传入 true 则显示  mini   如果传入  false 则显示 大图 */

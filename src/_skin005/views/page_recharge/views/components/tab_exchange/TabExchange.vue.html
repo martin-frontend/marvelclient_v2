@@ -43,7 +43,7 @@
                     <!-- 选择付款方式 -->
                     <v-card flat color="transparent" class="mt-6">
                         <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择付款方式")}}</div>
-                        
+
                         <v-card flat class="d-flex flex-column" color="transparent">
                             <v-row>
                                 <v-col cols="6" v-for="(item, key) of curShowChannel" :key="key">
@@ -91,14 +91,15 @@
                                         {{LangUtil("exc_" + item.title)}}
                                     </v-sheet>
                                     <v-sheet color="transparent" class="py-1">
-                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'exc_' +  item.title)" v-model="item.inputValue">
+                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'exc_' +  item.title)"
+                                            v-model="item.inputValue">
                                         </CustomInput>
                                     </v-sheet>
                                 </v-card>
                             </v-col>
 
                             <v-col cols="6">
-                                <v-card flat color="transparent" class="d-flex  flex-column justify-center">
+                                <v-card flat color="transparent" class="d-flex flex-column justify-center">
                                     <!-- 标题 -->
                                     <v-sheet color="transparent" class="d-flex">
                                         {{LangUtil("交易密码")}}
@@ -106,8 +107,7 @@
                                     <v-sheet color="transparent" class="py-1">
                                         <CustomPassword class="" :placeholder="LangUtil('输入密码')"
                                             v-model="form.password_gold">
-                                            <btn-yellow class="ml-auto text-14" min_width="61" height="36"
-                                                :btn_type="4"
+                                            <btn-yellow class="ml-auto text-14 mr-n2" min_width="61" height="36" :btn_type="4"
                                                 @click.native="onSetPassword">{{LangUtil("设置")}}</btn-yellow>
                                         </CustomPassword>
                                     </v-sheet>
@@ -122,9 +122,8 @@
                     </v-sheet>
 
                 </v-card>
-                <v-card flat class="rounded10 px-4 py-4 mt-2" color="bgBanner">
+                <!-- <v-card flat class="rounded10 px-4 py-4 mt-2" color="bgBanner">
                     <v-sheet color="transparent" class="d-flex justify-space-between align-center">
-
                         <v-sheet color="transparent " class="pr-2">
                             {{LangUtil("兑换联系我们内容")}}
                         </v-sheet>
@@ -133,7 +132,7 @@
                                 @click.native="openLink(LangUtil('客服链接'))">{{LangUtil("联系我们")}}</btn-yellow>
                         </v-sheet>
                     </v-sheet>
-                </v-card>
+                </v-card> -->
             </template>
             <template v-else>
                 <v-card flat color="transparent" width="100%">
@@ -206,7 +205,8 @@
                                             {{LangUtil("exc_" + item.title)}}
                                         </v-sheet>
                                         <v-sheet color="transparent" class="py-1">
-                                            <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'exc_' +  item.title)"
+                                            <CustomInput class=""
+                                                :placeholder="LangUtil('请输入{0}', 'exc_' +  item.title)"
                                                 v-model="item.inputValue">
                                             </CustomInput>
                                         </v-sheet>
@@ -221,33 +221,26 @@
                                 <v-sheet color="transparent" class="py-1">
                                     <CustomPassword class="" :placeholder="LangUtil('输入密码')"
                                         v-model="form.password_gold">
-                                        <btn-yellow class="ml-auto text-14" min_width="61" height="36"
-                                            :btn_type="4" @click.native="onSetPassword">{{LangUtil("设置")}}</btn-yellow>
+                                        <btn-yellow class="ml-auto text-14 mr-n2" min_width="61" height="36" :btn_type="4"
+                                            @click.native="onSetPassword">{{LangUtil("设置")}}</btn-yellow>
                                     </CustomPassword>
                                 </v-sheet>
                             </v-card>
                         </v-card>
-
-
                     </v-card>
 
-                    <v-card flat class="rounded10 px-4 py-4 mt-2" color="bgBanner">
+                    <!-- <v-card flat class="rounded10 px-4 py-4 mt-2" color="bgBanner">
                         <v-sheet color="transparent">
-
                             <v-sheet color="transparent " class="pr-2">
                                 {{LangUtil("兑换联系我们内容")}}
                             </v-sheet>
                             <v-sheet color="transparent">
                                 <div class="mr-4 mt-2" @click="openLink(LangUtil('客服链接'))">
-                                    <a
-                                        class="textYellow--text text-decoration-underline cursor-pointer">{{LangUtil("联系我们")}}</a>
+                                    <a class="textYellow--text text-decoration-underline cursor-pointer">{{LangUtil("联系我们")}}</a>
                                 </div>
-
-                                <!-- <btn-yellow class="text-12" min_width="78" height="30"
-                            @click.native="openLink(LangUtil('客服链接'))">{{LangUtil("联系我们")}}</btn-yellow> -->
                             </v-sheet>
                         </v-sheet>
-                    </v-card>
+                    </v-card> -->
 
                     <v-sheet color="transparent" width="100%" class="d-flex mt-4 mb-8">
                         <btn-yellow class="ml-auto text-14" min_width="100%" height="36" :disabled="!isChecked"

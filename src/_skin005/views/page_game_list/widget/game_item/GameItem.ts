@@ -42,7 +42,10 @@ export default class GameItem extends AbstractView {
             return classStr;
         }
     }
-
+    get isNomalState() {
+        if (!this.item) return true;
+        return this.item.status == 1;
+    }
     goGamePlay() {
         if (this.item) {
             PanelUtil.openpage_soccer(this.item);
@@ -51,4 +54,9 @@ export default class GameItem extends AbstractView {
 
     @Watch("item")
     filterChange(val: boolean) { }
+
+    onClickItem()
+    {
+        
+    }
 }

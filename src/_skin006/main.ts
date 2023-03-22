@@ -27,6 +27,7 @@ import LangConfig from "@/core/config/LangConfig";
 
 import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 Assets.commonIcon.loading_img = "img/loding_icon_6.png";
 Assets.commonIcon.logo = require(`@/_skin006/assets/logo.png`);
@@ -99,3 +100,4 @@ window.onload = function () {
         event.preventDefault();
     });
 };
+PanelUtil.getThemeDark();

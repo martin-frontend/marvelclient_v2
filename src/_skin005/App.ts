@@ -8,6 +8,7 @@ import ServiceUtil from "./core/global/ServiceUtil";
 import { isMobile, isSafari, judgeClient } from "@/core/global/Functions";
 import PageBlur from "./core/PageBlur";
 import ModulesHelper from "./core/ModulesHelper";
+import PanelUtil from "./core/PanelUtil";
 
 @Component
 export default class APP extends AbstractView {
@@ -25,23 +26,10 @@ export default class APP extends AbstractView {
 
     mounted() {
         window.addEventListener('scroll', this.onWatchScroll, true);
-
-        //获取设备当前时间
-        const timenow_hour = (new Date()).getHours();
-        //白天
-        if (timenow_hour > 5 && timenow_hour < 18) {
-            this.$vuetify.theme.dark = false;
-        }
-        else {
-            this.$vuetify.theme.dark = true;
-        }
-        //console.log("当前 时间----小时 ", timenow_hour);
-        //this.$vuetify.theme.dark = true;
     }
 
     //切换明暗
-    autoChangeDarkByTime()
-    {
+    autoChangeDarkByTime() {
         //获取 之前玩家保存之后的 明暗 的值 的 时间
         const userLang = window.localStorage.getItem("lang");
     }
@@ -113,15 +101,14 @@ export default class APP extends AbstractView {
     get isShowGuide() {
         //return true;
         return this.myProxy.isShowGuide;
-     }
-     onGuide() {
+    }
+    onGuide() {
         this.myProxy.onGuide();
     }
     get guideImg() {
         return this.core.lang.includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
     }
-    onCloseGuide()
-    {
+    onCloseGuide() {
         this.myProxy.guideDrawer = false;
     }
 }

@@ -143,6 +143,24 @@ export default class PanelUtil {
         PanelUtil.appproxy.setNovigationPanelShow(isshow);
     }
 
+    private static _isSetThem = false;
+    static getThemeDark() {
+        if (!this._isSetThem) {
+            this._isSetThem = true;
+            //获取设备当前时间
+            const timenow_hour = (new Date()).getHours();
+            //白天
+            if (timenow_hour > 5 && timenow_hour < 18) {
+                Vue.vuetify.framework.theme.dark = false;
+            }
+            else {
+                Vue.vuetify.framework.theme.dark = true;
+            }
+            console.log("---设置 黑夜半天", Vue.vuetify.framework.theme.dark);
+            
+        }
+        return Vue.vuetify.framework.theme.dark;
+    }
     /** 
         page路由 页面 
     */
@@ -311,11 +329,11 @@ export default class PanelUtil {
     }
 
     /**打开 足球 界面  */
-    static openpage_sport(url: string,isCricket: boolean = false) {
+    static openpage_sport(url: string, isCricket: boolean = false) {
         //Vue.router.push("/page_game_soccer");
         PanelUtil.getProxy_novigation.setMiniMenu(true);
         console.log("  进入 体育", url);
-        page_game_soccer.show(url,isCricket);
+        page_game_soccer.show(url, isCricket);
     }
 
     /*

@@ -115,7 +115,6 @@ const router = new VueRouter({
 router.beforeEach((to: any, from: any, next: any) => {
     if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
         if (to.path == "/") {
-            //next(`/${core.lang}`);
             PanelUtil.openpage_soccer_cricket();
             PanelUtil.openpage_sport("", true);
         } else {

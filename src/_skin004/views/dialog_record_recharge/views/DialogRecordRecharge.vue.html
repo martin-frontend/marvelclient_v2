@@ -29,7 +29,7 @@
                         </div>
                         <div class="min-width-100">
                             <div>{{LangUtil("币种")}}</div>
-                            <div>{{item.third_order_info ? item.third_order_info.token_name : "-"}}</div>
+                            <div>{{item.coin_name_unique}}</div>
                         </div>
                         <div class="min-width-100">
                             <div>{{LangUtil("数量")}}</div>
@@ -64,6 +64,10 @@
                                     >{{LangUtil("点击查询")}}</a
                                 >
                             </div>
+                        </div>
+                        <div class="min-width-120">
+                            <div>{{LangUtil("备注信息")}}</div>
+                            <div>{{item.remark==""?'-':item.remark}}</div>
                         </div>
                     </div>
                 </v-sheet>
@@ -109,7 +113,7 @@
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("币种")}}</div>
-                            <div class="d-flex justify-end my-0">{{item.third_order_info ? item.third_order_info.token_name : "-"}}</div>
+                            <div class="d-flex justify-end my-0">{{item.coin_name_unique}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("数量")}}</div>
@@ -154,6 +158,10 @@
                                     >{{LangUtil("点击查询")}}</a
                                 >
                             </div>
+                        </div>
+                        <div class="d-flex justify-space-between my-0">
+                            <div class="my-0">{{LangUtil("备注信息")}}</div>
+                            <div class="d-flex justify-end my-0">{{item.remark==""?'-':item.remark}}</div>
                         </div>
                     </div>
                 </v-sheet>

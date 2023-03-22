@@ -17,6 +17,7 @@ export default class PageGameList extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
 
+    casinoPageGameList = GameConfig.config.casinoPageGameList;
     timer = 0;
     itemWidth = 181;
     public get viewWidth(): number {
@@ -69,9 +70,19 @@ export default class PageGameList extends AbstractView {
     //体育/真人/彩票 使用 game/menu里面的数据
     public get isUseMenuData(): boolean {
         if (!this.isNeetMenu) return false;
-        if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
+        if (!this.casinoPageGameList) {
+            this.casinoPageGameList = [1, 2, 8, 16, 128, 256, 512];
+        }
+        if (this.casinoPageGameList.includes(this.listQuery.vendor_type)) {
+            return false;
+        }
+        else {
+            return true;
+        }
 
-        return false;
+        // if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
+
+        // return false;
     }
     //判断是否点击的当前的对象
     isCurItem(item: any) {
@@ -113,15 +124,15 @@ export default class PageGameList extends AbstractView {
     }
 
     public get img_width(): number {
-        if (this.listQuery.vendor_type == 4) {
-            return 110;
-        } else if (this.listQuery.vendor_type == 32) {
-            return 110;
-        } else if (this.listQuery.vendor_type == 64) {
-            return 190;
-        } else {
-            return 110;
-        }
+        return this.isUseMenuData ? 110 : 190 ;
+        // if (this.listQuery.vendor_type == 4) {
+        //     return 110;
+        // } else if (this.listQuery.vendor_type == 32) {
+        //     return 110;
+        // } else if (this.listQuery.vendor_type == 64) {
+        //     return 190;
+        // } else {
+        //     return 110;
         // }
     }
 

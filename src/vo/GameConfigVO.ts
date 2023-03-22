@@ -19,23 +19,24 @@ export interface GameConfigVO {
     /** 语言版本 */
     lang: string;
     /**下载地址 */
-    AndroidApkUrl:string;
-    ios_download_link:string;//ios包下载的地址
-    android_download_link:string; //android下载地址
+    AndroidApkUrl: string;
+    ios_download_link: string;//ios包下载的地址
+    android_download_link: string; //android下载地址
     /**足球厂商ID */
-    SportVendorId:number;
+    SportVendorId: number;
 
-    menuType:string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
+    menuType: string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
     /**三方登录地址 */
-    ThirdLoginUrl:string;
-    modules_switch:any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
+    ThirdLoginUrl: string;
+    modules_switch: any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
     /** 板球厂商id */
-    CricketVendorId:number;
-
+    CricketVendorId: number;
+    /**游戏列表展示 使用的 数据来源 里面 配置的类型 使用旧版版的，没有配置的则使用  新版本的 */
+    casinoPageGameList?: number[];
     /**第一次 设置交易密码 使用的类型 */
-    changeGoldPasswordFirstSetting:number;
+    changeGoldPasswordFirstSetting: number;
     /**第一次以后 设置交易密码 使用的类型 */
-    changeGoldPasswordFollowSetting:number;
+    changeGoldPasswordFollowSetting: number;
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

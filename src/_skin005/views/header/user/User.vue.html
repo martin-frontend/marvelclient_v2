@@ -8,7 +8,7 @@
                     <div class="text-14 d-flex flex-column" >
                         <v-sheet v-if="!isShowFull" class="mb-n1 font-weight-bold" color="transparent" width="100">{{selfProxy.userInfo.nick_name}}</v-sheet>
                         <v-sheet v-else class="mb-n1 font-weight-bold text-truncate" color="transparent" width="85">{{selfProxy.userInfo.nick_name}}</v-sheet>
-                        <v-sheet v-if="IsShow_VipInfo && selfProxy.userInfo.vip_info" class="mt-1 text-12"  color="transparent">VIP {{selfProxy.userInfo.vip_info.vip_level}}</v-sheet>
+                        <v-sheet v-if="IsShow_VipInfo " class="mt-1 text-12"  color="transparent">VIP {{selfProxy.userInfo.vip_info.vip_level}}</v-sheet>
                     </div>
                     <v-spacer />
                     <div

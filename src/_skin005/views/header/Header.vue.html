@@ -2,36 +2,24 @@
     class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
         <v-img v-if="isMini" class="ml-4 " max-width="42" height="30" :src="commonIcon.logo_m"></v-img>
-        <!-- <div ref="tabBox" color="transparent" class="ml-8">
-            <v-tabs slider-size="2" v-model="pagetab" optional>
-                <v-tabs-slider color="textYellow"></v-tabs-slider>
-                <v-tab ref="tab1" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false"
-                    :disabled="pagetab == 0">{{LangUtil("首页")}}</v-tab>
-                <v-tab ref="tab3" class="text-14 mr-8 font-weight-bold text-no-wrap" :ripple="false"
-                    :disabled="pagetab == 1">{{LangUtil("体育运动")}}</v-tab>
-                <v-tab v-if="isShowStatistice" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap"
-                    :ripple="false" :disabled="pagetab == 2">{{LangUtil("代理管理")}}</v-tab>
-
-                <v-tab v-if="SkinVariable.isShowBanqiu" ref="tab2" class="text-14 font-weight-bold mr-2 text-no-wrap"
-                    :value="3" :ripple="false" :disabled="pagetab == 2">{{LangUtil("板球")}}</v-tab>
-            </v-tabs>
-        </div> -->
 
         <v-sheet color="transparent">
-            <v-btn-toggle group v-model="pagetab" @change="onTimeChange">
-                <v-btn class=" mr-2" height="36"  :ripple="false" value="0" :disabled="pagetab == 0">
+
+            <v-sheet color="transparent" class="d-flex ">
+                <v-btn text class=" mr-2" height="36"  :ripple="false" :disabled="myProxy.pagetab == 0" @click="onTimeChange(0)">
                     <span class="text-14"> {{LangUtil("首页")}} </span>
                 </v-btn>
-                <v-btn class="mr-2" height="36"  :ripple="false"  value="1" :disabled="pagetab == 1">
-                    <span class=" text-14"> {{LangUtil("体育运动")}} </span>
+                <v-btn text class="mr-2" height="36"  :ripple="false" :disabled="myProxy.pagetab == 1" @click="onTimeChange(1)">
+                    <span class=" text-14 "> {{LangUtil("体育运动")}} </span>
                 </v-btn>
-                <v-btn v-if="isShowCricket" class=" mr-2" height="36"  :ripple="false" value="22"  :disabled="pagetab == 22">
-                    <span class=" text-14"> {{LangUtil("板球")}} </span>
+                <v-btn text v-if="isShowCricket" class=" mr-2" height="36" :ripple="false" :disabled="myProxy.pagetab == 22" @click="onTimeChange(22)">
+                    <span class=" text-14 "> {{LangUtil("板球")}} </span>
                 </v-btn>
-                <v-btn v-if="isShowStatistice" class=" mr-2" height="36"  :ripple="false"  value="11" :disabled="pagetab == 11">
-                    <span class=" text-14"> {{LangUtil("代理管理")}} </span>
+                <v-btn text v-if="isShowStatistice" class=" mr-2" height="36" :ripple="false" :disabled="myProxy.pagetab == 11" @click="onTimeChange(11)">
+                    <span class=" text-14 "> {{LangUtil("代理管理")}} </span>
                 </v-btn>
-            </v-btn-toggle>
+            </v-sheet>
+
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">

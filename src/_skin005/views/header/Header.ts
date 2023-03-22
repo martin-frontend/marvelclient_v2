@@ -25,7 +25,6 @@ export default class Header extends AbstractView {
     ModulesHelper = ModulesHelper;
     //当前路由
     routerPath = this.$router.app.$route.path;
-    pagetab = "";
     SkinVariable = SkinVariable;
     gameProxy = PanelUtil.getProxy_gameproxy;
     mounted() {
@@ -80,26 +79,6 @@ export default class Header extends AbstractView {
         return (!!this.GameConfig.config.CricketVendorId && this.gameProxy.currGame.vendor_id == this.GameConfig.config.CricketVendorId)
     }
 
-    lastTabValue = "";
-    @Watch("pagetab")
-    onWatchPagetab(val: any, val_2: any) {
-        console.log("当前  tab 变化了" + val + "----", val_2);
-        if (!core.user_id && val == 1) {
-            this.$nextTick(
-                () => {
-                    console.log("还原值", val_2);
-                    this.pagetab = val_2;
-                }
-            )
-        }
-        this.lastTabValue = val_2;
-        this.myProxy.tempTabIndex =  this.pagetab;
-    }
-    @Watch("myProxy.tempTabIndex")
-    onWatchProxyTab(val: any, val_2: any) {
-        this.pagetab = this.myProxy.tempTabIndex;
-    }
-
     @Watch("$route")
     onWatchRouter() {
         console.log("修改");
@@ -107,50 +86,38 @@ export default class Header extends AbstractView {
 
         if (this.routerPath.includes("page_game_soccer")) {
             if (this.isCricket) {
-                this.pagetab = "22";
+                this.myProxy.pagetab = "22";
             }
             else
-                this.pagetab = "1";
+                this.myProxy.pagetab = "1";
         }
         else if (this.routerPath.includes("page_statistice_credit")) {
-            this.pagetab = "11";
+            this.myProxy.pagetab = "11";
         }
         else {
-            this.pagetab = "-1";
+            this.myProxy.pagetab = "-1";
         }
         if (!this.routerPath || this.routerPath == "/" + core.lang) {
-            this.pagetab = "0";
+            this.myProxy.pagetab = "0";
         }
     }
 
     /**图标时间选择 */
-    onTimeChange(val: any) {
+    onTimeChange(val: number) {
         console.log("----val--", val);
-        //this.pagetab = parseInt(val);
-        console.log("---标题 切换", this.pagetab);
-        switch (this.pagetab) {
-            case "0": { this.goHome(); } break;
-            //case 1: { this.goGameList(); } break;
-            case "1": {
-                if (!this.routerPath.includes("page_game_soccer") || this.isCricket) {
-                    this.goSport();
-                    this.$nextTick(() => {
-                        this.pagetab = this.lastTabValue;
-                    });
-                }
-
-            } break;
-            case "11": {
-                if (!this.routerPath.includes("page_statistice_credit"))
-                    PanelUtil.openpage_statist_credit();
-            } break;
-            case "22": {
-                console.log("打开  板球 界面");//this.goSport();
+        switch (val) {
+            case 0:
+                this.goHome();
+                break;
+            case 1:
+                this.goSport();
+                break;
+            case 11:
+                PanelUtil.openpage_statist_credit();
+                break;
+            case 22:
                 this.goCricket();
-                this.$nextTick(() => {
-                    this.pagetab = this.lastTabValue;
-                });
-            } break;
+                break;
             default:
                 break;
         }
@@ -184,7 +151,7 @@ export default class Header extends AbstractView {
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
         return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
-    public get isShowRecharge() : boolean {
-        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
-    } 
+    public get isShowRecharge(): boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+    }
 }

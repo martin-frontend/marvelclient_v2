@@ -15,7 +15,7 @@ export default class SelfProxy extends AbstractProxy {
         setInterval(() => {
             if (this.timerCount % 10 == 0) {
                 if (core.user_id && core.plat_id && GameConfig.config) {
-                    this.api_user_show_var([2]);
+                    this.api_user_show_var([2,3]);
                     this.api_user_var_red_dot_tips();
                 }
             }
@@ -49,6 +49,7 @@ export default class SelfProxy extends AbstractProxy {
         show_credit_set: 0,
         show_promote: 0,
         invite_user_id: 0,
+        vip_info:<any>{},
     };
     /**红点信息 */
     red_dot_tips = {

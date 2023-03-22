@@ -64,7 +64,7 @@ export default class DialogLoginMediator extends AbstractMediator {
         window.localStorage.setItem("username", body.username);
 
         const selfProxy: SelfProxy = this.getProxy(SelfProxy);
-        selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
+        selfProxy.api_user_show_var([2, 3, 6]);
         //PanelUtil.openpage_home();
         //location.reload();
 

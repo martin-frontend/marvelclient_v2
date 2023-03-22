@@ -51,6 +51,6 @@ export default class DialogRegisterMediator extends AbstractMediator {
         window.localStorage.setItem("username", body.username);
 
         const selfProxy = PanelUtil.getProxy_selfproxy;
-        selfProxy.api_user_show_var([2, 3, 6]);
+        selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
     }
 }

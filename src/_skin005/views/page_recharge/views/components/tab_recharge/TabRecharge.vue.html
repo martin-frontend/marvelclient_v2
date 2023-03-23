@@ -101,7 +101,7 @@
                                         {{LangUtil("pay_" + item.title)}}
                                     </v-sheet>
                                     <v-sheet color="transparent" class="py-1  input_pc">
-                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'pay_' +  item.title)" v-model="item.inputValue">
+                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' + item.title)" v-model="item.inputValue">
 
                                         </CustomInput>
                                     </v-sheet>
@@ -161,6 +161,10 @@
                             </v-sheet>
                         </v-card>
 
+                        <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
+                            {{LangUtil("充值金额")}} {{curSelectItem.min_gold}}-{{curSelectItem.max_gold}}
+                        </v-sheet>
+
                         <v-card flat color="transparent" class="mt-4">
                             <div class="text-14 primary--text mb-2">{{LangUtil("选择付款方式")}}</div>
                             <v-card flat class="d-flex flex-column" color="transparent">
@@ -172,12 +176,12 @@
                                         class="d-flex justify-space-between rounded10 px-2 py-2 align-center"
                                         min-height="45"
                                         :class="form.third_id == item.third_id ? 'onItemSelect'  : 'sheetOutlined'">
-                                        <v-sheet color="transparent" class="d-flex align-center">
-                                            <img v-if="item.icon_url" height="25" :src="item.icon_url" class="mr-2" />
+                                        <v-sheet color="transparent" class="d-flex align-center" width="100%" height="25">
+                                            <img v-if="item.icon_url" :src="item.icon_url" class="mr-2" style="max-width: 100%; max-height: 100%;" />
                                             <span v-else class="">{{item.subtitle}}</span>
                                         </v-sheet>
                                         <v-sheet color="transparent">
-                                            {{item.min_gold}}-{{item.max_gold}}
+                                          
                                             <span v-if="form.third_id == item.third_id">
                                                 <svg-icon icon="select" class=" ml-2 text-14" />
                                             </span>
@@ -202,7 +206,7 @@
                                             {{LangUtil("pay_" + item.title)}}
                                         </v-sheet>
                                         <v-sheet color="transparent" class="py-1  input_pc">
-                                            <CustomInput class="" :placeholder="LangUtil('请输入{0}', 'pay_' +  item.title)"
+                                            <CustomInput class="" :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' + item.title)"
                                                 v-model="item.inputValue">
 
                                             </CustomInput>

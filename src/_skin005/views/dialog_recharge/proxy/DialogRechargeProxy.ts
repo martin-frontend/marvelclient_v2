@@ -106,8 +106,8 @@ export class RechargeProxy extends puremvc.Proxy {
                             this.pageData.form.subtitle = channel[0].subtitle;
 
                             const fixed_gold_list = channel[0].fixed_gold_list;
-                            this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
-                            this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+                            //this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
+                            //this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                         }
                     }
                 }

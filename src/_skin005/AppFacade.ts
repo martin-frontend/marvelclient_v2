@@ -13,6 +13,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 
 import PanelUtil from "./core/PanelUtil";
+import LoginEnter from "@/_skin005/core/global/LoginEnter";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -38,7 +39,7 @@ export default class AppFacade {
         }, 300000);
 
         window.addEventListener("message", (e) => {
-            switch(e.data){
+            switch (e.data) {
                 case EnumPostMessage.TOPUP:
                     PanelUtil.openpanel_recharge();
                     break;
@@ -49,7 +50,20 @@ export default class AppFacade {
                         // gameProxy.go_soccer();
                     }
                     break;
-            }
+            };
+            switch (e.data.action) {
+                case EnumPostMessage.UNLOGIN:
+                    console.log("收到消息-111--", e.data);
+                    LoginEnter(() => { });
+                    break;
+                case EnumPostMessage.RECHARGE:
+                    console.log("收到消息-222--", e.data);
+                    break;
+                case EnumPostMessage.REBALANCE:
+                    console.log("收到消息-333--", e.data);
+                    break;
+            };
+
         });
     }
 

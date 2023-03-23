@@ -235,7 +235,7 @@ export default class NetObserver extends AbstractMediator {
                                             // iframe无法正常显示的游戏
                                             OpenLink(body.url);
                                         } else {
-                                            page_game_play.show(body.url);
+                                            page_game_play.show(body.url, ori_vendor_extend.refresh);
                                         }
                                     } else {
                                         page_game_play.show(body.url);

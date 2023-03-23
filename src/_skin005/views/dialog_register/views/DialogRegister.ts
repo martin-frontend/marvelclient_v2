@@ -129,12 +129,13 @@ export default class DialogRegister extends AbstractView {
     }
 
     get isCheck(): boolean {
-        const { username, password, password_confirm, verify_code, register_type } = this.form;
+        const { username, password, password_confirm, verify_code, register_type, mobile_username } = this.form;
         return (
             password == password_confirm &&
             ((register_type == 1 && checkUserName(username)) ||
                 (register_type == 2 && checkMail(username)) ||
-                (register_type == 4 && checkPhone(username))) &&
+                (register_type == 4 && checkPhone(username)) ||
+                (register_type == 8 && checkPhone(username) && checkUserName(mobile_username))) &&
             checkVerifyVode(verify_code) &&
             checkUserPassword(password)
         );
@@ -181,7 +182,12 @@ export default class DialogRegister extends AbstractView {
             PanelUtil.message_success(LangUtil("账号小于4位，请重新输入"));
         }
     }
-
+    onMobileUsernameBlur() {
+        if (this.form.mobile_username == "") return;
+        if (this.form.mobile_username.length < 4) {
+            PanelUtil.message_success(LangUtil("账号小于4位，请重新输入"));
+        }
+    }
     onPasswordBlur() {
         if (this.form.password == "") return;
         if (!checkUserPassword(this.form.password)) {

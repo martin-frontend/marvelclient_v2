@@ -8,7 +8,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         form: {
             invite_user_id: core.invite_user_id,
@@ -16,6 +16,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
             verify_code: "",
+            mobile_username: "", //手机账号的 用户名
             register_type: 1, //1：用户名 2：邮箱 4：手机
             area_code: "86",
         },
@@ -30,6 +31,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
             verify_code: "",
+            mobile_username: "",
         });
     }
 
@@ -46,17 +48,18 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     /**--账号--注册*/
     api_user_register() {
         this.pageData.loading = true;
-        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type } = this.pageData.form;
+        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, mobile_username } = this.pageData.form;
         this.sendNotification(net.HttpType.api_user_register, {
             invite_user_id,
             username,
-            password_ori:password,
+            password_ori: password,
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             verify_code,
             uuid: core.device,
             area_code,
             register_type,
+            mobile_username,
         });
     }
 

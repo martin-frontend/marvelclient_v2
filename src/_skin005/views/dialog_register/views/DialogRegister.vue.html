@@ -1,8 +1,8 @@
 <v-dialog v-if="!pageData.bHidden" width="unset" class="regular_text" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly"
     persistent>
     <v-card v-if="!$vuetify.breakpoint.xsOnly" color="bgBanner" class="d-flex rounded10">
-        <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
-        <v-card color="transparent" width="350" class="">
+        <AdvertiseInLogin :height="650" :width="300" class="d-none d-md-flex" />
+        <v-card color="transparent" width="400" class="">
             <!-- <v-card-title class="d-flex justify-start pb-0 gradient-bg">
                 <div class="ml-2 font-weight-medium primary--text text-20">{{LangUtil("注册")}}</div>
                 <v-btn class="mr-2" icon @click="onClose">
@@ -12,19 +12,42 @@
             <com-dialog-title title="注册" @onClose="onClose" />
             <v-divider class="mb-2 " />
             <v-card-text class="px-5">
-                <div class="d-flex mb-5">
+                <!-- <div class="d-flex mb-5 scroll-x">
                     <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                        <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :width="btn_width" value="1">
+                        <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1">
                             <span class="text-14"> {{LangUtil("账号注册")}} </span>
                         </v-btn>
-                        <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2" :height="btn_height" :width="btn_width" value="4">
+                        <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4">
                             <span class=" text-14"> {{LangUtil("手机注册")}} </span>
                         </v-btn>
-                        <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2" :height="btn_height" :width="btn_width" value="2">
+                        <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2">
                             <span class=" text-14"> {{LangUtil("邮箱注册")}} </span>
                         </v-btn>
+                        <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8">
+                            <span class=" text-14"> {{LangUtil("手机账号注册")}} </span>
+                        </v-btn>
                     </v-btn-toggle>
-                </div>
+                </div> -->
+
+                <horizontal_scroll class="d-flex mb-5">
+                    <template v-slot="{data}">
+                        <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                            <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1">
+                                <span class="text-14"> {{LangUtil("账号注册")}} </span>
+                            </v-btn>
+                            <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4">
+                                <span class=" text-14"> {{LangUtil("手机注册")}} </span>
+                            </v-btn>
+                            <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2">
+                                <span class=" text-14"> {{LangUtil("邮箱注册")}} </span>
+                            </v-btn>
+                            <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8">
+                                <span class=" text-14"> {{LangUtil("手机账号注册")}} </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                    </template>
+                </horizontal_scroll>
+
 
                 <CustomInput class="mb-6" icon="mdi-account" :placeholder="LangUtil('请输入推荐人（选填）')"
                     v-model="form.invite_user_id" :disabled="hasInviteUser()" />
@@ -38,7 +61,7 @@
 
                 </CustomInput>
 
-                <CustomInput v-if="form.register_type==4" class="mb-6" icon="mdi-phone" type="tel"
+                <CustomInput v-if="form.register_type==4 || form.register_type==8" class="mb-6" icon="mdi-phone" type="tel"
                     :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                     <template v-slot:pre>
                         <v-sheet color="transparent" class="codeSelect" >
@@ -88,6 +111,10 @@
                         <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
                 </CustomInput>
+
+                <CustomInput v-if="form.register_type==8" class="mb-6" icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
+                    @blur="onMobileUsernameBlur" />
 
                 <CustomInput class="mb-6" v-if="form.register_type != 1" icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（6位）')" maxlength="6" v-model="form.verify_code" />
@@ -151,21 +178,46 @@
     <v-card v-else color="bgColor" class="rounded-0 shadow-0">
         <com-dialog-title title="注册" @onClose="onClose" />
 
-        <div class="d-flex my-3 px-2">
+        <!-- <div class="d-flex my-3 px-2">
             <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2 " :height="btn_height" :width="btn_width" value="1">
+                <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="1">
                     <span :class="typechange=='1'?'font-weight-bold':''" class="text-12 "> {{LangUtil("账号注册")}} </span>
                 </v-btn>
-                <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2 " :height="btn_height" :width="btn_width" value="4">
+                <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="4">
 
                     <span :class="typechange=='4'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机注册")}} </span>
                 </v-btn>
-                <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2 " :height="btn_height" :width="btn_width" value="2">
+                <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="2">
 
                     <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("邮箱注册")}} </span>
                 </v-btn>
+                <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="8">
+                    <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机账号注册")}} </span>
+                </v-btn>
             </v-btn-toggle>
-        </div>
+        </div> -->
+
+        <horizontal_scroll class="d-flex my-3 px-2">
+            <template v-slot="{data}">
+                <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="1">
+                        <span :class="typechange=='1'?'font-weight-bold':''" class="text-12 "> {{LangUtil("账号注册")}} </span>
+                    </v-btn>
+                    <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="4">
+    
+                        <span :class="typechange=='4'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机注册")}} </span>
+                    </v-btn>
+                    <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="2">
+    
+                        <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("邮箱注册")}} </span>
+                    </v-btn>
+                    <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="8">
+                        <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机账号注册")}} </span>
+                    </v-btn>
+                </v-btn-toggle>
+            </template>
+        </horizontal_scroll>
+
         <v-sheet class="px-4 mx-3 py-4 mt-2  rounded10 " color="bgBanner">
             <CustomInput  class="mb-4 " icon="mdi-account" :placeholder="LangUtil('请输入推荐人（选填）')"
                 v-model="form.invite_user_id" :disabled="hasInviteUser()" />
@@ -179,7 +231,7 @@
 
             </CustomInput>
 
-            <CustomInput  v-if="form.register_type==4" class="mb-4" icon="mdi-phone" type="tel"
+            <CustomInput  v-if="form.register_type==4 || form.register_type==8" class="mb-4" icon="mdi-phone" type="tel"
                 :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                 <template v-slot:pre>
                     <v-sheet color="transparent" class="codeSelect" >
@@ -229,7 +281,9 @@
                     <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
                     @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
             </CustomInput>
-
+            <CustomInput  v-if="form.register_type==8" class="mb-4 " icon="mdi-account"
+            :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
+            @blur="onMobileUsernameBlur" />
             <CustomInput  class="mb-4  mt-4" v-if="form.register_type != 1" icon="mdi-shield-check"
                 :placeholder="LangUtil('请输入验证码（6位）')" maxlength="6" v-model="form.verify_code" />
             <CustomPassword class="mb-4 " icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="form.password"

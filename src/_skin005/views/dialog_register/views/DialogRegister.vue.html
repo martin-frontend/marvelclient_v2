@@ -61,6 +61,11 @@
 
                 </CustomInput>
 
+
+                <CustomInput v-if="form.register_type==8" class="mb-6" icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
+                    @blur="onMobileUsernameBlur" />
+
                 <CustomInput v-if="form.register_type==4 || form.register_type==8" class="mb-6" icon="mdi-phone" type="tel"
                     :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                     <template v-slot:pre>
@@ -112,9 +117,6 @@
                         @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
                 </CustomInput>
 
-                <CustomInput v-if="form.register_type==8" class="mb-6" icon="mdi-account"
-                    :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
-                    @blur="onMobileUsernameBlur" />
 
                 <CustomInput class="mb-6" v-if="form.register_type != 1" icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（6位）')" maxlength="6" v-model="form.verify_code" />
@@ -231,6 +233,10 @@
 
             </CustomInput>
 
+            <CustomInput  v-if="form.register_type==8" class="mb-4 " icon="mdi-account"
+            :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
+            @blur="onMobileUsernameBlur" />
+            
             <CustomInput  v-if="form.register_type==4 || form.register_type==8" class="mb-4" icon="mdi-phone" type="tel"
                 :placeholder="LangUtil('请输入手机号')" maxlength="11" v-model="form.username">
                 <template v-slot:pre>
@@ -281,9 +287,7 @@
                     <btn-yellow class="ml-auto text-14" min_width="80" height="36" :btn_type="4" :disabled="!checkPhone(form.username) || isdeisable"
                     @click.native="sendVerithMobile">{{verityString}}</btn-yellow>
             </CustomInput>
-            <CustomInput  v-if="form.register_type==8" class="mb-4 " icon="mdi-account"
-            :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.mobile_username"
-            @blur="onMobileUsernameBlur" />
+
             <CustomInput  class="mb-4  mt-4" v-if="form.register_type != 1" icon="mdi-shield-check"
                 :placeholder="LangUtil('请输入验证码（6位）')" maxlength="6" v-model="form.verify_code" />
             <CustomPassword class="mb-4 " icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="form.password"

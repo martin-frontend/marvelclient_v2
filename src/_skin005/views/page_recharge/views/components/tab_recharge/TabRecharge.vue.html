@@ -87,7 +87,7 @@
                     </v-card>
 
                 </v-card>
-                 <!-- 下面的需要填的选项 -->
+                <!-- 下面的需要填的选项 -->
                 <v-card v-if="showRequires &&  showRequires.length > 0" flat class="rounded10 px-4 py-4 mt-4"
                     color="bgBanner">
                     <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("请输入支付信息")}}</div>
@@ -98,10 +98,12 @@
                                 <v-card flat color="transparent" class="d-flex  flex-column justify-center">
                                     <!-- 标题 -->
                                     <v-sheet color="transparent" class="d-flex">
-                                        {{LangUtil("pay_" + item.title)}}
+                                        {{LangUtil("pay_"+curSelectItem.subtitle + '_' + item.title)}}
                                     </v-sheet>
                                     <v-sheet color="transparent" class="py-1  input_pc">
-                                        <CustomInput class="" :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' + item.title)" v-model="item.inputValue">
+                                        <CustomInput class=""
+                                            :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' +curSelectItem.subtitle + '_'+ item.title)"
+                                            v-model="item.inputValue">
 
                                         </CustomInput>
                                     </v-sheet>
@@ -176,12 +178,14 @@
                                         class="d-flex justify-space-between rounded10 px-2 py-2 align-center"
                                         min-height="45"
                                         :class="form.third_id == item.third_id ? 'onItemSelect'  : 'sheetOutlined'">
-                                        <v-sheet color="transparent" class="d-flex align-center" width="100%" height="25">
-                                            <img v-if="item.icon_url" :src="item.icon_url" class="mr-2" style="max-width: 100%; max-height: 100%;" />
+                                        <v-sheet color="transparent" class="d-flex align-center" width="100%"
+                                            height="25">
+                                            <img v-if="item.icon_url" :src="item.icon_url" class="mr-2"
+                                                style="max-width: 100%; max-height: 100%;" />
                                             <span v-else class="">{{item.subtitle}}</span>
                                         </v-sheet>
                                         <v-sheet color="transparent">
-                                          
+
                                             <span v-if="form.third_id == item.third_id">
                                                 <svg-icon icon="select" class=" ml-2 text-14" />
                                             </span>
@@ -203,10 +207,11 @@
                                     <v-card flat color="transparent" class="d-flex  flex-column justify-center">
                                         <!-- 标题 -->
                                         <v-sheet color="transparent" class="d-flex">
-                                            {{LangUtil("pay_" + item.title)}}
+                                            {{LangUtil("pay_"+curSelectItem.subtitle + '_' + item.title)}}
                                         </v-sheet>
                                         <v-sheet color="transparent" class="py-1  input_pc">
-                                            <CustomInput class="" :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' + item.title)"
+                                            <CustomInput class=""
+                                                :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' +curSelectItem.subtitle + '_' +  item.title)"
                                                 v-model="item.inputValue">
 
                                             </CustomInput>

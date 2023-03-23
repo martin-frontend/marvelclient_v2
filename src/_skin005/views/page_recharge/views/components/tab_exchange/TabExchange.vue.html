@@ -88,11 +88,11 @@
                                 <v-card flat color="transparent" class="d-flex  flex-column justify-center">
                                     <!-- 标题 -->
                                     <v-sheet color="transparent" class="d-flex">
-                                        {{LangUtil("exc_"+ curSelectItem.subtitle + item.title)}}
+                                        {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
                                     </v-sheet>
                                     <v-sheet color="transparent" class="py-1">
                                         <CustomInput class=""
-                                            :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + item.title) "
+                                            :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
                                             v-model="item.inputValue">
                                         </CustomInput>
                                     </v-sheet>
@@ -208,11 +208,11 @@
                                         :key="key">
                                         <!-- 标题 -->
                                         <v-sheet color="transparent" class="d-flex">
-                                            {{LangUtil("exc_"+ curSelectItem.subtitle + item.title)}}
+                                            {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
                                         </v-sheet>
                                         <v-sheet color="transparent" class="py-1">
                                             <CustomInput class=""
-                                                :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_' + curSelectItem.subtitle + item.title) "
+                                                :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_' + curSelectItem.subtitle + '_' + item.title) "
                                                 v-model="item.inputValue">
                                             </CustomInput>
                                         </v-sheet>

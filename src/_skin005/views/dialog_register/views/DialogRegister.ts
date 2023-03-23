@@ -173,6 +173,9 @@ export default class DialogRegister extends AbstractView {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.api_public_auth_code();
+            this.typechange = 0;
+            this.onTimeChange(this.registerTypes[this.typechange]);
+            //this.onTabClick(this.form.register_type);
         }
     }
 

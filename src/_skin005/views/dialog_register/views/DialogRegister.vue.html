@@ -29,7 +29,7 @@
                     </v-btn-toggle>
                 </div> -->
 
-                <horizontal_scroll class="d-flex mb-5">
+                <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex mb-5">
                     <template v-slot="{data}">
                         <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
                             <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1">
@@ -199,7 +199,7 @@
             </v-btn-toggle>
         </div> -->
 
-        <horizontal_scroll class="d-flex my-3 px-2">
+        <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex my-3 px-2">
             <template v-slot="{data}">
                 <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="1">

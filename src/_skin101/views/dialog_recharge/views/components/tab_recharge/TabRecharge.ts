@@ -9,6 +9,7 @@ import { Component, Watch } from "vue-property-decorator";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
 import dialog_message from "@/_skin101/views/dialog_message";
+import page_activity from "@/_skin101/views/page_activity";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -131,7 +132,10 @@ export default class TabRecharge extends AbstractView {
     }
 
     onLink(url: string) {
-        OpenLink(url);
+        // OpenLink(url);
+        // OpenLink("#/page_activity");
+        page_activity.show();
+        this.myProxy.pageData.bShow = false;
     }
     // 选择快捷金额
     onGoldClick(index: any, item: any) {

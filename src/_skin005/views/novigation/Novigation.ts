@@ -31,7 +31,11 @@ export default class Novigation extends AbstractView {
         //     this.resetPageSize();
         // }, 100);
         //this.$nextTick(()=>{
-        this.resetPageSize();
+        this.mini = this.myProxy.isminiMenu || false;
+        //this.bTween = this.mini;
+        //console.log("设置 2222是否为mini", this.mini);
+        //this.resetPageSize();
+        this.Change();
         //})
     }
     //基础菜单
@@ -98,8 +102,7 @@ export default class Novigation extends AbstractView {
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
 
-        if (!this.routerPath.includes("page_game_list"))
-        {
+        if (!this.routerPath.includes("page_game_list")) {
             this.myProxy.categoryActive = -1;
         }
     }
@@ -122,7 +125,7 @@ export default class Novigation extends AbstractView {
         this.myProxy.isminiMenu = !this.myProxy.isminiMenu;
     }
     Change() {
-        if (this.bTween) return;
+        //if (this.bTween) return;
         if (isSafari()) {
             this.$nextTick(() => {
                 const navbox = document.getElementsByClassName("navbox");
@@ -136,19 +139,19 @@ export default class Novigation extends AbstractView {
             this.bTween = true;
             gsap.to(".navbox", {
                 minWidth: this.mini ? 60 : 188,
-                duration: 0.3,
-                ease: Linear.easeNone,
-                onComplete: () => {
-                    this.bTween = false;
-                },
+                // duration: 0.3,
+                // ease: Linear.easeNone,
+                // onComplete: () => {
+                //     this.bTween = false;
+                // },
             });
             gsap.to(".navscroll", {
                 width: this.mini ? 60 : 188,
-                duration: 0.3,
-                ease: Linear.easeNone,
-                onComplete: () => {
-                    this.bTween = false;
-                },
+                // duration: 0.3,
+                // ease: Linear.easeNone,
+                // onComplete: () => {
+                //     this.bTween = false;
+                // },
             });
         }
 

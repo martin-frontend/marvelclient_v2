@@ -209,6 +209,11 @@ export default class NetObserver extends AbstractMediator {
                     if (body.settle_coin_name_unique) {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
+                    const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
+                    if (ori_vendor_extend.noConfirm) {
+                        this.openGame(body,ori_vendor_extend);
+                        return
+                    }
                     dialog_message_box.confirm({
                         message:
                             coin_name_unique == settle_coin_name_unique
@@ -216,62 +221,7 @@ export default class NetObserver extends AbstractMediator {
                                 : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique),
                         //LangUtil("进入游戏"),
                         okFun: () => {
-                            if (core.app_type == core.EnumAppType.WEB) {
-                                this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
-                                this.gameProxy.gamePreData.historyLength = window.history.length;
-
-                                const obj = document.body.scrollTop ? document.body : document.documentElement;
-                                this.gameProxy.gamePreData.scrollY = obj.scrollTop;
-
-                                //@ts-ignore
-                                if (judgeClient() == "PC" || window.navigator.standalone) {
-                                    if (this.gameProxy.currGame.ori_vendor_extend) {
-                                        const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                                        if (
-                                            //@ts-ignore
-                                            (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
-                                            ori_vendor_extend.iframe_all_bad
-                                        ) {
-                                            // iframe无法正常显示的游戏
-                                            OpenLink(body.url);
-                                        } else {
-                                            page_game_play.show(body.url, ori_vendor_extend.refresh);
-                                        }
-                                    } else {
-                                        page_game_play.show(body.url);
-                                    }
-                                } else {
-                                    OpenLink(body.url);
-                                }
-                            } else {
-                                let gameUrl = "";
-                                if (body.url.indexOf("?") != -1) {
-                                    //有个别厂商链接后面会有#，导致横竖屏参数不能使用
-                                    if (body.url.indexOf("#") != -1) {
-                                        // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                                        gameUrl = this.insertStr(
-                                            body.url,
-                                            body.url.indexOf("#"),
-                                            "&gOrientation=" + this.gameProxy.currGame.orientation
-                                        );
-                                    } else {
-                                        gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                                    }
-                                } else {
-                                    if (body.url.indexOf("#") != -1) {
-                                        // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                                        gameUrl = this.insertStr(
-                                            body.url,
-                                            body.url.indexOf("#"),
-                                            "?gOrientation=" + this.gameProxy.currGame.orientation
-                                        );
-                                    } else {
-                                        gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                                    }
-                                }
-                                console.log("gameUrl====", gameUrl);
-                                WebViewBridge.getInstance().openBrowser(gameUrl);
-                            }
+                            this.openGame(body,ori_vendor_extend);
                         },
                     });
                 }
@@ -300,5 +250,64 @@ export default class NetObserver extends AbstractMediator {
 
     private insertStr(soure: string, start: number, newStr: string): string {
         return soure.slice(0, start) + newStr + soure.slice(start);
+    }
+
+    openGame(body:any,ori_vendor_extend:any){
+        if (core.app_type == core.EnumAppType.WEB) {
+            this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
+            this.gameProxy.gamePreData.historyLength = window.history.length;
+
+            const obj = document.body.scrollTop ? document.body : document.documentElement;
+            this.gameProxy.gamePreData.scrollY = obj.scrollTop;
+
+            //@ts-ignore
+            if (judgeClient() == "PC" || window.navigator.standalone) {
+                if (this.gameProxy.currGame.ori_vendor_extend) {
+                    
+                    if (
+                        //@ts-ignore
+                        (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
+                        ori_vendor_extend.iframe_all_bad
+                    ) {
+                        // iframe无法正常显示的游戏
+                        OpenLink(body.url);
+                    } else {
+                        page_game_play.show(body.url, ori_vendor_extend.refresh);
+                    }
+                } else {
+                    page_game_play.show(body.url);
+                }
+            } else {
+                OpenLink(body.url);
+            }
+        } else {
+            let gameUrl = "";
+            if (body.url.indexOf("?") != -1) {
+                //有个别厂商链接后面会有#，导致横竖屏参数不能使用
+                if (body.url.indexOf("#") != -1) {
+                    // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+                    gameUrl = this.insertStr(
+                        body.url,
+                        body.url.indexOf("#"),
+                        "&gOrientation=" + this.gameProxy.currGame.orientation
+                    );
+                } else {
+                    gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+                }
+            } else {
+                if (body.url.indexOf("#") != -1) {
+                    // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+                    gameUrl = this.insertStr(
+                        body.url,
+                        body.url.indexOf("#"),
+                        "?gOrientation=" + this.gameProxy.currGame.orientation
+                    );
+                } else {
+                    gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+                }
+            }
+            console.log("gameUrl====", gameUrl);
+            WebViewBridge.getInstance().openBrowser(gameUrl);
+        }
     }
 }

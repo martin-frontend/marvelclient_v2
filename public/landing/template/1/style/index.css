@@ -306,6 +306,7 @@ input {
     top: -6px;
     display: block;
     padding-left: 10px;
+    min-width: 96px;
 }
 
 .area_code_safari_one_option {

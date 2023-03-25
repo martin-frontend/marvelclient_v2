@@ -144,22 +144,47 @@ $(document).ready(function () {
     });
 
     $("#username").focusout(function () {
-        checkForm();
+        const username = $("#username").val();
+        const usernameCheckMap = { 1: checkUserName, 4: checkPhone, 2: checkMail, 8: checkPhone };
+        if (usernameCheckMap[register_type](username)) {
+            $("#username_error").css("display", "none");
+        } else {
+            $("#username_error").css("display", "block");
+        }
     });
 
     $("#password").focusout(function () {
-        checkForm();
+        if (checkUserPassword($("#password").val())) {
+            $("#password_error").css("display", "none");
+        } else {
+            $("#password_error").css("display", "block");
+        }
     });
 
     $("#password_confirm").focusout(function () {
-        checkForm();
+        if (checkUserPassword($("#password_confirm").val())) {
+            $("#password_confirm_error").css("display", "none");
+        } else {
+            $("#password_confirm_error").css("display", "block");
+        }
     });
 
     $("#verify_code").focusout(function () {
-        checkForm();
+        const verify_code = $("#verify_code").val();
+        if (verify_code.length >= 4) {
+            $("#verify_code_error").css("display", "none");
+        } else {
+            $("#verify_code_error").css("display", "block");
+        }
     });
 
     $("#username_mobile").focusout(function () {
-        checkForm();
+        if (register_type == 8) {
+            if (checkUserName($("#username_mobile").val())) {
+                $("#username_mobile_error").css("display", "none");
+            } else {
+                $("#username_mobile_error").css("display", "block");
+            }
+        }
     });
 });

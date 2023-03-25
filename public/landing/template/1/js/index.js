@@ -187,17 +187,11 @@ function checkForm() {
         $("#verify_code_error").css("display", "block");
         bPass = false;
     }
-
     return bPass;
 }
 
 function areaCode(code) {
-    // if (code.length == 1) {
-    //     $("#area_code").css("display", "none");
-    //     $("#one_code").append(code[0].name + "+" + code[0].area_code);
-    // } else {
-    var i;
-    for (i = 0; i < code.length; ++i) {
+    for (var i = 0; i < code.length; ++i) {
         $("#area_code").append(
             $("<option></option>")
                 .attr("value", code[i].area_code)
@@ -205,8 +199,6 @@ function areaCode(code) {
         );
     }
     if (code.length == 1) {
-        // $("#area_code").css("pointer-events", "none");
-        // $("#area_code").css("appearance", "none");
         if (isSafari()) {
             $("#area_code").addClass("area_code_safari_one_option");
         } else {
@@ -219,7 +211,6 @@ function areaCode(code) {
             $("#area_code").addClass("area_code");
         }
     }
-    // }
 }
 
 function beginCountdown() {

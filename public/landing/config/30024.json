@@ -1,0 +1,5 @@
+{
+    "apiUrl": "https://api.testjj9.com",
+    "cdnUrl": "https://sftpuser.testjj9.com",
+    "registrationType": [1, 2, 4, 8]
+}

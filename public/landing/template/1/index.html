@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Cache-control" content="no-cache" />
+        <meta http-equiv="Cache" content="no-cache" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>template</title>
+    </head>
+    <link rel="stylesheet" href="./style/index.css?v=1.3.4" />
+    <body>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="position: absolute; width: 0; height: 0"
+            aria-hidden="true"
+            id="__SVG_SPRITE_NODE__"
+        >
+            <symbol
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="eye"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                id="icon-hide-password"
+            >
+                <path
+                    d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                ></path>
+            </symbol>
+            <symbol
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="eye-invisible"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                id="icon-show-password"
+            >
+                <path
+                    d="M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z"
+                ></path>
+                <path
+                    d="M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z"
+                ></path>
+            </symbol>
+        </svg>
+        <div class="container">
+            <div class="form">
+                <div class="title">GET FREE ₹1K RISK PREDICTION</div>
+
+                <div class="tag-box-method">
+                    <div id="btnTagAccount" class="btn-tag">ACCOUNT</div>
+                    <div id="btnTagMobile" class="btn-tag">MOBILE</div>
+                    <div id="btnTagEmail" class="btn-tag">EMAIL</div>
+                    <div id="btnTagEmailMobile" class="btn-tag">ACCOUNT & MOBILE</div>
+                </div>
+
+                <form id="form">
+                    <div class="form-item">
+                        <div class="input-box">
+                            <input placeholder="Referrer's code (optional)" type="text" id="invite_user_id" value="" />
+                        </div>
+                    </div>
+                    <div class="form-item username_mobile">
+                        <div class="input-box username_box">
+                            <input placeholder="" type="text" id="username_mobile" value="" />
+                        </div>
+                        <div id="username_mobile_error" class="input-error"></div>
+                    </div>
+                    <div class="form-item">
+                        <div class="input-box">
+                            <select id="area_code"></select>
+                            <span id="one_code"></span>
+                            <input placeholder="" type="text" id="username" value="" />
+                        </div>
+                        <div id="username_error" class="input-error"></div>
+                        <div id="btnGetCode">Get Code</div>
+                    </div>
+                    <div class="form-item" id="formItemVerifyCode">
+                        <div class="input-box">
+                            <input placeholder="" type="text" id="verify_code" value="" />
+                        </div>
+                        <div id="verify_code_error" class="input-error"></div>
+                        <div id="divImageCode" class="btnImagCode"><img class="imgCode" src="" /></div>
+                    </div>
+                    <div class="form-item" id="formItemPassword">
+                        <div class="input-box">
+                            <input placeholder="" type="password" id="password" value="" />
+                            <span
+                                id="btn_hide_password"
+                                role="img"
+                                aria-label="eye"
+                                tabindex="-1"
+                                class="anticon anticon-eye ant-input-password-icon svg-box"
+                            >
+                                <svg class="svg-box" aria-hidden="true"><use xlink:href="#icon-hide-password"></use></svg>
+                            </span>
+                            <span
+                                id="btn_show_password"
+                                role="img"
+                                aria-label="eye-invisible"
+                                tabindex="-1"
+                                class="anticon anticon-eye-invisible ant-input-password-icon svg-box"
+                            >
+                                <svg class="svg-box" aria-hidden="true"><use xlink:href="#icon-show-password"></use></svg>
+                            </span>
+                        </div>
+                        <div id="password_error" class="input-error"></div>
+                    </div>
+                    <div class="form-item" id="formItemPasswordConfirm">
+                        <div class="input-box">
+                            <input placeholder="" type="password" id="password_confirm" value="" />
+                            <span
+                                id="btn_hide_password_confirm"
+                                role="img"
+                                aria-label="eye"
+                                class="anticon anticon-eye ant-input-password-icon svg-box"
+                            >
+                                <svg class="svg-box" aria-hidden="true"><use xlink:href="#icon-hide-password"></use></svg>
+                            </span>
+                            <span
+                                id="btn_show_password_confirm"
+                                role="img"
+                                aria-label="eye-invisible"
+                                class="anticon anticon-eye-invisible ant-input-password-icon svg-box"
+                            >
+                                <svg class="svg-box" aria-hidden="true"><use xlink:href="#icon-show-password"></use></svg>
+                            </span>
+                        </div>
+                        <div id="password_confirm_error" class="input-error"></div>
+                    </div>
+                </form>
+
+                <div class="reg-panel-logo">
+                    <div id="btnSignUp"><img class="logo" src="./assets/logo.png" /></div>
+                    <div style="margin-top: 0px">Already have an account? <span id="aHome">Sign in</span></div>
+                </div>
+            </div>
+            <!-- dialog -->
+            <div id="dialog" class="form dialog">
+                <div class="dialog-container code_box">
+                    <div id="close-img" class="close-img"></div>
+                    <div class="dialog-title">Get Verification Code</div>
+                    <div class="form-item">
+                        <div class="input-box">
+                            <input placeholder="Enter Code" type="text" id="formItemVerifyCode1" value="" />
+                        </div>
+                        <div id="username_error" class="input-error"></div>
+                        <div class="btnImagCode"><img class="imgCode" src="" width="150" height="40" /></div>
+                    </div>
+                    <div id="btnSendCode">CONFIRM</div>
+                </div>
+            </div>
+            <!-- 确认弹窗 -->
+            <div id="dialog_confirm" class="form dialog">
+                <div class="dialog-container">
+                    <div id="txtMsg" class="txtMsg"></div>
+                    <div id="btnCloseConfirm">CONFIRM</div>
+                </div>
+            </div>
+            <!-- 确认弹窗 -->
+            <div id="dialog_succeed" class="form dialog">
+                <div class="dialog-container">
+                    <div class="txtMsg">Registered successful</div>
+                    <div class="flex-space-between">
+                        <div id="btnCloseSucceed">CANCEL</div>
+                        <div id="btnGoHome">GO SIGN IN</div>
+                    </div>
+                </div>
+            </div>
+            <!-- sms确认弹窗 -->
+            <div id="dialog_sms_confirm" class="form dialog">
+                <div class="dialog-container">
+                    <div id="txtSMSMsg" class="txtSMSMsg"></div>
+                    <div id="btnCloseSMSConfirm">CONFIRM</div>
+                </div>
+            </div>
+            <!-- loading -->
+            <div id="loading" class="form dialog">
+                <img src="assets/loading.gif" style="margin: auto; width: 30px" />
+            </div>
+        </div>
+    </body>
+    <script src="./js/str.js?v=1.3.1"></script>
+    <script src="./js/utils.js?v=1.3.1"></script>
+    <script src="./js/jquery.js?v=1.3.1"></script>
+    <script src="./js/net.js?v=1.3.2"></script>
+    <script src="./js/index.js?v=1.3.6"></script>
+    <script src="./js/click.js?v=1.3.3"></script>
+</html>

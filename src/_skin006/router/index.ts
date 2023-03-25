@@ -18,6 +18,11 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
     },
     {
+        path: "/page_game_list/:vendor_type/:lang",
+        name: "page_game_list",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
         path: "/page_game_list_chess/:lang",
         name: "page_game_list_chess",
         component: () =>
@@ -109,7 +114,13 @@ router.beforeEach((to: any, from: any, next: any) => {
         if (to.path == "/") {
             next(`/${core.lang}`);
         } else {
-            next(`${to.path}/${core.lang}`);
+            //next(`${to.path}/${core.lang}`);
+            const pathSplit = to.path.split("/");
+            if (pathSplit.length == 4) {
+                next(`${pathSplit[1]}/${pathSplit[2]}/${core.lang}`);
+            } else {
+                next(`${to.path}/${core.lang}`);
+            }
         }
     } else {
         if (

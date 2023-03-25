@@ -37,6 +37,7 @@ export default class DialogLoginMediator extends AbstractMediator {
                 break;
             case net.EventType.api_public_area_code:
                 myProxy.forgetData.areaCode = body;
+                myProxy.setAreaCode();
                 break;
             case net.EventType.api_user_login_check:
                 myProxy.pageData.loading = false;

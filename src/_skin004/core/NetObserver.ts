@@ -210,7 +210,9 @@ export default class NetObserver extends AbstractMediator {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
                     const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                    if (ori_vendor_extend.noConfirm) {
+                    const ddd = judgeClient();
+                    //@ts-ignore
+                    if ((ori_vendor_extend.noConfirm && (window.navigator.standalone || judgeClient() != "iOS") )) {//判断如果没有添加到主屏幕并且属于ios系统就要强制弹窗
                         this.openGame(body,ori_vendor_extend);
                         return
                     }

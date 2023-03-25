@@ -36,6 +36,7 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
                 break;
             case net.EventType.api_public_area_code:
                 myProxy.pageData.areaCode = body;
+                myProxy.setAreaCode();
                 break;
         }
     }

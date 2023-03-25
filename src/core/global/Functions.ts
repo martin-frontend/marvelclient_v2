@@ -256,6 +256,41 @@ export function checkUserPassword(value: string): boolean {
 }
 
 /**
+ * 检测是否只有英语大写与数字
+ * @param value
+ */
+export function checkOnlyUpCharAndNub(value: string): boolean {
+    const pattern: RegExp = /^[A-Z0-9]+$/;
+    return pattern.test(value);
+}
+
+/**
+ * 检测是否只有英语字母与空格
+ * @param value
+ */
+export function checkOnlyEnglishChar(value: string): boolean {
+    const pattern: RegExp = /^[a-zA-Z\s]+$/;
+    return pattern.test(value);
+}
+
+/**
+ * 检测是否只有英语大写
+ * @param value
+ */
+export function checkOnlyUpChar(value: string): boolean {
+    const pattern: RegExp = /^[A-Z]+$/;
+    return pattern.test(value);
+}
+/**
+ * 检测是否只有数字
+ * @param value
+ */
+export function checkOnlyNub(value: string): boolean {
+    const pattern: RegExp = /^[0-9]+$/;
+    return pattern.test(value);
+}
+
+/**
  * 验证手机号是否合法
  * @param value
  */

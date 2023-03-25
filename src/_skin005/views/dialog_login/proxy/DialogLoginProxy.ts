@@ -25,7 +25,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
         bShow: false,
         tabIndex: 0, //0:手机找回 1:邮箱找回
         form: {
-            area_code: "86",
+            area_code: "",
             username: "",
             password: "",
             password_confirm: "",
@@ -42,12 +42,13 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             password: "",
         });
         Object.assign(this.forgetData.form, {
-            area_code: "86",
+            area_code: "",
             username: "",
             password: "",
             password_confirm: "",
             verify_code: "",
         });
+        this.setAreaCode();
         const user = Cookies.get("username");
         const pwd = Cookies.get("password");
         if (user && pwd) {
@@ -56,7 +57,11 @@ export default class DialogLoginProxy extends puremvc.Proxy {
             this.pageData.remember = true;
         }
     }
-
+    setAreaCode() {
+        if (this.forgetData.areaCode && this.forgetData.areaCode.length > 0) {
+            this.forgetData.form.area_code = this.forgetData.areaCode[0].area_code;
+        }
+    }
     show() {
         this.forgetData.bShow = false;
         this.pageData.bShow = true;

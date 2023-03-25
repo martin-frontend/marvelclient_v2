@@ -118,6 +118,20 @@ const router = new VueRouter({
 
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
+    if (to.path.indexOf("page_game_soccer_cricket") != -1) {
+        addMetaWithType("cricket");
+    } else if (to.path.indexOf("page_game_soccer") != -1) {
+        addMetaWithType("sports");
+    } else if (to.path.indexOf("page_game_list/128/") != -1) {
+        addMetaWithType("blockchain");
+    } else if (to.path.indexOf("page_game_list/8/") != -1) {
+        addMetaWithType("fishing");
+    } else if (to.path.indexOf("page_game_list/32/") != -1) {
+        addMetaWithType("live");
+    } else if (to.path.indexOf("page_game_list/16/") != -1) {
+        addMetaWithType("slot");
+    }
+
     if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
         if (to.path == "/") {
             PanelUtil.openpage_soccer_cricket();
@@ -147,4 +161,70 @@ router.beforeEach((to: any, from: any, next: any) => {
         }
     }
 });
+
+const metaArr = <any[]>[];
+function addMetaWithType(type: string) {
+    while (metaArr.length > 0) {
+        const meta = metaArr.pop();
+        meta.remove();
+    }
+    switch (type) {
+        case "cricket":
+            document.title = "Cricket Betting -  Live Cricket Score Betting Odds, Rules and Tips";
+            addMeta("title", "Cricket Betting Online 2023 - Live Cricket Betting Odds Online");
+            addMeta(
+                "description",
+                "Cricket Betting Odds Online - Betting on Cricket is a thrilling and exciting way to enjoy the game. Now bet on cricket with the best cricket betting tips and win money at 96in.com"
+            );
+            break;
+        case "sports":
+            document.title = "Online Sports betting - Best Sports Betting App";
+            addMeta("title", "Best Sports Betting Site Online - Legal Sports Betting odds");
+            addMeta(
+                "description",
+                "Sports betting - Play the games online with best sports betting app 96in.com and win exciting prizes. Now bet on all sports online legal, safe and secure deposit"
+            );
+            break;
+        case "fishing":
+            document.title = "Fishing games: Tips and strategies to win";
+            addMeta("title", "Play Fishing Games Online and Win Money");
+            addMeta(
+                "description",
+                "Fishing games have become increasingly popular in recent years. Play fishing games online similar to fishing games on PC, Xbox, PS4 etc"
+            );
+            break;
+        case "blockchain":
+            document.title = "Blockchain games Online -  Play and win in blockchain games";
+            addMeta("title", "Blockchain Games - Top Blockchain Games  Online");
+            addMeta(
+                "description",
+                "Play the best blockchain games online at 96in.com. We provide the top blockchain games and tips to win money online"
+            );
+            break;
+        case "live":
+            document.title = "Live Casino Games Online - Online Casino for Real Money";
+            addMeta("title", "Online Casino Games - Online Casino for Real Money");
+            addMeta(
+                "description",
+                "Play all live casino games online in 96in.com such as andar bahar, teen patti, roulette, baccarat etc. Play to win Online Casino for Real Money"
+            );
+            break;
+        case "slot":
+            document.title = "Slot games: How to play, rules, tips and strategies";
+            addMeta("title", "Slot Games - Best Free Slot Machine Games Online");
+            addMeta(
+                "description",
+                "Slot games are easy to play and offer the excitement of a big win. Now play the best free slot machine games online"
+            );
+            break;
+    }
+}
+function addMeta(name: string, content: string) {
+    const meta = document.createElement("meta");
+    meta.content = content;
+    meta.name = name;
+    document.getElementsByTagName("head")[0].appendChild(meta);
+    metaArr.push(meta);
+}
+
 export default router;

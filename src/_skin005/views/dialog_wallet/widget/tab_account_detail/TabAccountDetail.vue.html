@@ -33,12 +33,29 @@
                                 <v-sheet color="transparent"
                                     class="textGray--text text-16 text-truncate d-flex justify-center"
                                     min-width="100">{{item.balance}}</v-sheet>
+
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <!-- <v-icon color="textGray" class="help text-subtitle-1" dark v-bind="attrs"
+                                                v-on="on">mdi-help</v-icon> -->
+                                            <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                <v-sheet color="transparent"
+                                                class="textGray--text text-16 text-truncate d-flex justify-center"
+                                                width="120">
+                                                {{item.remark}}
+                                            </v-sheet>
+                                            </v-sheet>
+            
+                                        </template>
+                                        <span>{{item.remark}}</span>
+                                    </v-tooltip>
+                                    
+                                <!-- <v-sheet color="transparent"
+                                    class="textGray--text text-16 text-truncate d-flex justify-center"
+                                    min-width="120">{{item.remark}}</v-sheet> -->
                                 <v-sheet color="transparent"
                                     class="textGray--text text-16 text-truncate d-flex justify-center"
-                                    min-width="120">{{item.remark}}</v-sheet>
-                                <v-sheet color="transparent"
-                                    class="textGray--text text-16 text-truncate d-flex justify-center"
-                                    min-width="120">{{item.created_at.substr(5)}}</v-sheet>
+                                    min-width="120">{{getDate(item.created_at)}}</v-sheet>
 
                         </v-sheet>
                 </v-sheet>
@@ -71,7 +88,7 @@
     <!-- <v-sheet v-if="$vuetify.breakpoint.xsOnly" color="transparent" class="overflow-y-auto px-2 mt-1"
         style="height: calc(100vh - 200px);"> -->
         <LoadMore v-if="$vuetify.breakpoint.xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" class=" px-2 mt-1"
-            :listNodata="pageData.list.length == 0">
+            >
             <v-row dense>
                 <v-col cols="4">
                     <CustomSelect class="cusSelect" v-model="listOptions.timeSelect" :fontSize="12"
@@ -87,8 +104,8 @@
                 </v-col>
     
             </v-row>
-            
-            <v-sheet class="px-3 py-4 rounded10 my-3 text-12"  color="bgBanner"
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
+            <v-sheet v-if="pageData.list.length > 0" class="px-3 py-4 rounded10 my-3 text-12"  color="bgBanner"
                  v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex justify-space-between">
                     <div class="primary--text">{{LangUtil("明细类型")}}</div>
@@ -108,11 +125,13 @@
                     </div>
                     <div class="mt-2 d-flex justify-space-between">
                         <div class="primary--text">{{LangUtil("备注")}}</div>
-                        <div class="textGray--text">{{item.remark}}</div>
+                        <div class="textGray--text text-truncate cursor-pointer" @click="onBtnClickRemark(item)" style="max-width: 60%;">
+                            {{item.remark}}
+                        </div>
                     </div>
                     <div class="mt-2 d-flex justify-space-between">
                         <div class="primary--text">{{LangUtil("日期")}}</div>
-                        <div class="text-truncate textGray--text">{{item.created_at.substr(5)}}</div>
+                        <div class="text-truncate textGray--text">{{getDate(item.created_at)}}</div>
                     </div>
             </v-sheet>
         </LoadMore>

@@ -1,7 +1,9 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
+import { changeDateShow } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogWalletProxy from "../../proxy/DialogWalletProxy";
 @Component
@@ -79,5 +81,12 @@ export default class TabAccountDetail extends AbstractView {
             this.listQuery.type = this.listOptions.typeSelect;
         }
         this.myProxy.api_user_show_var_gold();
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
+    }
+    onBtnClickRemark(item:any)
+    {
+        PanelUtil.message_alert(item.remark);
     }
 }

@@ -36,7 +36,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     resetForm() {
         Object.assign(this.pageData.formBindPhone, {
             user_id: core.user_id,
-            area_code: "86",
+            area_code: "",
             mobile: "",
             code: "",
         });
@@ -51,6 +51,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
         });
+        this.setAreaCode();
         if (this.pageData.tabIndex < 0) {
             const selfProxy: SelfProxy = getProxy(SelfProxy);
             const { phone, email } = selfProxy.userInfo;
@@ -65,7 +66,11 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             }
         }
     }
-
+    setAreaCode() {
+        if (this.pageData.areaCode && this.pageData.areaCode.length > 0) {
+            this.pageData.formBindPhone.area_code = this.pageData.areaCode[0].area_code;
+        }
+    }
     api_user_bind_mobile_var() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_bind_mobile_var, this.pageData.formBindPhone);

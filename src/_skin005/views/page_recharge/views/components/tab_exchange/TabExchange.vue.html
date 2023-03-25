@@ -93,8 +93,12 @@
                                     <v-sheet color="transparent" class="py-1">
                                         <CustomInput class=""
                                             :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
+                                            @blur="onBlurInput(item)"
                                             v-model="item.inputValue">
                                         </CustomInput>
+                                    </v-sheet>
+                                    <v-sheet class="text-12 red--text error_tip" color="transparent">
+                                        {{item.errinfo}}
                                     </v-sheet>
                                 </v-card>
                             </v-col>
@@ -211,10 +215,13 @@
                                             {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
                                         </v-sheet>
                                         <v-sheet color="transparent" class="py-1">
-                                            <CustomInput class=""
+                                            <CustomInput class="" @blur="onBlurInput(item)"
                                                 :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_' + curSelectItem.subtitle + '_' + item.title) "
                                                 v-model="item.inputValue">
                                             </CustomInput>
+                                        </v-sheet>
+                                        <v-sheet class="text-12 red--text" color="transparent">
+                                            {{item.errinfo}}
                                         </v-sheet>
                                     </v-card>
                                 </template>

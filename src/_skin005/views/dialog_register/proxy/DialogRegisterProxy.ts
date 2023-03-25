@@ -18,12 +18,17 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             verify_code: "",
             mobile_username: "", //手机账号的 用户名
             register_type: 1, //1：用户名 2：邮箱 4：手机
-            area_code: "86",
+            area_code: "",
         },
         auth_image: "",
         areaCode: <any>[],
     };
 
+    setAreaCode() {
+        if (this.pageData.areaCode && this.pageData.areaCode.length > 0) {
+            this.pageData.form.area_code = this.pageData.areaCode[0].area_code;
+        }
+    }
     resetForm() {
         Object.assign(this.pageData.form, {
             invite_user_id: core.invite_user_id,

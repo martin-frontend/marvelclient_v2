@@ -32,7 +32,7 @@ function show(category?: number, vendor_id?: number) {
     proxy.getCurItemIndex();
     proxy.getCurMenuIndex();
     //@ts-ignore
-    window["vm"].$router.push("/page_game_list");
+    window["vm"].$router.push("/page_game_list/" +  proxy.listQuery.vendor_type + "/" + core.lang);
     proxy.saveData();
 }
 

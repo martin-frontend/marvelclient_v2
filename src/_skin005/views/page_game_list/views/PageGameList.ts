@@ -73,16 +73,12 @@ export default class PageGameList extends AbstractView {
         if (!this.casinoPageGameList) {
             this.casinoPageGameList = [1, 2, 8, 16, 128, 256, 512];
         }
+
         if (this.casinoPageGameList.includes(this.listQuery.vendor_type)) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
-
-        // if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
-
-        // return false;
     }
     //判断是否点击的当前的对象
     isCurItem(item: any) {
@@ -124,7 +120,7 @@ export default class PageGameList extends AbstractView {
     }
 
     public get img_width(): number {
-        return this.isUseMenuData ? 110 : 190 ;
+        return this.isUseMenuData ? 110 : 190;
         // if (this.listQuery.vendor_type == 4) {
         //     return 110;
         // } else if (this.listQuery.vendor_type == 32) {

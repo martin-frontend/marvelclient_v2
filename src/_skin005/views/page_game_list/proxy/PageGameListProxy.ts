@@ -47,6 +47,10 @@ export default class PageGameListProxy extends puremvc.Proxy {
         console.log("初始化");
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
+        const vendor_type = Vue.router.history.current.params.vendor_type;
+        if (vendor_type) {
+            this.listQuery.vendor_type = parseInt(vendor_type);
+        }
         this.getCurItemIndex();
         this.getCurMenuIndex();
         //PanelUtil.getProxy_novigation.categoryActive = 1;

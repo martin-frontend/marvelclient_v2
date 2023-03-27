@@ -137,6 +137,9 @@
                 <span class="px-2">{{LangUtil("注册")}}</span>
             </v-btn>
             <Wallet v-if="core.user_id" />
+            <!-- <div height="20" class="service text-10 colorTextCommon101--text rounded-pill" @click="onService">
+                <span class="px-1">{{LangUtil("客服")}}</span>
+            </div> -->
             <div v-if="LangConfig.language" class="language ml4-5">
                 <CustomSelect v-model="core.lang" :options="LangConfig.language" :icons="LangConfig.language"
                     :width="$vuetify.breakpoint.xsOnly? 45 : 130" :height="30" fontSize="12" iconSize="20"

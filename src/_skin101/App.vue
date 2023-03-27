@@ -74,6 +74,9 @@
                 <span class="mt6 text-11">{{ LangUtil("返回顶部") }}</span>
             </div>
         </div>
+        <div class="right-nav-mobile nav-item service" @click="onService" v-if="$vuetify.breakpoint.mobile">
+            <v-img max-width="50" max-height="50" src="~@/_skin101/assets/img/index/service.png"></v-img>
+        </div>
         <!-- <v-btn
             width="56"
             height="56"
@@ -144,6 +147,12 @@ export default class extends APP {
 </script>
 
 <style lang="scss" scoped>
+.right-nav-mobile {
+    z-index: 100;
+    position: fixed;
+    right: 15px;
+    bottom: 150px;
+}
 .right-nav {
     z-index: 100;
     position: fixed;

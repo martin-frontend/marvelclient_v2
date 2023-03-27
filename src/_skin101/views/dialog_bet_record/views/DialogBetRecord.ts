@@ -68,20 +68,20 @@ export default class DialogBetRecord extends AbstractView {
         this.listQuery.page_count = 1;
         switch (this.listOptions.timeSelect) {
             case 0:
-                this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(), "yyyy-MM-dd") + ` 00:00:00`;
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd") + ` 23:59:59`;
                 break;
             case 1:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-1), "yyyy-MM-dd") + ` 00:00:00`;
+                this.listQuery.end_date = dateFormat(getTodayOffset(0, 1), "yyyy-MM-dd") + ` 23:59:59`;
                 break;
             case 2:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd") + ` 00:00:00`;
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd") + ` 23:59:59`;
                 break;
             case 3:
-                this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd");
-                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd") + ` 00:00:00`;
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd") + ` 23:59:59`;
                 break;
         }
         this.listQuery.page_count = 1;

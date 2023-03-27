@@ -69,6 +69,7 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
 
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE 10+ */
@@ -590,7 +591,8 @@ input {
         }
         .v-pagination__item--active,
         .v-pagination__navigation {
-            background-color: #5d3aae !important;
+            // background-color: #5d3aae !important;
+            background-color: #304062 !important;
             color: #fff !important;
         }
     }

@@ -337,19 +337,19 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     setCurBankInfo(bank_id: number) {
-        console.log("需要搜索的银行id ", bank_id);
+        // console.log("需要搜索的银行id ", bank_id);
         const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
         for (let index = 0; index < arr.length; index++) {
             const element = arr[index];
             if (element.bank_id == bank_id) {
                 this.curBankinfo = element;
-                console.log("设置  银行 ", element);
+                // console.log("设置  银行 ", element);
                 return;
             }
         }
     }
     setAddress(data: any) {
-        console.log("收到 银行卡 信息 回调");
+        // console.log("收到 银行卡 信息 回调");
         this.bankCardInfo = data;
         this.bankCard_nameArr = [];
         this.bankCard_numberArr = [];

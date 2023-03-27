@@ -13,8 +13,15 @@
         <!-- <GameSlideGroup v-if=" item.category != 32 && item.category != 64" :data="item" :bShowAll="true"
             :name="item.category" :id="item.category" /> -->
         <!-- <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport> -->
-        <GameSlideGroupLink v-if="item.category == 128" :data="item" :bShowAll="true" :name="item.category"
-            :id="item.category" />
+
+        <template v-if="item.category == 128 && $vuetify.breakpoint.mobile">
+            <GameSlideGroup :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
+            <GameSlideGroupLink :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
+        </template>
+        <template v-else-if="item.category == 128 && !$vuetify.breakpoint.mobile">
+            <GameSlideGroupLink :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
+        </template>
+
         <GameSlideGroup v-else-if="item.category != 64 && item.category != 128 && item.category != 32" :data="item"
             :bShowAll="true" :name="item.category" :id="item.category" />
         <GameSport v-else-if="item.category == 64" :data="item" :name="item.category" :id="item.category"></GameSport>

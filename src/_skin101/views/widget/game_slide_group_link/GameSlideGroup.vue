@@ -5,10 +5,12 @@
 import Component from "vue-class-component";
 import GameItem from "../game_item_small/GameItem.vue";
 import GameSlideGroup from "./GameSlideGroup";
+// import GameSlideGroupNatvie from "../game_slide_group/GameSlideGroup.vue";
 
 @Component({
     components: {
         GameItem,
+        // GameSlideGroupNatvie,
     },
 })
 export default class extends GameSlideGroup {

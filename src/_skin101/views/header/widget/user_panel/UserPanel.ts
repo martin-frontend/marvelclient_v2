@@ -19,6 +19,8 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_user_center from "@/_skin101/views/dialog_user_center";
 import dialog_message from "@/_skin101/views/dialog_message";
 
+import OpenLink from "@/core/global/OpenLink";
+
 import aqzx from "@/_skin101/assets/img/my/normal/aqzx.png";
 import aqzx_w from "@/_skin101/assets/img/my/active/aqzx.png";
 import ptqb from "@/_skin101/assets/img/my/normal/ptqb.png";
@@ -178,6 +180,12 @@ export default class UserPanel extends AbstractView {
         //     icon: require("@/_skin101/assets/img/my/normal/bjs.png"),
         //     icon_white: require("@/_skin101/assets/img/my/active/bjs.png"),
         // },
+        // {
+        //     id: 15,
+        //     name: LangUtil("联系客服"),
+        //     icon: zsfh,
+        //     icon_white: zsfh_w,
+        // },
     ];
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
@@ -222,6 +230,9 @@ export default class UserPanel extends AbstractView {
             case 14:
                 page_introduce.show();
                 break;
+            case 15:
+                this.onService();
+                break;
         }
         this.drawerClose();
     }
@@ -234,5 +245,18 @@ export default class UserPanel extends AbstractView {
     }
     drawerClose() {
         this.$emit("drawer", false);
+    }
+
+    onService() {
+        const link = LangUtil("客服链接") + "?id=" + core.user_id;
+        try {
+            window.open(
+                link,
+                LangUtil("客服"),
+                "height=680, width=680, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no"
+            );
+        } catch (e: any) {
+            OpenLink(link);
+        }
     }
 }

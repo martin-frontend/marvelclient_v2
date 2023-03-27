@@ -59,6 +59,11 @@ const routes: Array<RouteConfig> = [
         name: "page_swap",
         component: () => import(/* webpackChunkName: "page_swap" */ "@/views/page_swap/views/PageSwap.vue"),
     },
+    {
+        path: "/page_activity",
+        name: "page_activity",
+        component: () => import(/* webpackChunkName: "skin004_page_activity" */ "@/_skin004/views/page_activity/views/PageActivity.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
@@ -78,7 +83,8 @@ router.beforeEach((to: any, from: any, next: any) => {
         to.name !== "page_home" &&
         to.name !== "page_game_list" &&
         to.name !== "page_introduce" &&
-        to.name !== "page_swap"
+        to.name !== "page_swap" &&
+        to.name !== "page_activity"
     ) {
         next("/");
     } else {

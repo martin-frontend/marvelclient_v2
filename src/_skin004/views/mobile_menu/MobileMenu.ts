@@ -20,6 +20,7 @@ import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 import GameConfig from "@/core/config/GameConfig";
 import OpenLink from "@/core/global/OpenLink";
 import YellowWeb from "@/_skin004/core/global/YellowWeb";
+import page_activity from "@/_skin004/views/page_activity";
 
 @Component
 export default class MobileMenu extends AbstractView {
@@ -41,7 +42,7 @@ export default class MobileMenu extends AbstractView {
                 name: LangUtil("优惠活动"),
                 icon: require(`@/_skin001/assets/icon/icon_mine.png`),
                 icon1: require(`@/_skin001/assets/icon/icon_mine1.png`),
-                path: "/xxx",
+                path: "/page_activity",
             },
             // {
             //     id: 1,
@@ -153,7 +154,7 @@ export default class MobileMenu extends AbstractView {
     }
     /**打开活动页面 */
     goActivity() {
-        dialog_activity.show();
+        page_activity.show();
     }
 
     onItemClick(item: any) {

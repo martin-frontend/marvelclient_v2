@@ -29,6 +29,7 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 import YellowWeb from "@/_skin004/core/global/YellowWeb";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import page_activity from "@/_skin004/views/page_activity";
 
 @Component
 export default class Header extends AbstractView {
@@ -175,7 +176,9 @@ export default class Header extends AbstractView {
     }
     /**打开活动页面 */
     goActivity() {
-        dialog_activity.show();
+        page_activity.show();
+    
+        // dialog_activity.show();
     }
     /**打开登录页面 */
     handlerLogin() {

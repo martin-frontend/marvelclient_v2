@@ -17,6 +17,13 @@
         <link rel="apple-touch-icon" href="img/app005.png" />
         <link rel="canonical" href="https://96in.com/" />
         <link rel="manifest" href="/manifest.json" />
+
+        <% if (process.env.VUE_APP_ENV =='production' ) { %>
+        <base href="https://96in.com/" />
+        <% } %> <% if (process.env.VUE_APP_TEST =='history' ) { %>
+        <base href="http://localhost:8080/" />
+        <% } %>
+
         <title><%= htmlWebpackPlugin.options.title %></title>
         <script src="libs/puremvc/puremvc.min.js"></script>
         <script src="libs/qrcode/qrcode.min.js"></script>

@@ -23,6 +23,41 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
     },
     {
+        path: "/sports/:lang",
+        name: "sports",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/live-casino-online/:lang",
+        name: "live-casino-online",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/blockchain-games/:lang",
+        name: "blockchain-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/fishing-games/:lang",
+        name: "fishing-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/slots-games/:lang",
+        name: "slots-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/lottery-games/:lang",
+        name: "lottery-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/cards-games/:lang",
+        name: "cards-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
         path: "/page_game_list_chess/:lang",
         name: "page_game_list_chess",
         component: () =>
@@ -42,8 +77,8 @@ const routes: Array<RouteConfig> = [
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
-        path: "/page_game_soccer_cricket/:lang",
-        name: "page_game_soccer_cricket",
+        path: "/cricket/:lang",
+        name: "cricket",
         component: () =>
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
@@ -53,8 +88,8 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
     },
     {
-        path: "/page_extension/:lang",
-        name: "page_extension",
+        path: "/commissions/:lang",
+        name: "commissions",
         component: () => import(/* webpackChunkName: "skin005_page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
     },
     {
@@ -91,8 +126,8 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_recharge" */ "@/_skin005/views/page_recharge/views/PageRecharge.vue"),
     },
     {
-        path: "/page_activity/:lang",
-        name: "page_activity",
+        path: "/promotions/:lang",
+        name: "promotions",
         component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
     },
     {
@@ -111,37 +146,37 @@ VueRouter.prototype.push = function push(location: any) {
 };
 
 const router = new VueRouter({
-    // mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
-    // mode: 'history',
+    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
+    // mode: "history",
     routes,
 });
 
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (to.path.indexOf("page_game_soccer_cricket") != -1) {
+    if (to.path.indexOf("cricket") != -1) {
         addMetaWithType("cricket");
-    } else if (to.path.indexOf("page_game_soccer") != -1) {
+    } else if (to.path.indexOf("sports") != -1) {
         addMetaWithType("sports");
-    } else if (to.path.indexOf("page_game_list/128/") != -1) {
+    } else if (to.path.indexOf("blockchain-games") != -1) {
         addMetaWithType("blockchain");
-    } else if (to.path.indexOf("page_game_list/8/") != -1) {
+    } else if (to.path.indexOf("fishing-games") != -1) {
         addMetaWithType("fishing");
-    } else if (to.path.indexOf("page_game_list/32/") != -1) {
+    } else if (to.path.indexOf("live-casino-online") != -1) {
         addMetaWithType("live");
-    } else if (to.path.indexOf("page_game_list/16/") != -1) {
+    } else if (to.path.indexOf("slots-games") != -1) {
         addMetaWithType("slot");
     }
 
-    if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
+    if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
         if (to.path == "/") {
             PanelUtil.openpage_soccer_cricket();
             PanelUtil.openpage_sport("", true);
         } else {
             const pathSplit = to.path.split("/");
             if (pathSplit.length == 4) {
-                next(`${pathSplit[1]}/${pathSplit[2]}/${core.lang}`);
+                next(`${pathSplit[1]}/${pathSplit[2]}/${LangConfig.getRouterLang()}`);
             } else {
-                next(`${to.path}/${core.lang}`);
+                next(`${to.path}/${LangConfig.getRouterLang()}`);
             }
         }
     } else {
@@ -153,9 +188,9 @@ router.beforeEach((to: any, from: any, next: any) => {
                 to.name == "page_statistice_credit" ||
                 to.name == "page_game_soccer")
         ) {
-            next(`/${core.lang}`);
+            next(`/${LangConfig.getRouterLang()}`);
         } else {
-            if (to.name == "page_game_soccer_cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+            if (to.name == "cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                 PanelUtil.openpage_soccer_cricket();
             } else next();
         }

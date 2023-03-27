@@ -1,3 +1,4 @@
+import LangConfig from "@/core/config/LangConfig";
 import { CompetitionVO } from "@/_skin005/vo/CompetitionVO";
 import Vue from "vue";
 
@@ -6,11 +7,11 @@ export default class PageHomeProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         setInterval(() => {
-            if (Vue.router.currentRoute.path == "/"+ core.lang) {
+            if (Vue.router.currentRoute.path == "/" + LangConfig.getRouterLang()) {
                 this.api_vendor_96_products();
             }
         }, 5000);
-        if (Vue.router.currentRoute.path == "/" + core.lang) {
+        if (Vue.router.currentRoute.path == "/" + LangConfig.getRouterLang()) {
             this.api_vendor_96_products();
         }
     }
@@ -59,8 +60,8 @@ export default class PageHomeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.backwater_setting_info, data);
     }
 
-    set_vendor_96_products(data:any){
-        if(Object.keys(data).length > 0) {
+    set_vendor_96_products(data: any) {
+        if (Object.keys(data).length > 0) {
             this.pageData.compData = data;
         }
     }

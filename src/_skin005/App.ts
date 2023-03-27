@@ -85,7 +85,7 @@ export default class APP extends AbstractView {
     }
     get isShowHeader() {
         if (this.$vuetify.breakpoint.mobile) {
-            if (this.$route.path.includes("page_game_soccer") || this.$route.path.includes("page_game_soccer_cricket") || this.$route.path.includes("page_game_play")) {
+            if (this.$route.path.includes("page_game_soccer")  || this.$route.path.includes("page_game_play")) {
                 return false;
             }
             return true;

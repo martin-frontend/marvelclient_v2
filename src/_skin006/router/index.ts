@@ -23,6 +23,41 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
     },
     {
+        path: "/sports/:lang",
+        name: "sports",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/live-casino-online/:lang",
+        name: "live-casino-online",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/blockchain-games/:lang",
+        name: "blockchain-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/fishing-games/:lang",
+        name: "fishing-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/slots-games/:lang",
+        name: "slots-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/lottery-games/:lang",
+        name: "lottery-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
+        path: "/cards-games/:lang",
+        name: "cards-games",
+        component: () => import(/* webpackChunkName: "skin005_page_game_list" */ "@/_skin005/views/page_game_list/views/PageGameList.vue"),
+    },
+    {
         path: "/page_game_list_chess/:lang",
         name: "page_game_list_chess",
         component: () =>
@@ -42,8 +77,8 @@ const routes: Array<RouteConfig> = [
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
-        path: "/page_game_soccer_cricket/:lang",
-        name: "page_game_soccer_cricket",
+        path: "/cricket/:lang",
+        name: "cricket",
         component: () =>
             import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
@@ -53,8 +88,8 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_introduce" */ "@/_skin005/views/page_introduce/views/PageIntroduce.vue"),
     },
     {
-        path: "/page_extension/:lang",
-        name: "page_extension",
+        path: "/commissions/:lang",
+        name: "commissions",
         component: () => import(/* webpackChunkName: "skin005_page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
     },
     {
@@ -91,8 +126,8 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_recharge" */ "@/_skin005/views/page_recharge/views/PageRecharge.vue"),
     },
     {
-        path: "/page_activity/:lang",
-        name: "page_activity",
+        path: "/promotions/:lang",
+        name: "promotions",
         component: () => import(/* webpackChunkName: "skin005_page_activity" */ "@/_skin005/views/page_activity/views/PageActivity.vue"),
     },
 ];
@@ -110,33 +145,32 @@ const router = new VueRouter({
 
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (!LangConfig.language[to.path.split("/").reverse()[0]]) {
+    if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
         if (to.path == "/") {
-            next(`/${core.lang}`);
+            next(`/${LangConfig.getRouterLang()}`);
         } else {
             //next(`${to.path}/${core.lang}`);
             const pathSplit = to.path.split("/");
             if (pathSplit.length == 4) {
-                next(`${pathSplit[1]}/${pathSplit[2]}/${core.lang}`);
+                next(`${pathSplit[1]}/${pathSplit[2]}/${LangConfig.getRouterLang()}`);
             } else {
-                next(`${to.path}/${core.lang}`);
+                next(`${to.path}/${LangConfig.getRouterLang()}`);
             }
         }
     } else {
         if (
             !core.user_id &&
-            (to.name == "page_recharge" || to.name == "page_game_soccer" ||
+            (to.name == "page_recharge" ||
+                to.name == "page_game_soccer" ||
                 to.name == "page_game_play" ||
                 to.name == "page_my_info" ||
                 to.name == "page_statistice_credit")
         ) {
-            next(`/${core.lang}`);
+            next(`/${LangConfig.getRouterLang()}`);
         } else {
-            if (to.name == "page_game_soccer_cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+            if (to.name == "cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                 PanelUtil.openpage_soccer_cricket();
-            }
-            else
-                next();
+            } else next();
         }
     }
 });

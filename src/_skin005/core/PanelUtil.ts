@@ -129,6 +129,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "./PageBlur";
 import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "./SkinVariable";
+import LangConfig from "@/core/config/LangConfig";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -148,16 +149,14 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
             //获取设备当前时间
-            const timenow_hour = (new Date()).getHours();
+            const timenow_hour = new Date().getHours();
             //白天
             if (timenow_hour > 5 && timenow_hour < 18) {
                 Vue.vuetify.framework.theme.dark = false;
-            }
-            else {
+            } else {
                 Vue.vuetify.framework.theme.dark = true;
             }
             console.log("---设置 黑夜半天", Vue.vuetify.framework.theme.dark);
-            
         }
         return Vue.vuetify.framework.theme.dark;
     }
@@ -168,8 +167,8 @@ export default class PanelUtil {
     static openpage_extension() {
         //LoginEnter(() => {
 
-        if (Vue.router.history.current.path.includes("page_extension")) return;
-        Vue.router.push("/page_extension");
+        if (Vue.router.history.current.path.includes("commissions")) return;
+        Vue.router.push("/commissions");
         PanelUtil.showAppLoading(true);
         PageBlur.blur_force_close();
         //});
@@ -187,8 +186,8 @@ export default class PanelUtil {
 
     //打开 主页
     static openpage_home() {
-        if (Vue.router.app.$route.path != "/" + core.lang) {
-            Vue.router.push("/" + core.lang);
+        if (Vue.router.app.$route.path != "/" + LangConfig.getRouterLang()) {
+            Vue.router.push("/" + LangConfig.getRouterLang());
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();
@@ -376,18 +375,14 @@ export default class PanelUtil {
         if (SkinVariable.isUsedDialogRecharge) {
             MultDialogManager.onOpenPanel(dialog_recharge);
             dialog_recharge.show();
-        }
-        else
-            PanelUtil.openpage_recharge();
+        } else PanelUtil.openpage_recharge();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {
         if (SkinVariable.isUsedDialogRecharge) {
             MultDialogManager.onOpenPanel(dialog_recharge);
             dialog_recharge.show(1);
-        }
-        else
-            PanelUtil.openpage_recharge(1);
+        } else PanelUtil.openpage_recharge(1);
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {
@@ -395,9 +390,9 @@ export default class PanelUtil {
         // dialog_activity.show();
 
         //LoginEnter(() => {
-        if (Vue.router.history.current.path.includes("page_activity")) return;
+        if (Vue.router.history.current.path.includes("promotions")) return;
 
-        Vue.router.push("/page_activity");
+        Vue.router.push("/promotions");
         PanelUtil.showAppLoading(true);
         PageBlur.blur_force_close();
         MultDialogManager.forceClosePanel();

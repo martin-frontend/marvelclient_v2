@@ -17,12 +17,12 @@ export default class MobileMenu extends AbstractView {
             0: { id: 0, name: LangUtil("首页"), icon: "home", path: "/" },
             1: { id: 1, name: LangUtil("足球"), icon: "soccer", path: "/page_game_soccer" },
             2: { id: 2, name: LangUtil("娱乐城"), icon: "c16", path: "/page_game_list" },
-            3: { id: 3, name: LangUtil("推广"), icon: "extension", path: "/page_extension" },
+            3: { id: 3, name: LangUtil("推广"), icon: "extension", path: "/commissions" },
             4: { id: 4, name: LangUtil("分红"), icon: "bouns", path: "/page_bonus" },
             5: { id: 5, name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
             7: { id: 7, name: LangUtil("返水"), icon: "water", path: "/page_mine" },
-            8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/page_game_soccer_cricket" },
+            8: { id: 8, name: LangUtil("板球"), icon: "cricket", path: "/cricket" },
         };
         if (ModulesHelper.IsShow_FootBall()) {
             newlist.push(list[1]);
@@ -119,6 +119,18 @@ export default class MobileMenu extends AbstractView {
         }
         else if (item.id == 1) {
             return this.routerPath.includes(item.path) && !this.isCricket;
+        }
+        else if(item.id == 2)
+        {
+            return  !(!this.routerPath.includes("page_game_list") && 
+            !this.routerPath.includes("sports") &&
+            !this.routerPath.includes("live-casino-online") &&
+            !this.routerPath.includes("blockchain-games") &&
+            !this.routerPath.includes("fishing-games") &&
+            !this.routerPath.includes("slots-games") &&
+            !this.routerPath.includes("lottery-games") &&
+            !this.routerPath.includes("cards-games")
+            ) 
         }
         else
             return this.routerPath.includes(item.path);

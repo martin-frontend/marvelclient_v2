@@ -44,10 +44,10 @@ export default class Novigation extends AbstractView {
         const list = {
             0: { icon: "coin", name: "币种介绍", id: 5, path: "page_introduce" },
             1: { icon: "chips", name: "质押分红", id: 1, path: "page_bonus" },
-            2: { icon: "extension", name: "推广赚钱", id: 6, path: "page_extension" },
+            2: { icon: "extension", name: "推广赚钱", id: 6, path: "commissions" },
             3: { icon: "water", name: "游戏返水", id: 2, path: "page_mine" },
             4: { icon: "swap", name: "SWAP交易", id: 3, path: "page_swap" },
-            5: { icon: "activity", name: "精彩活动", id: 4, path: "page_activity" },
+            5: { icon: "activity", name: "精彩活动", id: 4, path: "promotions" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {
@@ -102,7 +102,16 @@ export default class Novigation extends AbstractView {
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
 
-        if (!this.routerPath.includes("page_game_list")) {
+        if (
+            !this.routerPath.includes("page_game_list") &&
+            !this.routerPath.includes("sports") &&
+            !this.routerPath.includes("live-casino-online") &&
+            !this.routerPath.includes("blockchain-games") &&
+            !this.routerPath.includes("fishing-games") &&
+            !this.routerPath.includes("slots-games") &&
+            !this.routerPath.includes("lottery-games") &&
+            !this.routerPath.includes("cards-games")
+        ) {
             this.myProxy.categoryActive = -1;
         }
     }
@@ -193,9 +202,9 @@ export default class Novigation extends AbstractView {
         const path = this.$router.currentRoute.path.replace("/" + oldValue, "");
         window.localStorage.setItem("lang", core.lang);
         if (path == "") {
-            this.$router.replace("/" + this.core.lang);
+            this.$router.replace("/" + this.LangConfig.getRouterLang());
         } else {
-            this.$router.replace(`${path}/${core.lang}`);
+            this.$router.replace(`${path}/${this.LangConfig.getRouterLang()}`);
         }
         location.reload();
     }
@@ -243,7 +252,7 @@ export default class Novigation extends AbstractView {
 
     goCategory_game(id: any) {
         if (this.myProxy.categoryActive == id) return;
-        //console.log("----id--",id);
+        console.log("----id--", id);
         if (this.$vuetify.breakpoint.mobile) {
             PanelUtil.showNovigation(false);
         }
@@ -279,7 +288,7 @@ export default class Novigation extends AbstractView {
     isShowActive(item: any) {
         let isShow = false;
 
-        if (this.routerPath.includes("page_game_list") && this.categoryActive == this.getItemCategory(item)) isShow = true;
+        if (this.categoryActive == this.getItemCategory(item)) isShow = true;
 
         if (this.myProxy.isMenuOpen[item.vendor_type] && this.myProxy.isMenuOpen[item.vendor_type] == true) isShow = true;
 

@@ -6,7 +6,7 @@ function show(url: string, isCricket: boolean = false) {
     // window["vm"].$router.push("/page_game_soccer");
     //Vue.router.push("/page_game_soccer");
     if (isCricket) {
-        Vue.router.push("/page_game_soccer_cricket");
+        Vue.router.push("/cricket");
     }
     else {
         Vue.router.push("/page_game_soccer");

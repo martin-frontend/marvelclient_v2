@@ -43,13 +43,40 @@ export default class PageGameListProxy extends puremvc.Proxy {
         page_count: 1,
         page_size: 30,
     };
+
+    getVendorByRouter(): number {
+        const curPath = Vue.router.history.current.path;
+        if (curPath.includes("sports")) {
+            return 64;
+        }
+        else if (curPath.includes("live-casino-online")) {
+            return 32;
+        }
+        else if (curPath.includes("blockchain-games")) {
+            return 128;
+        }
+        else if (curPath.includes("fishing-games")) {
+            return 8;
+        }
+        else if (curPath.includes("slots-games")) {
+            return 16;
+        }
+        else if (curPath.includes("lottery-games")) {
+            return 4;
+        }
+        else if (curPath.includes("cards-games")) {
+            return 2;
+        }
+        return -1;
+    }
+
     init() {
         console.log("初始化");
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
-        const vendor_type = Vue.router.history.current.params.vendor_type;
-        if (vendor_type) {
-            this.listQuery.vendor_type = parseInt(vendor_type);
+        const vendor_type = this.getVendorByRouter();
+        if (vendor_type != -1) {
+            this.listQuery.vendor_type = vendor_type;
         }
         this.getCurItemIndex();
         this.getCurMenuIndex();

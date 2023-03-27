@@ -1,6 +1,6 @@
 function show() {
     //@ts-ignore
-    window["vm"].$router.push("/page_extension");
+    window["vm"].$router.push("/commissions");
 }
 
 export default { show };

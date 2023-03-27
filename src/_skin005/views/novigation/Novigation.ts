@@ -199,13 +199,13 @@ export default class Novigation extends AbstractView {
     /**切换语言 */
     @Watch("core.lang")
     onWatchLang(value: any, oldValue: any) {
-        const path = this.$router.currentRoute.path.replace("/" + oldValue, "");
+        const path = this.$router.currentRoute.path;
         window.localStorage.setItem("lang", core.lang);
-        if (path == "") {
-            this.$router.replace("/" + this.LangConfig.getRouterLang());
-        } else {
-            this.$router.replace(`${path}/${this.LangConfig.getRouterLang()}`);
-        }
+
+        const arr = path.split("/");
+        arr.pop();
+        const newPath = arr.join("/") + "/" + this.LangConfig.getRouterLang();
+        this.$router.replace(newPath);
         location.reload();
     }
 

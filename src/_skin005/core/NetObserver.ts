@@ -231,7 +231,7 @@ export default class NetObserver extends AbstractMediator {
                     }
                     PanelUtil.message_confirm({
                         message:
-                            coin_name_unique == "USDT"
+                            coin_name_unique == settle_coin_name_unique
                                 ? LangUtil("进入游戏")
                                 : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique),
                         okFun: () => {

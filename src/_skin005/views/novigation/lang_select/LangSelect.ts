@@ -20,7 +20,6 @@ export default class LangSelect extends AbstractView {
     @Watch("value")
     onValueChange() {
         this.selectValue = this.value;
-        console.log( "变化的值 " ,this.selectValue );
     }
 
     get getValue() {
@@ -36,19 +35,13 @@ export default class LangSelect extends AbstractView {
     isFilterChange = false;
     @Watch("isFilterChange")
     filterChange(val: boolean) {
-        if (this.$vuetify.breakpoint.mobile)
-        {
-            PageBlur.blur_page(this.isFilterChange );
-        }
-        else
-            PageBlur.blur_mainpage(this.isFilterChange );
+        if (this.$vuetify.breakpoint.mobile) {
+            PageBlur.blur_page(this.isFilterChange);
+        } else PageBlur.blur_mainpage(this.isFilterChange);
     }
     setIsFilter(val: boolean) {
         this.isFilterChange = val;
     }
 
-    isCurItem(item:any)
-    {
-
-    }
+    isCurItem(item: any) {}
 }

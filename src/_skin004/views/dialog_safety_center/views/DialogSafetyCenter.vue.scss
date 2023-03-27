@@ -3,7 +3,8 @@
     ::v-deep .v-input input {
         color: #96a9d0;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: inherit !important;
+        width: auto !important;
     }
 
     ::v-deep .theme--dark.v-icon {
@@ -25,4 +26,21 @@
     .mytest {
         min-width: 200px !important;
     }
+}
+.my-autocomplete  {
+    ::v-deep .v-input__slot{
+        padding: 0px !important;
+    }
+  
+    ::v-deep .v-list-item{
+        padding: 0px !important;
+    }
+    ::v-deep .v-menu__content{
+        min-width: 110px !important;
+    }
+    ::v-deep .v-input__icon {
+        position: absolute !important;
+        top: 5px !important;
+        left: 23px !important;
+      }
 }

@@ -37,7 +37,7 @@ export default class DialogSafetyCenter extends AbstractView {
     }
     
     public get curShowCode() : string {
-        return "+" + this.formBindPhone.area_code
+        return  ''+this.formBindPhone.area_code
     }
     
     @Watch("tempSelectCode")

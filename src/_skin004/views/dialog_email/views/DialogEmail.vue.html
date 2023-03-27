@@ -4,9 +4,9 @@
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("消息中心")}}</div>
             <v-spacer />
-            <div class="mr-5">
+            <div class="mr-5" @click="goMail">
                 <v-icon class="mr-1" color="#667798">mdi-email</v-icon>
-                <span @click="goMail" class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
+                <span  class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
             </div>
             <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>

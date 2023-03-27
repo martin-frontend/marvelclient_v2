@@ -58,6 +58,7 @@
                     <div>{{userInfo.phone}}</div>
                 </v-sheet>
                 <div v-else>
+                    
                     <CustomInput
                         class="mb-6 codeSelect"
                         icon="mdi-phone"
@@ -67,9 +68,12 @@
                  
                     >
                         <template v-slot:pre>
-                            <v-sheet color="transparent" min-width="80">  
+                            
+                            <v-sheet color="transparent" class="d-flex align-center" max-width="50">  
+                                <div  class="colorText2--text text-14 mx-1"> +</div>
                             <v-autocomplete
-                         
+                             style="width: auto;"
+                                class="my-autocomplete"
                                 v-model="tempSelectCode"
                                 :items="areaCodeArr"
                                 item-text="area_code"
@@ -85,12 +89,12 @@
                                 :filter="customFilter"
                             >
                             <template v-slot:item="data">
-                                <v-sheet color="transparent"  width="100%"  class="d-flex justify-space-between colorText2--text text-14">
-                                    <div> {{data.item.area_code}}</div>
+                                <v-sheet color="transparent" width="100%"   class="d-flex justify-center colorText2--text text-14">
+                                    <div> +{{data.item.area_code}}&nbsp;</div>
                                     <div> {{data.item.name}}</div>
                                 </v-sheet>
                             </template>
-                        
+                            
                         </v-autocomplete>
                     </v-sheet>
                             <v-menu v-if="false" v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">

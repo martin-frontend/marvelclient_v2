@@ -6,9 +6,9 @@
             <v-card-title class="gradient-bg">
                 <div class="text-18">{{LangUtil("消息中心")}}</div>
                 <v-spacer />
-                <div class="mr-5">
+                <div class="mr-5" @click="goMail">
                     <v-icon class="mr-1" color="colorText1">mdi-email</v-icon>
-                    <span @click="goMail" class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
+                    <span  class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
                 </div>
                 <v-btn icon @click="onClose">
                     <v-icon large>mdi-close</v-icon>

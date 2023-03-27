@@ -2,7 +2,7 @@
     <v-app>
         <div id="page">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
-            <Header v-if="!$vuetify.breakpoint.mobile && isShowHeader" />
+            <Header style="z-index: 1;" v-if="!$vuetify.breakpoint.mobile && isShowHeader" />
             <v-main id="mainpage" class="background" :class="{
                 'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
                 'mobile-background': $vuetify.breakpoint.mobile,

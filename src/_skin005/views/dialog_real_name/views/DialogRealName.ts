@@ -43,11 +43,12 @@ export default class DialogRealName extends AbstractView {
     private checkNickname(nickname: any) {
         return nickname.length > 0 ? true : false;
     }
-
+    /**限制最大字符数量 */
+    maxcharLength = 50;
     onSubmit() {
         const { real_name } = this.pageData;
         const data: any = {};
-        if (50 >= real_name.length && real_name.length >= 1) {
+        if (this.maxcharLength >= real_name.length && real_name.length >= 1) {
             data.real_name = real_name;
             this.pageData.loading = true;
             this.selfProxy.api_user_update_var(data);

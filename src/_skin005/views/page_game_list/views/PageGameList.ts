@@ -6,6 +6,7 @@ import PageGameListMediator from "../mediator/PageGameListMediator";
 import PageGameListProxy from "../proxy/PageGameListProxy";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import ScrollUtil, { scrollUtil_div } from "@/core/global/ScrollUtil";
 
 @Component
 export default class PageGameList extends AbstractView {
@@ -202,6 +203,11 @@ export default class PageGameList extends AbstractView {
                 this.myProxy.api_plat_var_game_all_index();
             }
 
+            if (this.$refs.scrollObj && !this.$vuetify.breakpoint.mobile)
+            {
+                console.log("调用 滑动----");
+                ScrollUtil(0);
+            }
             this.myProxy.getCurItemIndex();
         }
         this.myProxy.pageData.list = <any>[];

@@ -9,4 +9,5 @@ export const EnumPostMessage = {
     UNLOGIN:"unlogin", //未登录
     RECHARGE:"recharge",//充值(余额不足)
     REBALANCE:"reBalance",//请求更新界面上的余额
+    BETTINGRECORD:"bettingRecord",//打开投注记录页面
 };

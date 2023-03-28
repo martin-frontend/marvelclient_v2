@@ -1,4 +1,4 @@
-<v-sheet color="transparent" id="gamelist" class="pa-0 pb-5" style="min-height: calc(100vh - 500px)"
+<v-sheet color="transparent" id="gamelist" ref="scrollObj" class="pa-0 pb-5" style="min-height: calc(100vh - 500px)"
     :class="$vuetify.breakpoint.mobile?'':''">
     <template v-if="!$vuetify.breakpoint.mobile">
         <Activity :showDataType="listQuery.vendor_type" />

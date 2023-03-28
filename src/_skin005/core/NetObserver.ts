@@ -225,15 +225,18 @@ export default class NetObserver extends AbstractMediator {
                     }
 
                     const { coin_name_unique } = this.gameProxy;
-                    let settle_coin_name_unique = "USDT";
+                    let settle_coin_name_unique = "";
                     if (body.settle_coin_name_unique) {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
+                    let msgstr =  LangUtil("进入游戏");
+                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique)
+                    {
+                        msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
+                    }
                     PanelUtil.message_confirm({
                         message:
-                            coin_name_unique == settle_coin_name_unique
-                                ? LangUtil("进入游戏")
-                                : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique),
+                        msgstr,
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;

@@ -3,6 +3,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LangConfig from "@/core/config/LangConfig";
+import GameConfig from "@/core/config/GameConfig";
 
 Vue.use(VueRouter);
 
@@ -169,8 +170,31 @@ router.beforeEach((to: any, from: any, next: any) => {
 
     if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
         if (to.path == "/") {
-            PanelUtil.openpage_soccer_cricket();
-            PanelUtil.openpage_sport("", true);
+            if (GameConfig.config.homePage) {
+                // if ( GameConfig.config.homePage.toLowerCase() == "cricket")
+                // {
+                //     PanelUtil.openpage_soccer_cricket();
+                //     PanelUtil.openpage_sport("", true);
+                // }
+                // else if ( GameConfig.config.homePage.toLowerCase() == "page_game_soccer")
+                // {
+                //     PanelUtil.openpage_soccer();
+                //     PanelUtil.openpage_sport("", false);
+                // }
+                // else{
+                next(`${GameConfig.config.homePage}/${LangConfig.getRouterLang()}`);
+                // }
+            }
+            else {
+                next(`/${LangConfig.getRouterLang()}`);
+            }
+            // if (GameConfig.config.homePage && GameConfig.config.homePage.toLowerCase() == "cricket") {
+            //     PanelUtil.openpage_soccer_cricket();
+            //     PanelUtil.openpage_sport("", true);
+            // }
+            // else
+            //     next(`/${LangConfig.getRouterLang()}`);
+
         } else {
             const pathSplit = to.path.split("/");
             if (pathSplit.length == 4) {
@@ -190,9 +214,25 @@ router.beforeEach((to: any, from: any, next: any) => {
         ) {
             next(`/${LangConfig.getRouterLang()}`);
         } else {
-            if (to.name == "cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-                PanelUtil.openpage_soccer_cricket();
-            } else next();
+            // if (to.name == "cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+            //     if (GameConfig.config.CricketVendorId)
+            //         PanelUtil.openpage_soccer_cricket();
+            //     else
+            //         next();
+            // } else 
+            if (routes.some((e, index, array) => {
+                return e.name == to.name;
+            })) {
+                if (to.name == "page_game_play" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                    next(`/${LangConfig.getRouterLang()}`);
+                } else
+                    next();
+                // next();
+            }
+            else {
+                console.log("路由不存在",to.path);
+                next(`/${LangConfig.getRouterLang()}`);
+            }
         }
     }
 });

@@ -62,6 +62,12 @@ export default class AppFacade {
                 case EnumPostMessage.REBALANCE:
                     console.log("收到消息-333--", e.data);
                     break;
+                case EnumPostMessage.BETTINGRECORD:
+                    console.log("收到消息-4444--", e.data);
+                    LoginEnter(() => { 
+                        PanelUtil.openpanel_bet_record();
+                    });
+                    break;
             };
 
         });

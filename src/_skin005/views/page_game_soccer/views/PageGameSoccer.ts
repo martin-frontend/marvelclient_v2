@@ -60,9 +60,9 @@ export default class PageGameSoccer extends AbstractView {
     }
 
     mounted() {
-        if (!this.myProxy.pageData.isAction) {
-            this.$router.replace("/");
-        }
+        // if (!this.myProxy.pageData.isAction) {
+        //     this.$router.replace("/");
+        // }
 
         this.timer = setInterval(() => {
             const gameFrame: HTMLElement = <any>this.$refs.gameFrame;

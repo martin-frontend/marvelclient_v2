@@ -16,16 +16,21 @@ export default class PageGameSoccerMediator extends AbstractMediator {
     }
 
     public listNotificationInterests(): string[] {
-        return [NotificationName.UPDATE_COIN, net.EventType.api_vendor_var_ori_product_show_var];
+        return [
+            NotificationName.UPDATE_COIN,
+            net.EventType.api_vendor_var_ori_product_show_var,
+            net.EventType.api_vendor_var_ori_product_visitor_show_var,
+            net.EventType.REQUEST_ERROR,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
+        const gameProxy: GameProxy = getProxy(GameProxy);
         switch (notification.getName()) {
             case NotificationName.UPDATE_COIN:
                 {
-                    const gameProxy: GameProxy = getProxy(GameProxy);
                     if (gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId) {
 
                         PanelUtil.openpage_soccer_cricket();
@@ -36,8 +41,17 @@ export default class PageGameSoccerMediator extends AbstractMediator {
                 }
 
                 break;
+            case net.EventType.api_vendor_var_ori_product_visitor_show_var:
             case net.EventType.api_vendor_var_ori_product_show_var:
                 myProxy.pageData.token = body.token;
+                break;
+            case net.EventType.REQUEST_ERROR:
+                console.log("接收错误消息");
+                if (body.url == net.getUrl(net.HttpType.api_vendor_var_ori_product_show_var, body.data) ||
+                    body.url == net.getUrl(net.HttpType.api_vendor_var_ori_product_visitor_show_var, body.data)
+                ) {
+                    PanelUtil.openpage_home();
+                };
                 break;
         }
     }

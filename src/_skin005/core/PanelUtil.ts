@@ -279,7 +279,9 @@ export default class PanelUtil {
                 water_rate_accelerate: 0,
             };
         }
-        PanelUtil.getProxy_gameproxy.go_soccer(data);
+        //PanelUtil.getProxy_gameproxy.go_soccer(data);
+
+        page_game_soccer.open_cricket();
         //});
     }
     //打开 游戏返水 界面

@@ -1,3 +1,4 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import DialogMount from "@/core/global/DialogMount";
 import getProxy from "@/core/global/getProxy";
 import DialogBetRecordProxy from "./proxy/DialogBetRecordProxy";
@@ -17,6 +18,13 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         if (msg.coin_name_unique) {
             proxy.pageData.listQuery.coin_name_unique = msg.coin_name_unique;
             proxy.listOptions.moneySelect = msg.coin_name_unique;
+        }
+        else
+        {
+            const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
+            //@ts-ignore
+            proxy.listOptions.moneySelect = moneyKeys[0];
+            proxy.pageData.listQuery.coin_name_unique = <any>proxy.listOptions.moneySelect;
         }
         if (msg.bShowOptions != null) {
             proxy.pageData.bShowOptions = msg.bShowOptions;
@@ -38,7 +46,12 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         // }
     }
     else {
-        proxy.listOptions.moneySelect = 0;
+        //proxy.listOptions.moneySelect = 0;
+        //选择第一个
+        const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
+        //@ts-ignore
+        proxy.listOptions.moneySelect = moneyKeys[0];
+        proxy.pageData.listQuery.coin_name_unique = <any>proxy.listOptions.moneySelect;
     }
     if (agent_user_id) {
         proxy.listOptions.betTimeSelect = 1;
@@ -47,6 +60,7 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         proxy.listOptions.betTimeSelect = 0;
         proxy.pageData.listQuery.order_by = JSON.stringify({ bet_at: "DESC" });
     }
+    console.log("当前设置的参数为",proxy.listOptions );
     proxy.pageData.bShow = true;
 }
 

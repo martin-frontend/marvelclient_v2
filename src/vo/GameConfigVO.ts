@@ -37,6 +37,8 @@ export interface GameConfigVO {
     changeGoldPasswordFirstSetting: number;
     /**第一次以后 设置交易密码 使用的类型 */
     changeGoldPasswordFollowSetting: number;
+    /**第一次进入时候 默认 页面 例如是homePage："cricket"*/
+    homePage:string;
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

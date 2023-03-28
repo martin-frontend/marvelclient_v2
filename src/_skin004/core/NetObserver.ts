@@ -205,7 +205,7 @@ export default class NetObserver extends AbstractMediator {
                     //console.log("返回消息",body);
                     const { coin_name_unique } = this.gameProxy;
 
-                    let settle_coin_name_unique = "USDT";
+                    let settle_coin_name_unique = "";
                     if (body.settle_coin_name_unique) {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
@@ -216,11 +216,15 @@ export default class NetObserver extends AbstractMediator {
                         this.openGame(body,ori_vendor_extend);
                         return
                     }
+                    let msgstr =  LangUtil("进入游戏");
+                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique)
+                    {
+                        msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
+                    }
+
                     dialog_message_box.confirm({
                         message:
-                            coin_name_unique == settle_coin_name_unique
-                                ? LangUtil("进入游戏")
-                                : LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique),
+                            msgstr,
                         //LangUtil("进入游戏"),
                         okFun: () => {
                             this.openGame(body,ori_vendor_extend);

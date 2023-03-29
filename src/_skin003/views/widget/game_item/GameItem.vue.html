@@ -5,7 +5,7 @@
     :class="getBoxClass()"
 >
     <v-lazy>
-        <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="getIcon(item)">
+        <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="item.icon">
             <!-- 手机显示 -->
             <template v-if="$vuetify.breakpoint.xsOnly">
                 <v-img v-if="item.water_rate_accelerate" class="float-left" contain content-class="d-flex flex-column align-start pl-1" width="80px" src="@/assets/tag/tag_background.png">

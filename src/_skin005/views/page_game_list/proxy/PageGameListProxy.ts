@@ -169,6 +169,11 @@ export default class PageGameListProxy extends puremvc.Proxy {
 
     getCurItemIndex() {
         //console.log("查找 当前元素的值");
+        if (!this.gameMenuData)
+        {
+            this.curItemIndex = -1;
+            return;
+        }
         for (let index = 0; index < this.gameMenuData.length; index++) {
             const item = this.gameMenuData[index];
             if (this.isCurItem(item)) {

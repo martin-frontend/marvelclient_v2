@@ -39,6 +39,8 @@ export interface GameConfigVO {
     changeGoldPasswordFollowSetting: number;
     /**第一次进入时候 默认 页面 例如是homePage："cricket"*/
     homePage:string;
+    /**手机版底部的也签 */
+    PhoneMenu:string[];
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

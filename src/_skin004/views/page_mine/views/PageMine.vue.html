@@ -89,7 +89,7 @@
                     </v-row>
                 </v-card>
             </v-col>
-            <v-col cols="12" md="7" lg="7" class="d-flex mt-1  order-1 order-md-2">
+            <v-col cols="12" md="7" lg="7" class="d-flex mt-1  order-1 order-md-2" id="betandwater">
                 <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded-xl" width="100%" height="100%">
                     <v-card-text class="pa-0">
                         <v-row no-gutters>
@@ -285,7 +285,7 @@
                         </v-card-text>
                         <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
                             <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h"
-                                color="colorHowBtn" @click="onGoBet" class="rounded-pill">{{LangUtil('去领取')}}</v-btn>
+                                color="colorHowBtn" @click.native="jumpTo('#betandwater')" class="rounded-pill">{{LangUtil('去领取')}}</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
@@ -417,7 +417,7 @@
                 </v-card>
 
             </v-col>
-            <v-col cols="12" md="7" lg="7" class="d-flex mt-1  order-1 order-md-2">
+            <v-col cols="12" md="7" lg="7" class="d-flex mt-1  order-1 order-md-2" id="betandwater">
                 <v-card class="right_banner_mob pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded-lg" color="colorBackgroundGray"
                     width="100%" height="100%">
                     <v-card-text class="pa-0">
@@ -603,7 +603,7 @@
                             </v-card-text>
                             <v-card-actions class="pa-0 mt-md-4 order-2 order-md-3 mt-2 mt-mb-0 how_btn">
                                 <v-btn :min-width="mobileChange('howBtn').w" :height="mobileChange('howBtn').h"
-                                    color="colorTextBlue2" @click="onGoBet" class="rounded-pill">{{LangUtil('去领取')}}
+                                    color="colorTextBlue2" @click.native="jumpTo('#betandwater')" class="rounded-pill">{{LangUtil('去领取')}}
                                 </v-btn>
                             </v-card-actions>
                         </v-card>

@@ -170,7 +170,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     //获取当前的菜单的数据
     getCurMenuData(isVendor: boolean = false) {
         if (!this.curTotleData)
-            return null;
+            return [];
         if (isVendor) {
             const list = <any>[];
             for (let n = 0; n < this.curTotleData.list.length; n++) {

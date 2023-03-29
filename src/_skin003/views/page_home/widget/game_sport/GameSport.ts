@@ -28,15 +28,7 @@ export default class GameSport extends AbstractView {
     }
 
     getIcon(item: any) {
-        if (item.icon.indexOf("http") != -1) {
-            return item.icon;
-        } else {
-            if (item.list_type == 0) {
-                return `img/productimage/${item.icon}`;
-            } else {
-                return `img/changlogo/${item.icon}`;
-            }
-        }
+        return item.icon;
     }
 
     goGamePlay(item: any) {

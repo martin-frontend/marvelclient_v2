@@ -68,7 +68,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             },
             promotionConfig: {},
             defaultPromotionConfig: {},
-            is_promotion_num_added: 1,
+            is_promotion_num_added: 0,
             type: 0,
         },
     };
@@ -123,7 +123,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             },
             promotionConfig: {},
             defaultPromotionConfig: {},
-            is_promotion_num_added: 1,
+            is_promotion_num_added: 0,
             type: 0,
         });
 

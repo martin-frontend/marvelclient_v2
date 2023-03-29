@@ -3,6 +3,8 @@ import App from "./App.vue";
 import { getVuetify } from "./plugins/vuetify";
 import router from "./router";
 import "@/_skin005/style/common.scss";
+import "@/assets/iconfont/iconfont.css";
+import "@mdi/font/css/materialdesignicons.css";
 import AppFacade from "./AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
@@ -11,6 +13,7 @@ import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import "./icons";
 import "@/_skin005/assets/text/text.css";
+import "element-ui/lib/theme-chalk/index.css";
 
 //注册 自定义的 组件
 import BtnYellow from "./views/widget/btn_yellow/BtnYellow.vue";

@@ -1,4 +1,5 @@
 import LangConfig from "@/core/config/LangConfig";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import { CompetitionVO } from "@/_skin005/vo/CompetitionVO";
 import Vue from "vue";
 
@@ -6,13 +7,15 @@ export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
 
     public onRegister(): void {
-        setInterval(() => {
+        if (ModulesHelper.IsShow_FootBallHot()) {
+            setInterval(() => {
+                if (Vue.router.currentRoute.path == "/" + LangConfig.getRouterLang()) {
+                    this.api_vendor_96_products();
+                }
+            }, 5000);
             if (Vue.router.currentRoute.path == "/" + LangConfig.getRouterLang()) {
                 this.api_vendor_96_products();
             }
-        }, 5000);
-        if (Vue.router.currentRoute.path == "/" + LangConfig.getRouterLang()) {
-            this.api_vendor_96_products();
         }
     }
 

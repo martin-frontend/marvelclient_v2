@@ -166,6 +166,8 @@ router.beforeEach((to: any, from: any, next: any) => {
         addMetaWithType("live");
     } else if (to.path.indexOf("slots-games") != -1) {
         addMetaWithType("slot");
+    } else {
+        addMetaWithType("");
     }
 
     if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
@@ -184,8 +186,7 @@ router.beforeEach((to: any, from: any, next: any) => {
                 // else{
                 next(`${GameConfig.config.homePage}/${LangConfig.getRouterLang()}`);
                 // }
-            }
-            else {
+            } else {
                 next(`/${LangConfig.getRouterLang()}`);
             }
             // if (GameConfig.config.homePage && GameConfig.config.homePage.toLowerCase() == "cricket") {
@@ -194,7 +195,6 @@ router.beforeEach((to: any, from: any, next: any) => {
             // }
             // else
             //     next(`/${LangConfig.getRouterLang()}`);
-
         } else {
             const pathSplit = to.path.split("/");
             if (pathSplit.length == 4) {
@@ -219,18 +219,18 @@ router.beforeEach((to: any, from: any, next: any) => {
             //         PanelUtil.openpage_soccer_cricket();
             //     else
             //         next();
-            // } else 
-            if (routes.some((e, index, array) => {
-                return e.name == to.name;
-            })) {
+            // } else
+            if (
+                routes.some((e, index, array) => {
+                    return e.name == to.name;
+                })
+            ) {
                 if (to.name == "page_game_play" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                     next(`/${LangConfig.getRouterLang()}`);
-                } else
-                    next();
+                } else next();
                 // next();
-            }
-            else {
-                console.log("路由不存在",to.path);
+            } else {
+                console.log("路由不存在", to.path);
                 next(`/${LangConfig.getRouterLang()}`);
             }
         }
@@ -291,6 +291,9 @@ function addMetaWithType(type: string) {
                 "description",
                 "Slot games are easy to play and offer the excitement of a big win. Now play the best free slot machine games online"
             );
+            break;
+        default:
+            document.title = "96";
             break;
     }
 }

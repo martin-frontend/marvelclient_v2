@@ -24,7 +24,8 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     getHideUsername(str:string){
-        return str.substr(0,2)+'***'+str.substr(5,str.split('').length);
+        return str;
+        //return str.substr(0,2)+'***'+str.substr(5,str.split('').length);
     }
 
     onClose() {

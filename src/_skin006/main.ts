@@ -11,6 +11,9 @@ import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import "@/_skin005/icons";
 import "@/_skin005/assets/text/text.css";
+import "@/assets/iconfont/iconfont.css";
+import "@mdi/font/css/materialdesignicons.css";
+import "element-ui/lib/theme-chalk/index.css";
 
 //注册 自定义的 组件
 import BtnUtil from "@/_skin005/views/widget/btn_util/BtnUtil.vue";
@@ -29,7 +32,7 @@ import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-Assets.commonIcon.loading_img = "img/loding_icon_6.png";
+Assets.commonIcon.loading_img = "loding_icon_6.png";
 Assets.commonIcon.logo = require(`@/_skin006/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin006/assets/logo_m.png`);
 

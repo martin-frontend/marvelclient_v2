@@ -1,6 +1,19 @@
 @import "@/style/fontsize.scss";
 .skin005 {
-
+    @-moz-document url-prefix() {
+        /* Disable scrollbar Firefox */
+        html {
+            scrollbar-width: none;
+        }
+    }
+    .scroll-y {
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scroll-x {
+        overflow-x: scroll;
+    }
     .v-application {
         background-color: transparent !important;
     }
@@ -228,6 +241,14 @@
         //background-color: #F4F4F4;
     }
 
+    input {
+        border: none;
+        outline: medium;
+    }
+    .cursor-pointer {
+        cursor: pointer;
+    }
+    
     .v-navigation-drawer--bottom.v-navigation-drawer--is-mobile{
         max-height: 80% !important;
     }
@@ -246,5 +267,21 @@
     .element { -ms-overflow-style: none; }
     .element { overflow: -moz-scrollbars-none; }
     
-    //通用外框设置
+
+}
+body {
+    font-size: 14px;
+    color: #fff;
+    color: var(--app-color);
+    background-color: #121e36ff;
+    background-color: var(--app-background-color);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    ::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+    }
 }

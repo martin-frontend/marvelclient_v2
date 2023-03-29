@@ -16,6 +16,9 @@ export default class DialogPersonalCardMediator extends AbstractMediator{
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy:DialogPersonalCardProxy = getProxy(DialogPersonalCardProxy);
+        if (!myProxy.pageData.bShow) {
+            return
+        }
         switch(notification.getName()){
             case net.EventType.api_user_update_var:
                 myProxy.pageData.loading = false;

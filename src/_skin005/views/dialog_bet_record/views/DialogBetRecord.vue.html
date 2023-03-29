@@ -128,8 +128,21 @@
 
         </v-sheet>
         <v-sheet class="px-5" color="transparent">
-            <v-sheet class="d-flex align-center px-2 text-14" height="38" color="transparent" width="100%">
-                <div class="d-flex flex-wrap listitem_title primary--text">
+            <v-sheet class="d-flex align-center px-2 text-14 justify-space-between" height="38" color="transparent" width="100%">
+
+                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("订单号")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("游戏名称")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("投注币种")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("投注金额")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("游戏输赢")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("有效投注")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("结算流水")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("下注状态")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("投注时间")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("结算时间")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="30">{{LangUtil("")}}</v-sheet>
+
+                <!-- <div class="d-flex flex-wrap listitem_title primary--text">
                     <div class="listitem-150">
                         <div>{{LangUtil("订单号")}}</div>
                     </div>
@@ -162,10 +175,9 @@
                     </div>
                     <div class="listitem-40">
                         <div class="ml-4">
-
                         </div>
                     </div>
-                </div>
+                </div> -->
             </v-sheet>
             <v-divider class="mb-2" />
             <v-sheet ref="scrollObj" v-if="pageData.list.length>0" color="transparent" class="scroll-y" style="height: calc(100vh - 450px);">
@@ -175,7 +187,46 @@
 
                     <v-sheet color="transparent"
                         class="d-flex flex-wrap align-center justify-space-between mx-2 textGray--text" width="100%">
-                        <div class="d-flex flex-wrap listitem">
+
+                        <v-sheet color="transparent" class="primary--text text-truncate text-decoration-underline cursor-pointer" width="100" @click="onCopyOrderClick(item.order_no)">{{item.order_no}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text text-truncate" width="100">{{item.vendor_product_name}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text" width="80">{{item.coin_name_unique}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text" width="120">{{is_send_coin ? item.bet_gold_coin : item.bet_gold}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text" width="120">
+                            <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">
+                                {{getMoneyValue(item.win_gold)}}</div>
+                            <div v-else :class="getMoneyColor(item.win_gold_coin)">
+                                {{getMoneyValue(item.win_gold_coin)}}
+                            </div>
+                        </v-sheet>
+                        <v-sheet color="transparent" class="primary--text" width="120">
+                            {{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}
+                        </v-sheet>
+                        
+                        <v-sheet color="transparent" class="primary--text" width="120">
+                            {{is_send_coin?item.water_coin:item.water}}
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="primary--text" width="80">
+                            {{listOptions.statusOptions()[item.settlement_status]}}
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="primary--text text-truncate" width="100">
+                            {{getDate(item.bet_at)}}
+                        </v-sheet>
+
+                        <v-sheet v-if="true || item.vendor_id == GameConfig.config.SportVendorId" color="transparent" class="primary--text text-truncate" width="100">
+                            {{getDate(item.bet_at)}}
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="primary--text" width="30">
+                            <v-btn v-if="item.vendor_id == GameConfig.config.SportVendorId" text class="font-weight-regular text-14 btn mb-n3" @click="handlerDetail(item)">
+                                <span class="mb-3 textGray--text">></span>
+                            </v-btn>
+
+                        </v-sheet>
+
+                        <!-- <div class="d-flex flex-wrap listitem">
                             <div class="listitem-150">
                                 <div class="text-truncate text-decoration-underline cursor-pointer"
                                     @click="onCopyOrderClick(item.order_no)">{{item.order_no}}</div>
@@ -230,7 +281,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
                     </v-sheet>
                 </v-sheet>
 

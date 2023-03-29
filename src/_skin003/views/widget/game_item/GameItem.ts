@@ -12,18 +12,6 @@ export default class GameItem extends AbstractView {
     ww = 224;
     hh = 280;
 
-    getIcon(item: any) {
-        if (item.icon.indexOf("http") != -1) {
-            return item.icon;
-        } else {
-            if (item.list_type == 0) {
-                return `img/productimage/${item.icon}`;
-            } else {
-                return `img/changlogo/${item.icon}`;
-            }
-        }
-    }
-
     get getTag() {
         if (this.item.tags.length == 0) return "";
         // 1-新 2-火热

@@ -1,3 +1,118 @@
+/**皮肤配置 */
+const skinMap = {
+    skin003: {
+        public_dir: "public_skin003",
+        pages: {
+            skin003: {
+                entry: "src/_skin003/main.ts",
+                template: "public_skin003/skin003.html",
+                filename: "index.html",
+                title: "003",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin004: {
+        public_dir: "public_skin004",
+        pages: {
+            skin004: {
+                entry: "src/_skin004/main.ts",
+                template: "public_skin004/skin004.html",
+                filename: "index.html",
+                title: "MG188",
+                faviconName: "favicon.ico",
+                meta: {
+                    robots: "noindex",
+                    AdsBot_Google: "noindex",
+                    googlebot: "noindex",
+                    og_title: "MG188",
+                    og_type: "website",
+                    og_description:
+                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
+                    og_url: "https://mg188.com",
+                    og_image: "https://mg188.com/img/project_info_2.39763581.png",
+                    twitter_title: "MG188",
+                    twitter_description:
+                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
+                    twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
+                },
+            },
+        },
+    },
+    skin004_1: {
+        public_dir: "public_skin004_1",
+        pages: {
+            skin004_1: {
+                entry: "src/_skin004_1/main.ts",
+                template: "public_skin004_1/skin004_1.html",
+                filename: "index.html",
+                title: "CF亚娱",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin005: {
+        public_dir: "public_skin005",
+        pages: {
+            skin005: {
+                entry: "src/_skin005/main.ts",
+                template: "public_skin005/skin005.html",
+                filename: "index.html",
+                title: "96in",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin006: {
+        public_dir: "public_skin006",
+        pages: {
+            skin006: {
+                entry: "src/_skin006/main.ts",
+                template: "public_skin006/skin006.html",
+                filename: "index.html",
+                title: "BetNow",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin007: {
+        public_dir: "public_skin007",
+        pages: {
+            skin007: {
+                entry: "src/_skin007/main.ts",
+                template: "public_skin007/skin007.html",
+                filename: "index.html",
+                title: "96",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin100: {
+        public_dir: "public_skin100",
+        pages: {
+            skin100: {
+                entry: "src/_skin100/main.ts",
+                template: "public_skin100/skin100.html",
+                filename: "index.html",
+                title: "egame",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    skin101: {
+        public_dir: "public_skin101",
+        pages: {
+            skin101: {
+                entry: "src/_skin101/main.ts",
+                template: "public_skin101/skin101.html",
+                filename: "index.html",
+                title: "u5",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+};
+
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { js_utils } = require("custer-js-utils");
 const path = require("path");
@@ -31,20 +146,19 @@ module.exports = {
 
         // 修改images loader 添加svg处理
         const imagesRule = config.module.rule("images");
-        if (process.env.VUE_APP_SKIN == "skin003") {
+        if (process.env.VUE_APP_SKIN == "") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        }
-        if (["skin005", "skin006", "skin007"].includes(process.env.VUE_APP_SKIN)) {
+            imagesRule.exclude.add(resolve("src/_skin005/icons"));
+        } else if (process.env.VUE_APP_SKIN == "skin003") {
+            imagesRule.exclude.add(resolve("src/_skin003/icons"));
+        } else if (["skin005", "skin006", "skin007"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         }
 
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
     },
     configureWebpack: {
-        plugins: [
-            // 拷贝静态文件到目标文件
-            new CopyWebpackPlugin([{ from: getStaticDir(), to: "" }]),
-        ],
+        plugins: getCopyDir(),
     },
     css: {
         extract: {
@@ -54,188 +168,33 @@ module.exports = {
     pages: getPages(),
 };
 
-function getStaticDir() {
-    switch (process.env.VUE_APP_SKIN) {
-        case "skin003":
-            return "public_skin003";
-        case "skin004":
-            return "public_skin004";
-        case "skin004_1":
-            return "public_skin004_1";
-        case "skin005":
-            return "public_skin005";
-        case "skin006":
-            return "public_skin006";
-        case "skin100":
-            return "public_skin100";
-        case "skin101":
-            return "public_skin101";
-        default:
-            return "public_dev";
+/**获取需要复制的目录 */
+function getCopyDir() {
+    const arr = [];
+    if (skinMap[process.env.VUE_APP_SKIN]) {
+        arr.push(new CopyWebpackPlugin([{ from: skinMap[process.env.VUE_APP_SKIN].public_dir, to: "" }]));
+    } else {
+        const keys = Object.keys(skinMap);
+        for (const key of keys) {
+            arr.push(new CopyWebpackPlugin([{ from: skinMap[key].public_dir, to: "" }]));
+        }
     }
+    return arr;
 }
-
+/**获取需要发布的页面 */
 function getPages() {
-    if (process.env.VUE_APP_SKIN == "skin003") {
-        return {
-            skin003: {
-                entry: "src/_skin003/main.ts",
-                template: "public_skin003/skin003.html",
-                filename: "index.html",
-                title: "003",
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin004") {
-        return {
-            skin004: {
-                entry: "src/_skin004/main.ts",
-                template: "public_skin004/skin004.html",
-                filename: "index.html",
-                title: "MG188",
-                meta: {
-                    robots: "noindex",
-                    AdsBot_Google: "noindex",
-                    googlebot: "noindex",
-                    og_title: "MG188",
-                    og_type: "website",
-                    og_description:
-                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
-                    og_url: "https://mg188.com",
-                    og_image: "https://mg188.com/img/project_info_2.39763581.png",
-                    twitter_title: "MG188",
-                    twitter_description:
-                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
-                    twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
-                },
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin004_1") {
-        return {
-            skin004_1: {
-                entry: "src/_skin004_1/main.ts",
-                template: "public_skin004_1/skin004_1.html",
-                filename: "index.html",
-                title: "CF亚娱",
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin005") {
-        return {
-            skin005: {
-                entry: "src/_skin005/main.ts",
-                template: "public_skin005/skin005.html",
-                filename: "index.html",
-                title: "96",
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin006") {
-        return {
-            skin006: {
-                entry: "src/_skin006/main.ts",
-                template: "public_skin006/skin006.html",
-                filename: "index.html",
-                title: "BetNow",
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin100") {
-        return {
-            skin100: {
-                entry: "src/_skin100/main.ts",
-                template: "public_skin100/skin100.html",
-                filename: "index.html",
-                title: "egame",
-            },
-        };
-    } else if (process.env.VUE_APP_SKIN == "skin101") {
-        return {
-            skin101: {
-                entry: "src/_skin101/main.ts",
-                template: "public_skin101/skin101.html",
-                filename: "index.html",
-                title: "u5",
-            },
-        };
+    const pages = {};
+    if (skinMap[process.env.VUE_APP_SKIN]) {
+        Object.assign(pages, skinMap[process.env.VUE_APP_SKIN].pages);
+    } else {
+        const skinKeys = Object.keys(skinMap);
+        for (const key of skinKeys) {
+            Object.assign(pages, skinMap[key].pages);
+        }
+        const keys = Object.keys(pages);
+        for (const key of keys) {
+            pages[key].filename = key + ".html";
+        }
     }
-    return {
-        base: {
-            entry: "src/main.ts",
-            template: "public_dev/io.html",
-            filename: "io.html",
-            title: "CoinFans",
-        },
-        base_copy: {
-            entry: "src/main.ts",
-            template: "public_dev/index.html",
-            filename: "index.html",
-            title: "CoinFans",
-        },
-        skin001: {
-            entry: "src/_skin001/main.ts",
-            template: "public_dev/index001.html",
-            filename: "skin001.html",
-            title: "BetNow",
-        },
-        skin002: {
-            entry: "src/_skin002/main.ts",
-            template: "public_dev/index002.html",
-            filename: "skin002.html",
-            title: "11.club",
-        },
-        skin003: {
-            entry: "src/_skin003/main.ts",
-            template: "public_dev/index003.html",
-            filename: "skin003.html",
-            title: "skin003",
-        },
-        skin004: {
-            entry: "src/_skin004/main.ts",
-            template: "public_dev/skin004.html",
-            filename: "skin004.html",
-            title: "MG188",
-            meta: {
-                robots: "noindex",
-                AdsBot_Google: "noindex",
-                googlebot: "noindex",
-                og_title: "MG188",
-                og_type: "website",
-                og_description:
-                    "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
-                og_url: "https://mg188.com",
-                og_image: "https://mg188.com/img/project_info_2.39763581.png",
-                twitter_title: "MG188",
-                twitter_description:
-                    "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
-                twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
-            },
-        },
-        skin004_1: {
-            entry: "src/_skin004_1/main.ts",
-            template: "public_dev/skin004_1.html",
-            filename: "skin004_1.html",
-            title: "CF亚娱",
-        },
-        skin005: {
-            entry: "src/_skin005/main.ts",
-            template: "public_dev/skin005.html",
-            filename: "skin005.html",
-            title: "96",
-        },
-        skin006: {
-            entry: "src/_skin006/main.ts",
-            template: "public_dev/skin006.html",
-            filename: "skin006.html",
-            title: "BetNow",
-        },
-        skin100: {
-            entry: "src/_skin100/main.ts",
-            template: "public_dev/skin100.html",
-            filename: "skin100.html",
-            title: "egame",
-        },
-        skin101: {
-            entry: "src/_skin101/main.ts",
-            template: "public_dev/skin101.html",
-            filename: "skin101.html",
-            title: "U5",
-        },
-    };
+    return pages;
 }

@@ -2,5 +2,6 @@
     "name": "96",
     "short_name": "96",
     "background_color": "#ffffff",
+    "start_url": "https://96.com/",
     "display": "standalone"
 }

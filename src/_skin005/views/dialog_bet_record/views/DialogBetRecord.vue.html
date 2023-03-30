@@ -7,15 +7,15 @@
         <v-divider class="mb-2" />
         <v-sheet class="px-5 pb-1" ref="options" color="transparent">
             <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text" v-if="pageData.bShowOptions">
-                <CustomSelect class="mr-2" v-model="listOptions.moneySelect" :options="listOptions.moneyOptions()"
+                <CustomSelect class="mr-2" v-model="listOptions.moneySelect" :options="listOptions.moneyOptions()" fontSize="14"
                     width="140" @change="onMoneyTypeChange" />
-                <CustomSelect class="mr-2" v-model="listOptions.typeSelect" :options="listOptions.typeOptions()"
+                <CustomSelect class="mr-2" v-model="listOptions.typeSelect" :options="listOptions.typeOptions()" fontSize="14"
                     width="140" @change="onTypeChange" />
-                <CustomSelect class="mr-2" v-model="listOptions.vendorSelect" :options="listOptions.vendorOptions()"
+                <CustomSelect class="mr-2" v-model="listOptions.vendorSelect" :options="listOptions.vendorOptions()" fontSize="14"
                     width="140" @change="onVendorChange" />
-                <CustomSelect class="mr-2" v-model="listOptions.statusSelect" :options="listOptions.statusOptions()"
+                <CustomSelect class="mr-2" v-model="listOptions.statusSelect" :options="listOptions.statusOptions()" fontSize="14"
                     width="140" @change="onStatusChange" />
-                <CustomSelect class="mr-2" v-model="listOptions.betTimeSelect" :options="listOptions.betTimeOptions()"
+                <CustomSelect class="mr-2" v-model="listOptions.betTimeSelect" :options="listOptions.betTimeOptions()" fontSize="14"
                     width="140" @change="onBetTimeChange" />
                 <el-date-picker v-model="timeRange" type="datetimerange" :picker-options="pickerOptions"
                     range-separator="-" :start-placeholder="LangUtil('开始日期')" :end-placeholder="LangUtil('结束日期')"

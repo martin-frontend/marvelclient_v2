@@ -28,7 +28,7 @@
     .rounded10 {
         border-radius: 10px !important;
     }
-    .canntSelect{
+    .canntSelect {
         user-select: none;
     }
     .v-pagination {
@@ -38,11 +38,11 @@
                 width: 32px !important;
                 height: 32px !important;
                 box-shadow: none !important;
-                border-radius:10px;
+                border-radius: 10px;
             }
             .v-pagination__item--active,
             .v-pagination__navigation {
-                box-shadow: none ;
+                box-shadow: none;
                 background-color: transparent !important;
                 //color: #fff !important;
             }
@@ -79,16 +79,16 @@
     .v-btn__content {
         text-transform: none;
     }
-    .v-tab{
+    .v-tab {
         text-transform: none !important;
     }
     .regular_text {
-        >* {
-            font-family: 'GOTHAM_BOOK' !important;
+        > * {
+            font-family: "GOTHAM_BOOK" !important;
         }
     }
-    .bold_text{
-        font-family: 'GOTHAM_BOLD' !important;
+    .bold_text {
+        font-family: "GOTHAM_BOLD" !important;
     }
     .back_btn_icon {
         transform: rotateZ(180deg);
@@ -136,15 +136,14 @@
                 .v-pagination__navigation {
                     color: #8e8f91 !important;
                 }
-                .v-pagination__item--active{
+                .v-pagination__item--active {
                     color: #fff !important;
-                    background-color:#febe00 !important;
+                    background-color: #febe00 !important;
                 }
             }
         }
     }
-    .v-dialog
-    {
+    .v-dialog {
         box-shadow: none !important;
     }
     .theme--light {
@@ -180,22 +179,22 @@
             background-color: #fff !important;
             border-radius: 10px !important;
         }
-        .select_bg-text{
+        .select_bg-text {
             background-color: #f4f4f4 !important;
         }
         .v-pagination {
             li {
                 .v-pagination__item {
-                    color: #0F1213 ;
-                    background: #f4f4f4 ;
+                    color: #0f1213;
+                    background: #f4f4f4;
                 }
                 .v-pagination__item--active,
                 .v-pagination__navigation {
                     color: #8e8f91 !important;
                 }
-                .v-pagination__item--active{
+                .v-pagination__item--active {
                     color: #fff !important;
-                    background-color:#febe00 !important;
+                    background-color: #febe00 !important;
                 }
             }
         }
@@ -248,33 +247,40 @@
     .cursor-pointer {
         cursor: pointer;
     }
-    
-    .v-navigation-drawer--bottom.v-navigation-drawer--is-mobile{
+
+    .v-navigation-drawer--bottom.v-navigation-drawer--is-mobile {
         max-height: 80% !important;
     }
-    .v-input--switch .v-input--switch__track{
+    .v-input--switch .v-input--switch__track {
         color: transparent !important;
         border: solid 1px #d6dce3 !important;
     }
-    .v-input--switch .v-input--switch__thumb{
-        color: #a4a4a4 ;
+    .v-input--switch .v-input--switch__thumb {
+        color: #a4a4a4;
     }
-    .v-input--switch--inset .v-input--switch__track{
+    .v-input--switch--inset .v-input--switch__track {
         opacity: 1;
     }
 
-    .element::-webkit-scrollbar { width: 0 !important }
-    .element { -ms-overflow-style: none; }
-    .element { overflow: -moz-scrollbars-none; }
-    
+    .element::-webkit-scrollbar {
+        width: 0 !important;
+    }
+    .element {
+        -ms-overflow-style: none;
+    }
+    .element {
+        overflow: -moz-scrollbars-none;
+    }
 
+    body {
+        font-size: 14px;
+        color: #fff;
+        color: var(--app-color);
+        background-color: #121e36ff;
+        background-color: var(--app-background-color);
+    }
 }
 html {
-    font-size: 14px;
-    color: #fff;
-    color: var(--app-color);
-    background-color: #121e36ff;
-    background-color: var(--app-background-color);
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

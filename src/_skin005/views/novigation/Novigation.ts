@@ -27,16 +27,10 @@ export default class Novigation extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
 
     mounted() {
-        // setTimeout(() => {
-        //     this.resetPageSize();
-        // }, 100);
-        //this.$nextTick(()=>{
-        this.mini = this.myProxy.isminiMenu || false;
-        //this.bTween = this.mini;
-        //console.log("设置 2222是否为mini", this.mini);
-        //this.resetPageSize();
-        this.Change();
-        //})
+        if (!this.$vuetify.breakpoint.mobile) {
+            this.mini = this.myProxy.isminiMenu || false;
+            this.Change();
+        }
     }
     //基础菜单
     get menu() {

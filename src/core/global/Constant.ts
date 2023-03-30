@@ -40,4 +40,28 @@ export default class Constant {
         }
         return LangUtil(str);
     }
+    /** 每种游戏的路由的地址 */
+    static GameListRouterList() {
+        return [
+            "page_game_list",
+            "sports",
+            "live-casino-online",
+            "blockchain-games",
+            "fishing-games",
+            "slots-games",
+            "lottery-games",
+            "cards-games",
+        ];
+    }
+    /**检测传入路径 是否 包含有 游戏 以及分类的 路径 */
+    static isIncludeGameRouter(path: string): boolean {
+        const gameRouterList = Constant.GameListRouterList();
+        for (let index = 0; index < gameRouterList.length; index++) {
+            const element = gameRouterList[index];
+            if (path.includes(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -10,6 +10,7 @@ import PageBlur from "./core/PageBlur";
 import ModulesHelper from "./core/ModulesHelper";
 import PanelUtil from "./core/PanelUtil";
 import LangConfig from "@/core/config/LangConfig";
+import Constant from "@/core/global/Constant";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -98,8 +99,31 @@ export default class APP extends AbstractView {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
     }
     get isShowGuide() {
+        if (!this.$vuetify.breakpoint.mobile || !this.myProxy.isShowGuide) return false;
+
+        if (this.$route.path == "/" + LangConfig.getRouterLang()) return true;
+
+        if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
+            for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {
+                const element = this.myProxy.mobile_menu_ary[index];
+                if (element.id != 0) {
+                    if (this.$route.path.includes(element.path)) {
+                        return true;
+                    }
+                }
+            }
+            if (Constant.isIncludeGameRouter(this.$route.path)) {
+                return true;
+            }
+        }
+        return false;
+        // if(this.$route.path == '/' + LangConfig.getRouterLang() ||
+        // this.$route.path ==)
+        // {
+
+        // }
         //return true;
-        return this.myProxy.isShowGuide;
+        //return this.myProxy.isShowGuide;
     }
     onGuide() {
         this.myProxy.onGuide();

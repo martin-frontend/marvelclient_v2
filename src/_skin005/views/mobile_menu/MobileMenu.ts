@@ -5,6 +5,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import LangConfig from "@/core/config/LangConfig";
+import Constant from "@/core/global/Constant";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
@@ -70,6 +71,8 @@ export default class MobileMenu extends AbstractView {
         }
         //我的
         newlist.push(list[5]);
+
+        PanelUtil.appproxy.set_mobile_menu(newlist);
         return newlist;
     }
 
@@ -142,16 +145,9 @@ export default class MobileMenu extends AbstractView {
          else if (item.id == 1) {
             return this.routerPath.includes(item.path) && !this.isCricket;
         } else if (item.id == 2) {
-            return !(
-                !this.routerPath.includes("page_game_list") &&
-                !this.routerPath.includes("sports") &&
-                !this.routerPath.includes("live-casino-online") &&
-                !this.routerPath.includes("blockchain-games") &&
-                !this.routerPath.includes("fishing-games") &&
-                !this.routerPath.includes("slots-games") &&
-                !this.routerPath.includes("lottery-games") &&
-                !this.routerPath.includes("cards-games")
-            );
+
+            return Constant.isIncludeGameRouter(this.routerPath);
+
         } else return this.routerPath.includes(item.path);
     }
 }

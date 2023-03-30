@@ -13,8 +13,8 @@
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-        <link rel="apple-touch-icon" href="app101.png" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico?<%=process.env.version%>" />
+        <link rel="apple-touch-icon" href="app101.png?<%=process.env.version%>" />
         <title><%= htmlWebpackPlugin.options.title %></title>
         <script src="libs/puremvc/puremvc.min.js"></script>
         <script src="libs/qrcode/qrcode.min.js"></script>
@@ -87,7 +87,7 @@
         </noscript>
         <div id="app">
             <div class="loading">
-                <img src="loading101.gif" style="margin: auto; width: 40px" />
+                <img src="loading101.gif?<%=process.env.version%>" style="margin: auto; width: 40px" />
             </div>
         </div>
 

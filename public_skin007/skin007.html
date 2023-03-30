@@ -13,8 +13,9 @@
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-        <link rel="apple-touch-icon" href="app007.png" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico?<%=process.env.version%>" />
+        <link rel="apple-touch-icon" href="app007.png?<%=process.env.version%>" />
+        <link rel="canonical" href="https://96.com/" />
 
         <% if (process.env.VUE_APP_ENV =='production' ) { %>
         <base href="https://96.com/" />
@@ -204,7 +205,7 @@
                     </div>
                 </div>
                 <div class="loading_2">
-                    <img src="loding_icon_7.png" style="margin: auto; width: 55px" />
+                    <img src="loding_icon_7.png?<%=process.env.version%>" style="margin: auto; width: 55px" />
                 </div>
             </div>
         </div>

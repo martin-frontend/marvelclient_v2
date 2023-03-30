@@ -7,7 +7,7 @@ const skinMap = {
                 entry: "src/_skin003/main.ts",
                 template: "public_skin003/skin003.html",
                 filename: "index.html",
-                title: "003",
+                title: "bet2dream",
                 faviconName: "favicon.ico",
             },
         },

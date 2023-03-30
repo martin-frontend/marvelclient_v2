@@ -149,26 +149,11 @@ router.beforeEach((to: any, from: any, next: any) => {
     if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
         if (to.path == "/") {
             if (GameConfig.config.homePage) {
-                // if ( GameConfig.config.homePage.toLowerCase() == "cricket")
-                // {
-                //     PanelUtil.openpage_soccer_cricket();
-                //     PanelUtil.openpage_sport("", true);
-                // }
-                // else if ( GameConfig.config.homePage.toLowerCase() == "page_game_soccer")
-                // {
-                //     PanelUtil.openpage_soccer();
-                //     PanelUtil.openpage_sport("", false);
-                // }
-                // else{
-                console.warn("-----切换-----");
                 next(`${GameConfig.config.homePage}/${LangConfig.getRouterLang()}`);
-                // }
-            }
-            else {
+            } else {
                 next(`/${LangConfig.getRouterLang()}`);
             }
         } else {
-            //next(`${to.path}/${core.lang}`);
             const pathSplit = to.path.split("/");
             if (pathSplit.length == 4) {
                 next(`${pathSplit[1]}/${pathSplit[2]}/${LangConfig.getRouterLang()}`);
@@ -187,28 +172,18 @@ router.beforeEach((to: any, from: any, next: any) => {
         ) {
             next(`/${LangConfig.getRouterLang()}`);
         } else {
-            // if (to.name == "cricket" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-            //     if (GameConfig.config.CricketVendorId)
-            //         PanelUtil.openpage_soccer_cricket();
-            //     else
-            //         next();
-
-            // } else 
-            // next();
-            if (routes.some((e, index, array) => {
-                return e.name == to.name;
-            })) {
+            if (
+                routes.some((e, index, array) => {
+                    return e.name == to.name;
+                })
+            ) {
                 if (to.name == "page_game_play" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                     next(`/${LangConfig.getRouterLang()}`);
-                } else
-                    next();
-                // next();
-            }
-            else {
+                } else next();
+            } else {
                 console.log("路由不存在", to.path);
                 next(`/${LangConfig.getRouterLang()}`);
             }
-
         }
     }
 });

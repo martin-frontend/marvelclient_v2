@@ -13,6 +13,15 @@
     left:0px;
     top:0px;
 }
+.frame-mobile_cricket{
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left:0px;
+    top:45px ;
+}
 
 .theme--dark {
     .frame {

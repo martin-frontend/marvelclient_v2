@@ -20,6 +20,16 @@ export default class PageGameSoccer extends AbstractView {
 
     get gameFrameClass() {
         if (this.$vuetify.breakpoint.mobile) {
+            
+            const curPath = this.$router.app.$route.path;
+            if (curPath.includes("cricket")) {
+              return "frame-mobile_cricket";
+            }
+            else if (curPath.includes("sports")) {
+               
+                return "frame-mobile";
+            }
+
             return "frame-mobile";
         } else {
             return "frame";

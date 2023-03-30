@@ -20,13 +20,10 @@ export default class PageGameSoccer extends AbstractView {
 
     get gameFrameClass() {
         if (this.$vuetify.breakpoint.mobile) {
-            
             const curPath = this.$router.app.$route.path;
             if (curPath.includes("cricket")) {
-              return "frame-mobile_cricket";
-            }
-            else if (curPath.includes("sports")) {
-               
+                return "frame-mobile_cricket";
+            } else {
                 return "frame-mobile";
             }
 
@@ -77,7 +74,14 @@ export default class PageGameSoccer extends AbstractView {
         this.timer = setInterval(() => {
             const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
             if (gameFrame && this.$vuetify.breakpoint.mobile) {
-                gameFrame.style.height = window.innerHeight - 60 + "px";
+                const curPath = this.$router.app.$route.path;
+                if (curPath.includes("cricket")) {
+                    gameFrame.style.height = window.innerHeight - 105 + "px";
+                } else {
+                    gameFrame.style.height = window.innerHeight - 60 + "px";
+                }
+
+                //gameFrame.style.height = window.innerHeight - 60 + "px";
             }
         }, 100);
         PanelUtil.showAppLoading(false);
@@ -89,6 +93,20 @@ export default class PageGameSoccer extends AbstractView {
         });
     }
 
+    @Watch("$route")
+    onWatchRouter() {
+        console.log("路由切换-0-----");
+        const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
+        if (gameFrame && this.$vuetify.breakpoint.mobile) {
+            const curPath = this.$router.app.$route.path;
+            console.log("路由切换-222-----",curPath);
+            if (curPath.includes("cricket")) {
+                gameFrame.style.height = window.innerHeight - 105 + "px";
+            } else  {
+                gameFrame.style.height = window.innerHeight - 60 + "px";
+            }
+        }
+    }
     onFullScreen() {
         const gameFrame = document.getElementById("gameFrame");
         if (gameFrame) {
@@ -110,8 +128,7 @@ export default class PageGameSoccer extends AbstractView {
     destroyed() {
         clearInterval(this.timer);
         const ifr: any = document.getElementById("gameFrame");
-        if (ifr)
-            ifr.onload = null;
+        if (ifr) ifr.onload = null;
         super.destroyed();
     }
 }

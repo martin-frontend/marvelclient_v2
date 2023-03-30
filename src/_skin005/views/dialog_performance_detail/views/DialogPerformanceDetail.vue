@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import DialogPerformanceDetail from "@/views/dialog_performance_detail/views/DialogPerformanceDetail";
+import DialogPerformanceDetail from "./DialogPerformanceDetail";
 
 @Component({
     components: {},

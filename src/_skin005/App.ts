@@ -9,13 +9,14 @@ import { isMobile, isSafari, judgeClient } from "@/core/global/Functions";
 import PageBlur from "./core/PageBlur";
 import ModulesHelper from "./core/ModulesHelper";
 import PanelUtil from "./core/PanelUtil";
-
+import LangConfig from "@/core/config/LangConfig";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
     PageBlur = PageBlur;
     LangUtil = LangUtil;
     isSafari = isSafari;
+    LangConfig = LangConfig;
     ModulesHelper = ModulesHelper;
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
@@ -25,7 +26,7 @@ export default class APP extends AbstractView {
     }
 
     mounted() {
-        window.addEventListener('scroll', this.onWatchScroll, true);
+        window.addEventListener("scroll", this.onWatchScroll, true);
     }
 
     //切换明暗
@@ -33,7 +34,6 @@ export default class APP extends AbstractView {
         //获取 之前玩家保存之后的 明暗 的值 的 时间
         const userLang = window.localStorage.getItem("lang");
     }
-
 
     //当前路由
     routerPath = this.$router.app.$route.path;
@@ -70,7 +70,6 @@ export default class APP extends AbstractView {
         }
     }
 
-
     //是否竖屏
     isScreenV = true;
     @Watch("$vuetify.breakpoint.width")
@@ -85,7 +84,7 @@ export default class APP extends AbstractView {
     }
     get isShowHeader() {
         if (this.$vuetify.breakpoint.mobile) {
-            if (this.$route.path.includes("page_game_soccer")  || this.$route.path.includes("page_game_play")) {
+            if (this.$route.path.includes("page_game_soccer") || this.$route.path.includes("page_game_play")) {
                 return false;
             }
             return true;
@@ -106,7 +105,7 @@ export default class APP extends AbstractView {
         this.myProxy.onGuide();
     }
     get guideImg() {
-        return this.core.lang.includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
+        return this.LangConfig.getRouterLang().includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
     }
     onCloseGuide() {
         this.myProxy.guideDrawer = false;

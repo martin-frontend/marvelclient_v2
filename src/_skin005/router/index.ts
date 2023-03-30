@@ -166,6 +166,10 @@ router.beforeEach((to: any, from: any, next: any) => {
         addMetaWithType("live");
     } else if (to.path.indexOf("slots-games") != -1) {
         addMetaWithType("slot");
+    } else if (to.path.indexOf("cards-games") != -1) {
+        addMetaWithType("cards");
+    } else if (to.path.indexOf("lottery-games") != -1) {
+        addMetaWithType("lottery");
     } else {
         addMetaWithType("");
     }
@@ -265,6 +269,22 @@ function addMetaWithType(type: string) {
             addMeta(
                 "description",
                 "Slot games are easy to play and offer the excitement of a big win. Now play the best free slot machine games online"
+            );
+            break;
+        case "lottery":
+            document.title = "Lottery games: How to play, rules, tips and strategies";
+            addMeta("title", "Lottery Games - Top Lottery Games Online");
+            addMeta(
+                "description",
+                "Play the best lottery games online at 96in.com. We provide the top lottery games and tips to win money online"
+            );
+            break;
+        case "cards":
+            document.title = "Cards games: How to play, rules, tips and strategies";
+            addMeta("title", "Cards Games - Top Cards Games Online");
+            addMeta(
+                "description",
+                "Play the best cards games online at 96in.com. We provide the top cards games and tips to win money online"
             );
             break;
         default:

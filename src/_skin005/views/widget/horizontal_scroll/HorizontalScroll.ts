@@ -16,6 +16,14 @@ export default class HorizontalScroll extends AbstractView {
         x: 0,
         left: 0,
     };
+    mounted() {
+        const buttons = this.$el.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                this.scrollToButton(button, <any>this.$refs.divbox);
+            });
+        });
+    }
 
     onMouseDown(event: any) {
         this.dragData.isMoving = true;
@@ -24,32 +32,13 @@ export default class HorizontalScroll extends AbstractView {
         const divbox: HTMLElement = this.$refs.divbox;
         this.dragData.left = divbox.scrollLeft;
     }
-    onMouseUp(event: any) {
-        const distanceX = event.pageX - this.dragData.x;
-        if (Math.abs(distanceX) > 0) {
-            setTimeout(() => {
-                this.dragData.isMoving = false;
-            }, 100);
-        } else {
-            this.dragData.isMoving = false;
-            const offsetLeft = event.target.offsetLeft;
-            const targetWidth = event.target.offsetWidth;
+    
+    onMouseout(event: any) {
+        this.dragData.isMoving = false;
 
-            const divbox: HTMLElement = <any>this.$refs.divbox;
-            if (divbox.scrollLeft > offsetLeft) {
-                gsap.to(divbox, {
-                    duration: 0.2,
-                    scrollLeft: offsetLeft - this.offsetx,
-                    ease: Linear.easeNone,
-                });
-            } else if (divbox.scrollLeft + divbox.offsetWidth - targetWidth < offsetLeft) {
-                gsap.to(divbox, {
-                    duration: 0.2,
-                    scrollLeft: offsetLeft - divbox.offsetWidth + targetWidth - this.offsetx,
-                    ease: Linear.easeNone,
-                });
-            }
-        }
+    }
+    onMouseUp(event: any) {
+        this.dragData.isMoving = false;
     }
     onMouseMove(event: any) {
         if (this.dragData.isMoving) {
@@ -57,6 +46,16 @@ export default class HorizontalScroll extends AbstractView {
             const divbox: HTMLElement = this.$refs.divbox;
             const distanceX = event.pageX - this.dragData.x;
             divbox.scrollLeft = this.dragData.left - distanceX;
+        }
+    }
+     scrollToButton(button:HTMLElement, container:HTMLElement) {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+    
+        if (buttonRect.left < containerRect.left) {
+            container.scrollLeft -= (containerRect.left - buttonRect.left+30);
+        } else if (buttonRect.right > containerRect.right) {
+            container.scrollLeft += (buttonRect.right - containerRect.right+30);
         }
     }
 }

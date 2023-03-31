@@ -72,12 +72,12 @@
             }"></div>
 
         <!-- 添加到桌面引导 -->
-        <div class="btn-guide d-flex justify-center"
+        <v-sheet class="btn-guide " color="transparent"
             v-if="isShowGuide">
 
             <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9"
                 @click.native="onGuide">{{ myProxy.guideText }}</btn-yellow>
-        </div>
+        </v-sheet>
         <v-navigation-drawer v-if="myProxy.guideDrawer" v-model="myProxy.guideDrawer" 
         color="transparent" height="432" bottom temporary fixed>
             <GuideDrawer @onClose="onCloseGuide"/>
@@ -123,10 +123,11 @@ export default class extends App { }
 }
 
 .btn-guide {
-    width: 100%;
-    text-align: center;
+    //width: 100%;
+    //text-align: center;
     position: fixed;
-    bottom: 80px;
+    bottom: 70px;
+    left: calc(50% - 45px);
 }
 
 .main-pc {

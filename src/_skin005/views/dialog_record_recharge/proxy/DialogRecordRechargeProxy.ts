@@ -7,7 +7,7 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         listQuery: {
             page_count: 1,
             page_size: 20,
@@ -24,12 +24,14 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
         done: <any>null,
     };
 
-    statusOptions = {
-        0: LangUtil("待支付"),
-        1: LangUtil("成功"),
-        2: LangUtil("失败"),
-        3: LangUtil("玩家已支付等待确认"),
-    };
+    public get statusOptions(): any {
+        return {
+            0: LangUtil("待支付"),
+            1: LangUtil("成功"),
+            2: LangUtil("失败"),
+            3: LangUtil("玩家已支付等待确认"),
+        };
+    }
 
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
@@ -37,26 +39,24 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestdata()
-    {
-        const obj={
-            order_no:"1231235423",
-            created_at:"2023-03-10 12:44:49",
-            third_order_info:{
-                block_name:"12312",
-                token_name:"12312",
-                from_address:"dfdsfsdfs",
-                to_address:"dfdsfsdfs",
-                tx_scan_url:"dfdsfsdfs",
+    setTestdata() {
+        const obj = {
+            order_no: "1231235423",
+            created_at: "2023-03-10 12:44:49",
+            third_order_info: {
+                block_name: "12312",
+                token_name: "12312",
+                from_address: "dfdsfsdfs",
+                to_address: "dfdsfsdfs",
+                tx_scan_url: "dfdsfsdfs",
             },
-            coin_name_unique:"usdt",
-            gold:"12423",
-            status:0,
-        }
+            coin_name_unique: "usdt",
+            gold: "12423",
+            status: 0,
+        };
         const list = [];
         for (let index = 0; index < 20; index++) {
             list.push(obj);
-            
         }
         return list;
     }

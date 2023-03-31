@@ -1,5 +1,5 @@
-Sitemap: https://96.com/sitemap.xml
-Sitemap: https://96.com/sitemap.txt
+Sitemap: /sitemap.xml
+Sitemap: /sitemap.txt
 
 User-Agent: Baiduspider
 Disallow: /

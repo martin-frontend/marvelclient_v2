@@ -16,7 +16,7 @@ export default class TabAccountDetail extends AbstractView {
 
     commonIcon = Assets.commonIcon;
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$vuetify.breakpoint.mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

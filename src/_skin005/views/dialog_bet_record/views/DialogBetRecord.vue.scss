@@ -211,3 +211,14 @@
 ::v-deep .el-icon-date{
     font-size: 16px;
 }
+
+.cusSelect {
+    font-size: 12px !important;
+    ::v-deep .title_class {
+        width: calc(100vw / 3 - 15px) !important;
+    }
+    ::v-deep .v-menu__content {
+        width: unset !important;
+    }
+}
+

@@ -2,7 +2,7 @@
     <v-menu offset-y nudge-bottom="5">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
-                class="d-flex align-center rounded-lg px-3 textGray--text"
+                class="d-flex align-center rounded-lg px-3 textGray--text title_class"
                 :rounded="isPill ? 'pill':''"
                 width="100%"
                 :height="height"
@@ -22,7 +22,7 @@
                 <v-spacer/>
                 <div
                     v-if="options && Object.keys(options).length > 1"
-                    class="icon-box iconfont ml-4 text-14"
+                    class="icon-box iconfont text-14"
                     :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                 >
                     
@@ -35,10 +35,10 @@
             color="bgBanner"
             v-if="options && Object.keys(options).length > 1"
         >
-            <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
+            <div class="d-flex align-center listitem px-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <!-- <div>{{ item.name || item }}</div> -->
-                <div :class="(key == selectValue) ? 'primary--text' : ''">{{ item.name || item }}</div>
+                <div :class="item_class(key)">{{ item.name || item }}</div>
             </div>
         </v-sheet>
     </v-menu>

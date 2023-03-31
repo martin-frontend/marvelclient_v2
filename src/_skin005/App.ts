@@ -21,6 +21,7 @@ export default class APP extends AbstractView {
     ModulesHelper = ModulesHelper;
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
+    Constant = Constant;
     constructor() {
         super();
         this.onWatchTheme();
@@ -112,7 +113,7 @@ export default class APP extends AbstractView {
                     }
                 }
             }
-            if (Constant.isIncludeGameRouter(this.$route.path)) {
+            if (this.Constant.isIncludeGameRouter(this.$route.path)) {
                 return true;
             }
         }

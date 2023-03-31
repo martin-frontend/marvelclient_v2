@@ -295,7 +295,7 @@
     </v-card>
     <v-card v-else class="" color="bgColor">
         <!-- 手机显示方式 -->
-        <com-dialog-title :title="pageData.bShowIsMine? '我的投注' : '投注记录'" @onClose="onClose" />
+        <com-dialog-title :title="pageData.bShowIsMine? '我的投注' : '投注记录'" :isSetChange="$vuetify.breakpoint.mobile" @onClose="onClose" />
 
         <div v-if="pageData.bShowTimeText" class="textGray--text text-14 mx-5 mt-2">
             <div class="text-14">
@@ -316,15 +316,15 @@
             <v-sheet color="transparent" width="100%" class=" ">
                 <v-row dense>
                     <v-col cols="4">
-                        <CustomSelect v-model="listOptions.typeSelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.typeSelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.typeOptions()" width="100%" @change="onTypeChange" />
                     </v-col>
                     <v-col cols="4">
-                        <CustomSelect v-model="listOptions.vendorSelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.vendorSelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.vendorOptions()" width="100%" @change="onVendorChange" />
                     </v-col>
                     <v-col cols="4">
-                        <CustomSelect v-model="listOptions.statusSelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.statusSelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.statusOptions()" width="100%" @change="onStatusChange" />
                     </v-col>
                 </v-row>
@@ -332,15 +332,15 @@
             <v-sheet color="transparent" width="100%" class="mt-1 ">
                 <v-row dense>
                     <v-col cols="4">
-                        <CustomSelect v-model="listOptions.betTimeSelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.betTimeSelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.betTimeOptions()" width="100%" @change="onBetTimeChange" />
                     </v-col>
                     <v-col cols="4">
-                        <CustomSelect v-model="listOptions.moneySelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.moneySelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.moneyOptions()" width="100%" @change="onMoneyTypeChange" />
                     </v-col>
                     <v-col v-if="false" cols="4">
-                        <CustomSelect v-model="listOptions.statusSelect" :fontSize="12"
+                        <CustomSelect class="cusSelect" v-model="listOptions.statusSelect" :fontSize="12" :isSetChange="$vuetify.breakpoint.mobile"
                             :options="listOptions.statusOptions()" width="100%" @change="onStatusChange" />
                     </v-col>
                 </v-row>

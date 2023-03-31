@@ -92,12 +92,39 @@ export default class GameConfig {
                 alert("get game_address fail");
             });
     }
+    /**根据发送过来的 渠道 参数 对当前gameconfig中的参数 重新赋值 */
+    static resetConfigFromChannel(data: any) {
+        /**先判断空 */
+        if (!data.ChannelConfig) return;
+        const keys = Object.keys(data.ChannelConfig);
+        if (keys.length < 1) return;
 
+        let channelConfig;
+        /**查找当前 对应 渠道的 参数 是否有 */
+        for (let index = 0; index < keys.length; index++) {
+            if ((keys[index] + "") == core.channel_id) {
+                channelConfig = data.ChannelConfig[keys[index]];
+                break;
+            }
+        }
+        /**判断是否为空 */
+        if (!channelConfig) return;
+        const channelKeys = Object.keys(channelConfig);
+        if (channelKeys.length < 1) return;
+        /**赋值 */
+        for (let index = 0; index < channelKeys.length; index++) {
+            const element = channelKeys[index];
+            //@ts-ignore
+            GameConfig.config[element] = channelConfig[element];
+        }
+        console.log("重新赋值 之后的config", GameConfig.config);
+    }
     static loadPlatConfig() {
         const url = net.getUrl(net.HttpType.api_plat_var_config, { plat_id: core.plat_id });
         net.Http.request({}, url)
             .then((response: any) => {
                 GameConfig.config = response.data;
+                this.resetConfigFromChannel(response.data);
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
             })
             .catch(() => {

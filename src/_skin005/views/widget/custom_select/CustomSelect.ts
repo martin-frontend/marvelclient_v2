@@ -10,7 +10,7 @@ export default class CustomSelect extends AbstractView {
     @Prop({ default: false }) isPill!: boolean;
     @Prop({ default: 16 }) fontSize!: number;
     @Prop({ default: 30 }) iconSize!: number;
-
+    @Prop({ default: null }) isSetChange!: boolean | undefined;
     private selectValue = this.getValue;
 
     @Prop() value!: any;
@@ -32,10 +32,27 @@ export default class CustomSelect extends AbstractView {
     public get inputClass(): string {
         // let str = "";
         // str = "select-text";
-        if (this.$vuetify.breakpoint.xsOnly)
-        {
-            return "select-text";
+        if (this.isSetChange == null) {
+            if (this.$vuetify.breakpoint.xsOnly) {
+                return "select-text";
+            }
+            return "select-text select_bg-text";
+        } else {
+            if (this.isSetChange) {
+                return "select-text";
+            }
+            return "select-text select_bg-text";
         }
-        return "select-text select_bg-text";
     }
+
+    
+    public item_class(key:any) : string {
+        const text_font = "text-" + this.fontSize ;
+        if (key == this.selectValue)
+        {
+            return "primary--text " + text_font;
+        }
+        return text_font;
+    }
+    
 }

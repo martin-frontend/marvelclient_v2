@@ -41,6 +41,8 @@ export interface GameConfigVO {
     homePage:string;
     /**手机版底部的也签 */
     PhoneMenu:string[];
+    /**各种渠道的配置，里面的参数与上面相同 */
+    ChannelConfig:any;
     // /** 是否显示 注册   0  不显示， 其他显示  */
     // register:string; // 
     // /** 是否显示 充值   0  不显示， 其他显示  */

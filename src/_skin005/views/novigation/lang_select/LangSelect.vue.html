@@ -1,5 +1,5 @@
 <v-sheet color="transparent" width="100%">
-    <v-menu open-on-hover offset-x nudge-bottom="5">
+    <v-menu open-on-hover offset-x nudge-bottom="5" content-class="menutestclass">
         <template v-slot:activator="{ on, attrs ,value}">
             <v-card class="d-flex align-center navText--text" :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
                 :height="height" :min-height="height" v-bind="attrs" v-on="on" ripple flat>
@@ -21,7 +21,7 @@
 
             {{setIsFilter(value)}}
         </template>
-        <v-sheet class="rounded10 py-2 scroll-y" max-height="420" color="bgBanner"
+        <v-sheet class=" py-2 scroll-y"  color="bgBanner"
             v-if="options && Object.keys(options).length > 1">
             <div class="d-flex align-center listitem px-4 cursor-pointer" v-for="(item, key) of options" :key="key"
                 @click="onChange(key)">

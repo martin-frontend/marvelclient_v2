@@ -2,7 +2,7 @@
     <div class="text-20 d-flex align-center font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
         <div :class="$vuetify.breakpoint.mobile?'text-16':''">{{ data.category_name }}</div>
         <v-spacer />
-        <v-sheet class="d-flex disable_text--text align-center  cursor-pointer "
+        <v-sheet v-if="data.category != 1" class="d-flex disable_text--text align-center  cursor-pointer "
             :class="$vuetify.breakpoint.mobile ? 'text-12' :'text-14'" color="transparent" @click.native="onShowAll">
             <v-sheet color="transparent" class="disable_text--text mr-1">
                 {{LangUtil("查看全部")}}

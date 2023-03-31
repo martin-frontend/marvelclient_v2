@@ -11,7 +11,7 @@
             margin-bottom: 5px;
         }
 
-        div>a {
+        div > a {
             color: #9db1d8;
         }
     }
@@ -28,8 +28,15 @@
     overflow: hidden;
     padding-top: 0px;
 }
-.cusSelect{
+.cusSelect {
     height: 36px;
     display: grid;
     align-content: center;
+    ::v-deep .title_class {
+        width: calc(100vw / 3 - 15px) !important;
+    }
+}
+
+::v-deep .v-menu__content {
+    width: unset !important;
 }

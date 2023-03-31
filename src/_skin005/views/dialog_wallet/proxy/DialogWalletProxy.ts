@@ -85,7 +85,7 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+        if (vuetify.framework.breakpoint.mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

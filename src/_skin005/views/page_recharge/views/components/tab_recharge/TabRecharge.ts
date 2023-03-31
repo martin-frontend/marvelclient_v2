@@ -16,9 +16,7 @@ export default class TabRecharge extends AbstractView {
 
     plat_coins = GamePlatConfig.config.plat_coins;
 
-    mounted() {
-
-    }
+    mounted() {}
     onChange1(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
@@ -129,7 +127,6 @@ export default class TabRecharge extends AbstractView {
 
     // 创建充值订单
     onSumbit() {
-
         if (!this.form.amount || !this.form.amount.trim()) {
             PanelUtil.message_alert(LangUtil("充值金额不能为空"));
             return;
@@ -147,7 +144,6 @@ export default class TabRecharge extends AbstractView {
             for (let index = 0; index < this.showRequires.length; index++) {
                 const element = this.showRequires[index];
                 if (!element.inputValue || !element.inputValue.trim()) {
-
                     PanelUtil.message_alert(LangUtil("{0} 不能为空", "pay_" + element.title));
                     return false;
                 }
@@ -236,16 +232,15 @@ export default class TabRecharge extends AbstractView {
         for (let index = 0; index < this.form.requires.length; index++) {
             const element = this.form.requires[index];
             const obj = {
-                title: element,   //显示的标题名字
+                title: element, //显示的标题名字
                 //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
-                inputValue: "",//用户的输入值
-            }
+                inputValue: "", //用户的输入值
+            };
             list.push(obj);
         }
 
         return list;
     }
-
 
     onItemClick(key: string) {
         console.log("   ----当前  点击----", key);
@@ -284,6 +279,7 @@ export default class TabRecharge extends AbstractView {
             console.log("item为 空");
             return;
         }
+        this.jumpTo("#animbtn");
         this.form.third_id = item.third_id;
         this.form.requires = item.requires;
         this.curSelectItem = item;
@@ -292,5 +288,22 @@ export default class TabRecharge extends AbstractView {
         //this.payChannelList();
         //console.log("-----this.pageData.methodList---- ", this.pageData.methodList);
         return this.pageData.methodList;
+    }
+    jumpTo(target: string) {
+        if (!this.$vuetify.breakpoint.mobile) return;
+        setTimeout(() => {
+            if (target == "#animbtn") {
+                const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
+                getAwardbtn?.addEventListener("animationend", () => {
+                    getAwardbtn.classList.remove("button-animation");
+                });
+                getAwardbtn?.classList.add("button-animation");
+            }
+            window.scrollTo({
+                //@ts-ignore
+                top: document.querySelector(target).offsetTop,
+                behavior: "smooth",
+            });
+        }, 200);
     }
 }

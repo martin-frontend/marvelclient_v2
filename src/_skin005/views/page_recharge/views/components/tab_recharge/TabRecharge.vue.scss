@@ -1,6 +1,6 @@
 .address-box {
     border-radius: 10px;
-    border: 2px solid #8E8F91;
+    border: 2px solid #8e8f91;
     height: 44px;
 
     div {
@@ -31,7 +31,7 @@
 }
 
 .third-fee {
-    color: #FFAE0A;
+    color: #ffae0a;
 }
 
 .thire_btn_active {
@@ -60,7 +60,7 @@
 
 .listitem {
     height: 36px;
-    color: #8E8F91;
+    color: #8e8f91;
 }
 
 @media only screen and (max-width: 750px) {
@@ -93,4 +93,22 @@
 
 ::v-deep input::placeholder {
     font-size: 14px !important;
+}
+.button-animation {
+    animation: pulse 0.2s 3;
+    animation-duration: 0.3s;
+    animation-delay: 0.7s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

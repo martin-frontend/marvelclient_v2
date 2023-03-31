@@ -169,6 +169,7 @@ export default class TabExchange extends AbstractView {
             // console.log("item为 空");
             return;
         }
+        this.jumpTo("#animbtn");
         this.setFormData(item);
     }
     onItemClick(key: string) {
@@ -435,5 +436,22 @@ export default class TabExchange extends AbstractView {
             return str.split("\n");
         }
         return [];
+    }
+    jumpTo(target: string) {
+        if (!this.$vuetify.breakpoint.mobile) return;
+        setTimeout(() => {
+            if (target == "#animbtn") {
+                const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
+                getAwardbtn?.addEventListener("animationend", () => {
+                    getAwardbtn.classList.remove("button-animation");
+                });
+                getAwardbtn?.classList.add("button-animation");
+            }
+            window.scrollTo({
+                //@ts-ignore
+                top: document.querySelector(target).offsetTop,
+                behavior: "smooth",
+            });
+        }, 200);
     }
 }

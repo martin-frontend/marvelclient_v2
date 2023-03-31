@@ -44,4 +44,10 @@ export default class PageRecharge extends AbstractView {
     openGoldWater() {
         PanelUtil.openpanel_gold_waterl();
     }
+
+    @Watch("myProxy.pageData.tabIndex")
+    onTabChange()
+    {
+        window.scrollTo(0,0);
+    }
 }

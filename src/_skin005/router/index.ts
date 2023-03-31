@@ -1,4 +1,3 @@
-import LoginEnter from "@/_skin005/core/global/LoginEnter";
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -146,75 +145,113 @@ VueRouter.prototype.push = function push(location: any) {
     return originalPush.call(this, location).catch((err: any) => err);
 };
 
-const router = new VueRouter({
-    mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
-    // mode: "history",
-    routes,
-});
+export let prePath = "";
+let router: VueRouter;
 
-// /**没登入 重新导向 */
-router.beforeEach((to: any, from: any, next: any) => {
-    if (to.path.indexOf("cricket") != -1) {
-        addMetaWithType("cricket");
-    } else if (to.path.indexOf("sports") != -1) {
-        addMetaWithType("sports");
-    } else if (to.path.indexOf("blockchain-games") != -1) {
-        addMetaWithType("blockchain");
-    } else if (to.path.indexOf("fishing-games") != -1) {
-        addMetaWithType("fishing");
-    } else if (to.path.indexOf("live-casino-online") != -1) {
-        addMetaWithType("live");
-    } else if (to.path.indexOf("slots-games") != -1) {
-        addMetaWithType("slot");
-    } else if (to.path.indexOf("cards-games") != -1) {
-        addMetaWithType("cards");
-    } else if (to.path.indexOf("lottery-games") != -1) {
-        addMetaWithType("lottery");
-    } else {
-        addMetaWithType("");
-    }
-
-    if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
-        if (to.path == "/") {
-            if (GameConfig.config.homePage) {
-                next(`${GameConfig.config.homePage}/${LangConfig.getRouterLang()}`);
-            } else {
-                next(`/${LangConfig.getRouterLang()}`);
-            }
-        } else {
-            const pathSplit = to.path.split("/");
-            if (pathSplit.length == 4) {
-                next(`${pathSplit[1]}/${pathSplit[2]}/${LangConfig.getRouterLang()}`);
-            } else {
-                next(`${to.path}/${LangConfig.getRouterLang()}`);
+export function getRouter(): VueRouter {
+    if (!router) {
+        const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
+        const channelStr = (!isProduction ? location.hash : location.pathname).split("/")[1];
+        if (channelStr && !isNaN(Number(channelStr))) {
+            prePath = "/" + channelStr;
+            for (const r of routes) {
+                r.path = prePath + r.path;
             }
         }
-    } else {
-        if (
-            !core.user_id &&
-            (to.name == "page_recharge" ||
-                to.name == "page_game_play" ||
-                to.name == "page_my_info" ||
-                to.name == "page_statistice_credit" ||
-                to.name == "page_game_soccer")
-        ) {
-            next(`/${LangConfig.getRouterLang()}`);
-        } else {
-            if (
-                routes.some((e, index, array) => {
-                    return e.name == to.name;
-                })
-            ) {
-                if (to.name == "page_game_play" && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-                    next(`/${LangConfig.getRouterLang()}`);
-                } else next();
+        router = new VueRouter({
+            mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
+            // mode: "history",
+            routes,
+        });
+        router.beforeEach((to: any, from: any, next: any) => {
+            if (to.path.indexOf("cricket") != -1) {
+                addMetaWithType("cricket");
+            } else if (to.path.indexOf("sports") != -1) {
+                addMetaWithType("sports");
+            } else if (to.path.indexOf("blockchain-games") != -1) {
+                addMetaWithType("blockchain");
+            } else if (to.path.indexOf("fishing-games") != -1) {
+                addMetaWithType("fishing");
+            } else if (to.path.indexOf("live-casino-online") != -1) {
+                addMetaWithType("live");
+            } else if (to.path.indexOf("slots-games") != -1) {
+                addMetaWithType("slot");
+            } else if (to.path.indexOf("cards-games") != -1) {
+                addMetaWithType("cards");
+            } else if (to.path.indexOf("lottery-games") != -1) {
+                addMetaWithType("lottery");
             } else {
-                console.log("路由不存在", to.path);
-                next(`/${LangConfig.getRouterLang()}`);
+                addMetaWithType("");
             }
-        }
+            if (prePath && to.path.indexOf(prePath) == -1) {
+                next(prePath + to.path);
+            } else if (!LangConfig.language[LangConfig.getLangByRouter(to.path)]) {
+                console.warn(">>>>>>>>>>>", to.path);
+                if (to.path == "/") {
+                    if (GameConfig.config.homePage) {
+                        next(`${prePath}/${GameConfig.config.homePage}/${LangConfig.getRouterLang()}`);
+                    } else {
+                        next(`${prePath}/${LangConfig.getRouterLang()}`);
+                    }
+                } else {
+                    const pathSplit = to.path.split("/");
+                    if (prePath) {
+                        if (pathSplit.length == 5) {
+                            next(`${prePath}/${pathSplit[2]}/${pathSplit[3]}/${LangConfig.getRouterLang()}`);
+                        } else {
+                            next(`${to.path}/${LangConfig.getRouterLang()}`);
+                        }
+                    } else {
+                        if (pathSplit.length == 4) {
+                            next(`${pathSplit[1]}/${pathSplit[2]}/${LangConfig.getRouterLang()}`);
+                        } else {
+                            next(`${to.path}/${LangConfig.getRouterLang()}`);
+                        }
+                    }
+                }
+            } else {
+                console.warn(">>>>>>>>>>>", to.path);
+                if (
+                    !core.user_id &&
+                    (to.path.includes("page_recharge") ||
+                        to.path.includes("page_game_play") ||
+                        to.path.includes("page_my_info") ||
+                        to.path.includes("page_statistice_credit") ||
+                        to.path.includes("page_game_soccer"))
+                ) {
+                    next(`${prePath}/${LangConfig.getRouterLang()}`);
+                } else {
+                    console.warn("to: ", to);
+                    console.log(routes);
+                    if (routes.some((e, index, array) => e.name == to.name)) {
+                        if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                            next(`${prePath}/${LangConfig.getRouterLang()}`);
+                        } else {
+                            if (router.mode == "history") changeManifeseJson(to.path);
+                            next();
+                        }
+                    } else {
+                        console.log("路由不存在", to.path);
+                        next(`${prePath}/${LangConfig.getRouterLang()}`);
+                    }
+                }
+            }
+        });
     }
-});
+    return router;
+}
+/**动态修改manifest.json start_url */
+function changeManifeseJson(start_url: string) {
+    fetch("manifest.json")
+        .then((response) => response.json())
+        .then((json) => {
+            json.start_url = start_url;
+            const blob = new Blob([JSON.stringify(json)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const link: any = document.querySelector('link[rel="manifest"]');
+            link.href = url;
+        });
+}
 
 const metaArr = <any[]>[];
 function addMetaWithType(type: string) {
@@ -299,5 +336,3 @@ function addMeta(name: string, content: string) {
     document.getElementsByTagName("head")[0].appendChild(meta);
     metaArr.push(meta);
 }
-
-export default router;

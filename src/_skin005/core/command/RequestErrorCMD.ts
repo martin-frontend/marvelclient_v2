@@ -1,6 +1,6 @@
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
-import router from "@/router";
+import Vue from "vue";
 import PanelUtil from "../PanelUtil";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
@@ -13,7 +13,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             // 错误码：http://18.166.154.73:8090/pages/viewpage.action?pageId=66089
             const ERROR_MAINTAIN = [10136]; //平台维护
             // 账号异常
-            const ERROR_CODE_ACCOUNT = [10102, 10103, 10104, 10123, 10124, 10125, 10126, 10127, 10128, 10129, 10130, 10129, 1100143, 1100173];
+            const ERROR_CODE_ACCOUNT = [
+                10102, 10103, 10104, 10123, 10124, 10125, 10126, 10127, 10128, 10129, 10130, 10129, 1100143, 1100173,
+            ];
             // 需要绑定手机
             const ERROR_CODE_PHONE = [11002126, 1100139];
             //设置真实姓名
@@ -32,7 +34,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
                 if (core.user_id) {
                     selfProxy.loginout();
-                    router.push("/").catch((err: any) => err);
+                    Vue.router.push("/").catch((err: any) => err);
                 }
                 PanelUtil.message_alert({
                     message: body.result.msg,
@@ -40,15 +42,17 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                         if (result.status == 1100143) {
                             return;
                         }
-                        if (result.status != 1100143 || result.status != 1100173)
-                            PanelUtil.openpage_home();
+                        if (result.status != 1100143 || result.status != 1100173) PanelUtil.openpage_home();
                         location.reload();
-
                     },
                 });
             } else if (ERROR_MAINTAIN.includes(result.status)) {
-                PanelUtil.message_confirm({ message: body.result.msg, okFun: () => { location.reload(); } });
-
+                PanelUtil.message_confirm({
+                    message: body.result.msg,
+                    okFun: () => {
+                        location.reload();
+                    },
+                });
             } else if (ERROR_CODE_REGISTER_FAIL.includes(result.status)) {
                 PanelUtil.message_alert(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {

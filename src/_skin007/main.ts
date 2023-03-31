@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
-import router from "@/_skin005/router";
+import { getRouter } from "@/_skin005/router";
 import "@/_skin005/style/common.scss";
 import AppFacade from "@/_skin005/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
@@ -46,7 +46,6 @@ core.init();
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 //core.game_domain =  "betnow.co";
-AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
@@ -70,6 +69,7 @@ Vue.component("goldinfo_util", GoldInfoUtil);
 GlobalVar.skin = "skin005";
 
 const vuetify = getVuetify();
+const router = getRouter();
 Vue["vuetify"] = vuetify;
 Vue["router"] = router;
 //@ts-ignore
@@ -87,6 +87,8 @@ window["vueInit"] = () => {
         render: (h) => h(App),
     }).$mount("#app");
 };
+
+AppFacade.inst.startup();
 
 //native调用
 //@ts-ignore

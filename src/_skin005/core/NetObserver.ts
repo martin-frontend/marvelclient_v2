@@ -6,7 +6,6 @@ import getProxy from "@/core/global/getProxy";
 import NotificationName from "@/core/NotificationName";
 import FagProxy from "@/proxy/FagProxy";
 
-import router from "@/router";
 import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";
@@ -229,17 +228,15 @@ export default class NetObserver extends AbstractMediator {
                     if (body.settle_coin_name_unique) {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
-                    let msgstr =  LangUtil("进入游戏");
-                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique)
-                    {
+                    let msgstr = LangUtil("进入游戏");
+                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique) {
                         msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
                     }
                     PanelUtil.message_confirm({
-                        message:
-                        msgstr,
+                        message: msgstr,
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
-                                this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
+                                this.gameProxy.gamePreData.lastRouter = Vue.router.currentRoute.path;
                                 this.gameProxy.gamePreData.historyLength = window.history.length;
 
                                 const obj = document.body.scrollTop ? document.body : document.documentElement;

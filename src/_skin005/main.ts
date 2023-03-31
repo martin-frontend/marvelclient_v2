@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import { getVuetify } from "./plugins/vuetify";
-import router from "./router";
+import { getRouter } from "./router";
 import "@/_skin005/style/common.scss";
 import "@/assets/iconfont/iconfont.css";
 import "@mdi/font/css/materialdesignicons.css";
@@ -37,7 +37,6 @@ core.init();
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 //core.game_domain =  "96in.com";
-AppFacade.inst.startup();
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
@@ -63,6 +62,7 @@ Vue.component("goldinfo_util", GoldInfoUtil);
 GlobalVar.skin = "skin005";
 
 const vuetify = getVuetify();
+const router = getRouter();
 Vue["vuetify"] = vuetify;
 Vue["router"] = router;
 //@ts-ignore
@@ -81,6 +81,8 @@ window["vueInit"] = () => {
         render: (h) => h(App),
     }).$mount("#app");
 };
+
+AppFacade.inst.startup();
 
 //native调用
 //@ts-ignore

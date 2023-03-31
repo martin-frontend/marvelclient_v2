@@ -5,12 +5,14 @@ import { Base64 } from "js-base64";
 import NotificationName from "../NotificationName";
 import LangUtil from "../global/LangUtil";
 import { getFileVersion } from "../global/Functions";
+import Vue from "vue";
 
 export default class GameConfig {
     static config: GameConfigVO;
 
     static load() {
         const platformConfig = core.getQueryVariable("platformConfig");
+        //老版本，读取URL参数
         let plat_id = core.getQueryVariable("plat_id");
         let channel_id = core.getQueryVariable("channel_id");
         const channelCode = core.getQueryVariable("channelCode");
@@ -18,6 +20,13 @@ export default class GameConfig {
             plat_id = channelCode.substring(0, 5);
             channel_id = channelCode;
         }
+        //新版本，读取URL参数
+        const channelStr = (Vue.router.mode == "hash" ? location.hash : location.pathname).split("/")[1];
+        if (!isNaN(Number(channelStr))) {
+            plat_id == channelStr.substring(0, 5);
+            channel_id = channelStr;
+        }
+
         plat_id && (core.plat_id = plat_id);
         channel_id && (core.channel_id = channel_id);
         if (platformConfig) {

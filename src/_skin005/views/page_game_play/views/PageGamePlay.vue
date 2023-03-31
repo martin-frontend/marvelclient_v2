@@ -4,7 +4,6 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageGamePlay from "./PageGamePlay";
-import router from "@/router";
 // import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
 
 @Component({
@@ -15,7 +14,7 @@ import router from "@/router";
 export default class extends PageGamePlay {
     mounted() {
         if (this.pageData.url == "") {
-            router.replace("/");
+            this.$router.replace("/");
         }
         window.scrollTo(0, 0);
     }

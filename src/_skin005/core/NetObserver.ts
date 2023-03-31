@@ -348,7 +348,8 @@ export default class NetObserver extends AbstractMediator {
                 window.OneSignal.push(function () {
                     //@ts-ignore
                     window.OneSignal.init({
-                        appId: "a000754a-4200-4698-bfba-5931035d5441",
+                        //appId: "a000754a-4200-4698-bfba-5931035d5441",
+                        appId: "9ef33faa-1d72-4a7c-8f19-ea77e15b6e18",
                     });
                 });
             },

@@ -210,7 +210,6 @@ export function getRouter(): VueRouter {
                     }
                 }
             } else {
-                console.warn(">>>>>>>>>>>", to.path);
                 if (
                     !core.user_id &&
                     (to.path.includes("page_recharge") ||
@@ -221,8 +220,6 @@ export function getRouter(): VueRouter {
                 ) {
                     next(`${prePath}/${LangConfig.getRouterLang()}`);
                 } else {
-                    console.warn("to: ", to);
-                    console.log(routes);
                     if (routes.some((e, index, array) => e.name == to.name)) {
                         if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                             next(`${prePath}/${LangConfig.getRouterLang()}`);
@@ -245,7 +242,7 @@ function changeManifeseJson(start_url: string) {
     fetch("manifest.json")
         .then((response) => response.json())
         .then((json) => {
-            json.start_url = start_url;
+            json.start_url = location.origin + start_url;
             const blob = new Blob([JSON.stringify(json)], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const link: any = document.querySelector('link[rel="manifest"]');

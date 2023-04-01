@@ -92,7 +92,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     mounted() {
-        console.warn(this.registerTypes);
+        //console.warn(this.registerTypes);
         this.myProxy.api_public_area_code();
     }
 

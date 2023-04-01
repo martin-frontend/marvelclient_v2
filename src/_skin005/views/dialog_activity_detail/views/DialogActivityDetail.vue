@@ -3,12 +3,10 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogActivityDetail from "./DialogActivityDetail";
 
 @Component({
     components: {
-        Overlay,
     },
 })
 export default class extends DialogActivityDetail {}

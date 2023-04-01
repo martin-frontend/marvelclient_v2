@@ -1,5 +1,3 @@
-import NoticeProxy from "@/proxy/NoticeProxy";
-
 import AbstractMediator from "@/core/abstract/AbstractMediator";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
@@ -48,6 +46,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_vendor_var_ori_product_visitor_show_var,
             net.EventType.api_plat_var_notice_index,
+            net.EventType.api_plat_var_notice_show_var,
             net.EventType.api_plat_fag_index,
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
@@ -229,77 +228,24 @@ export default class NetObserver extends AbstractMediator {
                         settle_coin_name_unique = body.settle_coin_name_unique;
                     }
                     let msgstr = LangUtil("进入游戏");
+                    let isShowConfig = false;
                     if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique) {
                         msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
+                        isShowConfig = true;
                     }
-                    PanelUtil.message_confirm({
-                        message: msgstr,
-                        okFun: () => {
-                            if (core.app_type == core.EnumAppType.WEB) {
-                                this.gameProxy.gamePreData.lastRouter = Vue.router.currentRoute.path;
-                                this.gameProxy.gamePreData.historyLength = window.history.length;
-
-                                const obj = document.body.scrollTop ? document.body : document.documentElement;
-                                this.gameProxy.gamePreData.scrollY = obj.scrollTop;
-                                //@ts-ignore
-                                if (judgeClient() == "PC" || window.navigator.standalone) {
-                                    if (this.gameProxy.currGame.ori_vendor_extend) {
-                                        const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-
-                                        if (
-                                            //@ts-ignore
-                                            (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
-                                            ori_vendor_extend.iframe_all_bad
-                                        ) {
-                                            // iframe无法正常显示的游戏
-                                            OpenLink(body.url);
-                                        } else {
-                                            PanelUtil.openpage_game_play(body.url);
-                                        }
-                                    } else {
-                                        PanelUtil.openpage_game_play(body.url);
-                                    }
-                                } else {
-                                    OpenLink(body.url);
-                                }
-                            } else {
-                                let gameUrl = "";
-                                if (body.url.indexOf("?") != -1) {
-                                    //有个别厂商链接后面会有#，导致横竖屏参数不能使用
-                                    if (body.url.indexOf("#") != -1) {
-                                        // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                                        gameUrl = this.insertStr(
-                                            body.url,
-                                            body.url.indexOf("#"),
-                                            "&gOrientation=" + this.gameProxy.currGame.orientation
-                                        );
-                                    } else {
-                                        gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                                    }
-                                } else {
-                                    if (body.url.indexOf("#") != -1) {
-                                        // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                                        gameUrl = this.insertStr(
-                                            body.url,
-                                            body.url.indexOf("#"),
-                                            "?gOrientation=" + this.gameProxy.currGame.orientation
-                                        );
-                                    } else {
-                                        gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                                    }
-                                }
-                                //PanelUtil.message_info(" ======-1" + gameUrl);
-                                console.log("gameUrl====", gameUrl);
-                                WebViewBridge.getInstance().openBrowser(gameUrl);
-                            }
-                        },
-                    });
+                    this.openGameUrl(body, msgstr,isShowConfig);
                 }
                 break;
             case net.EventType.api_plat_var_notice_index:
                 {
-                    const noticeProxy: NoticeProxy = getProxy(NoticeProxy);
+                    const noticeProxy = PanelUtil.getProxy_noticeProxy;
                     noticeProxy.setData(body);
+                }
+                break;
+            case net.EventType.api_plat_var_notice_show_var:
+                {
+                    const noticeProxy = PanelUtil.getProxy_noticeProxy;
+                    noticeProxy.set_detail_notice(body);
                 }
                 break;
             case net.EventType.api_plat_fag_index:
@@ -311,6 +257,76 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_var_red_dot_tips:
                 this.selfProxy.redDotTips(body);
                 break;
+        }
+    }
+
+    openGameUrl(body: any, msg: string, isShowConfig: boolean) {
+        let isNeetConfig = false;
+        //判断是否需要打开 弹框   1.不要打开弹窗的情况
+        if (core.app_type == core.EnumAppType.WEB) {
+            this.gameProxy.gamePreData.lastRouter = Vue.router.currentRoute.path;
+            this.gameProxy.gamePreData.historyLength = window.history.length;
+
+            const obj = document.body.scrollTop ? document.body : document.documentElement;
+            this.gameProxy.gamePreData.scrollY = obj.scrollTop;
+            //@ts-ignore
+            if (judgeClient() == "PC" || window.navigator.standalone) {
+                if (this.gameProxy.currGame.ori_vendor_extend) {
+                    const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
+                    //@ts-ignore   // iframe无法正常显示的游戏
+                    if ((window.navigator.standalone && ori_vendor_extend.iframe_bad) || ori_vendor_extend.iframe_all_bad) {
+                        isNeetConfig = true;
+                    }
+                }
+            } else {
+                isNeetConfig = true;
+            }
+
+            if (isNeetConfig) {
+                PanelUtil.message_confirm({
+                    message: msg,
+                    okFun: () => {
+                        OpenLink(body.url);
+                    },
+                });
+            } else {
+                if (isShowConfig) {
+                    PanelUtil.message_confirm({
+                        message: msg,
+                        okFun: () => {
+                            PanelUtil.openpage_game_play(body.url);
+                        },
+                    });
+                } else {
+                    PanelUtil.openpage_game_play(body.url);
+                }
+            }
+        } else {
+            let gameUrl = "";
+            if (body.url.indexOf("?") != -1) {
+                //有个别厂商链接后面会有#，导致横竖屏参数不能使用
+                if (body.url.indexOf("#") != -1) {
+                    // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "&gOrientation=" + this.gameProxy.currGame.orientation);
+                } else {
+                    gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+                }
+            } else {
+                if (body.url.indexOf("#") != -1) {
+                    // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "?gOrientation=" + this.gameProxy.currGame.orientation);
+                } else {
+                    gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+                }
+            }
+
+            PanelUtil.message_confirm({
+                message: msg,
+                okFun: () => {
+                    console.log("gameUrl====", gameUrl);
+                    WebViewBridge.getInstance().openBrowser(gameUrl);
+                },
+            });
         }
     }
 

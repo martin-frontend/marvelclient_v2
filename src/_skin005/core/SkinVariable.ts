@@ -6,7 +6,10 @@ export default class SkinVariable {
 
     /** 是否显示下面的底部信息描述 */
     public static isShowFootDetail = false;
-
+    /**是否为自定义 底部的 联系我们按钮 */
+    public static isCustomizeFooter = true;
+    /**手机版 是否显示 底部 的网页信息 */
+    public static isShowMobileFooter = true;
     public static loadingType = "005";
     /**是否需要添加 消息推送的 代码 */
     public static isNeedPush = false;

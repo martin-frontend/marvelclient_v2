@@ -70,7 +70,7 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     private copy() {
-        console.warn("########")
+        //console.warn("########")
         this.myProxy.copyId();
     }
 

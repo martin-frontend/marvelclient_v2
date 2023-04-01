@@ -1,22 +1,27 @@
 <v-sheet
-    class="d-flex flex-column align-center justify-center pt-16 pb-10 text-16 foot_text_color pb-5 ml-n3 mr-n3"
-    color="#0f1213" style="margin-top: 200px !important;">
+    class="d-flex flex-column align-center justify-center pt-16 pb-10 text-16 foot_text_color pb-5 "
+    color="#0f1213" style="margin-top: 200px !important;" :class="$vuetify.breakpoint.mobile ? 'px-2' :'ml-n3 mr-n3'">
     <v-img :src="commonIcon.logo" max-width="130" max-height="30"></v-img>
-    <div class="d-flex mt-2 mb-5 foot_text_color">
+    <div v-if="!SkinVariable.isCustomizeFooter" class="d-flex mt-2 mb-5 foot_text_color">
         <v-btn class="foot_text_color" text @click="goContact">{{LangUtil("关于我们")}}</v-btn>
         <v-btn class="foot_text_color mx-5" text @click="goService">{{LangUtil("服务条款")}}</v-btn>
         <v-btn class="foot_text_color" text @click="goMail">{{LangUtil("官方邮箱")}}</v-btn>
     </div>
+    <div v-else class="d-flex flex-wrap mt-2 mb-5 foot_text_color justify-center">
+        <!-- <v-btn v-for="(item, key) of noticeProxy.data.listType11" :key="item.id" class="foot_text_color mx-2" :ripple="false" text @click="onInRuleClick(item)">{{item.name}}</v-btn> -->
+        <v-sheet v-for="(item, key) of noticeProxy.data.listType11" :key="item.id"  color="transparent" class="foot_text_color cursor-pointer customize_btn_class mx-2" @click="onInRuleClick(item)">
+            {{item.name}}
+        </v-sheet>
+    </div>
+
     <div class="foot_text_color">{{LangUtil("合作商")}}</div>
     
     <v-sheet v-if="imgData.length > 0" class=" d-flex flex-wrap justify-center" width="100%" color="transparent">
-        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" height="70" flat color="transparent">
-            <!-- <v-img :src="getIcon(item)" width="90" height="40"></v-img> -->
-            <!-- <v-img :src="item.vendor_icon" height="50" contain content-class="mx-2"></v-img> -->
-            <img :src="item.vendor_icon"  height="70" class="mx-2"  ></img>
+        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" :height="$vuetify.breakpoint.mobile ? 40:70" flat color="transparent">     
+            <img :src="item.vendor_icon"  :height="$vuetify.breakpoint.mobile ? 40:70" class="mx-2"  ></img>
         </v-card>
     </v-sheet>
-    <template v-if="isShowFootDetail">
+    <template v-if="SkinVariable.isShowFootDetail">
         <v-sheet class="d-flex justify-center foot_text_color" max-width="80%" color="transparent">
             <div class="foot_text_color" style="text-align: center;"> {{LangUtil("底部产品描述")}}</div>
         </v-sheet>
@@ -39,7 +44,7 @@
             </div>
         </div>
     </template>
-    <p class="text-14 foot_text_color">{{LangUtil("网页底部信息说明")}}</p>
+    <div class="text-14 foot_text_color" style="text-align: center;">{{LangUtil("网页底部信息说明")}}</div>
     <pre class="text-14 foot_text_color">{{LangUtil("网页底部公司说明")}}</pre>
     <div class="text-14 foot_text_color">version:{{getVersion()}}</div>
     <div class="text-14 foot_text_color">{{getChannelID()}}</div>

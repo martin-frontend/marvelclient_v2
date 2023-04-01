@@ -44,7 +44,7 @@ export default class PageMineMediator extends AbstractMediator {
                 myProxy.setTrial(body);
                 break;
             case net.EventType.api_user_var_backwater_trial_receive:
-                console.warn(body);
+                //console.warn(body);
                 PanelUtil.message_success("领取成功");
                 myProxy.api_user_var_backwater_trial();
                 break;

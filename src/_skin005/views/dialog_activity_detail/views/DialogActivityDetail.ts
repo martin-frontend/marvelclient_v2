@@ -23,8 +23,8 @@ export default class DialogActivityDetail extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
-        if (!this.pageData.bShow) {
-            PanelUtil.openpanel_activity();
-        }
+        // if (!this.pageData.bShow) {
+        //     PanelUtil.openpanel_activity();
+        // }
     }
 }

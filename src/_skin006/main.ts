@@ -40,6 +40,8 @@ SkinVariable.isShowFootDetail = false;
 SkinVariable.loadingType = "006";
 SkinVariable.isUsedDialogRecharge = true;
 SkinVariable.isForeShowRecharge = true;
+SkinVariable.isCustomizeFooter = false;
+SkinVariable.isShowMobileFooter = false;
 LogUtil.init();
 core.init();
 //@ts-ignore

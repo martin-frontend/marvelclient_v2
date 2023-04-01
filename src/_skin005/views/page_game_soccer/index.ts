@@ -27,7 +27,6 @@ function open_cricket() {
 }
 
 function _open(isCricket: boolean = false) {
-    console.warn("----open-----");
     const proxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
     proxy.pageData.isAction = true;
     if (isCricket) {
@@ -41,7 +40,6 @@ function _open(isCricket: boolean = false) {
 }
 
 function Init(isCricket: boolean = false) {
-    console.warn("初始化------ 体育界面");
     const obj = {
         app_type: 2,
         category: 64,

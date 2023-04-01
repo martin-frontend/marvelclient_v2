@@ -9,7 +9,7 @@ export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
 
     public onRegister(): void {
-        console.warn("GamePlatConfig", GamePlatConfig.config);
+        //console.warn("GamePlatConfig", GamePlatConfig.config);
 
         this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
     }

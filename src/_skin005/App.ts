@@ -22,6 +22,7 @@ export default class APP extends AbstractView {
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
     Constant = Constant;
+    notice = PanelUtil.getProxy_noticeProxy;
     constructor() {
         super();
         this.onWatchTheme();

@@ -10,7 +10,7 @@
                     <v-sheet  color="transparent" class="px-2" width="100%">
                         <v-main  id="router_page" class="router_test">
                             <router-view />
-                            <Footer v-if="!$vuetify.breakpoint.mobile" />
+                            <Footer  />
                         </v-main>
                     </v-sheet>
                 </v-sheet>
@@ -23,6 +23,7 @@
                 <v-main id="mainpage" color="transparent" class="overflow-hidden">
                     <div id="router_page" class="overflow-hidden">
                         <router-view />
+                        <Footer  />
                     </div>
                 </v-main>
                 <MobileMenu v-if="!$route.path.includes('page_game_play')" />

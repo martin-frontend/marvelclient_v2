@@ -28,6 +28,7 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType8: <core.PlatNoticeVO[]>[],
         listType9: <core.PlatNoticeVO[]>[],
         listType10: <core.PlatNoticeVO[]>[],
+        listType11: <core.PlatNoticeVO[]>[],
     };
 
     setData(data: core.PlatNoticeVO[]) {
@@ -44,6 +45,7 @@ export default class NoticeProxy extends puremvc.Proxy {
                 case 8: this.data.listType8.push(item); break;
                 case 9: this.data.listType9.push(item); break;
                 case 10: this.data.listType10.push(item); break;
+                case 11: this.data.listType11.push(item); break;
                 default:
                     break;
             }
@@ -81,6 +83,21 @@ export default class NoticeProxy extends puremvc.Proxy {
         } else if (item.open_mode_url && item.open_mode_url != "") {
             OpenLink(item.open_mode_url);
         }
+    }
+
+    /**用来保存 通知详情的 */
+    noticedata_detail = <any>{};
+    /**设置通知详情 */
+    public set_detail_notice(data: any) {
+        if (!data) return;
+        this.noticedata_detail[data.id] = data;
+    }
+    public get_detail_notice(noticeid: any): any {
+        return this.noticedata_detail[noticeid];
+    }
+    api_plat_var_notice_show(noticeid: any) {
+        if (!noticeid) return;
+        this.sendNotification(net.HttpType.api_plat_var_notice_show_var, { plat_id: core.plat_id, id: noticeid });
     }
 
     api_plat_var_notice_index() {

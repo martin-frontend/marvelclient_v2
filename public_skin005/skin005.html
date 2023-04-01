@@ -87,6 +87,15 @@
                 document.getElementsByTagName("html")[0].style.backgroundColor = "#202121";
             }
         </script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+        <script>
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+                OneSignal.init({
+                    appId: "a000754a-4200-4698-bfba-5931035d5441",
+                });
+            });
+        </script>
     </head>
 
     <style>

@@ -157,9 +157,9 @@ export default class NetObserver extends AbstractMediator {
 
                     this.setLanguageFont();
 
-                    if (SkinVariable.isNeedPush) {
-                        this.addPushNode();
-                    }
+                    // if (SkinVariable.isNeedPush) {
+                    //     this.addPushNode();
+                    // }
                     if (SkinVariable.isNeedKefu) {
                         this.addKefu();
                     }

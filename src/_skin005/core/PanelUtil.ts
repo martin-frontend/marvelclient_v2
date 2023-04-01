@@ -39,6 +39,7 @@ import dialog_email_detail from "@/_skin005/views/dialog_email_detail";
 import dialog_official_mail from "@/_skin005/views/dialog_official_mail";
 //import dialog_activity from "@/_skin005/views/dialog_activity";
 import dialog_activity_detail from "@/_skin005/views/dialog_activity_detail";
+import dialog_notice_detail from "@/_skin005/views/dialog_notice_detail";
 
 /**用户 信息 */
 import dialog_user_center from "@/_skin005/views/dialog_user_center";
@@ -723,6 +724,12 @@ export default class PanelUtil {
     static openpanel_directly_password(data: any) {
         MultDialogManager.onOpenPanel(dialog_directly_password);
         dialog_directly_password.show(data);
+    }
+
+    /** 底部消息 详细公告 */
+    static openpanel_notice_detail(data: any) {
+        MultDialogManager.onOpenPanel(dialog_notice_detail);
+        dialog_notice_detail.show(data);
     }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {

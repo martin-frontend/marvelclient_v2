@@ -20,7 +20,7 @@ export default class FooterMediator extends AbstractMediator{
                         activity_name:body.name,
                         link_url:body.content,
                     }
-                    PanelUtil.openpanel_activity_detail(obj);
+                    PanelUtil.openpanel_notice_detail(obj);
                 }
                 break;
         }

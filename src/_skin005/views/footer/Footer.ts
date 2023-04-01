@@ -94,7 +94,7 @@ export default class Footer extends AbstractView {
                 activity_name: data.name,
                 link_url: data.content,
             };
-            PanelUtil.openpanel_activity_detail(obj);
+            PanelUtil.openpanel_notice_detail(obj);
         }
     }
 }

@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
-import { Component, Watch } from "vue-property-decorator";
+import { Component, Watch, Vue } from "vue-property-decorator";
 import Assets from "./assets/Assets";
 import ScrollUtil from "@/core/global/ScrollUtil";
 import AppProxy from "./AppProxy";
@@ -102,7 +102,7 @@ export default class APP extends AbstractView {
     get isShowGuide() {
         if (!this.$vuetify.breakpoint.mobile || !this.myProxy.isShowGuide) return false;
 
-        if (this.$route.path == "/" + LangConfig.getRouterLang()) return true;
+        if (this.$route.path == Vue.prePath) return true;
 
         if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
             for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {
@@ -118,13 +118,6 @@ export default class APP extends AbstractView {
             }
         }
         return false;
-        // if(this.$route.path == '/' + LangConfig.getRouterLang() ||
-        // this.$route.path ==)
-        // {
-
-        // }
-        //return true;
-        //return this.myProxy.isShowGuide;
     }
     onGuide() {
         this.myProxy.onGuide();

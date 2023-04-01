@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
-import router from "@/_skin006/router";
+import { getRouter } from "@/_skin006/router";
 import "@/_skin005/style/common.scss";
 import AppFacade from "@/_skin005/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
@@ -38,7 +38,7 @@ Assets.commonIcon.logo_m = require(`@/_skin006/assets/logo_m.png`);
 
 SkinVariable.isShowFootDetail = false;
 SkinVariable.loadingType = "006";
-SkinVariable.isUsedDialogRecharge  = true;
+SkinVariable.isUsedDialogRecharge = true;
 SkinVariable.isForeShowRecharge = true;
 LogUtil.init();
 core.init();
@@ -71,15 +71,10 @@ GlobalVar.skin = "skin005";
 
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;
-Vue["router"] = router;
-//@ts-ignore
-// window["vm"] = new Vue({
-//     router,
-//     vuetify,
-//     render: (h) => h(App),
-// });
 //@ts-ignore
 window["vueInit"] = () => {
+    const router = getRouter();
+    Vue["router"] = router;
     //@ts-ignore
     window["vm"] = new Vue({
         router,

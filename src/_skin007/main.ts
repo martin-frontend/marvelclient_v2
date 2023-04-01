@@ -69,17 +69,11 @@ Vue.component("goldinfo_util", GoldInfoUtil);
 GlobalVar.skin = "skin005";
 
 const vuetify = getVuetify();
-const router = getRouter();
-Vue["vuetify"] = vuetify;
-Vue["router"] = router;
-//@ts-ignore
-// window["vm"] = new Vue({
-//     router,
-//     vuetify,
-//     render: (h) => h(App),
-// });
+Vue.vuetify = vuetify;
 //@ts-ignore
 window["vueInit"] = () => {
+    const router = getRouter();
+    Vue.router = router;
     //@ts-ignore
     window["vm"] = new Vue({
         router,

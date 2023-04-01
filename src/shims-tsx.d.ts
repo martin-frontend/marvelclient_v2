@@ -16,5 +16,6 @@ declare module "vue/types/vue" {
     interface VueConstructor {
         router: VueRouter;
         vuetify: Vuetify;
+        prePath: string;
     }
 }

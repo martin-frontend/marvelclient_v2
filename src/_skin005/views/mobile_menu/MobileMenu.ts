@@ -1,10 +1,9 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
-import { Prop, Watch, Component } from "vue-property-decorator";
+import { Prop, Watch, Component, Vue } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
-import LangConfig from "@/core/config/LangConfig";
 import Constant from "@/core/global/Constant";
 @Component
 export default class MobileMenu extends AbstractView {
@@ -138,16 +137,12 @@ export default class MobileMenu extends AbstractView {
         if (item.id == 8) {
             //板球的判断
             return this.routerPath.includes(item.path) && this.isCricket;
-        }else if(item.id == 0)
-        {
-            return this.routerPath == "/" + LangConfig.getRouterLang();
-        }
-         else if (item.id == 1) {
+        } else if (item.id == 0) {
+            return this.routerPath == Vue.prePath || this.routerPath == Vue.prePath + "/";
+        } else if (item.id == 1) {
             return this.routerPath.includes(item.path) && !this.isCricket;
         } else if (item.id == 2) {
-
             return Constant.isIncludeGameRouter(this.routerPath);
-
         } else return this.routerPath.includes(item.path);
     }
 }

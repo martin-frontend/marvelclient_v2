@@ -33,10 +33,10 @@ function show(category?: number, vendor_id?: number) {
     const path = getRouterPathByVendor(proxy.listQuery.vendor_type);
     if (path) {
         //@ts-ignore
-        window["vm"].$router.push("/" + path + "/" + LangConfig.getRouterLang());
+        window["vm"].$router.push("/" + path);
     } else {
         //@ts-ignore
-        window["vm"].$router.push("/page_game_list/" + proxy.listQuery.vendor_type + "/" + LangConfig.getRouterLang());
+        window["vm"].$router.push("/page_game_list/" + proxy.listQuery.vendor_type);
     }
     proxy.saveData();
 }

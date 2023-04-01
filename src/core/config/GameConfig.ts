@@ -21,10 +21,12 @@ export default class GameConfig {
             channel_id = channelCode;
         }
         //新版本，读取URL参数
-        const channelStr = (Vue.router.mode == "hash" ? location.hash : location.pathname).split("/")[1];
+        const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
+        const channelStr = (isProduction ? location.pathname : location.hash).split("/")[1];
         if (!isNaN(Number(channelStr))) {
-            plat_id == channelStr.substring(0, 5);
+            plat_id = channelStr.substring(0, 5);
             channel_id = channelStr;
+            console.warn("plat_id: ", plat_id, "----channel_id: ", channel_id);
         }
 
         plat_id && (core.plat_id = plat_id);

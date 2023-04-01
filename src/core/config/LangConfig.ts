@@ -38,12 +38,16 @@ export default class LangConfig {
     }
     /**从URL中获取语言 */
     static getLangByRouter(path?: string) {
-        let langStr = "";
-        if (Vue.router.mode == "hash") {
-            langStr = (path || location.hash).split("/").reverse()[0];
-        } else {
-            langStr = (path || location.pathname).split("/").reverse()[0];
+        const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
+        path = path || (isProduction ? location.pathname : location.hash);
+
+        let langStr = path.split("/")[1];
+        for (const item of Object.keys(this.language)) {
+            if ((item == "zh_CN" && langStr == "zh-CN") || (item == "zh_TW" && langStr == "zh-TW") || item.substring(0, 2) == langStr) {
+                return item;
+            }
         }
+        langStr = path.split("/")[2];
         for (const item of Object.keys(this.language)) {
             if ((item == "zh_CN" && langStr == "zh-CN") || (item == "zh_TW" && langStr == "zh-TW") || item.substring(0, 2) == langStr) {
                 return item;

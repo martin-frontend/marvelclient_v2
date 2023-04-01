@@ -1,5 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import { Prop, Watch, Component } from "vue-property-decorator";
+import { Prop, Watch, Component, Vue } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import Assets from "@/_skin005/assets/Assets";
 import getProxy from "@/core/global/getProxy";
@@ -196,11 +196,9 @@ export default class Novigation extends AbstractView {
         const path = this.$router.currentRoute.path;
         window.localStorage.setItem("lang", core.lang);
 
-        const arr = path.split("/");
-        arr.pop();
-        const newPath = arr.join("/") + "/" + this.LangConfig.getRouterLang();
+        const currLang = Vue.prePath.split("/").reverse()[0];
+        const newPath = path.replace(currLang, LangConfig.getRouterLang());
         this.$router.replace(newPath);
-        location.reload();
     }
 
     getItemCategory(item: any) {

@@ -1,5 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import { Prop, Watch, Component } from "vue-property-decorator";
+import { Prop, Watch, Component, Vue } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import Assets from "@/_skin005/assets/Assets";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -12,7 +12,6 @@ import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "./HeaderProxy";
-import LangConfig from "@/core/config/LangConfig";
 
 @Component
 export default class Header extends AbstractView {
@@ -92,10 +91,11 @@ export default class Header extends AbstractView {
         } else {
             this.myProxy.pagetab = "-1";
         }
-        if (!this.routerPath || this.routerPath == "/" + LangConfig.getRouterLang()) {
+        if (this.routerPath == Vue.prePath + "/" || this.routerPath == Vue.prePath) {
             this.myProxy.pagetab = "0";
         }
         console.log("页签标签 修改为 ", this.myProxy.pagetab);
+        console.log(">>>>>>.this.routerPath ", this.routerPath);
     }
 
     /**图标时间选择 */

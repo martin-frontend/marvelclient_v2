@@ -124,12 +124,9 @@ import DialogGetVerityProxy from "@/_skin005/views/dialog_get_verity/proxy/Dialo
 
 import DialogPerformanceDetailProxy from "@/_skin005/views/dialog_performance_detail/proxy/DialogPerformanceDetailProxy";
 import MultDialogManager from "./MultDialogManager";
-import GlobalVar from "@/core/global/GlobalVar";
-import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "./PageBlur";
 import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "./SkinVariable";
-import LangConfig from "@/core/config/LangConfig";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -186,8 +183,8 @@ export default class PanelUtil {
 
     //打开 主页
     static openpage_home() {
-        if (Vue.router.app.$route.path != "/" + LangConfig.getRouterLang()) {
-            Vue.router.push("/" + LangConfig.getRouterLang());
+        if (Vue.router.app.$route.path != Vue.prePath) {
+            Vue.router.push("/");
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();

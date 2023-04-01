@@ -163,8 +163,6 @@ export function getRouter(): VueRouter {
         }
 
         router = new VueRouter({
-            mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
-            // mode: "history",
             routes,
         });
         router.beforeEach((to: any, from: any, next: any) => {

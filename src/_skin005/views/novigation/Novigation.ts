@@ -123,8 +123,11 @@ export default class Novigation extends AbstractView {
         this.Change();
     }
     onMiniChange() {
-        if (this.$vuetify.breakpoint.mobile) return;
-
+        //console.log("图标点击-----");
+        if (this.$vuetify.breakpoint.mobile) {
+            PanelUtil.appproxy.setNovigationPanelShow(false);
+            return;
+        }
         this.myProxy.isminiMenu = !this.myProxy.isminiMenu;
     }
     Change() {

@@ -96,6 +96,16 @@ export default class APP extends AbstractView {
         }
     }
 
+    get isShowFooter() {
+        if (
+            this.$route.path.includes("page_game_soccer") ||
+            this.$route.path.includes("page_game_play") ||
+            this.$route.path.includes("cricket")
+        ) {
+            return false;
+        }
+        return true;
+    }
     @Watch("myProxy.bshowNovigationPanel")
     novigationPanelShow() {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);

@@ -23,7 +23,7 @@
                 <v-main id="mainpage" color="transparent" class="overflow-hidden">
                     <div id="router_page" class="overflow-hidden">
                         <router-view />
-                        <Footer  />
+                        <Footer v-if="isShowFooter" />
                     </div>
                 </v-main>
                 <MobileMenu v-if="!$route.path.includes('page_game_play')" />

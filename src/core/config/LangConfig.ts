@@ -21,7 +21,7 @@ export default class LangConfig {
                 puremvc.Facade.getInstance().sendNotification(NotificationName.LANG_CONFIG);
             })
             .catch(() => {
-                alert("语言包获取失败");
+                alert("Failed to get language pack");
                 window.location.reload();
             });
     }

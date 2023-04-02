@@ -385,11 +385,11 @@ export default class NetObserver extends AbstractMediator {
         window.chatConfig = {
             CA_SCRIPT: "https://in1-ccaas-api.ozonetel.com/chatwidgetv2/caChatAPI.js",
             clientInfo: {
-                DID: "08045574230",
+                DID: "918048811462",
                 API_KEY: "KKcd02d4b3125146c88091dc668ce6bf02",
             },
             widgetConfig: {
-                title: "Demo",
+                title: "96 CS",
                 headerLogo: "https://ozonetel.com/wp-content/uploads/2022/03/O-Image.png.webp",
                 showHeaderLogo: true,
             },

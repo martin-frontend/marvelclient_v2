@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PixelEvenManager from "@/_skin005/core/PixelEvenManager";
 
 export default class DialogRegisterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -26,6 +27,8 @@ export default class DialogRegisterMediator extends AbstractMediator {
                 myProxy.pageData.bShow = false;
                 MultDialogManager.onClosePanel();
                 this.loginSuccess(body);
+                PixelEvenManager.Instance.onRegisterSuccess();
+                PixelEvenManager.Instance.onLoginSuccess();
                 //headerProxy.openMenu();
                 break;
             case net.EventType.api_public_auth_code:

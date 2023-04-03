@@ -3,6 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import PixelEvenManager from "@/_skin005/core/PixelEvenManager";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -45,13 +46,13 @@ export class RechargeProxy extends puremvc.Proxy {
             requires: <any>{},
         },
         gold_index: 0,
-        isLoadData:true, //是否正在加载数据，或者是否正在等待 数据
+        isLoadData: true, //是否正在加载数据，或者是否正在等待 数据
     };
 
-    public get isHaveData() : boolean {
-        return (Object.keys(this.pageData.methodList)).length > 0;
+    public get isHaveData(): boolean {
+        return Object.keys(this.pageData.methodList).length > 0;
     }
-    
+
     setData(data: any) {
         this.pageData.loading = false;
         this.pageData.methodList = data;
@@ -81,7 +82,6 @@ export class RechargeProxy extends puremvc.Proxy {
                     data[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].recharge_channel_id;
 
                 if (data[coin_name_unique].options[block_network_id]) {
-
                     //如果payemthod_id == 5 则选择输入金额
                     if (data[coin_name_unique].options[block_network_id].payemthod_id == 5) {
                         const fixed_gold_list = data[coin_name_unique].options[block_network_id].fixed_gold_list;
@@ -128,7 +128,10 @@ export class RechargeProxy extends puremvc.Proxy {
     }
 
     api_user_var_recharge_address() {
-        if (this.pageData.methodList[this.pageData.form.coin_name_unique] && this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4) {
+        if (
+            this.pageData.methodList[this.pageData.form.coin_name_unique] &&
+            this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4
+        ) {
             this.pageData.loading = true;
             const formCopy = { user_id: core.user_id };
             Object.assign(formCopy, this.pageData.form);
@@ -138,7 +141,7 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    api_user_var_recharge_create(requires:any = null) {
+    api_user_var_recharge_create(requires: any = null) {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         //const data = <any>{ user_id: core.user_id };
@@ -155,11 +158,10 @@ export class RechargeProxy extends puremvc.Proxy {
             subtitle: subtitle,
         };
 
-        if (requires && requires.length > 0)
-        {
+        if (requires && requires.length > 0) {
             for (let index = 0; index < requires.length; index++) {
                 const element = requires[index];
-                data[element.title] =  element.inputValue;
+                data[element.title] = element.inputValue;
             }
         }
         // if (this.pageData.form.requires && this.pageData.form.requires.length > 0) {
@@ -171,6 +173,7 @@ export class RechargeProxy extends puremvc.Proxy {
         //     }
         // }
         console.log("请求 充值 数据", data);
+        PixelEvenManager.Instance.onSendRecharge({ value: data.amount, currency: data.coin_name_unique });
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
 }
@@ -197,7 +200,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             subtitle: "",
             requires: <any>{},
         },
-        isLoadData:true, //是否正在加载数据，或者是否正在等待 数据
+        isLoadData: true, //是否正在加载数据，或者是否正在等待 数据
     };
 
     resetform() {
@@ -207,8 +210,8 @@ export class ExchangeProxy extends puremvc.Proxy {
             password_gold: "",
         });
     }
-    public get isHaveData() : boolean {
-        return (Object.keys(this.pageData.methodList)).length > 0;
+    public get isHaveData(): boolean {
+        return Object.keys(this.pageData.methodList).length > 0;
     }
     setData(data: any) {
         this.pageData.isLoadData = false;
@@ -241,7 +244,6 @@ export class ExchangeProxy extends puremvc.Proxy {
                         this.pageData.form.block_network_id
                     ].exchange_channel_method_id;
                 console.log("----block_network_id----", block_network_id);
-
             }
         }
     }
@@ -278,9 +280,7 @@ export class ExchangeProxy extends puremvc.Proxy {
                 user_id: core.user_id,
                 password_gold: core.MD5.createInstance().hex_md5(password_gold),
             });
-        }
-        else
-        {
+        } else {
             const {
                 amount,
                 exchange_channel_id,
@@ -306,13 +306,13 @@ export class ExchangeProxy extends puremvc.Proxy {
                 exchange_channel_method_id,
                 user_id: core.user_id,
                 password_gold: core.MD5.createInstance().hex_md5(password_gold),
-            }
+            };
 
             for (let index = 0; index < requires.length; index++) {
                 const element = requires[index];
-                data[element.title] =  element.inputValue;
+                data[element.title] = element.inputValue;
             }
-            console.log(" 兑换发送的数据" ,data );
+            console.log(" 兑换发送的数据", data);
             this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
         }
     }

@@ -282,6 +282,7 @@ export default class TabRecharge extends AbstractView {
         this.jumpTo("#animbtn");
         this.form.third_id = item.third_id;
         this.form.requires = item.requires;
+        this.form.subtitle = item.subtitle;
         this.curSelectItem = item;
     }
     get gold_info() {

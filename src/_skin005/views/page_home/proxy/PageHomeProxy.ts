@@ -9,11 +9,11 @@ export default class PageHomeProxy extends puremvc.Proxy {
     public onRegister(): void {
         if (ModulesHelper.IsShow_FootBallHot()) {
             setInterval(() => {
-                if (Vue.router.currentRoute.path == Vue.prePath) {
+                if (Vue.router.currentRoute.path == Vue.prePath || Vue.router.currentRoute.path == Vue.prePath + "/") {
                     this.api_vendor_96_products();
                 }
             }, 5000);
-            if (Vue.router.currentRoute.path == Vue.prePath) {
+            if (Vue.router.currentRoute.path == Vue.prePath || Vue.router.currentRoute.path == Vue.prePath + "/") {
                 this.api_vendor_96_products();
             }
         }

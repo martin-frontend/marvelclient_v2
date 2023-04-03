@@ -65,6 +65,9 @@ $(document).ready(function () {
             sendPostMessage({ action: "auth_code" });
         } else if (register_type == 2) {
             sendPostMessage({ action: "email_send", params: { email: $("#username").val(), auth_code: $("#formItemVerifyCode1").val() } });
+            $("#loading").css("display", "flex");
+            $("#formItemVerifyCode1").val("");
+            sendPostMessage({ action: "auth_code" });
         }
     });
 

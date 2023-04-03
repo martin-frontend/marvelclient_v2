@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "vue-cli-service serve",
         "build:prod": "vue-cli-service build",
+        "build:landing": "vue-cli-service build --mode landing",
         "build:skin003": "vue-cli-service build --mode skin003",
         "build:skin004": "vue-cli-service build --mode skin004",
         "build:skin004_1": "vue-cli-service build --mode skin004_1",
@@ -14,6 +15,7 @@
         "build:skin100": "vue-cli-service build --mode skin100",
         "build:skin101": "vue-cli-service build --mode skin101",
         "build:dev_h5": "vue-cli-service build --mode h5",
+        "build:dev_landing": "vue-cli-service build --mode dev_landing",
         "build:dev_skin003": "vue-cli-service build --mode dev_skin003",
         "build:dev_skin004": "vue-cli-service build --mode dev_skin004",
         "build:dev_skin004_1": "vue-cli-service build --mode dev_skin004_1",

@@ -1,5 +1,17 @@
 /**皮肤配置 */
 const skinMap = {
+    landing: {
+        public_dir: "public_landing",
+        pages: {
+            landing: {
+                entry: "src/_landing/main.ts",
+                template: "public_landing/index.html",
+                filename: "index.html",
+                title: "landing",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin003: {
         public_dir: "public_skin003",
         pages: {

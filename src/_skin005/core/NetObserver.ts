@@ -162,6 +162,7 @@ export default class NetObserver extends AbstractMediator {
                     if (SkinVariable.isNeedKefu) {
                         this.addKefu();
                     }
+                    document.title = LangUtil("96 Sports");
                 }
                 break;
             case net.EventType.api_user_logout:
@@ -233,7 +234,7 @@ export default class NetObserver extends AbstractMediator {
                         msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
                         isShowConfig = true;
                     }
-                    this.openGameUrl(body, msgstr,isShowConfig);
+                    this.openGameUrl(body, msgstr, isShowConfig);
                 }
                 break;
             case net.EventType.api_plat_var_notice_index:

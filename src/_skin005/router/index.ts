@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LangConfig from "@/core/config/LangConfig";
 import GameConfig from "@/core/config/GameConfig";
+import LangUtil from "@/core/global/LangUtil";
 
 Vue.use(VueRouter);
 
@@ -316,7 +317,7 @@ function addMetaWithType(type: string) {
             );
             break;
         default:
-            document.title = "96";
+            document.title = LangUtil("96 Sports");
             break;
     }
 }

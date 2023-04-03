@@ -390,7 +390,7 @@ export default class NetObserver extends AbstractMediator {
             },
             widgetConfig: {
                 title: "96 CS",
-                headerLogo: "https://ozonetel.com/wp-content/uploads/2022/03/O-Image.png.webp",
+                headerLogo: "loding_icon_5.png",
                 showHeaderLogo: true,
             },
             userForm: [
@@ -416,7 +416,7 @@ export default class NetObserver extends AbstractMediator {
                 },
             ],
             theme: {
-                primary: "#007bff",
+                primary: "#FEBA00",
                 conversation: {
                     body: "#FFFF",
                     messagePreview: "#f4f7f9",

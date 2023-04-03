@@ -113,7 +113,7 @@ export default class APP extends AbstractView {
     get isShowGuide() {
         if (!this.$vuetify.breakpoint.mobile || !this.myProxy.isShowGuide) return false;
 
-        if (this.$route.path == Vue.prePath) return true;
+        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 
         if (this.$route.path.includes("cricket") || this.$route.path.includes("page_game_soccer")) return false;
         

@@ -1,17 +1,28 @@
-var http = {
-    post: function (url, data = {}, callback) {
+import LandConfig from "./config/LandConfig";
+
+function getFormWithObject(obj: any) {
+    const fData = new FormData();
+    for (const key of Object.keys(obj)) {
+        if (obj[key]) fData.append(key, obj[key]);
+    }
+    return fData;
+}
+
+const http = {
+    post: function (url: string, data?: any, callback?: any) {
+        if (!data) data = {};
         data.device_type = 3;
         data.app_type = 4;
-        data.device = uuid;
-        data.plat_id = config.platID;
-        data.channel_id = config.channelID;
+        data.device = core.device;
+        data.plat_id = LandConfig.config.platID;
+        data.channel_id = LandConfig.config.channelID;
 
         console.group("request: ", url);
         console.log(data);
         console.groupEnd();
 
-        var request = new XMLHttpRequest();
-        request.open("post", config.apiUrl + url);
+        const request = new XMLHttpRequest();
+        request.open("post", LandConfig.config.apiUrl + url);
         request.send(getFormWithObject(data));
         request.onload = function () {
             if (request.status == 200) {
@@ -25,39 +36,45 @@ var http = {
     },
 };
 
-function api_public_area_code() {
-    http.post("/api/public/area_code", { lang: window.config.lang || "en_EN" }, function (response) {
-        const ifr = document.getElementById("ifr");
+export function api_public_area_code() {
+    http.post("/api/public/area_code", { lang: LandConfig.config.lang || "en_EN" }, function (response: any) {
+        const ifr: any = document.getElementById("ifr");
         if (ifr) {
             ifr.contentWindow.postMessage({ action: "api_public_area_code", params: response.data }, "*");
         }
     });
 }
 
-function api_public_auth_code() {
-    http.post("/api/public/auth_code", { uuid: uuid, lang: window.config.lang || "en_EN" }, function (response) {
-        const ifr = document.getElementById("ifr");
+export function api_public_auth_code() {
+    http.post("/api/public/auth_code", { uuid: core.device, lang: LandConfig.config.lang || "en_EN" }, function (response: any) {
+        const ifr: any = document.getElementById("ifr");
         if (ifr) {
             ifr.contentWindow.postMessage({ action: "api_public_auth_code", params: response.data }, "*");
         }
     });
 }
 
-function api_public_email_send(params) {
+export function api_public_email_send(params: any) {
     http.post(
         "/api/public/email/send",
-        { type: 6, email: params.email, auth_code: params.auth_code, uuid: uuid, lang: window.config.lang || "en_EN" },
-        function (response) {
+        { type: 6, email: params.email, auth_code: params.auth_code, uuid: core.device, lang: LandConfig.config.lang || "en_EN" },
+        function (response: any) {
             console.log(">>>>>>api_public_email_send: ", response);
-            const ifr = document.getElementById("ifr");
-            if (ifr) {
-                ifr.contentWindow.postMessage({ action: "api_public_email_send", params: response.data }, "*");
+            const ifr: any = document.getElementById("ifr");
+            if (response.status == 0) {
+                if (ifr) {
+                    ifr.contentWindow.postMessage({ action: "sms_success" }, "*");
+                }
+            } else {
+                if (ifr) {
+                    ifr.contentWindow.postMessage({ action: "api_public_sms_send", params: response.data }, "*");
+                }
             }
         }
     );
 }
 
-function api_public_sms_send(params) {
+export function api_public_sms_send(params: any) {
     http.post(
         "/api/public/sms/send",
         {
@@ -65,16 +82,16 @@ function api_public_sms_send(params) {
             mobile: params.mobile,
             auth_code: params.auth_code,
             area_code: params.area_code,
-            uuid: uuid,
-            lang: window.config.lang || "en_EN",
+            uuid: core.device,
+            lang: LandConfig.config.lang || "en_EN",
         },
-        function (response) {
+        function (response: any) {
+            const ifr: any = document.getElementById("ifr");
             if (response.status == 0) {
                 if (ifr) {
                     ifr.contentWindow.postMessage({ action: "sms_success" }, "*");
                 }
             } else {
-                const ifr = document.getElementById("ifr");
                 if (ifr) {
                     ifr.contentWindow.postMessage({ action: "api_public_sms_send", params: response }, "*");
                 }
@@ -83,7 +100,7 @@ function api_public_sms_send(params) {
     );
 }
 
-function api_user_register(params) {
+export function api_user_register(params: any) {
     http.post(
         "/api/user/register",
         {
@@ -94,19 +111,19 @@ function api_user_register(params) {
             verify_code: params.verify_code,
             area_code: params.area_code,
             register_type: params.register_type,
-            uuid: uuid,
+            uuid: core.device,
             mobile_username: params.mobile_username,
-            lang: window.config.lang || "en_EN",
+            lang: LandConfig.config.lang || "en_EN",
         },
-        function (data) {
+        function (data: any) {
+            const ifr: any = document.getElementById("ifr");
             if (data.status == 0) {
-                // location.href = config.platUrl;
                 if (ifr) {
                     ifr.contentWindow.postMessage({ action: "register_succeed", params: data }, "*");
                 }
             } else {
                 api_public_auth_code();
-                const ifr = document.getElementById("ifr");
+
                 if (ifr) {
                     ifr.contentWindow.postMessage({ action: "api_user_register", params: data }, "*");
                 }
@@ -131,7 +148,7 @@ window.addEventListener("message", function (e) {
             api_user_register(e.data.params);
             break;
         case "go_home":
-            this.location.href = this.window.config.platUrl;
+            this.location.href = LandConfig.config.platUrl;
             break;
     }
 });

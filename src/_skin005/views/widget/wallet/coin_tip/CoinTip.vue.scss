@@ -22,7 +22,16 @@
 }
 
 .tip_left{
-    right: 135px;
+    right: 210px;
+    top:-22px;
+    &:after {
+        right: -9px;
+        top: 15px;
+        transform: rotateY(180deg);
+    }
+}
+.tip_left_mob{
+    right: 175px;
     top:-22px;
     &:after {
         right: -9px;
@@ -32,7 +41,7 @@
 }
 
 .tip_right{
-    left: 70px;
+    left: 5px;
     top:-22px;
     &:after {
         left: -10px;
@@ -41,7 +50,8 @@
 }
 
 .tip_test{
-    position: relative;
+    position: absolute;
+    right: 0px;
 }
 @keyframes shake {
     0%, 100% {

@@ -6,6 +6,7 @@ import { getVersion } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import FooterMediator from "./FooterMediator";
+import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class Footer extends AbstractView {
@@ -69,6 +70,16 @@ export default class Footer extends AbstractView {
         return item.vendor_icon;
     }
 
+    public get footerNoticeData(): core.PlatNoticeVO[] {
+        return this.noticeProxy.getListTypeDataFromType(12);
+    }
+
+    onFooterImgClick(item: any) {
+        console.log("收到点击", item);
+        if (item.open_mode == 1 && item.open_mode_url) {
+            OpenLink(item.open_mode_url);
+        }
+    }
     goService() {
         //dialog_service.show();
         PanelUtil.openpanel_service();

@@ -21,6 +21,16 @@
             <img :src="item.vendor_icon"  :height="$vuetify.breakpoint.mobile ? 40:70" class="mx-2"  ></img>
         </v-card>
     </v-sheet>
+
+    <v-sheet v-if="footerNoticeData.length > 0" class=" d-flex flex-wrap justify-center" width="100%" color="transparent">
+        <v-card v-for="(item, key) of footerNoticeData" :key="item.id" class="my-2" :height="$vuetify.breakpoint.mobile ? 40:70" flat color="transparent" @click="onFooterImgClick(item)"
+        :ripple="false">     
+            <img v-if="$vuetify.breakpoint.mobile" :src="item.img_url_phone" height="40" class="mx-2"  />
+            <img v-else :src="item.img_url" height="70" class="mx-2"  />
+        </v-card>
+    </v-sheet>
+
+
     <template v-if="SkinVariable.isShowFootDetail">
         <v-sheet class="d-flex justify-center foot_text_color" max-width="80%" color="transparent">
             <div class="foot_text_color" style="text-align: center;"> {{LangUtil("底部产品描述")}}</div>

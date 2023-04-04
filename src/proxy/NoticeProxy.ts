@@ -16,6 +16,7 @@ export default class NoticeProxy extends puremvc.Proxy {
         this.api_plat_var_notice_index();
     }
 
+    allData = <core.PlatNoticeVO[][]>{};
     data = {
         listAll: <core.PlatNoticeVO[]>[],
         listType1: <core.PlatNoticeVO[]>[],
@@ -49,10 +50,23 @@ export default class NoticeProxy extends puremvc.Proxy {
                 default:
                     break;
             }
+            if (!this.allData[item.type_position]){
+                this.allData[item.type_position] = <core.PlatNoticeVO[]>[];
+            }
+            this.allData[item.type_position].push(item);
         }
         this.data = Object.freeze(this.data);
     }
 
+    
+    public getListTypeDataFromType( type:number):core.PlatNoticeVO[] {
+        if (!this.allData[type])
+        {
+            this.allData[type] = <core.PlatNoticeVO[]>[];
+        }
+        return this.allData[type];
+    }
+    
     jump(item: core.PlatNoticeVO) {
         //跳转模块:1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易|8-Swap
         console.log(">>>>>", item.open_mode);

@@ -13,4 +13,5 @@ interface ConfigVO {
     platUrl: string; //跳转平台地址
 
     upload_version: string;
+    faceBookEvent: number;
 }

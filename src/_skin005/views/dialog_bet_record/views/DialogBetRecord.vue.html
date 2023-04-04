@@ -94,8 +94,9 @@
                     <span v-if="is_send_coin" class="userInfo_color--text">
                         {{pageData.total_bet_gold_coin}}
                     </span>
-                    <span v-else class="userInfo_color--text">
-                        <span style="font-family: Arial;">≈</span>{{pageData.total_bet_gold}}
+                    <span v-else>
+                        <span style="font-family: Arial;">≈</span>
+                        <span class="userInfo_color--text"> {{pageData.total_bet_gold}}</span>
                     </span>
                 </div>
 
@@ -109,13 +110,16 @@
                     </span>
                 </div>
 
-                <div class="ml-5 d-flex flex-wrap primary--text">{{LangUtil("输赢")}}
-                    <div v-if="!is_send_coin" >
+                <div class="ml-5 primary--text">{{LangUtil("输赢")}}
+                    <span v-if="!is_send_coin" >
                         <span style="font-family: Arial;">≈</span>
                         <span :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</span>
-                    </div>
-                    <div v-else :class="getMoneyColor(pageData.total_win_gold_coin)" >
-                        {{getMoneyValue(pageData.total_win_gold_coin)}}</div>
+                    </span>
+                    <span v-else class="userInfo_color--text">
+                        <span :class="getMoneyColor(pageData.total_win_gold_coin)" >
+                            {{getMoneyValue(pageData.total_win_gold_coin)}}</span>
+                    </span>
+
                 </div>
 
                 <div v-if="isShowMyWater" class="ml-5 primary--text">{{LangUtil("用户返水")}}

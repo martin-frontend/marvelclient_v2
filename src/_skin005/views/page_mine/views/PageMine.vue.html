@@ -138,7 +138,7 @@
                                             class="textGreen--text text-20 ml-2 font-weight-bold">{{
                                             pageData.trial.main }}</div>
 
-                                        <btn-yellow class="ml-auto mt-2 mb-2 mr-2 text-16"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-16"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -154,7 +154,7 @@
                                         <div class="red--text text-20 ml-2 font-weight-bold">{{
                                             pageData.trial.reward }}</div>
 
-                                        <btn-yellow class="ml-auto mt-2 mb-2 mr-2 text-16 font-weight-bold"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-16 font-weight-bold"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -400,7 +400,7 @@
                                             class="textGreen--text text-16 ml-2 font-weight-bold">{{
                                             pageData.trial.main }}</div>
 
-                                        <btn-yellow class="ml-auto mt-2 mb-2 mr-2 text-14"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -416,7 +416,7 @@
                                         <div class="red--text text-16 ml-2 font-weight-bold">{{
                                             pageData.trial.reward }}</div>
 
-                                        <btn-yellow class="ml-auto mt-2 mb-2 mr-2 text-14"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>

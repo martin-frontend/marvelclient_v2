@@ -43,14 +43,24 @@ export default class Wallet extends AbstractView {
         PanelUtil.openpanel_game_rate();
     }
     
-    public get isShowTips() : boolean {
-
-        if (this.$vuetify.breakpoint.xsOnly) {
-            return false;
+    
+    public get content_class() : string {
+        if (this.$vuetify.breakpoint.mobile) {
+            return "menu transform_mob";
         }
         else {
+            return "menu";
+        } 
+    }
+    
+    public get isShowTips() : boolean {
+
+        // if (this.$vuetify.breakpoint.xsOnly) {
+        //     return false;
+        // }
+        // else {
             return true;
-        }
+        // }
     }
     
     public get isShowRecharge() : boolean {

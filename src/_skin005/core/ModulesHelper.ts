@@ -71,6 +71,13 @@ function IsShow_FootBallHot() {
     return _isValueTrue("footballHot")
 }
 /**
+ * 是否显示 首页返水的领取
+ */
+function IsShow_GameWaterManualReceive() {
+    return _isValueTrue("gameWaterManualReceive")
+}
+
+/**
  * //是否显示 代理管理
  * @returns 
  */
@@ -146,4 +153,5 @@ export default {
     isShow_Kefu,
     IsShow_FootBall,
     IsShow_FootBallHot,
+    IsShow_GameWaterManualReceive,
 }

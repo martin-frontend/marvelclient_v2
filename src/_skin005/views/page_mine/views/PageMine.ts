@@ -9,6 +9,7 @@ import { checkMultiline } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
 import GlobalVar from "@/core/global/GlobalVar";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -17,6 +18,7 @@ export default class PageMine extends AbstractView {
     fagProxy: FagProxy = this.getProxy(FagProxy);
     LangUtil = LangUtil;
     checkMultiline = checkMultiline;
+    ModulesHelper = ModulesHelper;
     core = core;
     private xsOnly = false;
     private progressLinear = 6;
@@ -121,8 +123,7 @@ export default class PageMine extends AbstractView {
     get vip_bg_path() {
         if (this.$vuetify.theme.dark) {
             return require(`@/_skin005/assets/mine/item_bg_dark.png`);
-        }
-        else {
+        } else {
             return require(`@/_skin005/assets/mine/item_bg.png`);
         }
     }

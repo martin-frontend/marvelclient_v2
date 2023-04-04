@@ -4,7 +4,7 @@
     class="rounded10 d-flex align-center box"
     width="100%"
 >
-    <v-menu content-class="menu" offset-y nudge-bottom="2">
+    <v-menu :content-class="content_class" offset-y nudge-bottom="2">
         <template v-slot:activator="{ on, attrs,value }">
             <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
                 <v-sheet

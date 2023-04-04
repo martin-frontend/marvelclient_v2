@@ -62,9 +62,10 @@
                                     :src="pageData.platCoins.mainCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
-                                        <span class="textYellow--text next_title">{{
+                                        <!-- <span class="textYellow--text next_title">{{
                                             pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
-                                            ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span>
+                                            ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span> -->
+                                            <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励1")}}</span>  
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-20 ">
@@ -88,9 +89,10 @@
                                     :src="pageData.platCoins.rewardCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
-                                        <span class="textYellow--text next_title">{{
+                                        <!-- <span class="textYellow--text next_title">{{
                                             pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}
-                                            ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
+                                            ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span> -->
+                                            <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励2")}}</span>  
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-20 bold_text">{{
@@ -249,10 +251,10 @@
                                             class="d-flex flex-column justify-start align-center">
                                             <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
                                                 {{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</v-sheet>
-                                            <v-sheet class="mt-1nomal_text_1--text text-truncate" color="transparent" width="155" style="text-align: center;">
+                                            <v-sheet class="my-3 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
                                                 {{LangUtil("vip_level_deal_main_2_"+(level + 1))}}
                                             </v-sheet>
-                                            <v-sheet class="nomal_text_1--text mt-1 text-truncate bold_text" color="transparent" width="155"  style="text-align: center;">
+                                            <v-sheet class="nomal_text_1--text text-truncate bold_text" color="transparent" width="155"  style="text-align: center;">
                                                 {{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</v-sheet>
                                         </v-sheet>
                                         <!-- 奖励币 -->
@@ -260,10 +262,10 @@
                                             class="d-flex flex-column justify-start align-center">
                                             <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
                                                 {{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</v-sheet>
-                                            <v-sheet class="mt-1nomal_text_1--text text-truncate" color="transparent" width="155" style="text-align: center;"> 
+                                            <v-sheet class="my-3 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;"> 
                                                 {{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}
                                             </v-sheet>
-                                            <v-sheet class="nomal_text_1--text mt-1 text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
+                                            <v-sheet class="nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
                                                 {{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</v-sheet>
                                         </v-sheet>
                                     </div>
@@ -530,9 +532,10 @@
                                     :src="pageData.platCoins.mainCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
-                                        <span class="textYellow--text ">{{
+                                        <!-- <span class="textYellow--text ">{{
                                             pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
-                                            ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span>
+                                            ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span> -->
+                                            <span class="textYellow--text">{{LangUtil("返水晋级奖励1")}}</span>  
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-14">
@@ -557,9 +560,10 @@
                                     :src="pageData.platCoins.rewardCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
-                                        <span class="textYellow--text ">{{
+                                        <!-- <span class="textYellow--text ">{{
                                             pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}
-                                            ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
+                                            ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span> -->
+                                            <span class="textYellow--text ">{{LangUtil("返水晋级奖励2")}}</span>  
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-14">{{
@@ -591,7 +595,7 @@
                     class="level_box rounded_customized py-1 d-flex justify-space-around mb-1 sheetOutlined">
                     <div class="d-flex align-center">
                         <v-img max-width="52" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
-                        <span class="font-weight-medium primary--text">VIP {{ myProxy.getVipLevel(level) }}</span>
+                        <span class="font-weight-medium primary--text bold_text">{{LangUtil("VIP")}} {{ myProxy.getVipLevel(level) }}</span>
                     </div>
                     <template v-if="!ModulesHelper.IsShow_VipShowDeal()">
                         <template v-if="item.backwater_config[2].backwater_rate > 0">
@@ -632,7 +636,7 @@
                                 <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</span>
                             </div>
                             <div class="d-flex align-center ">
-                                <span class=" textGray--text ">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
                             </div>
 
                             <div class="d-flex align-center ">
@@ -647,7 +651,7 @@
                                 <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</span>
                             </div>
                             <div class="d-flex align-center ">
-                                <span class=" textGray--text ">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
                             </div>
 
                             <div class="d-flex align-center ">

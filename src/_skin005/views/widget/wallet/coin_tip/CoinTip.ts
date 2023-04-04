@@ -15,13 +15,14 @@ export default class CoinTip extends AbstractView {
             _class = _class + " tip_color_pc";
         }
 
-        if (this.isLeft) {
-            if (this.$vuetify.breakpoint.xsOnly) {
-                _class = _class + " tip_left_mob";
-            } else {
-                _class = _class + " tip_left";
-            }
-        } else {
+        // if (this.isLeft) {
+        //     if (this.$vuetify.breakpoint.xsOnly) {
+        //         _class = _class + " tip_left_mob";
+        //     } else {
+        //         _class = _class + " tip_left";
+        //     }
+        // } else 
+        {
             _class = _class + " tip_right";
         }
 

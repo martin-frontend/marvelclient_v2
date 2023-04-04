@@ -91,7 +91,7 @@ module net {
         api_vendor_var_lobby_simple: "api/vendor/{vendor_id}/lobby/simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: "api/vendor/{vendor_id}/ori_product/visitor/show/{ori_product_id}",
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: "api/plat/{plat_id}/game/menu",
@@ -298,6 +298,8 @@ module net {
         api_user_var_agent_direct_deduction: "api/user/{user_id}/agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: "api/user/{user_id}/credit_dividend_period",
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: "api/user/{user_id}/agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
@@ -410,7 +412,7 @@ module net {
         api_vendor_var_lobby_simple: "api_vendor_var_lobby_simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api_vendor_var_ori_product_show_var",
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: "api_vendor_var_ori_product_visitor_show_var",
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: "api_plat_var_game_menu",
@@ -617,6 +619,8 @@ module net {
         api_user_var_agent_direct_deduction: "api_user_var_agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api_user_var_credit_statistic",
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: "api_user_var_credit_dividend_period",
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: "api_user_var_agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
@@ -794,6 +798,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_direct_user_update, cmd_api_user_var_agent_direct_user_update);
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction, cmd_api_user_var_agent_direct_deduction);
         facade.registerCommand(HttpType.api_user_var_credit_statistic, cmd_api_user_var_credit_statistic);
+        facade.registerCommand(HttpType.api_user_var_credit_dividend_period, cmd_api_user_var_credit_dividend_period);
         facade.registerCommand(HttpType.api_user_var_agent_credit_transfer, cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(HttpType.api_user_var_direct_register, cmd_api_user_var_direct_register);
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);

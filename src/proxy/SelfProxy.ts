@@ -51,6 +51,7 @@ export default class SelfProxy extends AbstractProxy {
         show_promote: 0,
         invite_user_id: 0,
         vip_info:<any>{},
+        water_config:<any>{},
     };
     /**红点信息 */
     red_dot_tips = {

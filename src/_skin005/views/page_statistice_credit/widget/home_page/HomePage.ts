@@ -7,21 +7,24 @@ import PageStatisticeCreditProxy from "../../proxy/PageStatisticeCreditProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
 
 import CopyUtil from "@/core/global/CopyUtil";
-
+import { changeDateShow } from "@/core/global/Functions";
+import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 
 @Component
 export default class HomePage extends AbstractView {
     LangUtil = LangUtil;
     playerInfo = PanelUtil.getProxy_selfproxy;
-    myProxy : PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
+    myProxy: PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
     pageData = this.myProxy.pageData;
-
+    getMoneyColor = getMoneyColor;
+    getMoneyValue = getMoneyValue;
     // constructor() {
     //     super(DialogDirectlyMyMediator);
     // }
     mounted() {
         console.log("创建发送请求");
         this.myProxy.api_user_var_commission_commissiondetail();
+        this.myProxy.api_user_var_credit_dividend_period();
     }
     getConfigName(type: any) {
         return Constant.GameTypeText(type);
@@ -75,7 +78,7 @@ export default class HomePage extends AbstractView {
     reget() {
         this.myProxy.api_user_var_short_chain(1);
     }
-    copy( msg:any) {
+    copy(msg: any) {
         CopyUtil(msg);
         PanelUtil.message_info(LangUtil("复制成功"));
 
@@ -83,5 +86,13 @@ export default class HomePage extends AbstractView {
     }
     handlerDirectly() {
         PanelUtil.openpanel_directly();
+    }
+    onTimeChange(key: any) {
+        this.myProxy.pageData.credit_tab = key;
+        console.log("收到点击 标题  ", key);
+        this.myProxy.pageData.curCreditData = this.myProxy.pageData.credit_dividend_period[this.myProxy.pageData.credit_tab];
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
     }
 }

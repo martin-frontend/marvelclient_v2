@@ -4,21 +4,20 @@
  * @returns 颜色类
  */
 export function getMoneyColor(str: any): string {
+    if (!str) return "";
     let amount = 0;
     if (typeof str == "string") {
         const newstr = str.replace("$", "");
         amount = Number(newstr);
-    }
-    else {
+    } else {
         amount = str;
     }
     if (amount == 0) {
-        return ""
+        return "";
     }
     if (amount < 0) {
         return "red--text";
-    }
-    else if (amount > 0) {
+    } else if (amount > 0) {
         return "textGreen--text";
     }
     return "";
@@ -30,18 +29,22 @@ export function getMoneyColor(str: any): string {
  * @returns + -的文本
  */
 export function getMoneyValue(str: any): string {
-
+    if (!str) return str;
     let amount = 0;
     if (typeof str == "string") {
         const newstr = str.replace("$", "");
         amount = Number(newstr);
-    }
-    else {
+    } else {
         amount = str;
     }
     if (amount == 0) {
-        return str
+        return str;
     }
-    if (!!str && str.search('-') == -1) return "+" + str;
-    return str;
+    let newstr = str;
+    if (typeof str == "number") {
+        newstr = str + "";
+    }
+
+    if (!!newstr && newstr.search("-") == -1) return "+" + newstr;
+    return newstr;
 }

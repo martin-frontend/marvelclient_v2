@@ -1,127 +1,114 @@
-<v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile ? 'pad_top_mob' : 'pad_height'" >
+<v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile ? 'pad_top_mob' : 'pad_height'">
     <template v-if="!$vuetify.breakpoint.mobile">
-        <v-sheet color="transparent" class="d-flex">
-            <v-row dense>
-                <v-col cols="6">
-                    <v-card flat class="fill-height px-4 rounded10" width="100%" color="bgBanner" min-height="260">
-                        <v-sheet class="d-flex text-20 align-center" color="transparent" min-height="60">
-                            <v-sheet color="transparent" class="text-20 font-weight-bold">
-                                {{LangUtil("我的占成")}}
-                            </v-sheet>
-                            <div class="textYellow--text text-24 ml-4">
-                                <template v-if="playerInfo.userInfo.credit_rate_min == playerInfo.userInfo.credit_rate_max">
-                                    {{playerInfo.userInfo.credit_rate_min}}{{LangUtil("%")}}
-                                </template>
-                                <template v-else>
-                                    {{playerInfo.userInfo.credit_rate_min}}{{LangUtil("-")}}{{playerInfo.userInfo.credit_rate_max}}{{LangUtil("%")}}
-                                </template>
-                            </div>
-                        </v-sheet>
-                        <v-divider class="mb-2 " />
+        <v-sheet color="transparent" class="d-flex flex-column">
+            <v-card flat class="d-flex px-4 rounded10" width="100%" color="bgBanner" min-height="120">
+                <v-sheet class="d-flexalign-center flex-column mt-4" color="transparent" min-width="100">
+                    <v-sheet color="transparent" class="text-16 font-weight-bold bold_text"> {{LangUtil("我的占成")}} </v-sheet>
+                    <div class="textYellow--text text-24 mt-4 bold_text">
+                        <template v-if="playerInfo.userInfo.credit_rate_min == playerInfo.userInfo.credit_rate_max">
+                            {{playerInfo.userInfo.credit_rate_min}}{{LangUtil("%")}}
+                        </template>
+                        <template v-else>
+                            {{playerInfo.userInfo.credit_rate_min}}{{LangUtil("-")}}{{playerInfo.userInfo.credit_rate_max}}{{LangUtil("%")}}
+                        </template>
+                    </div>
+                </v-sheet>
+                <v-divider vertical class="mx-2" />
 
-                        <v-sheet class="text-16 d-flex align-center font-weight-bold" color="transparent"
-                            min-height="40">
-                            {{LangUtil("我的返水比例")}}
-                        </v-sheet>
-                        <v-sheet color="transparent" class=" d-flex mt-2 justify-space-between" max-width="470">
-                            <template v-for="(item, key) of playerInfo.userInfo.water_config">
+                <v-sheet color="transparent" class="px-4 mt-4">
+                    <v-sheet class="text-16 d-flex align-center font-weight-bold bold_text" color="transparent">
+                        {{LangUtil("我的返水比例")}}
+                    </v-sheet>
+                    <v-sheet color="transparent" class="d-flex mt-2">
+                        <template v-for="(item, key) of playerInfo.userInfo.water_config">
+                            <v-sheet
+                                class="d-flex justify-space-between align-center rounded-pill text-14 px-4 mr-2"
+                                color="water_bg"
+                                :key="key"
+                                v-if="key!=0"
+                                min-height="50"
+                                min-width="115"
+                            >
                                 <v-sheet
-                                    class=" d-flex flex-column justify-space-between align-center rounded-b-pill rounded-t-pill text-14 ml-2"
-                                    color="water_bg" :key="key" v-if="key!=0">
-
-                                    <v-sheet class="d-flex justify-center align-center textGray--text text-16 mt-4 "
-                                        min-width="60" min-height="30" color="transparent">
-                                        {{playerInfo.userInfo.water_config[key] }}
-                                    </v-sheet>
-                                    <v-sheet class="d-flex justify-center align-center textGray--text text-16  "
-                                        min-width="60" min-height="30" color="transparent">
-                                        {{LangUtil("")}}
-                                    </v-sheet>
-                                    <v-sheet class="d-flex justify-center align-center primary--text mb-4 text-12"
-                                        min-width="60" min-height="30" color="transparent" style="text-align: center;">
-                                        {{getConfigName(key) }}
-                                    </v-sheet>
-
+                                    class="d-flex justify-center align-center primary--text text-14"
+                                    color="transparent"
+                                    style="text-align: center"
+                                >
+                                    {{getConfigName(key) }}
                                 </v-sheet>
 
-                            </template>
-                        </v-sheet>
-                    </v-card>
-                </v-col>
-                <v-col cols="6">
-                    <v-card class="rounded10 px-2 py-4 d-flex fill-height" flat height="100%" width="100%" color="bgBanner">
-
-                        <v-sheet color="transparent" min-width="120">
-                            <v-row no-gutters class="d-flex flex-column align-center mt-7 mt-sm-0">
-                                <v-col cols="12">
-                                    <div class="d-flex justify-center mb-2 cursor" @click="showPreview">
-                                        <div ref="qrcode" class="qrcode">
-                                            <v-img :src="pageData.qrCode"></v-img>
-                                        </div>
-                                    </div>
-
-                                </v-col>
-                                <v-col cols="12" class="d-flex flex-column">
-                                    <div class="d-flex justify-center">
-                                        <btn-yellow class="text-16 mb-2" min_width="104" height="36" :btn_type="2"
-                                            @click.native="reget">{{LangUtil("重新获取")}}</btn-yellow>
-                                    </div>
-                                    <div class="d-flex justify-center">
-                                        <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2"
-                                            @click.native="showPreview">{{LangUtil("保存图片")}}</btn-yellow>
-                                    </div>
-                                </v-col>
-                            </v-row>
-
-                        </v-sheet>
-                        <v-divider vertical class="mx-2"/>
-                        <v-card flat class="primary--text ml-2 fill-height d-flex flex-column" color="transparent" style="width:calc(100% - 152px)">
-                            <div class="mb-2 ">{{LangUtil("推广链接")}}</div>
-
-                            <v-sheet height="40" width="100%"
-                                class="pl-2  rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined sheetOutlined_bg textGray--text">
-                                <div class="text-truncate regular_text">{{ myProxy.pageData.link }}</div>
-                                <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
-                                    depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                    @click="copy(myProxy.pageData.link)">
-                                    <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                                </v-btn>
-
+                                <v-sheet
+                                    class="d-flex justify-center align-center textGray--text text-16"
+                                    min-width="30"
+                                    color="transparent"
+                                >
+                                    {{playerInfo.userInfo.water_config[key] }}
+                                </v-sheet>
                             </v-sheet>
+                        </template>
+                    </v-sheet>
+                </v-sheet>
+            </v-card>
 
-                            <div class="mb-2 ">{{LangUtil("邀请码")}}</div>
+            <v-card v-if="pageData.isShowCredit" flat class="mt-4 px-4 py-4 rounded10" width="100%" color="bgBanner">
+                <v-sheet color="transparent" class="text-16 font-weight-bold bold_text"> {{LangUtil("月帐期数表")}} </v-sheet>
 
-                            <v-sheet color="" height="40"
-                                class="pl-2  regular_text rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined sheetOutlined_bg textGray--text">
-                                {{ pretty_user_id }}
-                                <v-btn class="mx-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0"
-                                    depressed :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                                    @click="copy(pretty_user_id)">
-                                    <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                                </v-btn>
-                            </v-sheet>
-                            <div class=" nomal_text--text text-14">
-                                {{LangUtil("1.通过以上链接或者二维码的用户既为您的直属代理;")}}
-                            </div>
-                            <div class=" nomal_text--text text-14">
-                                {{LangUtil("2.用户注册时填写此邀请码，既可成为您的直属代理;")}}
-                            </div>
-                        </v-card>
-                    </v-card>
+                <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
+                    <v-btn
+                        v-for="(item, key) of pageData.credit_dividend_period"
+                        :key="key"
+                        text
+                        class="mr-6"
+                        height="36"
+                        :ripple="false"
+                        min-width="60"
+                        :disabled="pageData.credit_tab == key"
+                        @click="onTimeChange(key)"
+                    >
+                        <span class="text-14"> {{key}} </span>
+                    </v-btn>
+                </v-sheet>
+                <v-divider class="mb-2" />
 
-                </v-col>
-            </v-row>
+                <v-sheet color="transparent" class="d-flex justify-space-between px-2 py-2">
+                    <v-sheet color="transparent" min-width="80" class="text-16 userInfo_color--text">{{LangUtil("期号")}}</v-sheet>
+                    <v-sheet color="transparent" width="200" class="text-16 userInfo_color--text">{{LangUtil("日期")}}</v-sheet>
+                    <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("到公司货量")}}</v-sheet>
+                    <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("给公司贡献")}}</v-sheet>
+                </v-sheet>
+
+                <v-sheet
+                    v-for="(item, key) of pageData.curCreditData"
+                    :key="item.id"
+                    color="transparent"
+                    class="d-flex justify-space-between sheetOutlined px-2 py-2 mb-2"
+                >
+                    <v-sheet color="transparent" min-width="80" class="text-14 primary--text">{{item.date_number}}</v-sheet>
+                    <v-sheet color="transparent" width="200" class="text-14 primary--text"
+                        >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
+                    >
+                    <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
+                        <div v-for="(item_cont, key_cont) of item.amount_to_the_company" :key="key_cont">
+                            <span> {{key_cont}} </span>
+                            <span class="mr-2"> {{item_cont}} </span>
+                        </div>
+                    </v-sheet>
+                    <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
+                        <div v-for="(item_cont, key_cont) of item.contribute_to_the_company" :key="key_cont">
+                            <span> {{key_cont}} </span>
+                            <span class="mr-2" :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+            </v-card>
         </v-sheet>
     </template>
     <!-- 手机版的显示 -->
     <template v-else>
         <v-sheet color="transparent">
-
             <v-card flat class="rounded10 pb-3" width="100%" color="bgBanner">
                 <v-sheet class="d-flex text-14 align-center ml-4 font-weight-Regular" color="transparent" min-height="52">
-                    <v-sheet color="transparent">
-                        {{LangUtil("我的占成")}}
-                    </v-sheet>
+                    <v-sheet color="transparent"> {{LangUtil("我的占成")}} </v-sheet>
                     <div class="textYellow--text font-weight-bold text-14 ml-3">
                         <template v-if="playerInfo.userInfo.credit_rate_min == playerInfo.userInfo.credit_rate_max">
                             {{playerInfo.userInfo.credit_rate_min}}{{LangUtil("%")}}
@@ -131,7 +118,7 @@
                         </template>
                     </div>
                 </v-sheet>
-                <v-divider class="mb-2 " />
+                <v-divider class="mb-2" />
 
                 <v-sheet class="text-12 d-flex align-center ml-4" color="transparent" min-height="30">
                     {{LangUtil("我的返水比例")}}
@@ -139,16 +126,27 @@
                 <v-sheet color="transparent" class="px-2 d-flex mt-1 justify-space-around">
                     <template v-for="(item, key) of playerInfo.userInfo.water_config">
                         <v-sheet
-                            class=" d-flex flex-column justify-space-between align-center rounded-b-pill rounded-t-pill text-12 "
-                            color="water_bg" :key="key" v-if="key!=0">
-
-                            <v-sheet class="d-flex justify-center font-weight-bold align-center textGray--text text-12 mt-2 "
-                                min-width="40" min-height="30" color="transparent">
+                            class="d-flex flex-column justify-space-between align-center rounded-b-pill rounded-t-pill text-12"
+                            color="water_bg"
+                            :key="key"
+                            v-if="key!=0"
+                        >
+                            <v-sheet
+                                class="d-flex justify-center font-weight-bold align-center textGray--text text-12 mt-2"
+                                min-width="40"
+                                min-height="30"
+                                color="transparent"
+                            >
                                 {{playerInfo.userInfo.water_config[key] }}
                             </v-sheet>
-                            
-                            <v-sheet class="d-flex justify-center align-center primary--text mb-2 " width="40"
-                                min-height="30" color="transparent" style="text-align: center;">
+
+                            <v-sheet
+                                class="d-flex justify-center align-center primary--text mb-2"
+                                width="40"
+                                min-height="30"
+                                color="transparent"
+                                style="text-align: center"
+                            >
                                 {{getConfigName(key) }}
                             </v-sheet>
                         </v-sheet>
@@ -157,52 +155,76 @@
             </v-card>
 
             <v-card class="rounded10 px-2 py-2 mt-2 text-12" flat width="100%" color="bgBanner">
+                <v-sheet class="d-flex ml-2 text-14 align-center font-weight-Regular" color="transparent" min-height="42">
+                    <v-sheet color="transparent"> {{LangUtil("月帐期数表")}} </v-sheet>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
+                    <v-btn
+                        v-for="(item, key) of pageData.credit_dividend_period"
+                        :key="key"
+                        text
+                        class="mr-6"
+                        height="36"
+                        :ripple="false"
+                        min-width="60"
+                        :disabled="pageData.credit_tab == key"
+                        @click="onTimeChange(key)"
+                    >
+                        <span class="text-14"> {{key}} </span>
+                    </v-btn>
+                </v-sheet>
+                <v-divider class="mb-2" />
 
-                <v-sheet color="transparent" width="100%" class="d-flex justify-space-around align-center">
-
-                    <div class="d-flex justify-center mb-2 cursor" @click="showPreview">
-                        <div ref="qrcode" class="qrcode">
-                            <v-img :src="pageData.qrCode"></v-img>
-                        </div>
-                    </div>
-
-                    <v-sheet color="transparent" class="d-flex justify-end " width="100%">
-                        <div class="d-flex justify-center">
-                            <btn-yellow class="text-13 yellowweight" min_width="90" height="30" :btn_type="2"
-                                @click.native="reget">{{LangUtil("重新获取")}}</btn-yellow>
-                        </div>
-                        <div class="d-flex justify-center ml-2">
-                            <btn-yellow class="text-13 yellowweight" min_width="90" height="30" :btn_type="2"
-                                @click.native="showPreview">{{LangUtil("保存图片")}}</btn-yellow>
-                        </div>
+                <v-sheet
+                    v-for="(item, key) of pageData.curCreditData"
+                    :key="item.id"
+                    color="transparent"
+                    class="d-flex flex-column px-2 py-2 mb-2"
+                >
+                    <v-sheet class="d-flex justify-space-between" color="transparent">
+                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("期号")}}</v-sheet>
+                        <v-sheet color="transparent" class="text-12 userInfo_color--text">{{item.date_number}}</v-sheet>
                     </v-sheet>
-                </v-sheet>
 
-                <div class="ml-0 mb-2 ">{{LangUtil("推广链接")}}</div>
-                <v-sheet color="transparent" :height="$vuetify.breakpoint.mobile? 36 :46"
-                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined">
-                    <span class="text-truncate textGray--text regular_text">{{ myProxy.pageData.link }}</span>
-                    <v-btn color="transparent" class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 18 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(myProxy.pageData.link)">
-                        <svg-icon icon="copy" class="text-18 copy_icon--text mr-3"></svg-icon>
-                    </v-btn>
+                    <v-sheet class="d-flex justify-space-between" color="transparent">
+                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("日期")}}</v-sheet>
+                        <v-sheet color="transparent" class="text-12 userInfo_color--text"
+                            >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
+                        >
+                    </v-sheet>
 
+                    <v-sheet class="d-flex justify-space-between" color="transparent">
+                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("到公司货量")}}</v-sheet>
+                        <v-sheet color="transparent" class="text-12 userInfo_color--text d-flex flex-column">
+                            <v-sheet
+                                color="transparent"
+                                v-for="(item_cont, key_cont) of item.contribute_to_the_company"
+                                :key="key_cont"
+                                class="userInfo_color--text"
+                            >
+                                <span> {{key_cont}} </span>
+                                <span> {{item_cont}} </span>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-sheet class="d-flex justify-space-between" color="transparent">
+                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("给公司贡献")}}</v-sheet>
+                        <v-sheet color="transparent" class="text-12 d-flex flex-column">
+                            <v-sheet
+                                color="transparent"
+                                v-for="(item_cont, key_cont) of item.contribute_to_the_company"
+                                :key="key_cont"
+                                class="userInfo_color--text"
+                            >
+                                <span> {{key_cont}} </span>
+                                <span :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-divider class="my-2" />
                 </v-sheet>
-                <div class="ml-0 mb-2 ">{{LangUtil("邀请码")}}</div>
-                <v-sheet color="" :height="$vuetify.breakpoint.mobile? 36 :46" color="transparent"
-                    class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined">
-                    <span class="textGray--text regular_text"> {{ pretty_user_id }} </span>
-                    <v-btn color="transparent" class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 18 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 18 :30" @click="copy(pretty_user_id)">
-                        <svg-icon icon="copy" class="text-18 copy_icon--text mr-3"></svg-icon>
-                    </v-btn>
-                </v-sheet>
-                <div class="text-caption userInfo_color--text">
-                    {{LangUtil("1.通过以上链接或者二维码的用户既为您的直属代理;")}}
-                </div>
-                <div class="text-caption userInfo_color--text">
-                    {{LangUtil("2.用户注册时填写此邀请码，既可成为您的直属代理;")}}
-                </div>
             </v-card>
         </v-sheet>
     </template>

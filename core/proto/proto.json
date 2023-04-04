@@ -52,6 +52,7 @@
         ["api/vendor/simple",                                           "获取厂商列表"],
         ["api/vendor/{vendor_id}/lobby/simple",                         "获取厂商配置游戏菜单（大厅厂商二级游戏菜单）"],
         ["api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",    "获取进入厂商的游戏URL，获取厂商游戏凭证"],
+        ["api/vendor/{vendor_id}/ori_product/visitor/show/{ori_product_id}",    "获取进入厂商的游戏URL，获取厂商游戏凭证--游客"],
 
         ["api/plat/{plat_id}/game/menu",                              "获取平台首页菜单游戏列表"],
 
@@ -186,6 +187,7 @@
         ["api/user/{user_id}/agent_direct_user_update",      "直属用户状态查询和修改"],
         ["api/user/{user_id}/agent_direct_deduction",        "直属用户直接扣款"],
         ["api/user/{user_id}/credit_statistic",              "信用统计"],
+        ["api/user/{user_id}/credit_dividend_period",        "信用分红期管理"],
         ["api/user/{user_id}/agent_credit_transfer",         "直属用户加钱"],
         ["api/user/{user_id}/direct_register",         "注册直属"],
         ["api/user/{user_id}/agent_direct_deduction_all",         "清空直属所有额度"],

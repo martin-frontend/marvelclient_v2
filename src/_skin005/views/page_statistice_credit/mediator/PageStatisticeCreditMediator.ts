@@ -4,20 +4,20 @@ import getProxy from "@/core/global/getProxy";
 import { getTodayGMT } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-export default class PageStatisticeCreditMediator extends AbstractMediator{
-
-    onRegister(){
+export default class PageStatisticeCreditMediator extends AbstractMediator {
+    onRegister() {
         PanelUtil.showAppLoading(false);
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageStatisticeCreditProxy.NAME);
     }
 
     public listNotificationInterests(): string[] {
         return [
-            net.EventType.api_user_var_short_chain, 
+            net.EventType.api_user_var_short_chain,
             net.EventType.api_user_var_commission_commissiondetail,
+            net.EventType.api_user_var_credit_dividend_period,
         ];
     }
     private isToday(someDate: any) {
@@ -27,7 +27,7 @@ export default class PageStatisticeCreditMediator extends AbstractMediator{
     }
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:PageStatisticeCreditProxy = getProxy(PageStatisticeCreditProxy);
+        const myProxy: PageStatisticeCreditProxy = getProxy(PageStatisticeCreditProxy);
         switch (notification.getName()) {
             case net.EventType.api_user_var_commission_commissiondetail:
                 // this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id });
@@ -39,6 +39,9 @@ export default class PageStatisticeCreditMediator extends AbstractMediator{
                 break;
             case net.EventType.api_user_var_short_chain:
                 myProxy.setLink(body.url);
+                break;
+            case net.EventType.api_user_var_credit_dividend_period:
+                myProxy.setcredit_dividend_period(body);
                 break;
         }
     }

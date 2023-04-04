@@ -147,7 +147,7 @@ var net;
         api_vendor_var_lobby_simple: "api/vendor/{vendor_id}/lobby/simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api/vendor/{vendor_id}/ori_product/show/{ori_product_id}",
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: "api/vendor/{vendor_id}/ori_product/visitor/show/{ori_product_id}",
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: "api/plat/{plat_id}/game/menu",
@@ -335,6 +335,8 @@ var net;
         api_user_var_agent_direct_deduction: "api/user/{user_id}/agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api/user/{user_id}/credit_statistic",
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: "api/user/{user_id}/credit_dividend_period",
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: "api/user/{user_id}/agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
@@ -440,7 +442,7 @@ var net;
         api_vendor_var_lobby_simple: "api_vendor_var_lobby_simple",
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: "api_vendor_var_ori_product_show_var",
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: "api_vendor_var_ori_product_visitor_show_var",
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: "api_plat_var_game_menu",
@@ -628,6 +630,8 @@ var net;
         api_user_var_agent_direct_deduction: "api_user_var_agent_direct_deduction",
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: "api_user_var_credit_statistic",
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: "api_user_var_credit_dividend_period",
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: "api_user_var_agent_credit_transfer",
         /**--直属用户查询操作--注册直属*/
@@ -803,6 +807,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_user_update, net.cmd_api_user_var_agent_direct_user_update);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction, net.cmd_api_user_var_agent_direct_deduction);
         facade.registerCommand(net.HttpType.api_user_var_credit_statistic, net.cmd_api_user_var_credit_statistic);
+        facade.registerCommand(net.HttpType.api_user_var_credit_dividend_period, net.cmd_api_user_var_credit_dividend_period);
         facade.registerCommand(net.HttpType.api_user_var_agent_credit_transfer, net.cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(net.HttpType.api_user_var_direct_register, net.cmd_api_user_var_direct_register);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
@@ -1315,7 +1320,7 @@ var net;
         }
         response(result) {
             if (result.status === 0) {
-                this.sendNotification(net.EventType.api_plat_var_plat_big_award, result.data, result.unique);
+                this.sendNotification(net.EventType.api_plat_var_plat_big_award, result.data, result.extend.request_unique);
             }
         }
     }
@@ -2862,6 +2867,28 @@ var net;
     net.cmd_api_user_var_commission_receive = cmd_api_user_var_commission_receive;
 })(net || (net = {}));
 /**
+ * 信用分红期管理
+ */
+var net;
+/**
+ * 信用分红期管理
+ */
+(function (net) {
+    class cmd_api_user_var_credit_dividend_period extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_credit_dividend_period, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_credit_dividend_period, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_credit_dividend_period = cmd_api_user_var_credit_dividend_period;
+})(net || (net = {}));
+/**
  * 信用统计
  */
 var net;
@@ -3896,11 +3923,11 @@ var net;
     net.cmd_api_vendor_var_ori_product_show_var = cmd_api_vendor_var_ori_product_show_var;
 })(net || (net = {}));
 /**
- * 获取进入厂商的游戏URL，获取厂商游戏凭证，未登录
+ * 获取进入厂商的游戏URL，获取厂商游戏凭证--游客
  */
 var net;
 /**
- * 获取进入厂商的游戏URL，获取厂商游戏凭证，未登录
+ * 获取进入厂商的游戏URL，获取厂商游戏凭证--游客
  */
 (function (net) {
     class cmd_api_vendor_var_ori_product_visitor_show_var extends puremvc.SimpleCommand {

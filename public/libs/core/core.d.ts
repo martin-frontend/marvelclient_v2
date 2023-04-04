@@ -93,7 +93,7 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
@@ -281,6 +281,8 @@ declare module net {
         api_user_var_agent_direct_deduction: string;
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: string;
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: string;
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: string;
         /**--直属用户查询操作--注册直属*/
@@ -386,7 +388,7 @@ declare module net {
         api_vendor_var_lobby_simple: string;
         /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
         api_vendor_var_ori_product_show_var: string;
-        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证，未登录*/
+        /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证--游客*/
         api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
@@ -574,6 +576,8 @@ declare module net {
         api_user_var_agent_direct_deduction: string;
         /**--直属用户查询操作--信用统计*/
         api_user_var_credit_statistic: string;
+        /**--直属用户查询操作--信用分红期管理*/
+        api_user_var_credit_dividend_period: string;
         /**--直属用户查询操作--直属用户加钱*/
         api_user_var_agent_credit_transfer: string;
         /**--直属用户查询操作--注册直属*/
@@ -1428,6 +1432,15 @@ declare module net {
     }
 }
 /**
+ * 信用分红期管理
+ */
+declare module net {
+    class cmd_api_user_var_credit_dividend_period extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 信用统计
  */
 declare module net {
@@ -1851,7 +1864,7 @@ declare module net {
     }
 }
 /**
- * 获取进入厂商的游戏URL，获取厂商游戏凭证，未登录
+ * 获取进入厂商的游戏URL，获取厂商游戏凭证--游客
  */
 declare module net {
     class cmd_api_vendor_var_ori_product_visitor_show_var extends puremvc.SimpleCommand {

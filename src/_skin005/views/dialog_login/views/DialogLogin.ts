@@ -9,6 +9,7 @@ import DialogLoginMediator from "../mediator/DialogLoginMediator";
 import DialogLoginProxy from "../proxy/DialogLoginProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import GlobalVar from "@/core/global/GlobalVar";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 @Component
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
@@ -20,7 +21,7 @@ export default class DialogLogin extends AbstractView {
     areaCodeMenu = false;
     areaCodeSearch = "";
     areaCodeList: any = [];
-
+    validate_type = GamePlatConfig.config.validate_type;
     userInfo = this.selfProxy.userInfo;
 
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
@@ -190,5 +191,8 @@ export default class DialogLogin extends AbstractView {
             email: this.forgetData.form.username,
         }
         PanelUtil.openpanel_get_verity(obj);
+    }
+    checkValidateType(val: any) {
+        return this.validate_type.includes(val)
     }
 }

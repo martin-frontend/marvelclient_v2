@@ -10,11 +10,11 @@
             <v-card-text v-if="forgetData.bShow" class="px-5 mt-2">
                 <div class="d-flex mb-5">
                     <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                        <v-btn class="rounded-pill mr-2" height="36" width="110">
+                        <v-btn v-if="checkValidateType(1)" class="rounded-pill mr-2" height="36" width="110">
 
                             <span class="text-14"> {{LangUtil("邮箱找回")}} </span>
                         </v-btn>
-                        <v-btn class="rounded-pill mr-2" height="36" width="110">
+                        <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="36" width="110">
 
                             <span class=" text-14"> {{LangUtil("手机找回")}} </span>
                         </v-btn>

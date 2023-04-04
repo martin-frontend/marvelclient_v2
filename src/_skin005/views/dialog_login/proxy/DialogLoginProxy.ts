@@ -1,3 +1,4 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { objectRemoveNull } from "@/core/global/Functions";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import Cookies from "js-cookie";
@@ -65,6 +66,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
     show() {
         this.forgetData.bShow = false;
         this.pageData.bShow = true;
+        this.forgetData.form.type = GamePlatConfig.config.validate_type.includes(1) ? 2 : 4;
     }
 
     hide() {

@@ -2,15 +2,12 @@ import Vue from "vue";
 import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
-import GamePlatConfig from "@/core/config/GamePlatConfig";
 import NotificationName from "@/core/NotificationName";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
 
     public onRegister(): void {
-        //console.warn("GamePlatConfig", GamePlatConfig.config);
-
         this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
     }
 

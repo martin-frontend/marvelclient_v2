@@ -3,13 +3,9 @@ import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Func
 import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import PanelUtil from "@/_skin005/core/PanelUtil";
-import GameProxy from "@/proxy/GameProxy";
-import getProxy from "@/core/global/getProxy";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
-    gameProxy :GameProxy = getProxy(GameProxy);
     GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
         //this.api_vendor_simple();

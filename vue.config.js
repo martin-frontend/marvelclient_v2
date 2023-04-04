@@ -99,6 +99,18 @@ const skinMap = {
             },
         },
     },
+    skin008: {
+        public_dir: "public_skin008",
+        pages: {
+            skin008: {
+                entry: "src/_skin008/main.ts",
+                template: "public_skin008/skin008.html",
+                filename: "index.html",
+                title: "96cluble",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin100: {
         public_dir: "public_skin100",
         pages: {
@@ -163,7 +175,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007","skin008"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         }
 

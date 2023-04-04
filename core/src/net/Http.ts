@@ -42,8 +42,8 @@ module net {
 
                                 if (result.status == 0) {
                                     resolve(result);
-                                    const version = (new Date(result.extend.version)).getTime();
-                                    if(core.version < version && !Http.needUpdate){
+                                    const version = new Date(result.extend.version).getTime();
+                                    if (core.version < version && !Http.needUpdate) {
                                         Http.needUpdate = true;
                                         alert("new version update! current version: " + core.version_str);
                                         location.reload();
@@ -57,13 +57,13 @@ module net {
                         } else {
                             facde.sendNotification(core.EventType.IO_ERROR, { url, data, e });
                         }
-                        facde.sendNotification(core.EventType.REQUEST_END, { url, result: this.response });
+                        facde.sendNotification(core.EventType.REQUEST_END, { url, data, result: this.response });
                     }
                 };
             });
         }
 
-        static get(url:string, data?:any):Promise<any>{
+        static get(url: string, data?: any): Promise<any> {
             return new Promise((resolve, reject) => {
                 const ajax = new XMLHttpRequest();
                 ajax.open("GET", url);
@@ -80,7 +80,7 @@ module net {
             });
         }
 
-        static post(url:string, data?:any):Promise<any>{
+        static post(url: string, data?: any): Promise<any> {
             return new Promise((resolve, reject) => {
                 const ajax = new XMLHttpRequest();
                 ajax.open("POST", url);

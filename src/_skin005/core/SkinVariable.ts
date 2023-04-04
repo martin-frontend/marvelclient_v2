@@ -3,7 +3,6 @@
  */
 
 export default class SkinVariable {
-
     /** 是否显示下面的底部信息描述 */
     public static isShowFootDetail = false;
     /**是否为自定义 底部的 联系我们按钮 */
@@ -16,7 +15,9 @@ export default class SkinVariable {
     /**是否需要 使用 自定义客服 */
     public static isNeedKefu = false;
     /**使用旧的弹窗类型的充值兑换 */
-    public static isUsedDialogRecharge =  false;
+    public static isUsedDialogRecharge = false;
 
     public static isForeShowRecharge = false;
+    /**是否使用google tag manager */
+    public static useGTM = true;
 }

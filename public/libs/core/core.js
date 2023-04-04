@@ -4760,7 +4760,7 @@ var net;
                                 console.groupEnd();
                                 if (result.status == 0) {
                                     resolve(result);
-                                    const version = (new Date(result.extend.version)).getTime();
+                                    const version = new Date(result.extend.version).getTime();
                                     if (core.version < version && !Http.needUpdate) {
                                         Http.needUpdate = true;
                                         alert("new version update! current version: " + core.version_str);
@@ -4778,7 +4778,7 @@ var net;
                         else {
                             facde.sendNotification(core.EventType.IO_ERROR, { url, data, e });
                         }
-                        facde.sendNotification(core.EventType.REQUEST_END, { url, result: this.response });
+                        facde.sendNotification(core.EventType.REQUEST_END, { url, data, result: this.response });
                     }
                 };
             });

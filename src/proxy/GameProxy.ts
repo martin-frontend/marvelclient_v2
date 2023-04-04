@@ -59,6 +59,11 @@ export default class GameProxy extends AbstractProxy {
     api_vendor_var_ori_product_show_var(data: core.VendorVO | core.VendorProductVO) {
         this.loading = true;
         this.currGame = data;
+        if (core.user_id && !this.coin_name_unique) {
+            console.log("币种为空");
+            this.sendNotification(NotificationName.GO_HOME);
+            return;
+        }
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
         const form: any = {
             user_id: core.user_id,

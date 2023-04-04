@@ -18,6 +18,7 @@ export default class PageGameSoccerMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [
             NotificationName.UPDATE_COIN,
+            NotificationName.GO_HOME,
             net.EventType.api_vendor_var_ori_product_show_var,
             net.EventType.api_vendor_var_ori_product_visitor_show_var,
             net.EventType.REQUEST_ERROR,
@@ -32,14 +33,15 @@ export default class PageGameSoccerMediator extends AbstractMediator {
             case NotificationName.UPDATE_COIN:
                 {
                     if (gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId) {
-
                         PanelUtil.openpage_soccer_cricket();
-                    }
-                    else {
+                    } else {
                         PanelUtil.openpage_soccer();
                     }
                 }
 
+                break;
+            case NotificationName.GO_HOME:
+                PanelUtil.openpage_home();
                 break;
             case net.EventType.api_vendor_var_ori_product_visitor_show_var:
             case net.EventType.api_vendor_var_ori_product_show_var:

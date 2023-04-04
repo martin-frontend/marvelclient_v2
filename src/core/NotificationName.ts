@@ -7,4 +7,6 @@ export default class NotificationName {
     static CHECK_SPEED = "CHECK_SPEED";
     /**币种改变 */
     static UPDATE_COIN = "UPDATE_COIN";
+    /**需要返回首页 */
+    static GO_HOME = "GO_HOME";
 }

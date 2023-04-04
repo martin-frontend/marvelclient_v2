@@ -46,7 +46,7 @@
                         </v-sheet>
                         {{setFilters(index,value)}}
                     </template>
-                    <GameMenu v-if="!$vuetify.breakpoint.mobile" :data="item" />
+                    <GameMenu v-if="!$vuetify.breakpoint.mobile && ModulesHelper.IsShow_pcMenuTip()" :data="item" />
                 </v-menu>
 
 

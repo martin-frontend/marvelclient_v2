@@ -129,7 +129,7 @@
                                 <v-sheet class="d-flex flex-column" width="100%" color="transparent">
                                     <!-- 主币 -->
                                     <v-sheet width="100%" color="transparent" v-if="pageData.trial.main"
-                                        class="sheetOutlined d-flex align-center">
+                                        class="sheetOutlined d-flex align-center  py-2">
                                         <v-img v-if="pageData.trial.main" :max-width="mobileChange('coinIcon')"
                                             :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"
                                             class="ml-2">
@@ -138,7 +138,7 @@
                                             class="textGreen--text text-20 ml-2 font-weight-bold">{{
                                             pageData.trial.main }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-16"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -146,7 +146,7 @@
 
                                     <!-- 奖励币 -->
                                     <v-sheet width="100%" color="transparent" v-if="pageData.trial.reward"
-                                        class="sheetOutlined d-flex align-center mt-2">
+                                        class="sheetOutlined d-flex align-center mt-2  py-2">
                                         <v-img v-if="pageData.trial.reward" :max-width="mobileChange('coinIcon')"
                                             :height="mobileChange('coinIcon')" contain
                                             :src="pageData.trial.rewardIconSrc" class="ml-2">
@@ -154,7 +154,7 @@
                                         <div class="red--text text-20 ml-2 font-weight-bold">{{
                                             pageData.trial.reward }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-16 font-weight-bold"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16 font-weight-bold"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -391,7 +391,7 @@
                                 <v-sheet class="d-flex flex-column justify-center" width="100%" color="transparent">
                                     <!-- 主币 -->
                                     <v-sheet width="100%" color="transparent" v-if="pageData.trial.main" min-height="56"
-                                        class=" d-flex align-center sheetOutlined">
+                                        class=" d-flex align-center sheetOutlined  py-2">
                                         <v-img v-if="pageData.trial.main" :max-width="mobileChange('coinIcon')"
                                             :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"
                                             class="ml-2">
@@ -400,7 +400,7 @@
                                             class="textGreen--text text-16 ml-2 font-weight-bold">{{
                                             pageData.trial.main }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-14"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -408,7 +408,7 @@
 
                                     <!-- 奖励币 -->
                                     <v-sheet width="100%" color="transparent" v-if="pageData.trial.reward"
-                                        min-height="56" class="sheetOutlined d-flex align-center mt-2">
+                                        min-height="56" class="sheetOutlined d-flex align-center mt-2  py-2">
                                         <v-img v-if="pageData.trial.reward" :max-width="mobileChange('coinIcon')"
                                             :height="mobileChange('coinIcon')" contain
                                             :src="pageData.trial.rewardIconSrc" class="ml-2">
@@ -416,7 +416,7 @@
                                         <div class="red--text text-16 ml-2 font-weight-bold">{{
                                             pageData.trial.reward }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mt-2 mb-2 mr-2 text-14"
+                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>

@@ -17,6 +17,7 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 export default class Novigation extends AbstractView {
     LangUtil = LangUtil;
     getVersion = getVersion;
+    ModulesHelper = ModulesHelper;
     commonIcon = Assets.commonIcon;
     CategoryIcon = Assets.CategoryIcon;
     core = core;
@@ -268,6 +269,7 @@ export default class Novigation extends AbstractView {
 
     filterArr = <any>{};
     setFilters(index: any, val: boolean) {
+        if (!this.ModulesHelper.IsShow_pcMenuTip()) return;
         this.filterArr[index] = val;
 
         const keys = Object.keys(this.filterArr);

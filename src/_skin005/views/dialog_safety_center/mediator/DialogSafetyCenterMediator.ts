@@ -30,7 +30,7 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
                 }
                 break;
             case net.EventType.api_user_change_password_var:
-                PanelUtil.message_success(LangUtil("修改成功"));
+                PanelUtil.message_success(LangUtil("修改成功！"));
                 myProxy.pageData.bShow = false;
                 MultDialogManager.onClosePanel();
                 break;

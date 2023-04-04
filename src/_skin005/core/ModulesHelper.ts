@@ -78,6 +78,13 @@ function IsShow_GameWaterManualReceive() {
 }
 
 /**
+ * 是否显示 左侧导航栏 悬浮 样式是否显示
+ */
+function IsShow_pcMenuTip() {
+    return _isValueTrue("pcMenuTip")
+}
+
+/**
  * //是否显示 代理管理
  * @returns 
  */
@@ -154,4 +161,5 @@ export default {
     IsShow_FootBall,
     IsShow_FootBallHot,
     IsShow_GameWaterManualReceive,
+    IsShow_pcMenuTip,
 }

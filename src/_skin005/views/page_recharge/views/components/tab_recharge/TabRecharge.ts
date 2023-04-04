@@ -279,7 +279,7 @@ export default class TabRecharge extends AbstractView {
             console.log("item为 空");
             return;
         }
-        this.jumpTo("#animbtn");
+        this.jumpTo("#requiresNode");
         this.form.third_id = item.third_id;
         this.form.requires = item.requires;
         this.form.subtitle = item.subtitle;
@@ -293,18 +293,26 @@ export default class TabRecharge extends AbstractView {
     jumpTo(target: string) {
         if (!this.$vuetify.breakpoint.mobile) return;
         setTimeout(() => {
-            if (target == "#animbtn") {
-                const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
-                getAwardbtn?.addEventListener("animationend", () => {
-                    getAwardbtn.classList.remove("button-animation");
-                });
-                getAwardbtn?.classList.add("button-animation");
-            }
-            window.scrollTo({
-                //@ts-ignore
-                top: document.querySelector(target).offsetTop,
-                behavior: "smooth",
+            const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
+            getAwardbtn?.addEventListener("animationend", () => {
+                getAwardbtn.classList.remove("button-animation");
             });
+            getAwardbtn?.classList.add("button-animation");
+
+            const obj = document.querySelector(target);
+            if (!obj) {
+                window.scrollTo({
+                    //@ts-ignore
+                    top: 100,
+                    behavior: "smooth",
+                });
+            } else {
+                window.scrollTo({
+                    //@ts-ignore
+                    top: obj.offsetTop,
+                    behavior: "smooth",
+                });
+            }
         }, 200);
     }
 }

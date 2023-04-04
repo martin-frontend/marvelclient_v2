@@ -87,7 +87,6 @@ export default class TabExchange extends AbstractView {
                     return true;
                 }
             }
-
         }
         //console.log("---检查----" + amount +  "---" + password_gold );
         if (amount != "" && password_gold != "") {
@@ -161,7 +160,6 @@ export default class TabExchange extends AbstractView {
         this.form.payment_method_type = item.payment_method_type;
         this.form.exchange_channel_method_id = item.exchange_channel_method_id;
         this.form.password_gold = "";
-
     }
     onChannelItemClick(item: any) {
         //console.log(" 渠道 选择 ---", item);
@@ -169,7 +167,8 @@ export default class TabExchange extends AbstractView {
             // console.log("item为 空");
             return;
         }
-        this.jumpTo("#animbtn");
+        if (this.curSelectItem == item) return;
+        this.jumpTo("#requiresNode");
         this.setFormData(item);
     }
     onItemClick(key: string) {
@@ -186,12 +185,12 @@ export default class TabExchange extends AbstractView {
         for (let index = 0; index < this.form.requires.length; index++) {
             const element = this.form.requires[index];
             const obj = {
-                title: element,   //显示的标题名字
+                title: element, //显示的标题名字
                 //placeholder: LangUtil("请输入{0}","exc_" +  element),// 没有值的时候 显示的
-                inputValue: "",//用户的输入值
+                inputValue: "", //用户的输入值
                 errinfo: "", //错误信息
                 timeHeadle: null, //错误提示的句柄
-            }
+            };
             this.showRequires.push(obj);
         }
     }
@@ -215,7 +214,7 @@ export default class TabExchange extends AbstractView {
     checkNetbanking(item: any) {
         const element = item;
         let inputValue = element.inputValue;
-        const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + element.title)
+        const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
 
         //bankifsc 验证
@@ -249,7 +248,7 @@ export default class TabExchange extends AbstractView {
         // 2.不會有特殊符號, 不會有英文字母
         else if (element.title == "accountnumber") {
             if (inputValue.length > 19 || inputValue.length < 9 || !checkOnlyNub(inputValue)) {
-                return curBoxTitle + LangUtil("长度必须为9-19位的数字");;
+                return curBoxTitle + LangUtil("长度必须为9-19位的数字");
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
@@ -267,7 +266,7 @@ export default class TabExchange extends AbstractView {
     checkCrypto(item: any) {
         const element = item;
         const inputValue = element.inputValue;
-        const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + element.title)
+        const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
 
         // USDT TRC-20  開頭為T開頭
@@ -284,7 +283,7 @@ export default class TabExchange extends AbstractView {
     checkSkrill(item: any) {
         const element = item;
         const inputValue = element.inputValue;
-        const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + element.title)
+        const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
 
         // 符合正常email格式
@@ -308,7 +307,7 @@ export default class TabExchange extends AbstractView {
     checkEcoPayz(item: any) {
         const element = item;
         const inputValue = element.inputValue;
-        const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + element.title)
+        const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
 
         // 1. 只會是全數字, 長度為10碼數字
@@ -333,15 +332,14 @@ export default class TabExchange extends AbstractView {
     checkAstropay(item: any) {
         const element = item;
         let inputValue = element.inputValue;
-        const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + element.title)
+        const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
 
         // 1. 手機電話號碼, 只會有數字
         // 2. 不會有特殊符號, 不會有英文字母
         // 3. 區碼前面不需要加 +符號, 不須空格
         if (element.title == "upiaccount") {
-
-            element.inputValue = element.inputValue.replace(/\s+|\+/g, '');
+            element.inputValue = element.inputValue.replace(/\s+|\+/g, "");
             inputValue = element.inputValue;
 
             if (!checkOnlyNub(inputValue)) {
@@ -367,7 +365,7 @@ export default class TabExchange extends AbstractView {
         }
         item.inputValue = item.inputValue.trim();
         if (!item.inputValue || item.inputValue == "") {
-            const curBoxTitle = LangUtil('exc_' + this.curSelectItem.subtitle + '_' + item.title)
+            const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + item.title);
             return curBoxTitle + LangUtil("不能为空");
         }
         let errstr = "";
@@ -408,12 +406,10 @@ export default class TabExchange extends AbstractView {
         return "";
     }
     onSubmit() {
-        if (this.showRequires && this.showRequires.length > 0)
-        {
+        if (this.showRequires && this.showRequires.length > 0) {
             for (let index = 0; index < this.showRequires.length; index++) {
-                const str = this.onBlurInput(this.showRequires[index])
-                if (str)
-                {
+                const str = this.onBlurInput(this.showRequires[index]);
+                if (str) {
                     PanelUtil.message_info(str);
                     return;
                 }
@@ -424,9 +420,7 @@ export default class TabExchange extends AbstractView {
             okFun: () => {
                 if (this.showRequires && this.showRequires.length > 0) {
                     this.myProxy.exchangeProxy.api_user_var_exchange_create_order(this.showRequires);
-                }
-                else
-                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+                } else this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
             },
         });
     }
@@ -440,18 +434,26 @@ export default class TabExchange extends AbstractView {
     jumpTo(target: string) {
         if (!this.$vuetify.breakpoint.mobile) return;
         setTimeout(() => {
-            if (target == "#animbtn") {
-                const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
-                getAwardbtn?.addEventListener("animationend", () => {
-                    getAwardbtn.classList.remove("button-animation");
-                });
-                getAwardbtn?.classList.add("button-animation");
-            }
-            window.scrollTo({
-                //@ts-ignore
-                top: document.querySelector(target).offsetTop,
-                behavior: "smooth",
+            const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
+            getAwardbtn?.addEventListener("animationend", () => {
+                getAwardbtn.classList.remove("button-animation");
             });
+            getAwardbtn?.classList.add("button-animation");
+
+            const obj = document.querySelector(target);
+            if (!obj) {
+                window.scrollTo({
+                    //@ts-ignore
+                    top: 100,
+                    behavior: "smooth",
+                });
+            } else {
+                window.scrollTo({
+                    //@ts-ignore
+                    top: obj.offsetTop,
+                    behavior: "smooth",
+                });
+            }
         }, 200);
     }
 }

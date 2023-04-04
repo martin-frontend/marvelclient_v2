@@ -27,7 +27,7 @@ export default class Wallet extends AbstractView {
     isFilterChange = false;
     @Watch("isFilterChange")
     filterChange(val: boolean) {
-        console.log("  user 修改值" ,this);
+        //console.log("  user 修改值" ,this);
         // PageBlur.blur_mainpage(this.isFilterChange,false );
         PageBlur.blur_novigation(this.isFilterChange,false );
     }

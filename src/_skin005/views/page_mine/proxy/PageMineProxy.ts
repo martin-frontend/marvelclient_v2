@@ -2,15 +2,16 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
 import SelfProxy from "@/proxy/SelfProxy";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageMineProxy extends puremvc.Proxy {
     static NAME = "PageMineProxy";
-
+    gameProxy = PanelUtil.getProxy_gameproxy;
     public onRegister(): void {
         this.pageData.loading = true;
         // TODO 请求初始数据
     }
-
+    gameRateList = <any>{}; //游戏的汇率
     pageData = {
         loading: false,
         nextExp: 0, //等级还差
@@ -78,7 +79,7 @@ export default class PageMineProxy extends puremvc.Proxy {
         if (!vip_info) return;
         // 等级Max
         this.pageData.vipMaxLevel = vip_info.max_vip_level;
-        console.log("最大 等级", vip_info.max_vip_level);
+        //console.log("最大 等级", vip_info.max_vip_level);
         // 流水等级
         if (vip_progress[0]) {
             this.pageData.nextExp = <any>(Number(vip_progress[0].next_vip_level_need_exp) - Number(vip_progress[0].user_exp)).toFixed(2);
@@ -123,7 +124,6 @@ export default class PageMineProxy extends puremvc.Proxy {
             //     this.pageData.platCoins.rewardCoin = this.pageData.platCoins.mainCoin;
             //     this.pageData.platCoins.rewardCoin.name = this.pageData.platCoins.mainCoin.name;
             // }
-
         } catch (error) {
             console.log("error", error);
         }
@@ -200,9 +200,7 @@ export default class PageMineProxy extends puremvc.Proxy {
     /**返水试算领取接口 */
     api_plat_var_vip_config() {
         if (GlobalVar.instance.isNullUser) {
-            this.sendNotification(net.HttpType.api_plat_var_vip_config,
-                { plat_id: core.plat_id }
-            );
+            this.sendNotification(net.HttpType.api_plat_var_vip_config, { plat_id: core.plat_id });
         }
     }
 
@@ -216,5 +214,26 @@ export default class PageMineProxy extends puremvc.Proxy {
             const d = result.extend.date.split(" ")[0];
             this.pageData.trial.date = d.split("-")[1] + "-" + d.split("-")[2];
         }
+    }
+    /**设置游戏中的 汇率 */
+    setCoinsScale(data: any) {
+        this.gameRateList = data;
+    }
+    get getCoinsScale() {
+        const { name } = this.pageData.platCoins.mainCoin;
+
+        if (!this.gameRateList || this.gameRateList.length < 1) return -1;
+
+        for (let index = 0; index < this.gameRateList.length; index++) {
+            if (this.gameRateList[index].coin_name_unique == name) {
+                return 1 / this.gameRateList[index].scale;
+            }
+        }
+        return 0;
+    }
+    /**--获取币种游戏比率*/
+    api_user_var_block_coins_scale() {
+        if (!core.user_id) return;
+        this.sendNotification(net.HttpType.api_user_var_block_coins_scale, { user_id: core.user_id });
     }
 }

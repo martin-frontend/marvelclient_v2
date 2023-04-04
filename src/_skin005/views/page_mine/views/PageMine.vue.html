@@ -37,12 +37,16 @@
                                             {{LangUtil('距离下一个等级还差')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextExp > 0">
-                                            <span class="textYellow--text">{{ pageData.nextExp
-                                                }}</span>{{LangUtil('有效流水')}} </span>
+                                            <span class="textYellow--text">
+                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
+                                                <span>{{transformExpAndUsdt(pageData.nextExp)}}</span>  
+                                            </span>{{LangUtil('有效流水')}} 
                                         </span>
+                                            </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextUSDT > 0">
-                                            <span class="textYellow--text">{{ pageData.nextUSDT }}</span>
-                                            USDT{{LangUtil('充值')}}</span>
+                                            <span class="textYellow--text">{{pageData.nextUSDT}}</span>
+                                            USDT{{LangUtil('充值')}}
+                                        </span>
                                         </span>
                                     </div>
                                 </v-sheet>
@@ -164,7 +168,7 @@
 
                             <div class="d-flex justify-end  mb-6 mt-auto">
 
-                                <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2"
+                                <btn-yellow v-if="ModulesHelper.IsShow_GameWaterGuide()" class="text-16" min_width="104" height="36" :btn_type="2"
                                     @click.native="jumpTo('#howMine')">{{LangUtil("说明")}}</btn-yellow>
 
                                 <btn-yellow class="text-16 ml-2 mr-2" min_width="104" height="36" :btn_type="2"
@@ -178,7 +182,7 @@
                         <v-col cols="12"
                             class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group  mt-9">
                             <!-- 手机显示 -->
-                            <v-btn color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill "
+                            <v-btn v-if="ModulesHelper.IsShow_GameWaterGuide()" color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill "
                                 @click="jumpTo('#howMine')">
                                 {{LangUtil('说明')}}
                             </v-btn>
@@ -210,7 +214,7 @@
                                 <div class="d-flex flex-column mt-n3 justify-center align-center pt-2 ">
                                     <div class="mt-1 text-18 font-weight-bold">VIP {{ myProxy.getVipLevel(level) }}
                                     </div>
-                                    <div class="d-flex flex-column justify-center align-center vip_config_box">
+                                    <div v-if="!ModulesHelper.IsShow_VipShowDeal()" class="d-flex flex-column justify-center align-center vip_config_box">
                                         <!-- 主币 -->
                                         <v-sheet v-if="item.backwater_config[2].backwater_rate > 0" color="transparent"
                                             class="d-flex flex-column justify-start align-center">
@@ -238,6 +242,31 @@
                                                 pageData.platCoins.rewardCoin.name }}</div>
                                         </v-sheet>
                                     </div>
+
+                                    <div v-if="ModulesHelper.IsShow_VipShowDeal()" class="d-flex flex-column justify-center align-center vip_config_box">
+                                        <!-- 主币 -->
+                                        <v-sheet v-if="item.backwater_config[2].backwater_rate > 0" color="transparent"
+                                            class="d-flex flex-column justify-start align-center">
+                                            <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</v-sheet>
+                                            <v-sheet class="mt-1nomal_text_1--text text-truncate" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_main_2_"+(level + 1))}}
+                                            </v-sheet>
+                                            <v-sheet class="nomal_text_1--text mt-1 text-truncate bold_text" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</v-sheet>
+                                        </v-sheet>
+                                        <!-- 奖励币 -->
+                                        <v-sheet v-if="item.backwater_config[3].backwater_rate > 0" color="transparent"
+                                            class="d-flex flex-column justify-start align-center">
+                                            <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</v-sheet>
+                                            <v-sheet class="mt-1nomal_text_1--text text-truncate" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}
+                                            </v-sheet>
+                                            <v-sheet class="nomal_text_1--text mt-1 text-truncate bold_text" color="transparent" width="155">
+                                                {{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</v-sheet>
+                                        </v-sheet>
+                                    </div>
                                 </div>
                             </v-img>
                         </v-sheet>
@@ -246,7 +275,7 @@
             </v-slide-group>
         </v-card>
         <!-- 如何挖矿 -->
-        <v-sheet color="transparent" class="mt-8" id="howMine">
+        <v-sheet v-if="ModulesHelper.IsShow_GameWaterGuide()" color="transparent" class="mt-8" id="howMine">
             <span class="text-20 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>
             <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text ">
                 {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
@@ -428,7 +457,7 @@
 
                         <v-col cols="12"
                             class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2"
+                            <btn-yellow v-if="ModulesHelper.IsShow_GameWaterGuide()" class="text-12" min-width="80" height="30" :btn_type="2"
                                 @click.native="jumpTo('#howMine')">{{LangUtil("说明")}}</btn-yellow>
 
                             <btn-yellow class="text-12 ml-2 mr-2" min-width="80" height="30" :btn_type="2"
@@ -479,11 +508,13 @@
                                             v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}}
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextExp > 0">
-                                            <span class="textYellow--text">{{ pageData.nextExp
-                                                }}</span>{{LangUtil('有效流水')}} </span>
+                                            <span class="textYellow--text">
+                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
+                                               <span>{{transformExpAndUsdt(pageData.nextExp)}} </span>
+                                            </span>{{LangUtil('有效流水')}} </span>
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextUSDT > 0">
-                                            <span class="textYellow--text">{{ pageData.nextUSDT }}</span>
+                                            <span class="textYellow--text">{{ transformExpAndUsdt(pageData.nextUSDT) }}</span>
                                             USDT{{LangUtil('充值')}}</span>
                                         </span>
                                     </div>
@@ -562,40 +593,73 @@
                         <v-img max-width="52" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                         <span class="font-weight-medium primary--text">VIP {{ myProxy.getVipLevel(level) }}</span>
                     </div>
-                    <template v-if="item.backwater_config[2].backwater_rate > 0">
-                        <!-- 主币 -->
-                        <div class="d-flex align-center ">
-                            <span class=" textGray--text ">{{ pageData.platCoins.mainCoin.name }}
-                                {{LangUtil('返水')}} </span>
-                        </div>
-                        <div class="d-flex align-center ">
-                            <span class=" textGray--text">
-                                <span class="bold_text text-14">{{(item.backwater_config[2].backwater_rate *
-                                    10000).toFixed(0)}}</span>
-                                ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
-                            </span>
-                        </div>
+                    <template v-if="!ModulesHelper.IsShow_VipShowDeal()">
+                        <template v-if="item.backwater_config[2].backwater_rate > 0">
+                            <!-- 主币 -->
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text ">{{ pageData.platCoins.mainCoin.name }}
+                                    {{LangUtil('返水')}} </span>
+                            </div>
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text">
+                                    <span class="bold_text text-14">{{(item.backwater_config[2].backwater_rate *
+                                        10000).toFixed(0)}}</span>
+                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
+                                </span>
+                            </div>
+                        </template>
+
+                        <!-- 奖励币 -->
+                        <template v-if="item.backwater_config[3].backwater_rate > 0">
+                            <div class="d-flex flex-column justify-center align-center">
+                                <span class=" textGray--text">{{ pageData.platCoins.rewardCoin.name
+                                    }}{{LangUtil('挖矿')}}</span>
+                                <span
+                                    class=" textGray--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <span
+                                    class=" font-weight-medium textYellow--text">{{(item.backwater_config[3].backwater_rate
+                                    * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}</span>
+                            </div>
+                        </template>
                     </template>
 
-                    <!-- 奖励币 -->
-                    <template v-if="item.backwater_config[3].backwater_rate > 0">
-                        <div class="d-flex flex-column justify-center align-center">
-                            <span class=" textGray--text">{{ pageData.platCoins.rewardCoin.name
-                                }}{{LangUtil('挖矿')}}</span>
-                            <span
-                                class=" textGray--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
-                        </div>
-                        <div class="d-flex align-center">
-                            <span
-                                class=" font-weight-medium textYellow--text">{{(item.backwater_config[3].backwater_rate
-                                * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}</span>
-                        </div>
-                    </template>
+                    <v-sheet v-else color="transparent" class="d-flex flex-column " width="220">
+                        <template v-if="item.backwater_config[2].backwater_rate > 0">
+                            <!-- 主币 -->
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</span>
+                            </div>
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text ">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
+                            </div>
+
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</span>
+                            </div>
+
+                        </template>
+
+                        <!-- 奖励币 -->
+                        <template v-if="item.backwater_config[3].backwater_rate > 0">
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</span>
+                            </div>
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text ">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
+                            </div>
+
+                            <div class="d-flex align-center ">
+                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</span>
+                            </div>
+                        </template>
+                    </v-sheet>
                 </v-sheet>
             </div>
         </v-card>
         <!-- 如何挖矿 -->
-        <v-sheet color="transparent" class="mt-8" id="howMine">
+        <v-sheet v-if="ModulesHelper.IsShow_GameWaterGuide()" color="transparent" class="mt-8" id="howMine">
             <span class="text-16 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>
             <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text ">
                 {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}

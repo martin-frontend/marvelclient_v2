@@ -22,7 +22,7 @@ export default class PageMine extends AbstractView {
     core = core;
     private xsOnly = false;
     private progressLinear = 6;
-
+    gameProxy = PanelUtil.getProxy_gameproxy;
     constructor() {
         super(PageMineMediator);
     }
@@ -132,9 +132,24 @@ export default class PageMine extends AbstractView {
     onWatchUserId() {
         console.log("  用户信息 变化 ， 请求数据");
         this.myProxy.api_user_var_backwater_trial();
+        this.myProxy.api_user_var_block_coins_scale();
         PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
         if (GlobalVar.instance.isNullUser) {
             this.myProxy.api_plat_var_vip_config();
         }
+    }
+    transformExpAndUsdt(count: any) {
+        if (!this.ModulesHelper.IsShow_VipShowDeal()) {
+            return count;
+        }
+        if (this.myProxy.getCoinsScale <= 0) return count;
+        let amount = 0;
+        if (typeof count == "string") {
+            amount = parseFloat(count);
+        } else {
+            amount = count;
+        }
+        const newNub = (amount * this.myProxy.getCoinsScale).toFixed(2);
+        return newNub;
     }
 }

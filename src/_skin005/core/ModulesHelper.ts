@@ -71,19 +71,29 @@ function IsShow_FootBallHot() {
     return _isValueTrue("footballHot")
 }
 /**
- * 是否显示 首页返水的领取
+ * 是否显示 首页返水的领取 gameWaterGuide
  */
 function IsShow_GameWaterManualReceive() {
     return _isValueTrue("gameWaterManualReceive")
 }
-
+/**
+ * 是否显示 首页返水的引导 gameWaterGuide
+ */
+function IsShow_GameWaterGuide() {
+    return _isValueTrue("gameWaterGuide")
+}
+/**
+ * 如果为1 则需要  手动计算 vip的返奖比例
+ */
+function IsShow_VipShowDeal() {
+    return _isValueTrue("VipShowDeal")
+}
 /**
  * 是否显示 左侧导航栏 悬浮 样式是否显示
  */
 function IsShow_pcMenuTip() {
     return _isValueTrue("pcMenuTip")
 }
-
 /**
  * //是否显示 代理管理
  * @returns 
@@ -162,4 +172,6 @@ export default {
     IsShow_FootBallHot,
     IsShow_GameWaterManualReceive,
     IsShow_pcMenuTip,
+    IsShow_GameWaterGuide,
+    IsShow_VipShowDeal,
 }

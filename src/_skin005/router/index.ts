@@ -164,7 +164,10 @@ export function getRouter(): VueRouter {
         }
 
         router = new VueRouter({
-            mode: process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" ? "history" : "hash",
+            mode:
+                process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" && core.app_type != core.EnumAppType.APP
+                    ? "history"
+                    : "hash",
             // mode: "history",
             routes,
         });

@@ -12,7 +12,6 @@ export default class PageActivity extends AbstractView {
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;
 
-
     constructor() {
         super(PageActivityMediator);
     }
@@ -21,7 +20,6 @@ export default class PageActivity extends AbstractView {
     }
     mounted() {
         this.myProxy.api_plat_activity();
-
     }
 
     public get curActivityData(): any {
@@ -38,25 +36,21 @@ export default class PageActivity extends AbstractView {
         this.onTabClick(this.pageData.tabIndex);
     }
     onTabClick(idx: number) {
-
         this.pageData.tabIndex = idx;
 
         // if ( this.pageData.tabIndex == 0)
         // {
         //     this.onEnterHomePage();
         // }
-
     }
     onItemClick(item: any) {
         console.log("收到点击。。。", item);
         //PanelUtil.openpanel_activity_detail(item);
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
-        }
-        else {
+        } else {
             PanelUtil.showAppLoading(true);
             this.myProxy.api_plat_activity_var(item.id);
         }
-
     }
 }

@@ -30,6 +30,8 @@ export default class APP extends AbstractView {
 
     mounted() {
         window.addEventListener("scroll", this.onWatchScroll, true);
+        window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile && isMobile();
+        window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.$xsOnly && isMobile();
     }
 
     //切换明暗
@@ -116,7 +118,7 @@ export default class APP extends AbstractView {
         if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 
         if (this.$route.path.includes("cricket") || this.$route.path.includes("page_game_soccer")) return false;
-        
+
         if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
             for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {
                 const element = this.myProxy.mobile_menu_ary[index];

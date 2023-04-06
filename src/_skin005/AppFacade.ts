@@ -4,7 +4,7 @@ import RequestEndCMD from "@/_skin005/core/command/RequestEndCMD";
 import RequestErrorCMD from "@/_skin005/core/command/RequestErrorCMD";
 import RequestStartCMD from "@/_skin005/core/command/RequestStartCMD";
 import GameConfig from "@/core/config/GameConfig";
-import { getVersion } from "@/core/global/Functions";
+import { getVersion, isMobile } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";
 import NetObserver from "./core/NetObserver";
 import NotificationName from "@/core/NotificationName";
@@ -14,6 +14,7 @@ import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 
 import PanelUtil from "./core/PanelUtil";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
+import Vue from "vue";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -37,6 +38,11 @@ export default class AppFacade {
         setInterval(() => {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
         }, 300000);
+
+        window.addEventListener("resize", () => {
+            window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile && isMobile();
+            window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.$xsOnly && isMobile();
+        });
 
         window.addEventListener("message", (e) => {
             switch (e.data) {

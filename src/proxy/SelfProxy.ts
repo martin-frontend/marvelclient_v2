@@ -16,7 +16,7 @@ export default class SelfProxy extends AbstractProxy {
         setInterval(() => {
             if (this.timerCount % 10 == 0) {
                 if (core.user_id && core.plat_id && GameConfig.config) {
-                    this.api_user_show_var([2,3]);
+                    this.api_user_show_var([2, 3]);
                     this.api_user_var_red_dot_tips();
                 }
             }
@@ -50,8 +50,8 @@ export default class SelfProxy extends AbstractProxy {
         show_credit_set: 0,
         show_promote: 0,
         invite_user_id: 0,
-        vip_info:<any>{},
-        water_config:<any>{},
+        vip_info: <any>{},
+        water_config: <any>{},
     };
     /**红点信息 */
     red_dot_tips = {
@@ -61,15 +61,14 @@ export default class SelfProxy extends AbstractProxy {
         is_today_sign: 0,
         is_user_mail: 0,
         is_vip: 0,
-        is_user_mail_num:{
-            status: 1,  // 状态:1-不提示|2-提示
-            num: 0       // 数量
-        }
+        is_user_mail_num: {
+            status: 1, // 状态:1-不提示|2-提示
+            num: 0, // 数量
+        },
     };
 
     setUserInfo(value: any) {
-        if (!this.userInfo.user_id)
-        {
+        if (!this.userInfo.user_id) {
             PixelEvenManager.Instance.onLoginSuccess();
         }
         Object.assign(this.userInfo, value);
@@ -93,14 +92,16 @@ export default class SelfProxy extends AbstractProxy {
         let result = "";
         for (const iterator of coinKeys) {
             if (plat_coins[iterator].is_display == 1) {
-                return result = iterator;
+                return (result = iterator);
             }
         }
         return result;
     }
 
     loginout() {
+        console.log(">>>>>>>>>>>>>>loginout");
         core.user_id = 0;
+        core.token = "";
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("user_id");
         window.localStorage.removeItem("username");

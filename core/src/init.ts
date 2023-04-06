@@ -6,17 +6,22 @@ module core {
         let uuid = getQueryVariable("uuid") || window.localStorage.getItem("uuid");
         if (!uuid) {
             uuid = core.generateUUID();
-            window.localStorage.setItem("uuid", uuid);
         }
+        window.localStorage.setItem("uuid", uuid);
         device = uuid;
         // 获取推荐号
         invite_user_id = (getQueryVariable("invite") || "").replace("/", "");
         // 自动登录
-        token = getQueryVariable("token") || window.localStorage.getItem("token");
-        token && (user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
-        if (token) {
+        token = window.localStorage.getItem("token");
+        if (getQueryVariable("token")) {
+            token = decodeURIComponent(getQueryVariable("token"));
             window.localStorage.setItem("token", token);
         }
+        if (getQueryVariable("user_id")) {
+            core.user_id = parseInt(getQueryVariable("user_id"));
+            window.localStorage.setItem("user_id", core.user_id.toString());
+        }
+        token && (user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
 
         plat_id = getQueryVariable("plat_id") || "10001";
         channel_id = getQueryVariable("channel_id") || "10001001";

@@ -10,6 +10,10 @@ declare global {
             [elem: string]: any;
         }
     }
+    interface Window {
+        $mobile: boolean;
+        $xsOnly: boolean;
+    }
 }
 
 declare module "vue/types/vue" {
@@ -17,5 +21,9 @@ declare module "vue/types/vue" {
         router: VueRouter;
         vuetify: Vuetify;
         prePath: string;
+    }
+    interface Vue {
+        $mobile: boolean;
+        $xsOnly: boolean;
     }
 }

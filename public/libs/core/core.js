@@ -25,17 +25,22 @@ var core;
         let uuid = core.getQueryVariable("uuid") || window.localStorage.getItem("uuid");
         if (!uuid) {
             uuid = core.generateUUID();
-            window.localStorage.setItem("uuid", uuid);
         }
+        window.localStorage.setItem("uuid", uuid);
         core.device = uuid;
         // 获取推荐号
         core.invite_user_id = (core.getQueryVariable("invite") || "").replace("/", "");
         // 自动登录
-        core.token = core.getQueryVariable("token") || window.localStorage.getItem("token");
-        core.token && (core.user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
-        if (core.token) {
+        core.token = window.localStorage.getItem("token");
+        if (core.getQueryVariable("token")) {
+            core.token = decodeURIComponent(core.getQueryVariable("token"));
             window.localStorage.setItem("token", core.token);
         }
+        if (core.getQueryVariable("user_id")) {
+            core.user_id = parseInt(core.getQueryVariable("user_id"));
+            window.localStorage.setItem("user_id", core.user_id.toString());
+        }
+        core.token && (core.user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
         core.plat_id = core.getQueryVariable("plat_id") || "10001";
         core.channel_id = core.getQueryVariable("channel_id") || "10001001";
         core.app_type = core.EnumAppType.WEB;

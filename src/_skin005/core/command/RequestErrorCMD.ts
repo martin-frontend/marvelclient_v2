@@ -32,7 +32,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             console.log(" 错误 ");
             PanelUtil.showAppLoading(false);
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
-                if (core.user_id) {
+                if (core.user_id || core.token) {
                     selfProxy.loginout();
                     Vue.router.push("/").catch((err: any) => err);
                 }
@@ -69,6 +69,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             }
         } else {
             PanelUtil.message_alert(LangUtil("未知错误"));
+            console.warn(">>>>>>>>>result: ", result);
         }
     }
 }

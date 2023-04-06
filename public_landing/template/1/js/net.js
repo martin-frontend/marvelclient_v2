@@ -29,9 +29,13 @@ window.addEventListener("message", (e) => {
             $("#dialog_confirm").css("display", "flex");
             break;
         case "register_succeed":
+            token = e.data.params.data.token;
+            user_id = e.data.params.data.user_id;
+            uuid = e.data.uuid;
             $("#loading").css("display", "none");
             $("#dialog_succeed").css("display", "flex");
             resetForm();
+            sendPostMessage({ action: "auth_code" });
             break;
         case "api_public_sms_send":
             $("#loading").css("display", "none");

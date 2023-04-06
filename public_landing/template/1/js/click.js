@@ -134,7 +134,7 @@ $(document).ready(function () {
     });
 
     $("#btnGoHome").click((e) => {
-        sendPostMessage({ action: "go_home" });
+        sendPostMessage({ action: "go_home", params: { token: token, uuid: uuid, user_id: user_id } });
     });
 
     $("#btnCloseSucceed").click((e) => {

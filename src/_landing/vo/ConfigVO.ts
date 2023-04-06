@@ -16,4 +16,5 @@ interface ConfigVO {
     faceBookEvent: number;
     gaEvent: number;
     gtmEvent: string;
+    inviteHide: number;
 }

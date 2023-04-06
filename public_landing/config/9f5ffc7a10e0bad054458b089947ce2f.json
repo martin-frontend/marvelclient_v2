@@ -7,5 +7,6 @@
     "modelID": "1",
     "id": 9,
     "faceBookEvent": 1,
-    "gtmEvent": "GTM-0000000"
+    "gtmEvent": "GTM-0000000",
+    "inviteHide": 1
 }

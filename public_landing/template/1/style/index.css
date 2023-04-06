@@ -394,6 +394,11 @@ input[type="number"] {
     position: relative;
 }
 
+.tag_box {
+    display: block;
+    height: 42px;
+}
+
 /* select:focus-visible {
     outline: none;
 } */

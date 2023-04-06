@@ -119,11 +119,10 @@ export function api_user_register(params: any) {
             const ifr: any = document.getElementById("ifr");
             if (data.status == 0) {
                 if (ifr) {
-                    ifr.contentWindow.postMessage({ action: "register_succeed", params: data }, "*");
+                    ifr.contentWindow.postMessage({ action: "register_succeed", params: data, uuid: core.device }, "*");
                 }
             } else {
                 api_public_auth_code();
-
                 if (ifr) {
                     ifr.contentWindow.postMessage({ action: "api_user_register", params: data }, "*");
                 }
@@ -148,7 +147,7 @@ window.addEventListener("message", function (e) {
             api_user_register(e.data.params);
             break;
         case "go_home":
-            this.location.href = LandConfig.config.platUrl;
+            this.location.href = LandConfig.config.platUrl + `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
             break;
     }
 });

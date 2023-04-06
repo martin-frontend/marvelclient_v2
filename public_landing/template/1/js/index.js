@@ -1,6 +1,9 @@
 var register_type = 0;
 var areaCodeArr = [];
 var version = 1.2;
+var token = "";
+var user_id = "";
+var uuid = "";
 
 if (window.self === window.top) {
     const registrationType = [1, 2, 4, 8];
@@ -52,11 +55,17 @@ if (window.self === window.top) {
 // 初始化
 function init() {
     const registrationType = window.config.registrationType;
+    const inviteHide = window.config.inviteHide;
+
+    if (inviteHide == 1) {
+        $("#refer_code").css("display", "none");
+    }
 
     if (registrationType.length == 0) {
         console.log("error: registrationType");
         return;
     }
+
     register_type = registrationType[0];
     if (registrationType.length > 1) {
         $(".tag-box-method").css("display", "flex");
@@ -73,6 +82,8 @@ function init() {
             $("#btnTagEmailMobile").css("display", "block");
         }
         $(".btn-tag").first().addClass("btn-tag-active");
+    } else {
+        $("#tag_box").addClass("tag_box");
     }
 
     if (registrationType.length == 1 && registrationType.includes(8)) {

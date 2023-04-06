@@ -12,8 +12,11 @@ module core {
         // 获取推荐号
         invite_user_id = (getQueryVariable("invite") || "").replace("/", "");
         // 自动登录
-        token = window.localStorage.getItem("token");
+        token = getQueryVariable("token") || window.localStorage.getItem("token");
         token && (user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
+        if (token) {
+            window.localStorage.setItem("token", token);
+        }
 
         plat_id = getQueryVariable("plat_id") || "10001";
         channel_id = getQueryVariable("channel_id") || "10001001";
@@ -21,14 +24,14 @@ module core {
         // device_type = parseInt(getQueryVariable("RunType")) || EnumDeviceType.OTHER;
 
         const runType = parseInt(getQueryVariable("RunType"));
-        if(runType){
+        if (runType) {
             device_type = runType;
-        }else{
-            if(isAndroid()){
+        } else {
+            if (isAndroid()) {
                 device_type = EnumDeviceType.ANDROID;
-            }else if(isIOS()){
+            } else if (isIOS()) {
                 device_type = EnumDeviceType.IOS;
-            }else{
+            } else {
                 device_type = EnumDeviceType.OTHER;
             }
         }

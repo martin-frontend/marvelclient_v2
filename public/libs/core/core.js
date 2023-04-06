@@ -31,8 +31,11 @@ var core;
         // 获取推荐号
         core.invite_user_id = (core.getQueryVariable("invite") || "").replace("/", "");
         // 自动登录
-        core.token = window.localStorage.getItem("token");
+        core.token = core.getQueryVariable("token") || window.localStorage.getItem("token");
         core.token && (core.user_id = parseInt(window.localStorage.getItem("user_id")) || 0);
+        if (core.token) {
+            window.localStorage.setItem("token", core.token);
+        }
         core.plat_id = core.getQueryVariable("plat_id") || "10001";
         core.channel_id = core.getQueryVariable("channel_id") || "10001001";
         core.app_type = core.EnumAppType.WEB;

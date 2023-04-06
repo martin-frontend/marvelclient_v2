@@ -21,9 +21,6 @@ export default class AppFacade {
     private facade = puremvc.Facade.getInstance();
 
     startup() {
-        // 传token直接登录
-        core.token = core.getQueryVariable("token") || core.token;
-
         this.initProxy();
         this.initCommand();
         this.initObserver();

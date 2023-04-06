@@ -14,4 +14,6 @@ interface ConfigVO {
 
     upload_version: string;
     faceBookEvent: number;
+    gaEvent: number;
+    gtmEvent: string;
 }

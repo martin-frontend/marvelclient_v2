@@ -23,7 +23,7 @@ export default class GameConfig {
         //新版本，读取URL参数
         const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
         const channelStr = (isProduction ? location.pathname : location.hash).split("/")[1];
-        if (!isNaN(Number(channelStr))) {
+        if (channelStr && !isNaN(Number(channelStr))) {
             plat_id = channelStr.substring(0, 5);
             channel_id = channelStr;
             console.warn("plat_id: ", plat_id, "----channel_id: ", channel_id);
@@ -104,7 +104,7 @@ export default class GameConfig {
         let channelConfig;
         /**查找当前 对应 渠道的 参数 是否有 */
         for (let index = 0; index < keys.length; index++) {
-            if ((keys[index] + "") == core.channel_id) {
+            if (keys[index] + "" == core.channel_id) {
                 channelConfig = data.ChannelConfig[keys[index]];
                 break;
             }

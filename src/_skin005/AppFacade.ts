@@ -21,6 +21,9 @@ export default class AppFacade {
     private facade = puremvc.Facade.getInstance();
 
     startup() {
+        // 传token直接登录
+        core.token = core.getQueryVariable("token") || core.token;
+
         this.initProxy();
         this.initCommand();
         this.initObserver();
@@ -50,11 +53,11 @@ export default class AppFacade {
                         // gameProxy.go_soccer();
                     }
                     break;
-            };
+            }
             switch (e.data.action) {
                 case EnumPostMessage.UNLOGIN:
                     console.log("收到消息-111--", e.data);
-                    LoginEnter(() => { });
+                    LoginEnter(() => {});
                     break;
                 case EnumPostMessage.RECHARGE:
                     console.log("收到消息-222--", e.data);
@@ -64,12 +67,11 @@ export default class AppFacade {
                     break;
                 case EnumPostMessage.BETTINGRECORD:
                     console.log("收到消息-4444--", e.data);
-                    LoginEnter(() => { 
+                    LoginEnter(() => {
                         PanelUtil.openpanel_bet_record();
                     });
                     break;
-            };
-
+            }
         });
     }
 

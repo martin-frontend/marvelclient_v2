@@ -2,11 +2,14 @@ import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import Vue from "vue";
 import PanelUtil from "../PanelUtil";
+import SkinVariable from "../SkinVariable";
+import { FlayerLog } from "../AppsFlyerLog";
+import { GTM } from "../GoogleTagManager";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
         const body = notification.getBody();
-        const { result } = body;
+        const { url, data, result } = body;
         // console.warn(">>>>>>>>>>>>", body);
 
         if (result) {
@@ -70,6 +73,23 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
         } else {
             PanelUtil.message_alert(LangUtil("未知错误"));
             console.warn(">>>>>>>>>result: ", result);
+        }
+
+        if (SkinVariable.useGTM) {
+            switch (url) {
+                //充值失败
+                case net.getUrl(net.HttpType.api_user_var_recharge_create, data):
+                    GTM.repeatDepositFailed(core.user_id.toString(), data.amount, data.coin_name_unique);
+                    break;
+            }
+        }
+        if (core.app_type == core.EnumAppType.APP && SkinVariable.useFlyerLog) {
+            switch (url) {
+                //充值失败
+                case net.getUrl(net.HttpType.api_user_var_recharge_create, data):
+                    FlayerLog.repeatDepositFailed(core.user_id.toString(), data.amount, data.coin_name_unique, data.recharge_channel_id);
+                    break;
+            }
         }
     }
 }

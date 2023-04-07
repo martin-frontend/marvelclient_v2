@@ -73,6 +73,13 @@ const skinMap = {
                 title: "96in",
                 faviconName: "favicon.ico",
             },
+            pay_redirect: {
+                entry: "src/_skin005/pay_redirect.ts",
+                template: "public_skin005/pay_redirect.html",
+                filename: "pay_redirect.html",
+                title: "pay",
+                faviconName: "favicon.ico",
+            },
         },
     },
     skin006: {
@@ -175,7 +182,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007","skin008"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007", "skin008"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         }
 

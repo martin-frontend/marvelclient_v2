@@ -71,7 +71,7 @@ export default class GameConfig {
             myAxios = axios.post(url, data);
         }
 
-        myAxios
+        return myAxios
             .then((response: any) => {
                 const data = response.data.data ?? response.data;
                 console.log("__game_address", data);

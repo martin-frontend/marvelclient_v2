@@ -22,6 +22,7 @@ export enum H2NType {
     SAVE_PHOTO, //保存图片到相册
     OPEN_ALIPAY, //打开支付宝
     OPEN_BROWSER_SYSTEM, //系统浏览器打开外部网页
+    APPSFLYER_LOG, //appsflyer打点
 }
 export enum N2HType {
     ANDROID_BACK, //Android设备返回按钮
@@ -231,5 +232,10 @@ export default class WebViewBridge extends puremvc.Proxy {
     public enterHall() {
         console.log("通知进入大厅完成。。。。");
         this.sendNative(H2NType.ENTER_HALL_ALREADY, null, null);
+    }
+    /**applays打点 */
+    public flyerLog(data: any) {
+        console.warn(">>>>>>flyerLog: ", data);
+        this.sendNative(H2NType.APPSFLYER_LOG, data, null);
     }
 }

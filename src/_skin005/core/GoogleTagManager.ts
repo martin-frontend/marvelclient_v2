@@ -25,7 +25,7 @@ export const GTM = {
         getGMT().push({ event: "ftdFailed", userID, value, currency });
     },
     AddCashClick: () => {
-        getGMT().pussh({ event: "AddCashClick" });
+        getGMT().push({ event: "AddCashClick" });
     },
     InitiateRepeatDeposit: (userID: string, value: number, currency: string) => {
         getGMT().push({ event: "InitiateRepeatDeposit", userID, value, currency });

@@ -19,7 +19,9 @@ export default class SkinVariable {
 
     public static isForeShowRecharge = false;
     /**是否使用google tag manager */
-    public static useGTM = true;
+    public static useGTM = false;
+    /**是否使用AppsFlyer */
+    public static useFlyerLog = false;
     /**投注记录中是否显示有效投注 */
     public static isShowVailBet = false;
 }

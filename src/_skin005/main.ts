@@ -45,6 +45,8 @@ Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
 SkinVariable.isNeedPush = true;
 SkinVariable.isNeedKefu = true;
+SkinVariable.useFlyerLog = true;
+SkinVariable.useGTM = true;
 
 LangConfig.lang_type = 18;
 PixelEvenManager.Init("1167176630610478");

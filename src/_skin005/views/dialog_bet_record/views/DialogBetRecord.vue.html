@@ -92,15 +92,15 @@
                 <div class="ml-5 primary--text">
                     {{LangUtil("总投注额")}}
                     <span v-if="is_send_coin" class="userInfo_color--text">
-                        {{pageData.total_bet_gold_coin}}
+                        {{pageData.total_bet_gold_coin || '0'}}
                     </span>
                     <span v-else>
                         <span style="font-family: Arial;">≈</span>
-                        <span class="userInfo_color--text"> {{pageData.total_bet_gold}}</span>
+                        <span class="userInfo_color--text">{{pageData.total_bet_gold || '0'}}</span>
                     </span>
                 </div>
 
-                <div class="ml-5 primary--text">{{LangUtil("有效投注")}}
+                <div v-if="isShowVailBet" class="ml-5 primary--text">{{LangUtil("有效投注")}}
                     <span v-if="is_send_coin" class="userInfo_color--text">
                         {{pageData.total_valid_bet_gold_coin}}
                     </span>
@@ -139,49 +139,12 @@
                 <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("投注币种")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("投注金额")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("游戏输赢")}}</v-sheet>
-                <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("有效投注")}}</v-sheet>
+                <v-sheet v-if="isShowVailBet" color="transparent" class="primary--text" width="120">{{LangUtil("有效投注")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("结算流水")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("下注状态")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("投注时间")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("结算时间")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="30">{{LangUtil("")}}</v-sheet>
-
-                <!-- <div class="d-flex flex-wrap listitem_title primary--text">
-                    <div class="listitem-150">
-                        <div>{{LangUtil("订单号")}}</div>
-                    </div>
-                    <div class="listitem-150">
-                        <div>{{LangUtil("游戏名称")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("投注币种")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("投注金额")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("游戏输赢")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("有效投注")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("结算流水")}}</div>
-                    </div>
-                    <div>
-                        <div>{{LangUtil("下注状态")}}</div>
-                    </div>
-                    <div class="listitem-150">
-                        <div>{{LangUtil("投注时间")}}</div>
-                    </div>
-                    <div class="listitem-150">
-                        <div>{{LangUtil("结算时间")}}</div>
-                    </div>
-                    <div class="listitem-40">
-                        <div class="ml-4">
-                        </div>
-                    </div>
-                </div> -->
             </v-sheet>
             <v-divider class="mb-2" />
             <v-sheet ref="scrollObj" v-if="pageData.list.length>0" color="transparent" class="scroll-y" style="height: calc(100vh - 450px);">
@@ -203,7 +166,7 @@
                                 {{getMoneyValue(item.win_gold_coin)}}
                             </div>
                         </v-sheet>
-                        <v-sheet color="transparent" class="primary--text" width="120">
+                        <v-sheet v-if="isShowVailBet" color="transparent" class="primary--text" width="120">
                             {{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}
                         </v-sheet>
                         
@@ -383,7 +346,7 @@
                 <span v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
                     {{getMoneyValue(pageData.total_win_gold_coin)}}</span>
             </v-sheet>
-            <v-sheet class="mr-5" min-width="150" color="transparent">{{LangUtil("有效投注")}}
+            <v-sheet v-if="isShowVailBet" class="mr-5" min-width="150" color="transparent">{{LangUtil("有效投注")}}
                 <span v-if="is_send_coin">
                     {{pageData.total_valid_bet_gold_coin}}
                 </span>
@@ -474,7 +437,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-space-between">
+                <div v-if="isShowVailBet" class="d-flex justify-space-between">
                     <div class="primary--text">{{LangUtil("有效投注")}}</div>
                     <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
                 </div>

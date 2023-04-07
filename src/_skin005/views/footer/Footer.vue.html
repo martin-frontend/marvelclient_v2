@@ -7,7 +7,7 @@
         <v-btn class="foot_text_color mx-5" text @click="goService">{{LangUtil("服务条款")}}</v-btn>
         <v-btn class="foot_text_color" text @click="goMail">{{LangUtil("官方邮箱")}}</v-btn>
     </div>
-    <div v-else class="d-flex flex-column mt-4 foot_text_color align-center">
+    <div v-else class="d-flex mt-4 foot_text_color " :class="$vuetify.breakpoint.mobile  ? 'flex-column align-center' : 'flex-wrap justify-center'">
         <!-- <v-btn v-for="(item, key) of noticeProxy.data.listType11" :key="item.id" class="foot_text_color mx-2" :ripple="false" text @click="onInRuleClick(item)">{{item.name}}</v-btn> -->
         <v-sheet v-for="(item, key) of noticeProxy.data.listType11" :key="item.id"  color="transparent" class="foot_text_color cursor-pointer customize_btn_class mx-2" @click="onInRuleClick(item)">
             {{item.name}}

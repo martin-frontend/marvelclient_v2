@@ -20,4 +20,6 @@ export default class SkinVariable {
     public static isForeShowRecharge = false;
     /**是否使用google tag manager */
     public static useGTM = true;
+    /**投注记录中是否显示有效投注 */
+    public static isShowVailBet = false;
 }

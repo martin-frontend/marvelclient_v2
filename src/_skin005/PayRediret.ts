@@ -2,6 +2,7 @@ import LangUtil from "@/core/global/LangUtil";
 import { Component } from "vue-property-decorator";
 import Vue from "vue";
 import { GTM } from "./core/GoogleTagManager";
+import SkinVariable from "./core/SkinVariable";
 
 @Component
 export default class PayRediret extends Vue {
@@ -33,7 +34,7 @@ export default class PayRediret extends Vue {
                     Object.assign(this.data, result.data);
                     if (this.data.status == 1 || this.data.status == 2) {
                         clearInterval(this.timer);
-                        if (this.user_id) {
+                        if (this.user_id && SkinVariable.useGTM) {
                             if (this.data.status == 1) {
                                 GTM.repeatDepositSuccess("", this.user_id, parseFloat(this.data.gold), this.data.coin_name_unique);
                             } else if (this.data.status == 2) {

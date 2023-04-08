@@ -54,4 +54,8 @@ export default class PayRediret extends Vue {
             3: LangUtil("玩家已支付等待确认"),
         };
     }
+
+    close() {
+        window.close();
+    }
 }

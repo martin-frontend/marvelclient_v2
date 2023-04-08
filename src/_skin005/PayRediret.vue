@@ -7,7 +7,7 @@
         <div>
             <div class="status">{{ statusOptions[data.status] }}</div>
             <div class="order">{{ LangUtil("订单编号") }} {{ order_no }}</div>
-            <div class="btnclass">{{ LangUtil("确定") }}</div>
+            <div class="btnclass" @click="close">{{ LangUtil("确定") }}</div>
         </div>
     </div>
 </template>

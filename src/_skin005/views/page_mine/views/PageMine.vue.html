@@ -144,7 +144,7 @@
                                             class="textGreen--text text-20 ml-2 font-weight-bold">{{
                                                 amountFormat(pageData.trial.main) }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16"
+                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -160,7 +160,7 @@
                                         <div class="red--text text-20 ml-2 font-weight-bold">{{
                                             amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16 font-weight-bold"
+                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16 font-weight-bold"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -431,7 +431,7 @@
                                             class="textGreen--text text-16 ml-2 font-weight-bold">{{
                                                 amountFormat(pageData.trial.main) }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
+                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -447,7 +447,7 @@
                                         <div class="red--text text-16 ml-2 font-weight-bold">{{
                                             amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
+                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>

@@ -17,9 +17,9 @@ export default class HorizontalScroll extends AbstractView {
         left: 0,
     };
     mounted() {
-        const buttons = this.$el.querySelectorAll("button");
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
+        const buttons = this.$el.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
                 this.scrollToButton(button, <any>this.$refs.divbox);
             });
         });
@@ -32,9 +32,10 @@ export default class HorizontalScroll extends AbstractView {
         const divbox: HTMLElement = this.$refs.divbox;
         this.dragData.left = divbox.scrollLeft;
     }
-
+    
     onMouseout(event: any) {
         this.dragData.isMoving = false;
+
     }
     onMouseUp(event: any) {
         this.dragData.isMoving = false;
@@ -47,14 +48,24 @@ export default class HorizontalScroll extends AbstractView {
             divbox.scrollLeft = this.dragData.left - distanceX;
         }
     }
-    scrollToButton(button: HTMLElement, container: HTMLElement) {
+     scrollToButton(button:HTMLElement, container:HTMLElement) {
         const containerRect = container.getBoundingClientRect();
-        const buttonRect = button.getBoundingClientRect();
+    const buttonRect = button.getBoundingClientRect();
+    const distanceLeft = buttonRect.left - containerRect.left-30;
+    const distanceRight = buttonRect.right - containerRect.right+30;
 
-        if (buttonRect.left < containerRect.left) {
-            container.scrollLeft -= containerRect.left - buttonRect.left + 30;
-        } else if (buttonRect.right > containerRect.right) {
-            container.scrollLeft += buttonRect.right - containerRect.right + 30;
-        }
+    if (buttonRect.left < containerRect.left) {
+        gsap.to(container, {
+            duration: 0.2,
+            scrollLeft: container.scrollLeft + distanceLeft,
+            ease: Linear.easeNone,
+        });
+    } else if (buttonRect.right > containerRect.right) {
+        gsap.to(container, {
+            duration: 0.2,
+            scrollLeft: container.scrollLeft + distanceRight,
+            ease: Linear.easeNone,
+        });
+    }
     }
 }

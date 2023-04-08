@@ -63,8 +63,8 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

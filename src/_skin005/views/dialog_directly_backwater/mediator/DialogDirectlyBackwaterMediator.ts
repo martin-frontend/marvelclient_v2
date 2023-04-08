@@ -3,15 +3,14 @@ import DialogDirectlyBackwaterProxy from "../proxy/DialogDirectlyBackwaterProxy"
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-
-export default class DialogDirectlyBackwaterMediator extends AbstractMediator{
+export default class DialogDirectlyBackwaterMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_agent_direct_user_update ,net.EventType.api_user_var_fetch_direct_user_info];
+        return [net.EventType.api_user_var_agent_direct_user_update, net.EventType.api_user_var_fetch_direct_user_info];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogDirectlyBackwaterProxy = getProxy(DialogDirectlyBackwaterProxy);
+        const myProxy: DialogDirectlyBackwaterProxy = getProxy(DialogDirectlyBackwaterProxy);
 
         const setProxy = PanelUtil.getProxy_directly_setting;
         switch (notification.getName()) {

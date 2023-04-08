@@ -10,26 +10,26 @@
     overflow: hidden;
     padding-top: 100px;
 }
-.select-text{
+.select-text {
     font-size: 14px;
     height: 40px;
 }
 
-.fix_head_mob{
+.fix_head_mob {
     position: fixed;
     z-index: 2;
     top: 0px;
 }
-.theme--light{
-    .fix_head_mob{
+.theme--light {
+    .fix_head_mob {
         background-color: #f4f4f4;
     }
 }
-.theme--dark{
-    .fix_head_mob{
+.theme--dark {
+    .fix_head_mob {
         background-color: #202121;
     }
 }
-.pad_top_mob{
+.pad_top_mob {
     padding-top: 145px;
 }

@@ -5,7 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-export default class DialogPersonalCardMediator extends AbstractMediator{
+export default class DialogPersonalCardMediator extends AbstractMediator {
     private selfProxy: SelfProxy = getProxy(SelfProxy);
     LangUtil = LangUtil;
 
@@ -15,9 +15,9 @@ export default class DialogPersonalCardMediator extends AbstractMediator{
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:DialogPersonalCardProxy = getProxy(DialogPersonalCardProxy);
+        const myProxy: DialogPersonalCardProxy = getProxy(DialogPersonalCardProxy);
         if (!myProxy.pageData.bShow) return;
-        switch(notification.getName()){
+        switch (notification.getName()) {
             case net.EventType.api_user_update_var:
                 myProxy.pageData.loading = false;
                 myProxy.hide();

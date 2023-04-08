@@ -1,5 +1,6 @@
 <div class="d-flex">
-    <v-carousel v-if="getShowData && getShowData.length > 0"
+    <v-carousel
+        v-if="getShowData && getShowData.length > 0"
         v-model="selectIndex"
         cycle
         :height="height"
@@ -16,7 +17,7 @@
                     class="box"
                     :height="height"
                     @click="onBigItemClick(item)"
-                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $vuetify.breakpoint.mobile}"
+                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $mobile}"
                 >
                     <template v-slot:placeholder>
                         <v-row class="fill-height ma-0" align="center" justify="center">

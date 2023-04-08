@@ -9,11 +9,11 @@ import Header from "./Header";
 import User from "./user/User.vue";
 
 @Component({
-    components:{
+    components: {
         Wallet,
         Marquee1,
-        User
-    }
+        User,
+    },
 })
 export default class extends Header {}
 </script>

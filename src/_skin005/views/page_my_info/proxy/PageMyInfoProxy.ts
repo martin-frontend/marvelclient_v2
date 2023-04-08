@@ -24,12 +24,10 @@ export default class PageMyInfoProxy extends puremvc.Proxy {
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;
         const vip_config_info = <any>this.userInfo.vip_config_info;
-        if (!vip_info)
-        {
+        if (!vip_info) {
             return;
         }
-        if (!vip_info.is_open || vip_info.is_open == 0)
-        {
+        if (!vip_info.is_open || vip_info.is_open == 0) {
             return;
         }
         // 等级Max

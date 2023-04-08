@@ -11,17 +11,18 @@
         </v-btn>
     </template> -->
     <v-card class="rounded10" color="bgBanner" width="400" height="207">
-
-        <com-dialog-title class="primary--text" :title="pageData.category == 0 ? '获取邮箱验证码' : '获取短信验证码'"
-            @onClose="onClose" :isDialog="true" />
+        <com-dialog-title
+            class="primary--text"
+            :title="pageData.category == 0 ? '获取邮箱验证码' : '获取短信验证码'"
+            @onClose="onClose"
+            :isDialog="true"
+        />
 
         <v-divider />
-        <v-card-text class="d-flex  mt-6 align-center">
-            <CustomInput type="tel" icon="mdi-shield-check" v-model="pageData.form.auth_code"
-                :placeholder="LangUtil('请输入验证码')">
+        <v-card-text class="d-flex mt-6 align-center">
+            <CustomInput type="tel" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
             </CustomInput>
-            <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30"
-                    @click="getVerity"></v-img>
+            <v-img class="ml-3 rounded-lg" :src="pageData.auth_image" max-width="74" height="30" @click="getVerity"></v-img>
         </v-card-text>
         <v-card-actions class="mx-5 d-flex justify-center mt-n2">
             <btn-yellow class="text-14" min_width="90" height="30" @click.native="onSend">{{LangUtil("确定")}}</btn-yellow>

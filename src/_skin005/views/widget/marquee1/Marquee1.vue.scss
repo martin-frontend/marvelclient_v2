@@ -6,27 +6,24 @@
         white-space: nowrap;
     }
 }
-.theme--dark{
-
+.theme--dark {
     .box {
         background-color: #282827;
-       
+
         position: relative;
     }
-    .box_border{
+    .box_border {
         border: solid 1px #3e3f41 !important;
     }
     .text-gray {
         color: #f4f4f4;
     }
-
 }
 
-.theme--light{
-
+.theme--light {
     .box {
-        background-color: #F4F4F4;
-       
+        background-color: #f4f4f4;
+
         position: relative;
     }
     // .box_border{
@@ -34,12 +31,11 @@
     // }
 
     .text-gray {
-        color: #0F1213;
+        color: #0f1213;
     }
-    .laba_bg{
+    .laba_bg {
         background-color: #fff !important;
     }
-
 }
 // .box-light {
 //     background-color: #fff;
@@ -51,5 +47,3 @@
 //     border: solid 1px #3e3f41 !important;
 //     position: relative;
 // }
-
-

@@ -18,25 +18,24 @@ export default class PageBonus extends AbstractView {
     user_stake_info = this.myProxy.pageData.user_stake_info;
     listQuery = this.pageData.listQuery;
 
-    private text_font(size:number,offset:number=2)
-    {
-        if (this.$vuetify.breakpoint.mdAndDown) //手机
-        {
-            return "text-" + (size-offset);
-        }   
+    private text_font(size: number, offset: number = 2) {
+        if (this.$mobile) {
+            //手机
+            return "text-" + (size - offset);
+        }
         return "text-" + size;
     }
-    
-    public get text_20() : string {
-        return this.text_font(20,4);
+
+    public get text_20(): string {
+        return this.text_font(20, 4);
     }
-    public get text_18() : string {
+    public get text_18(): string {
         return this.text_font(18);
     }
-    public get text_16() : string {
+    public get text_16(): string {
         return this.text_font(16);
     }
-    public get text_14() : string {
+    public get text_14(): string {
         return this.text_font(14);
     }
 
@@ -110,7 +109,6 @@ export default class PageBonus extends AbstractView {
 
     handleMore() {
         PanelUtil.openpanel_bonus_ranking();
-
     }
 
     jumpTo(target: string) {
@@ -119,7 +117,7 @@ export default class PageBonus extends AbstractView {
             top: document.querySelector(target).offsetTop,
             behavior: "smooth",
         });
-        this.typechange=1;
+        this.typechange = 1;
         this.onTabClick(1);
     }
 
@@ -141,9 +139,8 @@ export default class PageBonus extends AbstractView {
 
     getHeight(index: any) {
         //return 220;
-        const height = this.$vuetify.breakpoint.xsOnly ? 110 : 220;
+        const height = this.$xsOnly ? 110 : 220;
         return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
-
     }
 
     private iconsPrize: any = {
@@ -152,15 +149,12 @@ export default class PageBonus extends AbstractView {
         2: require(`@/_skin005/assets/bonus/bronze.png`),
     };
 
-    
-    public get bg_img_path() : any {
-        if (this.$vuetify.theme.dark == false)
-        {
-            return require(`@/_skin005/assets/bonus/bg.png`)
+    public get bg_img_path(): any {
+        if (this.$vuetify.theme.dark == false) {
+            return require(`@/_skin005/assets/bonus/bg.png`);
         }
-        return require(`@/_skin005/assets/bonus/bg_dark.png`)
+        return require(`@/_skin005/assets/bonus/bg_dark.png`);
     }
-    
 
     stakeDraw() {
         PanelUtil.message_confirm({

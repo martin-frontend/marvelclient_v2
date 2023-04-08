@@ -14,7 +14,7 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         listQuery: {
             page_count: 1,
             page_size: 20,
@@ -40,7 +40,7 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
                 4: LangUtil("处理失败"),
             };
         },
-    }
+    };
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -50,22 +50,20 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
         });
     }
 
-    setTestData()
-    {
-        const obj={
-            order_no:23423423,
-            coin_a:"123asdasd",
-            coin_b:"123asdasd",
-            coin_a_amount:"asdasd",
-            coin_b_amount:"asdasd",
-            trade_status:1,
-            updated_at:"qweqw"
-        }
+    setTestData() {
+        const obj = {
+            order_no: 23423423,
+            coin_a: "123asdasd",
+            coin_b: "123asdasd",
+            coin_a_amount: "asdasd",
+            coin_b_amount: "asdasd",
+            trade_status: 1,
+            updated_at: "qweqw",
+        };
 
-        const list=<any>[];
+        const list = <any>[];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
-            
         }
 
         return list;
@@ -74,8 +72,8 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

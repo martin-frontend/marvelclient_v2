@@ -5,7 +5,7 @@ import DialogWallet from "./views/DialogWallet.vue";
 
 const proxy: DialogWalletProxy = getProxy(DialogWalletProxy);
 
-function show(tabIdx: number = 0, type?: number ,coinName?:string) {
+function show(tabIdx: number = 0, type?: number, coinName?: string) {
     DialogMount(DialogWallet);
     hidden(false);
     proxy.pageData.tabIndex = tabIdx;
@@ -14,10 +14,9 @@ function show(tabIdx: number = 0, type?: number ,coinName?:string) {
             proxy.pageData.listQuery.type = type;
             proxy.pageData.listOptions.typeSelect = type;
         }
-        if (coinName)
-        {
+        if (coinName) {
             proxy.pageData.listQuery.coin_name_unique = coinName;
-            proxy.pageData.listOptions.coinSelect = proxy.getCoinIndex(coinName) ;
+            proxy.pageData.listOptions.coinSelect = proxy.getCoinIndex(coinName);
             proxy.pageData.listOptions.timeSelect = 3;
 
             proxy.pageData.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
@@ -35,4 +34,4 @@ function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

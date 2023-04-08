@@ -10,7 +10,6 @@ export default class CustomPassword extends AbstractView {
     inputValue = this.getValue;
     bShowPassword = true;
 
-
     isFocus = false;
 
     @Prop() value!: any;
@@ -22,8 +21,7 @@ export default class CustomPassword extends AbstractView {
         let str = "";
         if (this.isBottomLine) {
             str = "input-text-border-bottom";
-        }
-        else {
+        } else {
             str = "input-text";
         }
 
@@ -32,7 +30,6 @@ export default class CustomPassword extends AbstractView {
         }
         return str;
     }
-
 
     onInput(value: any) {
         this.inputValue = this.inputValue.replace(/[\u4e00-\u9fa5]/g, "");

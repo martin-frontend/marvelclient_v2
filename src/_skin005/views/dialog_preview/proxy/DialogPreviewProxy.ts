@@ -3,7 +3,7 @@ export default class DialogPreviewProxy extends puremvc.Proxy {
 
     pageData = {
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         url: "",
     };
 }

@@ -22,13 +22,13 @@ export default class DialogRecharge extends AbstractView {
         super(DialogRechargeMediator);
     }
 
-    typechange=0;
+    typechange = 0;
 
     /**图标时间选择 */
     onTimeChange(val: any) {
-       this.pageData.tabIndex= parseInt(val);
-       this.onTabClick(this.pageData.tabIndex);
-   }
+        this.pageData.tabIndex = parseInt(val);
+        this.onTabClick(this.pageData.tabIndex);
+    }
 
     onTabClick(idx: number) {
         this.myProxy.exchangeProxy.resetform();
@@ -51,12 +51,12 @@ export default class DialogRecharge extends AbstractView {
     }
 
     viewDetail() {
-        PanelUtil.openpanel_wallet(2,0);
+        PanelUtil.openpanel_wallet(2, 0);
     }
 
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
-        this.typechange=0;
+        this.typechange = 0;
     }
 }

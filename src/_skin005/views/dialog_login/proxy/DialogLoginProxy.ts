@@ -5,14 +5,12 @@ import Cookies from "js-cookie";
 export default class DialogLoginProxy extends puremvc.Proxy {
     static NAME = "DialogLoginProxy";
 
-    public onRegister(): void {
-        
-    }
+    public onRegister(): void {}
 
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         form: {
             username: "",
             password: "",

@@ -36,7 +36,7 @@ export default class PageIntroduceProxy extends puremvc.Proxy {
     setRewardCoinInfo(data: any) {
         Object.assign(this.pageData.reward_coin_info, data);
     }
-    setStakeInfo(data:any){
+    setStakeInfo(data: any) {
         Object.assign(this.pageData.stake_info, data);
     }
 

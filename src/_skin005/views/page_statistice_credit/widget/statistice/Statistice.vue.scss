@@ -22,7 +22,6 @@
 }
 
 .timeRange_pc {
-
     .el-date-editor.el-input,
     .el-date-editor.el-input__inner {
         width: 190px;
@@ -38,10 +37,8 @@
 }
 
 ::v-deep .money_class {
-    color: #8E8F91 !important;
+    color: #8e8f91 !important;
 }
-
-
 
 ::v-deep .el-date-editor {
     position: relative;
@@ -55,33 +52,33 @@
     display: none;
 }
 
-::v-deep .el-input--prefix .el-input__inner { 
+::v-deep .el-input--prefix .el-input__inner {
     padding-left: 20px;
 }
 
-::v-deep .el-icon-date{
+::v-deep .el-icon-date {
     font-size: 16px;
 }
 
-.phone_datapicker{
-    ::v-deep .el-input__inner{
+.phone_datapicker {
+    ::v-deep .el-input__inner {
         padding-left: 8px;
     }
-    ::v-deep .el-icon-date{
+    ::v-deep .el-icon-date {
         display: none;
     }
 }
-.mydivider{
+.mydivider {
     max-width: 120%;
     width: 100%;
     position: absolute;
     left: 0;
 }
-.title{
+.title {
     display: grid;
     align-content: center;
 }
 
-.pad_top_mob{
+.pad_top_mob {
     padding-top: 70px;
 }

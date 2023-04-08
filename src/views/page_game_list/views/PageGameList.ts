@@ -22,7 +22,7 @@ export default class PageGameList extends AbstractView {
         super(PageGameListMediator);
     }
 
-    get hotGame(){
+    get hotGame() {
         for (const item of this.gameProxy.lobbyIndex) {
             if (item.category == 1) {
                 return item;
@@ -53,7 +53,7 @@ export default class PageGameList extends AbstractView {
         LoginEnter(game_search.show);
     }
 
-    destroyed(){
+    destroyed() {
         super.destroyed();
     }
 }

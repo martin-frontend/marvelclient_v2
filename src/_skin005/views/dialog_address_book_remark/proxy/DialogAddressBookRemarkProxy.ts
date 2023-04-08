@@ -6,7 +6,7 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             id: 0,
@@ -54,4 +54,3 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_payment_method_update_var, objectRemoveNull(obj));
     }
 }
-

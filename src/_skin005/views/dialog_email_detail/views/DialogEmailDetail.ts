@@ -19,7 +19,7 @@ export default class DialogEmailDetail extends AbstractView {
     }
 
     onClose() {
-        this.pageData.bShow = false;    
+        this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
     }
 
@@ -34,12 +34,10 @@ export default class DialogEmailDetail extends AbstractView {
 
     get isneedObj() {
         if (this.pageData.data && this.pageData.data.attachment_content) {
-            const sss = (Object.keys(this.pageData.data.attachment_content)).length % 2;
+            const sss = Object.keys(this.pageData.data.attachment_content).length % 2;
             return sss % 2 == 1;
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 }

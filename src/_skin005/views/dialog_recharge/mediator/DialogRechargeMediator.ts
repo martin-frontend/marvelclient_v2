@@ -8,15 +8,14 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 export default class DialogRechargeMediator extends AbstractMediator {
-    private selfProxy = PanelUtil.getProxy_selfproxy
+    private selfProxy = PanelUtil.getProxy_selfproxy;
 
-    onRegister(){
+    onRegister() {
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
         myProxy.exchangeProxy.gold_info = this.selfProxy.userInfo.gold_info;
         myProxy.transferProxy.gold_info = this.selfProxy.userInfo.gold_info;
-    }    
+    }
 
     public listNotificationInterests(): string[] {
         return [

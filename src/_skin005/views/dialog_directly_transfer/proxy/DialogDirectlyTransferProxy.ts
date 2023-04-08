@@ -1,4 +1,3 @@
-
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -24,7 +23,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         isAddMode: false, //是否为增加钱的模式
         //如果是列表，使用以下数据，否则删除
         listQuery: {
@@ -93,7 +92,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     //扣款的回调
     agent_direct_deduction_call_back(msg: any) {
         const str = LangUtil("扣款成功！金额：{0} {1}！", msg.actual_deduction_gold, msg.coin_name_unique);
-        PanelUtil.message_alert({ message: str, okFun: () => { } });
+        PanelUtil.message_alert({ message: str, okFun: () => {} });
     }
     // 直属加钱 信息
     api_user_var_agent_credit_transfer() {
@@ -106,7 +105,7 @@ export default class DialogDirectlyTransferProxy extends puremvc.Proxy {
     //加钱的回调
     api_user_var_agent_credit_transfer_call_back(msg: any) {
         const str = LangUtil("加钱成功！金额：{0} {1}！", msg.actual_deduction_gold, msg.coin_name_unique);
-        PanelUtil.message_alert({ message: str, okFun: () => { } });
+        PanelUtil.message_alert({ message: str, okFun: () => {} });
         this.api_user_show_var(); //刷新当前玩家金币
     }
 

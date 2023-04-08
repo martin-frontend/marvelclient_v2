@@ -50,16 +50,13 @@ export default class PageHome extends AbstractView {
         return require(`@/_skin005/assets/texture_money${this.$vuetify.theme.dark ? "_dark" : ""}.png`);
     }
 
-
     public get viewWidth(): number {
-
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             return 100;
         }
         if (this.$vuetify.breakpoint.width > 1400) {
             return 340;
-        }
-        else if (this.$vuetify.breakpoint.width > 1280) {
+        } else if (this.$vuetify.breakpoint.width > 1280) {
             return 290;
         }
         return 240;
@@ -88,14 +85,11 @@ export default class PageHome extends AbstractView {
         PanelUtil.openpage_swap();
     }
 
-    get getBinerSize():number
-    {
-        if (this.$vuetify.breakpoint.mobile)
-        {
+    get getBinerSize(): number {
+        if (this.$mobile) {
             return 12;
         }
-        if (this.IsShow_PledgeDividend || this.IsShow_Swap)
-        {   
+        if (this.IsShow_PledgeDividend || this.IsShow_Swap) {
             return 9;
         }
         return 12;

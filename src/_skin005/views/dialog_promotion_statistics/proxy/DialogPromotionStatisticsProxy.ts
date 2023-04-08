@@ -6,7 +6,7 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //查询数据
         listQuery: {
             user_id: core.user_id,

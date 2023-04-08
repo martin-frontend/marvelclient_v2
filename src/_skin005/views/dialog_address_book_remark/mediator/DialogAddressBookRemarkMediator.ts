@@ -5,7 +5,6 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogAddressBookRemarkMediator extends AbstractMediator {
-
     private addressBookproxy = PanelUtil.getProxy_addressBook;
 
     public listNotificationInterests(): string[] {

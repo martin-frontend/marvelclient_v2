@@ -33,7 +33,7 @@ export default class DialogEmailMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_receiveQuick:
                 if (Object.keys(body.attachment_content).length > 0) {
-                    PanelUtil.openpanel_award(body.attachment_content );
+                    PanelUtil.openpanel_award(body.attachment_content);
                     myProxy.api_user_var_mail();
                 } else {
                     PanelUtil.message_info(LangUtil("没有可领取的奖励"));

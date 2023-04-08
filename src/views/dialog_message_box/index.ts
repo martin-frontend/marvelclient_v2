@@ -29,10 +29,8 @@ function alert(data: string | MessageVO) {
     }
 }
 function alert_mult(data: any | MessageVO) {
-
     data.bConfirm = false;
     show(data);
-
 }
 
-export default { confirm, alert ,alert_mult};
+export default { confirm, alert, alert_mult };

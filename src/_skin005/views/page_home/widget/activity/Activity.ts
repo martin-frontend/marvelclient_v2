@@ -9,8 +9,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class Activity extends AbstractView {
-    
-    @Prop( {default:0}) showDataType!: number;
+    @Prop({ default: 0 }) showDataType!: number;
     LangUtil = LangUtil;
     //proxy
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
@@ -25,30 +24,34 @@ export default class Activity extends AbstractView {
         return this.selfProxy.userInfo.user_id ? true : false;
     }
 
-
-    public get box_height() : number {
-        return this.$vuetify.breakpoint.width* (240 / 1048);
+    public get box_height(): number {
+        return this.$vuetify.breakpoint.width * (240 / 1048);
         return 180;
     }
-    
-    public get getShowData() : any {
-        if (!this.showDataType || this.showDataType == 0)
-            return this.noticeProxy.data.listType1
 
-            switch (this.showDataType) {
-                case 2  :return this.noticeProxy.data.listType4
-                case 8  :return this.noticeProxy.data.listType5
-                case 16 :return this.noticeProxy.data.listType6
-                case 32 :return this.noticeProxy.data.listType7
-                case 64 :return this.noticeProxy.data.listType8
-                case 4  :return this.noticeProxy.data.listType9
-                case 128:return this.noticeProxy.data.listType10
-                default:
-                    break;
-            }
-        
+    public get getShowData(): any {
+        if (!this.showDataType || this.showDataType == 0) return this.noticeProxy.data.listType1;
+
+        switch (this.showDataType) {
+            case 2:
+                return this.noticeProxy.data.listType4;
+            case 8:
+                return this.noticeProxy.data.listType5;
+            case 16:
+                return this.noticeProxy.data.listType6;
+            case 32:
+                return this.noticeProxy.data.listType7;
+            case 64:
+                return this.noticeProxy.data.listType8;
+            case 4:
+                return this.noticeProxy.data.listType9;
+            case 128:
+                return this.noticeProxy.data.listType10;
+            default:
+                break;
+        }
+
         return [];
-
     }
 
     onBigItemClick(item: any) {
@@ -69,7 +72,6 @@ export default class Activity extends AbstractView {
     }
 
     goActivity() {
-
         PanelUtil.openpanel_activity();
     }
 

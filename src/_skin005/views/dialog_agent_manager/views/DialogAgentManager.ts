@@ -27,7 +27,7 @@ export default class DialogAgentManager extends AbstractView {
 
     getMoneyColor = getMoneyColor;
     getMoneyValue = getMoneyValue;
-    
+
     constructor() {
         super(DialogAgentManagerMediator);
     }
@@ -103,7 +103,7 @@ export default class DialogAgentManager extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.mobile")
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -139,7 +139,6 @@ export default class DialogAgentManager extends AbstractView {
     }
 
     handlerShowDialogSet(agent_user: any) {
-        
         PanelUtil.openpanel_directly_setting({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
@@ -154,7 +153,6 @@ export default class DialogAgentManager extends AbstractView {
     }
     opendialog_myWater() {
         PanelUtil.openpanel_directly_backwater(null, true);
-
     }
     fontAuto() {
         const touzhu_node_parent = document.getElementById("touzhu_node_parent");

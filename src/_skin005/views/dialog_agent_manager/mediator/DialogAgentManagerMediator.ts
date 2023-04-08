@@ -13,7 +13,7 @@ export default class DialogAgentManagerMediator extends AbstractMediator {
         this.myProxy.leave();
     }
 
-    initViewData() { }
+    initViewData() {}
 
     public listNotificationInterests(): string[] {
         return [net.EventType.api_user_var_agent_direct_list, net.EventType.api_user_var_agent_var_floor_range];

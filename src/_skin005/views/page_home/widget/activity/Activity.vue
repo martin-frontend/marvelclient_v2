@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import Activity from "./Activity";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends Activity {}
 </script>

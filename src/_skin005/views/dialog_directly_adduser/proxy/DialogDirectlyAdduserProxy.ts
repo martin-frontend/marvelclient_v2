@@ -1,4 +1,3 @@
-
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
@@ -10,7 +9,7 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         form: {
             user_id: core.user_id,
@@ -21,9 +20,8 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             show_credit_set: 1,
             register_type: 1, //1：用户名 2：邮箱 4：手机
             remark: "",
-            credit_rate:0,
-            credit_rate_invited:0,
-
+            credit_rate: 0,
+            credit_rate_invited: 0,
         },
         auth_image: "",
         areaCode: <any>[],
@@ -32,21 +30,21 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         user_id: core.user_id,
         direct_user_id: 0,
         inputrate: "",
-    }
-    inputWaterData = <any>{}
+    };
+    inputWaterData = <any>{};
     playerInfo = {
         user_id: 0,
         nick_name: "",
-        credit_rate: 0,//当前占比
-        parent_credit_rate: "",//当前直属上级信用占比
+        credit_rate: 0, //当前占比
+        parent_credit_rate: "", //当前直属上级信用占比
         gold_info: <any>{},
         water_config: <any>{},
         parent_water_config: <any>{},
-        credit_rate_min:0, // 信用占比-最小
-        credit_rate_max:0, // 信用占比-最大
-        credit_rate_invited: "",      // 上级占比
-        create_credit_user_type:<any>[],
-    }
+        credit_rate_min: 0, // 信用占比-最小
+        credit_rate_max: 0, // 信用占比-最大
+        credit_rate_invited: "", // 上级占比
+        create_credit_user_type: <any>[],
+    };
     //如果是列表，使用以下数据，否则删除
     resetForm() {
         Object.assign(this.pageData.form, {
@@ -56,8 +54,8 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             register_type: 1,
             remark: "",
             show_credit_set: 1,
-            credit_rate_invited:"", //我的占成
-            credit_rate:"", //代理 占成
+            credit_rate_invited: "", //我的占成
+            credit_rate: "", //代理 占成
         });
         this.formData.inputrate = "";
         this.inputWaterData = <any>{};
@@ -84,7 +82,6 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
 
         // this.playerInfo.credit_rate_min = "50";
         // this.playerInfo.credit_rate_max = "80";
-
     }
     api_public_auth_code() {
         this.pageData.loading = true;
@@ -106,11 +103,10 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             if (element == "0") {
                 continue;
             }
-            if (this.inputWaterData[element]) //有值，测用新值
-            {
+            if (this.inputWaterData[element]) {
+                //有值，测用新值
                 pushData[element] = parseFloat(this.inputWaterData[element]);
-            }
-            else {
+            } else {
                 pushData[element] = 0;
             }
         }
@@ -125,8 +121,8 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             show_credit_set: this.pageData.form.show_credit_set,
             water_config: JSON.stringify(pushData),
             credit_rate: this.pageData.form.credit_rate_invited + "",
-            credit_rate_invited:this.pageData.form.credit_rate + "",            
-        }
+            credit_rate_invited: this.pageData.form.credit_rate + "",
+        };
         console.log("发送的数据为", obj);
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_direct_register, obj);
@@ -137,13 +133,14 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             1: LangUtil("添加用户成功"),
             2: LangUtil("用户名") + ":" + this.pageData.form.username,
             3: LangUtil("密码") + ":" + this.pageData.form.password,
-        }
+        };
         //const str = LangUtil("添加用户成功！用户名:{0} 密码:{1}",this.pageData.form.username,this.pageData.form.password)
         PanelUtil.message_alert_mult({
-            message: showmsg, okFun: () => {
+            message: showmsg,
+            okFun: () => {
                 this.pageData.bShow = false;
                 MultDialogManager.onClosePanel();
-            }
+            },
         });
     }
 

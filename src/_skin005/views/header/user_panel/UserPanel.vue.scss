@@ -34,13 +34,12 @@
 
 ::v-deep .theme--light {
     .item:hover {
-        color: #FEBA00;
+        color: #feba00;
         i {
-            color: #FEBA00 !important;
+            color: #feba00 !important;
         }
     }
 }
-
 
 .item-group-title {
     cursor: pointer;

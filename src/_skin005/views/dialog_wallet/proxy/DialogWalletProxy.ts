@@ -9,7 +9,7 @@ export default class DialogWalletProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         tabIndex: 0,
 
         gold_info: <any>{},
@@ -55,16 +55,14 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         finished: false,
         done: <any>null,
     };
-    getCoinIndex(_coinName:string)
-    {
+    getCoinIndex(_coinName: string) {
         const objs = GamePlatConfig.config.plat_coins;
         const keys = Object.keys(objs);
         for (let index = 0; index < keys.length; index++) {
             const element = keys[index];
-            if (element == _coinName)
-            {
-                return index +1 ;
-            } 
+            if (element == _coinName) {
+                return index + 1;
+            }
         }
         return 0;
     }
@@ -84,8 +82,8 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.mobile) {
+
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -100,62 +98,50 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         //this.pageData.list=this.setTestData_user_bouns();
     }
 
-    setGoldTestData()
-    {
-        const obj={
-            "CNY":{
-                    vendors_detail:
-                        [
-                       { vendor_name:"casldj",
-                        currency:546,},
+    setGoldTestData() {
+        const obj = {
+            CNY: {
+                vendors_detail: [
+                    { vendor_name: "casldj", currency: 546 },
 
-                        { vendor_name:"casldj2",
-                        currency:546,},
+                    { vendor_name: "casldj2", currency: 546 },
 
-                        { vendor_name:"casldj3",
-                        currency:546,},
-                        ],
-                        vendors_money:45651,
-                        plat_money:534,
+                    { vendor_name: "casldj3", currency: 546 },
+                ],
+                vendors_money: 45651,
+                plat_money: 534,
             },
-            "USDT":{
-                vendors_detail:
-                    [
-                   { vendor_name:"casldj",
-                    currency:546,},
+            USDT: {
+                vendors_detail: [
+                    { vendor_name: "casldj", currency: 546 },
 
-                    { vendor_name:"casldj2",
-                    currency:546,},
+                    { vendor_name: "casldj2", currency: 546 },
 
-                    { vendor_name:"casldj3",
-                    currency:546,},
-                    ],
-                    vendors_money:45651,
-                    plat_money:534,
-        }
-        }
-        this.pageData.gold_info= obj;
+                    { vendor_name: "casldj3", currency: 546 },
+                ],
+                vendors_money: 45651,
+                plat_money: 534,
+            },
+        };
+        this.pageData.gold_info = obj;
     }
-    setTestData_user_bouns()
-    {
-        const obj={
-            
-            type:52,
-            coin_name_unique:"USDT",
-            gold:654,
-            balance:89714,
-            remark:"dcasdasd",
-            created_at:"2023-01-06 15:15:10",
-
-        }
-        const list=<any>[];
+    setTestData_user_bouns() {
+        const obj = {
+            type: 52,
+            coin_name_unique: "USDT",
+            gold: 654,
+            balance: 89714,
+            remark: "dcasdasd",
+            created_at: "2023-01-06 15:15:10",
+        };
+        const list = <any>[];
 
         for (let index = 0; index < 10; index++) {
             list.push(obj);
         }
         return list;
     }
-    
+
     /**手机下拉刷新 */
     listRefrush(done: any) {
         this.pageData.done = done;

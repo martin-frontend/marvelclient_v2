@@ -8,7 +8,6 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 @Component
 export default class DialogPromotionStatistics extends AbstractView {
     LangUtil = LangUtil;

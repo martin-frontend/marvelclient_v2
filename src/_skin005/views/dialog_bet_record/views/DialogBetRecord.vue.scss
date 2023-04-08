@@ -86,7 +86,6 @@
             width: 40px;
         }
     }
-
 }
 
 .header-mobile {
@@ -98,7 +97,6 @@
 .listbox-mobile {
     overflow: hidden;
     padding-top: 0px;
-
 }
 
 // .listbox-mobile_other {
@@ -131,7 +129,6 @@
     width: 100%;
 }
 
-
 // ::v-deep .el-date-editor.el-input, .el-date-editor.el-input__inner{
 //     width: 100%;
 // }
@@ -144,7 +141,6 @@
 }
 
 .hackhome {
-
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
@@ -163,7 +159,7 @@
     height: calc(100vh - 250px);
 }
 
-.select-text{
+.select-text {
     font-size: 14px;
 }
 .theme--light {
@@ -176,7 +172,6 @@
             font-size: 12px !important;
         }
     }
-
 }
 
 .theme--light {
@@ -189,7 +184,6 @@
             font-size: 12px !important;
         }
     }
-
 }
 
 ::v-deep .el-date-editor {
@@ -204,11 +198,11 @@
     display: none;
 }
 
-::v-deep .el-input--prefix .el-input__inner { 
+::v-deep .el-input--prefix .el-input__inner {
     padding-left: 20px;
 }
 
-::v-deep .el-icon-date{
+::v-deep .el-icon-date {
     font-size: 16px;
 }
 
@@ -221,4 +215,3 @@
         width: unset !important;
     }
 }
-

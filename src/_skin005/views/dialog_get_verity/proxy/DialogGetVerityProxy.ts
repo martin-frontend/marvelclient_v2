@@ -6,9 +6,9 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
 
     private timer = 0;
 
-    private downcountHandler(){
+    private downcountHandler() {
         this.pageData.downcount--;
-        if(this.pageData.downcount == 0){
+        if (this.pageData.downcount == 0) {
             clearInterval(this.timer);
         }
     }
@@ -16,7 +16,7 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         form: {
             type: 0,
             email: "",
@@ -34,30 +34,23 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         downcount: 0,
     };
 
-    setData(data:any)
-    {
+    setData(data: any) {
         if (!data) return;
-        if (data.category)
-        {
+        if (data.category) {
             this.pageData.category = data.category;
         }
-        if (data.type)
-        {
+        if (data.type) {
             this.pageData.form.type = data.type;
         }
-        if (data.area_code)
-        {
+        if (data.area_code) {
             this.pageData.form.area_code = data.area_code;
         }
-        if (data.mobile)
-        {
+        if (data.mobile) {
             this.pageData.form.mobile = data.mobile;
         }
-        if (data.email)
-        {
+        if (data.email) {
             this.pageData.form.email = data.email;
         }
-        
     }
     resetForm() {
         Object.assign(this.pageData.form, {
@@ -68,16 +61,15 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
             uuid: core.device,
             user_id: core.user_id,
         });
-        this.pageData.category = 0 ;
+        this.pageData.category = 0;
         this.api_public_auth_code();
     }
 
-    
-    public get isCanClick() : boolean {
+    public get isCanClick(): boolean {
         return this.pageData.downcount < 1;
     }
-    
-    beginDowncount(){
+
+    beginDowncount() {
         this.pageData.downcount = 60;
         this.timer = setInterval(this.downcountHandler.bind(this), 1000);
     }
@@ -100,6 +92,9 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         const { type, area_code, mobile, auth_code, plat_id, uuid, user_id } = this.pageData.form;
-        this.sendNotification(net.HttpType.api_public_sms_send, objectRemoveNull({ type, area_code, mobile, auth_code, plat_id, uuid, user_id }, [undefined, null, "", 0, "0"]));
+        this.sendNotification(
+            net.HttpType.api_public_sms_send,
+            objectRemoveNull({ type, area_code, mobile, auth_code, plat_id, uuid, user_id }, [undefined, null, "", 0, "0"])
+        );
     }
 }

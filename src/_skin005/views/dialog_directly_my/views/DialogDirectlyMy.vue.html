@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
     <v-card class="rounded-xl" color="bgBanner">
         <!-- 标题 和 关闭按钮 -->
         <!-- <v-card-title class="gradient-bg d-flex justify-center">
@@ -12,7 +12,7 @@
 
         <com-dialog-title title="我的推广" @onClose="onClose" />
 
-        <v-divider class="mb-2 " />
+        <v-divider class="mb-2" />
         <v-card class="rounded-xl rounded-card horizontal-gradient-right px-4 px-sm-6 py-4 py-sm-6" height="100%" color="transparent">
             <v-row no-gutters class="d-flex flex-row">
                 <v-col cols="4">
@@ -27,22 +27,22 @@
                         <v-col cols="12" class="d-flex flex-column">
                             <div class="d-flex justify-center">
                                 <!-- <v-btn
-                                    :min-width="$vuetify.breakpoint.mobile? 90 : 120"
-                                    :height="$vuetify.breakpoint.mobile? 30 :40"
+                                    :min-width="$mobile? 90 : 120"
+                                    :height="$mobile? 30 :40"
                                     class="rounded-lg text-body-2 text-sm-body-1 mb-5 rounded-button"
                                     color="colorExtensionBtn"
                                     @click="reget"
                                     >{{LangUtil("重新获取")}}
                                 </v-btn> -->
 
-                                <btn-yellow class="text-16 mb-5" min-width="120" height="42" :btn_type="2"
-                                        @click.native="reget">{{LangUtil("重新获取")}}</btn-yellow>
-
+                                <btn-yellow class="text-16 mb-5" min-width="120" height="42" :btn_type="2" @click.native="reget"
+                                    >{{LangUtil("重新获取")}}</btn-yellow
+                                >
                             </div>
                             <div class="d-flex justify-center">
                                 <!-- <v-btn
-                                    :min-width="$vuetify.breakpoint.mobile? 90 : 120"
-                                    :height="$vuetify.breakpoint.mobile? 30 :40"
+                                    :min-width="$mobile? 90 : 120"
+                                    :height="$mobile? 30 :40"
                                     class="rounded-lg text-body-2 text-sm-body-1 rounded-button"
                                     color="colorExtensionBtn"
                                     @click="showPreview"
@@ -50,9 +50,9 @@
                                     {{LangUtil("保存图片")}}
                                 </v-btn> -->
 
-                                <btn-yellow class="text-16" min-width="120" height="42" :btn_type="2"
-                                        @click.native="showPreview">{{LangUtil("保存图片")}}</btn-yellow>
-
+                                <btn-yellow class="text-16" min-width="120" height="42" :btn_type="2" @click.native="showPreview"
+                                    >{{LangUtil("保存图片")}}</btn-yellow
+                                >
                             </div>
                         </v-col>
                     </v-row>
@@ -61,7 +61,7 @@
                     <div class="ml-4 mb-2 text-body-2 text-sm-body-1">{{LangUtil("推广链接")}}</div>
                     <v-sheet
                         color="colorPanelBg3 colorText4--text"
-                        :height="$vuetify.breakpoint.mobile? 35 :46"
+                        :height="$mobile? 35 :46"
                         class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2"
                     >
                         <span class="text-truncate text-body-2 text-sm-body-1">{{ myProxy.pageData.link }}</span>
@@ -69,24 +69,30 @@
                             class="mr-1"
                             color="#6FA9FA"
                             small
-                            :width="$vuetify.breakpoint.mobile? 24 :30"
+                            :width="$mobile? 24 :30"
                             min-width="0"
-                            :height="$vuetify.breakpoint.mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="copy"
                         >
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                         </v-btn> -->
 
-                        <v-btn class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.user_id)">
-                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                    </v-btn>
-
+                        <v-btn
+                            class="ml-2"
+                            small
+                            :width="$xsOnly? 24 :30"
+                            min-width="0"
+                            depressed
+                            :height="$xsOnly? 24 :30"
+                            @click="copy(playerInfo.user_id)"
+                        >
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
                     </v-sheet>
                     <div class="ml-4 mb-2 text-body-2 text-sm-body-1">{{LangUtil("邀请码")}}</div>
                     <v-sheet
                         color="colorPanelBg3 colorText4--text"
-                        :height="$vuetify.breakpoint.mobile? 35 :46"
+                        :height="$mobile? 35 :46"
                         class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-body-2 text-sm-body-1"
                     >
                         {{ pretty_user_id }}
@@ -94,29 +100,31 @@
                             class="mr-1"
                             color="#6FA9FA"
                             small
-                            :width="$vuetify.breakpoint.mobile? 24 :30"
+                            :width="$mobile? 24 :30"
                             min-width="0"
-                            :height="$vuetify.breakpoint.mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="copyMyId"
                         >
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                         </v-btn> -->
 
-                        <v-btn class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy(playerInfo.user_id)">
-                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        <v-btn
+                            class="ml-2"
+                            small
+                            :width="$xsOnly? 24 :30"
+                            min-width="0"
+                            depressed
+                            :height="$xsOnly? 24 :30"
+                            @click="copy(playerInfo.user_id)"
+                        >
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                         </v-btn>
                     </v-sheet>
-                    <div class="text-caption text-sm-body-2">
-                        {{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}
-                    </div>
-                    <div class="text-caption text-sm-body-2">
-                        {{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}
-                    </div>
+                    <div class="text-caption text-sm-body-2">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
+                    <div class="text-caption text-sm-body-2">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
                 </v-col>
             </v-row>
-           
         </v-card>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

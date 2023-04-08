@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogGameRate from "./DialogGameRate";
 
 @Component({
-    components: {
-    }
+    components: {},
 })
 export default class extends DialogGameRate {}
 </script>

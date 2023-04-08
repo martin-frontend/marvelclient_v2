@@ -6,9 +6,7 @@ import Component from "vue-class-component";
 import DialogBetFilter from "./DialogBetFilter";
 
 @Component({
-    components: {
-   
-    }
+    components: {},
 })
 export default class extends DialogBetFilter {}
 </script>

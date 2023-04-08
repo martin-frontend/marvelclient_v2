@@ -1,32 +1,39 @@
 <v-sheet color="transparent" width="100%">
     <v-menu open-on-hover offset-x nudge-bottom="5" content-class="menutestclass">
         <template v-slot:activator="{ on, attrs ,value}">
-            <v-card class="d-flex align-center navText--text" :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
-                :height="height" :min-height="height" v-bind="attrs" v-on="on" ripple flat>
+            <v-card
+                class="d-flex align-center navText--text"
+                :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
+                :height="height"
+                :min-height="height"
+                v-bind="attrs"
+                v-on="on"
+                ripple
+                flat
+            >
                 <!-- <img v-if="icons" :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" /> -->
 
-                <svg-icon v-if="icons" class="navText--text" :class="'text-'+iconSize"  icon="lang"></svg-icon>
+                <svg-icon v-if="icons" class="navText--text" :class="'text-'+iconSize" icon="lang"></svg-icon>
 
-                <div v-if="!mini" class="ml-2 text-truncate font-weight-medium" style="width: 100%"
-                    :class="'text-'+fontSize">
+                <div v-if="!mini" class="ml-2 text-truncate font-weight-medium" style="width: 100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
                 </div>
                 <v-spacer v-if="!mini" />
-                <div v-if="!mini && options && Object.keys(options).length > 1" class="ml-4 mr-3 text-12"
-                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                <div
+                    v-if="!mini && options && Object.keys(options).length > 1"
+                    class="ml-4 mr-3 text-12"
+                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                >
                     <svg-icon :icon="commonIcon.arrow_right"></svg-icon>
                 </div>
             </v-card>
 
             {{setIsFilter(value)}}
         </template>
-        <v-sheet class=" py-2 scroll-y"  color="bgBanner"
-            v-if="options && Object.keys(options).length > 1">
-            <div class="d-flex align-center listitem px-4 cursor-pointer" v-for="(item, key) of options" :key="key"
-                @click="onChange(key)">
-                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20"
-                    height="20"></v-img>
+        <v-sheet class="py-2 scroll-y" color="bgBanner" v-if="options && Object.keys(options).length > 1">
+            <div class="d-flex align-center listitem px-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
+                <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <div :class="(key == selectValue) ? 'primary--text' : ''">{{ item.name || item }}</div>
             </div>
         </v-sheet>

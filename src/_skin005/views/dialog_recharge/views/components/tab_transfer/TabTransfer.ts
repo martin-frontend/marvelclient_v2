@@ -8,7 +8,7 @@ import { Component, Watch } from "vue-property-decorator";
 export default class TabTransfer extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
-    myProxy =PanelUtil.getProxy_recharge;
+    myProxy = PanelUtil.getProxy_recharge;
     pageData = this.myProxy.transferProxy.pageData;
     form = this.pageData.form;
 
@@ -23,10 +23,10 @@ export default class TabTransfer extends AbstractView {
         }
     }
 
-    get methodList(){
-        const obj:any = {};
-        for(const key of Object.keys(this.plat_coins)){
-            obj[key] = {name: key};
+    get methodList() {
+        const obj: any = {};
+        for (const key of Object.keys(this.plat_coins)) {
+            obj[key] = { name: key };
         }
         return obj;
     }
@@ -85,7 +85,6 @@ export default class TabTransfer extends AbstractView {
     }
 
     onSubmit() {
-        
         PanelUtil.message_confirm({
             message: "确认划转",
             okFun: () => {

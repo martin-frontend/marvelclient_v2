@@ -53,7 +53,8 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     /**--账号--注册*/
     api_user_register() {
         this.pageData.loading = true;
-        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, mobile_username } = this.pageData.form;
+        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, mobile_username } =
+            this.pageData.form;
         this.sendNotification(net.HttpType.api_user_register, {
             invite_user_id,
             username,

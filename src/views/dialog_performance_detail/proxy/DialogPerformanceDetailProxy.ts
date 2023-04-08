@@ -90,11 +90,11 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         this.pageData.today_group_users = data.today_group_users;
         this.pageData.today_directly_users = data.today_directly_users;
 
-        const coinname = Object.keys( body.commission_awaiting_num);
+        const coinname = Object.keys(body.commission_awaiting_num);
         this.curCoinName = coinname[0];
 
-        console.log("当前币种  为" , this.curCoinName );
-        
+        console.log("当前币种  为", this.curCoinName);
+
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.original, data);
         Object.keys(data.commission_info).forEach((key) => {

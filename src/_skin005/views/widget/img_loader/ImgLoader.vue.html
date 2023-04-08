@@ -1,6 +1,4 @@
-<v-img class="loader_class" :src="src" @click="onClick" :height="height" :width="width"
-     @loadstart="loadstart" @load="load">
-    <v-skeleton-loader v-if="img_isload" class="mx-auto my-auto img_loader"  type="image"></v-skeleton-loader>
+<v-img class="loader_class" :src="src" @click="onClick" :height="height" :width="width" @loadstart="loadstart" @load="load">
+    <v-skeleton-loader v-if="img_isload" class="mx-auto my-auto img_loader" type="image"></v-skeleton-loader>
     <slot v-else></slot>
-
 </v-img>

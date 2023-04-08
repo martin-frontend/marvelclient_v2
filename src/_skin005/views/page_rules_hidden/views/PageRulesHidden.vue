@@ -6,9 +6,7 @@ import Component from "vue-class-component";
 import PageRulesHidden from "./PageRulesHidden";
 
 @Component({
-    components: {
-
-    },
+    components: {},
 })
 export default class extends PageRulesHidden {
     mounted() {

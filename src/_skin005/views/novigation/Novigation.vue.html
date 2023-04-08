@@ -1,72 +1,89 @@
 <div class="navbox" id="navpage">
     <v-sheet class="navscroll d-flex flex-column" color="bgNavigation">
-        <v-sheet class="d-flex align-center" :height="$vuetify.breakpoint.mobile ? 70 : 74" @click="onMiniChange"
-            color="transparent">
+        <v-sheet class="d-flex align-center" :height="$mobile ? 70 : 74" @click="onMiniChange" color="transparent">
             <div class="d-flex align-center box">
                 <svg-icon icon="menu" class="text-22"></svg-icon>
-                <v-img class="ml-2" v-if="!mini" :src="commonIcon.logo" max-width="112" max-height="26"></v-img>
+                <v-img class="ml-2" v-if="!mini" :src="commonIcon.logo" max-width="112" max-height="32"></v-img>
             </div>
         </v-sheet>
 
-        <!-- <v-sheet v-if="$vuetify.breakpoint.mobile && selfProxy.userInfo.user_id" color="bgBanner"
+        <!-- <v-sheet v-if="$mobile && selfProxy.userInfo.user_id" color="bgBanner"
             class="rounded10 mx-2 d-flex align-center" min-height="62">
             <User :isShowFull="true" />
         </v-sheet> -->
 
-        <v-sheet color="transparent" id="category_page" class="d-flex  flex-column main_list overflow-y-auto">
-
-                <v-menu v-if="!$vuetify.breakpoint.mobile" right offset-x v-for="(item, index) of lobbyMenuIndex"
-                    :key="item.vendor_type" :close-on-content-click="false" open-on-hover
-                    v-model="myProxy.isMenuOpen[item.vendor_type]" max-width="100%">
-                    <template v-slot:activator="{ on, attrs,value }">
-                        <v-sheet class="d-flex align-center" :min-height="$vuetify.breakpoint.mobile ? 50 : 64" color="transparent"
-                            v-bind="attrs" v-on="on">
-
-                            <v-hover v-slot="{ hover }">
-                                <div class="d-flex align-center box" :class="{ 
+        <v-sheet color="transparent" id="category_page" class="d-flex flex-column main_list overflow-y-auto">
+            <v-menu
+                v-if="!$mobile"
+                right
+                offset-x
+                v-for="(item, index) of lobbyMenuIndex"
+                :key="item.vendor_type"
+                :close-on-content-click="false"
+                open-on-hover
+                v-model="myProxy.isMenuOpen[item.vendor_type]"
+                max-width="100%"
+            >
+                <template v-slot:activator="{ on, attrs,value }">
+                    <v-sheet class="d-flex align-center" :min-height="$mobile ? 50 : 64" color="transparent" v-bind="attrs" v-on="on">
+                        <v-hover v-slot="{ hover }">
+                            <div
+                                class="d-flex align-center box"
+                                :class="{ 
                                         'navTextHover--text active' : (hover || isShowActive(item)),
                                         'navIcon--text' : !(hover || isShowActive(item)),
-                                        'text-14': $vuetify.breakpoint.mobile,
-                                        'text-14': !$vuetify.breakpoint.mobile,
-                                    } " @click="goCategory_game(getItemCategory(item))">
-                                    <svg-icon :icon="CategoryIcon[getItemCategory(item)]"
-                                        :class="$vuetify.breakpoint.mobile ? 'text-18' :'text-20'"></svg-icon>
-                                    <div v-if="!mini" class=" ml-5 text-no-wrap font-weight-bold"
-                                        :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' ">
-                                        {{LangUtil(getItemCategoryName(item))}}
-                                    </div>
-                                    <v-spacer />
-                                    <div v-if="!mini" class="mr-0"
-                                        :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' ">
-                                        <svg-icon :icon="commonIcon.arrow_right"
-                                            :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-12'"></svg-icon>
-                                    </div>
+                                        'text-14': $mobile,
+                                        'text-14': !$mobile,
+                                    } "
+                                @click="goCategory_game(getItemCategory(item))"
+                            >
+                                <svg-icon :icon="CategoryIcon[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                                <div
+                                    v-if="!mini"
+                                    class="ml-5 text-no-wrap font-weight-bold"
+                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' "
+                                >
+                                    {{LangUtil(getItemCategoryName(item))}}
                                 </div>
-                            </v-hover>
-                        </v-sheet>
-                        {{setFilters(index,value)}}
-                    </template>
-                    <GameMenu v-if="!$vuetify.breakpoint.mobile && ModulesHelper.IsShow_pcMenuTip()" :data="item" />
-                </v-menu>
+                                <v-spacer />
+                                <div
+                                    v-if="!mini"
+                                    class="mr-0"
+                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' "
+                                >
+                                    <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                                </div>
+                            </div>
+                        </v-hover>
+                    </v-sheet>
+                    {{setFilters(index,value)}}
+                </template>
+                <GameMenu v-if="!$mobile && ModulesHelper.IsShow_pcMenuTip()" :data="item" />
+            </v-menu>
 
-
-            <v-sheet class="d-flex align-center" :min-height="$vuetify.breakpoint.mobile ? 50 : 64" v-for="item in menu"
-                :key="item.name" color="transparent">
+            <v-sheet class="d-flex align-center" :min-height="$mobile ? 50 : 64" v-for="item in menu" :key="item.name" color="transparent">
                 <v-hover v-slot="{ hover }">
-                    <div class="d-flex align-center box" :class="{ 
+                    <div
+                        class="d-flex align-center box"
+                        :class="{ 
                             'navTextHover--text active' : (hover || routerPath.includes(item.path)),
                             'navIcon--text' : !(hover || routerPath.includes(item.path)),
-                            'text-14': $vuetify.breakpoint.mobile,
-                            'text-14': !$vuetify.breakpoint.mobile,
-                        } " @click="goCategory(item)">
-                        <svg-icon :icon="item.icon"
-                            :class="$vuetify.breakpoint.mobile ? 'text-18' :'text-20'"></svg-icon>
-                        <div v-if="!mini" class=" text-no-wrap font-weight-bold" :class="{
+                            'text-14': $mobile,
+                            'text-14': !$mobile,
+                        } "
+                        @click="goCategory(item)"
+                    >
+                        <svg-icon :icon="item.icon" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                        <div
+                            v-if="!mini"
+                            class="text-no-wrap font-weight-bold"
+                            :class="{
                                 'navTextHover--text' : (hover || routerPath.includes(item.path)),
                                 'navText--text' : !(hover || routerPath.includes(item.path)),
-                                'ml-5': !$vuetify.breakpoint.mobile,
-                                'ml-2': $vuetify.breakpoint.mobile,
-                            }">
+                                'ml-5': !$mobile,
+                                'ml-2': $mobile,
+                            }"
+                        >
                             {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
                         </div>
                     </div>
@@ -76,16 +93,23 @@
             <!-- <div class="d-flex flex-column mt-auto mb-0"> -->
             <div class="d-flex flex-column mb-0">
                 <v-sheet class="d-flex align-center" height="50" color="transparent">
-                    <LangSelect v-model="core.lang" :options="LangConfig.language" :icons="LangConfig.language"
-                        :fontSize="$vuetify.breakpoint.mobile ? 14 : 14" :iconSize="20" :mini="mini" class="lang"/>
+                    <LangSelect
+                        v-model="core.lang"
+                        :options="LangConfig.language"
+                        :icons="LangConfig.language"
+                        :fontSize="$mobile ? 14 : 14"
+                        :iconSize="20"
+                        :mini="mini"
+                        class="lang"
+                    />
                 </v-sheet>
 
                 <v-sheet class="d-flex align-center" height="50" width="100%" color="transparent">
-                    <LightDark :mini="mini"  @onChange="onLightChange"/>
+                    <LightDark :mini="mini" @onChange="onLightChange" />
                 </v-sheet>
             </div>
 
-            <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" width="100%">
+            <v-sheet v-if="$mobile" color="transparent" width="100%">
                 <div class="all-rights-reserved textGray--text">version:{{getVersion()}}</div>
                 <div class="all-rights-reserved textGray--text">{{getChannelID()}}</div>
             </v-sheet>

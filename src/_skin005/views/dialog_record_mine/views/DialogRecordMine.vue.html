@@ -1,9 +1,16 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
-    elevation="0" persistent>
-    <v-card class="rounded10" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'">
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="730"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$xsOnly"
+    elevation="0"
+    persistent
+>
+    <v-card class="rounded10" :color="!$xsOnly ? 'bgBanner' : 'bgColor'">
         <!-- pc显示方式 -->
-        <template v-if="!$vuetify.breakpoint.xsOnly">
-            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$vuetify.breakpoint.xsOnly">
+        <template v-if="!$xsOnly">
+            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$xsOnly">
                 <div class="text-20">{{LangUtil("奖励记录")}}</div>
 
                 <v-btn icon @click="onClose">
@@ -13,34 +20,47 @@
             <com-dialog-title title="奖励记录" @onClose="onClose" />
 
             <v-divider />
-            <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
-
-                <v-sheet color="transparent"
-                    class="d-flex flex-wrap px-2 justify-space-around text-16 font-weight-bold mt-4">
+            <v-card-text class="px-5" v-if="!$xsOnly">
+                <v-sheet color="transparent" class="d-flex flex-wrap px-2 justify-space-around text-16 font-weight-bold mt-4">
                     <v-sheet color="transparent" class="" min-width="130">{{LangUtil("结算时间")}}</v-sheet>
                     <v-sheet color="transparent" class="" min-width="130">{{LangUtil("结算有效流水")}}</v-sheet>
-                    <v-sheet color="transparent" class="" min-width="130"
-                        v-if="myProxy.rewordInfo[0]">{{LangUtil("奖励")}}{{myProxy.rewordInfo[0] }}</v-sheet>
-                    <v-sheet color="transparent" class="" min-width="130"
-                        v-if="myProxy.rewordInfo[1]">{{LangUtil("奖励")}}{{myProxy.rewordInfo[1] }}</v-sheet>
+                    <v-sheet color="transparent" class="" min-width="130" v-if="myProxy.rewordInfo[0]"
+                        >{{LangUtil("奖励")}}{{myProxy.rewordInfo[0] }}</v-sheet
+                    >
+                    <v-sheet color="transparent" class="" min-width="130" v-if="myProxy.rewordInfo[1]"
+                        >{{LangUtil("奖励")}}{{myProxy.rewordInfo[1] }}</v-sheet
+                    >
                     <v-sheet color="transparent" class="" min-width="100">{{LangUtil("")}}</v-sheet>
                 </v-sheet>
                 <div class="listbox mt-2" v-if="pageData.list.length > 0">
-
-                    <v-sheet class="px-2 sheetOutlined mb-3 scroll-y d-flex align-center"
-                        v-for="(item, key) of pageData.list" :key="key" color="transparent" height="48">
-
+                    <v-sheet
+                        class="px-2 sheetOutlined mb-3 scroll-y d-flex align-center"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        color="transparent"
+                        height="48"
+                    >
                         <v-sheet class="d-flex flex-wrap justify-space-around" width="100%" color="transparent">
-                            <v-sheet color="transparent" class="text-16 nomal_text_1--text"
-                                min-width="130">{{getDateTime(item.created_at)}}</v-sheet>
-                            <v-sheet color="transparent" class="text-16 nomal_text_1--text"
-                                min-width="130">{{item.total_water}}</v-sheet>
                             <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130"
-                                v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</v-sheet>
-                            <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130"
-                                v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</v-sheet>
+                                >{{getDateTime(item.created_at)}}</v-sheet
+                            >
+                            <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130">{{item.total_water}}</v-sheet>
+                            <v-sheet
+                                color="transparent"
+                                class="text-16 nomal_text_1--text"
+                                min-width="130"
+                                v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]"
+                                >{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</v-sheet
+                            >
+                            <v-sheet
+                                color="transparent"
+                                class="text-16 nomal_text_1--text"
+                                min-width="130"
+                                v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]"
+                                >{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</v-sheet
+                            >
                             <v-sheet color="transparent" class="text-14 nomal_text_1--text" min-width="100">
-                                <v-btn text height="20" class=" pa-0 textYellow--text" @click="handlerDetail(item)">
+                                <v-btn text height="20" class="pa-0 textYellow--text" @click="handlerDetail(item)">
                                     {{LangUtil("查看详情")}}
                                     <svg-icon icon="arrow_right"></svg-icon>
                                 </v-btn>
@@ -51,9 +71,13 @@
 
                 <ListNodata v-if="pageData.list.length == 0" height="411" />
                 <v-spacer />
-                <v-pagination v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                    v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" :total-visible="7"
-                    @input="onPageChange"></v-pagination>
+                <v-pagination
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
             </v-card-text>
         </template>
         <template v-else>
@@ -67,16 +91,17 @@
                 </v-sheet>
             </v-card-text> -->
             <com-dialog-title title="奖励记录" @onClose="onClose" />
-            
+
             <!-- <v-divider class="mb-2" /> -->
             <!-- <v-card-text class="px-5" > -->
-            <v-sheet id="mobile_main" color="transparent" class="py-2 overflow-y-auto px-2"
-                style="height: calc(100vh - 90px);">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0"
-                    :finished="pageData.finished">
-                    <v-sheet class="px-3 py-2 rounded10 mb-3 textGray--text" color="bgBanner"
+            <v-sheet id="mobile_main" color="transparent" class="py-2 overflow-y-auto px-2" style="height: calc(100vh - 90px)">
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
+                    <v-sheet
+                        class="px-3 py-2 rounded10 mb-3 textGray--text"
+                        color="bgBanner"
                         v-for="(item, key) of pageData.list"
-                        :key="key">
+                        :key="key"
+                    >
                         <div class="d-flex justify-space-between">
                             <div class="primary--text">{{LangUtil("结算时间")}}</div>
                             <div>{{ getDateTime(item.created_at) }}</div>
@@ -85,20 +110,16 @@
                             <div class="primary--text">{{LangUtil("结算有效流水")}}</div>
                             <div>{{item.total_water}}</div>
                         </div>
-                        <div class="d-flex justify-space-between"
-                            v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
+                        <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
                             <div class="primary--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>
                             <div>{{item.total_backwater[Object.keys(item.total_backwater)[0]]}}</div>
                         </div>
-                        <div class="d-flex justify-space-between"
-                            v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">
-                            <div class="primary--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}
-                            </div>
+                        <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[1]]">
+                            <div class="primary--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[1] }}</div>
                             <div>{{item.total_backwater[Object.keys(item.total_backwater)[1]]}}</div>
                         </div>
                         <div class="d-flex align-end justify-end listitem-110">
-                            <v-btn text height="20" class="text-decoration-underline pa-0 textYellow--text"
-                                @click="handlerDetail(item)">
+                            <v-btn text height="20" class="text-decoration-underline pa-0 textYellow--text" @click="handlerDetail(item)">
                                 {{LangUtil("查看详情")}}
                                 <svg-icon icon="arrow_right" class="text-12"></svg-icon>
                             </v-btn>

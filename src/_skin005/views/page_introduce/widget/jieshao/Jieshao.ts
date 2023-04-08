@@ -11,7 +11,6 @@ import OpenLink from "@/core/global/OpenLink";
 export default class Jieshao extends AbstractView {
     LangUtil = LangUtil;
 
-
     moneyFormat = moneyFormat;
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;

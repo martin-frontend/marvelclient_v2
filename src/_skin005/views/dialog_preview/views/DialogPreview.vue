@@ -8,8 +8,8 @@ import DialogPreview from "./DialogPreview";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogPreview {}
 </script>

@@ -1,38 +1,35 @@
-
-
-.text_height{
+.text_height {
     height: calc(100% - 190px);
 }
 
-.empty_height{
+.empty_height {
     height: 30px;
 }
 
-.empty_space{
-    color: #97ABD1;
+.empty_space {
+    color: #97abd1;
     white-space: nowrap;
 }
 
-.hackhome{
-
+.hackhome {
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
 }
-.empty_width_2{
+.empty_width_2 {
     width: 80px;
 }
 .input-text {
     height: 30px;
     ::v-deep input {
         height: 30px;
-        font-weight:normal !important;
+        font-weight: normal !important;
         text-align: center !important;
-        color: #8E8F91 !important;
+        color: #8e8f91 !important;
     }
 }
 
-.test_staly{
+.test_staly {
     text-align: center;
 }

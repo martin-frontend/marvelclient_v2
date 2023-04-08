@@ -1,6 +1,13 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import { checkMail, checkOnlyEnglishChar, checkOnlyNub, checkOnlyUpChar, checkOnlyUpCharAndNub } from "@/core/global/Functions";
+import {
+    amountFormat,
+    checkMail,
+    checkOnlyEnglishChar,
+    checkOnlyNub,
+    checkOnlyUpChar,
+    checkOnlyUpCharAndNub,
+} from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -14,7 +21,7 @@ export default class TabExchange extends AbstractView {
     addressBooProxy = PanelUtil.getProxy_addressBook;
     pageData = this.myProxy.exchangeProxy.pageData;
     form = this.pageData.form;
-
+    amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
 
     mounted() {
@@ -432,7 +439,7 @@ export default class TabExchange extends AbstractView {
         return [];
     }
     jumpTo(target: string) {
-        if (!this.$vuetify.breakpoint.mobile) return;
+        if (!this.$mobile) return;
         setTimeout(() => {
             const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
             getAwardbtn?.addEventListener("animationend", () => {

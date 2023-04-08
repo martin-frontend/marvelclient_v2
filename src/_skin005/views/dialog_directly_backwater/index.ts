@@ -20,9 +20,8 @@ function show(agent_user: any = null, ismine: boolean = false) {
     }
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

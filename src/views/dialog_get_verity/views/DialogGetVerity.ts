@@ -7,11 +7,11 @@ import DialogGetVerityProxy from "../proxy/DialogGetVerityProxy";
 
 @Component
 export default class DialogGetVerity extends AbstractView {
-    @Prop() category!:number;
-    @Prop() type!:number;
-    @Prop() email!:string;
-    @Prop() area_code!:string;
-    @Prop() mobile!:string;
+    @Prop() category!: number;
+    @Prop() type!: number;
+    @Prop() email!: string;
+    @Prop() area_code!: string;
+    @Prop() mobile!: string;
     @Prop({ default: false }) isCheck!: boolean;
     LangUtil = LangUtil;
     myProxy: DialogGetVerityProxy = this.getProxy(DialogGetVerityProxy);
@@ -21,7 +21,7 @@ export default class DialogGetVerity extends AbstractView {
         super(DialogGetVerityMediator);
     }
 
-    mounted(){
+    mounted() {
         this.pageData.category = this.category;
         this.pageData.form.type = this.type;
         this.pageData.form.email = this.email;
@@ -30,23 +30,23 @@ export default class DialogGetVerity extends AbstractView {
     }
 
     @Watch("category")
-    onWatchCategory(){
+    onWatchCategory() {
         this.pageData.category = this.category;
     }
     @Watch("type")
-    onWatchType(){
+    onWatchType() {
         this.pageData.form.type = this.type;
     }
     @Watch("email")
-    onWatchEmail(){
+    onWatchEmail() {
         this.pageData.form.email = this.email;
-    } 
+    }
     @Watch("area_code")
-    onWatchAreaCode(){
+    onWatchAreaCode() {
         this.pageData.form.area_code = this.area_code;
     }
     @Watch("mobile")
-    onWatchMobile(){
+    onWatchMobile() {
         this.pageData.form.mobile = this.mobile;
     }
 

@@ -12,9 +12,8 @@ function show(card: string = "", canEdit: boolean = true) {
     proxy.pageData.canEdit = canEdit;
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

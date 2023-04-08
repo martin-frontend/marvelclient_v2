@@ -11,7 +11,6 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 export default class Yongtu extends AbstractView {
     LangUtil = LangUtil;
 
-
     moneyFormat = moneyFormat;
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;

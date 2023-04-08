@@ -13,7 +13,7 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         list: [],
         pageInfo: {
             pageCurrent: 1,
@@ -38,7 +38,7 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
         timeOptions: () => {
             return Constant.PERFORMANCE_TIME_TYPE;
         },
-    }
+    };
 
     setData(data: any) {
         this.pageData.loading = false;
@@ -71,6 +71,9 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
-        this.sendNotification(net.HttpType.api_user_var_commission_commissionlist, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
+        this.sendNotification(
+            net.HttpType.api_user_var_commission_commissionlist,
+            objectRemoveNull(formCopy, [undefined, null, "", 0, "0"])
+        );
     }
 }

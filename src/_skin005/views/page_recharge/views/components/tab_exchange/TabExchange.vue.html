@@ -1,9 +1,9 @@
 <v-card flat class="" color="transparent" width="100%"
-    :class="$vuetify.breakpoint.mobile ? 'pad_top_mob' : 'pad_height'">
+    :class="$mobile ? 'pad_top_mob' : 'pad_height'">
 
     <template v-if="!pageData.isLoadData">
         <template v-if="myProxy.exchangeProxy.isHaveData">
-            <template v-if="!$vuetify.breakpoint.mobile">
+            <template v-if="!$mobile">
                 <v-card flat class="rounded10 px-4 py-4" color="bgBanner">
                     <!-- 选择币种与金额 -->
                     <v-card flat color="transparent">
@@ -28,7 +28,8 @@
                                     {{LangUtil("输入金额")}}
                                 </div>
                                 <v-sheet color="transparent" width="100%" class="d-flex ">
-                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyNumber="true"
+                                    :formatNumber="true">
 
                                     </CustomInput>
 
@@ -59,7 +60,7 @@
                                                 <span v-else class="">{{item.subtitle}}</span>
                                             </v-sheet>
                                             <v-sheet color="transparent">
-                                                {{item.min_out}}-{{item.max_out}}
+                                                {{amountFormat(item.min_out)}}-{{amountFormat(item.max_out)}}
                                                 <span v-if="form.third_id == item.third_id">
                                                     <svg-icon icon="select" class=" ml-2 text-14" />
                                                 </span>
@@ -158,9 +159,10 @@
                             </v-card>
                             <!-- 输入金额 -->
                             <v-card flat color="transparent" class="mt-4">
-                                <div class="text-14 primary--text  mb-2">{{LangUtil("输入金额")}}</div>
+                                <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                                 <v-sheet color="transparent" width="100%" class="d-flex ">
-                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount">
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyNumber="true"
+                                    :formatNumber="true">
                                     </CustomInput>
 
                                     <btn-yellow class="text-14 ml-2" min_width="72" height="36"
@@ -169,7 +171,7 @@
                                 </v-sheet>
                             </v-card>
                             <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
-                                {{LangUtil("提现金额")}} {{curSelectItem.min_out}}-{{curSelectItem.max_out}}
+                                {{LangUtil("提现金额")}} {{amountFormat(curSelectItem.min_out)}}-{{amountFormat(curSelectItem.max_out)}}
                             </v-sheet>
                         </v-card>
                         <!-- 选择付款方式 -->

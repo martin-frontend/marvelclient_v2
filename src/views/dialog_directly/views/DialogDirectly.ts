@@ -91,8 +91,5 @@ export default class DialogDirectly extends AbstractView {
         dialog_bet_record.show(agent_user_id);
     }
 
-    handlerShowDialogSet(agent_user: any) {
-
-    }
-
+    handlerShowDialogSet(agent_user: any) {}
 }

@@ -1,29 +1,18 @@
-<v-dialog v-if="!pageData.bHidden" width="400" v-model="pageData.bShow" :retain-focus="false"  persistent>
+<v-dialog v-if="!pageData.bHidden" width="400" v-model="pageData.bShow" :retain-focus="false" persistent>
     <v-card height="200" class="rounded10" color="bgBanner">
+        <com-dialog-title title="官方邮箱" @onClose="onClose" :isDialog="true" />
 
-        <com-dialog-title title="官方邮箱" @onClose="onClose" :isDialog="true"/>
-
-        <v-divider class="mb-2 " />
+        <v-divider class="mb-2" />
         <v-card-text class="mt-3">
             <v-sheet
                 color="transparent textGray--text"
-                :height="$vuetify.breakpoint.xsOnly? 35 :46"
+                :height="$xsOnly? 35 :46"
                 class="pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 text-16"
             >
                 <v-icon class="mr-2" color="textGray">mdi-email</v-icon>
-                <span >
-                    {{LangUtil('官方邮箱地址')}}
-                </span>
+                <span> {{LangUtil('官方邮箱地址')}} </span>
                 <v-spacer></v-spacer>
-                <v-btn
-                    class="mr-3"
-                    color="textGray"
-                    
-                    :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                    min-width="0"
-                    :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                    @click="onCopy"
-                >
+                <v-btn class="mr-3" color="textGray" :width="$xsOnly? 24 :30" min-width="0" :height="$xsOnly? 24 :30" @click="onCopy">
                     <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                 </v-btn>
             </v-sheet>

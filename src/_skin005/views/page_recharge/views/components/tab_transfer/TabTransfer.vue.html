@@ -47,18 +47,13 @@
             </CustomPassword>
         </v-col>
     </v-row>
-    <v-btn class="rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("划转")}}</v-btn>
+    <v-btn class="rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit"
+        >{{LangUtil("划转")}}</v-btn
+    >
     <v-divider class="mx-5" />
     <v-card-text class="d-flex justify-end mt-3">
         <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
-        <v-img
-            class="mr-2"
-            :src="plat_coins[key].icon"
-            max-width="20"
-            height="20"
-            v-for="(item, key) of plat_coins"
-            :key="key"
-        ></v-img>
+        <v-img class="mr-2" :src="plat_coins[key].icon" max-width="20" height="20" v-for="(item, key) of plat_coins" :key="key"></v-img>
     </v-card-text>
     <Overlay v-model="pageData.loading" />
 </v-card-text>

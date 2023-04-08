@@ -32,12 +32,10 @@ export default class DialogLogin extends AbstractView {
         this.myProxy.api_public_area_code();
     }
 
-
     public get verityString(): string {
         if (this.getverityProxy.pageData.downcount > 0) {
             return this.getverityProxy.pageData.downcount + "";
-        }
-        else {
+        } else {
             return LangUtil("获取验证码");
         }
     }
@@ -49,7 +47,6 @@ export default class DialogLogin extends AbstractView {
         return this.getverityProxy.pageData.downcount > 0;
     }
 
-
     tempSelectCode = <any>null;
 
     public get areaCodeArr(): any {
@@ -57,7 +54,7 @@ export default class DialogLogin extends AbstractView {
     }
 
     public get curShowCode(): string {
-        return "+" + this.forgetData.form.area_code
+        return "+" + this.forgetData.form.area_code;
     }
 
     @Watch("tempSelectCode")
@@ -69,14 +66,12 @@ export default class DialogLogin extends AbstractView {
     }
 
     customFilter(item: any, queryText: any, itemText: any) {
-        const textOne = item.name.toLowerCase()
+        const textOne = item.name.toLowerCase();
         const textTwo = item.area_code + "";
-        const searchText = queryText.toLowerCase()
+        const searchText = queryText.toLowerCase();
 
-        return textOne.indexOf(searchText) > -1 ||
-            textTwo.indexOf(searchText) > -1
+        return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
     }
-
 
     typechange = 0;
 
@@ -165,8 +160,6 @@ export default class DialogLogin extends AbstractView {
         } else {
             this.myProxy.hide();
         }
-
-
     }
 
     @Watch("pageData.bShow")
@@ -180,7 +173,7 @@ export default class DialogLogin extends AbstractView {
             type: 2,
             area_code: this.forgetData.form.area_code,
             mobile: this.forgetData.form.username,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
     //发送 邮件 验证码
@@ -189,10 +182,10 @@ export default class DialogLogin extends AbstractView {
             category: 0,
             type: 2,
             email: this.forgetData.form.username,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
     checkValidateType(val: any) {
-        return this.validate_type.includes(val)
+        return this.validate_type.includes(val);
     }
 }

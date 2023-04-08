@@ -1,5 +1,4 @@
 import { objectRemoveNull } from "@/core/global/Functions";
-import Vue from "vue";
 
 export default class DialogAddressBookProxy extends puremvc.Proxy {
     static NAME = "DialogAddressBookProxy";
@@ -7,7 +6,7 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         methodList: <any>{},
         listQuery: {
             user_id: core.user_id,
@@ -50,25 +49,24 @@ export default class DialogAddressBookProxy extends puremvc.Proxy {
         this.api_user_var_payment_method_index();
     }
 
-    setTestData()
-    {
-        const obj={
-            payment_method:{
-                account:"asdasdas",
-                account_name:"asda",
-            }
-        }
+    setTestData() {
+        const obj = {
+            payment_method: {
+                account: "asdasdas",
+                account_name: "asda",
+            },
+        };
         const list = <any>[];
         for (let index = 0; index < 10; index++) {
-           list.push(obj);
+            list.push(obj);
         }
         return list;
     }
     setAdressData(data: any) {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data;

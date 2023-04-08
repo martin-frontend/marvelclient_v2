@@ -1,54 +1,93 @@
-<v-sheet :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" color="transparent">
-    <div class="text-20 d-flex align-center font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
-        <div :class="$vuetify.breakpoint.mobile?'text-16':''">{{ data.category_name }}</div>
+<v-sheet :class="$xsOnly ? 'mt-3' : 'mt-8'" color="transparent">
+    <div class="text-20 d-flex align-center font-weight-bold" :class="$xsOnly?'':'mb-2'">
+        <div :class="$mobile?'text-16':''">{{ data.category_name }}</div>
         <v-spacer />
-        <v-sheet v-if="data.category != 1" class="d-flex disable_text--text align-center  cursor-pointer "
-            :class="$vuetify.breakpoint.mobile ? 'text-12' :'text-14'" color="transparent" @click.native="onShowAll">
-            <v-sheet color="transparent" class="disable_text--text mr-1">
-                {{LangUtil("查看全部")}}
-            </v-sheet>
+        <v-sheet
+            v-if="data.category != 1"
+            class="d-flex disable_text--text align-center cursor-pointer"
+            :class="$mobile ? 'text-12' :'text-14'"
+            color="transparent"
+            @click.native="onShowAll"
+        >
+            <v-sheet color="transparent" class="disable_text--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
             <svg-icon class="text-12" icon="arrow_right"></svg-icon>
         </v-sheet>
     </div>
 
-    <v-sheet fluid v-if="!$vuetify.breakpoint.mobile" class="mx-auto" color="transparent">
+    <v-sheet fluid v-if="!$mobile" class="mx-auto" color="transparent">
         <v-slide-group show-arrows>
             <v-slide-item v-for="item of data.list" :key="item.vendor_prodcut_id">
-                <v-sheet height="198" width="168" class="rounded-lg d-flex flex-column mr-3 mb-3" color="bgBanner"
-                    :class="isgameClose(item) ? 'game_item_close' : 'game_item'">
-                    <v-img class="mt-5 ml-5" :src="getIcon(item)" max-width="50" max-height="50"
-                        :class="isgameClose(item) ? 'game_item_close' : 'game_item'"></v-img>
+                <v-sheet
+                    height="198"
+                    width="168"
+                    class="rounded-lg d-flex flex-column mr-3 mb-3"
+                    color="bgBanner"
+                    :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+                >
+                    <v-img
+                        class="mt-5 ml-5"
+                        :src="getIcon(item)"
+                        max-width="50"
+                        max-height="50"
+                        :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+                    ></v-img>
                     <v-spacer />
                     <div class="pl-5" :class="isgameClose(item) ? 'game_item_close' : 'game_item'">
                         <div class="nomal_text--text text-14">{{ item.vendor_name }}</div>
                         <div class="text-16 font-weight-bold text-truncate">{{ item.vendor_product_name }}</div>
                     </div>
                     <v-spacer />
-                    <btn-yellow :class="isgameClose(item) ? 'game_item_close' : 'game_item'" class="text-16"
-                        :btn_type="7" min_width="0" width="100%" height="44" :disabled="isgameClose(item)"
-                        @click.native="goGamePlay(item)">{{!isgameClose(item) ? LangUtil("开始游戏") :
-                        LangUtil("维护中")}}</btn-yellow>
+                    <btn-yellow
+                        :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+                        class="text-16"
+                        :btn_type="7"
+                        min_width="0"
+                        width="100%"
+                        height="44"
+                        :disabled="isgameClose(item)"
+                        @click.native="goGamePlay(item)"
+                        >{{!isgameClose(item) ? LangUtil("开始游戏") : LangUtil("维护中")}}</btn-yellow
+                    >
                 </v-sheet>
             </v-slide-item>
         </v-slide-group>
     </v-sheet>
-    <v-sheet fluid v-else class=" mt-2 d-flex scroll-x" color="transparent">
+    <v-sheet fluid v-else class="mt-2 d-flex scroll-x" color="transparent">
         <template v-for="item of data.list">
-            <v-sheet :key="item.vendor_prodcut_id" height="146" min-width="118" max-widht="118"
-                class="rounded-lg d-flex flex-column mr-1 mb-1" color="bgBanner"
-                :class="isgameClose(item) ? 'game_item_close' : 'game_item'">
-                <v-img class="mt-4 ml-4" :src="getIcon(item)" max-width="30" max-height="30"
-                    :class="isgameClose(item) ? 'game_item_close' : 'game_item'"></v-img>
+            <v-sheet
+                :key="item.vendor_prodcut_id"
+                height="146"
+                min-width="118"
+                max-widht="118"
+                class="rounded-lg d-flex flex-column mr-1 mb-1"
+                color="bgBanner"
+                :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+            >
+                <v-img
+                    class="mt-4 ml-4"
+                    :src="getIcon(item)"
+                    max-width="30"
+                    max-height="30"
+                    :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+                ></v-img>
                 <v-spacer />
                 <div class="pl-5" :class="isgameClose(item) ? 'game_item_close' : 'game_item'">
                     <div class="textGray--text text-12">{{ item.vendor_name }}</div>
                     <div class="text-14 font-weight-bold text-truncate">{{ item.vendor_product_name }}</div>
                 </div>
                 <v-spacer />
-                <btn-yellow :class="isgameClose(item) ? 'game_item_close' : 'game_item'" class="text-14" :btn_type="7"
-                    min_width="0" width="100%" height="36" :disabled="isgameClose(item)"
-                    @click.native="goGamePlay(item)">
-                    {{!isgameClose(item) ? LangUtil("开始游戏") : LangUtil("维护中")}}</btn-yellow>
+                <btn-yellow
+                    :class="isgameClose(item) ? 'game_item_close' : 'game_item'"
+                    class="text-14"
+                    :btn_type="7"
+                    min_width="0"
+                    width="100%"
+                    height="36"
+                    :disabled="isgameClose(item)"
+                    @click.native="goGamePlay(item)"
+                >
+                    {{!isgameClose(item) ? LangUtil("开始游戏") : LangUtil("维护中")}}</btn-yellow
+                >
             </v-sheet>
         </template>
     </v-sheet>

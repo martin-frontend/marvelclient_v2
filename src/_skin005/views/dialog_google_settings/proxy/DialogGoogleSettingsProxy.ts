@@ -1,10 +1,9 @@
-
 export default class DialogGoogleSettingsProxy extends puremvc.Proxy {
     static NAME = "DialogGoogleSettingsProxy";
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         list: {
             google_key: "",
             qr_code: "",

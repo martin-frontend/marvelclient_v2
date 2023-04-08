@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import TabVendorAssets from "./TabVendorAssets";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends TabVendorAssets {}
 </script>

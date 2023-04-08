@@ -13,7 +13,7 @@ export default class DialogEditRemarkProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -50,15 +50,15 @@ export default class DialogEditRemarkProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_agent_var_update, formData);
         //this.pageData.bShow = false;
     }
-    update_callback(data:any = null)
-    {
-        const str = LangUtil("设置成功")
-        
+    update_callback(data: any = null) {
+        const str = LangUtil("设置成功");
+
         PanelUtil.message_alert({
-            message: str, okFun: () => {
+            message: str,
+            okFun: () => {
                 this.pageData.bShow = false;
                 MultDialogManager.onClosePanel();
-            }
+            },
         });
     }
 }

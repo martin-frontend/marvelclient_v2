@@ -9,19 +9,19 @@ export default class CoinTip extends AbstractView {
 
     get tipsClass(): string {
         let _class = "";
-        if (this.$vuetify.breakpoint.xsOnly) {
+        if (this.$xsOnly) {
             _class = _class + " tip_color_mob";
         } else {
             _class = _class + " tip_color_pc";
         }
 
         // if (this.isLeft) {
-        //     if (this.$vuetify.breakpoint.xsOnly) {
+        //     if (this.$xsOnly) {
         //         _class = _class + " tip_left_mob";
         //     } else {
         //         _class = _class + " tip_left";
         //     }
-        // } else 
+        // } else
         {
             _class = _class + " tip_right";
         }

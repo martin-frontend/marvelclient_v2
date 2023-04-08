@@ -1,3 +1,5 @@
+import { amountFormat } from "@/core/global/Functions";
+
 /**
  * 获取钱的颜色
  * @param str 传入的值
@@ -34,6 +36,7 @@ export function getMoneyValue(str: any): string {
     if (typeof str == "string") {
         const newstr = str.replace("$", "");
         amount = Number(newstr);
+        if (!amount) return str;
     } else {
         amount = str;
     }
@@ -45,6 +48,6 @@ export function getMoneyValue(str: any): string {
         newstr = str + "";
     }
 
-    if (!!newstr && newstr.search("-") == -1) return "+" + newstr;
-    return newstr;
+    if (!!newstr && newstr.search("-") == -1) return "+" + amountFormat(newstr, true);
+    return amountFormat(newstr, true);
 }

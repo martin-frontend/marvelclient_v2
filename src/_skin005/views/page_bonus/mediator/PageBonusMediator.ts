@@ -8,11 +8,11 @@ export default class PageBonusMediator extends AbstractMediator {
     private myProxy: PageBonusProxy = this.getProxy(PageBonusProxy);
     LangUtil = LangUtil;
 
-    onRegister(){
+    onRegister() {
         PanelUtil.showAppLoading(false);
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageBonusProxy.NAME);
     }
 

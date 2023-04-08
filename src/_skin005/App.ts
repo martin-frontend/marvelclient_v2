@@ -30,8 +30,8 @@ export default class APP extends AbstractView {
 
     mounted() {
         window.addEventListener("scroll", this.onWatchScroll, true);
-        window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile && isMobile();
-        window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.$xsOnly && isMobile();
+        window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
+        window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
     }
 
     //切换明暗
@@ -88,12 +88,12 @@ export default class APP extends AbstractView {
         });
     }
     get isShowHeader() {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             if (this.$route.path.includes("page_game_soccer") || this.$route.path.includes("page_game_play")) {
                 return false;
             }
             return true;
-        } else if (!this.$vuetify.breakpoint.mobile) {
+        } else if (!this.$mobile) {
             return true;
         }
     }
@@ -113,7 +113,7 @@ export default class APP extends AbstractView {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
     }
     get isShowGuide() {
-        if (!this.$vuetify.breakpoint.mobile || !this.myProxy.isShowGuide) return false;
+        if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
         if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 

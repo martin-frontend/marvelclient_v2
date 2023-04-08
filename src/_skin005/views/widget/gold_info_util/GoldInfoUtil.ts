@@ -3,12 +3,14 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class GoldInfoUtil extends AbstractView {
     LangUtil = LangUtil;
+    amountFormat = amountFormat;
     GamePlatConfig = GamePlatConfig;
-    selfProxy  =  PanelUtil.getProxy_selfproxy;
+    selfProxy = PanelUtil.getProxy_selfproxy;
     @Prop({ default: {} }) goldInfoData!: any; // 金币的数据
     @Prop({ default: {} }) coin_name_unique!: string; // 当前选择 或者 当前显示的 币种的名字
     @Prop({ default: 40 }) items_min_height!: number | string; //每个对象的 最小高度
@@ -28,52 +30,51 @@ export default class GoldInfoUtil extends AbstractView {
 
     @Prop({ default: false }) is_recharge!: boolean; //是否为 充值中的 金币
 
-
+    @Prop({ default: true }) formatNumber!: boolean;
     public get iconfontsize_str(): string {
         return "text-" + this.font_size_icon;
         //return "text-24" ;
     }
-    
-    public get fontsize_str() : string {
-        return "text-" + this.font_size; 
+
+    public get fontsize_str(): string {
+        return "text-" + this.font_size;
     }
     //
-    public get detail_class() : string {
+    public get detail_class(): string {
         let str = this.fontsize_str;
-        if (this.is_need_coin_name)
-        {
+        if (this.is_need_coin_name) {
             str = str + " ml-auto";
         }
-        return str
+        return str;
     }
-    
-    public get coin_class() : string {
+
+    public get coin_class(): string {
         let str = this.fontsize_str;
-        if (!this.is_show_money)
-        {
+        if (!this.is_show_money) {
             str = str + " mr-auto";
         }
-        return str
+        return str;
     }
-    
-    public get userGoldInfo() : any {
+
+    public get userGoldInfo(): any {
         return this.selfProxy.userInfo.gold_info;
     }
-    getUserMoney(coinName:string)
-    {
-         //@ts-ignore
-        if (this.selfProxy.userInfo.gold_info && this.selfProxy.userInfo.gold_info[coinName])
-        {
-            //@ts-ignore
-            return this.selfProxy.userInfo.gold_info[coinName].sum_money;
+    getUserMoney(coinName: string) {
+        //@ts-ignore
+        if (this.selfProxy.userInfo.gold_info && this.selfProxy.userInfo.gold_info[coinName]) {
+            if (this.formatNumber) {
+                //@ts-ignore
+                return this.amountFormat(this.selfProxy.userInfo.gold_info[coinName].sum_money, true);
+            } else {
+                //@ts-ignore
+                return this.selfProxy.userInfo.gold_info[coinName].sum_money;
+            }
         }
         return 0;
-        
     }
-    
+
     //点击事件
     onItemClick(item: any) {
         this.$emit("onItemClick", item);
     }
-
 }

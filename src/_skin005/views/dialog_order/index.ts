@@ -11,9 +11,8 @@ function show(data: any) {
     proxy.api_vendor_var_bet_log_detail(data.order_no);
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

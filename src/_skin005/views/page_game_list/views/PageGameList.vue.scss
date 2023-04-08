@@ -6,7 +6,7 @@ $prev-right: var(--prev-right);
     top: 25px;
     //right: 135px;
     right: $prev-right;
-    left:-12px;
+    left: -12px;
     min-width: 0;
     border-radius: 25pt;
     width: 50px;
@@ -30,43 +30,40 @@ $prev-right: var(--prev-right);
     }
 }
 
-
-
-.theme--dark{
+.theme--dark {
     .menu_card {
-        border: solid 2px #333435 ;
+        border: solid 2px #333435;
         background-color: #272828;
     }
-    .menu_card:hover{
-        border: solid 2px #FEBA00 !important;
+    .menu_card:hover {
+        border: solid 2px #feba00 !important;
     }
 
-    .icon_test_cur{
-        filter:drop-shadow(2px 2px 2px #fff);
+    .icon_test_cur {
+        filter: drop-shadow(2px 2px 2px #fff);
     }
 }
-.theme--light{
+.theme--light {
     .menu_card {
-        border: solid 2px #BCBCBC ;
-        background-color: #C6C6C6;
+        border: solid 2px #bcbcbc;
+        background-color: #c6c6c6;
     }
-    .menu_card:hover{
-        border: solid 2px #FEBA00 !important;
+    .menu_card:hover {
+        border: solid 2px #feba00 !important;
         background-color: transparent;
     }
-    .card_border{
+    .card_border {
         background-color: transparent !important;
     }
-    .icon_test_cur{
-        filter:drop-shadow(2px 2px 2px #000);
+    .icon_test_cur {
+        filter: drop-shadow(2px 2px 2px #000);
     }
 }
 // .menu_card:hover{
 //     border: solid 2px #FFCD43 !important;
 // }
-.card_border
-{
-    border-color: #FEBA00 !important;
+.card_border {
+    border-color: #feba00 !important;
 }
 
 .rotate {
@@ -76,43 +73,42 @@ $prev-right: var(--prev-right);
 .game-icon {
     width: 200px;
     height: 100px;
-    
 }
 .tableMenuIcon {
     position: relative;
     width: 50px;
     height: 50px;
     background-size: 50px 50px;
-    background-image: url('~@/_skin004/assets/categoryicon/dizuo.png');
+    background-image: url("~@/_skin004/assets/categoryicon/dizuo.png");
 
-    .img{
+    .img {
         position: absolute;
         bottom: 5px;
         left: 5px;
     }
-    .img_16{
+    .img_16 {
         position: absolute;
         bottom: 15px;
         left: 5px;
     }
 }
 .tableMenuIcon_no {
-    .img{
+    .img {
         filter: grayscale(0.9);
         -webkit-filter: grayscale(0.9);
     }
-    .img_16{
+    .img_16 {
         filter: grayscale(0.9);
         -webkit-filter: grayscale(0.9);
     }
 }
 .tableMenuIcon_cur {
     background-size: 0px 0px;
-    .img{
+    .img {
         filter: none;
         -webkit-filter: none;
     }
-    .img_16{
+    .img_16 {
         filter: none;
         -webkit-filter: none;
     }
@@ -125,7 +121,7 @@ $prev-right: var(--prev-right);
         //transition: all 0.3s ease-in-out 0s;
         position: absolute;
         bottom: -70px;
-        font-size:28px;
+        font-size: 28px;
         width: 100%;
         height: 62px;
         line-height: 28px;
@@ -163,18 +159,18 @@ $prev-right: var(--prev-right);
 .mask_active {
     opacity: 0.5;
 }
-.menu_title{
+.menu_title {
     position: absolute;
     left: 30px;
     bottom: 60%;
     //font-size: 30px;
     color: #fff;
     font-weight: 700;
-        @media only screen and (max-width: 750px) {
-            left: 20px;
+    @media only screen and (max-width: 750px) {
+        left: 20px;
     }
 }
-.menu_title_1{
+.menu_title_1 {
     position: absolute;
     left: 30px;
     top: 40%;
@@ -182,8 +178,8 @@ $prev-right: var(--prev-right);
     max-width: 50%;
     //font-size: 14px;
     font-weight: 500;
-        @media only screen and (max-width: 750px) {
-            left: 20px;
+    @media only screen and (max-width: 750px) {
+        left: 20px;
     }
 }
 .game-icon_menu {
@@ -196,9 +192,7 @@ $prev-right: var(--prev-right);
     // @media screen and (max-width: 1260px) {
     //     height: 130px;
     // }
-    
 }
-
 
 .egame__item__mask_menu {
     height: 100%;
@@ -218,59 +212,57 @@ $prev-right: var(--prev-right);
     opacity: 1;
 }
 
-.box_test_mob{
+.box_test_mob {
     width: 110px;
     height: 40px;
     overflow: hidden;
 }
 
-::v-deep .v-card--link:before{
+::v-deep .v-card--link:before {
     background: transparent !important;
 }
 
-
-.icon_text{
-    color:#8E8F91;
+.icon_text {
+    color: #8e8f91;
 }
 
 ::v-deep .theme--dark {
-
-    .icon_text :hover{
-        color:rgba(255, 255, 255, 1);
+    .icon_text :hover {
+        color: rgba(255, 255, 255, 1);
     }
 
-    .icon_text_cur{
+    .icon_text_cur {
         //color: rgba(255, 255, 255, 1);
-        color: #FEBA00;
+        color: #feba00;
     }
 }
 ::v-deep .theme--light {
-    .icon_text :hover{
+    .icon_text :hover {
         color: rgba(0, 0, 0, 1);
     }
-    .icon_text_cur{
+    .icon_text_cur {
         //color: rgba(0, 0, 0, 1);
-        color: #FEBA00;
+        color: #feba00;
     }
-    .item_btn_active{
+    .item_btn_active {
         background-color: #fff !important;
     }
 }
 
 // 样式二
-.item_nomal{
-    background-image: linear-gradient(to bottom, #8E8F91 0%, #8E8F91 100%) !important;
+.item_nomal {
+    background-image: linear-gradient(to bottom, #8e8f91 0%, #8e8f91 100%) !important;
 }
-.item_active{
+.item_active {
     background-image: linear-gradient(to bottom, #fcb131 0%, #ffe64d 100%) !important;
 }
 
-.item_btn_active{
+.item_btn_active {
     //border: solid 1px #FEBA00 !important;
     background-color: transparent;
 }
 
-.item_btn{
+.item_btn {
     //border: solid 1px #5A5A5A !important;
     background-color: transparent;
 }
@@ -279,64 +271,58 @@ $prev-right: var(--prev-right);
     background: linear-gradient(to right, #fcb131, #ffe64d) !important;
 }
 
-.test_ball{
+.test_ball {
     position: absolute;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    
 }
 
-.ball_class{
+.ball_class {
     position: absolute;
     right: 0px;
     bottom: 0px;
     pointer-events: none;
 }
 
-
-.loader_class_mob{
-    ::v-deep .loader_class{
-        .img_loader{
+.loader_class_mob {
+    ::v-deep .loader_class {
+        .img_loader {
             height: 110px !important;
         }
     }
 }
-.mob_row{
-    ::v-deep .row{
+.mob_row {
+    ::v-deep .row {
         flex: none !important;
     }
 }
 
-
-::v-deep .v-btn--icon.v-size--small{
+::v-deep .v-btn--icon.v-size--small {
     height: 8px !important;
     width: 8px !important;
 }
-::v-deep .v-btn__content
-{
+::v-deep .v-btn__content {
     :first-child {
         font-size: 16px !important;
         transform: scale(0.5);
     }
 }
-::v-deep .v-carousel__controls
-{
+::v-deep .v-carousel__controls {
     height: 30px;
 }
-::v-deep .v-carousel__controls__item .v-icon
-{
+::v-deep .v-carousel__controls__item .v-icon {
     opacity: 0.7;
 }
 
-::v-deep .theme--dark.v-btn--active:before, .theme--dark.v-btn--active:hover:before
-{
+::v-deep .theme--dark.v-btn--active:before,
+.theme--dark.v-btn--active:hover:before {
     opacity: 1 !important;
 }
-.bannritem_mob{
+.bannritem_mob {
     height: 170px;
 }
 
-.bannritem{
+.bannritem {
     height: 240px !important;
 }

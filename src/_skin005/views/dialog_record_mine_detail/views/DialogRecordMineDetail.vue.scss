@@ -13,7 +13,7 @@
         width: 100%;
     }
     .item {
-        &.item_3{
+        &.item_3 {
             width: calc(100% / 3);
         }
         width: calc(100% / 5);
@@ -45,13 +45,11 @@
     padding-top: 0px;
 }
 
-.btninfo-light{
-
-    border: solid 2px #C8CAD0 !important;
+.btninfo-light {
+    border: solid 2px #c8cad0 !important;
     border-radius: 10px !important;
 }
-.btninfo-dark{
-
+.btninfo-dark {
     border: solid 2px #333435 !important;
     border-radius: 10px !important;
 }

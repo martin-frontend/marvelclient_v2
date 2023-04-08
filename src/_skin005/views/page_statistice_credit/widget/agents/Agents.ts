@@ -5,13 +5,14 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Constant from "@/core/global/Constant";
 import PageBlur from "@/_skin005/core/PageBlur";
 import DialogAgentManagerMediator from "@/_skin005/views/dialog_agent_manager/mediator/DialogAgentManagerMediator";
-import { changeDateShow } from "@/core/global/Functions";
+import { amountFormat, changeDateShow } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 @Component
 export default class Agents extends AbstractView {
     LangUtil = LangUtil;
+    amountFormat = amountFormat;
     myProxy = PanelUtil.getProxy_agentmanager;
     dialogPromotionFloorProxy = PanelUtil.getProxy_promotion_floor;
     pageData = this.myProxy.pageData;
@@ -27,7 +28,7 @@ export default class Agents extends AbstractView {
     destroyed() {
         super.destroyed();
     }
-    
+
     handlerSetting(data: any) {
         if (this.pageData.enable_set_promotion_floor === 1) {
             const agent_user_id = data.user_id;
@@ -99,7 +100,7 @@ export default class Agents extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.mobile")
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -118,8 +119,7 @@ export default class Agents extends AbstractView {
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.api_user_var_agent_direct_list();
-        if (this.$refs.scrollObj)
-        {
+        if (this.$refs.scrollObj) {
             //@ts-ignore
             scrollUtil_div(this.$refs.scrollObj.$el, 0);
         }
@@ -140,7 +140,6 @@ export default class Agents extends AbstractView {
     }
 
     handlerShowDialogSet(agent_user: any) {
-
         PanelUtil.openpanel_directly_setting({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
@@ -155,7 +154,6 @@ export default class Agents extends AbstractView {
     }
     opendialog_myWater() {
         PanelUtil.openpanel_directly_backwater(null, true);
-
     }
     fontAuto() {
         const touzhu_node_parent = document.getElementById("touzhu_node_parent");
@@ -187,5 +185,4 @@ export default class Agents extends AbstractView {
         }
         return false;
     }
-
 }

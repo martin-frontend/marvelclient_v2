@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import { amountFormat } from "@/core/global/Functions";
 import { Prop, Watch, Component } from "vue-property-decorator";
-
 
 @Component
 export default class CustomInputNomal extends AbstractView {
@@ -18,6 +18,7 @@ export default class CustomInputNomal extends AbstractView {
     @Prop() isOnlyFloat!: boolean;
     @Prop({ default: true }) isBottomLine!: boolean;
     @Prop() inputColor!: string;
+    @Prop({ default: false }) formatNumber!: boolean;
 
     inputValue = "";
 
@@ -27,7 +28,8 @@ export default class CustomInputNomal extends AbstractView {
     @Watch("value", { immediate: true })
     onValueChange(val: string) {
         if (this.isOnlyNumber) {
-            this.inputValue = val.replace(/[^\d.]/g, "");
+            //this.inputValue = val.replace(/[^\d.]/g, "");
+            this.inputValue = this.formatNumber ? amountFormat(val.replace(/[^\d]/g, "")) : val.replace(/[^\d]/g, "");
             return;
         }
         this.inputValue = val;
@@ -35,8 +37,17 @@ export default class CustomInputNomal extends AbstractView {
 
     onInput(event: any) {
         if (this.isOnlyNumber) {
-            this.inputValue = event.target.value.replace(/[^\d.]/g, "");
-            this.$emit("input", this.inputValue);
+            // this.inputValue = event.target.value.replace(/[^\d.]/g, "");
+            // this.$emit("input", this.inputValue);
+
+            if (this.formatNumber) {
+                this.inputValue = amountFormat(event.target.value.replace(/[^\d]/g, "").substring(0, this.maxlength - 1));
+            } else {
+                this.inputValue = event.target.value.replace(/[^\d]/g, "");
+            }
+
+            this.$emit("input", this.inputValue.replace(/,/g, ""));
+
             return;
         }
         if (this.isOnlyInt) {
@@ -45,12 +56,15 @@ export default class CustomInputNomal extends AbstractView {
             return;
         }
         if (this.isOnlyFloat) {
-            this.inputValue = event.target.value.replace(/[^\d.]/g, "");
-            this.inputValue = this.inputValue.replace("-", "");
-            if (parseFloat(this.inputValue) < 0) {
-                this.inputValue = "0";
+            //this.inputValue = event.target.value.replace(/[^\d.]/g, "");
+
+            if (this.formatNumber) {
+                this.inputValue = amountFormat(event.target.value.replace(/[^\d.]/g, "").substring(0, this.maxlength - 1), true);
+            } else {
+                this.inputValue = event.target.value.replace(/[^\d.]/g, "");
             }
-            this.$emit("input", this.inputValue);
+
+            this.$emit("input", this.inputValue.replace(/,/g, ""));
             return;
         }
 
@@ -62,13 +76,11 @@ export default class CustomInputNomal extends AbstractView {
         this.$emit("input", this.inputValue);
     }
 
-
     public get inputClass(): string {
         let str = "";
         if (this.isBottomLine) {
             str = "input-text-border-bottom";
-        }
-        else {
+        } else {
             str = "input-text";
         }
 

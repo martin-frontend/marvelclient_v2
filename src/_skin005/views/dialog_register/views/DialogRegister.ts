@@ -20,24 +20,20 @@ export default class DialogRegister extends AbstractView {
         super(DialogRegisterMediator);
     }
 
-
     public get btn_width(): number {
-        if (this.$vuetify.breakpoint.xsOnly) {
+        if (this.$xsOnly) {
             return 78;
-        }
-        else {
+        } else {
             return 90;
         }
     }
     public get btn_height(): number {
-        if (this.$vuetify.breakpoint.xsOnly) {
+        if (this.$xsOnly) {
             return 30;
-        }
-        else {
+        } else {
             return 36;
         }
     }
-
 
     typechange = 0;
 
@@ -67,7 +63,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     public get curShowCode(): string {
-        return "+" + this.form.area_code
+        return "+" + this.form.area_code;
     }
 
     @Watch("tempSelectCode")
@@ -79,12 +75,11 @@ export default class DialogRegister extends AbstractView {
     }
 
     customFilter(item: any, queryText: any, itemText: any) {
-        const textOne = item.name.toLowerCase()
+        const textOne = item.name.toLowerCase();
         const textTwo = item.area_code + "";
-        const searchText = queryText.toLowerCase()
+        const searchText = queryText.toLowerCase();
 
-        return textOne.indexOf(searchText) > -1 ||
-            textTwo.indexOf(searchText) > -1
+        return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
     }
 
     hasInviteUser() {
@@ -210,8 +205,7 @@ export default class DialogRegister extends AbstractView {
     public get verityString(): string {
         if (this.getverityProxy.pageData.downcount > 0) {
             return this.getverityProxy.pageData.downcount + "";
-        }
-        else {
+        } else {
             return LangUtil("获取验证码");
         }
     }
@@ -229,7 +223,7 @@ export default class DialogRegister extends AbstractView {
             type: 6,
             area_code: this.form.area_code,
             mobile: this.form.username,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
     //发送 邮件 验证码
@@ -238,7 +232,7 @@ export default class DialogRegister extends AbstractView {
             category: 0,
             type: 6,
             email: this.form.username,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
 }

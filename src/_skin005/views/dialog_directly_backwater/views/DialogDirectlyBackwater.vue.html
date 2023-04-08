@@ -1,41 +1,44 @@
-<v-dialog v-if="!pageData.bHidden" :width="isMineWater ? 350 : 800" v-model="pageData.bShow" :retain-focus="false"
-    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card v-if="!$vuetify.breakpoint.xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%"
-        :height="isMineWater ? 400 : 540">
+<v-dialog
+    v-if="!pageData.bHidden"
+    :width="isMineWater ? 350 : 800"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$xsOnly"
+    persistent
+>
+    <v-card v-if="!$xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%" :height="isMineWater ? 400 : 540">
         <com-dialog-title :title="isMineWater ? '我的返水' : '返水设置'" @onClose="onClose" />
-        <v-divider v-if="!$vuetify.breakpoint.xsOnly" class=" " />
+        <v-divider v-if="!$xsOnly" class=" " />
         <!-- 页面内容 -->
         <v-card-text class=" ">
-
             <template v-if="!isMineWater">
-
                 <v-sheet color="transparent" class="d-flex align-center textGray--text text-14" min-height="55">
                     <div class="mr-1">{{LangUtil("用户ID")}}:</div>
-                    <div class="mr-1 ">{{playerInfo.user_id}}</div>
+                    <div class="mr-1">{{playerInfo.user_id}}</div>
 
                     <div class="ml-10 mr-1">{{LangUtil("用户昵称")}}:</div>
-                    <div class="mr-1 ">{{playerInfo.nick_name}}</div>
+                    <div class="mr-1">{{playerInfo.nick_name}}</div>
                 </v-sheet>
-                <v-divider v-if="!$vuetify.breakpoint.xsOnly" class=" " />
+                <v-divider v-if="!$xsOnly" class=" " />
             </template>
-            <v-sheet class="d-flex justify-space-between align-centerml-n2 mr-n2 mt-2 text-14 primary--text"
-                color="transparent">
-                <v-sheet class="d-flex  primary--text " min-width="120" color="transparent">
-                    {{LangUtil("返水类型")}}
-                </v-sheet>
+            <v-sheet class="d-flex justify-space-between align-centerml-n2 mr-n2 mt-2 text-14 primary--text" color="transparent">
+                <v-sheet class="d-flex primary--text" min-width="120" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>
                 <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
                     {{LangUtil("我的返水")}}
                 </v-sheet>
-                <v-sheet v-if="!isMineWater" class="d-flex justify-center mr-2 primary--text" min-width="80"
-                    color="transparent">
+                <v-sheet v-if="!isMineWater" class="d-flex justify-center mr-2 primary--text" min-width="80" color="transparent">
                     {{LangUtil("直属设置")}}
                 </v-sheet>
             </v-sheet>
 
             <template v-for="(item, key) of playerInfo.water_config">
-                <v-sheet class=" d-flex justify-space-between align-center  my-2  ml-n2 mr-n2 mt-2 text-14"
-                    color="transparent" :key="key" v-if="key!=0">
-                    <v-sheet class="d-flex  primary--text text-14 ml-2 " min-width="120" color="transparent">
+                <v-sheet
+                    class="d-flex justify-space-between align-center my-2 ml-n2 mr-n2 mt-2 text-14"
+                    color="transparent"
+                    :key="key"
+                    v-if="key!=0"
+                >
+                    <v-sheet class="d-flex primary--text text-14 ml-2" min-width="120" color="transparent">
                         {{getConfigName(key) }}
                     </v-sheet>
 
@@ -43,70 +46,73 @@
                         {{playerInfo.parent_water_config[key] }}
                     </v-sheet>
 
-                    <CustomInput v-if="!isMineWater" class="d-flex justify-center empty_width_2 ml " style="width: 104px;" height="30"
-                        :placeholder="item" :isNeedCloseBtn="false" v-model="myProxy.inputWaterData[key]"
-                        :isOnlyFloat="true" :disabled="true">
-
+                    <CustomInput
+                        v-if="!isMineWater"
+                        class="d-flex justify-center empty_width_2 ml"
+                        style="width: 104px"
+                        height="30"
+                        :placeholder="item"
+                        :isNeedCloseBtn="false"
+                        v-model="myProxy.inputWaterData[key]"
+                        :isOnlyFloat="true"
+                        :disabled="true"
+                    >
                     </CustomInput>
-
                 </v-sheet>
                 <div v-if="false && key!=0" class="hackhome"></div>
             </template>
 
             <div v-if="!isMineWater && false">
-                <div class="red--text">
-                    {{LangUtil("注意：如有修改流水配置要70分钟后才生效，需要记录更改时间。")}}
-                </div>
+                <div class="red--text">{{LangUtil("注意：如有修改流水配置要70分钟后才生效，需要记录更改时间。")}}</div>
                 <!-- 确定按钮 -->
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="40" block @click="onClickSure" :disabled="isDisable">
                     {{LangUtil("确定")}}</v-btn> -->
 
-                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isDisable"
-                    @click.native="onClickSure">{{LangUtil("确定")}}</btn-yellow>
+                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isDisable" @click.native="onClickSure"
+                    >{{LangUtil("确定")}}</btn-yellow
+                >
             </div>
-
         </v-card-text>
-
     </v-card>
     <v-card v-else class="rounded10 d-flex flex-column" color="bgColor" min-width="100%" height="540">
         <com-dialog-title :title="isMineWater ? '我的返水' : '返水设置'" @onClose="onClose" />
         <!-- 页面内容 -->
-        <v-sheet class=" px-2 " color="transparent">
-
+        <v-sheet class="px-2" color="transparent">
             <template v-if="!isMineWater">
-
-                <v-sheet color="transparent" class="px-4 d-flex mt-4 flex-column justify-space-around justify-center textGray--text text-12"
-                    min-height="60">
+                <v-sheet
+                    color="transparent"
+                    class="px-4 d-flex mt-4 flex-column justify-space-around justify-center textGray--text text-12"
+                    min-height="60"
+                >
                     <v-sheet color="transparent" class="d-flex align-center justify-space-between textGray--text">
                         <div class="mr-1">{{LangUtil("用户ID")}}</div>
                         <div class="mr-1">{{playerInfo.user_id}}</div>
                     </v-sheet>
                     <v-sheet color="transparent" class="d-flex align-center justify-space-between textGray--text">
-                        <div class=" mr-1">{{LangUtil("用户昵称")}}</div>
+                        <div class="mr-1">{{LangUtil("用户昵称")}}</div>
                         <div class="mr-1">{{playerInfo.nick_name}}</div>
                     </v-sheet>
                 </v-sheet>
-
             </template>
             <v-sheet color="bgBanner" class="px-3 py-2 mt-4 rounded10">
-                <v-sheet class="d-flex justify-space-between align-center text-12 primary--text" min-height="36"
-                    color="transparent">
-                    <v-sheet class="d-flex  primary--text " min-width="100" color="transparent">
-                        {{LangUtil("返水类型")}}
-                    </v-sheet>
+                <v-sheet class="d-flex justify-space-between align-center text-12 primary--text" min-height="36" color="transparent">
+                    <v-sheet class="d-flex primary--text" min-width="100" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>
                     <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
                         {{LangUtil("我的返水")}}
                     </v-sheet>
-                    <v-sheet v-if="!isMineWater" class="d-flex justify-center primary--text" min-width="80"
-                        color="transparent">
+                    <v-sheet v-if="!isMineWater" class="d-flex justify-center primary--text" min-width="80" color="transparent">
                         {{LangUtil("直属设置")}}
                     </v-sheet>
                 </v-sheet>
 
                 <template v-for="(item, key) of playerInfo.water_config">
-                    <v-sheet class=" d-flex justify-space-between align-center my-2  mt-2 text-14"
-                        color="transparent" :key="key" v-if="key!=0">
-                        <v-sheet class="d-flex  primary--text text-12 " min-width="100" color="transparent">
+                    <v-sheet
+                        class="d-flex justify-space-between align-center my-2 mt-2 text-14"
+                        color="transparent"
+                        :key="key"
+                        v-if="key!=0"
+                    >
+                        <v-sheet class="d-flex primary--text text-12" min-width="100" color="transparent">
                             {{getConfigName(key) }}
                         </v-sheet>
 
@@ -115,30 +121,32 @@
                         </v-sheet>
 
                         <v-sheet v-if="!isMineWater" color="transparent" class="d-flex justify-center" width="80">
-                        <CustomInput  class="d-flex justify-center empty_width_2 " height="30"
-                            :placeholder="item" :isNeedCloseBtn="false" v-model="myProxy.inputWaterData[key]"
-                            :isOnlyFloat="true" :disabled="true">
-
-                        </CustomInput>
-                    </v-sheet>
+                            <CustomInput
+                                class="d-flex justify-center empty_width_2"
+                                height="30"
+                                :placeholder="item"
+                                :isNeedCloseBtn="false"
+                                v-model="myProxy.inputWaterData[key]"
+                                :isOnlyFloat="true"
+                                :disabled="true"
+                            >
+                            </CustomInput>
+                        </v-sheet>
                     </v-sheet>
                     <div v-if="false && key!=0" class="hackhome"></div>
                 </template>
             </v-sheet>
             <div v-if="!isMineWater && false">
-                <div class="red--text">
-                    {{LangUtil("注意：如有修改流水配置要70分钟后才生效，需要记录更改时间。")}}
-                </div>
+                <div class="red--text">{{LangUtil("注意：如有修改流水配置要70分钟后才生效，需要记录更改时间。")}}</div>
                 <!-- 确定按钮 -->
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="40" block @click="onClickSure" :disabled="isDisable">
                     {{LangUtil("确定")}}</v-btn> -->
 
-                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isDisable"
-                    @click.native="onClickSure">{{LangUtil("确定")}}</btn-yellow>
+                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isDisable" @click.native="onClickSure"
+                    >{{LangUtil("确定")}}</btn-yellow
+                >
             </div>
-
         </v-sheet>
-
     </v-card>
 
     <Overlay v-model="pageData.loading" />

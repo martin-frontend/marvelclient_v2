@@ -30,23 +30,17 @@ export default class PageStatisticeCredit extends AbstractView {
         this.onTabClick(this.pageData.tabIndex);
     }
     onTabClick(idx: number) {
-
         this.pageData.tabIndex = idx;
 
         // if ( this.pageData.tabIndex == 0)
         // {
         //     this.onEnterHomePage();
         // }
-        
     }
-    onEnterHomePage()
-    {
+    onEnterHomePage() {
         this.myProxy.api_user_var_commission_commissiondetail();
     }
-    search()
-    {
+    search() {
         PanelUtil.getProxy_agentmanager.search(this.pageData.search);
     }
-
-
 }

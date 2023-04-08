@@ -28,7 +28,7 @@ export default class Novigation extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
 
     mounted() {
-        if (!this.$vuetify.breakpoint.mobile) {
+        if (!this.$mobile) {
             this.mini = this.myProxy.isminiMenu || false;
             this.Change();
         }
@@ -113,19 +113,19 @@ export default class Novigation extends AbstractView {
 
     /**传入 true 则显示  mini   如果传入  false 则显示 大图 */
     setMiniChange(ismini: boolean) {
-        if (this.$vuetify.breakpoint.mobile) return;
+        if (this.$mobile) return;
         this.mini = !ismini;
         this.onMiniChange();
     }
     @Watch("myProxy.isminiMenu")
     miniChange(val: boolean) {
-        if (this.$vuetify.breakpoint.mobile) return;
+        if (this.$mobile) return;
         this.mini = this.myProxy.isminiMenu;
         this.Change();
     }
     onMiniChange() {
         //console.log("图标点击-----");
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             PanelUtil.appproxy.setNovigationPanelShow(false);
             return;
         }
@@ -166,7 +166,7 @@ export default class Novigation extends AbstractView {
     }
 
     resetPageSize() {
-        if (this.$vuetify.breakpoint.mobile) return;
+        if (this.$mobile) return;
         const item = document.getElementById("mainpage");
         if (item) {
             console.log("修改");
@@ -249,7 +249,7 @@ export default class Novigation extends AbstractView {
     goCategory_game(id: any) {
         if (this.myProxy.categoryActive == id) return;
         console.log("----id--", id);
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             PanelUtil.showNovigation(false);
         }
         this.myProxy.categoryActive = id;
@@ -258,7 +258,7 @@ export default class Novigation extends AbstractView {
     isFilterChange = false;
     @Watch("isFilterChange")
     filterChange(val: boolean) {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             return;
         }
         PageBlur.blur_mainpage(this.isFilterChange);

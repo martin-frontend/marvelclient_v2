@@ -39,7 +39,7 @@ export default class DialogSwapRecordProxy extends puremvc.Proxy {
                 4: LangUtil("处理失败"),
             };
         },
-    }
+    };
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {

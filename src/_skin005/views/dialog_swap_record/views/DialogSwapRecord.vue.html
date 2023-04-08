@@ -1,81 +1,81 @@
-<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly">
-   
-        <!-- pc显示方式 -->
-        <template v-if="!$vuetify.breakpoint.xsOnly">
-            <v-card class="rounded10 d-flex flex-column" :color="!$vuetify.breakpoint.xsOnly ? 'bgBanner' : 'bgColor'">
+<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly">
+    <!-- pc显示方式 -->
+    <template v-if="!$xsOnly">
+        <v-card class="rounded10 d-flex flex-column" :color="!$xsOnly ? 'bgBanner' : 'bgColor'">
             <com-dialog-title title="交易记录" @onClose="onClose" />
-            <v-divider class="mb-2 " />
-            <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
+            <v-divider class="mb-2" />
+            <v-card-text class="px-5" v-if="!$xsOnly">
                 <template v-if="pageData.list.length>0">
-
-                    <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mx-2 align-center
-                " min-height="40">
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("交易ID")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("兑换币种")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("获得币种")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("兑换数量")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("获得数量")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100"
-                            class="text-16 primary--text">{{LangUtil("状态")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="130"
-                            class="text-16 primary--text">{{LangUtil("时间")}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mx-2 align-center" min-height="40">
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("交易ID")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("兑换币种")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("获得币种")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("兑换数量")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("获得数量")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("状态")}}</v-sheet>
+                        <v-sheet color="transparent" min-width="130" class="text-16 primary--text">{{LangUtil("时间")}}</v-sheet>
                     </v-sheet>
 
                     <v-sheet color="transparent" height="450" class="scroll-y">
-                        <v-sheet class="d-flex sheetOutlined mb-2 " width="100%" min-height="48"
-                            v-for="(item, key) of pageData.list" :key="key">
-                            <v-sheet color="transparent"
-                                class="d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
-
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{item.order_no}}</v-sheet>
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{item.coin_a}}</v-sheet>
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{item.coin_b}}</v-sheet>
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{item.coin_a_amount}}</v-sheet>
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{item.coin_b_amount}}</v-sheet>
-                                <v-sheet color="transparent" min-width="100"
-                                    class="text-16 textGray--text text-truncate">{{listOptions.statusOptions()[item.trade_status]}}</v-sheet>
-                                <v-sheet color="transparent" min-width="130"
-                                    class="text-16 textGray--text text-truncate">{{item.updated_at.replace(/^\d{4}-/,
-                                    "")}}</v-sheet>
-
+                        <v-sheet
+                            class="d-flex sheetOutlined mb-2"
+                            width="100%"
+                            min-height="48"
+                            v-for="(item, key) of pageData.list"
+                            :key="key"
+                        >
+                            <v-sheet color="transparent" class="d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{item.order_no}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{item.coin_a}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{item.coin_b}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{item.coin_a_amount}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{item.coin_b_amount}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                    >{{listOptions.statusOptions()[item.trade_status]}}</v-sheet
+                                >
+                                <v-sheet color="transparent" min-width="130" class="text-16 textGray--text text-truncate"
+                                    >{{item.updated_at.replace(/^\d{4}-/, "")}}</v-sheet
+                                >
                             </v-sheet>
                         </v-sheet>
-
                     </v-sheet>
-
                 </template>
                 <ListNodata v-if="pageData.list.length == 0" height="411" />
                 <v-spacer />
-                <v-pagination class="mx-auto mb-2"
+                <v-pagination
+                    class="mx-auto mb-2"
                     v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                    v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount"
-                    @input="onPageChange"></v-pagination>
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    @input="onPageChange"
+                ></v-pagination>
             </v-card-text>
-            </v-card>
-        </template>
+        </v-card>
+    </template>
 
-        <template v-else>
-            <v-card class="d-flex flex-column" color="bgColor">
+    <template v-else>
+        <v-card class="d-flex flex-column" color="bgColor">
             <!-- 手机显示方式 -->
             <com-dialog-title title="交易记录" @onClose="onClose" />
 
-            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2 mt-2"
-                style="height: calc(100vh - 90px);">
-
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
-                    :listNodata="pageData.list.length == 0">
-                    <v-sheet class="px-3 py-2 my-3 textGray--text rounded10" v-for="(item, key) of pageData.list"
-                        color="bgBanner" :key="key">
+            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2 mt-2" style="height: calc(100vh - 90px)">
+                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+                    <v-sheet
+                        class="px-3 py-2 my-3 textGray--text rounded10"
+                        v-for="(item, key) of pageData.list"
+                        color="bgBanner"
+                        :key="key"
+                    >
                         <div class="d-flex justify-space-between moble_height">
                             <div class="primary--text">{{LangUtil("交易ID")}}</div>
                             <div>{{ item.order_no }}</div>
@@ -108,7 +108,7 @@
                 </LoadMore>
             </v-sheet>
         </v-card>
-        </template>
-    
+    </template>
+
     <Overlay v-model="pageData.loading" />
 </v-dialog>

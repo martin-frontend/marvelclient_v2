@@ -3,7 +3,6 @@ import DialogDirectlySettingProxy from "../proxy/DialogDirectlySettingProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-
 export default class DialogDirectlySettingMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [

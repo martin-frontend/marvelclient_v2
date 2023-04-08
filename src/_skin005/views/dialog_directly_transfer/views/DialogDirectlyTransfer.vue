@@ -5,7 +5,7 @@
 import Component from "vue-class-component";
 import CoinTip from "@/_skin005/views/widget/wallet/coin_tip/CoinTip";
 import CustomInput from "@/_skin005/views/widget/custom_input_nomal/CustomInputNomal.vue";
-import DialogDirectlyTransfer from "./DialogDirectlyTransfer"
+import DialogDirectlyTransfer from "./DialogDirectlyTransfer";
 
 @Component({
     components: {
@@ -13,6 +13,5 @@ import DialogDirectlyTransfer from "./DialogDirectlyTransfer"
         CoinTip,
     },
 })
-
 export default class extends DialogDirectlyTransfer {}
 </script>

@@ -6,9 +6,7 @@ import Component from "vue-class-component";
 import GameSlideGroup from "./GameSlideGroup";
 
 @Component({
-    components: {
-     
-    },
+    components: {},
 })
 export default class extends GameSlideGroup {}
 </script>

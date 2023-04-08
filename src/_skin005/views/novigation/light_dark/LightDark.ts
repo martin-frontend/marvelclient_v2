@@ -5,21 +5,20 @@ import LangUtil from "@/core/global/LangUtil";
 @Component
 export default class LightDark extends AbstractView {
     LangUtil = LangUtil;
-    @Prop({default: true}) mini!:boolean;
+    @Prop({ default: true }) mini!: boolean;
 
-    mounted(){
+    mounted() {
         //this.$vuetify.theme.dark = true;
     }
 
-    onDark(){
+    onDark() {
         this.$vuetify.theme.dark = true;
     }
 
-    onLight(){
+    onLight() {
         this.$vuetify.theme.dark = false;
     }
-    onChange()
-    {
+    onChange() {
         console.log("切换");
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
         this.$emit("onChange");

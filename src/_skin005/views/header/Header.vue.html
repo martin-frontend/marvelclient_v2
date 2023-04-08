@@ -1,25 +1,57 @@
-<v-sheet v-if="!$vuetify.breakpoint.mobile" height="74" color="head_color" elevation="0" width="100%"
-    class="header mx-0 d-flex align-center">
+<v-sheet v-if="!$mobile" height="74" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
-        <v-img v-if="isMini" class="ml-4 " max-width="42" height="30" :src="commonIcon.logo_m"></v-img>
+        <v-img v-if="isMini" class="ml-4" max-width="42" height="30" :src="commonIcon.logo_m"></v-img>
 
         <v-sheet color="transparent">
-
             <v-sheet color="transparent" class="d-flex ml-4 head_btn_top">
-                <v-btn text class=" mr-6" height="36"  :ripple="false"  min-width="30" :disabled="myProxy.pagetab == 0" @click="onTimeChange(0)">
+                <v-btn
+                    text
+                    class="mr-6"
+                    height="36"
+                    :ripple="false"
+                    min-width="30"
+                    :disabled="myProxy.pagetab == 0"
+                    @click="onTimeChange(0)"
+                >
                     <span class="text-14"> {{LangUtil("首页")}} </span>
                 </v-btn>
-                <v-btn text v-if="ModulesHelper.IsShow_FootBall()" class="mr-6" height="36"  :ripple="false" min-width="30" :disabled="myProxy.pagetab == 1" @click="onTimeChange(1)">
-                    <span class=" text-14 "> {{LangUtil("体育运动")}} </span>
+                <v-btn
+                    text
+                    v-if="ModulesHelper.IsShow_FootBall()"
+                    class="mr-6"
+                    height="36"
+                    :ripple="false"
+                    min-width="30"
+                    :disabled="myProxy.pagetab == 1"
+                    @click="onTimeChange(1)"
+                >
+                    <span class="text-14"> {{LangUtil("体育运动")}} </span>
                 </v-btn>
-                <v-btn text v-if="isShowCricket" class=" mr-6" height="36" :ripple="false" min-width="30" :disabled="myProxy.pagetab == 22" @click="onTimeChange(22)">
-                    <span class=" text-14 "> {{LangUtil("板球")}} </span>
+                <v-btn
+                    text
+                    v-if="isShowCricket"
+                    class="mr-6"
+                    height="36"
+                    :ripple="false"
+                    min-width="30"
+                    :disabled="myProxy.pagetab == 22"
+                    @click="onTimeChange(22)"
+                >
+                    <span class="text-14"> {{LangUtil("板球")}} </span>
                 </v-btn>
-                <v-btn text v-if="isShowStatistice" class=" mr-6" height="36" :ripple="false" min-width="30" :disabled="myProxy.pagetab == 11" @click="onTimeChange(11)">
-                    <span class=" text-14 "> {{LangUtil("代理管理")}} </span>
+                <v-btn
+                    text
+                    v-if="isShowStatistice"
+                    class="mr-6"
+                    height="36"
+                    :ripple="false"
+                    min-width="30"
+                    :disabled="myProxy.pagetab == 11"
+                    @click="onTimeChange(11)"
+                >
+                    <span class="text-14"> {{LangUtil("代理管理")}} </span>
                 </v-btn>
             </v-sheet>
-
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">
@@ -30,14 +62,20 @@
             <template v-if="selfProxy.userInfo.user_id">
                 <User />
                 <Wallet class="ml-5" />
-                <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36"
-                    min_width="72" @click.native="onCoinIn">{{LangUtil("钱包")}}</btn-yellow>
+                <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72" @click.native="onCoinIn"
+                    >{{LangUtil("钱包")}}</btn-yellow
+                >
 
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
                 <!-- <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap> -->
-                <v-badge color="red" overlap :content="red_dot_tips.is_user_mail_num.num" :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num">
+                <v-badge
+                    color="red"
+                    overlap
+                    :content="red_dot_tips.is_user_mail_num.num"
+                    :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
+                >
                     <v-btn class="ml-4 navIcon--text" icon small @click="handlerMail">
                         <svg-icon class="text-24" icon="mail"></svg-icon>
                     </v-btn>
@@ -45,15 +83,20 @@
             </template>
 
             <template v-else>
-                <btn-yellow class="ml-3 text-16" height="36" min_width="72"
-                    @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
-                <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-16" height="36" min_width="72"
-                    :btn_type="2" @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+                <btn-yellow class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+                <btn-yellow
+                    v-if="GlobalVar.instance.isShowRegiter"
+                    class="ml-3 text-16"
+                    height="36"
+                    min_width="72"
+                    :btn_type="2"
+                    @click.native="handlerRegister"
+                    >{{LangUtil("注册")}}</btn-yellow
+                >
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
             </template>
-
         </v-sheet>
     </v-sheet>
 </v-sheet>
@@ -67,13 +110,12 @@
                 <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
             </v-sheet>
             <v-sheet color="transparent" @click="goHome">
-                <v-img class=" mr-2" max-width="36" height="26" :src="commonIcon.logo_m"></v-img>
+                <v-img class="mr-2" max-width="36" height="26" :src="commonIcon.logo_m"></v-img>
             </v-sheet>
         </v-sheet>
         <!-- 登录 -->
         <template v-if="selfProxy.userInfo.user_id">
-            <v-sheet color="transparent" class=" d-flex align-center " width="100%">
-
+            <v-sheet color="transparent" class="d-flex align-center" width="100%">
                 <v-sheet color="transparent">
                     <Wallet class="ml-2" min-width="120" />
                 </v-sheet>
@@ -82,7 +124,12 @@
                 <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
                     <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                 </v-btn>
-                <v-badge color="red" overlap :content="red_dot_tips.is_user_mail_num.num" :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num">
+                <v-badge
+                    color="red"
+                    overlap
+                    :content="red_dot_tips.is_user_mail_num.num"
+                    :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
+                >
                     <v-btn icon small @click="handlerMail">
                         <svg-icon class="text-24 head_btn--text" icon="mail"></svg-icon>
                     </v-btn>
@@ -91,13 +138,19 @@
         </template>
         <!-- 未登录 -->
         <template v-else>
-            <v-spacer style="min-width: 0;" />
-            <btn-yellow class="ml-3 text-14" height="30" :min_width="60"
-                @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+            <v-spacer style="min-width: 0" />
+            <btn-yellow class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
 
             <!-- <v-sheet color="transparent" class="btn_regi"> -->
-            <btn-yellow v-if="GlobalVar.instance.isShowRegiter" class="ml-3 text-14" height="30" :min_width="60"
-                :btn_type="2" @click.native="handlerRegister">{{LangUtil("注册")}}</btn-yellow>
+            <btn-yellow
+                v-if="GlobalVar.instance.isShowRegiter"
+                class="ml-3 text-14"
+                height="30"
+                :min_width="60"
+                :btn_type="2"
+                @click.native="handlerRegister"
+                >{{LangUtil("注册")}}</btn-yellow
+            >
             <!-- </v-sheet> -->
 
             <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">

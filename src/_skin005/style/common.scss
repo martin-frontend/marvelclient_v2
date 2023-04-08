@@ -247,7 +247,10 @@
     .cursor-pointer {
         cursor: pointer;
     }
-
+    .font-weight-bold {
+        font-family: "GOTHAM_BOLD";
+        letter-spacing: 0px;
+    }
     .v-navigation-drawer--bottom.v-navigation-drawer--is-mobile {
         max-height: 80% !important;
     }
@@ -294,4 +297,16 @@ html {
 
 body {
     font-size: 14px;
+}
+
+.ozcw-widget-container {
+    margin: 30px 6px 80px 0px !important;
+}
+
+@media screen and (max-width: 1260px) {
+    .ozcw-widget-container {
+        margin: 30px 6px 80px 0px !important;
+        left: 20px;
+        right: unset !important;
+    }
 }

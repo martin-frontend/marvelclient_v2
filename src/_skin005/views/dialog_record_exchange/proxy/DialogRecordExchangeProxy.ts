@@ -7,7 +7,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         listQuery: {
             page_count: 1,
             page_size: 20,
@@ -34,34 +34,32 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
             page_size: 20,
         });
     }
-    setTestdata()
-    {
-        const obj={
-            order_no:"1231235423",
-            created_at:"2023-03-10 12:44:49",
-            third_order_info:{
-                block_name:"12312",
-                token_name:"12312",
-                from_address:"dfdsfsdfs",
-                to_address:"dfdsfsdfs",
-                tx_scan_url:"dfdsfsdfs",
+    setTestdata() {
+        const obj = {
+            order_no: "1231235423",
+            created_at: "2023-03-10 12:44:49",
+            third_order_info: {
+                block_name: "12312",
+                token_name: "12312",
+                from_address: "dfdsfsdfs",
+                to_address: "dfdsfsdfs",
+                tx_scan_url: "dfdsfsdfs",
             },
-            gold:"12423",
-            coin_name_unique:"usdt",
-            status:0,
-        }
+            gold: "12423",
+            coin_name_unique: "usdt",
+            status: 0,
+        };
         const list = [];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
-            
         }
         return list;
     }
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

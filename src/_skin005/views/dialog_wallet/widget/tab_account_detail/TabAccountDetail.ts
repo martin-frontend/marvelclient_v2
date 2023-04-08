@@ -1,6 +1,6 @@
 import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
-import { changeDateShow } from "@/core/global/Functions";
+import { amountFormat, changeDateShow } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -15,8 +15,10 @@ export default class TabAccountDetail extends AbstractView {
     listOptions = this.pageData.listOptions;
 
     commonIcon = Assets.commonIcon;
-
-    @Watch("$vuetify.breakpoint.mobile")
+    amountFormat(nub: any, isb = true) {
+        return amountFormat(nub, isb);
+    }
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -63,7 +65,7 @@ export default class TabAccountDetail extends AbstractView {
 
     onCoinChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
@@ -74,7 +76,7 @@ export default class TabAccountDetail extends AbstractView {
 
     onTypeChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.typeSelect == 0) {
             this.listQuery.type = 0;
         } else {
@@ -85,8 +87,7 @@ export default class TabAccountDetail extends AbstractView {
     getDate(str: string) {
         return changeDateShow(str);
     }
-    onBtnClickRemark(item:any)
-    {
+    onBtnClickRemark(item: any) {
         PanelUtil.message_alert(item.remark);
     }
 }

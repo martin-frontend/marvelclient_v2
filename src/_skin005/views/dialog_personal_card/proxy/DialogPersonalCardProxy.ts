@@ -6,9 +6,9 @@ export default class DialogPersonalCardProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         personalCard: "",
-        canEdit: true
+        canEdit: true,
     };
 
     setData(data: any) {

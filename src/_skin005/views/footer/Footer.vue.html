@@ -1,13 +1,13 @@
 <v-sheet
     class="d-flex flex-column align-center justify-center pt-8 pb-10 foot_text_color pb-5 "
-    color="#0f1213" style="margin-top: 100px !important;" :class="$vuetify.breakpoint.mobile ? 'px-2 text-14' :'ml-n3 mr-n3 text-16 '">
-    <v-img :src="commonIcon.logo" max-width="130" max-height="30"></v-img>
+    color="#0f1213" style="margin-top: 100px !important;" :class="$mobile ? 'px-2 text-14' :'ml-n3 mr-n3 text-16 '">
+    <v-img :src="commonIcon.logo" max-width="130" max-height="45"></v-img>
     <div v-if="!SkinVariable.isCustomizeFooter" class="d-flex mt-4 foot_text_color">
         <v-btn class="foot_text_color" text @click="goContact">{{LangUtil("关于我们")}}</v-btn>
         <v-btn class="foot_text_color mx-5" text @click="goService">{{LangUtil("服务条款")}}</v-btn>
         <v-btn class="foot_text_color" text @click="goMail">{{LangUtil("官方邮箱")}}</v-btn>
     </div>
-    <div v-else class="d-flex mt-4 foot_text_color " :class="$vuetify.breakpoint.mobile  ? 'flex-column align-center' : 'flex-wrap justify-center'">
+    <div v-else class="d-flex mt-4 foot_text_color " :class="$mobile  ? 'flex-column align-center' : 'flex-wrap justify-center'">
         <!-- <v-btn v-for="(item, key) of noticeProxy.data.listType11" :key="item.id" class="foot_text_color mx-2" :ripple="false" text @click="onInRuleClick(item)">{{item.name}}</v-btn> -->
         <v-sheet v-for="(item, key) of noticeProxy.data.listType11" :key="item.id"  color="transparent" class="foot_text_color cursor-pointer customize_btn_class mx-2" @click="onInRuleClick(item)">
             {{item.name}}
@@ -17,15 +17,15 @@
     <div class="foot_text_color mt-8">{{LangUtil("合作商")}}</div>
     
     <v-sheet v-if="imgData.length > 0" class=" d-flex flex-wrap justify-center" width="100%" color="transparent">
-        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" :height="$vuetify.breakpoint.mobile ? 40:70" flat color="transparent">     
-            <img :src="item.vendor_icon"  :height="$vuetify.breakpoint.mobile ? 40:70" class="mx-2"  ></img>
+        <v-card v-for="(item, key) of imgData" :key="item.vendor_id" class="my-2" :height="$mobile ? 40:70" flat color="transparent">     
+            <img :src="item.vendor_icon"  :height="$mobile ? 40:70" class="mx-2"  ></img>
         </v-card>
     </v-sheet>
 
     <v-sheet v-if="footerNoticeData.length > 0" class=" d-flex flex-wrap justify-center" width="100%" color="transparent">
-        <v-card v-for="(item, key) of footerNoticeData" :key="item.id" class="my-2" :height="$vuetify.breakpoint.mobile ? 40:70" flat color="transparent" @click="onFooterImgClick(item)"
+        <v-card v-for="(item, key) of footerNoticeData" :key="item.id" class="my-2" :height="$mobile ? 40:70" flat color="transparent" @click="onFooterImgClick(item)"
         :ripple="false">     
-            <img v-if="$vuetify.breakpoint.mobile" :src="item.img_url_phone" height="40" class="mx-2"  />
+            <img v-if="$mobile" :src="item.img_url_phone" height="40" class="mx-2"  />
             <img v-else :src="item.img_url" height="70" class="mx-2"  />
         </v-card>
     </v-sheet>

@@ -3,13 +3,12 @@ import PageMyInfoProxy from "../proxy/PageMyInfoProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-export default class PageMyInfoMediator extends AbstractMediator{
-
-    onRegister(){
+export default class PageMyInfoMediator extends AbstractMediator {
+    onRegister() {
         PanelUtil.showAppLoading(false);
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageMyInfoProxy.NAME);
     }
 
@@ -17,20 +16,16 @@ export default class PageMyInfoMediator extends AbstractMediator{
         PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
     }
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_show_var,
-        ];
+        return [net.EventType.api_user_show_var];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:PageMyInfoProxy = getProxy(PageMyInfoProxy);
-        switch(notification.getName()){
-
+        const myProxy: PageMyInfoProxy = getProxy(PageMyInfoProxy);
+        switch (notification.getName()) {
             case net.EventType.api_user_show_var:
                 myProxy.pageInit(body);
                 break;
-
         }
     }
 }

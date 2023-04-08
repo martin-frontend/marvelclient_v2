@@ -1,4 +1,3 @@
-
 .arrow {
     transform: rotate(0deg);
     //font-weight: 600;
@@ -20,7 +19,7 @@
 }
 
 .select-shadow {
-    border: solid 1px #FEBA00 !important;
+    border: solid 1px #feba00 !important;
 }
 
 .menu {
@@ -29,23 +28,21 @@
 }
 
 .listitem {
-    border: solid 1px #D6DDE3 !important;
+    border: solid 1px #d6dde3 !important;
     border-radius: 10px !important;
 }
 
 .theme--dark {
-
     .listitem {
-        border: solid 1px #3E3F41 !important;
+        border: solid 1px #3e3f41 !important;
     }
     ::v-deep .listitem:hover {
-        border: solid 1px #FEBA00 !important;
+        border: solid 1px #feba00 !important;
     }
 }
 
- .theme--light {
-
+.theme--light {
     ::v-deep .listitem:hover {
-        border: solid 1px #FEBA00 !important;
+        border: solid 1px #feba00 !important;
     }
 }

@@ -18,7 +18,7 @@ export default class DialogManuallyUnstakingMediator extends AbstractMediator {
             case net.EventType.api_user_var_withdraw_stake:
                 myProxy.pageData.loading = false;
                 PanelUtil.message_alert("解除质押数量" + body);
-                PanelUtil.getProxy_page_bonus
+                PanelUtil.getProxy_page_bonus;
                 this.bonusProxy.api_user_var_stake_info();
                 this.bonusProxy.api_plat_var_stake_info();
                 myProxy.pageData.bShow = false;

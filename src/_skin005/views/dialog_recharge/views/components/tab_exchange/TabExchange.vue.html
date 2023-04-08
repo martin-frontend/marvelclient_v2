@@ -1,13 +1,19 @@
 <v-sheet class="overflow-auto px-3" color="transparent">
     <v-sheet color="bgBanner" class="px-2 rounded10 py-3">
-    <div class="primary--text " v-html="bindHtml">
-        <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
-        <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
-    </div>
-</v-sheet>
+        <div class="primary--text" v-html="bindHtml">
+            <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
+            <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
+        </div>
+    </v-sheet>
     <div class="d-flex mt-3">
-        <CustomSelect class="" :class="$vuetify.breakpoint.mobile ? '':'mx-2'" :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique"
-            @change="onChange" />
+        <CustomSelect
+            class=""
+            :class="$mobile ? '':'mx-2'"
+            :icons="plat_coins"
+            :options="pageData.methodList"
+            v-model="form.coin_name_unique"
+            @change="onChange"
+        />
         <!-- <CustomSelect
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
@@ -17,10 +23,16 @@
     </div>
 
     <div v-if="pageData.methodList[form.coin_name_unique]" class="d-flex flex-wrap mt-3 mx-n2">
-
-        <btn-yellow v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key"
-            class="mb-2 mx-2" min-width="80" height="30" :btn_type="2" :disabled="form.block_network_id==key"
-            @click.native="onChangeSub(key)">
+        <btn-yellow
+            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
+            :key="key"
+            class="mb-2 mx-2"
+            min-width="80"
+            height="30"
+            :btn_type="2"
+            :disabled="form.block_network_id==key"
+            @click.native="onChangeSub(key)"
+        >
             {{item.name}}
         </btn-yellow>
 
@@ -49,23 +61,24 @@
                     <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
                 </v-tooltip>
 
-                <btn-yellow class=" text-14 ml-2" min_width="80" height="30" :btn_type="2"
-                    @click.native="onAddressBook">
+                <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
                     {{LangUtil("地址薄")}}
                 </btn-yellow>
 
-                <btn-yellow v-if="!$vuetify.breakpoint.mobile" class="text-14 ml-2" min_width="80" height="30" :btn_type="2"
-                    @click.native="onPaste">
+                <btn-yellow v-if="!$mobile" class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onPaste">
                     {{LangUtil("粘贴")}}
                 </btn-yellow>
-
             </div>
         </CustomInput>
 
         <div class="primary--text mt-3">{{LangUtil("平台余额")}}</div>
         <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="water_bg" height="44">
-            <v-img class="mr-2" :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
-                max-width="20" height="20"></v-img>
+            <v-img
+                class="mr-2"
+                :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+                max-width="20"
+                height="20"
+            ></v-img>
             <div>{{ balance }}</div>
             <v-spacer />
 
@@ -94,40 +107,49 @@
                     <div class="primary--text">{{LangUtil("提取金额")}}</div>
                     <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount">
                         <v-btn class="" text x-small height="30" color="primary" @click="onAll" :ripple="false">
-                            <span
-                                class="text-decoration-underline text-14 textYellow--text">{{LangUtil("全部")}}</span></v-btn>
+                            <span class="text-decoration-underline text-14 textYellow--text">{{LangUtil("全部")}}</span></v-btn
+                        >
                     </CustomInput>
                 </v-sheet>
             </v-col>
             <v-col>
                 <div>{{LangUtil("交易密码")}}</div>
                 <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
-                    <v-btn class="mr-n2" text x-small :ripple="false" height="30" color="primary" @click="onSetPassword"><span
-                            class="text-decoration-underline  text-14 textYellow--text"> {{LangUtil("设置")}}
-                        </span></v-btn>
+                    <v-btn class="mr-n2" text x-small :ripple="false" height="30" color="primary" @click="onSetPassword"
+                        ><span class="text-decoration-underline text-14 textYellow--text"> {{LangUtil("设置")}} </span></v-btn
+                    >
                 </CustomPassword>
             </v-col>
         </v-row>
     </v-sheet>
-    <v-sheet class="text-14 mt-3 px-2 py-3 mb-2 d-flex textGray--text rounded10"
-        v-if="pageData.methodList[form.coin_name_unique]" color="bgBanner">
+    <v-sheet
+        class="text-14 mt-3 px-2 py-3 mb-2 d-flex textGray--text rounded10"
+        v-if="pageData.methodList[form.coin_name_unique]"
+        color="bgBanner"
+    >
         <span class="mr-1">⚠️</span>
         <div v-if="pageData.methodList[form.coin_name_unique].options[form.block_network_id]">
-            <div
-                v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
+            <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
                 {{item}}
             </div>
         </div>
     </v-sheet>
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
     <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn> -->
-    <btn-yellow class="text-16 mb-4" width="100%" height="36" :disabled="!isChecked"
-        @click.native="onSubmit">{{LangUtil("提交")}}</btn-yellow>
-    <v-divider v-if="!$vuetify.breakpoint.mobile" class="mx-5" />
+    <btn-yellow class="text-16 mb-4" width="100%" height="36" :disabled="!isChecked" @click.native="onSubmit"
+        >{{LangUtil("提交")}}</btn-yellow
+    >
+    <v-divider v-if="!$mobile" class="mx-5" />
     <v-sheet class="d-flex justify-end rounded10 px-2 py-3 mb-5" color="bgBanner">
         <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
-        <v-img class="mr-2" :src="plat_coins[key].icon" max-width="20" height="20"
-            v-for="(item, key) of pageData.methodList" :key="key"></v-img>
+        <v-img
+            class="mr-2"
+            :src="plat_coins[key].icon"
+            max-width="20"
+            height="20"
+            v-for="(item, key) of pageData.methodList"
+            :key="key"
+        ></v-img>
     </v-sheet>
     <Overlay v-model="pageData.loading" />
 </v-sheet>

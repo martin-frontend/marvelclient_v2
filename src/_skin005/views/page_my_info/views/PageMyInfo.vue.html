@@ -3,15 +3,12 @@
 </v-card> -->
 
 <v-sheet color="transparent" width="100%" class="mt-2">
-
     <!-- 我的头像 -->
     <v-sheet color="bgBanner" class="ml-2 mr-2 rounded10 d-flex align-center" min-height="80" @click="goCategory(0)">
         <v-sheet color="transparent" width="75" class="d-flex align-center mr-2 ml-2 justify-center">
             <v-img max-width="60" height="60" :src="commonIcon.avatar_default"></v-img>
         </v-sheet>
-        <v-sheet color="transparent" class="text-14 font-weight-bold">
-            {{selfProxy.userInfo.nick_name}}
-        </v-sheet>
+        <v-sheet color="transparent" class="text-14 font-weight-bold"> {{selfProxy.userInfo.nick_name}} </v-sheet>
         <svg-icon class="text-12 ml-auto mr-4" icon="arrow_right"></svg-icon>
         <!-- <User :isShowFull="true" /> -->
     </v-sheet>
@@ -24,22 +21,22 @@
         <v-sheet color="transparent" width="100%" class="pr-4">
             <v-sheet width="100%" color="transparent" class="">
                 <v-sheet color="transparent" class="d-flex justify-space-between text-14">
-                    <div>
-                        {{LangUtil("VIP")}} {{ pageData.vipLevel }}
-                    </div>
+                    <div>{{LangUtil("VIP")}} {{ pageData.vipLevel }}</div>
 
-                    <div class="textYellow--text  cursop_pointer text-12 "
-                        @click="onVipInfoBtnClick">
-                        <span style="padding-bottom: 5px; border-bottom: 1px solid #FEBA00;">{{LangUtil('进入vip中心')}}</span>
+                    <div class="textYellow--text cursop_pointer text-12" @click="onVipInfoBtnClick">
+                        <span style="padding-bottom: 5px; border-bottom: 1px solid #feba00">{{LangUtil('进入vip中心')}}</span>
                     </div>
                 </v-sheet>
-                <v-progress-linear :value="pageData.vipProgress" color="textYellow" height="6"
-                    class="rounded-xl mt-2 mb-2"></v-progress-linear>
-                <div v-if="pageData.vipMaxLevel" class=" mt-1 textGray--text text-12">
-                    <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
-                        {{LangUtil('您已经升级早最高等级')}} </p>
-                    <span
-                        v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}}
+                <v-progress-linear
+                    :value="pageData.vipProgress"
+                    color="textYellow"
+                    height="6"
+                    class="rounded-xl mt-2 mb-2"
+                ></v-progress-linear>
+                <div v-if="pageData.vipMaxLevel" class="mt-1 textGray--text text-12">
+                    <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}}</p>
+                    <span v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)"
+                        >{{LangUtil('距离下一个等级还差')}}
                     </span>
                     <span class="textGray--text" v-if="pageData.nextExp > 0">
                         <span class="textYellow--text">{{ pageData.nextExp}}</span>
@@ -50,21 +47,16 @@
                         <span class="textYellow--text">{{ pageData.nextUSDT }}</span>
                         USDT{{LangUtil('充值')}}
                     </span>
-
                 </div>
             </v-sheet>
         </v-sheet>
     </v-sheet>
 
     <!-- 可用资产 -->
-    <v-sheet color="bgBanner" class="ml-2 mr-2 py-4 mt-2 rounded10 px-4 " >
-        <v-sheet color="transparent" class="d-flex align-center  justify-space-between" >
-            <div class="text-16 font-weight-bold">
-                {{LangUtil("可用资产")}}
-            </div>
-            <div class="text-20 font-weight-bold">
-                {{curShowMoney}}
-            </div>
+    <v-sheet color="bgBanner" class="ml-2 mr-2 py-4 mt-2 rounded10 px-4">
+        <v-sheet color="transparent" class="d-flex align-center justify-space-between">
+            <div class="text-16 font-weight-bold">{{LangUtil("可用资产")}}</div>
+            <div class="text-20 font-weight-bold">{{curShowMoney}}</div>
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex justify-space-between align-center mt-2">
@@ -72,18 +64,25 @@
                 <v-menu content-class="menu" offset-y nudge-bottom="2">
                     <template v-slot:activator="{ on, attrs,value }">
                         <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
-                            <v-sheet v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
-                                class="align-center d-flex rounded-lg  pr-2 textGray--text" color="wallet_bg"
-                                :min-width=" $vuetify.breakpoint.mobile ? 0 : 206" height="36">
-                                <v-img class="ml-2"
+                            <v-sheet
+                                v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                                class="align-center d-flex rounded-lg pr-2 textGray--text"
+                                color="wallet_bg"
+                                :min-width=" $mobile ? 0 : 206"
+                                height="36"
+                            >
+                                <v-img
+                                    class="ml-2"
                                     :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
-                                    :max-width="$vuetify.breakpoint.mobile ? '20' : '24'"
-                                    :max-height="$vuetify.breakpoint.mobile ? '20' : '24'"></v-img>
-                                <span class="ml-2 " :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'">
-                                    {{gameProxy.coin_name_unique}}</span>
+                                    :max-width="$mobile ? '20' : '24'"
+                                    :max-height="$mobile ? '20' : '24'"
+                                ></v-img>
+                                <span class="ml-2" :class="$mobile ? 'text-12' : 'text-14'"> {{gameProxy.coin_name_unique}}</span>
                                 <v-spacer />
-                                <div class="icon-box iconfont text-16   ml-2"
-                                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                                <div
+                                    class="icon-box iconfont text-16 ml-2"
+                                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                >
                                     
                                 </div>
                             </v-sheet>
@@ -91,22 +90,27 @@
                             {{setIsFilter(value)}}
                         </v-sheet>
                     </template>
-                    <v-sheet width="100%" color="bgBanner"
-                        class="py-2 px-0 d-flex flex-column justify-center rounded-lg">
+                    <v-sheet width="100%" color="bgBanner" class="py-2 px-0 d-flex flex-column justify-center rounded-lg">
                         <template v-for="(item, key) of selfProxy.userInfo.gold_info">
-                            <v-sheet v-if="item" class="d-flex align-center  rounded-lg cursor-pointer py-1 mb-2 ml-2 mr-2 listitem"
-                                :class="{'select-shadow': gameProxy.coin_name_unique == key}" min-height="40" :key="key"
-                                @click="onItemClick(key)" color="transparent">
+                            <v-sheet
+                                v-if="item"
+                                class="d-flex align-center rounded-lg cursor-pointer py-1 mb-2 ml-2 mr-2 listitem"
+                                :class="{'select-shadow': gameProxy.coin_name_unique == key}"
+                                min-height="40"
+                                :key="key"
+                                @click="onItemClick(key)"
+                                color="transparent"
+                            >
                                 <div class="ml-2">
-                                    <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30"
-                                        max-height="30"></v-img>
+                                    <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                                 </div>
                                 <div class="ml-3 text-12">
                                     <div class="font-weight-bold textGray--text">{{ key }}{{LangUtil("钱包")}}</div>
                                     <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{  item.sum_money }}</div> -->
-                                    <div class="primary--text">{{  item.sum_money }}</div>
+                                    <div class="primary--text">{{ item.sum_money }}</div>
                                     <div v-if="key == 'CNY'" class="primary--text">
-                                        {{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
+                                        {{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}
+                                    </div>
                                 </div>
 
                                 <CoinTip v-if="gameProxy.coin_name_unique == key" :isLeft="false" />
@@ -114,44 +118,61 @@
                         </template>
 
                         <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-2 mb-2">
-                            <btn-yellow class="text-12" min-width="80" height="30"
-                                @click.native="handlerGameRate">{{LangUtil("游戏汇率查询")}}</btn-yellow>
+                            <btn-yellow class="text-12" min-width="80" height="30" @click.native="handlerGameRate"
+                                >{{LangUtil("游戏汇率查询")}}</btn-yellow
+                            >
                         </v-sheet>
                     </v-sheet>
                 </v-menu>
             </v-sheet>
             <v-sheet color="transparent" class="d-flex">
-                <btn-yellow v-if="isShowRecharge" class="text-12 ml-2 mr-2" min_width="60" height="30" :btn_type="2"
-                    @click.native="onRechargeBtnClick">{{LangUtil("充值")}}</btn-yellow>
+                <btn-yellow
+                    v-if="isShowRecharge"
+                    class="text-12 ml-2 mr-2"
+                    min_width="60"
+                    height="30"
+                    :btn_type="2"
+                    @click.native="onRechargeBtnClick"
+                    >{{LangUtil("充值")}}</btn-yellow
+                >
 
-                <btn-yellow v-if="isShowRecharge" class="text-12" min_width="60" height="30" :btn_type="2"
-                    @click.native="onExchargeBtnClick">{{LangUtil("提现")}}</btn-yellow>
+                <btn-yellow
+                    v-if="isShowRecharge"
+                    class="text-12"
+                    min_width="60"
+                    height="30"
+                    :btn_type="2"
+                    @click.native="onExchargeBtnClick"
+                    >{{LangUtil("提现")}}</btn-yellow
+                >
             </v-sheet>
         </v-sheet>
     </v-sheet>
 
-    <v-sheet color="bgBanner" class="ml-2 mr-2 mt-2 rounded10  d-flex flex-wrap justify-space-between">
-
+    <v-sheet color="bgBanner" class="ml-2 mr-2 mt-2 rounded10 d-flex flex-wrap justify-space-between">
         <template v-for="(item, key) in menuList">
-            <v-sheet color="transparent" class="d-flex flex-column align-center justify-center" :key="item.name"
-                min-height="70" min-width="85" @click.native="goCategory(item.id)">
-                <svg-icon :icon="item.icon" class="textGray--text"
-                    :class="$vuetify.breakpoint.mobile ? 'text-20' :'text-20'"></svg-icon>
-                <v-sheet class="font-weight-medium textGray--text text-12 mt-2 " color="transparent" max-width="110">
+            <v-sheet
+                color="transparent"
+                class="d-flex flex-column align-center justify-center"
+                :key="item.name"
+                min-height="70"
+                min-width="85"
+                @click.native="goCategory(item.id)"
+            >
+                <svg-icon :icon="item.icon" class="textGray--text" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
+                <v-sheet class="font-weight-medium textGray--text text-12 mt-2" color="transparent" max-width="110">
                     {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
                 </v-sheet>
             </v-sheet>
         </template>
 
         <template v-for="(idx) in item_count">
-            <v-sheet color="transparent" class="d-flex flex-column align-center justify-center" 
-                min-height="70" min-width="85">
-            </v-sheet>
+            <v-sheet color="transparent" class="d-flex flex-column align-center justify-center" min-height="70" min-width="85"> </v-sheet>
         </template>
-
     </v-sheet>
-<v-sheet color="transparent" class="px-2">
-    <btn-yellow class="text-16 mt-3 mb-1  font-weight-bold" width="100%" height="36"
-        @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
+    <v-sheet color="transparent" class="px-2">
+        <btn-yellow class="text-16 mt-3 mb-1 font-weight-bold" width="100%" height="36" @click.native="onLoginOut"
+            >{{LangUtil("退出登录")}}</btn-yellow
+        >
     </v-sheet>
 </v-sheet>

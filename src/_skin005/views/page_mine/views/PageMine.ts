@@ -5,7 +5,7 @@ import PageMineProxy from "../proxy/PageMineProxy";
 
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
-import { checkMultiline } from "@/core/global/Functions";
+import { amountFormat, checkMultiline } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
 import GlobalVar from "@/core/global/GlobalVar";
@@ -28,13 +28,15 @@ export default class PageMine extends AbstractView {
     }
     mounted() {
         //PanelUtil.showAppLoading(false);
-        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.xsOnly = this.$xsOnly;
         this.checkProgress();
     }
-
-    @Watch("$vuetify.breakpoint.xsOnly")
+    amountFormat(val: any, isb = true) {
+        return amountFormat(val, isb);
+    }
+    @Watch("$xsOnly")
     onWAtchXsOnly() {
-        this.xsOnly = this.$vuetify.breakpoint.xsOnly;
+        this.xsOnly = this.$xsOnly;
         this.checkProgress();
     }
 
@@ -77,7 +79,7 @@ export default class PageMine extends AbstractView {
                 h: 30,
             },
         };
-        return this.$vuetify.breakpoint.xsOnly ? mapMobile[key] : mapPC[key];
+        return this.$xsOnly ? mapMobile[key] : mapPC[key];
     }
 
     /**奖励记录 */

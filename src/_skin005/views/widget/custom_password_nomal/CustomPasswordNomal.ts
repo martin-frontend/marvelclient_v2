@@ -12,7 +12,6 @@ export default class CustomPasswordNomal extends AbstractView {
     inputValue = this.getValue;
     bShowPassword = true;
 
-
     isFocus = false;
 
     @Prop() value!: any;
@@ -24,8 +23,7 @@ export default class CustomPasswordNomal extends AbstractView {
         let str = "";
         if (this.isBottomLine) {
             str = "input-text-border-bottom";
-        }
-        else {
+        } else {
             str = "input-text";
         }
 
@@ -34,7 +32,6 @@ export default class CustomPasswordNomal extends AbstractView {
         }
         return str;
     }
-
 
     onInput(value: any) {
         this.inputValue = this.inputValue.replace(/[\u4e00-\u9fa5]/g, "");
@@ -70,15 +67,15 @@ export default class CustomPasswordNomal extends AbstractView {
     mounted() {
         if (this.isReadonly) {
             //@ts-ignore
-            window['removeAttr'] = this.removeAttr.bind(this);
+            window["removeAttr"] = this.removeAttr.bind(this);
             //@ts-ignore
-            window['setAttr'] = this.setAttr.bind(this);
+            window["setAttr"] = this.setAttr.bind(this);
         }
     }
     public removeAttr(idName: string) {
-        document.getElementById(idName)?.addEventListener('click',this.handleClick);
-        document.getElementById(idName)?.addEventListener('keydown',this.handleKeydown);
-        document.getElementById(idName)?.addEventListener('mousedown',this.handleMousedown);
+        document.getElementById(idName)?.addEventListener("click", this.handleClick);
+        document.getElementById(idName)?.addEventListener("keydown", this.handleKeydown);
+        document.getElementById(idName)?.addEventListener("mousedown", this.handleMousedown);
         setTimeout(() => {
             console.log("移除 节点");
             document.getElementById(idName)?.removeAttribute("readonly");
@@ -90,30 +87,23 @@ export default class CustomPasswordNomal extends AbstractView {
             document.getElementById(idName)?.setAttribute("readonly", "true");
         }, 300);
     }
-    handleClick(e:any)
-    {
-        if (e.type ==='click')
-        {   
+    handleClick(e: any) {
+        if (e.type === "click") {
             document.getElementById(e.target.id)?.blur();
             document.getElementById(e.target.id)?.focus();
         }
     }
-    handleKeydown(e:any)
-    {
-        if(e.type === 'keydown')
-        {
-            const keyCode =  e.keyCode;
-            const passwordText = (<HTMLInputElement>document.getElementById(e.target.id));
-            if(keyCode === 8 || keyCode === 46)
-            {
+    handleKeydown(e: any) {
+        if (e.type === "keydown") {
+            const keyCode = e.keyCode;
+            const passwordText = <HTMLInputElement>document.getElementById(e.target.id);
+            if (keyCode === 8 || keyCode === 46) {
                 const len = passwordText.value.length;
-                if(len === 1)
-                {
+                if (len === 1) {
                     passwordText.value = "";
                     return false;
                 }
-                if(e.target.selectionStart === 0 && e.target.selectionEnd ===  len)
-                {
+                if (e.target.selectionStart === 0 && e.target.selectionEnd === len) {
                     passwordText.value = "";
                     return false;
                 }
@@ -121,10 +111,8 @@ export default class CustomPasswordNomal extends AbstractView {
             return true;
         }
     }
-    handleMousedown(e:any)
-    {
-        if (e.type === 'mousedown')
-        {
+    handleMousedown(e: any) {
+        if (e.type === "mousedown") {
             document.getElementById(e.target.id)?.blur();
             document.getElementById(e.target.id)?.focus();
         }

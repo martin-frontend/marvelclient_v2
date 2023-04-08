@@ -22,13 +22,13 @@ export default class DialogPerformanceDetail extends AbstractView {
     constructor() {
         super(DialogPerformanceDetailMediator);
     }
-    typechange=0;
+    typechange = 0;
 
     /**图标时间选择 */
     onTimeChange(val: any) {
-       this.listQuery.cate= parseInt(val);
-       this.onTabClick(this.listQuery.cate);
-   }
+        this.listQuery.cate = parseInt(val);
+        this.onTabClick(this.listQuery.cate);
+    }
 
     onTabClick(cate: number) {
         this.listQuery.cate = cate;

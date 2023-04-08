@@ -8,11 +8,10 @@ import LoginEnter from "@/_skin005/core/global/LoginEnter";
 export default class MaskTool extends AbstractView {
     LangUtil = LangUtil;
 
-    GlobalVar  = GlobalVar;
+    GlobalVar = GlobalVar;
 
-    onClickItem()
-    {
+    onClickItem() {
         console.log("点击 锁定 按钮");
-        LoginEnter(()=>{});
+        LoginEnter(() => {});
     }
 }

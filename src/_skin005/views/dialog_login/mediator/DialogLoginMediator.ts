@@ -70,6 +70,5 @@ export default class DialogLoginMediator extends AbstractMediator {
         selfProxy.api_user_show_var([2, 3, 6]);
         //PanelUtil.openpage_home();
         //location.reload();
-
     }
 }

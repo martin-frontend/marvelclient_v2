@@ -9,7 +9,7 @@ import CustomInput from "@/_skin005/views/widget/custom_input_nomal/CustomInputN
 @Component({
     components: {
         CustomInput,
-    }
+    },
 })
 export default class extends DialogGoogleVerification {}
 </script>

@@ -10,7 +10,6 @@ export default class Overlay extends AbstractView {
     SkinVariable = SkinVariable;
     constructor() {
         super(OverlayMediator);
-        
     }
 
     inputValue = this.getValue;
@@ -29,5 +28,4 @@ export default class Overlay extends AbstractView {
         this.inputValue = false;
         this.$emit("input", this.inputValue);
     }
-
 }

@@ -156,7 +156,7 @@ export default class PageSwapProxy extends puremvc.Proxy {
 
     /** 价格图*/
     setSwapK(data: any) {
-        if (!data)  return;
+        if (!data) return;
 
         const { chartData, chartQuary } = this.pageData;
         chartData.coin_a_b_changed = data.coin_a_b_changed;

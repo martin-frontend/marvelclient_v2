@@ -1,8 +1,8 @@
-.cursor{
+.cursor {
     cursor: pointer;
 }
 .qrcode {
-    background-color:transparent;
+    background-color: transparent;
     border-radius: 20px;
     padding: 6px;
     width: 120px;
@@ -38,17 +38,17 @@
     }
 }
 
-.regular_text{
-    font-family: 'GOTHAM_BOOK';
+.regular_text {
+    font-family: "GOTHAM_BOOK";
 }
-.yellowweight{
-    --font-weight:bold;
+.yellowweight {
+    --font-weight: bold;
 }
 
-.pad_top_mob{
+.pad_top_mob {
     padding-top: 70px;
 }
-.pad_height{
+.pad_height {
     min-height: calc(100vh - 600px);
 }
 
@@ -63,8 +63,8 @@
         border: none !important;
         border-radius: unset;
         border-bottom: 2px solid #ffcd43 !important;
-        color: #0F1213 !important;
-        font-family: 'GOTHAM_BOLD';
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
         font-weight: 700;
     }
 
@@ -76,8 +76,8 @@
         border: none !important;
         border-radius: unset;
         border-bottom: 2px solid #ffcd43 !important;
-        color: #0F1213 !important;
-        font-family: 'GOTHAM_BOLD';
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
         font-weight: 700;
     }
 }
@@ -85,7 +85,7 @@
 .skin005 .theme--dark .head_btn_top {
     .v-btn {
         border: none !important;
-        color: #5A5A5A !important;
+        color: #5a5a5a !important;
         padding: 0 4px !important;
     }
 
@@ -94,7 +94,7 @@
         border-radius: unset;
         border-bottom: 2px solid #ffcd43 !important;
         color: #fff !important;
-        font-family: 'GOTHAM_BOLD';
+        font-family: "GOTHAM_BOLD";
         font-weight: 700;
     }
 
@@ -107,7 +107,7 @@
         border-radius: unset;
         border-bottom: 2px solid #ffcd43 !important;
         color: #fff !important;
-        font-family: 'GOTHAM_BOLD';
+        font-family: "GOTHAM_BOLD";
         font-weight: 700;
     }
 }

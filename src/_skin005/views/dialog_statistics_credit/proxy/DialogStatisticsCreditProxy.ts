@@ -12,7 +12,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             user_id: 0,
@@ -64,15 +64,14 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
 
     coin_name_unique = "";
 
-     /**进入页面时调用 */
-     enter() { 
+    /**进入页面时调用 */
+    enter() {
         console.log(" 进入 ---");
         //this.onInit();
     }
 
     /**离开页面时调用 */
-    leave() { 
-
+    leave() {
         console.log("离开页面----");
     }
 
@@ -141,8 +140,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         Object.assign(this.pageData.agent, data.agent);
         this.pageData.bind_relation = data.bind_relation;
 
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.mobile) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -194,11 +192,11 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         if (!msg) {
             msg = LangUtil("您无权查看该用户的信用统计！");
         }
-        PanelUtil.message_alert({ message: msg, okFun: () => { } });
+        PanelUtil.message_alert({ message: msg, okFun: () => {} });
     }
 
     onInit() {
-        console.log("初始化------1")
+        console.log("初始化------1");
         const start = getTodayOffset(-6);
         const end = getTodayOffset(1, 1);
         this.setcoin_name_unique();

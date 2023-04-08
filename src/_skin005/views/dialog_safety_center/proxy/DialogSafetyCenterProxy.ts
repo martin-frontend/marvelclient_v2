@@ -5,13 +5,13 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
 
     // public onRegister(): void {
-       
+
     // }
 
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         tabIndex: 0,
         formBindPhone: {
             user_id: 0,

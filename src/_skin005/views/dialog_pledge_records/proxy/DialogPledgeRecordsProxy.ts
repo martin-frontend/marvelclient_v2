@@ -7,7 +7,7 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         listQuery: {
             cate: 1,
             page_count: 1,
@@ -54,22 +54,20 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
         });
     }
 
-    setTestData()
-    {
-        const obj={
-            created_at:"2023-01-06 13:25:06",
-            gold:"123",
-            coin_b:"123asdasd",
-            coin_a_amount:"asdasd",
-            coin_b_amount:"asdasd",
-            trade_status:1,
-            updated_at:"qweqw"
-        }
+    setTestData() {
+        const obj = {
+            created_at: "2023-01-06 13:25:06",
+            gold: "123",
+            coin_b: "123asdasd",
+            coin_a_amount: "asdasd",
+            coin_b_amount: "asdasd",
+            trade_status: 1,
+            updated_at: "qweqw",
+        };
 
-        const list=<any>[];
+        const list = <any>[];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
-            
         }
 
         return list;
@@ -79,8 +77,8 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.getCurrentCoin();
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

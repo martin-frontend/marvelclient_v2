@@ -6,7 +6,7 @@ export default class DialogNickNameProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         nickname: "",
     };
 

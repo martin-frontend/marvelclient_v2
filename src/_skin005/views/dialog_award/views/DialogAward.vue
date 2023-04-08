@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogAward from "./DialogAward";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogAward {}
 </script>

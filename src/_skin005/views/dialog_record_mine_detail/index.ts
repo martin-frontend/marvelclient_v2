@@ -12,9 +12,8 @@ function show(data: any) {
     proxy.setData(data);
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

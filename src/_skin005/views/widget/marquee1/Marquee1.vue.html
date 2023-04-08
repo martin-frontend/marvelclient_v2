@@ -1,15 +1,15 @@
 <v-sheet
     v-if="pageData.list.length>0"
-    :min-height="$vuetify.breakpoint.mobile ? 30 : 36"
+    :min-height="$mobile ? 30 : 36"
     min-width="0"
     width="100%"
     class="d-flex align-center pr-3 box"
-    :class="$vuetify.breakpoint.mobile ? 'laba_bg' : 'rounded-lg box_border'"
+    :class="$mobile ? 'laba_bg' : 'rounded-lg box_border'"
 >
-    <div class="mx-3 textGray--text" :class="$vuetify.breakpoint.mobile ? 'text-16' : 'text-16'">
+    <div class="mx-3 textGray--text" :class="$mobile ? 'text-16' : 'text-16'">
         <svg-icon icon="notify"></svg-icon>
     </div>
-    <div ref="marqueeBox" class="marquee-box primary--text " :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'">
+    <div ref="marqueeBox" class="marquee-box primary--text" :class="$mobile ? 'text-12' : 'text-14'">
         <div ref="marqueeText">{{pageData.text}}</div>
     </div>
 </v-sheet>

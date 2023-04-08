@@ -9,7 +9,7 @@ function show(message: string, type: number) {
     proxy.pageData.type = type;
     Vue.notify(<any>{
         group: "message",
-        duration: 3000
+        duration: 3000,
     });
 }
 

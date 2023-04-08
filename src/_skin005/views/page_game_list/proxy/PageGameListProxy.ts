@@ -48,23 +48,17 @@ export default class PageGameListProxy extends puremvc.Proxy {
         const curPath = Vue.router.history.current.path;
         if (curPath.includes("sports")) {
             return 64;
-        }
-        else if (curPath.includes("live-casino-online")) {
+        } else if (curPath.includes("live-casino-online")) {
             return 32;
-        }
-        else if (curPath.includes("blockchain-games")) {
+        } else if (curPath.includes("blockchain-games")) {
             return 128;
-        }
-        else if (curPath.includes("fishing-games")) {
+        } else if (curPath.includes("fishing-games")) {
             return 8;
-        }
-        else if (curPath.includes("slots-games")) {
+        } else if (curPath.includes("slots-games")) {
             return 16;
-        }
-        else if (curPath.includes("lottery-games")) {
+        } else if (curPath.includes("lottery-games")) {
             return 4;
-        }
-        else if (curPath.includes("cards-games")) {
+        } else if (curPath.includes("cards-games")) {
             return 2;
         }
         return -1;
@@ -169,8 +163,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
 
     getCurItemIndex() {
         //console.log("查找 当前元素的值");
-        if (!this.gameMenuData)
-        {
+        if (!this.gameMenuData) {
             this.curItemIndex = -1;
             return;
         }

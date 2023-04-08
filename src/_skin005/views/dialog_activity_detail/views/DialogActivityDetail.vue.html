@@ -1,6 +1,6 @@
 <!-- <v-dialog v-if="false && !pageData.bHidden" v-model="pageData.bShow" width="$vuetify.breakpoint.width/2" :retain-focus="false" :fullscreen="true" persistent>
     <v-card color="transparent" class="d-flex align-center justify-center">
-        <img v-if="$vuetify.breakpoint.xsOnly" width="100%" :src="pageData.data.link_url" />
+        <img v-if="$xsOnly" width="100%" :src="pageData.data.link_url" />
         <img v-else class="imgage" :src="pageData.data.link_url" />
     </v-card>
     <v-btn class="btn-close" icon @click="onClose">
@@ -8,14 +8,13 @@
     </v-btn>
 </v-dialog> -->
 
-<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="90%" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent >
-    <v-card flat  color="bgBanner" class="rounded10" style="height: calc(100vh - 150px);">
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="90%" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+    <v-card flat color="bgBanner" class="rounded10" style="height: calc(100vh - 150px)">
         <com-dialog-title :title="pageData.data.activity_name" @onClose="onClose" />
-        <v-divider class="mb-2 " />
-        <v-sheet color="transparent" width="100%" class="px-5 overflow-y-auto" style="height: calc(100% - 90px);">
+        <v-divider class="mb-2" />
+        <v-sheet color="transparent" width="100%" class="px-5 overflow-y-auto" style="height: calc(100% - 90px)">
             <!-- <div v-if="pageData.data.show_type == 1" class="textYellow--text" v-html="pageData.data.link_url"></div> -->
             <div class="" v-html="pageData.data.link_url"></div>
-
         </v-sheet>
     </v-card>
 </v-dialog>

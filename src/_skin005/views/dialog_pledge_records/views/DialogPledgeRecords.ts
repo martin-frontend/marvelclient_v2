@@ -25,14 +25,13 @@ export default class DialogPledgeRecords extends AbstractView {
         super(DialogPledgeRecordsMediator);
     }
 
-    typechange=0;
+    typechange = 0;
 
-     /**图标时间选择 */
-     onTimeChange(val: any) {
+    /**图标时间选择 */
+    onTimeChange(val: any) {
         this.listQuery.cate = parseInt(val);
 
         this.onTabClick(this.listQuery.cate + 1);
-    
     }
 
     onTabClick(cate: number) {
@@ -57,7 +56,7 @@ export default class DialogPledgeRecords extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

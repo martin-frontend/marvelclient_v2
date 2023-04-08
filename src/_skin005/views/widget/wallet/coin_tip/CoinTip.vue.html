@@ -1,7 +1,10 @@
 <v-sheet color="transparent" class="tip_test">
-    <v-sheet :width="$vuetify.breakpoint.xsOnly ? '120' : '160'" class="base_class rounded10 py-2 pl-2 pr-2" 
+    <v-sheet
+        :width="$xsOnly ? '120' : '160'"
+        class="base_class rounded10 py-2 pl-2 pr-2"
         :class="tipsClass"
-        :color="$vuetify.breakpoint.xsOnly ? 'tips_color_bg' : 'tips_color_bg_2'">
+        :color="$xsOnly ? 'tips_color_bg' : 'tips_color_bg_2'"
+    >
         <p class="d-flex align-center mb-1">
             <!-- <v-img
             src="@/assets/header/emoji.png"
@@ -14,5 +17,4 @@
         </p>
         <p class="ml-1 mr-1 mb-0 tips_color--text text-12 font-weight-bold">{{ LangUtil('你当前游戏使用此币种') }}。</p>
     </v-sheet>
-
 </v-sheet>

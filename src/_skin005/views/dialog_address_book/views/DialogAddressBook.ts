@@ -8,14 +8,13 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 @Component
 export default class DialogAddressBook extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogAddressBookProxy = this.getProxy(DialogAddressBookProxy);
     //addressBookRemark: DialogAddressBookRemarkProxy = this.getProxy(DialogAddressBookRemarkProxy);
     addressBookRemark = PanelUtil.getProxy_address_book_remark;
-    rechargeProxy = PanelUtil.getProxy_recharge
+    rechargeProxy = PanelUtil.getProxy_recharge;
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
 
@@ -50,9 +49,7 @@ export default class DialogAddressBook extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-
         PageBlur.blur_page(this.pageData.bShow);
-
     }
 
     onEdit(item: any) {
@@ -63,7 +60,7 @@ export default class DialogAddressBook extends AbstractView {
 
     onDelete(item: any) {
         this.pageData.loading = true;
-        this.addressBookRemark.onDelete(item.id)
+        this.addressBookRemark.onDelete(item.id);
     }
 
     onRefresh(done: any) {

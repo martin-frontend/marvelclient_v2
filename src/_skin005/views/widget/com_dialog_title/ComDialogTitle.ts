@@ -10,21 +10,16 @@ export default class ComDialogTitle extends AbstractView {
     @Prop({ default: true }) isNeedClose!: boolean;
     @Prop({ default: null }) isSetChange!: boolean | undefined;
 
-
-    onClose(){
+    onClose() {
         this.$emit("onClose");
     }
 
     //检测是否需要切换，
-    public get isMoble() : boolean {
-        if (this.isSetChange == null)
-        {
-            return this.$vuetify.breakpoint.xsOnly;
-        } 
-        else
-        {
+    public get isMoble(): boolean {
+        if (this.isSetChange == null) {
+            return this.$xsOnly;
+        } else {
             return this.isSetChange;
         }
     }
-    
 }

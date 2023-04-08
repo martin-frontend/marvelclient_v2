@@ -1,14 +1,12 @@
-
-
-.text_height{
+.text_height {
     height: calc(100% - 190px);
 }
 
-.empty_height{
+.empty_height {
     height: 40px;
 }
 
-.empty_space{
+.empty_space {
     //color: #97ABD1;
     white-space: nowrap;
 }
@@ -41,8 +39,7 @@
     contain: unset;
 }
 
-.hackhome{
-
+.hackhome {
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;

@@ -8,7 +8,7 @@ import CustomPassword from "@/_skin005/views/widget/custom_password_nomal/Custom
 @Component({
     components: {
         CustomPassword,
-    }
+    },
 })
 export default class extends DialogDirectlyPassword {}
 </script>

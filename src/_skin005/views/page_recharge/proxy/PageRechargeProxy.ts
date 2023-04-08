@@ -1,4 +1,3 @@
-
 import getProxy from "@/core/global/getProxy";
 import { ExchangeProxy, RechargeProxy, TransferProxy } from "@/_skin005/views/dialog_recharge/proxy/DialogRechargeProxy";
 
@@ -25,4 +24,3 @@ export default class PageRechargeProxy extends puremvc.Proxy {
         this.rechargeProxy.api_user_var_recharge_method_list();
     }
 }
-

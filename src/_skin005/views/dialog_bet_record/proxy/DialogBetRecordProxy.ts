@@ -9,19 +9,18 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
         //this.api_vendor_simple();
-
     }
 
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         bShowOptions: true, //是否显示选取框
         bShowMoneyType: false, //是否显示 结算币种
-        bShowUserId: false,  //是否显示玩家id
-        bShowTimeText: false,//是否显示 时间文字
+        bShowUserId: false, //是否显示玩家id
+        bShowTimeText: false, //是否显示 时间文字
         bShowIsMine: false,
-        bShowFilterBtn: false,// 是否显示筛选按钮
+        bShowFilterBtn: false, // 是否显示筛选按钮
         filterBtnInfo: <any>{}, //筛选按钮需要用到的信息
         // 列表是否加载完成，手机模式专用
         finished: false,
@@ -30,7 +29,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            coin_name_unique: "",  //币种
+            coin_name_unique: "", //币种
             start_date: "",
             end_date: "",
             page_count: 1,
@@ -114,8 +113,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
                 options[moneyKeys[index]] = moneyKeys[index];
             }
             return options;
-        }
-
+        },
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -135,15 +133,15 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             pageTotal: 9,
         });
         this.pageData.list = <any>[];
-        this.pageData.total_bet_gold =  "";
-        this.pageData.total_water=  "";
-        this.pageData.total_valid_bet_gold=  "";
-        this.pageData.total_win_gold=  "";
-        this.pageData.total_bet_gold_coin=  "";
-        this.pageData.total_water_coin=  "";
-        this.pageData.total_valid_bet_gold_coin=  "";
-        this.pageData.total_win_gold_coin=  "";
-        this.pageData.total_backwater_coin=  "";
+        this.pageData.total_bet_gold = "";
+        this.pageData.total_water = "";
+        this.pageData.total_valid_bet_gold = "";
+        this.pageData.total_win_gold = "";
+        this.pageData.total_bet_gold_coin = "";
+        this.pageData.total_water_coin = "";
+        this.pageData.total_valid_bet_gold_coin = "";
+        this.pageData.total_win_gold_coin = "";
+        this.pageData.total_backwater_coin = "";
     }
     clearFilterInfo() {
         this.pageData.filterBtnInfo = {};
@@ -166,41 +164,39 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.bShowIsMine = false;
         this.pageData.bShowFilterBtn = false;
     }
-    setTestData()
-    {
-        const obj={
-            "_id": {
-                "$oid": "63c7a0100b74e4b4bb0f601d"
+    setTestData() {
+        const obj = {
+            _id: {
+                $oid: "63c7a0100b74e4b4bb0f601d",
             },
-            "user_id": 30000336,
-            "vendor_id": 103,
-            "vendor_type": 16,
-            "bet_gold": "$5.00",
-            "valid_bet_gold": "$5.00",
-            "win_gold": "-$5",
-            "order_no": "2889377475#103",
-            "settlement_status": 11,
-            "coin_name_unique": "USDT",
-            "plat_id": 30017,
-            "water": "$5.00",
-            "backwater": "$0.00",
-            "vendor_product_name": "五雄狮",
-            "bet_gold_coin": "5.00",
-            "valid_bet_gold_coin": "5.00",
-            "win_gold_coin": "-5.00",
-            "water_coin": "5.00",
-            "backwater_coin": "0.00",
-            "is_settlement_backwater": 0,
-            "bet_id": "63c7a0100b74e4b4bb0f601d",
-            "bet_at": "2023-01-18 15:28:33",
-            "settlement_at": "2023-01-18 15:28:33",
-            "vendor_name": "PP",
-            "vendor_icon": "",
-            "game_info": {
-                "market_type_text": null
-            }
-
-        }
+            user_id: 30000336,
+            vendor_id: 103,
+            vendor_type: 16,
+            bet_gold: "$5.00",
+            valid_bet_gold: "$5.00",
+            win_gold: "-$5",
+            order_no: "2889377475#103",
+            settlement_status: 11,
+            coin_name_unique: "USDT",
+            plat_id: 30017,
+            water: "$5.00",
+            backwater: "$0.00",
+            vendor_product_name: "五雄狮",
+            bet_gold_coin: "5.00",
+            valid_bet_gold_coin: "5.00",
+            win_gold_coin: "-5.00",
+            water_coin: "5.00",
+            backwater_coin: "0.00",
+            is_settlement_backwater: 0,
+            bet_id: "63c7a0100b74e4b4bb0f601d",
+            bet_at: "2023-01-18 15:28:33",
+            settlement_at: "2023-01-18 15:28:33",
+            vendor_name: "PP",
+            vendor_icon: "",
+            game_info: {
+                market_type_text: null,
+            },
+        };
         const list = <any>[];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
@@ -222,8 +218,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.total_win_gold_coin = data.total_win_gold_coin;
         this.pageData.total_backwater_coin = data.total_backwater_coin;
 
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.mobile) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -258,8 +253,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         }
         if (data.parents && data.parents.length > 0) {
             this.setFilterInfo(data);
-        }
-        else {
+        } else {
             this.removeUserList(data.user_id);
         }
         this.getApi();
@@ -297,5 +291,4 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
-
 }

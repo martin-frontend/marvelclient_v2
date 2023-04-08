@@ -31,19 +31,18 @@ function showSmsVerity(type: number, area_code: string, mobile: string) {
     pageData.bShow = true;
 }
 
-function show(data:any = null) {
+function show(data: any = null) {
     DialogMount(DialogGetVerity);
     hidden(false);
     myProxy.resetForm();
     myProxy.setData(data);
     myProxy.pageData.bShow = true;
 
-    console.log("当前收到的 信息为" ,myProxy.pageData);
+    console.log("当前收到的 信息为", myProxy.pageData);
 }
-
 
 function hidden(bhidden: boolean = true) {
     myProxy.pageData.bHidden = bhidden;
 }
 
-export default { showEmailVerity, showSmsVerity,show, hidden};
+export default { showEmailVerity, showSmsVerity, show, hidden };

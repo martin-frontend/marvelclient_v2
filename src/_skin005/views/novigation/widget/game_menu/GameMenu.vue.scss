@@ -24,8 +24,7 @@
     background: linear-gradient(0deg, #fcb131, #ffe64d) !important;
 }
 
-
-::v-deep  .theme--dark {
+::v-deep .theme--dark {
     .game_item_bg {
         background: linear-gradient(to bottom, #363636, #252525) !important;
     }
@@ -48,20 +47,19 @@
         left: 10px;
     }
 
-    .btn_stly{
+    .btn_stly {
         background: #333435 !important;
     }
-
 }
 
-::v-deep  .theme--light {
+::v-deep .theme--light {
     .game_item_bg {
-        background: linear-gradient(to bottom, #E2E9FD, #F6F6F4) !important;
+        background: linear-gradient(to bottom, #e2e9fd, #f6f6f4) !important;
     }
 
     .v-slide-group__prev,
     .v-slide-group__next {
-        background: #F6F6F4;
+        background: #f6f6f4;
         min-width: 30px !important;
         height: 90px;
         border-radius: 10px;
@@ -76,10 +74,9 @@
     .v-slide-group__next {
         left: 10px;
     }
-    .btn_stly{
+    .btn_stly {
         background: #fff !important;
-        border: solid 2px #E8E8E2;
-    
+        border: solid 2px #e8e8e2;
     }
 }
 
@@ -92,13 +89,12 @@
         font-size: 34px;
     }
 }
-.v-card--link:before{
+.v-card--link:before {
     background: transparent !important;
 }
 
-
 //样式三 使用的
-.btn_stly:hover{
+.btn_stly:hover {
     background: linear-gradient(90deg, #fcb131 0%, #ffe64d 100%) !important;
     color: #252525;
     border: none;

@@ -73,13 +73,21 @@ function getSelectionName(market_type: string, selection: FixSelectionVO, matche
         case EnumMarketType.ASIAN_OVER_UNDER_EXTRA_TIME:
         case EnumMarketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME:
         case EnumMarketType.ASIAN_OVER_UNDER_AFTER_PENALTIES:
-            return (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) + " " + formatAsian(selection.handicap, selection.type).substring(1);
+            return (
+                (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) +
+                " " +
+                formatAsian(selection.handicap, selection.type).substring(1)
+            );
         case EnumMarketType.MATCH_ODDS:
         case EnumMarketType.MATCH_ODDS_HALF_TIME:
             return "";
         case EnumMarketType.TOTAL_GOALS:
         case EnumMarketType.TOTAL_GOALS_HALF_TIME:
-            return (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) + " " + formatAsian(selection.handicap, selection.type).substring(1);
+            return (
+                (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) +
+                " " +
+                formatAsian(selection.handicap, selection.type).substring(1)
+            );
         case EnumMarketType.ODD_OR_EVEN_HALF_TIME:
         case EnumMarketType.ODD_OR_EVEN:
             return selection.type == "Odd" ? LangUtil("单") : LangUtil("双");

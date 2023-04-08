@@ -1,5 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { amountFormat } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
@@ -11,4 +12,7 @@ export default class TabMyAssets extends AbstractView {
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     plat_coins = GamePlatConfig.config.plat_coins;
+    amountFormat(nub: any, isb = true) {
+        return amountFormat(nub, isb);
+    }
 }

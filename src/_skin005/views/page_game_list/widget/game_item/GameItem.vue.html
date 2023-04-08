@@ -1,12 +1,23 @@
-<v-card :color="item?'bgNavigation':'transparent'" :style="{'opacity': item?1:0, 'cursor': 'auto'}"
-    :width="width-13.5" :class="getBoxClass()" class="rounded-lg" flat>
+<v-card
+    :color="item?'bgNavigation':'transparent'"
+    :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+    :width="width-13.5"
+    :class="getBoxClass()"
+    class="rounded-lg"
+    flat
+>
     <!-- <v-lazy> -->
-    <v-sheet v-if="item" color="transparent" class="game-icon"  @click="goGamePlay"
-        :class="$vuetify.breakpoint.xsOnly ? 'loader_class_mob' : ''">
-        <ImgLoader v-if="item" class="cursor-pointer rounded_img" min-height="100" :width="width-13.5" :height="height"
-            :src="getIcon(item)">
+    <v-sheet v-if="item" color="transparent" class="game-icon" @click="goGamePlay" :class="$xsOnly ? 'loader_class_mob' : ''">
+        <ImgLoader
+            v-if="item"
+            class="cursor-pointer rounded_img"
+            min-height="100"
+            :width="width-13.5"
+            :height="height"
+            :src="getIcon(item)"
+        >
             <!-- 手机显示 -->
-            <!-- <template v-if="$vuetify.breakpoint.xsOnly">
+            <!-- <template v-if="$xsOnly">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain
                         content-class="d-flex flex-column align-start pl-1" width="80px"
                         src="@/assets/tag/tag_background.png">
@@ -20,9 +31,14 @@
                 </template> -->
             <!-- pc显示 -->
             <!-- <template v-else> -->
-            <v-img v-if="item.water_rate_accelerate" class="float-left mt-1"
-                content-class="d-flex flex-column align-start pl-1" contain width="110px"
-                src="@/assets/tag/tag_background.png">
+            <v-img
+                v-if="item.water_rate_accelerate"
+                class="float-left mt-1"
+                content-class="d-flex flex-column align-start pl-1"
+                contain
+                width="110px"
+                src="@/assets/tag/tag_background.png"
+            >
                 <span class="font-italic text-yellow">{{ LangUtil('挖矿加速') }}</span>
                 <span class="d-flex">
                     <span class="mt-n1">{{ `＋${item.water_rate_accelerate * 100}%` }}</span>
@@ -39,20 +55,23 @@
                 </div>
             </div> -->
 
-            <div v-if="!isNomalState" class="mask_base d-flex justify-center align-center" :class="$vuetify.breakpoint.mobile ? 'mob_mask' : 'pc_mask'">
-                <v-sheet class="d-flex justify-center align-center cursor-pointer" @click="onClickItem"
-                    color="transparent">
+            <div v-if="!isNomalState" class="mask_base d-flex justify-center align-center" :class="$mobile ? 'mob_mask' : 'pc_mask'">
+                <v-sheet class="d-flex justify-center align-center cursor-pointer" @click="onClickItem" color="transparent">
                     <svg-icon icon="weihu" class="primary--text text-30"></svg-icon>
                 </v-sheet>
             </div>
-
         </ImgLoader>
 
-        <v-sheet class="text_bg rounded_text d-flex justify-center align-center" width="100%"
-            :height="$vuetify.breakpoint.mobile ? '30' : '44'" color="bgBanner" flat>
-            <div class=" game-title font-weight-bold " :class="$vuetify.breakpoint.mobile ? 'text-12 title_text_mob' : 'text-16'"
-                style="text-align: center;">
-                {{useMenuData ? item.alias : item.vendor_product_name }}</div>
+        <v-sheet
+            class="text_bg rounded_text d-flex justify-center align-center"
+            width="100%"
+            :height="$mobile ? '30' : '44'"
+            color="bgBanner"
+            flat
+        >
+            <div class="game-title font-weight-bold" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">
+                {{useMenuData ? item.alias : item.vendor_product_name }}
+            </div>
         </v-sheet>
 
         <template v-slot:placeholder>
@@ -61,8 +80,6 @@
             </v-row>
         </template>
     </v-sheet>
-
-
 
     <!-- </v-lazy> -->
 </v-card>

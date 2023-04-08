@@ -5,10 +5,8 @@
 import Component from "vue-class-component";
 import DialogPledgeRecords from "./DialogPledgeRecords";
 
-
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogPledgeRecords {}
 </script>

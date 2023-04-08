@@ -70,24 +70,54 @@ function getTeamName(data: any, special: boolean = true) {
                     return LangUtil("Draw");
             }
         }
-        return marketType.includes(data.market.market_type) ? getNameByeSelectionType(data.selection.type, data.matche.home_team, data.matche.away_team) : "";
+        return marketType.includes(data.market.market_type)
+            ? getNameByeSelectionType(data.selection.type, data.matche.home_team, data.matche.away_team)
+            : "";
     } else {
         return marketType.includes(data.market_type) ? getNameByeSelectionType(data.s_type, data.home_name, data.away_name) : "";
     }
 }
 //判断盘口是否是上半场盘口 如果是 返回true
 function IsOnlyFirstHalf(market_type: string) {
-    const firstHalfarr = [marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.DOUBLE_CHANCE_HALF_TIME, marketType.MATCH_ODDS_HALF_TIME, marketType.TOTAL_GOALS_HALF_TIME, marketType.ASIAN_OVER_UNDER_HALF_TIME, marketType.ASIAN_HANDICAP_HALF_TIME, marketType.DRAW_NO_BET_HALF_TIME, marketType.BOTH_TEAMS_TO_SCORE_HALF_TIME, marketType.TEAM_A_WIN_TO_NIL_HALF_TIME, marketType.TEAM_B_WIN_TO_NIL_HALF_TIME, marketType.ODD_OR_EVEN_HALF_TIME, marketType.CORRECT_SCORE_HALF_TIME];
+    const firstHalfarr = [
+        marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME,
+        marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME,
+        marketType.DOUBLE_CHANCE_HALF_TIME,
+        marketType.MATCH_ODDS_HALF_TIME,
+        marketType.TOTAL_GOALS_HALF_TIME,
+        marketType.ASIAN_OVER_UNDER_HALF_TIME,
+        marketType.ASIAN_HANDICAP_HALF_TIME,
+        marketType.DRAW_NO_BET_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_HALF_TIME,
+        marketType.TEAM_A_WIN_TO_NIL_HALF_TIME,
+        marketType.TEAM_B_WIN_TO_NIL_HALF_TIME,
+        marketType.ODD_OR_EVEN_HALF_TIME,
+        marketType.CORRECT_SCORE_HALF_TIME,
+    ];
     return firstHalfarr.indexOf(market_type) != -1;
 }
 
 //获取比分说明 是角球点球还是比分等
 function getScoreStr(item: any) {
-    const cornersMarket_type = [marketType.CR_ASIAN_HANDICAP, marketType.CR_ASIAN_OVER_UNDER];//角球
-    const addtimeHalfMarket_type = [marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME];//半场加时
-    const addtimeMarket_type = [marketType.ASIAN_HANDICAP_EXTRA_TIME, marketType.ASIAN_OVER_UNDER_EXTRA_TIME];//全场加时
-    const AFTER_Market_type = [marketType.ASIAN_HANDICAP_AFTER_PENALTIES, marketType.ASIAN_OVER_UNDER_AFTER_PENALTIES];//点球
-    const firstHalfarr = [marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.DOUBLE_CHANCE_HALF_TIME, marketType.MATCH_ODDS_HALF_TIME, marketType.TOTAL_GOALS_HALF_TIME, marketType.ASIAN_OVER_UNDER_HALF_TIME, marketType.ASIAN_HANDICAP_HALF_TIME, marketType.DRAW_NO_BET_HALF_TIME, marketType.BOTH_TEAMS_TO_SCORE_HALF_TIME, marketType.TEAM_A_WIN_TO_NIL_HALF_TIME, marketType.TEAM_B_WIN_TO_NIL_HALF_TIME, marketType.ODD_OR_EVEN_HALF_TIME, marketType.CORRECT_SCORE_HALF_TIME];
+    const cornersMarket_type = [marketType.CR_ASIAN_HANDICAP, marketType.CR_ASIAN_OVER_UNDER]; //角球
+    const addtimeHalfMarket_type = [marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME, marketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME]; //半场加时
+    const addtimeMarket_type = [marketType.ASIAN_HANDICAP_EXTRA_TIME, marketType.ASIAN_OVER_UNDER_EXTRA_TIME]; //全场加时
+    const AFTER_Market_type = [marketType.ASIAN_HANDICAP_AFTER_PENALTIES, marketType.ASIAN_OVER_UNDER_AFTER_PENALTIES]; //点球
+    const firstHalfarr = [
+        marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME,
+        marketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME,
+        marketType.DOUBLE_CHANCE_HALF_TIME,
+        marketType.MATCH_ODDS_HALF_TIME,
+        marketType.TOTAL_GOALS_HALF_TIME,
+        marketType.ASIAN_OVER_UNDER_HALF_TIME,
+        marketType.ASIAN_HANDICAP_HALF_TIME,
+        marketType.DRAW_NO_BET_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_HALF_TIME,
+        marketType.TEAM_A_WIN_TO_NIL_HALF_TIME,
+        marketType.TEAM_B_WIN_TO_NIL_HALF_TIME,
+        marketType.ODD_OR_EVEN_HALF_TIME,
+        marketType.CORRECT_SCORE_HALF_TIME,
+    ];
     const state = Object.keys(item.state || {}).length > 0 ? item.state : item.real_time_state ? item.real_time_state : item.state;
     if (!state) {
         return "";
@@ -107,8 +137,7 @@ function getScoreStr(item: any) {
     } else if (firstHalfarr.indexOf(item.market_type) != -1) {
         if (!state.goals_ht) return "";
         return " " + LangUtil("半场比分") + "(" + state.goals_ht + ")";
-    }
-    else {
+    } else {
         if (!state.goals_ft) return "";
         return " " + LangUtil("比分") + "(" + state.goals_ft + ")";
     }
@@ -118,7 +147,7 @@ const exportOrder = {
     getNameByeSelectionType,
     getTeamName,
     IsOnlyFirstHalf,
-    getScoreStr
+    getScoreStr,
 };
 
 export default exportOrder;

@@ -60,13 +60,11 @@ export default class CustomInput extends AbstractView {
         this.$emit("input", this.inputValue);
     }
 
-
     public get inputClass(): string {
         let str = "";
         if (this.isBottomLine) {
             str = "input-text-border-bottom";
-        }
-        else {
+        } else {
             str = "input-text";
         }
 

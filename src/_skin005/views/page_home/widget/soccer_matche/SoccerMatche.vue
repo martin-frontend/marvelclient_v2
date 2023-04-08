@@ -4,12 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import SoccerMatche from "./SoccerMatche";
-import SoccerMatcheItem from "../soccer_matche_item/SoccerMatcheItem.vue"
+import SoccerMatcheItem from "../soccer_matche_item/SoccerMatcheItem.vue";
 
 @Component({
-    components:{
-        SoccerMatcheItem
-    }
+    components: {
+        SoccerMatcheItem,
+    },
 })
 export default class extends SoccerMatche {}
 </script>

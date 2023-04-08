@@ -30,7 +30,6 @@ export default class DialogRealName extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
-           
             this.myProxy.pageData.real_name = "";
         }
     }

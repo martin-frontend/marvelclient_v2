@@ -14,16 +14,16 @@
     .btn-left {
         //color: #fff;
         border-radius: 10px 0px 0px 10px;
-        border-top: solid 1px #D6DDE3;
-        border-bottom: solid 1px #D6DDE3;
-        border-left: solid 1px #D6DDE3;
+        border-top: solid 1px #d6dde3;
+        border-bottom: solid 1px #d6dde3;
+        border-left: solid 1px #d6dde3;
 
         //pointer-events: none;
         //border: 1px solid transparent !important;
         border-radius: 10px 0px 0px 10px;
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-       // background-image: linear-gradient(to right, #202121, #202121), linear-gradient(90deg, #fcb131, #ffe64d);
+        // background-image: linear-gradient(to right, #202121, #202121), linear-gradient(90deg, #fcb131, #ffe64d);
         //background-image: linear-gradient(to right, #F4F4F4, #F4F4F4), linear-gradient(90deg, #D6DDE3, #D6DDE3);
     }
     .btn-right {
@@ -48,24 +48,24 @@
 // }
 .boxdiv-border {
     border-radius: 10px;
-    border: solid 1px #D6DDE3;
+    border: solid 1px #d6dde3;
 }
 
 .theme--dark {
     .boxdiv {
-        .btn-left{
+        .btn-left {
             pointer-events: none;
             //color: #fff;
             color: #5a5a5a;
             border: 1px solid transparent !important;
-            background-image: linear-gradient(to right, #1B1C1C, #1B1C1C), linear-gradient(90deg, #3E3F41, #3E3F41);
+            background-image: linear-gradient(to right, #1b1c1c, #1b1c1c), linear-gradient(90deg, #3e3f41, #3e3f41);
         }
 
         .btn-right {
             //background-image: linear-gradient(to right, #202121, #202121), linear-gradient(90deg, #D6DDE3, #D6DDE3);
-            border-top: solid 1px #3E3F41;
-            border-bottom: solid 1px #3E3F41;
-            border-right: solid 1px #3E3F41;
+            border-top: solid 1px #3e3f41;
+            border-bottom: solid 1px #3e3f41;
+            border-right: solid 1px #3e3f41;
             //color: #5a5a5a;
             color: #fff;
         }
@@ -74,9 +74,9 @@
 
 .theme--light {
     .boxdiv {
-        .btn-left{
+        .btn-left {
             color: #0f1213;
-            background-image: linear-gradient(to right, #fff, #fff), linear-gradient(90deg, #D6DDE3, #D6DDE3);
+            background-image: linear-gradient(to right, #fff, #fff), linear-gradient(90deg, #d6dde3, #d6dde3);
         }
 
         .btn-right {
@@ -85,9 +85,8 @@
             border-radius: 0px 10px 10px 0px;
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
-            background-image: linear-gradient(to right, #F4F4F4, #F4F4F4), linear-gradient(90deg, #D6DDE3, #D6DDE3);
+            background-image: linear-gradient(to right, #f4f4f4, #f4f4f4), linear-gradient(90deg, #d6dde3, #d6dde3);
             border-left: none;
-
         }
     }
 }

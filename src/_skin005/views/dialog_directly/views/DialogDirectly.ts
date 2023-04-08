@@ -11,7 +11,6 @@ import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 @Component
 export default class DialogDirectly extends AbstractView {
-
     dialogPromotionFloorProxy = PanelUtil.getProxy_promotion_floor;
     myProxy: DialogDirectlyProxy = this.getProxy(DialogDirectlyProxy);
     pageData = this.myProxy.pageData;
@@ -41,11 +40,10 @@ export default class DialogDirectly extends AbstractView {
         MultDialogManager.onClosePanel();
     }
 
-    
-    public get moble_single_item_height() : number {
-        return 30
+    public get moble_single_item_height(): number {
+        return 30;
     }
-    
+
     @Watch("pageData.search")
     onWatchSearch() {
         if (this.pageData.search != "") {
@@ -61,14 +59,12 @@ export default class DialogDirectly extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_agent_direct_list();
-        }
-        else
-        {
+        } else {
             this.myProxy.pageData.list = [];
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -102,7 +98,7 @@ export default class DialogDirectly extends AbstractView {
     }
 
     handlerShowDialogSet(agent_user: any) {
-        PanelUtil.openpanel_directly_setting({userinfo:agent_user,limitinfo:this.limitinfo }   );
+        PanelUtil.openpanel_directly_setting({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
         PanelUtil.openpanel_directly_adduser();

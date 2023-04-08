@@ -49,16 +49,13 @@ $prev-right: var(--prev-right);
         background: rgba(243, 231, 231, 0.098);
     }
 }
-.test_item{
+.test_item {
     background-color: transparent;
 }
 
-.game_item_close{
-        filter: grayscale(1);
-
-
+.game_item_close {
+    filter: grayscale(1);
 }
-.game_item{
-        filter: grayscale(0);
-
+.game_item {
+    filter: grayscale(0);
 }

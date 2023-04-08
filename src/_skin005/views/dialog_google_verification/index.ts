@@ -10,9 +10,8 @@ function show(type: boolean = true) {
     proxy.pageData.bShow = type;
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

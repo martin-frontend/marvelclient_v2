@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogRecordExchange from "./DialogRecordExchange";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogRecordExchange {}
 </script>

@@ -14,7 +14,7 @@ import LoadMore from "@/views/widget/loadMore/LoadMore.vue";
         CustomInput,
         Overlay,
         ListNodata,
-        LoadMore
+        LoadMore,
     },
 })
 export default class extends DialogDirectly {}

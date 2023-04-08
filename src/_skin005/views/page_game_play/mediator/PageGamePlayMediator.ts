@@ -4,11 +4,11 @@ import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageGamePlayMediator extends AbstractMediator {
-    onRegister(){
+    onRegister() {
         PanelUtil.showAppLoading(false);
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageGamePlayProxy.NAME);
     }
 

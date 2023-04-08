@@ -7,7 +7,7 @@ export default class ListNodata extends AbstractView {
     LangUtil = LangUtil;
 
     @Prop() height!: number;
-    @Prop({default: LangUtil("暂无记录")}) title!: string;
+    @Prop({ default: LangUtil("暂无记录") }) title!: string;
 
     boxHeight = 0;
 
@@ -21,7 +21,7 @@ export default class ListNodata extends AbstractView {
             });
         }
     }
-    public get nodataimg() : string {
-        return require(`@/_skin005/assets/nodata.png`)
+    public get nodataimg(): string {
+        return require(`@/_skin005/assets/nodata.png`);
     }
 }

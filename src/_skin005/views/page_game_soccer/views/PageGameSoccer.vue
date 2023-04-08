@@ -5,10 +5,8 @@
 import Component from "vue-class-component";
 import PageGameSoccer from "./PageGameSoccer";
 
-
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends PageGameSoccer {
     mounted() {

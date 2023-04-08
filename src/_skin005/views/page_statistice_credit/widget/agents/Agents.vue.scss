@@ -7,17 +7,13 @@
         font-size: 18px;
     }
 }
-.theme--light{
- 
-      --my-color: #0F1213; 
-  
-  }
-  
-  .theme--dark {
+.theme--light {
+    --my-color: #0f1213;
+}
 
-      --my-color: #ffff; 
-
-  }
+.theme--dark {
+    --my-color: #ffff;
+}
 .text-rwd-16 {
     font-size: 14px;
 
@@ -33,7 +29,7 @@
         color: #4c5d7f;
     }
 
-    div>a {
+    div > a {
         color: #9db1d8;
     }
 }
@@ -52,7 +48,6 @@
 }
 
 .search_mobiel {
-
     ::v-deep .v-btn__content {
         color: #98acd3;
         font-size: 16px;
@@ -77,7 +72,6 @@
 }
 
 .hackhome {
-
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
@@ -85,14 +79,13 @@
 }
 
 ::v-deep .theme--dark.v-icon {
-    color: #8E8F91;
+    color: #8e8f91;
 }
 
-::v-deep .v-input--selection-controls .v-input__slot>.v-label,
-.v-input--selection-controls .v-radio>.v-label {
-    color: #8E8F91;
+::v-deep .v-input--selection-controls .v-input__slot > .v-label,
+.v-input--selection-controls .v-radio > .v-label {
+    color: #8e8f91;
 }
-
 
 .input-text {
     height: 36px !important;
@@ -112,12 +105,12 @@
 ::v-deep .v-input--selection-controls .v-input__slot > .v-label {
     font-size: 14px;
     color: var(--my-color);
-  }
+}
 
-  .pad_top_mob{
+.pad_top_mob {
     padding-top: 100px;
 }
 
 .search_head {
-    border-radius:10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
 }

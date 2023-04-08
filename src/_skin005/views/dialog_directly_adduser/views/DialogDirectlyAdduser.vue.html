@@ -1,39 +1,61 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" overlay-opacity="0.6"
-    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card v-if="!$vuetify.breakpoint.xsOnly" color="bgBanner">
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$xsOnly" persistent>
+    <v-card v-if="!$xsOnly" color="bgBanner">
         <com-dialog-title title="添加用户" @onClose="onClose" />
-        <v-divider class="mb-2 " />
+        <v-divider class="mb-2" />
 
         <v-sheet class="px-4 py-4" width="100%" color="transparent">
             <v-row class="">
                 <v-col cols="6">
                     <v-card flat color="transparent" class="">
                         <v-sheet color="transparent">
-                            <CustomInput class="mb-4 " icon="mdi-account" :placeholder="LangUtil('请输入注册账号（4-20位）')"
-                                maxlength="20" v-model="form.username" @blur="onUsernameBlur" />
+                            <CustomInput
+                                class="mb-4"
+                                icon="mdi-account"
+                                :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                                maxlength="20"
+                                v-model="form.username"
+                                @blur="onUsernameBlur"
+                            />
 
-                            <CustomPassword class="mb-4" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')"
-                                v-model="form.password" @blur="onPasswordBlur" />
+                            <CustomPassword
+                                class="mb-4"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('请输入密码（6-20位）')"
+                                v-model="form.password"
+                                @blur="onPasswordBlur"
+                            />
 
-                            <CustomInput class="mb-4" icon="mdi-text-box-edit" :placeholder="LangUtil('请输入备注（0-8位）')"
-                                maxlength="8" v-model="form.remark" />
+                            <CustomInput
+                                class="mb-4"
+                                icon="mdi-text-box-edit"
+                                :placeholder="LangUtil('请输入备注（0-8位）')"
+                                maxlength="8"
+                                v-model="form.remark"
+                            />
 
                             <v-sheet color="transparent" width="100%" class="d-flex align-center">
-                                <CustomInput icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')" maxlength="4"
-                                    v-model="form.verify_code">
-
+                                <CustomInput
+                                    icon="mdi-shield-check"
+                                    :placeholder="LangUtil('请输入验证码（4位）')"
+                                    maxlength="4"
+                                    v-model="form.verify_code"
+                                >
                                 </CustomInput>
-                                <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
-                                    @click="getImageVerity"></v-img>
+                                <v-img
+                                    class="ml-3 rounded"
+                                    :src="pageData.auth_image"
+                                    max-width="75"
+                                    height="30"
+                                    @click="getImageVerity"
+                                ></v-img>
                             </v-sheet>
-
                         </v-sheet>
                         <!-- 允许多层 -->
                         <template v-if="isShowCredit_use">
-                        <div  class="d-flex justify-space-between align-center my-3 empty_height">
-                            <div class="d-flex align-center primary--text text-16 font-weight-bold">
-                                {{LangUtil("信用类型")}}
-                                <!-- <v-tooltip top color="primary">
+                            <div class="d-flex justify-space-between align-center my-3 empty_height">
+                                <div class="d-flex align-center primary--text text-16 font-weight-bold">
+                                    {{LangUtil("信用类型")}}
+                                    <!-- <v-tooltip top color="primary">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-sheet v-bind="attrs" v-on="on" color="transparent" class="ml-2">
                                             <svg-icon icon="help" class="text-16"></svg-icon>
@@ -41,53 +63,60 @@
                                     </template>
                                     <span>{{LangUtil("表示是否允许该用户发展下级用户")}}</span>
                                 </v-tooltip> -->
+                                </div>
+                                <span class="d-flex align-center primary--text">
+                                    <v-radio-group v-model="form.show_credit_set" row class="textYellow--text">
+                                        <v-radio
+                                            v-for="(item, key) of radiosInfo"
+                                            :key="key"
+                                            :label="`${item.name}`"
+                                            :value="item.value"
+                                            color="textYellow"
+                                        ></v-radio>
+                                    </v-radio-group>
+                                </span>
                             </div>
-                            <span class="d-flex align-center primary--text">
-                                <v-radio-group v-model="form.show_credit_set" row class="textYellow--text">
-                                    <v-radio v-for="(item, key) of radiosInfo" :key="key" :label="`${item.name}`"
-                                        :value="item.value" color="textYellow"></v-radio>
-                                </v-radio-group>
-                            </span>
-
-                        </div>
-                        <template v-if="form.show_credit_set == 1">
-                            <v-divider class="mb-2 " />
-                            <!-- 代理占成 -->
-                            <div class="d-flex justify-space-between align-center mt-2">
-                                <div class="d-flex primary--text empty_space text-16 font-weight-bold">
-                                    {{LangUtil("代理占成") }}
+                            <template v-if="form.show_credit_set == 1">
+                                <v-divider class="mb-2" />
+                                <!-- 代理占成 -->
+                                <div class="d-flex justify-space-between align-center mt-2">
+                                    <div class="d-flex primary--text empty_space text-16 font-weight-bold">{{LangUtil("代理占成") }}</div>
+                                    <div class="d-flex align-center textYellow--text mb-1">{{LangUtil("每周一可调整一次") }}</div>
                                 </div>
-                                <div class="d-flex align-center textYellow--text mb-1">
-                                    {{LangUtil("每周一可调整一次") }}
-                                </div>
-                            </div>
-                            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between">
-                                <div class="textGray--text text-14 mt-2">
-                                    {{LangUtil("最低可设置{0},最高可设置{1}",playerInfo.credit_rate_min,playerInfo.credit_rate_max)}}
-                                </div>
-
-                                <div class="d-flex ">
-                                    <div>
-                                        {{LangUtil("当前设置:")}}
+                                <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between">
+                                    <div class="textGray--text text-14 mt-2">
+                                        {{LangUtil("最低可设置{0},最高可设置{1}",playerInfo.credit_rate_min,playerInfo.credit_rate_max)}}
                                     </div>
-                                    <div :class="tempClassStr">
-                                        {{tempTotle}}{{LangUtil("%")}}
+
+                                    <div class="d-flex">
+                                        <div>{{LangUtil("当前设置:")}}</div>
+                                        <div :class="tempClassStr">{{tempTotle}}{{LangUtil("%")}}</div>
+                                        <!-- <div>{{LangUtil("%")}}</div> -->
                                     </div>
-                                    <!-- <div>{{LangUtil("%")}}</div> -->
-                                </div>
-                            </v-sheet>
-                            <v-sheet color="transparent" width="100%">
-                                <v-sheet color="transparent" class="d-flex align-end" height="70">
-                                    <v-slider v-model="myProxy.pageData.form.credit_rate" :min="range_my_min" step="5"
-                                        hide-details color="transparent " :max="range_my_max" thumb-color="textYellow"
-                                        track-color="transparent nomal_icon" thumb-label="always">
-                                        <template v-slot:prepend>
-                                            <v-sheet color="transparent"
-                                                class="d-flex align-center text-14 mt-1 textGray--text" min-width="70">
-                                                {{LangUtil('我的占成')}}
-                                            </v-sheet>
-                                        </template>
-                                        <!-- <template v-slot:append>
+                                </v-sheet>
+                                <v-sheet color="transparent" width="100%">
+                                    <v-sheet color="transparent" class="d-flex align-end" height="70">
+                                        <v-slider
+                                            v-model="myProxy.pageData.form.credit_rate"
+                                            :min="range_my_min"
+                                            step="5"
+                                            hide-details
+                                            color="transparent "
+                                            :max="range_my_max"
+                                            thumb-color="textYellow"
+                                            track-color="transparent nomal_icon"
+                                            thumb-label="always"
+                                        >
+                                            <template v-slot:prepend>
+                                                <v-sheet
+                                                    color="transparent"
+                                                    class="d-flex align-center text-14 mt-1 textGray--text"
+                                                    min-width="70"
+                                                >
+                                                    {{LangUtil('我的占成')}}
+                                                </v-sheet>
+                                            </template>
+                                            <!-- <template v-slot:append>
                                         <v-sheet color="transparent" class="d-flex align-center justify-center">
                                             <v-sheet color="transparent" class="textGray--text" min-width="30"
                                                 style="text-align: center;">
@@ -95,24 +124,33 @@
                                             </v-sheet>
                                         </v-sheet>
                                     </template> -->
-                                        <template v-slot:thumb-label="{ value }">
-                                            <div class="primary--text">{{value}}{{LangUtil("%")}}</div>
-                                        </template>
-                                    </v-slider>
-                                </v-sheet>
-                                <v-sheet color="transparent" class="d-flex align-end" height="70">
-                                    <v-slider v-model="myProxy.pageData.form.credit_rate_invited" :min="range_daili_min"
-                                        hide-details color="transparent " step="5" :max="range_daili_max"
-                                        track-color="transparent nomal_icon" thumb-color="textYellow"
-                                        thumb-label="always">
-
-                                        <template v-slot:prepend>
-                                            <v-sheet color="transparent"
-                                                class="d-flex align-center text-14 mt-1 textGray--text" min-width="70">
-                                                {{LangUtil('代理占成')}}
-                                            </v-sheet>
-                                        </template>
-                                        <!-- <template v-slot:append>
+                                            <template v-slot:thumb-label="{ value }">
+                                                <div class="primary--text">{{value}}{{LangUtil("%")}}</div>
+                                            </template>
+                                        </v-slider>
+                                    </v-sheet>
+                                    <v-sheet color="transparent" class="d-flex align-end" height="70">
+                                        <v-slider
+                                            v-model="myProxy.pageData.form.credit_rate_invited"
+                                            :min="range_daili_min"
+                                            hide-details
+                                            color="transparent "
+                                            step="5"
+                                            :max="range_daili_max"
+                                            track-color="transparent nomal_icon"
+                                            thumb-color="textYellow"
+                                            thumb-label="always"
+                                        >
+                                            <template v-slot:prepend>
+                                                <v-sheet
+                                                    color="transparent"
+                                                    class="d-flex align-center text-14 mt-1 textGray--text"
+                                                    min-width="70"
+                                                >
+                                                    {{LangUtil('代理占成')}}
+                                                </v-sheet>
+                                            </template>
+                                            <!-- <template v-slot:append>
                                     <v-sheet color="transparent" class="d-flex align-center justify-center">
                                         <v-sheet color="transparent" class="textGray--text" min-width="30"
                                             style="text-align: center;">
@@ -120,85 +158,82 @@
                                         </v-sheet>
                                     </v-sheet>
                                 </template> -->
-                                        <template v-slot:thumb-label="{ value }">
-                                            <div class="primary--text">{{value}}{{LangUtil("%")}}</div>
-                                        </template>
-                                    </v-slider>
+                                            <template v-slot:thumb-label="{ value }">
+                                                <div class="primary--text">{{value}}{{LangUtil("%")}}</div>
+                                            </template>
+                                        </v-slider>
+                                    </v-sheet>
                                 </v-sheet>
-
-                            </v-sheet>
-                        </template>
-                        <template v-else>
-                            <v-divider class="mb-2 " />
-                            <div class="d-flex justify-space-between align-center mt-2">
-                                <div class="d-flex primary--text empty_space text-16 font-weight-bold">
-                                    {{LangUtil("玩家占成") }}
+                            </template>
+                            <template v-else>
+                                <v-divider class="mb-2" />
+                                <div class="d-flex justify-space-between align-center mt-2">
+                                    <div class="d-flex primary--text empty_space text-16 font-weight-bold">{{LangUtil("玩家占成") }}</div>
+                                    <div class="d-flex primary--text empty_space text-16 font-weight-bold mr-4">
+                                        {{myProxy.pageData.form.credit_rate}}%
+                                    </div>
                                 </div>
-                                <div class="d-flex primary--text empty_space text-16 font-weight-bold mr-4">
-                                    {{myProxy.pageData.form.credit_rate}}%
-                                </div>
-                            </div>
-
+                            </template>
                         </template>
-                    </template>
                     </v-card>
                 </v-col>
                 <v-divider vertical> </v-divider>
                 <v-col cols="6">
                     <v-card flat color="transparent">
-
                         <!-- 反水设置 -->
                         <v-sheet color="transparent" width="100%" class="d-flex justify-space-between">
-                            <div class="d-flex align-center primary--text text-16 font-weight-bold">
-                                {{LangUtil("返水设置") }}
-                            </div>
+                            <div class="d-flex align-center primary--text text-16 font-weight-bold">{{LangUtil("返水设置") }}</div>
 
-                            <div class="d-flex align-center textYellow--text">
-                                {{LangUtil("创建账户后，返水不能修改") }}
-                            </div>
+                            <div class="d-flex align-center textYellow--text">{{LangUtil("创建账户后，返水不能修改") }}</div>
                         </v-sheet>
-                        <v-sheet class=" d-flex justify-space-between align-center ml-n2 mr-n2 mt-2 text-16"
-                            color="transparent">
+                        <v-sheet class="d-flex justify-space-between align-center ml-n2 mr-n2 mt-2 text-16" color="transparent">
                             <v-sheet class="d-flex primary--text ml-2" min-width="120" color="transparent">
                                 {{LangUtil("返水类型")}}
                             </v-sheet>
                             <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
                                 {{LangUtil("我的返水")}}
                             </v-sheet>
-                            <v-sheet class="d-flex justify-center primary--text mr-4" min-width="90"
-                                color="transparent">
+                            <v-sheet class="d-flex justify-center primary--text mr-4" min-width="90" color="transparent">
                                 {{LangUtil("直属设置")}}
                             </v-sheet>
                         </v-sheet>
 
                         <template v-for="(item, key) of playerInfo.water_config">
-                            <v-sheet v-if="key!=0" :key="key" class=" mt-2 ml-n2 mr-n2" color="transparent">
+                            <v-sheet v-if="key!=0" :key="key" class="mt-2 ml-n2 mr-n2" color="transparent">
                                 <v-sheet
-                                    class="regular_text d-flex justify-space-between align-center  ml-1 mr-1  text-16"
-                                    color="transparent">
-                                    <v-sheet class="d-flex align-center primary--text text-16 ml-2 empty_height"
-                                        min-width="120" color="transparent">
+                                    class="regular_text d-flex justify-space-between align-center ml-1 mr-1 text-16"
+                                    color="transparent"
+                                >
+                                    <v-sheet
+                                        class="d-flex align-center primary--text text-16 ml-2 empty_height"
+                                        min-width="120"
+                                        color="transparent"
+                                    >
                                         {{getConfigName(key) }}
                                     </v-sheet>
 
-                                    <v-sheet class="d-flex justify-center textGray--text" min-width="100"
-                                        color="transparent">
+                                    <v-sheet class="d-flex justify-center textGray--text" min-width="100" color="transparent">
                                         {{item }}
                                     </v-sheet>
 
-                                    <CustomInput class="d-flex justify-center empty_width_2 input-text_2 mr-4"
-                                        height="36" placeholder="0" :isNeedCloseBtn="false"
-                                        v-model="myProxy.inputWaterData[key]" :isOnlyFloat="true" :disabled="false">
-
+                                    <CustomInput
+                                        class="d-flex justify-center empty_width_2 input-text_2 mr-4"
+                                        height="36"
+                                        placeholder="0"
+                                        :isNeedCloseBtn="false"
+                                        v-model="myProxy.inputWaterData[key]"
+                                        :isOnlyFloat="true"
+                                        :disabled="false"
+                                    >
                                     </CustomInput>
-
                                 </v-sheet>
                             </v-sheet>
                             <div v-if="false && key!=0" class="hackhome"></div>
                         </template>
                         <div class="mt-4 mb-4">
-                            <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isCheck"
-                                @click.native="onRegister">{{LangUtil("注册")}}</btn-yellow>
+                            <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onRegister"
+                                >{{LangUtil("注册")}}</btn-yellow
+                            >
                         </div>
                     </v-card>
                 </v-col>
@@ -208,55 +243,72 @@
                 <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isCheck"
                     @click.native="onRegister">{{LangUtil("注册")}}</btn-yellow>
             </div> -->
-
-
         </v-sheet>
     </v-card>
 
     <v-card v-else color="bgColor">
         <com-dialog-title title="添加用户" @onClose="onClose" />
-        <v-sheet class="px-2 mt-2" color="transparent" style="overflow: hidden;">
+        <v-sheet class="px-2 mt-2" color="transparent" style="overflow: hidden">
             <!-- <v-sheet class="px-2 px-md-10 mt-2 overflow-y-auto" color="transparent" style="height: calc(100vh - 80px);"> -->
             <v-sheet color="bgBanner" class="rounded10 px-2 py-2">
-                <CustomInput class="mb-6" icon="mdi-account" :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20"
-                    v-model="form.username" @blur="onUsernameBlur" />
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.username"
+                    @blur="onUsernameBlur"
+                />
 
-                <CustomPassword class="mb-6" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')"
-                    v-model="form.password" @blur="onPasswordBlur" />
+                <CustomPassword
+                    class="mb-6"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('请输入密码（6-20位）')"
+                    v-model="form.password"
+                    @blur="onPasswordBlur"
+                />
 
-                <CustomInput class="mb-6" icon="mdi-text-box-edit" :placeholder="LangUtil('请输入备注（0-8位）')" maxlength="8"
-                    v-model="form.remark" />
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-text-box-edit"
+                    :placeholder="LangUtil('请输入备注（0-8位）')"
+                    maxlength="8"
+                    v-model="form.remark"
+                />
 
                 <v-sheet color="transparent" width="100%" class="d-flex mb-6 align-center">
-                    <CustomInput icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')" maxlength="4"
-                        v-model="form.verify_code">
+                    <CustomInput
+                        icon="mdi-shield-check"
+                        :placeholder="LangUtil('请输入验证码（4位）')"
+                        maxlength="4"
+                        v-model="form.verify_code"
+                    >
                     </CustomInput>
-                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
-                        @click="getImageVerity"></v-img>
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
                 </v-sheet>
-                <v-divider class="my-2 " />
+                <v-divider class="my-2" />
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <div class="d-flex align-center primary--text "> {{LangUtil("信用类型")}}
-                    </div>
+                    <div class="d-flex align-center primary--text">{{LangUtil("信用类型")}}</div>
                     <span class="d-flex align-center primary--text">
                         <v-radio-group v-model="form.show_credit_set" row class="radio_mob">
-                            <v-radio v-for="(item, key) of radiosInfo" :key="key" :label="`${item.name}`"
-                                :value="item.value" color="textYellow"></v-radio>
+                            <v-radio
+                                v-for="(item, key) of radiosInfo"
+                                :key="key"
+                                :label="`${item.name}`"
+                                :value="item.value"
+                                color="textYellow"
+                            ></v-radio>
                         </v-radio-group>
                     </span>
                 </div>
 
                 <template v-if="form.show_credit_set == 1">
-                    <v-divider class="my-2 " />
+                    <v-divider class="my-2" />
 
                     <!-- 代理占成 -->
                     <div class="d-flex justify-space-between align-center mt-2">
-                        <div class="d-flex primary--text empty_space text-14">
-                            {{LangUtil("代理占成") }}
-                        </div>
-                        <div class="d-flex align-center textYellow--text mb-1 text-12">
-                            {{LangUtil("每周一可调整一次") }}
-                        </div>
+                        <div class="d-flex primary--text empty_space text-14">{{LangUtil("代理占成") }}</div>
+                        <div class="d-flex align-center textYellow--text mb-1 text-12">{{LangUtil("每周一可调整一次") }}</div>
                     </div>
                     <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between">
                         <div class="textGray--text text-12 mt-2">
@@ -264,22 +316,26 @@
                         </div>
 
                         <div class="d-flex text-12">
-                            <div>
-                                {{LangUtil("当前设置:")}}
-                            </div>
-                            <div :class="tempClassStr">
-                                {{tempTotle}}{{LangUtil("%")}}
-                            </div>
+                            <div>{{LangUtil("当前设置:")}}</div>
+                            <div :class="tempClassStr">{{tempTotle}}{{LangUtil("%")}}</div>
                         </div>
                     </v-sheet>
                     <v-sheet color="transparent" width="100%">
                         <v-sheet color="transparent" class="d-flex align-end" height="60">
-                            <v-slider v-model="myProxy.pageData.form.credit_rate" :min="range_my_min" step="5"
-                                hide-details color="transparent " :max="range_my_max" thumb-color="textYellow"
-                                track-color="transparent transparent" thumb-label="always" thumb-size="28">
+                            <v-slider
+                                v-model="myProxy.pageData.form.credit_rate"
+                                :min="range_my_min"
+                                step="5"
+                                hide-details
+                                color="transparent "
+                                :max="range_my_max"
+                                thumb-color="textYellow"
+                                track-color="transparent transparent"
+                                thumb-label="always"
+                                thumb-size="28"
+                            >
                                 <template v-slot:prepend>
-                                    <v-sheet color="transparent" class="d-flex align-center text-12 mt-1 textGray--text"
-                                        min-width="70">
+                                    <v-sheet color="transparent" class="d-flex align-center text-12 mt-1 textGray--text" min-width="70">
                                         {{LangUtil('我的占成')}}
                                     </v-sheet>
                                 </template>
@@ -289,13 +345,20 @@
                             </v-slider>
                         </v-sheet>
                         <v-sheet color="transparent" class="d-flex align-end" height="60">
-                            <v-slider v-model="myProxy.pageData.form.credit_rate_invited" :min="range_daili_min"
-                                hide-details color="transparent " step="5" :max="range_daili_max" thumb-size="28"
-                                track-color="transparent transparent" thumb-color="textYellow" thumb-label="always">
-
+                            <v-slider
+                                v-model="myProxy.pageData.form.credit_rate_invited"
+                                :min="range_daili_min"
+                                hide-details
+                                color="transparent "
+                                step="5"
+                                :max="range_daili_max"
+                                thumb-size="28"
+                                track-color="transparent transparent"
+                                thumb-color="textYellow"
+                                thumb-label="always"
+                            >
                                 <template v-slot:prepend>
-                                    <v-sheet color="transparent" class="d-flex align-center text-12 mt-1 textGray--text"
-                                        min-width="70">
+                                    <v-sheet color="transparent" class="d-flex align-center text-12 mt-1 textGray--text" min-width="70">
                                         {{LangUtil('代理占成')}}
                                     </v-sheet>
                                 </template>
@@ -304,39 +367,27 @@
                                 </template>
                             </v-slider>
                         </v-sheet>
-
                     </v-sheet>
                 </template>
                 <template v-else>
-                    <v-divider class="mb-2 " />
+                    <v-divider class="mb-2" />
                     <div class="d-flex justify-space-between align-center mt-2">
-                        <div class="d-flex primary--text text-14 ">
-                            {{LangUtil("玩家占成") }}
-                        </div>
-                        <div class="d-flex primary--text empty_space text-14 mr-4">
-                            {{myProxy.pageData.form.credit_rate}}%
-                        </div>
+                        <div class="d-flex primary--text text-14">{{LangUtil("玩家占成") }}</div>
+                        <div class="d-flex primary--text empty_space text-14 mr-4">{{myProxy.pageData.form.credit_rate}}%</div>
                     </div>
-
                 </template>
             </v-sheet>
             <!-- <v-divider class="mb-2 " /> -->
             <!-- 反水设置 -->
             <v-sheet color="bgBanner" class="rounded10 px-2 py-2 mt-2">
                 <v-sheet color="transparent" width="100%" class="d-flex justify-space-between">
-                    <div class="d-flex align-center primary--text ">
-                        {{LangUtil("返水设置") }}
-                    </div>
+                    <div class="d-flex align-center primary--text">{{LangUtil("返水设置") }}</div>
 
-                    <div class="d-flex align-center textYellow--text text-12">
-                        {{LangUtil("创建账户后，返水不能修改") }}
-                    </div>
+                    <div class="d-flex align-center textYellow--text text-12">{{LangUtil("创建账户后，返水不能修改") }}</div>
                 </v-sheet>
 
                 <v-sheet class="d-flex justify-space-between align-center mt-2 text-12" color="transparent">
-                    <v-sheet class="d-flex  primary--text ml-2" min-width="100" color="transparent">
-                        {{LangUtil("返水类型")}}
-                    </v-sheet>
+                    <v-sheet class="d-flex primary--text ml-2" min-width="100" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>
                     <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
                         {{LangUtil("我的返水")}}
                     </v-sheet>
@@ -346,35 +397,41 @@
                 </v-sheet>
 
                 <template v-for="(item, key) of playerInfo.water_config">
-                    <v-sheet class="d-flex justify-space-between align-center my-3 mt-2 text-12" color="transparent"
-                        :key="key" v-if="key!=0">
-                        <v-sheet class="d-flex align-center primary--text text-12 ml-2 empty_height" min-width="100"
-                            color="transparent">
+                    <v-sheet
+                        class="d-flex justify-space-between align-center my-3 mt-2 text-12"
+                        color="transparent"
+                        :key="key"
+                        v-if="key!=0"
+                    >
+                        <v-sheet class="d-flex align-center primary--text text-12 ml-2 empty_height" min-width="100" color="transparent">
                             {{getConfigName(key) }}
                         </v-sheet>
 
+                        <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent"> {{item }} </v-sheet>
                         <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
-                            {{item }}
-                        </v-sheet>
-                        <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
-                            <CustomInput class="d-flex justify-center empty_width_2 input-text_2" height="30"
-                                placeholder="0" :isNeedCloseBtn="false" v-model="myProxy.inputWaterData[key]"
-                                :isOnlyFloat="true" :disabled="false">
+                            <CustomInput
+                                class="d-flex justify-center empty_width_2 input-text_2"
+                                height="30"
+                                placeholder="0"
+                                :isNeedCloseBtn="false"
+                                v-model="myProxy.inputWaterData[key]"
+                                :isOnlyFloat="true"
+                                :disabled="false"
+                            >
                             </CustomInput>
                         </v-sheet>
                     </v-sheet>
                     <div v-if="false && key!=0" class="hackhome"></div>
                 </template>
-
-
             </v-sheet>
             <!-- 注册按钮 -->
             <div class="mt-5 pb-5">
                 <!-- <v-btn class="rounded-lg colorBtnBg" height="48" :disabled="!isCheck" block @click="onRegister">
                         {{LangUtil("注册")}}</v-btn> -->
 
-                <btn-yellow class="text-16 " width="100%" height="36" :disabled="!isCheck"
-                    @click.native="onRegister">{{LangUtil("注册")}}</btn-yellow>
+                <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onRegister"
+                    >{{LangUtil("注册")}}</btn-yellow
+                >
             </div>
         </v-sheet>
     </v-card>

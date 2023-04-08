@@ -8,12 +8,10 @@ export default class GuideDrawer extends AbstractView {
     LangUtil = LangUtil;
 
     core = core;
-    onClose()
-    {
+    onClose() {
         console.log("关闭");
         this.$emit("onClose");
         //this.isShow = false;
-
     }
 
     get guideImg() {

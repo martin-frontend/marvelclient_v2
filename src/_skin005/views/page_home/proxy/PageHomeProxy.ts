@@ -95,7 +95,7 @@ export default class PageHomeProxy extends puremvc.Proxy {
     /**获取赛事信息 */
     api_vendor_96_products() {
         let market_type = "";
-        if (Vue.vuetify.framework.breakpoint.xsOnly) {
+        if (window.$xsOnly) {
             market_type = "ASIAN_OVER_UNDER,ASIAN_HANDICAP";
         } else {
             market_type =

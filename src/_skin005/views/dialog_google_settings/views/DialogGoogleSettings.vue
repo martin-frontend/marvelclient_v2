@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogGoogleSettings from "./DialogGoogleSettings";
 
 @Component({
-    components: {
-    }
+    components: {},
 })
 export default class extends DialogGoogleSettings {}
 </script>

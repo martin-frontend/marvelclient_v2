@@ -18,8 +18,7 @@
     padding: 1px;
     background: linear-gradient(to right, #fcb131, #ffe64d);
 }
-.theme--dark{
-
+.theme--dark {
     .btnclass:hover:before {
         content: "";
         position: absolute;
@@ -32,21 +31,19 @@
         background: linear-gradient(to right, #fff, #fff);
     }
 
-    .disabled_my{
+    .disabled_my {
         color: #8e8f91;
         pointer-events: none;
     }
-    .disabled_my::before
-    {
+    .disabled_my::before {
         pointer-events: none;
         //background: linear-gradient(to right, #e8e8e2, #ececeb);
         background: linear-gradient(to right, #333435, #3d3d3d);
     }
-    
 }
 
-.theme--light{
-    .btnclass:hover{
+.theme--light {
+    .btnclass:hover {
         color: #fff;
     }
     .btnclass:hover:before {
@@ -58,21 +55,20 @@
         right: 0;
         bottom: 0;
         padding: 1px;
-        background: linear-gradient(to right, #C8CAD0, #C8CAD0);
+        background: linear-gradient(to right, #c8cad0, #c8cad0);
     }
-    .disabled_my{
+    .disabled_my {
         color: #8e8f91;
         pointer-events: none;
     }
-    .disabled_my::before
-    {
+    .disabled_my::before {
         pointer-events: none;
         //background: linear-gradient(to right, #e8e8e2, #ececeb);
-        background: linear-gradient(90deg, #D6DDE3 0%, #F4F4F4 100%);
+        background: linear-gradient(90deg, #d6dde3 0%, #f4f4f4 100%);
     }
-    .outlined{
+    .outlined {
         background-color: #fff !important;
-        border-radius:10px !important;
+        border-radius: 10px !important;
     }
 }
 .outlined::before {
@@ -93,9 +89,9 @@
     padding: 1px;
     background: linear-gradient(to right, #fcb131, #ffe64d);
 }
-.outlined:hover  {
+.outlined:hover {
     //color: #0f1213;
-    :first-child{
+    :first-child {
         color: #000;
     }
     padding: 4px;

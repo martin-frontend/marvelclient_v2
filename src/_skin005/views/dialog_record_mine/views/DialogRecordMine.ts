@@ -9,7 +9,6 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 @Component
 export default class DialogRecordMine extends AbstractView {
     myProxy: DialogRecordMineProxy = this.getProxy(DialogRecordMineProxy);
@@ -38,7 +37,7 @@ export default class DialogRecordMine extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -47,84 +46,83 @@ export default class DialogRecordMine extends AbstractView {
     }
 
     /** 详情 测试 数据 */
-    setTestData()
-    {
-        const obj={
-            settlement_from_date:"2023-01-18 15:28:33",
-            total_water:123451,
-            total_backwater:{
-                "USDT":654,
-                "CNY":222,
+    setTestData() {
+        const obj = {
+            settlement_from_date: "2023-01-18 15:28:33",
+            total_water: 123451,
+            total_backwater: {
+                USDT: 654,
+                CNY: 222,
             },
-            detail:[
+            detail: [
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
                 },
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
                 },
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
                 },
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
                 },
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
                 },
                 {
-                    vendor_type:2,
-                    water:1234,
-                    main_coin_name_unique:"USDT",
-                    main_coin_backwater_rate:0.02,
-                    reward_coin_name_unique:"CNY",
-                    reward_coin_backwater_rate:0.03,
-                    main_coin_backwater:13545,
-                    reward_coin_backwater:5655,
-                }
+                    vendor_type: 2,
+                    water: 1234,
+                    main_coin_name_unique: "USDT",
+                    main_coin_backwater_rate: 0.02,
+                    reward_coin_name_unique: "CNY",
+                    reward_coin_backwater_rate: 0.03,
+                    main_coin_backwater: 13545,
+                    reward_coin_backwater: 5655,
+                },
             ],
-        }
+        };
         return obj;
     }
 
     handlerDetail(item: any) {
         this.myProxy.api_user_var_backwater_var(item.backwater_id);
-        
+
         //PanelUtil.openpanel_record_mine_detail(this.setTestData());
     }
 

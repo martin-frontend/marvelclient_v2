@@ -4,8 +4,6 @@ $chainMsgLabelColor: #9db1d8;
 $introChainTextColor: rgba(255, 255, 255, 0.8);
 $waitTextColor: #9db1d8cc;
 
-
-
 .intro-radius {
     border-radius: 16px;
 }
@@ -13,7 +11,6 @@ $waitTextColor: #9db1d8cc;
 .intro-plan {
     background: linear-gradient(90deg, #103464 0%, #1d2a43 100%);
 }
-
 
 .intro-destroy {
     background-image: url("~@/assets/introduce/FlammingP.png");
@@ -49,7 +46,6 @@ $waitTextColor: #9db1d8cc;
 .intro-btn-hover {
     background: linear-gradient(90deg, #69b7f8 0%, #6fa7fa 100%), #ffffff;
 }
-
 
 .intro-how-04 {
     background: url("~@/assets/introduce/04M.png") no-repeat;

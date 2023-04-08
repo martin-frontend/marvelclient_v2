@@ -22,14 +22,13 @@ export default class DialogEmail extends AbstractView {
     constructor() {
         super(DialogEmailMediator);
     }
-    typechange=0;
+    typechange = 0;
 
     /**图标时间选择 */
     onTimeChange(val: any) {
-       this.listQuery.cate= parseInt(val);
-       this.onTabClick(this.listQuery.cate);
-   }
-
+        this.listQuery.cate = parseInt(val);
+        this.onTabClick(this.listQuery.cate);
+    }
 
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
@@ -41,7 +40,6 @@ export default class DialogEmail extends AbstractView {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
         PanelUtil.getProxy_selfproxy.api_user_var_red_dot_tips();
-        
     }
 
     @Watch("pageData.bShow")
@@ -52,11 +50,11 @@ export default class DialogEmail extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_mail();
 
-            console.log("ssss----" ,this);
+            console.log("ssss----", this);
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

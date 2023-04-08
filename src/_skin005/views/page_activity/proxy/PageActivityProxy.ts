@@ -1,5 +1,3 @@
-
-
 export default class PageActivityProxy extends puremvc.Proxy {
     static NAME = "PageActivityProxy";
 
@@ -32,7 +30,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
         categoryData: <any>[],
         isLoadData: true,
     };
-    
+
     //保存 活动详情数据
     activityDetailData = <any>{};
 

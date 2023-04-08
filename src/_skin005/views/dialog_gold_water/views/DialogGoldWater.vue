@@ -6,9 +6,7 @@ import Component from "vue-class-component";
 import DialogGoldWater from "./DialogGoldWater";
 
 @Component({
-    components: {
-
-    }
+    components: {},
 })
-export default class extends DialogGoldWater { }
+export default class extends DialogGoldWater {}
 </script>

@@ -1,31 +1,32 @@
-<div :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'">
-    <div class="text-20 d-flex align-center font-weight-bold" :class="$vuetify.breakpoint.xsOnly?'':'mb-2'">
-        <div :class="$vuetify.breakpoint.mobile?'text-18':''">{{ data.category_name }}</div>
+<div :class="$xsOnly ? 'mt-3' : 'mt-8'">
+    <div class="text-20 d-flex align-center font-weight-bold" :class="$xsOnly?'':'mb-2'">
+        <div :class="$mobile?'text-18':''">{{ data.category_name }}</div>
         <v-spacer />
         <!-- <btn-info
             class="rounded-lg"
-            :height="$vuetify.breakpoint.mobile?26:30"
-            :width="$vuetify.breakpoint.mobile?62:80"
-            :class="$vuetify.breakpoint.mobile?'text-12':'text-14'"
+            :height="$mobile?26:30"
+            :width="$mobile?62:80"
+            :class="$mobile?'text-12':'text-14'"
             @click.native="onShowAll"
             >{{LangUtil("查看全部")}}</btn-info
         > -->
 
-        <v-sheet class="d-flex disable_text--text align-center cursor-pointer " 
-        :class="$vuetify.breakpoint.mobile ? 'text-12' :'text-14'" color="transparent"  @click.native="onShowAll">
-            <v-sheet color="transparent" class="disable_text--text mr-1">
-                {{LangUtil("查看全部")}}
-            </v-sheet>
+        <v-sheet
+            class="d-flex disable_text--text align-center cursor-pointer"
+            :class="$mobile ? 'text-12' :'text-14'"
+            color="transparent"
+            @click.native="onShowAll"
+        >
+            <v-sheet color="transparent" class="disable_text--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
             <svg-icon class="text-12" icon="arrow_right"></svg-icon>
         </v-sheet>
-
     </div>
 
-    <v-row class="mt-1" dense v-if="$vuetify.breakpoint.mobile">
-        <v-col :cols="$vuetify.breakpoint.xsOnly?12:6" v-for="item of data.list" :key="item.vendor_prodcut_id">
+    <v-row class="mt-1" dense v-if="$mobile">
+        <v-col :cols="$xsOnly?12:6" v-for="item of data.list" :key="item.vendor_prodcut_id">
             <v-lazy>
                 <v-card
-                flat
+                    flat
                     class="rounded10 carditem d-flex align-center"
                     :class="{'filter-gray': item.status != 1}"
                     height="120"
@@ -43,34 +44,36 @@
 
                     <v-sheet class="ml-auto mr-5 d-flex justify-end flex-column" color="transparent">
                         <v-sheet class="text-16 font-weight-bold ml-auto" color="transparent">{{item.vendor_product_name}}</v-sheet>
-                        <v-sheet class="text-14 font-weight-bold textYellow--text ml-auto" color="transparent">{{item.vendor_name}}</v-sheet>
-                        <btn-yellow class="text-14 mt-3 ml-auto" height="30" min-width="90" :disabled="item.status != 1">{{LangUtil("开始游戏")}}</btn-yellow>
+                        <v-sheet class="text-14 font-weight-bold textYellow--text ml-auto" color="transparent"
+                            >{{item.vendor_name}}</v-sheet
+                        >
+                        <btn-yellow class="text-14 mt-3 ml-auto" height="30" min-width="90" :disabled="item.status != 1"
+                            >{{LangUtil("开始游戏")}}</btn-yellow
+                        >
                     </v-sheet>
-
                 </v-card>
             </v-lazy>
         </v-col>
     </v-row>
 
     <div class="d-flex flex-wrap" v-else>
-        <v-col :cols="$vuetify.breakpoint.xsOnly?12:6" v-for="item of data.list" :key="item.vendor_prodcut_id">
-        <v-card
-            flat
-            class="rounded10 carditem d-flex align-center mr-3 mb-3"
-            :class="{'filter-gray': item.status != 1}"
-            height="160"
-            width="100%"
-            color="bgHeaderBox"
-            @click="goGamePlay(item)"
-        >
-            <v-img class="rounded-0 ml-8" :src="getIcon(item)" max-width="270" height="130"></v-img>
-            <v-sheet class="ml-auto mr-16 d-flex justify-end flex-column" color="transparent">
-                <v-sheet class="text-20 font-weight-bold ml-auto" color="transparent">{{item.vendor_product_name}}</v-sheet>
-                <v-sheet class="text-14 font-weight-bold textYellow--text ml-auto" color="transparent">{{item.vendor_name}}</v-sheet>
-                <btn-yellow class="text-16 mt-3 ml-auto" height="36" :disabled="item.status != 1">{{LangUtil("开始游戏")}}</btn-yellow>
-            </v-sheet>
-      
-        </v-card>
+        <v-col :cols="$xsOnly?12:6" v-for="item of data.list" :key="item.vendor_prodcut_id">
+            <v-card
+                flat
+                class="rounded10 carditem d-flex align-center mr-3 mb-3"
+                :class="{'filter-gray': item.status != 1}"
+                height="160"
+                width="100%"
+                color="bgHeaderBox"
+                @click="goGamePlay(item)"
+            >
+                <v-img class="rounded-0 ml-8" :src="getIcon(item)" max-width="270" height="130"></v-img>
+                <v-sheet class="ml-auto mr-16 d-flex justify-end flex-column" color="transparent">
+                    <v-sheet class="text-20 font-weight-bold ml-auto" color="transparent">{{item.vendor_product_name}}</v-sheet>
+                    <v-sheet class="text-14 font-weight-bold textYellow--text ml-auto" color="transparent">{{item.vendor_name}}</v-sheet>
+                    <btn-yellow class="text-16 mt-3 ml-auto" height="36" :disabled="item.status != 1">{{LangUtil("开始游戏")}}</btn-yellow>
+                </v-sheet>
+            </v-card>
         </v-col>
     </div>
 

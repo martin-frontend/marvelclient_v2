@@ -36,21 +36,43 @@ export default class NoticeProxy extends puremvc.Proxy {
         for (const item of data) {
             this.data.listAll.push(item);
             switch (item.type_position) {
-                case 1: this.data.listType1.push(item); break;
-                case 2: this.data.listType2.push(item); break;
-                case 3: this.data.listType3.push(item); break;
-                case 4: this.data.listType4.push(item); break;
-                case 5: this.data.listType5.push(item); break;
-                case 6: this.data.listType6.push(item); break;
-                case 7: this.data.listType7.push(item); break;
-                case 8: this.data.listType8.push(item); break;
-                case 9: this.data.listType9.push(item); break;
-                case 10: this.data.listType10.push(item); break;
-                case 11: this.data.listType11.push(item); break;
+                case 1:
+                    this.data.listType1.push(item);
+                    break;
+                case 2:
+                    this.data.listType2.push(item);
+                    break;
+                case 3:
+                    this.data.listType3.push(item);
+                    break;
+                case 4:
+                    this.data.listType4.push(item);
+                    break;
+                case 5:
+                    this.data.listType5.push(item);
+                    break;
+                case 6:
+                    this.data.listType6.push(item);
+                    break;
+                case 7:
+                    this.data.listType7.push(item);
+                    break;
+                case 8:
+                    this.data.listType8.push(item);
+                    break;
+                case 9:
+                    this.data.listType9.push(item);
+                    break;
+                case 10:
+                    this.data.listType10.push(item);
+                    break;
+                case 11:
+                    this.data.listType11.push(item);
+                    break;
                 default:
                     break;
             }
-            if (!this.allData[item.type_position]){
+            if (!this.allData[item.type_position]) {
                 this.allData[item.type_position] = <core.PlatNoticeVO[]>[];
             }
             this.allData[item.type_position].push(item);
@@ -58,15 +80,13 @@ export default class NoticeProxy extends puremvc.Proxy {
         this.data = Object.freeze(this.data);
     }
 
-    
-    public getListTypeDataFromType( type:number):core.PlatNoticeVO[] {
-        if (!this.allData[type])
-        {
+    public getListTypeDataFromType(type: number): core.PlatNoticeVO[] {
+        if (!this.allData[type]) {
             this.allData[type] = <core.PlatNoticeVO[]>[];
         }
         return this.allData[type];
     }
-    
+
     jump(item: core.PlatNoticeVO) {
         //跳转模块:1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易|8-Swap
         console.log(">>>>>", item.open_mode);

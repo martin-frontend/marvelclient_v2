@@ -1,9 +1,4 @@
-<v-sheet
-    color="wallet_bg"
-    :height="$vuetify.breakpoint.mobile?30:36"
-    class="rounded10 d-flex align-center box"
-    width="100%"
->
+<v-sheet color="wallet_bg" :height="$mobile?30:36" class="rounded10 d-flex align-center box" width="100%">
     <v-menu :content-class="content_class" offset-y nudge-bottom="2">
         <template v-slot:activator="{ on, attrs,value }">
             <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
@@ -11,20 +6,23 @@
                     v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
                     class="align-center d-flex rounded-lg ml-2 pr-2 primary--text regular_text"
                     color="transparent"
-                    :min-width=" $vuetify.breakpoint.mobile ? 0 : 206"
+                    :min-width=" $mobile ? 0 : 206"
                     height="36"
                 >
                     <v-img
                         :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
-                        :max-width="$vuetify.breakpoint.mobile ? '20' : '24'"
-                        :max-height="$vuetify.breakpoint.mobile ? '20' : '24'"
+                        :max-width="$mobile ? '20' : '24'"
+                        :max-height="$mobile ? '20' : '24'"
                     ></v-img>
-                    <span class="ml-2" :class="$vuetify.breakpoint.mobile ? 'text-14 bold_text' : 'text-14'"
-                        >{{
-                        selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money }}</span>
+                    <span class="ml-2" :class="$mobile ? 'text-14 bold_text' : 'text-14'"
+                        >{{ amountFormat(selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money ,true)}}</span
+                    >
                     <v-spacer />
-                    <svg-icon icon="arrow_down_2" class="textGray--text ml-2 text-14"
-                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'" />
+                    <svg-icon
+                        icon="arrow_down_2"
+                        class="textGray--text ml-2 text-14"
+                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                    />
                 </v-sheet>
                 <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
                 {{setIsFilter(value)}}
@@ -41,13 +39,13 @@
                     color="transparent"
                     v-if="GamePlatConfig.config.plat_coins[key].is_display == 1"
                 >
-                    <div >
+                    <div>
                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                     </div>
                     <div class="ml-3">
                         <div class="font-weight-bold nomal_text_1--text">{{ key }}{{LangUtil("钱包")}}</div>
                         <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div> -->
-                        <div class="primary--text">{{ item.sum_money }}</div>
+                        <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
                         <div v-if="key == 'CNY'" class="primary--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
                     </div>
 
@@ -58,13 +56,21 @@
             <!-- <div class="textYellow--text text-decoration-underline " @click="handlerGameRate">
                 {{LangUtil("游戏汇率查询")}}
             </div> -->
-            <v-btn text height="20" min-width="32" class="pa-0 mt-3 " @click="handlerGameRate">
+            <v-btn text height="20" min-width="32" class="pa-0 mt-3" @click="handlerGameRate">
                 <span class="textYellow--text text-decoration-underline text-16"> {{LangUtil("游戏汇率查询")}}</span>
             </v-btn>
         </v-sheet>
     </v-menu>
 
-    <btn-yellow v-if="$vuetify.breakpoint.mobile && isShowRecharge" class="ml-auto"  :btn_type="4" height="29" width="28" min_width="28" @click.native="onCoinIn">
+    <btn-yellow
+        v-if="$mobile && isShowRecharge"
+        class="ml-auto"
+        :btn_type="4"
+        height="29"
+        width="28"
+        min_width="28"
+        @click.native="onCoinIn"
+    >
         <div class="mt-1"><svg-icon class="text-16" icon="wallet"></svg-icon></div>
     </btn-yellow>
     <!-- <btn-yellow v-else class="btn-topup px-3 text-20" width="120" height="50" @click="onCoinIn">{{LangUtil("钱包")}}</btn-yellow> -->

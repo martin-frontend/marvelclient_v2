@@ -45,8 +45,7 @@ export default class DialogTradePassword extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
-            if (this.myProxy.passWordShowType == 1)
-                this.getImageVerity();
+            if (this.myProxy.passWordShowType == 1) this.getImageVerity();
         }
     }
 
@@ -57,14 +56,12 @@ export default class DialogTradePassword extends AbstractView {
         } else if (this.pageData.form.password != this.pageData.form.password_confirm) {
             PanelUtil.message_info("两次输入的密码不一致"); //
         } else {
-
             if (this.myProxy.passWordShowType == 1 || this.myProxy.passWordShowType == 3) {
                 if (this.pageData.form.verify_code == "") {
                     PanelUtil.message_info("请输入验证码"); //
                     return;
                 }
-            }
-            else if (this.myProxy.passWordShowType == 2) {
+            } else if (this.myProxy.passWordShowType == 2) {
                 if (!core.checkUserPassword(this.pageData.form.logonPassword)) {
                     PanelUtil.message_info("输入6个以上字符"); //
                     return;
@@ -72,7 +69,6 @@ export default class DialogTradePassword extends AbstractView {
             }
 
             this.myProxy.api_user_change_password_gold_var();
-
         }
     }
 
@@ -86,8 +82,7 @@ export default class DialogTradePassword extends AbstractView {
     public get verityString(): string {
         if (this.getverityProxy.pageData.downcount > 0) {
             return this.getverityProxy.pageData.downcount + "";
-        }
-        else {
+        } else {
             return LangUtil("获取验证码");
         }
     }
@@ -100,15 +95,13 @@ export default class DialogTradePassword extends AbstractView {
     }
     //发送 手机验证码
     sendVerith() {
-
         if (this.userInfo.phone || this.userInfo.email) {
             const obj = {
                 category: this.userInfo.phone ? 1 : 0,
                 type: 5,
-            }
+            };
             PanelUtil.openpanel_get_verity(obj);
-        }
-        else {
+        } else {
             //PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
             PanelUtil.message_confirm({
                 message: LangUtil("请先绑定邮箱或者手机"),
@@ -117,7 +110,6 @@ export default class DialogTradePassword extends AbstractView {
                 },
             });
         }
-
     }
 
     getImageVerity() {

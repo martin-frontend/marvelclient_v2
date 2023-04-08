@@ -6,7 +6,7 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -31,52 +31,46 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    rewordInfo=<any>[]; 
-    settestData()
-    {
+    rewordInfo = <any>[];
+    settestData() {
         //item.total_backwater[Object.keys(item.total_backwater)[1]]
         const obj = {
-            created_at:"2022-12-14 18:37:14",
-            total_backwater:{
-                0:789667,
-                1:7890989,
-                2:675675,
+            created_at: "2022-12-14 18:37:14",
+            total_backwater: {
+                0: 789667,
+                1: 7890989,
+                2: 675675,
             },
-            total_water:34234,
-        }
+            total_water: 34234,
+        };
 
         const list = <any>[];
         for (let i = 0; i < 10; i++) {
-            list.push(obj); 
+            list.push(obj);
         }
         return list;
     }
-    setRewordinfo()
-    {
-        this.rewordInfo=<any>[]; 
-        if (!this.pageData.list || this.pageData.list.length < 1)
-        {
-            return 
+    setRewordinfo() {
+        this.rewordInfo = <any>[];
+        if (!this.pageData.list || this.pageData.list.length < 1) {
+            return;
         }
         const item = this.pageData.list[0];
         const keys = Object.keys(item.total_backwater);
         const reword_1 = keys[0];
-        if (reword_1)
-        {
+        if (reword_1) {
             this.rewordInfo.push(reword_1);
         }
         const reword_2 = keys[1];
-        if (reword_2)
-        {
+        if (reword_2) {
             this.rewordInfo.push(reword_2);
         }
-
     }
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

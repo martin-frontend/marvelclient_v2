@@ -16,5 +16,4 @@ export default class Guihua extends AbstractView {
     reward_coin_info = this.pageData.reward_coin_info;
     pageImage = this.myProxy.pageImage;
     awardCoin = GamePlatConfig.getAwardCoin();
-    
 }

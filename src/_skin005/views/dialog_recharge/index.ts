@@ -51,10 +51,7 @@ function show(tabIndex: number = 0) {
     //     }
     // }
     proxy.pageData.tabIndex = tabIndex;
-
 }
-
-
 
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;

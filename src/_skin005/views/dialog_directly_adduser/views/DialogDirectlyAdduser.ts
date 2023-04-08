@@ -56,7 +56,6 @@ export default class DialogDirectlyAdduser extends AbstractView {
         );
     }
     public get isDisable(): boolean {
-
         const coinKeys = Object.keys(this.myProxy.inputWaterData);
 
         for (let index = 0; index < coinKeys.length; index++) {
@@ -69,11 +68,11 @@ export default class DialogDirectlyAdduser extends AbstractView {
                 return false;
             }
             if (this.myProxy.playerInfo.water_config[element] < res) {
-                return false
+                return false;
             }
         }
 
-        return true
+        return true;
     }
 
     public get isDisable_agent(): boolean {
@@ -82,21 +81,17 @@ export default class DialogDirectlyAdduser extends AbstractView {
         }
         const res = parseFloat(this.formData.inputrate);
         //console.log("当前输入值" ,res)
-        if (res < 0)
-            return true
+        if (res < 0) return true;
 
         //console.log(typeof res , typeof this.playerInfo.parent_credit_rate)
         if (res > this.playerInfo.credit_rate) {
             //console.log("比自己的 大", this.playerInfo.credit_rate)
             return true;
         }
-        return false
+        return false;
     }
 
-
-    handlerUpdate_creditset() {
-
-    }
+    handlerUpdate_creditset() {}
     onClose() {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
@@ -110,7 +105,6 @@ export default class DialogDirectlyAdduser extends AbstractView {
         if (this.chackCreditRate()) {
             this.myProxy.api_user_var_direct_register();
         }
-
     }
 
     public get tempTotle(): number {
@@ -119,49 +113,40 @@ export default class DialogDirectlyAdduser extends AbstractView {
 
     chackCreditRate_new() {
         let maxValue = 0;
-        if (typeof (this.playerInfo.credit_rate_max) != "number") {
+        if (typeof this.playerInfo.credit_rate_max != "number") {
             maxValue = parseFloat(this.playerInfo.credit_rate_max);
-        }
-        else {
+        } else {
             maxValue = this.playerInfo.credit_rate_max;
         }
 
         let minValue = 0;
-        if (typeof (this.playerInfo.credit_rate_min) != "number") {
+        if (typeof this.playerInfo.credit_rate_min != "number") {
             minValue = parseFloat(this.playerInfo.credit_rate_min);
-        }
-        else {
+        } else {
             minValue = this.playerInfo.credit_rate_min;
         }
         if (this.tempTotle > maxValue) {
             return 1;
-        }
-        else if (this.tempTotle < minValue) {
-            return -1
-        }
-        else {
+        } else if (this.tempTotle < minValue) {
+            return -1;
+        } else {
             return 0;
         }
     }
 
-    
-    public get tempClassStr() : string {
-        if (this.chackCreditRate_new() != 0)
-        {
-             return "red--text";
+    public get tempClassStr(): string {
+        if (this.chackCreditRate_new() != 0) {
+            return "red--text";
         }
         return "textGreen--text";
     }
-    
-    chackCreditRate() {
 
+    chackCreditRate() {
         if (this.chackCreditRate_new() > 0) {
             PanelUtil.message_warn(LangUtil("我的占成+代理占成必须<=最高设置占成"));
-        }
-        else if (this.chackCreditRate_new() < 0) {
+        } else if (this.chackCreditRate_new() < 0) {
             PanelUtil.message_warn(LangUtil("我的占成+代理占成必须>=最低设置占成"));
-        }
-        else {
+        } else {
             return true;
         }
         return false;
@@ -180,37 +165,32 @@ export default class DialogDirectlyAdduser extends AbstractView {
         }
     }
 
-    
-    public get isShowCredit_use() : boolean {
+    public get isShowCredit_use(): boolean {
         // if (!this.playerInfo.create_credit_user_type || this.playerInfo.create_credit_user_type.length < 1)
         // {
         //     return false;
-        // } 
+        // }
         return true;
     }
-    
-    setRadioInfo()
-    {
-        this.radiosInfo = <any>[ ];
-        
-        if (!this.playerInfo.create_credit_user_type || this.playerInfo.create_credit_user_type.length < 1)
-        {
+
+    setRadioInfo() {
+        this.radiosInfo = <any>[];
+
+        if (!this.playerInfo.create_credit_user_type || this.playerInfo.create_credit_user_type.length < 1) {
             return;
         }
-        if ( this.playerInfo.create_credit_user_type.includes(1))
-        {
+        if (this.playerInfo.create_credit_user_type.includes(1)) {
             const obj = {
                 name: LangUtil("代理"),
                 value: 1,
-            }
+            };
             this.radiosInfo.push(obj);
         }
-        if ( this.playerInfo.create_credit_user_type.includes(2))
-        {
+        if (this.playerInfo.create_credit_user_type.includes(2)) {
             const obj = {
                 name: LangUtil("玩家"),
                 value: 98,
-            }
+            };
             this.radiosInfo.push(obj);
         }
         this.form.show_credit_set = this.radiosInfo[0].value;
@@ -226,21 +206,19 @@ export default class DialogDirectlyAdduser extends AbstractView {
             this.setRadioInfo();
             //this.form.show_credit_set = this.radiosInfo[0].value;
             this.myProxy.api_public_auth_code();
-            this.initCreditData(this.playerInfo.credit_rate_min, this.playerInfo.credit_rate_max)
+            this.initCreditData(this.playerInfo.credit_rate_min, this.playerInfo.credit_rate_max);
         }
     }
 
     initCreditData(min: any, max: any) {
-        if (typeof (min) != "number") {
+        if (typeof min != "number") {
             this.save_credit_min = parseInt(min);
-        }
-        else {
+        } else {
             this.save_credit_min = min;
         }
-        if (typeof (max) != "number") {
+        if (typeof max != "number") {
             this.save_credit_max = parseInt(max);
-        }
-        else {
+        } else {
             this.save_credit_max = max;
         }
 
@@ -248,15 +226,13 @@ export default class DialogDirectlyAdduser extends AbstractView {
         this.range_my_min = 0;
         this.range_daili_min = 0;
 
-        //设置 两个 滑块的 中间值 
-        this.myProxy.pageData.form.credit_rate = this.save_credit_max ;
+        //设置 两个 滑块的 中间值
+        this.myProxy.pageData.form.credit_rate = this.save_credit_max;
         this.myProxy.pageData.form.credit_rate_invited = this.save_credit_max - this.myProxy.pageData.form.credit_rate;
 
         this.range_my_max = this.save_credit_max;
         this.range_daili_max = this.save_credit_max;
-
     }
-
 
     save_credit_min = 0;
     save_credit_max = 0;
@@ -267,5 +243,4 @@ export default class DialogDirectlyAdduser extends AbstractView {
     range_daili_min = 0;
     range_daili_max = 0;
     range_max = 0;
-
 }

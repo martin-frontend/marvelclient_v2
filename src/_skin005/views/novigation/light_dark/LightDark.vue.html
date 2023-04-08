@@ -1,22 +1,16 @@
 <div class="d-flex align-center justify-center text-20 boxdiv" :class="{ 'boxdiv-dark': $vuetify.theme.dark, 'boxdiv-border': mini }">
+    <svg-icon
+        v-if="mini"
+        @click.native="onChange"
+        class="text-20 cursor-pointer"
+        :icon=" $vuetify.theme.dark ? 'dark' : 'light' "
+    ></svg-icon>
 
-    <svg-icon v-if="mini" @click.native="onChange" class="text-20 cursor-pointer"  :icon=" $vuetify.theme.dark ? 'dark' : 'light' "></svg-icon>
-   
-    <v-sheet
-        v-if="!mini"
-        class="d-flex align-center justify-center btn-left"
-        v-ripple
-        @click="onDark"
-    >
+    <v-sheet v-if="!mini" class="d-flex align-center justify-center btn-left" v-ripple @click="onDark">
         <svg-icon icon="dark"></svg-icon>
         <span class="ml-1 text-14 font-weight-medium">{{LangUtil("夜间")}}</span>
     </v-sheet>
-    <v-sheet
-        v-if="!mini"
-        class="d-flex align-center justify-center btn-right"
-        v-ripple
-        @click="onLight"
-    >
+    <v-sheet v-if="!mini" class="d-flex align-center justify-center btn-right" v-ripple @click="onLight">
         <svg-icon icon="light"></svg-icon>
         <span class="ml-1 text-14 font-weight-medium">{{LangUtil("日间")}}</span>
     </v-sheet>

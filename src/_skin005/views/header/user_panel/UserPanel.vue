@@ -10,7 +10,6 @@ import LightDark from "../../novigation/light_dark/LightDark.vue";
     components: {
         MenuGroup,
         LightDark,
-        
     },
 })
 export default class extends UserPanel {}

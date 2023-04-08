@@ -1,91 +1,112 @@
 <v-sheet color="transparent" width="100%">
-
-    <div class=" font-weight-bold" :class="$vuetify.breakpoint.mobile ? 'text-16' : 'text-20'">{{LangUtil("返佣等级")}}
-    </div>
-    <div class="textGray--text mb-2 mb-sm-5" :calss="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'">
+    <div class="font-weight-bold" :class="$mobile ? 'text-16' : 'text-20'">{{LangUtil("返佣等级")}}</div>
+    <div class="textGray--text mb-2 mb-sm-5" :calss="$mobile ? 'text-12' : 'text-14'">
         {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
     </div>
 
-    <template v-if="!$vuetify.breakpoint.mobile">
-        <v-card height="50"
-            class=" mb-1 d-flex align-center mb-2 level_title justify-space-around text-16  textGray--text"
-            color="transparent" flat>
-            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center ">
-                {{LangUtil("等级")}}
-            </v-sheet>
+    <template v-if="!$mobile">
+        <v-card
+            height="50"
+            class="mb-1 d-flex align-center mb-2 level_title justify-space-around text-16 textGray--text"
+            color="transparent"
+            flat
+        >
+            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center"> {{LangUtil("等级")}} </v-sheet>
 
-            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center ">
-                {{LangUtil("总业绩")}}
-            </v-sheet>
+            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center"> {{LangUtil("总业绩")}} </v-sheet>
 
-            <v-sheet color="transparent" min-width="240" class="d-flex justify-center align-center ">
+            <v-sheet color="transparent" min-width="240" class="d-flex justify-center align-center">
                 {{LangUtil("返佣额度(每万)")}}
             </v-sheet>
 
-            <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="200"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="tableData.is_promotion_num_added==1"
+                color="transparent"
+                min-width="200"
+                class="d-flex justify-center align-center"
+            >
                 {{LangUtil("级差")}}
             </v-sheet>
 
-            <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="200"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="pageData.platCoins.rewardCoin.name"
+                color="transparent"
+                min-width="200"
+                class="d-flex justify-center align-center"
+            >
                 {{LangUtil("CF奖励")}}
             </v-sheet>
         </v-card>
         <v-sheet color="transparent" class="hackhome mb-2 mt-n2" width="100%"></v-sheet>
-        <v-sheet height="44" class="sheetOutlined sheetOutlined_bg mb-2 d-flex align-center justify-space-around  text-16 primary--text"
-            v-for="(item, index) of tableData.promotionConfig[0]" :key="index">
-
-            <v-sheet color="transparent" min-width="200" class="level_col d-flex justify-center align-center ">
+        <v-sheet
+            height="44"
+            class="sheetOutlined sheetOutlined_bg mb-2 d-flex align-center justify-space-around text-16 primary--text"
+            v-for="(item, index) of tableData.promotionConfig[0]"
+            :key="index"
+        >
+            <v-sheet color="transparent" min-width="200" class="level_col d-flex justify-center align-center">
                 <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                     <v-img contain src="@/_skin005/assets/extension/star.png"> </v-img>
                 </span>
                 {{LangUtil("{0}级", item.level)}}
             </v-sheet>
 
-            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center ">$
-                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
-                    10000)}} </span>
+            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center"
+                >$
+                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
                 <span v-else>{{ item.total_performance }}</span>
             </v-sheet>
 
             <v-sheet color="transparent" min-width="240" class="d-flex justify-center align-center">
-                <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
-                    :max-width="$vuetify.breakpoint.mobile? 15 : 24"
-                    :height="$vuetify.breakpoint.mobile? 15 : 24"></v-img>
+                <v-img
+                    class="mr-1"
+                    :src="pageData.platCoins.mainCoin.icon"
+                    :max-width="$mobile? 15 : 24"
+                    :height="$mobile? 15 : 24"
+                ></v-img>
                 <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
             </v-sheet>
 
-            <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="200"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="tableData.is_promotion_num_added==1"
+                color="transparent"
+                min-width="200"
+                class="d-flex justify-center align-center"
+            >
                 <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0">- </span>
                 <span v-else class="d-flex flex-row align-center">
-                    <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
-                        :max-width="$vuetify.breakpoint.mobile? 15 : 24"
-                        :height="$vuetify.breakpoint.mobile? 15 : 24"></v-img>
+                    <v-img
+                        class="mr-1"
+                        :src="pageData.platCoins.mainCoin.icon"
+                        :max-width="$mobile? 15 : 24"
+                        :height="$mobile? 15 : 24"
+                    ></v-img>
                     <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
                 </span>
             </v-sheet>
 
-            <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="200"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="pageData.platCoins.rewardCoin.name"
+                color="transparent"
+                min-width="200"
+                class="d-flex justify-center align-center"
+            >
                 <span v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0">- </span>
                 <span v-else class="d-flex flex-row align-center">
-                    <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon"
-                        :max-width="$vuetify.breakpoint.mobile? 15 : 24"
-                        :height="$vuetify.breakpoint.mobile? 15 : 24"></v-img>
+                    <v-img
+                        class="mr-1"
+                        :src="pageData.platCoins.rewardCoin.icon"
+                        :max-width="$mobile? 15 : 24"
+                        :height="$mobile? 15 : 24"
+                    ></v-img>
                     <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
                 </span>
             </v-sheet>
-
         </v-sheet>
-
     </template>
 
     <template v-else>
-        <v-card height="30"
-            class=" mb-1 d-flex align-center mb-2 justify-space-around text-12  textGray--text"
-            color="transparent" flat>
+        <v-card height="30" class="mb-1 d-flex align-center mb-2 justify-space-around text-12 textGray--text" color="transparent" flat>
             <v-sheet color="transparent" min-width="60" class="d-flex justify-center align-center textGray--text">
                 {{LangUtil("等级")}}
             </v-sheet>
@@ -98,63 +119,90 @@
                 {{LangUtil("返佣额度(每万)")}}
             </v-sheet>
 
-            <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="40"
-                class="d-flex justify-center align-center textGray--text">
+            <v-sheet
+                v-if="tableData.is_promotion_num_added==1"
+                color="transparent"
+                min-width="40"
+                class="d-flex justify-center align-center textGray--text"
+            >
                 {{LangUtil("级差")}}
             </v-sheet>
 
-            <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="60"
-                class="d-flex justify-center align-center textGray--text">
+            <v-sheet
+                v-if="pageData.platCoins.rewardCoin.name"
+                color="transparent"
+                min-width="60"
+                class="d-flex justify-center align-center textGray--text"
+            >
                 {{LangUtil("CF奖励")}}
             </v-sheet>
         </v-card>
         <!-- <v-sheet color="transparent" class="hackhome mb-2 mt-n2" width="100%"></v-sheet> -->
-        <v-divider class="mb-2"/>
-        <v-sheet height="30" class="sheetOutlined sheetOutlined_bg mb-2 d-flex align-center justify-space-around  text-12 primary--text" 
-            v-for="(item, index) of tableData.promotionConfig[0]" :key="index" >
-
-            <v-sheet color="transparent" min-width="60" class="level_col d-flex justify-center align-center ">
+        <v-divider class="mb-2" />
+        <v-sheet
+            height="30"
+            class="sheetOutlined sheetOutlined_bg mb-2 d-flex align-center justify-space-around text-12 primary--text"
+            v-for="(item, index) of tableData.promotionConfig[0]"
+            :key="index"
+        >
+            <v-sheet color="transparent" min-width="60" class="level_col d-flex justify-center align-center">
                 <span class="level_icon" v-if="item.level == tableData.myCommissionNum[0].cur_commission_level">
                     <v-img contain src="@/_skin005/assets/extension/star.png"> </v-img>
                 </span>
                 {{LangUtil("{0}级", item.level)}}
             </v-sheet>
 
-            <v-sheet color="transparent" min-width="60" class="d-flex justify-center align-center ">$
-                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
-                    10000)}} </span>
+            <v-sheet color="transparent" min-width="60" class="d-flex justify-center align-center"
+                >$
+                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
                 <span v-else>{{ item.total_performance }}</span>
             </v-sheet>
 
             <v-sheet color="transparent" min-width="110" class="d-flex justify-center align-center">
-                <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
-                    :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                    :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                <v-img
+                    class="mr-1"
+                    :src="pageData.platCoins.mainCoin.icon"
+                    :max-width="$mobile? 15 : 30"
+                    :height="$mobile? 15 : 30"
+                ></v-img>
                 <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
             </v-sheet>
 
-            <v-sheet v-if="tableData.is_promotion_num_added==1" color="transparent" min-width="40"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="tableData.is_promotion_num_added==1"
+                color="transparent"
+                min-width="40"
+                class="d-flex justify-center align-center"
+            >
                 <span v-if="item.commission_num_added[pageData.platCoins.mainCoin.name] == 0">- </span>
                 <span v-else class="d-flex flex-row align-center">
-                    <v-img class="mr-1" :src="pageData.platCoins.mainCoin.icon"
-                        :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                        :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                    <v-img
+                        class="mr-1"
+                        :src="pageData.platCoins.mainCoin.icon"
+                        :max-width="$mobile? 15 : 30"
+                        :height="$mobile? 15 : 30"
+                    ></v-img>
                     <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
                 </span>
             </v-sheet>
 
-            <v-sheet v-if="pageData.platCoins.rewardCoin.name" color="transparent" min-width="60"
-                class="d-flex justify-center align-center ">
+            <v-sheet
+                v-if="pageData.platCoins.rewardCoin.name"
+                color="transparent"
+                min-width="60"
+                class="d-flex justify-center align-center"
+            >
                 <span v-if="item.commission_num[pageData.platCoins.rewardCoin.name] == 0">- </span>
                 <span v-else class="d-flex flex-row align-center">
-                    <v-img class="mr-1" :src="pageData.platCoins.rewardCoin.icon"
-                        :max-width="$vuetify.breakpoint.mobile? 15 : 30"
-                        :height="$vuetify.breakpoint.mobile? 15 : 30"></v-img>
+                    <v-img
+                        class="mr-1"
+                        :src="pageData.platCoins.rewardCoin.icon"
+                        :max-width="$mobile? 15 : 30"
+                        :height="$mobile? 15 : 30"
+                    ></v-img>
                     <span>{{ item.commission_num[pageData.platCoins.rewardCoin.name] }}</span>
                 </span>
             </v-sheet>
-
         </v-sheet>
     </template>
 </v-sheet>

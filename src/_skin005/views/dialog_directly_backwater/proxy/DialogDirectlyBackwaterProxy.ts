@@ -1,6 +1,5 @@
 import { objectRemoveNull } from "@/core/global/Functions";
 
-
 export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
     static NAME = "DialogDirectlyBackwaterProxy";
 
@@ -24,7 +23,7 @@ export default class DialogDirectlyBackwaterProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         bisMine: false, //是否为我的反水
         //如果是列表，使用以下数据，否则删除
         listQuery: {

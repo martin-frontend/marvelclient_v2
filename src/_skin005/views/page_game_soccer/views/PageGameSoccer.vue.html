@@ -1,7 +1,6 @@
-<v-sheet color="transparent" :class="$vuetify.breakpoint.mobile?'pa-0':'mt-2'">
-    <v-sheet class="rounded-lg" :class="$vuetify.breakpoint.mobile ? 'box-mobile' : '' " color="bgBanner">
-        
-        <!-- <div v-if="$vuetify.breakpoint.mobile">
+<v-sheet color="transparent" :class="$mobile?'pa-0':'mt-2'">
+    <v-sheet class="rounded-lg" :class="$mobile ? 'box-mobile' : '' " color="bgBanner">
+        <!-- <div v-if="$mobile">
             <div style="font-size:150px">123</div>
         <div style="font-size:150px">123</div>
         <div style="font-size:150px">123</div>
@@ -15,9 +14,9 @@
         <div style="font-size:150px">123</div>
         <div style="font-size:150px">123</div>
         </div> -->
-        
-        <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true" ></iframe>
-        <div class="d-flex justify-end my-2 mr-3" v-if="!$vuetify.breakpoint.mobile">
+
+        <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true"></iframe>
+        <div class="d-flex justify-end my-2 mr-3" v-if="!$mobile">
             <v-btn class="my-2 ml-3" icon @click="onFullScreen">
                 <v-icon>mdi-fullscreen</v-icon>
             </v-btn>
@@ -26,8 +25,8 @@
             </v-btn>
         </div>
     </v-sheet>
-    <!-- <RecentBetting class="mt-4" v-if="!$vuetify.breakpoint.mobile" /> -->
-    <!-- <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$vuetify.breakpoint.mobile">
+    <!-- <RecentBetting class="mt-4" v-if="!$mobile" /> -->
+    <!-- <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$mobile">
         <v-btn fab small color="red" >
             <v-icon>mdi-backup-restore</v-icon>
         </v-btn>

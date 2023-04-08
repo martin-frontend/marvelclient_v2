@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogActivityDetail from "./DialogActivityDetail";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogActivityDetail {}
 </script>

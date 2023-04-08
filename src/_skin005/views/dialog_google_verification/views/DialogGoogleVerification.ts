@@ -7,7 +7,6 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 @Component
 export default class DialogGoogleVerification extends AbstractView {
     LangUtil = LangUtil;
@@ -37,6 +36,6 @@ export default class DialogGoogleVerification extends AbstractView {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow == false) {
             this.myProxy.resetForm();
-        } 
+        }
     }
 }

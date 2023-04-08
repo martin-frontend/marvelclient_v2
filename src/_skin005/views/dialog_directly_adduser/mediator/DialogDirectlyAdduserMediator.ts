@@ -5,11 +5,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogDirectlyAdduserMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_public_auth_code,
-            net.EventType.REQUEST_ERROR,
-            net.EventType.api_user_var_direct_register,
-        ];
+        return [net.EventType.api_public_auth_code, net.EventType.REQUEST_ERROR, net.EventType.api_user_var_direct_register];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -28,7 +24,7 @@ export default class DialogDirectlyAdduserMediator extends AbstractMediator {
                 myProxy.api_public_auth_code();
                 //}
                 break;
-            case net.EventType.api_user_var_direct_register:    //添加用户的 回调
+            case net.EventType.api_user_var_direct_register: //添加用户的 回调
                 myProxy.api_user_var_direct_registe_callback(body);
                 dialogDirectly.api_user_var_agent_direct_list();
                 myProxy.api_user_var_commission_commissiondetail();

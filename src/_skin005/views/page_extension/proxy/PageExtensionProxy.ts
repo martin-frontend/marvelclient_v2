@@ -126,7 +126,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             is_promotion_num_added: 0,
             type: 0,
         });
-
     }
 
     setData(data: any) {
@@ -232,8 +231,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     api_user_var_commission_commissionnum() {
         if (core.user_id) {
             this.sendNotification(net.HttpType.api_user_var_commission_commissionnum, { user_id: core.user_id });
-        }
-        else {
+        } else {
             this.sendNotification(net.HttpType.api_plat_var_promotion_config, { plat_id: core.plat_id }); /**没有登录时候 获取 返佣数据 */
         }
     }

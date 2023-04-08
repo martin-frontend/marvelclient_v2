@@ -14,17 +14,17 @@ export default class DialogWallet extends AbstractView {
 
     listQuery = this.pageData.listQuery;
     listOptions = this.pageData.listOptions;
-    
+
     constructor() {
         super(DialogWalletMediator);
     }
-    typechange=0;
+    typechange = 0;
 
     /**图标时间选择 */
     onBtnChange(val: any) {
-       this.pageData.tabIndex = parseInt(val);
-       this.onTabClick(this.pageData.tabIndex);
-   }
+        this.pageData.tabIndex = parseInt(val);
+        this.onTabClick(this.pageData.tabIndex);
+    }
 
     onTabClick(tabIndex: number) {
         this.pageData.tabIndex = tabIndex;
@@ -69,7 +69,7 @@ export default class DialogWallet extends AbstractView {
 
     onCoinChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
@@ -80,7 +80,7 @@ export default class DialogWallet extends AbstractView {
 
     onTypeChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.typeSelect == 0) {
             this.listQuery.type = 0;
         } else {
@@ -88,5 +88,4 @@ export default class DialogWallet extends AbstractView {
         }
         this.myProxy.api_user_show_var_gold();
     }
-
 }

@@ -23,7 +23,7 @@ export default class DialogUserCenter extends AbstractView {
         super(DialogUserCenterMediator);
     }
 
-    getHideUsername(str:string){
+    getHideUsername(str: string) {
         return str;
         //return str.substr(0,2)+'***'+str.substr(5,str.split('').length);
     }
@@ -52,17 +52,15 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     onLoginOut() {
-        
         PanelUtil.message_confirm({
-            message:LangUtil("是否退出登录"),
-            okFun:() =>{
+            message: LangUtil("是否退出登录"),
+            okFun: () => {
                 this.selfProxy.api_user_logout();
                 PanelUtil.showAppLoading(true);
                 //this.pageData.bShow = false;
                 this.onClose();
-            }
-        })
-
+            },
+        });
     }
 
     checkValidateType(val: any) {
@@ -93,7 +91,7 @@ export default class DialogUserCenter extends AbstractView {
         PanelUtil.openpanel_google_settings();
     }
 
-    handlerRealName(){
+    handlerRealName() {
         //设置真实姓名
         PanelUtil.openpanel_real_name();
     }
@@ -107,6 +105,6 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     handlerPersonalCard() {
-        PanelUtil.openpanel_personal_card(this.userInfo.business_card );
+        PanelUtil.openpanel_personal_card(this.userInfo.business_card);
     }
 }

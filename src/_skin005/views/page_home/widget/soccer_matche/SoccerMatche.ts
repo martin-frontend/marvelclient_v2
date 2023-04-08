@@ -23,8 +23,7 @@ export default class SoccerMatche extends AbstractView {
         return arr;
     }
 
-    openSport()
-    {
+    openSport() {
         PanelUtil.openpage_soccer();
     }
 }

@@ -1,16 +1,16 @@
 <template>
-    <v-app class="d-flex app">
+    <v-app class="d-flex app" :class="$mobile ? '':'app_min_width'">
         <!-- pc版的显示 -->
-        <template v-if="!$vuetify.breakpoint.mobile">
+        <template v-if="!$mobile">
             <v-sheet id="page" class="d-flex" color="transparent">
                 <Novigation />
 
-                <v-sheet id="mainpage" color="transparent" class="d-flex justify-center mainpage" >
+                <v-sheet id="mainpage" color="transparent" class="d-flex justify-center mainpage">
                     <Header id="pc_header" class="head_test" />
-                    <v-sheet  color="transparent" class="px-2" width="100%">
-                        <v-main  id="router_page" class="router_test">
+                    <v-sheet color="transparent" class="px-2" width="100%">
+                        <v-main id="router_page" class="router_test">
                             <router-view />
-                            <Footer  />
+                            <Footer />
                         </v-main>
                     </v-sheet>
                 </v-sheet>
@@ -30,9 +30,17 @@
             </div>
         </template>
         <!-- 用户面板 -->
-        <template v-if="$vuetify.breakpoint.mobile">
-            <v-navigation-drawer v-if="isShowHeader" v-model="myProxy.bshowNovigationPanel" left temporary width="188" app class="mob_navigation"
-                color="bgBanner">
+        <template v-if="$mobile">
+            <v-navigation-drawer
+                v-if="isShowHeader"
+                v-model="myProxy.bshowNovigationPanel"
+                left
+                temporary
+                width="188"
+                app
+                class="mob_navigation"
+                color="bgBanner"
+            >
                 <Novigation />
             </v-navigation-drawer>
 
@@ -50,7 +58,7 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <Orientation v-if="!isScreenV && Constant.isIncludeGameRouter($route.path)" />
-        <template v-if="!$vuetify.breakpoint.mobile">
+        <template v-if="!$mobile">
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
                     <svg-icon icon="arrow_top" class="text-14"></svg-icon>
@@ -65,23 +73,32 @@
             </v-btn>
         </template>
 
-        <div v-if="PageBlur.isBlur && !isSafari()" class="blur-mask"
-            :class="{ 
-                'blur-mask-bottom': PageBlur.bottom && !$vuetify.breakpoint.mobile ,
-                'blur-mask-bottom_mob': PageBlur.bottom && $vuetify.breakpoint.mobile,
-                'blur-mask-right': PageBlur.right 
-            }"></div>
+        <div
+            v-if="PageBlur.isBlur && !isSafari()"
+            class="blur-mask"
+            :class="{
+                'blur-mask-bottom': PageBlur.bottom && !$mobile,
+                'blur-mask-bottom_mob': PageBlur.bottom && $mobile,
+                'blur-mask-right': PageBlur.right,
+            }"
+        ></div>
 
         <!-- 添加到桌面引导 -->
-        <v-sheet class="btn-guide " color="transparent"
-            v-if="isShowGuide">
-
-            <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9"
-                @click.native="onGuide">{{ myProxy.guideText }}</btn-yellow>
+        <v-sheet class="btn-guide" color="transparent" v-if="isShowGuide">
+            <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9" @click.native="onGuide">{{
+                myProxy.guideText
+            }}</btn-yellow>
         </v-sheet>
-        <v-navigation-drawer v-if="myProxy.guideDrawer" v-model="myProxy.guideDrawer" 
-        color="transparent" height="432" bottom temporary fixed>
-            <GuideDrawer @onClose="onCloseGuide"/>
+        <v-navigation-drawer
+            v-if="myProxy.guideDrawer"
+            v-model="myProxy.guideDrawer"
+            color="transparent"
+            height="432"
+            bottom
+            temporary
+            fixed
+        >
+            <GuideDrawer @onClose="onCloseGuide" />
         </v-navigation-drawer>
     </v-app>
 </template>
@@ -97,7 +114,7 @@ import DialogMessage from "./views/dialog_message/views/DialogMessage.vue";
 import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
 import Novigation from "./views/novigation/Novigation.vue";
 import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
-import GuideDrawer from '@/_skin005/views/widget/guide_drawer/GuideDrawer.vue'
+import GuideDrawer from "@/_skin005/views/widget/guide_drawer/GuideDrawer.vue";
 import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMessageBox.vue";
 @Component({
     components: {
@@ -112,7 +129,7 @@ import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMe
         DialogMessageBox,
     },
 })
-export default class extends App { }
+export default class extends App {}
 </script>
 
 <style lang="scss" scoped>
@@ -122,7 +139,9 @@ export default class extends App { }
     margin-right: auto;
     max-width: 2560px;
 }
-
+.app_min_width {
+    min-width: 1264px;
+}
 .btn-guide {
     //width: 100%;
     //text-align: center;
@@ -134,7 +153,7 @@ export default class extends App { }
 .main-pc {
     padding-left: 94px;
 }
-.mob_navigation{
+.mob_navigation {
     z-index: 12 !important;
 }
 .btn-service {
@@ -166,6 +185,7 @@ export default class extends App { }
     z-index: 10;
     width: calc(100% - 188px) !important;
     max-width: 2360px;
+    min-width: 1064px;
 }
 
 .head_test_mini {
@@ -174,6 +194,7 @@ export default class extends App { }
     z-index: 10;
     width: calc(100% - 60px) !important;
     max-width: 2500px;
+    min-width:1204px;
 }
 
 .router_test {

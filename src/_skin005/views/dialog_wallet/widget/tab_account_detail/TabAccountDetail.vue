@@ -6,7 +6,6 @@ import CustomSelect from "@/_skin005/views/widget/custom_select/CustomSelect.vue
 import Component from "vue-class-component";
 import TabAccountDetail from "./TabAccountDetail";
 
-
 @Component({
     components: {
         CustomSelect,

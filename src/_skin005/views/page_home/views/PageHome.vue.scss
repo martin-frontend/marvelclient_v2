@@ -6,8 +6,7 @@
     //background-image: url("~@/_skin005/assets/texture_money.png");
     //background-size: contain;
 }
-.item_bg
-{
+.item_bg {
     position: absolute;
     width: 165px;
     //height: 100%;
@@ -15,7 +14,7 @@
     //opacity: 0.3;
     border-radius: 20px;
     overflow: hidden;
-    .img{
+    .img {
         position: relative;
     }
 }
@@ -51,46 +50,42 @@
     bottom: 15px;
     min-height: 24px;
 }
-.boxpadding{
+.boxpadding {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-::v-deep .v-responsive__content
-{
+::v-deep .v-responsive__content {
     display: none;
 }
-::v-deep .v-ripple__container{
+::v-deep .v-ripple__container {
     border-radius: 10px !important;
 }
-::v-deep .v-btn--icon.v-size--small{
+::v-deep .v-btn--icon.v-size--small {
     height: 8px !important;
     width: 8px !important;
 }
-::v-deep .v-btn__content
-{
+::v-deep .v-btn__content {
     :first-child {
         font-size: 16px !important;
         transform: scale(0.5);
     }
 }
-::v-deep .v-carousel__controls
-{
+::v-deep .v-carousel__controls {
     height: 30px;
 }
-::v-deep .v-carousel__controls__item .v-icon
-{
+::v-deep .v-carousel__controls__item .v-icon {
     opacity: 0.7;
 }
 
-::v-deep .theme--dark.v-btn--active:before, .theme--dark.v-btn--active:hover:before
-{
+::v-deep .theme--dark.v-btn--active:before,
+.theme--dark.v-btn--active:hover:before {
     opacity: 1 !important;
 }
-.bannritem_mob{
+.bannritem_mob {
     height: 170px;
 }
 
-.bannritem{
+.bannritem {
     height: 240px !important;
 }

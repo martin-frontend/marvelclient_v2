@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import LoadMore from "./LoadMore";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends LoadMore {}
 </script>

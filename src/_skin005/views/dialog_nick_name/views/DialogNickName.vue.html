@@ -1,16 +1,16 @@
-<v-dialog v-if="!pageData.bHidden" width="350" v-model="pageData.bShow" :retain-focus="false"  persistent>
+<v-dialog v-if="!pageData.bHidden" width="350" v-model="pageData.bShow" :retain-focus="false" persistent>
     <v-card class="rounded10" color="bgBanner">
-
-        <com-dialog-title title="设置昵称" @onClose="onClose" :isDialog="true"/>
-        <v-divider class="mb-2 " />
+        <com-dialog-title title="设置昵称" @onClose="onClose" :isDialog="true" />
+        <v-divider class="mb-2" />
         <v-card-text v-if="pageData.bShow" class="px-10 mt-5 d-flex align-center flex-column">
             <CustomInput maxlength="12" class="mb-3" :placeholder="LangUtil('昵称为1-6位汉字或1-12位英文')" v-model="pageData.nickname" />
-            <div class=" mb-9 navText--text">{{LangUtil("昵称只允许设置一次")}}</div>
+            <div class="mb-9 navText--text">{{LangUtil("昵称只允许设置一次")}}</div>
             <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit" block
                 >{{LangUtil("保存设置")}}</v-btn
             > -->
-            <btn-yellow class="text-16 " min_width="104" height="36" :disabled="!isCheckedId"
-            @click.native="onSubmit">{{LangUtil("保存设置")}}</btn-yellow>
+            <btn-yellow class="text-16" min_width="104" height="36" :disabled="!isCheckedId" @click.native="onSubmit"
+                >{{LangUtil("保存设置")}}</btn-yellow
+            >
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

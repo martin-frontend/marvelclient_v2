@@ -7,17 +7,21 @@ import PageStatisticeCreditProxy from "../../proxy/PageStatisticeCreditProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
 
 import CopyUtil from "@/core/global/CopyUtil";
-import { changeDateShow } from "@/core/global/Functions";
+import { amountFormat, changeDateShow } from "@/core/global/Functions";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 
 @Component
 export default class HomePage extends AbstractView {
     LangUtil = LangUtil;
+    //amountFormat = amountFormat;
     playerInfo = PanelUtil.getProxy_selfproxy;
     myProxy: PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
     pageData = this.myProxy.pageData;
     getMoneyColor = getMoneyColor;
     getMoneyValue = getMoneyValue;
+    amountFormat(val: any) {
+        return amountFormat(val, true);
+    }
     // constructor() {
     //     super(DialogDirectlyMyMediator);
     // }

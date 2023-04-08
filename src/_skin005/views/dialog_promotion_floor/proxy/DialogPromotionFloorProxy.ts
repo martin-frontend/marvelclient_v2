@@ -22,7 +22,7 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         amount: "0",
         origin_amount: "",
         range: {

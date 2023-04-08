@@ -33,7 +33,7 @@ export default class CustomSelect extends AbstractView {
         // let str = "";
         // str = "select-text";
         if (this.isSetChange == null) {
-            if (this.$vuetify.breakpoint.xsOnly) {
+            if (this.$xsOnly) {
                 return "select-text";
             }
             return "select-text select_bg-text";
@@ -45,14 +45,11 @@ export default class CustomSelect extends AbstractView {
         }
     }
 
-    
-    public item_class(key:any) : string {
-        const text_font = "text-" + this.fontSize ;
-        if (key == this.selectValue)
-        {
+    public item_class(key: any): string {
+        const text_font = "text-" + this.fontSize;
+        if (key == this.selectValue) {
             return "primary--text " + text_font;
         }
         return text_font;
     }
-    
 }

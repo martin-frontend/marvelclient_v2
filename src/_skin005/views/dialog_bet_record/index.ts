@@ -8,7 +8,7 @@ const proxy: DialogBetRecordProxy = getProxy(DialogBetRecordProxy);
 function show(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true, msg: any = null) {
     DialogMount(DialogBetRecord);
     hidden(false);
-    proxy.initShowType()
+    proxy.initShowType();
     proxy.pageData.listQuery.agent_user_id = agent_user_id;
     proxy.pageData.listQuery.start_date = start_date;
     proxy.pageData.listQuery.end_date = end_date;
@@ -18,9 +18,7 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         if (msg.coin_name_unique) {
             proxy.pageData.listQuery.coin_name_unique = msg.coin_name_unique;
             proxy.listOptions.moneySelect = msg.coin_name_unique;
-        }
-        else
-        {
+        } else {
             const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
             //@ts-ignore
             proxy.listOptions.moneySelect = moneyKeys[0];
@@ -44,8 +42,7 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         // if (msg.filterBtnInfo != null) {
         //     proxy.setFilterInfo(msg.filterBtnInfo);
         // }
-    }
-    else {
+    } else {
         //proxy.listOptions.moneySelect = 0;
         //选择第一个
         const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
@@ -60,13 +57,12 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         proxy.listOptions.betTimeSelect = 0;
         proxy.pageData.listQuery.order_by = JSON.stringify({ bet_at: "DESC" });
     }
-    console.log("当前设置的参数为",proxy.listOptions );
+    console.log("当前设置的参数为", proxy.listOptions);
     proxy.pageData.bShow = true;
 }
-
 
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

@@ -1,41 +1,57 @@
-<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false"
-    :fullscreen="$vuetify.breakpoint.mobile" persistent>
+<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
     <!-- <v-card class="rounded10" color="bgColor"> -->
     <!-- pc显示方式 -->
-    <template v-if="!$vuetify.breakpoint.mobile">
+    <template v-if="!$mobile">
         <v-card class="rounded10" color="bgBanner">
             <com-dialog-title title="平台钱包" @onClose="onClose" />
-            <v-divider class="mb-2 " />
+            <v-divider class="mb-2" />
             <v-sheet class="d-flex align-center justify-space-between mx-4 mb-2" width="100%" color="transparent">
                 <v-sheet class="d-flex align-center" color="transparent" width="100%">
                     <v-btn-toggle mandatory group v-model="pageData.tabIndex" @change="onBtnChange">
                         <v-btn class="rounded-pill mr-2" height="36" min-width="90">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-wallet</v-icon> -->
-                            <span class=" text-16"> {{LangUtil("我的资产")}} </span>
+                            <span class="text-16"> {{LangUtil("我的资产")}} </span>
                         </v-btn>
                         <v-btn class="rounded-pill mr-2" height="36" min-width="90">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-wallet</v-icon> -->
-                            <span class=" text-16"> {{LangUtil("厂商资产")}} </span>
+                            <span class="text-16"> {{LangUtil("厂商资产")}} </span>
                         </v-btn>
                         <v-btn class="rounded-pill mr-2" height="36" min-width="90">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-database</v-icon> -->
-                            <span class=" text-16"> {{LangUtil("账户明细")}} </span>
+                            <span class="text-16"> {{LangUtil("账户明细")}} </span>
                         </v-btn>
                     </v-btn-toggle>
                 </v-sheet>
 
-                <v-sheet v-if="pageData.tabIndex == 2" class="d-flex align-center regular_text" width="100%"
-                    color="transparent">
-
-                    <CustomSelect class="ml-2 " v-model="listOptions.timeSelect" :fontSize="14" :isSetChange="$vuetify.breakpoint.mobile"
-                        :options="listOptions.timeOptions()" width="114" @change="onTimeChange" />
-                    <CustomSelect class="ml-2" v-model="listOptions.coinSelect" :fontSize="14" :isSetChange="$vuetify.breakpoint.mobile"
-                        :options="listOptions.coinOptions()" width="114" @change="onCoinChange" />
-                    <CustomSelect class="ml-2" v-model="listOptions.typeSelect" :fontSize="14" :isSetChange="$vuetify.breakpoint.mobile"
-                        :options="listOptions.typeOptions()" width="114" @change="onTypeChange" />
-
+                <v-sheet v-if="pageData.tabIndex == 2" class="d-flex align-center regular_text" width="100%" color="transparent">
+                    <CustomSelect
+                        class="ml-2"
+                        v-model="listOptions.timeSelect"
+                        :fontSize="14"
+                        :isSetChange="$mobile"
+                        :options="listOptions.timeOptions()"
+                        width="114"
+                        @change="onTimeChange"
+                    />
+                    <CustomSelect
+                        class="ml-2"
+                        v-model="listOptions.coinSelect"
+                        :fontSize="14"
+                        :isSetChange="$mobile"
+                        :options="listOptions.coinOptions()"
+                        width="114"
+                        @change="onCoinChange"
+                    />
+                    <CustomSelect
+                        class="ml-2"
+                        v-model="listOptions.typeSelect"
+                        :fontSize="14"
+                        :isSetChange="$mobile"
+                        :options="listOptions.typeOptions()"
+                        width="114"
+                        @change="onTypeChange"
+                    />
                 </v-sheet>
-
             </v-sheet>
 
             <TabMyAssets v-if="pageData.tabIndex == 0" />
@@ -46,21 +62,21 @@
     <!-- 手机显示方式 -->
     <template v-else>
         <v-card flat color="bgColor" class="">
-            <v-sheet  class="fix_head_mob" width="100%">
+            <v-sheet class="fix_head_mob" width="100%">
                 <com-dialog-title :title="LangUtil('平台钱包')" @onClose="onClose" />
-                <v-sheet class="d-flex align-center mt-3 ml-1 mr-1 " color="transparent" width="100%">
+                <v-sheet class="d-flex align-center mt-3 ml-1 mr-1" color="transparent" width="100%">
                     <v-btn-toggle mandatory group v-model="pageData.tabIndex" @change="onBtnChange">
-                        <v-btn class="rounded-pill mr-2" height="30" min-width="78" >
+                        <v-btn class="rounded-pill mr-2" height="30" min-width="78">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-wallet</v-icon> -->
-                            <span class=" text-12"> {{LangUtil("我的资产")}} </span>
+                            <span class="text-12"> {{LangUtil("我的资产")}} </span>
                         </v-btn>
-                        <v-btn class="rounded-pill mr-2" height="30" min-width="78" >
+                        <v-btn class="rounded-pill mr-2" height="30" min-width="78">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-wallet</v-icon> -->
-                            <span class=" text-12"> {{LangUtil("厂商资产")}} </span>
+                            <span class="text-12"> {{LangUtil("厂商资产")}} </span>
                         </v-btn>
-                        <v-btn class="rounded-pill mr-2" height="30" min-width="78" >
+                        <v-btn class="rounded-pill mr-2" height="30" min-width="78">
                             <!-- <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-database</v-icon> -->
-                            <span class=" text-12"> {{LangUtil("账户明细")}} </span>
+                            <span class="text-12"> {{LangUtil("账户明细")}} </span>
                         </v-btn>
                     </v-btn-toggle>
                 </v-sheet>

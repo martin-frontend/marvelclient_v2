@@ -6,7 +6,7 @@ export default class DialogBindGoogleProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         form: {
             google_code: "",

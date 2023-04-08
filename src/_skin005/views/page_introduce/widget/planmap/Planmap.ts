@@ -10,7 +10,6 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 export default class Planmap extends AbstractView {
     LangUtil = LangUtil;
 
-
     moneyFormat = moneyFormat;
     myProxy: PageIntroduceProxy = this.getProxy(PageIntroduceProxy);
     pageData = this.myProxy.pageData;

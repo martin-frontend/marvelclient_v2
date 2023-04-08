@@ -10,19 +10,19 @@
             </v-btn>
         </v-card-title> -->
 
-        <com-dialog-title title="修改备注" @onClose="onClose" :isDialog="true"/>
+        <com-dialog-title title="修改备注" @onClose="onClose" :isDialog="true" />
 
-        <v-divider class="mb-2 " />
+        <v-divider class="mb-2" />
         <v-card-text v-if="pageData.bShow" class="px-10 mt-2">
             <CustomInput maxlength="8" class="mb-3" :placeholder="LangUtil('请输入备注（0-8位）')" v-model="inputData" />
-          
+
             <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onClickSure" block
                 >{{LangUtil("确定")}}</v-btn
             > -->
 
-            <btn-yellow class="text-16 mt-5" width="100%" height="36" :disabled="!isCheckedId"
-            @click.native="onClickSure">{{LangUtil("确定")}}</btn-yellow>
-
+            <btn-yellow class="text-16 mt-5" width="100%" height="36" :disabled="!isCheckedId" @click.native="onClickSure"
+                >{{LangUtil("确定")}}</btn-yellow
+            >
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

@@ -9,11 +9,11 @@ export default class PageSwapMediator extends AbstractMediator {
     LangUtil = LangUtil;
     private selfProxy = PanelUtil.getProxy_selfproxy;
 
-    onRegister(){
+    onRegister() {
         PanelUtil.showAppLoading(false);
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageSwapProxy.NAME);
     }
 

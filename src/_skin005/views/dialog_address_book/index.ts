@@ -7,7 +7,7 @@ import DialogAddressBook from "./views/DialogAddressBook.vue";
 const proxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
 function show() {
     DialogMount(DialogAddressBook);
-   
+
     const rechargeProxy = PanelUtil.getProxy_recharge;
     hidden(false);
     proxy.pageData.bShow = true;
@@ -20,5 +20,4 @@ function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-
-export default { show ,hidden};
+export default { show, hidden };

@@ -16,7 +16,7 @@ export default class DialogDirectlyMy extends AbstractView {
     myProxy: DialogDirectlyMyProxy = this.getProxy(DialogDirectlyMyProxy);
     pageData = this.myProxy.pageData;
     promotionData = this.myProxy.pageData.promotionData;
-    selfProxy = PanelUtil.getProxy_selfproxy
+    selfProxy = PanelUtil.getProxy_selfproxy;
     constructor() {
         super(DialogDirectlyMyMediator);
     }
@@ -62,7 +62,7 @@ export default class DialogDirectlyMy extends AbstractView {
             //         dialog_message.success(LangUtil("保存成功"));
             //     });
             // } else {
-                PanelUtil.openpanel_preview(imgData);
+            PanelUtil.openpanel_preview(imgData);
             // }
         }
     }

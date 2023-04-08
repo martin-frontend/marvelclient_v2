@@ -32,7 +32,7 @@ export default class DialogSwapRecord extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

@@ -6,7 +6,7 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -21,7 +21,7 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
         },
     };
 
-    teamDirectlyInfo = <any>[];//团队直属信息页面的 数据;
+    teamDirectlyInfo = <any>[]; //团队直属信息页面的 数据;
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -36,7 +36,6 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
 
     setData(data: any) {
         this.pageData.loading = false;
-
     }
     //设置团队数据
     setTeamData(data: any) {
@@ -54,11 +53,11 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
                 directly_users: data.pageInfo.pageTotal,
                 remark: "",
                 nick_name: "",
-            }
+            };
             //this.teamDirectlyInfo.push(selfData);
             Object.assign(this.teamDirectlyInfo, selfData);
         }
-        const obj_1 = data.list[0].invite_user_id // 第一个元素， 根据第一个元素中的 上级 确定 放在哪个地方
+        const obj_1 = data.list[0].invite_user_id; // 第一个元素， 根据第一个元素中的 上级 确定 放在哪个地方
 
         const targetObj = this.teamDirectlyInfo;
         //console.log("需要查找的id 为 ", obj_1);
@@ -72,12 +71,11 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
             //console.log("子节点为空");
             addobj.childs = <any>[];
         }
-        //检测 是否包含 其中 
+        //检测 是否包含 其中
         addobj.childs.push(...data.list);
 
-        this.teamDirectlyInfo = JSON.parse(JSON.stringify( this.teamDirectlyInfo));
+        this.teamDirectlyInfo = JSON.parse(JSON.stringify(this.teamDirectlyInfo));
         //console.log("当前所有的数据", this.teamDirectlyInfo);
-
     }
 
     searchChild(arr: any, key: any) {
@@ -90,17 +88,14 @@ export default class DialogBetFilterProxy extends puremvc.Proxy {
             if (element.user_id == key) {
                 //console.log("搜索到了",element);
                 return element;
-            }
-            else {
+            } else {
                 const res = <any>this.searchChild(element, key);
-                if (res)
-                {
+                if (res) {
                     return res;
                 }
             }
         }
     }
-
 
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list(direct_user_id: any = null) {

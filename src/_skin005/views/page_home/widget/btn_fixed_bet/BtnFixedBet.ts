@@ -9,7 +9,6 @@ import Vue from "vue";
 export default class BtnFixedBet extends AbstractView {
     LangUtil = LangUtil;
 
-
     @Prop() market!: MarketVO;
     @Prop() selection!: SelectionVO;
 
@@ -23,7 +22,7 @@ export default class BtnFixedBet extends AbstractView {
     }
 
     @Watch("$vuetify.theme.dark")
-    onWatchCheme(){
+    onWatchCheme() {
         this.clearOddsStatus(0);
     }
 
@@ -47,14 +46,12 @@ export default class BtnFixedBet extends AbstractView {
                 // if (imgOdds) imgOdds.style.color = "#F64D55";
                 // imgOdds?.classList.add("animation-translate");
 
-                if (imgOdds)
-                {
+                if (imgOdds) {
                     imgOdds.style.opacity = "1";
                     imgOdds.style.color = "#F64D55";
                     imgOdds.classList.add("animation-translate");
                     imgOdds.style.display = "inherit";
                 }
-
             } else if (cha < 0) {
                 this.clearOddsStatus();
                 //this.iconOdds = require("@/_skin005/assets/icon/icon_odds_down.png");
@@ -63,14 +60,12 @@ export default class BtnFixedBet extends AbstractView {
                 if (divPrice) divPrice.style.color = "#41A81D";
                 // if (imgOdds) imgOdds.style.opacity = "1";
                 // if (imgOdds) imgOdds.style.color = "#41A81D";
-                if (imgOdds)
-                {
+                if (imgOdds) {
                     imgOdds.style.opacity = "1";
                     imgOdds.style.color = "#41A81D";
                     imgOdds.classList.add("animation-translate");
                     imgOdds.style.display = "inherit";
                 }
-                
             }
             this.oldData = JSON.parse(JSON.stringify(this.selection));
         } else {
@@ -87,7 +82,7 @@ export default class BtnFixedBet extends AbstractView {
             this.cleartimer = setTimeout(() => {
                 imgOdds.style.opacity = "0";
                 imgOdds.classList.remove("animation-translate");
-                imgOdds.style.display = 'none';
+                imgOdds.style.display = "none";
                 divbox.style.borderColor = this.$vuetify.theme.dark ? "#333435" : "#F2F2F2";
                 divPrice.style.color = this.$vuetify.theme.dark ? "#FFFFFF" : "#0F1213";
             }, time);

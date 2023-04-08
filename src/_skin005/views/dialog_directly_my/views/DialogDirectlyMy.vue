@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogDirectlyMy from "./DialogDirectlyMy";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogDirectlyMy {}
 </script>

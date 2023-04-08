@@ -15,7 +15,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         page_size: 20,
         page_count: 1,
     };
-    checkboxValue = ['1'];//用户筛选的值，
+    checkboxValue = ["1"]; //用户筛选的值，
 
     limitinfo = {
         enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
@@ -26,7 +26,7 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -47,13 +47,13 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() { 
+    enter() {
         this.resetQuery();
         this.api_user_var_agent_direct_list();
     }
 
     /**离开页面时调用 */
-    leave() { }
+    leave() {}
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -75,8 +75,8 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.limitinfo, data.limit);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.mobile) {
+
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -137,13 +137,11 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_fetch_direct_user_info, objectRemoveNull(data));
     }
 
-    search(info:string) {
+    search(info: string) {
         this.pageData.loading = true;
         this.pageData.list = [];
         this.parameter.direct_info = info;
         this.pageData.listQuery.page_count = 1;
         this.api_user_var_agent_direct_list();
     }
-
-
 }

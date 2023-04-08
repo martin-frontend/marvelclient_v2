@@ -6,8 +6,7 @@ import Component from "vue-class-component";
 import DialogDirectlyGameset from "./DialogDirectlyGameset";
 
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogDirectlyGameset {}
 </script>

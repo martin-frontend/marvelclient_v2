@@ -11,7 +11,6 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Constant from "@/core/global/Constant";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
-
 @Component
 export default class DialogDirectlySetting extends AbstractView {
     LangUtil = LangUtil;
@@ -40,8 +39,7 @@ export default class DialogDirectlySetting extends AbstractView {
             name: LangUtil("代理"),
             value: 1,
         },
-
-    ]
+    ];
 
     public get gameSwitchInfo(): number[] {
         const keys = Object.keys(this.myProxy.playerInfo.vendor_type_switch);
@@ -88,8 +86,7 @@ export default class DialogDirectlySetting extends AbstractView {
     onEditRemark() {
         PanelUtil.openpanel_edit_remark(this.myProxy.playerInfo);
     }
-    onEditPassword()
-    {
+    onEditPassword() {
         PanelUtil.openpanel_directly_password(this.playerInfo);
     }
     //用户资产设置
@@ -99,7 +96,6 @@ export default class DialogDirectlySetting extends AbstractView {
     agentSetting() {
         //console.log("打开---代理占比设置")
         PanelUtil.openpanel_directly_agentset(this.playerInfo);
-        
     }
     openGamesetPanel() {
         PanelUtil.openpanel_directly_gameset(this.playerInfo);
@@ -122,9 +118,8 @@ export default class DialogDirectlySetting extends AbstractView {
             },
             cancelFun: () => {
                 console.log("点击取消，将值变换回去");
-            }
+            },
         });
-
     }
 
     //esayBet投注额设置 按钮
@@ -143,10 +138,11 @@ export default class DialogDirectlySetting extends AbstractView {
 
     handlerUpdate(val: any) {
         //console.log("val   ", val);
-        if (val == '98') {
+        if (val == "98") {
             const str = LangUtil("您是否禁用此帐号，如果禁用，该用户所有下级都禁用");
             PanelUtil.message_confirm({
-                message: str, okFun: () => {
+                message: str,
+                okFun: () => {
                     //console.log("点击确定，发送消息出去");
                     this.myProxy.agent_direct_user_update();
                 },
@@ -155,11 +151,9 @@ export default class DialogDirectlySetting extends AbstractView {
                     //@ts-ignore
                     this.myProxy.playerInfo.status = 1;
                     //console.log("this.playerInfo.status  " ,this.playerInfo.status);
-                }
+                },
             });
-        }
-        else
-        this.myProxy.agent_direct_user_update();
+        } else this.myProxy.agent_direct_user_update();
     }
     handlerUpdate_creditset(val: any) {
         this.myProxy.agent_direct_user_update_duoceng();
@@ -167,10 +161,8 @@ export default class DialogDirectlySetting extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-
         PageBlur.blur_page(this.pageData.bShow);
-        if (!this.pageData.bShow)
-        {
+        if (!this.pageData.bShow) {
             this.myProxy.resetQuery();
         }
     }

@@ -4,7 +4,7 @@ import DialogDirectlyPasswordProxy from "./proxy/DialogDirectlyPasswordProxy";
 import DialogDirectlyPassword from "./views/DialogDirectlyPassword.vue";
 
 const proxy: DialogDirectlyPasswordProxy = getProxy(DialogDirectlyPasswordProxy);
-function show(data:any) {
+function show(data: any) {
     DialogMount(DialogDirectlyPassword);
     hidden(false);
     proxy.pageData.bShow = true;

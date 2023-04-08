@@ -9,12 +9,12 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-
-
+import { amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogDirectlyTransfer extends AbstractView {
     LangUtil = LangUtil;
+    amountFormat = amountFormat;
     myProxy: DialogDirectlyTransferProxy = this.getProxy(DialogDirectlyTransferProxy);
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
@@ -44,12 +44,10 @@ export default class DialogDirectlyTransfer extends AbstractView {
     public get gold_info(): any {
         if (this.pageData.isAddMode) {
             return this.userInfo.gold_info;
-        }
-        else {
+        } else {
             return this.playerInfo.gold_info;
         }
     }
-
 
     public get insideStr(): string {
         return this.pageData.isAddMode ? "我的余额" : "用户余额";
@@ -64,24 +62,21 @@ export default class DialogDirectlyTransfer extends AbstractView {
         if (this.pageData.isAddMode) {
             //console.log("确定加钱  按钮" ,this.formData);//确定加钱
             this.myProxy.api_user_var_agent_credit_transfer();
-        }
-        else {
+        } else {
             this.myProxy.api_user_var_agent_direct_deduction();
         }
     }
 
-    search() {
-
-    }
+    search() {}
 
     onClickGetAll() {
-        this.formData.gold = this.gold_info[this.formData.coin_name_unique].sum_money
+        this.formData.gold = this.gold_info[this.formData.coin_name_unique].sum_money;
     }
     get isChecked(): boolean {
         if (!this.formData.gold) {
             return false;
         }
-        const num = parseFloat(this.formData.gold)
+        const num = parseFloat(this.formData.gold);
         if (num <= 0) {
             return false;
         }
@@ -92,18 +87,13 @@ export default class DialogDirectlyTransfer extends AbstractView {
         return true;
     }
 
-    onUsernameBlur() {
-
-    }
-    handlerUpdate(val: any) {
-
-    }
+    onUsernameBlur() {}
+    handlerUpdate(val: any) {}
 
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
-            
             //如果是列表，使用以下数据，否则删除
             //this.myProxy.resetQuery();
             if (this.pageData.isAddMode) {
@@ -112,12 +102,10 @@ export default class DialogDirectlyTransfer extends AbstractView {
         }
     }
     onDetailBtnClick() {
-        console.log("查询记录");//确定加钱
+        console.log("查询记录"); //确定加钱
         if (this.pageData.isAddMode) {
             //dialog_wallet.show(2, 63, this.formData.coin_name_unique);
             PanelUtil.openpanel_wallet(2, 63, this.formData.coin_name_unique);
-        } else
-            PanelUtil.openpanel_wallet(2, 62, this.formData.coin_name_unique);
+        } else PanelUtil.openpanel_wallet(2, 62, this.formData.coin_name_unique);
     }
-
 }

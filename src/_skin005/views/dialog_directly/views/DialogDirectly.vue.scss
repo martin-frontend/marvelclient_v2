@@ -30,7 +30,7 @@
 .search {
     width: 207px;
     ::v-deep .v-btn__content {
-        color: #8E8F91;
+        color: #8e8f91;
         font-size: 16px;
         font-weight: 400;
     }
@@ -53,25 +53,25 @@
     padding-top: 0px;
 }
 
-.mobile_main{
+.mobile_main {
     height: calc(100vh - 140px);
 }
-.mobile_main_2{
+.mobile_main_2 {
     height: calc(100vh - 250px);
 }
-.input-text{
+.input-text {
     height: 36px !important;
     //background-color: #F4F4F4;
 }
 
-.theme--light{
+.theme--light {
     .search_mob {
         width: 168px;
         ::v-deep .v-btn__content {
-            color: #8E8F91;
+            color: #8e8f91;
             font-size: 12px;
         }
-        .input-text{
+        .input-text {
             background-color: #fff;
         }
         ::v-deep .input-text input::placeholder {
@@ -80,7 +80,7 @@
     }
 }
 
-.theme--dark{
+.theme--dark {
     .search_mob {
         width: 168px;
         ::v-deep .v-btn__content {
@@ -91,4 +91,3 @@
         }
     }
 }
-

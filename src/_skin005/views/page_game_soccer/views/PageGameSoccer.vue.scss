@@ -10,17 +10,17 @@
     // height: calc(100vh - 55px);
     overscroll-behavior: auto;
     position: fixed;
-    left:0px;
-    top:0px;
+    left: 0px;
+    top: 0px;
 }
-.frame-mobile_cricket{
+.frame-mobile_cricket {
     border: 0;
     width: 100vw;
     // height: calc(100vh - 55px);
     overscroll-behavior: auto;
     position: fixed;
-    left:0px;
-    top:45px ;
+    left: 0px;
+    top: 45px;
 }
 
 .theme--dark {
@@ -40,7 +40,7 @@
     }
 }
 
-.frame-mobile-standalone{
+.frame-mobile-standalone {
     border: 0;
     width: 100vw;
     height: calc(100vh - 120px);
@@ -53,6 +53,6 @@
     top: 60px;
 }
 
-.box-mobile{
+.box-mobile {
     min-height: 2000px;
 }

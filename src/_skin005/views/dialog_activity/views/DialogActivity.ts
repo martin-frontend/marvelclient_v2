@@ -42,7 +42,7 @@ export default class DialogActivity extends AbstractView {
         this.onClose();
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

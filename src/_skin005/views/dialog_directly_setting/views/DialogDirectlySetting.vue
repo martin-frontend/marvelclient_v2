@@ -5,11 +5,8 @@
 import Component from "vue-class-component";
 import DialogDirectlySetting from "./DialogDirectlySetting";
 
-
 @Component({
-    components: {
-
-    },
+    components: {},
 })
 export default class extends DialogDirectlySetting {}
 </script>

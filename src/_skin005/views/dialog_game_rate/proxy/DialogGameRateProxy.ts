@@ -4,7 +4,7 @@ export default class DialogGameRateProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         list: <any>[],
     };
 
@@ -15,6 +15,6 @@ export default class DialogGameRateProxy extends puremvc.Proxy {
 
     /**--获取币种游戏比率*/
     api_user_var_block_coins_scale() {
-        this.sendNotification(net.HttpType.api_user_var_block_coins_scale, { user_id: core.user_id, });
+        this.sendNotification(net.HttpType.api_user_var_block_coins_scale, { user_id: core.user_id });
     }
 }

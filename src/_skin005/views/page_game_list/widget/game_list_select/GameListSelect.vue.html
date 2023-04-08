@@ -2,26 +2,26 @@
     <template v-slot:activator="{ on, attrs }">
         <v-sheet
             class="rounded-pill d-flex align-center cursor-pointer mx-1"
-            :class="$vuetify.breakpoint.mobile ? 'px-2 colorTextBlack1--text':'px-5 colorText2--text'"
-            :color="$vuetify.breakpoint.mobile ? '#fff':'colorSelectBg'"
-            :height="$vuetify.breakpoint.mobile ? '25' :'48'"
-            :width="$vuetify.breakpoint.mobile?135:340"
+            :class="$mobile ? 'px-2 colorTextBlack1--text':'px-5 colorText2--text'"
+            :color="$mobile ? '#fff':'colorSelectBg'"
+            :height="$mobile ? '25' :'48'"
+            :width="$mobile?135:340"
             v-bind="attrs"
             v-on="on"
         >
-            <div class="icon-box iconfont icon-Filter icon__icon" :class="$vuetify.breakpoint.mobile?'text-18':'text-30'"></div>
-            <div class="ml-2 text-truncate" :class="$vuetify.breakpoint.mobile?'text-14':'text-16'" v-if="options[selectValue]">
+            <div class="icon-box iconfont icon-Filter icon__icon" :class="$mobile?'text-18':'text-30'"></div>
+            <div class="ml-2 text-truncate" :class="$mobile?'text-14':'text-16'" v-if="options[selectValue]">
                 {{options[selectValue].name || options[selectValue]}}
             </div>
             <v-spacer />
             <div class="icon-box iconfont" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
         </v-sheet>
     </template>
-    <v-sheet :color="$vuetify.breakpoint.mobile ? '#fff':'#24314a'" :class="$vuetify.breakpoint.mobile?'':'listbox'">
+    <v-sheet :color="$mobile ? '#fff':'#24314a'" :class="$mobile?'':'listbox'">
         <template v-for="(item, key) of getOrders()">
             <div
                 class="d-flex align-center cursor-pointer"
-                :class="[item == selectValue ? 'active' : '', $vuetify.breakpoint.mobile? 'mobile-listitem':'listitem']"
+                :class="[item == selectValue ? 'active' : '', $mobile? 'mobile-listitem':'listitem']"
                 v-if="options[item]"
                 :key="key"
                 @click="onChange(item)"

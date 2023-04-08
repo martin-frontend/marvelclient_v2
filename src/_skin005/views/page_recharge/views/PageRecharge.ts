@@ -46,8 +46,7 @@ export default class PageRecharge extends AbstractView {
     }
 
     @Watch("myProxy.pageData.tabIndex")
-    onTabChange()
-    {
-        window.scrollTo(0,0);
+    onTabChange() {
+        window.scrollTo(0, 0);
     }
 }

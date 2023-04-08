@@ -1,103 +1,106 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
     <v-card class="rounded-lg" color="bgBanner">
         <!-- pc显示方式 -->
-        <template v-if="!$vuetify.breakpoint.xsOnly">
-        <v-card-title class="gradient-bg  d-flex justify-center" v-if="!$vuetify.breakpoint.xsOnly">
-            <div class="text-20">{{LangUtil("地址薄")}}</div>
-            <!-- <v-spacer /> -->
-            <v-btn icon @click="onClose">
-                <v-icon>mdi-close</v-icon>
-            </v-btn>
-        </v-card-title>
-        <v-divider class="mb-2 " />
-        <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
-    
-            <div class="d-flex mt-3">
-                <CustomSelect
-                    class="mr-3"
-                    :icons="plat_coins"
-                    :options="pageData.methodList"
-                    v-model="listQuery.coin_name_unique"
-                    @change="onChange"
-                />
-                <CustomSelect
-                    v-if="pageData.methodList[listQuery.coin_name_unique]"
-                    :options="pageData.methodList[listQuery.coin_name_unique].options"
-                    v-model="listQuery.block_network_id"
-                    @change="onChangeSub"
-                />
-            </div>
-            <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
-                <v-sheet
-                    color="colorPanelBg2"
-                    outlined
-                    height="76"
-                    class="rounded-lg d-flex align-center px-5 mt-3 cursor"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                    @click="onAddress(item.payment_method.account)"
-                    style="background-color: transparent !important"
-                >
-                    <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
-                        <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
-                        <div class="text-truncate">{{item.payment_method.account}}</div>
-                    </v-sheet>
-                    <v-spacer />
-                    <!-- <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
+        <template v-if="!$xsOnly">
+            <v-card-title class="gradient-bg d-flex justify-center" v-if="!$xsOnly">
+                <div class="text-20">{{LangUtil("地址薄")}}</div>
+                <!-- <v-spacer /> -->
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-divider class="mb-2" />
+            <v-card-text v-if="!$xsOnly">
+                <div class="d-flex mt-3">
+                    <CustomSelect
+                        class="mr-3"
+                        :icons="plat_coins"
+                        :options="pageData.methodList"
+                        v-model="listQuery.coin_name_unique"
+                        @change="onChange"
+                    />
+                    <CustomSelect
+                        v-if="pageData.methodList[listQuery.coin_name_unique]"
+                        :options="pageData.methodList[listQuery.coin_name_unique].options"
+                        v-model="listQuery.block_network_id"
+                        @change="onChangeSub"
+                    />
+                </div>
+                <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
+                    <v-sheet
+                        color="colorPanelBg2"
+                        outlined
+                        height="76"
+                        class="rounded-lg d-flex align-center px-5 mt-3 cursor"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        @click="onAddress(item.payment_method.account)"
+                        style="background-color: transparent !important"
+                    >
+                        <v-sheet color="transparent" class="colorBlue--text text-truncate mr-2">
+                            <div class="mb-1 text-truncate">{{item.payment_method.account_name}}</div>
+                            <div class="text-truncate">{{item.payment_method.account}}</div>
+                        </v-sheet>
+                        <v-spacer />
+                        <!-- <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
                     <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn> -->
 
-                    <btn-yellow :btn_type="2" class="text-16 mr-3" width="100" height="30" @click.native="onEdit(item)">{{LangUtil("备注")}}</btn-yellow>
-                    <btn-yellow :btn_type="2" class="text-16" width="100" height="30" @click.native="onDelete(item)">{{LangUtil("删除")}}</btn-yellow>
+                        <btn-yellow :btn_type="2" class="text-16 mr-3" width="100" height="30" @click.native="onEdit(item)"
+                            >{{LangUtil("备注")}}</btn-yellow
+                        >
+                        <btn-yellow :btn_type="2" class="text-16" width="100" height="30" @click.native="onDelete(item)"
+                            >{{LangUtil("删除")}}</btn-yellow
+                        >
+                    </v-sheet>
                 </v-sheet>
-            </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
-            <v-spacer />
-            <v-pagination
-                class="mt-2"
-                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                v-model="pageData.pageInfo.pageCurrent"
-                :length="pageData.pageInfo.pageCount"
-                :total-visible="7"
-                @input="onPageChange"
-            ></v-pagination>
-        </v-card-text>
-    </template>
-    <template v-else>
-        <!-- 手机显示方式 -->
-        <v-card-text class="pb-3 px-0 " v-if="$vuetify.breakpoint.xsOnly">
-            <!-- <div class="gradient-bg d-flex align-center px-5">
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-spacer />
+                <v-pagination
+                    class="mt-2"
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </v-card-text>
+        </template>
+        <template v-else>
+            <!-- 手机显示方式 -->
+            <v-card-text class="pb-3 px-0" v-if="$xsOnly">
+                <!-- <div class="gradient-bg d-flex align-center px-5">
                 <div class="text-16">{{LangUtil("地址薄")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </div> -->
-            <!-- <div class="gradient-bg_mob d-flex align-center  justify-center">
+                <!-- <div class="gradient-bg_mob d-flex align-center  justify-center">
                 <div class="text-16 primary--text">{{LangUtil("地址薄")}}</div>
                 <v-btn icon @click="onClose">
                     <svg-icon icon="arrow_right" class="text-14 back_btn_icon textGray--text"></svg-icon>
                 </v-btn>
             </div> -->
-            <com-dialog-title title="地址薄" @onClose="onClose" />
+                <com-dialog-title title="地址薄" @onClose="onClose" />
 
-            <v-divider class="mb-2 " />
-            <div class="d-flex mt-3 px-3">
-                <CustomSelect
-                    class="mr-3"
-                    :icons="plat_coins"
-                    :options="pageData.methodList"
-                    v-model="listQuery.coin_name_unique"
-                    @change="onChange"
-                />
-                <CustomSelect
-                    v-if="pageData.methodList[listQuery.coin_name_unique]"
-                    :options="pageData.methodList[listQuery.coin_name_unique].options"
-                    v-model="listQuery.block_network_id"
-                    @change="onChangeSub"
-                />
-            </div>
-        </v-card-text>
-        <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-3" style="height: calc(100vh - 140px);"> -->
+                <v-divider class="mb-2" />
+                <div class="d-flex mt-3 px-3">
+                    <CustomSelect
+                        class="mr-3"
+                        :icons="plat_coins"
+                        :options="pageData.methodList"
+                        v-model="listQuery.coin_name_unique"
+                        @change="onChange"
+                    />
+                    <CustomSelect
+                        v-if="pageData.methodList[listQuery.coin_name_unique]"
+                        :options="pageData.methodList[listQuery.coin_name_unique].options"
+                        v-model="listQuery.block_network_id"
+                        @change="onChangeSub"
+                    />
+                </div>
+            </v-card-text>
+            <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-3" style="height: calc(100vh - 140px);"> -->
             <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
                 <v-sheet
                     class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
@@ -112,15 +115,19 @@
                         <div class="text-truncate">{{item.payment_method.account}}</div>
                     </v-sheet>
                     <v-spacer />
-                    <btn-yellow :btn_type="2" class="text-12 mr-3" min-width="60" height="30" @click.native="onEdit(item)">{{LangUtil("备注")}}</btn-yellow>
-                    <btn-yellow :btn_type="2" class="text-12" min-width="60" height="30" @click.native="onDelete(item)">{{LangUtil("删除")}}</btn-yellow>
-<!--                 
+                    <btn-yellow :btn_type="2" class="text-12 mr-3" min-width="60" height="30" @click.native="onEdit(item)"
+                        >{{LangUtil("备注")}}</btn-yellow
+                    >
+                    <btn-yellow :btn_type="2" class="text-12" min-width="60" height="30" @click.native="onDelete(item)"
+                        >{{LangUtil("删除")}}</btn-yellow
+                    >
+                    <!--                 
                     <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
                     <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn> -->
                 </v-sheet>
             </LoadMore>
-       <!-- </v-sheet> -->
-    </template>
+            <!-- </v-sheet> -->
+        </template>
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

@@ -6,6 +6,7 @@ import OpenLink from "@/core/global/OpenLink";
 import { Component, Watch } from "vue-property-decorator";
 import MyCanvas from "@/core/ui/MyCanvas";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -13,7 +14,7 @@ export default class TabRecharge extends AbstractView {
     myProxy = PanelUtil.getProxy_recharge;
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
-
+    amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
 
     mounted() {}
@@ -291,7 +292,7 @@ export default class TabRecharge extends AbstractView {
         return this.pageData.methodList;
     }
     jumpTo(target: string) {
-        if (!this.$vuetify.breakpoint.mobile) return;
+        if (!this.$mobile) return;
         setTimeout(() => {
             const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
             getAwardbtn?.addEventListener("animationend", () => {

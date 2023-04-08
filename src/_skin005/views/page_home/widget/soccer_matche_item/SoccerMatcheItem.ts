@@ -104,6 +104,5 @@ export default class SoccerMatcheItem extends AbstractView {
     onEnter() {
         this.pageData.event_id = this.matche.id;
         PanelUtil.openpage_soccer();
-
     }
 }

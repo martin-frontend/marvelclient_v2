@@ -1,82 +1,84 @@
-<div :class="{'mt-5': !$vuetify.breakpoint.mobile}">
+<div :class="{'mt-5': !$mobile}">
     <v-row>
         <v-col :cols="getBinerSize">
-            <v-sheet :class="$vuetify.breakpoint.mobile? '' : 'rounded-lg'">
-                <v-carousel :show-arrows="false" :height="viewWidth" cycle
-                    :class="$vuetify.breakpoint.mobile ? '' : 'rounded-lg'" hide-delimiter-background>
-                    <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i"
-                        :src="item.img_url"></v-carousel-item>
+            <v-sheet :class="$mobile? '' : 'rounded-lg'">
+                <v-carousel :show-arrows="false" :height="viewWidth" cycle :class="$mobile ? '' : 'rounded-lg'" hide-delimiter-background>
+                    <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i" :src="item.img_url"></v-carousel-item>
                 </v-carousel>
             </v-sheet>
         </v-col>
         <v-col v-if="getBinerSize != 12" cols="3">
             <v-sheet color="transparent" width="100%" height="100%" class="d-flex flex-column">
-                <v-card v-if="IsShow_PledgeDividend" class="elevation-0  mb-3 cursor-pointer rounded10 d-flex align-center justify-space-between"
-                    color="bgBanner" height="100%" @click.native="openpage_bonus">
+                <v-card
+                    v-if="IsShow_PledgeDividend"
+                    class="elevation-0 mb-3 cursor-pointer rounded10 d-flex align-center justify-space-between"
+                    color="bgBanner"
+                    height="100%"
+                    @click.native="openpage_bonus"
+                >
                     <v-sheet class="mt-2 ml-2" color="transparent">
                         <div class="text-16">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
-                        <div class="text-14">{{LangUtil("当前分红池")}}:<span class="ml-2 textYellow--text">{{`APR
-                                ${pageData.stakeInfo.apr}`}}</span></div>
+                        <div class="text-14">
+                            {{LangUtil("当前分红池")}}:<span class="ml-2 textYellow--text">{{`APR ${pageData.stakeInfo.apr}`}}</span>
+                        </div>
                         <div class="textYellow--text text-18">${{pageData.stakeInfo.bonus_pool_amount}}</div>
                         <!-- <btn-yellow class=" mt-2 px-3  text-14" width="104" height="36" @click.native="openpage_bonus"
                             :btn_type="2">{{LangUtil("领取分红")}}</btn-yellow> -->
-                        <div class="textGray--text">
-                            {{LangUtil("领取分红")}}
-                        </div>
+                        <div class="textGray--text">{{LangUtil("领取分红")}}</div>
                     </v-sheet>
                     <v-sheet color="transparent">
-                        <v-img src="@/_skin005/assets/pagehome/04_zhiya.png" width="90" height="90"
-                            class="mr-3"></v-img>
+                        <v-img src="@/_skin005/assets/pagehome/04_zhiya.png" width="90" height="90" class="mr-3"></v-img>
                     </v-sheet>
                 </v-card>
 
-                <v-card v-if="IsShow_Swap" class="elevation-0 rounded10 cursor-pointer d-flex align-center justify-space-between"
-                    color="bgBanner" height="100%" @click.native="openpage_swap">
+                <v-card
+                    v-if="IsShow_Swap"
+                    class="elevation-0 rounded10 cursor-pointer d-flex align-center justify-space-between"
+                    color="bgBanner"
+                    height="100%"
+                    @click.native="openpage_swap"
+                >
                     <v-sheet class="mt-2 ml-2" color="transparent">
                         <div class="text-16">{{LangUtil("交易{0}币", pageData.stakeInfo.coin_name_unique)}}</div>
-                        <div class="text-14 textYellow--text">{{LangUtil("24小时涨幅")}}{{ `${coinChangedData[0] >= 0? '+':
-                            '-'}${coinChangedData[1]}` }}</div>
+                        <div class="text-14 textYellow--text">
+                            {{LangUtil("24小时涨幅")}}{{ `${coinChangedData[0] >= 0? '+': '-'}${coinChangedData[1]}` }}
+                        </div>
                         <div class="d-flex align-center">
                             <div class="mr-1 text-12">{{LangUtil("价格:")}}</div>
-                            <div class="text-18 font-weight-bold textYellow--text">${{
-                                pageData.swap_setting_info.coin_a_b_price
-                                }}</div>
+                            <div class="text-18 font-weight-bold textYellow--text">${{ pageData.swap_setting_info.coin_a_b_price }}</div>
                         </div>
                         <!-- <btn-yellow class="ml-4 mt-1 px-3 btn-panel text-16" width="104" height="36"
                         @click.native="openpage_swap" :btn_type="2">{{LangUtil("前往交易")}}</btn-yellow> -->
-                        <div class="textGray--text">
-                            {{LangUtil("前往交易")}}
-                        </div>
+                        <div class="textGray--text">{{LangUtil("前往交易")}}</div>
                     </v-sheet>
 
-
                     <v-sheet color="transparent">
-                        <v-img src="@/_skin005/assets/pagehome/05_jiaoyi.png" width="90" height="90"
-                            class="mr-3"></v-img>
+                        <v-img src="@/_skin005/assets/pagehome/05_jiaoyi.png" width="90" height="90" class="mr-3"></v-img>
                     </v-sheet>
                 </v-card>
             </v-sheet>
         </v-col>
     </v-row>
 
-    <v-row class="mt-3 text-14 font-weight-bold" v-if="!$vuetify.breakpoint.mobile">
+    <v-row class="mt-3 text-14 font-weight-bold" v-if="!$mobile">
         <v-col v-if="IsShow_Promotion">
             <v-card class="elevation-0 panel-bouns pt-6 pb-2 pl-6 rounded10 fill-height" color="bgBanner" min-height="133">
                 <div class="text-20">{{LangUtil("推广赚钱")}}</div>
                 <div class="text-16 textYellow--text">{{LangUtil("每天领取更多返佣奖励")}}</div>
-                <div style="width: 60%" class="text-14 ">{{LangUtil("直属邀请的下级会员，可无限裂变式发展")}}</div>
-                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goExtension"
-                    :btn_type="2">{{LangUtil("查看详情")}}</btn-yellow>
+                <div style="width: 60%" class="text-14">{{LangUtil("直属邀请的下级会员，可无限裂变式发展")}}</div>
+                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goExtension" :btn_type="2"
+                    >{{LangUtil("查看详情")}}</btn-yellow
+                >
             </v-card>
         </v-col>
         <v-col v-if="IsShow_ActivityDisplay">
             <v-card class="elevation-0 panel-swap pt-6 pl-6 rounded10 fill-height" color="bgBanner" min-height="133">
                 <div class="text-20">{{LangUtil("精彩活动")}}</div>
                 <div class="text-16 textYellow--text">{{LangUtil("精彩活动——1")}}</div>
-                <div style="width: 60%" class="text-14 ">{{LangUtil("精彩活动——2")}}</div>
-                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goActivity"
-                    :btn_type="2">{{LangUtil("查看详情")}}</btn-yellow>
-
+                <div style="width: 60%" class="text-14">{{LangUtil("精彩活动——2")}}</div>
+                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goActivity" :btn_type="2"
+                    >{{LangUtil("查看详情")}}</btn-yellow
+                >
             </v-card>
         </v-col>
         <v-col v-if="IsShow_GameWater">
@@ -86,24 +88,24 @@
                     <!-- {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }} -->
                     {{LangUtil("升级VIP提高返水等级")}}
                 </div>
-                <div style="width: 60%" class="text-14">{{LangUtil("参与任意游戏产生有效投注将获得{0}奖励",
-                    pageData.stakeInfo.coin_name_unique)}}</div>
-                <btn-yellow class="ml-4 mt-1 px-3 btn-panel text-16" min_width="104" height="36"
-                    @click.native="openpage_mine" :btn_type="2">{{LangUtil("查看奖励")}}</btn-yellow>
+                <div style="width: 60%" class="text-14">
+                    {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
+                </div>
+                <btn-yellow class="ml-4 mt-1 px-3 btn-panel text-16" min_width="104" height="36" @click.native="openpage_mine" :btn_type="2"
+                    >{{LangUtil("查看奖励")}}</btn-yellow
+                >
             </v-card>
         </v-col>
     </v-row>
 
-    <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex align-center " width="100%"
-        min-width="100">
+    <v-sheet v-if="$mobile" color="transparent" class="d-flex align-center" width="100%" min-width="100">
         <Marquee1 />
     </v-sheet>
 
-    <SoccerMatche v-if="IsShow_FootBallHot" :class="{'boxpadding': $vuetify.breakpoint.mobile}" />
+    <SoccerMatche v-if="IsShow_FootBallHot" :class="{'boxpadding': $mobile}" />
 
-    <div v-for="(item, index) of gameProxy.lobbyIndex" :key="index" :class="{'boxpadding': $vuetify.breakpoint.mobile}">
-        <GameSlideGroup v-if=" item.category != 32" :data="item" :bShowAll="true" :name="item.category"
-            :id="item.category" />
+    <div v-for="(item, index) of gameProxy.lobbyIndex" :key="index" :class="{'boxpadding': $mobile}">
+        <GameSlideGroup v-if=" item.category != 32" :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
 </div>

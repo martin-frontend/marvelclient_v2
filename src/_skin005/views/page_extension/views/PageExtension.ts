@@ -18,7 +18,7 @@ export default class PageExtension extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
-    GlobalVar  = GlobalVar;
+    GlobalVar = GlobalVar;
     constructor() {
         super(PageExtensionMediator);
     }
@@ -45,7 +45,7 @@ export default class PageExtension extends AbstractView {
 
     handleRecords() {
         // 开启弹窗: 平台钱包/账户明细/推广返佣
-        PanelUtil.openpanel_wallet(2,15);
+        PanelUtil.openpanel_wallet(2, 15);
     }
 
     handlerPromotion() {
@@ -71,7 +71,7 @@ export default class PageExtension extends AbstractView {
             const myCanvas = new MyCanvas(288, 288);
             await myCanvas.drawQrCode(this.pageData.link, 16, 16, 256, 256);
 
-            PanelUtil.openpanel_preview( myCanvas.getData());
+            PanelUtil.openpanel_preview(myCanvas.getData());
         }
     }
 
@@ -98,7 +98,7 @@ export default class PageExtension extends AbstractView {
             //         dialog_message.success(LangUtil("保存成功"));
             //     });
             // } else {
-            PanelUtil.openpanel_preview( imgData);
+            PanelUtil.openpanel_preview(imgData);
             // }
         }
     }
@@ -117,7 +117,7 @@ export default class PageExtension extends AbstractView {
 
     handlerViewCard() {
         const { invite_user_business_card } = this.selfProxy.userInfo;
-        PanelUtil.openpanel_personal_card(invite_user_business_card, false );
+        PanelUtil.openpanel_personal_card(invite_user_business_card, false);
     }
     @Watch("core.user_id")
     onWatchUserId() {

@@ -18,7 +18,7 @@ export default class PageHome extends AbstractView {
         return core.channel_id;
     }
 
-    destroyed(){
+    destroyed() {
         super.destroyed();
     }
 }

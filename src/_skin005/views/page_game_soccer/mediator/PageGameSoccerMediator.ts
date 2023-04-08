@@ -49,11 +49,12 @@ export default class PageGameSoccerMediator extends AbstractMediator {
                 break;
             case net.EventType.REQUEST_ERROR:
                 console.log("接收错误消息");
-                if (body.url == net.getUrl(net.HttpType.api_vendor_var_ori_product_show_var, body.data) ||
+                if (
+                    body.url == net.getUrl(net.HttpType.api_vendor_var_ori_product_show_var, body.data) ||
                     body.url == net.getUrl(net.HttpType.api_vendor_var_ori_product_visitor_show_var, body.data)
                 ) {
                     PanelUtil.openpage_home();
-                };
+                }
                 break;
         }
     }

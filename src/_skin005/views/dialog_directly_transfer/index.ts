@@ -4,7 +4,7 @@ import DialogDirectlyTransferProxy from "./proxy/DialogDirectlyTransferProxy";
 import DialogDirectlyTransfer from "./views/DialogDirectlyTransfer.vue";
 const proxy: DialogDirectlyTransferProxy = getProxy(DialogDirectlyTransferProxy);
 
-function show(agent_user: any = null ,addModeData:boolean = false) {
+function show(agent_user: any = null, addModeData: boolean = false) {
     DialogMount(DialogDirectlyTransfer);
     hidden(false);
     proxy.resetQuery();
@@ -14,9 +14,8 @@ function show(agent_user: any = null ,addModeData:boolean = false) {
     proxy.setData(agent_user);
 }
 
-
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

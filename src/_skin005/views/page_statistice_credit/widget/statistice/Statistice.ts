@@ -3,7 +3,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import { dateFormat, getTodayOffset } from "@/core/global/Functions";
+import { amountFormat, dateFormat, getTodayOffset } from "@/core/global/Functions";
 import DialogStatisticsCreditMediator from "@/_skin005/views/dialog_statistics_credit/mediator/DialogStatisticsCreditMediator";
 import PageBlur from "@/_skin005/core/PageBlur";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
@@ -19,7 +19,9 @@ export default class Statistice extends AbstractView {
 
     getMoneyColor = getMoneyColor;
     getMoneyValue = getMoneyValue;
-
+    amountFormat(val: any, isb = true) {
+        return amountFormat(val, isb);
+    }
     isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     pageData = this.myProxy.pageData;
 
@@ -70,14 +72,13 @@ export default class Statistice extends AbstractView {
         this.onTimeChange();
     }
 
-    setDatePiker()
-    {
+    setDatePiker() {
         const keyNode = document.querySelectorAll(".el-date-editor");
         if (!keyNode || keyNode.length < 1) return;
 
         for (let index = 0; index < keyNode.length; index++) {
             const element = keyNode[index];
-            
+
             const iNode = document.createElement("i");
             iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
             element.appendChild(iNode);
@@ -85,16 +86,14 @@ export default class Statistice extends AbstractView {
             iNode.style.position = "absolute";
             iNode.style.top = "13px";
             iNode.style.right = "12px";
-            iNode.style.color="#8E8F91";
-            iNode.style.pointerEvents="none";
-
+            iNode.style.color = "#8E8F91";
+            iNode.style.pointerEvents = "none";
         }
     }
     destroyed() {
         console.log(" ---销毁 ----");
         super.destroyed();
         this.myProxy.reseData();
-
     }
     onBtnClickNextPage(item: any) {
         if (item.directly_users <= 0) {
@@ -137,10 +136,9 @@ export default class Statistice extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
-
     get isMine(): boolean {
         if (this.myProxy.userListInfo.length > 1) {
-            return false
+            return false;
         }
         return true;
     }
@@ -177,8 +175,7 @@ export default class Statistice extends AbstractView {
             this.timeRange = [start, end];
             this.myProxy.setcoin_name_unique();
             this.onTimeChange();
-        }
-        else {
+        } else {
             this.myProxy.reseData();
         }
     }
@@ -193,7 +190,7 @@ export default class Statistice extends AbstractView {
             bind_relation: this.pageData.bind_relation,
             parents: userlist,
             target_user_id: user_id,
-        }
+        };
         PanelUtil.openpanel_bet_record(user_id, this.timeRange[0], this.timeRange[1], false, {
             coin_name_unique: this.myProxy.coin_name_unique,
             bShowMoneyType: true,
@@ -202,13 +199,10 @@ export default class Statistice extends AbstractView {
             bShowOptions: false,
             filterBtnInfo: filterInfo,
         });
-
-
     }
     onItemClick(item: any) {
         console.log("点击 item", item);
         this.myProxy.coin_name_unique = item;
         this.onTimeChange();
     }
-
 }

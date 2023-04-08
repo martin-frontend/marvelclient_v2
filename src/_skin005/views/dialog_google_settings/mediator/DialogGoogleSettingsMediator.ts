@@ -19,7 +19,7 @@ export default class DialogGoogleSettingsMediator extends AbstractMediator {
                 PanelUtil.message_success(LangUtil("操作成功"));
                 break;
             case net.EventType.api_user_var_google_key:
-                myProxy.pageData.loading = false;                
+                myProxy.pageData.loading = false;
                 myProxy.setData(body);
         }
     }

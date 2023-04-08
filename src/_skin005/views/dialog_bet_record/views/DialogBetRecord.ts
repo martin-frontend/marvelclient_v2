@@ -2,7 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GameConfig from "@/core/config/GameConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { changeDateShow, dateFormat, getTodayOffset } from "@/core/global/Functions";
+import { amountFormat, changeDateShow, dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
 import { Watch, Component } from "vue-property-decorator";
@@ -19,6 +19,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
+
     GameConfig = GameConfig;
     commonIcon = Assets.commonIcon;
     getMoneyColor = getMoneyColor;
@@ -50,10 +51,12 @@ export default class DialogBetRecord extends AbstractView {
             },
         ],
     };
+    amountFormat(nub: any) {
+        return amountFormat(nub, true);
+    }
     mounted() {
-
         setTimeout(() => {
-           this.setDatePiker();
+            this.setDatePiker();
         }, 400);
         this.myProxy.api_vendor_simple();
     }
@@ -96,31 +99,27 @@ export default class DialogBetRecord extends AbstractView {
         if (!keyNode) return;
         console.log("-----创建 --22222--");
         for (let index = 0; index < keyNode.length; index++) {
-        const element = keyNode[index];
+            const element = keyNode[index];
 
-        const iNode = document.createElement("i");
-        iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-        element.appendChild(iNode);
+            const iNode = document.createElement("i");
+            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+            element.appendChild(iNode);
 
-        iNode.style.position = "absolute";
-        iNode.style.top = "12px";
-        iNode.style.right = "12px";
-        iNode.style.color = "#8E8F91";
-        iNode.style.pointerEvents = "none";
-
+            iNode.style.position = "absolute";
+            iNode.style.top = "12px";
+            iNode.style.right = "12px";
+            iNode.style.color = "#8E8F91";
+            iNode.style.pointerEvents = "none";
         }
     }
 
     public get isOtherUser(): any {
-
         if (!this.groupsTitle) {
             //return this.curShowId;
             return "";
-        }
-        else {
+        } else {
             return this.listQuery.agent_user_id + "(" + this.groupsTitle + ")";
         }
-
     }
 
     public get showMultUserList(): any {
@@ -145,7 +144,8 @@ export default class DialogBetRecord extends AbstractView {
             nub = parseFloat(nub);
         }
         nub = nub * 0.01;
-        return nub.toFixed(2);
+        //return nub.toFixed(2);
+        return this.amountFormat(nub);
     }
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
@@ -159,8 +159,7 @@ export default class DialogBetRecord extends AbstractView {
     public get groupsTitle(): string {
         if (this.pageData.filterBtnInfo && this.pageData.filterBtnInfo.is_group == 2) {
             return LangUtil("团队");
-        }
-        else {
+        } else {
             return "";
         }
     }
@@ -210,14 +209,12 @@ export default class DialogBetRecord extends AbstractView {
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
             this.timeRange = [start_date, end_date];
             this.onTimeChange();
-        }
-        else {
+        } else {
             this.myProxy.clearFilterInfo();
             this.myProxy.resetQuery();
-
         }
     }
-    @Watch("$vuetify.breakpoint.mobile")
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -290,12 +287,10 @@ export default class DialogBetRecord extends AbstractView {
     onPageChange(val: any) {
         this.listQuery.page_count = val;
         this.myProxy.getApi();
-        if (this.$refs.scrollObj)
-        {
+        if (this.$refs.scrollObj) {
             //@ts-ignore
             scrollUtil_div(this.$refs.scrollObj.$el, 0);
         }
-        
     }
 
     onRefresh(done: any) {
@@ -325,9 +320,8 @@ export default class DialogBetRecord extends AbstractView {
     getDate(str: string) {
         return changeDateShow(str);
     }
-    
-    public get isShowVailBet() : boolean {
+
+    public get isShowVailBet(): boolean {
         return SkinVariable.isShowVailBet;
     }
-    
 }

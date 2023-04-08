@@ -1,5 +1,5 @@
-<v-sheet color="transparent" width="100%" :class="$vuetify.breakpoint.mobile ? 'pad_top_mob' : 'pad_height'">
-    <template v-if="!$vuetify.breakpoint.mobile">
+<v-sheet color="transparent" width="100%" :class="$mobile ? 'pad_top_mob' : 'pad_height'">
+    <template v-if="!$mobile">
         <v-sheet color="transparent" class="d-flex flex-column">
             <v-card flat class="d-flex px-4 rounded10" width="100%" color="bgBanner" min-height="120">
                 <v-sheet class="d-flexalign-center flex-column mt-4" color="transparent" min-width="100">
@@ -90,7 +90,7 @@
                     <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
                         <div v-for="(item_cont, key_cont) of item.amount_to_the_company" :key="key_cont">
                             <span> {{key_cont}} </span>
-                            <span class="mr-2"> {{item_cont}} </span>
+                            <span class="mr-2"> {{amountFormat(item_cont)}} </span>
                         </div>
                     </v-sheet>
                     <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
@@ -154,7 +154,7 @@
                 </v-sheet>
             </v-card>
 
-            <v-card class="rounded10 px-2 py-2 mt-2 text-12" flat width="100%" color="bgBanner">
+            <v-card v-if="pageData.isShowCredit" class="rounded10 px-2 py-2 mt-2 text-12" flat width="100%" color="bgBanner">
                 <v-sheet class="d-flex ml-2 text-14 align-center font-weight-Regular" color="transparent" min-height="42">
                     <v-sheet color="transparent"> {{LangUtil("月帐期数表")}} </v-sheet>
                 </v-sheet>
@@ -203,7 +203,7 @@
                                 class="userInfo_color--text"
                             >
                                 <span> {{key_cont}} </span>
-                                <span> {{item_cont}} </span>
+                                <span> {{amountFormat(item_cont)}} </span>
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>

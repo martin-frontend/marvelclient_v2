@@ -46,7 +46,7 @@ export default class DialogRecordRecharge extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -69,11 +69,12 @@ export default class DialogRecordRecharge extends AbstractView {
     getDate(str: string) {
         return changeDateShow(str);
     }
-    getStateColor(state:number)
-    {
+    getStateColor(state: number) {
         switch (state) {
-            case 1: return "textGreen--text";
-            case 2: return "red--text";
+            case 1:
+                return "textGreen--text";
+            case 2:
+                return "red--text";
             default:
                 return "textYellow--text";
         }

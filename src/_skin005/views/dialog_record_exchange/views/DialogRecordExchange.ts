@@ -45,7 +45,7 @@ export default class DialogRecordExchange extends AbstractView {
         }
     }
 
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -69,15 +69,16 @@ export default class DialogRecordExchange extends AbstractView {
         return changeDateShow(str);
     }
     getStateColor(state: number) {
-
         switch (state) {
             case 4:
-            case 9: return "textGreen--text";
+            case 9:
+                return "textGreen--text";
             case 5:
             case 6:
             case 7:
             case 8:
-            case 13: return "red--text";
+            case 13:
+                return "red--text";
             default:
                 return "textYellow--text";
         }
@@ -85,12 +86,14 @@ export default class DialogRecordExchange extends AbstractView {
     getStateText(state: number) {
         switch (state) {
             case 4:
-            case 9: return LangUtil("成功");
+            case 9:
+                return LangUtil("成功");
             case 5:
             case 6:
             case 7:
             case 8:
-            case 13: return LangUtil("失败");
+            case 13:
+                return LangUtil("失败");
             default:
                 return LangUtil("进行中");
         }

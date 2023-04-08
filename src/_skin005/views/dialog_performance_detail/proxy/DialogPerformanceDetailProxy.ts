@@ -13,7 +13,7 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             cate: 0,
@@ -91,11 +91,11 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         this.pageData.today_group_users = data.today_group_users;
         this.pageData.today_directly_users = data.today_directly_users;
 
-        const coinname = Object.keys( body.commission_awaiting_num);
+        const coinname = Object.keys(body.commission_awaiting_num);
         this.curCoinName = coinname[0];
 
-        console.log("当前币种  为" , this.curCoinName );
-        
+        console.log("当前币种  为", this.curCoinName);
+
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.original, data);
         Object.keys(data.commission_info).forEach((key) => {
@@ -111,47 +111,45 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         });
     }
 
-    setTestData()
-    {
-        const obj={
-            nick_name:"asdasd",
-            user_id:"312312",
-            group_users:12,
-            water_info:{
-                "2":{
-                    group_water:"123",
-                    self_water:"123",
-                    is_promotion_floor:"1",
-                    commission_num:{
-                        "USDT":"654",
-                    }
+    setTestData() {
+        const obj = {
+            nick_name: "asdasd",
+            user_id: "312312",
+            group_users: 12,
+            water_info: {
+                "2": {
+                    group_water: "123",
+                    self_water: "123",
+                    is_promotion_floor: "1",
+                    commission_num: {
+                        USDT: "654",
+                    },
                 },
-                "4":{
-                    group_water:"123",
-                    self_water:"123",
-                    is_promotion_floor:"1",
-                    commission_num:{
-                        "USDT":"654",
-                    }
+                "4": {
+                    group_water: "123",
+                    self_water: "123",
+                    is_promotion_floor: "1",
+                    commission_num: {
+                        USDT: "654",
+                    },
                 },
-                "8":{
-                    group_water:"123",
-                    self_water:"123",
-                    is_promotion_floor:"1",
-                    commission_num:{
-                        "USDT":"654",
-                    }
+                "8": {
+                    group_water: "123",
+                    self_water: "123",
+                    is_promotion_floor: "1",
+                    commission_num: {
+                        USDT: "654",
+                    },
                 },
-            }
-        }
+            },
+        };
 
-        const list=<any>[];
+        const list = <any>[];
         const count = 10;
         for (let index = 0; index < count; index++) {
             list.push(obj);
         }
         return list;
-       
     }
     /**写入 直属详情 */
     setCommissionDirectswater(body: any) {

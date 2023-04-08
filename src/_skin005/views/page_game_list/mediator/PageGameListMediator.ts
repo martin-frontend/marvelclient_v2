@@ -15,7 +15,7 @@ export default class PageGameListMediator extends AbstractMediator {
         //myProxy.api_plat_var_game_menu();
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageGameListProxy.NAME);
     }
 

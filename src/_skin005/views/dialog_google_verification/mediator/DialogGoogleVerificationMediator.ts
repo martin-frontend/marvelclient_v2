@@ -2,7 +2,7 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 // import DialogGoogleVerificationProxy from "../proxy/DialogGoogleVerificationProxy";
 // import getProxy from "@/core/global/getProxy";
 
-export default class DialogGoogleVerificationMediator extends AbstractMediator{
+export default class DialogGoogleVerificationMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [];
     }

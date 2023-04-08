@@ -2,7 +2,6 @@
 <style src="./DialogSafetyCenter.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-
 import Component from "vue-class-component";
 import DialogSafetyCenter from "./DialogSafetyCenter";
 import AdvertiseInLogin from "@/_skin005/views/widget/advertise_in_login/AdvertiseInLogin.vue";
@@ -14,7 +13,6 @@ import CustomPassword from "@/_skin005/views/widget/custom_password_nomal/Custom
         AdvertiseInLogin,
         CustomInput,
         CustomPassword,
-
     },
 })
 export default class extends DialogSafetyCenter {}

@@ -102,6 +102,5 @@ export default class DialogBetRecord extends AbstractView {
         this.myProxy.listMore(done);
     }
 
-    handlerDetail(game_info: string) {
-    }
+    handlerDetail(game_info: string) {}
 }

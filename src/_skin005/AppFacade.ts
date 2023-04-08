@@ -40,8 +40,8 @@ export default class AppFacade {
         }, 300000);
 
         window.addEventListener("resize", () => {
-            window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile && isMobile();
-            window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.$xsOnly && isMobile();
+            window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
+            window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
         });
 
         window.addEventListener("message", (e) => {

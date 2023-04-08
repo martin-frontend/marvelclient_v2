@@ -20,7 +20,7 @@ export default class PageMyInfo extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
     GamePlatConfig = GamePlatConfig;
-    GlobalVar= GlobalVar;
+    GlobalVar = GlobalVar;
     constructor() {
         super(PageMyInfoMediator);
     }
@@ -90,45 +90,55 @@ export default class PageMyInfo extends AbstractView {
 
     goCategory(item: any) {
         switch (item) {
-            case 0: PanelUtil.openpanel_user_center();
+            case 0:
+                PanelUtil.openpanel_user_center();
                 break;
-            case 1: PanelUtil.openpanel_safety_center();
+            case 1:
+                PanelUtil.openpanel_safety_center();
                 break;
-            case 2: PanelUtil.openpanel_wallet();
+            case 2:
+                PanelUtil.openpanel_wallet();
                 break;
-            case 3: PanelUtil.openpanel_bet_record();
+            case 3:
+                PanelUtil.openpanel_bet_record();
                 break;
-            case 4: PanelUtil.openpanel_mail();
+            case 4:
+                PanelUtil.openpanel_mail();
                 break;
-            case 5: PanelUtil.openpage_introduce();
+            case 5:
+                PanelUtil.openpage_introduce();
                 break;
-            case 6: PanelUtil.openpage_bonus();
+            case 6:
+                PanelUtil.openpage_bonus();
                 break;
-            case 7: PanelUtil.openpage_extension();
+            case 7:
+                PanelUtil.openpage_extension();
                 break;
-            case 8: PanelUtil.openpage_mine();
+            case 8:
+                PanelUtil.openpage_mine();
                 break;
-            case 9: PanelUtil.openpage_swap();
+            case 9:
+                PanelUtil.openpage_swap();
                 break;
-            case 10: PanelUtil.openpanel_activity();
+            case 10:
+                PanelUtil.openpanel_activity();
                 break;
-            case 11: PanelUtil.openpage_statist_credit();
+            case 11:
+                PanelUtil.openpage_statist_credit();
                 break;
-                case 12: PanelUtil.openpanel_directly_backwater(null, true);
+            case 12:
+                PanelUtil.openpanel_directly_backwater(null, true);
                 break;
         }
     }
 
     public get curShowMoney(): any {
-        if (this.selfProxy.userInfo &&
-            this.selfProxy.userInfo.gold_info &&
-            this.gameProxy.coin_name_unique) {
+        if (this.selfProxy.userInfo && this.selfProxy.userInfo.gold_info && this.gameProxy.coin_name_unique) {
             //@ts-ignore
             const res = this.selfProxy.userInfo.gold_info[this.gameProxy.coin_name_unique];
             if (res) {
                 return res.sum_money;
-            }
-            else {
+            } else {
                 return "";
             }
             //return this.selfProxy.userInfo.gold_info[this.gameProxy.coin_name_unique].sum_money;
@@ -146,7 +156,11 @@ export default class PageMyInfo extends AbstractView {
     onItemClick(key: string) {
         this.gameProxy.setCoin(key);
         //PanelUtil.openpage_game_play();
-        if (this.$route.path.includes("page_game_play") || this.$route.path.includes("page_game_soccer") || this.$route.path.includes("cricket")) {
+        if (
+            this.$route.path.includes("page_game_play") ||
+            this.$route.path.includes("page_game_soccer") ||
+            this.$route.path.includes("cricket")
+        ) {
             this.gameProxy.api_vendor_var_ori_product_show_var(this.gameProxy.currGame);
         }
     }
@@ -175,20 +189,19 @@ export default class PageMyInfo extends AbstractView {
         PanelUtil.openpanel_recharge();
     }
     onExchargeBtnClick() {
-        console.log("提现")
+        console.log("提现");
         PanelUtil.openpanel_excharge();
     }
 
     onLoginOut() {
         //this.selfProxy.api_user_logout();
         PanelUtil.message_confirm({
-            message:LangUtil("是否退出登录"),
-            okFun:() =>{
+            message: LangUtil("是否退出登录"),
+            okFun: () => {
                 this.selfProxy.api_user_logout();
-            }
-        })
+            },
+        });
     }
-
 
     public get item_count(): number {
         const realWidth = this.$vuetify.breakpoint.width - 22;
@@ -202,7 +215,7 @@ export default class PageMyInfo extends AbstractView {
         }
         return needCount;
     }
-    public get isShowRecharge() : boolean {
-        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98 );
-    } 
+    public get isShowRecharge(): boolean {
+        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+    }
 }

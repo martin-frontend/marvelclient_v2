@@ -3,7 +3,6 @@ import DialogEmailDetailProxy from "../proxy/DialogEmailDetailProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-
 export default class DialogEmailDetailMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
         return [net.EventType.api_user_var_mail_var_receive];

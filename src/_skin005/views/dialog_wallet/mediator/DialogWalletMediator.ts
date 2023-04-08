@@ -12,6 +12,7 @@ export default class DialogWalletMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
+        if (!myProxy.pageData.bShow) return;
         switch (notification.getName()) {
             case net.EventType.api_user_show_var:
                 myProxy.pageData.loading = false;

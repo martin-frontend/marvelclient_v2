@@ -562,11 +562,19 @@ export function getDateByTimeZone(time: number, timezone: number = 0) {
  * decimalLang 小数点几位
  */
 export function amountFormat(val: any, decimal: boolean = false, decimalLang: number = 2) {
-    const intValue = parseFloat(val);
+    let isUsdt = false;
+    let newVal = val;
+    if (typeof val == "string" && val.includes("$")) {
+        isUsdt = true;
+        newVal = val.replace("$", "");
+    }
+    const intValue = parseFloat(newVal);
     const str = intValue.toFixed(decimalLang) + "";
     const sum = str.substring(0, str.indexOf(".")).replace(/\B(?=(?:\d{3})+$)/g, ","); //取到整数部分
     const dot = str.substring(str.length, str.indexOf(".")); //取到小数部分搜索
-
+    if (isUsdt) {
+        return "$" + (decimal ? sum + dot : sum);
+    }
     return decimal ? sum + dot : sum;
 }
 
@@ -599,57 +607,59 @@ export function getResponseIcon(url: string) {
     return resultUrl;
 }
 /**检测字符串中是否有换行 */
-export function checkMultiline(str:string):boolean{
+export function checkMultiline(str: string): boolean {
     return str.search("\n") != -1;
 }
 
 /**字符串中越南文 转为英文 */
-export function convert_vi_to_en(str:string):string{
-    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, "a"); 
-    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, "e"); 
-    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, "i"); 
-    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, "o"); 
-    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, "u"); 
-    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, "y"); 
-    str = str.replace(/(đ)/g, "d"); 
-    str = str.replace(/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/g, "A"); 
-    str = str.replace(/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/g, "E"); 
-    str = str.replace(/(Ì|Í|Ị|Ỉ|Ĩ)/g, "I"); 
-    str = str.replace(/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/g, "O"); 
-    str = str.replace(/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/g, "U"); 
-    str = str.replace(/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/g, "Y"); 
-    str = str.replace(/(Đ)/g, "D"); 
-    //3.顯示的文字改成40字 
-    //$str = str_replace(" ", "-", str_replace("&*#39;","",$str)); 
-    return str; 
+export function convert_vi_to_en(str: string): string {
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, "a");
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, "e");
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, "i");
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, "o");
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, "u");
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, "y");
+    str = str.replace(/(đ)/g, "d");
+    str = str.replace(/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/g, "A");
+    str = str.replace(/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/g, "E");
+    str = str.replace(/(Ì|Í|Ị|Ỉ|Ĩ)/g, "I");
+    str = str.replace(/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/g, "O");
+    str = str.replace(/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/g, "U");
+    str = str.replace(/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/g, "Y");
+    str = str.replace(/(Đ)/g, "D");
+    //3.顯示的文字改成40字
+    //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
+    return str;
 }
 /**将时间中的 - 换成 /  */
-export function changeDateShow(str:string ,isshowData:boolean = false):string{
-    if (!str)
-    {
+export function changeDateShow(str: string, isshowData: boolean = false): string {
+    if (!str) {
         return str;
     }
-    if (typeof(str) !="string")
-    {
+    if (typeof str != "string") {
         return str;
     }
     //let newstr = str.replace(/^\d{4}-/,"")
-    if (str.length < 8) 
-    {
+    if (str.length < 8) {
         return str;
     }
-    let newstr = str.substring(5, str.length-3);
+    let newstr = str.substring(5, str.length - 3);
 
-    // const re = /(\w+)\s(\w+)/; 
-    // let newstr = str.replace(re, "$1"); 
+    // const re = /(\w+)\s(\w+)/;
+    // let newstr = str.replace(re, "$1");
     // console.log("3333",newstr);
 
     const re_1 = /-/gi;
-    newstr = newstr.replace(re_1,"/" );
+    newstr = newstr.replace(re_1, "/");
 
     return newstr;
 }
 /**判断浏览器是否为safari */
-export function isSafari(){
-    return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/iPhone/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent);
+export function isSafari() {
+    return (
+        /Safari/.test(navigator.userAgent) &&
+        !/Chrome/.test(navigator.userAgent) &&
+        !/iPhone/.test(navigator.userAgent) &&
+        !/iPad/.test(navigator.userAgent)
+    );
 }

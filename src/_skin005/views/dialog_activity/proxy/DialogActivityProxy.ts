@@ -6,7 +6,7 @@ export default class DialogActivityProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false,
+        bHidden: false,
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -30,14 +30,12 @@ export default class DialogActivityProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestData()
-    {
-        const obj={
-            activity_name :"cxvcv dsfdsf",
-            start_time :"cxvcv dsfdsf",
-            end_time :"cxvcv dsfdsf",
-
-        }
+    setTestData() {
+        const obj = {
+            activity_name: "cxvcv dsfdsf",
+            start_time: "cxvcv dsfdsf",
+            end_time: "cxvcv dsfdsf",
+        };
         const list = <any>[];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
@@ -48,8 +46,8 @@ export default class DialogActivityProxy extends puremvc.Proxy {
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

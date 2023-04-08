@@ -72,7 +72,6 @@ export default class DialogGoogleSettings extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
-           
             this.myProxy.api_user_var_google_key();
         }
     }

@@ -34,8 +34,8 @@ export default class DialogGoldWaterProxy extends puremvc.Proxy {
         console.log(" 接收到的 流水 数据为", data);
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -70,6 +70,5 @@ export default class DialogGoldWaterProxy extends puremvc.Proxy {
         const obj = { user_id: core.user_id };
         //Object.assign(obj, this.pageData.listQuery);
         this.sendNotification(net.HttpType.api_user_var_gold_water_index, obj);
-
     }
 }

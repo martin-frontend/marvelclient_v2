@@ -4,9 +4,7 @@ import getProxy from "@/core/global/getProxy";
 
 export default class DialogOrderMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_vendor_var_bet_log_detail,
-        ];
+        return [net.EventType.api_vendor_var_bet_log_detail];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

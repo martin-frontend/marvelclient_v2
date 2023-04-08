@@ -18,18 +18,11 @@ export default class BtnYellow extends AbstractView {
 
     @Prop({ default: false }) isactive!: boolean;
 
-    
-    public get useOutlinedAndActive() : boolean {
+    public get useOutlinedAndActive(): boolean {
+        if (!this.outlined) return false;
 
-        if (!this.outlined )
-            return false;
-
-        if (!this.isactive) 
-        {
+        if (!this.isactive) {
             return true;
-        }
-        else
-        return false;
+        } else return false;
     }
-    
 }

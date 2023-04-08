@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- <v-card-title class="gradient-bg">
             <div class="text-18">{{LangUtil("备注")}}</div>
@@ -10,7 +10,14 @@
 
         <com-dialog-title title="备注" :isDialog="true" @onClose="onClose" />
         <v-card-text class="px-5 mt-1">
-            <v-textarea class="text-14" v-model="pageData.listQuery.account_name" background-color="colorPanelBg" outlined solo :label="LangUtil('输入备注信息(0-100)')"></v-textarea>
+            <v-textarea
+                class="text-14"
+                v-model="pageData.listQuery.account_name"
+                background-color="colorPanelBg"
+                outlined
+                solo
+                :label="LangUtil('输入备注信息(0-100)')"
+            ></v-textarea>
             <v-btn color="colorBtnBg" height="44" block @click="onSubmit">{{LangUtil("保存设置")}}</v-btn>
         </v-card-text>
     </v-card>

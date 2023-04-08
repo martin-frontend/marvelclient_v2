@@ -11,13 +11,10 @@ function show() {
     proxy.pageData.bShow = true;
     const selfProxy = PanelUtil.getProxy_selfproxy;
     proxy.setData(selfProxy.userInfo);
-
-   
 }
-
 
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

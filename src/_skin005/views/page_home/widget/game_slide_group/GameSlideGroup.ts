@@ -24,7 +24,7 @@ export default class GameSlideGroup extends AbstractView {
     }
 
     getCols() {
-        if (this.$vuetify.breakpoint.xsOnly) {
+        if (this.$xsOnly) {
             return 4;
         }
         return 2;
@@ -39,10 +39,8 @@ export default class GameSlideGroup extends AbstractView {
     goGamePlay(item: any) {
         PanelUtil.openpage_soccer(item);
     }
-    isgameClose(item:any)
-    {
-        if (!item)
-        return false;
+    isgameClose(item: any) {
+        if (!item) return false;
 
         return item.status != 1;
     }

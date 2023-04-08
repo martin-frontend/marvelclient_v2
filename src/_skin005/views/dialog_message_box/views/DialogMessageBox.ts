@@ -14,11 +14,10 @@ export default class DialogMessageBox extends AbstractView {
         super(DialogMessageBoxMediator);
     }
 
-    
-    public get isMultMessage() : boolean {
-        return !(typeof this.pageData.data.message == "string")
+    public get isMultMessage(): boolean {
+        return !(typeof this.pageData.data.message == "string");
     }
-    
+
     onOK() {
         this.myProxy.handlerOK();
     }

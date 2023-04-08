@@ -5,7 +5,11 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 export default class DialogAddressBookMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_exchange_method_list, net.EventType.api_user_var_payment_method_index, net.EventType.api_user_var_payment_method_update_var];
+        return [
+            net.EventType.api_user_var_exchange_method_list,
+            net.EventType.api_user_var_payment_method_index,
+            net.EventType.api_user_var_payment_method_update_var,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

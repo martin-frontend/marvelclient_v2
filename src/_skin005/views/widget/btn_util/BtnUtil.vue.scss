@@ -36,11 +36,11 @@ $sss: #3e3f41;
 }
 
 .game_border {
-    border-radius: 0px 0px $base_radius $base_radius ;
+    border-radius: 0px 0px $base_radius $base_radius;
 }
 
 .game_border::before {
-    border-radius: 0px 0px $base_radius $base_radius ;
+    border-radius: 0px 0px $base_radius $base_radius;
 }
 
 .btn_base::before {
@@ -120,7 +120,7 @@ $sss: #3e3f41;
     }
 
     .btn_nomal_disable::before {
-        background: linear-gradient(90deg, #d5dce2 0%, #F4F4F4 100%);
+        background: linear-gradient(90deg, #d5dce2 0%, #f4f4f4 100%);
     }
 
     .btn_three_disable {
@@ -133,7 +133,6 @@ $sss: #3e3f41;
 }
 
 //------------    样式一  end ----------------------
-
 
 //------------    样式二  ----------------------
 .btn_two:before {
@@ -173,8 +172,6 @@ $sss: #3e3f41;
     .btn_two {
         color: $hover_text;
     }
-
-
 }
 
 .theme--light {
@@ -199,7 +196,6 @@ $sss: #3e3f41;
     color: $nomal_text !important;
     background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
 }
-
 
 .theme--dark {
     .test_my {
@@ -230,7 +226,7 @@ $sss: #3e3f41;
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text ;
+    color: $nomal_text;
     background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 }
 
@@ -239,7 +235,6 @@ $sss: #3e3f41;
         color: $hover_text !important;
         background-image: linear-gradient(to right, #333435, #333435) !important;
     }
-
 }
 
 .theme--light {
@@ -247,7 +242,6 @@ $sss: #3e3f41;
         color: $nomal_text !important;
         background-image: linear-gradient(to right, #fff, #fff) !important;
     }
-
 }
 
 .btnweight {
@@ -259,7 +253,7 @@ $sss: #3e3f41;
     //border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text ;
+    color: $nomal_text;
     background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 }
 
@@ -294,12 +288,12 @@ $sss: #3e3f41;
 //     background: linear-gradient(to right, #3e3f41, #3e3f41);
 // }
 
-.btn_helf_new{
+.btn_helf_new {
     cursor: pointer;
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text ;
+    color: $nomal_text;
     background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 }
 
@@ -328,10 +322,7 @@ $sss: #3e3f41;
     }
 }
 
-
 //------------    样式二  end ----------------------
 //------------    样式三     ----------------------
-
-
 
 //------------    样式三  end ----------------------

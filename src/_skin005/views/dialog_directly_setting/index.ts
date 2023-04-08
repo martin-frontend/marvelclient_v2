@@ -8,19 +8,16 @@ function show(agent_user: any = null) {
     DialogMount(DialogDirectlySetting);
     hidden(false);
     proxy.pageData.bShow = true;
-    if (agent_user)
-    {
+    if (agent_user) {
         proxy.api_user_var_fetch_direct_user_info(agent_user.userinfo.user_id);
         //Object.assign(proxy.playerInfo, agent_user);
         //proxy.limitinfo = agent_user.limitinfo;
         proxy.setLimitinfo(agent_user.limitinfo);
     }
-    
 }
-
 
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;
 }
 
-export default { show ,hidden};
+export default { show, hidden };

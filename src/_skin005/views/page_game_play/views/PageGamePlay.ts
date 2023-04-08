@@ -17,7 +17,7 @@ export default class PageGamePlay extends AbstractView {
     }
 
     // get gameFrameClass() {
-    //     if (this.$vuetify.breakpoint.mobile) {
+    //     if (this.$mobile) {
     //         //@ts-ignore
     //         if (window.navigator.standalone) {
     //             return "frame-mobile-standalone";
@@ -108,7 +108,7 @@ export default class PageGamePlay extends AbstractView {
 
     onResize() {
         this.$nextTick(() => {
-            if (this.$vuetify.breakpoint.mobile) {
+            if (this.$mobile) {
                 const gameFrame: any = this.$refs.gameFrame;
                 const bodyW = document.body.clientWidth;
                 const bodyH = document.body.clientHeight;
@@ -138,7 +138,6 @@ export default class PageGamePlay extends AbstractView {
     }
 
     onBack() {
-        
         PanelUtil.message_confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {

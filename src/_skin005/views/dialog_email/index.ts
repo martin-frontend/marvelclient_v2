@@ -3,7 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import DialogEmailProxy from "./proxy/DialogEmailProxy";
 import DialogEmail from "./views/DialogEmail.vue";
 
-const proxy :DialogEmailProxy = getProxy(DialogEmailProxy);
+const proxy: DialogEmailProxy = getProxy(DialogEmailProxy);
 
 function show() {
     DialogMount(DialogEmail);

@@ -9,8 +9,7 @@ function show(url: string, isCricket: boolean = false) {
     //Vue.router.push("/page_game_soccer");
     if (isCricket) {
         Vue.router.push("/cricket");
-    }
-    else {
+    } else {
         Vue.router.push("/page_game_soccer");
     }
     const proxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
@@ -31,9 +30,7 @@ function _open(isCricket: boolean = false) {
     proxy.pageData.isAction = true;
     if (isCricket) {
         Vue.router.push("/cricket");
-    }
-    else {
-
+    } else {
         Vue.router.push("/page_game_soccer");
     }
     Init(isCricket);
@@ -73,8 +70,7 @@ function Init(isCricket: boolean = false) {
         obj.vendor_id = GameConfig.config.CricketVendorId;
         obj.vendor_name = "板球-测试";
         obj.vendor_product_name = "板球";
-    }
-    else {
+    } else {
         if (!GameConfig.config.SportVendorId) {
             Vue.router.back();
             return;
@@ -82,7 +78,7 @@ function Init(isCricket: boolean = false) {
         obj.vendor_id = GameConfig.config.SportVendorId;
     }
     PanelUtil.getProxy_gameproxy.go_soccer(obj);
-    console.log("--当前游戏11111",PanelUtil.getProxy_gameproxy.currGame);
+    console.log("--当前游戏11111", PanelUtil.getProxy_gameproxy.currGame);
 }
 
 export default { show, open_sports, open_cricket };

@@ -1,26 +1,23 @@
-
-.theme--light{
-
-    .foot_bg{
+.theme--light {
+    .foot_bg {
         background: linear-gradient(to left, #feba00, #feba00);
     }
-    .active{
-        color: #0F1213;
+    .active {
+        color: #0f1213;
     }
-    .nomal{
+    .nomal {
         color: #cb8700;
     }
 }
 
-.theme--dark{
-
-    .foot_bg{
+.theme--dark {
+    .foot_bg {
         background: linear-gradient(to right, #202121, #202121);
     }
-    .active{
-        color: #FEBA00;
+    .active {
+        color: #feba00;
     }
-    .nomal{
-        color: #8E8F91;
+    .nomal {
+        color: #8e8f91;
     }
 }

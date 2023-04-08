@@ -4,7 +4,7 @@
     height: 34px;
     border-radius: 10px;
     background-color: transparent;
-    border: solid 1px #F2F2F2;
+    border: solid 1px #f2f2f2;
 }
 .item-selection-pc {
     width: 100%;
@@ -12,12 +12,12 @@
     height: 36px;
     border-radius: 10px;
     background-color: transparent;
-    border: solid 1px #D6DDE3;
+    border: solid 1px #d6dde3;
 }
-.divbox-light{
-    border-color: #F2F2F2;
+.divbox-light {
+    border-color: #f2f2f2;
 }
-.divbox-dark{
+.divbox-dark {
     border-color: #333435;
 }
 .odds-img {
@@ -37,7 +37,8 @@
 }
 
 @keyframes shake {
-    0%, 100% {
+    0%,
+    100% {
         transform: translatey(1px);
     }
 
@@ -45,4 +46,3 @@
         transform: translatey(-1px);
     }
 }
-

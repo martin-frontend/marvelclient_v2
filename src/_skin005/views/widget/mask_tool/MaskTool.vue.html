@@ -1,7 +1,11 @@
-
 <div v-if="GlobalVar.instance.isNullUser" class="blur-mask d-flex justify-center align-center">
-    <v-sheet class="d-flex justify-center align-center rounded-circle cursor-pointer" width="40" height="40" @click="onClickItem()"
-        color="arrow_color">
+    <v-sheet
+        class="d-flex justify-center align-center rounded-circle cursor-pointer"
+        width="40"
+        height="40"
+        @click="onClickItem()"
+        color="arrow_color"
+    >
         <svg-icon icon="lock" class="primary--text text-16"></svg-icon>
     </v-sheet>
 </div>

@@ -8,7 +8,7 @@ import gsap, { Linear } from "gsap";
 export default class HorizontalScroll extends AbstractView {
     LangUtil = LangUtil;
 
-    @Prop({default: 0}) offsetx!:number;
+    @Prop({ default: 0 }) offsetx!: number;
 
     //拖动参数
     dragData = {
@@ -17,9 +17,9 @@ export default class HorizontalScroll extends AbstractView {
         left: 0,
     };
     mounted() {
-        const buttons = this.$el.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
+        const buttons = this.$el.querySelectorAll("button");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
                 this.scrollToButton(button, <any>this.$refs.divbox);
             });
         });
@@ -32,10 +32,9 @@ export default class HorizontalScroll extends AbstractView {
         const divbox: HTMLElement = this.$refs.divbox;
         this.dragData.left = divbox.scrollLeft;
     }
-    
+
     onMouseout(event: any) {
         this.dragData.isMoving = false;
-
     }
     onMouseUp(event: any) {
         this.dragData.isMoving = false;
@@ -48,14 +47,14 @@ export default class HorizontalScroll extends AbstractView {
             divbox.scrollLeft = this.dragData.left - distanceX;
         }
     }
-     scrollToButton(button:HTMLElement, container:HTMLElement) {
+    scrollToButton(button: HTMLElement, container: HTMLElement) {
         const containerRect = container.getBoundingClientRect();
         const buttonRect = button.getBoundingClientRect();
-    
+
         if (buttonRect.left < containerRect.left) {
-            container.scrollLeft -= (containerRect.left - buttonRect.left+30);
+            container.scrollLeft -= containerRect.left - buttonRect.left + 30;
         } else if (buttonRect.right > containerRect.right) {
-            container.scrollLeft += (buttonRect.right - containerRect.right+30);
+            container.scrollLeft += buttonRect.right - containerRect.right + 30;
         }
     }
 }

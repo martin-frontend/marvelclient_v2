@@ -6,9 +6,7 @@ import Component from "vue-class-component";
 import DialogAddressBookRemark from "./DialogAddressBookRemark";
 
 @Component({
-    components: {
-     
-    }
+    components: {},
 })
 export default class extends DialogAddressBookRemark {}
 </script>

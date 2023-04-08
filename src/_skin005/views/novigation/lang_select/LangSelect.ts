@@ -35,7 +35,7 @@ export default class LangSelect extends AbstractView {
     isFilterChange = false;
     @Watch("isFilterChange")
     filterChange(val: boolean) {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             PageBlur.blur_page(this.isFilterChange);
         } else PageBlur.blur_mainpage(this.isFilterChange);
     }

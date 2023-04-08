@@ -6,8 +6,8 @@ import gsap, { Linear } from "gsap";
 
 @Component
 export default class Advertise extends AbstractView {
-    @Prop( {default:0}) showDataType!: number;
-    
+    @Prop({ default: 0 }) showDataType!: number;
+
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
     selectIndex = 0;
     progressObj = {
@@ -15,7 +15,7 @@ export default class Advertise extends AbstractView {
     };
 
     get height(): number {
-        if(this.$vuetify.breakpoint.width <= 390) return 150;
+        if (this.$vuetify.breakpoint.width <= 390) return 150;
         switch (this.$vuetify.breakpoint.name) {
             case "xs":
                 return 200;
@@ -28,22 +28,28 @@ export default class Advertise extends AbstractView {
         }
     }
 
-    public get getShowData() : any {
-        if (!this.showDataType || this.showDataType == 0)
-            return this.noticeProxy.data.listType1
+    public get getShowData(): any {
+        if (!this.showDataType || this.showDataType == 0) return this.noticeProxy.data.listType1;
 
-            switch (this.showDataType) {
-                case 2  :return this.noticeProxy.data.listType4
-                case 8  :return this.noticeProxy.data.listType5
-                case 16 :return this.noticeProxy.data.listType6
-                case 32 :return this.noticeProxy.data.listType7
-                case 64 :return this.noticeProxy.data.listType8
-                case 4  :return this.noticeProxy.data.listType9
-                case 128:return this.noticeProxy.data.listType10
-                default:
-                    break;
-            }
-        
+        switch (this.showDataType) {
+            case 2:
+                return this.noticeProxy.data.listType4;
+            case 8:
+                return this.noticeProxy.data.listType5;
+            case 16:
+                return this.noticeProxy.data.listType6;
+            case 32:
+                return this.noticeProxy.data.listType7;
+            case 64:
+                return this.noticeProxy.data.listType8;
+            case 4:
+                return this.noticeProxy.data.listType9;
+            case 128:
+                return this.noticeProxy.data.listType10;
+            default:
+                break;
+        }
+
         return [];
     }
 

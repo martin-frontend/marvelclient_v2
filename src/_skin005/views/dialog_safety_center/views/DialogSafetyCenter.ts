@@ -27,46 +27,44 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
 
-    typechange="0";
+    typechange = "0";
 
-     //手动调用，进入直接进 游戏列表
-     mounted(){
-
+    //手动调用，进入直接进 游戏列表
+    mounted() {
         this.myProxy.api_public_area_code();
     }
 
     tempSelectCode = null;
 
-    public get areaCodeArr() : any {
+    public get areaCodeArr(): any {
         return this.myProxy.pageData.areaCode;
     }
-    
-    public get curShowCode() : string {
-        return "+" + this.formBindPhone.area_code
+
+    public get curShowCode(): string {
+        return "+" + this.formBindPhone.area_code;
     }
-    
+
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
-        if ( ! this.tempSelectCode) return;
+        if (!this.tempSelectCode) return;
         //@ts-ignore
         this.formBindPhone.area_code = this.tempSelectCode.area_code;
     }
 
-    customFilter (item:any, queryText:any, itemText:any) {
-        const textOne = item.name.toLowerCase()
-        const textTwo = item.area_code +"";
-        const searchText = queryText.toLowerCase()
+    customFilter(item: any, queryText: any, itemText: any) {
+        const textOne = item.name.toLowerCase();
+        const textTwo = item.area_code + "";
+        const searchText = queryText.toLowerCase();
 
-        return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
-      }
-      
-     /**图标时间选择 */
-     onTimeChange(val: any) {
+        return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
+    }
+
+    /**图标时间选择 */
+    onTimeChange(val: any) {
         //console.log("点击的值 为" , val);
         this.pageData.tabIndex = parseInt(val);
-        this.onTabClick(this.pageData.tabIndex );
+        this.onTabClick(this.pageData.tabIndex);
     }
 
     @Watch("pageData.areaCode")
@@ -82,7 +80,7 @@ export default class DialogSafetyCenter extends AbstractView {
     }
 
     checkValidateType(val: any) {
-        return this.validate_type.includes(val)
+        return this.validate_type.includes(val);
     }
 
     get isCheckFormMobile() {
@@ -147,16 +145,14 @@ export default class DialogSafetyCenter extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
-        if(this.pageData.bShow)
-        {
-            this.typechange = this.pageData.tabIndex +"";
+        if (this.pageData.bShow) {
+            this.typechange = this.pageData.tabIndex + "";
         }
     }
     public get verityString(): string {
         if (this.getverityProxy.pageData.downcount > 0) {
             return this.getverityProxy.pageData.downcount + "";
-        }
-        else {
+        } else {
             return LangUtil("获取验证码");
         }
     }
@@ -174,7 +170,7 @@ export default class DialogSafetyCenter extends AbstractView {
             type: 1,
             area_code: this.formBindPhone.area_code,
             mobile: this.formBindPhone.mobile,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
     //发送 邮件 验证码
@@ -183,7 +179,7 @@ export default class DialogSafetyCenter extends AbstractView {
             category: 0,
             type: 7,
             email: this.formBindEmail.email,
-        }
+        };
         PanelUtil.openpanel_get_verity(obj);
     }
 }

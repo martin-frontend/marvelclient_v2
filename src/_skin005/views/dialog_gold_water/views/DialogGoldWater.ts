@@ -21,7 +21,6 @@ export default class DialogGoldWater extends AbstractView {
     onClose() {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
-
     }
 
     @Watch("pageData.bShow")
@@ -32,7 +31,7 @@ export default class DialogGoldWater extends AbstractView {
             this.myProxy.api_user_var_gold_water_index();
         }
     }
-    @Watch("$vuetify.breakpoint.xsOnly")
+    @Watch("$xsOnly")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;
@@ -57,24 +56,26 @@ export default class DialogGoldWater extends AbstractView {
     }
     getStateColor(state: number) {
         switch (state) {
-            case 0: return "red--text";
+            case 0:
+                return "red--text";
             case 1:
             case 2:
-            case 3: return "textGreen--text";
+            case 3:
+                return "textGreen--text";
             default:
                 return "";
-
         }
     }
     getStateText(state: number) {
         switch (state) {
-            case 0: return LangUtil("失败");
+            case 0:
+                return LangUtil("失败");
             case 1:
             case 2:
-            case 3: return LangUtil("成功");
+            case 3:
+                return LangUtil("成功");
             default:
                 return LangUtil("未知");
         }
     }
-
 }

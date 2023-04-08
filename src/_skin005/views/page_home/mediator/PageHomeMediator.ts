@@ -3,8 +3,7 @@ import PageHomeProxy from "../proxy/PageHomeProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-export default class PageHomeMediator extends AbstractMediator{
-
+export default class PageHomeMediator extends AbstractMediator {
     public onRegister(): void {
         PanelUtil.showAppLoading(false);
         const myProxy: PageHomeProxy = getProxy(PageHomeProxy);
@@ -14,7 +13,7 @@ export default class PageHomeMediator extends AbstractMediator{
         myProxy.api_plat_var_backwater_setting_info();
     }
 
-    onRemove(){
+    onRemove() {
         this.facade.removeProxy(PageHomeProxy.NAME);
     }
 
@@ -30,8 +29,8 @@ export default class PageHomeMediator extends AbstractMediator{
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        const myProxy:PageHomeProxy = getProxy(PageHomeProxy);
-        switch(notification.getName()){
+        const myProxy: PageHomeProxy = getProxy(PageHomeProxy);
+        switch (notification.getName()) {
             case net.EventType.api_plat_var_stake_info:
                 myProxy.setStakeInfo(body);
                 break;

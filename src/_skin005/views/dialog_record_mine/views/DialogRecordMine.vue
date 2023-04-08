@@ -5,10 +5,8 @@
 import Component from "vue-class-component";
 import DialogRecordMine from "./DialogRecordMine";
 
-
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends DialogRecordMine {}
 </script>

@@ -60,7 +60,13 @@ const router = new VueRouter({
 });
 // /**没登入 重新导向 */
 router.beforeEach((to: any, from: any, next: any) => {
-    if (!core.user_id && to.name !== "page_home" && to.name !== "page_game_list" && to.name !== "page_introduce" && to.name !== "page_swap") {
+    if (
+        !core.user_id &&
+        to.name !== "page_home" &&
+        to.name !== "page_game_list" &&
+        to.name !== "page_introduce" &&
+        to.name !== "page_swap"
+    ) {
         next("/");
     } else {
         next();

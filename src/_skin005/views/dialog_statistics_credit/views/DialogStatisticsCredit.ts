@@ -22,7 +22,7 @@ export default class DialogStatisticsCredit extends AbstractView {
     gameProxy = this.myProxy.gameProxy;
     getMoneyColor = getMoneyColor;
     getMoneyValue = getMoneyValue;
-    
+
     isOpenWalletMenu = this.myProxy.isOpenWalletMenu;
     pageData = this.myProxy.pageData;
 
@@ -104,10 +104,9 @@ export default class DialogStatisticsCredit extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
-
     get isMine(): boolean {
         if (this.myProxy.userListInfo.length > 1) {
-            return false
+            return false;
         }
         return true;
     }
@@ -143,8 +142,7 @@ export default class DialogStatisticsCredit extends AbstractView {
             this.timeRange = [start, end];
             this.myProxy.setcoin_name_unique();
             this.onTimeChange();
-        }
-        else {
+        } else {
             this.myProxy.reseData();
         }
     }
@@ -159,7 +157,7 @@ export default class DialogStatisticsCredit extends AbstractView {
             bind_relation: this.pageData.bind_relation,
             parents: userlist,
             target_user_id: user_id,
-        }
+        };
         PanelUtil.openpanel_bet_record(user_id, this.timeRange[0], this.timeRange[1], false, {
             coin_name_unique: this.myProxy.coin_name_unique,
             bShowMoneyType: true,
@@ -168,8 +166,6 @@ export default class DialogStatisticsCredit extends AbstractView {
             bShowOptions: false,
             filterBtnInfo: filterInfo,
         });
-
-        
     }
     onItemClick(item: any) {
         //console.log("点击 item",item);

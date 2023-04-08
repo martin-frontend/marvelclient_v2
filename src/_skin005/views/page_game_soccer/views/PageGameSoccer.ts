@@ -19,7 +19,7 @@ export default class PageGameSoccer extends AbstractView {
     timer = 0;
 
     get gameFrameClass() {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             const curPath = this.$router.app.$route.path;
             if (curPath.includes("cricket")) {
                 return "frame-mobile_cricket";
@@ -73,7 +73,7 @@ export default class PageGameSoccer extends AbstractView {
 
         this.timer = setInterval(() => {
             const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
-            if (gameFrame && this.$vuetify.breakpoint.mobile) {
+            if (gameFrame && this.$mobile) {
                 const curPath = this.$router.app.$route.path;
                 if (curPath.includes("cricket")) {
                     gameFrame.style.height = window.innerHeight - 105 + "px";
@@ -97,12 +97,12 @@ export default class PageGameSoccer extends AbstractView {
     onWatchRouter() {
         console.log("路由切换-0-----");
         const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
-        if (gameFrame && this.$vuetify.breakpoint.mobile) {
+        if (gameFrame && this.$mobile) {
             const curPath = this.$router.app.$route.path;
-            console.log("路由切换-222-----",curPath);
+            console.log("路由切换-222-----", curPath);
             if (curPath.includes("cricket")) {
                 gameFrame.style.height = window.innerHeight - 105 + "px";
-            } else  {
+            } else {
                 gameFrame.style.height = window.innerHeight - 60 + "px";
             }
         }

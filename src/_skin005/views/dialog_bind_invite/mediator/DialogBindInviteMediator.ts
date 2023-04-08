@@ -12,10 +12,7 @@ export default class DialogBindInviteMediator extends AbstractMediator {
         this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, { user_id: core.user_id });
     }
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_update_var,
-            net.EventType.api_user_var_invite_user_info,
-        ];
+        return [net.EventType.api_user_update_var, net.EventType.api_user_var_invite_user_info];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -30,7 +27,6 @@ export default class DialogBindInviteMediator extends AbstractMediator {
                 this.getDetdail();
                 break;
             case net.EventType.api_user_var_invite_user_info:
-
                 myProxy.api_user_var_invite_user_info_callback(body);
                 break;
         }

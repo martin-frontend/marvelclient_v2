@@ -24,7 +24,7 @@ export default class GameItem extends AbstractView {
     }
 
     getBoxClass() {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             return "";
         } else {
             let classStr = "box";
@@ -34,7 +34,7 @@ export default class GameItem extends AbstractView {
                     classStr += " filter-gray";
                 }
             }
-            // if (!this.$vuetify.breakpoint.mobile) {
+            // if (!this.$mobile) {
             classStr += " box_margin";
             // } else {
             //     classStr += " box_margin_mob";
@@ -53,10 +53,7 @@ export default class GameItem extends AbstractView {
     }
 
     @Watch("item")
-    filterChange(val: boolean) { }
+    filterChange(val: boolean) {}
 
-    onClickItem()
-    {
-        
-    }
+    onClickItem() {}
 }

@@ -78,6 +78,8 @@ window["vueInit"] = () => {
         render: (h) => h(App),
     }).$mount("#app");
 };
+window.$mobile = Vue.prototype.$mobile = false;
+window.$xsOnly = Vue.prototype.$xsOnly = false;
 
 AppFacade.inst.startup();
 

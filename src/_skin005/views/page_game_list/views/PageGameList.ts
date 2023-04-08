@@ -22,7 +22,7 @@ export default class PageGameList extends AbstractView {
     timer = 0;
     itemWidth = 181;
     public get viewWidth(): number {
-        if (this.$vuetify.breakpoint.mobile) {
+        if (this.$mobile) {
             return 100;
         }
         if (this.$vuetify.breakpoint.width > 1400) {
@@ -44,11 +44,11 @@ export default class PageGameList extends AbstractView {
     resetItemWidth() {
         const pcItemBox = this.$refs.pcItemBox;
         if (pcItemBox) {
-            const baseWidth = this.$vuetify.breakpoint.mobile ? 110 : 181;
+            const baseWidth = this.$mobile ? 110 : 181;
             //@ts-ignore
             const boxWidth = pcItemBox.$el.getBoundingClientRect().width;
             this.itemWidth = boxWidth / Math.round(boxWidth / baseWidth);
-            if (this.$vuetify.breakpoint.mobile) {
+            if (this.$mobile) {
                 this.itemWidth += 5;
             }
         }
@@ -203,8 +203,7 @@ export default class PageGameList extends AbstractView {
                 this.myProxy.api_plat_var_game_all_index();
             }
 
-            if (this.$refs.scrollObj && !this.$vuetify.breakpoint.mobile)
-            {
+            if (this.$refs.scrollObj && !this.$mobile) {
                 console.log("调用 滑动----");
                 ScrollUtil(0);
             }

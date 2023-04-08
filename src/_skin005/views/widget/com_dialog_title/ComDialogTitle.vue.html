@@ -14,8 +14,7 @@
 </v-card-title>
 
 <!-- 正常弹窗 手机版 -->
-<v-sheet v-else-if="isMoble" class="gradient-bg_mob d-flex align-center  justify-center"
-    color="bgNavigation">
+<v-sheet v-else-if="isMoble" class="gradient-bg_mob d-flex align-center justify-center" color="bgNavigation">
     <div class="text-18 primary--text">{{LangUtil(title)}}</div>
     <v-btn v-if="isNeedClose" icon @click="onClose" :ripple="false">
         <svg-icon icon="arrow_right" class="text-16 back_btn_icon primary--text"></svg-icon>

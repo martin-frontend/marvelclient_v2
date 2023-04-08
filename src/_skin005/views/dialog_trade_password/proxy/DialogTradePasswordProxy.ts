@@ -8,13 +8,13 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
     pageData = {
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         form: {
             verify_code: "",
             password: "",
             password_confirm: "",
             area_code: "86",
-            logonPassword:"", //登录密码
+            logonPassword: "", //登录密码
         },
         auth_image: "",
     };
@@ -24,7 +24,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
             verify_code: "",
             password: "",
             password_confirm: "",
-            ogonPassword:"", //登录密码
+            ogonPassword: "", //登录密码
         });
     }
 
@@ -40,27 +40,22 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
 
     api_user_change_password_gold_var() {
         //this.pageData.loading = true;
-        const { password, password_confirm, verify_code ,logonPassword} = this.pageData.form;
+        const { password, password_confirm, verify_code, logonPassword } = this.pageData.form;
         const sendobj = <any>{
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             user_id: core.user_id,
-        }
-        if (this.passWordShowType == 1)
-        {
+        };
+        if (this.passWordShowType == 1) {
             sendobj.uuid = core.device;
             sendobj.code = verify_code;
-        }
-        else if (this.passWordShowType == 2)
-        {
+        } else if (this.passWordShowType == 2) {
             sendobj.password_old = core.MD5.createInstance().hex_md5(logonPassword);
-        }
-        else if(this.passWordShowType == 3)
-        {
+        } else if (this.passWordShowType == 3) {
             sendobj.code = verify_code;
         }
-        console.log("发送的数据为",  sendobj);
-        this.sendNotification(net.HttpType.api_user_change_password_gold_var,sendobj);
+        console.log("发送的数据为", sendobj);
+        this.sendNotification(net.HttpType.api_user_change_password_gold_var, sendobj);
         // this.sendNotification(net.HttpType.api_user_change_password_gold_var, {
         //     password: core.MD5.createInstance().hex_md5(password),
         //     password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
@@ -70,15 +65,12 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
         //     password_old:logonPassword,
         // });
     }
-    public get passWordShowType() : number {
+    public get passWordShowType(): number {
         //console.log("------" + this.GameConfig.config.changeGoldPasswordFollowSetting + " ----- " + this.GameConfig.config.changeGoldPasswordFirstSetting);
         const selfProxy = PanelUtil.getProxy_selfproxy;
-        if (selfProxy.userInfo.password_gold_exists == 1)
-        {
+        if (selfProxy.userInfo.password_gold_exists == 1) {
             return this.GameConfig.config.changeGoldPasswordFollowSetting || 3;
-        }
-        else
-        {
+        } else {
             return this.GameConfig.config.changeGoldPasswordFirstSetting || 3;
         }
     }

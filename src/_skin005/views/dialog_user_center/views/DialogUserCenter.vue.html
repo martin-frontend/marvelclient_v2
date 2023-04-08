@@ -1,11 +1,17 @@
-<v-dialog v-if="!pageData.bHidden" width="unset" :height="$vuetify.breakpoint.xsOnly ? '' : '670'" v-model="pageData.bShow" :retain-focus="false"
-    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card v-if="!$vuetify.breakpoint.xsOnly" class="rounded10 d-flex" color="bgBanner">
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    :height="$xsOnly ? '' : '670'"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$xsOnly"
+    persistent
+>
+    <v-card v-if="!$xsOnly" class="rounded10 d-flex" color="bgBanner">
         <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="350">
-
             <com-dialog-title title="个人中心" @onClose="onClose" />
-            <v-divider class="mb-2 " />
+            <v-divider class="mb-2" />
             <v-card-text class="px-4 px-md-7 mt-2 text_height regular_text">
                 <div class="d-flex justify-space-between align-center mb-5 text-14">
                     <span class="d-flex textGray--text">
@@ -17,20 +23,20 @@
                         <div class="empty_width"></div>
                     </span>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-5 text-14 ">
+                <div class="d-flex justify-space-between align-center mb-5 text-14">
                     <span class="d-flex textGray--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-account-reactivate</v-icon> -->
                         ID
                     </span>
-                    <span class="d-flex align-center textGray--text">{{userInfo.user_id}}
-                        <!-- <v-btn class="ml-2" color="textGray" small :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy">
+                    <span class="d-flex align-center textGray--text"
+                        >{{userInfo.user_id}}
+                        <!-- <v-btn class="ml-2" color="textGray" small :width="$xsOnly? 24 :30"
+                            min-width="0" :height="$xsOnly? 24 :30" @click="copy">
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                         </v-btn> -->
-                        <v-btn class="ml-2 " small :width="$vuetify.breakpoint.xsOnly? 24 :30" min-width="0" depressed
-                        :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy">
-                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                    </v-btn>
+                        <v-btn class="ml-2" small :width="$xsOnly? 24 :30" min-width="0" depressed :height="$xsOnly? 24 :30" @click="copy">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
                         <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
                     </span>
                 </div>
@@ -42,9 +48,15 @@
                     </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
-                        <v-btn v-if="!userInfo.real_name" icon class="ml-2" color="textGray"
-                            :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                            @click="handlerRealName">
+                        <v-btn
+                            v-if="!userInfo.real_name"
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerRealName"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -58,9 +70,15 @@
                     </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.nick_name != userInfo.user_id)" icon class="ml-2" color="textGray"
-                            :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                            @click="handlerNickName">
+                        <v-btn
+                            v-if="!(userInfo.nick_name != userInfo.user_id)"
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerNickName"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -72,11 +90,17 @@
                         <!-- <v-icon class="mr-2" color="textGray">mdi-cellphone</v-icon> -->
                         {{LangUtil("手机")}}
                     </span>
-                    <span class="d-flex align-center textGray--text">{{userInfo.phone != "" && userInfo.phone !=
-                        undefined? userInfo.phone : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.phone != '' && userInfo.phone != undefined)" icon class="ml-2"
-                            color="textGray" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetPhone">
+                    <span class="d-flex align-center textGray--text"
+                        >{{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}}
+                        <v-btn
+                            v-if="!(userInfo.phone != '' && userInfo.phone != undefined)"
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetPhone"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -89,9 +113,15 @@
                     </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.email != '' && userInfo.email != undefined)" icon class="ml-2"
-                            color="textGray" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetEmail">
+                        <v-btn
+                            v-if="!(userInfo.email != '' && userInfo.email != undefined)"
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetEmail"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -104,22 +134,33 @@
                     </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.is_google_scan == 0 ? LangUtil("未设置") : LangUtil("已设置")}}
-                        <v-btn icon class="ml-2" color="textGray" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetGoogleSettings">
+                        <v-btn
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetGoogleSettings"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-5 text-14"
-                    v-if="is_password_gold_transfer.is_open">
+                <div class="d-flex justify-space-between align-center mb-5 text-14" v-if="is_password_gold_transfer.is_open">
                     <span class="d-flex textGray--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-lock</v-icon> -->
                         {{LangUtil("交易密码")}}
                     </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
-                        <v-btn icon class="ml-2" color="textGray" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerTradePassword">
+                        <v-btn
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerTradePassword"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
@@ -130,23 +171,20 @@
                     </span>
                     <span class="d-flex align-center colorText1--text">
                         {{LangUtil("设置")}}
-                        <v-btn icon class="ml-2" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerPersonalCard">
+                        <v-btn icon class="ml-2" color="colorInfo" :width="$xsOnly? 24 :30" :height="$xsOnly? 24 :30" @click="handlerPersonalCard">
                             <v-icon large>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
                 </div> -->
             </v-card-text>
             <v-card-actions class="px-5 d-flex align-end mb-4">
-                <btn-yellow class="text-16 " width="100%" height="36"
-                    @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
-
+                <btn-yellow class="text-16" width="100%" height="36" @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
             </v-card-actions>
         </v-card>
     </v-card>
     <!-- 手机版 -->
     <v-card v-else class=" " color="bgColor">
-
-        <com-dialog-title title="个人中心" @onClose="onClose"/>
+        <com-dialog-title title="个人中心" @onClose="onClose" />
 
         <v-sheet color="bgBanner" class="px-2 py-2 my-2 mx-2 rounded10">
             <v-card-text class="px-2 text_height regular_text">
@@ -165,17 +203,17 @@
                         <!-- <v-icon class="mr-2" color="textGray">mdi-account-reactivate</v-icon> -->
                         ID
                     </span>
-                    <span class="d-flex align-center userInfo_color--text">{{userInfo.user_id}}
-                        <!-- <v-btn class="ml-2" color="textGray" small :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            min-width="0" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="copy">
+                    <span class="d-flex align-center userInfo_color--text"
+                        >{{userInfo.user_id}}
+                        <!-- <v-btn class="ml-2" color="textGray" small :width="$xsOnly? 24 :30"
+                            min-width="0" :height="$xsOnly? 24 :30" @click="copy">
                             <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                         </v-btn> -->
 
-                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0"
-                                        :height="24" @click="copy">
-                                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
-                                    </v-btn>
-                                    
+                        <v-btn class="ml-2" color="bgBanner" small depressed :width="24" min-width="0" :height="24" @click="copy">
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+
                         <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
                     </span>
                 </div>
@@ -187,9 +225,15 @@
                     </span>
                     <span class="d-flex align-center userInfo_color--text">
                         {{userInfo.real_name ? userInfo.real_name : LangUtil("未设置")}}
-                        <v-btn v-if="!userInfo.real_name" icon class="ml-2" color="userInfo_color"
-                            :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                            @click="handlerRealName">
+                        <v-btn
+                            v-if="!userInfo.real_name"
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerRealName"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -203,9 +247,15 @@
                     </span>
                     <span class="d-flex align-center userInfo_color--text">
                         {{userInfo.nick_name != userInfo.user_id? userInfo.nick_name : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.nick_name != userInfo.user_id)" icon class="ml-2" color="userInfo_color"
-                            :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30"
-                            @click="handlerNickName">
+                        <v-btn
+                            v-if="!(userInfo.nick_name != userInfo.user_id)"
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerNickName"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -217,11 +267,17 @@
                         <!-- <v-icon class="mr-2" color="textGray">mdi-cellphone</v-icon> -->
                         {{LangUtil("手机")}}
                     </span>
-                    <span class="d-flex align-center textGray--text">{{userInfo.phone != "" && userInfo.phone !=
-                        undefined? userInfo.phone : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.phone != '' && userInfo.phone != undefined)" icon class="ml-2"
-                            color="userInfo_color" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetPhone">
+                    <span class="d-flex align-center textGray--text"
+                        >{{userInfo.phone != "" && userInfo.phone != undefined? userInfo.phone : LangUtil("未设置")}}
+                        <v-btn
+                            v-if="!(userInfo.phone != '' && userInfo.phone != undefined)"
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetPhone"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -234,9 +290,15 @@
                     </span>
                     <span class="d-flex align-center userInfo_color--text">
                         {{userInfo.email != "" && userInfo.email != undefined? userInfo.email : LangUtil("未设置")}}
-                        <v-btn v-if="!(userInfo.email != '' && userInfo.email != undefined)" icon class="ml-2"
-                            color="userInfo_color" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetEmail">
+                        <v-btn
+                            v-if="!(userInfo.email != '' && userInfo.email != undefined)"
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetEmail"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                         <div v-else class="empty_width"></div>
@@ -249,22 +311,33 @@
                     </span>
                     <span class="d-flex align-center userInfo_color--text">
                         {{userInfo.is_google_scan == 0 ? LangUtil("未设置") : LangUtil("已设置")}}
-                        <v-btn icon class="ml-2" color="userInfo_color" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="goSetGoogleSettings">
+                        <v-btn
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="goSetGoogleSettings"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-0 text-14"
-                    v-if="is_password_gold_transfer.is_open">
+                <div class="d-flex justify-space-between align-center mb-0 text-14" v-if="is_password_gold_transfer.is_open">
                     <span class="d-flex userInfo_color--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-lock</v-icon> -->
                         {{LangUtil("交易密码")}}
                     </span>
                     <span class="d-flex align-center userInfo_color--text">
                         {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
-                        <v-btn icon class="ml-2" color="userInfo_color" :width="$vuetify.breakpoint.xsOnly? 24 :30"
-                            :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerTradePassword">
+                        <v-btn
+                            icon
+                            class="ml-2"
+                            color="userInfo_color"
+                            :width="$xsOnly? 24 :30"
+                            :height="$xsOnly? 24 :30"
+                            @click="handlerTradePassword"
+                        >
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
@@ -275,16 +348,14 @@
                     </span>
                     <span class="d-flex align-center colorText1--text">
                         {{LangUtil("设置")}}
-                        <v-btn icon class="ml-2" color="colorInfo" :width="$vuetify.breakpoint.xsOnly? 24 :30" :height="$vuetify.breakpoint.xsOnly? 24 :30" @click="handlerPersonalCard">
+                        <v-btn icon class="ml-2" color="colorInfo" :width="$xsOnly? 24 :30" :height="$xsOnly? 24 :30" @click="handlerPersonalCard">
                             <v-icon large>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
                 </div> -->
             </v-card-text>
-            <v-card-actions class="px-2 d-flex align-end ">
-                <btn-yellow class="text-16 " width="100%" height="36"
-                    @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
-
+            <v-card-actions class="px-2 d-flex align-end">
+                <btn-yellow class="text-16" width="100%" height="36" @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
             </v-card-actions>
         </v-sheet>
     </v-card>

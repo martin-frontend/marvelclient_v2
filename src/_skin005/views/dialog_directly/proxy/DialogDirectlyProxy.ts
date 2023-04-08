@@ -15,15 +15,15 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     limitinfo = {
-        enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
-        enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
-        is_credit_user:0,
-    }
+        enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+        enable_credit_rate: 0, // 是否显示设置信用占比 0-不能|1-能
+        is_credit_user: 0,
+    };
     pageData = {
         enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
         bShow: false,
-        bHidden:false, //暂时隐藏
+        bHidden: false, //暂时隐藏
         //如果是列表，使用以下数据，否则删除
         listQuery: {
             page_count: 1,
@@ -44,10 +44,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() { }
+    enter() {}
 
     /**离开页面时调用 */
-    leave() { }
+    leave() {}
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -56,45 +56,44 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_size: 20,
         });
         Object.assign(this.limitinfo, {
-            enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
-            enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+            enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+            enable_credit_rate: 0, // 是否显示设置信用占比 0-不能|1-能
         });
         this.pageData.search = "";
         this.parameter.direct_user_id = "";
     }
 
-    setTestData()
-    {
+    setTestData() {
         const obj = {
-            "user_id": 30000522,
-        "invite_user_id": 30000336,
-        "directly_users": 0,
-        "group_users": 0,
-        "binded_at": "2022-11-17 16:13:43",
-        "remark": "是谁",
-        "bind_phone": 0,
-        "nick_name": "30000522",
-        "status": 1,
-        "username": "nicotest99",
-        "credit_rate": "-",
-        "show_credit_set": 98,
-        "water_config": {
-            "0": 0,
-            "2": 0,
-            "4": 0,
-            "8": 0,
-            "16": 0,
-            "32": 0,
-            "64": 0,
-            "128": 0
-        },
-        "bet_gold": "$0",
-        "win_gold": "$0",
-        "is_promotion_floor": 0,
-        "promotion_floor": [],
-        enable_set_promotion_floor:1,
-        "recharge_gold": "0.00"
-        }
+            user_id: 30000522,
+            invite_user_id: 30000336,
+            directly_users: 0,
+            group_users: 0,
+            binded_at: "2022-11-17 16:13:43",
+            remark: "是谁",
+            bind_phone: 0,
+            nick_name: "30000522",
+            status: 1,
+            username: "nicotest99",
+            credit_rate: "-",
+            show_credit_set: 98,
+            water_config: {
+                "0": 0,
+                "2": 0,
+                "4": 0,
+                "8": 0,
+                "16": 0,
+                "32": 0,
+                "64": 0,
+                "128": 0,
+            },
+            bet_gold: "$0",
+            win_gold: "$0",
+            is_promotion_floor: 0,
+            promotion_floor: [],
+            enable_set_promotion_floor: 1,
+            recharge_gold: "0.00",
+        };
 
         const list = <any>[];
         for (let index = 0; index < 30; index++) {
@@ -109,8 +108,8 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.limitinfo, data.limit);
-        const vuetify = Vue.vuetify;
-        if (vuetify.framework.breakpoint.xsOnly) {
+
+        if (window.$xsOnly) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;
@@ -128,7 +127,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     setFloorRangeData(agent_user_id: number, val: number) {
         this.parameter.agent_user_id = agent_user_id;
-        this.api_user_var_agent_var_floor_range()
+        this.api_user_var_agent_var_floor_range();
         PanelUtil.getProxy_promotion_floor.setSelectedFloorData(this.parameter.agent_user_id, val);
         PanelUtil.openpanel_promotion_floor();
     }

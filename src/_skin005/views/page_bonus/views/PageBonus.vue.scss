@@ -1,6 +1,5 @@
-
 .gradient-type1 {
-    background-image: linear-gradient(180deg, #FCB131, #FFE64D);
+    background-image: linear-gradient(180deg, #fcb131, #ffe64d);
     &:hover {
         background-image: linear-gradient(180deg, #fac770, #fce96a);
     }
@@ -73,7 +72,6 @@
     top: 55px;
     right: 5px;
     min-width: 260px;
-
 }
 .bonus-width {
     width: 105px;
@@ -84,7 +82,7 @@
 .hundred-bonus-width {
     width: 85px;
 }
-.bg_test{
+.bg_test {
     position: absolute;
     right: 0px;
     top: 0px;

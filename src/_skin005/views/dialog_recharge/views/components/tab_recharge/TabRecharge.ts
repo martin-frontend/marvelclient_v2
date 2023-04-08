@@ -145,19 +145,18 @@ export default class TabRecharge extends AbstractView {
     /**获取说明 */
     getExplain() {
         const { coin_name_unique, block_network_id, third_id } = this.form;
-        console.log("-- this.form" , this.form);
+        console.log("-- this.form", this.form);
         let explain;
         if (this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].options) {
             const option = this.pageData.methodList[coin_name_unique].options[block_network_id];
-            if (option)
-            {   
-                console.log("----saaaaa----",option);
+            if (option) {
+                console.log("----saaaaa----", option);
                 explain = option.explain;
                 if (!explain) {
                     const channel = option.channel;
                     if (channel) {
                         const item = channel.find((item: any) => item.third_id == third_id);
-                        console.log("----sa1231231aaaa----",item);
+                        console.log("----sa1231231aaaa----", item);
                         explain = item.explain;
                     }
                 }
@@ -168,7 +167,7 @@ export default class TabRecharge extends AbstractView {
     }
 
     transformExplain(str: string) {
-        console.log("  ----str-----" ,str);
+        console.log("  ----str-----", str);
         if (str) {
             return str.split("\n");
         }

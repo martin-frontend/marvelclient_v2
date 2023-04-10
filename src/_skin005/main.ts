@@ -30,7 +30,6 @@ import GlobalVar from "@/core/global/GlobalVar";
 import LangConfig from "@/core/config/LangConfig";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "./core/PanelUtil";
-import PixelEvenManager from "./core/PixelEvenManager";
 
 LogUtil.init();
 core.init();
@@ -49,7 +48,6 @@ SkinVariable.useFlyerLog = true;
 SkinVariable.useGTM = true;
 
 LangConfig.lang_type = 18;
-PixelEvenManager.Init("1167176630610478");
 // 注册到全局
 // Vue.component("btn-yellow", BtnYellow);
 // Vue.component("btn-util", BtnUtil);

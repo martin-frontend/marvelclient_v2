@@ -156,9 +156,6 @@ export default class NetObserver extends AbstractMediator {
 
                     this.setLanguageFont();
 
-                    // if (SkinVariable.isNeedPush) {
-                    //     this.addPushNode();
-                    // }
                     if (SkinVariable.isNeedKefu) {
                         this.addKefu();
                     }
@@ -348,32 +345,6 @@ export default class NetObserver extends AbstractMediator {
                 //page.style.fontFamily = "GOTHAM_BOLD";
             }
         }
-    }
-    addPushNode() {
-        console.log("添加推送 代码");
-        //添加客服
-        const s = document.createElement("script");
-        s.async = false;
-        s.id = "push__widget";
-        s.src = "https://cdn.onesignal.com/sdks/OneSignalSDK.js";
-        s.addEventListener(
-            "load",
-            function f() {
-                //@ts-ignore
-                window.OneSignal = window.OneSignal || [];
-                //@ts-ignore
-                window.OneSignal.push(function () {
-                    //@ts-ignore
-                    window.OneSignal.init({
-                        //appId: "a000754a-4200-4698-bfba-5931035d5441",
-                        appId: "9ef33faa-1d72-4a7c-8f19-ea77e15b6e18",
-                    });
-                });
-            },
-            false
-        );
-
-        document.body.appendChild(s);
     }
 
     addKefu() {

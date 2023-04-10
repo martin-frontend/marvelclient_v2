@@ -3,7 +3,6 @@ import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import GameProxy from "@/proxy/GameProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
-import PixelEvenManager from "@/_skin005/core/PixelEvenManager";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -173,7 +172,6 @@ export class RechargeProxy extends puremvc.Proxy {
         //     }
         // }
         console.log("请求 充值 数据", data);
-        PixelEvenManager.Instance.onSendRecharge({ value: data.amount, currency: data.coin_name_unique });
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
 }

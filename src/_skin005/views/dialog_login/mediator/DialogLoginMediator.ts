@@ -4,7 +4,6 @@ import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
-import PixelEvenManager from "@/_skin005/core/PixelEvenManager";
 
 export default class DialogLoginMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -25,7 +24,6 @@ export default class DialogLoginMediator extends AbstractMediator {
             case net.EventType.api_user_login:
                 myProxy.pageData.loading = false;
                 PanelUtil.message_success(LangUtil("登录成功"));
-                PixelEvenManager.Instance.onLoginSuccess();
                 if (myProxy.pageData.is_login_need_google == 1) {
                     PanelUtil.openpanel_google_verification(false);
                 }

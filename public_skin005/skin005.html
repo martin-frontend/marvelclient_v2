@@ -60,24 +60,9 @@
         <% } %>
 
         <script>
+            //解决部分手机浏览器报错的问题
             window.bannerNight = function () {};
             window.onNightModeChanged = function () {};
-            // window.addEventListener(
-            //     "error",
-            //     (event) => {
-            //         var target = event.target || event.srcElement;
-            //         var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
-            //         if (isCheck) {
-            //             let url = target.src || target.href;
-            //             alert("Loading failed, click retry: " + url);
-            //             location.reload();
-            //         }
-            //     },
-            //     true
-            // );
-        </script>
-
-        <script>
             //获取设备当前时间
             const timenow_hour = new Date().getHours();
             //白天
@@ -87,6 +72,7 @@
                 document.getElementsByTagName("html")[0].style.backgroundColor = "#202121";
             }
         </script>
+        <!-- 推送服务 -->
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
         <script>
             window.OneSignal = window.OneSignal || [];
@@ -97,7 +83,6 @@
             });
         </script>
 
-        
         <!-- Google Tag Manager -->
         <script>
             (function (w, d, s, l, i) {
@@ -112,7 +97,6 @@
             })(window, document, "script", "dataLayer", "GTM-TL9S3KT");
         </script>
         <!-- End Google Tag Manager -->
-        
     </head>
 
     <style>

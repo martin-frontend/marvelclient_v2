@@ -4,7 +4,6 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
 import router from "@/router";
-import PixelEvenManager from "@/_skin005/core/PixelEvenManager";
 import GameProxy from "./GameProxy";
 
 export default class SelfProxy extends AbstractProxy {
@@ -68,9 +67,6 @@ export default class SelfProxy extends AbstractProxy {
     };
 
     setUserInfo(value: any) {
-        if (!this.userInfo.user_id) {
-            PixelEvenManager.Instance.onLoginSuccess();
-        }
         Object.assign(this.userInfo, value);
         core.user_id = <any>this.userInfo.user_id;
 

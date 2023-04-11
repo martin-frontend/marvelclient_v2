@@ -33,9 +33,10 @@ window.addEventListener("message", (e) => {
             user_id = e.data.params.data.user_id;
             uuid = e.data.uuid;
             $("#loading").css("display", "none");
-            $("#dialog_succeed").css("display", "flex");
-            resetForm();
-            sendPostMessage({ action: "auth_code" });
+            sendPostMessage({ action: "go_home", params: { token: token, uuid: uuid, user_id: user_id } });
+            // $("#dialog_succeed").css("display", "flex");
+            // resetForm();
+            // sendPostMessage({ action: "auth_code" });
             break;
         case "api_public_sms_send":
             $("#loading").css("display", "none");

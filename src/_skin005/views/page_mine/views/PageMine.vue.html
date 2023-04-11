@@ -3,20 +3,20 @@
     <template v-if="!$mobile">
         <v-row no-gutters>
             <!-- 我的等级 -->
-            <v-col cols="12" md="5" lg="5" class="mt-3  mt-md-1 pr-md-5 ">
+            <v-col :cols="ModulesHelper.IsShow_GameWaterManualReceive() ? 5 : 12"  class="mt-3  mt-md-1 pr-md-5 ">
                 <v-card color="bgBanner" class="rounded10 pt-5 pb-2 d-flex flex-column" width="100%" height="100%">
                     <div>
                         <span
                             class="primary--text pt-1 text-20 font-weight-bold pl-md-3 px-5 pl-md-5">{{LangUtil('挖矿等级')}}</span>
                     </div>
                     <v-sheet color="transparent" class="mt-4">
-                        <v-row no-gutters class="mt-3 mt-md-4">
-                            <v-col cols="4" md="4" lg="3"
+                        <v-row no-gutters class="mt-3 ">
+                            <v-sheet cols="4" color="transparent" width="150"
                                 class="pl-md-2 mt-n9 mt-md-n0 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
                                 <v-img :max-width="mobileChange('leftBgVipIcon').w" contain
                                     :src="vipMap[pageData.vipLevel]"></v-img>
-                            </v-col>
-                            <v-col cols="8" md="8" lg="9"
+                            </v-sheet>
+                            <v-sheet cols="8" color="transparent" style="width: calc(100% - 200px);"
                                 class="mb-3 ml-n3 ml-md-n0 d-flex flex-column align-start justify-center ">
                                 <v-sheet width="100%"
                                     class="text-18 font-weight-bold  mb-1 d-flex align-center justify-space-between px-2"
@@ -34,13 +34,13 @@
                                             {{LangUtil('您已经升级早最高等级')}} </p>
                                         <span
                                             v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">
-                                            {{LangUtil('距离下一个等级还差')}}
+                                            {{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextExp > 0">
                                             <span class="textYellow--text">
                                                 <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
                                                 <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span>  
-                                            </span>{{LangUtil('有效流水')}} 
+                                            </span>{{LangUtil('vip等级描述_2')}} 
                                         </span>
                                             </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextUSDT > 0">
@@ -50,10 +50,10 @@
                                         </span>
                                     </div>
                                 </v-sheet>
-                            </v-col>
+                            </v-sheet>
                         </v-row>
                     </v-sheet>
-                    <v-sheet color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
+                    <v-sheet v-if="ModulesHelper.IsShow_GameWaterManualReceive()" color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
                         <!-- 主币 -->
                         <v-sheet v-if="pageData.backwaterConfigMain.now > 0" width="100%" color="transparent">
                             <v-sheet color="transparent"
@@ -111,7 +111,7 @@
                 </v-card>
             </v-col>
             <!-- 游戏挖矿 -->
-            <v-col cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
+            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
                 <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10" width="100%" height="100%"
                     min-height="310" color="bgBanner">
 
@@ -144,7 +144,7 @@
                                             class="textGreen--text text-20 ml-2 font-weight-bold">{{
                                                 amountFormat(pageData.trial.main) }}</div>
 
-                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16"
+                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-16"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -160,7 +160,7 @@
                                         <div class="red--text text-20 ml-2 font-weight-bold">{{
                                             amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-16 font-weight-bold"
+                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-16 font-weight-bold"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -399,7 +399,7 @@
 
         <v-row no-gutters>
             <!-- 游戏挖矿 -->
-            <v-col cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
+            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
                 <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10" width="100%" height="100%"
                     min-height="250" color="bgBanner">
 
@@ -431,7 +431,7 @@
                                             class="textGreen--text text-16 ml-2 font-weight-bold">{{
                                                 amountFormat(pageData.trial.main) }}</div>
 
-                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
+                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -447,7 +447,7 @@
                                         <div class="red--text text-16 ml-2 font-weight-bold">{{
                                             amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow id="animbtn" v-if="ModulesHelper.IsShow_GameWaterManualReceive()" class="ml-auto mr-2 text-14"
+                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
                                             @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
@@ -507,13 +507,13 @@
                                         <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
                                             {{LangUtil('您已经升级早最高等级')}} </p>
                                         <span
-                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}}
+                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextExp > 0">
                                             <span class="textYellow--text">
                                                 <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span>
-                                            </span>{{LangUtil('有效流水')}} </span>
+                                            </span>{{LangUtil('vip等级描述_2')}} </span>
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextUSDT > 0">
                                             <span class="textYellow--text">{{amountFormat(transformExpAndUsdt(pageData.nextUSDT)) }}</span>
@@ -524,7 +524,7 @@
                             </v-col>
                         </v-row>
                     </v-sheet>
-                    <v-sheet color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
+                    <v-sheet v-if="ModulesHelper.IsShow_GameWaterManualReceive()" color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
                         <!-- 主币 -->
                         <v-sheet v-if="pageData.backwaterConfigMain.now > 0" width="100%" color="transparent">
                             <v-sheet color="transparent" class="sheetOutlined d-flex align-center py-2 px-5">
@@ -538,12 +538,12 @@
                                             <span class="textYellow--text">{{LangUtil("返水晋级奖励1")}}</span>  
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-14">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.now ,false)}}</span>
+                                        <span class="textGreen--text text-14 text_center">
+                                            <span class="bold_text ">{{amountFormat(pageData.backwaterConfigMain.now ,false)}}</span>
                                             {{pageData.platCoins.mainCoin.name }}
                                         </span>
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
-                                        <span class="textYellow--text text-14">
+                                        <span class="textYellow--text text-14 text_center">
                                             <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.next,false) }}</span>
                                             {{pageData.platCoins.mainCoin.name }}
                                         </span>
@@ -565,12 +565,12 @@
                                             ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span> -->
                                             <span class="textYellow--text ">{{LangUtil("返水晋级奖励2")}}</span>  
                                     </div>
-                                    <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-14">{{
+                                    <div class="d-flex align-center justify-space-between ">
+                                        <span class="textGreen--text text-14 text_center">{{
                                             amountFormat(pageData.backwaterConfigReward.now,false) }}{{
                                             pageData.platCoins.rewardCoin.name }}</span>
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
-                                        <span class="textYellow--text text-14">{{
+                                        <span class="textYellow--text text-14 text_center">{{
                                             amountFormat(pageData.backwaterConfigReward.next,false) }}{{
                                             pageData.platCoins.rewardCoin.name }}</span>
                                     </div>

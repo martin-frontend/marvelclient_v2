@@ -29,7 +29,9 @@
             font-size: 20px;
         }
     }
-
+    .text_center{
+        text-align: center;
+    }
     ::v-deep .theme--dark {
         .v-slide-group__prev,
         .v-slide-group__next {

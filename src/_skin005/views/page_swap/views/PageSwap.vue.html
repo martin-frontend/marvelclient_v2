@@ -151,7 +151,17 @@
                         </v-sheet>
                         <v-divider class="mb-2" />
                         <div class="textGray--text text-14 mt-3 mt-sm-7 mb-2 mb-sm-3">{{LangUtil("滑点容差:")}}</div>
-                        <v-btn-toggle mandatory group class="btn_group_width mx-n1" v-model="form.tolerance" @change="onChange">
+                        <v-btn-toggle v-if="$xsOnly" :lang="core.lang" mandatory group class="btn_group_width mx-n1" v-model="form.tolerance" @change="onChange">
+                            <v-btn
+                                class="rounded-pill btn_width"
+                                height="36"
+                                v-for="(item, key) of pageData.swap_setting_info.tolerance_params"
+                                :key="key"
+                            >
+                                <span class="text-14"> {{ item }}% </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                        <v-btn-toggle v-else mandatory group class="btn_group_width mx-n1" v-model="form.tolerance" @change="onChange">
                             <v-btn
                                 class="rounded-pill mx-1 btn_width"
                                 height="36"
@@ -254,9 +264,9 @@
                     <template v-if="$xsOnly">
                         <v-divider class="my-2" />
                         <div class="d-flex my-2">
-                            <v-btn-toggle mandatory group v-model="pageData.chartQuary.type" @change="onTimeChange">
+                            <v-btn-toggle :lang="core.lang" mandatory group v-model="pageData.chartQuary.type" @change="onTimeChange">
                                 <template v-for="(item, key) of myProxy.listOptions.timeOptions()">
-                                    <v-btn class="rounded-pill mr-2" height="30" min-width="70" :key="key">
+                                    <v-btn class="rounded-pill" height="30" min-width="70" :key="key">
                                         <span class="text-14"> {{item.name || item}} </span>
                                     </v-btn>
                                 </template>

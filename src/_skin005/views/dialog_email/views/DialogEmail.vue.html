@@ -95,19 +95,19 @@
     </v-card>
 
     <!-- 手机显示方式 -->
-    <v-card v-else class="d-flex flex-column" color="bgColor" height="100%" flat>
+    <v-card v-else class="d-flex flex-column overflow-x-hidden" color="bgColor" height="100%" flat>
         <com-dialog-title title="消息中心" @onClose="onClose" />
 
-        <v-sheet class="mx-3 py-3" color="transparent">
-            <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange" class="d-flex flex-wrap">
-                <v-btn class="rounded-pill mr-2" height="36" min_width="80" value="0">
-                    <span class="text-12"> {{LangUtil("全部消息")}} </span>
+        <v-sheet class="mx-3 py-3"   color="transparent">
+            <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange" class="d-flex flex-wrap scrollable-btn-group">
+                <v-btn  class="rounded-pill " height="36" min_width="80" value="0">
+                    <span class="text-14"> {{LangUtil("全部消息")}} </span>
                 </v-btn>
-                <v-btn class="rounded-pill mr-2" height="36" min_width="80" value="1">
-                    <span class="text-12"> {{LangUtil("平台消息")}} </span>
+                <v-btn class="rounded-pill " height="36" min_width="80" value="1">
+                    <span class="text-14"> {{LangUtil("平台消息")}} </span>
                 </v-btn>
-                <v-btn class="rounded-pill mr-2" height="36" min_width="80" value="11">
-                    <span class="text-12"> {{LangUtil("活动消息")}} </span>
+                <v-btn class="rounded-pill" height="36" min_width="80" value="11">
+                    <span class="text-14"> {{LangUtil("活动消息")}} </span>
                 </v-btn>
             </v-btn-toggle>
         </v-sheet>
@@ -120,7 +120,7 @@
 
         <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-hidden" style="height: calc(100vh - 230px);"> -->
 
-        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+        <LoadMore style="height: 100%;"  @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
             <v-sheet
                 class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex"
                 color="bgBanner"

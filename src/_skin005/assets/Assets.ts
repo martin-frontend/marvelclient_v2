@@ -32,6 +32,18 @@ const CategoryIcon = Object.freeze({
     256: "c128",
     512: "c128",
 });
+const CategoryIcon_sel = Object.freeze({
+    1: "c1_sel",
+    2: "c2_sel",
+    4: "c4_sel",
+    8: "c8_sel",
+    16: "c16_sel",
+    32: "c32_sel",
+    64: "c64_sel",
+    128: "c128_sel",
+    256: "c128_sel",
+    512: "c128_sel",
+});
 
 const VipMap = Object.freeze({
     0: require(`@/_skin005/assets/mine/VIP0.png`),
@@ -57,4 +69,4 @@ const VipMap = Object.freeze({
     20: require(`@/_skin005/assets/mine/VIP20.png`),
 });
 
-export default { commonIcon, CategoryIcon, VipMap };
+export default { commonIcon, CategoryIcon, VipMap ,CategoryIcon_sel};

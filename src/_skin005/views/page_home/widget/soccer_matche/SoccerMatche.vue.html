@@ -1,6 +1,6 @@
 <div :class="$mobile ? 'mt-4' : 'mt-6'" v-if="matches.length>0">
-    <div class="d-flex align-center primary--text font-weight-bold" :class="$mobile?'':'mb-2'">
-        <div :class="$mobile?'text-16':'text-20'">{{ LangUtil("热门赛事") }}</div>
+    <div class="d-flex align-center primary--text " :class="$mobile?'':'mb-2'">
+        <div class="font-weight-bold" :class="$mobile?'text-16':'text-20'">{{ LangUtil("热门赛事") }}</div>
         <v-spacer />
         <!-- <btn-info
             class="rounded-lg"
@@ -11,7 +11,7 @@
             >{{LangUtil("查看全部")}}</btn-info> -->
 
         <v-sheet
-            class="d-flex disable_text--text align-center cursor-pointer"
+            class="d-flex disable_text--text align-center cursor-pointer "
             :class="$mobile ? 'text-12' :'text-14'"
             color="transparent"
             @click.native="openSport"

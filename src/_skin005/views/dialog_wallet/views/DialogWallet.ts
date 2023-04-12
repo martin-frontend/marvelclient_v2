@@ -11,7 +11,7 @@ export default class DialogWallet extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogWalletProxy = this.getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
-
+    core=core; 
     listQuery = this.pageData.listQuery;
     listOptions = this.pageData.listOptions;
 

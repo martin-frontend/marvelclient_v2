@@ -60,6 +60,12 @@ export default class DialogBetRecord extends AbstractView {
         }, 400);
         this.myProxy.api_vendor_simple();
     }
+    get pageInfoText() {
+        const text = LangUtil("共计{0}条", this.pageInfo.pageTotal);
+        const regex = /(\d+)/;
+        const parts = text.split(regex);
+        return parts;
+      }
     @Watch("pageData.bShowOptions")
     watchShowOptions() {
         console.log("-----创建 ----");
@@ -324,4 +330,5 @@ export default class DialogBetRecord extends AbstractView {
     public get isShowVailBet(): boolean {
         return SkinVariable.isShowVailBet;
     }
+    
 }

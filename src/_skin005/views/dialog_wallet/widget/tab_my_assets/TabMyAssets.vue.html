@@ -31,21 +31,21 @@
     <!-- 手机版本 -->
     <div v-else>
         <div v-for="(item, key) of pageData.gold_info" :key="key">
-            <v-sheet color="bgBanner" width="95.5%" class="mb-2 mx-auto rounded-lg pa-4 text-12">
+            <v-sheet color="bgBanner" width="95.5%" class="mb-2 mx-auto rounded-lg pa-4 text-14">
                 <div class="d-flex justify-space-between align-center">
-                    <div class="primary--text">{{LangUtil("币种")}}</div>
+                    <div class="leftText--text">{{LangUtil("币种")}}</div>
                     <div class="d-flex align-center">
                         <v-img class="mr-2" :src="plat_coins[key].icon" max-width="18" height="18"></v-img>
-                        <div class="userInfo_color--text">{{key}}</div>
+                        <div class="head_btn--text">{{key}}</div>
                     </div>
                 </div>
                 <div class="mt-3 d-flex justify-space-between align-center">
-                    <div class="primary--text">{{LangUtil("可用")}}</div>
-                    <div class="userInfo_color--text">{{amountFormat(item.plat_money)}}</div>
+                    <div class="leftText--text">{{LangUtil("可用")}}</div>
+                    <div class="head_btn--text">{{amountFormat(item.plat_money)}}</div>
                 </div>
                 <div class="mt-3 d-flex justify-space-between align-center">
-                    <div class="primary--text">{{LangUtil("厂商")}}</div>
-                    <div class="userInfo_color--text">{{amountFormat(item.vendors_money)}}</div>
+                    <div class="leftText--text">{{LangUtil("厂商")}}</div>
+                    <div class="head_btn--text">{{amountFormat(item.vendors_money)}}</div>
                 </div>
             </v-sheet>
         </div>

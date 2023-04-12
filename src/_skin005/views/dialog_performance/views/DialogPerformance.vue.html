@@ -106,9 +106,9 @@
             <!-- <v-divider class="mb-2 " /> -->
             <v-card-text class="px-2">
                 <div class="d-flex my-2">
-                    <v-btn-toggle mandatory group v-model="listOptions.timeSelect" @change="onTimeChange">
+                    <v-btn-toggle :lang="core.lang" mandatory group v-model="listOptions.timeSelect" @change="onTimeChange">
                         <template v-for="(item, key) of listOptions.timeOptions()">
-                            <v-btn class="rounded-pill mr-2" height="30" min-width="70" :key="key">
+                            <v-btn class="rounded-pill" height="30" min-width="70" :key="key">
                                 <span class="text-14"> {{item.name || item}} </span>
                             </v-btn>
                         </template>

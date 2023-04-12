@@ -18,6 +18,7 @@ export default class DialogRecharge extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     pageData = this.myProxy.pageData;
     GlobalVar = GlobalVar;
+    core=core;
     constructor() {
         super(DialogRechargeMediator);
     }

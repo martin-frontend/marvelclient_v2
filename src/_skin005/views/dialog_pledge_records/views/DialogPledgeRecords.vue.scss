@@ -56,3 +56,6 @@
     overflow: hidden;
     padding-top: 0px;
 }
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+  }

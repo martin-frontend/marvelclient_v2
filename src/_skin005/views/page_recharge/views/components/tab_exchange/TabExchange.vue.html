@@ -1,6 +1,4 @@
-<v-card flat class="" color="transparent" width="100%"
-    :class="$mobile ? 'pad_top_mob' : 'pad_height'">
-
+<v-card flat class="" color="transparent" width="100%" :class="$mobile ? 'pad_top_mob' : 'pad_height'">
     <template v-if="!pageData.isLoadData">
         <template v-if="myProxy.exchangeProxy.isHaveData">
             <template v-if="!$mobile">

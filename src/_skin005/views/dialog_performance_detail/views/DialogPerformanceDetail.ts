@@ -15,6 +15,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     listQuery = this.pageData.listQuery;
     categoryType = this.myProxy.categoryIcons;
     LangUtil = LangUtil;
+    core=core;
     selfProxy = PanelUtil.getProxy_selfproxy;
 
     constructor() {

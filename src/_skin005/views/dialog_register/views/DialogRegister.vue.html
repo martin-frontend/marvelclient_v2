@@ -9,7 +9,7 @@
 >
     <v-card v-if="!$xsOnly" color="bgBanner" class="d-flex rounded10">
         <AdvertiseInLogin :height="650" :width="300" class="d-none d-md-flex" />
-        <v-card color="transparent" width="400" class="">
+        <v-card color="transparent" width="430" class="">
             <!-- <v-card-title class="d-flex justify-start pb-0 gradient-bg">
                 <div class="ml-2 font-weight-medium primary--text text-20">{{LangUtil("注册")}}</div>
                 <v-btn class="mr-2" icon @click="onClose">
@@ -315,18 +315,18 @@
 
         <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex my-3 px-2">
             <template v-slot="{data}">
-                <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                    <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1">
-                        <span :class="typechange=='1'?'font-weight-bold':''" class="text-12"> {{LangUtil("账号注册")}} </span>
+                <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn v-if="registerTypes.includes(1)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="1">
+                        <span :class="typechange=='1'?'font-weight-bold':''" class="text-14"> {{LangUtil("账号注册")}} </span>
                     </v-btn>
-                    <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4">
-                        <span :class="typechange=='4'?'font-weight-bold':''" class="text-12"> {{LangUtil("手机注册")}} </span>
+                    <v-btn v-if="registerTypes.includes(4)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="4">
+                        <span :class="typechange=='4'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机注册")}} </span>
                     </v-btn>
-                    <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2">
-                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-12"> {{LangUtil("邮箱注册")}} </span>
+                    <v-btn v-if="registerTypes.includes(2)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="2">
+                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱注册")}} </span>
                     </v-btn>
-                    <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8">
-                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-12"> {{LangUtil("手机账号注册")}} </span>
+                    <v-btn v-if="registerTypes.includes(8)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="8">
+                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
                     </v-btn>
                 </v-btn-toggle>
             </template>

@@ -11,7 +11,15 @@
                         color="#6A83B4"></v-radio>
                 </v-radio-group> -->
 
-                <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                <v-btn-toggle v-if="$xsOnly" :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn class="rounded-pill" height="36" min_width="90" value="0">
+                        <span class="text-14"> {{LangUtil("团队投注")}} </span>
+                    </v-btn>
+                    <v-btn class="rounded-pill" height="36" min_width="90" value="1">
+                        <span class="text-14"> {{LangUtil("个人投注")}} </span>
+                    </v-btn>
+                </v-btn-toggle>
+                <v-btn-toggle v-else mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn class="rounded-pill mr-2" height="36" min_width="90" value="0">
                         <span class="text-14"> {{LangUtil("团队投注")}} </span>
                     </v-btn>

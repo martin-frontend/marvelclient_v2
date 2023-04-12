@@ -45,6 +45,8 @@ export function getVuetify(): Vuetify {
                         wallet_bg_2:"#fff",
                         userInfo_color:"#5d5d5d",
                         msgShowTxt_color:"#FFFFFF",
+                        rechargeText:"#b0b0b0",
+                        leftText:"#8f8f8f",
                     },
                     dark: {
                         primary: "#FFFFFF",
@@ -81,6 +83,8 @@ export function getVuetify(): Vuetify {
                         wallet_bg_2:"#2F3030",
                         userInfo_color:"#8E8F91",
                         msgShowTxt_color:"#1D1E1F",
+                        rechargeText:"#7f7f80",
+                        leftText:"#abacac",
                     },
                 },
                 // dark: true

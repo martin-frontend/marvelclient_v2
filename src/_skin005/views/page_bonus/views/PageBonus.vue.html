@@ -439,12 +439,12 @@
                     </v-btn>
                 </v-btn-toggle>
 
-                <v-btn-toggle v-else mandatory group v-model="typechange" @change="onTimeChange" class="d-flex flex-wrap">
-                    <v-btn class="rounded-pill mr-2" height="30" min-width="80">
-                        <span class="text-12"> {{LangUtil("全站记录")}} </span>
+                <v-btn-toggle :lang="core.lang" v-else mandatory group v-model="typechange" @change="onTimeChange" class="d-flex flex-wrap">
+                    <v-btn class="rounded-pill" height="30" min-width="80">
+                        <span class="text-14"> {{LangUtil("全站记录")}} </span>
                     </v-btn>
-                    <v-btn class="rounded-pill mr-2" height="30" min-width="80">
-                        <span class="text-12"> {{LangUtil("个人记录")}} </span>
+                    <v-btn class="rounded-pill" height="30" min-width="80">
+                        <span class="text-14"> {{LangUtil("个人记录")}} </span>
                     </v-btn>
                 </v-btn-toggle>
             </div>

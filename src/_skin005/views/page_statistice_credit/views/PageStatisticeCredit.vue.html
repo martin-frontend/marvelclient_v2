@@ -23,15 +23,15 @@
 
     <v-sheet v-else flat class="d-flex flex-column fix_head_mob ml-2" min-height="62" width="100%">
         <v-sheet class="d-flex align-center" min-height="62" color="transparent">
-            <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
-                <v-btn class="rounded-pill mr-2" height="30" min_width="78" value="0">
-                    <span class="text-12"> {{LangUtil("代理首页")}} </span>
+            <v-btn-toggle :lang="core.lang" mandatory group v-model="myProxy.pageData.tabIndex" @change="onTimeChange">
+                <v-btn class="rounded-pill" height="30" min_width="78" value="0">
+                    <span class="text-14"> {{LangUtil("代理首页")}} </span>
                 </v-btn>
-                <v-btn class="rounded-pill mr-2" height="30" min_width="78" value="1">
-                    <span class="text-12"> {{LangUtil("代理管理")}} </span>
+                <v-btn class="rounded-pill" height="30" min_width="78" value="1">
+                    <span class="text-14"> {{LangUtil("代理管理")}} </span>
                 </v-btn>
-                <v-btn class="rounded-pill mr-2" height="30" min_width="78" value="11">
-                    <span class="text-12"> {{LangUtil("信用报表")}} </span>
+                <v-btn class="rounded-pill" height="30" min_width="78" value="11">
+                    <span class="text-14"> {{LangUtil("信用报表")}} </span>
                 </v-btn>
             </v-btn-toggle>
         </v-sheet>

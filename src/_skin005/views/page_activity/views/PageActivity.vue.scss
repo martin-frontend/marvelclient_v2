@@ -24,3 +24,6 @@
         }
     }
 }
+.v-btn-toggle .v-btn:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing) !important; /* 自定义的字母间距 */
+  }

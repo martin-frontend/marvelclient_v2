@@ -47,12 +47,6 @@
 .arrow {
     margin-bottom: -1px !important;
 }
-// ::v-deep .v-btn__content {
-//     color: #98acd3;
-//     font-weight: 400;
-// }
-
-// .select-text {
-//     border: solid 1px #5A5A5A !important;
-//     border-radius: 10px !important;
-// }
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+  }

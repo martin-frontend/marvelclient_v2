@@ -37,22 +37,22 @@
 
     <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2 justify-center" min-height="62" width="100%">
         <v-sheet class="d-flex align-center" min-height="62" color="transparent">
-            <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex">
-                <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="30" min_width="78" value="0">
-                    <span class="text-12"> {{LangUtil("充值")}} </span>
+            <v-btn-toggle :lang="core.lang" mandatory group v-model="myProxy.pageData.tabIndex">
+                <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill" height="30" min_width="78" value="0">
+                    <span class="text-14"> {{LangUtil("充值")}} </span>
                 </v-btn>
                 <v-btn
                     v-if="GlobalVar.instance.isShowExchange || selfProxy.userInfo.is_credit_user == 98"
-                    class="rounded-pill mr-2"
+                    class="rounded-pill"
                     height="30"
                     min_width="78"
                     value="1"
                 >
-                    <span class="text-12"> {{LangUtil("兑换")}} </span>
+                    <span class="text-14"> {{LangUtil("兑换")}} </span>
                 </v-btn>
                 <v-btn
                     v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
-                    class="rounded-pill mr-2"
+                    class="rounded-pill"
                     height="30"
                     min_width="78"
                     value="11"
@@ -60,17 +60,16 @@
                     <span class="text-12"> {{LangUtil("划转")}} </span>
                 </v-btn>
             </v-btn-toggle>
+            <v-spacer />
+            <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="d-flex">
+            
+                <v-btn icon v-if="pageData.tabIndex==1"  @click.native="openGoldWater"
+                    ><svg-icon icon="Flowaudit" class="text-22 head_btn--text"></svg-icon></v-btn>
+                <v-btn icon  @click.native="goRecord"
+                    ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-22 head_btn--text"></svg-icon> </v-btn>
+            </v-sheet>
         </v-sheet>
-
-        <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" min-height="40" class="d-flex ml-auto mobel_input">
-            <btn-yellow v-if="pageData.tabIndex==1" class="text-12 ml-2" min_width="78" height="30" @click.native="openGoldWater"
-                >{{LangUtil("流水审核")}}</btn-yellow
-            >
-
-            <btn-yellow class="text-12 ml-2" min_width="78" height="30" @click.native="goRecord"
-                >{{pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录")}}</btn-yellow
-            >
-        </v-sheet>
+        
     </v-sheet>
 
     <!-- <HomePage v-if="pageData.tabIndex==0" ></HomePage> -->

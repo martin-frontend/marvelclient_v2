@@ -14,7 +14,7 @@ export default class DialogBetFilter extends AbstractView {
     betProxy: DialogBetRecordProxy = this.getProxy(DialogBetRecordProxy);
     pageData = this.myProxy.pageData;
     firstShow = false;
-
+    core=core;
     radiosInfo = [
         {
             name: LangUtil("团队投注"),

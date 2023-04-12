@@ -140,14 +140,14 @@
                 <com-dialog-title title="质押记录" @onClose="onClose" />
 
                 <div class="d-flex justify-start py-2 px-2">
-                    <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                        <v-btn class="rounded-pill mr-2" height="36" min-width="80">
+                    <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                        <v-btn class="rounded-pill" height="36" min-width="80">
                             <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-line</v-icon>
-                            <span class="text-12"> {{LangUtil("质押")}} </span>
+                            <span class="text-14"> {{LangUtil("质押")}} </span>
                         </v-btn>
-                        <v-btn class="rounded-pill mr-2" height="36" min-width="80">
+                        <v-btn class="rounded-pill" height="36" min-width="80">
                             <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-tree</v-icon>
-                            <span class="text-12"> {{LangUtil("解除质押")}} </span>
+                            <span class="text-14"> {{LangUtil("解除质押")}} </span>
                         </v-btn>
                     </v-btn-toggle>
                 </div>

@@ -121,7 +121,7 @@
             <template v-else>
                 <v-card flat color="transparent" width="100%">
                     <v-card flat width="100%" color="bgBanner" class="d-flex flex-column rounded10 px-4 py-4">
-                        <v-card flat color="transparent" class="">
+                        <v-card flat color="transparent" >
                             <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("选择币种")}}</div>
                             <v-sheet color="transparent">
                                 <goldinfo_util
@@ -162,7 +162,7 @@
                         </v-card>
 
                         <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
-                            {{LangUtil("充值金额")}} {{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}
+                            <span class="rechargeText--text">{{LangUtil("充值金额")}}</span>  <span class="textYellow--text">{{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}</span> 
                         </v-sheet>
 
                         <v-card flat color="transparent" class="mt-4">

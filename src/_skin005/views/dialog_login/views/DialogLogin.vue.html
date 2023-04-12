@@ -195,12 +195,12 @@
         <!-- 找回密码 -->
         <v-card-text v-if="forgetData.bShow" class="px-2 mt-3">
             <div class="d-flex mb-3">
-                <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                    <v-btn class="rounded-pill mr-2" height="30" width="78">
-                        <span class="text-12"> {{LangUtil("邮箱找回")}} </span>
+                <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn class="rounded-pill" height="30" min-width="78">
+                        <span class="text-14"> {{LangUtil("邮箱找回")}} </span>
                     </v-btn>
-                    <v-btn class="rounded-pill mr-2" height="30" width="78">
-                        <span class="text-12"> {{LangUtil("手机找回")}} </span>
+                    <v-btn class="rounded-pill" height="30" min-width="78">
+                        <span class="text-14"> {{LangUtil("手机找回")}} </span>
                     </v-btn>
                 </v-btn-toggle>
             </div>
@@ -362,7 +362,7 @@
                 >{{LangUtil("登录")}}</btn-yellow
             >
 
-            <div v-if="GlobalVar.instance.isShowRegiter" class="arrow_color--text text-center mt-4 text-12">
+            <div v-if="GlobalVar.instance.isShowRegiter" class="copy_icon--text text-center mt-4 text-12">
                 {{LangUtil("还没有账户？")}}
                 <button class="textYellow--text" @click="goRegister">{{LangUtil("去注册")}}</button>
             </div>

@@ -12,6 +12,7 @@ export default class PageRecharge extends AbstractView {
     myProxy: PageRechargeProxy = this.getProxy(PageRechargeProxy);
     pageData = this.myProxy.pageData;
     selfProxy = PanelUtil.getProxy_selfproxy;
+    core=core; 
     GlobalVar = GlobalVar;
     constructor() {
         super(PageRechargeMediator);

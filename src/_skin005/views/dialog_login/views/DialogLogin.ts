@@ -13,6 +13,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 @Component
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
+    core=core;
     myProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     pageData = this.myProxy.pageData;

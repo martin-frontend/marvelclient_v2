@@ -136,8 +136,24 @@
     width: 380px;
 }
 
+.input_range_1 {
+    ::v-deep .el-icon-date{
+        display: none;
+        
+    }
+    ::v-deep .el-input__inner{
+        padding-left: 10px !important;
+    }
+    
+    height: 36px !important;
+    width: auto ;
+}
 .input_range_2 {
-    width: 100%;
+    ::v-deep .el-input__inner{
+        padding-left: 31px !important;
+    }
+    height: 36px !important;
+   
 }
 
 .hackhome {
@@ -165,6 +181,7 @@
 .theme--light {
     .timeRange_pc {
         ::v-deep .el-input__inner {
+            
             background-color: #f4f4f4 !important;
         }
 
@@ -177,10 +194,29 @@
 .theme--light {
     .timeRange {
         ::v-deep .el-input__inner {
-            background-color: #fff !important;
+            height: 36px;
+            background-color: transparent !important;
+            color: #5A5A5A;
         }
+        background-color: #fff !important;
 
         ::v-deep .el-input {
+
+            font-size: 12px !important;
+        }
+    }
+}
+.theme--dark {
+    .timeRange {
+        ::v-deep .el-input__inner {
+            color: #8E8F91;
+            height: 36px;
+            background-color: transparent !important;
+        }
+        background-color: #2f3030 !important;
+
+        ::v-deep .el-input {
+ 
             font-size: 12px !important;
         }
     }
@@ -207,8 +243,10 @@
 }
 
 .cusSelect {
+    height: 36px !important;
     font-size: 12px !important;
     ::v-deep .title_class {
+        height: 36px !important;
         width: calc(100vw / 3 - 15px) !important;
     }
     ::v-deep .v-menu__content {

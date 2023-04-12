@@ -37,11 +37,12 @@
                                     } "
                                 @click="goCategory_game(getItemCategory(item))"
                             >
-                                <svg-icon :icon="CategoryIcon[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                                <svg-icon v-if="hover || isShowActive(item)" :icon="CategoryIcon_sel[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                                <svg-icon v-else :icon="CategoryIcon[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
                                 <div
                                     v-if="!mini"
-                                    class="ml-5 text-no-wrap font-weight-bold"
-                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' "
+                                    class="ml-5 text-no-wrap "
+                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text font-weight-bold' : 'navText--text ' "
                                 >
                                     {{LangUtil(getItemCategoryName(item))}}
                                 </div>
@@ -73,12 +74,13 @@
                         } "
                         @click="goCategory(item)"
                     >
-                        <svg-icon :icon="item.icon" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                        <svg-icon v-if="hover || routerPath.includes(item.path)" :icon="item.icon_sel" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                        <svg-icon v-else :icon="item.icon" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
                         <div
                             v-if="!mini"
-                            class="text-no-wrap font-weight-bold"
+                            class="text-no-wrap "
                             :class="{
-                                'navTextHover--text' : (hover || routerPath.includes(item.path)),
+                                'navTextHover--text font-weight-bold' : (hover || routerPath.includes(item.path)),
                                 'navText--text' : !(hover || routerPath.includes(item.path)),
                                 'ml-5': !$mobile,
                                 'ml-2': $mobile,

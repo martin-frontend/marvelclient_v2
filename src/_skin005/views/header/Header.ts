@@ -137,6 +137,10 @@ export default class Header extends AbstractView {
     /**打开充值页面 */
     onCoinIn() {
         PanelUtil.openpanel_recharge();
+        
+    }
+    ontestin(){
+        PanelUtil.openpanel_swap_record();
     }
     onService() {
         ServiceUtil();

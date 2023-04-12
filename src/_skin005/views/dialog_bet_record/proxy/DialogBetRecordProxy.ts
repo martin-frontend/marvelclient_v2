@@ -198,7 +198,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             },
         };
         const list = <any>[];
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 20; index++) {
             list.push(obj);
         }
         return list;

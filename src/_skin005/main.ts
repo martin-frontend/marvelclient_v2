@@ -30,6 +30,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import LangConfig from "@/core/config/LangConfig";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "./core/PanelUtil";
+import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 
 LogUtil.init();
 core.init();
@@ -55,6 +56,7 @@ Vue.component("btn-yellow", BtnUtil);
 Vue.component("btn-info", BtnInfo);
 Vue.component("Overlay", Overlay);
 Vue.component("LoadMore", LoadMore);
+Vue.component("LoadMore1", LoadMore1);
 Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);

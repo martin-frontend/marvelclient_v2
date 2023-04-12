@@ -1,0 +1,11 @@
+.slotbox{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    &.top{
+        top: 0
+    }
+    &.bottom{
+        bottom: 0;
+    }
+}

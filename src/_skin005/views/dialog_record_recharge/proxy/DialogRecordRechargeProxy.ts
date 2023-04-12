@@ -71,7 +71,7 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
             } else {
                 this.pageData.list.push(...data.list);
             }
-            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;

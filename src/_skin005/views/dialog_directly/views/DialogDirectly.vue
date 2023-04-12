@@ -5,7 +5,6 @@
 import Component from "vue-class-component";
 import DialogDirectly from "./DialogDirectly";
 import CustomInput from "@/_skin005/views/widget/custom_input_nomal/CustomInputNomal.vue";
-
 @Component({
     components: {
         CustomInput,

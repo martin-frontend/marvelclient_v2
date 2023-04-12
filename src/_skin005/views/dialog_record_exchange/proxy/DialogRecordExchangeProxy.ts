@@ -66,12 +66,12 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
             } else {
                 this.pageData.list.push(...data.list);
             }
-            this.pageData.finished = pageCount == pageCurrent;
+            this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
-        //this.pageData.list = this.setTestdata();
+      //  this.pageData.list = this.setTestdata();
     }
 
     /**手机下拉刷新 */

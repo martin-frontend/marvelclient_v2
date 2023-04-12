@@ -59,7 +59,7 @@ export default class DialogActivityProxy extends puremvc.Proxy {
         } else {
             this.pageData.list = data.list;
         }
-        //this.pageData.list = this.setTestData();
+        // this.pageData.list = this.setTestData();
     }
 
     /**手机下拉刷新 */

@@ -21,6 +21,10 @@ core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
+if (process.env.VUE_APP_GAME_DOMAIN) {
+    core.game_domain = process.env.VUE_APP_GAME_DOMAIN;
+}
+
 // if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
 //     core.cdnUrl = GameConfig.getCdnUrl();
 // } else {
@@ -39,7 +43,7 @@ SkinVariable.pageHome_project_2 = require(`@/_skin004_1/assets/page_home/project
 SkinVariable.isSavePhoto = true;
 SkinVariable.savePhotoBg = require(`@/_skin004_1/assets/extension/poster.jpg`);
 SkinVariable.defaultCode = "86";
-SkinVariable.mustShowInvite = true
+SkinVariable.mustShowInvite = true;
 //SkinVariable.isShowSoccerMatche = false ;
 
 Vue.config.productionTip = false;

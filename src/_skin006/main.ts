@@ -49,6 +49,10 @@ core.init();
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 //core.game_domain =  "betnow.co";
+if (process.env.VUE_APP_GAME_DOMAIN) {
+    core.game_domain = process.env.VUE_APP_GAME_DOMAIN;
+}
+
 AppFacade.inst.startup();
 
 Vue.config.productionTip = false;

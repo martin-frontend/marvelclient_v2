@@ -38,6 +38,9 @@ core.init();
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
 //core.game_domain =  "96in.com";
+if (process.env.VUE_APP_GAME_DOMAIN) {
+    core.game_domain = process.env.VUE_APP_GAME_DOMAIN;
+}
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);

@@ -142,14 +142,16 @@ export default class GameConfig {
             if (process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5") {
                 const port = location.port;
                 if (port == "") {
-                    const origin = location.origin;
-                    if (origin.indexOf("www") == -1) {
-                        apiUrl = origin.replace("://", "://api.");
+                    if (core.game_domain.indexOf("www") == -1) {
+                        // apiUrl = origin.replace("://", "://api.");
+                        apiUrl = location.protocol + "//api." + core.game_domain;
                     } else {
-                        apiUrl = origin.replace("www", "api");
+                        // apiUrl = origin.replace("www", "api");
+                        apiUrl = location.protocol + "//" + core.game_domain.replace("www", "api");
                     }
                 } else {
-                    apiUrl = "http://" + location.hostname + ":28001";
+                    // apiUrl = "http://" + location.hostname + ":28001";
+                    apiUrl = "http://" + core.game_domain + ":28001";
                 }
             } else {
                 apiUrl = "https://api.testjj9.com";
@@ -161,11 +163,12 @@ export default class GameConfig {
     /**获取cdn地址 */
     static getCdnUrl(): string {
         let apiUrl = "";
-        const origin = location.origin;
-        if (origin.indexOf("www") == -1) {
-            apiUrl = origin.replace("://", "://static.");
+        if (core.game_domain.indexOf("www") == -1) {
+            // apiUrl = origin.replace("://", "://static.");
+            apiUrl = location.protocol + "//static." + core.game_domain;
         } else {
-            apiUrl = origin.replace("www", "static");
+            // apiUrl = origin.replace("www", "static");
+            apiUrl = location.protocol + "//" + core.game_domain.replace("www", "static");
         }
         return apiUrl;
     }

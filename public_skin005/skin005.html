@@ -18,9 +18,9 @@
         <link rel="canonical" href="https://96in.com/" />
         <link rel="manifest" href="/manifest.json" />
 
-        <% if (process.env.VUE_APP_ENV =='production' ) { %>
+        <% if (process.env.VUE_APP_ENV =='production' && !process.env.VUE_APP_GAME_DOMAIN ) { %>
         <base href="https://96in.com/" />
-        <% } %> <% if (process.env.VUE_APP_TEST =='history' ) { %>
+        <% } %> <% if (process.env.VUE_APP_TEST =='history' && !process.env.VUE_APP_GAME_DOMAIN ) { %>
         <base href="http://localhost:8080/" />
         <% } %>
 

@@ -16,7 +16,7 @@ export default class PageMyInfoMediator extends AbstractMediator {
         PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
     }
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_show_var];
+        return [net.EventType.api_user_show_var, net.EventType.api_user_var_block_coins_scale];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -25,6 +25,9 @@ export default class PageMyInfoMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_show_var:
                 myProxy.pageInit(body);
+                break;
+            case net.EventType.api_user_var_block_coins_scale:
+                myProxy.setCoinsScale(body);
                 break;
         }
     }

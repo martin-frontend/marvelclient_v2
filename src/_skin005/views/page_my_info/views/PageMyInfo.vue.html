@@ -21,17 +21,17 @@
         <v-sheet color="transparent" width="100%" class="pr-4">
             <v-sheet width="100%" color="transparent" class="">
                 <v-sheet color="transparent" class="d-flex justify-space-between text-14">
-                    <div>{{LangUtil("VIP")}} {{ pageData.vipLevel }}</div>
+                    <div class="font-weight-bold">{{LangUtil("VIP")}} {{ pageData.vipLevel }}</div>
 
                     <div class="textYellow--text cursop_pointer text-12" @click="onVipInfoBtnClick">
-                        <span style="padding-bottom: 5px; border-bottom: 1px solid #feba00">{{LangUtil('进入vip中心')}}</span>
+                        <span style="padding-bottom: 2px; border-bottom: 1px solid #feba00">{{LangUtil('进入vip中心')}}</span>
                     </div>
                 </v-sheet>
                 <v-progress-linear
                     :value="pageData.vipProgress"
                     color="textYellow"
                     height="6"
-                    class="rounded-xl mt-2 mb-2"
+                    class="rounded-xl mt-1 mb-2"
                 ></v-progress-linear>
                 <div v-if="pageData.vipMaxLevel" class="mt-1 textGray--text text-12">
                     <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">{{LangUtil('您已经升级早最高等级')}}</p>
@@ -39,7 +39,12 @@
                         >{{LangUtil('距离下一个等级还差')}}
                     </span>
                     <span class="textGray--text" v-if="pageData.nextExp > 0">
-                        <span class="textYellow--text">{{ pageData.nextExp}}</span>
+                        <span class="textYellow--text font-weight-bold">
+                            <span v-if="ModulesHelper.IsShow_VipShowDeal()"
+                                >{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span
+                            >
+                            <span>{{ amountFormat(transformExpAndUsdt(pageData.nextExp))}}</span>
+                        </span>
                         {{LangUtil('有效流水')}}
                     </span>
 

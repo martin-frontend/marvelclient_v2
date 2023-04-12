@@ -11,6 +11,7 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import { amountFormat } from "@/core/global/Functions";
 @Component
 export default class PageMyInfo extends AbstractView {
     LangUtil = LangUtil;
@@ -20,6 +21,7 @@ export default class PageMyInfo extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
     GamePlatConfig = GamePlatConfig;
+    ModulesHelper=ModulesHelper;
     GlobalVar = GlobalVar;
     constructor() {
         super(PageMyInfoMediator);
@@ -29,6 +31,10 @@ export default class PageMyInfo extends AbstractView {
     }
     mounted() {
         PanelUtil.showAppLoading(false);
+        this.myProxy.api_user_var_block_coins_scale();
+    }
+    amountFormat(val: any, isb = true) {
+        return amountFormat(val, isb);
     }
     get menuList() {
         const newlist = [];
@@ -217,5 +223,19 @@ export default class PageMyInfo extends AbstractView {
     }
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+    }
+    transformExpAndUsdt(count: any) {
+        if (!this.ModulesHelper.IsShow_VipShowDeal()) {
+            return count;
+        }
+        if (this.myProxy.getCoinsScale <= 0) return count;
+        let amount = 0;
+        if (typeof count == "string") {
+            amount = parseFloat(count);
+        } else {
+            amount = count;
+        }
+        const newNub = (amount * this.myProxy.getCoinsScale).toFixed(2);
+        return newNub;
     }
 }

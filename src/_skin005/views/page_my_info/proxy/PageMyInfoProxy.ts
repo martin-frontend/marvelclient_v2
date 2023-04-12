@@ -1,11 +1,14 @@
+import GamePlatConfig from "@/core/config/GamePlatConfig";
+
 export default class PageMyInfoProxy extends puremvc.Proxy {
     static NAME = "PageMyInfoProxy";
 
     public onRegister(): void {
         this.pageData.loading = true;
+        this.getCurrentCoin();
         // TODO 请求初始数据
     }
-
+    gameRateList = <any>{}; //游戏的汇率
     pageData = {
         loading: false,
         nextExp: 0, //等级还差
@@ -15,6 +18,11 @@ export default class PageMyInfoProxy extends puremvc.Proxy {
         vipNextLevel: 0, //vip下一等
         vipConfig: [], //vip 所有等级
         vipMaxLevel: 0, //最大等级
+        // 当前的主币 奖励币
+        platCoins: <any>{
+            mainCoin: {},
+            rewardCoin: {},
+        },
     };
     userInfo: core.UserInfoVO = {};
 
@@ -55,5 +63,41 @@ export default class PageMyInfoProxy extends puremvc.Proxy {
             this.pageData.vipNextLevel =
                 this.pageData.vipLevel + 1 > vip_info.max_vip_level - 1 ? vip_info.max_vip_level - 1 : this.pageData.vipLevel + 1;
         }
+    }
+    /**取目前的主币 奖励币 */
+    getCurrentCoin() {
+        const plat_coins = <any>GamePlatConfig.config.plat_coins;
+        const coinsKey = Object.keys(plat_coins);
+        coinsKey.forEach((key: any) => {
+            if (plat_coins[key].type === 2) {
+                this.pageData.platCoins.mainCoin = plat_coins[key];
+                this.pageData.platCoins.mainCoin.name = key;
+            }
+            if (plat_coins[key].type === 3) {
+                this.pageData.platCoins.rewardCoin = plat_coins[key];
+                this.pageData.platCoins.rewardCoin.name = key;
+            }
+        });
+    }
+    /**设置游戏中的 汇率 */
+    setCoinsScale(data: any) {
+        this.gameRateList = data;
+    }
+    get getCoinsScale() {
+        const { name } = this.pageData.platCoins.mainCoin;
+
+        if (!this.gameRateList || this.gameRateList.length < 1) return -1;
+
+        for (let index = 0; index < this.gameRateList.length; index++) {
+            if (this.gameRateList[index].coin_name_unique == name) {
+                return 1 / this.gameRateList[index].scale;
+            }
+        }
+        return 0;
+    }
+    /**--获取币种游戏比率*/
+    api_user_var_block_coins_scale() {
+        if (!core.user_id) return;
+        this.sendNotification(net.HttpType.api_user_var_block_coins_scale, { user_id: core.user_id });
     }
 }

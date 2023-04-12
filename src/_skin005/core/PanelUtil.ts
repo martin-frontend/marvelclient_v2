@@ -158,28 +158,50 @@ export default class PanelUtil {
         }
         return Vue.vuetify.framework.theme.dark;
     }
+    /**
+     * 常规页面的打开，一般是路由
+     */
+    private static _openpRouter_base(pagename: string, isNeedLoading: boolean, isCleadPanel: boolean) {
+        if (Vue.router.history.current.path.includes(pagename)) return;
+        Vue.router.push("/" + pagename);
+        if (isNeedLoading) PanelUtil.showAppLoading(true);
+        if (isCleadPanel) {
+            PageBlur.blur_force_close();
+            MultDialogManager.forceClosePanel();
+        }
+    }
+
+    /**
+     * 常规页面的打开，一般是路由
+     * @param pagename 路由的名字
+     * @param isNeedLogin  是否需要验证登录
+     * @param isNeedLoading  是否需要点击的时候打开显示加载
+     * @param isCleadPanel 是否需要清理其他页面
+     */
+    private static _openpage_base(
+        pagename: string,
+        isNeedLogin: boolean = true,
+        isNeedLoading: boolean = true,
+        isCleadPanel: boolean = true
+    ) {
+        if (isNeedLogin) {
+            LoginEnter(() => {
+                this._openpRouter_base(pagename, isNeedLoading, isCleadPanel);
+            });
+        } else {
+            this._openpRouter_base(pagename, isNeedLoading, isCleadPanel);
+        }
+    }
     /** 
         page路由 页面 
     */
     //打开推广赚钱页面
     static openpage_extension() {
-        //LoginEnter(() => {
-
-        if (Vue.router.history.current.path.includes("commissions")) return;
-        Vue.router.push("/commissions");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        //});
+        this._openpage_base("commissions", false);
     }
     //币种介绍
     static openpage_introduce() {
-        LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_introduce")) return;
-            Vue.router.push("/page_introduce");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
-        });
+        this._openpage_base("page_introduce");
     }
 
     //打开 主页
@@ -213,13 +235,7 @@ export default class PanelUtil {
 
     //打开 质押分红 界面
     static openpage_bonus() {
-        LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_bonus")) return;
-            Vue.router.push("/page_bonus");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
-        });
+        this._openpage_base("page_bonus");
     }
 
     //打开 信用统计 界面
@@ -284,36 +300,17 @@ export default class PanelUtil {
     }
     //打开 游戏返水 界面
     static openpage_mine() {
-        //LoginEnter(() => {
-        if (Vue.router.history.current.path.includes("page_mine")) return;
-
-        Vue.router.push("/page_mine");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
-        //});
+        this._openpage_base("page_mine", false);
     }
 
     //打开 SWAP交易 界面
     static openpage_swap() {
-        LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_swap")) return;
-
-            Vue.router.push("/page_swap");
-            PanelUtil.showAppLoading(true);
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
-        });
+        this._openpage_base("page_swap");
     }
 
     //打开 我的界面 界面
     static openpage_my_info() {
-        LoginEnter(() => {
-            if (Vue.router.history.current.path.includes("page_my_info")) return;
-            Vue.router.push("/page_my_info");
-            PageBlur.blur_force_close();
-            MultDialogManager.forceClosePanel();
-        });
+        this._openpage_base("page_my_info");
     }
     //打开 充值 界面
     static openpage_recharge(tabIdx: number = 0) {
@@ -386,17 +383,7 @@ export default class PanelUtil {
     }
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {
-        // MultDialogManager.onOpenPanel(dialog_activity);
-        // dialog_activity.show();
-
-        //LoginEnter(() => {
-        if (Vue.router.history.current.path.includes("promotions")) return;
-
-        Vue.router.push("/promotions");
-        PanelUtil.showAppLoading(true);
-        PageBlur.blur_force_close();
-        MultDialogManager.forceClosePanel();
-        //});
+        this._openpage_base("promotions", false);
     }
 
     //打开游戏列表窗口

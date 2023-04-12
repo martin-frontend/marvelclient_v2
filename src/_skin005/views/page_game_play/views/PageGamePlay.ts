@@ -10,8 +10,9 @@ import PageGamePlayProxy from "../proxy/PageGamePlayProxy";
 @Component
 export default class PageGamePlay extends AbstractView {
     myProxy: PageGamePlayProxy = this.getProxy(PageGamePlayProxy);
+    LangUtil = LangUtil;
     pageData = this.myProxy.pageData;
-
+    noticeProxy = PanelUtil.getProxy_noticeProxy;
     constructor() {
         super(PageGamePlayMediator);
     }
@@ -28,9 +29,30 @@ export default class PageGamePlay extends AbstractView {
     //         return "frame";
     //     }
     // }
-
+    isLoadEnd = false;
+    autoCloseTime = 0;
+    autoCloseHandle = 0;
     mounted() {
+        const that = this;
+        this.isLoadEnd = false;
+        //this.restartAutoClose(10);
         this.$nextTick(() => {
+            const iframe = document.getElementById("gameFrame");
+            if (iframe) {
+                iframe.addEventListener("load", this.onIframeLoadEnd);
+            }
+
+            {
+                const img = document.querySelector("#imgNode");
+                const a = document.querySelector("#cardNode");
+                if (img && a) {
+                    // 在图片加载完成后获取图片宽度并设置A元素宽度
+                    img.addEventListener("load", function () {
+                        that.resetImgSize(img, a);
+                    });
+                }
+            }
+
             const that = this;
             const oDiv: any = this.$refs.btnFlow;
             if (!oDiv) return;
@@ -94,6 +116,79 @@ export default class PageGamePlay extends AbstractView {
         this.onWatchHeight();
     }
 
+    resetImgSize(imgNode: any, cardNode: any) {
+        const bodywidth = document.body.clientWidth * 0.8;
+        const bodyH = document.body.clientHeight * 0.8;
+        const scale = imgNode.height / imgNode.width;
+
+        if (imgNode.width > bodywidth) {
+            //imgNode.width = bodywidth;
+            imgNode.style.width = `${bodywidth}px`;
+            imgNode.style.height = `${bodywidth * scale}px`;
+            //imgNode.height = bodywidth * scale;
+        }
+
+        if (imgNode.height > bodyH) {
+            // imgNode.height = bodyH;
+            // imgNode.width = bodyH / scale;
+            imgNode.style.width = `${bodyH / scale}px`;
+            imgNode.style.height = `${bodyH}px`;
+        }
+        console.log("重新设置之后的宽度", bodyH);
+
+        console.log("重新设置之后的宽度", imgNode.width);
+        console.log("重新设置之后的高度", imgNode.height);
+        //@ts-ignore
+        cardNode.style.width = `${imgNode.width}px`;
+        //cardNode.style.height = `${imgNode.height + 20}px`;
+
+        //@ts-ignore
+        console.log("----重新设置宽度---", imgNode.width);
+    }
+    onCloseDown() {
+        this.autoCloseTime--;
+        if (this.autoCloseTime <= 0) {
+            this.onClose();
+        }
+    }
+    restartAutoClose(timer: number = 10) {
+        if (this.autoCloseHandle) {
+            clearTimeout(this.autoCloseHandle);
+        }
+        this.autoCloseTime = timer;
+        this.autoCloseHandle = setInterval(this.onCloseDown.bind(this), 1000);
+    }
+    public get noticeData(): any {
+        return this.noticeProxy.getListTypeDataFromType(13);
+    }
+
+    public get curShowLoadData(): any {
+        if (this.noticeData.length < 1) return null;
+        const index = Math.floor(Math.random() * this.noticeData.length);
+        console.log("当前取出的随机数为 ", index);
+        return this.noticeData[index];
+    }
+
+    get isShowLoadNode() {
+        return this.isLoadEnd;
+    }
+    /**内置网页加载完成的时候 */
+    onIframeLoadEnd() {
+        console.log("  加载完成-----");
+        //this.isLoadEnd = true;
+    }
+    onClose() {
+        console.log("点击 关闭 ");
+        this.isLoadEnd = true;
+        if (this.autoCloseHandle) clearInterval(this.autoCloseHandle);
+    }
+    onclick_other() {
+        console.log("  ----------onclick_other-----");
+        this.onClose();
+    }
+    onclick_img() {
+        console.log("  ----------onclick_img-----");
+    }
     @Watch("$vuetify.breakpoint.height")
     onWatchHeight() {
         //@ts-ignore

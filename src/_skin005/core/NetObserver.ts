@@ -170,7 +170,7 @@ export default class NetObserver extends AbstractMediator {
                     message: LangUtil("您的帐号已经退出"),
                     okFun: () => {
                         //Vue.router.replace("/");
-                        PanelUtil.openpage_home();
+                        //PanelUtil.openpage_home();
                         location.reload();
                     },
                 });

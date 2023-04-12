@@ -27,11 +27,13 @@ export default class APP extends AbstractView {
         super();
         this.onWatchTheme();
     }
+    created() {
+        window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
+        window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
+    }
 
     mounted() {
         window.addEventListener("scroll", this.onWatchScroll, true);
-        window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
-        window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
     }
 
     //切换明暗

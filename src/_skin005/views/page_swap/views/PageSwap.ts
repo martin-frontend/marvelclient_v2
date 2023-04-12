@@ -17,7 +17,7 @@ export default class PageSwap extends AbstractView {
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
     chartData = this.pageData.chartData;
-    core=core;
+    core = core;
     swap_setting_info = this.pageData.swap_setting_info;
     userInfo = this.selfProxy.userInfo;
     parameter = this.myProxy.parameter;

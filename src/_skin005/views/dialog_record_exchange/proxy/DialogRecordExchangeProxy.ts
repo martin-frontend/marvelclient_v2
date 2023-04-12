@@ -71,7 +71,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
         } else {
             this.pageData.list = data.list;
         }
-      //  this.pageData.list = this.setTestdata();
+        //  this.pageData.list = this.setTestdata();
     }
 
     /**手机下拉刷新 */

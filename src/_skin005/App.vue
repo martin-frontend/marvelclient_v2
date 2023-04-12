@@ -1,5 +1,5 @@
 <template>
-    <v-app class="d-flex app" :class="$mobile ? '':'app_min_width'">
+    <v-app class="d-flex app" :class="$mobile ? '' : 'app_min_width'">
         <!-- pc版的显示 -->
         <template v-if="!$mobile">
             <v-sheet id="page" class="d-flex" color="transparent">
@@ -194,7 +194,7 @@ export default class extends App {}
     z-index: 10;
     width: calc(100% - 60px) !important;
     max-width: 2500px;
-    min-width:1204px;
+    min-width: 1204px;
 }
 
 .router_test {

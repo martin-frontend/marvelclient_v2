@@ -16,7 +16,7 @@ export default class DialogEmail extends AbstractView {
     myProxy: DialogEmailProxy = getProxy(DialogEmailProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
-    core=core;
+    core = core;
     commonIcon = Assets.commonIcon;
 
     constructor() {

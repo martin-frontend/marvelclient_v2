@@ -10,7 +10,7 @@ export default class LoadMore1 extends AbstractView {
 
     @Prop({ default: "#000000" }) backgroundColor!: string;
 
-    @Prop({default: false}) listNodata!:boolean;
+    @Prop({ default: false }) listNodata!: boolean;
 
     observer!: MutationObserver;
 
@@ -29,17 +29,17 @@ export default class LoadMore1 extends AbstractView {
         const topDiv: HTMLElement = <any>this.$refs.topDiv.$el;
         //@ts-ignore
         const bottomDiv: HTMLElement = <any>this.$refs.bottomDiv.$el;
-        this.$nextTick(()=>{ 
-            loadmoreDiv.style.paddingTop = (topDiv.offsetHeight) + "px";
+        this.$nextTick(() => {
+            loadmoreDiv.style.paddingTop = topDiv.offsetHeight + "px";
             loadmoreDiv.style.paddingBottom = bottomDiv.offsetHeight + "px";
-        })
+        });
         //@ts-ignore
         const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
         this.observer = new MutationObserver((mutationList: any, observer: any) => {
             mutationList.forEach((mutation: any) => {
                 switch (mutation.type) {
                     case "attributes":
-                        loadmoreDiv.style.paddingTop = (topDiv.offsetHeight) + "px";
+                        loadmoreDiv.style.paddingTop = topDiv.offsetHeight + "px";
                         loadmoreDiv.style.paddingBottom = bottomDiv.offsetHeight + "px";
                         break;
                 }

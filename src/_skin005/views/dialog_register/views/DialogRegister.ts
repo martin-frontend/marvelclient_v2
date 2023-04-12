@@ -15,7 +15,7 @@ export default class DialogRegister extends AbstractView {
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
-    core=core;
+    core = core;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     constructor() {
         super(DialogRegisterMediator);

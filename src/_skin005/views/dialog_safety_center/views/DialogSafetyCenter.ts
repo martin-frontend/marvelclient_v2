@@ -11,10 +11,9 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
-
 @Component
 export default class DialogSafetyCenter extends AbstractView {
-    core=core;
+    core = core;
     LangUtil = LangUtil;
     myProxy: DialogSafetyCenterProxy = this.getProxy(DialogSafetyCenterProxy);
     pageData = this.myProxy.pageData;

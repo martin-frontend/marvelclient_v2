@@ -18,7 +18,7 @@ export default class DialogPledgeRecords extends AbstractView {
     listQuery = this.pageData.listQuery;
     GamePlatConfig = GamePlatConfig;
     LangUtil = LangUtil;
-    core=core;
+    core = core;
 
     commonIcon = Assets.commonIcon;
 

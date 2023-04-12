@@ -18,7 +18,7 @@ export default class DialogPerformance extends AbstractView {
     myProxy: DialogPerformanceProxy = this.getProxy(DialogPerformanceProxy);
     pageData = this.myProxy.pageData;
     listOptions = this.myProxy.listOptions;
-    core=core;
+    core = core;
     listQuery = this.pageData.listQuery;
     summary = this.pageData.summary;
     LangUtil = LangUtil;

@@ -69,4 +69,4 @@ const VipMap = Object.freeze({
     20: require(`@/_skin005/assets/mine/VIP20.png`),
 });
 
-export default { commonIcon, CategoryIcon, VipMap ,CategoryIcon_sel};
+export default { commonIcon, CategoryIcon, VipMap, CategoryIcon_sel };

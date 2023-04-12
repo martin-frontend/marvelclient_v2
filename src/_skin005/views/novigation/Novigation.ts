@@ -38,12 +38,12 @@ export default class Novigation extends AbstractView {
     get menu() {
         const newlist = <any>[];
         const list = {
-            0: { icon: "coin",icon_sel: "coin_sel", name: "币种介绍", id: 5, path: "page_introduce" },
-            1: { icon: "chips",icon_sel: "chips_sel", name: "质押分红", id: 1, path: "page_bonus" },
-            2: { icon: "extension",icon_sel: "extension_sel", name: "推广赚钱", id: 6, path: "commissions" },
-            3: { icon: "water",icon_sel: "water_sel", name: "游戏返水", id: 2, path: "page_mine" },
-            4: { icon: "swap",icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
-            5: { icon: "activity",icon_sel: "activity_sel", name: "精彩活动", id: 4, path: "promotions" },
+            0: { icon: "coin", icon_sel: "coin_sel", name: "币种介绍", id: 5, path: "page_introduce" },
+            1: { icon: "chips", icon_sel: "chips_sel", name: "质押分红", id: 1, path: "page_bonus" },
+            2: { icon: "extension", icon_sel: "extension_sel", name: "推广赚钱", id: 6, path: "commissions" },
+            3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "page_mine" },
+            4: { icon: "swap", icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
+            5: { icon: "activity", icon_sel: "activity_sel", name: "精彩活动", id: 4, path: "promotions" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {

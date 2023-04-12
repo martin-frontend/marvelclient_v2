@@ -32,17 +32,16 @@ export default class DialogEmailProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestData()
-    {
-        const obj={
-            payment_method:{
-                is_read:"true",
-                created_at:"asda",
-            }
-        }
+    setTestData() {
+        const obj = {
+            payment_method: {
+                is_read: "true",
+                created_at: "asda",
+            },
+        };
         const list = <any>[];
         for (let index = 0; index < 10; index++) {
-           list.push(obj);
+            list.push(obj);
         }
         return list;
     }
@@ -58,12 +57,12 @@ export default class DialogEmailProxy extends puremvc.Proxy {
             } else {
                 this.pageData.list.push(...data.list);
             }
-            this.pageData.finished =  pageCurrent >= pageCount;
+            this.pageData.finished = pageCurrent >= pageCount;
             this.pageData.done && this.pageData.done();
         } else {
             this.pageData.list = data.list;
         }
-      //  this.pageData.list = this.setTestData();
+        //  this.pageData.list = this.setTestData();
     }
 
     setDetail(data: any) {

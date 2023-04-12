@@ -10,7 +10,7 @@ export default class PageStatisticeCredit extends AbstractView {
     LangUtil = LangUtil;
     myProxy: PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
     pageData = this.myProxy.pageData;
-    core=core;
+    core = core;
     constructor() {
         super(PageStatisticeCreditMediator);
     }

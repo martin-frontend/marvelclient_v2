@@ -105,11 +105,11 @@ export default class PageMine extends AbstractView {
     }
 
     jumpTo(target: string) {
-        if (target=="#betandwater") {
-            const getAwardbtn:HTMLElement = <any>document.getElementById("animbtn");
+        if (target == "#betandwater") {
+            const getAwardbtn: HTMLElement = <any>document.getElementById("animbtn");
             getAwardbtn?.addEventListener("animationend", () => {
                 getAwardbtn.classList.remove("button-animation");
-              });
+            });
             getAwardbtn?.classList.add("button-animation");
         }
         window.scrollTo({

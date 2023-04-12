@@ -17,7 +17,7 @@ export default class PageBonus extends AbstractView {
     plat_stake_info = this.myProxy.pageData.plat_stake_info;
     user_stake_info = this.myProxy.pageData.user_stake_info;
     listQuery = this.pageData.listQuery;
-    core=core;
+    core = core;
     private text_font(size: number, offset: number = 2) {
         if (this.$mobile) {
             //手机

@@ -11,7 +11,7 @@ export default class PageActivity extends AbstractView {
     myProxy: PageActivityProxy = this.getProxy(PageActivityProxy);
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;
-    core=core;
+    core = core;
     constructor() {
         super(PageActivityMediator);
     }

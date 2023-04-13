@@ -28,12 +28,7 @@
                             <v-col cols="6">
                                 <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                                 <v-sheet color="transparent" width="100%" class="d-flex input_pc">
-                                    <CustomInput
-                                        :placeholder="LangUtil('输入金额')"
-                                        v-model="form.amount"
-                                        :isOnlyNumber="true"
-                                        :formatNumber="true"
-                                    ></CustomInput>
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"></CustomInput>
 
                                     <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="addInputMoney(100)"
                                         >{{LangUtil("+100")}}</btn-yellow
@@ -121,7 +116,7 @@
             <template v-else>
                 <v-card flat color="transparent" width="100%">
                     <v-card flat width="100%" color="bgBanner" class="d-flex flex-column rounded10 px-4 py-4">
-                        <v-card flat color="transparent" >
+                        <v-card flat color="transparent">
                             <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("选择币种")}}</div>
                             <v-sheet color="transparent">
                                 <goldinfo_util
@@ -143,13 +138,7 @@
                         <v-card flat color="transparent" class="mt-4">
                             <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                             <v-sheet color="transparent" width="100%" class="d-flex">
-                                <CustomInput
-                                    :placeholder="LangUtil('输入金额')"
-                                    v-model="form.amount"
-                                    :isOnlyNumber="true"
-                                    :formatNumber="true"
-                                >
-                                </CustomInput>
+                                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount"> </CustomInput>
 
                                 <btn-yellow class="text-14 ml-2" min_width="72" height="36" @click.native="addInputMoney(100)">
                                     <span class="bold_text">{{LangUtil("+100")}}</span>
@@ -162,7 +151,10 @@
                         </v-card>
 
                         <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
-                            <span class="rechargeText--text">{{LangUtil("充值金额")}}</span>  <span class="textYellow--text">{{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}</span> 
+                            <span class="rechargeText--text">{{LangUtil("充值金额")}}</span>
+                            <span class="textYellow--text"
+                                >{{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}</span
+                            >
                         </v-sheet>
 
                         <v-card flat color="transparent" class="mt-4">

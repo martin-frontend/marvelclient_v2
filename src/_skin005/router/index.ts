@@ -222,7 +222,11 @@ export function getRouter(): VueRouter {
                         if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
                             next(prePath);
                         } else {
-                            if (router.mode == "history") changeManifeseJson(to.path);
+                            if (router.mode == "history") {
+                                changeManifeseJson(to.path);
+                                const link: any = document.querySelector('link[rel="canonical"]');
+                                link.href = location.origin;
+                            }
                             next();
                         }
                     } else {

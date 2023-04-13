@@ -26,8 +26,7 @@
                                     {{LangUtil("输入金额")}}
                                 </div>
                                 <v-sheet color="transparent" width="100%" class="d-flex ">
-                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyNumber="true"
-                                    :formatNumber="true">
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" >
 
                                     </CustomInput>
 
@@ -159,8 +158,7 @@
                             <v-card flat color="transparent" class="mt-4">
                                 <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                                 <v-sheet color="transparent" width="100%" class="d-flex ">
-                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyNumber="true"
-                                    :formatNumber="true">
+                                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" >
                                     </CustomInput>
 
                                     <btn-yellow class="text-14 ml-2" min_width="72" height="36"

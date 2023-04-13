@@ -3,105 +3,124 @@
     <template v-if="!$mobile">
         <v-row no-gutters>
             <!-- 我的等级 -->
-            <v-col :cols="ModulesHelper.IsShow_GameWaterManualReceive() ? 5 : 12"  class="mt-3  mt-md-1 pr-md-5 ">
+            <v-col :cols="ModulesHelper.IsShow_GameWaterManualReceive() ? 5 : 12" class="mt-3 mt-md-1 pr-md-5">
                 <v-card color="bgBanner" class="rounded10 pt-5 pb-2 d-flex flex-column" width="100%" height="100%">
                     <div>
-                        <span
-                            class="primary--text pt-1 text-20 font-weight-bold pl-md-3 px-5 pl-md-5">{{LangUtil('挖矿等级')}}</span>
+                        <span class="primary--text pt-1 text-20 font-weight-bold pl-md-3 px-5 pl-md-5">{{LangUtil('挖矿等级')}}</span>
                     </div>
                     <v-sheet color="transparent" class="mt-4">
-                        <v-row no-gutters class="mt-3 ">
-                            <v-sheet cols="4" color="transparent" width="150"
-                                class="pl-md-2 mt-n9 mt-md-n0 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
-                                <v-img :max-width="mobileChange('leftBgVipIcon').w" contain
-                                    :src="vipMap[pageData.vipLevel]"></v-img>
+                        <v-row no-gutters class="mt-3">
+                            <v-sheet
+                                cols="4"
+                                color="transparent"
+                                width="150"
+                                class="pl-md-2 mt-n9 mt-md-n0 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center"
+                            >
+                                <v-img :max-width="mobileChange('leftBgVipIcon').w" contain :src="vipMap[pageData.vipLevel]"></v-img>
                             </v-sheet>
-                            <v-sheet cols="8" color="transparent" style="width: calc(100% - 200px);"
-                                class="mb-3 ml-n3 ml-md-n0 d-flex flex-column align-start justify-center ">
-                                <v-sheet width="100%"
-                                    class="text-18 font-weight-bold  mb-1 d-flex align-center justify-space-between px-2"
-                                    color="transparent">
+                            <v-sheet
+                                cols="8"
+                                color="transparent"
+                                style="width: calc(100% - 200px)"
+                                class="mb-3 ml-n3 ml-md-n0 d-flex flex-column align-start justify-center"
+                            >
+                                <v-sheet
+                                    width="100%"
+                                    class="text-18 font-weight-bold mb-1 d-flex align-center justify-space-between px-2"
+                                    color="transparent"
+                                >
                                     VIP {{ pageData.vipLevel }}
                                     <span
-                                        class=" mt-md-3 mr-n3 mr-md-0 textYellow--text text-decoration-underline cursop_pointer text-14"
-                                        @click="jumpTo('#vipLevel')">{{LangUtil('查看所有等级')}}</span>
+                                        class="mt-md-3 mr-n3 mr-md-0 textYellow--text text-decoration-underline cursop_pointer text-14"
+                                        @click="jumpTo('#vipLevel')"
+                                        >{{LangUtil('查看所有等级')}}</span
+                                    >
                                 </v-sheet>
                                 <v-sheet width="100%" color="transparent" class="">
-                                    <v-progress-linear :value="pageData.vipProgress" color="textYellow"
-                                        :height="progressLinear" class="rounded-xl"></v-progress-linear>
-                                    <div class=" ma-0 ml-2 mt-1 mt-md-3 nomal_text_1--text text-16">
+                                    <v-progress-linear
+                                        :value="pageData.vipProgress"
+                                        color="textYellow"
+                                        :height="progressLinear"
+                                        class="rounded-xl"
+                                    ></v-progress-linear>
+                                    <div class="ma-0 ml-2 mt-1 mt-md-3 nomal_text_1--text text-16">
                                         <p class="nomal_text_1--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
-                                            {{LangUtil('您已经升级早最高等级')}} </p>
+                                            {{LangUtil('您已经升级早最高等级')}}
+                                        </p>
                                         <span
-                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">
+                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)"
+                                        >
                                             {{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextExp > 0">
                                             <span class="textYellow--text">
-                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
-                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span>  
-                                            </span>{{LangUtil('vip等级描述_2')}} 
+                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()"
+                                                    >{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span
+                                                >
+                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span> </span
+                                            >{{LangUtil('vip等级描述_2')}}
                                         </span>
-                                            </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextUSDT > 0">
                                             <span class="textYellow--text">{{pageData.nextUSDT}}</span>
                                             USDT{{LangUtil('充值')}}
-                                        </span>
                                         </span>
                                     </div>
                                 </v-sheet>
                             </v-sheet>
                         </v-row>
                     </v-sheet>
-                    <v-sheet v-if="ModulesHelper.IsShow_GameWaterManualReceive()" color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
+                    <v-sheet
+                        v-if="ModulesHelper.IsShow_GameWaterManualReceive()"
+                        color="transparent"
+                        class="d-flex flex-column mt-auto ml-7 mr-7 mb-4"
+                    >
                         <!-- 主币 -->
                         <v-sheet v-if="pageData.backwaterConfigMain.now > 0" width="100%" color="transparent">
-                            <v-sheet color="transparent"
-                                class="sheetOutlined  next_group d-flex align-center py-4 px-5">
-                                <v-img max-width="50" height="50" contain
-                                    :src="pageData.platCoins.mainCoin.icon"></v-img>
+                            <v-sheet color="transparent" class="sheetOutlined next_group d-flex align-center py-4 px-5">
+                                <v-img max-width="50" height="50" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
                                         <!-- <span class="textYellow--text next_title">{{
                                             pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
                                             ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span> -->
-                                            <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励1")}}</span>  
+                                        <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励1")}}</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-20 ">
+                                        <span class="textGreen--text text-20">
                                             <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.now,false) }}</span> {{
-                                            pageData.platCoins.mainCoin.name }}</span>
-                                        <svg-icon icon="arrow_next" class="text-30 nomal_icon--text "></svg-icon>
-                                        <span class="textYellow--text text-20 ">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.next,false) }}
-                                            </span>{{pageData.platCoins.mainCoin.name }}</span>
+                                            pageData.platCoins.mainCoin.name }}</span
+                                        >
+                                        <svg-icon icon="arrow_next" class="text-30 nomal_icon--text"></svg-icon>
+                                        <span class="textYellow--text text-20">
+                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.next,false) }} </span
+                                            >{{pageData.platCoins.mainCoin.name }}</span
+                                        >
                                     </div>
                                 </div>
                             </v-sheet>
                         </v-sheet>
 
                         <!-- 奖励币 -->
-                        <v-sheet v-if="pageData.backwaterConfigReward.now > 0" width="100%" color="transparent"
-                            class="mt-1">
-                            <v-sheet color="transparent"
-                                class="sheetOutlined  next_group d-flex align-center py-4 px-5">
-                                <v-img max-width="50" height="50" contain
-                                    :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                        <v-sheet v-if="pageData.backwaterConfigReward.now > 0" width="100%" color="transparent" class="mt-1">
+                            <v-sheet color="transparent" class="sheetOutlined next_group d-flex align-center py-4 px-5">
+                                <v-img max-width="50" height="50" contain :src="pageData.platCoins.rewardCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
                                         <!-- <span class="textYellow--text next_title">{{
                                             pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}
                                             ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span> -->
-                                            <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励2")}}</span>  
+                                        <span class="textYellow--text next_title">{{LangUtil("返水晋级奖励2")}}</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-20 bold_text">{{
-                                            amountFormat(pageData.backwaterConfigReward.now,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span>
-                                        <svg-icon icon="arrow_next" class="text-30 nomal_icon--text "></svg-icon>
-                                        <span class="textYellow--text text-20 bold_text">{{
-                                            amountFormat(pageData.backwaterConfigReward.next,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span>
+                                        <span class="textGreen--text text-20 bold_text"
+                                            >{{ amountFormat(pageData.backwaterConfigReward.now,false) }}{{
+                                            pageData.platCoins.rewardCoin.name }}</span
+                                        >
+                                        <svg-icon icon="arrow_next" class="text-30 nomal_icon--text"></svg-icon>
+                                        <span class="textYellow--text text-20 bold_text"
+                                            >{{ amountFormat(pageData.backwaterConfigReward.next,false) }}{{
+                                            pageData.platCoins.rewardCoin.name }}</span
+                                        >
                                     </div>
                                 </div>
                             </v-sheet>
@@ -111,88 +130,140 @@
                 </v-card>
             </v-col>
             <!-- 游戏挖矿 -->
-            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
-                <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10" width="100%" height="100%"
-                    min-height="310" color="bgBanner">
-
+            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1" id="betandwater">
+                <v-card
+                    class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10"
+                    width="100%"
+                    height="100%"
+                    min-height="310"
+                    color="bgBanner"
+                >
                     <v-row no-gutters class="fill-height">
                         <v-col cols="4">
-                            <span
-                                class="game_mine_title text-20 font-weight-bold primary--text pt-1 pl-0 ">{{LangUtil('游戏挖矿')}}</span>
-                            <v-img class="cat_icon mt-4" max-width="240" height="256" contain
-                                src="~@/_skin005/assets/mine/cat_icon.png"></v-img>
+                            <span class="game_mine_title text-20 font-weight-bold primary--text pt-1 pl-0">{{LangUtil('游戏挖矿')}}</span>
+                            <v-img
+                                class="cat_icon mt-4"
+                                max-width="240"
+                                height="256"
+                                contain
+                                src="~@/_skin005/assets/mine/cat_icon.png"
+                            ></v-img>
                         </v-col>
-                        <v-col cols="8" class="ml-n4 pl-0 pl-md-7 pl-md-0 d-flex flex-column ">
-
+                        <v-col cols="8" class="ml-n4 pl-0 pl-md-7 pl-md-0 d-flex flex-column">
                             <div class="mt-11 mt-md-8 text-16">
-                                <span class=" textYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</span>
-                                <span class="ml-2 textGray--text">{{
-                                    pageData.trial.date }} 00:00:00～23:59:59</span>
+                                <span class="textYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</span>
+                                <span class="ml-2 textGray--text">{{ pageData.trial.date }} 00:00:00～23:59:59</span>
                             </div>
 
-                            <v-sheet class="d-flex align-center mt-3  coins_group elevation='2'" color="transparent"
-                                width="100%" height="100%">
+                            <v-sheet
+                                class="d-flex align-center mt-3 coins_group elevation='2'"
+                                color="transparent"
+                                width="100%"
+                                height="100%"
+                            >
                                 <v-sheet class="d-flex flex-column" width="100%" color="transparent">
                                     <!-- 主币 -->
-                                    <v-sheet width="100%" color="transparent" v-if="pageData.trial.main"
-                                        class="sheetOutlined d-flex align-center  py-2">
-                                        <v-img v-if="pageData.trial.main" :max-width="mobileChange('coinIcon')"
-                                            :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"
-                                            class="ml-2">
+                                    <v-sheet
+                                        width="100%"
+                                        color="transparent"
+                                        v-if="pageData.trial.main"
+                                        class="sheetOutlined d-flex align-center py-2"
+                                    >
+                                        <v-img
+                                            v-if="pageData.trial.main"
+                                            :max-width="mobileChange('coinIcon')"
+                                            :height="mobileChange('coinIcon')"
+                                            contain
+                                            :src="pageData.trial.mainIconSrc"
+                                            class="ml-2"
+                                        >
                                         </v-img>
-                                        <div v-if="pageData.trial.main"
-                                            class="textGreen--text text-20 ml-2 font-weight-bold">{{
-                                                amountFormat(pageData.trial.main) }}</div>
+                                        <div v-if="pageData.trial.main" class="textGreen--text text-20 ml-2 font-weight-bold">
+                                            {{ amountFormat(pageData.trial.main) }}
+                                        </div>
 
-                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-16"
+                                        <btn-yellow
+                                            id="animbtn"
+                                            class="ml-auto mr-2 text-16"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
-                                            @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
+                                            @click.native="handlerAward"
+                                            >{{LangUtil("领取奖励")}}</btn-yellow
+                                        >
                                     </v-sheet>
 
                                     <!-- 奖励币 -->
-                                    <v-sheet width="100%" color="transparent" v-if="pageData.trial.reward"
-                                        class="sheetOutlined d-flex align-center mt-2  py-2">
-                                        <v-img v-if="pageData.trial.reward" :max-width="mobileChange('coinIcon')"
-                                            :height="mobileChange('coinIcon')" contain
-                                            :src="pageData.trial.rewardIconSrc" class="ml-2">
+                                    <v-sheet
+                                        width="100%"
+                                        color="transparent"
+                                        v-if="pageData.trial.reward"
+                                        class="sheetOutlined d-flex align-center mt-2 py-2"
+                                    >
+                                        <v-img
+                                            v-if="pageData.trial.reward"
+                                            :max-width="mobileChange('coinIcon')"
+                                            :height="mobileChange('coinIcon')"
+                                            contain
+                                            :src="pageData.trial.rewardIconSrc"
+                                            class="ml-2"
+                                        >
                                         </v-img>
-                                        <div class="red--text text-20 ml-2 font-weight-bold">{{
-                                            amountFormat(pageData.trial.reward) }}</div>
+                                        <div class="red--text text-20 ml-2 font-weight-bold">{{ amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-16 font-weight-bold"
+                                        <btn-yellow
+                                            id="animbtn"
+                                            class="ml-auto mr-2 text-16 font-weight-bold"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
-                                            @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
+                                            @click.native="handlerAward"
+                                            >{{LangUtil("领取奖励")}}</btn-yellow
+                                        >
                                     </v-sheet>
                                 </v-sheet>
                             </v-sheet>
 
-                            <div class="d-flex justify-end  mb-6 mt-auto">
+                            <div class="d-flex justify-end mb-6 mt-auto">
+                                <btn-yellow
+                                    v-if="ModulesHelper.IsShow_GameWaterGuide()"
+                                    class="text-16"
+                                    min_width="104"
+                                    height="36"
+                                    :btn_type="2"
+                                    @click.native="jumpTo('#howMine')"
+                                    >{{LangUtil("说明")}}</btn-yellow
+                                >
 
-                                <btn-yellow v-if="ModulesHelper.IsShow_GameWaterGuide()" class="text-16" min_width="104" height="36" :btn_type="2"
-                                    @click.native="jumpTo('#howMine')">{{LangUtil("说明")}}</btn-yellow>
+                                <btn-yellow
+                                    class="text-16 ml-2 mr-2"
+                                    min_width="104"
+                                    height="36"
+                                    :btn_type="2"
+                                    @click.native="handlerMineRecord"
+                                    >{{LangUtil("奖励记录")}}</btn-yellow
+                                >
 
-                                <btn-yellow class="text-16 ml-2 mr-2" min_width="104" height="36" :btn_type="2"
-                                    @click.native="handlerMineRecord">{{LangUtil("奖励记录")}}</btn-yellow>
-
-                                <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2"
-                                    @click.native="handlerBetRecord">{{LangUtil("投注记录")}}</btn-yellow>
+                                <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2" @click.native="handlerBetRecord"
+                                    >{{LangUtil("投注记录")}}</btn-yellow
+                                >
                             </div>
-
                         </v-col>
-                        <v-col cols="12"
-                            class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group  mt-9">
+                        <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
                             <!-- 手机显示 -->
-                            <v-btn v-if="ModulesHelper.IsShow_GameWaterGuide()" color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill "
-                                @click="jumpTo('#howMine')">
+                            <v-btn
+                                v-if="ModulesHelper.IsShow_GameWaterGuide()"
+                                color="colorPurpleBtn"
+                                height="30"
+                                min-width="90"
+                                class="rounded-pill"
+                                @click="jumpTo('#howMine')"
+                            >
                                 {{LangUtil('说明')}}
                             </v-btn>
-                            <v-btn color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill "
-                                @click="handlerMineRecord">{{LangUtil('奖励记录')}}
+                            <v-btn color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill" @click="handlerMineRecord"
+                                >{{LangUtil('奖励记录')}}
                             </v-btn>
-                            <v-btn color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill "
-                                @click="handlerBetRecord">{{LangUtil('投注记录')}}
+                            <v-btn color="colorPurpleBtn" height="30" min-width="90" class="rounded-pill" @click="handlerBetRecord"
+                                >{{LangUtil('投注记录')}}
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -201,7 +272,7 @@
             </v-col>
         </v-row>
         <!-- vip 等级 -->
-        <v-card flat color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
+        <v-card flat color="transparent" class="mt-8" max-width="100%" id="vipLevel">
             <span class="text-20 font-weight-bold">{{LangUtil('VIP等级')}} </span>
             <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text">
                 {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
@@ -213,60 +284,115 @@
                         <v-sheet color="transparent" height="277">
                             <v-img max-width="160" width="160" height="100%" class="mr-1" contain :src="vip_bg_path">
                                 <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
-                                <div class="d-flex flex-column mt-n3 justify-center align-center pt-2 ">
-                                    <div class="mt-1 text-18 font-weight-bold">VIP {{ myProxy.getVipLevel(level) }}
-                                    </div>
-                                    <div v-if="!ModulesHelper.IsShow_VipShowDeal()" class="d-flex flex-column justify-center align-center vip_config_box">
+                                <div class="d-flex flex-column mt-n3 justify-center align-center pt-2">
+                                    <div class="mt-1 text-18 font-weight-bold">VIP {{ myProxy.getVipLevel(level) }}</div>
+                                    <div
+                                        v-if="!ModulesHelper.IsShow_VipShowDeal()"
+                                        class="d-flex flex-column justify-center align-center vip_config_box"
+                                    >
                                         <!-- 主币 -->
-                                        <v-sheet v-if="item.backwater_config[2].backwater_rate > 0" color="transparent"
-                                            class="d-flex flex-column justify-start align-center">
+                                        <v-sheet
+                                            v-if="item.backwater_config[2].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
                                             <div class="mt-1 font-weight-medium nomal_text_1--text">
-                                                {{pageData.platCoins.mainCoin.name }}{{LangUtil('返水')}}</div>
-                                            <div class="mt-1 font-weight-medium nomal_text_1--text ">
-                                                <span
-                                                    class="bold_text text-16">{{(item.backwater_config[2].backwater_rate
-                                                    *
-                                                    10000).toFixed(0)}}</span>
+                                                {{pageData.platCoins.mainCoin.name }}{{LangUtil('返水')}}
+                                            </div>
+                                            <div class="mt-1 font-weight-medium nomal_text_1--text">
+                                                <span class="bold_text text-16"
+                                                    >{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}</span
+                                                >
                                                 {{pageData.platCoins.mainCoin.name}}
                                             </div>
-                                            <div class="font-weight-medium nomal_text_1--text mt-1">(
-                                                {{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$ )</div>
+                                            <div class="font-weight-medium nomal_text_1--text mt-1">
+                                                ( {{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$ )
+                                            </div>
                                         </v-sheet>
                                         <!-- 奖励币 -->
-                                        <v-sheet v-if="item.backwater_config[3].backwater_rate > 0" color="transparent"
-                                            class="d-flex flex-column justify-start align-center">
+                                        <v-sheet
+                                            v-if="item.backwater_config[3].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
                                             <div class="mt-4 font-weight-medium nomal_text_1--text">
-                                                {{pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}</div>
-                                            <div class="font-weight-medium nomal_text_1--text">(
-                                                {{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$ )</div>
+                                                {{pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}
+                                            </div>
+                                            <div class="font-weight-medium nomal_text_1--text">
+                                                ( {{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$ )
+                                            </div>
                                             <div class="mt-2 font-weight-bold textYellow--text text-20">
                                                 {{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{
-                                                pageData.platCoins.rewardCoin.name }}</div>
+                                                pageData.platCoins.rewardCoin.name }}
+                                            </div>
                                         </v-sheet>
                                     </div>
 
-                                    <div v-if="ModulesHelper.IsShow_VipShowDeal()" class="d-flex flex-column justify-center align-center vip_config_box">
+                                    <div
+                                        v-if="ModulesHelper.IsShow_VipShowDeal()"
+                                        class="d-flex flex-column justify-center align-center vip_config_box"
+                                    >
                                         <!-- 主币 -->
-                                        <v-sheet v-if="item.backwater_config[2].backwater_rate > 0" color="transparent"
-                                            class="d-flex flex-column justify-start align-center">
-                                            <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
-                                                {{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</v-sheet>
-                                            <v-sheet class="my-3 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
+                                        <v-sheet
+                                            v-if="item.backwater_config[2].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
+                                            <v-sheet
+                                                class="mt-1 nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</v-sheet
+                                            >
+                                            <v-sheet
+                                                class="my-3 nomal_text_1--text text-truncate"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
                                                 {{LangUtil("vip_level_deal_main_2_"+(level + 1))}}
                                             </v-sheet>
-                                            <v-sheet class="nomal_text_1--text text-truncate bold_text" color="transparent" width="155"  style="text-align: center;">
-                                                {{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</v-sheet>
+                                            <v-sheet
+                                                class="nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</v-sheet
+                                            >
                                         </v-sheet>
                                         <!-- 奖励币 -->
-                                        <v-sheet v-if="item.backwater_config[3].backwater_rate > 0" color="transparent"
-                                            class="d-flex flex-column justify-start align-center">
-                                            <v-sheet class="mt-1 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
-                                                {{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</v-sheet>
-                                            <v-sheet class="my-3 nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;"> 
+                                        <v-sheet
+                                            v-if="item.backwater_config[3].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
+                                            <v-sheet
+                                                class="mt-1 nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</v-sheet
+                                            >
+                                            <v-sheet
+                                                class="my-3 nomal_text_1--text text-truncate"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
                                                 {{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}
                                             </v-sheet>
-                                            <v-sheet class="nomal_text_1--text text-truncate bold_text" color="transparent" width="155" style="text-align: center;">
-                                                {{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</v-sheet>
+                                            <v-sheet
+                                                class="nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</v-sheet
+                                            >
                                         </v-sheet>
                                     </div>
                                 </div>
@@ -278,115 +404,119 @@
         </v-card>
         <!-- 如何挖矿 -->
         <v-sheet v-if="ModulesHelper.IsShow_GameWaterGuide()" color="transparent" class="mt-8" id="howMine">
-            <span class="text-20 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>
-            <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text ">
+            <span class="text-20 font-weight-bold">{{LangUtil('如何挖矿')}} </span>
+            <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text">
                 {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
             </p>
             <v-row class="mt-4" no-gutters>
                 <!-- 01 -->
                 <v-col cols="12" md="4" class="">
-                    <v-card width="100%" color="bgBanner"
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between"
-                        height="100%">
-                        <v-img height="168" width="168" class="ma-3 how_item_1"
-                            src="~@/_skin005/assets/mine/about_01_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="ma-3 how_item_1" src="~@/_skin005/assets/mine/about_01_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg d-flex justify-center align-center" width="40" height="40">
-                                    <v-img max-height="20" max-width="20" class=""
-                                        src="~@/_skin005/assets/mine/about_01_icon.png"></v-img>
+                                    <v-img max-height="20" max-width="20" class="" src="~@/_skin005/assets/mine/about_01_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    01
-                                </div>
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">01</div>
                             </div>
-                            <div class="text-18 font-weight-bold primary--text mt-4">
-                                {{LangUtil('享受游戏之旅')}}
-                            </div>
+                            <div class="text-18 font-weight-bold primary--text mt-4">{{LangUtil('享受游戏之旅')}}</div>
                         </v-sheet>
                         <v-sheet class="mt-2" color="transparent">
-                            <span
-                                class="nomal_text_1--text text-14">{{LangUtil('参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。')}}</span>
+                            <span class="nomal_text_1--text text-14"
+                                >{{LangUtil('参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。')}}</span
+                            >
                         </v-sheet>
                         <v-card-actions class="ml-auto md-4">
-                            <btn-yellow class="text-16" :min-width="mobileChange('howBtn').w"
-                                :height="mobileChange('howBtn').h" :btn_type="2"
-                                @click.native="onGoBet">{{LangUtil("去投注")}}</btn-yellow>
+                            <btn-yellow
+                                class="text-16"
+                                :min-width="mobileChange('howBtn').w"
+                                :height="mobileChange('howBtn').h"
+                                :btn_type="2"
+                                @click.native="onGoBet"
+                                >{{LangUtil("去投注")}}</btn-yellow
+                            >
                         </v-card-actions>
                     </v-card>
                 </v-col>
                 <!-- 02 -->
 
-                <v-col cols="12" md="4" class=" px-md-1 ">
-                    <v-card width="100%" color="bgBanner"
+                <v-col cols="12" md="4" class="px-md-1">
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between"
-                        height="100%">
-                        <v-img height="168" width="168" class="ma-3 how_item_1"
-                            src="~@/_skin005/assets/mine/about_02_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="ma-3 how_item_1" src="~@/_skin005/assets/mine/about_02_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg d-flex justify-center align-center" width="40" height="40">
-                                    <v-img max-height="20" max-width="20" class=""
-                                        src="~@/_skin005/assets/mine/about_02_icon.png"></v-img>
+                                    <v-img max-height="20" max-width="20" class="" src="~@/_skin005/assets/mine/about_02_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    02
-                                </div>
-
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">02</div>
                             </div>
-                            <div class="text-18 font-weight-bold primary--text mt-4">
-                                {{LangUtil('领取个人洗码')}}
-                            </div>
+                            <div class="text-18 font-weight-bold primary--text mt-4">{{LangUtil('领取个人洗码')}}</div>
                         </v-sheet>
                         <v-sheet class="mt-2" color="transparent">
-                            <span
-                                class="nomal_text_1--text text-14">{{LangUtil('个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。')}}</span>
+                            <span class="nomal_text_1--text text-14"
+                                >{{LangUtil('个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。')}}</span
+                            >
                         </v-sheet>
 
-                        <v-card-actions class="ml-auto md-4 ">
-                            <btn-yellow class="text-16" :min-width="mobileChange('howBtn').w"
-                                :height="mobileChange('howBtn').h" :btn_type="2"
-                                @click.native="jumpTo('#betandwater')">{{LangUtil("去领取")}}</btn-yellow>
+                        <v-card-actions class="ml-auto md-4">
+                            <btn-yellow
+                                class="text-16"
+                                :min-width="mobileChange('howBtn').w"
+                                :height="mobileChange('howBtn').h"
+                                :btn_type="2"
+                                @click.native="jumpTo('#betandwater')"
+                                >{{LangUtil("去领取")}}</btn-yellow
+                            >
                         </v-card-actions>
                     </v-card>
                 </v-col>
 
                 <!-- 03 -->
                 <v-col cols="12" md="4" class=" ">
-                    <v-card width="100%" color="bgBanner"
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-start"
-                        height="100%">
-                        <v-img height="168" width="168" class="ma-3 how_item_1"
-                            src="~@/_skin005/assets/mine/about_03_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="ma-3 how_item_1" src="~@/_skin005/assets/mine/about_03_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg d-flex justify-center align-center" width="40" height="40">
-                                    <v-img max-height="20" max-width="20" class=""
-                                        src="~@/_skin005/assets/mine/about_03_icon.png"></v-img>
+                                    <v-img max-height="20" max-width="20" class="" src="~@/_skin005/assets/mine/about_03_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    03
-                                </div>
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">03</div>
                             </div>
 
-                            <div class="text-18 font-weight-bold primary--text mt-4">
-                                {{LangUtil('自动结算')}}
-                            </div>
+                            <div class="text-18 font-weight-bold primary--text mt-4">{{LangUtil('自动结算')}}</div>
                         </v-sheet>
-                        <v-sheet class="mt-2 " color="transparent">
-                            <span class=" nomal_text_1--text text-14">
+                        <v-sheet class="mt-2" color="transparent">
+                            <span class="nomal_text_1--text text-14">
                                 <template
-                                    v-if="!checkMultiline(LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。'))">
+                                    v-if="!checkMultiline(LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。'))"
+                                >
                                     {{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}
                                 </template>
-                                <pre v-else>{{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}</pre>
+                                <pre v-else>
+{{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}</pre
+                                >
                             </span>
                         </v-sheet>
-                        <v-card-actions class="pa-0 md-4 ">
-                        </v-card-actions>
+                        <v-card-actions class="pa-0 md-4"> </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -396,150 +526,195 @@
 
     <!-- 手机显示 -->
     <template v-else>
-
         <v-row no-gutters>
             <!-- 游戏挖矿 -->
-            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1 " id="betandwater">
-                <v-card class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10" width="100%" height="100%"
-                    min-height="250" color="bgBanner">
-
-                    <v-img class="fanshui_bg" max-width="111" height="117"
-                        src="~@/_skin005/assets/mine/cat_icon.png"></v-img>
+            <v-col v-if="ModulesHelper.IsShow_GameWaterManualReceive()" cols="12" md="7" lg="7" class="d-flex mt-1" id="betandwater">
+                <v-card
+                    class="right_banner pl-5 pr-5 pr-md-0 pt-5 pb-0 rounded10"
+                    width="100%"
+                    height="100%"
+                    min-height="250"
+                    color="bgBanner"
+                >
+                    <v-img class="fanshui_bg" max-width="111" height="117" src="~@/_skin005/assets/mine/cat_icon.png"></v-img>
                     <div class="text-16 font-weight-bold primary--text mb-4">{{LangUtil('游戏挖矿')}}</div>
                     <v-row no-gutters>
                         <!-- <v-col>
                             <div class="text-18 font-weight-bold primary--text ">{{LangUtil('游戏挖矿')}}</div>
                         </v-col> -->
 
-                        <v-col cols="12" class="d-flex flex-column ">
+                        <v-col cols="12" class="d-flex flex-column">
                             <v-sheet class="text-14" color="transparent" max-width="70%">
-                                <div class=" textYellow--text"> {{LangUtil('今日挖矿待领取收益')}}</div>
-                                <div class="text-12  textGray--text">{{
-                                    pageData.trial.date }} 00:00:00～23:59:59</div>
+                                <div class="textYellow--text">{{LangUtil('今日挖矿待领取收益')}}</div>
+                                <div class="text-12 textGray--text">{{ pageData.trial.date }} 00:00:00～23:59:59</div>
                             </v-sheet>
 
-                            <v-sheet class="d-flex align-center mt-3 " color="transparent" width="100%">
+                            <v-sheet class="d-flex align-center mt-3" color="transparent" width="100%">
                                 <v-sheet class="d-flex flex-column justify-center" width="100%" color="transparent">
                                     <!-- 主币 -->
-                                    <v-sheet width="100%" color="transparent" v-if="pageData.trial.main" min-height="56"
-                                        class=" d-flex align-center sheetOutlined  py-2">
-                                        <v-img v-if="pageData.trial.main" :max-width="mobileChange('coinIcon')"
-                                            :height="mobileChange('coinIcon')" contain :src="pageData.trial.mainIconSrc"
-                                            class="ml-2">
+                                    <v-sheet
+                                        width="100%"
+                                        color="transparent"
+                                        v-if="pageData.trial.main"
+                                        min-height="56"
+                                        class="d-flex align-center sheetOutlined py-2"
+                                    >
+                                        <v-img
+                                            v-if="pageData.trial.main"
+                                            :max-width="mobileChange('coinIcon')"
+                                            :height="mobileChange('coinIcon')"
+                                            contain
+                                            :src="pageData.trial.mainIconSrc"
+                                            class="ml-2"
+                                        >
                                         </v-img>
-                                        <div v-if="pageData.trial.main"
-                                            class="textGreen--text text-16 ml-2 font-weight-bold">{{
-                                                amountFormat(pageData.trial.main) }}</div>
+                                        <div v-if="pageData.trial.main" class="textGreen--text text-16 ml-2 font-weight-bold">
+                                            {{ amountFormat(pageData.trial.main) }}
+                                        </div>
 
-                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-14"
+                                        <btn-yellow
+                                            id="animbtn"
+                                            class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
-                                            @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
+                                            @click.native="handlerAward"
+                                            >{{LangUtil("领取奖励")}}</btn-yellow
+                                        >
                                     </v-sheet>
 
                                     <!-- 奖励币 -->
-                                    <v-sheet width="100%" color="transparent" v-if="pageData.trial.reward"
-                                        min-height="56" class="sheetOutlined d-flex align-center mt-2  py-2">
-                                        <v-img v-if="pageData.trial.reward" :max-width="mobileChange('coinIcon')"
-                                            :height="mobileChange('coinIcon')" contain
-                                            :src="pageData.trial.rewardIconSrc" class="ml-2">
+                                    <v-sheet
+                                        width="100%"
+                                        color="transparent"
+                                        v-if="pageData.trial.reward"
+                                        min-height="56"
+                                        class="sheetOutlined d-flex align-center mt-2 py-2"
+                                    >
+                                        <v-img
+                                            v-if="pageData.trial.reward"
+                                            :max-width="mobileChange('coinIcon')"
+                                            :height="mobileChange('coinIcon')"
+                                            contain
+                                            :src="pageData.trial.rewardIconSrc"
+                                            class="ml-2"
+                                        >
                                         </v-img>
-                                        <div class="red--text text-16 ml-2 font-weight-bold">{{
-                                            amountFormat(pageData.trial.reward) }}</div>
+                                        <div class="red--text text-16 ml-2 font-weight-bold">{{ amountFormat(pageData.trial.reward) }}</div>
 
-                                        <btn-yellow id="animbtn" class="ml-auto mr-2 text-14"
+                                        <btn-yellow
+                                            id="animbtn"
+                                            class="ml-auto mr-2 text-14"
                                             :width="mobileChange('minRewardBtn').w"
                                             :height="mobileChange('minRewardBtn').h"
-                                            @click.native="handlerAward">{{LangUtil("领取奖励")}}</btn-yellow>
+                                            @click.native="handlerAward"
+                                            >{{LangUtil("领取奖励")}}</btn-yellow
+                                        >
                                     </v-sheet>
-
                                 </v-sheet>
                             </v-sheet>
                         </v-col>
 
-                        <v-col cols="12"
-                            class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
-                            <btn-yellow v-if="ModulesHelper.IsShow_GameWaterGuide()" class="text-12" min-width="80" height="30" :btn_type="2"
-                                @click.native="jumpTo('#howMine')">{{LangUtil("说明")}}</btn-yellow>
+                        <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
+                            <btn-yellow
+                                v-if="ModulesHelper.IsShow_GameWaterGuide()"
+                                class="text-12"
+                                min-width="80"
+                                height="30"
+                                :btn_type="2"
+                                @click.native="jumpTo('#howMine')"
+                                >{{LangUtil("说明")}}</btn-yellow
+                            >
 
-                            <btn-yellow class="text-12 ml-2 mr-2" min-width="80" height="30" :btn_type="2"
-                                @click.native="handlerMineRecord">{{LangUtil("奖励记录")}}</btn-yellow>
+                            <btn-yellow class="text-12 ml-2 mr-2" min-width="80" height="30" :btn_type="2" @click.native="handlerMineRecord"
+                                >{{LangUtil("奖励记录")}}</btn-yellow
+                            >
 
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2"
-                                @click.native="handlerBetRecord">{{LangUtil("投注记录")}}</btn-yellow>
+                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2" @click.native="handlerBetRecord"
+                                >{{LangUtil("投注记录")}}</btn-yellow
+                            >
                         </v-col>
                     </v-row>
                     <MaskTool />
                 </v-card>
             </v-col>
             <!-- 我的等级 -->
-            <v-col cols="12" md="5" lg="5" class="mt-3  mt-md-1 pr-md-5 ">
+            <v-col cols="12" md="5" lg="5" class="mt-3 mt-md-1 pr-md-5">
                 <v-card color="bgBanner" class="rounded10 pt-5 pb-2 d-flex flex-column" width="100%" height="100%">
                     <v-sheet color="transparent" width="100%" class="d-flex justify-space-between px-5">
-                        <div class="primary--text text-16 font-weight-bold ">{{LangUtil('挖矿等级')}}
+                        <div class="primary--text text-16 font-weight-bold">{{LangUtil('挖矿等级')}}</div>
+                        <div class="textYellow--text text-decoration-underline cursop_pointer text-12" @click="jumpTo('#vipLevel')">
+                            {{LangUtil('查看所有等级')}}
                         </div>
-                        <div class="textYellow--text text-decoration-underline cursop_pointer text-12"
-                            @click="jumpTo('#vipLevel')">
-                            {{LangUtil('查看所有等级')}}</div>
                     </v-sheet>
 
                     <v-sheet color="transparent" class="mt-4">
                         <v-row no-gutters class="mt-n2">
-                            <v-col cols="4" md="4" lg="3"
-                                class="pl-md-2 mt-n3  pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
-                                <v-img :max-width="mobileChange('leftBgVipIcon').w" contain
-                                    :src="vipMap[pageData.vipLevel]"></v-img>
+                            <v-col cols="4" md="4" lg="3" class="pl-md-2 mt-n3 pl-5 ml-n4 ml-md-n0 pl-md-5 d-flex justify-center">
+                                <v-img :max-width="mobileChange('leftBgVipIcon').w" contain :src="vipMap[pageData.vipLevel]"></v-img>
                             </v-col>
-                            <v-col cols="8" md="8" lg="9"
-                                class="mb-3 ml-n3 ml-md-n0 d-flex flex-column align-start justify-center ">
-                                <v-sheet width="100%"
-                                    class="text-16 font-weight-bold  mb-1 d-flex align-center justify-space-between px-2"
-                                    color="transparent">
+                            <v-col cols="8" md="8" lg="9" class="mb-3 ml-n3 ml-md-n0 d-flex flex-column align-start justify-center">
+                                <v-sheet
+                                    width="100%"
+                                    class="text-16 font-weight-bold mb-1 d-flex align-center justify-space-between px-2"
+                                    color="transparent"
+                                >
                                     VIP {{ pageData.vipLevel }}
                                     <!-- <span
                                         class=" mt-md-3 mr-n3 mr-md-0 textYellow--text text-decoration-underline cursop_pointer text-14"
                                         @click="jumpTo('#vipLevel')">{{LangUtil('查看所有等级')}}</span> -->
                                 </v-sheet>
                                 <v-sheet width="100%" color="transparent" class="">
-                                    <v-progress-linear :value="pageData.vipProgress" color="textYellow"
-                                        :height="progressLinear" class="rounded-xl"></v-progress-linear>
-                                    <div class=" ma-0 ml-2 mt-1 mt-md-3 textGray--text text-12">
+                                    <v-progress-linear
+                                        :value="pageData.vipProgress"
+                                        color="textYellow"
+                                        :height="progressLinear"
+                                        class="rounded-xl"
+                                    ></v-progress-linear>
+                                    <div class="ma-0 ml-2 mt-1 mt-md-3 textGray--text text-12">
                                         <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
-                                            {{LangUtil('您已经升级早最高等级')}} </p>
+                                            {{LangUtil('您已经升级早最高等级')}}
+                                        </p>
                                         <span
-                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('vip等级描述_1')}}
+                                            v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)"
+                                            >{{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextExp > 0">
                                             <span class="textYellow--text">
-                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()">{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span>
-                                               <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span>
-                                            </span>{{LangUtil('vip等级描述_2')}} </span>
+                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()"
+                                                    >{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span
+                                                >
+                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span> </span
+                                            >{{LangUtil('vip等级描述_2')}}
                                         </span>
+
                                         <span class="textGray--text" v-if="pageData.nextUSDT > 0">
                                             <span class="textYellow--text">{{amountFormat(transformExpAndUsdt(pageData.nextUSDT)) }}</span>
-                                            USDT{{LangUtil('充值')}}</span>
-                                        </span>
+                                            USDT{{LangUtil('充值')}}</span
+                                        >
                                     </div>
                                 </v-sheet>
                             </v-col>
                         </v-row>
                     </v-sheet>
-                    <v-sheet v-if="ModulesHelper.IsShow_GameWaterManualReceive()" color="transparent" class="d-flex flex-column mt-auto ml-7 mr-7 mb-4">
+                    <v-sheet
+                        v-if="ModulesHelper.IsShow_GameWaterManualReceive()"
+                        color="transparent"
+                        class="d-flex flex-column mt-auto ml-7 mr-7 mb-4"
+                    >
                         <!-- 主币 -->
                         <v-sheet v-if="pageData.backwaterConfigMain.now > 0" width="100%" color="transparent">
                             <v-sheet color="transparent" class="sheetOutlined d-flex align-center py-2 px-5">
-                                <v-img max-width="40" height="40" contain
-                                    :src="pageData.platCoins.mainCoin.icon"></v-img>
+                                <v-img max-width="40" height="40" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
                                         <!-- <span class="textYellow--text ">{{
                                             pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
                                             ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span> -->
-                                            <span class="textYellow--text">{{LangUtil("返水晋级奖励1")}}</span>  
+                                        <span class="textYellow--text">{{LangUtil("返水晋级奖励1")}}</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-14 text_center">
-                                            <span class="bold_text ">{{amountFormat(pageData.backwaterConfigMain.now ,false)}}</span>
+                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.now ,false)}}</span>
                                             {{pageData.platCoins.mainCoin.name }}
                                         </span>
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
@@ -553,26 +728,26 @@
                         </v-sheet>
 
                         <!-- 奖励币 -->
-                        <v-sheet v-if="pageData.backwaterConfigReward.now > 0" width="100%" color="transparent"
-                            class="mt-1">
+                        <v-sheet v-if="pageData.backwaterConfigReward.now > 0" width="100%" color="transparent" class="mt-1">
                             <v-sheet color="transparent" class="sheetOutlined d-flex align-center py-2 px-5">
-                                <v-img max-width="40" height="40" contain
-                                    :src="pageData.platCoins.rewardCoin.icon"></v-img>
+                                <v-img max-width="40" height="40" contain :src="pageData.platCoins.rewardCoin.icon"></v-img>
                                 <div class="ml-3">
                                     <div class="d-flex align-center align-md-start">
                                         <!-- <span class="textYellow--text ">{{
                                             pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}
                                             ({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span> -->
-                                            <span class="textYellow--text ">{{LangUtil("返水晋级奖励2")}}</span>  
+                                        <span class="textYellow--text">{{LangUtil("返水晋级奖励2")}}</span>
                                     </div>
-                                    <div class="d-flex align-center justify-space-between ">
-                                        <span class="textGreen--text text-14 text_center">{{
-                                            amountFormat(pageData.backwaterConfigReward.now,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span>
+                                    <div class="d-flex align-center justify-space-between">
+                                        <span class="textGreen--text text-14 text_center"
+                                            >{{ amountFormat(pageData.backwaterConfigReward.now,false) }}{{
+                                            pageData.platCoins.rewardCoin.name }}</span
+                                        >
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
-                                        <span class="textYellow--text text-14 text_center">{{
-                                            amountFormat(pageData.backwaterConfigReward.next,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span>
+                                        <span class="textYellow--text text-14 text_center"
+                                            >{{ amountFormat(pageData.backwaterConfigReward.next,false) }}{{
+                                            pageData.platCoins.rewardCoin.name }}</span
+                                        >
                                     </div>
                                 </div>
                             </v-sheet>
@@ -581,18 +756,21 @@
                     <MaskTool />
                 </v-card>
             </v-col>
-
         </v-row>
         <!-- vip 等级 -->
-        <v-card flat color="transparent" class="mt-8 " max-width="100%" id="vipLevel">
+        <v-card flat color="transparent" class="mt-8" max-width="100%" id="vipLevel">
             <span class="text-16 font-weight-bold">{{LangUtil('VIP等级')}} </span>
             <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text">
                 {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
             </p>
             <div class="mt-3">
                 <!-- 手机 -->
-                <v-sheet v-for="(item, level) of pageData.vipConfig" :key="level" color="transparent"
-                    class="level_box rounded_customized py-1 d-flex justify-space-around mb-1 sheetOutlined">
+                <v-sheet
+                    v-for="(item, level) of pageData.vipConfig"
+                    :key="level"
+                    color="transparent"
+                    class="level_box rounded_customized py-1 d-flex justify-space-around mb-1 sheetOutlined"
+                >
                     <div class="d-flex align-center">
                         <v-img max-width="52" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                         <span class="font-weight-medium primary--text bold_text">{{LangUtil("VIP")}} {{ myProxy.getVipLevel(level) }}</span>
@@ -600,14 +778,12 @@
                     <template v-if="!ModulesHelper.IsShow_VipShowDeal()">
                         <template v-if="item.backwater_config[2].backwater_rate > 0">
                             <!-- 主币 -->
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text ">{{ pageData.platCoins.mainCoin.name }}
-                                    {{LangUtil('返水')}} </span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text">{{ pageData.platCoins.mainCoin.name }} {{LangUtil('返水')}} </span>
                             </div>
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text">
-                                    <span class="bold_text text-14">{{(item.backwater_config[2].backwater_rate *
-                                        10000).toFixed(0)}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text">
+                                    <span class="bold_text text-14">{{(item.backwater_config[2].backwater_rate * 10000).toFixed(0)}}</span>
                                     ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
                                 </span>
                             </div>
@@ -616,46 +792,44 @@
                         <!-- 奖励币 -->
                         <template v-if="item.backwater_config[3].backwater_rate > 0">
                             <div class="d-flex flex-column justify-center align-center">
-                                <span class=" textGray--text">{{ pageData.platCoins.rewardCoin.name
-                                    }}{{LangUtil('挖矿')}}</span>
-                                <span
-                                    class=" textGray--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
+                                <span class="textGray--text">{{ pageData.platCoins.rewardCoin.name }}{{LangUtil('挖矿')}}</span>
+                                <span class="textGray--text">({{pageData.platCoins.rewardCoin.name}}/{{LangUtil('万')}}$)</span>
                             </div>
                             <div class="d-flex align-center">
-                                <span
-                                    class=" font-weight-medium textYellow--text">{{(item.backwater_config[3].backwater_rate
-                                    * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name }}</span>
+                                <span class="font-weight-medium textYellow--text"
+                                    >{{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{ pageData.platCoins.rewardCoin.name
+                                    }}</span
+                                >
                             </div>
                         </template>
                     </template>
 
-                    <v-sheet v-else color="transparent" class="d-flex flex-column " width="220">
+                    <v-sheet v-else color="transparent" class="d-flex flex-column align-end mr-4" width="220">
                         <template v-if="item.backwater_config[2].backwater_rate > 0">
                             <!-- 主币 -->
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</span>
                             </div>
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
-                            </div>
-
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
                             </div>
 
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</span>
+                            </div>
                         </template>
 
                         <!-- 奖励币 -->
                         <template v-if="item.backwater_config[3].backwater_rate > 0">
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</span>
                             </div>
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
                             </div>
 
-                            <div class="d-flex align-center ">
-                                <span class=" textGray--text bold_text">{{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</span>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text">{{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</span>
                             </div>
                         </template>
                     </v-sheet>
@@ -664,40 +838,42 @@
         </v-card>
         <!-- 如何挖矿 -->
         <v-sheet v-if="ModulesHelper.IsShow_GameWaterGuide()" color="transparent" class="mt-8" id="howMine">
-            <span class="text-16 font-weight-bold ">{{LangUtil('如何挖矿')}} </span>
-            <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text ">
+            <span class="text-16 font-weight-bold">{{LangUtil('如何挖矿')}} </span>
+            <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text">
                 {{LangUtil('您的有效投注额及被推荐好友投注都会产生收益，投注越多个人洗码越高，好友越多洗码收益越丰厚。')}}
             </p>
             <v-row class="mt-4" no-gutters>
                 <!-- 01 -->
                 <v-col cols="12" class="">
-                    <v-card width="100%" color="bgBanner"
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between"
-                        height="100%">
-                        <v-img height="168" width="168" class=" how_item_1"
-                            src="~@/_skin005/assets/mine/about_01_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="how_item_1" src="~@/_skin005/assets/mine/about_01_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg" width="50" height="50">
-                                    <v-img height="24" width="24" class="ma-3"
-                                        src="~@/_skin005/assets/mine/about_01_icon.png"></v-img>
+                                    <v-img height="24" width="24" class="ma-3" src="~@/_skin005/assets/mine/about_01_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    01
-                                </div>
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">01</div>
                             </div>
-                            <div class="text-16 font-weight-bold primary--text mt-4">
-                                {{LangUtil('享受游戏之旅')}}
-                            </div>
+                            <div class="text-16 font-weight-bold primary--text mt-4">{{LangUtil('享受游戏之旅')}}</div>
                         </v-sheet>
                         <v-sheet class="mt-2 d-flex align-end mb-2" color="transparent" width="100%">
                             <v-sheet class="textGray--text text-12" color="transparent">
                                 {{LangUtil('参与你最喜欢的游戏，并不断累计有效投注额，推荐的好友以及他的好友产生的投注额都会增加你的洗码等级。')}}
                             </v-sheet>
-                            <btn-yellow class="text-12" :min_width="mobileChange('howBtn').w"
-                                :height="mobileChange('howBtn').h" :btn_type="2"
-                                @click.native="onGoBet">{{LangUtil("去投注")}}</btn-yellow>
+                            <btn-yellow
+                                class="text-12"
+                                :min_width="mobileChange('howBtn').w"
+                                :height="mobileChange('howBtn').h"
+                                :btn_type="2"
+                                @click.native="onGoBet"
+                                >{{LangUtil("去投注")}}</btn-yellow
+                            >
                         </v-sheet>
                         <!-- <v-card-actions class="ml-auto md-4">
                             <btn-yellow class="text-16" :min-width="mobileChange('howBtn').w"
@@ -707,38 +883,37 @@
                     </v-card>
                 </v-col>
                 <!-- 02 -->
-                <v-col cols="12" class=" px-md-1 mt-4 mb-4">
-                    <v-card width="100%" color="bgBanner"
+                <v-col cols="12" class="px-md-1 mt-4 mb-4">
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-space-between"
-                        height="100%">
-                        <v-img height="168" width="168" class=" how_item_1"
-                            src="~@/_skin005/assets/mine/about_02_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="how_item_1" src="~@/_skin005/assets/mine/about_02_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg" width="50" height="50">
-                                    <v-img height="24" width="24" class="ma-3"
-                                        src="~@/_skin005/assets/mine/about_02_icon.png"></v-img>
+                                    <v-img height="24" width="24" class="ma-3" src="~@/_skin005/assets/mine/about_02_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    02
-                                </div>
-
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">02</div>
                             </div>
-                            <div class="text-16 font-weight-bold primary--text mt-4">
-                                {{LangUtil('领取个人洗码')}}
-                            </div>
+                            <div class="text-16 font-weight-bold primary--text mt-4">{{LangUtil('领取个人洗码')}}</div>
                         </v-sheet>
                         <v-sheet class="mt-2 d-flex align-end mb-2" color="transparent" width="100%">
-
                             <v-sheet class="textGray--text text-12" color="transparent">
                                 {{LangUtil('个人有效投注额乘以洗码比例，即为个人洗码，该收益将自动发放到洗码页面，可随时领取到USDT钱包。')}}
                             </v-sheet>
 
-                            <btn-yellow class="text-12" min_width="90"
-                                :height="mobileChange('howBtn').h" :btn_type="2"
-                                @click.native="jumpTo('#betandwater')">{{LangUtil("去领取")}}</btn-yellow>
-
+                            <btn-yellow
+                                class="text-12"
+                                min_width="90"
+                                :height="mobileChange('howBtn').h"
+                                :btn_type="2"
+                                @click.native="jumpTo('#betandwater')"
+                                >{{LangUtil("去领取")}}</btn-yellow
+                            >
                         </v-sheet>
 
                         <!-- <v-card-actions class="ml-auto md-4 ">
@@ -751,38 +926,37 @@
 
                 <!-- 03 -->
                 <v-col cols="12" class=" ">
-                    <v-card width="100%" color="bgBanner"
+                    <v-card
+                        width="100%"
+                        color="bgBanner"
                         class="card_item_1 rounded10 py-2 px-4 pa-md-5 pa-md-8 px-md-9 pa-md-6 d-flex flex-wrap flex-column justify-start"
-                        height="100%">
-                        <v-img height="168" width="168" class=" how_item_1"
-                            src="~@/_skin005/assets/mine/about_03_icon_bg.png"></v-img>
+                        height="100%"
+                    >
+                        <v-img height="168" width="168" class="how_item_1" src="~@/_skin005/assets/mine/about_03_icon_bg.png"></v-img>
 
                         <v-sheet class="d-flex flex-column" color="transparent">
                             <div class="d-flex align-center">
                                 <v-sheet class="yellow_bg" width="50" height="50">
-                                    <v-img height="24" width="24" class="ma-3"
-                                        src="~@/_skin005/assets/mine/about_03_icon.png"></v-img>
+                                    <v-img height="24" width="24" class="ma-3" src="~@/_skin005/assets/mine/about_03_icon.png"></v-img>
                                 </v-sheet>
-                                <div class="ml-4 text-30 font-weight-bold textYellow--text ">
-                                    03
-                                </div>
+                                <div class="ml-4 text-30 font-weight-bold textYellow--text">03</div>
                             </div>
 
-                            <div class="text-16 font-weight-bold primary--text mt-4">
-                                {{LangUtil('自动结算')}}
-                            </div>
+                            <div class="text-16 font-weight-bold primary--text mt-4">{{LangUtil('自动结算')}}</div>
                         </v-sheet>
                         <v-sheet class="mt-2 mb-2" color="transparent">
-                            <span class=" textGray--text text-12">
+                            <span class="textGray--text text-12">
                                 <template
-                                    v-if="!checkMultiline(LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。'))">
+                                    v-if="!checkMultiline(LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。'))"
+                                >
                                     {{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}
                                 </template>
-                                <pre v-else>{{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}</pre>
+                                <pre v-else>
+{{LangUtil('次日上午6点-9点平台系统自动结算前一天的返水余额，系统自动发放后可至返水历史中查看记录。')}}</pre
+                                >
                             </span>
                         </v-sheet>
-                        <v-card-actions class="pa-0 md-4 ">
-                        </v-card-actions>
+                        <v-card-actions class="pa-0 md-4"> </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>

@@ -130,7 +130,7 @@ export default class GameConfig {
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
             })
             .catch(() => {
-                alert(LangUtil("平台配置文件获取失败"));
+                alert(LangUtil("Failed to get platform configuration file"));
                 window.location.reload();
             });
     }

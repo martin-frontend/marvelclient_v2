@@ -33,6 +33,44 @@ export default class GameProxy extends AbstractProxy {
 
     loading = false;
 
+    coin_name_unique_list_obj = <any>{};
+    /**保存到本地 */
+    save_coin_to_localStorage() {
+        if (core.user_id) {
+            if (!this.coin_name_unique_list_obj) {
+                this.coin_name_unique_list_obj = <any>{};
+            }
+            if (!this.coin_name_unique_list_obj[core.user_id]) {
+                this.read_coin_to_localStorage();
+            }
+            this.coin_name_unique_list_obj[core.user_id] = this.coin_name_unique;
+
+            window.localStorage.setItem("coin_name_unique_list", JSON.stringify(this.coin_name_unique_list_obj));
+        }
+    }
+    /**从本地读取 */
+    read_coin_to_localStorage() {
+        const data = window.localStorage.getItem("coin_name_unique_list") || null;
+        if (!data) {
+            this.coin_name_unique_list_obj = <any>{};
+        } else {
+            this.coin_name_unique_list_obj = JSON.parse(data);
+        }
+    }
+    /**获取当前id存储的usd信息 */
+    get_coin_from_localstorage() {
+        if (core.user_id) {
+            if (!this.coin_name_unique_list_obj[core.user_id]) {
+                this.read_coin_to_localStorage();
+            }
+            if (!this.coin_name_unique_list_obj[core.user_id]) {
+                return "";
+            }
+            return this.coin_name_unique_list_obj[core.user_id];
+        }
+        return "";
+    }
+
     /**
      * 大厅菜单
      */
@@ -45,6 +83,7 @@ export default class GameProxy extends AbstractProxy {
     setCoin(coin_name_unique: string) {
         const old_coin = this.coin_name_unique;
         window.localStorage.setItem("coin_name_unique", coin_name_unique);
+        this.save_coin_to_localStorage();
         this.coin_name_unique = coin_name_unique;
         if (old_coin != this.coin_name_unique) this.sendNotification(NotificationName.UPDATE_COIN);
     }

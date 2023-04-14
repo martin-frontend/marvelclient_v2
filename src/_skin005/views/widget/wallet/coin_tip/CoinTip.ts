@@ -23,7 +23,13 @@ export default class CoinTip extends AbstractView {
         //     }
         // } else
         {
-            _class = _class + " tip_right";
+            //_class = _class + " tip_right";
+
+            if (this.$mobile) {
+                _class = _class + " tip_right";
+            } else {
+                _class = _class + " tip_left";
+            }
         }
 
         return _class;

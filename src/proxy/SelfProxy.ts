@@ -72,7 +72,14 @@ export default class SelfProxy extends AbstractProxy {
 
         if (value.gold_info) {
             const gameProxy: GameProxy = getProxy(GameProxy);
-            const coin = this.defaultCoin(gameProxy.coin_name_unique);
+            //const coin = this.defaultCoin(gameProxy.coin_name_unique);
+            let coin = "";
+            if (!gameProxy.coin_name_unique) {
+                coin = gameProxy.get_coin_from_localstorage();
+                coin = this.defaultCoin(coin);
+            } else {
+                coin = this.defaultCoin(gameProxy.coin_name_unique);
+            }
             gameProxy.setCoin(coin);
         }
     }
@@ -82,6 +89,32 @@ export default class SelfProxy extends AbstractProxy {
 
         if (plat_coins[coin]?.is_display == 1) {
             return coin;
+        }
+
+        //使用 默认的 或者是 金额对多的 将币种排序
+        const list = this.userInfo.gold_info;
+        //console.log("排序之前的", list);
+        //@ts-ignore
+        const sortedList = Object.keys(list).sort((a, b) => {
+            //@ts-ignore
+            const aSumMoney = parseFloat(list[a].sum_money);
+            //@ts-ignore
+            const bSumMoney = parseFloat(list[b].sum_money);
+            return bSumMoney - aSumMoney;
+        });
+        // .reduce((obj, key) => {
+        //      //@ts-ignore
+        //     obj[key] = list[key];
+        //     return obj;
+        // }, {});
+
+        //console.log("排序之后的结果", sortedList);
+
+        for (let index = 0; index < sortedList.length; index++) {
+            const element = sortedList[index];
+            if (plat_coins[element] && plat_coins[element].is_display == 1) {
+                return element;
+            }
         }
 
         const coinKeys = Object.keys(plat_coins);

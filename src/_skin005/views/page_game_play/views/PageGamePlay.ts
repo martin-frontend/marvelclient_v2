@@ -35,7 +35,7 @@ export default class PageGamePlay extends AbstractView {
     mounted() {
         const that = this;
         this.isLoadEnd = false;
-        //this.restartAutoClose(10);
+        this.restartAutoClose(10);
         this.$nextTick(() => {
             const iframe = document.getElementById("gameFrame");
             if (iframe) {

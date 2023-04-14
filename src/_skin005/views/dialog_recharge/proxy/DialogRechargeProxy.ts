@@ -1,7 +1,7 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { convert_vi_to_en } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
-import GameProxy from "@/proxy/GameProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
@@ -58,7 +58,7 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.isLoadData = false;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
-        const gameProxy: GameProxy = getProxy(GameProxy);
+        const gameProxy = PanelUtil.getProxy_gameproxy;
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
             coin_name_unique = keys[0];
@@ -87,7 +87,11 @@ export class RechargeProxy extends puremvc.Proxy {
                         this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                     }
-                    if (data[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+                    if (
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 8 ||
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 10
+                    ) {
                         const channel = data[coin_name_unique].options[block_network_id].channel;
                         if (channel.length > 0) {
                             this.pageData.form.third_id = channel[0].third_id;
@@ -178,7 +182,6 @@ export class RechargeProxy extends puremvc.Proxy {
 
 export class ExchangeProxy extends puremvc.Proxy {
     static NAME = "ExchangeProxy";
-
     /**钱包信息 */
     gold_info = <any>{};
 
@@ -197,9 +200,19 @@ export class ExchangeProxy extends puremvc.Proxy {
             third_id: "",
             subtitle: "",
             requires: <any>{},
+            //越南盾 银行卡兑换
+            bank_id: "", //银行编号
+            bank: "", //银行名称
+            account_name: "", //银行开户名
+            account_bank: "-", //
         },
         isLoadData: true, //是否正在加载数据，或者是否正在等待 数据
     };
+    curBankinfo = <any>{};
+
+    bankCardInfo = <any>{}; //所有银行卡信息
+    bankCard_nameArr = <any>{};
+    bankCard_numberArr = <any>{};
 
     resetform() {
         Object.assign(this.pageData.form, {
@@ -207,6 +220,17 @@ export class ExchangeProxy extends puremvc.Proxy {
             account: "",
             password_gold: "",
         });
+        this.curBankinfo = null;
+        this.setRealName();
+    }
+    setRealName() {
+        const selfProxy = PanelUtil.getProxy_selfproxy;
+        if (selfProxy.userInfo.real_name_decrypt) {
+            this.pageData.form.account_name = selfProxy.userInfo.real_name_decrypt;
+        } else {
+            this.pageData.form.account_name = "";
+        }
+        console.log("设置真实信命" + this.pageData.form.account_name);
     }
     public get isHaveData(): boolean {
         return Object.keys(this.pageData.methodList).length > 0;
@@ -218,7 +242,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.pageData.methodList = data;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
-        const gameProxy: GameProxy = getProxy(GameProxy);
+        const gameProxy = PanelUtil.getProxy_gameproxy;
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
             coin_name_unique = keys[0];
@@ -246,6 +270,36 @@ export class ExchangeProxy extends puremvc.Proxy {
         }
     }
 
+    setCurBankInfo(bank_id: number) {
+        console.log("需要搜索的银行id ", bank_id);
+        const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
+        for (let index = 0; index < arr.length; index++) {
+            const element = arr[index];
+            if (element.bank_id == bank_id) {
+                this.curBankinfo = element;
+                console.log("设置  银行 ", element);
+                return;
+            }
+        }
+    }
+    setAddress(data: any) {
+        console.log("收到 银行卡 信息 回调");
+        this.bankCardInfo = data;
+        this.bankCard_nameArr = [];
+        this.bankCard_numberArr = [];
+        if (!this.bankCardInfo) return;
+
+        for (let index = 0; index < this.bankCardInfo.length; index++) {
+            const element = this.bankCardInfo[index];
+            if (this.bankCard_nameArr.indexOf(element.payment_method.account_name) == -1) {
+                this.bankCard_nameArr.push(element.payment_method.account_name);
+            }
+
+            if (this.bankCard_numberArr.indexOf(element.payment_method.account) == -1) {
+                this.bankCard_numberArr.push(element.payment_method.account);
+            }
+        }
+    }
     api_user_var_exchange_method_list() {
         PanelUtil.showAppLoading(true);
         //this.pageData.loading = true;
@@ -314,6 +368,42 @@ export class ExchangeProxy extends puremvc.Proxy {
             this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
         }
     }
+    api_user_var_exchange_create_order_VND() {
+        this.pageData.loading = true;
+        const {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            password_gold,
+            bank_id,
+            bank,
+            account_name,
+            account_bank,
+        } = this.pageData.form;
+
+        const sendObj = {
+            amount,
+            exchange_channel_id,
+            payment_method_type,
+            coin_name_unique,
+            block_network_id,
+            account,
+            exchange_channel_method_id,
+            user_id: core.user_id,
+            password_gold: core.MD5.createInstance().hex_md5(password_gold),
+            bank_id,
+            bank,
+            account_name,
+            account_bank,
+        };
+        sendObj.account_name = convert_vi_to_en(sendObj.account_name);
+        console.log("发送的数据为", sendObj);
+        this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
+    }
 }
 
 export class TransferProxy extends puremvc.Proxy {
@@ -348,7 +438,7 @@ export class TransferProxy extends puremvc.Proxy {
         // const keys = Object.keys(data);
         const keys = Object.keys(GamePlatConfig.config.plat_coins);
         // 默认选中用户当前选择的币种
-        const gameProxy: GameProxy = getProxy(GameProxy);
+        const gameProxy = PanelUtil.getProxy_gameproxy;
         let coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
             coin_name_unique = keys[0];

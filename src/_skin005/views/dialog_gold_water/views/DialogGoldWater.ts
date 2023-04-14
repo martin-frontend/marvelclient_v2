@@ -69,7 +69,7 @@ export default class DialogGoldWater extends AbstractView {
     getStateText(state: number) {
         switch (state) {
             case 0:
-                return LangUtil("失败");
+                return LangUtil("未通过");
             case 1:
             case 2:
             case 3:

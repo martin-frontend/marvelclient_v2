@@ -6,11 +6,14 @@ import CustomInput from "@/_skin005/views/widget/custom_input_nomal/CustomInputN
 import CustomSelect from "@/_skin005/views/widget/custom_select/CustomSelect.vue";
 import Component from "vue-class-component";
 import TabRecharge from "./TabRecharge";
-
+import RechargeType9 from "@/_skin005/views/page_recharge/views/widget/recharge_type_9/RechargeType9.vue";
+import RechargeTypeCommon from "@/_skin005/views/page_recharge/views/widget/recharge_type_common/RechargeTypeCommon.vue";
 @Component({
     components: {
         CustomInput,
         CustomSelect,
+        RechargeType9,
+        RechargeTypeCommon,
     },
 })
 export default class extends TabRecharge {}

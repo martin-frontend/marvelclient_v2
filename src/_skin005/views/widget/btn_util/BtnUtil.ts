@@ -40,6 +40,9 @@ export default class BtnUtil extends AbstractView {
         } else if (this.btn_type == "btn_9" || this.btn_type == 9) {
             //样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
             return "btn_base base_border btn_9";
+        } else if (this.btn_type == "btn_10" || this.btn_type == 10) {
+            //样式九 用于btn组
+            return "btn_base base_border btn_10";
         }
         return "";
     }
@@ -70,6 +73,9 @@ export default class BtnUtil extends AbstractView {
         } else if (this.btn_type == "btn_9" || this.btn_type == 9) {
             //样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
             str = "disable_base btn_9_disable";
+        } else if (this.btn_type == "btn_10" || this.btn_type == 10) {
+            //样式八 游戏列表 真人炼油 进入游戏，默认渐变，悬浮  黑白
+            str = "disable_base btn_10_disable";
         }
         return this.cur_btn_class + " " + str;
     }

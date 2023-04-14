@@ -43,7 +43,7 @@ export default class PageRechargeMediator extends AbstractMediator {
         // myProxy.transferProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_var_recharge_method_list:
-                console.log("----接收消息--api_user_var_recharge_method_list----");
+                //console.log("----接收消息--api_user_var_recharge_method_list----");
                 myProxy.rechargeProxy.setData(body);
                 break;
             case net.EventType.api_user_var_recharge_address:
@@ -67,6 +67,12 @@ export default class PageRechargeMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_recharge_create:
                 PanelUtil.showAppLoading(false);
+                console.log("收到 body", body);
+                if (body.paymethod_id && body.paymethod_id == 10) {
+                    console.log("打开 二维码");
+                    myProxy.showPreview(body.qrcode);
+                    return;
+                }
                 PanelUtil.message_alert({
                     message: LangUtil("点击进入充值通道"),
                     okFun: () => {

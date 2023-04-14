@@ -26,6 +26,11 @@ export function dateFormat(d: Date, fmt: string): string {
     }
     return fmt;
 }
+//最多保留后面2位小数
+export function GoldformatNumber(num: any) {
+    const fixedNumber = Math.floor(num * 100) / 100;
+    return fixedNumber % 1 === 0 ? Math.trunc(fixedNumber) : fixedNumber;
+}
 /**
  * 获取今日零点时间
  * @offset 偏移天数

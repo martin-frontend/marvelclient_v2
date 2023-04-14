@@ -115,21 +115,16 @@ export default class TabExchange extends AbstractView {
     }
 
     onSetPassword() {
-        // const { phone, email } = this.selfProxy.userInfo;
-        // if (phone || email) {
-
         PanelUtil.openpanel_trade_password();
-        // } else {
-        //     //dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
-        //     PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
-        // }
     }
 
     onSubmit() {
         PanelUtil.message_confirm({
             message: LangUtil("确认提交"),
             okFun: () => {
-                this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+                if (this.myProxy.exchangeProxy.pageData.form.payment_method_type == 6) {
+                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order_VND();
+                } else this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
             },
         });
     }

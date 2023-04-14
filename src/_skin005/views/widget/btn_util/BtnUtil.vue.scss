@@ -257,6 +257,14 @@ $sss: #3e3f41;
     background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 }
 
+.btn_10 {
+    cursor: pointer;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    // color: $nomal_text;
+    // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
+}
+
 .theme--dark {
     .btn_9:hover {
         color: $hover_text !important;
@@ -266,6 +274,23 @@ $sss: #3e3f41;
     .btn_9_disable {
         color: $disable_text_light;
         background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+    .btn_10 {
+        color: $disable_text_light;
+        background-image: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+
+    .btn_10:hover {
+        color: $nomal_text !important;
+        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+    }
+    .btn_10_disable {
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        color: $disable_text_light;
+        border: 1px solid transparent;
+        font-family: "GOTHAM_BOLD";
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
 }
 
@@ -278,6 +303,23 @@ $sss: #3e3f41;
     .btn_9_disable {
         color: $disable_text_light;
         background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+    .btn_10 {
+        color: $nomal_text;
+        background-image: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+    .btn_10:hover {
+        color: $nomal_text !important;
+
+        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+    }
+    .btn_10_disable {
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        color: $nomal_text;
+        border: 1px solid transparent;
+        font-family: "GOTHAM_BOLD";
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
     }
 }
 

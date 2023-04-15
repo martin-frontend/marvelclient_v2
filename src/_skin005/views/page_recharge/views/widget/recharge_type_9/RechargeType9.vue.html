@@ -146,7 +146,8 @@
         </v-card>
 
         <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
-            {{LangUtil("充值金额")}} {{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}
+            <span class="rechargeText--text">{{LangUtil("充值金额")}}&nbsp;</span>
+            <span class="textYellow--text">{{amountFormat(curSelectItem.min_gold)}}-{{amountFormat(curSelectItem.max_gold)}}</span>
         </v-sheet>
 
         <v-card flat color="transparent" class="mt-4">

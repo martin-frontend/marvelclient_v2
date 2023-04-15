@@ -25,8 +25,7 @@
                 <v-col cols="6">
                     <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                     <v-sheet color="transparent" width="100%" class="d-flex">
-                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
-                        </CustomInput>
+                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                         <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
                     </v-sheet>
@@ -152,14 +151,14 @@
             <v-card flat color="transparent" class="mt-4">
                 <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
-                    </CustomInput>
+                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                     <btn-yellow class="text-14 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
                 </v-sheet>
             </v-card>
             <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
-                {{LangUtil("提现金额")}} {{amountFormat(curSelectItem.min_out)}}-{{amountFormat(curSelectItem.max_out)}}
+                <span class="rechargeText--text">{{LangUtil("提现金额")}}&nbsp;</span>
+                <span class="textYellow--text">{{amountFormat(curSelectItem.min_out)}}-{{amountFormat(curSelectItem.max_out)}}</span>
             </v-sheet>
         </v-card>
         <!-- 选择付款方式 -->

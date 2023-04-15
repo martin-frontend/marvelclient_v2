@@ -1,11 +1,9 @@
 <v-card flat class="" color="transparent" width="100%" :class="$mobile ? 'pad_top_mob' : 'pad_height'">
     <template v-if="!pageData.isLoadData">
         <template v-if="myProxy.rechargeProxy.isHaveData">
-
             <RechargeType9 v-if="isUnityRecharge" />
-            
+
             <RechargeTypeCommon v-else />
-            
         </template>
         <ListNodata v-else height="500" />
     </template>

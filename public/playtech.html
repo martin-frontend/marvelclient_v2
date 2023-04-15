@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Game Launching</title>
+    </head>
+    <body>
+        <!-- We do not support testing games via localhost -->
+        <!-- Please host this html file on your server and assign one domain with it,
+ remeber that domain needs to be whitelisted otherwise you will get error code 6 -->
+        <!-- You can try testing games with fun mode.it doesnot require login.-->
+        <script>
+            function login() {
+                // Get variables
+                let username = getQueryVariable("username");
+                let password = getQueryVariable("password");
+                let lang = getQueryVariable("lang");
+                let mode = getQueryVariable("mode");
+                if (mode == "real") {
+                    iapiSetClientType("casino");
+                    iapiSetClientPlatform("web");
+                    iapiLogin(username, password, 1, lang);
+                } else {
+                    // mode is offline, which does not require login. NOTE: only supports client with ngm_desktop and ngm_mobile;
+                    launchGameWithFunMode();
+                }
+            }
+            function launchGame() {
+                // Get variables
+                let client = getQueryVariable("client");
+                let mode = getQueryVariable("mode");
+                let game = getQueryVariable("game");
+                let lang = getQueryVariable("lang");
+                let real = mode == "real" ? 1 : 0;
+                // Optional Variables
+                let lobbyUrl = "";
+                let logoutUrl = "";
+                let supportUrl = "";
+                let depositUrl = "";
+                // Slots,Table Games and other non-live games
+                if (client == "ngm_desktop" || client == "ngm_mobile") {
+                    iapiSetClientParams(
+                        client,
+                        "language=" +
+                            lang +
+                            "&real=" +
+                            real +
+                            "&lobby=" +
+                            lobbyUrl +
+                            "&logout=" +
+                            logoutUrl +
+                            "&deposit=" +
+                            depositUrl +
+                            "&support=" +
+                            supportUrl +
+                            "&backurl=" +
+                            lobbyUrl
+                    );
+                    iapiLaunchClient(client, game, mode, "_self");
+                }
+                // Live Games
+                if (client == "live_desk" || client == "live_mob") {
+                    iapiSetClientParams(
+                        client,
+                        "&launch_alias=" +
+                            game +
+                            "&language=" +
+                            lang +
+                            "&real=" +
+                            real +
+                            "&lobby=" +
+                            lobbyUrl +
+                            "&logout=" +
+                            logoutUrl +
+                            "&deposit=" +
+                            depositUrl +
+                            "&support=" +
+                            supportUrl
+                    );
+                    iapiLaunchClient(client, null, mode, "_self");
+                }
+            }
+            function launchGameWithFunMode() {
+                // Get variables
+                let client = getQueryVariable("client");
+                let game = getQueryVariable("game");
+                let lang = getQueryVariable("lang");
+                let mode = getQueryVariable("mode");
+                if (client == "ngm_desktop" || client == "ngm_mobile") {
+                    iapiSetClientParams(client, "language=" + lang + "&real=0");
+                    iapiLaunchClient(client, game, mode, "_self");
+                }
+            }
+            function calloutLogin(response) {
+                if (response.errorCode) {
+                    // Login failed
+                    if (response.errorCode == 48) {
+                        alert(
+                            "Login failed, error: " +
+                                response.errorCode +
+                                " playerMessage: " +
+                                response.actions.PlayerActionShowMessage[0].message
+                        );
+                    } else {
+                        alert("Login failed, error: " + response.errorCode + " playerMessage: " + response.playerMessage);
+                    }
+                } else {
+                    // Login success
+                    launchGame();
+                }
+            }
+            function getQueryVariable(value) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var item of vars) {
+                    var pair = item.split("=");
+                    if (pair[0] === value) {
+                        return pair[1];
+                    }
+                }
+                return null;
+            }
+        </script>
+        <script>
+            // Load JS file
+            let script = document.createElement("script");
+            script.setAttribute("src", "https://login-am.hotspin88.com/jswrapper/hotspin88am/integration.js");
+            document.head.appendChild(script);
+            // Set up callback after JS file is loaded
+            script.onload = () => {
+                iapiSetCallout("Login", calloutLogin);
+                login();
+            };
+        </script>
+    </body>
+</html>

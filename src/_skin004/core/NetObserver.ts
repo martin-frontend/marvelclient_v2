@@ -188,6 +188,10 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
                     this.gameProxy.loading = false;
+                    //PT电子，不使用外部地址打开
+                    if (body.url.indexOf("http") == -1) {
+                        body.url = core.game_domain + "/" + body.url;
+                    }
                     // 如果是体育，直接进入
                     if (
                         this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&
@@ -212,22 +216,21 @@ export default class NetObserver extends AbstractMediator {
                     const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
                     const ddd = judgeClient();
                     //@ts-ignore
-                    if ((ori_vendor_extend.noConfirm && (window.navigator.standalone || judgeClient() != "iOS") )) {//判断如果没有添加到主屏幕并且属于ios系统就要强制弹窗
-                        this.openGame(body,ori_vendor_extend);
-                        return
+                    if (ori_vendor_extend.noConfirm && (window.navigator.standalone || judgeClient() != "iOS")) {
+                        //判断如果没有添加到主屏幕并且属于ios系统就要强制弹窗
+                        this.openGame(body, ori_vendor_extend);
+                        return;
                     }
-                    let msgstr =  LangUtil("进入游戏");
-                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique)
-                    {
+                    let msgstr = LangUtil("进入游戏");
+                    if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique) {
                         msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
                     }
 
                     dialog_message_box.confirm({
-                        message:
-                            msgstr,
+                        message: msgstr,
                         //LangUtil("进入游戏"),
                         okFun: () => {
-                            this.openGame(body,ori_vendor_extend);
+                            this.openGame(body, ori_vendor_extend);
                         },
                     });
                 }
@@ -258,7 +261,7 @@ export default class NetObserver extends AbstractMediator {
         return soure.slice(0, start) + newStr + soure.slice(start);
     }
 
-    openGame(body:any,ori_vendor_extend:any){
+    openGame(body: any, ori_vendor_extend: any) {
         if (core.app_type == core.EnumAppType.WEB) {
             this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
             this.gameProxy.gamePreData.historyLength = window.history.length;
@@ -269,7 +272,6 @@ export default class NetObserver extends AbstractMediator {
             //@ts-ignore
             if (judgeClient() == "PC" || window.navigator.standalone) {
                 if (this.gameProxy.currGame.ori_vendor_extend) {
-                    
                     if (
                         //@ts-ignore
                         (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
@@ -292,22 +294,14 @@ export default class NetObserver extends AbstractMediator {
                 //有个别厂商链接后面会有#，导致横竖屏参数不能使用
                 if (body.url.indexOf("#") != -1) {
                     // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(
-                        body.url,
-                        body.url.indexOf("#"),
-                        "&gOrientation=" + this.gameProxy.currGame.orientation
-                    );
+                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "&gOrientation=" + this.gameProxy.currGame.orientation);
                 } else {
                     gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
                 }
             } else {
                 if (body.url.indexOf("#") != -1) {
                     // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(
-                        body.url,
-                        body.url.indexOf("#"),
-                        "?gOrientation=" + this.gameProxy.currGame.orientation
-                    );
+                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "?gOrientation=" + this.gameProxy.currGame.orientation);
                 } else {
                     gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
                 }

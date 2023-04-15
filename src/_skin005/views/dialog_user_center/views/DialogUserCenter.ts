@@ -8,6 +8,7 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -18,7 +19,7 @@ export default class DialogUserCenter extends AbstractView {
     userInfo = this.selfProxy.userInfo;
     validate_type = GamePlatConfig.config.validate_type;
     is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
-
+    IsShow_GoogleVerification = ModulesHelper.IsShow_GoogleVerification();
     constructor() {
         super(DialogUserCenterMediator);
     }

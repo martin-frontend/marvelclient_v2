@@ -80,6 +80,7 @@
                 </horizontal_scroll>
 
                 <CustomInput
+                    v-if="!IsShow_HideRegisterInvite"
                     class="mb-6"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"
@@ -334,6 +335,7 @@
 
         <v-sheet class="px-4 mx-3 py-4 mt-2 rounded10" color="bgBanner">
             <CustomInput
+                v-if="!IsShow_HideRegisterInvite"
                 class="mb-4"
                 icon="mdi-account"
                 :placeholder="LangUtil('请输入推荐人（选填）')"

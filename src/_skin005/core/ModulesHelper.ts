@@ -99,6 +99,21 @@ function IsShow_VipShowDeal() {
 function IsShow_pcMenuTip() {
     return _isValueTrue("pcMenuTip");
 }
+
+/**
+ * 是否显示 注册 时候的邀请拦
+ */
+function IsShow_HideRegisterInvite() {
+    return _isValueTrue("HideRegisterInvite", false);
+}
+
+/**
+ * 是否显示 google设置验证
+ */
+function IsShow_GoogleVerification() {
+    return _isValueTrue("GoogleVerification");
+}
+
 /**
  * //是否显示 代理管理
  * @returns
@@ -176,4 +191,6 @@ export default {
     IsShow_pcMenuTip,
     IsShow_GameWaterGuide,
     IsShow_VipShowDeal,
+    IsShow_HideRegisterInvite,
+    IsShow_GoogleVerification,
 };

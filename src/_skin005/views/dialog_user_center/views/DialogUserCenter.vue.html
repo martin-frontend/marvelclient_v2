@@ -127,7 +127,7 @@
                         <div v-else class="empty_width"></div>
                     </span>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-5 text-14">
+                <div v-if="IsShow_GoogleVerification" class="d-flex justify-space-between align-center mb-5 text-14">
                     <span class="d-flex textGray--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-google</v-icon> -->
                         {{LangUtil("谷歌验证")}}
@@ -307,7 +307,7 @@
                     </span>
                 </div>
                 <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between align-center mt-2 text-14">
+                <div v-if="IsShow_GoogleVerification" class="d-flex justify-space-between align-center mt-2 text-14">
                     <span class="d-flex leftText--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-google</v-icon> -->
                         {{LangUtil("谷歌验证")}}

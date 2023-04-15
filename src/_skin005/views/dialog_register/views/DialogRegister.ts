@@ -8,6 +8,7 @@ import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -17,6 +18,8 @@ export default class DialogRegister extends AbstractView {
     form = this.pageData.form;
     core = core;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
+    IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
+
     constructor() {
         super(DialogRegisterMediator);
     }

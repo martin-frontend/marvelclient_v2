@@ -197,6 +197,11 @@
 
         "--推广",
         ["api/plat/{plat_id}/promotion_config",             "返佣等级配置"],
-        ["api/plat/{plat_id}/vip_config",         "VIP等级配置"]
+        ["api/plat/{plat_id}/vip_config",         "VIP等级配置"],
+
+        "--打点相关",
+        ["api/user/{user_id}/event_record",             "获取用户事件记录"],
+        ["api/user/{user_id}/event_record/update",             "更新用户事件记录状态"]
+
     ]
 }

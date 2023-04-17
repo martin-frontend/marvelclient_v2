@@ -74,9 +74,11 @@ export const TrackEventMap = {
 };
 
 export function track(eventName: string, data: any = {}, type: string = "normal") {
-    if (core.user_id) Object.assign(data, { user_id: core.user_id });
-    gmt(eventName, data);
-    fbq(eventName, data, type);
-    flyer(eventName, data);
-    clube96(eventName, data, type);
+    if (process.env.VUE_APP_ENV == "production") {
+        if (core.user_id) Object.assign(data, { user_id: core.user_id });
+        gmt(eventName, data);
+        fbq(eventName, data, type);
+        flyer(eventName, data);
+        clube96(eventName, data, type);
+    }
 }

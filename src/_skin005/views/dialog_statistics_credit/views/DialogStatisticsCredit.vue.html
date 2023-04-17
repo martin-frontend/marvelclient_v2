@@ -132,7 +132,7 @@
                 <div class="hackhome my-1"></div>
             </v-card-text>
             <v-card-text class="px-5">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox_2-mobile">
+                <LoadMore1 @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox_2-mobile">
                     <template v-if="pageData.list.length > 0">
                         <!-- 汇总 -->
                         <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F">
@@ -283,7 +283,7 @@
                             </template>
                         </div>
                     </v-sheet>
-                </LoadMore>
+                </LoadMore1>
             </v-card-text>
         </template>
         <template v-else>

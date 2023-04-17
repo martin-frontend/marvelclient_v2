@@ -62,14 +62,14 @@
             </v-btn-toggle>
             <v-spacer />
             <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="d-flex">
-            
-                <v-btn icon v-if="pageData.tabIndex==1"  @click.native="openGoldWater"
-                    ><svg-icon icon="Flowaudit" class="text-22 head_btn--text"></svg-icon></v-btn>
-                <v-btn icon  @click.native="goRecord"
-                    ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-22 head_btn--text"></svg-icon> </v-btn>
+                <v-btn icon v-if="pageData.tabIndex==1" @click.native="openGoldWater"
+                    ><svg-icon icon="Flowaudit" class="text-22 head_btn--text"></svg-icon
+                ></v-btn>
+                <v-btn icon @click.native="goRecord"
+                    ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-22 head_btn--text"></svg-icon>
+                </v-btn>
             </v-sheet>
         </v-sheet>
-        
     </v-sheet>
 
     <!-- <HomePage v-if="pageData.tabIndex==0" ></HomePage> -->

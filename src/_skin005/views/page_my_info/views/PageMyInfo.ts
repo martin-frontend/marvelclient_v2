@@ -21,7 +21,7 @@ export default class PageMyInfo extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
     GamePlatConfig = GamePlatConfig;
-    ModulesHelper=ModulesHelper;
+    ModulesHelper = ModulesHelper;
     GlobalVar = GlobalVar;
     constructor() {
         super(PageMyInfoMediator);

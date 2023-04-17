@@ -7,10 +7,8 @@ export default class LoadMore1 extends AbstractView {
     LangUtil = LangUtil;
     @Prop() finished!: any;
     @Prop({ default: "listbox-mobile" }) _class!: string;
-
-    @Prop({ default: "#000000" }) backgroundColor!: string;
-
-    @Prop({ default: false }) listNodata!: boolean;
+    @Prop({ default: false }) is_needfinishedtext!: boolean;
+    @Prop({ default: "transparent" }) backgroundColor!: string;
 
     observer!: MutationObserver;
 
@@ -26,6 +24,7 @@ export default class LoadMore1 extends AbstractView {
         //@ts-ignore
         const loadmoreDiv: HTMLElement = <any>this.$refs.loadmoreDiv.$el;
         //@ts-ignore
+
         const topDiv: HTMLElement = <any>this.$refs.topDiv.$el;
         //@ts-ignore
         const bottomDiv: HTMLElement = <any>this.$refs.bottomDiv.$el;

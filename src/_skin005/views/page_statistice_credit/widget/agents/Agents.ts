@@ -185,4 +185,11 @@ export default class Agents extends AbstractView {
         }
         return false;
     }
+    onCheckboxChange(value: any) {
+        if (value.length === 0) {
+            this.$nextTick(() => {
+                this.myProxy.checkboxValue.push("1");
+            });
+        }
+    }
 }

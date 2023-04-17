@@ -66,10 +66,18 @@
     <template v-else>
         <v-card class="d-flex flex-column" color="bgColor">
             <!-- 手机显示方式 -->
-            <com-dialog-title title="交易记录" @onClose="onClose" />
+            <LoadMore1
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+            >
+                <template v-slot:top>
+                    <com-dialog-title title="交易记录" @onClose="onClose" />
+                </template>
 
-            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2 mt-2" style="height: calc(100vh - 90px)">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2 mt-2">
                     <v-sheet
                         class="px-3 py-2 my-3 textGray--text rounded10"
                         v-for="(item, key) of pageData.list"
@@ -105,8 +113,8 @@
                             <div>{{ item.updated_at.replace(/^\d{4}-/, "") }}</div>
                         </div>
                     </v-sheet>
-                </LoadMore>
-            </v-sheet>
+                </v-sheet>
+            </LoadMore1>
         </v-card>
     </template>
 

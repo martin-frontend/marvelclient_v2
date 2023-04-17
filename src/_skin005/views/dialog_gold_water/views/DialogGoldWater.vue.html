@@ -53,11 +53,21 @@
         </template>
         <template v-else>
             <!-- 手机显示方式 -->
-            <com-dialog-title title="流水审核" @onClose="onClose" />
+            <LoadMore1
+                v-if="pageData.bShow"
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+            >
+                <template v-slot:top>
+                    <com-dialog-title title="流水审核" @onClose="onClose" />
 
-            <v-divider class="mb-2" />
-            <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-5" style="height: calc(100vh - 100px)">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
+                    <v-divider class="mb-2" />
+                    <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-5" style="height: calc(100vh - 100px)"> -->
+                </template>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-5">
                     <v-sheet
                         class="px-3 py-2 my-3 textGray--text sheetOutlined rounded10"
                         color="transparent"
@@ -91,8 +101,8 @@
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>
-                </LoadMore>
-            </v-sheet>
+                </v-sheet>
+            </LoadMore1>
         </template>
     </v-card>
     <Overlay v-model="pageData.loading" />

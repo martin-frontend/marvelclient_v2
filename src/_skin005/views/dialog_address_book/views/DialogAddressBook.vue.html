@@ -67,41 +67,37 @@
         </template>
         <template v-else>
             <!-- 手机显示方式 -->
-            <v-card-text class="pb-3 px-0" v-if="$xsOnly">
-                <!-- <div class="gradient-bg d-flex align-center px-5">
-                <div class="text-16">{{LangUtil("地址薄")}}</div>
-                <v-spacer />
-                <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </div> -->
-                <!-- <div class="gradient-bg_mob d-flex align-center  justify-center">
-                <div class="text-16 primary--text">{{LangUtil("地址薄")}}</div>
-                <v-btn icon @click="onClose">
-                    <svg-icon icon="arrow_right" class="text-14 back_btn_icon textGray--text"></svg-icon>
-                </v-btn>
-            </div> -->
-                <com-dialog-title title="地址薄" @onClose="onClose" />
+            <LoadMore1
+                v-if="pageData.bShow"
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+            >
+                <template v-slot:top>
+                    <v-sheet color="bgColor">
+                        <com-dialog-title title="地址薄" @onClose="onClose" />
 
-                <v-divider class="mb-2" />
-                <div class="d-flex mt-3 px-3">
-                    <CustomSelect
-                        class="mr-3"
-                        :icons="plat_coins"
-                        :options="pageData.methodList"
-                        v-model="listQuery.coin_name_unique"
-                        @change="onChange"
-                    />
-                    <CustomSelect
-                        v-if="pageData.methodList[listQuery.coin_name_unique]"
-                        :options="pageData.methodList[listQuery.coin_name_unique].options"
-                        v-model="listQuery.block_network_id"
-                        @change="onChangeSub"
-                    />
-                </div>
-            </v-card-text>
-            <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-3" style="height: calc(100vh - 140px);"> -->
-            <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+                        <v-divider class="mb-2" />
+                        <div class="d-flex pa-3">
+                            <CustomSelect
+                                class="mr-3"
+                                :icons="plat_coins"
+                                :options="pageData.methodList"
+                                v-model="listQuery.coin_name_unique"
+                                @change="onChange"
+                            />
+                            <CustomSelect
+                                v-if="pageData.methodList[listQuery.coin_name_unique]"
+                                :options="pageData.methodList[listQuery.coin_name_unique].options"
+                                v-model="listQuery.block_network_id"
+                                @change="onChangeSub"
+                            />
+                        </div>
+                    </v-sheet>
+                </template>
+
+                <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet
                     class="px-3 py-2 rounded-lg my-3 colorText2--text d-flex align-center cursor"
                     v-for="(item, key) of pageData.list"
@@ -125,7 +121,7 @@
                     <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
                     <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn> -->
                 </v-sheet>
-            </LoadMore>
+            </LoadMore1>
             <!-- </v-sheet> -->
         </template>
     </v-card>

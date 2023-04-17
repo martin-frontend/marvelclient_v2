@@ -5,6 +5,7 @@
     v-model="pageData.bShow"
     :retain-focus="false"
     :fullscreen="$xsOnly"
+    :no-click-animation="$mobile"
     persistent
 >
     <v-card v-if="!$xsOnly" class="rounded10 d-flex" color="bgBanner">

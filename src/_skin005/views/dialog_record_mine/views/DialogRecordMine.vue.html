@@ -81,21 +81,12 @@
             </v-card-text>
         </template>
         <template v-else>
-            <!-- 手机显示方式 -->
-            <!-- <v-card-text class="pb-3 px-0 ">
-                <v-sheet class="gradient-bg_mob d-flex align-center  justify-center" color="bgNavigation">
-                    <div class="text-16 primary--text">{{LangUtil("奖励记录")}}</div>
-                    <v-btn icon @click="onClose">
-                        <svg-icon icon="arrow_right" class="text-16 back_btn_icon primary--text"></svg-icon>
-                    </v-btn>
-                </v-sheet>
-            </v-card-text> -->
-            <com-dialog-title title="奖励记录" @onClose="onClose" />
-
-            <!-- <v-divider class="mb-2" /> -->
-            <!-- <v-card-text class="px-5" > -->
-            <v-sheet id="mobile_main" color="transparent" class="py-2 overflow-y-auto px-2" style="height: calc(100vh - 90px)">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
+            <LoadMore1 @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished" :is_needfinishedtext="pageData.list.length == 0">
+                <template v-slot:top>
+                    <com-dialog-title title="奖励记录" @onClose="onClose" />
+                </template>
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet id="mobile_main" color="transparent" class="py-2 overflow-y-auto px-2">
                     <v-sheet
                         class="px-3 py-2 rounded10 mb-3 textGray--text"
                         color="bgBanner"
@@ -125,9 +116,8 @@
                             </v-btn>
                         </div>
                     </v-sheet>
-                </LoadMore>
-            </v-sheet>
-            <!-- </v-card-text> -->
+                </v-sheet>
+            </LoadMore1>
         </template>
     </v-card>
     <Overlay v-model="pageData.loading" />

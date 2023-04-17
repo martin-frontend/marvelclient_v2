@@ -286,10 +286,11 @@
         </v-card-text>
 
         <v-card-text class="px-5">
-            <LoadMore
+            <LoadMore1
                 @onRefresh="onRefresh"
                 @onLoad="onLoad"
                 :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
                 :class="limitinfo.enable_all == 1 ? 'listbox_2-mobile' :'listbox-mobile'"
             >
                 <ListNodata v-if="pageData.list.length == 0" />
@@ -392,7 +393,7 @@
                         >
                     </div>
                 </v-sheet>
-            </LoadMore>
+            </LoadMore1>
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

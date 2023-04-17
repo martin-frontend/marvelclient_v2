@@ -136,28 +136,32 @@
         </template>
         <template v-else>
             <!-- 手机显示方式 -->
-            <v-card-text class="pb-0 px-0">
-                <com-dialog-title title="质押记录" @onClose="onClose" />
-
-                <div class="d-flex justify-start py-2 px-2">
-                    <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
-                        <v-btn class="rounded-pill" height="36" min-width="80">
-                            <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-line</v-icon>
-                            <span class="text-14"> {{LangUtil("质押")}} </span>
-                        </v-btn>
-                        <v-btn class="rounded-pill" height="36" min-width="80">
-                            <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-tree</v-icon>
-                            <span class="text-14"> {{LangUtil("解除质押")}} </span>
-                        </v-btn>
-                    </v-btn-toggle>
-                </div>
-            </v-card-text>
-            <!-- <v-card-text class="px-5" v-if="$xsOnly"> -->
-            <!-- <v-sheet  color="transparent" class="overflow-y-auto px-2" style="height: calc(100vh - 140px);"> -->
-            <div v-if="listQuery.cate == 1 && $xsOnly">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
+            <LoadMore1
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :is_needfinishedtext="pageData.list.length == 0"
+                :finished="pageData.finished"
+            >
+                <template v-slot:top>
+                    <com-dialog-title title="质押记录" @onClose="onClose" />
+                    <v-sheet color="bgColor" class="d-flex justify-start py-2 px-2">
+                        <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                            <v-btn class="rounded-pill" height="36" min-width="80">
+                                <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-line</v-icon>
+                                <span class="text-14"> {{LangUtil("质押")}} </span>
+                            </v-btn>
+                            <v-btn class="rounded-pill" height="36" min-width="80">
+                                <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-chart-tree</v-icon>
+                                <span class="text-14"> {{LangUtil("解除质押")}} </span>
+                            </v-btn>
+                        </v-btn-toggle>
+                    </v-sheet>
+                    <v-divider  />
+                </template>
+                <ListNodata v-if="pageData.list.length == 0" />
+                <div v-if="listQuery.cate == 1">
                     <v-sheet
-                        class="px-3 py-2 my-3 textGray--text rounded10"
+                        class="px-3 py-2 mb-3 textGray--text rounded10"
                         v-for="(item, key) of pageData.list"
                         color="bgBanner"
                         :key="key"
@@ -179,12 +183,11 @@
                             </div>
                         </div>
                     </v-sheet>
-                </LoadMore>
-            </div>
-            <div v-if="listQuery.cate == 2 && $xsOnly">
-                <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :listNodata="pageData.list.length == 0" :finished="pageData.finished">
+                </div>
+
+                <div v-if="listQuery.cate == 2">
                     <v-sheet
-                        class="px-3 py-2 my-3 textGray--text rounded10"
+                        class="px-3 py-2 mb-3 textGray--text rounded10"
                         v-for="(item, idx) in pageData.list"
                         color="bgBanner"
                         :key="idx"
@@ -214,10 +217,8 @@
                             </div>
                         </div>
                     </v-sheet>
-                </LoadMore>
-            </div>
-            <!-- </v-card-text> -->
-            <!-- </v-sheet> -->
+                </div>
+            </LoadMore1>
         </template>
     </v-card>
     <Overlay v-model="pageData.loading" />

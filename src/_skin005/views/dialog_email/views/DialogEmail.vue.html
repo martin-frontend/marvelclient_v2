@@ -96,31 +96,39 @@
 
     <!-- 手机显示方式 -->
     <v-card v-else class="d-flex flex-column overflow-x-hidden" color="bgColor" height="100%" flat>
-        <com-dialog-title title="消息中心" @onClose="onClose" />
+        <LoadMore1
+            v-if="pageData.bShow"
+            style="height: 100%"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            :is_needfinishedtext="pageData.list.length == 0"
+        >
+            <template v-slot:top>
+                <com-dialog-title title="消息中心" @onClose="onClose" />
 
-        <v-sheet class="mx-3 py-3"   color="transparent">
-            <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange" class="d-flex flex-wrap scrollable-btn-group">
-                <v-btn  class="rounded-pill " height="36" min_width="80" value="0">
-                    <span class="text-14"> {{LangUtil("全部消息")}} </span>
-                </v-btn>
-                <v-btn class="rounded-pill " height="36" min_width="80" value="1">
-                    <span class="text-14"> {{LangUtil("平台消息")}} </span>
-                </v-btn>
-                <v-btn class="rounded-pill" height="36" min_width="80" value="11">
-                    <span class="text-14"> {{LangUtil("活动消息")}} </span>
-                </v-btn>
-            </v-btn-toggle>
-        </v-sheet>
-        <!-- <v-divider class="my-3 mx-3" /> -->
-        <!-- <div class="d-flex mx-3 align-center">
-                <v-spacer />
-                <v-btn class="mr-3" color="colorBtnBg" small @click="onReceiveQuick">{{LangUtil("一键领取")}}</v-btn>
-                <v-btn color="colorBtnBg" small @click="onDestroyQuick">{{LangUtil("删除已读")}}</v-btn>
-            </div> -->
-
-        <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-hidden" style="height: calc(100vh - 230px);"> -->
-
-        <LoadMore style="height: 100%;"  @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
+                <v-sheet class="mx-3 py-3" color="bgColor">
+                    <v-btn-toggle
+                        :lang="core.lang"
+                        mandatory
+                        group
+                        v-model="typechange"
+                        @change="onTimeChange"
+                        class="d-flex flex-wrap scrollable-btn-group"
+                    >
+                        <v-btn class="rounded-pill" height="36" min_width="80" value="0">
+                            <span class="text-14"> {{LangUtil("全部消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill" height="36" min_width="80" value="1">
+                            <span class="text-14"> {{LangUtil("平台消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill" height="36" min_width="80" value="11">
+                            <span class="text-14"> {{LangUtil("活动消息")}} </span>
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-sheet>
+            </template>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
             <v-sheet
                 class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex"
                 color="bgBanner"
@@ -143,9 +151,6 @@
                 <div class="ml-4 text-12" style="width: 100%">
                     <div class="d-flex justify-space-between mb-2">
                         <div class="text-14 primary--text font-weight-bold">{{item.title}}</div>
-                        <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
-                                    {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
-                                </v-icon> -->
                         <v-img
                             v-if="item.attachment_status != 1"
                             max-width="20"
@@ -164,36 +169,21 @@
                         <div v-else class="text-decoration-underline textYellow--text cursor-pointer">{{LangUtil("点击阅读详情")}}</div>
                     </div>
                 </div>
-
-                <!-- <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}}
-                    </v-icon>
-                    <div class="ml-4" style="width: 100%">
-                        <div class="d-flex justify-space-between mb-2">
-                            <div class="text-16 colorText2--text">{{item.title}}</div>
-                            <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
-                                {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
-                            </v-icon>
-                        </div>
-                        <div class="d-flex justify-space-between">
-                            <div class="text-decoration-underline colorText1--text cursor-pointer" @click="onDetail(item)">
-                                {{LangUtil("点击阅读详情")}}
-                            </div>
-                            <div class="colorText1--text">{{item.created_at}}</div>
-                        </div>
-                    </div> -->
             </v-sheet>
-        </LoadMore>
 
-        <v-sheet class="mt-auto" color="bgNavigation" width="100%" min-height="90">
-            <v-sheet class="d-flex align-center justify-center px-3 mt-4" color="transparent" width="100%">
-                <btn-yellow class="text-14" min_width="90" height="30" :btn_type="2" @click.native="onDestroyQuick"
-                    >{{LangUtil("删除已读")}}</btn-yellow
-                >
-                <btn-yellow class="text-14 ml-4" min_width="90" height="30" @click.native="onReceiveQuick"
-                    >{{LangUtil("一键领取")}}</btn-yellow
-                >
-            </v-sheet>
-        </v-sheet>
+            <template v-slot:bottom>
+                <v-sheet style="display: grid;" color="bgNavigation" width="100%" min-height="90">
+                    <v-sheet class="d-flex align-center justify-center px-3" color="transparent" width="100%">
+                        <btn-yellow class="text-14" min_width="90" height="30" :btn_type="2" @click.native="onDestroyQuick"
+                            >{{LangUtil("删除已读")}}</btn-yellow
+                        >
+                        <btn-yellow class="text-14 ml-4" min_width="90" height="30" @click.native="onReceiveQuick"
+                            >{{LangUtil("一键领取")}}</btn-yellow
+                        >
+                    </v-sheet>
+                </v-sheet>
+            </template>
+        </LoadMore1>
     </v-card>
 
     <Overlay v-model="pageData.loading" />

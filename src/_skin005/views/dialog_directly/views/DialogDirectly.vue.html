@@ -115,39 +115,40 @@
         </template>
         <template v-else>
             <!-- 手机显示方式 -->
-            <v-card-text class="pb-0 px-0">
-                <com-dialog-title title="我的直属" @onClose="onClose" />
-
-                <div class="d-flex flex-wrap justify-space-between my-2">
-                    <div class="text-rwd-16 d-flex align-center">
-                        <div class="ml-3 primary--text">{{LangUtil("直属玩家数量")}}</div>
-                        <div class="ml-3 textYellow--text">{{ pageData.pageInfo.pageTotal }}</div>
-                    </div>
-                    <div class="search search_mob mr-3 mr-sm-0">
-                        <CustomInput :placeholder="LangUtil('输入查询ID')" v-model="pageData.search" :isBottomLine="false">
-                            <btn-yellow class="ml-auto text-12" min_width="50" height="36" :btn_type="4" @click.native="search"
-                                >{{LangUtil("查询")}}</btn-yellow
-                            >
-                        </CustomInput>
-                    </div>
-                </div>
-                <div v-if="limitinfo.enable_all == 1 && limitinfo.is_credit_user == 1" class="ml-5">
-                    <btn-yellow class="text-12" min_width="90" height="30" :btn_type="2" @click.native="handlerShowAddUser"
-                        >{{LangUtil("添加用户")}}</btn-yellow
-                    >
-                </div>
-            </v-card-text>
-
-            <!-- <v-card-text class="px-5" > -->
-            <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2"
-                :class="limitinfo.enable_all == 1 ? 'mobile_main' :'mobile_main_2'"> -->
-            <LoadMore
+            <LoadMore1
+                v-if="pageData.bShow"
                 @onRefresh="onRefresh"
                 @onLoad="onLoad"
                 :finished="pageData.finished"
-                :class="limitinfo.enable_all == 1 ? 'mobile_main' :'mobile_main_2'"
+             
+                :is_needfinishedtext="pageData.list.length == 0"
                 class="px-2"
             >
+                <template v-slot:top>
+                    <v-sheet width="100%" color="bgColor" >
+                        <com-dialog-title title="我的直属" @onClose="onClose" />
+                    
+                        <div class="d-flex flex-wrap justify-space-between py-2">
+                            <div class="text-rwd-16 d-flex align-center">
+                                <div class="ml-3 primary--text">{{LangUtil("直属玩家数量")}}</div>
+                                <div class="ml-3 textYellow--text">{{ pageData.pageInfo.pageTotal }}</div>
+                            </div>
+                            <div class="search search_mob mr-3 mr-sm-0">
+                                <CustomInput :placeholder="LangUtil('输入查询ID')" v-model="pageData.search" :isBottomLine="false">
+                                    <btn-yellow class="ml-auto text-12" min_width="50" height="36" :btn_type="4" @click.native="search"
+                                        >{{LangUtil("查询")}}</btn-yellow
+                                    >
+                                </CustomInput>
+                            </div>
+                        </div>
+                        <div v-if="limitinfo.enable_all == 1 && limitinfo.is_credit_user == 1" class="ml-5">
+                            <btn-yellow class="text-12" min_width="90" height="30" :btn_type="2" @click.native="handlerShowAddUser"
+                                >{{LangUtil("添加用户")}}</btn-yellow
+                            >
+                        </div>
+                    </v-sheet>
+                </template>
+
                 <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet class="px-3 py-2 rounded10 my-2 textGray--text" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
                     <v-sheet class="d-flex justify-space-between textGray--text" color="transparent" :min-height="moble_single_item_height">
@@ -235,7 +236,7 @@
                         >
                     </v-sheet>
                 </v-sheet>
-            </LoadMore>
+            </LoadMore1>
             <!-- </v-sheet> -->
             <!-- </v-card-text> -->
         </template>

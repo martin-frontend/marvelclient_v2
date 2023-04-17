@@ -36,7 +36,7 @@
             </v-btn-toggle>
         </v-sheet>
 
-        <v-sheet v-if="pageData.tabIndex==1" color="transparent" class="pb-3 mobel_input d-flex" style="width: calc(100% - 16px);">
+        <v-sheet v-if="pageData.tabIndex==1" color="transparent" class="pb-3 mobel_input d-flex" style="width: calc(100% - 16px)">
             <CustomInput
                 class="custom-input"
                 :placeholder="LangUtil('输入查询ID/备注/账号')"
@@ -44,7 +44,9 @@
                 :isBottomLine="false"
             >
             </CustomInput>
-            <btn-yellow class="text-12 ml-2" min_width="61" height="36" btn_type="3" @click.native="search">{{LangUtil("查询")}}</btn-yellow>
+            <btn-yellow class="text-12 ml-2" min_width="61" height="36" btn_type="3" @click.native="search"
+                >{{LangUtil("查询")}}</btn-yellow
+            >
         </v-sheet>
     </v-sheet>
 

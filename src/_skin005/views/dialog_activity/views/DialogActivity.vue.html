@@ -65,7 +65,8 @@
                 <v-divider class="mb-2" />
                 <!-- <v-sheet v-if="$xsOnly" color="transparent" class="overflow-y-auto px-5 "
                     style="height: calc(100vh - 90px);"> -->
-                <LoadMore v-if="$xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'">
+                <LoadMore1 v-if="$xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'" :is_needfinishedtext="pageData.list.length == 0">
+                    <ListNodata v-if="pageData.list.length == 0" height="411" />
                     <v-sheet color="transparent">
                         <v-sheet
                             class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
@@ -86,7 +87,7 @@
                             >
                         </v-sheet>
                     </v-sheet>
-                </LoadMore>
+                </LoadMore1>
                 <!-- </v-sheet> -->
             </template>
         </v-card>

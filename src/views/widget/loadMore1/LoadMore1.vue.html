@@ -1,5 +1,4 @@
 <v-sheet :class="backgroundColor">
-    <ListNodata v-if="listNodata"/>
     <vue-loadmore
         ref="loadmoreDiv"
         :on-refresh="onRefresh"
@@ -10,7 +9,7 @@
         :refresh-text="LangUtil('正在刷新')"
         :loading-text="LangUtil('正在加载')"
         :success-text="LangUtil('刷新完成')"
-        :finished-text="LangUtil('没有更多了')"
+        :finished-text="is_needfinishedtext ? '   ' : LangUtil('没有更多了') "
         :error-text="LangUtil('请求失败，点击重新加载')"
     >
         <slot></slot>
@@ -20,6 +19,6 @@
         <slot name="top"></slot>
     </v-sheet>
     <v-sheet ref="bottomDiv" class="slotbox bottom" :class="backgroundColor">
-        <slot name="bottom"></slot>
+        <slot name="bottom"><p></p></slot>
     </v-sheet>
 </v-sheet>

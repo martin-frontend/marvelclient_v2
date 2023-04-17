@@ -363,7 +363,13 @@
         </v-sheet>
     </template>
     <template v-else>
-        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox_2-mobile">
+        <LoadMore1
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            _class="listbox_2-mobile"
+            :is_needfinishedtext="pageData.list.length == 0"
+        >
             <!-- <v-sheet class="px-0" background-color="transparent" color="transparent"> -->
 
             <v-sheet color="bgBanner" class="rounded10 d-flex flex-column" width="100%">
@@ -427,9 +433,6 @@
                 </v-sheet>
             </v-sheet>
             <v-sheet color="transparent" min-height="6"></v-sheet>
-            <!-- <v-sheet color="transparent" class="overflow-y-auto" style="height: calc(100vh - 300px)"> -->
-            <!-- <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
-                    _class="listbox_2-mobile"> -->
             <template v-if="pageData.list.length > 0">
                 <!-- 汇总 -->
                 <v-sheet class="px-3 rounded-lg mt-3 pb-1 textGray--text text-12" color="bgBanner">
@@ -479,34 +482,6 @@
                             {{getMoneyValue(pageData.summary.plat_amount)}}
                         </div>
                     </div>
-                    <!-- <div class="mt-2 d-flex justify-space-between">
-                                <div class="primary--text">{{LangUtil("代理占成")}}</div>
-                                <div class="text-truncate">{{pageData.summary.credit_rate}}%</div>
-                            </div>
-                            <div class="mt-2 d-flex justify-space-between">
-                                <div class="primary--text">{{LangUtil("代理商金额")}}</div>
-                                <div class="text-truncate" :class="getMoneyColor(pageData.summary.agent_amount)">
-                                    {{getMoneyValue(pageData.summary.agent_amount)}}
-                                </div>
-                            </div>
-                            <div class="mt-2 d-flex justify-space-between">
-                                <div class="primary--text">{{LangUtil("上交金额")}}</div>
-                                <div class="text-truncate" :class="getMoneyColor(pageData.summary.plat_amount)">
-                                    {{getMoneyValue(pageData.summary.plat_amount)}}
-                                </div>
-                            </div>
-                            <div class="mt-2 d-flex justify-space-between">
-                                <div class="primary--text">{{LangUtil("团队人数")}}</div>
-                                <div class="text-truncate">
-                                    {{pageData.summary.group_users}}
-                                </div>
-                            </div>
-                            <div class="mt-2 mb-4 d-flex justify-space-between">
-                                <div class="primary--text">{{LangUtil("直属人数")}}</div>
-                                <div class="text-truncate">
-                                    {{pageData.summary.directly_users}}
-                                </div>
-                            </div> -->
                 </v-sheet>
             </template>
 
@@ -585,68 +560,7 @@
                         {{getMoneyValue(item.plat_amount)}}({{item.credit_rate_superior}})
                     </div>
                 </div>
-                <!-- <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("下注笔数")}}</div>
-                            <div>{{item.record_count}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("下注总额")}}</div>
-                            <div>{{item.bet_gold}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("玩家输赢")}}</div>
-                            <div :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("有效投注")}}</div>
-                            <div>{{item.valid_bet_gold}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("结算返水")}}</div>
-                            <div>{{item.back_water_except_user}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("实际返水")}}</div>
-                            <div>{{item.back_water}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("代理占成")}}</div>
-                            <div class="text-truncate">{{item.credit_rate}}%</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("代理商金额")}}</div>
-                            <div class="text-truncate" :class="getMoneyColor(item.agent_amount)">
-                                {{getMoneyValue(item.agent_amount)}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("上交金额")}}</div>
-                            <div class="text-truncate" :class="getMoneyColor(item.plat_amount)">
-                                {{getMoneyValue(item.plat_amount)}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("团队人数")}}</div>
-                            <div class="text-truncate">{{item.group_users}}</div>
-                        </div>
-                        <div class="mt-2 d-flex justify-space-between">
-                            <div class="primary--text">{{LangUtil("直属人数")}}</div>
-                            <template v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id">
-                                <v-sheet class="d-flex justify-space-between textYellow--text cursor-pointer "
-                                    color="#16233F" @click.native="onBtnClickNextPage(item)">
-                                    {{item.directly_users}}
-                                    <div class="ml-4">
-                                        >
-                                    </div>
-                                </v-sheet>
-                            </template>
-                            <template v-else>
-                                <div class="text-truncate">{{item.directly_users}}</div>
-                            </template>
-                        </div> -->
             </v-sheet>
-
-            <!-- </LoadMore> -->
-            <!-- </v-sheet> -->
-            <!-- </v-sheet> -->
-        </LoadMore>
+        </LoadMore1>
     </template>
 </v-sheet>

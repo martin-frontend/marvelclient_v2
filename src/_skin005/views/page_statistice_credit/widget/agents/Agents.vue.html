@@ -231,7 +231,13 @@
     </template>
     <!-- 手机版的显示 -->
     <template v-else>
-        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" class="text-12 listbox-mobile">
+        <LoadMore1
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            :is_needfinishedtext="pageData.list.length == 0"
+            class="text-12 listbox-mobile"
+        >
             <v-sheet color="bgBanner rounded10" class="text-12">
                 <v-sheet class="py-0 search_head" color="transparent">
                     <div class="d-flex flex-wrap mb-2 justify-space-between">
@@ -257,12 +263,14 @@
                                     v-model="myProxy.checkboxValue"
                                     :label="LangUtil('正常')"
                                     color="textYellow"
+                                    @change="onCheckboxChange"
                                     value="1"
                                 ></v-checkbox>
                                 <v-checkbox
                                     class="d-flex align-center ml-3"
                                     v-model="myProxy.checkboxValue"
                                     :label="LangUtil('禁用')"
+                                    @change="onCheckboxChange"
                                     color="textYellow"
                                     value="98"
                                 ></v-checkbox>
@@ -281,9 +289,6 @@
                     </div>
                     <v-divider />
                 </v-sheet>
-
-                <!-- <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" class="text-12 "
-                :class="limitinfo.enable_all == 1 ? 'listbox_2-mobile' :'listbox-mobile'"> -->
                 <ListNodata v-if="pageData.list.length == 0" />
                 <v-sheet
                     class="px-3 py-2 rounded-lg my-0 textGray--text"
@@ -406,7 +411,7 @@
                     <v-divider class="my-2" />
                 </v-sheet>
             </v-sheet>
-        </LoadMore>
+        </LoadMore1>
 
         <!-- <v-spacer />
         <v-pagination class="mx-auto mb-2" v-if="pageData.pageInfo.pageCount > 1"

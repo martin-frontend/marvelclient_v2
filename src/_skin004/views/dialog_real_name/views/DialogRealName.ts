@@ -72,4 +72,8 @@ export default class DialogRealName extends AbstractView {
             dialog_message.info(LangUtil("真实姓名为1-10个字符"));
         }
     }
+    toUppercase(val: string) {
+        val = val.toUpperCase();
+        this.pageData.real_name = val;
+    }
 }

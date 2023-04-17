@@ -295,6 +295,10 @@ declare module net {
         api_plat_var_promotion_config: string;
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: string;
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: string;
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: string;
     };
     /**事件*/
     var EventType: {
@@ -590,6 +594,10 @@ declare module net {
         api_plat_var_promotion_config: string;
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: string;
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: string;
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1481,6 +1489,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_direct_register extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取用户事件记录
+ */
+declare module net {
+    class cmd_api_user_var_event_record extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 更新用户事件记录状态
+ */
+declare module net {
+    class cmd_api_user_var_event_record_update extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

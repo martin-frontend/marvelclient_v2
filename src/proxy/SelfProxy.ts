@@ -17,6 +17,7 @@ export default class SelfProxy extends AbstractProxy {
                 if (core.user_id && core.plat_id && GameConfig.config) {
                     this.api_user_show_var([2, 3]);
                     this.api_user_var_red_dot_tips();
+                    this.api_user_var_event_record();
                 }
             }
             GlobalVar.server_time++;
@@ -167,5 +168,17 @@ export default class SelfProxy extends AbstractProxy {
     /**--其它--获取红点提示信息*/
     api_user_var_red_dot_tips() {
         this.sendNotification(net.HttpType.api_user_var_red_dot_tips, { user_id: core.user_id });
+    }
+
+    /**--打点相关--获取用户事件记录*/
+    api_user_var_event_record() {
+        if (!core.user_id) return;
+        this.sendNotification(net.HttpType.api_user_var_event_record, { user_id: core.user_id });
+    }
+
+    /**--打点相关--更新用户事件记录状态*/
+    api_user_var_event_record_update(id: string) {
+        if (!core.user_id) return;
+        this.sendNotification(net.HttpType.api_user_var_event_record_update, { user_id: core.user_id, bet_id: id });
     }
 }

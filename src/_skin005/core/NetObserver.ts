@@ -26,6 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
+import { track } from "./TrackManager";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -50,6 +51,8 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_fag_index,
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
+            net.EventType.api_user_var_event_record,
+            net.EventType.api_user_var_event_record_update,
         ];
     }
 
@@ -178,6 +181,21 @@ export default class NetObserver extends AbstractMediator {
             //用户信息
             case net.EventType.api_user_show_var:
                 this.selfProxy.setUserInfo(body);
+                break;
+            case net.EventType.api_user_var_event_record:
+                console.log("收到用户事件", body);
+
+                if (body && body.length > 0) {
+                    for (let index = 0; index < body.length; index++) {
+                        const element = body[index];
+                        track(element.event_type, element.data);
+                        this.selfProxy.api_user_var_event_record_update(element.bet_id);
+                    }
+                }
+
+                break;
+            case net.EventType.api_user_var_event_record_update:
+                console.log("收到用户更新事件", body);
                 break;
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);

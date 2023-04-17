@@ -314,6 +314,11 @@ module net {
         api_plat_var_promotion_config: "api/plat/{plat_id}/promotion_config",
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: "api/plat/{plat_id}/vip_config",
+
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: "api/user/{user_id}/event_record",
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: "api/user/{user_id}/event_record/update",
     };
     /**事件*/
     export var EventType = {
@@ -635,6 +640,11 @@ module net {
         api_plat_var_promotion_config: "api_plat_var_promotion_config",
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: "api_plat_var_vip_config",
+
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: "api_user_var_event_record",
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: "api_user_var_event_record_update",
     };
     /**注册协议*/
     export function initCommand() {
@@ -807,6 +817,9 @@ module net {
         //--推广
         facade.registerCommand(HttpType.api_plat_var_promotion_config, cmd_api_plat_var_promotion_config);
         facade.registerCommand(HttpType.api_plat_var_vip_config, cmd_api_plat_var_vip_config);
+        //--打点相关
+        facade.registerCommand(HttpType.api_user_var_event_record, cmd_api_user_var_event_record);
+        facade.registerCommand(HttpType.api_user_var_event_record_update, cmd_api_user_var_event_record_update);
     };
 
 }

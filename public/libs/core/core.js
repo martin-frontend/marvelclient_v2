@@ -357,6 +357,10 @@ var net;
         api_plat_var_promotion_config: "api/plat/{plat_id}/promotion_config",
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: "api/plat/{plat_id}/vip_config",
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: "api/user/{user_id}/event_record",
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: "api/user/{user_id}/event_record/update",
     };
     /**事件*/
     net.EventType = {
@@ -652,6 +656,10 @@ var net;
         api_plat_var_promotion_config: "api_plat_var_promotion_config",
         /**--推广--VIP等级配置*/
         api_plat_var_vip_config: "api_plat_var_vip_config",
+        /**--打点相关--获取用户事件记录*/
+        api_user_var_event_record: "api_user_var_event_record",
+        /**--打点相关--更新用户事件记录状态*/
+        api_user_var_event_record_update: "api_user_var_event_record_update",
     };
     /**注册协议*/
     function initCommand() {
@@ -824,6 +832,9 @@ var net;
         //--推广
         facade.registerCommand(net.HttpType.api_plat_var_promotion_config, net.cmd_api_plat_var_promotion_config);
         facade.registerCommand(net.HttpType.api_plat_var_vip_config, net.cmd_api_plat_var_vip_config);
+        //--打点相关
+        facade.registerCommand(net.HttpType.api_user_var_event_record, net.cmd_api_user_var_event_record);
+        facade.registerCommand(net.HttpType.api_user_var_event_record_update, net.cmd_api_user_var_event_record_update);
     }
     net.initCommand = initCommand;
     ;
@@ -3005,6 +3016,50 @@ var net;
         }
     }
     net.cmd_api_user_var_direct_register = cmd_api_user_var_direct_register;
+})(net || (net = {}));
+/**
+ * 获取用户事件记录
+ */
+var net;
+/**
+ * 获取用户事件记录
+ */
+(function (net) {
+    class cmd_api_user_var_event_record extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_event_record, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_event_record, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_event_record = cmd_api_user_var_event_record;
+})(net || (net = {}));
+/**
+ * 更新用户事件记录状态
+ */
+var net;
+/**
+ * 更新用户事件记录状态
+ */
+(function (net) {
+    class cmd_api_user_var_event_record_update extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_event_record_update, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_event_record_update, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_event_record_update = cmd_api_user_var_event_record_update;
 })(net || (net = {}));
 /**
  * 创建兑换订单

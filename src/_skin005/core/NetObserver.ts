@@ -26,7 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
-import { track } from "./TrackManager";
+import { track, TrackTypeMap } from "./TrackManager";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -188,7 +188,7 @@ export default class NetObserver extends AbstractMediator {
                 if (body && body.length > 0) {
                     for (let index = 0; index < body.length; index++) {
                         const element = body[index];
-                        track(element.event_type, element.data);
+                        track(element.event_type, element.data, element.type == 1 ? TrackTypeMap.Purchase : TrackTypeMap.normal);
                         this.selfProxy.api_user_var_event_record_update(element.bet_id);
                     }
                 }

@@ -15,6 +15,8 @@ import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 import PanelUtil from "./core/PanelUtil";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
 import Vue from "vue";
+import axios from "axios";
+import axiosRetry from "axios-retry";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -32,6 +34,21 @@ export default class AppFacade {
         if (process.env.VUE_APP_ENV == "development") {
             core.version *= 2;
         }
+
+        // 配置 axios-retry 插件
+        axiosRetry(axios, {
+            retries: 5, // 重试次数
+            retryDelay: (retryCount) => {
+                // 指数退避算法
+                // return retryCount * 1000;
+                return 1000;
+            },
+            retryCondition: (error) => {
+                // 仅在出现网络错误或 5xx 响应时重试
+                return axiosRetry.isNetworkError(error) || axiosRetry.isRetryableError(error);
+            },
+        });
+
         GameConfig.load();
 
         //五分钟检测一次网络

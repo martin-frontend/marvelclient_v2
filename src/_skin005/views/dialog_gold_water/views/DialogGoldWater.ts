@@ -6,14 +6,14 @@ import DialogGoldWaterProxy from "../proxy/DialogGoldWaterProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-import { changeDateShow } from "@/core/global/Functions";
+import { changeDateShow, amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogGoldWater extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogGoldWaterProxy = this.getProxy(DialogGoldWaterProxy);
     pageData = this.myProxy.pageData;
-
+    amountFormat = amountFormat;
     constructor() {
         super(DialogGoldWaterMediator);
     }

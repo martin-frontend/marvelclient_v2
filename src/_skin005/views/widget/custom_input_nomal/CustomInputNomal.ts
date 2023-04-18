@@ -43,7 +43,7 @@ export default class CustomInputNomal extends AbstractView {
         if (this.isEnterGold && val && !this.isFocus) {
             const [numberPart, dotPart] = this.splitLastDot(val);
             this.originalNumber = numberPart;
-            this.inputValue = parseFloat(this.originalNumber).toLocaleString(this._lang, {
+            this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2,
             });
@@ -121,7 +121,7 @@ export default class CustomInputNomal extends AbstractView {
     onBlur() {
         this.isFocus = false;
         if (this.isEnterGold) {
-            this.inputValue = parseFloat(this.originalNumber).toLocaleString(this._lang, {
+            this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2,
             });

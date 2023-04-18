@@ -574,15 +574,21 @@ export function amountFormat(val: any, decimal: boolean = false, decimalLang: nu
         newVal = val.replace("$", "");
     }
     const intValue = parseFloat(newVal);
-    if (!intValue) return val;
-    
-    const str = intValue.toFixed(decimalLang) + "";
-    const sum = str.substring(0, str.indexOf(".")).replace(/\B(?=(?:\d{3})+$)/g, ","); //取到整数部分
-    const dot = str.substring(str.length, str.indexOf(".")); //取到小数部分搜索
-    if (isUsdt) {
-        return "$" + (decimal ? sum + dot : sum);
+    if (!intValue) {
+        return val.toLocaleString(core.lang.substring(0, 2));
     }
-    return decimal ? sum + dot : sum;
+
+    const str = intValue.toFixed(decimalLang) + "";
+    const sum = parseFloat(str.substring(0, str.indexOf("."))).toLocaleString(core.lang.substring(0, 2)); //取到整数部分
+    const dot = str.substring(str.length, str.indexOf(".")); //取到小数部分搜索
+    const allsum = intValue.toLocaleString(core.lang.substring(0, 2), {
+        minimumFractionDigits: decimalLang,
+        maximumFractionDigits: decimalLang,
+    });
+    if (isUsdt) {
+        return "$" + (decimal ? allsum : sum);
+    }
+    return decimal ? allsum : sum;
 }
 
 /**

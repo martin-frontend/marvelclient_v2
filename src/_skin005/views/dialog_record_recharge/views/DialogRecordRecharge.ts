@@ -9,11 +9,12 @@ import { Watch } from "vue-property-decorator";
 import DialogRecordRechargeMediator from "../mediator/DialogRecordRechargeMediator";
 import DialogRecordRechargeProxy from "../proxy/DialogRecordRechargeProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-import { changeDateShow } from "@/core/global/Functions";
+import { changeDateShow, amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogRecordRecharge extends AbstractView {
     LangUtil = LangUtil;
+    amountFormat = amountFormat;
     myProxy: DialogRecordRechargeProxy = this.getProxy(DialogRecordRechargeProxy);
     pageData = this.myProxy.pageData;
     statusOptions = this.myProxy.statusOptions;

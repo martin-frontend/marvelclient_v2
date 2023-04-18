@@ -9,7 +9,7 @@ import { Watch } from "vue-property-decorator";
 import DialogRecordExchangeMediator from "../mediator/DialogRecordExchangeMediator";
 import DialogRecordExchangeProxy from "../proxy/DialogRecordExchangeProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-import { changeDateShow } from "@/core/global/Functions";
+import { changeDateShow, amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogRecordExchange extends AbstractView {
@@ -17,7 +17,7 @@ export default class DialogRecordExchange extends AbstractView {
     myProxy: DialogRecordExchangeProxy = this.getProxy(DialogRecordExchangeProxy);
     pageData = this.myProxy.pageData;
     commonIcon = Assets.commonIcon;
-
+    amountFormat = amountFormat;
     constructor() {
         super(DialogRecordExchangeMediator);
     }

@@ -44,7 +44,7 @@
                             >
                             <v-sheet color="transparent" class="primary--text" min-width="120">{{getDate(item.created_at)}}</v-sheet>
                             <v-sheet color="transparent" class="primary--text" min-width="100">{{item.coin_name_unique}}</v-sheet>
-                            <v-sheet color="transparent" class="primary--text" min-width="100">{{item.gold}}</v-sheet>
+                            <v-sheet color="transparent" class="primary--text" min-width="100">{{amountFormat(item.gold,true)}}</v-sheet>
                             <v-sheet color="transparent" :class="getStateColor(item.status)" min-width="100"
                                 >{{statusOptions[item.status]}}</v-sheet
                             >
@@ -106,7 +106,7 @@
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">
                                 <div class="my-0 textGray--text">{{LangUtil("数量")}}</div>
-                                <div class="my-0">{{item.gold}}</div>
+                                <div class="my-0">{{amountFormat(item.gold,true)}}</div>
                             </v-sheet>
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">

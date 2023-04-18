@@ -40,9 +40,20 @@ function show(data: any = null) {
 
     console.log("当前收到的 信息为", myProxy.pageData);
 }
-
+function sendSMSVerith(data: any) {
+    DialogMount(DialogGetVerity);
+    hidden(false);
+    myProxy.resetForm();
+    myProxy.setData(data);
+    if (data.category == 0) {
+        myProxy.api_public_email_send();
+    } else {
+        myProxy.api_public_sms_send();
+    }
+    //myProxy.api_public_sms_send();
+}
 function hidden(bhidden: boolean = true) {
     myProxy.pageData.bHidden = bhidden;
 }
 
-export default { showEmailVerity, showSmsVerity, show, hidden };
+export default { showEmailVerity, showSmsVerity, show, hidden, sendSMSVerith };

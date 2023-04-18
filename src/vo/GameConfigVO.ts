@@ -51,5 +51,7 @@ export interface GameConfigVO {
     // exchange:string; 
     // /** 是否显示 划转   0  不显示， 其他显示  */
     // transfer:string; 
+    /**是否需要显示验证码前面的图形验证码 */
+    is_display_auth_code:number;
 
 }

@@ -573,7 +573,9 @@ export default class PanelUtil {
     /** 获取验证码 */
     static openpanel_get_verity(data: any) {
         //MultDialogManager.onOpenPanel(dialog_get_verity);
-        dialog_get_verity.show(data);
+        if (GameConfig.config.is_display_auth_code == 0) {
+            dialog_get_verity.sendSMSVerith(data);
+        } else dialog_get_verity.show(data);
     }
 
     /**

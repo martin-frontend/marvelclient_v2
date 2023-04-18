@@ -17,4 +17,5 @@ interface ConfigVO {
     gaEvent: number;
     gtmEvent: string;
     inviteHide: number;
+    phoneGraphic: number;
 }

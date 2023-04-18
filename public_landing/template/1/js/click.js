@@ -37,7 +37,16 @@ $(document).ready(function () {
         if (register_type == 4 || register_type == 8) {
             const phone = $("#username").val();
             if (checkPhone(phone)) {
-                $("#dialog").css("display", "flex");
+                if (window.config.phoneGraphic) {
+                    //图形码弹窗
+                    $("#dialog").css("display", "flex");
+                } else {
+                    //直接获取手机验证码
+                    sendPostMessage({
+                        action: "sms_send",
+                        params: { mobile: $("#username").val(), auth_code: "", area_code: $("#area_code").val() },
+                    });
+                }
             } else {
                 $("#username_error").css("display", "block");
             }

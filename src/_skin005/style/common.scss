@@ -109,9 +109,8 @@
             .v-btn.v-btn--active {
                 border: solid 1px #ffcd43 !important;
                 color: #ffffff !important;
-                font-weight:bold;
+                font-weight: bold;
                 font-family: "GOTHAM_BOLD";
-              
             }
         }
         .sheetOutlined {
@@ -152,7 +151,6 @@
     }
     .theme--light {
         .v-btn-toggle--group {
-            
             .v-btn {
                 border: solid 1px #d6dde3 !important;
                 color: #8e8f91 !important;
@@ -165,7 +163,6 @@
                 border: solid 1px #ffcd43 !important;
                 color: #0f1213 !important;
                 font-family: "GOTHAM_BOLD";
-        
             }
         }
         .sheetOutlined {
@@ -206,7 +203,7 @@
             }
         }
     }
-    .theme--dark .line{
+    .theme--dark .line {
         // border-width: 1px;
         // border-style: dashed;
         // border-color: #e8e8e8;
@@ -216,13 +213,13 @@
         background-size: 15px 1px;
         background-repeat: repeat-x;
     }
-    .theme--light .line{
+    .theme--light .line {
         // border-width: 1px;
         // border-style: dashed;
         // border-color: #e8e8e8;
         height: 1px;
         width: 100%;
-        background: linear-gradient(to left, transparent 0%, transparent 50%, #ECECEC 50%, #ECECEC 100%);
+        background: linear-gradient(to left, transparent 0%, transparent 50%, #ececec 50%, #ececec 100%);
         background-size: 15px 1px;
         background-repeat: repeat-x;
     }
@@ -251,15 +248,27 @@
     .vuejs-loadmore .vuejs-loadmore-finished-text {
         color: #8e8f91;
     }
-
-    //针对google 自动填充的问题
-    :-webkit-autofill,
-    :-webkit-autofill:hover,
-    :-webkit-autofill:focus,
-    :-webkit-autofill:active {
-        -webkit-text-fill-color: #96a9d0 !important;
-        transition: background-color 500s ease-in-out 0s;
+    .theme--dark {
+        //针对google 自动填充的问题
+        :-webkit-autofill,
+        :-webkit-autofill:hover,
+        :-webkit-autofill:focus,
+        :-webkit-autofill:active {
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 500s ease-in-out 0s;
+        }
     }
+    .theme--light {
+        //针对google 自动填充的问题
+        :-webkit-autofill,
+        :-webkit-autofill:hover,
+        :-webkit-autofill:focus,
+        :-webkit-autofill:active {
+            -webkit-text-fill-color: #0F1213 !important;
+            transition: background-color 500s ease-in-out 0s;
+        }
+    }
+
     .input-text {
         height: 36px !important;
         width: 100%;

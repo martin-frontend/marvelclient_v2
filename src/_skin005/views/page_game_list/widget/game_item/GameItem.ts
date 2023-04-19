@@ -12,6 +12,7 @@ export default class GameItem extends AbstractView {
     @Prop() width!: number;
     @Prop() height!: number;
 
+    @Prop({ default: false }) isPageHome!: Boolean;
     getIcon(item: any) {
         return this.useMenuData ? item.entrance_icon : item.icon;
     }
@@ -42,18 +43,32 @@ export default class GameItem extends AbstractView {
             return classStr;
         }
     }
+    get title_height() {
+        if (!this.$mobile) {
+            return 44;
+        }
+        if (!this.isPageHome) {
+            return 30;
+        }
+        return 36;
+    }
     get isNomalState() {
         if (!this.item) return true;
         return this.item.status == 1;
     }
     goGamePlay() {
         if (this.item) {
-            PanelUtil.openpage_soccer(this.item);
+            if (this.isNomalState) PanelUtil.openpage_soccer(this.item);
+            else {
+                PanelUtil.message_alert(LangUtil("{0}正在维护", this.item.vendor_product_name));
+            }
         }
     }
 
     @Watch("item")
     filterChange(val: boolean) {}
 
-    onClickItem() {}
+    onClickItem() {
+        console.log("---dasd --");
+    }
 }

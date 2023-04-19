@@ -51,6 +51,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_fag_index,
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
+            net.EventType.api_plat_var_game_category,
             net.EventType.api_user_var_event_record,
             net.EventType.api_user_var_event_record_update,
         ];
@@ -211,6 +212,10 @@ export default class NetObserver extends AbstractMediator {
                 //     headerProxy.setGameMenu(body);
                 // }
                 break;
+            case net.EventType.api_plat_var_game_category:
+                this.gameProxy.setGameCategory(body);
+                break;
+
             case net.EventType.api_vendor_var_ori_product_visitor_show_var:
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {

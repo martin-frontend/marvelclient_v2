@@ -14,6 +14,7 @@ export default class GameProxy extends AbstractProxy {
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     lobbyMenuIndex: core.PlatLobbyIndexVO[] = [];
+    lobbyCategory: core.PlatLobbyCategoryIndexVO[] = [];
     /**当前正在玩的游戏 */
     currGame: any = {
         vendor_id: 0,
@@ -80,6 +81,9 @@ export default class GameProxy extends AbstractProxy {
     setGameMenu(body: any) {
         this.lobbyMenuIndex = body;
     }
+    setGameCategory(body: any) {
+        this.lobbyCategory = body;
+    }
     setCoin(coin_name_unique: string) {
         const old_coin = this.coin_name_unique;
         window.localStorage.setItem("coin_name_unique", coin_name_unique);
@@ -92,6 +96,7 @@ export default class GameProxy extends AbstractProxy {
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id });
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/

@@ -97,6 +97,8 @@ declare module net {
         api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
+        /**--大厅--获取平台首页分类游戏列表*/
+        api_plat_var_game_category: string;
         /**--搜索--我的游戏*/
         api_user_var_game_index: string;
         /**--搜索--收藏游戏*/
@@ -396,6 +398,8 @@ declare module net {
         api_vendor_var_ori_product_visitor_show_var: string;
         /**--大厅--获取平台首页菜单游戏列表*/
         api_plat_var_game_menu: string;
+        /**--大厅--获取平台首页分类游戏列表*/
+        api_plat_var_game_category: string;
         /**--搜索--我的游戏*/
         api_user_var_game_index: string;
         /**--搜索--收藏游戏*/
@@ -733,6 +737,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_game_all_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取平台首页分类游戏列表
+ */
+declare module net {
+    class cmd_api_plat_var_game_category extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2830,6 +2843,31 @@ declare module core {
     interface PlatLobbyIndexVO {
         /**大厅分类:1-热门游戏|2-棋牌|4-彩票|8-捕鱼|16-电子|32-真人|64-体育|128-街机|256-老虎机*/
         category: number;
+        /** 分类名字 */
+        category_name: string;
+        list: VendorVO[];
+        /** 第几个 */
+        index: number;
+        vendor_type: number;
+        vendor_type_name: string;
+    }
+    /**
+     * 大厅游戏菜单--分类
+     */
+    interface PlatLobbyCategoryIndexVO {
+        /**大厅分类:1-热门游戏|2-棋牌|4-彩票|8-捕鱼|16-电子|32-真人|64-体育|128-街机|256-老虎机*/
+        category: string;
+        icon: string;
+        index_no: number;
+        languages: string;
+        open_mode: number;
+        ori_product_id: string;
+        ori_vendor_extend: any;
+        orientation: number;
+        status: number;
+        vendor_id: number;
+        vendor_product_id: number;
+        vendor_product_name: string;
         /** 分类名字 */
         category_name: string;
         list: VendorVO[];

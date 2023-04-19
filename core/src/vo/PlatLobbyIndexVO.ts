@@ -1,5 +1,4 @@
 module core {
-
     /**
      * 大厅游戏菜单
      */
@@ -15,7 +14,32 @@ module core {
         vendor_type: number; //厂商游戏类型
         vendor_type_name: string;
     }
-
+    /**
+     * 大厅游戏菜单--分类
+     */
+    export interface PlatLobbyCategoryIndexVO {
+        /**大厅分类:1-热门游戏|2-棋牌|4-彩票|8-捕鱼|16-电子|32-真人|64-体育|128-街机|256-老虎机*/
+        category: string;
+        icon: string;
+        index_no: number;
+        languages: string;
+        open_mode: number;
+        ori_product_id: string;
+        ori_vendor_extend: any;
+        orientation: number;
+        status: number;
+        vendor_id: number;
+        vendor_product_id: number;
+        vendor_product_name: string;
+        /** 分类名字 */
+        category_name: string;
+        list: VendorVO[];
+        /** 第几个 */
+        index: number;
+        //game_menu
+        vendor_type: number; //厂商游戏类型
+        vendor_type_name: string;
+    }
     /**
      * 厂商产品
      */
@@ -45,7 +69,6 @@ module core {
         /**近期是否玩过*/
         recent: boolean;
 
-
         app_type: number;
         lobby_model_product_id: number;
         lobby_product_id: number;
@@ -57,14 +80,12 @@ module core {
 
         //game_menu
         id: number;
-        alias: string;//别名
-        entrance_game: string;// //厂商游戏id
-        entrance_game_name: string;//厂商游戏名称
-        entrance_type: number,   //入口类型：1厂商入口 | 2游戏入口
-        desc: string,    //描述
-        menu_icon: string,   //菜单icon
-        entrance_icon: string,     //入口icon
+        alias: string; //别名
+        entrance_game: string; // //厂商游戏id
+        entrance_game_name: string; //厂商游戏名称
+        entrance_type: number; //入口类型：1厂商入口 | 2游戏入口
+        desc: string; //描述
+        menu_icon: string; //菜单icon
+        entrance_icon: string; //入口icon
     }
-
-
 }

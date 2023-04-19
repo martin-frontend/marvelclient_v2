@@ -85,7 +85,11 @@ export default class APP extends AbstractView {
             if (judgeClient() == "iOS") {
                 this.isScreenV = this.$vuetify.breakpoint.width < this.$vuetify.breakpoint.height;
             } else {
-                this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+                if (!this.$xsOnly) {
+                    this.isScreenV = true;
+                } else {
+                    this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
+                }
             }
         });
     }

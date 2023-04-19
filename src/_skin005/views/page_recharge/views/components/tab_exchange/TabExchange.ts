@@ -32,8 +32,11 @@ export default class TabExchange extends AbstractView {
         const coinObj = this.pageData.methodList[this.form.coin_name_unique];
         if (coinObj) {
             const obj = coinObj.options[this.form.block_network_id];
-            this.form.exchange_channel_id = obj.exchange_channel_id;
-            this.form.payment_method_type = obj.payment_method_type;
+            if (!this.isUnityExchange)
+            {
+                this.form.exchange_channel_id = obj.exchange_channel_id;
+                this.form.payment_method_type = obj.payment_method_type;
+            }
             console.log("---设置 兑换的类型");
         }
     }

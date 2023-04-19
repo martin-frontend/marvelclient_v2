@@ -24,4 +24,6 @@ export default class SkinVariable {
     public static useFlyerLog = false;
     /**投注记录中是否显示有效投注 */
     public static isShowVailBet = false;
+    /**导航和 head上面是否使用 完整的logo */
+    public static isShowfullLogo = false;
 }

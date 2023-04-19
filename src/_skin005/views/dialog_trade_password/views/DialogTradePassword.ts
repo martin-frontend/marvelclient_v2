@@ -48,11 +48,24 @@ export default class DialogTradePassword extends AbstractView {
             if (this.myProxy.passWordShowType == 1) this.getImageVerity();
         }
     }
+    validatePassword(password: string): boolean {
+        // Check length
+        if (password.length < 6 || password.length > 20) {
+            PanelUtil.message_info("请输入6-20位密码"); //
+            return false;
+        }
+        // Check for spaces
+        if (password.indexOf(" ") >= 0) {
+            PanelUtil.message_info("密码不能有空格"); //
+            return false;
+        }
+        // If we made it this far, it's valid
+        return true;
+    }
 
     onSubmit() {
-        // this.pageData.loading = true;
-        if (!core.checkUserPassword(this.pageData.form.password)) {
-            PanelUtil.message_info("输入6个以上字符"); //
+        if (!this.validatePassword(this.pageData.form.password)) {
+            return;
         } else if (this.pageData.form.password != this.pageData.form.password_confirm) {
             PanelUtil.message_info("两次输入的密码不一致"); //
         } else {
@@ -62,10 +75,13 @@ export default class DialogTradePassword extends AbstractView {
                     return;
                 }
             } else if (this.myProxy.passWordShowType == 2) {
-                if (!core.checkUserPassword(this.pageData.form.logonPassword)) {
-                    PanelUtil.message_info("输入6个以上字符"); //
+                if (!checkUserPassword(this.pageData.form.logonPassword)) {
                     return;
                 }
+                // if (!core.checkUserPassword(this.pageData.form.logonPassword)) {
+                //     PanelUtil.message_info("输入6个以上字符"); //
+                //     return;
+                // }
             }
 
             this.myProxy.api_user_change_password_gold_var();

@@ -569,6 +569,7 @@ export function getDateByTimeZone(time: number, timezone: number = 0) {
 export function amountFormat(val: any, decimal: boolean = false, decimalLang: number = 2) {
     let isUsdt = false;
     let newVal = val;
+    if (val === undefined) return val;
     if (typeof val == "string" && val.includes("$")) {
         isUsdt = true;
         newVal = val.replace("$", "");

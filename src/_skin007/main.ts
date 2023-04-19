@@ -31,6 +31,7 @@ import LangConfig from "@/core/config/LangConfig";
 import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 
 Assets.commonIcon.loading_img = "loding_icon_7.png";
 Assets.commonIcon.logo = require(`@/_skin007/assets/logo.png`);
@@ -63,6 +64,7 @@ Vue.component("btn-yellow", BtnUtil);
 Vue.component("btn-info", BtnInfo);
 Vue.component("Overlay", Overlay);
 Vue.component("LoadMore", LoadMore);
+Vue.component("LoadMore1", LoadMore1);
 Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);

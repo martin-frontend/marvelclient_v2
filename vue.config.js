@@ -49,6 +49,28 @@ const skinMap = {
                     twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
                 },
             },
+            skin004_x: {
+                entry: "src/_skin004/main.ts",
+                template: "public_skin004/skin004.html",
+                filename: "skin004.html",
+                title: "MG188",
+                faviconName: "favicon.ico",
+                meta: {
+                    robots: "noindex",
+                    AdsBot_Google: "noindex",
+                    googlebot: "noindex",
+                    og_title: "MG188",
+                    og_type: "website",
+                    og_description:
+                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
+                    og_url: "https://mg188.com",
+                    og_image: "https://mg188.com/img/project_info_2.39763581.png",
+                    twitter_title: "MG188",
+                    twitter_description:
+                        "casino, thể thao, slot game, game bài, lô đề, đá gà, bắn cá, thể thao esport ... đặt cược vnđ hoặc usdt cực hấp dẫn",
+                    twitter_image: "https://mg188.com/img/project_info_2.39763581.png",
+                },
+            },
         },
     },
     skin004_1: {

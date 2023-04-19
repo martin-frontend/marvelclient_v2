@@ -264,7 +264,7 @@
         :-webkit-autofill:hover,
         :-webkit-autofill:focus,
         :-webkit-autofill:active {
-            -webkit-text-fill-color: #0F1213 !important;
+            -webkit-text-fill-color: #0f1213 !important;
             transition: background-color 500s ease-in-out 0s;
         }
     }
@@ -278,6 +278,11 @@
     input {
         border: none;
         outline: medium;
+    }
+    input {
+        height: 0;
+        padding: 1.2em 0.5em;
+        background-clip: content-box;
     }
     .cursor-pointer {
         cursor: pointer;

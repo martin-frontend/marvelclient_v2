@@ -9,6 +9,7 @@ import { Watch } from "vue-property-decorator";
 import DialogRecordExchangeMediator from "../mediator/DialogRecordExchangeMediator";
 import DialogRecordExchangeProxy from "../proxy/DialogRecordExchangeProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { changeDateShow, amountFormat } from "@/core/global/Functions";
 
 @Component
@@ -17,6 +18,7 @@ export default class DialogRecordExchange extends AbstractView {
     myProxy: DialogRecordExchangeProxy = this.getProxy(DialogRecordExchangeProxy);
     pageData = this.myProxy.pageData;
     commonIcon = Assets.commonIcon;
+    is_user_manual_refund = GamePlatConfig.config.is_user_manual_refund;
     amountFormat = amountFormat;
     constructor() {
         super(DialogRecordExchangeMediator);
@@ -97,5 +99,20 @@ export default class DialogRecordExchange extends AbstractView {
             default:
                 return LangUtil("进行中");
         }
+    }
+    onCancleOrder(item: any) {
+        //console.log("取消订单---点击", item);
+        PanelUtil.message_confirm({
+            message: LangUtil("确定取消此兑换订单吗？"),
+            okFun: () => {
+                this.myProxy.api_user_var_exchange_manual_refund(item);
+            },
+        });
+    }
+
+    cancleChick(item: any) {
+        //return true;
+        return item.show_refund_btn;
+        return item.status_ori == 1;
     }
 }

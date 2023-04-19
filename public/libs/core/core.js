@@ -271,6 +271,8 @@ var net;
         api_user_var_exchange_create_order: "api/user/{user_id}/exchange/create_order",
         /**--兑换--流水审核*/
         api_user_var_gold_water_index: "api/user/{user_id}/gold_water/index",
+        /**--兑换--用户手动退款*/
+        api_user_var_exchange_manual_refund: "api/user/{user_id}/exchange/manual_refund",
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api/user/{user_id}/payment_method/index",
         /**--收款管理--添加收款方式*/
@@ -572,6 +574,8 @@ var net;
         api_user_var_exchange_create_order: "api_user_var_exchange_create_order",
         /**--兑换--流水审核*/
         api_user_var_gold_water_index: "api_user_var_gold_water_index",
+        /**--兑换--用户手动退款*/
+        api_user_var_exchange_manual_refund: "api_user_var_exchange_manual_refund",
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api_user_var_payment_method_index",
         /**--收款管理--添加收款方式*/
@@ -780,6 +784,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_exchange_order_list, net.cmd_api_user_var_exchange_order_list);
         facade.registerCommand(net.HttpType.api_user_var_exchange_create_order, net.cmd_api_user_var_exchange_create_order);
         facade.registerCommand(net.HttpType.api_user_var_gold_water_index, net.cmd_api_user_var_gold_water_index);
+        facade.registerCommand(net.HttpType.api_user_var_exchange_manual_refund, net.cmd_api_user_var_exchange_manual_refund);
         //--收款管理
         facade.registerCommand(net.HttpType.api_user_var_payment_method_index, net.cmd_api_user_var_payment_method_index);
         facade.registerCommand(net.HttpType.api_user_var_payment_method_store, net.cmd_api_user_var_payment_method_store);
@@ -3109,6 +3114,28 @@ var net;
         }
     }
     net.cmd_api_user_var_exchange_create_order = cmd_api_user_var_exchange_create_order;
+})(net || (net = {}));
+/**
+ * 用户手动退款
+ */
+var net;
+/**
+ * 用户手动退款
+ */
+(function (net) {
+    class cmd_api_user_var_exchange_manual_refund extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_exchange_manual_refund, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_exchange_manual_refund, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_exchange_manual_refund = cmd_api_user_var_exchange_manual_refund;
 })(net || (net = {}));
 /**
  * 兑换方式列表

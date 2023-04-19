@@ -209,6 +209,8 @@ declare module net {
         api_user_var_exchange_create_order: string;
         /**--兑换--流水审核*/
         api_user_var_gold_water_index: string;
+        /**--兑换--用户手动退款*/
+        api_user_var_exchange_manual_refund: string;
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: string;
         /**--收款管理--添加收款方式*/
@@ -510,6 +512,8 @@ declare module net {
         api_user_var_exchange_create_order: string;
         /**--兑换--流水审核*/
         api_user_var_gold_water_index: string;
+        /**--兑换--用户手动退款*/
+        api_user_var_exchange_manual_refund: string;
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: string;
         /**--收款管理--添加收款方式*/
@@ -1529,6 +1533,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_exchange_create_order extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户手动退款
+ */
+declare module net {
+    class cmd_api_user_var_exchange_manual_refund extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2726,6 +2739,10 @@ declare module core {
         validate_type: number[];
         /**是否显示推广赚钱: 0-不显示 1-显示 */
         is_show_commission: {
+            is_open: number;
+        };
+        /**用户手动退款 */
+        is_user_manual_refund: {
             is_open: number;
         };
     }

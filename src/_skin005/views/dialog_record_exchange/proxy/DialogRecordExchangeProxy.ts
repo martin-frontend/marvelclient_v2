@@ -1,4 +1,6 @@
+import PanelUtil from "@/_skin005/core/PanelUtil";
 import AbstractProxy from "@/core/abstract/AbstractProxy";
+import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 
 export default class DialogRecordExchangeProxy extends AbstractProxy {
@@ -92,5 +94,21 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
         const obj = { user_id: core.user_id };
         Object.assign(obj, this.pageData.listQuery);
         this.sendNotification(net.HttpType.api_user_var_exchange_order_list, obj);
+    }
+    api_user_var_exchange_manual_refund(item: any) {
+        if (!core.user_id) return;
+
+        this.pageData.loading = true;
+        const obj = {
+            user_id: core.user_id,
+            plat_id: core.plat_id,
+            order_no: item.order_no,
+        };
+        this.sendNotification(net.HttpType.api_user_var_exchange_manual_refund, obj);
+    }
+    api_user_var_exchange_manual_refund_callback(data: any) {
+        //this.pageData.loading = false;
+        PanelUtil.message_success(LangUtil("操作成功"));
+        this.api_user_var_exchange_order_list();
     }
 }

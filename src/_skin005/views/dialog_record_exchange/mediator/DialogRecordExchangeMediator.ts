@@ -4,7 +4,7 @@ import getProxy from "@/core/global/getProxy";
 
 export default class DialogRecordExchangeMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_exchange_order_list];
+        return [net.EventType.api_user_var_exchange_order_list, net.EventType.api_user_var_exchange_manual_refund];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -13,6 +13,9 @@ export default class DialogRecordExchangeMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_user_var_exchange_order_list:
                 myProxy.setData(body);
+                break;
+            case net.EventType.api_user_var_exchange_manual_refund:
+                myProxy.api_user_var_exchange_manual_refund_callback(body);
                 break;
         }
     }

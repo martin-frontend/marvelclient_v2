@@ -45,5 +45,7 @@ module core {
         validate_type: number[];
         /**是否显示推广赚钱: 0-不显示 1-显示 */
         is_show_commission: { is_open: number };
+        /**用户手动退款 */
+        is_user_manual_refund: { is_open: number };
     }
 }

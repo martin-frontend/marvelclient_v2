@@ -25,37 +25,35 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
 
-
     tempSelectCode = null;
 
     mounted() {
         this.myProxy.api_public_area_code();
     }
 
-    public get areaCodeArr() : any {
+    public get areaCodeArr(): any {
         return this.myProxy.pageData.areaCode;
     }
-    
-    public get curShowCode() : string {
-        return  ''+this.formBindPhone.area_code
+
+    public get curShowCode(): string {
+        return "" + this.formBindPhone.area_code;
     }
-    
+
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
-        if ( ! this.tempSelectCode) return;
+        if (!this.tempSelectCode) return;
         //@ts-ignore
         this.formBindPhone.area_code = this.tempSelectCode.area_code;
     }
 
-    customFilter (item:any, queryText:any, itemText:any) {
-        const textOne = item.name.toLowerCase()
-        const textTwo = item.area_code +"";
-        const searchText = queryText.toLowerCase()
+    customFilter(item: any, queryText: any, itemText: any) {
+        const textOne = item.name.toLowerCase();
+        const textTwo = item.area_code + "";
+        const searchText = queryText.toLowerCase();
 
-        return textOne.indexOf(searchText) > -1 ||
-          textTwo.indexOf(searchText) > -1
-      }
+        return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
+    }
 
     @Watch("pageData.areaCode")
     onWatchAreaCode() {
@@ -70,7 +68,7 @@ export default class DialogSafetyCenter extends AbstractView {
     }
 
     checkValidateType(val: any) {
-        return this.validate_type.includes(val)
+        return this.validate_type.includes(val);
     }
 
     get isCheckFormMobile() {

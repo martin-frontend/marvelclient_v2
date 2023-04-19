@@ -1,21 +1,19 @@
 <div>
     <v-container>
         <div class="px-0 px-sm-3 py-2 py-sm-5">
-            <div class="text_nomal_title font-weight-medium">{{LangUtil("{0}持币分红",
-                plat_stake_info.coin_name_unique)}}</div>
+            <div class="text_nomal_title font-weight-medium">{{LangUtil("{0}持币分红", plat_stake_info.coin_name_unique)}}</div>
         </div>
-        <v-card class="mb-2 rounded-lg horizontal-gradient-top d-flex flex-column flex-sm-row align-center py-3 py-sm-6"
-            :height="$vuetify.breakpoint.mdAndDown? 240 :120">
-
+        <v-card
+            class="mb-2 rounded-lg horizontal-gradient-top d-flex flex-column flex-sm-row align-center py-3 py-sm-6"
+            :height="$vuetify.breakpoint.mdAndDown? 240 :120"
+        >
             <template v-if="!$vuetify.breakpoint.xsOnly">
-                <v-img max-width="110" contain src="@/_skin003/assets/bonus/bonus@4x.png"
-                    class="mb-sm-2 ml-sm-10 mb-2"></v-img>
+                <v-img max-width="110" contain src="@/_skin003/assets/bonus/bonus@4x.png" class="mb-sm-2 ml-sm-10 mb-2"></v-img>
                 <v-row no-gutters class="px-6">
                     <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                         <span class="stake-width">
-                            <div class="color_exit_text_1--text mb-lg-3 text-18   ">
-                                {{LangUtil("当前奖池金额")}}</div>
-                            <div class="text-18   d-flex align-center mr-sm-3">
+                            <div class="color_exit_text_1--text mb-lg-3 text-18">{{LangUtil("当前奖池金额")}}</div>
+                            <div class="text-18 d-flex align-center mr-sm-3">
                                 <span>${{ plat_stake_info.bonus_pool_amount }}</span>
                             </div>
                         </span>
@@ -25,9 +23,8 @@
                     </v-col>
                     <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                         <span class="stake-width">
-                            <div class="color_exit_text_1--text mb-lg-3 text-18   ">
-                                {{LangUtil("总质押数量")}}</div>
-                            <div class="text-18   d-flex align-center mr-sm-3">
+                            <div class="color_exit_text_1--text mb-lg-3 text-18">{{LangUtil("总质押数量")}}</div>
+                            <div class="text-18 d-flex align-center mr-sm-3">
                                 <span>{{ plat_stake_info.total_stake_amount }}</span>
                             </div>
                         </span>
@@ -37,9 +34,8 @@
                     </v-col>
                     <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                         <span class="stake-width">
-                            <div class="color_exit_text_1--text mb-lg-3 text-18   ">
-                                {{LangUtil("总计已派发")}}</div>
-                            <div class="text-18   d-flex align-center mr-sm-3">
+                            <div class="color_exit_text_1--text mb-lg-3 text-18">{{LangUtil("总计已派发")}}</div>
+                            <div class="text-18 d-flex align-center mr-sm-3">
                                 <span>${{ plat_stake_info.total_bonus_amount }}</span>
                             </div>
                         </span>
@@ -49,9 +45,8 @@
                     </v-col>
                     <v-col cols="6" lg="3">
                         <span>
-                            <div class="color_exit_text_1--text mb-lg-3 text-18   ">
-                                {{LangUtil("下次分红倒计时")}}</div>
-                            <div class="text-18   d-flex align-center justify-space-between">
+                            <div class="color_exit_text_1--text mb-lg-3 text-18">{{LangUtil("下次分红倒计时")}}</div>
+                            <div class="text-18 d-flex align-center justify-space-between">
                                 <span>{{ hr }}:{{ min }}:{{ sec }}</span>
                             </div>
                         </span>
@@ -59,54 +54,46 @@
                 </v-row>
             </template>
             <template v-else>
-                <v-img max-width="90" contain src="@/_skin003/assets/bonus/bonus@4x.png"
-                    class="mb-2 mt-n1"></v-img>
+                <v-img max-width="90" contain src="@/_skin003/assets/bonus/bonus@4x.png" class="mb-2 mt-n1"></v-img>
                 <v-sheet class="ml-4 mr-4 mb-4">
                     <v-row no-gutters class="px-6 mt-2 mb-2">
                         <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                             <span class="stake-width">
-                                <div class="color_exit_text_1--text mb-lg-3 text-16   ">
-                                    {{LangUtil("当前奖池金额")}}</div>
-                                <div class="text-18   d-flex align-center mr-sm-3">
+                                <div class="color_exit_text_1--text mb-lg-3 text-16">{{LangUtil("当前奖池金额")}}</div>
+                                <div class="text-18 d-flex align-center mr-sm-3">
                                     <span>${{ plat_stake_info.bonus_pool_amount }}</span>
                                 </div>
                             </span>
-                            <div class="d-flex align-center justify-center arrow-width"
-                                v-if="$vuetify.breakpoint.lgAndUp">
+                            <div class="d-flex align-center justify-center arrow-width" v-if="$vuetify.breakpoint.lgAndUp">
                                 <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3"> </v-img>
                             </div>
                         </v-col>
                         <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                             <span class="stake-width">
-                                <div class="color_exit_text_1--text mb-lg-3 text-16   ">
-                                    {{LangUtil("总质押数量")}}</div>
-                                <div class="text-18   d-flex align-center mr-sm-3">
+                                <div class="color_exit_text_1--text mb-lg-3 text-16">{{LangUtil("总质押数量")}}</div>
+                                <div class="text-18 d-flex align-center mr-sm-3">
                                     <span>{{ plat_stake_info.total_stake_amount }}</span>
                                 </div>
                             </span>
-                            <div class="d-flex align-center justify-center arrow-width"
-                                v-if="$vuetify.breakpoint.lgAndUp">
+                            <div class="d-flex align-center justify-center arrow-width" v-if="$vuetify.breakpoint.lgAndUp">
                                 <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3"> </v-img>
                             </div>
                         </v-col>
                         <v-col cols="6" lg="3" class="d-flex flex-row justify-space-between">
                             <span class="stake-width">
-                                <div class="color_exit_text_1--text mb-lg-3 text-16   ">
-                                    {{LangUtil("总计已派发")}}</div>
-                                <div class="text-18   d-flex align-center mr-sm-3">
+                                <div class="color_exit_text_1--text mb-lg-3 text-16">{{LangUtil("总计已派发")}}</div>
+                                <div class="text-18 d-flex align-center mr-sm-3">
                                     <span>${{ plat_stake_info.total_bonus_amount }}</span>
                                 </div>
                             </span>
-                            <div class="d-flex align-center justify-center arrow-width"
-                                v-if="$vuetify.breakpoint.lgAndUp">
+                            <div class="d-flex align-center justify-center arrow-width" v-if="$vuetify.breakpoint.lgAndUp">
                                 <v-img max-width="75" contain src="@/assets/bonus/arrow.png" class="mr-sm-3"> </v-img>
                             </div>
                         </v-col>
                         <v-col cols="6" lg="3">
                             <span>
-                                <div class="color_exit_text_1--text mb-lg-3 text-16   ">
-                                    {{LangUtil("下次分红倒计时")}}</div>
-                                <div class="text-18   d-flex align-center justify-space-between">
+                                <div class="color_exit_text_1--text mb-lg-3 text-16">{{LangUtil("下次分红倒计时")}}</div>
+                                <div class="text-18 d-flex align-center justify-space-between">
                                     <span>{{ hr }}:{{ min }}:{{ sec }}</span>
                                 </div>
                             </span>
@@ -117,7 +104,7 @@
         </v-card>
         <v-row no-gutters>
             <v-col cols="12" lg="8" class="pr-lg-3">
-                <v-card class="rounded-lg mb-lg-0 py-lg-6  " color="color_bg_black_1" height="100%">
+                <v-card class="rounded-lg mb-lg-0 py-lg-6" color="color_bg_black_1" height="100%">
                     <v-row no-gutters class="fill-height">
                         <v-col cols="3" class="d-flex align-center justify-center" v-if="$vuetify.breakpoint.lgAndUp">
                             <v-img max-width="180" contain src="~@/_skin003/assets/bonus/ensure@4x.png"> </v-img>
@@ -125,33 +112,34 @@
                         <v-col cols="12" lg="9">
                             <v-row no-gutters class="mx-4 mx-lg-0 mt-7 my-lg-10">
                                 <v-col cols="12" lg="6" class="d-flex flex-column fill-height pr-lg-2">
-                                    <div
-                                        class="bonus-card px-3 px-lg-0 py-2 py-lg-0 pb-lg-10 d-flex flex-row justify-space-between">
+                                    <div class="bonus-card px-3 px-lg-0 py-2 py-lg-0 pb-lg-10 d-flex flex-row justify-space-between">
                                         <div>
-                                            <div class="color_exit_text_1--text text-16   ">
+                                            <div class="color_exit_text_1--text text-16">
                                                 {{ plat_stake_info.coin_name_unique }}{{LangUtil("余额")}}
                                             </div>
-                                            <div class="text-18   d-flex align-center justify-space-between">
+                                            <div class="text-18 d-flex align-center justify-space-between">
                                                 <span> {{ user_stake_info.amount }} </span>
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end">
-                                            <v-btn :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
+                                            <v-btn
+                                                :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
                                                 :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg rounded-button" color="color_red_1"
-                                                @click="handlerPledge" :disabled="user_stake_info.amount == 0">
+                                                class="rounded-lg rounded-button"
+                                                color="color_red_1"
+                                                @click="handlerPledge"
+                                                :disabled="user_stake_info.amount == 0"
+                                            >
                                                 {{LangUtil("质押")}}
                                             </v-btn>
                                         </div>
                                     </div>
-                                    <div
-                                        class="bonus-card px-3 py-2 px-lg-0 py-lg-0 d-flex flex-row justify-space-between">
+                                    <div class="bonus-card px-3 py-2 px-lg-0 py-lg-0 d-flex flex-row justify-space-between">
                                         <div>
-                                            <div
-                                                class="color_exit_text_1--text text-16    text-no-wrap">
+                                            <div class="color_exit_text_1--text text-16 text-no-wrap">
                                                 {{LangUtil("个人质押（占比{0}）", user_stake_info.stake_ratio)}}
                                             </div>
-                                            <div class="text-18   d-flex align-center justify-space-between">
+                                            <div class="text-18 d-flex align-center justify-space-between">
                                                 <span>
                                                     {{ user_stake_info.stake_amount }}
                                                     <v-btn icon plan @click="handlerRecords">
@@ -161,22 +149,24 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end btn-left">
-                                            <v-btn :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
+                                            <v-btn
+                                                :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
                                                 :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg rounded-button" color="color_red_1"
-                                                @click="handlerUnpledge" :disabled="user_stake_info.stake_amount == 0">
+                                                class="rounded-lg rounded-button"
+                                                color="color_red_1"
+                                                @click="handlerUnpledge"
+                                                :disabled="user_stake_info.stake_amount == 0"
+                                            >
                                                 {{LangUtil("解除质押")}}
                                             </v-btn>
                                         </div>
                                     </div>
                                 </v-col>
                                 <v-col cols="12" lg="6" class="d-flex flex-column pr-lg-6">
-                                    <div
-                                        class="bonus-card px-3 px-lg-0 py-2 py-lg-0 pb-lg-10 d-flex flex-row justify-space-between">
+                                    <div class="bonus-card px-3 px-lg-0 py-2 py-lg-0 pb-lg-10 d-flex flex-row justify-space-between">
                                         <div>
-                                            <div class="color_exit_text_1--text text-16   ">
-                                                {{LangUtil("可领取分红")}}</div>
-                                            <div class="text-18   d-flex align-center justify-space-between">
+                                            <div class="color_exit_text_1--text text-16">{{LangUtil("可领取分红")}}</div>
+                                            <div class="text-18 d-flex align-center justify-space-between">
                                                 <span class="colorTextGold--text">
                                                     {{ user_stake_info.stake_bonus_awaiting_num }}
                                                     <v-btn icon plan @click="handleRecords">
@@ -186,29 +176,33 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end">
-                                            <v-btn :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
+                                            <v-btn
+                                                :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
                                                 :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg  rounded-button" color="color_red_1"
+                                                class="rounded-lg rounded-button"
+                                                color="color_red_1"
                                                 @click="stakeDraw"
-                                                :disabled="user_stake_info.stake_bonus_awaiting_num == 0">
+                                                :disabled="user_stake_info.stake_bonus_awaiting_num == 0"
+                                            >
                                                 {{LangUtil("领取")}}
                                             </v-btn>
                                         </div>
                                     </div>
-                                    <div
-                                        class="bonus-card px-3 py-2 px-lg-0 py-lg-0 d-flex flex-row justify-space-between">
+                                    <div class="bonus-card px-3 py-2 px-lg-0 py-lg-0 d-flex flex-row justify-space-between">
                                         <div>
-                                            <div class="color_exit_text_1--text text-16   ">
-                                                {{LangUtil("个人累计分红")}}</div>
-                                            <div class="text-18   d-flex align-center justify-space-between">
+                                            <div class="color_exit_text_1--text text-16">{{LangUtil("个人累计分红")}}</div>
+                                            <div class="text-18 d-flex align-center justify-space-between">
                                                 <span> {{ user_stake_info.stake_bonus_received_num }} </span>
                                             </div>
                                         </div>
                                         <div class="d-flex align-center align-lg-end">
-                                            <v-btn :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
+                                            <v-btn
+                                                :min-width="$vuetify.breakpoint.xsOnly? 90 : 100"
                                                 :height="$vuetify.breakpoint.xsOnly? 30 :40"
-                                                class="rounded-lg  rounded-button" color="color_red_1"
-                                                @click="jumpTo('#record')">
+                                                class="rounded-lg rounded-button"
+                                                color="color_red_1"
+                                                @click="jumpTo('#record')"
+                                            >
                                                 {{LangUtil("查看记录")}}
                                             </v-btn>
                                         </div>
@@ -219,13 +213,11 @@
                                 
                             </v-row> -->
                         </v-col>
-                        <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column"
-                            v-if="!$vuetify.breakpoint.lgAndUp">
-                            <div
-                                class="text_nomal_title    white--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
+                        <v-row no-gutters class="mx-4 mx-lg-0 mb-9 d-flex flex-column" v-if="!$vuetify.breakpoint.lgAndUp">
+                            <div class="text_nomal_title white--text font-weight-medium mt-2 mt-sm-5 mb-2 mb-sm-3">
                                 {{LangUtil("规则说明")}}
                             </div>
-                            <div class="  color_exit_text_1--text mx-2">
+                            <div class="color_exit_text_1--text mx-2">
                                 <div>{{LangUtil("质押规则说明1")}}</div>
                                 <div>{{LangUtil("质押规则说明2")}}</div>
                                 <div>{{LangUtil("质押规则说明3")}}</div>
@@ -236,9 +228,8 @@
                 </v-card>
             </v-col>
             <v-col lg="4" v-if="$vuetify.breakpoint.lgAndUp">
-                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6  " color="color_bg_black_1"
-                    height="100%">
-                    <div class="text_nomal_title  white--text font-weight-medium">{{LangUtil("规则说明")}}</div>
+                <v-card class="rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" color="color_bg_black_1" height="100%">
+                    <div class="text_nomal_title white--text font-weight-medium">{{LangUtil("规则说明")}}</div>
                     <div class="color_exit_text_1--text">
                         <div>{{LangUtil("质押规则说明1")}}</div>
                         <div>{{LangUtil("质押规则说明2")}}</div>
@@ -249,31 +240,39 @@
             </v-col>
         </v-row>
         <div class="px-0 px-sm-3 py-2 py-sm-4">
-            <div class="text_nomal_title    font-weight-medium">{{LangUtil("分红数据")}}</div>
+            <div class="text_nomal_title font-weight-medium">{{LangUtil("分红数据")}}</div>
         </div>
         <v-row no-gutters class="pb-2 pb-sm-5">
             <!-- 近5日分红金额 -->
             <v-col cols="12" lg="8" class="pr-0 pr-lg-3 pb-2 pb-lg-0">
-                <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6"
-                    :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260" height="100%">
+                <v-card
+                    class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6"
+                    :min-height="$vuetify.breakpoint.width > 600 ? 460 : 260"
+                    height="100%"
+                >
                     <v-row no-gutters>
                         <v-col cols="12" lg="8" class="   ">
-                            <div
-                                class="text_nomal_head    white--text font-weight-medium mb-2 mb-sm-5 pt-2 pt-sm-6">
+                            <div class="text_nomal_head white--text font-weight-medium mb-2 mb-sm-5 pt-2 pt-sm-6">
                                 {{LangUtil("近5日分红金额")}}
                             </div>
-                            <div class="color_exit_text_1--text   mb-2 mb-sm-0">
+                            <div class="color_exit_text_1--text mb-2 mb-sm-0">
                                 {{LangUtil("随着网站成长，股东质押的{0}收益会逐渐增长", plat_stake_info.coin_name_unique)}}
                             </div>
                             <v-row no-gutters class="color_exit_text_1--text daily-height">
-                                <v-col cols="2" class="d-flex justify-end flex-column mr-lg-3 mb-sm-3"
-                                    v-for="(item, index) of bonus_recently.slice().reverse()" :key="index"
-                                    :class="index != 4 ? 'mr-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'">
+                                <v-col
+                                    cols="2"
+                                    class="d-flex justify-end flex-column mr-lg-3 mb-sm-3"
+                                    v-for="(item, index) of bonus_recently.slice().reverse()"
+                                    :key="index"
+                                    :class="index != 4 ? 'mr-3 mr-sm-5 mr-md-8' : 'mr-0 mr-sm-0 mr-md-0'"
+                                >
                                     <div class="d-flex justify-center">${{ item.total_bonus_amount }}</div>
                                     <div class="d-flex justify-center">
-                                        <v-card :height="getHeight(index)"
+                                        <v-card
+                                            :height="getHeight(index)"
                                             :min-width="$vuetify.breakpoint.xsOnly? 40 : 80"
-                                            class="gradient-type1 daily-radius">
+                                            class="gradient-type1 daily-radius"
+                                        >
                                         </v-card>
                                     </div>
                                     <div class="d-flex justify-center">{{ getDateTime(item.date) }}</div>
@@ -288,16 +287,15 @@
             <v-col cols="12" lg="4">
                 <v-card class="horizontal-gradient rounded-lg mb-lg-0 px-4 px-sm-6 py-4 py-sm-6" height="100%">
                     <div class="d-flex justify-space-between">
-                        <div class="text_nomal_head  white--text font-weight-medium mb-3 mb-sm-5 ml-3">
-                            {{LangUtil("分红排行榜")}}
-                        </div>
-                        <div class="text_nomal_head white--text font-weight-medium text-decoration-underline mb-3 mb-sm-5 mr-3 cursor-pointer"
-                            @click="handleMore">
+                        <div class="text_nomal_head white--text font-weight-medium mb-3 mb-sm-5 ml-3">{{LangUtil("分红排行榜")}}</div>
+                        <div
+                            class="text_nomal_head white--text font-weight-medium text-decoration-underline mb-3 mb-sm-5 mr-3 cursor-pointer"
+                            @click="handleMore"
+                        >
                             {{LangUtil("查看更多")}}
                         </div>
                     </div>
-                    <v-row no-gutters
-                        class="white--text     rank-height mobile redRow_item">
+                    <v-row no-gutters class="white--text rank-height mobile redRow_item">
                         <v-col cols="2" class="d-flex justify-center align-center"> {{LangUtil("排行")}} </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("用户")}} </v-col>
                         <v-col cols="4" class="d-flex justify-center align-center">
@@ -305,16 +303,17 @@
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center"> {{LangUtil("获得分红")}} </v-col>
                     </v-row>
-                    <v-row no-gutters
-                        class="white--text text_nomal_head    rank-height mobile-list blackRow_item mt-1"
-                        v-for="(item, index) of bonus_rank" :key="index">
+                    <v-row
+                        no-gutters
+                        class="white--text text_nomal_head rank-height mobile-list blackRow_item mt-1"
+                        v-for="(item, index) of bonus_rank"
+                        :key="index"
+                    >
                         <v-col cols="2" class="d-flex justify-center align-center">
                             <div v-if="index < 3">
-                                <v-img :max-width="$vuetify.breakpoint.xsOnly? 35 :40" contain :src="iconsPrize[index]">
-                                </v-img>
+                                <v-img :max-width="$vuetify.breakpoint.xsOnly? 35 :40" contain :src="iconsPrize[index]"> </v-img>
                             </div>
-                            <div v-else class="d-flex justify-center align-center white--text text-18  ">{{
-                                index + 1 }}</div>
+                            <div v-else class="d-flex justify-center align-center white--text text-18">{{ index + 1 }}</div>
                         </v-col>
                         <v-col cols="3" class="text-truncate d-flex justify-center align-center">
                             <span class="text-truncate">{{ item.username }}</span>
@@ -326,89 +325,115 @@
             </v-col>
         </v-row>
         <v-card class="mb-2 rounded-lg horizontal-gradient px-5 py-3 py-sm-6" id="record">
-            <div class="  colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
-                <span class="text_nomal_title    white--text font-weight-medium mr-4"> {{LangUtil("分红记录")}}
-                </span>
-                <v-btn :height="$vuetify.breakpoint.width > 600 ? 40 : 30" class="rounded-lg mr-2" elevation="0"
-                    :text="listQuery.cate != 0" :color="listQuery.cate == 0 ? 'color_red_1' : 'color_exit_text_1'"
-                    @click="onTabClick(0)">
+            <div class="colorTextBlueLight3--text font-weight-medium mb-sm-3 mb-2">
+                <span class="text_nomal_title white--text font-weight-medium mr-4"> {{LangUtil("分红记录")}} </span>
+                <v-btn
+                    :height="$vuetify.breakpoint.width > 600 ? 40 : 30"
+                    class="rounded-lg mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 0"
+                    :color="listQuery.cate == 0 ? 'color_red_1' : 'color_exit_text_1'"
+                    @click="onTabClick(0)"
+                >
                     <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-web</v-icon>
-                    <span class="    font-weight-regular"> {{LangUtil("全站记录")}} </span>
+                    <span class="font-weight-regular"> {{LangUtil("全站记录")}} </span>
                 </v-btn>
-                <v-btn :height="$vuetify.breakpoint.width > 600 ? 40 : 30"
-                    class="rounded-lg text-16 font-weight-regular mr-2" elevation="0" :text="listQuery.cate != 1"
-                    :color="listQuery.cate == 1 ? 'color_red_1' : 'color_exit_text_1'" @click="onTabClick(1)">
+                <v-btn
+                    :height="$vuetify.breakpoint.width > 600 ? 40 : 30"
+                    class="rounded-lg text-16 font-weight-regular mr-2"
+                    elevation="0"
+                    :text="listQuery.cate != 1"
+                    :color="listQuery.cate == 1 ? 'color_red_1' : 'color_exit_text_1'"
+                    @click="onTabClick(1)"
+                >
                     <v-icon v-if="$vuetify.breakpoint.width > 600" class="mr-1">mdi-human-handsdown</v-icon>
-                    <span class="    font-weight-regular"> {{LangUtil("个人记录")}} </span>
+                    <span class="font-weight-regular"> {{LangUtil("个人记录")}} </span>
                 </v-btn>
             </div>
             <v-card-text :class="$vuetify.breakpoint.width < 600 ? 'pa-0' : ''">
                 <!-- 全站记录 -->
                 <v-sheet color="transparent" v-if="listQuery.cate == 0">
                     <div class="mb-sm-4 mb-2 d-flex justify-space-around listitem head">
-                        <v-row no-gutters class="d-flex flex-row ">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                        <v-row no-gutters class="d-flex flex-row">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?2:2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 {{LangUtil("日期")}}
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center color_exit_text_1--text"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col
+                                cols="2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                                v-if="$vuetify.breakpoint.width > 600"
+                            >
                                 {{LangUtil("分红人数")}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?3:5"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 <span class="ml-4">{{LangUtil("质押总数")}}</span>
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center color_exit_text_1--text"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col
+                                cols="2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                                v-if="$vuetify.breakpoint.width > 600"
+                            >
                                 {{LangUtil("每100{0}分红", plat_stake_info.coin_name_unique)}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?3:5"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 {{LangUtil("总计已派发")}}
                             </v-col>
                         </v-row>
                     </div>
                     <div v-for="(item, index) in plat_bonus.list" :key="index">
                         <v-row no-gutters class="d-flex flex-row mt-sm-4 mt-2 mb-sm-5 mb-1 listitem">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-center align-center">
                                 {{ getDateTime(item.date) }}
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 {{ item.stake_count }}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
                                 <div class="d-flex bonus-width ml-4">
-                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
+                                    <v-img
+                                        class="mr-2"
+                                        :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
-                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                    ></v-img>
                                     <span> {{ item.total_stake_amount }} </span>
                                 </div>
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 <div class="d-flex hundred-bonus-width">
                                     <span class="mr-2">$ </span>
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
                                 <div class="d-flex bonus-width">
-                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
+                                    <v-img
+                                        class="mr-2"
+                                        :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
-                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"
+                                    ></v-img>
                                     <span>{{ item.total_bonus_amount }}</span>
                                 </div>
                             </v-col>
                         </v-row>
                         <v-divider></v-divider>
                     </div>
-                    <v-sheet v-if="plat_bonus.list.length == 0" class="d-flex justify-center align-center"
-                        color="transparent" min-height="260">
+                    <v-sheet
+                        v-if="plat_bonus.list.length == 0"
+                        class="d-flex justify-center align-center"
+                        color="transparent"
+                        min-height="260"
+                    >
                         <div>
                             <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                             <div class="text-14 color_exit_text_1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>
@@ -419,68 +444,85 @@
                 <v-sheet color="transparent" v-if="listQuery.cate == 1">
                     <div class="mb-sm-4 mb-2 d-flex justify-space-around listitem head">
                         <v-row no-gutters class="d-flex flex-row">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?2:2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 {{LangUtil("日期")}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?3:5"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 <span class="ml-4">{{LangUtil("质押数量")}}</span>
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center color_exit_text_1--text"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col
+                                cols="2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                                v-if="$vuetify.breakpoint.width > 600"
+                            >
                                 {{LangUtil("占比")}}
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center color_exit_text_1--text"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col
+                                cols="2"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                                v-if="$vuetify.breakpoint.width > 600"
+                            >
                                 {{LangUtil("每100{0}分红", plat_stake_info.coin_name_unique)}}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center color_exit_text_1--text">
+                            <v-col
+                                :cols="$vuetify.breakpoint.width > 600?3:5"
+                                class="d-flex justify-center align-center color_exit_text_1--text"
+                            >
                                 {{LangUtil("已派发")}}
                             </v-col>
                         </v-row>
                     </div>
                     <div v-for="(item, index) in user_bonus.list" :key="index">
                         <v-row no-gutters class="d-flex flex-row mt-sm-4 mt-2 mb-sm-5 mb-1 listitem">
-                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?2:2" class="d-flex justify-center align-center">
                                 {{ getDateTime(item.date) }}
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
                                 <div class="d-flex bonus-width ml-4">
-                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
+                                    <v-img
+                                        class="mr-2"
+                                        :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
-                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"></v-img>
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.coin_name_unique].icon"
+                                    ></v-img>
                                     <span> {{ item.stake_amount }} </span>
                                 </div>
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 {{ item.stake_ratio }}
                             </v-col>
-                            <v-col cols="2" class="d-flex justify-center align-center"
-                                v-if="$vuetify.breakpoint.width > 600">
+                            <v-col cols="2" class="d-flex justify-center align-center" v-if="$vuetify.breakpoint.width > 600">
                                 <div class="d-flex hundred-bonus-width">
                                     <span class="mr-2">$ </span>
                                     <span>{{ item.hundred_bonus }}</span>
                                 </div>
                             </v-col>
-                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5"
-                                class="d-flex justify-center align-center">
+                            <v-col :cols="$vuetify.breakpoint.width > 600?3:5" class="d-flex justify-center align-center">
                                 <div class="d-flex bonus-width">
-                                    <v-img class="mr-2" :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
+                                    <v-img
+                                        class="mr-2"
+                                        :max-width="$vuetify.breakpoint.width > 600 ? 25 : 20"
                                         :height="$vuetify.breakpoint.width > 600 ? 25 : 20"
-                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"></v-img>
+                                        :src="GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique] && GamePlatConfig.config.plat_coins[plat_stake_info.bonus_coin_name_unique].icon"
+                                    ></v-img>
                                     <span>{{ item.bonus_amount }}</span>
                                 </div>
                             </v-col>
                         </v-row>
                         <v-divider></v-divider>
                     </div>
-                    <v-sheet v-if="user_bonus.list.length == 0" class="d-flex justify-center align-center"
-                        color="transparent" min-height="260">
+                    <v-sheet
+                        v-if="user_bonus.list.length == 0"
+                        class="d-flex justify-center align-center"
+                        color="transparent"
+                        min-height="260"
+                    >
                         <div>
                             <v-img :src="commonIcon.nodata" max-width="113" height="100"></v-img>
                             <div class="text-14 color_exit_text_1--text mt-2 ml-8">{{LangUtil("暂无记录")}}</div>

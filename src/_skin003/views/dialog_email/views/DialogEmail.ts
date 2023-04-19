@@ -1,4 +1,3 @@
-
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
 import getProxy from "@/core/global/getProxy";
@@ -28,7 +27,7 @@ export default class DialogEmail extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
-        const selfProxy:SelfProxy = getProxy(SelfProxy);
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
         selfProxy.api_user_var_red_dot_tips();
     }
 

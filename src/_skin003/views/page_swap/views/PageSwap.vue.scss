@@ -1,45 +1,42 @@
-.gradient-bg{
+.gradient-bg {
     height: unset;
-    background-color: #18191C;
-    background-image: linear-gradient(180deg, #18191C 0%, #18191C 70px);
+    background-color: #18191c;
+    background-image: linear-gradient(180deg, #18191c 0%, #18191c 70px);
     text-align: center;
 }
-.btn_backbround{
-    background-color: #3F4043;
+.btn_backbround {
+    background-color: #3f4043;
 }
-::v-deep.v-btn-toggle--group{
-    .v-btn{
-       
+::v-deep.v-btn-toggle--group {
+    .v-btn {
         background-color: #272424 !important;
-    } 
-    .v-btn.v-btn--active{
-        background-color: #BA1B1A !important;
+    }
+    .v-btn.v-btn--active {
+        background-color: #ba1b1a !important;
         color: #ffffff !important;
     }
-        
 }
-.period{
-    &::v-deep.v-btn-toggle--group{
-        .v-btn.v-btn--active{
-            background-color: #BA1B1A !important;
+.period {
+    &::v-deep.v-btn-toggle--group {
+        .v-btn.v-btn--active {
+            background-color: #ba1b1a !important;
             color: #ffffff !important;
         }
     }
-    
 }
-.btn_group_width{
+.btn_group_width {
     width: 100%;
 }
-.btn_width{
-    width: calc((100% - 24px)/4);
+.btn_width {
+    width: calc((100% - 24px) / 4);
 }
-.help{
+.help {
     border-radius: 15px;
     width: 20px;
     height: 20px;
     background-color: #bebebe;
 }
-.text-xs-18{
+.text-xs-18 {
     @media (max-width: 600px) {
         font-size: 18px;
     }
@@ -47,7 +44,7 @@
 ::v-deep .input-text {
     border-radius: 4px;
     height: 50px;
-    background-color: #100F0F;
+    background-color: #100f0f;
     border: solid 0px #4c5d7f;
     input {
         vertical-align: middle;
@@ -61,18 +58,18 @@
     color: #bebebe;
 }
 
-.CF{
-    color:#3A94E2;
+.CF {
+    color: #3a94e2;
 }
-.USDT{
-    color:#269F7B;
+.USDT {
+    color: #269f7b;
 }
-.line_chart{
+.line_chart {
     height: 600px;
 }
-.red_k{
-    color: rgba(205, 104, 104, 0.9),
+.red_k {
+    color: rgba(205, 104, 104, 0.9);
 }
-.green_k{
-    color: rgba(104, 199, 205, 0.9),
+.green_k {
+    color: rgba(104, 199, 205, 0.9);
 }

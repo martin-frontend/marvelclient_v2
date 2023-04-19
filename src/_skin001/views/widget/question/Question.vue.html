@@ -29,9 +29,7 @@
                 <v-col cols="12" md="6" v-for="(item, index) of questions" :key="index">
                     <v-expansion-panels flat class="mobile-panels">
                         <v-expansion-panel>
-                            <v-expansion-panel-header color="#fff" class="colorTextBlack--text">
-                                {{ item.name }}
-                            </v-expansion-panel-header>
+                            <v-expansion-panel-header color="#fff" class="colorTextBlack--text"> {{ item.name }} </v-expansion-panel-header>
                             <v-expansion-panel-content color="#fff" class="colorTextBlack1--text">
                                 {{ item.content }}
                             </v-expansion-panel-content>

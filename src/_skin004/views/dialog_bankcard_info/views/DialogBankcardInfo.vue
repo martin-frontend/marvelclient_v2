@@ -12,7 +12,7 @@ import LoadMore from "@/views/widget/loadMore/LoadMore.vue";
         Overlay,
         ListNodata,
         LoadMore,
-    }
+    },
 })
 export default class extends DialogBankcardInfo {}
 </script>

@@ -13,7 +13,9 @@
                 <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
             <div v-if="pageData.list.length>0" class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
-                <div>{{LangUtil("总计")}} {{ pageData.list[pageData.list.length-1].date }} {{LangUtil("至")}} {{ pageData.list[0].date }}</div>
+                <div>
+                    {{LangUtil("总计")}} {{ pageData.list[pageData.list.length-1].date }} {{LangUtil("至")}} {{ pageData.list[0].date }}
+                </div>
             </div>
             <div class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
                 <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
@@ -61,7 +63,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="411"/>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
         </v-card-text>
         <!-- 手机显示方式 -->
         <v-card-text class="pb-0 px-0" v-if="$vuetify.breakpoint.xsOnly">
@@ -78,7 +80,9 @@
                 <CustomSelect v-model="listOptions.timeSelect" :options="listOptions.timeOptions()" width="140" @change="onTimeChange" />
             </div>
             <div class="colorText1--text d-flex flex-wrap listinfo">
-                <div>{{LangUtil("总计")}} {{ pageData.list[pageData.list.length-1].date }} {{LangUtil("至")}} {{ pageData.list[0].date }}</div>
+                <div>
+                    {{LangUtil("总计")}} {{ pageData.list[pageData.list.length-1].date }} {{LangUtil("至")}} {{ pageData.list[0].date }}
+                </div>
             </div>
             <div class="colorText1--text d-flex flex-wrap listinfo">
                 <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
@@ -111,9 +115,12 @@
                         <div>{{ item.total_commission.USDT }}</div>
                     </div>
                     <div class="d-flex align-end justify-end listitem-90">
-                        <v-btn text height="20" 
+                        <v-btn
+                            text
+                            height="20"
                             class="text-decoration-underline pa-0 colorBlue--text font-weight-regular"
-                            @click="handlerDetail(item.date)">
+                            @click="handlerDetail(item.date)"
+                        >
                             {{LangUtil("查看详情")}}<v-img
                                 class="arrow"
                                 width="24"
@@ -124,7 +131,7 @@
                     </div>
                 </v-sheet>
             </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0"/>
+            <ListNodata v-if="pageData.list.length == 0" />
         </v-card-text>
     </v-card>
     <Overlay v-model="pageData.loading" />

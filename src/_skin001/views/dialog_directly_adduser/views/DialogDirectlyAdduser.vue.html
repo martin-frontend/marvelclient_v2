@@ -1,9 +1,7 @@
-<v-dialog class="rounded-xl" width="420" v-model="pageData.bShow" overlay-opacity="0.6"
-    :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog class="rounded-xl" width="420" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card color="colorPanelBg">
         <v-card-title class="d-flex justify-end pb-0 gradient-bg">
-            <div class="ml-2 font-weight-medium text-18 white--text">{{LangUtil("添加用户")}}
-            </div>
+            <div class="ml-2 font-weight-medium text-18 white--text">{{LangUtil("添加用户")}}</div>
             <v-spacer />
             <v-btn class="mr-2" icon @click="onClose">
                 <v-icon>mdi-close</v-icon>
@@ -11,22 +9,42 @@
         </v-card-title>
         <v-card-text class="px-5 px-md-10 mt-5">
             <template v-if="form.register_type==1">
-                <CustomInput class="mb-6" icon="mdi-account" :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20"
-                    v-model="form.username" @blur="onUsernameBlur" />
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.username"
+                    @blur="onUsernameBlur"
+                />
 
-                <CustomPassword class="mb-6" icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')"
-                    v-model="form.password" @blur="onPasswordBlur" />
+                <CustomPassword
+                    class="mb-6"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('请输入密码（6-20位）')"
+                    v-model="form.password"
+                    @blur="onPasswordBlur"
+                />
 
-                <CustomInput class="mb-6" icon="mdi-text-box-edit" :placeholder="LangUtil('请输入备注（0-8位）')" maxlength="8"
-                    v-model="form.remark" />
-                <CustomInput icon="mdi-shield-check" :placeholder="LangUtil('请输入验证码（4位）')" maxlength="4"
-                    v-model="form.verify_code">
-                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30"
-                        @click="getImageVerity"></v-img>
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-text-box-edit"
+                    :placeholder="LangUtil('请输入备注（0-8位）')"
+                    maxlength="8"
+                    v-model="form.remark"
+                />
+                <CustomInput
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码（4位）')"
+                    maxlength="4"
+                    v-model="form.verify_code"
+                >
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
                 </CustomInput>
                 <!-- 允许多层 -->
                 <div class="d-flex justify-space-between align-center my-3 empty_height">
-                    <div class="d-flex align-center colorBlue1--text"> {{LangUtil("允许多层")}}
+                    <div class="d-flex align-center colorBlue1--text">
+                        {{LangUtil("允许多层")}}
                         <v-tooltip top color="colorText1">
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1">
@@ -37,39 +55,40 @@
                         </v-tooltip>
                     </div>
                     <span class="d-flex align-center colorBlue--text">
-                        <v-switch @change="handlerUpdate_creditset" :true-value="1" :false-value="98"
-                            v-model="form.show_credit_set" color="colorBtnBg" inset></v-switch>
+                        <v-switch
+                            @change="handlerUpdate_creditset"
+                            :true-value="1"
+                            :false-value="98"
+                            v-model="form.show_credit_set"
+                            color="colorBtnBg"
+                            inset
+                        ></v-switch>
                     </span>
                 </div>
                 <div class="hackhome"></div>
                 <!-- 代理占成 -->
                 <div class="d-flex justify-space-between align-center mt-2">
-                    <div class="d-flex colorBlue1--text empty_space ">
-                        {{LangUtil("代理占成") }}
-                    </div>
-                    <div class="d-flex justify-space-between align-center ">
-                        <div class="colorBlue1--text pl-5 empty_space">
-                            0-{{playerInfo.credit_rate}} %
-                        </div>
-                        <CustomInput class="empty_width_2 ml-4 empty_height_3" :isOnlyInt="true" height="30"
-                            placeholder="0" :isNeedCloseBtn="false"
-                            v-model="myProxy.formData.inputrate" :disabled="false">
+                    <div class="d-flex colorBlue1--text empty_space">{{LangUtil("代理占成") }}</div>
+                    <div class="d-flex justify-space-between align-center">
+                        <div class="colorBlue1--text pl-5 empty_space">0-{{playerInfo.credit_rate}} %</div>
+                        <CustomInput
+                            class="empty_width_2 ml-4 empty_height_3"
+                            :isOnlyInt="true"
+                            height="30"
+                            placeholder="0"
+                            :isNeedCloseBtn="false"
+                            v-model="myProxy.formData.inputrate"
+                            :disabled="false"
+                        >
                         </CustomInput>
-                        <div class="colorBlue1--text ml-2 empty_space">
-                            %
-                        </div>
+                        <div class="colorBlue1--text ml-2 empty_space">%</div>
                     </div>
                 </div>
-                <div class="d-flex align-center color_yellow_text_2--text mb-1">
-                    {{LangUtil("创建账户后，占成不能修改") }}
-                </div>
+                <div class="d-flex align-center color_yellow_text_2--text mb-1">{{LangUtil("创建账户后，占成不能修改") }}</div>
                 <div class="hackhome"></div>
                 <!-- 反水设置 -->
-                <div class="d-flex align-center colorBlue1--text mt-2">
-                    {{LangUtil("返水设置") }}
-                </div>
-                <v-sheet
-                    class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill ml-n2 mr-n2 mt-2 text-14">
+                <div class="d-flex align-center colorBlue1--text mt-2">{{LangUtil("返水设置") }}</div>
+                <v-sheet class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill ml-n2 mr-n2 mt-2 text-14">
                     <v-sheet class="d-flex justify-center colorText1--text ml-2" min-width="120" color="transparent">
                         {{LangUtil("返水类型")}}
                     </v-sheet>
@@ -84,36 +103,41 @@
                 <template v-for="(item, key) of playerInfo.water_config">
                     <v-sheet
                         class="colorPanelBg2 d-flex justify-space-between align-center rounded-pill my-3 ml-n2 mr-n2 mt-2 text-14"
-                        :key="key" v-if="key!=0">
-                        <v-sheet class="d-flex justify-center align-center colorBlue1--text text-16 ml-2 empty_height"
-                            min-width="120" color="transparent">
+                        :key="key"
+                        v-if="key!=0"
+                    >
+                        <v-sheet
+                            class="d-flex justify-center align-center colorBlue1--text text-16 ml-2 empty_height"
+                            min-width="120"
+                            color="transparent"
+                        >
                             {{getConfigName(key) }}
                         </v-sheet>
 
-                        <v-sheet class="d-flex justify-center colorBlue1--text" min-width="100" color="transparent">
-                            {{item }}
-                        </v-sheet>
+                        <v-sheet class="d-flex justify-center colorBlue1--text" min-width="100" color="transparent"> {{item }} </v-sheet>
 
-                        <CustomInput class="d-flex justify-center empty_width_2 input-text_2" height="40"
-                            placeholder="0" :isNeedCloseBtn="false" v-model="myProxy.inputWaterData[key]"
-                            :isOnlyFloat="true" :disabled="false">
-
+                        <CustomInput
+                            class="d-flex justify-center empty_width_2 input-text_2"
+                            height="40"
+                            placeholder="0"
+                            :isNeedCloseBtn="false"
+                            v-model="myProxy.inputWaterData[key]"
+                            :isOnlyFloat="true"
+                            :disabled="false"
+                        >
                         </CustomInput>
-
                     </v-sheet>
                     <div v-if="false && key!=0" class="hackhome"></div>
                 </template>
 
-                <div class="d-flex align-center color_yellow_text_2--text">
-                    {{LangUtil("创建账户后，返水不能修改") }}
-                </div>
+                <div class="d-flex align-center color_yellow_text_2--text">{{LangUtil("创建账户后，返水不能修改") }}</div>
 
                 <!-- 注册按钮 -->
                 <div class="mt-5">
                     <v-btn class="rounded-lg colorBtnBg" height="48" :disabled="!isCheck" block @click="onRegister">
-                        {{LangUtil("注册")}}</v-btn>
+                        {{LangUtil("注册")}}</v-btn
+                    >
                 </div>
-
             </template>
         </v-card-text>
     </v-card>

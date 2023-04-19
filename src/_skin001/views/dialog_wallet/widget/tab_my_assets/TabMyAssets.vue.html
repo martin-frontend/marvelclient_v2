@@ -21,7 +21,9 @@
             <v-sheet class="d-flex justify-center colorText2--text" color="transparent" width="100">{{item.plat_money}}</v-sheet>
             <v-sheet class="d-flex justify-center align-center colorText2--text" color="transparent" width="100">
                 {{item.vendors_money}}
-                <v-btn v-if="is_gold_exchange" class="ml-2 mr-n5" color="#6FA8FA" small @click="onExchange(key)">{{LangUtil("转换")}}</v-btn>
+                <v-btn v-if="is_gold_exchange" class="ml-2 mr-n5" color="#6FA8FA" small @click="onExchange(key)"
+                    >{{LangUtil("转换")}}</v-btn
+                >
             </v-sheet>
         </v-sheet>
     </v-sheet>

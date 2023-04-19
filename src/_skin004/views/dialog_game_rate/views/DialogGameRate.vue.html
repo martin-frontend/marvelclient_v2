@@ -1,6 +1,6 @@
 <v-dialog width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg">
-         <!-- pc显示方式 -->
+        <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <v-spacer />
             <v-btn icon @click="onClose">
@@ -18,20 +18,40 @@
                 v-for="(item, index) of pageData.list"
                 :key="index"
                 v-if="GamePlatConfig.config.plat_coins[item.coin_name_unique].is_display == 1"
-                >
+            >
                 <v-row no-gutters class="colorText4--text">
                     <v-col cols="6" class="d-flex justify-left align-center">
-                        <v-img :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon" max-width="25" max-height="25" class="ml-5 mr-2"></v-img>
+                        <v-img
+                            :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon"
+                            max-width="25"
+                            max-height="25"
+                            class="ml-5 mr-2"
+                        ></v-img>
                         {{item.coin_name_unique}}
                     </v-col>
                     <v-col v-if="item.coin_name_unique == 'VND'" cols="6" class="d-flex justify-end align-center pr-5">
-                        {{vndCount(item)}} {{item.coin_name_unique}} = 1<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        {{vndCount(item)}} {{item.coin_name_unique}} = 1<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                     <v-col v-else-if="item.coin_name_unique == 'VNDK'" cols="6" class="d-flex justify-end align-center pr-5">
-                        {{vndkCount(item)}} {{item.coin_name_unique}} = 1<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        {{vndkCount(item)}} {{item.coin_name_unique}} = 1<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                     <v-col v-else cols="6" class="d-flex justify-end align-center pr-5">
-                        1 {{item.coin_name_unique}} = {{item.scale}}<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        1 {{item.coin_name_unique}} = {{item.scale}}<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                 </v-row>
             </v-card>
@@ -57,25 +77,45 @@
                 v-for="(item, index) of pageData.list"
                 :key="index"
                 v-if="GamePlatConfig.config.plat_coins[item.coin_name_unique].is_display == 1"
-                >
+            >
                 <v-row no-gutters class="colorText4--text">
                     <v-col cols="6" class="d-flex justify-left align-center">
-                        <v-img :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon" max-width="25" max-height="25" class="ml-3 mr-2"></v-img>
+                        <v-img
+                            :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon"
+                            max-width="25"
+                            max-height="25"
+                            class="ml-3 mr-2"
+                        ></v-img>
                         {{item.coin_name_unique}}
                     </v-col>
                     <v-col v-if="item.coin_name_unique == 'VND'" cols="6" class="d-flex justify-end align-center pr-5">
-                        {{vndCount(item)}} {{item.coin_name_unique}} = 1<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        {{vndCount(item)}} {{item.coin_name_unique}} = 1<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                     <v-col v-else-if="item.coin_name_unique == 'VNDK'" cols="6" class="d-flex justify-end align-center pr-5">
-                        {{vndkCount(item)}} {{item.coin_name_unique}} = 1<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        {{vndkCount(item)}} {{item.coin_name_unique}} = 1<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                     <v-col v-else cols="6" class="d-flex justify-end align-center pr-5">
-                        1 {{item.coin_name_unique}} = {{item.scale}}<v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        1 {{item.coin_name_unique}} = {{item.scale}}<v-img
+                            class="ml-1"
+                            src="@/assets/icon/cm.png"
+                            max-width="22"
+                            max-height="22"
+                        ></v-img>
                     </v-col>
                 </v-row>
             </v-card>
             <div class="d-flex justify-center colorText2--text mt-4">{{LangUtil("首页切换币种对应的币种进入游戏")}}</div>
         </v-card-text>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

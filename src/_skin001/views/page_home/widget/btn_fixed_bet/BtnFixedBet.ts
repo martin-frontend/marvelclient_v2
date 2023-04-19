@@ -59,7 +59,7 @@ export default class BtnFixedBet extends AbstractView {
             this.cleartimer = setTimeout(() => {
                 imgOdds.style.opacity = "0";
                 imgOdds.classList.remove("animation-translate");
-                divPrice.style.color = vuetify.framework.breakpoint.mobile?"#3b3b3b":"#fffff";
+                divPrice.style.color = vuetify.framework.breakpoint.mobile ? "#3b3b3b" : "#fffff";
             }, 5000);
         }
     }

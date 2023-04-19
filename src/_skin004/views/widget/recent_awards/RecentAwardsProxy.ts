@@ -5,7 +5,7 @@ export default class RecentAwardsProxy extends puremvc.Proxy {
 
     public onRegister(): void {
         this.api_plat_var_plat_big_award();
-        console.log("RecentAwards_onRegister>>")
+        console.log("RecentAwards_onRegister>>");
     }
     /**
      * {
@@ -22,7 +22,7 @@ export default class RecentAwardsProxy extends puremvc.Proxy {
     };
 
     public setData(data: any[]): void {
-        this.pageData.list=data;
+        this.pageData.list = data;
     }
 
     api_plat_var_plat_big_award() {

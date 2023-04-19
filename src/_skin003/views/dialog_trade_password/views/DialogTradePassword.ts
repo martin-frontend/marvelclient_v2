@@ -45,8 +45,7 @@ export default class DialogTradePassword extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            if (this.myProxy.passWordShowType == 1)
-                this.getImageVerity();
+            if (this.myProxy.passWordShowType == 1) this.getImageVerity();
         }
     }
 
@@ -62,8 +61,7 @@ export default class DialogTradePassword extends AbstractView {
                     dialog_message.info("请输入验证码"); //
                     return;
                 }
-            }
-            else if (this.myProxy.passWordShowType == 2) {
+            } else if (this.myProxy.passWordShowType == 2) {
                 if (!core.checkUserPassword(this.pageData.form.logonPassword)) {
                     dialog_message.info("输入6个以上字符"); //
                     return;

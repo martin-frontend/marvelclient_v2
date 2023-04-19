@@ -24,14 +24,13 @@ export default class DialogRecharge extends AbstractView {
     }
 
     //是否显示越南盾银行 兑换
-    public get isShowBankVnd() : boolean {
-        if(this.myProxy.exchangeProxy.pageData.form.payment_method_type == 6)
-        {
+    public get isShowBankVnd(): boolean {
+        if (this.myProxy.exchangeProxy.pageData.form.payment_method_type == 6) {
             return true;
         }
         return false;
     }
-    
+
     onTabClick(idx: number) {
         this.myProxy.exchangeProxy.resetform();
         this.myProxy.transferProxy.resetform();
@@ -50,7 +49,7 @@ export default class DialogRecharge extends AbstractView {
         }
         //this.pageData.bShow = false;
     }
-    gowater(){
+    gowater() {
         dialog_gold_water.show();
     }
     viewDetail() {
@@ -60,8 +59,7 @@ export default class DialogRecharge extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
-        if (this.pageData.bShow)
-        {
+        if (this.pageData.bShow) {
             this.myProxy.exchangeProxy.resetform();
             this.myProxy.transferProxy.resetform();
         }

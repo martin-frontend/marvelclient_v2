@@ -3,7 +3,10 @@
         <template v-if="!$vuetify.breakpoint.mobile">
             <v-row no-gutters class="mb-5">
                 <v-col cols="12" lg="6" class="pr-lg-2">
-                    <v-card class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6" v-if="selfProxy.userInfo.is_credit_user == 98">
+                    <v-card
+                        class="mb-2 rounded-xl rounded-card horizontal-gradient-left text-body-1 d-flex align-center px-5 py-3 py-sm-6"
+                        v-if="selfProxy.userInfo.is_credit_user == 98"
+                    >
                         <v-row no-gutters>
                             <v-col cols="12" sm="auto" class="d-flex align-center justify-center justify-md-start mb-2 mb-sm-0">
                                 <span class="mr-0 mr-md-5 colorText3--text"> {{LangUtil("可领取佣金")}} </span>
@@ -97,9 +100,15 @@
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
+                                <v-row
+                                    no-gutters
+                                    class="d-flex flex-row align-center mb-1 mb-sm-2"
+                                    v-if="selfProxy.userInfo.is_credit_user == 98"
+                                >
                                     <v-col cols="7" class="d-flex justify-end">
-                                        <span class="text-right text-caption text-sm-subtitle-2 colorText3--text"> {{LangUtil("每万返佣")}} </span>
+                                        <span class="text-right text-caption text-sm-subtitle-2 colorText3--text">
+                                            {{LangUtil("每万返佣")}}
+                                        </span>
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
@@ -455,7 +464,9 @@
                                             <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("今日总业绩")}} </span>
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
-                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium"> {{ statistics_data.total_water_summary }} </span>
+                                            <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
+                                                {{ statistics_data.total_water_summary }}
+                                            </span>
                                         </v-col>
                                     </v-row>
                                     <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2">
@@ -678,7 +689,7 @@
                 <div class="text-caption text-sm-body-1 colorTextBlack--text mb-2 mb-sm-5">
                     {{LangUtil("提升团队业绩可提升返佣等级,每日领取更多返佣奖励")}}
                 </div>
-                <v-sheet min-height="30"  color="#fff" class="rounded-card d-flex align-center mb-2">
+                <v-sheet min-height="30" color="#fff" class="rounded-card d-flex align-center mb-2">
                     <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorTextBlack1--text">
                         <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                             {{LangUtil("等级")}}
@@ -686,7 +697,11 @@
                         <v-col :cols="tableData.is_promotion_num_added==1?2:4" class="d-flex justify-center align-center">
                             {{LangUtil("总业绩")}}
                         </v-col>
-                        <v-col :cols="tableData.is_promotion_num_added==1?3:4" class="d-flex justify-center align-center" :class="core.lang == 'en_EN'?'pl-5':''">
+                        <v-col
+                            :cols="tableData.is_promotion_num_added==1?3:4"
+                            class="d-flex justify-center align-center"
+                            :class="core.lang == 'en_EN'?'pl-5':''"
+                        >
                             {{LangUtil("返佣额度(每万)")}}
                         </v-col>
                         <v-col cols="3" class="d-flex justify-center align-center" v-if="tableData.is_promotion_num_added==1">

@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <div id="page" style="background-color:#000000">
+        <div id="page" style="background-color: #000000">
             <Header v-show="!($vuetify.breakpoint.mobile && $route.path == '/page_game_play')" />
-            <v-main style="background-color:#000000">
+            <v-main style="background-color: #000000">
                 <router-view />
             </v-main>
             <Footer v-if="!$vuetify.breakpoint.mobile" />
@@ -19,20 +19,24 @@
             <UserPanel />
         </v-navigation-drawer>
         <!-- 客服 -->
-        <v-btn height="110" color="colorPanelTitleBg" class="customer rounded-t-pill rounded-b-pill info--text text-h6 "
-            @click="onService" v-if="!$vuetify.breakpoint.mobile">
+        <v-btn
+            height="110"
+            color="colorPanelTitleBg"
+            class="customer rounded-t-pill rounded-b-pill info--text text-h6"
+            @click="onService"
+            v-if="!$vuetify.breakpoint.mobile"
+        >
             <div class="d-flex flex-column">
-                <v-img  src="@/_skin003/assets/kefu.png" max-width="50"></v-img>
+                <v-img src="@/_skin003/assets/kefu.png" max-width="50"></v-img>
                 <!-- <v-icon class="mr-1">mdi-message-text-outline</v-icon> -->
-                <div class="mt-2" >{{ LangUtil("客服") }}</div>
+                <div class="mt-2">{{ LangUtil("客服") }}</div>
             </div>
         </v-btn>
         <!-- 添加到桌面引导 -->
         <div class="btn-guide" v-if="$vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ guideText }}</v-btn>
         </div>
-        <v-navigation-drawer v-if="guideDrawer" v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary
-            fixed>
+        <v-navigation-drawer v-if="guideDrawer" v-model="guideDrawer" color="colorTitleBg" height="290" bottom temporary fixed>
             <div class="colorTextGold--text text-14 pt-5">
                 <div class="d-flex justify-center mb-3">
                     {{ LangUtil("点击下方工具栏的") }}
@@ -80,7 +84,7 @@ import GameSearch from "@/views/game_search/views/GameSearch.vue";
         GameSearch,
     },
 })
-export default class extends APP { }
+export default class extends APP {}
 </script>
 
 <style lang="scss" scoped>

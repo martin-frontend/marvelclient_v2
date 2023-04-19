@@ -1,12 +1,9 @@
 <div class="font-weight-black" :class="$vuetify.breakpoint.mobile ? 'mt-3': 'mt-2'">
     <div class="d-flex box-container">
-
         <div class="d-flex" v-if="$vuetify.breakpoint.mobile && !$vuetify.breakpoint.xsOnly">
             <div class="activity1-min rounded-lg pa-3 pr-0 mr-2" @click="goMine">
                 <div class="text-24">
-                    <span>
-                        {{LangUtil("游戏挖矿")}}
-                    </span>
+                    <span> {{LangUtil("游戏挖矿")}} </span>
                     <!-- <span class="yellow-text text-18 font-weight-bold font-italic">
                         {{ `${pageData.backwater_setting_info.backwater_max_efficiency}USD/10K USD${LangUtil("流水")}` }}
                     </span> -->
@@ -18,20 +15,22 @@
 
             <div v-if="is_show_commission.is_open == 1" class="activity2-min rounded-lg pa-3" @click="goExtension">
                 <div class="text-24">
-                    <span>
-                        {{LangUtil("推广赚钱")}}
-                    </span>
+                    <span> {{LangUtil("推广赚钱")}} </span>
                 </div>
             </div>
         </div>
 
         <v-sheet v-if="!$vuetify.breakpoint.mobile" width="100%" min-width="550">
-            <v-carousel cycle :height="360" hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus"
-                :show-arrows="false">
+            <v-carousel cycle :height="360" hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" :show-arrows="false">
                 <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i">
                     <v-lazy>
-                        <v-img :src="item.img_url" class="box" :height="360" @click="onBigItemClick(item)"
-                            :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''">
+                        <v-img
+                            :src="item.img_url"
+                            class="box"
+                            :height="360"
+                            @click="onBigItemClick(item)"
+                            :class="(item.open_mode!=1 || item.open_mode_url != '')?'cursor-pointer':''"
+                        >
                             <template v-slot:placeholder>
                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                     <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
@@ -46,9 +45,7 @@
         <div class="activity4 text-24" v-if="!$vuetify.breakpoint.mobile">
             <div class="item1 rounded-lg pt-3 pl-3" @click="goMine">
                 <div class="text-32">
-                    <span>
-                        {{LangUtil("游戏挖矿")}}
-                    </span>
+                    <span> {{LangUtil("游戏挖矿")}} </span>
                 </div>
                 <div class="text-16 mt-2" style="width: 50%">
                     {{LangUtil("参与任意游戏产生有效投注将获得{0}奖励", pageData.stakeInfo.coin_name_unique)}}
@@ -69,20 +66,14 @@
             <div class="item2 rounded-lg mt-2" @click="goPageBouns">
                 <div class="text-18 pt-3 ml-5">{{LangUtil("质押{0}，终身享分红", pageData.stakeInfo.coin_name_unique)}}</div>
                 <div class="text-16 ml-5 mt-0">
-                    <span>
-                        {{LangUtil("当前分红池")}}:
-                    </span>
-                    <span class="green-text font-italic font-weight-bold text-18">
-                        {{`APR ${pageData.stakeInfo.apr}`}}
-                    </span>
+                    <span> {{LangUtil("当前分红池")}}: </span>
+                    <span class="green-text font-italic font-weight-bold text-18"> {{`APR ${pageData.stakeInfo.apr}`}} </span>
                 </div>
                 <Money v-model="pageData.stakeInfo.bonus_pool_amount" class="ml-5 mt-0" />
-                <v-sheet class="btn text-18 ml-5 mt-0 px-3 rounded-lg d-flex align-center justify-center" height="35"
-                    min-width="110">
+                <v-sheet class="btn text-18 ml-5 mt-0 px-3 rounded-lg d-flex align-center justify-center" height="35" min-width="110">
                     {{LangUtil("领取分红")}}
                 </v-sheet>
             </div>
         </div>
-
     </div>
 </div>

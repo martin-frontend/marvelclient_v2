@@ -4,12 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import SoccerMatcheItem from "./SoccerMatcheItem";
-import BtnFixedBet from "../btn_fixed_bet/BtnFixedBet.vue"
+import BtnFixedBet from "../btn_fixed_bet/BtnFixedBet.vue";
 
 @Component({
-    components:{
-        BtnFixedBet
-    }
+    components: {
+        BtnFixedBet,
+    },
 })
 export default class extends SoccerMatcheItem {}
 </script>

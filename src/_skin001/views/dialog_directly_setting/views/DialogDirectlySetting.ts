@@ -111,9 +111,8 @@ export default class DialogDirectlySetting extends AbstractView {
             },
             cancelFun: () => {
                 console.log("点击取消，将值变换回去");
-            }
+            },
         });
-
     }
 
     //esayBet投注额设置 按钮
@@ -131,10 +130,11 @@ export default class DialogDirectlySetting extends AbstractView {
 
     handlerUpdate(val: any) {
         //console.log("val   ", val);
-        if (val == '98') {
+        if (val == "98") {
             const str = LangUtil("您是否禁用此帐号，如果禁用，该用户所有下级都禁用");
             dialog_message_box.confirm({
-                message: str, okFun: () => {
+                message: str,
+                okFun: () => {
                     //console.log("点击确定，发送消息出去");
                     this.myProxy.agent_direct_user_update();
                 },
@@ -143,11 +143,9 @@ export default class DialogDirectlySetting extends AbstractView {
                     //@ts-ignore
                     this.myProxy.playerInfo.status = 1;
                     //console.log("this.playerInfo.status  " ,this.playerInfo.status);
-                }
+                },
             });
-        }
-        else
-        this.myProxy.agent_direct_user_update();
+        } else this.myProxy.agent_direct_user_update();
     }
     handlerUpdate_creditset(val: any) {
         this.myProxy.agent_direct_user_update_duoceng();

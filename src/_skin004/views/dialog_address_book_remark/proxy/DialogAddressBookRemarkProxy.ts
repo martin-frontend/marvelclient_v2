@@ -49,8 +49,7 @@ export default class DialogAddressBookRemarkProxy extends puremvc.Proxy {
             user_id: core.user_id,
             id: this.pageData.listQuery.id,
         };
-        console.log("发送的信息",obj);
+        console.log("发送的信息", obj);
         this.sendNotification(net.HttpType.api_user_var_payment_method_update_var, objectRemoveNull(obj));
     }
 }
-

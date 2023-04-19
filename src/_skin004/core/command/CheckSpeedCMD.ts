@@ -1,7 +1,6 @@
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 
-
 export default class CheckSpeedCMD extends puremvc.SimpleCommand {
     private urls: string[] = [];
     private selected = false;

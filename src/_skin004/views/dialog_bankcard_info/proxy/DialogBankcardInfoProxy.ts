@@ -25,15 +25,14 @@ export default class DialogBankcardInfoProxy extends puremvc.Proxy {
         });
     }
 
-    setTestData()
-    {
-        const obj={
-            bankname:"测试",
-            name:"aasdas",
-            cardnub:126345684789561456465,
-            remark:"qweasdasd",
-        }
-        const arr=[];
+    setTestData() {
+        const obj = {
+            bankname: "测试",
+            name: "aasdas",
+            cardnub: 126345684789561456465,
+            remark: "qweasdasd",
+        };
+        const arr = [];
         for (let index = 0; index < 20; index++) {
             arr.push(obj);
         }

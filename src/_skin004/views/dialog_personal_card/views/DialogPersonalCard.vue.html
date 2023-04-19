@@ -9,9 +9,24 @@
         </v-card-title>
         <v-card-text class="mt-3">
             <div class="input-text py-2 pa-3 mb-5">
-                <textarea class="text-16" :disabled="!pageData.canEdit" maxlength="300" :autofocus="false" :placeholder="pageData.canEdit?LangUtil('请输入您的个人名片（300个字符）'):''" v-model="pageData.personalCard" />
+                <textarea
+                    class="text-16"
+                    :disabled="!pageData.canEdit"
+                    maxlength="300"
+                    :autofocus="false"
+                    :placeholder="pageData.canEdit?LangUtil('请输入您的个人名片（300个字符）'):''"
+                    v-model="pageData.personalCard"
+                />
             </div>
-            <v-btn v-if="pageData.canEdit" class="rounded-lg" color="colorBtnBg" height="48" :disabled="!pageData.personalCard" @click="onSubmit" block>
+            <v-btn
+                v-if="pageData.canEdit"
+                class="rounded-lg"
+                color="colorBtnBg"
+                height="48"
+                :disabled="!pageData.personalCard"
+                @click="onSubmit"
+                block
+            >
                 {{LangUtil("保存设置")}}
             </v-btn>
         </v-card-text>

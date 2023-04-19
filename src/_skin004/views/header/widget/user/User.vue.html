@@ -39,18 +39,18 @@
             <UserPanel />
         </v-menu>
     </div>
-    <div v-else class="d-flex align-center" >
-        <v-btn icon small size="20" style="margin-right:2px" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
+    <div v-else class="d-flex align-center">
+        <v-btn icon small size="20" style="margin-right: 2px" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
             <!-- <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0"> -->
-                <!-- <v-icon size="25" style="margin-top: 2.5px">mdi-account-circle</v-icon> -->
-                <v-img :max-width="30" contain :src="vipMap[curVipLevel]"></v-img>
+            <!-- <v-icon size="25" style="margin-top: 2.5px">mdi-account-circle</v-icon> -->
+            <v-img :max-width="30" contain :src="vipMap[curVipLevel]"></v-img>
             <!-- </v-badge> -->
         </v-btn>
-        <div class="text-truncate text-16" style="max-width: 120px;" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
+        <div class="text-truncate text-16" style="max-width: 120px" @click.stop="pageData.bShowUserPanel = !pageData.bShowUserPanel">
             {{userShowName}}
         </div>
 
-        <v-btn icon small size="20" style="margin-right:2px" @click.stop="openMail()">
+        <v-btn icon small size="20" style="margin-right: 2px" @click.stop="openMail()">
             <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
                 <v-icon size="25" style="margin-top: 2.5px">mdi-email</v-icon>
             </v-badge>

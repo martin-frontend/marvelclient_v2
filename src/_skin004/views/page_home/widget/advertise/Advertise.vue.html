@@ -1,5 +1,6 @@
 <div class="d-flex">
-    <v-carousel v-if="getShowData && isHaveData "
+    <v-carousel
+        v-if="getShowData && isHaveData "
         v-model="selectIndex"
         cycle
         :height="height"
@@ -9,25 +10,24 @@
         :show-arrows="false"
         @change="onChange"
     >
-    <template v-for="(item,i) in getShowData">
-        <v-carousel-item v-if="img_url(item) " :key="i">
-            <v-lazy>
-                <v-img
-                    
-                    :src="img_url(item)"
-                    class="box"
-                    :height="height"
-                    @click="onBigItemClick(item)"
-                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $vuetify.breakpoint.mobile}"
-                >
-                    <template v-slot:placeholder>
-                        <v-row class="fill-height ma-0" align="center" justify="center">
-                            <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
-                        </v-row>
-                    </template>
-                </v-img>
-            </v-lazy>
-        </v-carousel-item>
-    </template>
+        <template v-for="(item,i) in getShowData">
+            <v-carousel-item v-if="img_url(item) " :key="i">
+                <v-lazy>
+                    <v-img
+                        :src="img_url(item)"
+                        class="box"
+                        :height="height"
+                        @click="onBigItemClick(item)"
+                        :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $vuetify.breakpoint.mobile}"
+                    >
+                        <template v-slot:placeholder>
+                            <v-row class="fill-height ma-0" align="center" justify="center">
+                                <v-progress-circular indeterminate color="colorText1"></v-progress-circular>
+                            </v-row>
+                        </template>
+                    </v-img>
+                </v-lazy>
+            </v-carousel-item>
+        </template>
     </v-carousel>
 </div>

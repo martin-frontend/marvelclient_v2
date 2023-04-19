@@ -65,49 +65,45 @@ export default class DialogWalletProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestDetailData()
-    {
-        const obj={
-            type:0,
-            coin_name_unique:"USDT",
-            gold:1564,
-            balance:1231,
-            remark:"sadsda",
-            created_at:"2022-12-14 18:37:14",
-        }
-        const list_1 =[];
+    setTestDetailData() {
+        const obj = {
+            type: 0,
+            coin_name_unique: "USDT",
+            gold: 1564,
+            balance: 1231,
+            remark: "sadsda",
+            created_at: "2022-12-14 18:37:14",
+        };
+        const list_1 = [];
         for (let index = 0; index < 20; index++) {
-            list_1.push(obj);  
+            list_1.push(obj);
         }
         return list_1;
     }
-    setTestVendorData()
-    {
-        const obj={
-            vendor_name:"测试111",
-            currency:"us12312dt",
-            gold:1564,
-            balance:1231,
-            remark:"sadsda",
-            type:0,
-            created_at:"2022-12-14 18:37:14",
-        }
-        const list_1 =[];
+    setTestVendorData() {
+        const obj = {
+            vendor_name: "测试111",
+            currency: "us12312dt",
+            gold: 1564,
+            balance: 1231,
+            remark: "sadsda",
+            type: 0,
+            created_at: "2022-12-14 18:37:14",
+        };
+        const list_1 = [];
         for (let index = 0; index < 4; index++) {
-            list_1.push(obj);  
+            list_1.push(obj);
         }
 
         const gold_info = {
-            "USDT":
-            {
-                vendors_detail:list_1,
-                vendors_money:"13231",
-            }  ,
-            "CNY":
-            {
-                vendors_detail:list_1,
-                vendors_money:"13231",
-            }  ,
+            USDT: {
+                vendors_detail: list_1,
+                vendors_money: "13231",
+            },
+            CNY: {
+                vendors_detail: list_1,
+                vendors_money: "13231",
+            },
         };
 
         return gold_info;
@@ -134,7 +130,6 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         //厂商数据
         //this.pageData.gold_info = JSON.parse(JSON.stringify( this.setTestVendorData())) ;
         //this.pageData.list = this.setTestDetailData();
-
     }
 
     /**手机下拉刷新 */

@@ -1,5 +1,3 @@
-
-
 export default class RequestStartCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
         // Vue.nextTick(() => {

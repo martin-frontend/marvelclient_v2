@@ -8,7 +8,7 @@
     </div>
 
     <v-sheet class="rounded-lg mt-3 py-1" color="colorTitleBg">
-        <div class="d-flex align-center ml-2 item " v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />
@@ -18,7 +18,7 @@
     </v-sheet>
 
     <v-sheet class="rounded-lg mt-3 py-1" color="colorTitleBg">
-        <div class="d-flex align-center ml-2 item " v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
+        <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />

@@ -6,7 +6,7 @@ import SkinVariable from "@/_skin004/core/SkinVariable";
 @Component
 export default class ProjectInfo2 extends AbstractView {
     LangUtil = LangUtil;
-    SkinVariable=SkinVariable;
+    SkinVariable = SkinVariable;
     mounted() {
         this.setLink(document.documentURI);
     }
@@ -17,5 +17,4 @@ export default class ProjectInfo2 extends AbstractView {
         const imgBase64 = await Utils.generateQrcode(url);
         this.qrCode = imgBase64;
     }
-
 }

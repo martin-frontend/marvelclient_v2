@@ -7,8 +7,8 @@ import LoginEnter from "@/core/global/LoginEnter";
 @Component
 export default class GameSportItem extends AbstractView {
     LangUtil = LangUtil;
-    @Prop() category!:number;
-    @Prop() data!:any
+    @Prop() category!: number;
+    @Prop() data!: any;
 
     goGamePlay() {
         LoginEnter(() => {

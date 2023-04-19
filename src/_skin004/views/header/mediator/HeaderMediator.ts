@@ -4,10 +4,7 @@ import HeaderProxy from "../proxy/HeaderProxy";
 
 export default class HeaderMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_plat_var_lobby_index,
-            net.EventType.api_plat_var_game_menu,
-        ];
+        return [net.EventType.api_plat_var_lobby_index, net.EventType.api_plat_var_game_menu];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

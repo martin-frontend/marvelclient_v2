@@ -9,20 +9,17 @@ function show(category?: number, vendor_id?: number) {
         proxy.isMultChange = true;
     }
     if (category) {
-
         headerProxy.categoryActive = category;
         proxy.listQuery.vendor_type = category == 1 ? 2 : category;
         proxy.listQuery.vendor_id = 1;
         //proxy.setGameMenuData(headerProxy.pageData.lobbyIndex);
-    }
-    else {
-        console.log("1123123",proxy.curItemIndex);
+    } else {
+        console.log("1123123", proxy.curItemIndex);
         proxy.getFirstMenuIndex();
     }
     if (vendor_id) {
         proxy.listQuery.vendor_id = vendor_id;
-    }
-    else {
+    } else {
         proxy.getFirstItemVendor();
     }
     console.log("当前值 proxy.listQuery.vendor_type ", proxy.listQuery.vendor_type);

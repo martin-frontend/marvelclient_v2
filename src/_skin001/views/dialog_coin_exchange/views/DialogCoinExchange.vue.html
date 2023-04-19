@@ -14,25 +14,30 @@
                 <v-spacer />
                 <div class="colorBlue--text text-decoration-underline cursor-pointer" @click="onGameRate">{{LangUtil("汇率说明")}}</div>
             </div>
-            <CustomSelect :icons="plat_coins" :options="optionsCoin1" height="50" v-model="form.from_coin_name_unique"/>
-            <div class="mt-2 mb-4 colorBlue--text">{{LangUtil("余额")}} {{gold_info[form.from_coin_name_unique] && gold_info[form.from_coin_name_unique].plat_money}}</div>
+            <CustomSelect :icons="plat_coins" :options="optionsCoin1" height="50" v-model="form.from_coin_name_unique" />
+            <div class="mt-2 mb-4 colorBlue--text">
+                {{LangUtil("余额")}} {{gold_info[form.from_coin_name_unique] && gold_info[form.from_coin_name_unique].plat_money}}
+            </div>
 
             <div class="my-2 primary--text">{{LangUtil("转化币种")}}</div>
-            <CustomSelect :icons="plat_coins" :options="optionsCoin2" height="50" v-model="form.to_coin_name_unique"/>
-            <div class="mt-2 colorBlue--text">{{LangUtil("余额")}} {{gold_info[form.to_coin_name_unique] && gold_info[form.to_coin_name_unique].plat_money}}</div>
+            <CustomSelect :icons="plat_coins" :options="optionsCoin2" height="50" v-model="form.to_coin_name_unique" />
+            <div class="mt-2 colorBlue--text">
+                {{LangUtil("余额")}} {{gold_info[form.to_coin_name_unique] && gold_info[form.to_coin_name_unique].plat_money}}
+            </div>
 
             <CustomInput class="mt-6" v-model="form.amount">
                 <template v-slot:pre>
-                    <img :src="plat_coins[form.from_coin_name_unique].icon" width="30" height="30" class="ml-3 mt-1">
+                    <img :src="plat_coins[form.from_coin_name_unique].icon" width="30" height="30" class="ml-3 mt-1" />
                 </template>
                 <v-btn class="text-12" color="colorBtnBg" small @click="onAll"> {{LangUtil("全部")}} </v-btn>
             </CustomInput>
             <div class="d-flex align-center mt-2 colorYellow1--text">
-                <div>{{LangUtil("可获得")}} {{form.amount>0 ? pageData.exchangeData.to_coin_name_unique_amount : '0'}} {{form.to_coin_name_unique}}</div>
-                <v-spacer />
                 <div>
-                    {{LangUtil("汇率")}}{{form.from_coin_name_unique}}/{{form.to_coin_name_unique}} 1:{{exchangeData.scale || "--"}}
+                    {{LangUtil("可获得")}} {{form.amount>0 ? pageData.exchangeData.to_coin_name_unique_amount : '0'}}
+                    {{form.to_coin_name_unique}}
                 </div>
+                <v-spacer />
+                <div>{{LangUtil("汇率")}}{{form.from_coin_name_unique}}/{{form.to_coin_name_unique}} 1:{{exchangeData.scale || "--"}}</div>
             </div>
         </v-card-text>
         <v-card-actions class="mt-16">

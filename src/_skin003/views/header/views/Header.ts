@@ -36,7 +36,6 @@ export default class Header extends AbstractView {
 
     constructor() {
         super(HeaderMediator);
-       
     }
 
     mounted() {
@@ -67,7 +66,7 @@ export default class Header extends AbstractView {
     goExtension() {
         // if (this.isShowDirectly == 2) {
         //     LoginEnter(dialog_agent_manager.show);
-        // } else if (this.isShowDirectly == 1) 
+        // } else if (this.isShowDirectly == 1)
         LoginEnter(page_extension.show);
     }
     /**打开登录页面 */

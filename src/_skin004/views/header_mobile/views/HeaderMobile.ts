@@ -17,12 +17,12 @@ import SkinVariable from "@/_skin004/core/SkinVariable";
 export default class HeaderMobile extends AbstractView {
     LangUtil = LangUtil;
     LangConfig = LangConfig;
-    SkinVariable=SkinVariable;
+    SkinVariable = SkinVariable;
     core = core;
     myProxy: HeaderMobileProxy = this.getProxy(HeaderMobileProxy);
     pageData = this.myProxy.pageData;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
-    appProxy :AppProxy = this.getProxy(AppProxy);
+    appProxy: AppProxy = this.getProxy(AppProxy);
     routerPath = this.$router.app.$route.path;
 
     red_dot_tips = this.selfProxy.red_dot_tips;
@@ -46,13 +46,12 @@ export default class HeaderMobile extends AbstractView {
     }
 
     /**切换语言 */
-    onLangChange(key:any) {
+    onLangChange(key: any) {
         window.localStorage.setItem("lang", key);
         location.reload();
     }
     /**公告 */
-    onNoticeShow()
-    {
+    onNoticeShow() {
         dialog_notice.show();
     }
     onService() {
@@ -60,35 +59,30 @@ export default class HeaderMobile extends AbstractView {
     }
 
     isdownloadShow = true;
-    
-    
-    public get isshowTop() : boolean {
+
+    public get isshowTop(): boolean {
         return this.isdownloadShow && this.appProxy.isShowGuide;
     }
-    
-    onClose()
-    {
+
+    onClose() {
         this.isdownloadShow = false;
     }
 
-    public get guideText() : string {
+    public get guideText(): string {
         return this.appProxy.guideText;
     }
 
-    onGuide()
-    {
+    onGuide() {
         this.appProxy.onGuide();
     }
-    
+
     onCoinIn() {
         dialog_recharge.show();
     }
     onCoinOut() {
         dialog_recharge.show(1);
     }
-    openMail()
-    {
+    openMail() {
         dialog_email.show();
     }
-    
 }

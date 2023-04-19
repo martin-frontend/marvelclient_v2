@@ -8,7 +8,6 @@ function show() {
 
     proxy.pageData.bShow = true;
     hidden(false);
-
 }
 function hidden(bhidden: boolean = true) {
     proxy.pageData.bHidden = bhidden;

@@ -57,11 +57,9 @@ export default class PageGameListChessProxy extends puremvc.Proxy {
         if (GameConfig.config.menuType == "1") {
             //console.log(" 用新的  ");
             this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
-        }
-        else {
+        } else {
             this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
         }
-        
     }
 
     api_plat_var_game_all_config() {

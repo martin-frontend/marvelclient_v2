@@ -79,7 +79,7 @@ export default class APP extends AbstractView {
     }
 
     get isShowGuide() {
-       return this.myProxy.isShowGuide;
+        return this.myProxy.isShowGuide;
     }
 
     onGuide() {

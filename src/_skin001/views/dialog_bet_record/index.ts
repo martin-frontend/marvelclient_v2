@@ -7,7 +7,7 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
     DialogMount(DialogBetRecord);
 
     const proxy: DialogBetRecordProxy = getProxy(DialogBetRecordProxy);
-    proxy.initShowType()
+    proxy.initShowType();
     proxy.pageData.listQuery.agent_user_id = agent_user_id;
     proxy.pageData.listQuery.start_date = start_date;
     proxy.pageData.listQuery.end_date = end_date;
@@ -36,8 +36,7 @@ function show(agent_user_id: any = null, start_date: string = "", end_date: stri
         if (msg.filterBtnInfo != null) {
             proxy.setFilterInfo(msg.filterBtnInfo);
         }
-    }
-    else {
+    } else {
         proxy.listOptions.moneySelect = 0;
     }
     if (agent_user_id) {

@@ -9,9 +9,9 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 function show(tabIndex: number = 0) {
-    const selfProxy:SelfProxy = getProxy(SelfProxy);
+    const selfProxy: SelfProxy = getProxy(SelfProxy);
     const is_bind_phone_recharge = GamePlatConfig.config.is_bind_phone_recharge;
-    if(is_bind_phone_recharge && is_bind_phone_recharge.is_open == 1 && !selfProxy.userInfo.phone) {
+    if (is_bind_phone_recharge && is_bind_phone_recharge.is_open == 1 && !selfProxy.userInfo.phone) {
         dialog_message_box.confirm({ message: LangUtil("该账号未绑定手机，不能打开充值页面"), okFun: dialog_safety_center.show });
         return;
     }
@@ -20,14 +20,18 @@ function show(tabIndex: number = 0) {
     proxy.pageData.tabIndex = tabIndex;
     proxy.pageData.bShow = true;
 
-    if((selfProxy.userInfo.is_recharge != 1 && tabIndex == 0) || (selfProxy.userInfo.is_exchange != 1 && tabIndex == 1) || (selfProxy.userInfo.is_gold_transfer != 1 && tabIndex == 2) ){
-        if(selfProxy.userInfo.is_recharge == 1){
+    if (
+        (selfProxy.userInfo.is_recharge != 1 && tabIndex == 0) ||
+        (selfProxy.userInfo.is_exchange != 1 && tabIndex == 1) ||
+        (selfProxy.userInfo.is_gold_transfer != 1 && tabIndex == 2)
+    ) {
+        if (selfProxy.userInfo.is_recharge == 1) {
             proxy.pageData.tabIndex = 0;
-        }else if(selfProxy.userInfo.is_exchange == 1){
+        } else if (selfProxy.userInfo.is_exchange == 1) {
             proxy.pageData.tabIndex = 1;
-        }else if(selfProxy.userInfo.is_gold_transfer == 1){
+        } else if (selfProxy.userInfo.is_gold_transfer == 1) {
             proxy.pageData.tabIndex = 2;
-        }else{
+        } else {
             proxy.pageData.tabIndex = -1;
         }
     }

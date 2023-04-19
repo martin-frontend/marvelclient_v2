@@ -1,4 +1,11 @@
-<v-dialog class="rounded-xl" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog
+    class="rounded-xl"
+    width="unset"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent
+>
     <v-card color="colorPanelBg" class="d-flex rounded-xl">
         <AdvertiseInLogin :height="794" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
@@ -73,7 +80,7 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username"/>
+                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username" />
                 </CustomInput>
 
                 <CustomInput
@@ -130,7 +137,13 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkPhone(form.username)" :category="1" :type="6" :area_code="form.area_code" :mobile="form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkPhone(form.username)"
+                        :category="1"
+                        :type="6"
+                        :area_code="form.area_code"
+                        :mobile="form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -147,7 +160,6 @@
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="form.password"
                     @blur="onPasswordBlur"
-
                 />
                 <CustomPassword
                     class="mb-6"

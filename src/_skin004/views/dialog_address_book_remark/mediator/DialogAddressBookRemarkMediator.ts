@@ -6,7 +6,6 @@ import LangUtil from "@/core/global/LangUtil";
 import DialogAddressBookProxy from "@/views/dialog_address_book/proxy/DialogAddressBookProxy";
 
 export default class DialogAddressBookRemarkMediator extends AbstractMediator {
-
     private addressBookproxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
 
     public listNotificationInterests(): string[] {

@@ -29,7 +29,8 @@
 }
 
 @keyframes shake {
-    0%, 100% {
+    0%,
+    100% {
         transform: translatey(1px);
     }
 
@@ -37,4 +38,3 @@
         transform: translatey(-1px);
     }
 }
-

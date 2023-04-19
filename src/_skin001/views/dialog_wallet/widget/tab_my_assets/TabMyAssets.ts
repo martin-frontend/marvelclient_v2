@@ -10,17 +10,17 @@ import DialogWalletProxy from "../../proxy/DialogWalletProxy";
 @Component
 export default class TabMyAssets extends AbstractView {
     LangUtil = LangUtil;
-    selfProxy:SelfProxy = getProxy(SelfProxy);
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     plat_coins = GamePlatConfig.config.plat_coins;
 
-    get is_gold_exchange(){
+    get is_gold_exchange() {
         //@ts-ignore
         return this.selfProxy.userInfo.is_gold_exchange == 1;
     }
 
-    onExchange(from_coin_name_unique:string){
+    onExchange(from_coin_name_unique: string) {
         dialog_coin_exchange.show(from_coin_name_unique);
     }
 }

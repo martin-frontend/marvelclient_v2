@@ -22,9 +22,20 @@
         :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
         :height="$vuetify.breakpoint.mobile ? '35' : '70'"
     >
-        <v-img v-if="$vuetify.breakpoint.mobile" src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 rotate ml-n1"> </v-img>
+        <v-img
+            v-if="$vuetify.breakpoint.mobile"
+            src="@/_skin001/assets/icon/icon_blue.png"
+            :max-height="15"
+            :max-width="15"
+            class="mr-1 rotate ml-n1"
+        >
+        </v-img>
         <div class="d-flex ml-n1">
-            <GameListSelect :options="myProxy.config.vendor_type" :orders="myProxy.config.vendor_type_order" v-model="listQuery.vendor_type" />
+            <GameListSelect
+                :options="myProxy.config.vendor_type"
+                :orders="myProxy.config.vendor_type_order"
+                v-model="listQuery.vendor_type"
+            />
             <GameListSelect
                 v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
                 :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"

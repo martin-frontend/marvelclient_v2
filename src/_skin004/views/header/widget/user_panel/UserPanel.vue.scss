@@ -23,12 +23,11 @@
     }
 }
 
-
-.mob_item_class{
+.mob_item_class {
     ::v-deep.v-icon.v-icon {
         color: #fff !important;
     }
-    
+
     .item {
         cursor: pointer;
         font-weight: 600;

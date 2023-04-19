@@ -57,31 +57,30 @@
     color: #314361 !important;
 }
 
-.empty_height{
+.empty_height {
     height: 40px;
 }
-.hackhome{
-
+.hackhome {
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
 }
-.empty_width_2{
+.empty_width_2 {
     width: 80px;
 }
 .input-text_2 {
     height: 30px;
     ::v-deep input {
         height: 30px;
-        font-weight:normal !important;
+        font-weight: normal !important;
     }
 }
 
-.test_staly{
+.test_staly {
     text-align: center;
 }
 
-.empty_height_3{
+.empty_height_3 {
     height: 30px;
 }

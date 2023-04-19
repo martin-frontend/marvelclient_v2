@@ -1,4 +1,11 @@
-<v-dialog class="rounded-xl" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
+<v-dialog
+    class="rounded-xl"
+    width="unset"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent
+>
     <v-card color="colorPanelBg" class="d-flex rounded-xl">
         <AdvertiseInLogin :height="794" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
@@ -46,7 +53,7 @@
                     </v-btn>
                 </div>
 
-                <CustomInput 
+                <CustomInput
                     v-if="!core.invite_user_id || SkinVariable.mustShowInvite"
                     class="mb-6"
                     icon="mdi-account"
@@ -74,7 +81,7 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username"/>
+                    <DialogGetVerity :isCheck="checkMail(form.username)" :category="0" :type="6" :email="form.username" />
                 </CustomInput>
 
                 <CustomInput
@@ -85,12 +92,11 @@
                     :placeholder="LangUtil('请输入手机号')"
                     maxlength="11"
                     v-model="form.username"
-                  
                 >
                     <template v-slot:pre>
-                        <v-sheet color="transparent" min-width="80">  
-                        <v-autocomplete
-                        class=""
+                        <v-sheet color="transparent" min-width="80">
+                            <v-autocomplete
+                                class=""
                                 v-model="tempSelectCode"
                                 :items="areaCodeArr"
                                 item-text="area_code"
@@ -105,17 +111,23 @@
                                 auto-select-first
                                 :filter="customFilter"
                             >
-                            <template v-slot:item="data">
-                                <v-sheet color="transparent"  width="100%"  class="d-flex justify-space-between colorText2--text text-14">
-                                    <div> {{data.item.area_code}}</div>
-                                    <div> {{data.item.name}}</div>
-                                </v-sheet>
-                            </template>
-                        
-                        </v-autocomplete>
-                         </v-sheet>
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
 
-                        <v-menu v-if="false" v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                        <v-menu
+                            v-if="false"
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            nudge-bottom="20"
+                            nudge-left="38"
+                        >
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="colorBtnBg--text mx-2">+{{form.area_code}}</div>
@@ -129,9 +141,7 @@
                                 </div>
                             </template>
 
-                            
-
-                            <v-sheet  class="pa-3 rounded-lg" color="colorPanelTitleBg" :width="$vuetify.breakpoint.xsOnly ? 200 : 400">
+                            <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" :width="$vuetify.breakpoint.xsOnly ? 200 : 400">
                                 <v-text-field
                                     class="rounded-pill"
                                     outlined
@@ -162,7 +172,13 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkPhone(form.username)" :category="1" :type="6" :area_code="form.area_code" :mobile="form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkPhone(form.username)"
+                        :category="1"
+                        :type="6"
+                        :area_code="form.area_code"
+                        :mobile="form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -179,7 +195,6 @@
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="form.password"
                     @blur="onPasswordBlur"
-
                 />
                 <CustomPassword
                     class="mb-6"

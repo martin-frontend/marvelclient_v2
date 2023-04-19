@@ -1,4 +1,4 @@
-.testdiv{
+.testdiv {
     width: 150px;
     @media only screen and (max-width: 750px) {
         width: 100%;
@@ -70,7 +70,6 @@
             width: 40px;
         }
     }
-    
 }
 .header-mobile {
     position: fixed;
@@ -108,7 +107,6 @@
     width: 120px;
 }
 
-
 ::v-deep .el-input__inner {
     background-color: #272424 !important;
     border-radius: 4px !important;
@@ -131,7 +129,7 @@
 ::v-deep .el-range-input::placeholder {
     color: #606266;
 }
-::v-deep .el-date-editor .el-input__inner{
+::v-deep .el-date-editor .el-input__inner {
     width: 100%;
 }
 ::v-deep .el-input--suffix .el-input__inner {
@@ -147,8 +145,7 @@
 .input_range_2 {
     width: 100%;
 }
-.hackhome{
-
+.hackhome {
     height: 1px;
     background-image: linear-gradient(to right, #fff 0%, #fff 50%, transparent 50%);
     background-size: 16px 1px;

@@ -6,7 +6,7 @@ $prev-right: var(--prev-right);
     top: 25px;
     //right: 135px;
     right: $prev-right;
-    left:-12px;
+    left: -12px;
     min-width: 0;
     border-radius: 25pt;
     width: 50px;
@@ -55,43 +55,42 @@ $prev-right: var(--prev-right);
 .game-icon {
     width: 200px;
     height: 100px;
-    
 }
 .tableMenuIcon {
     position: relative;
     width: 50px;
     height: 50px;
     background-size: 50px 50px;
-    background-image: url('~@/_skin004/assets/categoryicon/dizuo.png');
+    background-image: url("~@/_skin004/assets/categoryicon/dizuo.png");
 
-    .img{
+    .img {
         position: absolute;
         bottom: 5px;
         left: 5px;
     }
-    .img_16{
+    .img_16 {
         position: absolute;
         bottom: 15px;
         left: 5px;
     }
 }
 .tableMenuIcon_no {
-    .img{
+    .img {
         filter: grayscale(0.9);
         -webkit-filter: grayscale(0.9);
     }
-    .img_16{
+    .img_16 {
         filter: grayscale(0.9);
         -webkit-filter: grayscale(0.9);
     }
 }
 .tableMenuIcon_cur {
     background-size: 0px 0px;
-    .img{
+    .img {
         filter: none;
         -webkit-filter: none;
     }
-    .img_16{
+    .img_16 {
         filter: none;
         -webkit-filter: none;
     }
@@ -104,7 +103,7 @@ $prev-right: var(--prev-right);
         //transition: all 0.3s ease-in-out 0s;
         position: absolute;
         bottom: -70px;
-        font-size:28px;
+        font-size: 28px;
         width: 100%;
         height: 62px;
         line-height: 28px;
@@ -142,7 +141,7 @@ $prev-right: var(--prev-right);
 .mask_active {
     opacity: 0.5;
 }
-.menu_title{
+.menu_title {
     position: absolute;
     left: 30px;
     top: 22%;
@@ -154,19 +153,17 @@ $prev-right: var(--prev-right);
         font-weight: 700;
     }
     @media only screen and (max-width: 750px) {
-     
         font-size: 20px;
         font-weight: 700;
     }
-    
 }
-.menu_title_1{
+.menu_title_1 {
     position: absolute;
     left: 30px;
     top: 40%;
     font-size: 18px;
     font-weight: 500;
-   
+
     @media screen and (max-width: 1260px) {
         font-size: 18px;
         top: 45%;
@@ -186,9 +183,7 @@ $prev-right: var(--prev-right);
     @media screen and (max-width: 1260px) {
         height: 130px;
     }
-    
 }
-
 
 .egame__item__mask_menu {
     height: 100%;
@@ -208,81 +203,81 @@ $prev-right: var(--prev-right);
     opacity: 1;
 }
 
-.box_test_mob{
+.box_test_mob {
     width: 70px;
     height: 50px;
     overflow: hidden;
 }
 
-.box_test{
+.box_test {
     width: 180px;
     height: 90px;
     //overflow: hidden;
 }
-.icon_text_title{
+.icon_text_title {
     color: rgba(157, 177, 216, 0.6);
     position: relative;
     font-weight: 600;
 }
-.icon_text{
+.icon_text {
     color: rgba(157, 177, 216, 0.6);
     position: relative;
     bottom: 5px;
     //font-weight: 600;
 }
-.icon_text_cur{
+.icon_text_cur {
     color: rgba(255, 255, 255, 1);
     position: relative;
     bottom: 5px;
     //font-weight: 600;
 }
-.icon_text_mob{
+.icon_text_mob {
     color: rgba(102, 119, 152, 1);
     position: relative;
     bottom: 0px;
     //font-weight: 600;
 }
-.icon_text_cur_mob{
+.icon_text_cur_mob {
     color: rgba(64, 64, 64, 1);
     position: relative;
     bottom: 0px;
     //font-weight: 600;
 }
 
-.icon_test{
+.icon_test {
     width: 120px;
     height: 50px;
     filter: invert(48%) sepia(33%) saturate(403%) hue-rotate(181deg) brightness(89%) contrast(83%);
     -webkit-filter: invert(48%) sepia(33%) saturate(403%) hue-rotate(181deg) brightness(89%) contrast(83%);
 }
-.icon_test_cur{
+.icon_test_cur {
     width: 120px;
     height: 50px;
-    filter:none;
-    -webkit-filter:none;
+    filter: none;
+    -webkit-filter: none;
 }
 
-.icon_test_mob{
+.icon_test_mob {
     width: 60px;
     height: 25px;
     filter: invert(48%) sepia(33%) saturate(403%) hue-rotate(181deg) brightness(89%) contrast(83%);
     -webkit-filter: invert(48%) sepia(33%) saturate(403%) hue-rotate(181deg) brightness(89%) contrast(83%);
 }
-.icon_test_cur_mob{
+.icon_test_cur_mob {
     width: 60px;
     height: 25px;
     //transform: translateY(0);
-    filter:none;
-    -webkit-filter:none;
+    filter: none;
+    -webkit-filter: none;
     //filter: drop-shadow(none);
 }
 
 // 样式二
-.item_nomal{
-    background-image: linear-gradient(to bottom, #2A6EF9 0%, #86B2F2 100%) !important;
+.item_nomal {
+    background-image: linear-gradient(to bottom, #2a6ef9 0%, #86b2f2 100%) !important;
 }
-.item_active{
-    background-image: linear-gradient(to bottom, #F16958 0%, #F9901B 100%) !important;
+.item_active {
+    background-image: linear-gradient(to bottom, #f16958 0%, #f9901b 100%) !important;
 }
 
 .all-rights-reserved {

@@ -12,13 +12,13 @@ export default class GameSport extends AbstractView {
     CategoryIcon = Assets.CategoryIcon;
     @Prop() data!: any;
 
-    get listPc(){
+    get listPc() {
         const arr = [];
-        for(let i=0; i<this.data.list.length; i++){
-            if(i%2 == 0){
-                arr[i/2>>0] = <any>[];
+        for (let i = 0; i < this.data.list.length; i++) {
+            if (i % 2 == 0) {
+                arr[(i / 2) >> 0] = <any>[];
             }
-            arr[i/2>>0].push(this.data.list[i]);
+            arr[(i / 2) >> 0].push(this.data.list[i]);
         }
         return arr;
     }

@@ -31,8 +31,8 @@ export default class DialogUserCenter extends AbstractView {
         super(DialogUserCenterMediator);
     }
 
-    getHideUsername(str:string){
-        return str.substr(0,2)+'***'+str.substr(5,str.split('').length);
+    getHideUsername(str: string) {
+        return str.substr(0, 2) + "***" + str.substr(5, str.split("").length);
     }
 
     onClose() {
@@ -54,30 +54,30 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     private copy() {
-        console.warn("########")
+        console.warn("########");
         this.myProxy.copyId();
     }
 
     goMine() {
         this.pageData.bShow = false;
-        page_mine.show()
+        page_mine.show();
     }
 
     goSetPhone() {
-        this.safetyCenterProxy.pageData.tabIndex = 0
-        dialog_safety_center.show()
+        this.safetyCenterProxy.pageData.tabIndex = 0;
+        dialog_safety_center.show();
     }
 
     goSetEmail() {
-        this.safetyCenterProxy.pageData.tabIndex = 1
-        dialog_safety_center.show()
+        this.safetyCenterProxy.pageData.tabIndex = 1;
+        dialog_safety_center.show();
     }
 
     goSetGoogleSettings() {
-        dialog_google_settings.show()
+        dialog_google_settings.show();
     }
 
-    handlerRealName(){
+    handlerRealName() {
         //设置真实姓名
         dialog_real_name.show();
     }

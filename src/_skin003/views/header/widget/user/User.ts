@@ -6,8 +6,8 @@ import HeaderProxy from "../../proxy/HeaderProxy";
 
 @Component
 export default class User extends AbstractView {
-    myProxy:HeaderProxy = getProxy(HeaderProxy);
+    myProxy: HeaderProxy = getProxy(HeaderProxy);
     pageData = this.myProxy.pageData;
-    selfProxy:SelfProxy = getProxy(SelfProxy);
+    selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
 }

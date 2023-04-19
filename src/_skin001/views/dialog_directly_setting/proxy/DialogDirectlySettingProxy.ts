@@ -97,8 +97,7 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(formData));
     }
     //清除所有的币种的余额
-    api_user_var_agent_direct_deduction_all()
-    {
+    api_user_var_agent_direct_deduction_all() {
         this.pageData.loading = true;
         const formData = {
             user_id: core.user_id,
@@ -106,19 +105,17 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         };
         this.sendNotification(net.HttpType.api_user_var_agent_direct_deduction_all, objectRemoveNull(formData));
     }
-    api_user_var_agent_direct_deduction_all_callback(msg:any = null)
-    {
+    api_user_var_agent_direct_deduction_all_callback(msg: any = null) {
         this.pageData.loading = false;
-        console.log("清空 回调信息",msg);
+        console.log("清空 回调信息", msg);
 
         const showmsg = [LangUtil("资产清空成功，归还资产:")];
 
         const keys = Object.keys(msg);
         for (let index = 0; index < keys.length; index++) {
             const element = msg[keys[index]];
-            showmsg.push(LangUtil("币种:{0}  金额:{1}",element.coin_name_unique ,element.actual_deduction_gold) )
+            showmsg.push(LangUtil("币种:{0}  金额:{1}", element.coin_name_unique, element.actual_deduction_gold));
         }
-
 
         // const showmsg = {
         //     1: LangUtil("“资产清空成功，归还资产:"),
@@ -127,11 +124,11 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         // }
         //const str = LangUtil("添加用户成功！用户名:{0} 密码:{1}",this.pageData.form.username,this.pageData.form.password)
         dialog_message_box.alert_mult({
-            message: showmsg, okFun: () => {
+            message: showmsg,
+            okFun: () => {
                 //this.pageData.bShow = false;
-            }
+            },
         });
-        
     }
     copyId(msg: any) {
         //CopyUtil(this.playerInfo.user_id.toString());

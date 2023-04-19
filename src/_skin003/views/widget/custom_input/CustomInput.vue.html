@@ -3,7 +3,18 @@
     <div v-if="$slots.pre">
         <slot name="pre"></slot>
     </div>
-    <input class="ml-3" :class="disabled?'text-disabled':''" :type="type" :placeholder="placeholder" @blur="onBlur" @on="$listeners" @input="onInput" v-model="inputValue" :maxlength="maxlength" :disabled="disabled"/>
+    <input
+        class="ml-3"
+        :class="disabled?'text-disabled':''"
+        :type="type"
+        :placeholder="placeholder"
+        @blur="onBlur"
+        @on="$listeners"
+        @input="onInput"
+        v-model="inputValue"
+        :maxlength="maxlength"
+        :disabled="disabled"
+    />
     <v-btn v-if="inputValue && !disabled && isNeedCloseBtn" class="mr-2" icon width="20" height="20" @click="onClear">
         <v-icon class="mx-3" size="20" color="white">mdi-close-circle</v-icon>
     </v-btn>

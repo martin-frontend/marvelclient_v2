@@ -27,7 +27,6 @@ export default class TabExchangeBankVnd extends AbstractView {
 
     bank_info = this.myProxy.exchangeProxy.curBankinfo;
 
-    
     public get allNames(): any {
         if (!this.form.account_name || this.form.account_name == "") {
             return [];
@@ -94,21 +93,17 @@ export default class TabExchangeBankVnd extends AbstractView {
         }
     }
     @Watch("myProxy.pageData.bShow")
-    onWatchpageShow()
-    {
-        if (!this.myProxy.pageData.bShow)
-        {
+    onWatchpageShow() {
+        if (!this.myProxy.pageData.bShow) {
             //this.bank_info = null;
             this.myProxy.exchangeProxy.curBankinfo = null;
         }
-        
     }
 
-    
-    public get methodlist_data() : any {
+    public get methodlist_data(): any {
         return this.pageData.methodList[this.form.coin_name_unique];
     }
-    
+
     public get bank_list(): any {
         if (this.pageData && this.pageData.methodList && this.methodlist_data && this.methodlist_data.bank_list)
             return this.methodlist_data.bank_list;
@@ -222,7 +217,7 @@ export default class TabExchangeBankVnd extends AbstractView {
     onAll() {
         console.log("全部");
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = Math.floor( this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
+            this.form.amount = Math.floor(this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money) + "";
         } else {
             this.form.amount = "0.00";
         }
@@ -231,7 +226,7 @@ export default class TabExchangeBankVnd extends AbstractView {
     onSetPassword() {
         // const { phone, email } = this.selfProxy.userInfo;
         // if (phone || email) {
-            dialog_trade_password.show();
+        dialog_trade_password.show();
         // } else {
         //     dialog_message_box.alert(LangUtil("请先绑定邮箱或者手机"));
         // }

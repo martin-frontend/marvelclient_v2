@@ -24,7 +24,7 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
             target_user_id: 0,
         },
         list: <any>[],
-        bind_relation:"",
+        bind_relation: "",
         summary: {
             record_count: 0,
             bet_gold: "",

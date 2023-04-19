@@ -6,21 +6,13 @@
 
     <!-- 右边文字 -->
     <v-sheet class="mt-4 mb-4" color="transparent" max-width="50%">
-        <div class="text-32 font-weight-bold ml-4">
-            {{LangUtil("品牌名")}} {{LangUtil("APP")}}
-        </div>
-        <div class="color_tips_1--text text-14 mt-6 ">
-            <div class="mb-2">
-                {{LangUtil("1、手机扫描二维码，进入APP下载页面点击下载")}}
-            </div>
+        <div class="text-32 font-weight-bold ml-4">{{LangUtil("品牌名")}} {{LangUtil("APP")}}</div>
+        <div class="color_tips_1--text text-14 mt-6">
+            <div class="mb-2">{{LangUtil("1、手机扫描二维码，进入APP下载页面点击下载")}}</div>
 
-            <div class="mb-2">
-                {{LangUtil("2、APP安装和授权 点此查看IOS版与安卓版教程")}}
-            </div>
+            <div class="mb-2">{{LangUtil("2、APP安装和授权 点此查看IOS版与安卓版教程")}}</div>
 
-            <div>
-                {{LangUtil("3、打开APP，再次扫描左侧二维码进入游戏")}}
-            </div>
+            <div>{{LangUtil("3、打开APP，再次扫描左侧二维码进入游戏")}}</div>
         </div>
 
         <!-- 下载二维码 -->
@@ -48,22 +40,15 @@
 
         <!-- 下载地址 -->
         <div class="color_tips_1--text text-14 mt-4">
-            <div>
-                {{LangUtil("如第一步无法使用微信扫描二维码，请直接在浏览器中输入网址下载安装")}}
-            </div>
+            <div>{{LangUtil("如第一步无法使用微信扫描二维码，请直接在浏览器中输入网址下载安装")}}</div>
             <div>
                 {{LangUtil("苹果手机（ios）：")}}
-                <a :href="iosUrl" target="_blank" class="colorYellow--text">
-                    {{LangUtil("下载地址")}}
-                </a>
+                <a :href="iosUrl" target="_blank" class="colorYellow--text"> {{LangUtil("下载地址")}} </a>
             </div>
             <div>
                 {{LangUtil("安卓手机（Android）：")}}
-                <a :href="androidUrl" target="_blank" class="colorYellow--text">
-                    {{LangUtil("下载地址")}}
-                </a>
+                <a :href="androidUrl" target="_blank" class="colorYellow--text"> {{LangUtil("下载地址")}} </a>
             </div>
         </div>
-
     </v-sheet>
 </v-sheet>

@@ -3,10 +3,14 @@
         <div id="page">
             <HeaderMobile v-if="$vuetify.breakpoint.mobile && isShowHeader" />
             <Header v-if="!$vuetify.breakpoint.mobile && isShowHeader" />
-            <v-main id="mainpage" class="background" :class="{
-                'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
-                'mobile-background': $vuetify.breakpoint.mobile,
-            }">
+            <v-main
+                id="mainpage"
+                class="background"
+                :class="{
+                    'mobile-soccer': $vuetify.breakpoint.mobile && $route.path == '/page_game_soccer',
+                    'mobile-background': $vuetify.breakpoint.mobile,
+                }"
+            >
                 <router-view />
             </v-main>
             <Footer class="footer" v-if="$route.path != '/page_game_soccer'" />
@@ -20,14 +24,12 @@
         <div id="dialog_container"></div>
         <!-- 用户面板 -->
         <template v-if="!$vuetify.breakpoint.mobile">
-            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app right temporary width="288"
-                color="#16233B">
+            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app right temporary width="288" color="#16233B">
                 <UserPanel />
             </v-navigation-drawer>
         </template>
         <template v-else>
-            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app left temporary width="288"
-                color="#16233B">
+            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app left temporary width="288" color="#16233B">
                 <UserPanel />
             </v-navigation-drawer>
         </template>
@@ -38,10 +40,8 @@
             <v-icon class="mr-1">mdi-message-text-outline</v-icon>
             <span class="mb-1">{{ LangUtil("客服") }}</span>
         </v-btn> -->
-        <v-sheet v-if="!$vuetify.breakpoint.mobile" class="customer  d-flex flex-column" color="colorPanelTitleBg" elevation="0">
-
-            <v-btn min-height="110" color="transparent" class=" info--text" @click="onNoticeShow"
-                 elevation="0">
+        <v-sheet v-if="!$vuetify.breakpoint.mobile" class="customer d-flex flex-column" color="colorPanelTitleBg" elevation="0">
+            <v-btn min-height="110" color="transparent" class="info--text" @click="onNoticeShow" elevation="0">
                 <div class="d-flex flex-column align-center mt-2">
                     <v-img class=" " src="@/_skin004/assets/notice.png" max-width="40"></v-img>
                     <!-- <v-icon class="mr-1">mdi-message-text-outline</v-icon> -->
@@ -49,8 +49,7 @@
                 </div>
             </v-btn>
             <div class="ml-2 mr-2 hackhome"></div>
-            <v-btn min-height="110" color="transparent" class=" info--text " @click="onService"
-                elevation="0">
+            <v-btn min-height="110" color="transparent" class="info--text" @click="onService" elevation="0">
                 <div class="d-flex flex-column align-center mt-2">
                     <v-img src="@/_skin004/assets/kefu.png" max-width="40"></v-img>
                     <!-- <v-icon class="mr-1">mdi-message-text-outline</v-icon> -->
@@ -62,8 +61,15 @@
         <div class="btn-guide" v-if="false && $vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ myProxy.guideText }}</v-btn>
         </div>
-        <v-navigation-drawer v-if="myProxy.guideDrawer" v-model="myProxy.guideDrawer" color="colorTitleBg" height="290" bottom temporary
-            fixed>
+        <v-navigation-drawer
+            v-if="myProxy.guideDrawer"
+            v-model="myProxy.guideDrawer"
+            color="colorTitleBg"
+            height="290"
+            bottom
+            temporary
+            fixed
+        >
             <div class="colorTextGold--text text-14 pt-5">
                 <div class="d-flex justify-center mb-3">
                     {{ LangUtil("点击下方工具栏的") }}
@@ -113,7 +119,7 @@ import HeaderMobile from "@/_skin004/views/header_mobile/views/HeaderMobile.vue"
         GameSearch,
     },
 })
-export default class extends APP { }
+export default class extends APP {}
 </script>
 
 <style lang="scss" scoped>
@@ -123,12 +129,12 @@ export default class extends APP { }
     right: 55px;
     bottom: 60px;
     z-index: 100;
-    border-radius:50pt;
-    .item{
+    border-radius: 50pt;
+    .item {
         width: 60px;
         position: relative;
         white-space: normal;
-        word-break:break-all;
+        word-break: break-all;
     }
 }
 
@@ -154,7 +160,7 @@ export default class extends APP { }
 .footer {
     margin-bottom: 55px;
 }
-.hackhome{
+.hackhome {
     height: 1px;
     //background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-image: linear-gradient(to right, #858ca6 0%, #858ca6 100%);

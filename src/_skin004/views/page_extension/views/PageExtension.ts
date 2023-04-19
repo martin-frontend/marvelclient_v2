@@ -84,8 +84,7 @@ export default class PageExtension extends AbstractView {
     }
 
     async savePhoto() {
-        if (!SkinVariable.isSavePhoto)
-        {
+        if (!SkinVariable.isSavePhoto) {
             this.showPreview();
             return;
         }

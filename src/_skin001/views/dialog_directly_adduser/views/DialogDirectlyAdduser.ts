@@ -42,7 +42,6 @@ export default class DialogDirectlyAdduser extends AbstractView {
         );
     }
     public get isDisable(): boolean {
-
         const coinKeys = Object.keys(this.myProxy.inputWaterData);
 
         for (let index = 0; index < coinKeys.length; index++) {
@@ -55,11 +54,11 @@ export default class DialogDirectlyAdduser extends AbstractView {
                 return false;
             }
             if (this.myProxy.playerInfo.water_config[element] < res) {
-                return false
+                return false;
             }
         }
 
-        return true
+        return true;
     }
 
     public get isDisable_agent(): boolean {
@@ -68,20 +67,17 @@ export default class DialogDirectlyAdduser extends AbstractView {
         }
         const res = parseFloat(this.formData.inputrate);
         //console.log("当前输入值" ,res)
-        if (res < 0)
-            return true
+        if (res < 0) return true;
 
         //console.log(typeof res , typeof this.playerInfo.parent_credit_rate)
         if (res > this.playerInfo.credit_rate) {
             //console.log("比自己的 大", this.playerInfo.credit_rate)
             return true;
         }
-        return false
+        return false;
     }
 
-    handlerUpdate_creditset() {
-
-    }
+    handlerUpdate_creditset() {}
     onClose() {
         this.pageData.bShow = false;
     }

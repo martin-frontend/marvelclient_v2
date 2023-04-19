@@ -2,9 +2,7 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import WebViewBridge from "@/core/native/WebViewBridge";
 
-
-export default function() {
-
+export default function () {
     const link = LangUtil("客服链接") + "?id=" + core.user_id;
     if (core.app_type == core.EnumAppType.WEB) {
         try {
@@ -17,8 +15,7 @@ export default function() {
             OpenLink(link);
         }
     } else {
-    //     WebViewBridge.getInstance().openBrowser(link);
+        //     WebViewBridge.getInstance().openBrowser(link);
         WebViewBridge.getInstance().openStstemBrowser(link);
     }
-
 }

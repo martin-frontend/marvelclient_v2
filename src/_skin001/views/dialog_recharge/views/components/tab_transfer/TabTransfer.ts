@@ -30,10 +30,10 @@ export default class TabTransfer extends AbstractView {
         }
     }
 
-    get methodList(){
-        const obj:any = {};
-        for(const key of Object.keys(this.plat_coins)){
-            obj[key] = {name: key};
+    get methodList() {
+        const obj: any = {};
+        for (const key of Object.keys(this.plat_coins)) {
+            obj[key] = { name: key };
         }
         return obj;
     }

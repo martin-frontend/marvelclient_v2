@@ -40,7 +40,6 @@
     font-weight: 400;
 }
 .search_mobiel {
-
     ::v-deep .v-btn__content {
         color: #98acd3;
         font-size: 16px;
@@ -60,19 +59,19 @@
     overflow: hidden;
     padding-top: 260px;
 }
-.btn_font{
+.btn_font {
     font-size: 16px;
 }
-.hackhome{
-
+.hackhome {
     height: 1px;
     background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
 }
-::v-deep .theme--dark.v-icon{
-    color: #98ACD3;
+::v-deep .theme--dark.v-icon {
+    color: #98acd3;
 }
-::v-deep .v-input--selection-controls .v-input__slot>.v-label, .v-input--selection-controls .v-radio>.v-label{
-    color: #98ACD3;
+::v-deep .v-input--selection-controls .v-input__slot > .v-label,
+.v-input--selection-controls .v-radio > .v-label {
+    color: #98acd3;
 }

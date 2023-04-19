@@ -12,10 +12,10 @@
     background: #0d1525;
     overscroll-behavior: auto;
     position: fixed;
-    left:0px;
-    top:0px;
+    left: 0px;
+    top: 0px;
 }
-.frame-mobile-standalone{
+.frame-mobile-standalone {
     border: 0;
     width: 100vw;
     height: calc(100vh - 120px);
@@ -28,6 +28,6 @@
     top: 60px;
 }
 
-.box-mobile{
+.box-mobile {
     min-height: 2000px;
 }

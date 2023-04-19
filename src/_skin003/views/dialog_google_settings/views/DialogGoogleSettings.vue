@@ -8,8 +8,8 @@ import DialogGoogleSettings from "./DialogGoogleSettings";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogGoogleSettings {}
 </script>

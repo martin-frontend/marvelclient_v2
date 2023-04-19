@@ -52,19 +52,18 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestDetailData()
-    {
-        const obj={
-            type:0,
-            coin_name_unique:"USDT",
-            gold:1564,
-            balance:1231,
-            remark:"sadsda",
-            created_at:"2022-12-14 18:37:14",
-        }
-        const list_1 =[];
+    setTestDetailData() {
+        const obj = {
+            type: 0,
+            coin_name_unique: "USDT",
+            gold: 1564,
+            balance: 1231,
+            remark: "sadsda",
+            created_at: "2022-12-14 18:37:14",
+        };
+        const list_1 = [];
         for (let index = 0; index < 20; index++) {
-            list_1.push(obj);  
+            list_1.push(obj);
         }
         return list_1;
     }

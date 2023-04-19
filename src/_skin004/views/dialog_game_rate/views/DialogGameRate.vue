@@ -8,8 +8,8 @@ import DialogGameRate from "./DialogGameRate";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogGameRate {}
 </script>

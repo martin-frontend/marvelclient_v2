@@ -13,7 +13,7 @@ import PageGameListChessProxy from "../proxy/PageGameListChessProxy";
 export default class PageGameListChess extends AbstractView {
     LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
-    gameProxy:GameProxy = getProxy(GameProxy);
+    gameProxy: GameProxy = getProxy(GameProxy);
     myProxy: PageGameListChessProxy = this.getProxy(PageGameListChessProxy);
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
@@ -22,7 +22,7 @@ export default class PageGameListChess extends AbstractView {
         super(PageGameListChessMediator);
     }
 
-    get hotGame(){
+    get hotGame() {
         for (const item of this.gameProxy.lobbyIndex) {
             if (item.category == 1) {
                 return item;

@@ -48,7 +48,12 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(forgetData.form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkMail(forgetData.form.username)" :category="0" :type="2" :email="forgetData.form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkMail(forgetData.form.username)"
+                        :category="0"
+                        :type="2"
+                        :email="forgetData.form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -60,34 +65,39 @@
                     v-model="forgetData.form.username"
                 >
                     <template v-slot:pre>
-
-                        <v-sheet color="transparent" min-width="80" class="codeSelect">  
+                        <v-sheet color="transparent" min-width="80" class="codeSelect">
                             <v-autocomplete
-                            class=""
-                                    v-model="tempSelectCode"
-                                    :items="areaCodeArr"
-                                    item-text="area_code"
-                                    :label="curShowCode"
-                                    hide-details
-                                    solo
-                                    flat
-                                    background-color="transparent"
-                                    attach
-                                    return-object
-                                    :no-data-text="LangUtil('没有更多数据')"
-                                    auto-select-first
-                                    :filter="customFilter"
-                                >
+                                class=""
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                auto-select-first
+                                :filter="customFilter"
+                            >
                                 <template v-slot:item="data">
-                                    <v-sheet color="transparent"  width="100%"  class="d-flex justify-space-between colorText2--text text-14">
-                                        <div> {{data.item.area_code}}</div>
-                                        <div> {{data.item.name}}</div>
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
                                     </v-sheet>
                                 </template>
-                            
                             </v-autocomplete>
-                             </v-sheet>
-                        <v-menu v-if="false" v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                        </v-sheet>
+                        <v-menu
+                            v-if="false"
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            nudge-bottom="20"
+                            nudge-left="38"
+                        >
                             <template v-slot:activator="{ on, attrs }">
                                 <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
                                     <div class="colorBtnBg--text mx-2">+{{forgetData.form.area_code}}</div>
@@ -131,7 +141,13 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(forgetData.form.username)" @click="getCode"
                         >{{LangUtil("验证码")}}</v-btn
                     > -->
-                    <DialogGetVerity :isCheck="checkPhone(forgetData.form.username)" :category="1" :type="2" :area_code="forgetData.form.area_code" :mobile="forgetData.form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkPhone(forgetData.form.username)"
+                        :category="1"
+                        :type="2"
+                        :area_code="forgetData.form.area_code"
+                        :mobile="forgetData.form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -165,11 +181,7 @@
                     :placeholder="LangUtil('请输入账号/手机号/邮箱')"
                     v-model="pageData.form.username"
                 />
-                <CustomPassword
-                    icon="mdi-lock"
-                    :placeholder="LangUtil('请输入密码（6-20位）')"
-                    v-model="pageData.form.password"
-                />
+                <CustomPassword icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="pageData.form.password" />
                 <div class="password-operate">
                     <v-checkbox
                         v-model="pageData.remember"

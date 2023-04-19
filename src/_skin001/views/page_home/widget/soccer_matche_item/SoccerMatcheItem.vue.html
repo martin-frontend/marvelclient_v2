@@ -1,11 +1,14 @@
 <div>
-    <div class="mobile-item  text-12 py-2 mt-2" v-if="$vuetify.breakpoint.mobile" @click="onEnter">
+    <div class="mobile-item text-12 py-2 mt-2" v-if="$vuetify.breakpoint.mobile" @click="onEnter">
         <div class="d-flex align-center">
             <v-img src="@/_skin001/assets/icon/icon_blue.png" :max-height="15" :max-width="15" class="mr-1 transform ml-n1"> </v-img>
             <div class="text-14 colorTextBlack--text font-weight-bold">{{competition.competition_name}}</div>
         </div>
         <div class="py-2 px-1 mx-2 mt-1 rounded" style="background-color: #fff">
-            <div class="d-flex align-cenc:\Users\user\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench\workbench.htmlter text-gray1 rounded pa-1" style="background-color: #f1f1f1">
+            <div
+                class="d-flex align-cenc:\Users\user\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench\workbench.htmlter text-gray1 rounded pa-1"
+                style="background-color: #f1f1f1"
+            >
                 <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
                 <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">{{ states.phase_minute }}{{LangUtil("分钟")}}</div>
 

@@ -7,10 +7,13 @@ let firstShowNotice = true;
 function show() {
     DialogMount(DialogNotice);
     const proxy: DialogNoticeProxy = getProxy(DialogNoticeProxy);
-    clearTimeout(timeId)
-    timeId = setTimeout(() => {
-        proxy.pageData.bShow = true;
-    }, firstShowNotice ? 8000 : 0);
+    clearTimeout(timeId);
+    timeId = setTimeout(
+        () => {
+            proxy.pageData.bShow = true;
+        },
+        firstShowNotice ? 8000 : 0
+    );
     firstShowNotice = false;
 }
 

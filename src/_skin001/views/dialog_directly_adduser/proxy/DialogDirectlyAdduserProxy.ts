@@ -2,7 +2,6 @@ import dialog_message_box from "@/views/dialog_message_box";
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
-
 export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
     static NAME = "DialogDirectlyAdduserProxy";
 
@@ -27,17 +26,17 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         user_id: core.user_id,
         direct_user_id: 0,
         inputrate: "",
-    }
-    inputWaterData = <any>{}
+    };
+    inputWaterData = <any>{};
     playerInfo = {
         user_id: 0,
         nick_name: "",
-        credit_rate: 0,//当前占比
-        parent_credit_rate: "",//当前直属上级信用占比
+        credit_rate: 0, //当前占比
+        parent_credit_rate: "", //当前直属上级信用占比
         gold_info: <any>{},
         water_config: <any>{},
         parent_water_config: <any>{},
-    }
+    };
     //如果是列表，使用以下数据，否则删除
     resetForm() {
         Object.assign(this.pageData.form, {
@@ -64,7 +63,6 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
         this.formData.inputrate = data.credit_rate;
         this.inputWaterData = JSON.parse(JSON.stringify(data.water_config));
         //Object.assign(this.inputWaterData, data.water_config);
-
     }
     api_public_auth_code() {
         this.pageData.loading = true;
@@ -86,11 +84,10 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             if (element == "0") {
                 continue;
             }
-            if (this.inputWaterData[element]) //有值，测用新值
-            {
+            if (this.inputWaterData[element]) {
+                //有值，测用新值
                 pushData[element] = parseFloat(this.inputWaterData[element]);
-            }
-            else {
+            } else {
                 pushData[element] = 0;
             }
         }
@@ -105,7 +102,7 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             show_credit_set: this.pageData.form.show_credit_set,
             water_config: JSON.stringify(pushData),
             credit_rate: credit_rate,
-        }
+        };
         //console.log("发送的数据为", obj);
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_user_var_direct_register, objectRemoveNull(obj));
@@ -116,12 +113,13 @@ export default class DialogDirectlyAdduserProxy extends puremvc.Proxy {
             1: LangUtil("添加用户成功"),
             2: LangUtil("用户名") + ":" + this.pageData.form.username,
             3: LangUtil("密码") + ":" + this.pageData.form.password,
-        }
+        };
         //const str = LangUtil("添加用户成功！用户名:{0} 密码:{1}",this.pageData.form.username,this.pageData.form.password)
         dialog_message_box.alert_mult({
-            message: showmsg, okFun: () => {
+            message: showmsg,
+            okFun: () => {
                 this.pageData.bShow = false;
-            }
+            },
         });
     }
 

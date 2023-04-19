@@ -40,7 +40,7 @@ export default class TabAccountDetail extends AbstractView {
 
     onCoinChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
@@ -51,7 +51,7 @@ export default class TabAccountDetail extends AbstractView {
 
     onTypeChange() {
         this.pageData.list = [];
-        this.listQuery.page_count = 1
+        this.listQuery.page_count = 1;
         if (this.listOptions.typeSelect == 0) {
             this.listQuery.type = 0;
         } else {

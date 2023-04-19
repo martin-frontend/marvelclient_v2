@@ -1,13 +1,27 @@
-<v-app-bar class="app-bar"  :height="$vuetify.breakpoint.xsOnly?80:155" color="colorTitleBg" elevation="0"
-    :app="routerPath != '/page_game_play'">
+<v-app-bar
+    class="app-bar"
+    :height="$vuetify.breakpoint.xsOnly?80:155"
+    color="colorTitleBg"
+    elevation="0"
+    :app="routerPath != '/page_game_play'"
+>
     <v-container class="ma-auto px-6 py-0" v-if="!$vuetify.breakpoint.xsOnly">
         <div class="d-flex align-center mt-1" height="155">
             <img :src="commonIcon.logo" height="68" class="ml-3 mt-4 mb-2" alt="" />
             <v-spacer />
             <!-- 语言 -->
             <div v-if="LangConfig.language">
-                <CustomSelect v-model="core.lang" :options="LangConfig.language" :icons="LangConfig.language"
-                    :width="180" :height="45" :isPill="false" class="mr-4" @change="onLangChange" :fontSize="16"/>
+                <CustomSelect
+                    v-model="core.lang"
+                    :options="LangConfig.language"
+                    :icons="LangConfig.language"
+                    :width="180"
+                    :height="45"
+                    :isPill="false"
+                    class="mr-4"
+                    @change="onLangChange"
+                    :fontSize="16"
+                />
             </div>
 
             <v-btn v-if="core.user_id == 0" height="42" @click="onConnect" color="color_red_1" class="mr-4">
@@ -17,13 +31,23 @@
 
             <template v-if="true">
                 <!-- 登录 -->
-                <v-btn v-if="core.user_id == 0" :small="$vuetify.breakpoint.mobile" color="#ffb01b"
-                    class="text-14 black--text" @click="handlerLogin">
+                <v-btn
+                    v-if="core.user_id == 0"
+                    :small="$vuetify.breakpoint.mobile"
+                    color="#ffb01b"
+                    class="text-14 black--text"
+                    @click="handlerLogin"
+                >
                     <span class="px-2">{{LangUtil("登录")}}</span>
                 </v-btn>
                 <!-- 注册 -->
-                <v-btn v-if="core.user_id == 0" :small="$vuetify.breakpoint.mobile" color="white"
-                    class="text-14 mx-4 black--text" @click="handlerRegister">
+                <v-btn
+                    v-if="core.user_id == 0"
+                    :small="$vuetify.breakpoint.mobile"
+                    color="white"
+                    class="text-14 mx-4 black--text"
+                    @click="handlerRegister"
+                >
                     <span class="px-2">{{LangUtil("注册")}}</span>
                 </v-btn>
             </template>
@@ -35,15 +59,24 @@
         <!-- 导航 -->
         <div class="d-flex mt-2">
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
-            <button v-if="!$vuetify.breakpoint.mobile" class="nav-button"
-                :class="(routerPath == '/' && categoryActive == -1) ? 'active' : ''" @click="goHome">
+            <button
+                v-if="!$vuetify.breakpoint.mobile"
+                class="nav-button"
+                :class="(routerPath == '/' && categoryActive == -1) ? 'active' : ''"
+                @click="goHome"
+            >
                 <v-icon>mdi-home</v-icon>
                 <div>{{LangUtil("首页")}}</div>
             </button>
 
-            <button v-if="!$vuetify.breakpoint.mobile" class="nav-button d-none d-md-flex"
-                v-for="(item, index) of pageData.lobbyIndex" :key="index" @click="goAnchor(item.category)"
-                :class="(routerPath == '/' && categoryActive == index) ? 'active' : ''">
+            <button
+                v-if="!$vuetify.breakpoint.mobile"
+                class="nav-button d-none d-md-flex"
+                v-for="(item, index) of pageData.lobbyIndex"
+                :key="index"
+                @click="goAnchor(item.category)"
+                :class="(routerPath == '/' && categoryActive == index) ? 'active' : ''"
+            >
                 <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
                 <div>{{ item.category_name }}</div>
             </button>
@@ -61,12 +94,10 @@
                 <div class="ml-1">{{LangUtil("优惠活动")}}</div>
             </button>
             <!-- 推广赚钱 -->
-            <button class="nav-button" :class="routerPath == '/page_extension' ? 'active' : ''"
-                @click="goExtension">
+            <button class="nav-button" :class="routerPath == '/page_extension' ? 'active' : ''" @click="goExtension">
                 <v-icon>mdi-hand-extended</v-icon>
                 <div class="ml-1">{{LangUtil("推广赚钱")}}</div>
             </button>
-
         </div>
     </v-container>
     <!-- 手机 -->
@@ -74,25 +105,33 @@
         <div class="d-flex align-center">
             <img :src="commonIcon.logo" height="30" alt="" />
             <v-spacer />
-  
-            <v-btn v-if="core.user_id == 0"  @click="onConnect" color="color_red_1" class="mr-4" x-small>
+
+            <v-btn v-if="core.user_id == 0" @click="onConnect" color="color_red_1" class="mr-4" x-small>
                 <v-icon class="mr-1" x-small>mdi-credit-card-plus-outline</v-icon>
                 <span class="ml-2">{{LangUtil("链接钱包")}}</span>
             </v-btn>
 
             <v-btn fab x-small class="mr-2 rounded-pill color_red_1" @click="goActivity">
-                <img src="@/_skin003/assets/activity/icon_activity.png" width="18"/>
+                <img src="@/_skin003/assets/activity/icon_activity.png" width="18" />
                 <!-- <div>{{LangUtil("活动")}}</div> -->
             </v-btn>
-            <v-btn fab x-small  class="mr-2 color_red_1 rounded-pill " @click="onService">
+            <v-btn fab x-small class="mr-2 color_red_1 rounded-pill" @click="onService">
                 <!-- <v-icon small>mdi-message-text-outline</v-icon> -->
-                <img src="@/_skin003/assets/activity/icon_kefu.png" width="18"/>
+                <img src="@/_skin003/assets/activity/icon_kefu.png" width="18" />
                 <!-- <div>{{LangUtil("客服")}}</div> -->
             </v-btn>
             <div v-if="LangConfig.language" class="language">
-                <CustomSelect v-model="core.lang" :options="LangConfig.language" :icons="LangConfig.language"
-                    :width="$vuetify.breakpoint.xsOnly? 45 : 130" :height="30" fontSize="12" iconSize="20"
-                    :isPill="true" @change="onLangChange" />
+                <CustomSelect
+                    v-model="core.lang"
+                    :options="LangConfig.language"
+                    :icons="LangConfig.language"
+                    :width="$vuetify.breakpoint.xsOnly? 45 : 130"
+                    :height="30"
+                    fontSize="12"
+                    iconSize="20"
+                    :isPill="true"
+                    @change="onLangChange"
+                />
             </div>
         </div>
         <div class="d-flex align-center mt-1 mb-2">
@@ -100,8 +139,7 @@
                 <v-btn v-if="core.user_id == 0" small color="#ffb01b" class="text-14 black--text" @click="handlerLogin">
                     <span class="px-2">{{LangUtil("登录")}}</span>
                 </v-btn>
-                <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text"
-                    @click="handlerRegister">
+                <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-4 black--text" @click="handlerRegister">
                     <span class="px-2">{{LangUtil("注册")}}</span>
                 </v-btn>
             </template>

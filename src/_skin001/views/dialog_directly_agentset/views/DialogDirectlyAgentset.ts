@@ -24,23 +24,20 @@ export default class DialogDirectlyAgentset extends AbstractView {
         }
         const res = parseFloat(this.formData.inputrate);
         //console.log("当前输入值" ,res)
-        if (res < 0)
-            return true
+        if (res < 0) return true;
 
-        console.log(typeof res, typeof this.playerInfo.parent_credit_rate)
+        console.log(typeof res, typeof this.playerInfo.parent_credit_rate);
         if (res > parseFloat(this.playerInfo.parent_credit_rate)) {
             //console.log("比自己的 大" ,this.playerInfo.parent_credit_rate)
             return true;
         }
-        return false
+        return false;
     }
 
     onClickSure() {
-
-        //const res = ((this.formData.inputrate *100)>>0) / 10000 
+        //const res = ((this.formData.inputrate *100)>>0) / 10000
         const res = this.formData.inputrate;
         this.myProxy.agent_direct_user_update(<any>res);
-
     }
     onClose() {
         this.pageData.bShow = false;
@@ -51,7 +48,6 @@ export default class DialogDirectlyAgentset extends AbstractView {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
-
         }
     }
 }

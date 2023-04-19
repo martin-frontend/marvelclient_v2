@@ -61,7 +61,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     setTableData(data: any) {
         this.tableData = <any>[];
-        const keys = Object.keys(data)
+        const keys = Object.keys(data);
         for (let index = 0; index < keys.length; index++) {
             const element = data[keys[index]];
             element.src = require(`@/_skin004/assets/categoryicon/${element.vendor_type}.png`);
@@ -102,7 +102,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     getCurMenuIndex() {
-        const keys = Object.keys(this.tableMenu)
+        const keys = Object.keys(this.tableMenu);
         for (let index = 0; index < keys.length; index++) {
             //@ts-ignore
             const element = this.tableMenu[keys[index]];
@@ -114,11 +114,11 @@ export default class PageGameListProxy extends puremvc.Proxy {
         return;
     }
     getFirstMenuIndex() {
-        const keys = Object.keys(this.tableMenu)
+        const keys = Object.keys(this.tableMenu);
         this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
         this.curMenuIndex = 0;
-        console.log("取第一个值", this.listQuery.vendor_type)
-        console.log("取第一个值", this.curMenuIndex)
+        console.log("取第一个值", this.listQuery.vendor_type);
+        console.log("取第一个值", this.curMenuIndex);
     }
 
     getCurItemIndex() {
@@ -135,9 +135,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     getFirstItemVendor() {
         if (this.gameMenuData && this.gameMenuData.length > 0) {
-            this.listQuery.vendor_id = this.gameMenuData[0].vendor_id
+            this.listQuery.vendor_id = this.gameMenuData[0].vendor_id;
         }
-
     }
     saveData() {
         const obj = {
@@ -155,9 +154,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
             this.curItemIndex = obj_json.curIndex;
             this.curMenuIndex = obj_json.curMenuIndex;
             this.headerProxy.categoryActive = this.listQuery.vendor_type;
-            //this.curMenuIndex = 
+            //this.curMenuIndex =
         }
-
     }
     //判断是否点击的当前的对象
     isCurItem(item: any) {
@@ -169,8 +167,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     //获取当前的菜单的数据
     getCurMenuData(isVendor: boolean = false) {
-        if (!this.curTotleData)
-            return [];
+        if (!this.curTotleData) return [];
         if (isVendor) {
             const list = <any>[];
             for (let n = 0; n < this.curTotleData.list.length; n++) {
@@ -179,20 +176,18 @@ export default class PageGameListProxy extends puremvc.Proxy {
                 }
             }
             return list;
-        }
-        else {
+        } else {
             return this.curTotleData.list;
         }
     }
     public get curTotleData(): any {
-        if (!this.tableMenu)
-            return null;
+        if (!this.tableMenu) return null;
         //console.log("当前查找的id 为", this.listQuery.vendor_type);
         if (!this.listQuery.vendor_type) {
             return null;
         }
         //console.log("当前查找的数组为", this.myProxy.gamemenuData);
-        const keys = Object.keys(this.tableMenu)
+        const keys = Object.keys(this.tableMenu);
         for (let index = 0; index < keys.length; index++) {
             //@ts-ignore
             const element = this.tableMenu[keys[index]];
@@ -203,7 +198,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
         return null;
     }
     public get tableMenu(): any {
-
         return this.headerProxy.pageData.lobbyMenuIndex;
     }
 }

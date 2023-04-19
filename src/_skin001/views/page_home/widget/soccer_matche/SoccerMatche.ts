@@ -9,17 +9,16 @@ import getProxy from "@/core/global/getProxy";
 export default class SoccerMatche extends AbstractView {
     LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
-    myProxy:PageHomeProxy = getProxy(PageHomeProxy);
+    myProxy: PageHomeProxy = getProxy(PageHomeProxy);
     pageData = this.myProxy.pageData;
 
-    get matches(){
+    get matches() {
         const arr = [];
-        for(const comp of this.pageData.compData){
-            for(const matche of comp.matches){
+        for (const comp of this.pageData.compData) {
+            for (const matche of comp.matches) {
                 arr.push(matche);
             }
         }
         return arr;
     }
-
 }

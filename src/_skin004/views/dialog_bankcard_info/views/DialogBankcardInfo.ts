@@ -42,10 +42,9 @@ export default class DialogBankcardInfo extends AbstractView {
 
     onDelete(item: any) {
         this.pageData.loading = true;
-        this.addressBookRemark.onDelete(item.id)
+        this.addressBookRemark.onDelete(item.id);
     }
     onAddress(item: any) {
-
         this.myProxy.pageData.bShow = false;
         //设置  姓名 和   卡号
         this.rechargeProxy.exchangeProxy.pageData.form.account = item.payment_method.account;

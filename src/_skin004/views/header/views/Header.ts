@@ -103,16 +103,14 @@ export default class Header extends AbstractView {
     getItemCategory(item: any) {
         if (item.category) {
             return item.category;
-        }
-        else {
+        } else {
             return item.vendor_type;
         }
     }
     getItemCategoryName(item: any) {
         if (item.category_name) {
             return item.category_name;
-        }
-        else {
+        } else {
             return item.vendor_type_name;
         }
     }
@@ -134,7 +132,6 @@ export default class Header extends AbstractView {
         if (ele_main) {
             ele_main.style.filter = this.isFilterChange ? "blur(10px)" : "none";
         }
-       
     }
     setIsFilter(val: boolean) {
         this.isFilterChange = val;
@@ -167,7 +164,7 @@ export default class Header extends AbstractView {
     goExtension() {
         // if (this.isShowDirectly == 2) {
         //     LoginEnter(dialog_agent_manager.show);
-        // } else if (this.isShowDirectly == 1) 
+        // } else if (this.isShowDirectly == 1)
         LoginEnter(page_extension.show);
     }
     /**打开介绍页面 */
@@ -177,7 +174,7 @@ export default class Header extends AbstractView {
     /**打开活动页面 */
     goActivity() {
         page_activity.show();
-    
+
         // dialog_activity.show();
     }
     /**打开登录页面 */
@@ -212,7 +209,7 @@ export default class Header extends AbstractView {
         ServiceUtil();
     }
 
-    goYellowWeb(){
+    goYellowWeb() {
         // @ts-ignore
         YellowWeb(GameConfig.config.pornWebsite);
     }

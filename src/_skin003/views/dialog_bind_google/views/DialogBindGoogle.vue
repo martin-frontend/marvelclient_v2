@@ -10,8 +10,8 @@ import CustomInput from "@/_skin003/views/widget/custom_input/CustomInput.vue";
 @Component({
     components: {
         CustomInput,
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogBindGoogle {}
 </script>

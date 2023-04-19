@@ -10,15 +10,19 @@ function show(tabIndex: number = 0) {
     proxy.show();
     proxy.pageData.tabIndex = tabIndex;
 
-    const selfProxy:SelfProxy = getProxy(SelfProxy);
-    if((selfProxy.userInfo.is_recharge != 1 && tabIndex == 0) || (selfProxy.userInfo.is_exchange != 1 && tabIndex == 1) || (selfProxy.userInfo.is_gold_transfer != 1 && tabIndex == 2) ){
-        if(selfProxy.userInfo.is_recharge == 1){
+    const selfProxy: SelfProxy = getProxy(SelfProxy);
+    if (
+        (selfProxy.userInfo.is_recharge != 1 && tabIndex == 0) ||
+        (selfProxy.userInfo.is_exchange != 1 && tabIndex == 1) ||
+        (selfProxy.userInfo.is_gold_transfer != 1 && tabIndex == 2)
+    ) {
+        if (selfProxy.userInfo.is_recharge == 1) {
             proxy.pageData.tabIndex = 0;
-        }else if(selfProxy.userInfo.is_exchange == 1){
+        } else if (selfProxy.userInfo.is_exchange == 1) {
             proxy.pageData.tabIndex = 1;
-        }else if(selfProxy.userInfo.is_gold_transfer == 1){
+        } else if (selfProxy.userInfo.is_gold_transfer == 1) {
             proxy.pageData.tabIndex = 2;
-        }else{
+        } else {
             proxy.pageData.tabIndex = -1;
         }
     }

@@ -27,14 +27,12 @@ export default class HeaderProxy extends puremvc.Proxy {
     setGameMenu(body: any) {
         this.pageData.lobbyMenuIndex = Object.freeze(body);
     }
-    
-  
+
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
     api_plat_var_lobby_index() {
         this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
     }
-
 
     openMenu() {
         setTimeout(() => {

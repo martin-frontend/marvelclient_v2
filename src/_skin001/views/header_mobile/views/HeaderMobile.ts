@@ -37,7 +37,7 @@ export default class HeaderMobile extends AbstractView {
     }
 
     /**切换语言 */
-    onLangChange(key:any) {
+    onLangChange(key: any) {
         window.localStorage.setItem("lang", key);
         location.reload();
     }

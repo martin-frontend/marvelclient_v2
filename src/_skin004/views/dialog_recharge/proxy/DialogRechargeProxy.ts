@@ -42,32 +42,30 @@ export class RechargeProxy extends puremvc.Proxy {
             recharge_channel_id: "",
             amount: "",
             third_id: "",
-            payemthod_id:"",
+            payemthod_id: "",
             subtitle: "",
         },
         gold_index: 0,
         //银行卡转账信息
-        bankTransInfo:<any>{},
+        bankTransInfo: <any>{},
     };
-    setTestData()
-    {
-        const obj={
-            explain:"asdasdas",
-            fee:"",
-            icon:"CNY_13_6_31630.png",
-            icon_url:"",
-            is_fixed_gold:1,
-            max_gold:"1000.00",
-            min_gold:"100.00",
-            subtitle:"永恒支付-coinfans560-支付宝zfbbc-34",
-            third_id:31630,
-            fixed_gold_list:["100", "200", "300", "500", "1000"]
-        }
+    setTestData() {
+        const obj = {
+            explain: "asdasdas",
+            fee: "",
+            icon: "CNY_13_6_31630.png",
+            icon_url: "",
+            is_fixed_gold: 1,
+            max_gold: "1000.00",
+            min_gold: "100.00",
+            subtitle: "永恒支付-coinfans560-支付宝zfbbc-34",
+            third_id: 31630,
+            fixed_gold_list: ["100", "200", "300", "500", "1000"],
+        };
         const list = <any>[];
         for (let index = 0; index < 3; index++) {
-            obj.third_id = obj.third_id+index;
-           list.push(JSON.parse(JSON.stringify(obj)));
-           
+            obj.third_id = obj.third_id + index;
+            list.push(JSON.parse(JSON.stringify(obj)));
         }
         return list;
     }
@@ -92,7 +90,7 @@ export class RechargeProxy extends puremvc.Proxy {
                     block_network_id = key;
                 }
             }
-           
+
             if (block_network_id) {
                 this.pageData.form.block_network_id = block_network_id;
                 this.pageData.form.recharge_channel_id =
@@ -103,7 +101,10 @@ export class RechargeProxy extends puremvc.Proxy {
                     this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                     this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                 }
-                if (data[coin_name_unique].options[block_network_id].payemthod_id == 6 || data[coin_name_unique].options[block_network_id].payemthod_id == 8) {
+                if (
+                    data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
+                    data[coin_name_unique].options[block_network_id].payemthod_id == 8
+                ) {
                     const channel = data[coin_name_unique].options[block_network_id].channel;
                     if (channel.length > 0) {
                         this.pageData.form.third_id = channel[0].third_id;
@@ -114,7 +115,6 @@ export class RechargeProxy extends puremvc.Proxy {
                         this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                     }
                 }
-                
             }
 
             // if (data[coin_name_unique].options[31].payemthod_id == 8) {
@@ -123,28 +123,26 @@ export class RechargeProxy extends puremvc.Proxy {
             //         banktran.channel = this.setTestData();
             //     }
             // }
-            
         }
         this.api_user_var_recharge_address();
-     //   this.setFirstBtn();
+        //   this.setFirstBtn();
     }
-    setFirstBtn(){
+    setFirstBtn() {
         const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
-        const sortedOptions:any[] = Object.values(coinObj).sort((a:any, b:any) => a.sort - b.sort);
+        const sortedOptions: any[] = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
         return sortedOptions[0].strkey;
     }
-    optionsSort(data:any) {
-        const tempdata = JSON.parse(JSON.stringify(data))
+    optionsSort(data: any) {
+        const tempdata = JSON.parse(JSON.stringify(data));
         for (const iterator of Object.entries(tempdata)) {
             const item1 = <any>iterator[1];
-            item1.strkey=iterator[0];
+            item1.strkey = iterator[0];
             if (!item1["sort"]) {
-                
                 item1.sort = 1000;
             }
         }
-        const sortedOptions = Object.values(tempdata).sort((a:any, b:any) => a.sort - b.sort);
-        
+        const sortedOptions = Object.values(tempdata).sort((a: any, b: any) => a.sort - b.sort);
+
         return sortedOptions;
     }
     async setAddress(data: string) {
@@ -155,7 +153,7 @@ export class RechargeProxy extends puremvc.Proxy {
 
     api_user_var_recharge_method_list() {
         this.pageData.loading = true;
-        this.sendNotification(net.HttpType.api_user_var_recharge_method_list, { user_id: core.user_id});
+        this.sendNotification(net.HttpType.api_user_var_recharge_method_list, { user_id: core.user_id });
     }
 
     api_user_var_recharge_address() {
@@ -169,20 +167,19 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    api_user_var_recharge_create(payemthod_id:any) {
+    api_user_var_recharge_create(payemthod_id: any) {
         this.pageData.loading = true;
-        const data = {user_id: core.user_id,request_unique:payemthod_id };
+        const data = { user_id: core.user_id, request_unique: payemthod_id };
         Object.assign(data, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
-    set_user_var_recharge_create(data: string){
+    set_user_var_recharge_create(data: string) {
         Object.assign(this.pageData.bankTransInfo, data);
         this.showbankDialog();
     }
-    showbankDialog(){
-        Object.assign(this.pageData.bankTransInfo, {amount:this.pageData.form.amount});
+    showbankDialog() {
+        Object.assign(this.pageData.bankTransInfo, { amount: this.pageData.form.amount });
         DialogRechargeBankcharge.show(this.pageData.bankTransInfo);
-
     }
 }
 
@@ -211,74 +208,69 @@ export class ExchangeProxy extends puremvc.Proxy {
             account_bank: "-", //
         },
     };
-    curBankinfo=<any>{};
+    curBankinfo = <any>{};
 
-    bankCardInfo=<any>{}; //所有银行卡信息
-    bankCard_nameArr=<any>{};
-    bankCard_numberArr=<any>{};
+    bankCardInfo = <any>{}; //所有银行卡信息
+    bankCard_nameArr = <any>{};
+    bankCard_numberArr = <any>{};
 
     resetform() {
         Object.assign(this.pageData.form, {
             amount: "",
             account: "",
             password_gold: "",
-            bank_id:"",
-            bank:"",
+            bank_id: "",
+            bank: "",
             //account_name:"",
         });
         this.curBankinfo = null;
         this.setRealName();
     }
 
-    setRealName()
-    {
-        if (this.selfProxy.userInfo.real_name_decrypt)
-        {
+    setRealName() {
+        if (this.selfProxy.userInfo.real_name_decrypt) {
             this.pageData.form.account_name = this.selfProxy.userInfo.real_name_decrypt;
-        }
-        else
-        {
+        } else {
             this.pageData.form.account_name = "";
         }
-        console.log("设置真实信命" + this.pageData.form.account_name );
+        console.log("设置真实信命" + this.pageData.form.account_name);
     }
-    addusdt(){
-        const  data:any={};
-       
+    addusdt() {
+        const data: any = {};
+
         data.name = "USDT";
         data.payment_method_type = 5;
-        data.options={};
-        data.options["2"]={};
-        data.options["2"].name="BSC";
+        data.options = {};
+        data.options["2"] = {};
+        data.options["2"].name = "BSC";
         data.options["2"].payment_method_type = 4;
         data.options["2"].exchange_channel_id = 2;
         data.options["2"].exchange_channel_method_id = 7;
-        data.options["2"].subtitle="";
-        data.options["2"].explain="";
-        data.options["2"].balance="";
-        data.options["2"].free_time=1;
-        data.options["2"].fee="2%";
-        data.options["2"].min_out="10.0000";
-        data.options["2"].max_out="10000.000";
+        data.options["2"].subtitle = "";
+        data.options["2"].explain = "";
+        data.options["2"].balance = "";
+        data.options["2"].free_time = 1;
+        data.options["2"].fee = "2%";
+        data.options["2"].min_out = "10.0000";
+        data.options["2"].max_out = "10000.000";
         data.options["2"].index_no = 2;
-        data.options["6"]={};
-        data.options["6"].name="TRC20";
+        data.options["6"] = {};
+        data.options["6"].name = "TRC20";
         data.options["6"].payment_method_type = 4;
         data.options["6"].exchange_channel_id = 2;
         data.options["6"].exchange_channel_method_id = 8;
-        data.options["6"].subtitle="";
-        data.options["6"].explain="";
-        data.options["6"].balance="";
-        data.options["6"].free_time=1;
-        data.options["6"].fee="2%";
-        data.options["6"].min_out="10.0000";
-        data.options["6"].max_out="10000.000";
+        data.options["6"].subtitle = "";
+        data.options["6"].explain = "";
+        data.options["6"].balance = "";
+        data.options["6"].free_time = 1;
+        data.options["6"].fee = "2%";
+        data.options["6"].min_out = "10.0000";
+        data.options["6"].max_out = "10000.000";
         data.options["6"].index_no = 3;
         return data;
-
     }
     setData(data: any) {
-    //    data["USDT"] = this.addusdt();
+        //    data["USDT"] = this.addusdt();
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
@@ -309,76 +301,67 @@ export class ExchangeProxy extends puremvc.Proxy {
                 //设置地址，发送 请求
                 this.sendAddressInfo();
             }
-            
-           
         }
         this.setRealName();
         this.setFirstBtn();
     }
-    setFirstBtn(){
+    setFirstBtn() {
         const coinObj = this.optionsSort(this.pageData.methodList[this.pageData.form.coin_name_unique].options);
-        const sortedOptions:any = Object.values(coinObj).sort((a:any, b:any) => a.sort - b.sort);
-        this.pageData.form.block_network_id=sortedOptions[0]?.strkey;
+        const sortedOptions: any = Object.values(coinObj).sort((a: any, b: any) => a.sort - b.sort);
+        this.pageData.form.block_network_id = sortedOptions[0]?.strkey;
         this.pageData.form.exchange_channel_method_id = sortedOptions[0]?.exchange_channel_method_id;
         this.pageData.form.payment_method_type = sortedOptions[0]?.payment_method_type;
     }
-    optionsSort(data:any) {
-        const tempdata = JSON.parse(JSON.stringify(data))
+    optionsSort(data: any) {
+        const tempdata = JSON.parse(JSON.stringify(data));
         for (const iterator of Object.entries(tempdata)) {
             const item1 = <any>iterator[1];
-            item1.strkey=iterator[0];
+            item1.strkey = iterator[0];
             if (!item1["sort"]) {
-                
                 item1.sort = 1000;
             }
         }
-        const sortedOptions = Object.values(tempdata).sort((a:any, b:any) => a.sort - b.sort);
-        
+        const sortedOptions = Object.values(tempdata).sort((a: any, b: any) => a.sort - b.sort);
+
         return sortedOptions;
     }
     //设置地址，发送 请求
-    sendAddressInfo()
-    {
-        console.log("发送  请求地址消息")
+    sendAddressInfo() {
+        console.log("发送  请求地址消息");
         //设置地址，发送 请求
         const addressBookProxy: DialogAddressBookProxy = getProxy(DialogAddressBookProxy);
-        addressBookProxy.pageData.listQuery.type=this.pageData.form.payment_method_type;
-        addressBookProxy.pageData.listQuery.block_network_id=this.pageData.form.block_network_id;
-        addressBookProxy.pageData.listQuery.coin_name_unique=this.pageData.form.coin_name_unique;
+        addressBookProxy.pageData.listQuery.type = this.pageData.form.payment_method_type;
+        addressBookProxy.pageData.listQuery.block_network_id = this.pageData.form.block_network_id;
+        addressBookProxy.pageData.listQuery.coin_name_unique = this.pageData.form.coin_name_unique;
         addressBookProxy.setData(this.pageData.methodList);
     }
 
-    setCurBankInfo(bank_id:number)
-    {
-        console.log("需要搜索的银行id " ,bank_id );
+    setCurBankInfo(bank_id: number) {
+        console.log("需要搜索的银行id ", bank_id);
         const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
         for (let index = 0; index < arr.length; index++) {
             const element = arr[index];
-            if (element.bank_id == bank_id)
-            {
+            if (element.bank_id == bank_id) {
                 this.curBankinfo = element;
-                console.log("设置  银行 " ,element);
+                console.log("设置  银行 ", element);
                 return;
             }
         }
     }
     setAddress(data: any) {
-        console.log("收到 银行卡 信息 回调" );
+        console.log("收到 银行卡 信息 回调");
         this.bankCardInfo = data;
-        this.bankCard_nameArr=[];
-        this.bankCard_numberArr=[];
-        if (!this.bankCardInfo)
-            return;
+        this.bankCard_nameArr = [];
+        this.bankCard_numberArr = [];
+        if (!this.bankCardInfo) return;
 
         for (let index = 0; index < this.bankCardInfo.length; index++) {
             const element = this.bankCardInfo[index];
-            if (this.bankCard_nameArr.indexOf(element.payment_method.account_name) ==-1)
-            {
+            if (this.bankCard_nameArr.indexOf(element.payment_method.account_name) == -1) {
                 this.bankCard_nameArr.push(element.payment_method.account_name);
             }
 
-            if (this.bankCard_numberArr.indexOf(element.payment_method.account) ==-1)
-            {
+            if (this.bankCard_numberArr.indexOf(element.payment_method.account) == -1) {
                 this.bankCard_numberArr.push(element.payment_method.account);
             }
         }
@@ -445,7 +428,7 @@ export class ExchangeProxy extends puremvc.Proxy {
             account_name,
             account_bank,
         };
-        sendObj.account_name = convert_vi_to_en(sendObj.account_name);;
+        sendObj.account_name = convert_vi_to_en(sendObj.account_name);
         console.log("发送的数据为", sendObj);
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
     }

@@ -3,15 +3,15 @@
         <div v-if="$vuetify.breakpoint.mobile">
             <Advertise />
             <Marquee1 class="mt-1" />
-            <Activity v-if="$vuetify.breakpoint.xsOnly"/>
+            <Activity v-if="$vuetify.breakpoint.xsOnly" />
         </div>
         <div v-else>
             <Activity />
             <Marquee1 class="mt-1" />
         </div>
-        
-        <SoccerMatche v-if="SkinVariable.isShowSoccerMatche"/>
-    
+
+        <SoccerMatche v-if="SkinVariable.isShowSoccerMatche" />
+
         <div v-for="(item, index) of pageData.lobbyIndex" :key="index" class="mt-n3">
             <GameSlideGroup
                 v-if="item.category != 32 && item.category != 64"
@@ -29,14 +29,13 @@
             <RecentBetting :class="$vuetify.breakpoint.xsOnly ? 'mt-3' : 'mt-8'" />
         </v-lazy>
         <div v-if="!$vuetify.breakpoint.mobile">
-            <ProjectInfo1 class=" mt-6"/>  
-            <ProjectInfo2 class=" mt-6" />  
+            <ProjectInfo1 class="mt-6" />
+            <ProjectInfo2 class="mt-6" />
         </div>
-       
+
         <div class="mb-13" v-if="$vuetify.breakpoint.mobile">
             <div class="all-rights-reserved">version:{{getVersion()}}</div>
             <div class="all-rights-reserved">{{getChannelID()}}</div>
         </div>
-
     </div>
 </v-container>

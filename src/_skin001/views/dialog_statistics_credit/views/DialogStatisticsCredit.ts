@@ -99,10 +99,9 @@ export default class DialogStatisticsCredit extends AbstractView {
         this.myProxy.api_user_var_credit_statistic();
     }
 
-
     get isMine(): boolean {
         if (this.myProxy.userListInfo.length > 1) {
-            return false
+            return false;
         }
         return true;
     }
@@ -137,8 +136,7 @@ export default class DialogStatisticsCredit extends AbstractView {
             this.timeRange = [start, end];
             this.myProxy.setcoin_name_unique();
             this.onTimeChange();
-        }
-        else {
+        } else {
             this.myProxy.reseData();
         }
     }
@@ -153,7 +151,7 @@ export default class DialogStatisticsCredit extends AbstractView {
             bind_relation: this.pageData.bind_relation,
             parents: userlist,
             target_user_id: user_id,
-        }
+        };
         dialog_bet_record.show(user_id, this.timeRange[0], this.timeRange[1], false, {
             coin_name_unique: this.myProxy.coin_name_unique,
             bShowMoneyType: true,
@@ -168,17 +166,17 @@ export default class DialogStatisticsCredit extends AbstractView {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return ""
+            return "";
         }
-        return (!!str && str.search('-') == -1) ? "colorGreen--text" : "colorRed2--text";
+        return !!str && str.search("-") == -1 ? "colorGreen--text" : "colorRed2--text";
     }
     getMoneyValue(str: string): string {
         const newstr = str.replace("$", "");
         const amount = Number(newstr);
         if (amount == 0) {
-            return str
+            return str;
         }
-        if (!!str && str.search('-') == -1) return "+" + str;
+        if (!!str && str.search("-") == -1) return "+" + str;
         return str;
     }
 

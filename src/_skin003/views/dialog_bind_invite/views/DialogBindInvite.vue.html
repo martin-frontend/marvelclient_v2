@@ -8,19 +8,36 @@
             </v-btn>
         </v-card-title>
         <v-sheet color="color_black_2" class="ma-2 rounded-lg">
-            <v-card-text v-if="pageData.bShow" class="px-10 ">
+            <v-card-text v-if="pageData.bShow" class="px-10">
                 <CustomInput class="mb-3" :placeholder="LangUtil('请输入绑定上级ID')" v-model="pageData.inviteId" />
-                <div class="ml-5 colorDialogInfo--text" :class="$vuetify.breakpoint.xsOnly? 'mb-0' : 'mb-9'">{{LangUtil("确定绑定后无法更改")}}</div>
-                <v-btn v-if="!$vuetify.breakpoint.xsOnly" class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit"
-                    block>{{LangUtil("确定绑定")}}</v-btn>
+                <div class="ml-5 colorDialogInfo--text" :class="$vuetify.breakpoint.xsOnly? 'mb-0' : 'mb-9'">
+                    {{LangUtil("确定绑定后无法更改")}}
+                </div>
+                <v-btn
+                    v-if="!$vuetify.breakpoint.xsOnly"
+                    class="rounded-lg"
+                    color="colorBtnBg"
+                    height="48"
+                    :disabled="!isCheckedId"
+                    @click="onSubmit"
+                    block
+                    >{{LangUtil("确定绑定")}}</v-btn
+                >
             </v-card-text>
         </v-sheet>
 
         <v-sheet color="transparent" class="ml-7 mr-7 mt-7">
-            <v-btn v-if="$vuetify.breakpoint.xsOnly" class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit"
-                    block>{{LangUtil("确定绑定")}}</v-btn>
+            <v-btn
+                v-if="$vuetify.breakpoint.xsOnly"
+                class="rounded-lg"
+                color="colorBtnBg"
+                height="48"
+                :disabled="!isCheckedId"
+                @click="onSubmit"
+                block
+                >{{LangUtil("确定绑定")}}</v-btn
+            >
         </v-sheet>
-
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

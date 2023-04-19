@@ -10,11 +10,7 @@ export default class DialogTradePasswordMediator extends AbstractMediator {
     LangUtil = LangUtil;
 
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_change_password_gold_var,
-            net.EventType.api_public_auth_code,
-            net.EventType.REQUEST_ERROR,
-        ];
+        return [net.EventType.api_user_change_password_gold_var, net.EventType.api_public_auth_code, net.EventType.REQUEST_ERROR];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

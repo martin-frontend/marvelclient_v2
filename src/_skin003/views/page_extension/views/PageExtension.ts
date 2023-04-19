@@ -124,21 +124,17 @@ export default class PageExtension extends AbstractView {
         dialog_personal_card.show(invite_user_business_card, false);
     }
 
-    
-    public get isShowRewardCoin() : boolean {
-        if (!this.tableData || !this.tableData.promotionConfig[0] || this.tableData.promotionConfig[0].length < 1)
-        {
+    public get isShowRewardCoin(): boolean {
+        if (!this.tableData || !this.tableData.promotionConfig[0] || this.tableData.promotionConfig[0].length < 1) {
             return false;
         }
         for (let index = 0; index < this.tableData.promotionConfig[0].length; index++) {
             const element = this.tableData.promotionConfig[0][index];
-            const item= element.commission_num[this.pageData.platCoins.rewardCoin.name];
-            if (item && (item != 0 && item != '0'))
-            {
+            const item = element.commission_num[this.pageData.platCoins.rewardCoin.name];
+            if (item && item != 0 && item != "0") {
                 return true;
             }
         }
         return false;
     }
-    
 }

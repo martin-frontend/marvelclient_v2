@@ -7,7 +7,7 @@
                     {{forgetData.bShow ? LangUtil('找回密码') : LangUtil('登录')}}
                 </div>
                 <v-spacer />
-                <v-btn class="mr-2" icon @click="onClose" >
+                <v-btn class="mr-2" icon @click="onClose">
                     <v-icon color="white">{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>
@@ -48,7 +48,12 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkMail(forgetData.form.username)" @click="getCode">
                         {{LangUtil("验证码")}}
                     </v-btn> -->
-                    <DialogGetVerity :isCheck="checkMail(forgetData.form.username)" :category="0" :type="2" :email="forgetData.form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkMail(forgetData.form.username)"
+                        :category="0"
+                        :type="2"
+                        :email="forgetData.form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -104,7 +109,13 @@
                     <!-- <v-btn class="text-12" color="colorBtnBg" small :disabled="!checkPhone(forgetData.form.username)" @click="getCode"
                         >{{LangUtil("验证码")}}</v-btn
                     > -->
-                    <DialogGetVerity :isCheck="checkPhone(forgetData.form.username)" :category="1" :type="2" :area_code="forgetData.form.area_code" :mobile="forgetData.form.username"/>
+                    <DialogGetVerity
+                        :isCheck="checkPhone(forgetData.form.username)"
+                        :category="1"
+                        :type="2"
+                        :area_code="forgetData.form.area_code"
+                        :mobile="forgetData.form.username"
+                    />
                 </CustomInput>
 
                 <CustomInput
@@ -138,11 +149,7 @@
                     :placeholder="LangUtil('请输入账号/手机号/邮箱')"
                     v-model="pageData.form.username"
                 />
-                <CustomPassword
-                    icon="mdi-lock"
-                    :placeholder="LangUtil('请输入密码（6-20位）')"
-                    v-model="pageData.form.password"
-                />
+                <CustomPassword icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="pageData.form.password" />
                 <div class="password-operate">
                     <v-checkbox
                         v-model="pageData.remember"

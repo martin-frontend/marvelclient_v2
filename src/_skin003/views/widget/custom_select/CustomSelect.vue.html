@@ -16,10 +16,10 @@
                     :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
                 />
-                <div class="text-truncate" style="width:100%" :class="'text-'+fontSize">
+                <div class="text-truncate" style="width: 100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
                 </div>
-                <v-spacer/>
+                <v-spacer />
                 <div
                     v-if="options && Object.keys(options).length > 1 && !$vuetify.breakpoint.xsOnly"
                     class="icon-box iconfont ml-4 mr-4 text-14"
@@ -35,7 +35,6 @@
                 >
                     
                 </div>
-
             </v-sheet>
         </template>
         <v-sheet

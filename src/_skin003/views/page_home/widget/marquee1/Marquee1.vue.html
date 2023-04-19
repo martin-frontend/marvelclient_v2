@@ -5,7 +5,13 @@
     :class="$vuetify.breakpoint.xsOnly?'rounded':'rounded-lg'"
     class="d-flex align-center pr-3"
 >
-    <img :src="require(`@/_skin003/assets/icon/bullhorn.png`)" height="20" class="mx-2 mx-sm-4 marqueeIcon" color="colorMarqueeIcon" alt="" />
+    <img
+        :src="require(`@/_skin003/assets/icon/bullhorn.png`)"
+        height="20"
+        class="mx-2 mx-sm-4 marqueeIcon"
+        color="colorMarqueeIcon"
+        alt=""
+    />
     <div ref="marqueeBox" class="marquee-box">
         <div ref="marqueeText">{{pageData.text}}</div>
     </div>

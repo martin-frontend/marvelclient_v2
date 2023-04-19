@@ -15,7 +15,6 @@ export default class DialogNickName extends AbstractView {
     pageData = this.myProxy.pageData;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
-
     public get isLangage_vi(): boolean {
         const langT = core.lang.substring(0, 2);
         //console.log(" 语言",langT );

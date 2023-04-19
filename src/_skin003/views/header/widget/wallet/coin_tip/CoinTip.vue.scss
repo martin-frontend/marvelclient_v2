@@ -14,7 +14,7 @@
         position: absolute;
         left: -10px;
         top: 15px;
-        content: '';
+        content: "";
         width: 0;
         height: 0;
         border-style: solid;
@@ -27,7 +27,8 @@
 }
 
 @keyframes shake {
-    0%, 100% {
+    0%,
+    100% {
         transform: translatex(0);
     }
 

@@ -6,11 +6,9 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogDirectlySetting from "./DialogDirectlySetting";
 
-
 @Component({
     components: {
         Overlay,
-
     },
 })
 export default class extends DialogDirectlySetting {}

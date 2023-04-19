@@ -13,10 +13,7 @@ export default class PageGameListChessMediator extends AbstractMediator {
     }
 
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_plat_var_game_all_config,
-            net.EventType.api_plat_var_game_all_index,
-        ];
+        return [net.EventType.api_plat_var_game_all_config, net.EventType.api_plat_var_game_all_index];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

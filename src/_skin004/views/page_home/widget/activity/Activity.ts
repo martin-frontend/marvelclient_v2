@@ -19,8 +19,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class Activity extends AbstractView {
-    
-    @Prop( {default:0}) showDataType!: number;
+    @Prop({ default: 0 }) showDataType!: number;
     LangUtil = LangUtil;
     //proxy
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
@@ -37,26 +36,23 @@ export default class Activity extends AbstractView {
         return this.selfProxy.userInfo.user_id ? true : false;
     }
 
-    public  img_url( item:any): string {
+    public img_url(item: any): string {
         if (this.$vuetify.breakpoint.mobile) {
             return item.img_url_phone;
-        }
-        else {
+        } else {
             return item.img_url;
         }
     }
 
-    
-    public get isHaveData() : boolean {
+    public get isHaveData(): boolean {
         for (let index = 0; index < this.getShowData.length; index++) {
-            if (this.img_url( this.getShowData[index]))
-            {
+            if (this.img_url(this.getShowData[index])) {
                 return true;
             }
-        } 
+        }
         return false;
     }
-    
+
     /**CF今日涨跌 */
     get coinChangedData() {
         const str = this.pageData.swap_k.coin_a_b_changed;
@@ -70,24 +66,29 @@ export default class Activity extends AbstractView {
         }
     }
 
-    public get getShowData() : any {
-        if (!this.showDataType || this.showDataType == 0)
-            return this.noticeProxy.data.listType1
+    public get getShowData(): any {
+        if (!this.showDataType || this.showDataType == 0) return this.noticeProxy.data.listType1;
 
-            switch (this.showDataType) {
-                case 2  :return this.noticeProxy.data.listType4
-                case 8  :return this.noticeProxy.data.listType5
-                case 16 :return this.noticeProxy.data.listType6
-                case 32 :return this.noticeProxy.data.listType7
-                case 64 :return this.noticeProxy.data.listType8
-                case 4  :return this.noticeProxy.data.listType9
-                case 128:return this.noticeProxy.data.listType10
-                default:
-                    break;
-            }
-        
+        switch (this.showDataType) {
+            case 2:
+                return this.noticeProxy.data.listType4;
+            case 8:
+                return this.noticeProxy.data.listType5;
+            case 16:
+                return this.noticeProxy.data.listType6;
+            case 32:
+                return this.noticeProxy.data.listType7;
+            case 64:
+                return this.noticeProxy.data.listType8;
+            case 4:
+                return this.noticeProxy.data.listType9;
+            case 128:
+                return this.noticeProxy.data.listType10;
+            default:
+                break;
+        }
+
         return [];
-
     }
 
     onBigItemClick(item: any) {

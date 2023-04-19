@@ -38,7 +38,7 @@ export default class DialogSafetyCenter extends AbstractView {
     }
 
     checkValidateType(val: any) {
-        return this.validate_type.includes(val)
+        return this.validate_type.includes(val);
     }
 
     get isCheckFormMobile() {

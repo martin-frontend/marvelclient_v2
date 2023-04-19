@@ -8,8 +8,8 @@ import DialogNotice from "./DialogNotice";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogNotice {}
 </script>

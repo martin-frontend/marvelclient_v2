@@ -6,7 +6,7 @@ import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import CoinTip from "@/views/header/widget/wallet/coin_tip/CoinTip";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
-import DialogDirectlyTransfer from "./DialogDirectlyTransfer"
+import DialogDirectlyTransfer from "./DialogDirectlyTransfer";
 
 @Component({
     components: {
@@ -15,6 +15,5 @@ import DialogDirectlyTransfer from "./DialogDirectlyTransfer"
         CoinTip,
     },
 })
-
 export default class extends DialogDirectlyTransfer {}
 </script>

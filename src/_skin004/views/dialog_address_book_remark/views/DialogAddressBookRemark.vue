@@ -8,8 +8,8 @@ import DialogAddressBookRemark from "./DialogAddressBookRemark";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogAddressBookRemark {}
 </script>

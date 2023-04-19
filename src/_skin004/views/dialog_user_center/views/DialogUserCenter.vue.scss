@@ -1,7 +1,7 @@
-.text_height{
+.text_height {
     height: calc(100% - 190px);
 }
-.empty_width{
+.empty_width {
     width: 38px;
     @media only screen and (max-width: 600px) {
         width: 32px;

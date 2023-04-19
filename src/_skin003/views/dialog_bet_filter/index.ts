@@ -3,7 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import DialogBetFilterProxy from "./proxy/DialogBetFilterProxy";
 import DialogBetFilter from "./views/DialogBetFilter.vue";
 
-function show(data:any = null) {
+function show(data: any = null) {
     DialogMount(DialogBetFilter);
     const proxy: DialogBetFilterProxy = getProxy(DialogBetFilterProxy);
     proxy.pageData.bShow = true;

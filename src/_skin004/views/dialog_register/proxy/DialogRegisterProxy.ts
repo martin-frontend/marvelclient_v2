@@ -19,7 +19,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             verify_code: "",
             register_type: 1, //1：用户名 2：邮箱 4：手机
             area_code: SkinVariable.defaultCode,
-            backup_phone:"", //账号注册里面的手机号
+            backup_phone: "", //账号注册里面的手机号
         },
         auth_image: "",
         areaCode: <any>[],
@@ -32,7 +32,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
             verify_code: "",
-            backup_phone:"",
+            backup_phone: "",
         });
     }
 
@@ -49,11 +49,12 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     /**--账号--注册*/
     api_user_register() {
         this.pageData.loading = true;
-        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type,backup_phone } = this.pageData.form;
+        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, backup_phone } =
+            this.pageData.form;
         this.sendNotification(net.HttpType.api_user_register, {
             invite_user_id,
             username,
-            password_ori:password,
+            password_ori: password,
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             verify_code,

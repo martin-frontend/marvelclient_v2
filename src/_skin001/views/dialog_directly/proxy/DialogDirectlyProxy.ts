@@ -18,10 +18,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     limitinfo = {
-        enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
-        enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
-        is_credit_user:0,
-    }
+        enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+        enable_credit_rate: 0, // 是否显示设置信用占比 0-不能|1-能
+        is_credit_user: 0,
+    };
     pageData = {
         enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
@@ -46,10 +46,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() { }
+    enter() {}
 
     /**离开页面时调用 */
-    leave() { }
+    leave() {}
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -58,8 +58,8 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
             page_size: 20,
         });
         Object.assign(this.limitinfo, {
-            enable_all:0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
-            enable_credit_rate:0, // 是否显示设置信用占比 0-不能|1-能
+            enable_all: 0, // 是否显示注册直属、设置信用占比、加款、扣款、设置流水、设置盘口 0-不能|1-能
+            enable_credit_rate: 0, // 是否显示设置信用占比 0-不能|1-能
         });
         this.pageData.search = "";
         this.parameter.direct_user_id = "";
@@ -88,7 +88,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     setFloorRangeData(agent_user_id: number, val: number) {
         this.parameter.agent_user_id = agent_user_id;
-        this.api_user_var_agent_var_floor_range()
+        this.api_user_var_agent_var_floor_range();
         this.dialogPromotionFloorProxy.setSelectedFloorData(this.parameter.agent_user_id, val);
         dialog_promotion_floor.show();
     }

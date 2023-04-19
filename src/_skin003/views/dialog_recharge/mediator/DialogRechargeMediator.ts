@@ -12,11 +12,11 @@ import SelfProxy from "@/proxy/SelfProxy";
 export default class DialogRechargeMediator extends AbstractMediator {
     private selfProxy: SelfProxy = getProxy(SelfProxy);
 
-    onRegister(){
+    onRegister() {
         const myProxy: DialogRechargeProxy = getProxy(DialogRechargeProxy);
         myProxy.exchangeProxy.gold_info = this.selfProxy.userInfo.gold_info;
         myProxy.transferProxy.gold_info = this.selfProxy.userInfo.gold_info;
-    }    
+    }
 
     public listNotificationInterests(): string[] {
         return [

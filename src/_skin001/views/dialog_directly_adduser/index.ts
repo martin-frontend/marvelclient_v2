@@ -10,8 +10,6 @@ function show() {
     proxy.pageData.bShow = true;
     const selfProxy: SelfProxy = getProxy(SelfProxy);
     proxy.setData(selfProxy.userInfo);
-
-   
 }
 
 export default { show };

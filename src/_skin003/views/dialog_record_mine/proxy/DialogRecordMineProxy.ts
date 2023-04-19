@@ -30,22 +30,21 @@ export default class DialogRecordMineProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    settestData()
-    {
+    settestData() {
         //item.total_backwater[Object.keys(item.total_backwater)[1]]
         const obj = {
-            created_at:"2022-12-14 18:37:14",
-            total_backwater:{
-                0:789667,
-                1:7890989,
-                2:675675,
+            created_at: "2022-12-14 18:37:14",
+            total_backwater: {
+                0: 789667,
+                1: 7890989,
+                2: 675675,
             },
-            total_water:34234,
-        }
+            total_water: 34234,
+        };
 
         const list = <any>[];
         for (let i = 0; i < 10; i++) {
-            list.push(obj); 
+            list.push(obj);
         }
         return list;
     }

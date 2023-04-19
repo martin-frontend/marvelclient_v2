@@ -119,8 +119,6 @@ export default class PageMineProxy extends puremvc.Proxy {
                 this.pageData.platCoins.rewardCoin = this.pageData.platCoins.mainCoin;
                 this.pageData.platCoins.rewardCoin.name = this.pageData.platCoins.mainCoin.name;
             }
-
-
         } catch (error) {
             console.log("error", error);
         }

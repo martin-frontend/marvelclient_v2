@@ -11,7 +11,7 @@ import CustomInput from "@/_skin003/views/widget/custom_input/CustomInput.vue";
     components: {
         Overlay,
         CustomInput,
-    }
+    },
 })
 export default class extends DialogRealName {}
 </script>

@@ -47,33 +47,30 @@ export default class DialogGoldWaterProxy extends puremvc.Proxy {
         } else {
             this.pageData.list = data.list;
         }
-      //  this.pageData.list = this.setTestData();
+        //  this.pageData.list = this.setTestData();
     }
     /**测试数据 */
-    setTestData()
-    {
-        const obj={
-            id:"1513808", 
-            data_belong:"2_30024", 
-            user_id:30000765, 
-            plat_id:23423, 
-            gold:"23423", 
-            gold_scale:"23423", 
-            coin_name_unique:"INR", 
-            water:"0.00", 
-            water_limit:"1111.10", 
-            type:"平台赠送", 
-            pass_type:0, 
-            status:"未通过", 
-            relation_ids:"{\"mail_id\":260496,\"award_id\":0}", 
+    setTestData() {
+        const obj = {
+            id: "1513808",
+            data_belong: "2_30024",
+            user_id: 30000765,
+            plat_id: 23423,
+            gold: "23423",
+            gold_scale: "23423",
+            coin_name_unique: "INR",
+            water: "0.00",
+            water_limit: "1111.10",
+            type: "平台赠送",
+            pass_type: 0,
+            status: "未通过",
+            relation_ids: '{"mail_id":260496,"award_id":0}',
 
-            created_at:"2023-03-08 09:54:55", 
-            updated_by:"system", 
-            pdated_at:"2023-03-08 09:54:55"
-
-
-        }
-        const list=[];
+            created_at: "2023-03-08 09:54:55",
+            updated_by: "system",
+            pdated_at: "2023-03-08 09:54:55",
+        };
+        const list = [];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
         }
@@ -100,6 +97,5 @@ export default class DialogGoldWaterProxy extends puremvc.Proxy {
         const obj = { user_id: core.user_id };
         //Object.assign(obj, this.pageData.listQuery);
         this.sendNotification(net.HttpType.api_user_var_gold_water_index, obj);
-
     }
 }

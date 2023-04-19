@@ -2,14 +2,9 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogDirectlyAgentsetProxy from "../proxy/DialogDirectlyAgentsetProxy";
 import getProxy from "@/core/global/getProxy";
 
-
 export default class DialogDirectlyAgentsetMediator extends AbstractMediator {
-
     public listNotificationInterests(): string[] {
-        return [
-            net.EventType.api_user_var_agent_direct_user_update,
-
-        ];
+        return [net.EventType.api_user_var_agent_direct_user_update];
     }
 
     public handleNotification(notification: puremvc.INotification): void {

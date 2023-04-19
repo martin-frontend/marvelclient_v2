@@ -26,7 +26,7 @@ export default class APP extends AbstractView {
     }
 
     get guideImg() {
-        return this.core.lang.includes('zh') ? require('@/assets/guide/img03.png'):require('@/assets/guide/img04.png');
+        return this.core.lang.includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
     }
 
     @Watch("$vuetify.breakpoint.width")
@@ -67,7 +67,7 @@ export default class APP extends AbstractView {
                 return false;
             }
             return true;
-        }  else if (!this.$vuetify.breakpoint.mobile) {
+        } else if (!this.$vuetify.breakpoint.mobile) {
             return true;
         }
     }

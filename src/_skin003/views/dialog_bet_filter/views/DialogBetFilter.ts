@@ -23,13 +23,11 @@ export default class DialogBetFilter extends AbstractView {
             name: LangUtil("个人投注"),
             value: "single",
         },
-
-    ]
+    ];
     radios = ""; //筛选默认的选择
     constructor() {
         super(DialogBetFilterMediator);
     }
-
 
     public get teamDirectlyInfo(): any {
         //return JSON.parse(JSON.stringify(this.myProxy.teamDirectlyInfo ));
@@ -40,8 +38,7 @@ export default class DialogBetFilter extends AbstractView {
         this.pageData.bShow = false;
     }
     @Watch("radios")
-    onWatchRadioChange()
-    {
+    onWatchRadioChange() {
         //console.log("radios值变化了" , this.radios);
     }
     @Watch("pageData.bShow")
@@ -56,18 +53,14 @@ export default class DialogBetFilter extends AbstractView {
             //this.myProxy.api_xxx();
             this.firstShow = false;
         }
-
-
     }
     onClick(val: any) {
         //console.log("------点击确标题是的定----- ", val)
         if (val[1]) {
             if (val[0].user_id == core.user_id) {
                 return;
-            }
-            else {
-                if (val[0].directly_users <= 0)
-                    return;
+            } else {
+                if (val[0].directly_users <= 0) return;
                 //需要请求下面
                 if (!(val[0].childs && val[0].childs.length > 0)) {
                     //console.log("需要请求");
@@ -78,19 +71,17 @@ export default class DialogBetFilter extends AbstractView {
     }
 
     onClickSure(val: any) {
-        if (!val.parents)
-        {
+        if (!val.parents) {
             val.parents = [];
             val.parents.unshift(core.user_id);
-        }
-        else if ( val.parents.indexOf(core.user_id) == -1) {
+        } else if (val.parents.indexOf(core.user_id) == -1) {
             val.parents.unshift(core.user_id);
         }
         const obj = {
             user_id: val.user_id,
             is_group: this.radios == this.radiosInfo[1].value ? 1 : 2,
             parents: val.parents,
-        }
+        };
         this.betProxy.refrushFilter(obj);
         this.onClose();
     }

@@ -37,10 +37,8 @@ export default class PageGameList extends AbstractView {
     }
     //体育/真人/彩票 使用 game/menu里面的数据
     public get isUseMenuData(): boolean {
-        if (!this.isNeetMenu)
-            return false;
-        if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64)
-            return true;
+        if (!this.isNeetMenu) return false;
+        if (this.listQuery.vendor_type == 4 || this.listQuery.vendor_type == 32 || this.listQuery.vendor_type == 64) return true;
 
         return false;
     }
@@ -76,14 +74,13 @@ export default class PageGameList extends AbstractView {
     }
 
     public get curTotleData(): any {
-        if (!this.tableMenu)
-            return null;
+        if (!this.tableMenu) return null;
         //console.log("当前查找的id 为", this.listQuery.vendor_type);
         if (!this.listQuery.vendor_type) {
             return null;
         }
         //console.log("当前查找的数组为", this.myProxy.gamemenuData);
-        const keys = Object.keys(this.tableMenu)
+        const keys = Object.keys(this.tableMenu);
         for (let index = 0; index < keys.length; index++) {
             //@ts-ignore
             const element = this.tableMenu[keys[index]];
@@ -99,14 +96,11 @@ export default class PageGameList extends AbstractView {
             return "";
         }
         return LangUtil(this.curTotleData.vendor_type_name);
-
     }
-
 
     //获取当前的菜单的数据
     getCurMenuData(isVendor: boolean = false) {
-        if (!this.curTotleData)
-            return null;
+        if (!this.curTotleData) return null;
         if (isVendor) {
             const list = <any>[];
             for (let n = 0; n < this.curTotleData.list.length; n++) {
@@ -115,8 +109,7 @@ export default class PageGameList extends AbstractView {
                 }
             }
             return list;
-        }
-        else {
+        } else {
             return this.curTotleData.list;
         }
     }
@@ -130,7 +123,7 @@ export default class PageGameList extends AbstractView {
     getIcon(item: any) {
         //return require(`@/_skin004/assets/2211.png`);
         if (!item || !item.vendor_icon) {
-            return ""
+            return "";
         }
         return item.vendor_icon;
     }
@@ -157,16 +150,14 @@ export default class PageGameList extends AbstractView {
     getItemCategory(item: any) {
         if (item.category) {
             return item.category;
-        }
-        else {
+        } else {
             return item.vendor_type;
         }
     }
     getItemCategoryName(item: any) {
         if (item.category_name) {
             return item.category_name;
-        }
-        else {
+        } else {
             return item.vendor_type_name;
         }
     }

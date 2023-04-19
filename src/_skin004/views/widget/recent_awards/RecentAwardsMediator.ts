@@ -9,7 +9,7 @@ export default class RecentAwardsMediator extends AbstractMediator {
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
-        console.log("RecentAwards_RecentAwardsMediator>>")
+        console.log("RecentAwards_RecentAwardsMediator>>");
         const myProxy: RecentAwardsProxy = getProxy(RecentAwardsProxy);
         switch (notification.getName()) {
             case net.EventType.api_plat_var_plat_big_award:

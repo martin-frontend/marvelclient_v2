@@ -16,7 +16,6 @@ export default function LoginEnter(fun: any) {
 }
 
 export function EnterGame(item: any) {
-
     const gameProxy: GameProxy = getProxy(GameProxy);
     // const { coin_name_unique } = gameProxy;
     // if (coin_name_unique != item.settle_coin_name_unique) {
@@ -30,5 +29,4 @@ export function EnterGame(item: any) {
     // }
     // else
     gameProxy.api_vendor_var_ori_product_show_var(item);
-
 }

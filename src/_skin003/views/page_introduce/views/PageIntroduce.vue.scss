@@ -1,12 +1,12 @@
 $introFontFamily: "PingFang SC";
 $introIntroText: rgba(255, 255, 255, 0.8);
-$chainMsgLabelColor: #BEBEBE;
+$chainMsgLabelColor: #bebebe;
 $introChainTextColor: rgba(255, 255, 255, 0.8);
-$waitTextColor: #6F7071;
+$waitTextColor: #6f7071;
 
 .intro-intro-md {
     background-image: url("~@/_skin003/assets/introduce/1.png");
-    background-position: right bottom ;
+    background-position: right bottom;
     background-repeat: no-repeat;
     background-size: 278px 260px;
     //font-family: $introFontFamily;
@@ -49,7 +49,7 @@ $waitTextColor: #6F7071;
 }
 
 .intro-text {
-    color: #BEBEBE !important;
+    color: #bebebe !important;
 }
 
 .intro-wait-text {
@@ -63,7 +63,7 @@ $waitTextColor: #6F7071;
 }
 
 .intro-btn-hover {
-    background: linear-gradient(90deg, #BA1B1A 0%, #BA1B1A 100%), #ffffff;
+    background: linear-gradient(90deg, #ba1b1a 0%, #ba1b1a 100%), #ffffff;
 }
 
 .intro-how-01-md {
@@ -109,7 +109,7 @@ $waitTextColor: #6F7071;
 }
 
 .intro-year-color {
-    color: #BEBEBE;
+    color: #bebebe;
 }
 
 .intro-distext-color {
@@ -118,13 +118,13 @@ $waitTextColor: #6F7071;
 
 .chartWrap {
     border-radius: 4px;
-    background: linear-gradient(90deg, #18191C 0%, #18191C 100%);
+    background: linear-gradient(90deg, #18191c 0%, #18191c 100%);
     max-height: 338px;
 }
 
 .chartWrap-md {
     border-radius: 4px;
-    background: linear-gradient(90deg, #18191C 0%, #18191C 100%);
+    background: linear-gradient(90deg, #18191c 0%, #18191c 100%);
 }
 
 .imgBox {

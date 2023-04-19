@@ -19,7 +19,7 @@ export default class DialogBindInviteMediator extends AbstractMediator {
         const body = notification.getBody();
         const myProxy: DialogBindInviteProxy = getProxy(DialogBindInviteProxy);
         if (!myProxy.pageData.bShow) {
-            return
+            return;
         }
         switch (notification.getName()) {
             case net.EventType.api_user_update_var:

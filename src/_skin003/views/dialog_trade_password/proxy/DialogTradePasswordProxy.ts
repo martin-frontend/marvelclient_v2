@@ -46,11 +46,9 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
         if (this.passWordShowType == 1) {
             sendobj.uuid = core.device;
             sendobj.code = verify_code;
-        }
-        else if (this.passWordShowType == 2) {
+        } else if (this.passWordShowType == 2) {
             sendobj.password_old = core.MD5.createInstance().hex_md5(logonPassword);
-        }
-        else if (this.passWordShowType == 3) {
+        } else if (this.passWordShowType == 3) {
             sendobj.code = verify_code;
         }
         console.log("发送的数据为", sendobj);
@@ -61,8 +59,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
         const selfProxy: SelfProxy = getProxy(SelfProxy);
         if (selfProxy.userInfo.password_gold_exists == 1) {
             return this.GameConfig.config.changeGoldPasswordFollowSetting || 3;
-        }
-        else {
+        } else {
             return this.GameConfig.config.changeGoldPasswordFirstSetting || 3;
         }
     }

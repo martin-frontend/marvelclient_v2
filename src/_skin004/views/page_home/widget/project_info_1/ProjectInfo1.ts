@@ -18,13 +18,13 @@ export default class ProjectInfo1 extends AbstractView {
     qrCode_android = null;
     qrCode_ios = null;
 
-    public get androidUrl() : string {
+    public get androidUrl(): string {
         return GameConfig.config.android_download_link;
     }
-    public get iosUrl() : string {
+    public get iosUrl(): string {
         return GameConfig.config.ios_download_link;
     }
-    
+
     async setLink_android() {
         const imgBase64 = await Utils.generateQrcode(this.androidUrl);
         this.qrCode_android = imgBase64;
@@ -33,5 +33,4 @@ export default class ProjectInfo1 extends AbstractView {
         const imgBase64 = await Utils.generateQrcode(this.iosUrl);
         this.qrCode_ios = imgBase64;
     }
-
 }

@@ -58,9 +58,7 @@ export default class DialogDirectly extends AbstractView {
         if (this.pageData.bShow) {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_agent_direct_list();
-        }
-        else
-        {
+        } else {
             this.myProxy.pageData.list = [];
         }
     }
@@ -100,7 +98,7 @@ export default class DialogDirectly extends AbstractView {
 
     handlerShowDialogSet(agent_user: any) {
         //dialog_directly_setting.show(agent_user);
-        dialog_directly_setting.show({userinfo:agent_user,limitinfo:this.limitinfo }   );
+        dialog_directly_setting.show({ userinfo: agent_user, limitinfo: this.limitinfo });
     }
     handlerShowAddUser() {
         dialog_add_user.show();

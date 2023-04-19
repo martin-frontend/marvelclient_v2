@@ -5,8 +5,7 @@
 import Component from "vue-class-component";
 import PageActivity from "./PageActivity";
 @Component({
-    components: {
-    },
+    components: {},
 })
 export default class extends PageActivity {
     mounted() {

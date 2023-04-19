@@ -113,9 +113,8 @@ export default class PageMineProxy extends puremvc.Proxy {
                     ? "一"
                     : (this.pageData.vipConfig[this.pageData.vipNextLevel - 1]["backwater_config"][3]["backwater_rate"] * 10000).toFixed(0);
 
-            if (! (this.pageData.backwaterConfigReward.now > 0))
-            {
-                this.pageData.backwaterConfigReward= JSON.parse(JSON.stringify( this.pageData.backwaterConfigMain));
+            if (!(this.pageData.backwaterConfigReward.now > 0)) {
+                this.pageData.backwaterConfigReward = JSON.parse(JSON.stringify(this.pageData.backwaterConfigMain));
 
                 this.pageData.platCoins.rewardCoin = this.pageData.platCoins.mainCoin;
                 this.pageData.platCoins.rewardCoin.name = this.pageData.platCoins.mainCoin.name;
@@ -123,8 +122,6 @@ export default class PageMineProxy extends puremvc.Proxy {
         } catch (error) {
             console.log("error", error);
         }
-
-
     }
 
     setTrial(body: any) {

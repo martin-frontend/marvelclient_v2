@@ -15,7 +15,6 @@ export default class AppProxy extends puremvc.Proxy {
         return true;
     }
 
-    
     get guideText() {
         //@ts-ignore
         return LangUtil(window.navigator.standalone === undefined ? "下载APP" : "添加到桌面");
@@ -27,14 +26,10 @@ export default class AppProxy extends puremvc.Proxy {
         const isIos = !!a.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios端
 
         if (isAndroid) {
-            this.downloadApp(GameConfig.config.android_download_link );
-        }
-        else if(isIos)
-        {
-            this.downloadApp(GameConfig.config.ios_download_link );
-        }
-        else
-        {
+            this.downloadApp(GameConfig.config.android_download_link);
+        } else if (isIos) {
+            this.downloadApp(GameConfig.config.ios_download_link);
+        } else {
             this.guideDrawer = true;
         }
 

@@ -8,7 +8,7 @@ export default class DialogDirectlyTransferMediator extends AbstractMediator {
             net.EventType.api_user_var_agent_direct_deduction,
             net.EventType.api_user_var_agent_credit_transfer,
             net.EventType.api_user_var_fetch_direct_user_info,
-            net.EventType.api_user_show_var
+            net.EventType.api_user_show_var,
         ];
     }
 
@@ -33,8 +33,6 @@ export default class DialogDirectlyTransferMediator extends AbstractMediator {
             case net.EventType.api_user_var_fetch_direct_user_info: //查询 用户信息
                 myProxy.setData(body);
                 break;
-
         }
-
     }
 }

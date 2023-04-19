@@ -63,7 +63,12 @@
                 </p>
             </div>
             <div class="listbox" v-if="pageData.data.detail.length > 0">
-                <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
+                <v-sheet
+                    class="px-3 py-2 rounded-lg mb-3 colorText2--text"
+                    color="colorPanelBg2"
+                    v-for="(item, key) of pageData.data.detail"
+                    :key="key"
+                >
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
                         <div>{{ item.water }}</div>

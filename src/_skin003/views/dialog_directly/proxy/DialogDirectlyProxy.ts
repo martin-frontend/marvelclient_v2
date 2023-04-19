@@ -41,10 +41,10 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
     };
 
     /**进入页面时调用 */
-    enter() { }
+    enter() {}
 
     /**离开页面时调用 */
-    leave() { }
+    leave() {}
 
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -55,17 +55,16 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         this.pageData.search = "";
         this.parameter.direct_user_id = "";
     }
-    setTestData()
-    {
-        const obj ={
-            binded_at:"sdasdaqwe",
-            user_id:"sdasdaqwe",
-            nick_name:"sdasdaqwe",
-            directly_users:"sqwe",
-            group_users:"sdasdaqwe",
-            promotion_floor:[],
-            status:1,
-        }
+    setTestData() {
+        const obj = {
+            binded_at: "sdasdaqwe",
+            user_id: "sdasdaqwe",
+            nick_name: "sdasdaqwe",
+            directly_users: "sqwe",
+            group_users: "sdasdaqwe",
+            promotion_floor: [],
+            status: 1,
+        };
 
         const list = [];
         for (let index = 0; index < 10; index++) {
@@ -96,7 +95,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
 
     setFloorRangeData(agent_user_id: number, val: number) {
         this.parameter.agent_user_id = agent_user_id;
-        this.api_user_var_agent_var_floor_range()
+        this.api_user_var_agent_var_floor_range();
         this.dialogPromotionFloorProxy.setSelectedFloorData(this.parameter.agent_user_id, val);
         dialog_promotion_floor.show();
     }

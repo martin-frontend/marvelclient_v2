@@ -9,8 +9,8 @@ import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 @Component({
     components: {
         Overlay,
-        CustomInput
-    }
+        CustomInput,
+    },
 })
 export default class extends DialogRechargeBankcharge {}
 </script>

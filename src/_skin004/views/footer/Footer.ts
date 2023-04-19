@@ -13,17 +13,17 @@ export default class Footer extends AbstractView {
     getVersion = getVersion;
 
     cooperationImgs = [
-        require('@/_skin001/assets/cooperation/easybet.png'),
-        require('@/_skin001/assets/cooperation/cfgaming.png'),
-        require('@/_skin001/assets/cooperation/bbn.png'),
-        require('@/_skin001/assets/cooperation/ag.png'),
-        require('@/_skin001/assets/cooperation/pg.png'),
-        require('@/_skin001/assets/cooperation/jdb.png'),
+        require("@/_skin001/assets/cooperation/easybet.png"),
+        require("@/_skin001/assets/cooperation/cfgaming.png"),
+        require("@/_skin001/assets/cooperation/bbn.png"),
+        require("@/_skin001/assets/cooperation/ag.png"),
+        require("@/_skin001/assets/cooperation/pg.png"),
+        require("@/_skin001/assets/cooperation/jdb.png"),
         // require('@/_skin001/assets/cooperation/ameba.png'),
         // require('@/_skin001/assets/cooperation/wl.png'),
         // require('@/_skin001/assets/cooperation/superblock.png'),
         // require('@/_skin001/assets/cooperation/pragmaticplay.png'),
-    ]
+    ];
 
     goService() {
         dialog_service.show();

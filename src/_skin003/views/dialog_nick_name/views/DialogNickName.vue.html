@@ -1,5 +1,4 @@
-<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
-    persistent>
+<v-dialog width="420" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="rounded-lg" color="colorPanelBg pb-2">
         <v-card-title class="gradient-bg">
             <div class="text-18">{{LangUtil("设置昵称")}}</div>
@@ -9,20 +8,35 @@
             </v-btn>
         </v-card-title>
         <template v-if="pageData.bShow">
-        <v-sheet color="color_black_2" class="ma-2 rounded-lg mb-0">
-            <v-card-text class="px-10 mt-5">
-                <CustomInput maxlength="12" class="mb-3" :placeholder="LangUtil('昵称为1-6位汉字或1-12位英文')"
-                    v-model="pageData.nickname" />
-                <div class="ml-5 colorDialogInfo--text" :class="$vuetify.breakpoint.xsOnly ? 'mb-0' : 'mb-9'">{{LangUtil("昵称只允许设置一次")}}</div>
-                <v-btn v-if="!$vuetify.breakpoint.xsOnly" class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit"
-                    block>{{LangUtil("保存设置")}}</v-btn>
-            </v-card-text>
-        </v-sheet>
-        <v-sheet v-if="$vuetify.breakpoint.xsOnly" color="transparent" class="mt-7 ml-7 mr-7 rounded-lg mb-0">
-            <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit"
-                    block>{{LangUtil("保存设置")}}</v-btn>
-        </v-sheet>
-       </template>
+            <v-sheet color="color_black_2" class="ma-2 rounded-lg mb-0">
+                <v-card-text class="px-10 mt-5">
+                    <CustomInput
+                        maxlength="12"
+                        class="mb-3"
+                        :placeholder="LangUtil('昵称为1-6位汉字或1-12位英文')"
+                        v-model="pageData.nickname"
+                    />
+                    <div class="ml-5 colorDialogInfo--text" :class="$vuetify.breakpoint.xsOnly ? 'mb-0' : 'mb-9'">
+                        {{LangUtil("昵称只允许设置一次")}}
+                    </div>
+                    <v-btn
+                        v-if="!$vuetify.breakpoint.xsOnly"
+                        class="rounded-lg"
+                        color="colorBtnBg"
+                        height="48"
+                        :disabled="!isCheckedId"
+                        @click="onSubmit"
+                        block
+                        >{{LangUtil("保存设置")}}</v-btn
+                    >
+                </v-card-text>
+            </v-sheet>
+            <v-sheet v-if="$vuetify.breakpoint.xsOnly" color="transparent" class="mt-7 ml-7 mr-7 rounded-lg mb-0">
+                <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onSubmit" block
+                    >{{LangUtil("保存设置")}}</v-btn
+                >
+            </v-sheet>
+        </template>
     </v-card>
     <Overlay v-model="pageData.loading" />
 </v-dialog>

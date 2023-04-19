@@ -17,7 +17,12 @@
         </div>
     </v-sheet>
 
-    <v-sheet class="rounded-lg mt-3 py-1" :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''" color="colorPanelTitleBg" v-if="menuList1.length>0">
+    <v-sheet
+        class="rounded-lg mt-3 py-1"
+        :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''"
+        color="colorPanelTitleBg"
+        v-if="menuList1.length>0"
+    >
         <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
@@ -26,7 +31,11 @@
         </div>
     </v-sheet>
 
-    <div class="d-flex mt-3 ml-1 cursor-pointer" :class="$vuetify.breakpoint.xsOnly ? 'white--text' : 'colorBlue--text'" @click="onLoginOut">
+    <div
+        class="d-flex mt-3 ml-1 cursor-pointer"
+        :class="$vuetify.breakpoint.xsOnly ? 'white--text' : 'colorBlue--text'"
+        @click="onLoginOut"
+    >
         <div>{{LangUtil("退出登录")}}</div>
         <v-spacer />
     </div>

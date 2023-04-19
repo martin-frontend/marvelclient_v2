@@ -1,13 +1,11 @@
 <div class="pb-5">
     <div class="text-h6 mb-md-5">{{LangUtil("常见问题解答")}}</div>
-    <v-row no-gutters class="d-flex flex-row   mt-2">
+    <v-row no-gutters class="d-flex flex-row mt-2">
         <v-col cols="12" md="6" class="mb-2 pr-sm-2" v-for="(item, index) of questions" :key="index">
             <v-expansion-panels>
                 <v-expansion-panel>
-                    <v-expansion-panel-header color="colorPanelTitleBg" class="text-16   ">
-                        {{ item.name }}
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content color="colorPanelTitleBg" class="color_exit_text_1--text text-14   ">
+                    <v-expansion-panel-header color="colorPanelTitleBg" class="text-16"> {{ item.name }} </v-expansion-panel-header>
+                    <v-expansion-panel-content color="colorPanelTitleBg" class="color_exit_text_1--text text-14">
                         {{ item.content }}
                     </v-expansion-panel-content>
                 </v-expansion-panel>

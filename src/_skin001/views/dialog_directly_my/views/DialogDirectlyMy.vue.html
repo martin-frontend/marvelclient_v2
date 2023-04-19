@@ -2,11 +2,10 @@
     <v-card class="rounded-xl" color="#1E2C47">
         <!-- 标题 和 关闭按钮 -->
         <v-card-title class="gradient-bg rounded-xl">
-            <div class="text-18 font-weight-medium ml-2">{{LangUtil("我的推广")}}
-            </div>
+            <div class="text-18 font-weight-medium ml-2">{{LangUtil("我的推广")}}</div>
             <v-spacer />
             <v-btn icon @click="onClose">
-                <v-icon >mdi-close</v-icon>
+                <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
 
@@ -85,16 +84,11 @@
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                         </v-btn>
                     </v-sheet>
-                    <div class="text-caption text-sm-body-2">
-                        {{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}
-                    </div>
-                    <div class="text-caption text-sm-body-2">
-                        {{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}
-                    </div>
+                    <div class="text-caption text-sm-body-2">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
+                    <div class="text-caption text-sm-body-2">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
                 </v-col>
             </v-row>
-           
         </v-card>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

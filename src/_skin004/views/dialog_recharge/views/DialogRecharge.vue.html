@@ -2,7 +2,7 @@
     <v-card class="rounded-lg d-flex flex-column" height="100%" color="colorPanelBg">
         <!-- pc显示方式 -->
         <template v-if="!$vuetify.breakpoint.xsOnly">
-            <v-card-title class="gradient-bg" >
+            <v-card-title class="gradient-bg">
                 <div class="text-18">{{LangUtil("数字货币")}}</div>
                 <v-spacer />
                 <v-btn icon @click="onClose">
@@ -50,7 +50,12 @@
                 <!-- <v-btn v-if="(selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1)&& pageData.tabIndex == 1" small color="colorText1 colorBlue--text" @click="gowater">
                     <span>{{ LangUtil("流水审核") }} </span>
                 </v-btn> -->
-                <v-btn v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1" small color="colorText1 colorBlue--text ml-2" @click="goRecord">
+                <v-btn
+                    v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1"
+                    small
+                    color="colorText1 colorBlue--text ml-2"
+                    @click="goRecord"
+                >
                     <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
                 </v-btn>
                 <v-btn v-if="pageData.tabIndex == 2" small color="colorText1 colorBlue--text ml-2" @click="viewDetail">
@@ -111,7 +116,12 @@
                     <!-- <v-btn v-if="(selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1)&& pageData.tabIndex == 1" small color="colorText1 colorBlue--text mr-2" @click="gowater">
                         <span>{{ LangUtil("流水审核") }} </span>
                     </v-btn> -->
-                    <v-btn v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1" small color="colorText1 colorBlue--text mr-2" @click="goRecord">
+                    <v-btn
+                        v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1"
+                        small
+                        color="colorText1 colorBlue--text mr-2"
+                        @click="goRecord"
+                    >
                         <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
                     </v-btn>
                     <v-btn v-if="pageData.tabIndex == 2" small color="colorText1 colorBlue--text mr-2 " @click="viewDetail">
@@ -122,13 +132,16 @@
         </template>
 
         <v-divider class="mx-5" />
-        
+
         <TabRecharge v-show="pageData.tabIndex == 0 && selfProxy.userInfo.is_recharge == 1" />
         <TabExchange v-show="pageData.tabIndex == 1 && selfProxy.userInfo.is_exchange == 1" />
         <!-- <TabExchangeBankVnd v-show="pageData.tabIndex == 1 && selfProxy.userInfo.is_exchange == 1 && SkinVariable.isExchargeVndk" /> -->
-      
+
         <TabTransfer v-if="pageData.tabIndex == 2 && selfProxy.userInfo.is_gold_transfer == 1" />
 
-        <ListNodata v-if="selfProxy.userInfo.is_recharge != 1 && selfProxy.userInfo.is_exchange != 1 && selfProxy.userInfo.is_gold_transfer != 1" :title="LangUtil(`暂无内容`)"/>
+        <ListNodata
+            v-if="selfProxy.userInfo.is_recharge != 1 && selfProxy.userInfo.is_exchange != 1 && selfProxy.userInfo.is_gold_transfer != 1"
+            :title="LangUtil(`暂无内容`)"
+        />
     </v-card>
 </v-dialog>

@@ -1,4 +1,3 @@
-
 .nav-button {
     display: flex;
     padding: 0 10px;
@@ -44,23 +43,23 @@
     }
 }
 
-.hackhome{
+.hackhome {
     width: 1px;
     background-image: linear-gradient(to bottom, #213354 0%, #213354 50%, transparent 50%);
     background-size: 1px 16px;
     background-repeat: repeat-y;
 }
 
-.page_main{
+.page_main {
     //width: calc(100%-50px);
     height: calc(100vh - 200px);
 }
 
-.page_color{
+.page_color {
     background-color: rgba($color: #ffffff, $alpha: 0.1);
 }
-::v-deep .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg{
-    background-color:rgba($color: #121E36, $alpha: 0.5) !important;
+::v-deep .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
+    background-color: rgba($color: #121e36, $alpha: 0.5) !important;
 }
 
 .text-wrapper {

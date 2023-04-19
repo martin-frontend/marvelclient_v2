@@ -6,7 +6,7 @@ import Vue from "vue";
 export default class DialogWalletProxy extends puremvc.Proxy {
     static NAME = "DialogWalletProxy";
 
-    pageData =<any> {
+    pageData = <any>{
         loading: false,
         bShow: false,
         tabIndex: 0,
@@ -54,16 +54,14 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         finished: false,
         done: <any>null,
     };
-    getCoinIndex(_coinName:string)
-    {
+    getCoinIndex(_coinName: string) {
         const objs = GamePlatConfig.config.plat_coins;
         const keys = Object.keys(objs);
         for (let index = 0; index < keys.length; index++) {
             const element = keys[index];
-            if (element == _coinName)
-            {
-                return index +1 ;
-            } 
+            if (element == _coinName) {
+                return index + 1;
+            }
         }
         return 0;
     }

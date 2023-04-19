@@ -32,20 +32,16 @@ export default class DialogBindInviteProxy extends puremvc.Proxy {
             user_id: core.user_id,
         });
     }
-    api_user_var_invite_user_info_callback(msg:any = null)
-    {
-        if(msg && msg.is_credit_user == 1) 
-        {
+    api_user_var_invite_user_info_callback(msg: any = null) {
+        if (msg && msg.is_credit_user == 1) {
             dialog_message_box.confirm({
                 message: LangUtil("您绑定的上级是信用代理，绑定后不能充值和提现，确定绑定吗？"),
                 okFun: () => {
                     this.api_user_update_var({ invite_user_id: this.pageData.inviteId });
                 },
             });
-        }
-        else{
+        } else {
             this.api_user_update_var({ invite_user_id: this.pageData.inviteId });
         }
-        
     }
 }

@@ -11,7 +11,7 @@ export default class DialogRechargeBankcharge extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRechargeBankchargeProxy = this.getProxy(DialogRechargeBankchargeProxy);
     pageData = this.myProxy.pageData;
-    fixcontent=this.myProxy.pageData.fixcontent;
+    fixcontent = this.myProxy.pageData.fixcontent;
     constructor() {
         super(DialogRechargeBankchargeMediator);
     }
@@ -28,29 +28,26 @@ export default class DialogRechargeBankcharge extends AbstractView {
             // this.myProxy.api_xxx();
         }
     }
-    copytext(key:number){
-        let text="";
-        if (key==0) {
-            text=this.fixcontent[0];
-        } else if (key==1) {
-            text=this.fixcontent[1];
-        }
-        else if (key==2) {
-            text=this.fixcontent[2];
-        }
-        else if (key==3) {
-            text=this.fixcontent[3];
-        } 
-        else if (key==4) {
-            text=this.fixcontent[4];
+    copytext(key: number) {
+        let text = "";
+        if (key == 0) {
+            text = this.fixcontent[0];
+        } else if (key == 1) {
+            text = this.fixcontent[1];
+        } else if (key == 2) {
+            text = this.fixcontent[2];
+        } else if (key == 3) {
+            text = this.fixcontent[3];
+        } else if (key == 4) {
+            text = this.fixcontent[4];
         }
         CopyUtil(text);
         dialog_message.info(LangUtil("复制成功"));
     }
     onInput() {
         // 只保留输入的中文字符
-        this.fixcontent[5] = this.fixcontent[5].replace(/[^\u4e00-\u9fa5]/g, '').slice(0, 12);
-      }
+        this.fixcontent[5] = this.fixcontent[5].replace(/[^\u4e00-\u9fa5]/g, "").slice(0, 12);
+    }
     onSumbit() {
         this.myProxy.api_user_var_coin_recharge_confirm();
     }

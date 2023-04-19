@@ -1,10 +1,10 @@
-.menu_bg{
+.menu_bg {
     background-color: rgba(28, 42, 67, 0.8);
     //opacity: 0.6;
     // -webkit-backdrop-filter: blur(29.8px);
     // backdrop-filter: blur(29.8px);
 }
-.game_icon_disable{
+.game_icon_disable {
     filter: grayscale(1);
 }
 .game-icon {
@@ -15,7 +15,7 @@
         transition: all 0.3s ease-in-out 0s;
         position: absolute;
         bottom: 0px;
-        font-size:24px;
+        font-size: 24px;
         font-weight: 500;
         width: 100%;
         height: 32px;
@@ -28,7 +28,7 @@
         transition: all 0.3s ease-in-out 0s;
         position: absolute;
         bottom: 50px;
-        font-size:24px;
+        font-size: 24px;
         font-weight: 500;
         width: 100%;
         height: 32px;
@@ -37,10 +37,9 @@
         margin-bottom: 5px;
         padding: 0px 5px 0 5px;
     }
-
 }
 .game-icon:hover {
-    background-image: linear-gradient(to bottom,rgba(27,41,65,0)  0%,  rgba(36,58,94,1) 100%);
+    background-image: linear-gradient(to bottom, rgba(27, 41, 65, 0) 0%, rgba(36, 58, 94, 1) 100%);
 }
 
 .egame__item__mask {
@@ -62,6 +61,6 @@
     opacity: 1;
 }
 
-.entergame_btn_bg{
-    background-image: linear-gradient(to right, #2A6EF9 0%, #4B9DFF 100%) !important;
+.entergame_btn_bg {
+    background-image: linear-gradient(to right, #2a6ef9 0%, #4b9dff 100%) !important;
 }

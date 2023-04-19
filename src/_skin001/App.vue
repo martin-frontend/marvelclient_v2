@@ -12,7 +12,7 @@
             >
                 <router-view />
             </v-main>
-            <Footer class="footer" v-if="$route.path != '/page_game_soccer'"/>
+            <Footer class="footer" v-if="$route.path != '/page_game_soccer'" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
         </div>

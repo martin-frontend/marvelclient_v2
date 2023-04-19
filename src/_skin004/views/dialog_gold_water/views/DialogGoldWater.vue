@@ -9,8 +9,8 @@ import LoadMore from "@/views/widget/loadMore/LoadMore.vue";
 @Component({
     components: {
         ListNodata,
-        LoadMore
-    }
+        LoadMore,
+    },
 })
-export default class extends DialogGoldWater { }
+export default class extends DialogGoldWater {}
 </script>

@@ -45,13 +45,13 @@ export default class UserPanel extends AbstractView {
             { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
             //{ id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
             { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
-         //   { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
+            //   { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
             //{ id: 14, name: LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()), icon: "mdi-alpha-f-circle" },
         ];
 
-        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly ==0 ) {
+        if (GamePlatConfig.config.is_show_commission.is_open == 0 || this.isShowDirectly == 0) {
             list.shift();
-        };
+        }
 
         // if (this.isShowDirectly == 2) {
         //     list.unshift({ id: 10, name: LangUtil("代理管理"), icon: "mdi-hand-extended" });
@@ -109,7 +109,7 @@ export default class UserPanel extends AbstractView {
                 // if (this.isShowDirectly == 2) {
                 //     LoginEnter(dialog_agentmanager.show);
                 // } else if (this.isShowDirectly == 1) {
-                     LoginEnter(page_extension.show);
+                LoginEnter(page_extension.show);
                 // } else {
                 //     console.log("不正确", this.isShowDirectly);
                 // }

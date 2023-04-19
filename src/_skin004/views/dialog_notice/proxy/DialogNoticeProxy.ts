@@ -25,33 +25,26 @@ export default class DialogNoticeProxy extends puremvc.Proxy {
 
     curindex = 0; //当前正在显示的下标
 
-    public get noticeData() : any {
+    public get noticeData(): any {
         //console.log("弹窗" , this.noticeProxy.data.listType3);
-        return  this.noticeProxy.data.listType3
+        return this.noticeProxy.data.listType3;
     }
     //添加 公告信息
-    addNoticeInfo(info:any)
-    {
-       
-        if (!this.noticeDetialInfo)
-        {
+    addNoticeInfo(info: any) {
+        if (!this.noticeDetialInfo) {
             this.noticeDetialInfo = <any>{};
         }
-        if (!info || !info.id || info.id=="")
-        {
+        if (!info || !info.id || info.id == "") {
             return;
         }
         this.noticeDetialInfo[info.id] = info;
 
         this.noticeDetialInfo = JSON.parse(JSON.stringify(this.noticeDetialInfo));
         //console.log("收到公告文本" ,this.noticeDetialInfo);
-
     }
     //获取指定的 公告的详情信息
-    getNoticeInfo(id:number)
-    {
-        if(!this.noticeDetialInfo)
-        {
+    getNoticeInfo(id: number) {
+        if (!this.noticeDetialInfo) {
             this.noticeDetialInfo = <any>{};
         }
         //console.log("当前" ,this.noticeDetialInfo[id]);
@@ -71,7 +64,7 @@ export default class DialogNoticeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data.list;
     }
-    api_plat_var_notice_show(noticeid:any=null) {
-        this.sendNotification(net.HttpType.api_plat_var_notice_show_var, { plat_id: core.plat_id ,id:noticeid });
+    api_plat_var_notice_show(noticeid: any = null) {
+        this.sendNotification(net.HttpType.api_plat_var_notice_show_var, { plat_id: core.plat_id, id: noticeid });
     }
 }

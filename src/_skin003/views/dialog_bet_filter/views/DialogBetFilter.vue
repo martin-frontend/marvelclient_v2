@@ -8,8 +8,8 @@ import DialogBetFilter from "./DialogBetFilter";
 
 @Component({
     components: {
-        Overlay
-    }
+        Overlay,
+    },
 })
 export default class extends DialogBetFilter {}
 </script>

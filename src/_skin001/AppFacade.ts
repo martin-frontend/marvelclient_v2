@@ -38,13 +38,13 @@ export default class AppFacade {
         }, 300000);
 
         window.addEventListener("message", (e) => {
-            switch(e.data){
+            switch (e.data) {
                 case EnumPostMessage.TOPUP:
                     dialog_recharge.show();
                     break;
                 case EnumPostMessage.TOKEN_TIMEOUT:
                     {
-                        const gameProxy:GameProxy = getProxy(GameProxy);
+                        const gameProxy: GameProxy = getProxy(GameProxy);
                         gameProxy.go_soccer();
                     }
                     break;

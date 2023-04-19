@@ -1,26 +1,26 @@
-::v-deep .v-toolbar__content{
+::v-deep .v-toolbar__content {
     padding: 0px;
 }
-.logo{
-    position:fixed;
+.logo {
+    position: fixed;
     left: 5px;
-    background-image: linear-gradient(0, #25255D, #243163);
+    background-image: linear-gradient(0, #25255d, #243163);
     z-index: 3;
 }
-.bg-texture{
+.bg-texture {
     position: fixed;
 }
-.barbg{
-    background-color: #1D2A43;
+.barbg {
+    background-color: #1d2a43;
     background-image: url("~@/_skin001/assets/header/img_header_texture.png");
     background-position: left top 0px;
     background-repeat: no-repeat;
     background-size: 99px 40px;
 }
-.gradient-blue{
-    background: linear-gradient(to top, #2853A6, #406CC0);
+.gradient-blue {
+    background: linear-gradient(to top, #2853a6, #406cc0);
 }
-.class_icon{
+.class_icon {
     position: absolute;
     right: 0px;
 }

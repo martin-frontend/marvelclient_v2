@@ -147,7 +147,9 @@ window.addEventListener("message", function (e) {
             api_user_register(e.data.params);
             break;
         case "go_home":
-            this.location.href = LandConfig.config.platUrl + `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
+            this.location.href =
+                LandConfig.config.platUrl +
+                `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
             break;
     }
 });

@@ -36,25 +36,23 @@ export default class DialogRecordRechargeProxy extends puremvc.Proxy {
             page_size: 20,
         });
     }
-    setTestdata()
-    {
-        const obj={
-            order_no:"1231235423",
-            created_at:"1231235423",
-            third_order_info:{
-                block_name:"12312",
-                token_name:"12312",
-                from_address:"dfdsfsdfs",
-                to_address:"dfdsfsdfs",
-                tx_scan_url:"dfdsfsdfs",
+    setTestdata() {
+        const obj = {
+            order_no: "1231235423",
+            created_at: "1231235423",
+            third_order_info: {
+                block_name: "12312",
+                token_name: "12312",
+                from_address: "dfdsfsdfs",
+                to_address: "dfdsfsdfs",
+                tx_scan_url: "dfdsfsdfs",
             },
-            gold:"12423",
-            status:0,
-        }
+            gold: "12423",
+            status: 0,
+        };
         const list = [];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
-            
         }
         return list;
     }

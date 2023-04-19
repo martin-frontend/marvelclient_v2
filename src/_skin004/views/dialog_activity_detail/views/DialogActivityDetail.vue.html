@@ -8,22 +8,27 @@
     </v-btn>
 </v-dialog> -->
 
-<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="45%" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent >
-    <v-card flat   class="rounded-lg sheet-bg " style="height: calc(100vh - 250px);">
-
+<v-dialog
+    v-if="!pageData.bHidden"
+    v-model="pageData.bShow"
+    width="45%"
+    :retain-focus="false"
+    :fullscreen="$vuetify.breakpoint.xsOnly"
+    persistent
+>
+    <v-card flat class="rounded-lg sheet-bg" style="height: calc(100vh - 250px)">
         <v-card-title class="d-flex justify-end mb-1 sheet-bg">
-            <div class=" font-weight-bold white--text text-18">{{LangUtil(pageData.data.activity_name)}}</div>
+            <div class="font-weight-bold white--text text-18">{{LangUtil(pageData.data.activity_name)}}</div>
             <v-spacer />
-            <v-btn  icon @click="onClose">
+            <v-btn icon @click="onClose">
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
 
-        <v-divider class="mb-2 " />
-        <v-sheet  width="100%" class="px-5 overflow-y-auto sheet-bg" style="height: calc(100% - 90px);">
+        <v-divider class="mb-2" />
+        <v-sheet width="100%" class="px-5 overflow-y-auto sheet-bg" style="height: calc(100% - 90px)">
             <!-- <div v-if="pageData.data.show_type == 1" class="textYellow--text" v-html="pageData.data.link_url"></div> -->
             <div class="" v-html="pageData.data.link_url"></div>
-
         </v-sheet>
     </v-card>
 </v-dialog>

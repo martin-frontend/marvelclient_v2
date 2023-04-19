@@ -4,7 +4,7 @@
 }
 .btn {
     width: fit-content;
-    background-color: #BA1B1A;
+    background-color: #ba1b1a;
     text-align: center;
     color: rgb(255, 255, 255);
     //position: relative;
@@ -15,7 +15,8 @@
     cursor: pointer;
     width: 100%;
     height: 230px;
-    background: url("~@/_skin003/assets/activity/img_pool.png") no-repeat right 0px bottom, linear-gradient(121deg, #2B2B2B 0%, #2B2B2B 100%);
+    background: url("~@/_skin003/assets/activity/img_pool.png") no-repeat right 0px bottom,
+        linear-gradient(121deg, #2b2b2b 0%, #2b2b2b 100%);
     background-size: 117px 161px;
 }
 .activity1-min {
@@ -23,7 +24,7 @@
     cursor: pointer;
     width: 100%;
     height: 130px;
-    background: linear-gradient(135deg, #2B2B2B 0, #1C2127 50% , #24272A 100%);
+    background: linear-gradient(135deg, #2b2b2b 0, #1c2127 50%, #24272a 100%);
     .btn {
         bottom: 10px;
     }
@@ -33,15 +34,16 @@
     cursor: pointer;
     width: 100%;
     height: 230px;
-    background: url("~@/_skin003/assets/activity/img_swap.png") no-repeat right 10px bottom 20px, linear-gradient(90deg, #343042 0%, #211E2F 51% ,#242232 100%);
+    background: url("~@/_skin003/assets/activity/img_swap.png") no-repeat right 10px bottom 20px,
+        linear-gradient(90deg, #343042 0%, #211e2f 51%, #242232 100%);
     background-size: 144px 144px, 100% 100%;
     .price {
         width: fit-content;
         transform: skewX(-10deg);
-        background-color: #48496D;
+        background-color: #48496d;
         //font-family: "Arial-BoldMT";
         div {
-            color: #FFCE4E;
+            color: #ffce4e;
             transform: skewX(10deg);
         }
     }
@@ -51,17 +53,17 @@
     cursor: pointer;
     width: 100%;
     height: 130px;
-    background: linear-gradient(135deg, #343042 0, #211E2F 50% , #242232 100%);
+    background: linear-gradient(135deg, #343042 0, #211e2f 50%, #242232 100%);
     .btn {
         bottom: 10px;
     }
     .price {
         width: fit-content;
         transform: skewX(-10deg);
-        background-color: #48496D;
+        background-color: #48496d;
         //font-family: "Arial-BoldMT";
         div {
-            color: #FFCE4E;
+            color: #ffce4e;
             transform: skewX(10deg);
         }
     }
@@ -72,7 +74,8 @@
     cursor: pointer;
     width: 100%;
     height: 230px;
-    background: url("~@/_skin003/assets/activity/img_mine.png") no-repeat right 10px bottom 10px, linear-gradient(90deg, #293248 0%, #232A3B 51%,#353D53 100%);
+    background: url("~@/_skin003/assets/activity/img_mine.png") no-repeat right 10px bottom 10px,
+        linear-gradient(90deg, #293248 0%, #232a3b 51%, #353d53 100%);
     background-size: contain;
     background-size: 183px 183px, 100% 100%;
 }
@@ -83,14 +86,16 @@
     .item1 {
         cursor: pointer;
         height: 49%;
-        background: url("~@/_skin003/assets/activity/img_extension.png") no-repeat right 10px center, linear-gradient(135deg, #3C3C53, #211F39);
+        background: url("~@/_skin003/assets/activity/img_extension.png") no-repeat right 10px center,
+            linear-gradient(135deg, #3c3c53, #211f39);
         background-size: contain;
         background-size: 97px 71px, 100% 100%;
     }
     .item2 {
         cursor: pointer;
         height: 49%;
-        background: url("~@/_skin003/assets/activity/img_activity.png") no-repeat right 10px center, linear-gradient(135deg, #173D44, #36646B);
+        background: url("~@/_skin003/assets/activity/img_activity.png") no-repeat right 10px center,
+            linear-gradient(135deg, #173d44, #36646b);
         background-size: contain;
         background-size: 94px 94px, 100% 100%;
     }

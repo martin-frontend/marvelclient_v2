@@ -120,25 +120,25 @@ export default class DialogRegister extends AbstractView {
     }
 
     onUsernameBlur() {
-        if(this.form.username == "") return;
-        if(this.form.username.length < 4) {
+        if (this.form.username == "") return;
+        if (this.form.username.length < 4) {
             dialog_message.success(LangUtil("账号小于4位，请重新输入"));
         }
     }
 
     onPasswordBlur() {
-        if(this.form.password == "") return;
-        if(!checkUserPassword(this.form.password)) {
+        if (this.form.password == "") return;
+        if (!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }
     }
 
     onPasswordConfirmBlur() {
-        if(this.form.password_confirm == "") return;
-        if(!checkUserPassword(this.form.password)) {
+        if (this.form.password_confirm == "") return;
+        if (!checkUserPassword(this.form.password)) {
             dialog_message.success(LangUtil("密码太短"));
         }
-        if(this.form.password !== this.form.password_confirm) {
+        if (this.form.password !== this.form.password_confirm) {
             dialog_message.success(LangUtil("密码不一致"));
         }
     }

@@ -5,9 +5,7 @@ import SkinVariable from "@/_skin004/core/SkinVariable";
 export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
 
-    public onRegister(): void {
-      
-    }
+    public onRegister(): void {}
 
     pageData = {
         loading: false,

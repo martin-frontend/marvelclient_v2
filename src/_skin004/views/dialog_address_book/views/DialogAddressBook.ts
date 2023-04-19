@@ -59,7 +59,7 @@ export default class DialogAddressBook extends AbstractView {
 
     onDelete(item: any) {
         this.pageData.loading = true;
-        this.addressBookRemark.onDelete(item.id)
+        this.addressBookRemark.onDelete(item.id);
     }
 
     onRefresh(done: any) {

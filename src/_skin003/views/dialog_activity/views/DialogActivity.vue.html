@@ -1,5 +1,4 @@
-<v-dialog width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly"
-    persistent>
+<v-dialog width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
     <v-card class="d-flex rounded-lg" color="colorPanelBg">
         <v-sheet color="transparent" width="366" class="d-none d-md-flex">
             <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
@@ -20,8 +19,13 @@
                 </v-card-title>
                 <v-card-text>
                     <v-sheet color="transparent" height="468" class="scroll-y">
-                        <v-sheet class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3"
-                            color="colorPanelTitleBg" height="80" v-for="(item, index) of pageData.list" :key="index">
+                        <v-sheet
+                            class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3"
+                            color="colorPanelTitleBg"
+                            height="80"
+                            v-for="(item, index) of pageData.list"
+                            :key="index"
+                        >
                             <div class="text-16">
                                 <div class="white--text mb-2">{{item.activity_name}}</div>
                                 <div class="colorText1--text">{{item.start_time}} ~ {{item.end_time}}</div>
@@ -31,14 +35,17 @@
                     </v-sheet>
                 </v-card-text>
                 <v-card-actions class="justify-center">
-                    <v-pagination v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                        v-model="pageData.pageInfo.pageCurrent" :length="pageData.pageInfo.pageCount" :total-visible="7"
-                        @input="onPageChange"></v-pagination>
+                    <v-pagination
+                        v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                        v-model="pageData.pageInfo.pageCurrent"
+                        :length="pageData.pageInfo.pageCount"
+                        :total-visible="7"
+                        @input="onPageChange"
+                    ></v-pagination>
                 </v-card-actions>
             </template>
             <!-- 手机显示方式 -->
             <template v-else>
-
                 <v-card-text class="pb-3 pa-0 header-mobile">
                     <v-card-title class="gradient-bg">
                         <div class="text-18">{{LangUtil("精彩活动")}}</div>
@@ -50,12 +57,15 @@
                 </v-card-text>
                 <v-sheet color="color_black_2" class="ml-2 mr-2 rounded mb-0">
                     <v-card-text>
-                        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished"
-                            :_class="'listbox-mobile'">
+                        <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'">
                             <v-sheet color="transparent">
-                                <v-sheet class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
-                                    color="colorPanelTitleBg" height="80" v-for="(item, index) of pageData.list"
-                                    :key="index">
+                                <v-sheet
+                                    class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
+                                    color="colorPanelTitleBg"
+                                    height="80"
+                                    v-for="(item, index) of pageData.list"
+                                    :key="index"
+                                >
                                     <div class="text-16">
                                         <div class="white--text mb-2">{{item.activity_name}}</div>
                                         <div class="colorText1--text">{{item.start_time}} ~ {{item.end_time}}</div>

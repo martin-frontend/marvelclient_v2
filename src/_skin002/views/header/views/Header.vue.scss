@@ -51,11 +51,11 @@ a {
 .app-bar {
     background: url("~@/assets/header/wenli.png") no-repeat left top;
 }
-.language{
+.language {
     ::v-deep .colorPanelTitleBg {
         background-color: transparent !important;
     }
 }
-.gradient-blue{
-    background: linear-gradient(to top, #2853A6, #406CC0);
+.gradient-blue {
+    background: linear-gradient(to top, #2853a6, #406cc0);
 }

@@ -109,21 +109,21 @@
             }
         }
     }
-    .top-box-card{
+    .top-box-card {
         width: 600px;
         @media screen and (max-width: 1260px) {
             width: 100%;
         }
     }
-    .top-box-getaward{
-        min-width:178px;
+    .top-box-getaward {
+        min-width: 178px;
         height: 42px;
         @media screen and (max-width: 1260px) {
-            min-width:127px;
+            min-width: 127px;
             height: 30px;
         }
     }
-    .top-box-btn{
+    .top-box-btn {
         height: 42px;
         font-size: 16px;
         @media screen and (max-width: 1260px) {
@@ -131,7 +131,7 @@
             font-size: 12px;
         }
     }
-    .top-box-title{
+    .top-box-title {
         font-size: 24px;
         @media screen and (max-width: 1260px) {
             font-size: 18px;

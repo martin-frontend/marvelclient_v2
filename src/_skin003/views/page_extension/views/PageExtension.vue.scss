@@ -1,7 +1,7 @@
 .horizontal-gradient-left {
-    background-image: linear-gradient(to right, #18191C, #18191C);
+    background-image: linear-gradient(to right, #18191c, #18191c);
     &.down {
-        background-image: url("~@/_skin003/assets/extension/commission@2x.png"), linear-gradient(to right, #18191C, #18191C);
+        background-image: url("~@/_skin003/assets/extension/commission@2x.png"), linear-gradient(to right, #18191c, #18191c);
         background-size: 196px 275px, 100% 100%;
         background-position: -0% bottom;
         // @media (max-width: 1426px) {
@@ -14,8 +14,7 @@
         //     background-position: -14% bottom;
         // }
         @media (max-width: 400px) {
-            background-image: url("~@/_skin003/assets/extension/commission@2x.png"), 
-                linear-gradient(to right, #18191C, #18191C);
+            background-image: url("~@/_skin003/assets/extension/commission@2x.png"), linear-gradient(to right, #18191c, #18191c);
             background-position: -24% bottom, right;
             background-size: 196px 275px, 60% 65%, 100% 100%;
             height: unset;
@@ -26,10 +25,10 @@
     }
 }
 .horizontal-gradient-right {
-    background: linear-gradient(to right, #18191C, #18191C);
+    background: linear-gradient(to right, #18191c, #18191c);
 }
 .level_title {
-    background-image: linear-gradient(to right, #BA1B1A, #D02728);
+    background-image: linear-gradient(to right, #ba1b1a, #d02728);
 }
 .level_col {
     position: relative;
@@ -83,11 +82,11 @@
         border-radius: 5px !important;
     }
 }
-.commission{
+.commission {
     @media (max-width: 600px) {
         max-width: 85px !important;
     }
 }
-.cursor{
+.cursor {
     cursor: pointer;
 }

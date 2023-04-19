@@ -20,7 +20,7 @@
             >{{item}}</v-sheet
         >
     </v-sheet>
-    <v-sheet class="listbox " color="transparent" :max-height="$vuetify.breakpoint.mobile?372:672">
+    <v-sheet class="listbox" color="transparent" :max-height="$vuetify.breakpoint.mobile?372:672">
         <div ref="listbox">
             <v-sheet
                 :color="$vuetify.breakpoint.mobile? '#fff' :'#192B4E'"
@@ -36,7 +36,13 @@
                     width="300"
                     color="transparent"
                 >
-                    <v-img @click="showPreview(item.award_url)" :src="item.award_url" contain :max-height="$vuetify.breakpoint.mobile?120:210"  :max-width="$vuetify.breakpoint.mobile?100:200"></v-img>
+                    <v-img
+                        @click="showPreview(item.award_url)"
+                        :src="item.award_url"
+                        contain
+                        :max-height="$vuetify.breakpoint.mobile?120:210"
+                        :max-width="$vuetify.breakpoint.mobile?100:200"
+                    ></v-img>
                 </v-sheet>
                 <v-sheet
                     class="d-flex justify-center"
@@ -44,7 +50,13 @@
                     width="300"
                     color="transparent"
                 >
-                    <v-img @click="showPreview(item.withdraw_url)" :src="item.withdraw_url" contain :max-height="$vuetify.breakpoint.mobile?120:210" :max-width="$vuetify.breakpoint.mobile?100:200"></v-img>
+                    <v-img
+                        @click="showPreview(item.withdraw_url)"
+                        :src="item.withdraw_url"
+                        contain
+                        :max-height="$vuetify.breakpoint.mobile?120:210"
+                        :max-width="$vuetify.breakpoint.mobile?100:200"
+                    ></v-img>
                 </v-sheet>
                 <v-sheet
                     v-if="!$vuetify.breakpoint.mobile"

@@ -20,7 +20,7 @@ import page_game_soccer from "../views/page_game_soccer";
 import PageHomeProxy from "../views/page_home/proxy/PageHomeProxy";
 import { MapLang } from "@/core/map/MapLang";
 import Vue from "vue";
-import { DatePicker } from 'element-ui';
+import { DatePicker } from "element-ui";
 import lang_en from "element-ui/lib/locale/lang/en";
 import lang_ja from "element-ui/lib/locale/lang/ja";
 import lang_ko from "element-ui/lib/locale/lang/ko";
@@ -85,7 +85,7 @@ export default class NetObserver extends AbstractMediator {
                     console.log(">>>>>>>>>>>>core.lang: ", core.lang);
 
                     // 添加element ui 控件 语言
-                    if ((core.lang == "zh_CN")) {
+                    if (core.lang == "zh_CN") {
                         localeE.use(lang_zh);
                     } else if (core.lang == "zh_TW") {
                         localeE.use(lang_zhtw);
@@ -157,7 +157,7 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);
                 {
-                    const headerProxy:HeaderProxy = getProxy(HeaderProxy);
+                    const headerProxy: HeaderProxy = getProxy(HeaderProxy);
                     headerProxy.setLobbyIndex(body);
                 }
                 break;
@@ -165,7 +165,10 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     // 如果是体育，直接进入
-                    if (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId && this.gameProxy.currGame.ori_product_id == 1) {
+                    if (
+                        this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&
+                        this.gameProxy.currGame.ori_product_id == 1
+                    ) {
                         const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
                         if (homeProxy.pageData.event_id) {
                             page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
@@ -181,7 +184,7 @@ export default class NetObserver extends AbstractMediator {
                         message:
                             coin_name_unique == "USDT"
                                 ? LangUtil("进入游戏")
-                                : LangUtil("您当前使用的货币为{0}将会折算成等价的美元进入游戏",coin_name_unique),
+                                : LangUtil("您当前使用的货币为{0}将会折算成等价的美元进入游戏", coin_name_unique),
                         okFun: () => {
                             if (core.app_type == core.EnumAppType.WEB) {
                                 this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
@@ -194,8 +197,11 @@ export default class NetObserver extends AbstractMediator {
                                 if (judgeClient() == "PC" || window.navigator.standalone) {
                                     if (this.gameProxy.currGame.ori_vendor_extend) {
                                         const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                                        //@ts-ignore
-                                        if ((window.navigator.standalone && ori_vendor_extend.iframe_bad) || ori_vendor_extend.iframe_all_bad) {
+                                        if (
+                                            //@ts-ignore
+                                            (window.navigator.standalone && ori_vendor_extend.iframe_bad) ||
+                                            ori_vendor_extend.iframe_all_bad
+                                        ) {
                                             // iframe无法正常显示的游戏
                                             OpenLink(body.url);
                                         } else {

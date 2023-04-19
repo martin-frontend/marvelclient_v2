@@ -78,12 +78,11 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         const imgBase64 = await Utils.generateQrcode(url);
         this.pageData.qrCode = imgBase64;
     }
-    
-    public get curCoinName() : string {
-        
+
+    public get curCoinName(): string {
         return this.pageData.platCoins.mainCoin.name || "USDT";
     }
-    
+
     setData(data: any) {
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);
@@ -94,7 +93,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         } else {
             this.pageData.promotionData.commission_num = 0;
         }
-        
     }
 
     /** 写入 返佣等级 */
@@ -173,7 +171,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     }
 
     /**业绩查询--获取推广链接*/
-    api_user_var_short_chain(force:number = 0) {
+    api_user_var_short_chain(force: number = 0) {
         this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
     }
 }

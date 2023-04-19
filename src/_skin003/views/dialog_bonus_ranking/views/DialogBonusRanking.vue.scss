@@ -1,10 +1,10 @@
 .horizontal-gradient {
-    background: linear-gradient(to right, #BA1B1A, #D02728);
+    background: linear-gradient(to right, #ba1b1a, #d02728);
 }
 .horizontal-gradient_item {
     background: linear-gradient(to right, #272424, #272424);
 }
-.content{
+.content {
     height: 620px;
     @media (max-width: 600px) {
         height: calc(100vh - 120px);

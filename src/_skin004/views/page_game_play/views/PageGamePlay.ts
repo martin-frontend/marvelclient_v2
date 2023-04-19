@@ -147,7 +147,7 @@ export default class PageGamePlay extends AbstractView {
             okFun: () => {
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 //如果不是游戏，就直接返回到首页, 这是成人影院
-                if(!gameProxy.currGame){
+                if (!gameProxy.currGame) {
                     this.$router.replace(gameProxy.gamePreData.lastRouter);
                     return;
                 }

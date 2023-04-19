@@ -1,7 +1,7 @@
 .box {
-    background-image: linear-gradient(180deg, #25262C 0%, #25262C 100%);
+    background-image: linear-gradient(180deg, #25262c 0%, #25262c 100%);
     // border-radius: 8px 0 0 8px;
-    border-radius: 8px ;
+    border-radius: 8px;
 }
 // ::v-deep .v-carousel--hide-delimiter-background .v-carousel__controls {
 //     display: none;
@@ -9,10 +9,10 @@
 
 .listbox {
     .listitem:not(:last-child) {
-        border-bottom: 2px solid #25262C !important;
+        border-bottom: 2px solid #25262c !important;
     }
     .listitem:hover {
-        background-color: #25262C !important;
+        background-color: #25262c !important;
     }
 }
 
@@ -41,6 +41,6 @@
     transform: scale(0.5);
 }
 
-::v-deep .v-item--active{
-    color: #FFB01A !important;
+::v-deep .v-item--active {
+    color: #ffb01a !important;
 }

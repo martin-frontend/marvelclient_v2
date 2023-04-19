@@ -32,9 +32,7 @@
 
     <v-card color="transparent">
         <!-- 数字货币 -->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 4"
-        >
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 4">
             <div class="colorText1--text mt-3" v-if="pageData.methodList[form.coin_name_unique]">
                 {{LangUtil("你的{0} {1}充值地址", form.coin_name_unique,
                 pageData.methodList[form.coin_name_unique].options[form.block_network_id].name)}}
@@ -48,9 +46,7 @@
             </div>
         </div>
         <!-- okpay topay -->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 5"
-        >
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 5">
             <div class="colorText1--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
@@ -77,26 +73,26 @@
         <div
             v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8"
         >
-        <div class="colorText1--text mt-3">{{LangUtil("选择支付通道")}}</div>
-        <div class="d-flex flex-wrap my-2 mx-n2">
-            <v-btn
-                class="mb-2 mx-2"
-                min-width="100"
-                height="51"
-                color="colorPanelTitleBg"
-                :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
-                v-for="(item, index) of datalist.channel"
-                :key="index"
-                @click="paymethodThirdClick(item)"
-            >
-                <v-sheet color="transparent">
-                    <div class="text-truncate text-16">{{item.subtitle}}</div>
-                    <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
-                </v-sheet>
-            </v-btn>
-            <v-spacer />
-        </div>
-        <v-divider></v-divider>
+            <div class="colorText1--text mt-3">{{LangUtil("选择支付通道")}}</div>
+            <div class="d-flex flex-wrap my-2 mx-n2">
+                <v-btn
+                    class="mb-2 mx-2"
+                    min-width="100"
+                    height="51"
+                    color="colorPanelTitleBg"
+                    :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
+                    v-for="(item, index) of datalist.channel"
+                    :key="index"
+                    @click="paymethodThirdClick(item)"
+                >
+                    <v-sheet color="transparent">
+                        <div class="text-truncate text-16">{{item.subtitle}}</div>
+                        <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
+                    </v-sheet>
+                </v-btn>
+                <v-spacer />
+            </div>
+            <v-divider></v-divider>
             <div class="colorText1--text mt-3">{{LangUtil("常用充值金额")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
@@ -120,9 +116,7 @@
             </CustomInput>
         </div>
         <!-- alipay wechat bank -->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 6"
-        >
+        <div v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 6">
             <div class="colorText1--text mt-3">{{LangUtil("选择支付通道")}}</div>
             <div class="d-flex flex-wrap my-2 mx-n2">
                 <v-btn
@@ -158,7 +152,13 @@
                 >
                 <v-spacer />
             </div>
-            <CustomInput class="mt-1" :placeholder="LangUtil('输入充值金额')" v-model="form.amount" type="number" :disabled="isInputDisabled">
+            <CustomInput
+                class="mt-1"
+                :placeholder="LangUtil('输入充值金额')"
+                v-model="form.amount"
+                type="number"
+                :disabled="isInputDisabled"
+            >
                 <div>
                     <v-btn class="mr-n2 white--text" x-small height="30" color="colorBtnBg" @click="onSumbit"
                         >{{LangUtil("提交充值")}}</v-btn
@@ -171,11 +171,7 @@
             <div class="info-text d-flex">
                 <span class="mr-1">⚠️</span>
                 <div>
-                    <div
-                        v-for="item of transformExplain(getExplain())"
-                    >
-                        {{item}}
-                    </div>
+                    <div v-for="item of transformExplain(getExplain())">{{item}}</div>
                 </div>
             </div>
             <v-spacer />

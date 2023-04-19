@@ -3,15 +3,15 @@
         <img src="@/_skin001/assets/header/logo_mobile.png" width="40" />
     </v-sheet>
     <!-- <v-spacer/> -->
-    <Wallet v-if="core.user_id" class="ml-16"/>
-    
+    <Wallet v-if="core.user_id" class="ml-16" />
+
     <v-btn v-if="core.user_id == 0" small class="text-14 white--text gradient-blue ml-16" @click="handlerLogin" elevation="0">
         <span class="px-1 font-weight-bold">{{LangUtil("登录")}}</span>
     </v-btn>
-    <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2  colorBlueBtn--text" @click="handlerRegister" elevation="0">
+    <v-btn v-if="core.user_id == 0" small color="white" class="text-14 mx-2 colorBlueBtn--text" @click="handlerRegister" elevation="0">
         <span class="px-1 font-weight-bold">{{LangUtil("注册")}}</span>
     </v-btn>
-    <v-spacer/>
+    <v-spacer />
     <div v-if="LangConfig.language" class="mr-4">
         <v-menu absolute :position-y="45">
             <template v-slot:activator="{ on, attrs }">

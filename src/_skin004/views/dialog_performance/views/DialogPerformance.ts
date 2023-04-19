@@ -29,10 +29,9 @@ export default class DialogPerformance extends AbstractView {
     }
 
     _curMainCoinName = "";
-    
-    public get coinName() : string {
-        if (!this._curMainCoinName || this._curMainCoinName == "") 
-        {
+
+    public get coinName(): string {
+        if (!this._curMainCoinName || this._curMainCoinName == "") {
             const plat_coins = <any>GamePlatConfig.config.plat_coins;
             const coinsKey = Object.keys(plat_coins);
             coinsKey.forEach((key: any) => {
@@ -41,15 +40,14 @@ export default class DialogPerformance extends AbstractView {
                 }
             });
 
-            if (!this._curMainCoinName || this._curMainCoinName == "")
-            {
+            if (!this._curMainCoinName || this._curMainCoinName == "") {
                 this._curMainCoinName = "USDT";
             }
         }
 
         return this._curMainCoinName;
     }
-    
+
     handlerDetail(date: string) {
         this.dialogPerformanceDetailProxy.parameter.date = date;
         dialog_performance_detail.show();

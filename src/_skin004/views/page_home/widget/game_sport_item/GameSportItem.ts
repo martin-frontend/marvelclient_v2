@@ -7,8 +7,8 @@ import LoginEnter, { EnterGame } from "@/_skin004/core/global/LoginEnter";
 @Component
 export default class GameSportItem extends AbstractView {
     LangUtil = LangUtil;
-    @Prop() category!:number;
-    @Prop() data!:any
+    @Prop() category!: number;
+    @Prop() data!: any;
 
     goGamePlay() {
         //console.log("当前点击222",this.data);

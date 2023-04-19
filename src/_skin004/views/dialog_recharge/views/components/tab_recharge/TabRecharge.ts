@@ -67,8 +67,8 @@ export default class TabRecharge extends AbstractView {
         const { coin_name_unique, block_network_id } = this.form;
 
         const data = methodList[coin_name_unique].options[block_network_id];
-        const payemthod_id = methodList[coin_name_unique].options[block_network_id].payemthod_id
-        if (payemthod_id == 5 || payemthod_id==8) {
+        const payemthod_id = methodList[coin_name_unique].options[block_network_id].payemthod_id;
+        if (payemthod_id == 5 || payemthod_id == 8) {
             const fixed_gold_list = data.fixed_gold_list;
 
             if (fixed_gold_list && fixed_gold_list.length > 0) {
@@ -145,8 +145,8 @@ export default class TabRecharge extends AbstractView {
 
     // 创建充值订单
     onSumbit() {
-        const {recharge_channel_id,payemthod_id} = this.datalist;
-        Object.assign(this.pageData.form, {recharge_channel_id,payemthod_id});
+        const { recharge_channel_id, payemthod_id } = this.datalist;
+        Object.assign(this.pageData.form, { recharge_channel_id, payemthod_id });
         this.myProxy.rechargeProxy.api_user_var_recharge_create(payemthod_id);
     }
 
@@ -172,7 +172,7 @@ export default class TabRecharge extends AbstractView {
                 const channel = this.pageData.methodList[coin_name_unique].options[block_network_id].channel;
                 if (channel) {
                     const item = channel.find((item: any) => item.third_id == third_id);
-                    explain = item.explain ;
+                    explain = item.explain;
                 }
             }
         }
@@ -202,5 +202,4 @@ export default class TabRecharge extends AbstractView {
         }
         return false;
     }
-    
 }

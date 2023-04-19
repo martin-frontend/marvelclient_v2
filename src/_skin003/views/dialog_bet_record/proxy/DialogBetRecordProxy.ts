@@ -6,14 +6,12 @@ import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 
-
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
     gameProxy: GameProxy = getProxy(GameProxy);
     GamePlatConfig = GamePlatConfig;
     public onRegister(): void {
         this.api_vendor_simple();
-
     }
 
     pageData = {
@@ -21,10 +19,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         bShow: false,
         bShowOptions: true, //是否显示选取框
         bShowMoneyType: false, //是否显示 结算币种
-        bShowUserId: false,  //是否显示玩家id
-        bShowTimeText: false,//是否显示 时间文字
+        bShowUserId: false, //是否显示玩家id
+        bShowTimeText: false, //是否显示 时间文字
         bShowIsMine: false,
-        bShowFilterBtn: false,// 是否显示筛选按钮
+        bShowFilterBtn: false, // 是否显示筛选按钮
         filterBtnInfo: <any>{}, //筛选按钮需要用到的信息
         // 列表是否加载完成，手机模式专用
         finished: false,
@@ -33,7 +31,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_type: <any>null,
             vendor_id: <any>null,
             settlement_status: <any>null,
-            coin_name_unique: "",  //币种
+            coin_name_unique: "", //币种
             start_date: "",
             end_date: "",
             page_count: 1,
@@ -117,8 +115,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
                 options[moneyKeys[index]] = moneyKeys[index];
             }
             return options;
-        }
-
+        },
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -131,7 +128,6 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             page_size: 20,
             is_group: 1,
         });
-
     }
     clearFilterInfo() {
         this.pageData.filterBtnInfo = {};
@@ -154,32 +150,30 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.bShowIsMine = false;
         this.pageData.bShowFilterBtn = false;
     }
-    setTestData()
-    {
-        const obj={
-            order_no:"234sfdsda", 
-            vendor_product_name:"234sfdsda", 
-            coin_name_unique:"234sfdsda", 
-            bet_gold_coin:23423, 
-            bet_gold:23423, 
-            valid_bet_gold_coin:23423, 
-            valid_bet_gold:23423, 
-            water_coin:23423, 
-            water:23423, 
-            settlement_status:23423, 
-            bet_at:23423, 
-            settlement_at:23423, 
-            vendor_id:23423, 
+    setTestData() {
+        const obj = {
+            order_no: "234sfdsda",
+            vendor_product_name: "234sfdsda",
+            coin_name_unique: "234sfdsda",
+            bet_gold_coin: 23423,
+            bet_gold: 23423,
+            valid_bet_gold_coin: 23423,
+            valid_bet_gold: 23423,
+            water_coin: 23423,
+            water: 23423,
+            settlement_status: 23423,
+            bet_at: 23423,
+            settlement_at: 23423,
+            vendor_id: 23423,
 
-            total_win_gold:23423, 
-            total_win_gold_coin:23423, 
-            total_valid_bet_gold_coin:23423, 
-            total_valid_bet_gold:23423, 
-            total_backwater_coin:23423, 
-            total_backwater:23423, 
-
-        }
-        const list=[];
+            total_win_gold: 23423,
+            total_win_gold_coin: 23423,
+            total_valid_bet_gold_coin: 23423,
+            total_valid_bet_gold: 23423,
+            total_backwater_coin: 23423,
+            total_backwater: 23423,
+        };
+        const list = [];
         for (let index = 0; index < 10; index++) {
             list.push(obj);
         }
@@ -236,8 +230,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         }
         if (data.parents && data.parents.length > 0) {
             this.setFilterInfo(data);
-        }
-        else {
+        } else {
             this.removeUserList(data.user_id);
         }
         this.getApi();
@@ -275,5 +268,4 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
-
 }

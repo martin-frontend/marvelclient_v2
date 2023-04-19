@@ -1,5 +1,4 @@
 .codeSelect {
-
     ::v-deep .v-input input {
         color: #96a9d0;
         font-size: 14px;
@@ -18,7 +17,7 @@
     }
 
     ::v-deep .v-list {
-        background: #25324B;
+        background: #25324b;
         border-radius: 10px !important;
         //color:#96AAD0;
     }
@@ -27,20 +26,20 @@
         min-width: 200px !important;
     }
 }
-.my-autocomplete  {
-    ::v-deep .v-input__slot{
+.my-autocomplete {
+    ::v-deep .v-input__slot {
         padding: 0px !important;
     }
-  
-    ::v-deep .v-list-item{
+
+    ::v-deep .v-list-item {
         padding: 0px !important;
     }
-    ::v-deep .v-menu__content{
+    ::v-deep .v-menu__content {
         min-width: 110px !important;
     }
     ::v-deep .v-input__icon {
         position: absolute !important;
         top: 5px !important;
         left: 23px !important;
-      }
+    }
 }

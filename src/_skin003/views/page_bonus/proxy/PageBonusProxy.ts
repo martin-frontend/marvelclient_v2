@@ -56,17 +56,15 @@ export default class PageBonusProxy extends puremvc.Proxy {
     setUserData(data: any) {
         Object.assign(this.pageData.user_stake_info, data);
     }
-    setTestData()
-    {
+    setTestData() {
         const obj = {
-            username:"asdasd",
-            stake_amount:"asdasd",
-            bonus_amount:"asdasd",
+            username: "asdasd",
+            stake_amount: "asdasd",
+            bonus_amount: "asdasd",
         };
 
-        const list=<any>[];
+        const list = <any>[];
         for (let index = 0; index < 10; index++) {
-            
             list.push(obj);
         }
         return list;

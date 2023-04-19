@@ -12,6 +12,7 @@
         outline: none;
     }
 }
-textarea::placeholder, textarea[disabled] {
+textarea::placeholder,
+textarea[disabled] {
     color: #4c5d7f;
 }

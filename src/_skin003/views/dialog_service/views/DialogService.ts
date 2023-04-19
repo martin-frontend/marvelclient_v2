@@ -10,7 +10,7 @@ export default class DialogService extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogServiceProxy = this.getProxy(DialogServiceProxy);
     pageData = this.myProxy.pageData;
-    
+
     constructor() {
         super(DialogServiceMediator);
     }
@@ -20,26 +20,18 @@ export default class DialogService extends AbstractView {
         this.pageData.bShow = false;
     }
 
-    
-    public get text_title() : string {
-        if (this.myProxy.customData.title)
-        {
+    public get text_title(): string {
+        if (this.myProxy.customData.title) {
             return this.myProxy.customData.title;
-        }
-        else
-            return LangUtil("服务条款");
+        } else return LangUtil("服务条款");
     }
-    
-    public get text_neirong() : string {
-        if (this.myProxy.customData.neirong)
-        {
+
+    public get text_neirong(): string {
+        if (this.myProxy.customData.neirong) {
             return this.myProxy.customData.neirong;
-        }
-        else
-            return LangUtil("服务条款内容");
+        } else return LangUtil("服务条款内容");
     }
-    
-    
+
     @Watch("pageData.bShow")
     onWatchShow() {
         BlurUtil(this.pageData.bShow);

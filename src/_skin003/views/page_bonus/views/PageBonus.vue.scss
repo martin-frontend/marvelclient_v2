@@ -1,11 +1,11 @@
 .horizontal-gradient-top {
-    background-image: linear-gradient(to right, #26272D, #26272D);
+    background-image: linear-gradient(to right, #26272d, #26272d);
 }
 .horizontal-gradient {
-    background: linear-gradient(to right, #18191C, #18191C);
+    background: linear-gradient(to right, #18191c, #18191c);
 }
 .gradient-type1 {
-    background-image: linear-gradient(to bottom, #C19251, #6F5F4F);
+    background-image: linear-gradient(to bottom, #c19251, #6f5f4f);
     &:hover {
         background-image: linear-gradient(to bottom, #c08737, #74583d);
     }
@@ -79,7 +79,6 @@
     right: 15px;
     min-width: 87px;
     max-width: 235px;
-
 }
 .bonus-width {
     width: 105px;
@@ -90,11 +89,11 @@
 .hundred-bonus-width {
     width: 85px;
 }
-.redRow_item{
-    background-color: #D02628;
+.redRow_item {
+    background-color: #d02628;
     border-radius: 4px !important;
 }
-.blackRow_item{
+.blackRow_item {
     background-color: #272424;
     border-radius: 4px !important;
 }

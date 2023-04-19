@@ -54,12 +54,11 @@
         <div class="d-flex mt-5">
             <User v-if="core.user_id && $vuetify.breakpoint.mobile" />
             <template v-if="!$vuetify.breakpoint.mobile">
-
                 <button class="nav-button" :class="routerPath == '/'? 'active' : ''" @click="goHome">
                     <v-icon>mdi-home</v-icon>
                     <div>{{LangUtil("首页")}}</div>
                 </button>
-    
+
                 <button
                     v-if="!$vuetify.breakpoint.mobile"
                     class="nav-button"
@@ -69,7 +68,7 @@
                     <v-icon class="mr-1">{{ CategoryIcon[64] }}</v-icon>
                     <div>{{LangUtil("足球")}}</div>
                 </button>
-    
+
                 <button
                     class="nav-button d-none d-md-flex"
                     v-for="(item, index) of pageData.lobbyIndex"
@@ -80,7 +79,7 @@
                     <v-icon class="mr-1">{{ CategoryIcon[item.category] }}</v-icon>
                     <div>{{ item.category_name }}</div>
                 </button>
-    
+
                 <!-- <v-hover v-slot="{ hover }">
                     <button
                         class="nav-button"
@@ -97,13 +96,9 @@
                         <div class="ml-1">{{ LangUtil("返水") }}</div>
                     </button>
                 </v-hover> -->
-    
+
                 <v-hover v-slot="{ hover }" v-if="is_show_commission.is_open == 1 && isShowDirectly == 2">
-                    <button
-                        class="nav-button"
-                        @click="goExtension"
-                        :class="routerPath == '/page_extension' ? 'active' : ''"
-                    >
+                    <button class="nav-button" @click="goExtension" :class="routerPath == '/page_extension' ? 'active' : ''">
                         <v-img
                             v-if="routerPath == '/page_extension' || hover"
                             max-width="24"

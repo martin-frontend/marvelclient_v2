@@ -45,15 +45,12 @@ export default class DialogBetRecord extends AbstractView {
     };
 
     public get isOtherUser(): any {
-
         if (!this.groupsTitle) {
             //return this.curShowId;
             return "";
-        }
-        else {
+        } else {
             return this.listQuery.agent_user_id + "(" + this.groupsTitle + ")";
         }
-
     }
 
     public get showMultUserList(): any {
@@ -92,8 +89,7 @@ export default class DialogBetRecord extends AbstractView {
     public get groupsTitle(): string {
         if (this.pageData.filterBtnInfo && this.pageData.filterBtnInfo.is_group == 2) {
             return LangUtil("团队");
-        }
-        else {
+        } else {
             return "";
         }
     }
@@ -142,8 +138,7 @@ export default class DialogBetRecord extends AbstractView {
             const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
             this.timeRange = [start_date, end_date];
             this.onTimeChange();
-        }
-        else {
+        } else {
             this.myProxy.clearFilterInfo();
         }
     }
@@ -236,8 +231,7 @@ export default class DialogBetRecord extends AbstractView {
         dialog_order.show(game_info);
     }
     getMoneyColor(str: string): string {
-        if (!str || str =="")
-        {
+        if (!str || str == "") {
             return str;
         }
         const newstr = str.replace("$", "");
@@ -248,8 +242,7 @@ export default class DialogBetRecord extends AbstractView {
         return !!str && str.search("-") == -1 ? "color_green_text_1--text" : "red--text";
     }
     getMoneyValue(str: string): string {
-        if (!str || str =="")
-        {
+        if (!str || str == "") {
             return str;
         }
         const newstr = str.replace("$", "");

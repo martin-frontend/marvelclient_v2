@@ -56,14 +56,14 @@
         bottom: 0px;
     }
 }
-.win-type{
+.win-type {
     position: absolute;
     bottom: 20px;
     right: 10px;
     width: 100px;
     height: 100px;
     text-align: center;
-    div{
+    div {
         margin-top: 37px;
         color: white;
         font-size: 18px;
@@ -76,16 +76,16 @@
 }
 ::v-deep .theme--dark {
     .v-sheet {
-        background-color: #FFFFFF !important;
-        border-color: #FFFFFF !important;
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
         color: rgba(0, 0, 0, 0.87) !important;
     }
     .default-color {
-        background-color: #F1F1F1 !important;
-        border-color: #F1F1F1 !important;
+        background-color: #f1f1f1 !important;
+        border-color: #f1f1f1 !important;
     }
 }
-.title{
+.title {
     font-size: 18px !important;
-    color:hsla(0,0%,100%,.7);
+    color: hsla(0, 0%, 100%, 0.7);
 }

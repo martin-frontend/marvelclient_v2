@@ -12,33 +12,24 @@ export default class User extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
 
-
-    
-    public get curVipLevel() : number {
-        if (this.selfProxy.userInfo.vip_info )
-        {
+    public get curVipLevel(): number {
+        if (this.selfProxy.userInfo.vip_info) {
             return this.selfProxy.userInfo.vip_info.vip_level;
-        }
-        else
-        {
+        } else {
             return 0;
         }
         //return this.selfProxy.userInfo.vip_info.vip_level;
     }
-    openMail()
-    {
+    openMail() {
         dialog_email.show();
     }
-    public get userShowName() : string {
+    public get userShowName(): string {
         //return "fghfasdasqwe asd123123123asdasd";
-        if (this.selfProxy.userInfo.nick_name)
-        {
+        if (this.selfProxy.userInfo.nick_name) {
             return this.selfProxy.userInfo.nick_name;
-        }
-        else
-        return this.selfProxy.userInfo.user_id + "";
+        } else return this.selfProxy.userInfo.user_id + "";
     }
-    
+
     vipMap: any = {
         0: require(`@/assets/mine/vip0.png`),
         1: require(`@/assets/mine/vip1.png`),

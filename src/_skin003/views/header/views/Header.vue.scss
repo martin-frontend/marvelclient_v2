@@ -11,7 +11,7 @@ a {
     font-weight: 500;
     line-height: 48px;
     transition: color 0.2s ease-in-out;
-    color: #BEBEBE;
+    color: #bebebe;
     white-space: nowrap;
     height: 48px;
     svg {
@@ -19,41 +19,41 @@ a {
         max-width: 22px;
         transition: all 0.2s ease-in-out;
         margin-right: 4px;
-        fill: #BEBEBE;
+        fill: #bebebe;
     }
     i {
-        color: #BEBEBE;
+        color: #bebebe;
     }
 }
 .nav-button.active {
     //border-radius: 8px;
-    color: #D02728;
-    background-image: linear-gradient(to bottom,transparent 98%, #D02728 98%, #D02728 100%);
+    color: #d02728;
+    background-image: linear-gradient(to bottom, transparent 98%, #d02728 98%, #d02728 100%);
 
     svg {
-        fill: #D02728;
+        fill: #d02728;
     }
     i {
-        color: #D02728;
+        color: #d02728;
     }
 }
 .nav-button:hover {
     //border-radius: 8px;
-    color: #D02728;
+    color: #d02728;
     //background-image: linear-gradient(to bottom,transparent 99%, #D02728 99%, #D02728 100%);
 
     svg {
-        fill: #D02728;
+        fill: #d02728;
     }
     i {
-        color: #D02728;
+        color: #d02728;
     }
 }
 
 .app-bar {
     background: url("~@/_skin003/assets/header/wenli.png") no-repeat left top;
 }
-.language{
+.language {
     ::v-deep .colorPanelTitleBg {
         background-color: transparent !important;
     }

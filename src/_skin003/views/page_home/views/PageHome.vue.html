@@ -7,11 +7,15 @@
     <div v-else>
         <Activity />
         <Marquee1 class="mt-2" />
-
     </div>
     <div v-for="(item, index) of pageData.lobbyIndex" :key="index">
-        <GameSlideGroup v-if=" item.category != 32 && item.category != 64" :data="item" :bShowAll="true"
-            :name="item.category" :id="item.category" />
+        <GameSlideGroup
+            v-if=" item.category != 32 && item.category != 64"
+            :data="item"
+            :bShowAll="true"
+            :name="item.category"
+            :id="item.category"
+        />
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
     <v-lazy>
@@ -20,7 +24,7 @@
 
     <v-sheet class="d-flex justify-center align-center flex-wrap" v-if="$vuetify.breakpoint.mobile" color="transparent" width="100%">
         <div class="mr-4" @click="goService_2(1)"><a class="info--text text-12">{{LangUtil("AML政策")}}</a></div>
-        <div class="mr-4" @click="goService_2(2)"><a class="info--text text-12">{{LangUtil("隐私政策")}}</a> </div>
+        <div class="mr-4" @click="goService_2(2)"><a class="info--text text-12">{{LangUtil("隐私政策")}}</a></div>
         <div class="mr-4" @click="goService_2(3)"><a class="info--text text-12">{{LangUtil("负责任的赌博")}}</a></div>
         <div class="mr-4" @click="goService_2(4)"><a class="info--text text-12">{{LangUtil("条款和条件")}}</a></div>
     </v-sheet>

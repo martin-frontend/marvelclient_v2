@@ -17,7 +17,7 @@ export default class DialogRegister extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
     pageData = this.myProxy.pageData;
-    SkinVariable=SkinVariable;
+    SkinVariable = SkinVariable;
     form = this.pageData.form;
     core = core;
     constructor() {
@@ -43,7 +43,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     public get curShowCode(): string {
-        return "+" + this.form.area_code
+        return "+" + this.form.area_code;
     }
 
     @Watch("tempSelectCode")
@@ -55,12 +55,11 @@ export default class DialogRegister extends AbstractView {
     }
 
     customFilter(item: any, queryText: any, itemText: any) {
-        const textOne = item.name.toLowerCase()
+        const textOne = item.name.toLowerCase();
         const textTwo = item.area_code + "";
-        const searchText = queryText.toLowerCase()
+        const searchText = queryText.toLowerCase();
 
-        return textOne.indexOf(searchText) > -1 ||
-            textTwo.indexOf(searchText) > -1
+        return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
     }
 
     hasInviteUser() {
@@ -151,8 +150,7 @@ export default class DialogRegister extends AbstractView {
             if (!this.registerTypes.includes(1)) {
                 if (this.registerTypes.includes(4)) {
                     this.onTabClick(4);
-                }
-                else {
+                } else {
                     this.onTabClick(2);
                 }
             }

@@ -4,6 +4,11 @@ import { api_public_area_code, api_public_auth_code } from "./net";
 async function loadConfig() {
     await LandConfig.loadChannelConfig();
     await LandConfig.loadPlatConfig();
+    const channelID = core.getQueryVariable("channel_id");
+    if (channelID) {
+        const config = LandConfig.config;
+        config.channelID = channelID;
+    }
     loadTemplate();
 }
 

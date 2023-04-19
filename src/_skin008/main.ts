@@ -40,6 +40,7 @@ Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
+SkinVariable.isShowfullLogo = true;
 LogUtil.init();
 core.init();
 //@ts-ignore

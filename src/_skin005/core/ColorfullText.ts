@@ -30,7 +30,7 @@ export function getMoneyColor(str: any): string {
  * @param str 传入钱的金额
  * @returns + -的文本
  */
-export function getMoneyValue(str: any): string {
+export function getMoneyValue(str: any, decimalLang: number = 2, isautoUsdt: boolean = false): string {
     if (!str) return str;
     let amount = 0;
     if (typeof str == "string") {
@@ -48,6 +48,7 @@ export function getMoneyValue(str: any): string {
         newstr = str + "";
     }
 
-    if (!!newstr && newstr.search("-") == -1) return "+" + amountFormat(newstr, true);
-    return amountFormat(newstr, true);
+    //console.log("--计算的结果",newstr);
+    if (!!newstr && newstr.search("-") == -1) return "+" + amountFormat(newstr, true, decimalLang, isautoUsdt);
+    return amountFormat(newstr, true, decimalLang, isautoUsdt);
 }

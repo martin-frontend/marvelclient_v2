@@ -207,7 +207,7 @@
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
                                     >
                                         <div>{{LangUtil("今日总业绩")}}</div>
-                                        <div>{{ statistics_data.total_water_summary }}</div>
+                                        <div>{{transformMoney(statistics_data.total_water_summary) }}</div>
                                     </v-sheet>
 
                                     <v-sheet
@@ -216,7 +216,7 @@
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
                                     >
                                         <div>{{LangUtil("今日团队业绩")}}</div>
-                                        <div>{{ statistics_data.group_water_summary }}</div>
+                                        <div>{{transformMoney(statistics_data.group_water_summary) }}</div>
                                     </v-sheet>
 
                                     <v-sheet
@@ -225,7 +225,7 @@
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
                                     >
                                         <div>{{LangUtil("今日直属业绩")}}</div>
-                                        <div>{{ statistics_data.direct_water_summary }}</div>
+                                        <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
                                     </v-sheet>
                                 </v-card>
                             </v-sheet>
@@ -251,12 +251,13 @@
                                     </v-sheet>
 
                                     <v-sheet
+                                    v-if="ModulesHelper.MyRebate()"
                                         color="transparent"
                                         height="40"
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
                                     >
                                         <div>{{LangUtil("每万返佣")}}</div>
-                                        <div>{{ promotionData.commission_num }}</div>
+                                        <div>{{ promotionData.commission_num}}</div>
                                     </v-sheet>
                                 </v-card>
                             </v-sheet>
@@ -366,15 +367,15 @@
                     <v-sheet color="transparent" width="100%" height="100%" class="d-flex flex-column pr-2">
                         <v-sheet color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
                             <div>{{LangUtil("今日总业绩")}}</div>
-                            <div>{{ statistics_data.total_water_summary }}</div>
+                            <div>{{ transformMoney(statistics_data.total_water_summary) }}</div>
                         </v-sheet>
                         <v-sheet color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
                             <div>{{LangUtil("今日团队业绩")}}</div>
-                            <div>{{ statistics_data.group_water_summary }}</div>
+                            <div>{{ transformMoney(statistics_data.group_water_summary) }}</div>
                         </v-sheet>
                         <v-sheet color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
                             <div>{{LangUtil("今日直属业绩")}}</div>
-                            <div>{{ statistics_data.direct_water_summary }}</div>
+                            <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
                         </v-sheet>
                         <v-sheet color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
                             <div>{{LangUtil("直属人数（新增）")}}</div>
@@ -386,7 +387,7 @@
                             <div>{{ promotionData.group_users }} ({{ promotionData.today_group_users }})</div>
                         </v-sheet>
 
-                        <v-sheet color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
+                        <v-sheet v-if="ModulesHelper.MyRebate()" color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
                             <div>{{LangUtil("每万返佣")}}</div>
                             <div>{{ promotionData.commission_num }}</div>
                         </v-sheet>

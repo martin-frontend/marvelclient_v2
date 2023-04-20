@@ -15,6 +15,25 @@ function _isValueTrue(str: string, isDefault: boolean = true) {
     }
 }
 
+function MyRebate() {
+    return _isValueTrue("MyRebate");
+    // if (GameConfig && GameConfig.config && GameConfig.config.MyRebate == 0) {
+    //     return false;
+    // }
+    // return true;
+}
+function RebateDisplayType() {
+    if (GameConfig && GameConfig.config && GameConfig.config.RebateDisplayType == 1) {
+        return false;
+    }
+    return true;
+}
+function RebateListType() {
+    if (GameConfig && GameConfig.config && GameConfig.config.RebateListType == 1) {
+        return false;
+    }
+    return true;
+}
 /**
  * 是否显示 VIP信息
  */
@@ -193,4 +212,7 @@ export default {
     IsShow_VipShowDeal,
     IsShow_HideRegisterInvite,
     IsShow_GoogleVerification,
+    MyRebate,
+    RebateDisplayType,
+    RebateListType,
 };

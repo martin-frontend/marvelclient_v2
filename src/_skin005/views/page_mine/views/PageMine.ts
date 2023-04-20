@@ -10,6 +10,8 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
 import GlobalVar from "@/core/global/GlobalVar";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GameConfig from "@/core/config/GameConfig";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -160,5 +162,8 @@ export default class PageMine extends AbstractView {
         }
         const newNub = (amount * this.myProxy.getCoinsScale).toFixed(2);
         return newNub;
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
     }
 }

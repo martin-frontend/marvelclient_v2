@@ -6,18 +6,22 @@ import DialogGoldWaterProxy from "../proxy/DialogGoldWaterProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
-import { changeDateShow, amountFormat } from "@/core/global/Functions";
+import { changeDateShow } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogGoldWater extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogGoldWaterProxy = this.getProxy(DialogGoldWaterProxy);
     pageData = this.myProxy.pageData;
-    amountFormat = amountFormat;
     constructor() {
         super(DialogGoldWaterMediator);
     }
 
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
+    }
     onClose() {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();

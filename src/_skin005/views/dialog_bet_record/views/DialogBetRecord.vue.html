@@ -139,32 +139,19 @@
 
                 <div class="ml-5 primary--text">
                     {{LangUtil("总投注额")}}
-                    <span v-if="is_send_coin" class="userInfo_color--text">
-                        {{amountFormat(pageData.total_valid_bet_gold_coin || '0')}}
-                    </span>
-                    <span v-else>
-                        <span style="font-family: Arial">≈</span>
-                        <span class="userInfo_color--text">{{amountFormat(pageData.total_valid_bet_gold_coin || '0')}}</span>
-                    </span>
+                    <span class="userInfo_color--text"> {{transformMoney(pageData,"total_bet_gold")}} </span>
                 </div>
 
                 <div v-if="isShowVailBet" class="ml-5 primary--text">
                     {{LangUtil("有效投注")}}
-                    <span v-if="is_send_coin" class="userInfo_color--text"> {{amountFormat(pageData.total_valid_bet_gold_coin)}} </span>
-                    <span v-else>
-                        <span style="font-family: Arial">≈</span>
-                        <span class="userInfo_color--text">{{amountFormat(pageData.total_valid_bet_gold)}}</span>
-                    </span>
+                    <span class="userInfo_color--text"> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
                 </div>
 
                 <div class="ml-5 primary--text">
                     {{LangUtil("输赢")}}
-                    <span v-if="!is_send_coin">
-                        <span style="font-family: Arial">≈</span>
-                        <span :class="getMoneyColor(pageData.total_win_gold)">{{getMoneyValue(pageData.total_win_gold)}}</span>
-                    </span>
-                    <span v-else class="userInfo_color--text">
-                        <span :class="getMoneyColor(pageData.total_win_gold_coin)"> {{getMoneyValue(pageData.total_win_gold_coin)}}</span>
+
+                    <span class="userInfo_color--text">
+                        <span :class="getMoneyColor(pageData.total_win_gold)"> {{transformMoney(pageData,"total_win_gold",true)}}</span>
                     </span>
                 </div>
 
@@ -177,9 +164,9 @@
         </v-sheet>
         <v-sheet class="px-5" color="transparent">
             <v-sheet class="d-flex align-center px-2 text-14 justify-space-between" height="38" color="transparent" width="100%">
-                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("订单号")}}</v-sheet>
-                <v-sheet color="transparent" class="primary--text" width="100">{{LangUtil("游戏名称")}}</v-sheet>
-                <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("投注币种")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="150">{{LangUtil("订单号")}}</v-sheet>
+                <v-sheet color="transparent" class="primary--text" width="150">{{LangUtil("游戏名称")}}</v-sheet>
+                <!-- <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("投注币种")}}</v-sheet> -->
                 <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("投注金额")}}</v-sheet>
                 <v-sheet color="transparent" class="primary--text" width="120">{{LangUtil("游戏输赢")}}</v-sheet>
                 <v-sheet v-if="isShowVailBet" color="transparent" class="primary--text" width="120">{{LangUtil("有效投注")}}</v-sheet>
@@ -205,28 +192,44 @@
                         class="d-flex flex-wrap align-center justify-space-between mx-2 textGray--text"
                         width="100%"
                     >
-                        <v-sheet
-                            color="transparent"
-                            class="primary--text text-truncate text-decoration-underline cursor-pointer"
-                            width="100"
-                            @click="onCopyOrderClick(item.order_no)"
-                            >{{item.order_no}}</v-sheet
-                        >
-                        <v-sheet color="transparent" class="primary--text text-truncate" width="100">{{item.vendor_product_name}}</v-sheet>
-                        <v-sheet color="transparent" class="primary--text" width="80">{{item.coin_name_unique}}</v-sheet>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                    <v-sheet
+                                        color="transparent"
+                                        class="primary--text text-truncate text-decoration-underline cursor-pointer"
+                                        width="150"
+                                        @click="onCopyOrderClick(item.order_no)"
+                                        >{{item.order_no}}</v-sheet
+                                    >
+                                </v-sheet>
+                            </template>
+                            <span>{{item.order_no}}</span>
+                        </v-tooltip>
+
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                    <v-sheet color="transparent" class="primary--text text-truncate" width="150"
+                                        >{{item.vendor_product_name}}</v-sheet
+                                    >
+                                </v-sheet>
+                            </template>
+                            <span>{{item.vendor_product_name}}</span>
+                        </v-tooltip>
+
                         <v-sheet color="transparent" class="primary--text" width="120"
-                            >{{amountFormat( is_send_coin ? item.bet_gold_coin : item.bet_gold)}}</v-sheet
+                            >{{ transformMoney(item,"bet_gold",false,true)}}</v-sheet
                         >
                         <v-sheet color="transparent" class="primary--text" width="120">
-                            <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
-                            <div v-else :class="getMoneyColor(item.win_gold_coin)">{{getMoneyValue(item.win_gold_coin)}}</div>
+                            <div :class="getMoneyColor(item.win_gold_coin)">{{ transformMoney(item,"win_gold",false,true)}}</div>
                         </v-sheet>
                         <v-sheet v-if="isShowVailBet" color="transparent" class="primary--text" width="120">
-                            {{amountFormat(is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold)}}
+                            {{ transformMoney(item,"valid_bet_gold",false,true)}}
                         </v-sheet>
 
                         <v-sheet color="transparent" class="primary--text" width="120">
-                            {{amountFormat(is_send_coin?item.water_coin:item.water)}}
+                            {{ transformMoney(item,"water",false,true)}}
                         </v-sheet>
 
                         <v-sheet color="transparent" class="primary--text" width="80">
@@ -254,63 +257,6 @@
                                 <span class="mb-3 textGray--text">></span>
                             </v-btn>
                         </v-sheet>
-
-                        <!-- <div class="d-flex flex-wrap listitem">
-                            <div class="listitem-150">
-                                <div class="text-truncate text-decoration-underline cursor-pointer"
-                                    @click="onCopyOrderClick(item.order_no)">{{item.order_no}}</div>
-                            </div>
-                            <div class="listitem-150">
-                                <div class="text-truncate">{{item.vendor_product_name}}</div>
-                            </div>
-                            <div>
-                                <div>{{item.coin_name_unique}}</div>
-                            </div>
-                            <div>
-                                <div>{{is_send_coin ? item.bet_gold_coin : item.bet_gold}}</div>
-                            </div>
-                            <div>
-                                <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">
-                                    {{getMoneyValue(item.win_gold)}}</div>
-                                <div v-else :class="getMoneyColor(item.win_gold_coin)">
-                                    {{getMoneyValue(item.win_gold_coin)}}
-                                </div>
-                            </div>
-                            <div>
-                                <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
-                            </div>
-                            <div>
-                                <div>{{is_send_coin?item.water_coin:item.water}}</div>
-                            </div>
-                            <div>
-                                <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
-                            </div>
-                            <div class="listitem-150">
-                                <div class="text-truncate">{{getDate(item.bet_at)}}</div>
-                            </div>
-                            <div class="listitem-150" v-if="true || item.vendor_id == GameConfig.config.SportVendorId">
-                                <div class="text-truncate">{{getDate(item.settlement_at)}}</div>
-                            </div>
-                            <div class="listitem-150" v-else>
-                                <div class="text-truncate">-</div>
-                            </div>
-                            <div class="listitem-150" v-else>
-                                <div class="text-truncate"></div>
-                            </div>
-
-                            <div class="listitem-40" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                                <v-btn text class="font-weight-regular text-14 btn mb-n3" @click="handlerDetail(item)">
-                                    <span class="mb-3 textGray--text">></span>
-
-                                </v-btn>
-                            </div>
-                            <div class="listitem-40" v-else="item.vendor_id == GameConfig.config.SportVendorId">
-                                <div>
-
-                                </div>
-                            </div>
-
-                        </div> -->
                     </v-sheet>
                 </v-sheet>
             </v-sheet>
@@ -466,22 +412,16 @@
                         <v-sheet width="100%" class="text-14 d-flex justify-space-between align-center" color="transparent" min-height="30">
                             <span class="leftText--text">{{LangUtil("总投注额")}}</span>
                             <div class="head_btn--text">
-                                <span v-if="is_send_coin"> {{amountFormat(pageData.total_valid_bet_gold_coin || '0')}} </span>
-                                <span v-else>
-                                    <span style="font-family: Arial">≈</span>{{amountFormat(pageData.total_valid_bet_gold_coin || '0')}}
-                                </span>
+                                <span> {{transformMoney(pageData,"total_bet_gold")}} </span>
                             </div>
                         </v-sheet>
 
                         <v-sheet width="100%" class="text-14 d-flex justify-space-between align-center" color="transparent" min-height="30">
                             <span class="leftText--text">{{LangUtil("输赢")}}</span>
                             <div class="head_btn--text">
-                                <span v-if="!is_send_coin" :class="getMoneyColor(pageData.total_win_gold)">
-                                    <span style="font-family: Arial">≈</span>{{getMoneyValue(pageData.total_win_gold)}}</span
-                                >
-                                <span v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
-                                    {{getMoneyValue(pageData.total_win_gold_coin)}}</span
-                                >
+                                <span :class="getMoneyColor(pageData.total_win_gold)">
+                                    {{transformMoney(pageData,"total_win_gold",true)}}
+                                </span>
                             </div>
                         </v-sheet>
 
@@ -494,10 +434,7 @@
                         >
                             <span class="leftText--text">{{LangUtil("有效投注")}}</span>
                             <div class="head_btn--text">
-                                <span v-if="is_send_coin"> {{amountFormat(pageData.total_valid_bet_gold_coin)}} </span>
-                                <span v-else>
-                                    <span style="font-family: Arial">≈</span>{{amountFormat(pageData.total_valid_bet_gold)}}
-                                </span>
+                                <span> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
                             </div>
                         </v-sheet>
 
@@ -584,34 +521,29 @@
                     <div class="head_btn--text">{{item.vendor_product_name}}</div>
                 </div>
                 <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
+                <!-- <div class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("投注币种")}}</div>
                     <div class="head_btn--text">{{item.coin_name_unique}}</div>
-                </div>
+                </div> -->
                 <div class="line mt-2"></div>
                 <div class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("投注金额")}}</div>
-                    <div class="head_btn--text">{{amountFormat(is_send_coin?item.bet_gold_coin: item.bet_gold)}}</div>
+                    <div class="head_btn--text">{{ transformMoney(item,"bet_gold",false,true)}}</div>
                 </div>
                 <div class="line mt-2"></div>
                 <div class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("游戏输赢")}}</div>
-                    <div class="head_btn--text" v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">
-                        {{getMoneyValue(item.win_gold)}}
-                    </div>
-                    <div class="head_btn--text" v-else :class="getMoneyColor(item.win_gold_coin)">
-                        {{getMoneyValue(item.win_gold_coin)}}
-                    </div>
+                    <div class="head_btn--text">{{ transformMoney(item,"win_gold",false,true)}}</div>
                 </div>
                 <div class="line mt-2"></div>
                 <div v-if="isShowVailBet" class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("有效投注")}}</div>
-                    <div class="head_btn--text">{{amountFormat(is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold)}}</div>
+                    <div class="head_btn--text">{{ transformMoney(item,"valid_bet_gold",false,true)}}</div>
                 </div>
                 <div v-if="isShowVailBet" class="line mt-2"></div>
                 <div class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("结算流水")}}</div>
-                    <div class="head_btn--text">{{amountFormat(is_send_coin?item.water_coin:item.water)}}</div>
+                    <div class="head_btn--text">{{ transformMoney(item,"water",false,true)}}</div>
                 </div>
                 <div class="line mt-2"></div>
                 <div class="d-flex justify-space-between mt-2">

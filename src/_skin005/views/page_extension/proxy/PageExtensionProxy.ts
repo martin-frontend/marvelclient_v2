@@ -1,10 +1,13 @@
-import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
+import { amountFormat, dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import Utils from "@/core/global/Utils";
 
 import CopyUtil from "@/core/global/CopyUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 export default class PageExtensionProxy extends puremvc.Proxy {
     static NAME = "PageExtensionProxy";
@@ -127,19 +130,32 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             type: 0,
         });
     }
+    _transformMoney(val: any, target_coin_name: string, src_coin_name: string, isFanyong: boolean = false) {
+        return CoinTransformHelper.TransformMoney(val, 2, target_coin_name, src_coin_name, true, !isFanyong, false, false);
+    }
+    transformMoney(val: any) {
+        return this._transformMoney(val, GameConfig.config.SettlementCurrency, "USDT");
+    }
 
     setData(data: any) {
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.promotionData, data);
-        this.pageData.btnBind = !data.invite_user_id;
-        if (data.commission_info[2].commission_num.USDT != undefined) {
-            this.pageData.promotionData.commission_num = data.commission_info[2].commission_num.USDT;
-        } else {
-            this.pageData.promotionData.commission_num = 0;
-        }
         this.getCurrentCoin();
-    }
+        this.pageData.btnBind = !data.invite_user_id;
 
+        this.pageData.promotionData.commission_num = data.commission_info[2].commission_num[this.pageData.platCoins.mainCoin.name] || 0;
+
+        if (!ModulesHelper.RebateDisplayType()) {
+            const sss = parseFloat(this.pageData.promotionData.commission_num);
+            this.pageData.promotionData.commission_num = this.transformMoney_commission(sss / 100) + this.LangUtil("%");
+        } else {
+            this.pageData.promotionData.commission_num = this.transformMoney_commission(this.pageData.promotionData.commission_num);
+        }
+    }
+    transformMoney_commission(val: any) {
+        const sss = val * CoinTransformHelper.GetMainCoinScale;
+        return CoinTransformHelper.GetMainCoinSymbol + amountFormat(sss, true);
+    }
     /** 写入 返佣等级 */
     setCommissionCommissionnum(body: any) {
         const data: any = JSON.parse(JSON.stringify(body));

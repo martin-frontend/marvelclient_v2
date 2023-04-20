@@ -18,7 +18,7 @@ export default class Category extends AbstractView {
 
         const dataList = <any>{};
         //现将数据排序
-        const sort_category = lobbyCategory.sort( (a:core.PlatLobbyCategoryIndexVO,b:core.PlatLobbyCategoryIndexVO)=>{
+        const sort_category = lobbyCategory.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
             return a.index_no - b.index_no;
         });
         //将数据分组

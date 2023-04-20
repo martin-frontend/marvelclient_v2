@@ -31,10 +31,10 @@
 
                             <v-sheet color="transparent" class="primary--text" min-width="120">{{item.type}}</v-sheet>
                             <v-sheet color="transparent" class="primary--text" min-width="100"
-                                >{{LangUtil("$")}}{{amountFormat(item.water_limit,true)}}</v-sheet
+                                > {{transformMoney(item.water_limit)}}</v-sheet
                             >
                             <v-sheet color="transparent" class="primary--text" min-width="100"
-                                >{{LangUtil("$")}}{{amountFormat(item.water,true)}}</v-sheet
+                                >{{transformMoney(item.water)}}</v-sheet
                             >
                             <v-sheet color="transparent" :class="getStateColor(item.pass_type)" min-width="100"
                                 >{{getStateText(item.pass_type)}}</v-sheet
@@ -89,12 +89,12 @@
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">
                                 <div class="my-0 textGray--text">{{LangUtil("审核流水")}}</div>
-                                <div class="my-0">{{LangUtil("$")}}{{amountFormat(item.water_limit,true)}}</div>
+                                <div class="my-0">{{transformMoney(item.water_limit)}}</div>
                             </v-sheet>
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">
                                 <div class="my-0 textGray--text">{{LangUtil("$")}}{{LangUtil("实际打码")}}</div>
-                                <div class="my-0">{{amountFormat(item.water,true)}}</div>
+                                <div class="my-0">{{transformMoney(item.water)}}</div>
                             </v-sheet>
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">

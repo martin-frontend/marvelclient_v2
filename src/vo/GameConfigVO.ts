@@ -20,7 +20,7 @@ export interface GameConfigVO {
     lang: string;
     /**下载地址 */
     AndroidApkUrl: string;
-    ios_download_link: string;//ios包下载的地址
+    ios_download_link: string; //ios包下载的地址
     android_download_link: string; //android下载地址
     /**足球厂商ID */
     SportVendorId: number;
@@ -28,7 +28,7 @@ export interface GameConfigVO {
     menuType: string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
     /**三方登录地址 */
     ThirdLoginUrl: string;
-    modules_switch: any;//一些功能的配置开关  入 币种介绍，质押分推广赚钱等
+    modules_switch: any; //一些功能的配置开关  入 币种介绍，质押分推广赚钱等
     /** 板球厂商id */
     CricketVendorId: number;
     /**游戏列表展示 使用的 数据来源 里面 配置的类型 使用旧版版的，没有配置的则使用  新版本的 */
@@ -38,20 +38,27 @@ export interface GameConfigVO {
     /**第一次以后 设置交易密码 使用的类型 */
     changeGoldPasswordFollowSetting: number;
     /**第一次进入时候 默认 页面 例如是homePage："cricket"*/
-    homePage:string;
+    homePage: string;
     /**手机版底部的也签 */
-    PhoneMenu:string[];
+    PhoneMenu: string[];
     /**各种渠道的配置，里面的参数与上面相同 */
-    ChannelConfig:any;
+    ChannelConfig: any;
     // /** 是否显示 注册   0  不显示， 其他显示  */
-    // register:string; // 
+    // register:string; //
     // /** 是否显示 充值   0  不显示， 其他显示  */
-    // recharge:string; 
+    // recharge:string;
     // /** 是否显示 兑换   0  不显示， 其他显示  */
-    // exchange:string; 
+    // exchange:string;
     // /** 是否显示 划转   0  不显示， 其他显示  */
-    // transfer:string; 
+    // transfer:string;
     /**是否需要显示验证码前面的图形验证码 */
-    is_display_auth_code:number;
-
+    is_display_auth_code: number;
+    /**显示的结算币种 */
+    SettlementCurrency: "";
+    /**我的每万返佣开关 0 不展示 1 展示  默认展示 */
+    MyRebate: number;
+    /**返佣每万展现方式 0数值 1百分比  默认0 */
+    RebateDisplayType: number;
+    /**返佣列表展示方式  0 展示万字 1 展示 全数字  默认为0*/
+    RebateListType: number;
 }

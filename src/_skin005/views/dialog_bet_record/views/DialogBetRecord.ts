@@ -2,7 +2,7 @@ import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GameConfig from "@/core/config/GameConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { amountFormat, changeDateShow, dateFormat, getTodayOffset } from "@/core/global/Functions";
+import { changeDateShow, dateFormat, getTodayOffset } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
 import { Watch, Component } from "vue-property-decorator";
@@ -15,6 +15,7 @@ import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -51,8 +52,45 @@ export default class DialogBetRecord extends AbstractView {
             },
         ],
     };
-    amountFormat(nub: any) {
-        return amountFormat(nub, true);
+
+    transformMoney(item: any, key: string, ismoney: boolean = false, donotTrans: boolean = false) {
+        let val; //
+        if (donotTrans) {
+            val = item[key + "_coin"] || 0;
+            return CoinTransformHelper.TransformMoney(val, 2, item.coin_name_unique, item.coin_name_unique, true, true, ismoney);
+        }
+        //先判断需要取哪个值来使用
+        // 带有 coin 的值 为 对应的币种的金额  不带的  为美元金额
+        if (this.is_send_coin || donotTrans) {
+            //如果带有 coin 的值 则 只需要对应的 添加 货币符号 然后格式化 就可以了
+            val = item[key + "_coin"] || 0;
+            return CoinTransformHelper.TransformMoney(
+                val,
+                2,
+                this.listQuery.coin_name_unique,
+                this.listQuery.coin_name_unique,
+                true,
+                true,
+                ismoney
+            );
+        } else {
+            //这个是美元的金额，需要 转换为 设置的结算 币种的金额 然后添加货币符号 和格式化
+
+            val = item[key] || 0;
+
+            return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, ismoney);
+        }
+    }
+    transformMoney_backwater(val: any) {
+        return CoinTransformHelper.TransformMoney(
+            val,
+            2,
+            this.listQuery.coin_name_unique,
+            this.listQuery.coin_name_unique,
+            true,
+            true,
+            false
+        );
     }
     mounted() {
         setTimeout(() => {
@@ -89,21 +127,8 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     setDatePiker() {
-        console.log("-----创建 ----");
-        //const keyNode = document.querySelector(".el-date-editor");
-
-        // const refs = this.$refs.options;
-        // if (!refs) {
-        //     return;
-        // }
-        // //@ts-ignore
-        // const test = refs.querySelector(".el-date-editor");
-        // console.log("ssssss", test);
-        // return;
-
         const keyNode = document.querySelectorAll(".el-date-editor");
         if (!keyNode) return;
-        console.log("-----创建 --22222--");
         for (let index = 0; index < keyNode.length; index++) {
             const element = keyNode[index];
 
@@ -150,8 +175,8 @@ export default class DialogBetRecord extends AbstractView {
             nub = parseFloat(nub);
         }
         nub = nub * 0.01;
-        //return nub.toFixed(2);
-        return this.amountFormat(nub);
+
+        return this.transformMoney_backwater(nub);
     }
     public get is_send_coin(): boolean {
         //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)

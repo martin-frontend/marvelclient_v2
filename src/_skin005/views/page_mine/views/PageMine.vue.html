@@ -53,12 +53,8 @@
                                             {{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextExp > 0">
-                                            <span class="textYellow--text">
-                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()"
-                                                    >{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span
-                                                >
-                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span> </span
-                                            >{{LangUtil('vip等级描述_2')}}
+                                            <span class="textYellow--text"> {{transformMoney(pageData.nextExp)}} </span>
+                                            {{LangUtil('vip等级描述_2')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextUSDT > 0">
                                             <span class="textYellow--text">{{pageData.nextUSDT}}</span>
@@ -679,16 +675,12 @@
                                             >{{LangUtil('vip等级描述_1')}}
                                         </span>
                                         <span class="textGray--text" v-if="pageData.nextExp > 0">
-                                            <span class="textYellow--text">
-                                                <span v-if="ModulesHelper.IsShow_VipShowDeal()"
-                                                    >{{pageData.platCoins.mainCoin.name && pageData.platCoins.mainCoin.name}}</span
-                                                >
-                                                <span>{{amountFormat(transformExpAndUsdt(pageData.nextExp))}} </span> </span
-                                            >{{LangUtil('vip等级描述_2')}}
+                                            <span class="textYellow--text"> {{transformMoney(pageData.nextExp)}} </span>
+                                            {{LangUtil('vip等级描述_2')}}
                                         </span>
 
                                         <span class="textGray--text" v-if="pageData.nextUSDT > 0">
-                                            <span class="textYellow--text">{{amountFormat(transformExpAndUsdt(pageData.nextUSDT)) }}</span>
+                                            <span class="textYellow--text"> {{transformMoney(pageData.nextUSDT)}} </span>
                                             USDT{{LangUtil('充值')}}</span
                                         >
                                     </div>

@@ -1,4 +1,7 @@
-import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GameConfig from "@/core/config/GameConfig";
+import { amountFormat, dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
@@ -63,6 +66,13 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         },
     };
 
+    _transformMoney(val: any, target_coin_name: string, src_coin_name: string) {
+        return CoinTransformHelper.TransformMoney(val, 2, target_coin_name, src_coin_name, true, true, false, false);
+    }
+    transformMoney(val: any) {
+        return this._transformMoney(val, GameConfig.config.SettlementCurrency, "USDT");
+    }
+
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
@@ -99,18 +109,42 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         Object.assign(this.pageData.statistics_data, data.statistics_data);
         Object.assign(this.pageData.original, data);
         Object.keys(data.commission_info).forEach((key) => {
+            const keys = Object.keys(data.commission_info[key].commission_num);
+            const commission_num_name = keys[0];
+            let meiwan = data.commission_info[key].commission_num[commission_num_name];
+            if (!ModulesHelper.RebateDisplayType()) {
+                meiwan = meiwan / 100;
+            }
+            let meiwan_res = this.transformMoney_commission(meiwan, commission_num_name);
+
+            if (!ModulesHelper.RebateDisplayType()) {
+                meiwan_res = meiwan_res + "%";
+            }
+
+            const keys_2 = Object.keys(data.commission_info[key].total_commission);
+            const total_commission_name = keys_2[0];
+
             this.pageData.list.push({
                 type: key,
-                total_water: data.commission_info[key].total_water,
-                self_water: data.commission_info[key].self_water,
-                direct_water: data.commission_info[key].direct_water,
-                group_water: data.commission_info[key].group_water,
-                commission_num: `${data.commission_info[key].commission_num[this.curCoinName]}`,
-                total_commission: `${data.commission_info[key].total_commission[this.curCoinName]}`,
+                total_water: this.transformMoney(data.commission_info[key].total_water),
+                self_water: this.transformMoney(data.commission_info[key].self_water),
+                direct_water: this.transformMoney(data.commission_info[key].direct_water),
+                group_water: this.transformMoney(data.commission_info[key].group_water),
+                // commission_num: `${data.commission_info[key].commission_num[this.curCoinName]}`,
+                // total_commission: `${data.commission_info[key].total_commission[this.curCoinName]}`,
+                commission_num: meiwan_res,
+                total_commission: this._transformMoney(
+                    data.commission_info[key].total_commission[total_commission_name],
+                    total_commission_name,
+                    total_commission_name
+                ),
             });
         });
     }
-
+    transformMoney_commission(val: any, coinname: string) {
+        const sss = val * CoinTransformHelper.GetCoinScale(coinname);
+        return CoinTransformHelper.GetCoinSymbol(coinname) + amountFormat(sss, true);
+    }
     setTestData() {
         const obj = {
             nick_name: "asdasd",

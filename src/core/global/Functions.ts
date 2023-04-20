@@ -566,12 +566,14 @@ export function getDateByTimeZone(time: number, timezone: number = 0) {
  * decimal 是否要小数点
  * decimalLang 小数点几位
  */
-export function amountFormat(val: any, decimal: boolean = false, decimalLang: number = 2) {
+export function amountFormat(val: any, decimal: boolean = false, decimalLang: number = 2, isautoUsdt: boolean = true) {
     let isUsdt = false;
     let newVal = val;
     if (val === undefined) return val;
     if (typeof val == "string" && val.includes("$")) {
-        isUsdt = true;
+        if (isautoUsdt) {
+            isUsdt = true;
+        }
         newVal = val.replace("$", "");
     }
     const intValue = parseFloat(newVal);

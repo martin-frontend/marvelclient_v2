@@ -7,6 +7,9 @@ import FagProxy from "@/proxy/FagProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GlobalVar from "@/core/global/GlobalVar";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -18,9 +21,14 @@ export default class PageExtension extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
+    ModulesHelper = ModulesHelper;
     GlobalVar = GlobalVar;
     constructor() {
         super(PageExtensionMediator);
+    }
+
+    transformMoney(val: any) {
+        return this.myProxy.transformMoney(val);
     }
 
     destroyed() {

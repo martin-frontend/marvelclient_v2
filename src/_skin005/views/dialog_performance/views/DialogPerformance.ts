@@ -10,6 +10,9 @@ import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
+import { amountFormat, changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogPerformance extends AbstractView {
@@ -50,6 +53,15 @@ export default class DialogPerformance extends AbstractView {
         return this._curMainCoinName;
     }
 
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
+    }
+    getDate(str: string) {
+        const re_1 = /-/gi;
+        //newstr = newstr.replace(re_1, "/");
+        return str.replace(re_1, "/");
+        //return changeDateShow(str);
+    }
     handlerDetail(date: string) {
         this.dialogPerformanceDetailProxy.parameter.date = date;
         PanelUtil.openpanel_performance_detail();
@@ -80,5 +92,11 @@ export default class DialogPerformance extends AbstractView {
                 break;
         }
         this.myProxy.api_user_var_commission_commissionlist();
+    }
+
+    get_commission_num(item: any) {
+        const keys = Object.keys(item);
+        const coinname = keys[0];
+        return CoinTransformHelper.TransformMoney(item[coinname], 2, coinname, coinname);
     }
 }

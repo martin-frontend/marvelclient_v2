@@ -28,6 +28,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             //无权限查询
             const ERROR_CODE_NO_PERMISSION = [1103315];
 
+            //流水不足
+            const ERROR_CODE_NO_ENOUGH = [1106011];
             const selfProxy: SelfProxy = <any>this.facade.retrieveProxy(SelfProxy.NAME);
 
             console.log(" 错误 ");
@@ -65,6 +67,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 PanelUtil.message_alert(body.result.msg);
             } else if (ERROR_CODE_NO_PERMISSION.includes(result.status)) {
                 PanelUtil.message_alert(LangUtil("该用户ID无权限查询"));
+            } else if (ERROR_CODE_NO_ENOUGH.includes(result.status)) {
+                console.log("此用户流水不足", result);
+                PanelUtil.message_confirm({ message: LangUtil("您当前流水不足，暂不能提现"), cancelFun: PanelUtil.openpanel_gold_waterl });
             } else {
                 PanelUtil.message_alert(body.result.msg);
             }

@@ -51,10 +51,8 @@
                 {{LangUtil("{0}级", item.level)}}
             </v-sheet>
 
-            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center"
-                >$
-                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
-                <span v-else>{{ item.total_performance }}</span>
+            <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center">
+                {{getCommissionNum_totle(item.total_performance)}}
             </v-sheet>
 
             <v-sheet color="transparent" min-width="240" class="d-flex justify-center align-center">
@@ -64,7 +62,7 @@
                     :max-width="$mobile? 15 : 24"
                     :height="$mobile? 15 : 24"
                 ></v-img>
-                <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                <span>{{ transformMoney_commission(item.commission_num[pageData.platCoins.mainCoin.name]) }}</span>
             </v-sheet>
 
             <v-sheet
@@ -152,10 +150,8 @@
                 {{LangUtil("{0}级", item.level)}}
             </v-sheet>
 
-            <v-sheet color="transparent" min-width="60" class="d-flex justify-center align-center"
-                >$
-                <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance / 10000)}} </span>
-                <span v-else>{{ item.total_performance }}</span>
+            <v-sheet color="transparent" min-width="60" class="d-flex justify-center align-center">
+                {{getCommissionNum_totle(item.total_performance)}}
             </v-sheet>
 
             <v-sheet color="transparent" min-width="110" class="d-flex justify-center align-center">
@@ -165,7 +161,7 @@
                     :max-width="$mobile? 15 : 30"
                     :height="$mobile? 15 : 30"
                 ></v-img>
-                <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                <span>{{ transformMoney_commission(item.commission_num[pageData.platCoins.mainCoin.name]) }}</span>
             </v-sheet>
 
             <v-sheet

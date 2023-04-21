@@ -19,8 +19,7 @@ export default class LoadMore1 extends AbstractView {
     onLoad(done: any) {
         this.$emit("onLoad", done);
     }
-
-    mounted() {
+    updateUI() {
         //@ts-ignore
         const loadmoreDiv: HTMLElement = <any>this.$refs.loadmoreDiv.$el;
         //@ts-ignore
@@ -47,6 +46,9 @@ export default class LoadMore1 extends AbstractView {
 
         this.observer.observe(topDiv, { attributes: true });
         this.observer.observe(bottomDiv, { attributes: true });
+    }
+    mounted() {
+        this.updateUI();
     }
 
     unmounted() {

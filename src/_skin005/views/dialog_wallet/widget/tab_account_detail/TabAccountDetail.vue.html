@@ -15,64 +15,72 @@
             <v-sheet color="transparent" min-width="120" class="d-flex justify-center text-16 primary--text">{{LangUtil("备注")}}</v-sheet>
             <v-sheet color="transparent" min-width="120" class="d-flex justify-center text-16 primary--text">{{LangUtil("日期")}}</v-sheet>
         </v-sheet>
+        <template v-if="pageData.loading">
+            <v-skeleton-loader class="px-3 my-2 custom-loader" height="400" width="100%" type="text@6"></v-skeleton-loader>
+        </template>
+        <template v-else>
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="400" class="scroll-y">
+                <v-sheet
+                    class="d-flex rounded-lg mb-3"
+                    outlined
+                    width="100%"
+                    min-height="48"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                    style="background-color: transparent !important"
+                >
+                    <v-sheet color="transparent" class="regular_text d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
+                        <v-sheet color="transparent" class="textGray--text text-16 text-truncate" width="130" style="text-align: center"
+                            >{{listOptions.typeOptions()[item.type]}}</v-sheet
+                        >
+                        <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="100"
+                            >{{item.coin_name_unique}}</v-sheet
+                        >
+                        <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="130"
+                            >{{(parseFloat(item.gold) < 0 ? "" : "+" ) + amountFormat(item.gold)}}
+                        </v-sheet>
+                        <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="130"
+                            >{{amountFormat(item.balance)}}</v-sheet
+                        >
 
-        <v-sheet v-if="pageData.list.length>0" color="transparent" height="400" class="scroll-y">
-            <v-sheet
-                class="d-flex rounded-lg mb-3"
-                outlined
-                width="100%"
-                min-height="48"
-                v-for="(item, key) of pageData.list"
-                :key="key"
-                style="background-color: transparent !important"
-            >
-                <v-sheet color="transparent" class="regular_text d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
-                    <v-sheet color="transparent" class="textGray--text text-16 text-truncate" width="130" style="text-align: center"
-                        >{{listOptions.typeOptions()[item.type]}}</v-sheet
-                    >
-                    <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="100"
-                        >{{item.coin_name_unique}}</v-sheet
-                    >
-                    <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="130"
-                        >{{(parseFloat(item.gold) < 0 ? "" : "+" ) + amountFormat(item.gold)}}
-                    </v-sheet>
-                    <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="130"
-                        >{{amountFormat(item.balance)}}</v-sheet
-                    >
-
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                            <!-- <v-icon color="textGray" class="help text-subtitle-1" dark v-bind="attrs"
-                                                v-on="on">mdi-help</v-icon> -->
-                            <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" width="120">
-                                    {{item.remark}}
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <!-- <v-icon color="textGray" class="help text-subtitle-1" dark v-bind="attrs"
+                                                    v-on="on">mdi-help</v-icon> -->
+                                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                    <v-sheet
+                                        color="transparent"
+                                        class="textGray--text text-16 text-truncate d-flex justify-center"
+                                        width="120"
+                                    >
+                                        {{item.remark}}
+                                    </v-sheet>
                                 </v-sheet>
-                            </v-sheet>
-                        </template>
-                        <span>{{item.remark}}</span>
-                    </v-tooltip>
+                            </template>
+                            <span>{{item.remark}}</span>
+                        </v-tooltip>
 
-                    <!-- <v-sheet color="transparent"
-                                    class="textGray--text text-16 text-truncate d-flex justify-center"
-                                    min-width="120">{{item.remark}}</v-sheet> -->
-                    <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" min-width="120"
-                        >{{getDate(item.created_at)}}</v-sheet
-                    >
+                        <!-- <v-sheet color="transparent"
+                                        class="textGray--text text-16 text-truncate d-flex justify-center"
+                                        min-width="120">{{item.remark}}</v-sheet> -->
+                        <v-sheet color="transparent" class="textGray--text text-16 text-truncate d-flex justify-center" min-width="120"
+                            >{{getDate(item.created_at)}}</v-sheet
+                        >
+                    </v-sheet>
                 </v-sheet>
             </v-sheet>
-        </v-sheet>
 
-        <ListNodata v-if="pageData.list.length == 0" height="400" />
-        <v-spacer />
-        <v-pagination
-            class="mt-2"
-            v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-            v-model="pageData.pageInfo.pageCurrent"
-            :length="pageData.pageInfo.pageCount"
-            :total-visible="7"
-            @input="onPageChange"
-        ></v-pagination>
+            <ListNodata v-if="pageData.list.length == 0" height="400" />
+            <v-spacer />
+            <v-pagination
+                class="mt-2"
+                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </template>
     </v-sheet>
     <!-- 手机显示方式 -->
     <v-sheet v-if="$mobile" width="100%" color="transparent">
@@ -81,7 +89,7 @@
             @onRefresh="onRefresh"
             @onLoad="onLoad"
             :finished="pageData.finished"
-            :is_needfinishedtext="pageData.list.length == 0"
+            :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
             class="px-2"
         >
             <v-row dense>
@@ -119,49 +127,54 @@
                     />
                 </v-col>
             </v-row>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
-            <v-sheet color="transparent" class="overflow-y-auto">
-                <v-sheet
-                    v-if="pageData.list.length > 0"
-                    class="px-3 py-4 rounded10 my-3 text-14"
-                    color="bgBanner"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                >
-                    <div class="d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("明细类型")}}</div>
-                        <div class="text-truncate head_btn--text">{{listOptions.typeOptions()[item.type]}}</div>
-                    </div>
-                    <div class="line mt-2"></div>
-                    <div class="mt-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("币种")}}</div>
-                        <div class="head_btn--text">{{item.coin_name_unique}}</div>
-                    </div>
-                    <div class="line mt-2"></div>
-                    <div class="mt-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("数量变化")}}</div>
-                        <div class="head_btn--text">{{(parseFloat(item.gold) < 0 ? "" : "+" ) + amountFormat(item.gold)}}</div>
-                    </div>
-                    <div class="line mt-2"></div>
-                    <div class="mt-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("账户余额")}}</div>
-                        <div class="head_btn--text">{{amountFormat(item.balance)}}</div>
-                    </div>
-                    <div class="line mt-2"></div>
-                    <div class="mt-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("备注")}}</div>
-                        <div class="head_btn--text text-truncate cursor-pointer" @click="onBtnClickRemark(item)" style="max-width: 60%">
-                            {{item.remark}}
+            <template v-if="pageData.loading && pageData.list.length == 0">
+                <v-skeleton-loader class="my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet color="transparent" class="overflow-y-auto">
+                    <v-sheet
+                        v-if="pageData.list.length > 0"
+                        class="px-3 py-4 rounded10 my-3 text-14"
+                        color="bgBanner"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                    >
+                        <div class="d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("明细类型")}}</div>
+                            <div class="text-truncate head_btn--text">{{listOptions.typeOptions()[item.type]}}</div>
                         </div>
-                    </div>
-                    <div class="line mt-2"></div>
-                    <div class="mt-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("日期")}}</div>
-                        <div class="text-truncate head_btn--text">{{getDate(item.created_at)}}</div>
-                    </div>
-                    <div class="line mt-2"></div>
+                        <div class="line mt-2"></div>
+                        <div class="mt-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("币种")}}</div>
+                            <div class="head_btn--text">{{item.coin_name_unique}}</div>
+                        </div>
+                        <div class="line mt-2"></div>
+                        <div class="mt-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("数量变化")}}</div>
+                            <div class="head_btn--text">{{(parseFloat(item.gold) < 0 ? "" : "+" ) + amountFormat(item.gold)}}</div>
+                        </div>
+                        <div class="line mt-2"></div>
+                        <div class="mt-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("账户余额")}}</div>
+                            <div class="head_btn--text">{{amountFormat(item.balance)}}</div>
+                        </div>
+                        <div class="line mt-2"></div>
+                        <div class="mt-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("备注")}}</div>
+                            <div class="head_btn--text text-truncate cursor-pointer" @click="onBtnClickRemark(item)" style="max-width: 60%">
+                                {{item.remark}}
+                            </div>
+                        </div>
+                        <div class="line mt-2"></div>
+                        <div class="mt-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("日期")}}</div>
+                            <div class="text-truncate head_btn--text">{{getDate(item.created_at)}}</div>
+                        </div>
+                        <div class="line mt-2"></div>
+                    </v-sheet>
                 </v-sheet>
-            </v-sheet>
+            </template>
         </LoadMore1>
     </v-sheet>
 </v-sheet>

@@ -8,6 +8,7 @@ import LangUtil from "@/core/global/LangUtil";
 
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import LoadMore1 from "@/views/widget/loadMore1/LoadMore1";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -72,6 +73,13 @@ export default class DialogDirectly extends AbstractView {
         }
     }
 
+    @Watch("adduserbtn")
+    updataloadmoreui() {
+        (this.$refs.loadmore as LoadMore1).updateUI();
+    }
+    get adduserbtn() {
+        return this.limitinfo.enable_all == 1 && this.limitinfo.is_credit_user == 1;
+    }
     search() {
         this.pageData.loading = true;
         this.myProxy.pageData.list = [];

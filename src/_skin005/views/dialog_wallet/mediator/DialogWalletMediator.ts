@@ -15,7 +15,7 @@ export default class DialogWalletMediator extends AbstractMediator {
         if (!myProxy.pageData.bShow) return;
         switch (notification.getName()) {
             case net.EventType.api_user_show_var:
-                myProxy.pageData.loading = false;
+                //  myProxy.pageData.loading = false;
                 myProxy.pageData.gold_info = body.gold_info;
                 //myProxy.setGoldTestData();
                 break;

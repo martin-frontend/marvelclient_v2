@@ -48,6 +48,7 @@ export default class PageStatisticeCreditProxy extends puremvc.Proxy {
         console.log("设置 开始的值 为 " + this.pageData.tabIndex);
     }
     setcredit_dividend_period(data: any) {
+        this.pageData.loading = false;
         console.log("设置分红期限的数据", data);
         if (!data) return;
         this.pageData.credit_dividend_period = data;
@@ -76,6 +77,7 @@ export default class PageStatisticeCreditProxy extends puremvc.Proxy {
     /**发送  信用分红期 有关的 */
     api_user_var_credit_dividend_period() {
         if (core.user_id) {
+            this.pageData.loading = true;
             this.sendNotification(net.HttpType.api_user_var_credit_dividend_period, { user_id: core.user_id });
         }
     }

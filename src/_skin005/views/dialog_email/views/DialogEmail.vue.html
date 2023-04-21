@@ -28,69 +28,81 @@
                     >
                 </v-sheet>
             </v-sheet>
-
-            <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
-                <v-sheet
-                    class="px-4 py-3 sheetOutlined mb-3 d-flex cursor-pointer"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                    color="transparent"
-                    @click="onDetail(item)"
-                >
-                    <!-- <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> -->
-
-                    <v-img
-                        v-if="item.is_read"
-                        max-width="50"
-                        width="50"
-                        height="100%"
-                        class="mr-1"
-                        contain
-                        src="~@/_skin005/assets/mail/mail_open.png"
+            <template v-if="pageData.loading">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" height="450" width="100%" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
+                    <v-sheet
+                        class="px-4 py-3 sheetOutlined mb-3 d-flex cursor-pointer"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        color="transparent"
+                        @click="onDetail(item)"
                     >
-                    </v-img>
-                    <v-img v-else max-width="50" width="50" height="100%" class="mr-1" contain src="~@/_skin005/assets/mail/mail_close.png">
-                    </v-img>
-                    <div class="ml-4 regular_text" style="width: 100%">
-                        <div class="d-flex justify-space-between mb-2">
-                            <div class="text-16 primary--text">{{item.title}}</div>
-                            <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
-                                {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
-                            </v-icon> -->
-                            <v-img
-                                v-if="item.attachment_status != 1"
-                                max-width="26"
-                                width="26"
-                                height="100%"
-                                class="mr-1"
-                                contain
-                                :class="item.attachment_status == 11 ? '' : 'git_grayscale'"
-                                src="~@/_skin005/assets/mail/git.png"
-                            >
-                            </v-img>
-                        </div>
-                        <div class="d-flex justify-space-between">
-                            <div class="userInfo_color--text">{{item.created_at}}</div>
-                            <div
-                                class="text-decoration-underline cursor-pointer"
-                                :class="item.is_read ? 'userInfo_color--text' : 'textYellow--text'"
-                            >
-                                {{item.is_read ? LangUtil("已读") : LangUtil("点击阅读详情")}}
+                        <!-- <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon> -->
+
+                        <v-img
+                            v-if="item.is_read"
+                            max-width="50"
+                            width="50"
+                            height="100%"
+                            class="mr-1"
+                            contain
+                            src="~@/_skin005/assets/mail/mail_open.png"
+                        >
+                        </v-img>
+                        <v-img
+                            v-else
+                            max-width="50"
+                            width="50"
+                            height="100%"
+                            class="mr-1"
+                            contain
+                            src="~@/_skin005/assets/mail/mail_close.png"
+                        >
+                        </v-img>
+                        <div class="ml-4 regular_text" style="width: 100%">
+                            <div class="d-flex justify-space-between mb-2">
+                                <div class="text-16 primary--text">{{item.title}}</div>
+                                <!-- <v-icon v-if="item.attachment_status != 1" class="colorText2--text" size="25">
+                                    {{item.attachment_status == 11 ? 'mdi-gift' : 'mdi-gift-open'}}
+                                </v-icon> -->
+                                <v-img
+                                    v-if="item.attachment_status != 1"
+                                    max-width="26"
+                                    width="26"
+                                    height="100%"
+                                    class="mr-1"
+                                    contain
+                                    :class="item.attachment_status == 11 ? '' : 'git_grayscale'"
+                                    src="~@/_skin005/assets/mail/git.png"
+                                >
+                                </v-img>
+                            </div>
+                            <div class="d-flex justify-space-between">
+                                <div class="userInfo_color--text">{{item.created_at}}</div>
+                                <div
+                                    class="text-decoration-underline cursor-pointer"
+                                    :class="item.is_read ? 'userInfo_color--text' : 'textYellow--text'"
+                                >
+                                    {{item.is_read ? LangUtil("已读") : LangUtil("点击阅读详情")}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </v-sheet>
                 </v-sheet>
-            </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" height="450" />
-            <v-spacer />
-            <v-pagination
-                class="mt-4"
-                v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 838"
-                v-model="pageData.pageInfo.pageCurrent"
-                :length="pageData.pageInfo.pageCount"
-                :total-visible="7"
-                @input="onPageChange"
-            ></v-pagination>
+                <ListNodata v-if="pageData.list.length == 0" height="450" />
+                <v-spacer />
+                <v-pagination
+                    class="mt-4"
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 838"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </template>
         </v-card-text>
     </v-card>
 
@@ -102,7 +114,7 @@
             @onRefresh="onRefresh"
             @onLoad="onLoad"
             :finished="pageData.finished"
-            :is_needfinishedtext="pageData.list.length == 0"
+            :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
         >
             <template v-slot:top>
                 <com-dialog-title title="消息中心" @onClose="onClose" />
@@ -128,51 +140,56 @@
                     </v-btn-toggle>
                 </v-sheet>
             </template>
-            <ListNodata v-if="pageData.list.length == 0" height="411" />
-            <v-sheet
-                class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex"
-                color="bgBanner"
-                @click="onDetail(item)"
-                v-for="(item, key) of pageData.list"
-                :key="key"
-            >
-                <v-img
-                    v-if="item.is_read"
-                    max-width="46"
-                    width="46"
-                    height="100%"
-                    class="mr-1"
-                    contain
-                    src="~@/_skin005/assets/mail/mail_open.png"
+            <template v-if="pageData.loading && pageData.list.length == 0">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet
+                    class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex"
+                    color="bgBanner"
+                    @click="onDetail(item)"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
                 >
-                </v-img>
-                <v-img v-else max-width="46" width="46" height="100%" class="mr-1" contain src="~@/_skin005/assets/mail/mail_close.png">
-                </v-img>
-                <div class="ml-4 text-12" style="width: 100%">
-                    <div class="d-flex justify-space-between mb-2">
-                        <div class="text-14 primary--text font-weight-bold">{{item.title}}</div>
-                        <v-img
-                            v-if="item.attachment_status != 1"
-                            max-width="20"
-                            width="20"
-                            height="100%"
-                            class="mr-1"
-                            contain
-                            :class="item.attachment_status == 11 ? '' : 'git_grayscale'"
-                            src="~@/_skin005/assets/mail/git.png"
-                        >
-                        </v-img>
+                    <v-img
+                        v-if="item.is_read"
+                        max-width="46"
+                        width="46"
+                        height="100%"
+                        class="mr-1"
+                        contain
+                        src="~@/_skin005/assets/mail/mail_open.png"
+                    >
+                    </v-img>
+                    <v-img v-else max-width="46" width="46" height="100%" class="mr-1" contain src="~@/_skin005/assets/mail/mail_close.png">
+                    </v-img>
+                    <div class="ml-4 text-12" style="width: 100%">
+                        <div class="d-flex justify-space-between mb-2">
+                            <div class="text-14 primary--text font-weight-bold">{{item.title}}</div>
+                            <v-img
+                                v-if="item.attachment_status != 1"
+                                max-width="20"
+                                width="20"
+                                height="100%"
+                                class="mr-1"
+                                contain
+                                :class="item.attachment_status == 11 ? '' : 'git_grayscale'"
+                                src="~@/_skin005/assets/mail/git.png"
+                            >
+                            </v-img>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="textGray--text">{{item.created_at}}</div>
+                            <div v-if="item.is_read" class="textGray--text">{{LangUtil("已读")}}</div>
+                            <div v-else class="text-decoration-underline textYellow--text cursor-pointer">{{LangUtil("点击阅读详情")}}</div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <div class="textGray--text">{{item.created_at}}</div>
-                        <div v-if="item.is_read" class="textGray--text">{{LangUtil("已读")}}</div>
-                        <div v-else class="text-decoration-underline textYellow--text cursor-pointer">{{LangUtil("点击阅读详情")}}</div>
-                    </div>
-                </div>
-            </v-sheet>
+                </v-sheet>
+            </template>
 
             <template v-slot:bottom>
-                <v-sheet style="display: grid;" color="bgNavigation" width="100%" min-height="90">
+                <v-sheet style="display: grid" color="bgNavigation" width="100%" min-height="90">
                     <v-sheet class="d-flex align-center justify-center px-3" color="transparent" width="100%">
                         <btn-yellow class="text-14" min_width="90" height="30" :btn_type="2" @click.native="onDestroyQuick"
                             >{{LangUtil("删除已读")}}</btn-yellow
@@ -186,5 +203,5 @@
         </LoadMore1>
     </v-card>
 
-    <Overlay v-model="pageData.loading" />
+    <!-- <Overlay v-model="pageData.loading" /> -->
 </v-dialog>

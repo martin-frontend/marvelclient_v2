@@ -112,6 +112,9 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
 
     /**--代理推广--直属成员*/
     api_user_var_agent_direct_list() {
+        if (this.pageData.listQuery.page_count == 1) {
+            this.pageData.list = [];
+        }
         this.pageData.loading = true;
         this.parameter.user_id = core.user_id;
         this.parameter.page_count = this.pageData.listQuery.page_count;

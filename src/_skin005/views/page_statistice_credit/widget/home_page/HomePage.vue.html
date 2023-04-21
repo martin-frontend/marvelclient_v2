@@ -49,58 +49,62 @@
                     </v-sheet>
                 </v-sheet>
             </v-card>
+            <template v-if="pageData.loading">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" height="410" width="100%" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-card v-if="pageData.isShowCredit" flat class="mt-4 px-4 py-4 rounded10" width="100%" color="bgBanner">
+                    <v-sheet color="transparent" class="text-16 font-weight-bold bold_text"> {{LangUtil("月帐期数表")}} </v-sheet>
 
-            <v-card v-if="pageData.isShowCredit" flat class="mt-4 px-4 py-4 rounded10" width="100%" color="bgBanner">
-                <v-sheet color="transparent" class="text-16 font-weight-bold bold_text"> {{LangUtil("月帐期数表")}} </v-sheet>
-
-                <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
-                    <v-btn
-                        v-for="(item, key) of pageData.credit_dividend_period"
-                        :key="key"
-                        text
-                        class="mr-6"
-                        height="36"
-                        :ripple="false"
-                        min-width="60"
-                        :disabled="pageData.credit_tab == key"
-                        @click="onTimeChange(key)"
-                    >
-                        <span class="text-14"> {{key}} </span>
-                    </v-btn>
-                </v-sheet>
-                <v-divider class="mb-2" />
-
-                <v-sheet color="transparent" class="d-flex justify-space-between px-2 py-2">
-                    <v-sheet color="transparent" min-width="80" class="text-16 userInfo_color--text">{{LangUtil("期号")}}</v-sheet>
-                    <v-sheet color="transparent" width="200" class="text-16 userInfo_color--text">{{LangUtil("日期")}}</v-sheet>
-                    <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("到公司货量")}}</v-sheet>
-                    <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("给公司贡献")}}</v-sheet>
-                </v-sheet>
-
-                <v-sheet
-                    v-for="(item, key) of pageData.curCreditData"
-                    :key="item.id"
-                    color="transparent"
-                    class="d-flex justify-space-between sheetOutlined px-2 py-2 mb-2"
-                >
-                    <v-sheet color="transparent" min-width="80" class="text-14 primary--text">{{item.date_number}}</v-sheet>
-                    <v-sheet color="transparent" width="200" class="text-14 primary--text"
-                        >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
-                    >
-                    <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
-                        <div v-for="(item_cont, key_cont) of item.amount_to_the_company" :key="key_cont">
-                            <span> {{key_cont}} </span>
-                            <span class="mr-2"> {{amountFormat(item_cont)}} </span>
-                        </div>
+                    <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
+                        <v-btn
+                            v-for="(item, key) of pageData.credit_dividend_period"
+                            :key="key"
+                            text
+                            class="mr-6"
+                            height="36"
+                            :ripple="false"
+                            min-width="60"
+                            :disabled="pageData.credit_tab == key"
+                            @click="onTimeChange(key)"
+                        >
+                            <span class="text-14"> {{key}} </span>
+                        </v-btn>
                     </v-sheet>
-                    <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
-                        <div v-for="(item_cont, key_cont) of item.contribute_to_the_company" :key="key_cont">
-                            <span> {{key_cont}} </span>
-                            <span class="mr-2" :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
-                        </div>
+                    <v-divider class="mb-2" />
+
+                    <v-sheet color="transparent" class="d-flex justify-space-between px-2 py-2">
+                        <v-sheet color="transparent" min-width="80" class="text-16 userInfo_color--text">{{LangUtil("期号")}}</v-sheet>
+                        <v-sheet color="transparent" width="200" class="text-16 userInfo_color--text">{{LangUtil("日期")}}</v-sheet>
+                        <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("到公司货量")}}</v-sheet>
+                        <v-sheet color="transparent" width="330" class="text-16 userInfo_color--text">{{LangUtil("给公司贡献")}}</v-sheet>
                     </v-sheet>
-                </v-sheet>
-            </v-card>
+
+                    <v-sheet
+                        v-for="(item, key) of pageData.curCreditData"
+                        :key="item.id"
+                        color="transparent"
+                        class="d-flex justify-space-between sheetOutlined px-2 py-2 mb-2"
+                    >
+                        <v-sheet color="transparent" min-width="80" class="text-14 primary--text">{{item.date_number}}</v-sheet>
+                        <v-sheet color="transparent" width="200" class="text-14 primary--text"
+                            >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
+                        >
+                        <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
+                            <div v-for="(item_cont, key_cont) of item.amount_to_the_company" :key="key_cont">
+                                <span> {{key_cont}} </span>
+                                <span class="mr-2"> {{amountFormat(item_cont)}} </span>
+                            </div>
+                        </v-sheet>
+                        <v-sheet color="transparent" width="330" class="text-14 primary--text d-flex">
+                            <div v-for="(item_cont, key_cont) of item.contribute_to_the_company" :key="key_cont">
+                                <span> {{key_cont}} </span>
+                                <span class="mr-2" :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+                </v-card>
+            </template>
         </v-sheet>
     </template>
     <!-- 手机版的显示 -->
@@ -153,79 +157,83 @@
                     </template>
                 </v-sheet>
             </v-card>
-
-            <v-card v-if="pageData.isShowCredit" class="rounded10 px-2 py-2 mt-2 text-12" flat width="100%" color="bgBanner">
-                <v-sheet class="d-flex ml-2 text-14 align-center font-weight-Regular" color="transparent" min-height="42">
-                    <v-sheet color="transparent"> {{LangUtil("月帐期数表")}} </v-sheet>
-                </v-sheet>
-                <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
-                    <v-btn
-                        v-for="(item, key) of pageData.credit_dividend_period"
-                        :key="key"
-                        text
-                        class="mr-6"
-                        height="36"
-                        :ripple="false"
-                        min-width="60"
-                        :disabled="pageData.credit_tab == key"
-                        @click="onTimeChange(key)"
-                    >
-                        <span class="text-14"> {{key}} </span>
-                    </v-btn>
-                </v-sheet>
-                <v-divider class="mb-2" />
-
-                <v-sheet
-                    v-for="(item, key) of pageData.curCreditData"
-                    :key="item.id"
-                    color="transparent"
-                    class="d-flex flex-column px-2 py-2 mb-2"
-                >
-                    <v-sheet class="d-flex justify-space-between" color="transparent">
-                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("期号")}}</v-sheet>
-                        <v-sheet color="transparent" class="text-12 userInfo_color--text">{{item.date_number}}</v-sheet>
+            <template v-if="pageData.loading">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="410" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-card v-if="pageData.isShowCredit" class="rounded10 px-2 py-2 mt-2 text-12" flat width="100%" color="bgBanner">
+                    <v-sheet class="d-flex ml-2 text-14 align-center font-weight-Regular" color="transparent" min-height="42">
+                        <v-sheet color="transparent"> {{LangUtil("月帐期数表")}} </v-sheet>
                     </v-sheet>
-
-                    <v-sheet class="d-flex justify-space-between" color="transparent">
-                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("日期")}}</v-sheet>
-                        <v-sheet color="transparent" class="text-12 userInfo_color--text"
-                            >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
+                    <v-sheet color="transparent" class="d-flex head_btn_top mb-2">
+                        <v-btn
+                            v-for="(item, key) of pageData.credit_dividend_period"
+                            :key="key"
+                            text
+                            class="mr-6"
+                            height="36"
+                            :ripple="false"
+                            min-width="60"
+                            :disabled="pageData.credit_tab == key"
+                            @click="onTimeChange(key)"
                         >
+                            <span class="text-14"> {{key}} </span>
+                        </v-btn>
                     </v-sheet>
+                    <v-divider class="mb-2" />
 
-                    <v-sheet class="d-flex justify-space-between" color="transparent">
-                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("到公司货量")}}</v-sheet>
-                        <v-sheet color="transparent" class="text-12 userInfo_color--text d-flex flex-column">
-                            <v-sheet
-                                color="transparent"
-                                v-for="(item_cont, key_cont) of item.contribute_to_the_company"
-                                :key="key_cont"
-                                class="userInfo_color--text"
+                    <v-sheet
+                        v-for="(item, key) of pageData.curCreditData"
+                        :key="item.id"
+                        color="transparent"
+                        class="d-flex flex-column px-2 py-2 mb-2"
+                    >
+                        <v-sheet class="d-flex justify-space-between" color="transparent">
+                            <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("期号")}}</v-sheet>
+                            <v-sheet color="transparent" class="text-12 userInfo_color--text">{{item.date_number}}</v-sheet>
+                        </v-sheet>
+
+                        <v-sheet class="d-flex justify-space-between" color="transparent">
+                            <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("日期")}}</v-sheet>
+                            <v-sheet color="transparent" class="text-12 userInfo_color--text"
+                                >{{getDate(item.start_time)}}{{LangUtil("-")}}{{getDate(item.end_time)}}</v-sheet
                             >
-                                <span> {{key_cont}} </span>
-                                <span> {{amountFormat(item_cont)}} </span>
+                        </v-sheet>
+
+                        <v-sheet class="d-flex justify-space-between" color="transparent">
+                            <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("到公司货量")}}</v-sheet>
+                            <v-sheet color="transparent" class="text-12 userInfo_color--text d-flex flex-column">
+                                <v-sheet
+                                    color="transparent"
+                                    v-for="(item_cont, key_cont) of item.contribute_to_the_company"
+                                    :key="key_cont"
+                                    class="userInfo_color--text"
+                                >
+                                    <span> {{key_cont}} </span>
+                                    <span> {{amountFormat(item_cont)}} </span>
+                                </v-sheet>
                             </v-sheet>
                         </v-sheet>
-                    </v-sheet>
 
-                    <v-sheet class="d-flex justify-space-between" color="transparent">
-                        <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("给公司贡献")}}</v-sheet>
-                        <v-sheet color="transparent" class="text-12 d-flex flex-column">
-                            <v-sheet
-                                color="transparent"
-                                v-for="(item_cont, key_cont) of item.contribute_to_the_company"
-                                :key="key_cont"
-                                class="userInfo_color--text"
-                            >
-                                <span> {{key_cont}} </span>
-                                <span :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
+                        <v-sheet class="d-flex justify-space-between" color="transparent">
+                            <v-sheet color="transparent" class="text-12 primary--text">{{LangUtil("给公司贡献")}}</v-sheet>
+                            <v-sheet color="transparent" class="text-12 d-flex flex-column">
+                                <v-sheet
+                                    color="transparent"
+                                    v-for="(item_cont, key_cont) of item.contribute_to_the_company"
+                                    :key="key_cont"
+                                    class="userInfo_color--text"
+                                >
+                                    <span> {{key_cont}} </span>
+                                    <span :class="getMoneyColor(item_cont)"> {{getMoneyValue(item_cont)}} </span>
+                                </v-sheet>
                             </v-sheet>
                         </v-sheet>
-                    </v-sheet>
 
-                    <v-divider class="my-2" />
-                </v-sheet>
-            </v-card>
+                        <v-divider class="my-2" />
+                    </v-sheet>
+                </v-card>
+            </template>
         </v-sheet>
     </template>
 </v-sheet>

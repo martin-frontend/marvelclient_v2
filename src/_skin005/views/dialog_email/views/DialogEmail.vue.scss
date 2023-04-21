@@ -12,7 +12,7 @@
 }
 .v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
     letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
-  }
+}
 .scrollable-btn-group {
     overflow-x: auto;
     white-space: nowrap;
@@ -21,4 +21,3 @@
 .scrollable-btn-group .v-btn {
     display: inline-block;
 }
-

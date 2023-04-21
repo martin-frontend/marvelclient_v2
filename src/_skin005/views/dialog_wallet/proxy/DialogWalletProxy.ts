@@ -95,7 +95,7 @@ export default class DialogWalletProxy extends puremvc.Proxy {
         } else {
             this.pageData.list = data.list;
         }
-        // this.pageData.list=this.setGoldTestData();
+        // this.pageData.list = this.setTestData_user_bouns();
     }
 
     setGoldTestData() {
@@ -156,6 +156,9 @@ export default class DialogWalletProxy extends puremvc.Proxy {
     }
 
     api_user_show_var_gold() {
+        if (this.pageData.listQuery.page_count == 1) {
+            this.pageData.list = [];
+        }
         this.pageData.loading = true;
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);

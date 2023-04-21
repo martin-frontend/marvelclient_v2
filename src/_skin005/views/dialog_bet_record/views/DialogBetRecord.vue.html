@@ -177,20 +177,25 @@
                 <v-sheet color="transparent" class="primary--text" width="30">{{LangUtil("")}}</v-sheet>
             </v-sheet>
             <v-divider class="mb-2" />
-            <v-sheet ref="scrollObj" v-if="pageData.list.length>0" color="transparent" class="scroll-y" style="height: calc(100vh - 450px)">
+            <template v-if="pageData.loading">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" height="400" width="100%" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
                 <v-sheet
-                    class="d-flex rounded-lg mb-2"
-                    outlined
-                    width="100%"
-                    min-height="40"
-                    v-for="(item, key) of pageData.list"
-                    :key="key"
-                    style="background-color: transparent !important"
+                    ref="scrollObj"
+                    v-if="pageData.list.length>0"
+                    color="transparent"
+                    class="scroll-y"
+                    style="height: calc(100vh - 450px)"
                 >
                     <v-sheet
-                        color="transparent"
-                        class="d-flex flex-wrap align-center justify-space-between mx-2 textGray--text"
+                        class="d-flex rounded-lg mb-2"
+                        outlined
                         width="100%"
+                        min-height="40"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        style="background-color: transparent !important"
                     >
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
@@ -259,17 +264,17 @@
                         </v-sheet>
                     </v-sheet>
                 </v-sheet>
-            </v-sheet>
-            <ListNodata v-if="pageData.list.length == 0" style="height: calc(100vh - 450px)" />
-            <v-spacer />
-            <v-pagination
-                class="mt-2"
-                v-if="pageData.pageInfo.pageCount > 1"
-                v-model="pageData.pageInfo.pageCurrent"
-                :length="pageData.pageInfo.pageCount"
-                :total-visible="7"
-                @input="onPageChange"
-            ></v-pagination>
+                <ListNodata v-if="pageData.list.length == 0" style="height: calc(100vh - 450px)" />
+                <v-spacer />
+                <v-pagination
+                    class="mt-2"
+                    v-if="pageData.pageInfo.pageCount > 1"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </template>
         </v-sheet>
     </v-card>
     <v-card v-else class="" color="bgColor">
@@ -280,7 +285,7 @@
             @onRefresh="onRefresh"
             @onLoad="onLoad"
             :finished="pageData.finished"
-            :is_needfinishedtext="pageData.list.length == 0"
+            :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
             class="px-2"
             :_class=" pageData.bShowOptions ? (isOtherUser ?'listbox-mobile_other' : 'listbox-mobile' ): 'listbox-mobile-nooptions' "
         >
@@ -502,78 +507,78 @@
                     </div>
                 </v-sheet>
             </template>
-
-            <!-- :_class=" pageData.bShowOptions ? (isOtherUser ?'listbox-mobile_other' : 'listbox-mobile' ): 'listbox-mobile-nooptions' " -->
-            <!-- <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-2"
-            :class="pageData.bShowOptions ? (isOtherUser ?'mobile_main_3' : 'mobile_main' ): 'mobile_main_2'"> -->
-
-            <ListNodata v-if="pageData.list.length == 0" height="305" />
-            <v-sheet class="px-3 py-2 rounded-lg my-3 text-14" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
-                <div class="d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("订单号")}}</div>
-                    <div class="text-decoration-underline cursor-pointer head_btn--text" @click="onCopyOrderClick(item.order_no)">
-                        {{item.order_no}}
+            <template v-if="pageData.loading && pageData.list.length == 0">
+                <v-skeleton-loader class="my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <ListNodata v-if="pageData.list.length == 0" height="305" />
+                <v-sheet class="px-3 py-2 rounded-lg my-3 text-14" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="leftText--text">{{LangUtil("订单号")}}</div>
+                        <div class="text-decoration-underline cursor-pointer head_btn--text" @click="onCopyOrderClick(item.order_no)">
+                            {{item.order_no}}
+                        </div>
                     </div>
-                </div>
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("游戏名称")}}</div>
-                    <div class="head_btn--text">{{item.vendor_product_name}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <!-- <div class="d-flex justify-space-between mt-2">
+
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("游戏名称")}}</div>
+                        <div class="head_btn--text">{{item.vendor_product_name}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <!-- <div class="d-flex justify-space-between mt-2">
                     <div class="leftText--text">{{LangUtil("投注币种")}}</div>
                     <div class="head_btn--text">{{item.coin_name_unique}}</div>
                 </div> -->
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("投注金额")}}</div>
-                    <div class="head_btn--text">{{ transformMoney(item,"bet_gold",false,true)}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("游戏输赢")}}</div>
-                    <div class="head_btn--text">{{ transformMoney(item,"win_gold",false,true)}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <div v-if="isShowVailBet" class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("有效投注")}}</div>
-                    <div class="head_btn--text">{{ transformMoney(item,"valid_bet_gold",false,true)}}</div>
-                </div>
-                <div v-if="isShowVailBet" class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("结算流水")}}</div>
-                    <div class="head_btn--text">{{ transformMoney(item,"water",false,true)}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("下注状态")}}</div>
-                    <div class="head_btn--text">{{listOptions.statusOptions()[item.settlement_status]}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2">
-                    <div class="leftText--text">{{LangUtil("投注时间")}}</div>
-                    <div class="text-truncate head_btn--text">{{item.bet_at}}</div>
-                </div>
-                <div class="line mt-2"></div>
-                <div class="d-flex justify-space-between mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId">
-                    <div class="leftText--text">{{LangUtil("结算时间")}}</div>
-                    <div class="text-truncate head_btn--text">{{item.settlement_at}}</div>
-                </div>
-                <div class="line mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId"></div>
-                <div class="d-flex justify-end mt-2" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                    <v-btn
-                        text
-                        class="text-decoration-underline pa-0 font-weight-regular text-14 btn textYellow--text"
-                        @click="handlerDetail(item)"
-                    >
-                        {{LangUtil("查看详情")}}>>
-                    </v-btn>
-                </div>
-                <div v-if="item.vendor_id == GameConfig.config.SportVendorId" class="line mt-2"></div>
-            </v-sheet>
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("投注金额")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"bet_gold",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("游戏输赢")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"win_gold",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <div v-if="isShowVailBet" class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("有效投注")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"valid_bet_gold",false,true)}}</div>
+                    </div>
+                    <div v-if="isShowVailBet" class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("结算流水")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"water",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("下注状态")}}</div>
+                        <div class="head_btn--text">{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2">
+                        <div class="leftText--text">{{LangUtil("投注时间")}}</div>
+                        <div class="text-truncate head_btn--text">{{item.bet_at}}</div>
+                    </div>
+                    <div class="line mt-2"></div>
+                    <div class="d-flex justify-space-between mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId">
+                        <div class="leftText--text">{{LangUtil("结算时间")}}</div>
+                        <div class="text-truncate head_btn--text">{{item.settlement_at}}</div>
+                    </div>
+                    <div class="line mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId"></div>
+                    <div class="d-flex justify-end mt-2" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                        <v-btn
+                            text
+                            class="text-decoration-underline pa-0 font-weight-regular text-14 btn textYellow--text"
+                            @click="handlerDetail(item)"
+                        >
+                            {{LangUtil("查看详情")}}>>
+                        </v-btn>
+                    </div>
+                    <div v-if="item.vendor_id == GameConfig.config.SportVendorId" class="line mt-2"></div>
+                </v-sheet>
+            </template>
         </LoadMore1>
         <!-- </v-sheet> -->
     </v-card>
-    <Overlay v-model="pageData.loading" />
 </v-dialog>

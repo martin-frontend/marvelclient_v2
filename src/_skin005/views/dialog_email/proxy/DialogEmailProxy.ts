@@ -88,6 +88,10 @@ export default class DialogEmailProxy extends puremvc.Proxy {
     }
 
     api_user_var_mail() {
+        const { pageCount, pageCurrent } = this.pageData.pageInfo;
+        if (pageCurrent == 1) {
+            this.pageData.list = [];
+        }
         this.pageData.loading = true;
         const formCopy = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);

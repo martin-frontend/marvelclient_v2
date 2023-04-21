@@ -176,6 +176,9 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
     }
 
     api_user_var_credit_statistic(userid: any = null) {
+        if (this.pageData.listQuery.page_count == 1) {
+            this.pageData.list = [];
+        }
         this.pageData.loading = true;
         if (userid) {
             this.pageData.listQuery.target_user_id = userid;

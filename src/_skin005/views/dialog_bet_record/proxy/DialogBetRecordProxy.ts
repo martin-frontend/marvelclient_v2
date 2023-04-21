@@ -273,6 +273,9 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
     }
 
     getApi() {
+        if (this.pageData.listQuery.page_count == 1) {
+            this.pageData.list = [];
+        }
         this.pageData.listQuery.agent_user_id != null ? this.api_user_var_agent_var_bet() : this.api_user_show_var_bet();
     }
 

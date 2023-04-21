@@ -354,3 +354,7 @@ body {
         right: unset !important;
     }
 }
+.custom-loader .v-skeleton-loader__bone {
+    height: 20px;
+    border-radius: 12px;
+}

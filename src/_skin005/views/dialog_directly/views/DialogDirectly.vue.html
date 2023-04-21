@@ -29,105 +29,110 @@
                         </CustomInput>
                     </div>
                 </div>
-                <template v-if="pageData.list.length>0">
-                    <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mb-2 mx-2">
-                        <v-sheet color="transparent" min-width="130" class="text-16 primary--text">{{LangUtil("注册时间")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户ID")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户昵称")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("直属人数")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("团队人数")}}</v-sheet>
-                        <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("保底")}}</v-sheet>
-                    </v-sheet>
-                    <v-sheet color="transparent" height="450" class="scroll-y">
-                        <v-sheet
-                            class="d-flex sheetOutlined mb-2"
-                            width="100%"
-                            min-height="40"
-                            v-for="(item, key) of pageData.list"
-                            :key="key"
-                        >
-                            <v-sheet color="transparent" class="d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
-                                <v-sheet color="transparent" min-width="130" class="text-16 textGray--text text-truncate"
-                                    >{{ item.binded_at.replace(/^\d{4}-/, "") }}</v-sheet
-                                >
-                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
-                                    >{{item.user_id}}</v-sheet
-                                >
-                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
-                                    >{{item.nick_name}}</v-sheet
-                                >
-                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
-                                    >{{item.directly_users}}</v-sheet
-                                >
-                                <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
-                                    >{{item.group_users}}</v-sheet
-                                >
-                                <v-sheet color="transparent" min-width="100" class="text-14 textYellow--text text-truncate">
-                                    <div v-if="pageData.enable_set_promotion_floor == 1">
-                                        <span
-                                            class="text-16 font-weight-regular text-decoration-underline cursor-pointer textYellow--text"
-                                            @click="handlerSetting(item)"
-                                        >
-                                            {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
-                                        </span>
+                <template v-if="pageData.loading">
+                    <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="450" type="text@6"></v-skeleton-loader>
+                </template>
+                <template v-else>
+                    <template v-if="pageData.list.length>0">
+                        <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mb-2 mx-2">
+                            <v-sheet color="transparent" min-width="130" class="text-16 primary--text">{{LangUtil("注册时间")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户ID")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户昵称")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("直属人数")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("团队人数")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("保底")}}</v-sheet>
+                        </v-sheet>
+                        <v-sheet color="transparent" height="450" class="scroll-y">
+                            <v-sheet
+                                class="d-flex sheetOutlined mb-2"
+                                width="100%"
+                                min-height="40"
+                                v-for="(item, key) of pageData.list"
+                                :key="key"
+                            >
+                                <v-sheet color="transparent" class="d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
+                                    <v-sheet color="transparent" min-width="130" class="text-16 textGray--text text-truncate"
+                                        >{{ item.binded_at.replace(/^\d{4}-/, "") }}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                        >{{item.user_id}}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                        >{{item.nick_name}}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                        >{{item.directly_users}}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                        >{{item.group_users}}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" min-width="100" class="text-14 textYellow--text text-truncate">
+                                        <div v-if="pageData.enable_set_promotion_floor == 1">
+                                            <span
+                                                class="text-16 font-weight-regular text-decoration-underline cursor-pointer textYellow--text"
+                                                @click="handlerSetting(item)"
+                                            >
+                                                {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
+                                            </span>
+                                        </div>
+                                        <div v-else>-</div>
+                                    </v-sheet>
+
+                                    <!-- 信用用户显示 -->
+                                    <!-- <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
+                                    color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                                    v-if="selfProxy.userInfo.is_credit_user == 1">
+                                    <div class="mb-1">{{LangUtil("状态")}}</div>
+                                    <div class="text-16 font-weight-regular">{{item.status == 1?
+                                        LangUtil("正常"):LangUtil("关闭")}}
                                     </div>
-                                    <div v-else>-</div>
                                 </v-sheet>
-
-                                <!-- 信用用户显示 -->
-                                <!-- <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
-                                color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
-                                v-if="selfProxy.userInfo.is_credit_user == 1">
-                                <div class="mb-1">{{LangUtil("状态")}}</div>
-                                <div class="text-16 font-weight-regular">{{item.status == 1?
-                                    LangUtil("正常"):LangUtil("关闭")}}
-                                </div>
-                            </v-sheet>
-
-                            <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
-                                color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
-                                v-if="selfProxy.userInfo.is_credit_user == 1">
-                                <v-btn class="text-14 mx-2" color="colorBtnBg" height="30" elevation="0"
-                                    @click="handlerShowDialogSet(item)">{{LangUtil("直属设置") }}</v-btn>
-                            </v-sheet>
-
-                            <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
-                                color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
-                                v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">
-                                <v-btn class="text-14 mx-2" color="colorBtnBg" height="30" elevation="0"
-                                    @click="handlerShowBetRecord(item.user_id)">{{LangUtil("投注记录") }}</v-btn>
-                            </v-sheet> -->
+    
+                                <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
+                                    color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                                    v-if="selfProxy.userInfo.is_credit_user == 1">
+                                    <v-btn class="text-14 mx-2" color="colorBtnBg" height="30" elevation="0"
+                                        @click="handlerShowDialogSet(item)">{{LangUtil("直属设置") }}</v-btn>
+                                </v-sheet>
+    
+                                <v-sheet class="listitem d-flex justify-center flex-column" cols="6" width="100%"
+                                    color="transparent" :sm="$vuetify.breakpoint.width < 730 ? '4' : 'auto'" md="auto"
+                                    v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">
+                                    <v-btn class="text-14 mx-2" color="colorBtnBg" height="30" elevation="0"
+                                        @click="handlerShowBetRecord(item.user_id)">{{LangUtil("投注记录") }}</v-btn>
+                                </v-sheet> -->
+                                </v-sheet>
                             </v-sheet>
                         </v-sheet>
-                    </v-sheet>
+                    </template>
+                    <ListNodata v-if="pageData.list.length == 0" height="411" />
+                    <v-spacer />
+                    <v-pagination
+                        class="mx-auto mb-2"
+                        v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                        v-model="pageData.pageInfo.pageCurrent"
+                        :length="pageData.pageInfo.pageCount"
+                        @input="onPageChange"
+                    >
+                    </v-pagination>
                 </template>
-                <ListNodata v-if="pageData.list.length == 0" height="411" />
-                <v-spacer />
-                <v-pagination
-                    class="mx-auto mb-2"
-                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
-                    v-model="pageData.pageInfo.pageCurrent"
-                    :length="pageData.pageInfo.pageCount"
-                    @input="onPageChange"
-                >
-                </v-pagination>
             </v-card-text>
         </template>
         <template v-else>
             <!-- 手机显示方式 -->
             <LoadMore1
+                ref="loadmore"
                 v-if="pageData.bShow"
                 @onRefresh="onRefresh"
                 @onLoad="onLoad"
                 :finished="pageData.finished"
-             
-                :is_needfinishedtext="pageData.list.length == 0"
+                :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
                 class="px-2"
             >
                 <template v-slot:top>
-                    <v-sheet width="100%" color="bgColor" >
+                    <v-sheet width="100%" color="bgColor">
                         <com-dialog-title title="我的直属" @onClose="onClose" />
-                    
+
                         <div class="d-flex flex-wrap justify-space-between py-2">
                             <div class="text-rwd-16 d-flex align-center">
                                 <div class="ml-3 primary--text">{{LangUtil("直属玩家数量")}}</div>
@@ -141,105 +146,121 @@
                                 </CustomInput>
                             </div>
                         </div>
-                        <div v-if="limitinfo.enable_all == 1 && limitinfo.is_credit_user == 1" class="ml-5">
+                        <div v-if="adduserbtn" class="ml-5">
                             <btn-yellow class="text-12" min_width="90" height="30" :btn_type="2" @click.native="handlerShowAddUser"
                                 >{{LangUtil("添加用户")}}</btn-yellow
                             >
                         </div>
                     </v-sheet>
                 </template>
-
-                <ListNodata v-if="pageData.list.length == 0" />
-                <v-sheet class="px-3 py-2 rounded10 my-2 textGray--text" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
-                    <v-sheet class="d-flex justify-space-between textGray--text" color="transparent" :min-height="moble_single_item_height">
-                        <div class="primary--text">{{LangUtil("注册时间")}}</div>
-                        <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
-                    </v-sheet>
-                    <v-sheet class="d-flex justify-space-between textGray--text" color="transparent" :min-height="moble_single_item_height">
-                        <div class="primary--text">{{LangUtil("用户ID")}}</div>
-                        <div>{{ item.user_id }}</div>
-                    </v-sheet>
-                    <v-sheet class="d-flex justify-space-between textGray--text" color="transparent" :min-height="moble_single_item_height">
-                        <div class="primary--text">{{LangUtil("用户昵称")}}</div>
-                        <div>{{ item.nick_name }}</div>
-                    </v-sheet>
+                <template v-if="pageData.loading && pageData.list.length == 0">
+                    <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="410" type="text@6"></v-skeleton-loader>
+                </template>
+                <template v-else>
+                    <ListNodata v-if="pageData.list.length == 0" />
                     <v-sheet
-                        class="d-flex justify-space-between textGray--text"
-                        color="transparent"
-                        :min-height="moble_single_item_height"
-                        v-if="selfProxy.userInfo.is_credit_user != 1"
+                        class="px-3 py-2 rounded10 my-2 textGray--text"
+                        color="bgBanner"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
                     >
-                        <div class="primary--text">{{LangUtil("直属人数")}}</div>
-                        <div>{{ item.directly_users }}</div>
-                    </v-sheet>
-                    <v-sheet
-                        class="d-flex justify-space-between textGray--text"
-                        color="transparent"
-                        :min-height="moble_single_item_height"
-                        v-if="selfProxy.userInfo.is_credit_user != 1"
-                    >
-                        <div class="primary--text">{{LangUtil("团队人数")}}</div>
-                        <div>{{ item.group_users }}</div>
-                    </v-sheet>
-                    <v-sheet
-                        class="d-flex justify-space-between textGray--text"
-                        color="transparent"
-                        :min-height="moble_single_item_height"
-                        v-if="selfProxy.userInfo.is_credit_user != 1"
-                    >
-                        <div class="primary--text">{{LangUtil("保底")}}</div>
-                        <div v-if=" pageData.enable_set_promotion_floor == 1">
-                            <div class="textYellow--text" @click="handlerSetting(item)">
-                                {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
-                            </div>
-                        </div>
-                        <div v-else>-</div>
-                    </v-sheet>
-
-                    <v-sheet
-                        class="d-flex justify-space-between textGray--text"
-                        color="transparent"
-                        :min-height="moble_single_item_height"
-                        v-if="selfProxy.userInfo.is_credit_user == 1"
-                    >
-                        <div class="primary--text">{{LangUtil("状态")}}</div>
-                        <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
-                    </v-sheet>
-
-                    <v-sheet
-                        v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1"
-                        class="d-flex justify-end textGray--text"
-                        color="transparent"
-                        :min-height="moble_single_item_height"
-                    >
-                        <div class="mr-3" v-if="selfProxy.userInfo.is_credit_user == 1">
-                            <!-- <v-btn class="text-12" color="colorBtnBg" width="115" height="30" elevation="0"
-                                    v-if="selfProxy.userInfo.is_credit_user == 1" @click="handlerShowDialogSet(item)">
-                                    {{LangUtil("直属设置") }}</v-btn> -->
-                            <btn-yellow min_width="90" height="30" :btn_type="2" class="text-12" @click.native="handlerShowDialogSet(item)"
-                                >{{LangUtil("直属设置")}}</btn-yellow
-                            >
-                        </div>
-
-                        <!-- <v-btn class="text-12" color="colorBtnBg" width="115" height="30" elevation="0"
-                                @click="handlerShowBetRecord(item.user_id)"
-                                v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1">{{LangUtil("投注记录")
-                                }}</v-btn> -->
-
-                        <btn-yellow
-                            min_width="90"
-                            height="30"
-                            :btn_type="2"
-                            class="text-12"
-                            @click.native="handlerShowBetRecord(item.user_id)"
-                            >{{LangUtil("投注记录")}}</btn-yellow
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
                         >
+                            <div class="primary--text">{{LangUtil("注册时间")}}</div>
+                            <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                        </v-sheet>
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                        >
+                            <div class="primary--text">{{LangUtil("用户ID")}}</div>
+                            <div>{{ item.user_id }}</div>
+                        </v-sheet>
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                        >
+                            <div class="primary--text">{{LangUtil("用户昵称")}}</div>
+                            <div>{{ item.nick_name }}</div>
+                        </v-sheet>
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                            v-if="selfProxy.userInfo.is_credit_user != 1"
+                        >
+                            <div class="primary--text">{{LangUtil("直属人数")}}</div>
+                            <div>{{ item.directly_users }}</div>
+                        </v-sheet>
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                            v-if="selfProxy.userInfo.is_credit_user != 1"
+                        >
+                            <div class="primary--text">{{LangUtil("团队人数")}}</div>
+                            <div>{{ item.group_users }}</div>
+                        </v-sheet>
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                            v-if="selfProxy.userInfo.is_credit_user != 1"
+                        >
+                            <div class="primary--text">{{LangUtil("保底")}}</div>
+                            <div v-if=" pageData.enable_set_promotion_floor == 1">
+                                <div class="textYellow--text" @click="handlerSetting(item)">
+                                    {{ item.promotion_floor["0"]? item.promotion_floor["0"]:'设置' }}
+                                </div>
+                            </div>
+                            <div v-else>-</div>
+                        </v-sheet>
+
+                        <v-sheet
+                            class="d-flex justify-space-between textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                            v-if="selfProxy.userInfo.is_credit_user == 1"
+                        >
+                            <div class="primary--text">{{LangUtil("状态")}}</div>
+                            <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
+                        </v-sheet>
+
+                        <v-sheet
+                            v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1"
+                            class="d-flex justify-end textGray--text"
+                            color="transparent"
+                            :min-height="moble_single_item_height"
+                        >
+                            <div class="mr-3" v-if="selfProxy.userInfo.is_credit_user == 1">
+                                <btn-yellow
+                                    min_width="90"
+                                    height="30"
+                                    :btn_type="2"
+                                    class="text-12"
+                                    @click.native="handlerShowDialogSet(item)"
+                                    >{{LangUtil("直属设置")}}</btn-yellow
+                                >
+                            </div>
+                            <btn-yellow
+                                min_width="90"
+                                height="30"
+                                :btn_type="2"
+                                class="text-12"
+                                @click.native="handlerShowBetRecord(item.user_id)"
+                                >{{LangUtil("投注记录")}}</btn-yellow
+                            >
+                        </v-sheet>
                     </v-sheet>
-                </v-sheet>
+                </template>
             </LoadMore1>
             <!-- </v-sheet> -->
             <!-- </v-card-text> -->
         </template>
     </v-card>
-    <Overlay v-model="pageData.loading" />
 </v-dialog>

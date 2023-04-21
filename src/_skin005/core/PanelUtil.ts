@@ -61,6 +61,7 @@ import dialog_record_recharge from "@/_skin005/views/dialog_record_recharge";
 import dialog_address_book from "@/_skin005/views/dialog_address_book";
 import dialog_address_book_remark from "@/_skin005/views/dialog_address_book_remark";
 import page_recharge from "@/_skin005/views/page_recharge";
+import dialog_recharge_qrcode from "@/_skin005/views/dialog_recharge_qrcode";
 
 import dialog_gold_water from "@/_skin005/views/dialog_gold_water";
 import DialogRechargeProxy from "@/_skin005/views/dialog_recharge/proxy/DialogRechargeProxy";
@@ -719,6 +720,11 @@ export default class PanelUtil {
     static openpanel_notice_detail(data: any) {
         MultDialogManager.onOpenPanel(dialog_notice_detail);
         dialog_notice_detail.show(data);
+    }
+    /** 充值弹出的二维码的对话框 */
+    static openpanel_recharge_qrcode(data: any, isImg: boolean = false) {
+        MultDialogManager.onOpenPanel(dialog_recharge_qrcode);
+        dialog_recharge_qrcode.show(data, isImg);
     }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {

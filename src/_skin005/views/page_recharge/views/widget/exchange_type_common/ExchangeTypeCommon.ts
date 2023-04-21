@@ -28,29 +28,13 @@ export default class ExchangeTypeCommon extends AbstractView {
             return this.methodlist_data.bank_list;
         return null;
     }
+    mounted() {
+        this.reSetRequir();
+    }
     onItemClick(key: string) {
         //console.log("   ----当前  点击----", key);
         this.form.coin_name_unique = key;
     }
-    // onChange(value: any) {
-    //     this.form.coin_name_unique = value;
-    //     const { methodList } = this.pageData;
-    //     const  coin_name_unique  = value;
-    //     const keys = Object.keys(methodList[coin_name_unique].options);
-
-    //     // 默认选择trc20
-    //     let block_network_id = keys[0];
-    //     for (const key of keys) {
-    //         if (methodList[coin_name_unique].options[key].name.toLowerCase() == "trc20") {
-    //             block_network_id = key;
-    //         }
-    //     }
-
-    //     this.form.block_network_id = block_network_id;
-    //     this.form.exchange_channel_method_id = methodList[coin_name_unique].options[block_network_id].exchange_channel_method_id;
-    //     // 地址簿
-    //     this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
-    // }
 
     onChangeSub(value: any) {
         this.form.block_network_id = value;
@@ -58,6 +42,9 @@ export default class ExchangeTypeCommon extends AbstractView {
             this.pageData.methodList[this.form.coin_name_unique].options[value].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.block_network_id = value;
+        this.form.requires = this.pageData.methodList[this.form.coin_name_unique].options[value].requires;
+        this.reSetRequir();
+        this.form.password_gold = "";
     }
     get balance() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
@@ -97,10 +84,13 @@ export default class ExchangeTypeCommon extends AbstractView {
         PanelUtil.openpanel_trade_password();
     }
     onSubmit() {
+        if (!this.chickRequires()) {
+            return;
+        }
         PanelUtil.message_confirm({
             message: LangUtil("确认提交"),
             okFun: () => {
-                this.myProxy.exchangeProxy.api_user_var_exchange_create_order();
+                this.myProxy.exchangeProxy.api_user_var_exchange_create_order(this.showRequires);
             },
         });
     }
@@ -112,10 +102,15 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     get isChecked(): boolean {
         const { amount, account, coin_name_unique, password_gold } = this.form;
+
         if (amount != "" && password_gold != "") {
             const amount_num = parseFloat(amount);
-            if (amount_num > 0 && amount_num <= this.myProxy.exchangeProxy.gold_info[coin_name_unique].sum_money && account != "") {
-                return true;
+            if (amount_num > 0 && amount_num <= this.myProxy.exchangeProxy.gold_info[coin_name_unique].sum_money) {
+                if (this.showRequires.length < 1) {
+                    return account != "";
+                } else {
+                    return true;
+                }
             }
         }
         return false;
@@ -167,6 +162,59 @@ export default class ExchangeTypeCommon extends AbstractView {
         console.log(" 点击银行卡 信息");
         dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo);
     }
+
+    showRequires = <any>[];
+    reSetRequir() {
+        this.showRequires = <any>[];
+        if (!this.form.requires) return;
+
+        const keys = Object.keys(this.form.requires);
+        if (keys.length < 1) return;
+
+        for (let index = 0; index < keys.length; index++) {
+            const element = this.form.requires[keys[index]];
+
+            const obj = {
+                title: element.name, //显示的标题名字
+                tips: element.tips,
+                key: keys[index],
+                //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
+                inputValue: "", //用户的输入值
+                errinfo: "", //错误信息
+                timeHeadle: null, //错误提示的句柄
+            };
+            this.showRequires.push(obj);
+        }
+    }
+    chickRequires() {
+        if (this.showRequires.length < 1) {
+            return true;
+        }
+        if (this.showRequires && this.showRequires.length > 0) {
+            //console.log(" 必须的数据" ,this.showRequires);
+            let isChick = true;
+            for (let index = 0; index < this.showRequires.length; index++) {
+                const element = this.showRequires[index];
+
+                if (!this.onBlurInput(element)) {
+                    isChick = false;
+                }
+            }
+            return isChick;
+        }
+        return true;
+    }
+
+    onBlurInput(item: any) {
+        item.inputValue = item.inputValue.trim();
+        if (!item.inputValue) {
+            item.errinfo = LangUtil(item.tips);
+            return false;
+        }
+        item.errinfo = "";
+        return true;
+    }
+
     public get allCardNub(): any {
         if (!this.form.account || this.form.account == "") {
             return [];

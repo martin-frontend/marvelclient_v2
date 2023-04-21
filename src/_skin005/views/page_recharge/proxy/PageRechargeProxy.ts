@@ -2,6 +2,9 @@ import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { ExchangeProxy, RechargeProxy, TransferProxy } from "@/_skin005/views/dialog_recharge/proxy/DialogRechargeProxy";
 import MyCanvas from "@/core/ui/MyCanvas";
+import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
+import WebViewBridge from "@/core/native/WebViewBridge";
 export default class PageRechargeProxy extends puremvc.Proxy {
     static NAME = "PageRechargeProxy";
 
@@ -36,5 +39,29 @@ export default class PageRechargeProxy extends puremvc.Proxy {
         await myCanvas.drawQrCode(image, 16, 16, 256, 256);
         //dialog_preview.show(myCanvas.getData());
         PanelUtil.openpanel_preview(myCanvas.getData());
+    }
+    /**充值的回调 */
+    api_user_var_recharge_create_callback(data: any) {
+        //加了个 type: 0-无需处理|1-跳转URL|2-二维码
+        if (data.type == 1) {
+            this.openUrl(data.url);
+        } else if (data.type == 2) {
+            PanelUtil.openpanel_recharge_qrcode(data);
+        } else if (data.type == 3) {
+            PanelUtil.openpanel_recharge_qrcode(data, true);
+        }
+    }
+    /**打开跳转链接 */
+    openUrl(url: string) {
+        PanelUtil.message_alert({
+            message: LangUtil("点击进入充值通道"),
+            okFun: () => {
+                if (core.app_type == core.EnumAppType.WEB) {
+                    OpenLink(url);
+                } else {
+                    WebViewBridge.getInstance().openStstemBrowser(url);
+                }
+            },
+        });
     }
 }

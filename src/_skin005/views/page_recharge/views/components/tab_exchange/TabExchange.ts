@@ -36,6 +36,7 @@ export default class TabExchange extends AbstractView {
                 this.form.exchange_channel_id = obj.exchange_channel_id;
                 this.form.payment_method_type = obj.payment_method_type;
             }
+            this.form.requires = obj.requires;
             console.log("---设置 兑换的类型");
         }
     }
@@ -57,5 +58,6 @@ export default class TabExchange extends AbstractView {
         this.form.exchange_channel_method_id = methodList[coin_name_unique].options[block_network_id].exchange_channel_method_id;
         // 地址簿
         this.addressBooProxy.pageData.listQuery.coin_name_unique = this.form.coin_name_unique;
+        this.form.requires = methodList[coin_name_unique].options[block_network_id].requires;
     }
 }

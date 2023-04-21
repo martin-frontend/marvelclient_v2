@@ -15,14 +15,17 @@ export default class RechargeTypeCommon extends AbstractView {
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
     amountFormat = amountFormat;
+    GamePlatConfig = GamePlatConfig;
     plat_coins = GamePlatConfig.config.plat_coins;
 
-    mounted() {}
+    mounted() {
+        //this.onChange1("");
+        this.reSetRequir();
+    }
     onChange1(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
         const keys = Object.keys(methodList[coin_name_unique].options);
-
         // 默认选择trc20
         let block_network_id = keys[0];
         for (const key of keys) {
@@ -86,6 +89,10 @@ export default class RechargeTypeCommon extends AbstractView {
                 this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                 this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
             }
+            this.myProxy.rechargeProxy.pageData.form.requires = data.requires;
+
+            console.log("---data.requires----", this.myProxy.rechargeProxy.pageData.form.requires);
+            this.reSetRequir();
         }
         if (data.payemthod_id == 6) {
             const fixed_gold_list = data.fixed_gold_list;
@@ -144,6 +151,32 @@ export default class RechargeTypeCommon extends AbstractView {
             const fixed_gold_list = options[block_network_id].channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
+            this.pageData.form.requires = options[block_network_id].requires;
+            console.log("---options[block_network_id]----", options[block_network_id]);
+        }
+    }
+
+    showRequires = <any>[];
+    reSetRequir() {
+        this.showRequires = <any>[];
+        if (!this.form.requires) return;
+
+        const keys = Object.keys(this.form.requires);
+        if (keys.length < 1) return;
+
+        for (let index = 0; index < keys.length; index++) {
+            const element = this.form.requires[keys[index]];
+
+            const obj = {
+                title: element.name, //显示的标题名字
+                tips: element.tips,
+                key: keys[index],
+                //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
+                inputValue: "", //用户的输入值
+                errinfo: "", //错误信息
+                timeHeadle: null, //错误提示的句柄
+            };
+            this.showRequires.push(obj);
         }
     }
 
@@ -164,6 +197,34 @@ export default class RechargeTypeCommon extends AbstractView {
         return [];
     }
 
+    chickRequires() {
+        if (this.showRequires.length < 1) {
+            return true;
+        }
+        if (this.showRequires && this.showRequires.length > 0) {
+            //console.log(" 必须的数据" ,this.showRequires);
+            let isChick = true;
+            for (let index = 0; index < this.showRequires.length; index++) {
+                const element = this.showRequires[index];
+
+                if (!this.onBlurInput(element)) {
+                    isChick = false;
+                }
+            }
+            return isChick;
+        }
+        return true;
+    }
+
+    onBlurInput(item: any) {
+        item.inputValue = item.inputValue.trim();
+        if (!item.inputValue) {
+            item.errinfo = LangUtil(item.tips);
+            return false;
+        }
+        item.errinfo = "";
+        return true;
+    }
     // 创建充值订单
     onSumbit() {
         if (!this.form.amount || !this.form.amount.trim()) {
@@ -176,7 +237,10 @@ export default class RechargeTypeCommon extends AbstractView {
             PanelUtil.message_alert(LangUtil("充值金额不正确"));
             return;
         }
-        this.myProxy.rechargeProxy.api_user_var_recharge_create();
+        if (!this.chickRequires()) {
+            return;
+        }
+        this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
 
     destroyed() {
@@ -232,7 +296,6 @@ export default class RechargeTypeCommon extends AbstractView {
         return false;
     }
     transformExplain(str: string) {
-        console.log("  ----str-----", str);
         if (str) {
             return str.split("\n");
         }

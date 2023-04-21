@@ -118,6 +118,12 @@
         </v-card>
 
         <v-sheet color="transparent" width="100%" class="d-flex mt-4">
+            <v-sheet class="d-flex justify-start rounded10 align-center" color="transparent">
+                <div class="mr-2 primary-text">{{LangUtil("已支持兑换币种")}}</div>
+                <div v-for="(item, key) of pageData.methodList" :key="key">
+                    <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+                </div>
+            </v-sheet>
             <btn-yellow class="ml-auto text-16" min_width="104" height="36" :disabled="!isChecked" @click.native="onSubmit"
                 >{{LangUtil("提交")}}</btn-yellow
             >
@@ -231,6 +237,14 @@
             </v-card>
         </v-card>
     </v-card>
+    <v-sheet color="transparent" width="100%" class="d-flex mt-4">
+        <v-sheet class="d-flex justify-start align-center rounded10" color="transparent">
+            <div class="mr-2 primary-text">{{LangUtil("已支持兑换币种")}}</div>
+            <div v-for="(item, key) of pageData.methodList" :key="key">
+                <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+            </div>
+        </v-sheet>
+    </v-sheet>
     <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex mt-4 mb-16">
         <btn-yellow class="ml-auto text-14" min_width="100%" height="36" :disabled="!isChecked" @click.native="onSubmit"
             >{{LangUtil("提交")}}</btn-yellow

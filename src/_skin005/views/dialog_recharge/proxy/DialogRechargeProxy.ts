@@ -93,7 +93,7 @@ export class RechargeProxy extends puremvc.Proxy {
                         data[coin_name_unique].options[block_network_id].payemthod_id == 10
                     ) {
                         const channel = data[coin_name_unique].options[block_network_id].channel;
-                        if (channel.length > 0) {
+                        if (channel && channel.length > 0) {
                             this.pageData.form.third_id = channel[0].third_id;
                             this.pageData.form.subtitle = channel[0].subtitle;
 
@@ -101,6 +101,7 @@ export class RechargeProxy extends puremvc.Proxy {
                             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
                             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
                         }
+                        this.pageData.form.requires = data[coin_name_unique].options[block_network_id].requires;
                     }
                     if (data[coin_name_unique].options[block_network_id].payemthod_id == 9) {
                         const channel = data[coin_name_unique].options[block_network_id].channel;
@@ -164,7 +165,11 @@ export class RechargeProxy extends puremvc.Proxy {
         if (requires && requires.length > 0) {
             for (let index = 0; index < requires.length; index++) {
                 const element = requires[index];
-                data[element.title] = element.inputValue;
+                if (element.key) {
+                    data[element.key] = element.inputValue;
+                } else {
+                    data[element.title] = element.inputValue;
+                }
             }
         }
         // if (this.pageData.form.requires && this.pageData.form.requires.length > 0) {
@@ -265,6 +270,8 @@ export class ExchangeProxy extends puremvc.Proxy {
                     this.pageData.methodList[this.pageData.form.coin_name_unique].options[
                         this.pageData.form.block_network_id
                     ].exchange_channel_method_id;
+                this.pageData.form.requires =
+                    this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id].requires;
                 console.log("----block_network_id----", block_network_id);
             }
         }
@@ -309,7 +316,7 @@ export class ExchangeProxy extends puremvc.Proxy {
     api_user_var_exchange_create_order(requires: any = null) {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
-        if (!requires) {
+        if (!requires || requires.length < 1) {
             const {
                 amount,
                 exchange_channel_id,
@@ -362,7 +369,11 @@ export class ExchangeProxy extends puremvc.Proxy {
 
             for (let index = 0; index < requires.length; index++) {
                 const element = requires[index];
-                data[element.title] = element.inputValue;
+                if (element.key) {
+                    data[element.key] = element.inputValue;
+                } else {
+                    data[element.title] = element.inputValue;
+                }
             }
             console.log(" 兑换发送的数据", data);
             this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);

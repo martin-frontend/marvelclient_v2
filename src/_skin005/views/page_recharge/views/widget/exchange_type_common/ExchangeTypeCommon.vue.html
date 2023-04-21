@@ -25,8 +25,7 @@
             <v-col cols="6">
                 <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
-                    </CustomInput>
+                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                     <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
                 </v-sheet>
@@ -34,23 +33,22 @@
         </v-row>
     </v-card>
 
-    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3 mx-n2">
-        <btn-yellow
-            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
-            :key="key"
-            class="mb-2 mx-2"
-            min_width="90"
-            height="36"
-            :btn_type="10"
-            :disabled="form.block_network_id==key"
-            @click.native="onChangeSub(key)"
-        >
-            {{item.name}}
-        </btn-yellow>
+    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3">
+        <v-row>
+            <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                <btn-yellow
+                    class="mb-2"
+                    min_width="100%"
+                    height="36"
+                    :btn_type="10"
+                    :disabled="form.block_network_id==key"
+                    @click.native="onChangeSub(key)"
+                >
+                    {{item.name}}
+                </btn-yellow>
+            </v-col>
+        </v-row>
     </div>
-    <!-- <div v-if="form.payment_method_type==8">
-        
-    </div> -->
     <v-card flat color="transparent" class="mt-4">
         <v-row>
             <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="6">
@@ -149,13 +147,20 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="6" v-if="form.payment_method_type==8">
+            <v-col cols="6" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <!-- 标题 -->
-                    <v-sheet color="transparent" class="d-flex"> {{LangUtil("pix key")}} </v-sheet>
+                    <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} {{item.key}}</v-sheet>
                     <v-sheet color="transparent" class="py-1">
-                        <CustomInput class="" :placeholder="LangUtil('请输入pix key')" v-model="form.account"> </CustomInput>
+                        <CustomInput
+                            class=""
+                            :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                            @blur="onBlurInput(item)"
+                            v-model="item.inputValue"
+                        >
+                        </CustomInput>
                     </v-sheet>
+                    <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
                 </v-card>
             </v-col>
 
@@ -227,8 +232,7 @@
             <v-col cols="12">
                 <div class="text-14 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
-                    </CustomInput>
+                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                     <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
                 </v-sheet>
@@ -236,19 +240,21 @@
         </v-row>
     </v-card>
 
-    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3 mx-n2">
-        <btn-yellow
-            v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
-            :key="key"
-            class="mb-2 mx-2"
-            min_width="90"
-            height="36"
-            :btn_type="10"
-            :disabled="form.block_network_id==key"
-            @click.native="onChangeSub(key)"
-        >
-            {{item.name}}
-        </btn-yellow>
+    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3">
+        <v-row>
+            <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                <btn-yellow
+                    class="mb-2"
+                    min_width="100%"
+                    height="36"
+                    :btn_type="10"
+                    :disabled="form.block_network_id==key"
+                    @click.native="onChangeSub(key)"
+                >
+                    {{item.name}}
+                </btn-yellow>
+            </v-col>
+        </v-row>
     </div>
     <!-- <div v-if="form.payment_method_type==8">
         
@@ -350,14 +356,21 @@
                     </v-sheet>
                 </v-card>
             </v-col>
-
-            <v-col cols="12" v-if="form.payment_method_type==8">
+            
+            <v-col cols="12" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <!-- 标题 -->
-                    <v-sheet color="transparent" class="d-flex"> {{LangUtil("pix key")}} </v-sheet>
+                    <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
                     <v-sheet color="transparent" class="py-1">
-                        <CustomInput class="" :placeholder="LangUtil('请输入pix key')" v-model="form.account"> </CustomInput>
+                        <CustomInput
+                            class=""
+                            :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                            @blur="onBlurInput(item)"
+                            v-model="item.inputValue"
+                        >
+                        </CustomInput>
                     </v-sheet>
+                    <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
                 </v-card>
             </v-col>
 

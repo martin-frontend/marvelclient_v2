@@ -42,7 +42,8 @@ export default class TabRecharge extends AbstractView {
 
         this.form.block_network_id = block_network_id;
         this.form.recharge_channel_id = methodList[coin_name_unique].options[block_network_id].recharge_channel_id;
+        this.form.requires = methodList[coin_name_unique].options[block_network_id].requires;
         this.myProxy.rechargeProxy.api_user_var_recharge_address();
-        console.log("收到切换");
+        console.log("收到切换", this.form);
     }
 }

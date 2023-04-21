@@ -60,4 +60,11 @@ export default class GamePlatConfig {
         }
         return "";
     }
+
+    //获取货币的符号
+    static getcoin_symbol(coin_name_unique: string) {
+        if (!coin_name_unique) return "";
+        if (!this.config.plat_coins[coin_name_unique]) return "";
+        return this.config.plat_coins[coin_name_unique].symbol || "";
+    }
 }

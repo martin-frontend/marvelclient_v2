@@ -322,6 +322,10 @@
         background-color: #121e36ff;
         background-color: var(--app-background-color);
     }
+    .select_class{
+        position: absolute;
+        right: 8px;
+    }
 }
 html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

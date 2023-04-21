@@ -26,20 +26,22 @@
 
     <template v-if="isShowOptions">
         <div class="primary--text font-weight-bold text-16 mt-4">{{LangUtil("选择支付通道")}}</div>
-        <div class="d-flex flex-wrap mt-2">
-            <btn-yellow
-                v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
-                :key="key"
-                class="mr-4 my-2"
-                min_width="90"
-                height="36"
-                :btn_type="10"
-                :disabled="form.block_network_id==key"
-                @click.native="onChange2(key)"
-            >
-                <span>{{item.name}}</span>
-            </btn-yellow>
-        </div>
+        <v-sheet class="d-flex flex-wrap mt-2" color="transparent" width="100%">
+            <v-row>
+                <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                    <btn-yellow
+                        class="my-2"
+                        min_width="100%"
+                        height="36"
+                        :btn_type="10"
+                        :disabled="form.block_network_id==key"
+                        @click.native="onChange2(key)"
+                    >
+                        <span>{{item.name}}</span>
+                    </btn-yellow>
+                </v-col>
+            </v-row>
+        </v-sheet>
     </template>
     <v-card color="transparent" flat class="">
         <!-- 数字货币 -->
@@ -124,24 +126,61 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <div class="d-flex flex-wrap my-4 mx-n2">
-                <btn-yellow
-                    v-for="(item, index) of getPaymethod6_fixed_gold_list()"
-                    :key="index"
-                    class="mb-2 mx-2"
-                    min_width="100"
-                    height="51"
-                    :btn_type="10"
-                    :disabled="pageData.gold_index==index && form.amount==item"
-                    @click.native="onGoldClick(index,item)"
-                >
-                    <span class="text-16">{{item}}</span>
-                    <span v-if="pageData.gold_index==index && form.amount==item">
-                        <svg-icon icon="select" class="ml-2 text-14" />
-                    </span>
-                </btn-yellow>
+            <div class="d-flex flex-wrap my-4">
+                <v-row>
+                    <v-col cols="1.5" v-for="(item, index) of getPaymethod6_fixed_gold_list()" :key="index">
+                        <btn-yellow
+                            class="mb-2"
+                            min_width="100%"
+                            height="51"
+                            :btn_type="10"
+                            :disabled="pageData.gold_index==index && form.amount==item"
+                            @click.native="onGoldClick(index,item)"
+                        >
+                            <span class="text-16">
+                                <span class="text-14">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span
+                            >
+                            <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
+                                <svg-icon icon="select" class="mr-0 mt-1 text-14" />
+                            </span>
+                        </btn-yellow>
+                    </v-col>
+                </v-row>
             </div>
         </div>
+
+        <!-- 需要补充提交的资料 -->
+        <v-card
+            id="requiresNode"
+            v-if="showRequires &&  showRequires.length > 0"
+            flat
+            width="100%"
+            color="bgBanner"
+            class="d-flex flex-column rounded10 mt-4 py-2"
+        >
+            <div class="primary--text mb-2 font-weight-bold text-16">{{LangUtil("请输入支付信息")}}</div>
+            <!-- 下面的需要填的选项 -->
+            <v-card flat class="d-flex flex-column" color="transparent">
+                <v-row>
+                    <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                                    @blur="onBlurInput(item)"
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-card>
 
         <v-sheet color="transparent" class="mt-4">
             <div class="primary--text mt-4 font-weight-bold text-16">{{LangUtil("充值通道说明")}}</div>
@@ -218,18 +257,20 @@
     <template v-if="isShowOptions">
         <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("选择支付通道")}}</div>
         <div class="d-flex flex-wrap mt-4">
-            <btn-yellow
-                v-for="(item, key) of pageData.methodList[form.coin_name_unique].options"
-                :key="key"
-                class="mb-2 mr-4"
-                min_width="90"
-                height="30"
-                :btn_type="10"
-                :disabled="form.block_network_id==key"
-                @click.native="onChange2(key)"
-            >
-                <span class="text-12">{{item.name}}</span>
-            </btn-yellow>
+            <v-row>
+                <v-col cols="6" v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                    <btn-yellow
+                        class="mb-2"
+                        min_width="100%"
+                        height="30"
+                        :btn_type="10"
+                        :disabled="form.block_network_id==key"
+                        @click.native="onChange2(key)"
+                    >
+                        <span class="text-12">{{item.name}}</span>
+                    </btn-yellow>
+                </v-col>
+            </v-row>
         </div>
     </template>
     <v-card color="transparent" flat class="">
@@ -315,24 +356,61 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <div class="d-flex flex-wrap my-4 mx-n2">
+            <div class="d-flex flex-wrap my-4">
+                <v-row dense>
+                    <v-col cols="4" v-for="(item, index) of getPaymethod6_fixed_gold_list()" :key="index" >
                 <btn-yellow
-                    v-for="(item, index) of getPaymethod6_fixed_gold_list()"
-                    :key="index"
-                    class="mb-2 mx-1"
-                    min_width="100"
+
+                    class="mb-2"
+                    min_width="100%"
                     height="46"
                     :btn_type="10"
                     :disabled="pageData.gold_index==index && form.amount==item"
                     @click.native="onGoldClick(index,item)"
                 >
-                    <span class="text-14">{{item}}</span>
-                    <span v-if="pageData.gold_index==index && form.amount==item">
+                    <span class="text-14">
+                        <span class="text-12">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span>
+                    <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
                         <svg-icon icon="select" class="ml-2 text-14" />
                     </span>
                 </btn-yellow>
+                </v-col>
+                </v-row>
             </div>
         </div>
+
+        <!-- 需要补充提交的资料 -->
+        <v-card
+            id="requiresNode"
+            v-if="showRequires &&  showRequires.length > 0"
+            flat
+            width="100%"
+            color="bgBanner"
+            class="d-flex flex-column rounded10 mt-4 py-2"
+        >
+            <div class="primary--text mb-2 font-weight-bold text-14">{{LangUtil("请输入支付信息")}}</div>
+            <!-- 下面的需要填的选项 -->
+            <v-card flat class="d-flex flex-column" color="transparent">
+                <v-row>
+                    <v-col cols="12" v-for="(item, key) of showRequires" :key="key">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                                    @blur="onBlurInput(item)"
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-card>
 
         <v-sheet color="transparent" class="mt-4">
             <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("充值通道说明")}}</div>

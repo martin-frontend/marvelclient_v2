@@ -1,13 +1,7 @@
 $base_radius: 10px; //圆角
 $moble_radius: 6px;
-$yellow_color_1: #fcb131;
-$yellow_color_2: #ffe64d;
 
-$hover_text: #fff;
-$nomal_text: #0f1213;
 
-$disable_text_dark: #5a5a5a;
-$disable_text_light: #a4a4a4;
 
 $sss: #3e3f41;
 
@@ -72,12 +66,12 @@ $sss: #3e3f41;
 
 //------------    样式一  ----------------------
 .btn_nomal {
-    color: $nomal_text;
+    color: var(--btn_nomal_text);
 }
 
 .btn_nomal:before {
     content: "";
-    background: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 
 .theme--dark {
@@ -88,11 +82,11 @@ $sss: #3e3f41;
     }
 
     .btn_nomal:hover {
-        color: $hover_text;
+        color: var(--btn_hover_text);
     }
 
     .btn_nomal_disable {
-        color: $disable_text_dark;
+        color: var(--btn_disable_text_dark);
     }
 
     .btn_nomal_disable::before {
@@ -100,7 +94,7 @@ $sss: #3e3f41;
     }
 
     .btn_three_disable {
-        color: $disable_text_dark;
+        color: var(--btn_disable_text_dark);
     }
 
     .btn_three_disable::before {
@@ -116,7 +110,7 @@ $sss: #3e3f41;
     }
 
     .btn_nomal_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
     }
 
     .btn_nomal_disable::before {
@@ -124,7 +118,7 @@ $sss: #3e3f41;
     }
 
     .btn_three_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
     }
 
     .btn_three_disable::before {
@@ -137,7 +131,7 @@ $sss: #3e3f41;
 //------------    样式二  ----------------------
 .btn_two:before {
     content: "";
-    background: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -145,7 +139,7 @@ $sss: #3e3f41;
 }
 
 .btn_two:hover {
-    color: $nomal_text !important;
+    color: var(--btn_nomal_text) !important;
 }
 
 .btn_two:hover:before {
@@ -161,7 +155,7 @@ $sss: #3e3f41;
 }
 
 .btn_two_disable {
-    color: $disable_text_light;
+    color: var(--btn_disable_text_light);
 }
 
 .theme--dark {
@@ -170,7 +164,7 @@ $sss: #3e3f41;
     }
 
     .btn_two {
-        color: $hover_text;
+        color: var(--btn_hover_text);
     }
 }
 
@@ -180,7 +174,7 @@ $sss: #3e3f41;
     }
 
     .btn_two {
-        color: $nomal_text;
+        color: var(--btn_nomal_text);
     }
 }
 
@@ -193,30 +187,30 @@ $sss: #3e3f41;
 }
 
 .test_my:hover {
-    color: $nomal_text !important;
-    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+    color: var(--btn_nomal_text) !important;
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
 }
 
 .theme--dark {
     .test_my {
-        color: $hover_text;
-        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        color: var(--btn_hover_text);
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
 
     .test_my_disable {
-        color: $disable_text_dark;
+        color: var(--btn_disable_text_dark);
         background: linear-gradient(to right, #333435, #3d3d3d);
     }
 }
 
 .theme--light {
     .test_my {
-        color: $nomal_text;
-        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        color: var(--btn_nomal_text);
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
 
     .test_my_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background: linear-gradient(to right, #e8e8e2, #e8e8e2);
     }
 }
@@ -226,20 +220,20 @@ $sss: #3e3f41;
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text;
-    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    color: var(--btn_nomal_text);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 
 .theme--dark {
     .buttton_yellow:hover {
-        color: $hover_text !important;
+        color: var(--btn_hover_text) !important;
         background-image: linear-gradient(to right, #333435, #333435) !important;
     }
 }
 
 .theme--light {
     .buttton_yellow:hover {
-        color: $nomal_text !important;
+        color: var(--btn_nomal_text) !important;
         background-image: linear-gradient(to right, #fff, #fff) !important;
     }
 }
@@ -253,78 +247,78 @@ $sss: #3e3f41;
     //border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text;
-    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    color: var(--btn_nomal_text);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 
 .btn_10 {
     cursor: pointer;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    // color: $nomal_text;
+    // color: var(--btn_nomal_text);
     // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
 }
 
 .theme--dark {
     .btn_9:hover {
-        color: $hover_text !important;
+        color: var(--btn_hover_text) !important;
         border: 1px solid transparent;
-        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
     .btn_9_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background: linear-gradient(to right, #3e3f41, #3e3f41);
     }
     .btn_10 {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background-image: linear-gradient(to right, #3e3f41, #3e3f41);
     }
 
     .btn_10:hover {
-        color: $nomal_text !important;
-        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+        color: var(--btn_nomal_text) !important;
+        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
     }
     .btn_10_disable {
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         border: 1px solid transparent;
         font-family: "GOTHAM_BOLD";
-        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
 }
 
 .theme--light {
     .btn_9:hover {
-        color: $nomal_text !important;
+        color: var(--btn_nomal_text) !important;
         border: 1px solid transparent;
-        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
     .btn_9_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background: linear-gradient(to right, #e8e8e2, #e8e8e2);
     }
     .btn_10 {
-        color: $nomal_text;
+        color: var(--btn_nomal_text);
         background-image: linear-gradient(to right, #e8e8e2, #e8e8e2);
     }
     .btn_10:hover {
-        color: $nomal_text !important;
+        color: var(--btn_nomal_text) !important;
 
-        background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2) !important;
+        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
     }
     .btn_10_disable {
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-        color: $nomal_text;
+        color: var(--btn_nomal_text);
         border: 1px solid transparent;
         font-family: "GOTHAM_BOLD";
-        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
 }
 
 // .btn_9_disable {
-//     color: $disable_text_light;
+//     color: var(--btn_disable_text_light);
 //     //background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
 //     background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
 //     background: linear-gradient(to right, #3e3f41, #3e3f41);
@@ -335,31 +329,31 @@ $sss: #3e3f41;
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    color: $nomal_text;
-    background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+    color: var(--btn_nomal_text);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 
 .theme--dark {
     .btn_helf_new:hover {
-        color: $hover_text !important;
+        color: var(--btn_hover_text) !important;
 
-        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
     .btn_helf_new_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background: linear-gradient(to right, #3e3f41, #3e3f41);
     }
 }
 
 .theme--light {
     .btn_helf_new:hover {
-        color: $nomal_text !important;
+        color: var(--btn_nomal_text) !important;
 
-        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
 
     .btn_helf_new_disable {
-        color: $disable_text_light;
+        color: var(--btn_disable_text_light);
         background: linear-gradient(to right, #e8e8e2, #e8e8e2);
     }
 }

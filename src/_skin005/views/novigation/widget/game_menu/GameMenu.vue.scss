@@ -21,7 +21,7 @@
 
 //样式二 使用的
 .title_icon {
-    background: linear-gradient(0deg, #fcb131, #ffe64d) !important;
+    background: linear-gradient(0deg, var(--yellow_color_1), var(--yellow_color_2)) !important;
 }
 
 ::v-deep .theme--dark {
@@ -95,7 +95,7 @@
 
 //样式三 使用的
 .btn_stly:hover {
-    background: linear-gradient(90deg, #fcb131 0%, #ffe64d 100%) !important;
+    background: linear-gradient(90deg, var(--yellow_color_1) 0%, var(--yellow_color_2) 100%) !important;
     color: #252525;
     border: none;
 }

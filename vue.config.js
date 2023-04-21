@@ -1,5 +1,6 @@
 /**皮肤配置 */
 const skinMap = {
+    /**落地页 */
     landing: {
         public_dir: "public_landing",
         pages: {
@@ -12,6 +13,7 @@ const skinMap = {
             },
         },
     },
+    /**bte2dream */
     skin003: {
         public_dir: "public_skin003",
         pages: {
@@ -24,6 +26,7 @@ const skinMap = {
             },
         },
     },
+    /**MG188 */
     skin004: {
         public_dir: "public_skin004",
         pages: {
@@ -73,6 +76,7 @@ const skinMap = {
             },
         },
     },
+    /**CF亚娱 */
     skin004_1: {
         public_dir: "public_skin004_1",
         pages: {
@@ -85,6 +89,7 @@ const skinMap = {
             },
         },
     },
+    /**96in */
     skin005: {
         public_dir: "public_skin005",
         pages: {
@@ -104,6 +109,7 @@ const skinMap = {
             },
         },
     },
+    /**BetNow */
     skin006: {
         public_dir: "public_skin006",
         pages: {
@@ -116,6 +122,7 @@ const skinMap = {
             },
         },
     },
+    /**96 总站 */
     skin007: {
         public_dir: "public_skin007",
         pages: {
@@ -128,6 +135,7 @@ const skinMap = {
             },
         },
     },
+    /**96clube 巴西 */
     skin008: {
         public_dir: "public_skin008",
         pages: {
@@ -136,6 +144,19 @@ const skinMap = {
                 template: "public_skin008/skin008.html",
                 filename: "index.html",
                 title: "96cluble",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
+    /**bet2dream */
+    skin020: {
+        public_dir: "public_skin020",
+        pages: {
+            skin020: {
+                entry: "src/_skin020/main.ts",
+                template: "public_skin020/skin020.html",
+                filename: "index.html",
+                title: "bet2dream",
                 faviconName: "favicon.ico",
             },
         },
@@ -204,7 +225,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007", "skin008"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007", "skin008",  "skin020"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         }
 

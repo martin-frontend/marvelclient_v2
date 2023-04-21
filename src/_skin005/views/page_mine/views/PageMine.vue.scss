@@ -63,7 +63,7 @@
     }
 
     ::v-deep .v-progress-linear__determinate {
-        background: linear-gradient(to right, #fcb131, #ffe64d) !important;
+        background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
     }
 
     .top_col_left {
@@ -279,7 +279,7 @@
 }
 
 .yellow_bg {
-    background-image: linear-gradient(to right, #fcb131, #ffe64d);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     border-radius: 10px;
     width: fit-content;
     font-size: 12px;

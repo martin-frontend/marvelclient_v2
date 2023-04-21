@@ -16,7 +16,7 @@
     right: 0;
     bottom: 0;
     padding: 1px;
-    background: linear-gradient(to right, #fcb131, #ffe64d);
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 .theme--dark {
     .btnclass:hover:before {
@@ -87,7 +87,7 @@
     right: 0;
     bottom: 0;
     padding: 1px;
-    background: linear-gradient(to right, #fcb131, #ffe64d);
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 .outlined:hover {
     //color: #0f1213;

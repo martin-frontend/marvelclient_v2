@@ -11,7 +11,7 @@ $nov_width: 188px;
     width: 100%;
 }
 .active {
-    background-image: linear-gradient(to right, #fcb131, #ffe64d);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 
 .lang {

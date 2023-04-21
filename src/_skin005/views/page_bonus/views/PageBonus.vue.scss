@@ -1,5 +1,5 @@
 .gradient-type1 {
-    background-image: linear-gradient(180deg, #fcb131, #ffe64d);
+    background-image: linear-gradient(180deg, var(--yellow_color_1), var(--yellow_color_2));
     &:hover {
         background-image: linear-gradient(180deg, #fac770, #fce96a);
     }

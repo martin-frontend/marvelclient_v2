@@ -44,7 +44,7 @@ $box_width_mini: 98px;
         color: #000;
     }
     .text_bg {
-        background: linear-gradient(to right, #fcb131, #ffe64d) !important;
+        background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
     }
 }
 

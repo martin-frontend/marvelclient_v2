@@ -254,7 +254,7 @@ $prev-right: var(--prev-right);
     background-image: linear-gradient(to bottom, #8e8f91 0%, #8e8f91 100%) !important;
 }
 .item_active {
-    background-image: linear-gradient(to bottom, #fcb131 0%, #ffe64d 100%) !important;
+    background-image: linear-gradient(to bottom, var(--yellow_color_1) 0%, var(--yellow_color_2) 100%) !important;
 }
 
 .item_btn_active {
@@ -268,7 +268,7 @@ $prev-right: var(--prev-right);
 }
 
 ::v-deep .v-progress-linear__determinate {
-    background: linear-gradient(to right, #fcb131, #ffe64d) !important;
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
 }
 
 .test_ball {

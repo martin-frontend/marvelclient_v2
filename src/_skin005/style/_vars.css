@@ -1,0 +1,10 @@
+:root {
+    --yellow_color_1: #fcb131;
+    --yellow_color_2: #ffe64d;
+
+    --btn_hover_text: #fff;
+    --btn_nomal_text: #0f1213;
+
+    --btn_disable_text_dark: #5a5a5a;
+    --btn_disable_text_light: #a4a4a4;
+}

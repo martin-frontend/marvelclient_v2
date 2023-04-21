@@ -19,7 +19,7 @@
     }
 }
 .btn-yellow {
-    background-image: linear-gradient(to right, #fcb131, #ffe64d);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     height: 24px;
     border-radius: 5px;
     width: fit-content;

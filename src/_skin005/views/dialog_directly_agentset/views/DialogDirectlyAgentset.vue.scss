@@ -62,5 +62,5 @@
 ::v-deep .v-slider--horizontal .v-slider__track-container {
     border-radius: 2px;
     height: 4px;
-    background: linear-gradient(to right, #fcb131, #ffe64d);
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }

@@ -94,9 +94,10 @@
                             <CustomInput
                                 class=""
                                 :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' +curSelectItem.subtitle + '_'+ item.title)"
-                                v-model="item.inputValue"
+                                @blur="onBlurInput(item)" v-model="item.inputValue"
                             >
                             </CustomInput>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}} </v-sheet>
                         </v-sheet>
                     </v-card>
                 </v-col>
@@ -204,9 +205,10 @@
                             <CustomInput
                                 class=""
                                 :placeholder="LangUtil('请输入{0}','') + LangUtil('pay_' +curSelectItem.subtitle + '_' +  item.title)"
-                                v-model="item.inputValue"
+                                @blur="onBlurInput(item)" v-model="item.inputValue"
                             >
                             </CustomInput>
+                            <v-sheet class="text-12 red--text" color="transparent"> {{item.errinfo}} </v-sheet>
                         </v-sheet>
                     </v-card>
                 </v-col>

@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
-import { amountFormat } from "@/core/global/Functions";
+import { amountFormat, checkMail, checkOnlyEnglishChar } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
@@ -31,18 +31,59 @@ export default class RechargeType9 extends AbstractView {
 
         //检查 是否 符合要求
         if (this.showRequires && this.showRequires.length > 0) {
+            
             //console.log(" 必须的数据" ,this.showRequires);
             for (let index = 0; index < this.showRequires.length; index++) {
-                const element = this.showRequires[index];
-                if (!element.inputValue || !element.inputValue.trim()) {
-                    PanelUtil.message_alert(LangUtil("{0} 不能为空", "pay_" + element.title));
-                    return false;
+                // const element = this.showRequires[index];
+                // if (!element.inputValue || !element.inputValue.trim()) {
+                //     PanelUtil.message_alert(LangUtil("{0} 不能为空", "pay_" + element.title));
+                //     return false;
+                // }
+                const str = this.onBlurInput(this.showRequires[index]);
+                if (str) {
+                    PanelUtil.message_info(str);
+                    return;
                 }
             }
         }
         this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
+    onBlurInput(item: any) {
+        console.log("失去焦点的 输入为", item);
 
+        if (!this.curSelectItem) {
+            return "";
+        }
+        item.inputValue = item.inputValue.trim();
+        if (!item.inputValue || item.inputValue == "") {
+            const curBoxTitle = LangUtil("pay_" + this.curSelectItem.subtitle + "_" + item.title);
+            return curBoxTitle + LangUtil("不能为空");
+        }
+        let errstr = "";
+        switch (this.curSelectItem.subtitle.toLowerCase()) {
+            case "neteller":
+            case "skrill":
+                errstr = this.checkSkrill(item);
+                break;
+            default:
+                break;
+        }
+        item.errinfo = errstr;
+        if (errstr) {
+            console.log("错误信息", errstr);
+            // if (item.timeHeadle) {
+            //     clearTimeout(item.timeHeadle);
+            // }
+            // item.timeHeadle = setTimeout(() => {
+            //     console.log("取消 错误信息");
+            //     item.errinfo = "";
+            // }, 5000);
+            return errstr;
+        }
+
+        //console.log("失去焦点的 输入为2222", item);
+        return "";
+    }
     get isInputDisabled(): boolean {
         const { coin_name_unique, block_network_id, third_id } = this.form;
         if (this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].options) {
@@ -69,25 +110,51 @@ export default class RechargeType9 extends AbstractView {
         nub += data;
         this.form.amount = nub + "";
     }
-
-    public get showRequires(): any {
-        const list = <any>[];
+    @Watch("curSelectItem")
+    onChangeCurSelectItem() {
+        console.log("---变化了");
+        this.reSetRequir();
+    }
+    showRequires = <any>[];
+    reSetRequir() {
+        this.showRequires = <any>[];
         if (!this.form.requires || this.form.requires.length < 1) {
-            return list;
+            return;
         }
         //根据 当前需要的条件 设置  转为对应的对象数据
         for (let index = 0; index < this.form.requires.length; index++) {
             const element = this.form.requires[index];
             const obj = {
                 title: element, //显示的标题名字
-                //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
+                //placeholder: LangUtil("请输入{0}","exc_" +  element),// 没有值的时候 显示的
                 inputValue: "", //用户的输入值
+                errinfo: "", //错误信息
+                timeHeadle: null, //错误提示的句柄
             };
-            list.push(obj);
+            this.showRequires.push(obj);
         }
-
-        return list;
     }
+
+    // public get showRequires(): any {
+    //     const list = <any>[];
+    //     if (!this.form.requires || this.form.requires.length < 1) {
+    //         return list;
+    //     }
+    //     //根据 当前需要的条件 设置  转为对应的对象数据
+    //     for (let index = 0; index < this.form.requires.length; index++) {
+    //         const element = this.form.requires[index];
+    //         const obj = {
+    //             title: element, //显示的标题名字
+    //             //placeholder: LangUtil("请输入{0}", "pay_" +  element),// 没有值的时候 显示的
+    //             inputValue: "", //用户的输入值
+    //             errinfo: "", //错误信息
+    //             timeHeadle: null, //错误提示的句柄
+    //         };
+    //         list.push(obj);
+    //     }
+
+    //     return list;
+    // }
     onChange1(value: any) {
         const { methodList } = this.pageData;
         const { coin_name_unique } = this.form;
@@ -113,7 +180,7 @@ export default class RechargeType9 extends AbstractView {
         //this.payChannelList();
         //this.onChange1("");
     }
-    curSelectItem = null;
+    curSelectItem = <any>null;
     public get curShowChannel(): any {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id } = this.form;
@@ -184,5 +251,33 @@ export default class RechargeType9 extends AbstractView {
 
     destroyed() {
         super.destroyed();
+    }
+    /**新版兑换 skrill 的验证 */
+    checkSkrill(item: any) {
+        const element = item;
+        const inputValue = element.inputValue;
+        const curBoxTitle = LangUtil("pay_" + this.curSelectItem.subtitle + "_" + element.title);
+        console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
+
+        // 符合正常email格式
+        if (element.title == "upiaccount") {
+            if (!checkMail(inputValue)) {
+                return curBoxTitle + LangUtil("账号格式不正确");
+            }
+        }
+        // 1. 只會是全英文字母, 長度不做限制
+        // 2. 不會有特殊符號, 不會有數字
+        else if (element.title == "accountname" || element.title == "accountname" || element.title == "accountname" || element.title == "firstname" || element.title == "lastname") {
+            if (!checkOnlyEnglishChar(inputValue)) {
+                return curBoxTitle + LangUtil("只能为全英文字符");
+            }
+        }
+        // 符合正常email格式
+        else if (element.title == "email") {
+            if (!checkMail(inputValue)) {
+                return curBoxTitle + LangUtil("邮箱格式不正确");
+            }
+        }
+        return "";
     }
 }

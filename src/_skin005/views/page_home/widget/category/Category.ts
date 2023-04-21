@@ -19,7 +19,7 @@ export default class Category extends AbstractView {
         const dataList = <any>{};
         //现将数据排序
         const sort_category = lobbyCategory.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
-            return a.index_no - b.index_no;
+            return b.index_no - a.index_no;
         });
         //将数据分组
         for (let index = 0; index < sort_category.length; index++) {
@@ -36,7 +36,7 @@ export default class Category extends AbstractView {
         for (let index = 0; index < keys.length; index++) {
             const element = dataList[keys[index]];
             element.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
-                return a.index_no - b.index_no;
+                return b.index_no - a.index_no;
             });
         }
         console.log("重新分组的数据为", dataList);

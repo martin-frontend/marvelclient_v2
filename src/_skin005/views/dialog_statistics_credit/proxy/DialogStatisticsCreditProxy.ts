@@ -180,7 +180,12 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         if (userid) {
             this.pageData.listQuery.target_user_id = userid;
         } else {
-            this.pageData.listQuery.target_user_id = core.user_id;
+            if (this.userList.length > 0) {
+                console.log("当前用户列表 有", this.userList);
+                this.pageData.listQuery.target_user_id = this.userList[this.userList.length - 1];
+            } else {
+                this.pageData.listQuery.target_user_id = core.user_id;
+            }
         }
         this.pageData.listQuery.user_id = core.user_id;
         this.pageData.listQuery.coin_name_unique = this.coin_name_unique;

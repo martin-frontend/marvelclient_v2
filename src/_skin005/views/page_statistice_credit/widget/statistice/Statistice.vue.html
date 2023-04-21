@@ -560,6 +560,20 @@
                         {{getMoneyValue(item.plat_amount)}}({{item.credit_rate_superior}})
                     </div>
                 </div>
+
+                <div class="mt-1 d-flex justify-space-between">
+                    <div class="primary--text">{{LangUtil("直属人数")}}</div>
+
+                    <div
+                        v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id"
+                        class="textYellow--text"
+                        @click="onBtnClickNextPage(item)"
+                    >
+                        {{item.directly_users}}
+                        <span class="ml-4">></span>
+                    </div>
+                    <div v-else class="textYellow--text">{{item.directly_users}}</div>
+                </div>
             </v-sheet>
         </LoadMore1>
     </template>

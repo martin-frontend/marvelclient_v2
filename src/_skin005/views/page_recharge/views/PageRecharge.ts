@@ -49,5 +49,7 @@ export default class PageRecharge extends AbstractView {
     @Watch("myProxy.pageData.tabIndex")
     onTabChange() {
         window.scrollTo(0, 0);
+        this.myProxy.rechargeProxy.pageData.form.amount = "";
+        this.myProxy.exchangeProxy.pageData.form.amount = "";
     }
 }

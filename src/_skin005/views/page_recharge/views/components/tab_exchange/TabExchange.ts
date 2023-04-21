@@ -37,7 +37,14 @@ export default class TabExchange extends AbstractView {
                 this.form.payment_method_type = obj.payment_method_type;
             }
             this.form.requires = obj.requires;
-            console.log("---设置 兑换的类型");
+            if (this.isUnityExchange) {
+                if (obj[0]) {
+                    this.form.requires = obj[0].requires;
+                    this.form.exchange_channel_id = obj[0].exchange_channel_id;
+                    this.form.payment_method_type = obj[0].payment_method_type;
+                }
+            }
+            console.log("---设置 兑换的类型", this.form.requires);
         }
     }
 

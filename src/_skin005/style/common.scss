@@ -322,7 +322,7 @@
         background-color: #121e36ff;
         background-color: var(--app-background-color);
     }
-    .select_class{
+    .select_class {
         position: absolute;
         right: 8px;
     }
@@ -338,7 +338,12 @@ html {
         display: none; /* Chrome Safari */
     }
 }
-
+.el-icon-d-arrow-right {
+    display: none;
+}
+.el-icon-d-arrow-left {
+    display: none;
+}
 body {
     font-size: 14px;
 }

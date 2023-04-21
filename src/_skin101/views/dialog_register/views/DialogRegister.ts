@@ -15,7 +15,7 @@ export default class DialogRegister extends AbstractView {
     myProxy: DialogRegisterProxy = this.getProxy(DialogRegisterProxy);
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
-
+    core = core;
     constructor() {
         super(DialogRegisterMediator);
     }
@@ -51,7 +51,9 @@ export default class DialogRegister extends AbstractView {
     getImageVerity() {
         this.myProxy.api_public_auth_code();
     }
-
+    hasInviteUser() {
+        return !!core.invite_user_id;
+    }
     onAreaCodeInput() {
         if (this.areaCodeSearch == "") {
             this.areaCodeList = this.pageData.areaCode;

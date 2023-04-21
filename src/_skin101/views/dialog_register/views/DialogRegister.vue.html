@@ -37,7 +37,7 @@
                 </div>
 
                 <CustomInput class="mb-0 rounded register-ip" :icon="icons.tjr" :placeholder="LangUtil('请输入推荐人（选填）')"
-                    v-model="form.invite_user_id" />
+                    v-model="form.invite_user_id" :disabled="hasInviteUser()"/>
                 <CustomInput v-if="form.register_type==1" class="mt-3 rounded register-ip" :icon="icons.yhm"
                     :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.username" />
                 <CustomInput v-if="form.register_type==2" class="mt-3 rounded register-ip" :icon="icons.yx"
@@ -180,7 +180,7 @@
                 </div>
 
                 <CustomInput class="mb-0 rounded register-ip" :icon="icons.tjr" :placeholder="LangUtil('请输入推荐人（选填）')"
-                    v-model="form.invite_user_id" />
+                    v-model="form.invite_user_id" :disabled="hasInviteUser()"/>
                 <CustomInput v-if="form.register_type==1" class="mt-3 rounded register-ip" :icon="icons.yhm"
                     :placeholder="LangUtil('请输入注册账号（4-20位）')" maxlength="20" v-model="form.username" />
                 <CustomInput v-if="form.register_type==2" class="mt-3 rounded register-ip" :icon="icons.yx"

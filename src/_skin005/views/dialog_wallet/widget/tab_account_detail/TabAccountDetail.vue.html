@@ -16,7 +16,7 @@
             <v-sheet color="transparent" min-width="120" class="d-flex justify-center text-16 primary--text">{{LangUtil("日期")}}</v-sheet>
         </v-sheet>
         <template v-if="pageData.loading">
-            <v-skeleton-loader class="px-3 my-2 custom-loader" height="400" width="100%" type="text@6"></v-skeleton-loader>
+            <v-skeleton-loader class="px-3 my-2 custom-loader" height="385" width="100%" type="text@6"></v-skeleton-loader>
         </template>
         <template v-else>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="400" class="scroll-y">

@@ -30,6 +30,7 @@ export default class DialogSafetyCenter extends AbstractView {
 
     typechange = "0";
 
+    email_error_info = ""; //邮箱的错误信息
     //手动调用，进入直接进 游戏列表
     mounted() {
         this.myProxy.api_public_area_code();
@@ -182,5 +183,22 @@ export default class DialogSafetyCenter extends AbstractView {
             email: this.formBindEmail.email,
         };
         PanelUtil.openpanel_get_verity(obj);
+    }
+    onBlurInput() {
+        this.formBindEmail.email = this.formBindEmail.email.trim();
+        if (!this.formBindEmail.email || this.formBindEmail.email == "") {
+            this.email_error_info = "";
+            return;
+        }
+        let errstr = "";
+        if (!checkMail(this.formBindEmail.email)) {
+            errstr = LangUtil("邮箱格式不正确");
+        }
+        this.email_error_info = errstr;
+        if (errstr) {
+            console.log("错误信息", errstr);
+            return errstr;
+        }
+        return "";
     }
 }

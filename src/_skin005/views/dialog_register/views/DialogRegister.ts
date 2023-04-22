@@ -19,7 +19,7 @@ export default class DialogRegister extends AbstractView {
     core = core;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
-
+    email_error_info="";
     constructor() {
         super(DialogRegisterMediator);
     }
@@ -238,5 +238,27 @@ export default class DialogRegister extends AbstractView {
             email: this.form.username,
         };
         PanelUtil.openpanel_get_verity(obj);
+    }
+    onBlurInput() {
+        this.form.username = this.form.username.trim();
+        if (!this.form.username || this.form.username == "") {
+            this.email_error_info = "";
+            return;
+        }
+        let errstr = "";
+        if (!checkMail(this.form.username)) {
+            errstr = LangUtil("邮箱格式不正确");
+        }
+        this.email_error_info = errstr;
+        if (errstr) {
+            console.log("错误信息", errstr);
+            return errstr;
+        }
+        return "";
+    }
+    @Watch("form.register_type")
+    ontypechange()
+    {
+        this.email_error_info = "";
     }
 }

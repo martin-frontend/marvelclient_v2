@@ -10,32 +10,9 @@
     <v-card v-if="!$xsOnly" color="bgBanner" class="d-flex rounded10">
         <AdvertiseInLogin :height="650" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="430" class="">
-            <!-- <v-card-title class="d-flex justify-start pb-0 gradient-bg">
-                <div class="ml-2 font-weight-medium primary--text text-20">{{LangUtil("注册")}}</div>
-                <v-btn class="mr-2" icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </v-card-title> -->
             <com-dialog-title title="注册" @onClose="onClose" />
             <v-divider class="mb-2" />
             <v-card-text class="px-5">
-                <!-- <div class="d-flex mb-5 scroll-x">
-                    <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                        <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1">
-                            <span class="text-14"> {{LangUtil("账号注册")}} </span>
-                        </v-btn>
-                        <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4">
-                            <span class=" text-14"> {{LangUtil("手机注册")}} </span>
-                        </v-btn>
-                        <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2">
-                            <span class=" text-14"> {{LangUtil("邮箱注册")}} </span>
-                        </v-btn>
-                        <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8">
-                            <span class=" text-14"> {{LangUtil("手机账号注册")}} </span>
-                        </v-btn>
-                    </v-btn-toggle>
-                </div> -->
-
                 <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex mb-5">
                     <template v-slot="{data}">
                         <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
@@ -96,25 +73,26 @@
                     v-model="form.username"
                     @blur="onUsernameBlur"
                 />
-                <CustomInput
-                    v-if="form.register_type==2"
-                    class="mb-6"
-                    icon="mdi-account"
-                    :placeholder="LangUtil('请输入邮箱')"
-                    maxlength="30"
-                    v-model="form.username"
-                >
-                    <btn-yellow
-                        class="ml-auto text-14"
-                        min_width="80"
-                        height="36"
-                        :btn_type="4"
-                        :disabled="!checkMail(form.username) || isdeisable"
-                        @click.native="sendVerithMail"
-                        >{{verityString}}</btn-yellow
+                <v-sheet v-if="form.register_type==2" color="transparent" class="mb-6">
+                    <CustomInput
+                        icon="mdi-account"
+                        :placeholder="LangUtil('请输入邮箱')"
+                        maxlength="30"
+                        v-model="form.username"
+                        @blur="onBlurInput()"
                     >
-                </CustomInput>
-
+                        <btn-yellow
+                            class="ml-auto text-14"
+                            min_width="80"
+                            height="36"
+                            :btn_type="4"
+                            :disabled="!checkMail(form.username) || isdeisable"
+                            @click.native="sendVerithMail"
+                            >{{verityString}}</btn-yellow
+                        >
+                    </CustomInput>
+                    <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+                </v-sheet>
                 <CustomInput
                     v-if="form.register_type==8"
                     class="mb-6"
@@ -268,25 +246,6 @@
                         {{LangUtil("已有账户?")}}<button class="textYellow--text" @click="goLogin">{{LangUtil("去登录")}}</button>
                     </div>
                 </v-sheet>
-                <!-- <div class="loginByGoogle mt-5 mb-5">
-                    <div class="d-flex align-center">
-                        <v-divider />
-                        <div class="loginTip">或使用以下方式快速登录</div>
-                        <v-divider />
-                    </div>
-                    <ul class="loginWrap">
-                        <li class="mr-4">
-                            <button class="loginBtn" disabled="">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Google.b3a2db02.svg" alt="" />Google
-                            </button>
-                        </li>
-                        <li>
-                            <button class="loginBtn">
-                                <img src="https://hx1web.hstax1tic.com/static/media/Metamask.7cc94b04.svg" alt="" />Metamask
-                            </button>
-                        </li>
-                    </ul>
-                </div> -->
             </v-card-text>
         </v-card>
     </v-card>
@@ -294,26 +253,6 @@
     <!-- 手机版 -->
     <v-card v-else color="bgColor" class="rounded-0 shadow-0">
         <com-dialog-title title="注册" @onClose="onClose" />
-
-        <!-- <div class="d-flex my-3 px-2">
-            <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                <v-btn v-if="registerTypes.includes(1)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="1">
-                    <span :class="typechange=='1'?'font-weight-bold':''" class="text-12 "> {{LangUtil("账号注册")}} </span>
-                </v-btn>
-                <v-btn v-if="registerTypes.includes(4)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="4">
-
-                    <span :class="typechange=='4'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机注册")}} </span>
-                </v-btn>
-                <v-btn v-if="registerTypes.includes(2)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="2">
-
-                    <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("邮箱注册")}} </span>
-                </v-btn>
-                <v-btn v-if="registerTypes.includes(8)" class="rounded-pill mr-2 " :height="btn_height" :min-width="btn_width" value="8">
-                    <span :class="typechange=='2'?'font-weight-bold':''"  class=" text-12 "> {{LangUtil("手机账号注册")}} </span>
-                </v-btn>
-            </v-btn-toggle>
-        </div> -->
-
         <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex my-3 px-2">
             <template v-slot="{data}">
                 <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
@@ -351,24 +290,26 @@
                 v-model="form.username"
                 @blur="onUsernameBlur"
             />
-            <CustomInput
-                v-if="form.register_type==2"
-                icon="mdi-account"
-                :placeholder="LangUtil('请输入邮箱')"
-                maxlength="30"
-                v-model="form.username"
-            >
-                <btn-yellow
-                    class="ml-auto text-14"
-                    min_width="80"
-                    height="36"
-                    :btn_type="4"
-                    :disabled="!checkMail(form.username) || isdeisable"
-                    @click.native="sendVerithMail"
-                    >{{verityString}}</btn-yellow
+            <v-sheet v-if="form.register_type==2" color="transparent" class="">
+                <CustomInput
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    maxlength="30"
+                    v-model="form.username"
+                    @blur="onBlurInput()"
                 >
-            </CustomInput>
-
+                    <btn-yellow
+                        class="ml-auto text-14"
+                        min_width="80"
+                        height="36"
+                        :btn_type="4"
+                        :disabled="!checkMail(form.username) || isdeisable"
+                        @click.native="sendVerithMail"
+                        >{{verityString}}</btn-yellow
+                    >
+                </CustomInput>
+                <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+            </v-sheet>
             <CustomInput
                 v-if="form.register_type==8"
                 class="mb-4"

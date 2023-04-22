@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
 import { getRouter } from "@/_skin006/router";
+import "@/_skin005/style/_vars.css";
 import "@/_skin005/style/common.scss";
 import AppFacade from "@/_skin005/AppFacade";
 import VueLoadmore from "vuejs-loadmore";

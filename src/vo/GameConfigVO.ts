@@ -80,4 +80,6 @@ export interface GameConfigVO {
         bet_at: number;
         settlement_at: number;
     };
+    /**当前h5版本号 */
+    h5version: string;
 }

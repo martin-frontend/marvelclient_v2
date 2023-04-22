@@ -27,6 +27,8 @@ import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
 import { track, TrackTypeMap } from "./TrackManager";
+import GlobalVar from "@/core/global/GlobalVar";
+import { getVersion } from "@/core/global/Functions";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -62,6 +64,13 @@ export default class NetObserver extends AbstractMediator {
         switch (notification.getName()) {
             //系统配置
             case NotificationName.GAME_CONFIG:
+                if (GameConfig.config.h5version && process.env.VUE_APP_ENV == "production" && process.env.NODE_ENV == "production") {
+                    const v1 = new Date(GameConfig.config.h5version);
+                    const v2 = new Date(getVersion());
+                    if (v1.getTime() > v2.getTime()) {
+                        window.location.reload();
+                    }
+                }
                 //获取语言配置
                 this.sendNotification(net.HttpType.api_plat_var_language_config, { plat_id: core.plat_id });
 

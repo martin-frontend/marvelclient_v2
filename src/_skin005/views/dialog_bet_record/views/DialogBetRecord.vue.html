@@ -771,9 +771,14 @@
                         <div>
                             {{item.game_info.marketName}}
                             <div>
-                                {{LangUtil("选项:")}} {{item.game_info.stakeName}}
-                                <span class="mx-2">{{LangUtil("类型:")}} {{item.game_info.side}}</span>
-                                {{LangUtil("价钱:")}} {{item.game_info.type == 1 ? item.game_info.price : item.game_info.priceMatched}}
+                                {{LangUtil("选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
+                                <span class="mx-2"
+                                    >{{LangUtil("类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span></span
+                                >
+                                {{LangUtil("价钱:")}}
+                                <span class="font-weight-bold"
+                                    >{{item.game_info.type == 1 ? item.game_info.price : item.game_info.priceMatched}}</span
+                                >
                             </div>
                         </div>
                     </div>

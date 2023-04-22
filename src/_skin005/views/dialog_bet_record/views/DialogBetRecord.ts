@@ -351,6 +351,18 @@ export default class DialogBetRecord extends AbstractView {
     getDate(str: string) {
         return changeDateShow(str);
     }
+    /**板球价钱标题 */
+    getCricketPriceTitle(item: any) {
+        if (item.game_info) {
+            const { type, price, priceMatched } = item.game_info;
+            if (type == 1) {
+                return "订单价格:";
+            } else {
+                return priceMatched == "0" ? "订单价格:" : "成交价格:";
+            }
+        }
+        return "-";
+    }
     /**板球价钱 */
     getCricketPrice(item: any) {
         if (item.game_info) {

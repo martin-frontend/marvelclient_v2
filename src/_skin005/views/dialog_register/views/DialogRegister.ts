@@ -19,7 +19,7 @@ export default class DialogRegister extends AbstractView {
     core = core;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
-    email_error_info="";
+    email_error_info = "";
     constructor() {
         super(DialogRegisterMediator);
     }
@@ -257,8 +257,7 @@ export default class DialogRegister extends AbstractView {
         return "";
     }
     @Watch("form.register_type")
-    ontypechange()
-    {
+    ontypechange() {
         this.email_error_info = "";
     }
 }

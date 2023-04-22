@@ -40,7 +40,7 @@ export default class CustomPasswordNomal extends AbstractView {
     }
 
     onBlur() {
-        this.isFocus = false;
+        //this.isFocus = false;
         this.$emit("blur");
     }
     onFocus() {

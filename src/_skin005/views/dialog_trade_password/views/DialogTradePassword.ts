@@ -131,4 +131,26 @@ export default class DialogTradePassword extends AbstractView {
     getImageVerity() {
         this.myProxy.api_public_auth_code();
     }
+
+    error_info = "";
+    onBlurInput() {
+        let errstr = "";
+        if (!this.form.password || !this.form.password_confirm) {
+            this.error_info = "";
+            return;
+        }
+        if (this.form.password != this.form.password_confirm) {
+            errstr = LangUtil("两次输入的密码不一致");
+            this.error_info = errstr;
+            return errstr;
+        }
+
+        if (!checkUserPassword(this.form.password)) {
+            errstr = LangUtil("请输入6-20位密码");
+            this.error_info = errstr;
+            return errstr;
+        }
+        this.error_info = errstr;
+        return "";
+    }
 }

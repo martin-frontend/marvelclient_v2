@@ -5,6 +5,12 @@ import MyCanvas from "@/core/ui/MyCanvas";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import WebViewBridge from "@/core/native/WebViewBridge";
+
+export interface inputErrorObj {
+    title: string;
+    errorinfo: string;
+}
+
 export default class PageRechargeProxy extends puremvc.Proxy {
     static NAME = "PageRechargeProxy";
 

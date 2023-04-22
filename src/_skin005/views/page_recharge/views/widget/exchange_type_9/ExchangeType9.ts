@@ -11,6 +11,7 @@ import {
     checkOnlyUpCharAndNub,
 } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { inputErrorObj } from "../../../proxy/PageRechargeProxy";
 
 @Component
 export default class ExchangeType9 extends AbstractView {
@@ -143,12 +144,15 @@ export default class ExchangeType9 extends AbstractView {
     }
 
     /**新版兑换 Netbanking 的验证 */
-    checkNetbanking(item: any) {
+    checkNetbanking(item: any): inputErrorObj {
         const element = item;
         let inputValue = element.inputValue;
         const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
-
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
         //bankifsc 验证
         // 1.長度固定為11碼,均大寫英文+數字
         // 2.前四碼全是英文字母 (銀行代號)
@@ -158,115 +162,140 @@ export default class ExchangeType9 extends AbstractView {
             element.inputValue = element.inputValue.toUpperCase();
             inputValue = element.inputValue;
             if (inputValue.length != 11) {
-                return curBoxTitle + LangUtil("长度必须是11位英文与数字");
+                errorInfo.errorinfo = LangUtil("长度必须是11位英文与数字");
+                return errorInfo;
             }
             if (!checkOnlyUpCharAndNub(inputValue)) {
-                return curBoxTitle + LangUtil("必须为大写英文与数字");
+                errorInfo.errorinfo = LangUtil("必须为大写英文与数字");
+                return errorInfo;
             }
             let str = inputValue.substr(0, 4);
             if (!checkOnlyUpChar(str)) {
-                return curBoxTitle + LangUtil("前四位必须为大写英文");
+                errorInfo.errorinfo = LangUtil("前四位必须为大写英文");
+                return errorInfo;
             }
             str = inputValue.substr(4, 1);
             if (str != "0" && str != 0) {
-                return curBoxTitle + LangUtil("第五位必须为0");
+                errorInfo.errorinfo = LangUtil("第五位必须为0");
+                return errorInfo;
             }
             str = inputValue.substr(5);
             if (!checkOnlyNub(str) && !checkOnlyUpChar(str)) {
-                return curBoxTitle + LangUtil("后6位必须为全数字或者全英文");
+                errorInfo.errorinfo = LangUtil("后6位必须为全数字或者全英文");
+                return errorInfo;
             }
         }
         // 1.只會是全數字, 長度是9-19位數字
         // 2.不會有特殊符號, 不會有英文字母
         else if (element.title == "accountnumber") {
             if (inputValue.length > 19 || inputValue.length < 9 || !checkOnlyNub(inputValue)) {
-                return curBoxTitle + LangUtil("长度必须为9-19位的数字");
+                errorInfo.errorinfo = LangUtil("长度必须为9-19位的数字");
+                return errorInfo;
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
         // 2. 不會有特殊符號, 不會有數字
         else if (element.title == "accountname") {
             if (!checkOnlyEnglishChar(inputValue)) {
-                return curBoxTitle + LangUtil("只能为全英文字符");
+                errorInfo.errorinfo = LangUtil("只能为全英文字符");
+                return errorInfo;
             }
         }
 
-        return "";
+        return errorInfo;
     }
 
     /**新版兑换 crypto 的验证 */
-    checkCrypto(item: any) {
+    checkCrypto(item: any): inputErrorObj {
         const element = item;
         const inputValue = element.inputValue;
         const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
-
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
         // USDT TRC-20  開頭為T開頭
         // BTC  開頭為數字1 或 3開頭或是bc開頭
         if (element.title == "upiaccount") {
             const str = inputValue.substr(0, 1);
             if (!(str == "T" || str == "1" || str == "3" || str == 1 || str == 3)) {
-                return curBoxTitle + LangUtil("格式不正确,USDT TRC-20开头为T,BTC开头为1或3");
+                errorInfo.errorinfo = LangUtil("格式不正确,USDT TRC-20开头为T,BTC开头为1或3");
+                return errorInfo;
             }
         }
-        return "";
+        return errorInfo;
     }
     /**新版兑换 skrill 的验证 */
-    checkSkrill(item: any) {
+    checkSkrill(item: any): inputErrorObj {
         const element = item;
         const inputValue = element.inputValue;
         const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
 
         // 符合正常email格式
         if (element.title == "upiaccount") {
             if (!checkMail(inputValue)) {
-                return curBoxTitle + LangUtil("账号格式不正确");
+                errorInfo.errorinfo = LangUtil("账号格式不正确");
+                return errorInfo;
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
         // 2. 不會有特殊符號, 不會有數字
         else if (element.title == "accountname") {
             if (!checkOnlyEnglishChar(inputValue)) {
-                return curBoxTitle + LangUtil("只能为全英文字符");
+                errorInfo.errorinfo = LangUtil("只能为全英文字符");
+                return errorInfo;
             }
         }
 
-        return "";
+        return errorInfo;
     }
 
     /**新版兑换 ecoPayz 的验证 */
-    checkEcoPayz(item: any) {
+    checkEcoPayz(item: any): inputErrorObj {
         const element = item;
         const inputValue = element.inputValue;
         const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
-
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
         // 1. 只會是全數字, 長度為10碼數字
         // 2. 不會有特殊符號, 不會有英文字母
         if (element.title == "upiaccount") {
             if (inputValue.length != 10 || !checkOnlyNub(inputValue)) {
-                return curBoxTitle + LangUtil("账号为10位数字");
+                errorInfo.errorinfo = LangUtil("账号为10位数字");
+                return errorInfo;
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
         // 2. 不會有特殊符號, 不會有數字
         else if (element.title == "accountname") {
             if (!checkOnlyEnglishChar(inputValue)) {
-                return curBoxTitle + LangUtil("只能为全英文字符");
+                errorInfo.errorinfo = LangUtil("只能为全英文字符");
+                return errorInfo;
             }
         }
 
-        return "";
+        return errorInfo;
     }
 
     /**新版兑换 astropay 的验证 */
-    checkAstropay(item: any) {
+    checkAstropay(item: any): inputErrorObj {
         const element = item;
         let inputValue = element.inputValue;
         const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
-
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
         // 1. 手機電話號碼, 只會有數字
         // 2. 不會有特殊符號, 不會有英文字母
         // 3. 區碼前面不需要加 +符號, 不須空格
@@ -275,67 +304,64 @@ export default class ExchangeType9 extends AbstractView {
             inputValue = element.inputValue;
 
             if (!checkOnlyNub(inputValue)) {
-                return curBoxTitle + LangUtil("手机号码不正确");
+                errorInfo.errorinfo = LangUtil("手机号码不正确");
+                return errorInfo;
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
         // 2. 不會有特殊符號, 不會有數字
         else if (element.title == "accountname") {
             if (!checkOnlyEnglishChar(inputValue)) {
-                return curBoxTitle + LangUtil("只能为全英文字符");
+                errorInfo.errorinfo = LangUtil("只能为全英文字符");
+                return errorInfo;
             }
         }
 
-        return "";
+        return errorInfo;
     }
 
-    onBlurInput(item: any) {
+    onBlurInput(item: any): inputErrorObj {
         console.log("失去焦点的 输入为", item);
-
+        const errorInfo: inputErrorObj = {
+            title: "",
+            errorinfo: "",
+        };
         if (!this.curSelectItem) {
-            return "";
+            return errorInfo;
         }
         item.inputValue = item.inputValue.trim();
         if (!item.inputValue || item.inputValue == "") {
             const curBoxTitle = LangUtil("exc_" + this.curSelectItem.subtitle + "_" + item.title);
-            return curBoxTitle + LangUtil("不能为空");
+            errorInfo.title = curBoxTitle;
+            errorInfo.errorinfo = LangUtil("不能为空");
+            return errorInfo;
         }
-        let errstr = "";
+        const errstr: inputErrorObj = {
+            title: "",
+            errorinfo: "",
+        };
         switch (this.curSelectItem.subtitle.toLowerCase()) {
             case "netbanking":
-                errstr = this.checkNetbanking(item);
+                Object.assign(errstr, this.checkNetbanking(item));
                 break;
             case "crypto":
-                errstr = this.checkCrypto(item);
+                Object.assign(errstr, this.checkCrypto(item));
                 break;
             case "neteller":
             case "skrill":
-                errstr = this.checkSkrill(item);
+                Object.assign(errstr, this.checkSkrill(item));
                 break;
             case "ecopayz":
-                errstr = this.checkEcoPayz(item);
+                Object.assign(errstr, this.checkEcoPayz(item));
                 break;
             case "astropay":
-                errstr = this.checkAstropay(item);
+                Object.assign(errstr, this.checkAstropay(item));
                 break;
             default:
                 break;
         }
-        item.errinfo = errstr;
-        if (errstr) {
-            console.log("错误信息", errstr);
-            // if (item.timeHeadle) {
-            //     clearTimeout(item.timeHeadle);
-            // }
-            // item.timeHeadle = setTimeout(() => {
-            //     console.log("取消 错误信息");
-            //     item.errinfo = "";
-            // }, 5000);
-            return errstr;
-        }
-
-        //console.log("失去焦点的 输入为2222", item);
-        return "";
+        item.errinfo = errstr.errorinfo;
+        return errstr;
     }
 
     onSubmit() {
@@ -343,7 +369,7 @@ export default class ExchangeType9 extends AbstractView {
             for (let index = 0; index < this.showRequires.length; index++) {
                 const str = this.onBlurInput(this.showRequires[index]);
                 if (str) {
-                    PanelUtil.message_info(str);
+                    PanelUtil.message_info(str.title + " " + str.errorinfo);
                     return;
                 }
             }

@@ -4,6 +4,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { amountFormat, checkMail, checkOnlyEnglishChar } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import { inputErrorObj } from "../../../proxy/PageRechargeProxy";
 
 @Component
 export default class RechargeType9 extends AbstractView {
@@ -31,7 +32,6 @@ export default class RechargeType9 extends AbstractView {
 
         //检查 是否 符合要求
         if (this.showRequires && this.showRequires.length > 0) {
-            
             //console.log(" 必须的数据" ,this.showRequires);
             for (let index = 0; index < this.showRequires.length; index++) {
                 // const element = this.showRequires[index];
@@ -48,41 +48,36 @@ export default class RechargeType9 extends AbstractView {
         }
         this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
-    onBlurInput(item: any) {
+    onBlurInput(item: any): inputErrorObj {
         console.log("失去焦点的 输入为", item);
-
+        const errorInfo: inputErrorObj = {
+            title: "",
+            errorinfo: "",
+        };
         if (!this.curSelectItem) {
-            return "";
+            return errorInfo;
         }
         item.inputValue = item.inputValue.trim();
         if (!item.inputValue || item.inputValue == "") {
             const curBoxTitle = LangUtil("pay_" + this.curSelectItem.subtitle + "_" + item.title);
-            return curBoxTitle + LangUtil("不能为空");
+            errorInfo.title = curBoxTitle;
+            errorInfo.errorinfo = LangUtil("不能为空");
+            return errorInfo;
         }
-        let errstr = "";
+        const errstr: inputErrorObj = {
+            title: "",
+            errorinfo: "",
+        };
         switch (this.curSelectItem.subtitle.toLowerCase()) {
             case "neteller":
             case "skrill":
-                errstr = this.checkSkrill(item);
+                Object.assign(errstr, this.checkSkrill(item));
                 break;
             default:
                 break;
         }
-        item.errinfo = errstr;
-        if (errstr) {
-            console.log("错误信息", errstr);
-            // if (item.timeHeadle) {
-            //     clearTimeout(item.timeHeadle);
-            // }
-            // item.timeHeadle = setTimeout(() => {
-            //     console.log("取消 错误信息");
-            //     item.errinfo = "";
-            // }, 5000);
-            return errstr;
-        }
-
-        //console.log("失去焦点的 输入为2222", item);
-        return "";
+        item.errinfo = errstr.errorinfo;
+        return errstr;
     }
     get isInputDisabled(): boolean {
         const { coin_name_unique, block_network_id, third_id } = this.form;
@@ -253,31 +248,46 @@ export default class RechargeType9 extends AbstractView {
         super.destroyed();
     }
     /**新版兑换 skrill 的验证 */
-    checkSkrill(item: any) {
+    checkSkrill(item: any): inputErrorObj {
         const element = item;
         const inputValue = element.inputValue;
         const curBoxTitle = LangUtil("pay_" + this.curSelectItem.subtitle + "_" + element.title);
         console.log("当前标题为" + curBoxTitle + "输入内容为", inputValue);
-
+        const errorInfo: inputErrorObj = {
+            title: curBoxTitle,
+            errorinfo: "",
+        };
         // 符合正常email格式
         if (element.title == "upiaccount") {
             if (!checkMail(inputValue)) {
-                return curBoxTitle + LangUtil("账号格式不正确");
+                errorInfo.errorinfo = LangUtil("账号格式不正确");
+                return errorInfo;
+                //return curBoxTitle + LangUtil("账号格式不正确");
             }
         }
         // 1. 只會是全英文字母, 長度不做限制
         // 2. 不會有特殊符號, 不會有數字
-        else if (element.title == "accountname" || element.title == "accountname" || element.title == "accountname" || element.title == "firstname" || element.title == "lastname") {
+        else if (
+            element.title == "accountname" ||
+            element.title == "accountname" ||
+            element.title == "accountname" ||
+            element.title == "firstname" ||
+            element.title == "lastname"
+        ) {
             if (!checkOnlyEnglishChar(inputValue)) {
-                return curBoxTitle + LangUtil("只能为全英文字符");
+                errorInfo.errorinfo = LangUtil("只能为全英文字符");
+                return errorInfo;
+                //return curBoxTitle + LangUtil("只能为全英文字符");
             }
         }
         // 符合正常email格式
         else if (element.title == "email") {
             if (!checkMail(inputValue)) {
-                return curBoxTitle + LangUtil("邮箱格式不正确");
+                errorInfo.errorinfo = LangUtil("邮箱格式不正确");
+                return errorInfo;
+                //return curBoxTitle + LangUtil("邮箱格式不正确");
             }
         }
-        return "";
+        return errorInfo;
     }
 }

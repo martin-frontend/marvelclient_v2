@@ -388,9 +388,7 @@
                             <span class="ml-2">{{LangUtil("类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span></span>
                             <span class="ml-2">
                                 {{LangUtil("价钱:")}}
-                                <span class="font-weight-bold"
-                                    >{{item.game_info.type == 1 ? item.game_info.price : item.game_info.priceMatched}}</span
-                                >
+                                <span class="font-weight-bold">{{getCricketPrice(item)}}</span>
                             </span>
                         </div>
                     </v-sheet>
@@ -776,9 +774,7 @@
                                     >{{LangUtil("类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span></span
                                 >
                                 {{LangUtil("价钱:")}}
-                                <span class="font-weight-bold"
-                                    >{{item.game_info.type == 1 ? item.game_info.price : item.game_info.priceMatched}}</span
-                                >
+                                <span class="font-weight-bold">{{getCricketPrice(item)}}</span>
                             </div>
                         </div>
                     </div>

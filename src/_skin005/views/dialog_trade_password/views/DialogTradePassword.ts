@@ -45,6 +45,7 @@ export default class DialogTradePassword extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
+            this.error_info = "";
             if (this.myProxy.passWordShowType == 1) this.getImageVerity();
         }
     }

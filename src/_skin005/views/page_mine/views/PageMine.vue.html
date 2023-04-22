@@ -283,7 +283,7 @@
                                 <div class="d-flex flex-column mt-n3 justify-center align-center pt-2">
                                     <div class="mt-1 text-18 font-weight-bold">VIP {{ myProxy.getVipLevel(level) }}</div>
                                     <div
-                                        v-if="!ModulesHelper.IsShow_VipShowDeal()"
+                                        v-if="false"
                                         class="d-flex flex-column justify-center align-center vip_config_box"
                                     >
                                         <!-- 主币 -->
@@ -325,7 +325,7 @@
                                     </div>
 
                                     <div
-                                        v-if="ModulesHelper.IsShow_VipShowDeal()"
+                                       
                                         class="d-flex flex-column justify-center align-center vip_config_box"
                                     >
                                         <!-- 主币 -->
@@ -767,7 +767,8 @@
                         <v-img max-width="52" contain :src="vipMap[level+1]" class="mobile_level_icon"></v-img>
                         <span class="font-weight-medium primary--text bold_text">{{LangUtil("VIP")}} {{ myProxy.getVipLevel(level) }}</span>
                     </div>
-                    <template v-if="!ModulesHelper.IsShow_VipShowDeal()">
+                    <!-- <template v-if="!ModulesHelper.IsShow_VipShowDeal()"> -->
+                    <template v-if="false">
                         <template v-if="item.backwater_config[2].backwater_rate > 0">
                             <!-- 主币 -->
                             <div class="d-flex align-center">

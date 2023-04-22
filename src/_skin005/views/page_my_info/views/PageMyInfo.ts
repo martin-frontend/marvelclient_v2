@@ -12,6 +12,7 @@ import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import { amountFormat } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 @Component
 export default class PageMyInfo extends AbstractView {
     LangUtil = LangUtil;
@@ -237,5 +238,8 @@ export default class PageMyInfo extends AbstractView {
         }
         const newNub = (amount * this.myProxy.getCoinsScale).toFixed(2);
         return newNub;
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
     }
 }

@@ -1,4 +1,3 @@
-import Assets from "@/assets/Assets";
 import AbstractView from "@/core/abstract/AbstractView";
 import GameConfig from "@/core/config/GameConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
@@ -16,12 +15,14 @@ import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import Assets from "@/_skin005/assets/Assets";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
 
     GameConfig = GameConfig;
+    CategoryIcon = Assets.CategoryIcon;
     commonIcon = Assets.commonIcon;
     getMoneyColor = getMoneyColor;
     getMoneyValue = getMoneyValue;

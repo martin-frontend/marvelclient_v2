@@ -61,4 +61,23 @@ export interface GameConfigVO {
     RebateDisplayType: number;
     /**返佣列表展示方式  0 展示万字 1 展示 全数字  默认为0*/
     RebateListType: number;
+    /**我的投注相关配置 */
+    mybet_total: {
+        pageTotal: number;
+        total_bet_gold: number;
+        total_valid_bet_gold: number;
+        total_win_gold: number;
+    };
+    mybet_title: {
+        order_no: number;
+        vendor_product_name: number;
+        coin_name_unique: number;
+        bet_gold: number;
+        win_gold: number;
+        valid_bet_gold: number;
+        water: number;
+        settlement_status: number;
+        bet_at: number;
+        settlement_at: number;
+    };
 }

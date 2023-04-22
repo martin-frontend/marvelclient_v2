@@ -144,10 +144,7 @@
                     <span class="userInfo_color--text"> {{transformMoney(pageData,"total_bet_gold")}} </span>
                 </div>
 
-                <div
-                    v-if="isShowVailBet && GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold"
-                    class="mr-5 primary--text"
-                >
+                <div v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold" class="mr-5 primary--text">
                     {{LangUtil("有效投注")}}
                     <span class="userInfo_color--text"> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
                 </div>
@@ -199,7 +196,7 @@
                     >{{LangUtil("游戏输赢")}}</v-sheet
                 >
                 <v-sheet
-                    v-if="isShowVailBet && GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
                     color="transparent"
                     class="primary--text"
                     width="120"
@@ -316,7 +313,7 @@
                                 <div :class="getMoneyColor(item.win_gold_coin)">{{ transformMoney(item,"win_gold",false,true)}}</div>
                             </v-sheet>
                             <v-sheet
-                                v-if="isShowVailBet && GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                                v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
                                 color="transparent"
                                 class="primary--text"
                                 width="120"
@@ -583,7 +580,7 @@
                         </span>
 
                         <span
-                            v-if="isShowVailBet && GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold"
                             width="100%"
                             class="text-14 div-block mr-5"
                             color="transparent"
@@ -708,16 +705,13 @@
                     </div>
                     <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"></div>
                     <div
-                        v-if="isShowVailBet && GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
                         class="d-flex justify-space-between mt-2 mx-3"
                     >
                         <div class="leftText--text">{{LangUtil("有效投注")}}</div>
                         <div class="head_btn--text">{{ transformMoney(item,"valid_bet_gold",false,true)}}</div>
                     </div>
-                    <div
-                        v-if="isShowVailBet && GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
-                        class="line mt-2 mx-3"
-                    ></div>
+                    <div v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold" class="line mt-2 mx-3"></div>
                     <div
                         class="d-flex justify-space-between mt-2 mx-3"
                         v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"

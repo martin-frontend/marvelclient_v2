@@ -13,7 +13,6 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
-import SkinVariable from "@/_skin005/core/SkinVariable";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
 
@@ -351,9 +350,5 @@ export default class DialogBetRecord extends AbstractView {
     }
     getDate(str: string) {
         return changeDateShow(str);
-    }
-
-    public get isShowVailBet(): boolean {
-        return SkinVariable.isShowVailBet;
     }
 }

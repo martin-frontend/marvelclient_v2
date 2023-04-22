@@ -126,6 +126,28 @@ export default class GameConfig {
         net.Http.request({}, url)
             .then((response: any) => {
                 GameConfig.config = response.data;
+                if (!GameConfig.config.mybet_total) {
+                    GameConfig.config.mybet_total = {
+                        pageTotal: 1,
+                        total_bet_gold: 1,
+                        total_valid_bet_gold: 1,
+                        total_win_gold: 1,
+                    };
+                }
+                if (!GameConfig.config.mybet_title) {
+                    GameConfig.config.mybet_title = {
+                        order_no: 1,
+                        vendor_product_name: 1,
+                        coin_name_unique: 1,
+                        bet_gold: 1,
+                        win_gold: 1,
+                        valid_bet_gold: 1,
+                        water: 1,
+                        settlement_status: 1,
+                        bet_at: 1,
+                        settlement_at: 1,
+                    };
+                }
                 this.resetConfigFromChannel(response.data);
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
             })

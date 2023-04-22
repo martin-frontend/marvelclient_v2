@@ -44,7 +44,6 @@ SkinVariable.isUsedDialogRecharge = true;
 SkinVariable.isForeShowRecharge = true;
 SkinVariable.isCustomizeFooter = false;
 SkinVariable.isShowMobileFooter = false;
-SkinVariable.isShowVailBet = true;
 LogUtil.init();
 core.init();
 //@ts-ignore

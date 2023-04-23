@@ -40,7 +40,7 @@ export default class RechargeType9 extends AbstractView {
                 //     return false;
                 // }
                 const str = this.onBlurInput(this.showRequires[index]);
-                if (str) {
+                if (str && str.errorinfo) {
                     PanelUtil.message_info(str);
                     return;
                 }

@@ -368,7 +368,7 @@ export default class ExchangeType9 extends AbstractView {
         if (this.showRequires && this.showRequires.length > 0) {
             for (let index = 0; index < this.showRequires.length; index++) {
                 const str = this.onBlurInput(this.showRequires[index]);
-                if (str) {
+                if (str && str.errorinfo) {
                     PanelUtil.message_info(str.title + " " + str.errorinfo);
                     return;
                 }

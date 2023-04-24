@@ -56,11 +56,6 @@ export default class AppFacade {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
         }, 300000);
 
-        window.addEventListener("resize", () => {
-            window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
-            window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
-        });
-
         window.addEventListener("message", (e) => {
             switch (e.data) {
                 case EnumPostMessage.TOPUP:

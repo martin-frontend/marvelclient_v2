@@ -28,7 +28,19 @@ export default class APP extends AbstractView {
         this.onWatchTheme();
     }
     created() {
-        window.$mobile = Vue.prototype.$mobile = !!Vue.vuetify.framework.breakpoint.mobile && !!isMobile();
+        const isM = !!isMobile();
+        window.addEventListener("resize", this.onResize);
+        this.onResize();
+    }
+
+    onResize() {
+        const isM = !!isMobile();
+        if (isM) {
+            const { width, height } = Vue.vuetify.framework.breakpoint;
+            window.$mobile = Vue.prototype.$mobile = width < 1200 && height < 1200;
+        } else {
+            window.$mobile = Vue.prototype.$mobile = false;
+        }
         window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
     }
 
@@ -82,7 +94,9 @@ export default class APP extends AbstractView {
     @Watch("$vuetify.breakpoint.width")
     onWatchScreen() {
         this.$nextTick(() => {
-            if (judgeClient() == "iOS") {
+            if (this.$vuetify.breakpoint.width > 1200) {
+                this.isScreenV = true;
+            } else if (judgeClient() == "iOS") {
                 this.isScreenV = this.$vuetify.breakpoint.width < this.$vuetify.breakpoint.height;
             } else {
                 if (!this.$xsOnly) {

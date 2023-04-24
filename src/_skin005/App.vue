@@ -140,7 +140,7 @@ export default class extends App {}
     max-width: 2560px;
 }
 .app_min_width {
-    min-width: 1264px;
+    min-width: 1200px;
 }
 .btn-guide {
     //width: 100%;
@@ -185,7 +185,7 @@ export default class extends App {}
     z-index: 10;
     width: calc(100% - 188px) !important;
     max-width: 2360px;
-    min-width: 1064px;
+    min-width: 1000px;
 }
 
 .head_test_mini {
@@ -194,7 +194,7 @@ export default class extends App {}
     z-index: 10;
     width: calc(100% - 60px) !important;
     max-width: 2500px;
-    min-width: 1204px;
+    min-width: 1140px;
 }
 
 .router_test {

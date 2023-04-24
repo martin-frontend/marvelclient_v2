@@ -192,8 +192,6 @@ export default class NetObserver extends AbstractMediator {
                     if (body.url.indexOf("http") == -1) {
                         if (process.env.VUE_APP_ENV != "production") {
                             body.url = "https://all.testjj9.com/coinfans/skin004/" + body.url;
-                        } else {
-                            body.url = core.game_domain + "/" + body.url;
                         }
                     }
                     // 如果是体育，直接进入

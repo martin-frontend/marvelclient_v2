@@ -192,19 +192,16 @@ export default class PageGameList extends AbstractView {
 
     @Watch("listQuery.vendor_type")
     onWatchVendorType() {
-        //console.log("类型呗修改");
         if (this.myProxy.isMultChange) {
             this.myProxy.isMultChange = false;
         } else {
             this.myProxy.getFirstItemVendor();
             this.listQuery.page_count = 1;
             if (!this.isUseMenuData) {
-                console.log("------asdas");
                 this.myProxy.api_plat_var_game_all_index();
             }
 
             if (this.$refs.scrollObj && !this.$mobile) {
-                console.log("调用 滑动----");
                 ScrollUtil(0);
             }
             this.myProxy.getCurItemIndex();
@@ -215,7 +212,6 @@ export default class PageGameList extends AbstractView {
     @Watch("listQuery.vendor_id")
     onWatchVendorId() {
         this.listQuery.page_count = 1;
-        //console.log(" 厂商ID被修改");
         this.myProxy.getCurItemIndex();
         this.myProxy.api_plat_var_game_all_index();
     }

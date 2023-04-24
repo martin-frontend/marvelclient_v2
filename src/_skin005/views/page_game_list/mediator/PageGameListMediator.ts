@@ -16,7 +16,7 @@ export default class PageGameListMediator extends AbstractMediator {
     }
 
     onRemove() {
-        this.facade.removeProxy(PageGameListProxy.NAME);
+        // this.facade.removeProxy(PageGameListProxy.NAME);
     }
 
     public listNotificationInterests(): string[] {

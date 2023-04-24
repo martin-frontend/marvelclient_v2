@@ -16,7 +16,6 @@ function show(category?: number, vendor_id?: number) {
         proxy.listQuery.vendor_id = 1;
         //proxy.setGameMenuData(headerProxy.pageData.lobbyIndex);
     } else {
-        console.log("1123123", proxy.curItemIndex);
         proxy.getFirstMenuIndex();
     }
     if (vendor_id) {
@@ -24,9 +23,6 @@ function show(category?: number, vendor_id?: number) {
     } else {
         proxy.getFirstItemVendor();
     }
-    console.log("当前值 proxy.listQuery.vendor_type ", proxy.listQuery.vendor_type);
-    console.log("当前值 proxy.listQuery.vendor_id ", proxy.listQuery.vendor_id);
-    console.log("当前值 categoryActive ", PanelUtil.getProxy_novigation.categoryActive);
     proxy.getCurItemIndex();
     proxy.getCurMenuIndex();
 

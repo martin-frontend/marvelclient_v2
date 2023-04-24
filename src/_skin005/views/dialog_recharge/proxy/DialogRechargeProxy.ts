@@ -289,6 +289,9 @@ export class ExchangeProxy extends puremvc.Proxy {
             }
         }
     }
+    get isPasswordExist() {
+        return PanelUtil.getProxy_selfproxy.userInfo.password_gold_exists != 1;
+    }
     setAddress(data: any) {
         console.log("收到 银行卡 信息 回调");
         this.bankCardInfo = data;

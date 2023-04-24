@@ -16,7 +16,7 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
         setTimeout(() => {
             console.log("--当前游戏222222", PanelUtil.getProxy_gameproxy.currGame);
             //第一次刷新的时候 当前游戏 id 为 空,则根据当前路由 去请求
-            if (!PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+            if (!PanelUtil.getProxy_gameproxy.currGame.vendor_id || !this.pageData.isAction) {
                 const curPath = Vue.router.history.current.path;
                 if (curPath.includes("cricket")) {
                     PanelUtil.openpage_soccer_cricket();

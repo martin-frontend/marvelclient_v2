@@ -1,5 +1,5 @@
 <v-card v-if="gameProxy.lobbyCategory && gameProxy.lobbyCategory.length > 0" flat color="transparent" :class="$mobile ? 'px-2': ''">
-    <v-card flat color="transparent" class="d-flex flex-column mt-8" v-for="(itemList, key) of categoryData" :key="key">
+    <v-card flat color="transparent" :class="$xsOnly ? 'mt-3' : 'mt-8'" class="d-flex flex-column mb-2" v-for="(itemList, key) of categoryData" :key="key">
         <v-sheet color="transparent" class="d-flex align-center text-20">
             <div class="font-weight-bold" :class="$mobile?'text-16':''">{{ key }}</div>
         </v-sheet>

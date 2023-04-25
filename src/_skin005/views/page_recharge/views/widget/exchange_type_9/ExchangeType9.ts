@@ -180,7 +180,7 @@ export default class ExchangeType9 extends AbstractView {
                 return errorInfo;
             }
             str = inputValue.substr(5);
-            if (!checkOnlyNub(str) && !checkOnlyUpChar(str)) {
+            if (!checkOnlyUpCharAndNub(str)) {
                 errorInfo.errorinfo = LangUtil("后6位必须为全数字或者全英文");
                 return errorInfo;
             }

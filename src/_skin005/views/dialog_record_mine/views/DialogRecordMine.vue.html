@@ -44,7 +44,7 @@
                             <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130"
                                 >{{getDateTime(item.created_at)}}</v-sheet
                             >
-                            <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130">{{item.total_water}}</v-sheet>
+                            <v-sheet color="transparent" class="text-16 nomal_text_1--text" min-width="130">{{transformMoney(item.total_water)}}</v-sheet>
                             <v-sheet
                                 color="transparent"
                                 class="text-16 nomal_text_1--text"
@@ -99,7 +99,7 @@
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="primary--text">{{LangUtil("结算有效流水")}}</div>
-                            <div>{{item.total_water}}</div>
+                            <div>{{transformMoney(item.total_water)}}</div>
                         </div>
                         <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
                             <div class="primary--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>

@@ -83,13 +83,11 @@
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-20">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.now,false) }}</span> {{
-                                            pageData.platCoins.mainCoin.name }}</span
-                                        >
+                                            {{transformBackwater(pageData.backwaterConfigMain.now)}}
+                                        </span>
                                         <svg-icon icon="arrow_next" class="text-30 nomal_icon--text"></svg-icon>
                                         <span class="textYellow--text text-20">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.next,false) }} </span
-                                            >{{pageData.platCoins.mainCoin.name }}</span
+                                            {{transformBackwater(pageData.backwaterConfigMain.next)}}</span
                                         >
                                     </div>
                                 </div>
@@ -109,14 +107,12 @@
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
                                         <span class="textGreen--text text-20 bold_text"
-                                            >{{ amountFormat(pageData.backwaterConfigReward.now,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span
-                                        >
+                                            >{{transformBackwater(pageData.backwaterConfigReward.now)}}
+                                        </span>
                                         <svg-icon icon="arrow_next" class="text-30 nomal_icon--text"></svg-icon>
-                                        <span class="textYellow--text text-20 bold_text"
-                                            >{{ amountFormat(pageData.backwaterConfigReward.next,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span
-                                        >
+                                        <span class="textYellow--text text-20 bold_text">
+                                            {{transformBackwater(pageData.backwaterConfigReward.next)}}
+                                        </span>
                                     </div>
                                 </div>
                             </v-sheet>
@@ -282,10 +278,7 @@
                                 <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
                                 <div class="d-flex flex-column mt-n3 justify-center align-center pt-2">
                                     <div class="mt-1 text-18 font-weight-bold">VIP {{ myProxy.getVipLevel(level) }}</div>
-                                    <div
-                                        v-if="false"
-                                        class="d-flex flex-column justify-center align-center vip_config_box"
-                                    >
+                                    <div v-if="false" class="d-flex flex-column justify-center align-center vip_config_box">
                                         <!-- 主币 -->
                                         <v-sheet
                                             v-if="item.backwater_config[2].backwater_rate > 0"
@@ -324,10 +317,7 @@
                                         </v-sheet>
                                     </div>
 
-                                    <div
-                                       
-                                        class="d-flex flex-column justify-center align-center vip_config_box"
-                                    >
+                                    <div class="d-flex flex-column justify-center align-center vip_config_box">
                                         <!-- 主币 -->
                                         <v-sheet
                                             v-if="item.backwater_config[2].backwater_rate > 0"
@@ -705,14 +695,12 @@
                                         <span class="textYellow--text">{{LangUtil("返水晋级奖励1")}}</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-14 text_center">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.now ,false)}}</span>
-                                            {{pageData.platCoins.mainCoin.name }}
+                                        <span class="textGreen--text text-14 text_center bold_text">
+                                            {{transformBackwater(pageData.backwaterConfigMain.now)}}
                                         </span>
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
-                                        <span class="textYellow--text text-14 text_center">
-                                            <span class="bold_text">{{amountFormat(pageData.backwaterConfigMain.next,false) }}</span>
-                                            {{pageData.platCoins.mainCoin.name }}
+                                        <span class="textYellow--text text-14 text_center bold_text">
+                                            {{transformBackwater(pageData.backwaterConfigMain.next)}}
                                         </span>
                                     </div>
                                 </div>
@@ -731,14 +719,12 @@
                                         <span class="textYellow--text">{{LangUtil("返水晋级奖励2")}}</span>
                                     </div>
                                     <div class="d-flex align-center justify-space-between">
-                                        <span class="textGreen--text text-14 text_center"
-                                            >{{ amountFormat(pageData.backwaterConfigReward.now,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span
+                                        <span class="textGreen--text text-14 text_center">
+                                            {{transformBackwater(pageData.backwaterConfigReward.now)}}</span
                                         >
                                         <svg-icon icon="arrow_next" class="text-20 arrow_color--text"></svg-icon>
-                                        <span class="textYellow--text text-14 text_center"
-                                            >{{ amountFormat(pageData.backwaterConfigReward.next,false) }}{{
-                                            pageData.platCoins.rewardCoin.name }}</span
+                                        <span class="textYellow--text text-14 text_center">
+                                            {{transformBackwater(pageData.backwaterConfigReward.next)}}</span
                                         >
                                     </div>
                                 </div>

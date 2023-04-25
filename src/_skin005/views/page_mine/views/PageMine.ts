@@ -166,4 +166,21 @@ export default class PageMine extends AbstractView {
     transformMoney(val: any) {
         return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
     }
+
+    transformBackwater(val: any) {
+        let sss = val * CoinTransformHelper.GetMainCoinScale;
+        if (!ModulesHelper.RebateDisplayType()) {
+            sss = sss / 100;
+        }
+        let str = "";
+        if (!ModulesHelper.RebateDisplayType()) {
+            str = amountFormat(sss / 100, true, 2) + this.LangUtil("%");
+        } else {
+            str = amountFormat(sss, false);
+        }
+        str = CoinTransformHelper.GetMainCoinSymbol + str;
+        //const str = amountFormat(sss,false);
+
+        return str;
+    }
 }

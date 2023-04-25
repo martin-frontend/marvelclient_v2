@@ -8,6 +8,9 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
+import { changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogRecordMine extends AbstractView {
@@ -141,9 +144,9 @@ export default class DialogRecordMine extends AbstractView {
     }
 
     getDateTime(data: any) {
-        // 2022-05-25 18:51:10
-        const md = `${data.split(" ")[0].split("-")[1]}-${data.split(" ")[0].split("-")[2]}`;
-        const ti = data.split(" ")[1];
-        return `${md} ${ti}`;
+        return changeDateShow(data);
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
 }

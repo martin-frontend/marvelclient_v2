@@ -1,0 +1,19 @@
+.com-theme {
+    display: none;
+}
+.test_my {
+    border: 2px solid transparent !important;
+}
+.game-title {
+    color: white !important;
+}
+.skin005 .theme--dark .v-btn-toggle--group .v-btn.v-btn--active {
+    border: solid 2px #bb1a1a !important;
+}
+.skin005 .theme--dark .v-btn-toggle--group .v-btn {
+    border: solid 2px var(--btn_disable_text_dark) !important;
+    font-weight: bold;
+}
+.btn_9:hover {
+    border: 2px solid transparent !important;
+}

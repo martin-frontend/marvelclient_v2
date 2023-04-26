@@ -1,16 +1,17 @@
 import Vue from "vue";
 import App from "@/_skin005/App.vue";
-import { getVuetify } from "@/_skin005/plugins/vuetify";
+import { getVuetify } from "@/_skin020/plugins/vuetify";
 import { getRouter } from "@/_skin005/router";
-import "@/_skin005/style/_vars.css";
+import "@/_skin020/style/_vars.css";
 import "@/_skin005/style/common.scss";
+import "@/_skin020/style/skin020.css";
 import AppFacade from "@/_skin005/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import LogUtil from "@/core/global/LogUtil";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
-import "@/_skin005/icons";
+import "./icons";
 import "@/_skin005/assets/text/text.css";
 import "@/assets/iconfont/iconfont.css";
 import "@mdi/font/css/materialdesignicons.css";
@@ -32,19 +33,21 @@ import LangConfig from "@/core/config/LangConfig";
 import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 
 Assets.commonIcon.loading_img = "loding_icon_20.png";
-// Assets.commonIcon.logo = require(`@/_skin008/assets/logo.png`);
-// Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
+Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
+Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
 
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
 
-document.body.style.setProperty("--yellow_color_1", "#D63333");
-document.body.style.setProperty("--yellow_color_2", "#BB1A1A");
-document.body.style.setProperty("--btn_nomal_text", "#fff");
+// document.body.style.setProperty("--yellow_color_1", "#D63333");
+// document.body.style.setProperty("--yellow_color_2", "#BB1A1A");
+// document.body.style.setProperty("--btn_nomal_text", "#fff");
+// document.body.style.setProperty("--btn_disable_text_dark", "#BABABA");
 
 LogUtil.init();
 core.init();
@@ -69,6 +72,7 @@ Vue.component("btn-yellow", BtnUtil);
 Vue.component("btn-info", BtnInfo);
 Vue.component("Overlay", Overlay);
 Vue.component("LoadMore", LoadMore);
+Vue.component("LoadMore1", LoadMore1);
 Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
@@ -108,4 +112,4 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-PanelUtil.getThemeDark();
+Vue.vuetify.framework.theme.dark = true;

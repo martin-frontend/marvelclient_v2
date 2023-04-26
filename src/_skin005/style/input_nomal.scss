@@ -9,16 +9,15 @@
                 vertical-align: middle;
                 height: 50px;
                 width: 100%;
-                color: #0F1213;
+                color: #0f1213;
                 //font-weight: bold;
             }
         }
 
         input::placeholder {
-            color: #8E8F91;
+            color: #8e8f91;
         }
     }
-
 
     .theme--dark {
         .input-text {
@@ -35,11 +34,11 @@
         }
 
         input::placeholder {
-            color: #5A5A5A;
+            color: var(--btn_disable_text_dark);
         }
 
         .v-icon {
-            color: #5A5A5A;
+            color: var(--btn_disable_text_dark);
         }
     }
 }

@@ -28,20 +28,26 @@
                     <v-sheet class="d-flex align-center" :min-height="$mobile ? 50 : 64" color="transparent" v-bind="attrs" v-on="on">
                         <v-hover v-slot="{ hover }">
                             <div
-                                class="d-flex align-center box"
+                                class="d-flex align-center box text-14"
                                 :class="{ 
                                         'navTextHover--text active' : (hover || isShowActive(item)),
                                         'navIcon--text' : !(hover || isShowActive(item)),
-                                        'text-14': $mobile,
-                                        'text-14': !$mobile,
                                     } "
                                 @click="goCategory_game(getItemCategory(item))"
                             >
-                                <svg-icon v-if="hover || isShowActive(item)" :icon="CategoryIcon_sel[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
-                                <svg-icon v-else :icon="CategoryIcon[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                                <svg-icon
+                                    v-if="hover || isShowActive(item)"
+                                    :icon="CategoryIcon_sel[getItemCategory(item)]"
+                                    :class="$mobile ? 'text-18' :'text-20'"
+                                ></svg-icon>
+                                <svg-icon
+                                    v-else
+                                    :icon="CategoryIcon[getItemCategory(item)]"
+                                    :class="$mobile ? 'text-18' :'text-20'"
+                                ></svg-icon>
                                 <div
                                     v-if="!mini"
-                                    class="ml-5 text-no-wrap "
+                                    class="ml-5 text-no-wrap"
                                     :class=" (hover || isShowActive(item)) ? 'navTextHover--text font-weight-bold' : 'navText--text ' "
                                 >
                                     {{LangUtil(getItemCategoryName(item))}}
@@ -65,20 +71,22 @@
             <v-sheet class="d-flex align-center" :min-height="$mobile ? 50 : 64" v-for="item in menu" :key="item.name" color="transparent">
                 <v-hover v-slot="{ hover }">
                     <div
-                        class="d-flex align-center box"
+                        class="d-flex align-center box text-14"
                         :class="{ 
                             'navTextHover--text active' : (hover || routerPath.includes(item.path)),
                             'navIcon--text' : !(hover || routerPath.includes(item.path)),
-                            'text-14': $mobile,
-                            'text-14': !$mobile,
                         } "
                         @click="goCategory(item)"
                     >
-                        <svg-icon v-if="hover || routerPath.includes(item.path)" :icon="item.icon_sel" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                        <svg-icon
+                            v-if="hover || routerPath.includes(item.path)"
+                            :icon="item.icon_sel"
+                            :class="$mobile ? 'text-18' :'text-20'"
+                        ></svg-icon>
                         <svg-icon v-else :icon="item.icon" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
                         <div
                             v-if="!mini"
-                            class="text-no-wrap "
+                            class="text-no-wrap"
                             :class="{
                                 'navTextHover--text font-weight-bold' : (hover || routerPath.includes(item.path)),
                                 'navText--text' : !(hover || routerPath.includes(item.path)),
@@ -106,9 +114,11 @@
                     />
                 </v-sheet>
 
-                <v-sheet class="d-flex align-center" height="50" width="100%" color="transparent">
-                    <LightDark :mini="mini" @onChange="onLightChange" />
-                </v-sheet>
+                <div class="com-theme">
+                    <v-sheet class="d-flex align-center" height="50" width="100%" color="transparent">
+                        <LightDark :mini="mini" @onChange="onLightChange" />
+                    </v-sheet>
+                </div>
             </div>
 
             <v-sheet v-if="$mobile" color="transparent" width="100%">

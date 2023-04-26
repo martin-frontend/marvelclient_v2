@@ -36,7 +36,7 @@ $prev-right: var(--prev-right);
         background-color: #272828;
     }
     .menu_card:hover {
-        border: solid 2px #feba00 !important;
+        border: solid 2px var(--line_primary) !important;
     }
 
     .icon_test_cur {
@@ -49,7 +49,7 @@ $prev-right: var(--prev-right);
         background-color: #c6c6c6;
     }
     .menu_card:hover {
-        border: solid 2px #feba00 !important;
+        border: solid 2px var(--line_primary) !important;
         background-color: transparent;
     }
     .card_border {
@@ -63,7 +63,7 @@ $prev-right: var(--prev-right);
 //     border: solid 2px #FFCD43 !important;
 // }
 .card_border {
-    border-color: #feba00 !important;
+    border-color: var(--line_primary) !important;
 }
 
 .rotate {
@@ -233,7 +233,7 @@ $prev-right: var(--prev-right);
 
     .icon_text_cur {
         //color: rgba(255, 255, 255, 1);
-        color: #feba00;
+        color: var(--line_primary);
     }
 }
 ::v-deep .theme--light {
@@ -242,7 +242,7 @@ $prev-right: var(--prev-right);
     }
     .icon_text_cur {
         //color: rgba(0, 0, 0, 1);
-        color: #feba00;
+        color: var(--line_primary);
     }
     .item_btn_active {
         background-color: #fff !important;
@@ -258,7 +258,6 @@ $prev-right: var(--prev-right);
 }
 
 .item_btn_active {
-    //border: solid 1px #FEBA00 !important;
     background-color: transparent;
 }
 

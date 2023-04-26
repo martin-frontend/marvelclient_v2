@@ -100,7 +100,7 @@
     .theme--dark {
         .v-btn-toggle--group {
             .v-btn {
-                border: solid 1px #5a5a5a !important;
+                border: solid 1px var(--btn_disable_text_dark) !important;
                 color: #8e8f91 !important;
             }
             .v-btn::before {

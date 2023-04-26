@@ -6,7 +6,7 @@
 // }
 
 ::v-deep.v-icon.v-icon {
-    color: #5a5a5a !important;
+    color: var(--btn_disable_text_dark) !important;
 }
 
 .item {
@@ -14,7 +14,7 @@
     font-weight: 600;
     height: 38px;
     width: 100%;
-    color: #5a5a5a;
+    color: var(--btn_disable_text_dark);
 }
 // .item:hover {
 //     color: white;
@@ -34,9 +34,9 @@
 
 ::v-deep .theme--light {
     .item:hover {
-        color: #feba00;
+        color: var(--line_primary);
         i {
-            color: #feba00 !important;
+            color: var(--line_primary) !important;
         }
     }
 }

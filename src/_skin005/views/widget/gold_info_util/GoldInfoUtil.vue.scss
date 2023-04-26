@@ -19,7 +19,7 @@
 }
 
 .select-shadow {
-    border: solid 1px #feba00 !important;
+    border: solid 1px var(--line_primary) !important;
 }
 
 .menu {
@@ -37,12 +37,12 @@
         border: solid 1px #3e3f41 !important;
     }
     ::v-deep .listitem:hover {
-        border: solid 1px #feba00 !important;
+        border: solid 1px var(--line_primary) !important;
     }
 }
 
 .theme--light {
     ::v-deep .listitem:hover {
-        border: solid 1px #feba00 !important;
+        border: solid 1px var(--line_primary) !important;
     }
 }

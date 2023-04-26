@@ -1,6 +1,6 @@
 .theme--light {
     .foot_bg {
-        background: linear-gradient(to left, #feba00, #feba00);
+        background: linear-gradient(to left, var(--line_primary), var(--line_primary));
     }
     .active {
         color: #0f1213;
@@ -15,7 +15,7 @@
         background: linear-gradient(to right, #202121, #202121);
     }
     .active {
-        color: #feba00;
+        color: var(--line_primary);
     }
     .nomal {
         color: #8e8f91;

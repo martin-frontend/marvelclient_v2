@@ -56,7 +56,7 @@
         .btn-left {
             pointer-events: none;
             //color: #fff;
-            color: #5a5a5a;
+            color: var(--btn_disable_text_dark);
             border: 1px solid transparent !important;
             background-image: linear-gradient(to right, #1b1c1c, #1b1c1c), linear-gradient(90deg, #3e3f41, #3e3f41);
         }

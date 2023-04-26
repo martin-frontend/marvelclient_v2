@@ -101,7 +101,7 @@
 .skin005 .theme--dark .head_btn_top {
     .v-btn {
         border: none !important;
-        color: #5a5a5a !important;
+        color: var(--btn_disable_text_dark) !important;
         padding: 0 4px !important;
     }
 

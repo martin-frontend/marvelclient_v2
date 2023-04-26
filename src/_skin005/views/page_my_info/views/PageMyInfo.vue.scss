@@ -19,10 +19,10 @@
         border: solid 1px #3e3f41 !important;
     }
     .select-shadow {
-        border: solid 1px #feba00 !important;
+        border: solid 1px var(--line_primary) !important;
     }
     ::v-deep .listitem:hover {
-        border: solid 1px #feba00 !important;
+        border: solid 1px var(--line_primary) !important;
     }
 }
 
@@ -31,7 +31,7 @@
         background-color: #f4f4f4;
     }
     ::v-deep .listitem:hover {
-        border: solid 1px #feba00 !important;
+        border: solid 1px var(--line_primary) !important;
     }
 }
 
@@ -72,7 +72,7 @@
 }
 
 .select-shadow {
-    border: solid 1px #feba00 !important;
+    border: solid 1px var(--line_primary) !important;
 }
 ::v-deep.v-menu__content {
     border-radius: 10px !important;

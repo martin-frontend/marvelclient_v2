@@ -225,8 +225,10 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007", "skin008",  "skin020"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007", "skin008"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
+        } else if (process.env.VUE_APP_SKIN == "skin020") {
+            imagesRule.exclude.add(resolve("src/_skin020/icons"));
         }
 
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);

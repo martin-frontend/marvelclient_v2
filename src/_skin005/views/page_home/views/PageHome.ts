@@ -7,6 +7,7 @@ import LangUtil from "@/core/global/LangUtil";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class PageHome extends AbstractView {
@@ -22,6 +23,8 @@ export default class PageHome extends AbstractView {
     IsShow_Swap = ModulesHelper.IsShow_Swap();
     IsShow_ActivityDisplay = ModulesHelper.IsShow_ActivityDisplay();
     IsShow_FootBallHot = ModulesHelper.IsShow_FootBallHot();
+    // 是否显示game_type
+    isShowGameType = SkinVariable.isShowGameType;
 
     constructor() {
         super(PageHomeMediator);

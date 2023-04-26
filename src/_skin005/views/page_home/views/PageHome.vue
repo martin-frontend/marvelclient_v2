@@ -9,6 +9,7 @@ import GameSlideGroup from "../widget/game_slide_group/GameSlideGroup.vue";
 import GameSport from "../widget/game_sport/GameSport.vue";
 import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
+import GameType from "../widget/game_type/GameType.vue";
 @Component({
     components: {
         SoccerMatche,
@@ -16,6 +17,7 @@ import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
         GameSport,
         Marquee1,
         Category,
+        GameType,
     },
 })
 export default class extends PageHome {

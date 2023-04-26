@@ -51,6 +51,7 @@ SkinVariable.isNeedPush = true;
 SkinVariable.isNeedKefu = true;
 SkinVariable.useFlyerLog = true;
 SkinVariable.useGTM = true;
+SkinVariable.isShowGameType = true;
 
 LangConfig.lang_type = 18;
 // 注册到全局

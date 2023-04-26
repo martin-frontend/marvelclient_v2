@@ -57,6 +57,16 @@ export default class GameItem extends AbstractView {
         return this.item.status == 1;
     }
     goGamePlay() {
+        if (this.item && this.item.path) {
+            if (this.item.category) {
+                PanelUtil.openpanel_gamelist(this.item.category);
+            } else if (this.item.path == "/cricket") {
+                PanelUtil.openpage_soccer_cricket();
+            } else if (this.item.path == "/page_game_soccer") {
+                PanelUtil.openpage_soccer();
+            }
+            return;
+        }
         if (this.item) {
             if (this.isNomalState) PanelUtil.openpage_soccer(this.item);
             else {

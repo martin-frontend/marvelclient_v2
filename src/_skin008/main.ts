@@ -38,6 +38,7 @@ import Footer from "@/_skin008/views/footer/Footer.vue";
 Assets.commonIcon.loading_img = "loding_icon_8.png";
 Assets.commonIcon.logo = require(`@/_skin008/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
+Assets.commonIcon.loading_img = "loding_icon_8.png";
 
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";
@@ -117,5 +118,6 @@ setInterval(() => {
         const isDark = window["vm"].$vuetify.theme.isDark;
         Assets.commonIcon.logo = isDark ? require(`@/_skin008/assets/logo.png`) : require(`@/_skin008/assets/logo_light.png`);
         Assets.commonIcon.logo_m = isDark ? require(`@/_skin008/assets/logo_m.png`) : require(`@/_skin008/assets/logo_m_light.png`);
+        Assets.commonIcon.loading_img = isDark ? "loding_icon_8.png" : "loding_icon_8_light.png";
     }
 }, 100);

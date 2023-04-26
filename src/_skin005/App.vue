@@ -106,7 +106,6 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import App from "./App";
-import Footer from "./views/footer/Footer.vue";
 import Header from "./views/header/Header.vue";
 import UserPanel from "./views/header/user_panel/UserPanel.vue";
 import DialogMessage from "./views/dialog_message/views/DialogMessage.vue";
@@ -119,7 +118,6 @@ import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMe
 @Component({
     components: {
         Header,
-        Footer,
         Novigation,
         MobileMenu,
         UserPanel,

@@ -33,6 +33,7 @@ import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
+import Footer from "@/_skin008/views/footer/Footer.vue";
 
 Assets.commonIcon.loading_img = "loding_icon_8.png";
 Assets.commonIcon.logo = require(`@/_skin008/assets/logo.png`);
@@ -70,6 +71,7 @@ Vue.component("LoadMore1", LoadMore1);
 Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
+Vue.component("Footer", Footer);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
 
@@ -107,3 +109,13 @@ window.onload = function () {
     });
 };
 PanelUtil.getThemeDark();
+
+setInterval(() => {
+    //@ts-ignore
+    if (window["vm"]) {
+        //@ts-ignore
+        const isDark = window["vm"].$vuetify.theme.isDark;
+        Assets.commonIcon.logo = isDark ? require(`@/_skin008/assets/logo.png`) : require(`@/_skin008/assets/logo_light.png`);
+        Assets.commonIcon.logo_m = isDark ? require(`@/_skin008/assets/logo_m.png`) : require(`@/_skin008/assets/logo_m_light.png`);
+    }
+}, 100);

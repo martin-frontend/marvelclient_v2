@@ -1,7 +1,7 @@
 <v-sheet v-if="!$mobile" height="74" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
-        <v-img v-if="!SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="42" height="30" :src="commonIcon.logo_m"></v-img>
-        <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="101" height="30" :src="commonIcon.logo"></v-img>
+        <v-img v-if="!SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="42" :src="commonIcon.logo_m"></v-img>
+        <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="101" :src="commonIcon.logo"></v-img>
 
         <v-sheet color="transparent">
             <v-sheet color="transparent" class="d-flex ml-4 head_btn_top">
@@ -112,8 +112,8 @@
                 <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
             </v-sheet>
             <v-sheet color="transparent" @click="goHome">
-                <v-img v-if="!SkinVariable.isShowfullLogo" class="mr-2" max-width="36" height="26" :src="commonIcon.logo_m"></v-img>
-                <v-img v-else class="mr-2" max-width="87" height="26" :src="commonIcon.logo"></v-img>
+                <v-img v-if="!SkinVariable.isShowfullLogo" class="mr-2" max-width="36" :src="commonIcon.logo_m"></v-img>
+                <v-img v-else class="mr-2" max-width="87" :src="commonIcon.logo"></v-img>
             </v-sheet>
         </v-sheet>
         <!-- <btn-yellow height="36" min_width="72"

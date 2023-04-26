@@ -32,6 +32,7 @@ import LangConfig from "@/core/config/LangConfig";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "./core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
+import Footer from "@/_skin005/views/footer/Footer.vue";
 
 LogUtil.init();
 core.init();
@@ -64,6 +65,7 @@ Vue.component("LoadMore1", LoadMore1);
 Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
+Vue.component("Footer", Footer);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
 

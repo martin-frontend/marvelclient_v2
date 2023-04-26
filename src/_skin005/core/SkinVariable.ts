@@ -24,4 +24,6 @@ export default class SkinVariable {
     public static useFlyerLog = false;
     /**导航和 head上面是否使用 完整的logo */
     public static isShowfullLogo = false;
+    /**首页是否显示game_type */
+    public static isShowGameType = false;
 }

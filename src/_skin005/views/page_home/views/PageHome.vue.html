@@ -96,7 +96,6 @@
                 >
             </v-card>
         </v-col>
-
     </v-row>
 
     <v-sheet v-if="$mobile" color="transparent" class="d-flex align-center" width="100%" min-width="100">
@@ -104,6 +103,8 @@
     </v-sheet>
 
     <SoccerMatche v-if="IsShow_FootBallHot" :class="{'boxpadding': $mobile}" />
+
+    <GameType v-if="isShowGameType" />
 
     <Category />
     <div v-for="(item, index) of gameProxy.lobbyIndex" :key="index" :class="{'boxpadding': $mobile}">

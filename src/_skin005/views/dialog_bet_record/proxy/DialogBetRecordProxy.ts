@@ -72,7 +72,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         moneySelect: 0,
         typeOptions: () => {
             return {
-                0: LangUtil("全部类型"),
+                0: LangUtil("全部游戏"),
                 2: LangUtil("棋牌"),
                 4: LangUtil("彩票"),
                 8: LangUtil("捕鱼"),

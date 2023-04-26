@@ -174,7 +174,7 @@ export default class PageMine extends AbstractView {
         }
         let str = "";
         if (!ModulesHelper.RebateDisplayType()) {
-            str = amountFormat(sss / 100, true, 2) + this.LangUtil("%");
+            str = amountFormat(sss, true, 2) + this.LangUtil("%");
         } else {
             str = amountFormat(sss, false);
         }

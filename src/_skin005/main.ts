@@ -49,7 +49,7 @@ Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
 SkinVariable.isNeedPush = true;
-SkinVariable.isNeedKefu = true;
+//SkinVariable.isNeedKefu = true;
 SkinVariable.useFlyerLog = true;
 SkinVariable.useGTM = true;
 SkinVariable.isShowGameType = true;

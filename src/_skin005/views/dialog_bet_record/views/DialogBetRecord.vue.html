@@ -371,9 +371,12 @@
                         <div class="detail mt-1 d-flex align-center black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                             <svg-icon class="mx-1" icon="football"></svg-icon>
                             <span class="ml-2">{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span>
+                            <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                                ({{item.game_info.state.goals_ft}})
+                            </span>
                             <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
                             <span class="ml-2">{{item.game_info.content}}</span>
-                            <span class="ml-2 font-weight-bold">@{{item.game_info.odds }}</span>
+                            <span class="ml-2 font-weight-bold">@{{item.game_info.odds }}</span>木
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
                                 <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
@@ -752,7 +755,13 @@
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                         <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="football"></svg-icon>
                         <div>
-                            <div>{{item.game_info.home_name}} vs {{item.game_info.away_name}}</div>
+                            <div>
+                                {{item.game_info.home_name}} vs {{item.game_info.away_name}}
+                                <span class="ml-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                                    ({{item.game_info.state.goals_ft}})
+                                </span>
+                            </div>
+
                             <div>
                                 <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
                                 <span class="mr-2 div-block">{{item.game_info.content}} </span>

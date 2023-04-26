@@ -71,16 +71,6 @@
                 >
             </v-card>
         </v-col>
-        <v-col v-if="IsShow_ActivityDisplay">
-            <v-card class="elevation-0 panel-swap pt-6 pl-6 rounded10 fill-height" color="bgBanner" min-height="133">
-                <div class="text-20">{{LangUtil("精彩活动")}}</div>
-                <div class="text-16 textYellow--text">{{LangUtil("精彩活动——1")}}</div>
-                <div style="width: 60%" class="text-14">{{LangUtil("精彩活动——2")}}</div>
-                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goActivity" :btn_type="2"
-                    >{{LangUtil("查看详情")}}</btn-yellow
-                >
-            </v-card>
-        </v-col>
         <v-col v-if="IsShow_GameWater">
             <v-card class="elevation-0 panel-mine pt-6 pl-6 rounded10 fill-height" color="bgBanner" min-height="133">
                 <div class="text-20">{{LangUtil("游戏挖矿")}}</div>
@@ -96,6 +86,17 @@
                 >
             </v-card>
         </v-col>
+        <v-col v-if="IsShow_ActivityDisplay">
+            <v-card class="elevation-0 panel-swap pt-6 pl-6 rounded10 fill-height" color="bgBanner" min-height="133">
+                <div class="text-20">{{LangUtil("精彩活动")}}</div>
+                <div class="text-16 textYellow--text">{{LangUtil("精彩活动——1")}}</div>
+                <div style="width: 60%" class="text-14">{{LangUtil("精彩活动——2")}}</div>
+                <btn-yellow class="ml-4 mt-2 px-3 btn-panel text-16" min_width="104" height="36" @click.native="goActivity" :btn_type="2"
+                    >{{LangUtil("查看详情")}}</btn-yellow
+                >
+            </v-card>
+        </v-col>
+
     </v-row>
 
     <v-sheet v-if="$mobile" color="transparent" class="d-flex align-center" width="100%" min-width="100">

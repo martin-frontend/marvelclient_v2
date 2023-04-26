@@ -52,6 +52,20 @@
             //     },
             //     true
             // );
+            function appendScript(){
+                var script = document.createElement('script')
+                    script.async = 'async'
+                    script.src = 'https://img.maskanalyse.com/node/script?appId=U5&channel=默认'
+                    document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            var list = ['u5009.com','u5010.com','u5012.com','localhost']
+            list.forEach(item=>{
+                if(window.location.href.includes(item)){
+                    appendScript()
+                }
+            })
+            
+            
         </script>
     </head>
 

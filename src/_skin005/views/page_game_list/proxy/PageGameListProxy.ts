@@ -6,7 +6,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
     static NAME = "PageGameListProxy";
     gameProxy = PanelUtil.getProxy_gameproxy;
     public onRegister(): void {
-        console.log("注册---");
         this.readData();
         //this.pageData.loading = true;
         this.api_plat_var_game_all_config();
@@ -65,7 +64,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     init() {
-        console.log("初始化");
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
         const vendor_type = this.getVendorByRouter();
@@ -76,7 +74,6 @@ export default class PageGameListProxy extends puremvc.Proxy {
         this.getCurMenuIndex();
         //PanelUtil.getProxy_novigation.categoryActive = 1;
         PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
-        console.log("当前值 categoryActive ", PanelUtil.getProxy_novigation.categoryActive);
     }
     setConfig(data: any) {
         this.config.loaded = true;
@@ -157,12 +154,9 @@ export default class PageGameListProxy extends puremvc.Proxy {
         const keys = Object.keys(this.tableMenu);
         this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
         this.curMenuIndex = 0;
-        console.log("取第一个值", this.listQuery.vendor_type);
-        console.log("取第一个值", this.curMenuIndex);
     }
 
     getCurItemIndex() {
-        //console.log("查找 当前元素的值");
         if (!this.gameMenuData) {
             this.curItemIndex = -1;
             return;
@@ -195,6 +189,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         if (obj) {
             const obj_json = JSON.parse(obj);
             this.listQuery = obj_json.listQuery;
+            this.listQuery.page_count = 1;
             this.curItemIndex = obj_json.curIndex;
             this.curMenuIndex = obj_json.curMenuIndex;
             PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
@@ -234,11 +229,9 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     public get curTotleData(): any {
         if (!this.tableMenu) return null;
-        //console.log("当前查找的id 为", this.listQuery.vendor_type);
         if (!this.listQuery.vendor_type) {
             return null;
         }
-        //console.log("当前查找的数组为", this.myProxy.gamemenuData);
         const keys = Object.keys(this.tableMenu);
         for (let index = 0; index < keys.length; index++) {
             //@ts-ignore

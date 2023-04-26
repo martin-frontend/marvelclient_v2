@@ -74,6 +74,10 @@ export default class Agents extends AbstractView {
     @Watch("myProxy.checkboxValue")
     onWatchCheckboxValue() {
         console.log("筛选修改");
+        if (!this.myProxy.checkboxValue.includes("1") && !this.myProxy.checkboxValue.includes("98")) {
+            this.myProxy.checkboxValue = ["1"];
+        }
+
         if (this.myProxy.checkboxValue.length > 0) {
             this.pageData.listQuery.page_count = 1;
             this.myProxy.api_user_var_agent_direct_list();

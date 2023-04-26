@@ -151,7 +151,15 @@
                         </v-sheet>
                         <v-divider class="mb-2" />
                         <div class="textGray--text text-14 mt-3 mt-sm-7 mb-2 mb-sm-3">{{LangUtil("滑点容差:")}}</div>
-                        <v-btn-toggle v-if="$xsOnly" :lang="core.lang" mandatory group class="btn_group_width mx-n1" v-model="form.tolerance" @change="onChange">
+                        <v-btn-toggle
+                            v-if="$xsOnly"
+                            :lang="core.lang"
+                            mandatory
+                            group
+                            class="btn_group_width mx-n1"
+                            v-model="form.tolerance"
+                            @change="onChange"
+                        >
                             <v-btn
                                 class="rounded-pill btn_width"
                                 height="36"

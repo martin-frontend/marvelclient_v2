@@ -27,7 +27,9 @@
                 <v-sheet color="transparent" width="100%" class="d-flex">
                     <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
-                    <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
+                    <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll"
+                        ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                    >
                 </v-sheet>
             </v-col>
         </v-row>
@@ -170,7 +172,13 @@
                     <v-sheet color="transparent" class="d-flex"> {{LangUtil("交易密码")}} </v-sheet>
                     <v-sheet color="transparent" class="py-1">
                         <CustomPassword class="" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
-                            <btn-yellow v-if="myProxy.exchangeProxy.isPasswordExist" class="ml-auto text-14 mr-n2" min_width="61" height="36" :btn_type="4" @click.native="onSetPassword"
+                            <btn-yellow
+                                v-if="myProxy.exchangeProxy.isPasswordExist"
+                                class="ml-auto text-14 mr-n2"
+                                min_width="61"
+                                height="36"
+                                :btn_type="4"
+                                @click.native="onSetPassword"
                                 >{{LangUtil("设置")}}</btn-yellow
                             >
                         </CustomPassword>
@@ -234,7 +242,9 @@
                 <v-sheet color="transparent" width="100%" class="d-flex">
                     <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
-                    <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll">{{LangUtil("全部")}}</btn-yellow>
+                    <btn-yellow class="text-16 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
+                        ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                    >
                 </v-sheet>
             </v-col>
         </v-row>
@@ -356,7 +366,7 @@
                     </v-sheet>
                 </v-card>
             </v-col>
-            
+
             <v-col cols="12" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <!-- 标题 -->
@@ -380,7 +390,13 @@
                     <v-sheet color="transparent" class="d-flex"> {{LangUtil("交易密码")}} </v-sheet>
                     <v-sheet color="transparent" class="py-1">
                         <CustomPassword class="" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
-                            <btn-yellow v-if="myProxy.exchangeProxy.isPasswordExist" class="ml-auto text-14 mr-n2" min_width="61" height="36" :btn_type="4" @click.native="onSetPassword"
+                            <btn-yellow
+                                v-if="myProxy.exchangeProxy.isPasswordExist"
+                                class="ml-auto text-14 mr-n2"
+                                min_width="61"
+                                height="36"
+                                :btn_type="4"
+                                @click.native="onSetPassword"
                                 >{{LangUtil("设置")}}</btn-yellow
                             >
                         </CustomPassword>

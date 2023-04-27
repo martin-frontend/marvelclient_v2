@@ -33,6 +33,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "./core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
+import Header from "./views/header/Header.vue";
 
 LogUtil.init();
 core.init();
@@ -67,6 +68,7 @@ Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
 Vue.component("Footer", Footer);
+Vue.component("Header", Header);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
 

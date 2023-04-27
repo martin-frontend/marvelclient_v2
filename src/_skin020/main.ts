@@ -35,6 +35,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
+import Header from "@/_skin020/views/header/Header.vue";
 
 Assets.commonIcon.loading_img = "loding_icon_20.png";
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
@@ -78,10 +79,11 @@ Vue.component("ListNodata", ListNodata);
 Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
 Vue.component("Footer", Footer);
+Vue.component("Header", Header);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
 
-GlobalVar.skin = "skin005";
+GlobalVar.skin = "skin020";
 
 const vuetify = getVuetify();
 Vue.vuetify = vuetify;
@@ -114,4 +116,17 @@ window.onload = function () {
         event.preventDefault();
     });
 };
+//只要黑夜主题
 Vue.vuetify.framework.theme.dark = true;
+//获取钱包回调返回的code
+const timer = setInterval(() => {
+    const code = window.localStorage.getItem("code");
+    if (code) {
+        window.localStorage.removeItem("code");
+        puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_third_login, {
+            plat_id: core.plat_id,
+            channel_id: core.channel_id,
+            code,
+        });
+    }
+}, 2000);

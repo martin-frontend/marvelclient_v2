@@ -29,6 +29,7 @@ import HeaderProxy from "../views/header/HeaderProxy";
 import { track, TrackTypeMap } from "./TrackManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
+import SelfProxy from "@/proxy/SelfProxy";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -287,7 +288,24 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_var_red_dot_tips:
                 this.selfProxy.redDotTips(body);
                 break;
+            // bet2dream登录
+            case net.EventType.api_user_third_login:
+                this.loginSuccess(body);
+                break;
         }
+    }
+
+    private loginSuccess(body: any) {
+        core.token = body.token;
+        core.user_id = body.user_id;
+
+        window.localStorage.setItem("token", core.token);
+        window.localStorage.setItem("user_id", core.user_id.toString());
+        window.localStorage.setItem("username", body.username);
+
+        const selfProxy: SelfProxy = this.getProxy(SelfProxy);
+        selfProxy.api_user_show_var([2, 3, 6]);
+        selfProxy.api_plat_var_game_config();
     }
 
     openGameUrl(body: any, msg: string, isShowConfig: boolean) {

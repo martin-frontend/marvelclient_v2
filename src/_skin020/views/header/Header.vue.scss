@@ -1,0 +1,129 @@
+::v-deep .v-tabs-slider {
+    border-radius: 2px;
+}
+
+::v-deep .v-tabs-bar {
+    height: 36px;
+}
+
+::v-deep .v-tabs-slider-wrapper {
+    height: 4px !important;
+}
+
+::v-deep .v-tab {
+    min-width: 0px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+::v-deep .v-tab:before,
+.v-tabs-slider {
+    background-color: transparent;
+}
+
+::v-deep .v-tabs > .v-tabs-bar {
+    background-color: transparent;
+}
+
+.header {
+    border-bottom: solid 2px !important;
+}
+
+::v-deep .v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
+    color: #8e8f91;
+}
+
+::v-deep .theme--dark {
+    .v-tabs-bar .v-tab--disabled {
+        color: #fff !important;
+        opacity: 1 !important;
+        font-weight: 700;
+    }
+}
+
+::v-deep .theme--light {
+    .v-tabs-bar .v-tab--disabled {
+        color: #000 !important;
+        opacity: 1 !important;
+        font-weight: 700;
+    }
+}
+
+::v-deep .v-toolbar__content {
+    width: 100% !important;
+}
+
+::v-deep .v-slide-group__next {
+    display: none;
+}
+
+::v-deep .v-slide-group__prev {
+    display: none;
+}
+
+// .btn_regi {
+//     .btnclass:before {
+//         content: "";
+//         background: linear-gradient(to right, #F64D55, #FFB95D);
+//     }
+// }
+
+.skin005 .theme--light .head_btn_top {
+    .v-btn {
+        border: none !important;
+        color: #5d5d5d !important;
+        padding: 0 4px !important;
+    }
+
+    .v-btn.v-btn--disabled {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+
+    .v-btn:hover:before {
+        opacity: 0;
+    }
+
+    .v-btn:hover {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+}
+
+.skin005 .theme--dark .head_btn_top {
+    .v-btn {
+        border: none !important;
+        color: var(--btn_disable_text_dark) !important;
+        padding: 0 4px !important;
+    }
+
+    .v-btn.v-btn--disabled {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #fff !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+
+    .v-btn:hover:before {
+        opacity: 0;
+    }
+
+    .v-btn:hover {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #fff !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+}

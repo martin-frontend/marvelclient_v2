@@ -143,7 +143,7 @@ const skinMap = {
                 entry: "src/_skin008/main.ts",
                 template: "public_skin008/skin008.html",
                 filename: "index.html",
-                title: "96cluble",
+                title: "1x2game",
                 faviconName: "favicon.ico",
             },
         },

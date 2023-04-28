@@ -144,6 +144,11 @@
                     <span class="userInfo_color--text"> {{transformMoney(pageData,"total_bet_gold")}} </span>
                 </div>
 
+                <div class="mr-5 primary--text" v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_water">
+                    {{LangUtil("总流水")}}
+                    <span class="userInfo_color--text"> {{transformMoney(pageData,"total_water")}} </span>
+                </div>
+
                 <div v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold" class="mr-5 primary--text">
                     {{LangUtil("有效投注")}}
                     <span class="userInfo_color--text"> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
@@ -566,6 +571,19 @@
                             <span class="leftText--text mr-2">{{LangUtil("总投注额")}}</span>
                             <span class="head_btn--text">
                                 <span> {{transformMoney(pageData,"total_bet_gold")}} </span>
+                            </span>
+                        </span>
+
+                        <span
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_water"
+                        >
+                            <span class="leftText--text mr-2">{{LangUtil("总流水")}}</span>
+                            <span class="head_btn--text">
+                                <span> {{transformMoney(pageData,"total_water")}} </span>
                             </span>
                         </span>
 

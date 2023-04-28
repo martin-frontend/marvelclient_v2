@@ -132,6 +132,7 @@ export default class GameConfig {
                         total_bet_gold: 1,
                         total_valid_bet_gold: 1,
                         total_win_gold: 1,
+                        total_water: 1,
                     };
                 }
                 if (!GameConfig.config.mybet_title) {

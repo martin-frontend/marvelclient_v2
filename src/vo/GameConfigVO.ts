@@ -67,6 +67,7 @@ export interface GameConfigVO {
         total_bet_gold: number;
         total_valid_bet_gold: number;
         total_win_gold: number;
+        total_water:number;
     };
     mybet_title: {
         order_no: number;

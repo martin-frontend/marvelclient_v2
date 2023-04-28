@@ -84,7 +84,12 @@ export default class DialogEmail extends AbstractView {
     }
 
     onDestroyQuick() {
-        this.myProxy.api_user_var_destroy_quick();
+        PanelUtil.message_confirm({
+            message: LangUtil("是否删除已读消息?"),
+            okFun: () => {
+                this.myProxy.api_user_var_destroy_quick();
+            },
+        });
     }
 
     goMail() {

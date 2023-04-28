@@ -19,13 +19,13 @@
                 </v-btn-toggle>
 
                 <v-sheet color="transparent" class="d-flex">
-                    <btn-yellow class="text-14" min-width="104" height="36" @click.native="onReceiveQuick"
+                    <btn-yellow class="text-14" min_width="104" height="36" @click.native="onReceiveQuick"
                         >{{LangUtil("一键领取")}}</btn-yellow
                     >
 
-                    <btn-yellow class="text-14 ml-2" min-width="104" height="36" @click.native="onDestroyQuick"
-                        >{{LangUtil("删除已读")}}</btn-yellow
-                    >
+                    <btn-yellow class="text-14 ml-2" min_width="36" height="36" @click.native="onDestroyQuick">
+                        <svg-icon icon="delete" class="text-16"></svg-icon>
+                    </btn-yellow>
                 </v-sheet>
             </v-sheet>
             <template v-if="pageData.loading">
@@ -108,6 +108,17 @@
 
     <!-- 手机显示方式 -->
     <v-card v-else class="d-flex flex-column overflow-x-hidden" color="bgColor" height="100%" flat>
+        <v-sheet class="headicon" color="transparent">
+            <v-sheet class="d-flex align-center px-3" color="transparent">
+                <btn-yellow class="text-14" min_width="35" height="35" :btn_type="2" @click.native="onDestroyQuick">
+                    <svg-icon icon="delete" class="text-16"></svg-icon>
+                </btn-yellow>
+                <btn-yellow class="text-14 ml-2" min_width="35" height="35" :btn_type="2" @click.native="onReceiveQuick">
+                    <svg-icon icon="activity" class="text-16"></svg-icon>
+                </btn-yellow>
+            </v-sheet>
+        </v-sheet>
+
         <LoadMore1
             v-if="pageData.bShow"
             style="height: 100%"
@@ -188,18 +199,18 @@
                 </v-sheet>
             </template>
 
-            <template v-slot:bottom>
+            <!-- <template v-slot:bottom>
                 <v-sheet style="display: grid" color="bgNavigation" width="100%" min-height="90">
                     <v-sheet class="d-flex align-center justify-center px-3" color="transparent" width="100%">
-                        <btn-yellow class="text-14" min_width="90" height="30" :btn_type="2" @click.native="onDestroyQuick"
-                            >{{LangUtil("删除已读")}}</btn-yellow
-                        >
-                        <btn-yellow class="text-14 ml-4" min_width="90" height="30" @click.native="onReceiveQuick"
-                            >{{LangUtil("一键领取")}}</btn-yellow
-                        >
+                        <btn-yellow class="text-14" min_width="90" height="30" :btn_type="2" @click.native="onDestroyQuick">
+                            <svg-icon icon="delete" class="text-16"></svg-icon>
+                        </btn-yellow>
+                        <btn-yellow class="text-14 ml-4" min_width="90" height="30" @click.native="onReceiveQuick">
+                            <svg-icon icon="activity" class="text-16"></svg-icon>
+                        </btn-yellow>
                     </v-sheet>
                 </v-sheet>
-            </template>
+            </template> -->
         </LoadMore1>
     </v-card>
 

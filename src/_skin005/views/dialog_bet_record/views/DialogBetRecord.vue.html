@@ -390,8 +390,10 @@
                         <div class="detail mt-1 black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
                             <svg-icon class="mx-1" icon="cricket_1"></svg-icon>
                             {{item.game_info.marketName}}
-                            <span class="ml-2">{{LangUtil("Line:")}}</span>
-                            <span class="font-weight-bold ml-2">{{item.game_info.handicap }}</span>
+                            <template v-if="item.game_info.handicap && item.game_info.handicap!=0">
+                                <span class="ml-2">{{LangUtil("Line:")}}</span>
+                                <span class="font-weight-bold ml-2">{{item.game_info.handicap }}</span>
+                            </template>
                             <span class="ml-2"
                                 >{{LangUtil("选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span></span
                             >
@@ -801,8 +803,10 @@
                             <div class="d-flex">
                                 <div style="width: calc(100vw - 160px)" class="text-truncate">{{item.game_info.marketName}}</div>
                                 <v-spacer />
-                                <span class="ml-2">{{LangUtil("Line:")}}</span>
-                                <span class="font-weight-bold ml-1 mr-2">{{item.game_info.handicap }}</span>
+                                <template v-if="item.game_info.handicap && item.game_info.handicap!=0">
+                                    <span class="ml-2">{{LangUtil("Line:")}}</span>
+                                    <span class="font-weight-bold ml-1 mr-2">{{item.game_info.handicap }}</span>
+                                </template>
                             </div>
 
                             <div>

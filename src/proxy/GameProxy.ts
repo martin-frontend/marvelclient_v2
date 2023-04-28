@@ -3,6 +3,7 @@ import AbstractProxy from "@/core/abstract/AbstractProxy";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import NotificationName from "@/core/NotificationName";
+import Timezone from "@/core/Timezone";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
@@ -116,6 +117,9 @@ export default class GameProxy extends AbstractProxy {
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
         };
+        if (GameConfig.timezoneChange) {
+            form.timezone = Timezone.Instance.timezoneOffset;
+        }
         if (GlobalVar.skin) form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
         if (core.user_id) {
             this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);

@@ -3,6 +3,7 @@ import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import Timezone from "@/core/Timezone";
 
 export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
     static NAME = "DialogStatisticsCreditProxy";
@@ -192,6 +193,8 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         }
         this.pageData.listQuery.user_id = core.user_id;
         this.pageData.listQuery.coin_name_unique = this.coin_name_unique;
+        this.pageData.listQuery.start_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.start_date);
+        this.pageData.listQuery.end_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.end_date);
         this.sendNotification(net.HttpType.api_user_var_credit_statistic, objectRemoveNull(this.pageData.listQuery));
     }
 

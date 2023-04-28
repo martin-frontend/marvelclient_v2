@@ -8,6 +8,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import Timezone from "@/core/Timezone";
 
 export default class PageExtensionProxy extends puremvc.Proxy {
     static NAME = "PageExtensionProxy";
@@ -239,7 +240,18 @@ export default class PageExtensionProxy extends puremvc.Proxy {
     /**业绩查询--按日期获取佣金详情*/
     api_user_var_commission_commissiondetail() {
         if (core.user_id) {
-            this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, { user_id: core.user_id });
+            const obj = <any>{
+                user_id: core.user_id,
+            };
+            if (GameConfig.timezoneChange) {
+                obj.start_date = Timezone.Instance.convertTime_to_Beijing(
+                    core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd") + ` 00:00:00`
+                );
+                obj.end_date = Timezone.Instance.convertTime_to_Beijing(
+                    core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd") + ` 23:59:59`
+                );
+            }
+            this.sendNotification(net.HttpType.api_user_var_commission_commissiondetail, obj);
         }
     }
 

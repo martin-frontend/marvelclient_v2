@@ -1,0 +1,46 @@
+.arrow {
+    transform: rotate(90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(-90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::v-deep .theme--dark {
+    .listitem:hover {
+        color: white;
+    }
+}
+
+::v-deep .theme--light {
+    .listitem:hover {
+        color: #000;
+    }
+}
+
+.listitem {
+    height: 41px;
+    color: #8e8f91;
+}
+
+.boxdiv {
+    padding-left: 9px;
+    border-radius: 10px;
+    border: solid 1px #d6dde3;
+}
+.boxdiv-dark {
+    padding-left: 9px;
+    border-radius: 10px;
+    border: solid 1px #3e3f41;
+}
+::v-deep .v-ripple__container {
+    border-radius: 9px !important;
+}
+
+.menutestclass {
+    border-radius: 10px;
+    max-height: calc(100vh - 80px);
+}

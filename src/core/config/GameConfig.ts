@@ -195,4 +195,17 @@ export default class GameConfig {
         }
         return apiUrl;
     }
+    /**是否允许切换时区 */
+    static get timezoneChange() {
+        if (
+            GameConfig &&
+            GameConfig.config &&
+            GameConfig.config.modules_switch &&
+            GameConfig.config.modules_switch["TimezoneChange"] == 1
+        ) {
+            return true;
+        }
+
+        return false;
+    }
 }

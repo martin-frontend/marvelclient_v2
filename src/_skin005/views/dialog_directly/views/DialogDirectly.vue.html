@@ -35,7 +35,7 @@
                 <template v-else>
                     <template v-if="pageData.list.length>0">
                         <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mb-2 mx-2">
-                            <v-sheet color="transparent" min-width="130" class="text-16 primary--text">{{LangUtil("注册时间")}}</v-sheet>
+                            <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("注册时间")}}</v-sheet>
                             <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户ID")}}</v-sheet>
                             <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("用户昵称")}}</v-sheet>
                             <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("直属人数")}}</v-sheet>
@@ -51,8 +51,8 @@
                                 :key="key"
                             >
                                 <v-sheet color="transparent" class="d-flex flex-wrap align-center justify-space-between mx-2" width="100%">
-                                    <v-sheet color="transparent" min-width="130" class="text-16 textGray--text text-truncate"
-                                        >{{ item.binded_at.replace(/^\d{4}-/, "") }}</v-sheet
+                                    <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
+                                        >{{ getDate(item.binded_at) }}</v-sheet
                                     >
                                     <v-sheet color="transparent" min-width="100" class="text-16 textGray--text text-truncate"
                                         >{{item.user_id}}</v-sheet
@@ -170,7 +170,7 @@
                             :min-height="moble_single_item_height"
                         >
                             <div class="primary--text">{{LangUtil("注册时间")}}</div>
-                            <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                            <div>{{ getDate(item.binded_at) }}</div>
                         </v-sheet>
                         <v-sheet
                             class="d-flex justify-space-between textGray--text"

@@ -3,6 +3,7 @@ import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Func
 import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
@@ -299,8 +300,10 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
 
     api_user_show_var_bet() {
         this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
+        const formCopy = <any>{ user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
+        formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
+        formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
         this.sendNotification(net.HttpType.api_user_show_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
 
@@ -308,6 +311,8 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         const formCopy: any = { user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
+        formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
+        formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
         //只显示已结算状态。
         if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));

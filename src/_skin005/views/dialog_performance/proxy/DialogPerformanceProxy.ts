@@ -1,5 +1,6 @@
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import Constant from "@/core/global/Constant";
+import Timezone from "@/core/Timezone";
 
 export default class DialogPerformanceProxy extends puremvc.Proxy {
     static NAME = "DialogPerformanceProxy";
@@ -69,8 +70,10 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
     /**--代理推广--业绩查询*/
     api_user_var_commission_commissionlist() {
         this.pageData.loading = true;
-        const formCopy = { user_id: core.user_id };
+        const formCopy = <any>{ user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
+        formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
+        formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
         this.sendNotification(
             net.HttpType.api_user_var_commission_commissionlist,
             objectRemoveNull(formCopy, [undefined, null, "", 0, "0"])

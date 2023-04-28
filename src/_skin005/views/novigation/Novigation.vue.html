@@ -103,6 +103,17 @@
 
             <!-- <div class="d-flex flex-column mt-auto mb-0"> -->
             <div class="d-flex flex-column mb-0">
+                <v-sheet v-if="GameConfig.timezoneChange" class="d-flex align-center" height="50" color="transparent">
+                    <TimezoneSelect
+                       
+                        :icons="LangConfig.language"
+                        :fontSize="$mobile ? 14 : 14"
+                        :iconSize="20"
+                        :mini="mini"
+                        class="lang"
+                    />
+                </v-sheet>
+
                 <v-sheet class="d-flex align-center" height="50" color="transparent">
                     <LangSelect
                         v-model="core.lang"

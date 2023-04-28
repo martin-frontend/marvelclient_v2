@@ -81,7 +81,7 @@
                                 </v-img>
                             </div>
                             <div class="d-flex justify-space-between">
-                                <div class="userInfo_color--text">{{item.created_at}}</div>
+                                <div class="userInfo_color--text">{{getDate(item.created_at)}}</div>
                                 <div
                                     class="text-decoration-underline cursor-pointer"
                                     :class="item.is_read ? 'userInfo_color--text' : 'textYellow--text'"
@@ -191,7 +191,7 @@
                             </v-img>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="textGray--text">{{item.created_at}}</div>
+                            <div class="textGray--text">{{getDate(item.created_at)}}</div>
                             <div v-if="item.is_read" class="textGray--text">{{LangUtil("已读")}}</div>
                             <div v-else class="text-decoration-underline textYellow--text cursor-pointer">{{LangUtil("点击阅读详情")}}</div>
                         </div>

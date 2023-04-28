@@ -9,6 +9,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import { changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogEmail extends AbstractView {
@@ -95,5 +96,8 @@ export default class DialogEmail extends AbstractView {
     goMail() {
         //dialog_official_mail.show();
         PanelUtil.openpanel_official_mail();
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
     }
 }

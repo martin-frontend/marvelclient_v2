@@ -2,6 +2,8 @@
  * 全局属性和方法
  */
 
+import Timezone from "@/core/Timezone";
+
 /**
  * 格式化日期
  * @param d
@@ -648,7 +650,7 @@ export function convert_vi_to_en(str: string): string {
     return str;
 }
 /**将时间中的 - 换成 /  */
-export function changeDateShow(str: string, isshowData: boolean = false): string {
+export function changeDateShow(str: string, ischangeData: boolean = true): string {
     if (!str) {
         return str;
     }
@@ -659,7 +661,8 @@ export function changeDateShow(str: string, isshowData: boolean = false): string
     if (str.length < 8) {
         return str;
     }
-    let newstr = str.substring(5, str.length - 3);
+    let newstr = Timezone.Instance.convertTime_to_Locale(str);
+    newstr = newstr.substring(5, newstr.length - 3);
 
     // const re = /(\w+)\s(\w+)/;
     // let newstr = str.replace(re, "$1");

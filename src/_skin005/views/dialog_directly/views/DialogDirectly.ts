@@ -9,6 +9,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1";
+import { changeDateShow } from "@/core/global/Functions";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -75,6 +76,7 @@ export default class DialogDirectly extends AbstractView {
 
     @Watch("adduserbtn")
     updataloadmoreui() {
+        if (!this.$refs.loadmore) return;
         (this.$refs.loadmore as LoadMore1).updateUI();
     }
     get adduserbtn() {
@@ -110,5 +112,8 @@ export default class DialogDirectly extends AbstractView {
     }
     handlerShowAddUser() {
         PanelUtil.openpanel_directly_adduser();
+    }
+    getDate(str: string) {
+        return changeDateShow(str);
     }
 }

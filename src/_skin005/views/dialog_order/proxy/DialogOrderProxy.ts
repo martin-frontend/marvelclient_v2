@@ -1,3 +1,4 @@
+import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
 
 export default class DialogOrderProxy extends puremvc.Proxy {
@@ -37,10 +38,13 @@ export default class DialogOrderProxy extends puremvc.Proxy {
     }
 
     api_vendor_var_bet_log_detail(order_no: any) {
-        const formCopy = {
+        const formCopy = <any>{
             order_no: order_no,
             vendor_id: GameConfig.config.SportVendorId,
         };
+        if (GameConfig.timezoneChange) {
+            formCopy.timezone = Timezone.Instance.timezoneOffset;
+        }
         this.sendNotification(net.HttpType.api_vendor_var_bet_log_detail, formCopy);
     }
 }

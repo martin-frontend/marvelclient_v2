@@ -8,12 +8,14 @@ import LightDark from "./light_dark/LightDark.vue";
 import Novigation from "./Novigation";
 import GameMenu from "./widget/game_menu/GameMenu.vue";
 import User from "../header/user/User.vue";
+import TimezoneSelect from "@/_skin005/views/novigation/timezone_select/TimezoneSelect.vue";
 @Component({
     components: {
         LangSelect,
         LightDark,
         GameMenu,
         User,
+        TimezoneSelect,
     },
 })
 export default class extends Novigation {}

@@ -28,6 +28,7 @@ export default class Novigation extends AbstractView {
     myProxy: NovigationProxy = getProxy(NovigationProxy);
     GamePlatConfig = GamePlatConfig;
     selfProxy = PanelUtil.getProxy_selfproxy;
+    GameConfig = GameConfig;
     SkinVariable = SkinVariable;
 
     mounted() {

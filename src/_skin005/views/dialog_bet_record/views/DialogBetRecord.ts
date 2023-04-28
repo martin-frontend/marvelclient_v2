@@ -233,6 +233,7 @@ export default class DialogBetRecord extends AbstractView {
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.listOptions.typeSelect = this.listOptions.vendorSelect = this.listOptions.statusSelect = this.listOptions.timeSelect = 0;
+            this.listOptions.typeSelect = this.listQuery.vendor_type= parseInt( (Object.keys( this.listOptions.typeOptions()))[0]);
             //this.listOptions.moneySelect = 0;
             //this.myProxy.resetQuery();
 

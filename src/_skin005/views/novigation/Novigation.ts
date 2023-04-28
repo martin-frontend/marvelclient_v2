@@ -12,6 +12,7 @@ import NovigationProxy from "./NovigationProxy";
 import PageBlur from "@/_skin005/core/PageBlur";
 import { getVersion, isSafari } from "@/core/global/Functions";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class Novigation extends AbstractView {
@@ -27,6 +28,7 @@ export default class Novigation extends AbstractView {
     myProxy: NovigationProxy = getProxy(NovigationProxy);
     GamePlatConfig = GamePlatConfig;
     selfProxy = PanelUtil.getProxy_selfproxy;
+    SkinVariable = SkinVariable;
 
     mounted() {
         if (!this.$mobile) {

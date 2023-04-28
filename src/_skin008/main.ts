@@ -113,13 +113,13 @@ window.onload = function () {
 };
 PanelUtil.getThemeDark();
 
-setInterval(() => {
-    //@ts-ignore
-    if (window["vm"]) {
-        //@ts-ignore
-        const isDark = window["vm"].$vuetify.theme.isDark;
-        Assets.commonIcon.logo = isDark ? require(`@/_skin008/assets/logo.png`) : require(`@/_skin008/assets/logo_light.png`);
-        Assets.commonIcon.logo_m = isDark ? require(`@/_skin008/assets/logo_m.png`) : require(`@/_skin008/assets/logo_m_light.png`);
-        Assets.commonIcon.loading_img = isDark ? "loding_icon_8.png" : "loding_icon_8_light.png";
-    }
-}, 100);
+// setInterval(() => {
+//     //@ts-ignore
+//     if (window["vm"]) {
+//         //@ts-ignore
+//         const isDark = window["vm"].$vuetify.theme.isDark;
+//         // Assets.commonIcon.logo = isDark ? require(`@/_skin008/assets/logo.png`) : require(`@/_skin008/assets/logo_light.png`);
+//         // Assets.commonIcon.logo_m = isDark ? require(`@/_skin008/assets/logo_m.png`) : require(`@/_skin008/assets/logo_m_light.png`);
+//         Assets.commonIcon.loading_img = isDark ? "loding_icon_8.png" : "loding_icon_8_light.png";
+//     }
+// }, 100);

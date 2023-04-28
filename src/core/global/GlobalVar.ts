@@ -30,7 +30,16 @@ export default class GlobalVar {
             return false;
         else return true;
     }
-
+    /**是否显示登录按钮 */
+    public get isShowLogin(): boolean {
+        if (
+            GameConfig.config.modules_switch &&
+            GameConfig.config.modules_switch.canLogin != undefined &&
+            GameConfig.config.modules_switch.canLogin == 0
+        )
+            return false;
+        else return true;
+    }
     /**是否显示 充值 兑换 */
     public get isShowRecharge(): boolean {
         if (

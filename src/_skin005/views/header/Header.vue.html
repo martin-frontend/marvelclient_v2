@@ -1,7 +1,7 @@
 <v-sheet v-if="!$mobile" height="74" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
         <v-img v-if="!SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="42" :src="commonIcon.logo_m"></v-img>
-        <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="101" :src="commonIcon.logo"></v-img>
+        <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-0 mr-n4" max-width="112" max-height="42" :src="commonIcon.logo"></v-img>
 
         <v-sheet color="transparent">
             <v-sheet color="transparent" class="d-flex ml-4 head_btn_top">
@@ -85,7 +85,7 @@
             </template>
 
             <template v-else>
-                <btn-yellow class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+                <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
                 <btn-yellow
                     v-if="GlobalVar.instance.isShowRegiter"
                     class="ml-3 text-16"
@@ -107,13 +107,13 @@
 <!-- 手机版的显示 -->
 <v-app-bar v-else height="50" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center" :app="isShowHeader">
     <v-sheet class="d-flex align-center" color="transparent" width="100%">
-        <v-sheet color="transparent" class="d-flex">
+        <v-sheet color="transparent" class="d-flex align-center">
             <v-sheet color="transparent" @click="showNovPanel">
                 <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
             </v-sheet>
             <v-sheet color="transparent" @click="goHome">
                 <v-img v-if="!SkinVariable.isShowfullLogo" class="mr-2" max-width="36" :src="commonIcon.logo_m"></v-img>
-                <v-img v-else class="mr-2" max-width="87" :src="commonIcon.logo"></v-img>
+                <v-img v-else class="mx-n4" max-width="94" max-height="26" :src="commonIcon.logo"></v-img>
             </v-sheet>
         </v-sheet>
         <!-- <btn-yellow height="36" min_width="72"
@@ -144,7 +144,7 @@
         <!-- 未登录 -->
         <template v-else>
             <v-spacer style="min-width: 0" />
-            <btn-yellow class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+            <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
 
             <!-- <v-sheet color="transparent" class="btn_regi"> -->
             <btn-yellow

@@ -78,7 +78,7 @@
     .v-btn.v-btn--disabled {
         border: none !important;
         border-radius: unset;
-        border-bottom: 2px solid #ffcd43 !important;
+        border-bottom: 2px solid var(--yellow_color_1) !important;
         color: #0f1213 !important;
         font-family: "GOTHAM_BOLD";
         font-weight: 700;
@@ -91,7 +91,7 @@
     .v-btn:hover {
         border: none !important;
         border-radius: unset;
-        border-bottom: 2px solid #ffcd43 !important;
+        border-bottom: 2px solid var(--yellow_color_1) !important;
         color: #0f1213 !important;
         font-family: "GOTHAM_BOLD";
         font-weight: 700;
@@ -108,7 +108,7 @@
     .v-btn.v-btn--disabled {
         border: none !important;
         border-radius: unset;
-        border-bottom: 2px solid #ffcd43 !important;
+        border-bottom: 2px solid var(--yellow_color_1) !important;
         color: #fff !important;
         font-family: "GOTHAM_BOLD";
         font-weight: 700;
@@ -121,7 +121,7 @@
     .v-btn:hover {
         border: none !important;
         border-radius: unset;
-        border-bottom: 2px solid #ffcd43 !important;
+        border-bottom: 2px solid var(--yellow_color_1) !important;
         color: #fff !important;
         font-family: "GOTHAM_BOLD";
         font-weight: 700;

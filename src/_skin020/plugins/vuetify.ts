@@ -63,7 +63,7 @@ export function getVuetify(): Vuetify {
                         red: "#F64D55",
                         borderGameItem: "#BABABA",
                         bgButtonNav: "#1B1C1C",
-                        textGreen: "#41A81D",
+                        textGreen: "#fff",
                         borderColor: "#333435",
                         arrow_color: "#323232",
                         tips_color_bg: "#fff",

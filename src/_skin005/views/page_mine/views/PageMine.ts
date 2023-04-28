@@ -164,7 +164,7 @@ export default class PageMine extends AbstractView {
         return newNub;
     }
     transformMoney(val: any) {
-        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
 
     transformBackwater(val: any) {

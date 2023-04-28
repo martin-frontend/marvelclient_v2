@@ -85,7 +85,20 @@
             </template>
 
             <template v-else>
-                <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+                <btn-yellow class="ml-3 text-16" height="36" min_width="115" @click.native="onConnect">
+                    <svg-icon icon="wallet"></svg-icon>
+                    <span class="ml-2">{{LangUtil("链接钱包")}}</span>
+                </btn-yellow>
+
+                <btn-yellow
+                    v-if="GlobalVar.instance.isShowLogin"
+                    class="ml-3 text-16"
+                    height="36"
+                    min_width="72"
+                    @click.native="handlerLogin"
+                >
+                    {{LangUtil("登录")}}
+                </btn-yellow>
                 <btn-yellow
                     v-if="GlobalVar.instance.isShowRegiter"
                     class="ml-3 text-16"
@@ -99,11 +112,6 @@
                     <svg-icon class="text-24" icon="service"></svg-icon>
                 </v-btn>
             </template>
-
-            <v-btn v-if="core.user_id == 0" height="42" @click="onConnect" color="color_red_1" class="mr-4">
-                <svg-icon icon="wallet"></svg-icon>
-                <span class="ml-2">{{LangUtil("链接钱包")}}</span>
-            </v-btn>
         </v-sheet>
     </v-sheet>
 </v-sheet>
@@ -149,7 +157,15 @@
         <!-- 未登录 -->
         <template v-else>
             <v-spacer style="min-width: 0" />
-            <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+
+            <btn-yellow class="ml-3 text-14" height="30" min_width="90" @click.native="onConnect">
+                <svg-icon icon="wallet"></svg-icon>
+                <span class="ml-2">{{LangUtil("链接钱包")}}</span>
+            </btn-yellow>
+
+            <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin"
+                >{{LangUtil("登录")}}</btn-yellow
+            >
 
             <!-- <v-sheet color="transparent" class="btn_regi"> -->
             <btn-yellow
@@ -168,9 +184,9 @@
             </v-btn>
         </template>
 
-        <v-btn v-if="core.user_id == 0" @click="onConnect" color="color_red_1" class="mr-4" x-small>
+        <!-- <v-btn v-if="core.user_id == 0" @click="onConnect" color="color_red_1" class="mr-4" x-small>
             <svg-icon icon="wallet"></svg-icon>
             <span class="ml-2">{{LangUtil("链接钱包")}}</span>
-        </v-btn>
+        </v-btn> -->
     </v-sheet>
 </v-app-bar>

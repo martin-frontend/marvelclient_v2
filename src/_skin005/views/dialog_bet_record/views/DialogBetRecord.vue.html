@@ -753,7 +753,7 @@
                     <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"></div>
                     <div class="d-flex justify-space-between mt-2 mx-3">
                         <div class="leftText--text">{{LangUtil("投注时间")}}</div>
-                        <div class="text-truncate head_btn--text">{{item.bet_at}}</div>
+                        <div class="text-truncate head_btn--text">{{getDate(item.bet_at)}}</div>
                     </div>
                     <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"></div>
                     <div
@@ -761,7 +761,7 @@
                         v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_at"
                     >
                         <div class="leftText--text">{{LangUtil("结算时间")}}</div>
-                        <div class="text-truncate head_btn--text">{{item.settlement_at}}</div>
+                        <div class="text-truncate head_btn--text">{{getDate(item.settlement_at)}}</div>
                     </div>
                     <!-- <div class="line mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId"></div>
                     <div class="d-flex justify-end mt-2" v-if="item.vendor_id == GameConfig.config.SportVendorId">

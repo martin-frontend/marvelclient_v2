@@ -28,109 +28,153 @@ export default class Timezone {
 
     Init() {
         const saveItem = window.localStorage.getItem("timezoneitem") || "";
-        if (saveItem) this.curTimezoneItem = JSON.parse(saveItem);
+        if (saveItem) {
+            this.curTimezoneItem = JSON.parse(saveItem);
 
+            //老版本的兼容修复 防止 出错，因为老版本 保存的key值不正确
+            for (let index = 0; index < this.timezonename.length; index++) {
+                const element = this.timezonename[index];
+                if (element.value == this.curTimezoneItem.value) {
+                    this.curTimezoneItem = element;
+                    break;
+                }
+            }
+        }
+        //在列表中选择 与 之差距最小的那一个
         if (!this.curTimezoneItem) {
-            this.curTimezoneItem = this.timezonename[0];
+            //this.curTimezoneItem = this.timezonename[0];
+            const offsettime = this.getLocalTimezoneOffset();
+            console.log("当前时区偏差为", offsettime);
+            const nearItem = this.findClosestValue(offsettime);
+            console.log("查找到的最接近的对象为", nearItem);
         }
-        if (!this.curTimezoneItem.itemKey) {
-            this.curTimezoneItem.itemKey = moment.tz.guess(); // 自动识别本地时区
-        }
+
         this.curSelectIndex = this.curTimezoneItem.key;
+    }
+
+    findClosestValue(value: string) {
+        const targetMinutes = this.getMinutesFromOffset(value);
+        console.log("------------targetMinutes--------", targetMinutes);
+        let closest = null;
+        let closestDiff = Infinity;
+
+        for (let i = 0; i < this.timezonename.length; i++) {
+            const currentMinutes = this.getMinutesFromOffset(this.timezonename[i].key);
+            const diff = Math.abs(currentMinutes - targetMinutes);
+            if (diff < closestDiff) {
+                closest = this.timezonename[i];
+                closestDiff = diff;
+            }
+        }
+        if (!closest) {
+            closest = this.timezonename[0];
+        }
+        return closest;
+    }
+    /**转为分钟 */
+    getMinutesFromOffset(offset: string) {
+        const [hours, minutes] = offset.split(":").map(Number);
+        const sign = offset[0];
+        const totalMinutes = hours * 60 + minutes;
+        return sign === "+" ? totalMinutes : -totalMinutes;
     }
 
     setTimezone(val: timezoneItem) {
         this.curSelectIndex = val.key;
         this.curTimezoneItem = val;
         console.log("修改 事件区域---", this.curTimezoneItem);
+        console.log("--- 当前----选择的时区为为 ", this.timezoneOffset);
+
         window.localStorage.setItem("timezoneitem", JSON.stringify(this.curTimezoneItem));
     }
 
     get timezonename() {
-        //return moment.tz.names();
         if (!this._timezonename || this._timezonename.length < 1) {
             this._timezonename.push(
                 // { key: "-0", value: "", name: LangUtil("GMT-自动获取地区"), itemKey: "" },
-                { key: "-8", value: "GMT-8", name: LangUtil("GMT-8_desc"), itemKey: "America/Los_Angeles" },
-                { key: "-7", value: "GMT-7", name: LangUtil("GMT-7_desc"), itemKey: "America/Denver" },
-                { key: "-6", value: "GMT-6 ", name: LangUtil("GMT-6_desc"), itemKey: "America/Mexico_City" },
-                { key: "-5", value: "GMT-5 ", name: LangUtil("GMT-5_desc"), itemKey: "America/New_York" },
-                { key: "-4", value: "GMT-4 ", name: LangUtil("GMT-4_desc"), itemKey: "America/Halifax" },
-                { key: "-3", value: "GMT-3 ", name: LangUtil("GMT-3_desc"), itemKey: "America/Sao_Paulo" },
-                { key: "-2", value: "GMT-2 ", name: LangUtil("GMT-2_desc"), itemKey: "America/Noronha" },
-                { key: "-1", value: "GMT-1 ", name: LangUtil("GMT-1_desc"), itemKey: "Atlantic/Azores" },
+                { key: "-8:00", value: "GMT-8", name: LangUtil("GMT-8_desc"), itemKey: "America/Los_Angeles" },
+                { key: "-7:00", value: "GMT-7", name: LangUtil("GMT-7_desc"), itemKey: "America/Denver" },
+                { key: "-6:00", value: "GMT-6 ", name: LangUtil("GMT-6_desc"), itemKey: "America/Mexico_City" },
+                { key: "-5:00", value: "GMT-5 ", name: LangUtil("GMT-5_desc"), itemKey: "America/New_York" },
+                { key: "-4:00", value: "GMT-4 ", name: LangUtil("GMT-4_desc"), itemKey: "America/Thule" },
+                { key: "-3:00", value: "GMT-3 ", name: LangUtil("GMT-3_desc"), itemKey: "America/Sao_Paulo" },
+                { key: "-2:00", value: "GMT-2 ", name: LangUtil("GMT-2_desc"), itemKey: "America/Noronha" },
+                { key: "-1:00", value: "GMT-1 ", name: LangUtil("GMT-1_desc"), itemKey: "Atlantic/Azores" },
 
-                { key: "+0", value: "GMT+0", name: LangUtil("GMT+0_desc"), itemKey: "Europe/London" },
-                { key: "+1", value: "GMT+1 ", name: LangUtil("GMT+1_desc"), itemKey: "Europe/Paris" },
-                { key: "+2", value: "GMT+2 ", name: LangUtil("GMT+2_desc"), itemKey: "Europe/Istanbul" },
-                { key: "+3", value: "GMT+3 ", name: LangUtil("GMT+3_desc"), itemKey: "Europe/Moscow" },
+                { key: "+0:00", value: "GMT+0", name: LangUtil("GMT+0_desc"), itemKey: "Europe/London" },
+                { key: "+1:00", value: "GMT+1 ", name: LangUtil("GMT+1_desc"), itemKey: "Europe/Paris" },
+                { key: "+2:00", value: "GMT+2 ", name: LangUtil("GMT+2_desc"), itemKey: "Europe/Istanbul" },
+                { key: "+3:00", value: "GMT+3 ", name: LangUtil("GMT+3_desc"), itemKey: "Europe/Moscow" },
 
                 { key: "+3:30", value: "GMT+3:30 ", name: LangUtil("GMT+3-30_desc"), itemKey: "Asia/Tehran" },
-                { key: "+4", value: "GMT+4 ", name: LangUtil("GMT+4_desc"), itemKey: "Asia/Dubai" },
+                { key: "+4:00", value: "GMT+4 ", name: LangUtil("GMT+4_desc"), itemKey: "Asia/Dubai" },
                 { key: "+4:30", value: "GMT+4:30", name: LangUtil("GMT+4-30_desc"), itemKey: "Asia/Kabul" },
-                { key: "+5", value: "GMT+5 ", name: LangUtil("GMT+5_desc"), itemKey: "Asia/Karachi" },
+                { key: "+5:00", value: "GMT+5 ", name: LangUtil("GMT+5_desc"), itemKey: "Asia/Karachi" },
 
                 { key: "+5:30", value: "GMT+5:30", name: LangUtil("GMT+5-30_desc"), itemKey: "Asia/Colombo" },
                 { key: "+5:45", value: "GMT+5:45", name: LangUtil("GMT+5-45_desc"), itemKey: "Asia/Kolkata" },
-                { key: "+6", value: "GMT+6 ", name: LangUtil("GMT+6_desc"), itemKey: "Asia/Dhaka" },
+                { key: "+6:00", value: "GMT+6 ", name: LangUtil("GMT+6_desc"), itemKey: "Asia/Dhaka" },
                 { key: "+6:30", value: "GMT+6:30 ", name: LangUtil("GMT+6-30_desc"), itemKey: "Asia/Yangon" },
-                { key: "+7", value: "GMT+7 ", name: LangUtil("GMT+7_desc"), itemKey: "Asia/Bangkok" },
-                { key: "+8", value: "GMT+8 ", name: LangUtil("GMT+8_desc"), itemKey: "Asia/Shanghai" },
+                { key: "+7:00", value: "GMT+7 ", name: LangUtil("GMT+7_desc"), itemKey: "Asia/Bangkok" },
+                { key: "+8:00", value: "GMT+8 ", name: LangUtil("GMT+8_desc"), itemKey: "Asia/Shanghai" },
 
-                { key: "+9", value: "GMT+9 ", name: LangUtil("GMT+9_desc"), itemKey: "Asia/Tokyo" },
-                { key: "+10", value: "GMT+10 ", name: LangUtil("GMT+10_desc"), itemKey: "Australia/Sydney" },
-                { key: "+11", value: "GMT+11 ", name: LangUtil("GMT+11_desc"), itemKey: "Pacific/Noumea" },
-                { key: "+12", value: "GMT+12 ", name: LangUtil("GMT+12_desc"), itemKey: "Pacific/Auckland" },
+                { key: "+9:00", value: "GMT+9 ", name: LangUtil("GMT+9_desc"), itemKey: "Asia/Tokyo" },
+                { key: "+10:00", value: "GMT+10 ", name: LangUtil("GMT+10_desc"), itemKey: "Australia/Sydney" },
+                { key: "+11:00", value: "GMT+11 ", name: LangUtil("GMT+11_desc"), itemKey: "Pacific/Noumea" },
+                { key: "+12:00", value: "GMT+12 ", name: LangUtil("GMT+12_desc"), itemKey: "Pacific/Auckland" },
 
-                { key: "+13", value: "GMT+13 ", name: LangUtil("GMT+13_desc"), itemKey: "Pacific/Apia" },
-                { key: "+14", value: "GMT+14 ", name: LangUtil("GMT+14_desc"), itemKey: "Pacific/Kiritimati" }
+                { key: "+13:00", value: "GMT+13 ", name: LangUtil("GMT+13_desc"), itemKey: "Pacific/Apia" },
+                { key: "+14:00", value: "GMT+14 ", name: LangUtil("GMT+14_desc"), itemKey: "Pacific/Kiritimati" }
             );
-
-            this._timezonename.unshift({ key: "-0", value: "", name: moment.tz.guess(), itemKey: moment.tz.guess() });
         }
 
         return this._timezonename;
     }
-
+    /**返回 与标准时间之间的偏差量 例如 +5：30 */
     public get timezoneOffset(): string {
-        return this.getDiffTimezone(this.getLocalTimezoneString());
+        return this.curTimezoneItem.key;
     }
 
+    /**获取本地时间与 +0 时区 之间的时差 */
+    getLocalTimezoneOffset(): string {
+        const offsetMinutes = new Date().getTimezoneOffset();
+        const sign = offsetMinutes > 0 ? "-" : "+";
+        const absOffsetMinutes = Math.abs(offsetMinutes);
+        const hours = Math.floor(absOffsetMinutes / 60);
+        const minutes = absOffsetMinutes % 60;
+        return `${sign}${this.padZero(hours)}:${this.padZero(minutes)}`;
+    }
     /**
-     * 获取目标地区时间与标准美国时间的时间差 输出为：+4:30 这种
-     * @param location 目标地区的名字 例如 America/New_York
+     * 时间的加减   传入时间格式为 2023-04-29 12:05:45  传入 与这个时间之间的偏差 输出  计算之后的 时间
+     * @param timeStr 时间格式为 2023-04-29 12:05:45
+     * @param duration 传入时间之间的偏差 例如 +2：15
+     * @returns
      */
-    getDiffTimezone(location: string) {
-        const date = new Date();
-        const timeZone = moment.tz.zone(location);
-
-        if (!timeZone) {
-            return "Invalid timezone";
-        }
-        //@ts-ignore
-        const offsetInMinutes = timeZone.utcOffset(date);
-        const offsetHours = Math.floor(Math.abs(offsetInMinutes) / 60);
-        const offsetMinutes = Math.abs(offsetInMinutes) % 60;
-        const sign = offsetInMinutes < 0 ? "+" : "-";
-        // const sign = offsetInMinutes < 0 ? "-" : "+";
-        return `${sign}${offsetHours}:${offsetMinutes < 10 ? "0" : ""}${offsetMinutes}`;
+    addTime(timeStr: string, duration: string): string {
+        const [hours, minutes] = duration.split(":").map(Number);
+        const time = new Date(timeStr);
+        time.setHours(time.getHours() + hours);
+        time.setMinutes(time.getMinutes() + minutes);
+        const year = time.getFullYear();
+        const month = this.padZero(time.getMonth() + 1);
+        const day = this.padZero(time.getDate());
+        const hours24 = this.padZero(time.getHours());
+        const minutes24 = this.padZero(time.getMinutes());
+        const seconds24 = this.padZero(time.getSeconds());
+        return `${year}-${month}-${day} ${hours24}:${minutes24}:${seconds24}`;
+    }
+    /**时间补齐 00 */
+    padZero(n: number): string {
+        return n < 10 ? `0${n}` : `${n}`;
     }
 
     getLocalTimezoneString() {
-        //return moment.tz.guess(); // 自动识别本地时区
         if (!this.curTimezoneItem) {
             this.Init();
         }
         return this.curTimezoneItem.itemKey;
     }
-    convertTimezone(dateTimeString: string, targetTimezone: string, destTimezone: string): string {
-        //const sourceTimezone = moment.tz.guess(); // 自动识别本地时区
-        if (!dateTimeString) return dateTimeString; // 如果参数为空，返回 源数据
-        const sourceMoment = moment.tz(dateTimeString, destTimezone);
-        if (!sourceMoment.isValid()) return dateTimeString; // 如果日期时间无效，返回 源数据
-        const targetMoment = sourceMoment.clone().tz(targetTimezone);
-        return targetMoment.format("YYYY-MM-DD HH:mm:ss");
-    }
+
     /**
      * 将传入的时间 转换为 本地时间 输出   传入 例如2023-01-18 15:28:33
      * @param datetimeString 传入的 时间文本 例如 "2023-01-18 15:28:33"
@@ -140,7 +184,8 @@ export default class Timezone {
         if (!GameConfig.timezoneChange) {
             return datetimeString;
         }
-        return this.convertTimezone(datetimeString, this.getLocalTimezoneString(), "Asia/Shanghai");
+        const newdata = this.addTime(datetimeString, "-8:00");
+        return this.addTime(newdata, this.getLocalTimezoneString());
     }
     /**
      * 将输入的时间转换为北京时间，如果平台不需要转换时间 会返回 传入值
@@ -151,6 +196,7 @@ export default class Timezone {
         if (!GameConfig.timezoneChange) {
             return datetimeString;
         }
-        return this.convertTimezone(datetimeString, "Asia/Shanghai", this.getLocalTimezoneString());
+        const newdata = this.addTime(datetimeString, this.getLocalTimezoneString());
+        return this.addTime(newdata, "+8:00");
     }
 }

@@ -32,21 +32,15 @@ export default class Timezone {
             this.curTimezoneItem = JSON.parse(saveItem);
 
             //老版本的兼容修复 防止 出错，因为老版本 保存的key值不正确
-            for (let index = 0; index < this.timezonename.length; index++) {
-                const element = this.timezonename[index];
-                if (element.value == this.curTimezoneItem.value) {
-                    this.curTimezoneItem = element;
-                    break;
-                }
-            }
         }
         //在列表中选择 与 之差距最小的那一个
-        if (!this.curTimezoneItem) {
+        if (!this.curTimezoneItem || !this.curTimezoneItem.value) {
             //this.curTimezoneItem = this.timezonename[0];
             const offsettime = this.getLocalTimezoneOffset();
             console.log("当前时区偏差为", offsettime);
             const nearItem = this.findClosestValue(offsettime);
             console.log("查找到的最接近的对象为", nearItem);
+            this.curTimezoneItem = nearItem;
         }
 
         this.curSelectIndex = this.curTimezoneItem.key;
@@ -74,18 +68,23 @@ export default class Timezone {
     /**转为分钟 */
     getMinutesFromOffset(offset: string) {
         const [hours, minutes] = offset.split(":").map(Number);
-        const sign = offset[0];
-        const totalMinutes = hours * 60 + minutes;
-        return sign === "+" ? totalMinutes : -totalMinutes;
+        const sign = offset[0] === "+" ? 1 : -1;
+        const totalMinutes = Math.abs(hours * 60) + minutes;
+        return totalMinutes * sign;
     }
 
     setTimezone(val: timezoneItem) {
         this.curSelectIndex = val.key;
-        this.curTimezoneItem = val;
-        console.log("修改 事件区域---", this.curTimezoneItem);
-        console.log("--- 当前----选择的时区为为 ", this.timezoneOffset);
-
-        window.localStorage.setItem("timezoneitem", JSON.stringify(this.curTimezoneItem));
+        if (this.curTimezoneItem != val) {
+            this.curTimezoneItem = val;
+            console.log("修改 事件区域---", this.curTimezoneItem);
+            console.log("--- 当前----选择的时区为为 ", this.timezoneOffset);
+            window.localStorage.setItem("timezoneitem", JSON.stringify(this.curTimezoneItem));
+            return true;
+        }
+        return false;
+        //this.curTimezoneItem = val;
+        //window.localStorage.setItem("timezoneitem", JSON.stringify(this.curTimezoneItem));
     }
 
     get timezonename() {
@@ -172,7 +171,7 @@ export default class Timezone {
         if (!this.curTimezoneItem) {
             this.Init();
         }
-        return this.curTimezoneItem.itemKey;
+        return this.curTimezoneItem.key;
     }
 
     /**

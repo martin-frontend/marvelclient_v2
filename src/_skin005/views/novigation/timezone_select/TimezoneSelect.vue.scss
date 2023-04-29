@@ -22,7 +22,7 @@
 }
 
 .listitem {
-    height: 41px;
+    min-height: 41px;
     color: #8e8f91;
 }
 
@@ -43,4 +43,6 @@
 .menutestclass {
     border-radius: 10px;
     max-height: calc(100vh - 80px);
+    //max-width: calc(50vw);
+    max-width: calc(100vw - 240px);
 }

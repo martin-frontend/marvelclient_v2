@@ -25,14 +25,16 @@ export default class TimezoneSelect extends AbstractView {
 
     mounted() {}
     private onChange(value: any) {
-        this.Timezone.setTimezone(value);
+        const ischange = this.Timezone.setTimezone(value);
         if (
             this.$route.path.includes("page_game_play") ||
             this.$route.path.includes("page_game_soccer") ||
             this.$route.path.includes("cricket")
         ) {
-            const gameProxy: GameProxy = this.getProxy(GameProxy);
-            gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+            if (ischange) {
+                const gameProxy: GameProxy = this.getProxy(GameProxy);
+                gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+            }
         }
         //Timezone.Instance.curTimezoneItem = value;
     }

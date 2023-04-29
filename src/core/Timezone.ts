@@ -202,7 +202,14 @@ export default class Timezone {
         if (!GameConfig.timezoneChange) {
             return datetimeString;
         }
-        const newdata = this.addTime(datetimeString, this.getLocalTimezoneString());
+        let newstr = this.getLocalTimezoneString();
+        if (newstr[0] === "-") {
+            newstr = newstr.replace(/-/g, "+");
+        } else {
+            newstr = newstr.replace(/\+/g, "-");
+        }
+        //console.log(" 修改之后的 ---" ,newstr);
+        const newdata = this.addTime(datetimeString, newstr);
         return this.addTime(newdata, "+8:00");
     }
 }

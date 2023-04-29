@@ -120,6 +120,7 @@ import PageStatisticeCreditProxy from "@/_skin005/views/page_statistice_credit/p
 import dialog_swap_record from "@/_skin005/views/dialog_swap_record";
 import dialog_bonus_ranking from "@/_skin005/views/dialog_bonus_ranking";
 import dialog_performance_detail from "@/_skin005/views/dialog_performance_detail";
+import dialog_timezone from "@/_skin005/views/dialog_timezone";
 
 import dialog_get_verity from "@/_skin005/views/dialog_get_verity";
 import DialogGetVerityProxy from "@/_skin005/views/dialog_get_verity/proxy/DialogGetVerityProxy";
@@ -725,6 +726,12 @@ export default class PanelUtil {
     static openpanel_recharge_qrcode(data: any, isImg: boolean = false) {
         MultDialogManager.onOpenPanel(dialog_recharge_qrcode);
         dialog_recharge_qrcode.show(data, isImg);
+    }
+
+    /**打开 时区选择界面 */
+    static openpanel_timezone() {
+        MultDialogManager.onOpenPanel(dialog_timezone);
+        dialog_timezone.show();
     }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {

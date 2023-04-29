@@ -5,6 +5,7 @@ import Assets from "@/_skin005/assets/Assets";
 import PageBlur from "@/_skin005/core/PageBlur";
 import Timezone from "@/core/Timezone";
 import GameProxy from "@/proxy/GameProxy";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class TimezoneSelect extends AbstractView {
@@ -24,6 +25,9 @@ export default class TimezoneSelect extends AbstractView {
     }
 
     mounted() {}
+    onClick() {
+        PanelUtil.openpanel_timezone();
+    }
     private onChange(value: any) {
         const ischange = this.Timezone.setTimezone(value);
         if (

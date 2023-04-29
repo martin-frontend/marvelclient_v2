@@ -3,8 +3,20 @@
         <v-sheet class="d-flex align-center" :height="$mobile ? 70 : 74" @click="onMiniChange" color="transparent">
             <div class="d-flex align-center box">
                 <svg-icon icon="menu" class="text-22"></svg-icon>
-                <v-img v-if="!mini && !SkinVariable.isShowfullLogo" class="ml-2" :src="commonIcon.logo" max-width="112" max-height="42"></v-img>
-                <v-img v-if="!mini && SkinVariable.isShowfullLogo" class="mx-n2" :src="commonIcon.logo" max-width="94" max-height="26"></v-img>
+                <v-img
+                    v-if="!mini && !SkinVariable.isShowfullLogo"
+                    class="ml-2"
+                    :src="commonIcon.logo"
+                    max-width="112"
+                    max-height="42"
+                ></v-img>
+                <v-img
+                    v-if="!mini && SkinVariable.isShowfullLogo"
+                    class="mx-n2"
+                    :src="commonIcon.logo"
+                    max-width="94"
+                    max-height="26"
+                ></v-img>
             </div>
         </v-sheet>
 
@@ -103,17 +115,6 @@
 
             <!-- <div class="d-flex flex-column mt-auto mb-0"> -->
             <div class="d-flex flex-column mb-0">
-                <v-sheet v-if="GameConfig.timezoneChange" class="d-flex align-center" height="50" color="transparent">
-                    <TimezoneSelect
-                       
-                        :icons="LangConfig.language"
-                        :fontSize="$mobile ? 14 : 14"
-                        :iconSize="20"
-                        :mini="mini"
-                        class="lang"
-                    />
-                </v-sheet>
-
                 <v-sheet class="d-flex align-center" height="50" color="transparent">
                     <LangSelect
                         v-model="core.lang"
@@ -125,7 +126,9 @@
                         class="lang"
                     />
                 </v-sheet>
-
+                <v-sheet v-if="GameConfig.timezoneChange" class="d-flex align-center" height="50" color="transparent">
+                    <TimezoneSelect :icons="LangConfig.language" :fontSize="$mobile ? 14 : 14" :iconSize="20" :mini="mini" class="lang" />
+                </v-sheet>
                 <div class="com-theme">
                     <v-sheet class="d-flex align-center" height="50" width="100%" color="transparent">
                         <LightDark :mini="mini" @onChange="onLightChange" />

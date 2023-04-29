@@ -32,6 +32,13 @@ export default class Timezone {
             this.curTimezoneItem = JSON.parse(saveItem);
 
             //老版本的兼容修复 防止 出错，因为老版本 保存的key值不正确
+            for (let index = 0; index < this.timezonename.length; index++) {
+                const element = this.timezonename[index];
+                if (element.value == this.curTimezoneItem.value && element.key != this.curTimezoneItem.key) {
+                    this.curTimezoneItem = element;
+                    break;
+                }
+            }
         }
         //在列表中选择 与 之差距最小的那一个
         if (!this.curTimezoneItem || !this.curTimezoneItem.value) {

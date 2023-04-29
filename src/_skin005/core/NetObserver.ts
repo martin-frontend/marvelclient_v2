@@ -57,6 +57,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_game_category,
             net.EventType.api_user_var_event_record,
             net.EventType.api_user_var_event_record_update,
+            net.EventType.api_user_third_login,
         ];
     }
 

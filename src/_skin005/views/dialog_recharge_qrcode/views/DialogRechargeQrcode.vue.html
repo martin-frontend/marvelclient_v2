@@ -11,7 +11,7 @@
                 <div ref="box" class="d-flex align-center justify-center cursor-pointer" @click="showPreview">
                     <img ref="img" :src="pageData.img_url" width="120" />
                 </div>
-                <v-sheet v-if="pageData.data.type == 2" color="transparent" class="d-flex align-center justify-center mt-6" width="100%">
+                <v-sheet color="transparent" class="d-flex align-center justify-center mt-6" width="100%">
                     <btn-yellow class="text-16 ml-2" min_width="104" height="36" @click.native="copyQRcore"
                         >{{LangUtil("复制QR码")}}</btn-yellow
                     >
@@ -109,7 +109,7 @@
                     </v-btn>
                 </v-sheet> -->
             </v-card>
-            <v-sheet v-if="pageData.data.type == 2" color="transparent" class="d-flex align-center justify-center mt-4" width="100%">
+            <v-sheet color="transparent" class="d-flex align-center justify-center mt-4" width="100%">
                 <btn-yellow class="text-16 ml-2" min_width="100%" height="36" @click.native="copyQRcore"
                     >{{LangUtil("复制QR码")}}</btn-yellow
                 >

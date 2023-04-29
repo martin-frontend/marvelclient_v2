@@ -28,7 +28,7 @@
         <div class="primary--text font-weight-bold text-16 mt-4">{{LangUtil("选择支付通道")}}</div>
         <v-sheet class="d-flex flex-wrap mt-2" color="transparent" width="100%">
             <v-row>
-                <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                <!-- <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
                     <btn-yellow
                         class="my-2"
                         min_width="100%"
@@ -38,6 +38,19 @@
                         @click.native="onChange2(key)"
                     >
                         <span>{{item.name}}</span>
+                    </btn-yellow>
+                </v-col> -->
+
+                <v-col v-for="(item, key) of brlOptions" :key="key">
+                    <btn-yellow
+                        class="my-2"
+                        min_width="100%"
+                        height="36"
+                        :btn_type="10"
+                        :disabled="form.block_network_id==item"
+                        @click.native="onChange2(item)"
+                    >
+                        <span>{{pageData.methodList[form.coin_name_unique].options[item].name}}</span>
                     </btn-yellow>
                 </v-col>
             </v-row>
@@ -258,7 +271,7 @@
         <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("选择支付通道")}}</div>
         <div class="d-flex flex-wrap mt-4">
             <v-row>
-                <v-col cols="6" v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                <!-- <v-col cols="6" v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
                     <btn-yellow
                         class="mb-2"
                         min_width="100%"
@@ -268,6 +281,18 @@
                         @click.native="onChange2(key)"
                     >
                         <span class="text-12">{{item.name}}</span>
+                    </btn-yellow>
+                </v-col> -->
+                <v-col cols="6" v-for="(item, key) of brlOptions" :key="key">
+                    <btn-yellow
+                        class="mb-2"
+                        min_width="100%"
+                        height="30"
+                        :btn_type="10"
+                        :disabled="form.block_network_id==item"
+                        @click.native="onChange2(item)"
+                    >
+                        <span class="text-12">{{pageData.methodList[form.coin_name_unique].options[item].name}}</span>
                     </btn-yellow>
                 </v-col>
             </v-row>
@@ -358,23 +383,23 @@
             </v-card>
             <div class="d-flex flex-wrap my-4">
                 <v-row dense>
-                    <v-col cols="4" v-for="(item, index) of getPaymethod6_fixed_gold_list()" :key="index" >
-                <btn-yellow
-
-                    class="mb-2"
-                    min_width="100%"
-                    height="46"
-                    :btn_type="10"
-                    :disabled="pageData.gold_index==index && form.amount==item"
-                    @click.native="onGoldClick(index,item)"
-                >
-                    <span class="text-14">
-                        <span class="text-12">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span>
-                    <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
-                        <svg-icon icon="select" class="ml-2 text-14" />
-                    </span>
-                </btn-yellow>
-                </v-col>
+                    <v-col cols="4" v-for="(item, index) of getPaymethod6_fixed_gold_list()" :key="index">
+                        <btn-yellow
+                            class="mb-2"
+                            min_width="100%"
+                            height="46"
+                            :btn_type="10"
+                            :disabled="pageData.gold_index==index && form.amount==item"
+                            @click.native="onGoldClick(index,item)"
+                        >
+                            <span class="text-14">
+                                <span class="text-12">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span
+                            >
+                            <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
+                                <svg-icon icon="select" class="ml-2 text-14" />
+                            </span>
+                        </btn-yellow>
+                    </v-col>
                 </v-row>
             </div>
         </div>

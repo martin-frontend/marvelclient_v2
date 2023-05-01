@@ -97,6 +97,48 @@ window["vueInit"] = () => {
         vuetify,
         render: (h) => h(App),
     }).$mount("#app");
+
+    const Whisper_client_id: string = "EJpX-56Pou5psx11Uxo1ZQ"; //这个跟 web得 不一样
+    const Whisper_redirect_uri: string = "https://all.testjj9.com/coinfans/skin020/redirect.html";
+
+    // 检测是否再 whisper 钱包内打开应用 用这个来判断
+    //@ts-ignore
+    const whisper = window["Whisper"];
+    if (whisper) {
+        whisper.init({
+            client_id: Whisper_client_id,
+            redirect_uri: Whisper_redirect_uri,
+        });
+        const ret = whisper.isInitialized();
+        if (ret) {
+            whisper.request({
+                event: "connect-wallet",
+                data: { response_type: "code" },
+                callback: WhisperCallback,
+                onError: WhisperCallbackOnError,
+            });
+        } else {
+            console.error("Whisper init faild." + ret);
+            //core.notify2view("Whisper init faild." + ret);
+        }
+    } else {
+        const timer = setInterval(() => {
+            const code = window.localStorage.getItem("code");
+            if (code) {
+                onWhisperLogin(code);
+                clearInterval(timer);
+            }
+        }, 2000);
+    }
+
+    //
+    function WhisperCallback(payload: any) {
+        onWhisperLogin(payload["code"],2);
+    }
+    //
+    function WhisperCallbackOnError(err: any) {
+        alert(JSON.stringify(err));
+    }
 };
 
 AppFacade.inst.startup();
@@ -118,15 +160,16 @@ window.onload = function () {
 };
 //只要黑夜主题
 Vue.vuetify.framework.theme.dark = true;
-//获取钱包回调返回的code
-const timer = setInterval(() => {
-    const code = window.localStorage.getItem("code");
+
+function onWhisperLogin(code: any,type:number = 1) {
+    PanelUtil.message_info("code:" + code);
     if (code) {
         window.localStorage.removeItem("code");
         puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_third_login, {
             plat_id: core.plat_id,
             channel_id: core.channel_id,
             code,
+            type:type,
         });
     }
-}, 2000);
+}

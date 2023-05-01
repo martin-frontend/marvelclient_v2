@@ -25,6 +25,7 @@ export default class PageMine extends AbstractView {
     private xsOnly = false;
     private progressLinear = 6;
     gameProxy = PanelUtil.getProxy_gameproxy;
+    commonIcon = Assets.commonIcon;
     constructor() {
         super(PageMineMediator);
     }

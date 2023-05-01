@@ -152,11 +152,11 @@
             <v-col cols="6" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <!-- 标题 -->
-                    <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} {{item.key}}</v-sheet>
+                    <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}}</v-sheet>
                     <v-sheet color="transparent" class="py-1">
                         <CustomInput
                             class=""
-                            :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                            :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
                             @blur="onBlurInput(item)"
                             v-model="item.inputValue"
                         >
@@ -374,7 +374,7 @@
                     <v-sheet color="transparent" class="py-1">
                         <CustomInput
                             class=""
-                            :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                            :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
                             @blur="onBlurInput(item)"
                             v-model="item.inputValue"
                         >

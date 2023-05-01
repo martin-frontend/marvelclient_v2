@@ -74,6 +74,19 @@
                     <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                 </v-btn>
             </v-sheet>
+
+            <v-sheet
+                class="rounded-lg ml-3 mt-4"
+                width="100"
+                min-width="100"
+                height="100"
+                color="white"
+                v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
+            >
+                <div ref="qrcode" class="qrcode" @click="showPreview">
+                    <v-img :src="pageData.qrcode"></v-img>
+                </div>
+            </v-sheet>
         </div>
         <!-- okpay topay -->
         <div
@@ -198,35 +211,10 @@
         <v-sheet color="transparent" class="mt-4">
             <div class="primary--text mt-4 font-weight-bold text-16">{{LangUtil("充值通道说明")}}</div>
             <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent">
-                <template v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
-                    <div class="d-flex">
-                        <!-- <span class="mr-1">⚠️</span> -->
-                        <div class="textGray--text">
-                            <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
-                        </div>
-                    </div>
-                    <v-spacer />
-                    <v-sheet
-                        class="rounded-lg ml-3"
-                        width="100"
-                        min-width="100"
-                        height="100"
-                        color="white"
-                        v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-                    >
-                        <div ref="qrcode" class="qrcode" @click="showPreview">
-                            <v-img :src="pageData.qrcode"></v-img>
-                        </div>
-                    </v-sheet>
-                </template>
-                <template v-else>
-                    <div class="d-flex">
-                        <!-- <span class="mr-1">⚠️</span> -->
-                        <div class="textGray--text">
-                            <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
-                        </div>
-                    </div>
-                </template>
+                <!-- <span class="mr-1">⚠️</span> -->
+                <div class="textGray--text">
+                    <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
+                </div>
             </v-sheet>
         </v-sheet>
     </v-card>
@@ -238,7 +226,9 @@
                 <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
             </div>
         </v-sheet>
-        <btn-yellow class="ml-auto text-16" min_width="104" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+        <template v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4">
+            <btn-yellow class="ml-auto text-16" min_width="104" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+        </template>
     </v-sheet>
 </v-card>
 <!-- 手机版 -->
@@ -471,7 +461,14 @@
         </v-sheet>
     </v-sheet>
 
-    <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex mt-4 mb-16">
+    <v-sheet
+        v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4"
+        id="animbtn"
+        ref="animbtn"
+        color="transparent"
+        width="100%"
+        class="d-flex mt-4 mb-16"
+    >
         <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
     </v-sheet>
 </v-card>

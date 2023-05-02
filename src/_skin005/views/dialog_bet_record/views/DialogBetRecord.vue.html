@@ -380,29 +380,41 @@
                                 ({{item.game_info.state.goals_ft}})
                             </span>
                             <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
-                            <span class="ml-2">{{item.game_info.content}}</span>
+                            <span class="ml-2">{{getOrderTitle(item.game_info)}}</span>
+                            <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span>
                             <span class="ml-2 font-weight-bold">@{{item.game_info.odds }}</span>
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
                                 <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
                             </div>
                         </div>
-                        <div class="detail mt-1 black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
+                        <div class="d-flex detail mt-1 black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
                             <svg-icon class="mx-1" icon="cricket_1"></svg-icon>
                             {{item.game_info.marketName}}
-                            <template v-if="item.game_info.handicap && item.game_info.handicap!=0">
-                                <span class="ml-2">{{LangUtil("Line:")}}</span>
-                                <span class="font-weight-bold ml-2">{{item.game_info.handicap }}</span>
-                            </template>
-                            <span class="ml-2"
-                                >{{LangUtil("选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span></span
-                            >
-                            <span class="ml-2" v-if="item.game_info.marketName == 'Match Odds'">
-                                {{LangUtil("类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
-                            </span>
                             <span class="ml-2">
-                                {{LangUtil(getCricketPriceTitle(item))}}
-                                <span class="font-weight-bold">{{getCricketPrice(item)}}</span>
+                                {{LangUtil("板球选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
+                            </span>
+                            <span class="ml-2" v-if="item.game_info.type == 2">
+                                {{LangUtil("板球类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
+                            </span>
+
+                            <template v-if="item.game_info.resultType == 'Line'">
+                                <span class="ml-2">{{LangUtil("板球line:")}}</span>
+                                <span class="font-weight-bold">{{item.game_info.handicap }}</span>
+                            </template>
+
+                            <span class="ml-2" v-if="item.game_info.priceMatched == 0">
+                                {{LangUtil("板球订单价格:")}}
+                                <span class="font-weight-bold">{{item.game_info.price}}</span>
+                            </span>
+                            <span class="ml-2" v-else>
+                                {{LangUtil("板球成交价格:")}}
+                                <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                            </span>
+                            <v-spacer />
+                            <span class="ml-2">
+                                {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                cricketSwapStatus[item.game_info.status]}}
                             </span>
                         </div>
                     </v-sheet>
@@ -788,7 +800,8 @@
 
                             <div>
                                 <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
-                                <span class="mr-2 div-block">{{item.game_info.content}} </span>
+                                <span class="mr-2 div-block">{{getOrderTitle(item.game_info)}} </span>
+                                <span class="mr-2" v-if="item.game_info.handicap == '0.00'">0</span>
                                 <span class="div-block">@{{item.game_info.odds }}</span>
                             </div>
                         </div>
@@ -800,22 +813,33 @@
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
                         <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="cricket_1"></svg-icon>
                         <div style="width: 100%">
-                            <div class="d-flex">
-                                <div style="width: calc(100vw - 160px)" class="text-truncate">{{item.game_info.marketName}}</div>
-                                <v-spacer />
-                                <template v-if="item.game_info.handicap && item.game_info.handicap!=0">
-                                    <span class="ml-2">{{LangUtil("Line:")}}</span>
-                                    <span class="font-weight-bold ml-1 mr-2">{{item.game_info.handicap }}</span>
-                                </template>
-                            </div>
-
+                            <div>{{item.game_info.marketName}}</div>
                             <div>
-                                {{LangUtil("选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
-                                <span class="mx-2" v-if="item.game_info.marketName == 'Match Odds'">
-                                    {{LangUtil("类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
+                                <span class="mr-2 div-block">
+                                    {{LangUtil("板球选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
                                 </span>
-                                {{LangUtil(getCricketPriceTitle(item))}}
-                                <span class="font-weight-bold">{{getCricketPrice(item)}}</span>
+                                <span class="mr-2 div-block" v-if="item.game_info.type == 2">
+                                    {{LangUtil("板球类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
+                                </span>
+
+                                <span class="mr-2 div-block" v-if="item.game_info.resultType == 'Line'">
+                                    {{LangUtil("板球line:")}}
+                                    <span class="font-weight-bold">{{item.game_info.handicap }}</span>
+                                </span>
+
+                                <span class="mr-2 div-block" v-if="item.game_info.priceMatched == 0">
+                                    {{LangUtil("板球订单价格:")}}
+                                    <span class="font-weight-bold">{{item.game_info.price}}</span>
+                                </span>
+                                <span class="mr-2 div-block" v-else>
+                                    {{LangUtil("板球成交价格:")}}
+                                    <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                                </span>
+
+                                <span class="mr-2 div-block">
+                                    {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                    cricketSwapStatus[item.game_info.status]}}
+                                </span>
                             </div>
                         </div>
                     </div>

@@ -29,15 +29,15 @@ export default class APP extends AbstractView {
     }
     created() {
         const isM = !!isMobile();
-        window.addEventListener("resize", this.onResize);
+        // window.addEventListener("resize", this.onResize);
         this.onResize();
     }
 
     onResize() {
         const isM = !!isMobile();
+        // PanelUtil.message_alert(navigator.userAgent);
         if (isM) {
-            const { width, height } = Vue.vuetify.framework.breakpoint;
-            window.$mobile = Vue.prototype.$mobile = width < 1200 && height < 1200;
+            window.$mobile = Vue.prototype.$mobile = this.$vuetify.breakpoint.mobile;
         } else {
             window.$mobile = Vue.prototype.$mobile = false;
         }

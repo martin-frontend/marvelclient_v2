@@ -337,4 +337,15 @@ export default class RechargeTypeCommon extends AbstractView {
     }
 
     brlOptions = <any>[];
+
+    /**奖励的金额 */
+    public bouns_value(idx: number): string {
+        const { coin_name_unique, block_network_id, third_id } = this.form;
+        const options = this.pageData.methodList[coin_name_unique].options[block_network_id];
+
+        if (options && options.gift_amount_list && options.gift_amount_list.length > 0) {
+            return options.gift_amount_list[idx];
+        }
+        return "";
+    }
 }

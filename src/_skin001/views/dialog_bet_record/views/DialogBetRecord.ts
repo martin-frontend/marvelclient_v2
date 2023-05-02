@@ -238,21 +238,61 @@ export default class DialogBetRecord extends AbstractView {
         dialog_order.show(data);
     }
     getMoneyColor(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
+
+        if (!str) return "";
+        let amount = 0;
+        if (typeof str == "string") {
+            const newstr = str.replace("$", "");
+            amount = Number(newstr);
+        } else {
+            amount = str;
+        }
         if (amount == 0) {
             return "";
         }
-        return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
+        if (amount < 0) {
+            return "red--text";
+        } else if (amount > 0) {
+            return "colorGreen--text";
+        }
+        return "";
+
+        // const newstr = str.replace("$", "");
+        // const amount = Number(newstr);
+        // if (amount == 0) {
+        //     return "";
+        // }
+        // return !!str && str.search("-") == -1 ? "colorGreen--text" : "red--text";
     }
     getMoneyValue(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
+        if (!str) return str;
+        let amount = 0;
+        if (typeof str == "string") {
+            const newstr = str.replace("$", "");
+            amount = Number(newstr);
+            if (!amount) return str;
+        } else {
+            amount = str;
+        }
         if (amount == 0) {
             return str;
         }
-        if (!!str && str.search("-") == -1) return "+" + str;
-        return str;
+        let newstr = str;
+        if (typeof str == "number") {
+            newstr = str + "";
+        }
+    
+        //console.log("--计算的结果",newstr);
+        if (!!newstr && newstr.search("-") == -1) return "+" + newstr;
+        return newstr;
+
+        // const newstr = str.replace("$", "");
+        // const amount = Number(newstr);
+        // if (amount == 0) {
+        //     return str;
+        // }
+        // if (!!str && str.search("-") == -1) return "+" + str;
+        // return str;
     }
     //筛选按钮点击
     onFilterBtnClick() {

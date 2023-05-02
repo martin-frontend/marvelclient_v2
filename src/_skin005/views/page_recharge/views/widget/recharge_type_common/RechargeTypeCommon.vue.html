@@ -163,10 +163,23 @@
                             :disabled="pageData.gold_index==index && form.amount==item"
                             @click.native="onGoldClick(index,item)"
                         >
+                            <v-sheet
+                                v-if="bouns_value(index)"
+                                :color="(pageData.gold_index==index && form.amount==item) ? 'textYellow' : 'copy_icon'"
+                                class="px-1 tips_money text-12 d-flex justify-center align-center"
+                                min-width="80"
+                            >
+                                +{{bouns_value(index)}}
+                            </v-sheet>
+                            <v-sheet v-if="bouns_value(index)" color="transparent" height="14"></v-sheet>
                             <span class="text-16">
                                 <span class="text-14">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span
                             >
-                            <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
+                            <span
+                                v-if="pageData.gold_index==index && form.amount==item"
+                                class="select_class"
+                                :class="bouns_value(index) ? 'mt-1' : ''"
+                            >
                                 <svg-icon icon="select" class="mr-0 mt-1 text-14" />
                             </span>
                         </btn-yellow>
@@ -260,22 +273,10 @@
     <template v-if="isShowOptions">
         <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("选择支付通道")}}</div>
         <div class="d-flex flex-wrap mt-4">
-            <v-row>
-                <!-- <v-col cols="6" v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
-                    <btn-yellow
-                        class="mb-2"
-                        min_width="100%"
-                        height="30"
-                        :btn_type="10"
-                        :disabled="form.block_network_id==key"
-                        @click.native="onChange2(key)"
-                    >
-                        <span class="text-12">{{item.name}}</span>
-                    </btn-yellow>
-                </v-col> -->
+            <v-row dense>
                 <v-col cols="6" v-for="(item, key) of brlOptions" :key="key">
                     <btn-yellow
-                        class="mb-2"
+                        class="mb-0"
                         min_width="100%"
                         height="30"
                         :btn_type="10"
@@ -363,7 +364,7 @@
                 <v-row>
                     <v-col cols="12">
                         <v-card flat color="transparent">
-                            <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                            <div class="text-14 primary--text font-weight-bold mb-2 mt-2">{{LangUtil("输入金额")}}</div>
                             <v-sheet color="transparent" width="100%" class="d-flex input_pc">
                                 <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"></CustomInput>
                             </v-sheet>
@@ -382,10 +383,24 @@
                             :disabled="pageData.gold_index==index && form.amount==item"
                             @click.native="onGoldClick(index,item)"
                         >
-                            <span class="text-14">
+                            <v-sheet
+                                v-if="bouns_value(index)"
+                                :color="(pageData.gold_index==index && form.amount==item) ? 'textYellow' : 'copy_icon'"
+                                class="px-1 tips_money text-12 d-flex justify-center align-center"
+                                min-width="60"
+                            >
+                                +{{bouns_value(index)}}
+                            </v-sheet>
+                            <v-sheet v-if="bouns_value(index)" color="transparent" class=" " height="14"></v-sheet>
+
+                            <span class="text-14" color="transparent">
                                 <span class="text-12">{{GamePlatConfig.getcoin_symbol(form.coin_name_unique)}}</span> {{item}}</span
                             >
-                            <span v-if="pageData.gold_index==index && form.amount==item" class="select_class">
+                            <span
+                                v-if="pageData.gold_index==index && form.amount==item"
+                                class="select_class"
+                                :class="bouns_value(index) ? 'mt-1' : ''"
+                            >
                                 <svg-icon icon="select" class="ml-2 text-14" />
                             </span>
                         </btn-yellow>

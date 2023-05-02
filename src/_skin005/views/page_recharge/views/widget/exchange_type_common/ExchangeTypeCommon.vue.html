@@ -242,7 +242,7 @@
                 <v-sheet color="transparent" width="100%" class="d-flex">
                     <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
-                    <btn-yellow class="text-16 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
+                    <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
                         ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
                     >
                 </v-sheet>
@@ -441,6 +441,6 @@
     </v-sheet>
 
     <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex mt-4 mb-16">
-        <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit">{{LangUtil("提交")}}</btn-yellow>
+        <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSubmit">{{LangUtil("提交")}}</btn-yellow>
     </v-sheet>
 </v-card>

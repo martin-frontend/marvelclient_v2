@@ -381,7 +381,7 @@
                             </span>
                             <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
                             <span class="ml-2">{{getOrderTitle(item.game_info)}}</span>
-                            <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span>
+                            <!-- <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
                             <span class="ml-2 font-weight-bold">@{{item.game_info.odds }}</span>
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
@@ -801,7 +801,7 @@
                             <div>
                                 <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
                                 <span class="mr-2 div-block">{{getOrderTitle(item.game_info)}} </span>
-                                <span class="mr-2" v-if="item.game_info.handicap == '0.00'">0</span>
+                                <!-- <span class="mr-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
                                 <span class="div-block">@{{item.game_info.odds }}</span>
                             </div>
                         </div>

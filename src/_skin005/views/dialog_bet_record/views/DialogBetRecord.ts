@@ -15,11 +15,13 @@ import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
+import exportOrder from "@/core/global/OrderTitleUtils";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
 
+    getOrderTitle = exportOrder.getOrderTitle;
     GameConfig = GameConfig;
     CategoryIcon = Assets.CategoryIcon;
     commonIcon = Assets.commonIcon;

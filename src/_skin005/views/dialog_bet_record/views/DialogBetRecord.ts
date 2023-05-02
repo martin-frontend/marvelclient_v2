@@ -15,11 +15,13 @@ import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
+import exportOrder from "@/core/global/OrderTitleUtils";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
     LangUtil = LangUtil;
 
+    getOrderTitle = exportOrder.getOrderTitle;
     GameConfig = GameConfig;
     CategoryIcon = Assets.CategoryIcon;
     commonIcon = Assets.commonIcon;
@@ -52,6 +54,30 @@ export default class DialogBetRecord extends AbstractView {
             },
         ],
     };
+    /**板球固赔状态 */
+    get cricketFixedStatus() {
+        return {
+            0: LangUtil("板球订单状态0"),
+            1: LangUtil("板球订单状态1"),
+            2: LangUtil("板球订单状态2"),
+            3: LangUtil("板球订单状态3"),
+            4: LangUtil("板球订单状态4"),
+            5: LangUtil("板球订单状态5"),
+            6: LangUtil("板球订单状态6"),
+        };
+    }
+    /**板球交易所状态 */
+    get cricketSwapStatus() {
+        return {
+            0: LangUtil("板球交易所订单状态0"),
+            1: LangUtil("板球交易所订单状态1"),
+            2: LangUtil("板球交易所订单状态2"),
+            3: LangUtil("板球交易所订单状态3"),
+            4: LangUtil("板球交易所订单状态4"),
+            5: LangUtil("板球交易所订单状态5"),
+            6: LangUtil("板球交易所订单状态6"),
+        };
+    }
 
     transformMoney(item: any, key: string, ismoney: boolean = false, donotTrans: boolean = false) {
         let val; //

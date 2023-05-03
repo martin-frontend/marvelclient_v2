@@ -62,7 +62,7 @@
                     :max-width="$mobile? 15 : 24"
                     :height="$mobile? 15 : 24"
                 ></v-img>
-                <span>{{ transformMoney_commission(item.commission_num[pageData.platCoins.mainCoin.name]) }}</span>
+                <span>{{ transformMoney_commission(item.commission_num) }}</span>
             </v-sheet>
 
             <v-sheet
@@ -161,7 +161,7 @@
                     :max-width="$mobile? 15 : 30"
                     :height="$mobile? 15 : 30"
                 ></v-img>
-                <span>{{ transformMoney_commission(item.commission_num[pageData.platCoins.mainCoin.name]) }}</span>
+                <span>{{ transformMoney_commission(item.commission_num) }}</span>
             </v-sheet>
 
             <v-sheet

@@ -606,7 +606,7 @@
                             class="text-14 div-block mr-5"
                             color="transparent"
                             min-height="30"
-                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold"
                         >
                             <span class="leftText--text mr-2">{{LangUtil("输赢")}}</span>
                             <span class="head_btn--text">
@@ -617,7 +617,7 @@
                         </span>
 
                         <span
-                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold"
                             width="100%"
                             class="text-14 div-block mr-5"
                             color="transparent"

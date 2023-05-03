@@ -259,10 +259,6 @@ export default class NetObserver extends AbstractMediator {
         }
     }
 
-    private insertStr(soure: string, start: number, newStr: string): string {
-        return soure.slice(0, start) + newStr + soure.slice(start);
-    }
-
     openGame(body: any, ori_vendor_extend: any) {
         if (core.app_type == core.EnumAppType.WEB) {
             this.gameProxy.gamePreData.lastRouter = router.currentRoute.path;
@@ -291,24 +287,23 @@ export default class NetObserver extends AbstractMediator {
                 OpenLink(body.url);
             }
         } else {
-            let gameUrl = "";
-            if (body.url.indexOf("?") != -1) {
-                //有个别厂商链接后面会有#，导致横竖屏参数不能使用
-                if (body.url.indexOf("#") != -1) {
-                    // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "&gOrientation=" + this.gameProxy.currGame.orientation);
-                } else {
-                    gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                }
+            let gameUrl = "",
+                url: string,
+                hash: string = "";
+            const idxJ = body.url.indexOf("#");
+            if (idxJ > 0) {
+                url = body.url.slice(0, idxJ);
+                hash = body.url.slice(idxJ);
             } else {
-                if (body.url.indexOf("#") != -1) {
-                    // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "?gOrientation=" + this.gameProxy.currGame.orientation);
-                } else {
-                    gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                }
+                url = body.url;
             }
-            console.log("gameUrl====", gameUrl);
+
+            if (url.indexOf("?") != -1) {
+                gameUrl = url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+            } else {
+                gameUrl = url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+            }
+            gameUrl += hash;
             WebViewBridge.getInstance().openBrowser(gameUrl);
         }
     }

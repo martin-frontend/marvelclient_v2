@@ -412,7 +412,7 @@
                                 <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
                             </span>
                             <v-spacer />
-                            <span class="ml-2">
+                            <span class="ml-2 font-weight-bold">
                                 {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
                                 cricketSwapStatus[item.game_info.status]}}
                             </span>
@@ -827,19 +827,21 @@
                                     <span class="font-weight-bold">{{item.game_info.handicap }}</span>
                                 </span>
 
-                                <span class="mr-2 div-block" v-if="item.game_info.priceMatched == 0">
-                                    {{LangUtil("板球订单价格:")}}
-                                    <span class="font-weight-bold">{{item.game_info.price}}</span>
-                                </span>
-                                <span class="mr-2 div-block" v-else>
-                                    {{LangUtil("板球成交价格:")}}
-                                    <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
-                                </span>
+                                <div class="mr-2" v-if="item.game_info.priceMatched == 0">
+                                    <template v-if="item.game_info.priceMatched == 0">
+                                        {{LangUtil("板球订单价格:")}}
+                                        <span class="font-weight-bold">{{item.game_info.price}}</span>
+                                    </template>
+                                    <template v-else>
+                                        {{LangUtil("板球成交价格:")}}
+                                        <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                                    </template>
 
-                                <span class="mr-2 div-block">
-                                    {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
-                                    cricketSwapStatus[item.game_info.status]}}
-                                </span>
+                                    <span class="mr-2 div-block font-weight-bold float-right">
+                                        {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                        cricketSwapStatus[item.game_info.status]}}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

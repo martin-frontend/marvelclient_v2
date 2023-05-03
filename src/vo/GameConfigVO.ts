@@ -54,7 +54,7 @@ export interface GameConfigVO {
     /**是否需要显示验证码前面的图形验证码 */
     is_display_auth_code: number;
     /**显示的结算币种 */
-    SettlementCurrency: "";
+    SettlementCurrency: string;
     /**我的每万返佣开关 0 不展示 1 展示  默认展示 */
     MyRebate: number;
     /**返佣每万展现方式 0数值 1百分比  默认0 */

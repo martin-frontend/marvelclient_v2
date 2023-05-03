@@ -3,8 +3,8 @@
  */
 
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import { amountFormat } from "@/core/global/Functions";
-import { getMoneyValue } from "./ColorfullText";
+import GameConfig from "@/core/config/GameConfig";
+import BigNumber from "bignumber.js";
 
 export default class CoinTransformHelper {
     /**平台的主要货币 和 奖励 货币 */
@@ -37,6 +37,34 @@ export default class CoinTransformHelper {
         //return this._gameRateList;
     }
 
+    static amountFormat(val: any, decimalLang: number = 2) {
+        if (val === undefined) return val;
+
+        const intValue = parseFloat(val);
+        if (!intValue) {
+            const sss = val.toLocaleString(core.lang.substring(0, 2));
+            return val.toLocaleString(core.lang.substring(0, 2));
+        }
+        const allsum = intValue.toLocaleString(core.lang.substring(0, 2), {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: decimalLang,
+        });
+        return allsum;
+    }
+    /**
+     * 取得钱的文本值
+     * @param str 传入钱的金额
+     * @returns + -的文本
+     */
+    static getMoneyValue(str: any): string {
+        let newstr = str;
+        if (typeof str == "number") {
+            newstr = str + "";
+        }
+        //console.log("--计算的结果",newstr);
+        if (!!newstr && newstr.search("-") == -1) return "+" + newstr;
+        return newstr;
+    }
     /**
      * 币种之间的转换
      * @param val 需要转的对象
@@ -61,20 +89,14 @@ export default class CoinTransformHelper {
     ) {
         let newVal = val;
         if (val == undefined) return val;
+        //如果两个币种一样则只需要 加上 符号 就可以
         if (typeof val == "string" && val.includes("$")) {
             newVal = val.replace("$", "");
         }
-
         const intValue = parseFloat(newVal);
         if (intValue == undefined) return val;
+
         const coins = GamePlatConfig.config.plat_coins;
-        let defaultRes;
-        if (ismoney) {
-            defaultRes = getMoneyValue(newVal, decimalLang, false);
-        } else {
-            defaultRes = amountFormat(newVal, true, decimalLang, false);
-        }
-        //console.log("-1111---",defaultRes);
         let maincoin = destCoinName;
         let fromcoin = resCoinName;
         if (!maincoin || !coins[maincoin]) {
@@ -83,41 +105,48 @@ export default class CoinTransformHelper {
             }
             maincoin = this.platCoins.mainCoin.name;
         }
-
         //如果当前没有 找到 主币
         if (!maincoin) {
-            console.log("没有找到主 币", val);
-            return isformat ? defaultRes : val;
+            return this.ReturnValue(intValue, decimalLang, isformat, ismoney);
         }
         if (!fromcoin) {
-            console.log("没有找到 币种111", val);
             fromcoin = "USDT";
         }
-
         if (!coins[maincoin] || !coins[fromcoin]) {
-            console.log("没有找到币种maincoin：" + maincoin + "---fromcoin:" + fromcoin);
-            return isformat ? defaultRes : val;
-            //return val;
+            return this.ReturnValue(intValue, decimalLang, isformat, ismoney);
         }
-        const destCoinScale = coins[maincoin].scale;
-        const restCoinScale = coins[fromcoin].scale;
-        let res = ((intValue * restCoinScale) / destCoinScale).toFixed(decimalLang);
-        if (isformat) {
-            if (ismoney) {
-                res = getMoneyValue(res, decimalLang, false);
-            } else {
-                res = amountFormat(res, true, decimalLang, false);
-            }
+        let res = intValue + "";
+        if (maincoin != fromcoin) {
+            const destCoinScale = new BigNumber(coins[maincoin].scale);
+            const restCoinScale = new BigNumber(coins[fromcoin].scale);
+            const input = new BigNumber(intValue);
+            res = input.multipliedBy(restCoinScale).dividedBy(destCoinScale).toString();
         }
-        //console.log("---结果-111--",res);
+        res = this.ReturnValue(res, decimalLang, isformat, ismoney);
+
         if (isNeedSymbol) {
             res = this.GetCoinSymbol(maincoin) + res;
         }
         if (iscoinName) {
             res = maincoin + res;
         }
-        //console.log("---结果-222--",res);
         return res;
+    }
+
+    static ReturnValue(val: any, decimalLang: number, isformat: boolean, ismoney: boolean) {
+        if (isformat) {
+            if (ismoney) {
+                return this.getMoneyValue(this.amountFormat(val, decimalLang));
+            } else {
+                return this.amountFormat(val, decimalLang);
+            }
+        } else {
+            if (ismoney) {
+                return this.getMoneyValue(val);
+            } else {
+                return val;
+            }
+        }
     }
     static AddCoinSymbol(val: any, destCoinName: string = "") {
         return this.GetCoinSymbol(destCoinName) + val;
@@ -145,5 +174,15 @@ export default class CoinTransformHelper {
             this._getCurrentCoin();
         }
         return this.GetCoinSymbol(this.platCoins.mainCoin.name);
+    }
+    /**判断主币 是否与 结算货币 相同 */
+    static get isSelectSameMain() {
+        if (!this.platCoins.mainCoin.name) {
+            this._getCurrentCoin();
+        }
+        if (!GameConfig.config.SettlementCurrency) {
+            GameConfig.config.SettlementCurrency = "USDT";
+        }
+        return this.platCoins.mainCoin == GameConfig.config.SettlementCurrency;
     }
 }

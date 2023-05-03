@@ -116,6 +116,7 @@ export default class GameProxy extends AbstractProxy {
             ori_product_id,
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
+            lobby_url:document.URL,
         };
         if (GameConfig.timezoneChange) {
             form.timezone = Timezone.Instance.timezoneOffset;

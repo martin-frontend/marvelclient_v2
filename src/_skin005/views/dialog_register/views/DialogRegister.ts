@@ -9,6 +9,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -18,12 +19,13 @@ export default class DialogRegister extends AbstractView {
     form = this.pageData.form;
     core = core;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
+    SkinVariable = SkinVariable;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
     email_error_info = "";
     constructor() {
         super(DialogRegisterMediator);
     }
-
+    checkbox = false;
     public get btn_width(): number {
         if (this.$xsOnly) {
             return 78;
@@ -128,6 +130,9 @@ export default class DialogRegister extends AbstractView {
     }
 
     get isCheck(): boolean {
+        if (this.SkinVariable.isShowRestrictions && !this.checkbox) {
+            return false;
+        }
         const { username, password, password_confirm, verify_code, register_type, mobile_username } = this.form;
         return (
             password == password_confirm &&
@@ -259,5 +264,6 @@ export default class DialogRegister extends AbstractView {
     @Watch("form.register_type")
     ontypechange() {
         this.email_error_info = "";
+        this.checkbox = false;
     }
 }

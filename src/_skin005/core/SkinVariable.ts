@@ -26,4 +26,6 @@ export default class SkinVariable {
     public static isShowfullLogo = false;
     /**首页是否显示game_type */
     public static isShowGameType = false;
+    /**注册时候 是否显示未成年勾选框 */
+    public static isShowRestrictions = false;
 }

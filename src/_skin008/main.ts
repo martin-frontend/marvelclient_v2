@@ -45,6 +45,7 @@ Assets.commonIcon.cat_icon = require(`@/_skin008/assets/mine/cat_icon.png`);
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
+SkinVariable.isShowRestrictions = true;
 SkinVariable.isShowfullLogo = true;
 LogUtil.init();
 core.init();

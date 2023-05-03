@@ -13,6 +13,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import { getVersion, isSafari } from "@/core/global/Functions";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class Novigation extends AbstractView {
@@ -100,17 +101,8 @@ export default class Novigation extends AbstractView {
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
-
-        if (
-            !this.routerPath.includes("page_game_list") &&
-            !this.routerPath.includes("sports") &&
-            !this.routerPath.includes("live-casino-online") &&
-            !this.routerPath.includes("blockchain-games") &&
-            !this.routerPath.includes("fishing-games") &&
-            !this.routerPath.includes("slots-games") &&
-            !this.routerPath.includes("lottery-games") &&
-            !this.routerPath.includes("cards-games")
-        ) {
+        if (!Constant.isIncludeGameRouter(this.routerPath)) {
+            //console.log(" 导航 路由切换---","变为-1");
             this.myProxy.categoryActive = -1;
         }
     }

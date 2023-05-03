@@ -80,7 +80,20 @@ export default class PageGameListProxy extends puremvc.Proxy {
         Object.assign(this.config, data.all_game);
         this.api_plat_var_game_all_index();
     }
-
+    clearData() {
+        Object.assign(this.pageData, {
+            loading: false,
+            list: <any>[],
+            pageInfo: {
+                pageCurrent: 1,
+                pageCount: 51,
+                pageSize: 30,
+                pageTotal: 1006,
+            },
+            updateCount: 0,
+        });
+        this.listQuery.page_count = 1;;
+    }
     setGameList(data: any) {
         //this.pageData.loading = false;
         PanelUtil.showAppLoading(false);

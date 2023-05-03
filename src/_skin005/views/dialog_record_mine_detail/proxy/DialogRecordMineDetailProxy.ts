@@ -37,8 +37,8 @@ export default class DialogRecordMineDetailProxy extends puremvc.Proxy {
             8: LangUtil("捕鱼"),
             16: LangUtil("电子"),
             32: LangUtil("真人"),
-            64: LangUtil("体育"),
-            128: LangUtil("电竞"),
+            64: LangUtil("体育电竞"),
+            128: LangUtil("链游"),
         };
         return map[type];
     }

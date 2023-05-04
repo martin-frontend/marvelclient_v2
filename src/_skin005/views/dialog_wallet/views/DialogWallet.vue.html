@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
+<v-dialog v-if="!pageData.bHidden" width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
     <!-- <v-card class="rounded10" color="bgColor"> -->
     <!-- pc显示方式 -->
     <template v-if="!$mobile">
@@ -30,7 +30,7 @@
                         :fontSize="14"
                         :isSetChange="$mobile"
                         :options="listOptions.timeOptions()"
-                        width="114"
+                        width="135"
                         @change="onTimeChange"
                     />
                     <CustomSelect
@@ -39,7 +39,7 @@
                         :fontSize="14"
                         :isSetChange="$mobile"
                         :options="listOptions.coinOptions()"
-                        width="114"
+                        width="135"
                         @change="onCoinChange"
                     />
                     <CustomSelect
@@ -48,8 +48,9 @@
                         :fontSize="14"
                         :isSetChange="$mobile"
                         :options="listOptions.typeOptions()"
-                        width="114"
+                        width="135"
                         @change="onTypeChange"
+                        :left="true"
                     />
                 </v-sheet>
             </v-sheet>

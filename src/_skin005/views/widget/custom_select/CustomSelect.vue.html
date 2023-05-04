@@ -1,5 +1,5 @@
 <v-sheet :width="width" color="transparent" :class="inputClass">
-    <v-menu offset-y nudge-bottom="5">
+    <v-menu offset-y nudge-bottom="5" v-bind="$attrs">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
                 class="d-flex align-center rounded-lg px-3 textGray--text title_class"

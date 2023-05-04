@@ -1,13 +1,14 @@
 import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import Constant from "@/core/global/Constant";
 
 export default class PageGameListProxy extends puremvc.Proxy {
     static NAME = "PageGameListProxy";
     gameProxy = PanelUtil.getProxy_gameproxy;
     public onRegister(): void {
         this.readData();
-        //this.pageData.loading = true;
+        this.pageData.loading = true;
         this.api_plat_var_game_all_config();
     }
     tableData = <any>{};
@@ -43,30 +44,10 @@ export default class PageGameListProxy extends puremvc.Proxy {
         page_size: 30,
     };
 
-    getVendorByRouter(): number {
-        const curPath = Vue.router.history.current.path;
-        if (curPath.includes("sports")) {
-            return 64;
-        } else if (curPath.includes("live-casino-online")) {
-            return 32;
-        } else if (curPath.includes("blockchain-games")) {
-            return 128;
-        } else if (curPath.includes("fishing-games")) {
-            return 8;
-        } else if (curPath.includes("slots-games")) {
-            return 16;
-        } else if (curPath.includes("lottery-games")) {
-            return 4;
-        } else if (curPath.includes("cards-games")) {
-            return 2;
-        }
-        return -1;
-    }
-
     init() {
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
-        const vendor_type = this.getVendorByRouter();
+        const vendor_type = Constant.getVendorByRouter(Vue.router.history.current.path);
         if (vendor_type != -1) {
             this.listQuery.vendor_type = vendor_type;
         }
@@ -92,7 +73,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
             },
             updateCount: 0,
         });
-        this.listQuery.page_count = 1;;
+        this.listQuery.page_count = 1;
     }
     setGameList(data: any) {
         //this.pageData.loading = false;
@@ -198,16 +179,18 @@ export default class PageGameListProxy extends puremvc.Proxy {
         window.localStorage.setItem("gameListItem", JSON.stringify(obj));
     }
     readData() {
-        const obj = window.localStorage.getItem("gameListItem");
-        if (obj) {
-            const obj_json = JSON.parse(obj);
-            this.listQuery = obj_json.listQuery;
-            this.listQuery.page_count = 1;
-            this.curItemIndex = obj_json.curIndex;
-            this.curMenuIndex = obj_json.curMenuIndex;
-            PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
-            //this.curMenuIndex =
-        }
+        // const obj = window.localStorage.getItem("gameListItem");
+        // if (obj) {
+        //     const obj_json = JSON.parse(obj);
+        //     this.listQuery = obj_json.listQuery;
+        //     this.listQuery.page_count = 1;
+        //     this.curItemIndex = obj_json.curIndex;
+        //     this.curMenuIndex = obj_json.curMenuIndex;
+        //     PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
+        //     console.log("设置  导航 的标签---",this.listQuery.vendor_type);
+        //     //this.curMenuIndex =
+        // }
+        console.log("---- init-----");
     }
     //判断是否点击的当前的对象
     isCurItem(item: any) {

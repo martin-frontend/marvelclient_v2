@@ -64,4 +64,43 @@ export default class Constant {
         }
         return false;
     }
+    /**通过传入游戏类型的值获取路由的名字 */
+    static getRouterPathByVendor(vendor: number): string {
+        switch (vendor) {
+            case 2:
+                return "cards-games"; //     2	棋牌
+            case 4:
+                return "lottery-games"; // 4	彩票
+            case 8:
+                return "fishing-games"; // 8	捕鱼
+            case 16:
+                return "slots-games"; // 16	电子
+            case 32:
+                return "live-casino-online"; // 32	真人
+            case 64:
+                return "sports"; // 64	体育电竞
+            case 128:
+                return "blockchain-games"; // 128	链游
+        }
+        return "";
+    }
+    /**通过传入的路由的名字 获取 哪个 id 如果没有则 输出 -1 */
+    static getVendorByRouter(path: string): number {
+        if (path.includes("sports")) {
+            return 64;
+        } else if (path.includes("live-casino-online")) {
+            return 32;
+        } else if (path.includes("blockchain-games")) {
+            return 128;
+        } else if (path.includes("fishing-games")) {
+            return 8;
+        } else if (path.includes("slots-games")) {
+            return 16;
+        } else if (path.includes("lottery-games")) {
+            return 4;
+        } else if (path.includes("cards-games")) {
+            return 2;
+        }
+        return -1;
+    }
 }

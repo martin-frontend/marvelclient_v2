@@ -37,6 +37,8 @@ export default class Novigation extends AbstractView {
             this.mini = this.myProxy.isminiMenu || false;
             this.Change();
         }
+        //console.log("导航打开 ");
+        this.onWatchRouter();
     }
     //基础菜单
     get menu() {
@@ -101,13 +103,29 @@ export default class Novigation extends AbstractView {
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
-        if (!Constant.isIncludeGameRouter(this.routerPath)) {
-            //console.log(" 导航 路由切换---","变为-1");
-            this.myProxy.categoryActive = -1;
+        //console.log("----导航--- 路由切换--", this.myProxy.categoryActive);
+        // if (!Constant.isIncludeGameRouter(this.routerPath)) {
+        //     //console.log(" 导航 路由切换---","变为-1");
+        //     this.myProxy.categoryActive = -1;
+        // }
+        //this.myProxy.categoryActive = Constant.getVendorByRouter(this.routerPath);
+        //通过 router 或者 当前的 游戏id
+        const categoryId = Constant.getVendorByRouter(this.routerPath);
+        //console.log("----导航--categoryId- 路由切换--", categoryId);
+        if (this.myProxy.categoryActive == categoryId) {
+            return;
+        }
+        //两个不相同
+        if (categoryId != -1) {
+            //console.log("计算的与实际的不一样 , 重新加载,目标 分类 id ", categoryId);
+            this.goCategory_game(categoryId);
+        } else {
+            this.myProxy.categoryActive = categoryId;
+            //console.log("----为 -1-------", this.myProxy.categoryActive);
         }
     }
 
-    /**传入 true 则显示  mini   如果传入  false 则显示 大图 */
+    /**传入 true 则显示  mini   如果传入  false 则显示大图 */
     setMiniChange(ismini: boolean) {
         if (this.$mobile) return;
         this.mini = !ismini;

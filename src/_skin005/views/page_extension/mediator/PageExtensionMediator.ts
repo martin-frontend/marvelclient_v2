@@ -49,7 +49,7 @@ export default class PageExtensionMediator extends AbstractMediator {
                 this.myProxy.api_user_var_short_chain();
                 console.log("-------extension-----send");
                 //if (this.isToday(body.date)) {
-                    this.myProxy.setData(body);
+                this.myProxy.setData(body);
                 //}
                 break;
             case net.EventType.api_user_var_commission_commissionnum:

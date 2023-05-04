@@ -56,7 +56,7 @@ export default class DialogRechargeQrcodeProxy extends puremvc.Proxy {
         // if (isImg) {
         //     this.pageData.img_url = data.image;
         // } else {
-            this.showPreview(this.pageData.data.qrcode);
+        this.showPreview(this.pageData.data.qrcode);
         // }
         //this.pageData.data = this.setTestData();
     }

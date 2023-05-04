@@ -350,23 +350,23 @@ export default class NetObserver extends AbstractMediator {
                 }
             }
         } else {
-            let gameUrl = "";
-            if (body.url.indexOf("?") != -1) {
-                //有个别厂商链接后面会有#，导致横竖屏参数不能使用
-                if (body.url.indexOf("#") != -1) {
-                    // gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "&gOrientation=" + this.gameProxy.currGame.orientation);
-                } else {
-                    gameUrl = body.url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-                }
+            let gameUrl = "",
+                url: string,
+                hash: string = "";
+            const idxJ = body.url.indexOf("#");
+            if (idxJ > 0) {
+                url = body.url.slice(0, idxJ);
+                hash = body.url.slice(idxJ);
             } else {
-                if (body.url.indexOf("#") != -1) {
-                    // gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                    gameUrl = this.insertStr(body.url, body.url.indexOf("#"), "?gOrientation=" + this.gameProxy.currGame.orientation);
-                } else {
-                    gameUrl = body.url + "?gOrientation=" + this.gameProxy.currGame.orientation;
-                }
+                url = body.url;
             }
+
+            if (url.indexOf("?") != -1) {
+                gameUrl = url + "&gOrientation=" + this.gameProxy.currGame.orientation;
+            } else {
+                gameUrl = url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+            }
+            gameUrl += hash;
 
             PanelUtil.message_confirm({
                 message: msg,

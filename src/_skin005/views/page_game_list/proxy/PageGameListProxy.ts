@@ -115,7 +115,20 @@ export default class PageGameListProxy extends puremvc.Proxy {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         this.listQuery.plat_id = core.plat_id;
-        this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
+
+        const sendobj = JSON.parse(JSON.stringify(this.listQuery));
+        if (!sendobj.vendor_id && this.gameMenuData && this.gameMenuData.length > 1) {
+            const vendor_ids = [];
+            //console.log(" 当前的所有的 厂商", this.gameMenuData);
+            for (let index = 0; index < this.gameMenuData.length; index++) {
+                const element = this.gameMenuData[index];
+                if (element.vendor_id) {
+                    vendor_ids.push(element.vendor_id);
+                }
+            }
+            sendobj.vendor_ids = JSON.stringify(vendor_ids);
+        }
+        this.sendNotification(net.HttpType.api_plat_var_game_all_index, sendobj);
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/

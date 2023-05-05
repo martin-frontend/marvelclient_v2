@@ -15,12 +15,12 @@ export default class RequestEndCMD extends puremvc.SimpleCommand {
         const { url, data } = body;
         if (json) {
             switch (url) {
-                case net.HttpType.api_user_register:
-                    {
-                        const { phone, email, username, user_id } = json.data;
-                        track(TrackEventMap.RegistrationSuccess, { phone, email, username, user_id });
-                    }
-                    break;
+                // case net.HttpType.api_user_register:
+                //     {
+                //         const { phone, email, username, user_id } = json.data;
+                //         track(TrackEventMap.RegistrationSuccess, { phone, email, username, user_id });
+                //     }
+                //     break;
                 case net.HttpType.api_user_login:
                     {
                         const { phone, email, username, user_id } = json.data;

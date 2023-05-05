@@ -164,7 +164,8 @@ export function getRouter(): VueRouter {
         }
 
         let mode = process.env.VUE_APP_ROUTER_MODEL || "hash";
-        if (core.app_type == core.EnumAppType.APP) {
+        //@ts-ignore
+        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone) {
             mode = "hash";
         }
 

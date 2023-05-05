@@ -119,14 +119,21 @@ export default class APP extends AbstractView {
     }
 
     get isShowFooter() {
-        if (
-            this.$route.path.includes("page_game_soccer") ||
-            this.$route.path.includes("page_game_play") ||
-            this.$route.path.includes("cricket")
-        ) {
-            return false;
+        if (this.$mobile) {
+            if (
+                this.$route.path.includes("page_game_soccer") ||
+                this.$route.path.includes("page_game_play") ||
+                this.$route.path.includes("cricket")
+            ) {
+                return false;
+            }
+            return true;
+        } else {
+            if (this.$route.path.includes("page_game_soccer") || this.$route.path.includes("cricket")) {
+                return false;
+            }
+            return true;
         }
-        return true;
     }
     @Watch("myProxy.bshowNovigationPanel")
     novigationPanelShow() {

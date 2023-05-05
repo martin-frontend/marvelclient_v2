@@ -10,7 +10,7 @@
                     <v-sheet color="transparent" class="px-2" width="100%">
                         <v-main id="router_page" class="router_test">
                             <router-view />
-                            <Footer />
+                            <Footer v-if="isShowFooter"/>
                         </v-main>
                     </v-sheet>
                 </v-sheet>

@@ -228,24 +228,25 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     onTimeChange() {
-        if (this.timeRange) {
-            const startDate: any = this.timeRange[0];
-            const endDate: any = this.timeRange[1];
-            if (startDate) {
-                this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+        if(!this.$mobile) {
+            if (this.timeRange) {
+                const startDate: any = this.timeRange[0];
+                const endDate: any = this.timeRange[1];
+                if (startDate) {
+                    this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+                } else {
+                    this.pageData.listQuery.start_date = "";
+                }
+                if (endDate) {
+                    this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
+                } else {
+                    this.pageData.listQuery.end_date = "";
+                }
             } else {
                 this.pageData.listQuery.start_date = "";
-            }
-            if (endDate) {
-                this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
-            } else {
                 this.pageData.listQuery.end_date = "";
             }
-        } else {
-            this.pageData.listQuery.start_date = "";
-            this.pageData.listQuery.end_date = "";
         }
-
         this.pageData.listQuery.page_count = 1;
         this.myProxy.getApi();
     }
@@ -265,9 +266,9 @@ export default class DialogBetRecord extends AbstractView {
             //this.listOptions.moneySelect = 0;
             //this.myProxy.resetQuery();
 
-            const start_date = this.pageData.listQuery.start_date ? this.pageData.listQuery.start_date : getTodayOffset();
-            const end_date = this.pageData.listQuery.end_date ? this.pageData.listQuery.end_date : getTodayOffset(1, 1);
-            this.timeRange = [start_date, end_date];
+            this.pageData.listQuery.start_date = this.pageData.listQuery.start_date || getTodayOffset();
+            this.pageData.listQuery.end_date = this.pageData.listQuery.end_date || getTodayOffset(1, 1);
+            this.timeRange = [this.pageData.listQuery.start_date, this.pageData.listQuery.end_date];
             this.onTimeChange();
         } else {
             this.myProxy.clearFilterInfo();

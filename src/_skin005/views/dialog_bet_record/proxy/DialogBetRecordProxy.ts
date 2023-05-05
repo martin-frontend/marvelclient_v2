@@ -32,8 +32,8 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             vendor_id: <any>null,
             settlement_status: <any>null,
             coin_name_unique: "", //币种
-            start_date: "",
-            end_date: "",
+            start_date: <any>"",
+            end_date: <any>"",
             page_count: 1,
             page_size: 20,
             agent_user_id: null,

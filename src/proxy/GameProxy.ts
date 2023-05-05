@@ -110,13 +110,20 @@ export default class GameProxy extends AbstractProxy {
             return;
         }
         const { vendor_id, ori_product_id, ori_vendor_extend } = data;
+        //截取当前的地址，将地址上 #后面的删掉
+        let localUrl = document.URL;
+        const indexof = localUrl.lastIndexOf("#");
+        if (indexof != -1) {
+            localUrl = localUrl.slice(0, indexof);
+        }
+        console.log("---发送的url----", localUrl);
         const form: any = {
             user_id: core.user_id,
             vendor_id,
             ori_product_id,
             ori_vendor_extend,
             coin_name_unique: this.coin_name_unique,
-            lobby_url:document.URL,
+            lobby_url: localUrl,
         };
         if (GameConfig.timezoneChange) {
             form.timezone = Timezone.Instance.timezoneOffset;

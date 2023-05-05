@@ -163,8 +163,13 @@ export function getRouter(): VueRouter {
             r.path = prePath + r.path;
         }
 
+        let mode = process.env.VUE_APP_ROUTER_MODEL || "hash";
+        if (core.app_type == core.EnumAppType.APP) {
+            mode = "hash";
+        }
+
         router = new VueRouter({
-            mode: process.env.VUE_APP_ROUTER_MODEL || "hash",
+            mode: mode,
             // process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production" && core.app_type != core.EnumAppType.APP
             //     ? "history"
             //     : "hash",

@@ -7,7 +7,7 @@
         <v-sheet v-if="!$mobile" fluid class="ml-n1" color="transparent">
             <v-slide-group show-arrows>
                 <v-slide-item v-for="(item, index) of data" :key="index">
-                    <GameItem :item="item" :width="itemWidth" :height="itemWidth/0.8" />
+                    <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
                 </v-slide-item>
             </v-slide-group>
         </v-sheet>
@@ -18,7 +18,7 @@
                     :key="index"
                     :item="item"
                     :width="itemWidth"
-                    :height="itemWidth/0.9"
+                    :height="(itemWidth-13.5)/0.8"
                     :isPageHome="true"
                 />
             </template>

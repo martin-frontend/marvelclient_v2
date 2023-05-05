@@ -7,13 +7,13 @@
         <v-sheet v-if="!$mobile" fluid class="ml-n1" color="transparent">
             <v-slide-group show-arrows>
                 <v-slide-item v-for="item of itemList" :key="item.vendor_prodcut_id">
-                    <GameItem :item="item" :width="itemWidth" :height="itemWidth/0.8" />
+                    <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
                 </v-slide-item>
             </v-slide-group>
         </v-sheet>
         <v-sheet v-else fluid class="mt-2 scroll-x d-flex overflow-y-hidden" color="transparent">
             <template v-for="item of itemList">
-                <GameItem class="game_item_margin_mob" :key="item.vendor_prodcut_id" :item="item" :width="itemWidth" :height="itemWidth/0.9" :isPageHome="true"/>
+                <GameItem class="game_item_margin_mob" :key="item.vendor_prodcut_id" :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" :isPageHome="true"/>
             </template>
         </v-sheet>
     </v-card>

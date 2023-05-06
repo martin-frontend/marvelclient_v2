@@ -12,8 +12,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
-import { amountFormat, changeDateShow } from "@/core/global/Functions";
-
+import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 @Component
 export default class DialogPerformance extends AbstractView {
     //dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
@@ -83,14 +82,15 @@ export default class DialogPerformance extends AbstractView {
     onTimeChange() {
         switch (this.listOptions.timeSelect) {
             case 0:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-6), "yyyy-MM-dd hh:mm:ss");
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss");
                 break;
             case 1:
-                this.listQuery.start_date = core.dateFormat(core.getTodayOffset(-29), "yyyy-MM-dd");
-                this.listQuery.end_date = core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd");
+                this.listQuery.start_date = dateFormat(getTodayOffset(-29), "yyyy-MM-dd hh:mm:ss");
+                this.listQuery.end_date = dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss");
                 break;
         }
+        //PanelUtil.message_alert("timechange" + JSON.stringify(this.listQuery));
         this.myProxy.api_user_var_commission_commissionlist();
     }
 

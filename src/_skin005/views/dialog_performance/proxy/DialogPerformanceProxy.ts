@@ -28,8 +28,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
             total_water: "",
         },
         listQuery: {
-            start_date: core.dateFormat(core.getTodayOffset(-6), "yyyy-MM-dd"),
-            end_date: core.dateFormat(core.getTodayOffset(1, 1), "yyyy-MM-dd"),
+            start_date: dateFormat(getTodayOffset(-6), "yyyy-MM-dd hh:mm:ss"),
+            end_date: dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss"),
         },
     };
 

@@ -158,7 +158,7 @@ export default class Timezone {
      */
     addTime(timeStr: string, duration: string): string {
         const [hours, minutes] = duration.split(":").map(Number);
-        const time = new Date(timeStr);
+        const time = new Date(timeStr.replace(/-/g,'/'));
         time.setHours(time.getHours() + hours);
         time.setMinutes(time.getMinutes() + minutes);
         const year = time.getFullYear();

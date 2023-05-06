@@ -29,7 +29,7 @@ export default class RequestEndCMD extends puremvc.SimpleCommand {
                     break;
                 case net.getUrl(net.HttpType.api_user_update_var, data):
                     if (data.real_name) {
-                        track(TrackEventMap.SetAccountName);
+                        track(TrackEventMap.SetAccountName, { user_id: core.user_id, account_name: data.real_name });
                     }
                     break;
                 case net.getUrl(net.HttpType.api_user_var_exchange_create_order, data):

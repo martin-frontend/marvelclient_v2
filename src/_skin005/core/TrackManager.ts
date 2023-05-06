@@ -1,6 +1,7 @@
 import GlobalVar from "@/core/global/GlobalVar";
 import WebViewBridge from "../../core/native/WebViewBridge";
 import SkinVariable from "./SkinVariable";
+import { AFInAppEventType } from "./enum/AFInAppEventType";
 
 /**google tag manager */
 function gmt(eventName: string, data: any) {
@@ -31,7 +32,16 @@ function fbq(eventName: string, data: any, type: string = "track") {
 /**Apps Flyer */
 function flyer(eventName: string, data: any) {
     if (core.app_type == core.EnumAppType.APP && SkinVariable.useFlyerLog) {
-        WebViewBridge.getInstance().flyerLog({ eventName, eventValues: data });
+        const newData: any = {};
+        if (data.user_id) newData.UserID = data.user_id;
+        if (data.phone) newData.Phone = data.phone;
+        if (data.account_name) newData.AccountName = data.account_name;
+        if (data.amount) newData.af_revenue = data.amount;
+        if (data.coin_name_unique) newData.af_currency = data.coin_name_unique;
+        delete data.user_id, data.phone, data.account_name, data.amount, data.coin_name_unique;
+        Object.assign(newData, data);
+        //@ts-ignore
+        WebViewBridge.getInstance().flyerLog({ eventName: AFInAppEventType[eventName] || eventName, eventValues: newData });
     }
 }
 /**南美体育专属 */

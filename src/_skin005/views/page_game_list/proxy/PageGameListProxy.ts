@@ -55,6 +55,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
         this.getCurMenuIndex();
         //PanelUtil.getProxy_novigation.categoryActive = 1;
         PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
+
+        this.api_plat_var_game_all_index();
     }
     setConfig(data: any) {
         this.config.loaded = true;

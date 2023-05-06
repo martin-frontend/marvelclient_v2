@@ -427,13 +427,13 @@
             </v-sheet>
 
             <v-sheet color="transparent" width="100%" class="mt-2 d-flex align-center justify-space-between">
-                <btn-yellow class="text-14" min_width="100" height="30" @click.native="assetSettings_clear"
+                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="assetSettings_clear"
                     >{{LangUtil("清空额度")}}</btn-yellow
                 >
-                <btn-yellow class="text-14 mx-3" min_width="100" height="30" @click.native="assetSettings_add"
+                <btn-yellow class="text-14 mx-3" min_width="100" height="30" :btn_type="2" @click.native="assetSettings_add"
                     >{{LangUtil("增加额度")}}</btn-yellow
                 >
-                <btn-yellow class="text-14" min_width="100" height="30" @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
+                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
             </v-sheet>
         </v-sheet>
 
@@ -445,7 +445,7 @@
 
             <v-sheet color="transparent" class="d-flex align-center justify-space-between" min-height="35">
                 <div>{{LangUtil("EsayBet投注设置")}}</div>
-                <btn-yellow class="text-14" min_width="100" height="30" @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
+                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
             </v-sheet>
         </v-sheet>
     </v-card>

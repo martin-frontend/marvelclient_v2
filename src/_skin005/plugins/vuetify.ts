@@ -66,7 +66,7 @@ export function getVuetify(): Vuetify {
                         bgButtonNav: "#1B1C1C",
                         textGreen: "#41A81D",
                         borderColor: "#333435",
-                        arrow_color: "#323232",
+                        arrow_color: "#777777",
                         tips_color_bg: "#fff",
                         tips_color_bg_2: "#fff",
                         tips_color: "#0F1213",

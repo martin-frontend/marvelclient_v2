@@ -49,7 +49,7 @@ function clube96(eventName: string, data: any, type: string) {
     //@ts-ignore
     const AnalyticsWebInterface = window.AnalyticsWebInterface;
     if (AnalyticsWebInterface) {
-        AnalyticsWebInterface.onEvent(eventName, data);
+        AnalyticsWebInterface.onEvent(eventName, JSON.stringify(data));
         if (type == TrackTypeMap.Purchase) {
             AnalyticsWebInterface.onPurchase(data.amount, data.coin_name_unique);
         }

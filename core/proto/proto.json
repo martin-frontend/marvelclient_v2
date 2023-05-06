@@ -63,6 +63,7 @@
         ["api/user/{user_id}/game/index", "我的游戏"],
         ["api/user/{user_id}/game/update/{vendor_product_id}", "收藏游戏"],
         ["api/user/{user_id}/game/search", "搜索游戏"],
+        ["api/plat/{plat_id}/game/search", "搜索游戏---非登录状态"],
 
         "--返水",
         ["api/user/{user_id}/backwater", "获取用户返水记录"],

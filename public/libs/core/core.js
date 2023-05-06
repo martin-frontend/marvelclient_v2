@@ -167,6 +167,8 @@ var net;
         api_user_var_game_update_var: "api/user/{user_id}/game/update/{vendor_product_id}",
         /**--搜索--搜索游戏*/
         api_user_var_game_search: "api/user/{user_id}/game/search",
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: "api/plat/{plat_id}/game/search",
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: "api/user/{user_id}/backwater",
         /**--返水--获取用户返水详情*/
@@ -470,6 +472,8 @@ var net;
         api_user_var_game_update_var: "api_user_var_game_update_var",
         /**--搜索--搜索游戏*/
         api_user_var_game_search: "api_user_var_game_search",
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: "api_plat_var_game_search",
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: "api_user_var_backwater",
         /**--返水--获取用户返水详情*/
@@ -725,6 +729,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_game_index, net.cmd_api_user_var_game_index);
         facade.registerCommand(net.HttpType.api_user_var_game_update_var, net.cmd_api_user_var_game_update_var);
         facade.registerCommand(net.HttpType.api_user_var_game_search, net.cmd_api_user_var_game_search);
+        facade.registerCommand(net.HttpType.api_plat_var_game_search, net.cmd_api_plat_var_game_search);
         //--返水
         facade.registerCommand(net.HttpType.api_user_var_backwater, net.cmd_api_user_var_backwater);
         facade.registerCommand(net.HttpType.api_user_var_backwater_var, net.cmd_api_user_var_backwater_var);
@@ -1244,6 +1249,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_game_menu = cmd_api_plat_var_game_menu;
+})(net || (net = {}));
+/**
+ * 搜索游戏---非登录状态
+ */
+var net;
+/**
+ * 搜索游戏---非登录状态
+ */
+(function (net) {
+    class cmd_api_plat_var_game_search extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_game_search, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_game_search, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_var_game_search = cmd_api_plat_var_game_search;
 })(net || (net = {}));
 /**
  * 获取语言列表

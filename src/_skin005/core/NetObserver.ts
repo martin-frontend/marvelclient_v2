@@ -57,6 +57,8 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_game_category,
             net.EventType.api_user_var_event_record,
             net.EventType.api_user_var_event_record_update,
+            net.EventType.api_plat_var_game_search,
+            net.EventType.REQUEST_ERROR,
             net.EventType.api_user_third_login,
         ];
     }
@@ -288,6 +290,16 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_red_dot_tips:
                 this.selfProxy.redDotTips(body);
+                break;
+            case net.EventType.api_plat_var_game_search:
+                {
+                    PanelUtil.getProxy_gameproxy.setSearchResult(body);
+                }
+                break;
+            case net.EventType.REQUEST_ERROR:
+                if (body.url == net.getUrl(net.HttpType.api_plat_var_game_search, body.data)) {
+                    PanelUtil.getProxy_gameproxy.api_user_var_game_search_error_back();
+                }
                 break;
             // bet2dream登录
             case net.EventType.api_user_third_login:

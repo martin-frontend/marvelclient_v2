@@ -1,4 +1,10 @@
-<v-sheet color="wallet_bg" :height="$mobile?30:36" class="rounded10 d-flex align-center box" width="100%">
+<v-sheet
+    color="wallet_bg"
+    :height="$mobile?30:36"
+    class="rounded10 d-flex align-center box"
+    :class="$mobile ? 'menu_width_mob' :''"
+    width="100%"
+>
     <v-menu :content-class="content_class" offset-y nudge-bottom="2">
         <template v-slot:activator="{ on, attrs,value }">
             <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
@@ -14,7 +20,7 @@
                         :max-width="$mobile ? '20' : '24'"
                         :max-height="$mobile ? '20' : '24'"
                     ></v-img>
-                    <span class="ml-2" :class="$mobile ? 'text-14 bold_text' : 'text-14'"
+                    <span class="ml-2" :class="$mobile ? 'text-14 bold_text text-truncate' : 'text-14'"
                         >{{ amountFormat(selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money ,true)}}</span
                     >
                     <v-spacer />

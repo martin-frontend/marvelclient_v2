@@ -47,6 +47,7 @@ export function getVuetify(): Vuetify {
                         msgShowTxt_color: "#FFFFFF",
                         rechargeText: "#b0b0b0",
                         leftText: "#8f8f8f",
+                        search_bg:"#fff",
                     },
                     dark: {
                         primary: "#FFFFFF",
@@ -85,6 +86,7 @@ export function getVuetify(): Vuetify {
                         msgShowTxt_color: "#1D1E1F",
                         rechargeText: "#7f7f80",
                         leftText: "#abacac",
+                        search_bg:"#202121",
                     },
                 },
                 // dark: true

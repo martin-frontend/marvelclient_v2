@@ -16,7 +16,9 @@
 // .listitem:hover {
 //     color: white;
 // }
-
+.menu_width_mob {
+    max-width: calc(100vw - 250px);
+}
 .theme--dark {
     .box {
         background-color: #282827;

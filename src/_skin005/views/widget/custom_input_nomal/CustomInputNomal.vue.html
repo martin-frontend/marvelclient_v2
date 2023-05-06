@@ -4,6 +4,7 @@
         <slot name="pre"></slot>
     </div>
     <input
+        :id="inputId"
         class="ml-2 fontweight"
         :class="[disabled?'text-disabled':'',inputColor]"
         :type="type"
@@ -15,6 +16,7 @@
         v-model="inputValue"
         :maxlength="maxlength"
         :disabled="disabled"
+        @keydown.enter="endInput"
     />
     <v-btn v-if="inputValue && !disabled && isNeedCloseBtn" class="mr-2" icon width="20" height="20" @click="onClear">
         <v-icon color="disable_text" class="mx-3" size="20">mdi-close-circle</v-icon>

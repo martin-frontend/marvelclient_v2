@@ -679,6 +679,7 @@ export function isSafari() {
         /Safari/.test(navigator.userAgent) &&
         !/Chrome/.test(navigator.userAgent) &&
         !/iPhone/.test(navigator.userAgent) &&
-        !/iPad/.test(navigator.userAgent)
+        !/iPad/.test(navigator.userAgent) && 
+        !/AppleWebKit/.test(navigator.userAgent)  
     );
 }

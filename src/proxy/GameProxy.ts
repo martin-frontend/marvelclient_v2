@@ -158,4 +158,41 @@ export default class GameProxy extends AbstractProxy {
             };
         this.api_vendor_var_ori_product_show_var(this.currGame);
     }
+    isLoadSearch = false; //是否正在加载
+    /**--搜索--搜索游戏*/
+    api_plat_var_game_search(search: string) {
+        if (!search || !search.trim()) return;
+        this.isLoadSearch = true;
+        this.clearSearchResult();
+        console.log("发送搜索游戏的消息");
+        this.sendNotification(net.HttpType.api_plat_var_game_search, {
+            plat_id: core.plat_id,
+            uuid: core.device,
+            game_name: search,
+        });
+    }
+    searchList = {
+        list:<any>{},
+        params: {
+            game_name: "",
+        },
+    }; //搜索结果
+    setSearchResult(data: any) {
+        this.isLoadSearch = false;
+        //this.searchList = data;
+        //Object.assign(this.searchList, data);
+        this.searchList = JSON.parse(JSON.stringify( data));
+    }
+    clearSearchResult() {
+        Object.assign(this.searchList, {
+            list: <any>{},
+            params: {
+                game_name: "",
+            },
+        });
+    }
+    api_user_var_game_search_error_back() {
+        console.log("返回错误  ");
+        this.isLoadSearch = false;
+    }
 }

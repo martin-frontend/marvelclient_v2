@@ -3,7 +3,7 @@
         <v-img v-if="!SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="42" :src="commonIcon.logo_m"></v-img>
         <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-0 mr-n4" max-width="112" max-height="42" :src="commonIcon.logo"></v-img>
 
-        <v-sheet color="transparent">
+        <v-sheet v-if="isSearchGameShow" color="transparent">
             <v-sheet color="transparent" class="d-flex ml-4 head_btn_top">
                 <v-btn
                     text
@@ -56,50 +56,54 @@
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100" v-if="$vuetify.breakpoint.width >= 1264">
-            <Marquee1 />
+            <Marquee1 v-if="isSearchGameShow"/>
         </v-sheet>
-        <v-spacer v-else />
+        <template v-if="isSearchGameShow">
+            <v-sheet color="transparent" class="d-flex align-center pr-4">
+                <template v-if="selfProxy.userInfo.user_id">
+                    <User />
+                    <Wallet class="ml-5" />
+                    <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72" @click.native="onCoinIn"
+                        >{{LangUtil("钱包")}}</btn-yellow
+                    >
 
-        <v-sheet color="transparent" class="d-flex align-center pr-4">
-            <template v-if="selfProxy.userInfo.user_id">
-                <User />
-                <Wallet class="ml-5" />
-                <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72" @click.native="onCoinIn"
-                    >{{LangUtil("钱包")}}</btn-yellow
-                >
-
-                <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
-                    <svg-icon class="text-24" icon="service"></svg-icon>
-                </v-btn>
-                <!-- <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap> -->
-                <v-badge
-                    color="red"
-                    overlap
-                    :content="red_dot_tips.is_user_mail_num.num"
-                    :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
-                >
-                    <v-btn class="ml-4 navIcon--text" icon small @click="handlerMail">
-                        <svg-icon class="text-24" icon="mail"></svg-icon>
+                    <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
+                        <svg-icon class="text-24" icon="service"></svg-icon>
                     </v-btn>
-                </v-badge>
-            </template>
+                    <!-- <v-badge color="red" dot :value="red_dot_tips.is_user_mail>0" overlap> -->
+                    <v-badge
+                        color="red"
+                        overlap
+                        :content="red_dot_tips.is_user_mail_num.num"
+                        :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
+                    >
+                        <v-btn class="ml-4 navIcon--text" icon small @click="handlerMail">
+                            <svg-icon class="text-24" icon="mail"></svg-icon>
+                        </v-btn>
+                    </v-badge>
+                </template>
 
-            <template v-else>
-                <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
-                <btn-yellow
-                    v-if="GlobalVar.instance.isShowRegiter"
-                    class="ml-3 text-16"
-                    height="36"
-                    min_width="72"
-                    :btn_type="2"
-                    @click.native="handlerRegister"
-                    >{{LangUtil("注册")}}</btn-yellow
-                >
-                <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
-                    <svg-icon class="text-24" icon="service"></svg-icon>
-                </v-btn>
-            </template>
-        </v-sheet>
+                <template v-else>
+                    <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin"
+                        >{{LangUtil("登录")}}</btn-yellow
+                    >
+                    <btn-yellow
+                        v-if="GlobalVar.instance.isShowRegiter"
+                        class="ml-3 text-16"
+                        height="36"
+                        min_width="72"
+                        :btn_type="2"
+                        @click.native="handlerRegister"
+                        >{{LangUtil("注册")}}</btn-yellow
+                    >
+                    <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
+                        <svg-icon class="text-24" icon="service"></svg-icon>
+                    </v-btn>
+                </template>
+            </v-sheet>
+        </template>
+
+        <GameSearch v-if="ModulesHelper.isShow_SearchGame()" @gameSearchChange="onchangeGameSearch" class="mr-2 ml-2" />
     </v-sheet>
 </v-sheet>
 
@@ -119,48 +123,57 @@
         <!-- <btn-yellow height="36" min_width="72"
                     @click.native="ontestin">{{LangUtil("钱包")}}</btn-yellow> -->
         <!-- 登录 -->
-        <template v-if="selfProxy.userInfo.user_id">
-            <v-sheet color="transparent" class="d-flex align-center" width="100%">
-                <v-sheet color="transparent">
-                    <Wallet class="ml-2" min-width="120" />
-                </v-sheet>
-                <!-- <User /> -->
-                <v-spacer />
-                <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
-                    <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
-                </v-btn>
-                <v-badge
-                    color="red"
-                    overlap
-                    :content="red_dot_tips.is_user_mail_num.num"
-                    :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
-                >
-                    <v-btn icon small @click="handlerMail">
-                        <svg-icon class="text-24 head_btn--text" icon="mail"></svg-icon>
+        <v-sheet color="transparent" class="d-flex justify-end align-center" width="100%">
+            <template v-if="isSearchGameShow">
+                <template v-if="selfProxy.userInfo.user_id">
+                    <v-sheet color="transparent" class="d-flex align-center" width="100%">
+                        <v-sheet color="transparent">
+                            <Wallet class="ml-2" min-width="120" />
+                        </v-sheet>
+                        <!-- <User /> -->
+                        <v-spacer />
+                        <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
+                            <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
+                        </v-btn>
+                        <v-badge
+                            color="red"
+                            overlap
+                            :content="red_dot_tips.is_user_mail_num.num"
+                            :value="red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
+                        >
+                            <v-btn icon small @click="handlerMail">
+                                <svg-icon class="text-24 head_btn--text" icon="mail"></svg-icon>
+                            </v-btn>
+                        </v-badge>
+                    </v-sheet>
+                </template>
+                <!-- 未登录 -->
+                <template v-else>
+                    <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin"
+                        >{{LangUtil("登录")}}</btn-yellow
+                    >
+                    <!-- <v-sheet color="transparent" class="btn_regi"> -->
+                    <btn-yellow
+                        v-if="GlobalVar.instance.isShowRegiter"
+                        class="ml-3 text-14"
+                        height="30"
+                        :min_width="60"
+                        :btn_type="2"
+                        @click.native="handlerRegister"
+                        >{{LangUtil("注册")}}</btn-yellow
+                    >
+                    <!-- </v-sheet> -->
+
+                    <v-btn v-if="ModulesHelper.isShow_Kefu() " class="ml-3" icon small @click="onService">
+                        <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                     </v-btn>
-                </v-badge>
-            </v-sheet>
-        </template>
-        <!-- 未登录 -->
-        <template v-else>
-            <v-spacer style="min-width: 0" />
-            <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin">{{LangUtil("登录")}}</btn-yellow>
+                </template>
+            </template>
+            <!-- <v-btn class="mr-n4 ml-2" icon small @click="onSearch">
+                <svg-icon class="text-24 head_btn--text" icon="search"></svg-icon>
+            </v-btn> -->
 
-            <!-- <v-sheet color="transparent" class="btn_regi"> -->
-            <btn-yellow
-                v-if="GlobalVar.instance.isShowRegiter"
-                class="ml-3 text-14"
-                height="30"
-                :min_width="60"
-                :btn_type="2"
-                @click.native="handlerRegister"
-                >{{LangUtil("注册")}}</btn-yellow
-            >
-            <!-- </v-sheet> -->
-
-            <v-btn v-if="ModulesHelper.isShow_Kefu()" class="ml-3" icon small @click="onService">
-                <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
-            </v-btn>
-        </template>
+            <GameSearch v-if="ModulesHelper.isShow_SearchGame()" @gameSearchChange="onchangeGameSearch" class="ml-2 mr-n2" />
+        </v-sheet>
     </v-sheet>
 </v-app-bar>

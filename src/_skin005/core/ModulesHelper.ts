@@ -192,6 +192,10 @@ function isShow_Kefu() {
     return _isValueTrue("sysService");
 }
 
+function isShow_SearchGame() {
+    return _isValueTrue("searchGame");
+}
+
 export default {
     IsShow_VipInfo,
     IsShow_CoinIntroduce,
@@ -215,4 +219,5 @@ export default {
     MyRebate,
     RebateDisplayType,
     RebateListType,
+    isShow_SearchGame,
 };

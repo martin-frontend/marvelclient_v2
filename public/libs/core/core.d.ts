@@ -105,6 +105,8 @@ declare module net {
         api_user_var_game_update_var: string;
         /**--搜索--搜索游戏*/
         api_user_var_game_search: string;
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: string;
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: string;
         /**--返水--获取用户返水详情*/
@@ -408,6 +410,8 @@ declare module net {
         api_user_var_game_update_var: string;
         /**--搜索--搜索游戏*/
         api_user_var_game_search: string;
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: string;
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: string;
         /**--返水--获取用户返水详情*/
@@ -768,6 +772,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_game_menu extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 搜索游戏---非登录状态
+ */
+declare module net {
+    class cmd_api_plat_var_game_search extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

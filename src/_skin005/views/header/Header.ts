@@ -152,4 +152,9 @@ export default class Header extends AbstractView {
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
     }
+    isSearchGameShow = true;
+    onchangeGameSearch(val: boolean) {
+        console.log(" 搜索页面 是否显示", val);
+        this.isSearchGameShow = !val;
+    }
 }

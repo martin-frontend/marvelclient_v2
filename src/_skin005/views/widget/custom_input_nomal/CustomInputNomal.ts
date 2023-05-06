@@ -25,6 +25,9 @@ export default class CustomInputNomal extends AbstractView {
             return { thousandSeparated: true };
         },
     })
+    @Prop({ default: "" })
+    inputId!: string;
+
     Custnumbro!: object; //thousandSeparated 表示千分位 mantissa表示保留后面几位小数点0 表示整数位
 
     inputValue = "";
@@ -160,5 +163,8 @@ export default class CustomInputNomal extends AbstractView {
 
         // 如果点不在末尾，返回处理后的字符串和空字符串
         return [sanitizedInput, ""];
+    }
+    endInput() {
+        this.$emit("endInput");
     }
 }

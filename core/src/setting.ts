@@ -104,6 +104,8 @@ module net {
         api_user_var_game_update_var: "api/user/{user_id}/game/update/{vendor_product_id}",
         /**--搜索--搜索游戏*/
         api_user_var_game_search: "api/user/{user_id}/game/search",
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: "api/plat/{plat_id}/game/search",
 
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: "api/user/{user_id}/backwater",
@@ -434,6 +436,8 @@ module net {
         api_user_var_game_update_var: "api_user_var_game_update_var",
         /**--搜索--搜索游戏*/
         api_user_var_game_search: "api_user_var_game_search",
+        /**--搜索--搜索游戏---非登录状态*/
+        api_plat_var_game_search: "api_plat_var_game_search",
 
         /**--返水--获取用户返水记录*/
         api_user_var_backwater: "api_user_var_backwater",
@@ -710,6 +714,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_game_index, cmd_api_user_var_game_index);
         facade.registerCommand(HttpType.api_user_var_game_update_var, cmd_api_user_var_game_update_var);
         facade.registerCommand(HttpType.api_user_var_game_search, cmd_api_user_var_game_search);
+        facade.registerCommand(HttpType.api_plat_var_game_search, cmd_api_plat_var_game_search);
         //--返水
         facade.registerCommand(HttpType.api_user_var_backwater, cmd_api_user_var_backwater);
         facade.registerCommand(HttpType.api_user_var_backwater_var, cmd_api_user_var_backwater_var);

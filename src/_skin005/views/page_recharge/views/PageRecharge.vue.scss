@@ -66,4 +66,35 @@
 }
 .v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
     letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
-  }
+}
+
+.tab-btn {
+    border: unset !important;
+    border-radius: 10px 10px 0 0 !important;
+    min-width: 90px !important;
+    margin: 0 !important;
+    font-weight: bold;
+}
+.tab-btn::before {
+    background-color: transparent !important;
+}
+
+.theme--light {
+    .tab-btn {
+        color: #5d5d5d !important;
+    }
+    .tab-btn-active {
+        color: #0f1213 !important;
+        background-color: #ffffff !important;
+    }
+}
+
+.theme--dark {
+    .tab-btn {
+        color: #8e8f91 !important;
+    }
+    .tab-btn-active {
+        color: #ffffff !important;
+        background-color: #272828 !important;
+    }
+}

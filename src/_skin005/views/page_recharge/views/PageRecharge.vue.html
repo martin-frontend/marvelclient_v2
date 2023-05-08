@@ -35,15 +35,25 @@
         </v-sheet>
     </v-card>
 
-    <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2 justify-center" min-height="62" width="100%">
-        <v-sheet class="d-flex align-center" min-height="62" color="transparent">
-            <v-btn-toggle :lang="core.lang" mandatory group v-model="myProxy.pageData.tabIndex">
-                <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill" height="30" min_width="78" value="0">
+    <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3" width="100%" color="bgColor">
+        <v-sheet class="d-flex align-center" color="transparent">
+            <v-btn-toggle :lang="core.lang" mandatory group borderless v-model="myProxy.pageData.tabIndex">
+                <v-btn
+                    color="textGray"
+                    v-if="GlobalVar.instance.isShowRecharge"
+                    class="tab-btn"
+                    active-class="tab-btn-active"
+                    height="30"
+                    min_width="78"
+                    value="0"
+                    :outlined="false"
+                >
                     <span class="text-14"> {{LangUtil("充值")}} </span>
                 </v-btn>
                 <v-btn
                     v-if="GlobalVar.instance.isShowExchange || selfProxy.userInfo.is_credit_user == 98"
-                    class="rounded-pill"
+                    class="tab-btn"
+                    active-class="tab-btn-active"
                     height="30"
                     min_width="78"
                     value="1"
@@ -52,7 +62,7 @@
                 </v-btn>
                 <v-btn
                     v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
-                    class="rounded-pill"
+                    class="tab-btn"
                     height="30"
                     min_width="78"
                     value="11"
@@ -62,11 +72,11 @@
             </v-btn-toggle>
             <v-spacer />
             <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="d-flex">
-                <v-btn icon v-if="pageData.tabIndex==1" @click.native="openGoldWater"
-                    ><svg-icon icon="Flowaudit" class="text-22 head_btn--text"></svg-icon
+                <v-btn icon v-if="pageData.tabIndex==1" @click.native="openGoldWater" style="height: 30px"
+                    ><svg-icon icon="Flowaudit" class="text-20 head_btn--text"></svg-icon
                 ></v-btn>
-                <v-btn icon @click.native="goRecord"
-                    ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-22 head_btn--text"></svg-icon>
+                <v-btn icon @click.native="goRecord" style="height: 30px"
+                    ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-20 head_btn--text"></svg-icon>
                 </v-btn>
             </v-sheet>
         </v-sheet>

@@ -18,6 +18,8 @@ export default class PageRecharge extends AbstractView {
         super(PageRechargeMediator);
     }
     destroyed() {
+        this.myProxy.rechargeProxy.pageData.form.amount = "";
+        this.myProxy.exchangeProxy.pageData.form.amount = "";
         super.destroyed();
     }
     mounted() {

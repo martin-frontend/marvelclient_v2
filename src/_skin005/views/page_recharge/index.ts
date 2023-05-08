@@ -7,8 +7,9 @@ function show(tabIdx: number = 0) {
 
     const proxy: PageRechargeProxy = getProxy(PageRechargeProxy);
 
+
     proxy.pageData.tabIndex = tabIdx + "";
-    console.log("传入的值 为", tabIdx);
+    console.warn("传入的值 为", tabIdx);
 }
 
 export default { show };

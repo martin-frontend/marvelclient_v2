@@ -103,15 +103,15 @@
     .theme--dark {
         .v-btn-toggle--group {
             .v-btn {
-                border: solid 1px var(--btn_disable_text_dark) !important;
-                color: #8e8f91 !important;
+                border: solid 1px var(--btn_disable_text_dark);
+                color: #8e8f91;
             }
             .v-btn::before {
-                background-color: transparent !important;
+                background-color: transparent;
             }
             .v-btn.v-btn--active {
-                border: solid 1px #ffcd43 !important;
-                color: #ffffff !important;
+                border: solid 1px #ffcd43;
+                color: #ffffff;
                 font-weight: bold;
                 font-family: "GOTHAM_BOLD";
             }
@@ -155,16 +155,16 @@
     .theme--light {
         .v-btn-toggle--group {
             .v-btn {
-                border: solid 1px #d6dde3 !important;
-                color: #8e8f91 !important;
+                border: solid 1px #d6dde3;
+                color: #8e8f91;
             }
             .v-btn::before {
-                background-color: #ffffff !important;
+                background-color: #ffffff;
                 opacity: 1;
             }
             .v-btn.v-btn--active {
-                border: solid 1px #ffcd43 !important;
-                color: #0f1213 !important;
+                border: solid 1px #ffcd43;
+                color: #0f1213;
                 font-family: "GOTHAM_BOLD";
             }
         }

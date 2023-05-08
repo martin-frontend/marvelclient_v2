@@ -11,13 +11,14 @@
             <div class="d-flex primary--text rounded10 pa-1 text-12 align-center" style="white-space: nowrap">
                 <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
                 <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">{{ states.phase_minute }}{{LangUtil("分钟")}}</div>
-
-                <div v-if="!states.phase_minute" class="min-text ml-n3">{{downcount()}}</div>
-                <v-spacer />
+                <div v-if="!states.phase_minute" class="min-text ml-n1 flex-1">{{downcount()}}</div>
+                <v-spacer v-if="states.match_phase == '-'" />
                 <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="13" height="13" />
-                <div v-if="states.corners_ft" class="mr-5 primary--text">{{states.corners_ft}}</div>
-                <div class="primary--text mr-6">{{LangUtil("让球")}}</div>
-                <div class="ml-16 primary--text">{{LangUtil("大小")}}</div>
+                <div v-if="states.corners_ft" class="primary--text">{{states.corners_ft}}</div>
+                <v-sheet color="transparent" width="154px" class="d-flex fixTestParent">
+                    <div class="primary--text mx-4 left_item">{{LangUtil("让球")}}</div>
+                    <div class="primary--text right_item">{{LangUtil("大小")}}</div>
+                </v-sheet>
             </div>
             <div class="pt-1 colorTextBlack1--text">
                 <div class="d-flex align-center">

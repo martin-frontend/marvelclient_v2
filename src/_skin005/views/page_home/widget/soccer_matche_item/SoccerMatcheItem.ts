@@ -70,7 +70,7 @@ export default class SoccerMatcheItem extends AbstractView {
         } else if (cha > 3600) {
             const hour = (cha / 3600) >> 0;
             const min = ((cha - hour * 3600) / 60) >> 0;
-            return `(${gmt})` + LangUtil("距开赛") + LangUtil("{0}时", hour) + LangUtil("{0}分", min);
+            return `(${gmt})` + LangUtil("距开赛") + '\n' + LangUtil("{0}时", hour) + LangUtil("{0}分", min);
         } else {
             return `(${gmt})` + LangUtil("距开赛") + LangUtil("{0}分", (cha / 60) >> 0);
         }

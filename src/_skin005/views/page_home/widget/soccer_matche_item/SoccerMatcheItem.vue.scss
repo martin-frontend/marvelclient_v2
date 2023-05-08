@@ -20,6 +20,8 @@
 }
 .min-text {
     transform: scale(0.7);
+    white-space: pre-line;
+    line-height: 1;
 }
 .min-card {
     transform: scale(0.8);
@@ -60,4 +62,18 @@
 
 .transform {
     transform: rotate(90deg);
+}
+
+.fixTestParent {
+    position: relative;
+    height: 15px;
+
+    .left_item {
+        position: absolute;
+        right: calc(100% - 60px);
+    }
+    .right_item {
+        position: absolute;
+        left: calc(100% - 100px);
+    }
 }

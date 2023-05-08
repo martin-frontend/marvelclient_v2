@@ -240,7 +240,6 @@
                             </div>
                         </v-col>
                         <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
-                            <!-- 手机显示 -->
                             <v-btn
                                 v-if="ModulesHelper.IsShow_GameWaterGuide()"
                                 color="colorPurpleBtn"
@@ -600,22 +599,23 @@
                             </v-sheet>
                         </v-col>
 
-                        <v-col cols="12" class="d-flex d-md-none justify-space-around btn_group mb-md-6 right_btn_group mt-9">
-                            <btn-yellow
+                        <v-col cols="12" class="d-flex d-md-none btn_group mb-md-6 right_btn_group mt-9 flex-wrap">
+                            <v-spacer />
+                            <!-- <btn-yellow
                                 v-if="ModulesHelper.IsShow_GameWaterGuide()"
-                                class="text-12"
+                                class="text-12 mt-1"
                                 min-width="80"
                                 height="30"
                                 :btn_type="2"
                                 @click.native="jumpTo('#howMine')"
                                 >{{LangUtil("说明")}}</btn-yellow
-                            >
+                            > -->
 
-                            <btn-yellow class="text-12 ml-2 mr-2" min-width="80" height="30" :btn_type="2" @click.native="handlerMineRecord"
+                            <btn-yellow class="text-12 ml-2 mr-2 mt-1" min-width="80" height="30" :btn_type="2" @click.native="handlerMineRecord"
                                 >{{LangUtil("奖励记录")}}</btn-yellow
                             >
 
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2" @click.native="handlerBetRecord"
+                            <btn-yellow class="text-12 mt-1" min-width="80" height="30" :btn_type="2" @click.native="handlerBetRecord"
                                 >{{LangUtil("投注记录")}}</btn-yellow
                             >
                         </v-col>

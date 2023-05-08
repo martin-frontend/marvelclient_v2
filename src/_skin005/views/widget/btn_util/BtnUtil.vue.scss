@@ -259,6 +259,14 @@ $sss: #3e3f41;
     // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
 }
 
+.btn_11 {
+    cursor: pointer;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    // color: var(--btn_nomal_text);
+    // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
+}
+
 .theme--dark {
     .btn_9:hover {
         color: var(--btn_hover_text) !important;
@@ -286,6 +294,25 @@ $sss: #3e3f41;
         font-family: "GOTHAM_BOLD";
         background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
+    .btn_11 {
+        color: #8e8f91 !important;
+        background-color: #272828;
+        border: 1px solid #3e3f41 !important;
+    }
+    
+    .btn_11:hover, .btn_11_disable {
+        border: 1px solid #f6b400 !important;
+        color: #ffffff !important;
+        font-weight: bold !important;
+    }
+    // .btn_11_disable {
+    //     background-clip: padding-box, border-box;
+    //     background-origin: padding-box, border-box;
+    //     color: var(--btn_disable_text_light);
+    //     border: 1px solid transparent;
+    //     font-family: "GOTHAM_BOLD";
+    //     background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    // }
 }
 
 .theme--light {
@@ -314,6 +341,17 @@ $sss: #3e3f41;
         border: 1px solid transparent;
         font-family: "GOTHAM_BOLD";
         background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+    .btn_11 {
+        color: #5d5d5d !important;
+        background-color: #272828;
+        border: 1px solid #d6dde3 !important;
+    }
+    
+    .btn_11:hover, .btn_11_disable {
+        border: 1px solid #f6b400 !important;
+        color: #0f1213 !important;
+        font-weight: bold !important;
     }
 }
 

@@ -14,7 +14,6 @@ export default class RechargeType9 extends AbstractView {
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
-
     mounted() {}
 
     // 创建充值订单

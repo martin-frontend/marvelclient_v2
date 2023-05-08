@@ -5,6 +5,7 @@ export default class DialogMessageBoxProxy extends puremvc.Proxy {
     pageData = {
         bShow: false,
         data: <MessageVO>{},
+        timeHeadle: 0,//自动关闭的句柄
     };
 
     handlerOK() {

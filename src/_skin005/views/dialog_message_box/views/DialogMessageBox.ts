@@ -29,5 +29,16 @@ export default class DialogMessageBox extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
+        if (this.myProxy.pageData.timeHeadle) {
+            clearTimeout(this.myProxy.pageData.timeHeadle);
+        }
+        if (this.pageData.bShow) {
+            if (this.myProxy.pageData.data.closeTime && this.myProxy.pageData.data.closeTime > 0) {
+                this.myProxy.pageData.timeHeadle = setTimeout(() => {
+                    console.log("自动关闭弹窗--");
+                    this.onOK();
+                }, this.myProxy.pageData.data.closeTime);
+            }
+        }
     }
 }

@@ -42,30 +42,6 @@ export default class DialogPerformanceDetailProxy extends puremvc.Proxy {
         },
     };
 
-    categoryIcons: any = {
-        2: {
-            label: LangUtil("棋牌"),
-        },
-        4: {
-            label: LangUtil("彩票"),
-        },
-        8: {
-            label: LangUtil("捕鱼"),
-        },
-        16: {
-            label: LangUtil("电子"),
-        },
-        32: {
-            label: LangUtil("真人"),
-        },
-        64: {
-            label: LangUtil("体育电竞"),
-        },
-        128: {
-            label: LangUtil("链游"),
-        },
-    };
-
     _transformMoney(val: any, target_coin_name: string, src_coin_name: string) {
         return CoinTransformHelper.TransformMoney(val, 2, target_coin_name, src_coin_name, true, true, false, false);
     }

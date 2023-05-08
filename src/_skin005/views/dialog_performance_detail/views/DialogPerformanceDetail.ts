@@ -8,6 +8,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
@@ -15,7 +16,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     pageData = this.myProxy.pageData;
     parameter = this.myProxy.parameter;
     listQuery = this.pageData.listQuery;
-    categoryType = this.myProxy.categoryIcons;
+    Constant = Constant;
     LangUtil = LangUtil;
     ModulesHelper = ModulesHelper;
     core = core;

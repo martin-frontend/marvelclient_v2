@@ -251,7 +251,7 @@
                                     </v-sheet>
 
                                     <v-sheet
-                                    v-if="ModulesHelper.MyRebate()"
+                                        v-if="ModulesHelper.MyRebate()"
                                         color="transparent"
                                         height="40"
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
@@ -282,7 +282,7 @@
                         <div class="text-16 primary--text font-weight-bold">{{LangUtil("可领取佣金")}}</div>
 
                         <v-sheet color="transparent" class="d-flex ml-auto">
-                            <btn-yellow
+                            <!-- <btn-yellow
                                 class="text-12 mr-2"
                                 min-width="80"
                                 height="30"
@@ -290,28 +290,58 @@
                                 @click.native="handlerAward"
                                 :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
                                 >{{LangUtil("领取奖励")}}</btn-yellow
-                            >
+                            > -->
 
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2" @click.native="handleRecords"
+                            <btn-yellow class="text-12 mr-2" min_width="80" height="30" :btn_type="2" @click.native="handleRecords"
                                 >{{LangUtil("领取记录")}}</btn-yellow
                             >
                         </v-sheet>
                     </v-sheet>
 
-                    <v-sheet color="transparent" class="d-flex justify-space-around mt-4" width="100%">
-                        <v-sheet color="transparent" class="d-flex flex-column align-center">
-                            <v-img class="" :src="pageData.platCoins.mainCoin.icon" max-width="42" height="42"></v-img>
-                            <div class="text-16 mt-2 textYellow--text font-weight-medium">
-                                {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
-                            </div>
+                    <v-sheet color="transparent" class="d-flex flex-column mt-4" width="100%">
+                        <v-sheet color="transparent" class="d-flex align-center sheetOutlined justify-space-between px-2 py-2" width="100%">
+                            <v-sheet color="transparent" class="d-flex align-center ml-2">
+                                <v-img class="" :src="pageData.platCoins.mainCoin.icon" max-width="22" height="22"></v-img>
+                                <div class="text-16 textYellow--text font-weight-medium ml-2">
+                                    {{ promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] }}
+                                </div>
+                            </v-sheet>
+                            <btn-yellow
+                                class="text-12"
+                                min_width="80"
+                                height="30"
+                                :btn_type="2"
+                                @click.native="handlerAward"
+                                :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
+                                >{{LangUtil("领取奖励")}}</btn-yellow
+                            >
                         </v-sheet>
 
-                        <v-sheet color="transparent" class="d-flex flex-column align-center">
-                            <v-img class="" :src="pageData.platCoins.rewardCoin.icon" max-width="42" height="42"></v-img>
-                            <div class="text-16 mt-2 textYellow--text font-weight-medium">
-                                {{ promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] }}
-                            </div>
-                        </v-sheet>
+                        <template
+                            v-if="pageData.platCoins.rewardCoin.icon && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] "
+                        >
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex align-center sheetOutlined justify-space-between px-2 mt-2"
+                                width="100%"
+                            >
+                                <v-sheet color="transparent" class="d-flex align-center ml-2">
+                                    <v-img class="" :src="pageData.platCoins.rewardCoin.icon" max-width="42" height="42"></v-img>
+                                    <div class="text-16 mt-2 textYellow--text font-weight-medium">
+                                        {{ promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] }}
+                                    </div>
+                                </v-sheet>
+                                <btn-yellow
+                                    class="text-12"
+                                    min_width="80"
+                                    height="30"
+                                    :btn_type="2"
+                                    @click.native="handlerAward"
+                                    :disabled="promotionData.commission_awaiting_num[pageData.platCoins.mainCoin.name] == 0 && promotionData.commission_awaiting_num[pageData.platCoins.rewardCoin.name] == 0"
+                                    >{{LangUtil("领取奖励")}}</btn-yellow
+                                >
+                            </v-sheet>
+                        </template>
                     </v-sheet>
                     <MaskTool />
                 </v-card>
@@ -332,7 +362,7 @@
                                     {{ statistics_data.total_commission[pageData.platCoins.rewardCoin.name] }}
                                 </span>
                             </v-sheet>
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2" @click.native="handlerPerformance"
+                            <btn-yellow class="text-12" min_width="80" height="30" :btn_type="2" @click.native="handlerPerformance"
                                 >{{LangUtil("业绩查询")}}</btn-yellow
                             >
                         </v-sheet>
@@ -349,7 +379,7 @@
                             <v-sheet color="transparent" class="d-flex align-center" min-width="80">
                                 <btn-yellow
                                     class="text-12"
-                                    min-width="80"
+                                    min_width="80"
                                     height="30"
                                     :btn_type="2"
                                     v-if="myProxy.pageData.btnBind"
@@ -387,7 +417,12 @@
                             <div>{{ promotionData.group_users }} ({{ promotionData.today_group_users }})</div>
                         </v-sheet>
 
-                        <v-sheet v-if="ModulesHelper.MyRebate()" color="transparent" height="30" class="d-flex text-12 textGray--text justify-space-between align-center">
+                        <v-sheet
+                            v-if="ModulesHelper.MyRebate()"
+                            color="transparent"
+                            height="30"
+                            class="d-flex text-12 textGray--text justify-space-between align-center"
+                        >
                             <div>{{LangUtil("每万返佣")}}</div>
                             <div>{{ promotionData.commission_num }}</div>
                         </v-sheet>
@@ -406,10 +441,10 @@
 
                         <v-sheet color="transparent" width="100%" class="d-flex justify-center align-center">
                             <!-- <v-sheet color="transparent" class="d-flex flex-column justify-center"> -->
-                            <btn-yellow class="text-12" min-width="80" height="30" :btn_type="2" @click.native="reget"
+                            <btn-yellow class="text-12" min_width="80" height="30" :btn_type="2" @click.native="reget"
                                 >{{LangUtil("重新获取")}}</btn-yellow
                             >
-                            <btn-yellow class="text-12 ml-2" min-width="80" height="30" :btn_type="2" @click.native="showPreview"
+                            <btn-yellow class="text-12 ml-2" min_width="80" height="30" :btn_type="2" @click.native="showPreview"
                                 >{{LangUtil("保存图片")}}</btn-yellow
                             >
                             <!-- </v-sheet> -->

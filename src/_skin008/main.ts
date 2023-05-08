@@ -40,6 +40,8 @@ Assets.commonIcon.loading_img = "loding_icon_8.png";
 Assets.commonIcon.logo = require(`@/_skin008/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
 Assets.commonIcon.cat_icon = require(`@/_skin008/assets/mine/cat_icon.png`);
+Assets.commonIcon.about_02_bg = require(`@/_skin008/assets/mine/about_02_icon_bg.png`);
+Assets.commonIcon.about_03_bg = require(`@/_skin008/assets/mine/about_03_icon_bg.png`);
 
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";
@@ -53,7 +55,7 @@ core.init();
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
-//core.game_domain =  "betnow.co";
+//core.game_domain = "1x2.game";
 if (process.env.VUE_APP_GAME_DOMAIN) {
     core.game_domain = process.env.VUE_APP_GAME_DOMAIN;
 }

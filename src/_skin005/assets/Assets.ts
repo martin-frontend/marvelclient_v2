@@ -5,6 +5,9 @@ const commonIcon = {
     nodata: require(`@/_skin005/assets/nodata.png`),
     avatar_default: require(`@/_skin005/assets/avatar_default.png`),
     cat_icon: require(`@/_skin005/assets/mine/cat_icon.png`),
+    about_01_bg: require(`@/_skin005/assets/mine/about_01_icon_bg.png`),
+    about_02_bg: require(`@/_skin005/assets/mine/about_02_icon_bg.png`),
+    about_03_bg: require(`@/_skin005/assets/mine/about_03_icon_bg.png`),
     arrow_right: "arrow_right",
     loading_img: "loding_icon_5.png",
 };

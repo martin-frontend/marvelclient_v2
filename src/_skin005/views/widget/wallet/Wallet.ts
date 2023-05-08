@@ -53,6 +53,15 @@ export default class Wallet extends AbstractView {
         }
     }
 
+    public get walletMaxwidth(): string {
+        if (!this.$mobile) {
+            return "";
+        }
+        if (GlobalVar.skin == "skin008") {
+            return "menu_width_mob_008";
+        }
+        return "menu_width_mob";
+    }
     public get isShowTips(): boolean {
         return true;
     }

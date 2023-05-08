@@ -102,7 +102,7 @@
         <Marquee1 />
     </v-sheet>
 
-    <SoccerMatche v-if="IsShow_FootBallHot" :class="{'boxpadding': $mobile}" />
+    <SoccerMatche v-if="IsShow_FootBallHot && SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 
     <GameType v-if="isShowGameType" />
 
@@ -111,4 +111,5 @@
         <GameSlideGroup v-if=" item.category != 32" :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
+    <SoccerMatche v-if="IsShow_FootBallHot && !SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 </div>

@@ -28,4 +28,6 @@ export default class SkinVariable {
     public static isShowGameType = false;
     /**注册时候 是否显示未成年勾选框 */
     public static isShowRestrictions = false;
+    /**首页足球是否放在排列的最上面 */
+    public static isFootballTop = true;
 }

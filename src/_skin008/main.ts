@@ -47,6 +47,7 @@ Assets.commonIcon.cat_icon = require(`@/_skin008/assets/mine/cat_icon.png`);
 // SkinVariable.isForeShowRecharge = true;
 SkinVariable.isShowRestrictions = true;
 SkinVariable.isShowfullLogo = true;
+SkinVariable.isFootballTop = false;
 LogUtil.init();
 core.init();
 //@ts-ignore

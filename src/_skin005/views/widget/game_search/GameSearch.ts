@@ -3,6 +3,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class GameSearch extends AbstractView {
@@ -160,6 +161,9 @@ export default class GameSearch extends AbstractView {
             return "menu ";
         } else {
             if (PanelUtil.getProxy_novigation.isminiMenu) {
+                if (GlobalVar.skin == "skin008") {
+                    return "menu_pc menu_pc_width_mini_008";
+                }
                 return "menu_pc menu_pc_width_mini";
             }
             return "menu_pc menu_pc_width";
@@ -168,6 +172,9 @@ export default class GameSearch extends AbstractView {
 
     public get searchInputClass(): string {
         if (this.$mobile) {
+            if (GlobalVar.skin == "skin008") {
+                return "searchInput_008";
+            }
             return "searchInput ";
         } else {
             return "searchInput_pc";

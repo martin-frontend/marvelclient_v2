@@ -53,6 +53,9 @@
 .menu_pc_width_mini {
     width: calc(100% - 170px);
 }
+.menu_pc_width_mini_008 {
+    width: calc(100% - 220px);
+}
 .transform_mob {
     transform: scale(0.8);
 }
@@ -70,7 +73,12 @@
     width: calc(100vw - 90px);
     top: -42px;
 }
-
+.searchInput_008 {
+    position: absolute;
+    left: 120px;
+    width: calc(100vw - 120px);
+    top: -42px;
+}
 .searchInput_pc {
     position: absolute;
     top: -56px;

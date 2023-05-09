@@ -381,13 +381,14 @@ export default class NetObserver extends AbstractMediator {
             }
             gameUrl += hash;
 
-            PanelUtil.message_confirm({
-                message: msg,
-                okFun: () => {
-                    console.log("gameUrl====", gameUrl);
-                    WebViewBridge.getInstance().openBrowser(gameUrl);
-                },
-            });
+            WebViewBridge.getInstance().openBrowser(gameUrl);
+            // PanelUtil.message_confirm({
+            //     message: msg,
+            //     okFun: () => {
+            //         console.log("gameUrl====", gameUrl);
+            //         WebViewBridge.getInstance().openBrowser(gameUrl);
+            //     },
+            // });
         }
     }
 

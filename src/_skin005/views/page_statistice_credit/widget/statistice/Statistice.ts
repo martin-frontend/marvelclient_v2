@@ -62,8 +62,8 @@ export default class Statistice extends AbstractView {
     constructor() {
         super(DialogStatisticsCreditMediator);
     }
-    mounted() {
-        this.setDatePiker();
+    created() {
+        // this.setDatePiker();
         //console.log("    创建 ---  创建");
         const start = getTodayOffset(-6);
         const end = getTodayOffset(1, 1);
@@ -73,22 +73,22 @@ export default class Statistice extends AbstractView {
     }
 
     setDatePiker() {
-        const keyNode = document.querySelectorAll(".el-date-editor");
-        if (!keyNode || keyNode.length < 1) return;
+        // const keyNode = document.querySelectorAll(".el-date-editor");
+        // if (!keyNode || keyNode.length < 1) return;
 
-        for (let index = 0; index < keyNode.length; index++) {
-            const element = keyNode[index];
+        // for (let index = 0; index < keyNode.length; index++) {
+        //     const element = keyNode[index];
 
-            const iNode = document.createElement("i");
-            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-            element.appendChild(iNode);
+        //     const iNode = document.createElement("i");
+        //     iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+        //     element.appendChild(iNode);
 
-            iNode.style.position = "absolute";
-            iNode.style.top = "13px";
-            iNode.style.right = "12px";
-            iNode.style.color = "#8E8F91";
-            iNode.style.pointerEvents = "none";
-        }
+        //     iNode.style.position = "absolute";
+        //     iNode.style.top = "13px";
+        //     iNode.style.right = "12px";
+        //     iNode.style.color = "#8E8F91";
+        //     iNode.style.pointerEvents = "none";
+        // }
     }
     destroyed() {
         console.log(" ---销毁 ----");

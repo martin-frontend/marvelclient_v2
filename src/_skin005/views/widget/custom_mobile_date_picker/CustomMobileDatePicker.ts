@@ -8,6 +8,8 @@ export default class CustomMobileDatePicker extends AbstractView {
     LangUtil = LangUtil;
     @Prop({ default: "" }) start!: any;
     @Prop({ default: "" }) end!: any;
+    @Prop({ default: "" }) valueFormat!: any;
+    @Prop({ default: true }) showIcon!: any;
 
     firstShowStart = false;
     firstShowEnd = false;
@@ -15,13 +17,13 @@ export default class CustomMobileDatePicker extends AbstractView {
     startTime = this.start;
     @Watch("startTime")
     onWatchStartTime(time: any) {
-        this.$emit("update:start", dateFormat(time, "yyyy-MM-dd hh:mm:ss"));
+        this.$emit("update:start", time);
     }
 
     endTime = this.end;
     @Watch("endTime")
     onWatchEndTime(time: any) {
-        this.$emit("update:end", dateFormat(time, "yyyy-MM-dd hh:mm:ss"));
+        this.$emit("update:end", time);
     }
 
     pickerOptionsStart = {

@@ -528,13 +528,13 @@
 
             <v-sheet
                 color="bgBanner"
-                class="rounded10 d-flex flex-column"
+                class="rounded10 d-flex flex-column px-4"
                 width="100%"
             >
                 <v-sheet
                     color="transparent"
                     width="100%"
-                    class="d-flex align-center text-14 mt-2 ml-4"
+                    class="d-flex align-center text-14 mt-2"
                     min-height="40"
                 >
                     <div class="mr-5 primary--text font-weight-regular">{{LangUtil("ID:")}}</div>
@@ -562,8 +562,8 @@
                 <v-sheet
                     color="transparent"
                     width="100%"
-                    class="ml-4 d-flex align-center text-14 mt-2"
-                    min-height="40"
+                    class="d-flex align-center text-14 mt-2"
+                    min-height="36"
                 >
                     <v-sheet
                         color="transparent"
@@ -576,7 +576,7 @@
                         v-if="myProxy.coin_name_unique"
                         color="transparent"
                         class="ml-1"
-                        width="72%"
+                        width="100%"
                     >
                         <goldinfo_util
                             :is_need_coin_name="true"
@@ -591,12 +591,11 @@
 
                 <v-sheet
                     color="transparent"
-                    width="91%"
-                    class="ml-4 d-flex align-center timeRange text-14 mt-2"
+                    class="d-flex align-center text-14 mt-2"
                     min-height="40"
                 >
-                    <div class="primary--text text-no-wrap font-weight-regular mr-2">{{LangUtil("时间范围")}}</div>
-                    <el-date-picker
+                    <!-- <div class="primary--text text-no-wrap font-weight-regular mr-2">{{LangUtil("时间范围")}}</div> -->
+                    <!-- <el-date-picker
                         class="mr-2 ml-1 phone_datapicker"
                         v-model="timeRange[0]"
                         type="datetime"
@@ -615,7 +614,15 @@
                         format="yyyy-MM-dd HH:mm"
                         @change="onTimeChange"
                     >
-                    </el-date-picker>
+                    </el-date-picker> -->
+                    
+                    <CustomMobileDatePicker
+                        color="wallet_bg"
+                        width="100%"
+                        @change="onTimeChange"
+                        :start.sync="timeRange[0]"
+                        :end.sync="timeRange[1]"
+                    ></CustomMobileDatePicker>
                 </v-sheet>
 
                 <v-sheet

@@ -121,9 +121,9 @@ export default class DialogBetRecord extends AbstractView {
         );
     }
     mounted() {
-        setTimeout(() => {
-            this.setDatePiker();
-        }, 400);
+        // setTimeout(() => {
+        //     this.setDatePiker();
+        // }, 400);
         this.myProxy.api_vendor_simple();
     }
     get pageInfoText() {
@@ -132,45 +132,45 @@ export default class DialogBetRecord extends AbstractView {
         const parts = text.split(regex);
         return parts;
     }
-    @Watch("pageData.bShowOptions")
-    watchShowOptions() {
-        console.log("-----创建 ----");
-        if (this.pageData.bShowOptions) {
-            const keyNode = document.querySelector(".el-date-editor");
-            if (!keyNode) return;
-            console.log("-----创建 --22222--");
-            //for (let index = 0; index < keyNode.length; index++) {
-            const element = keyNode;
+    // @Watch("pageData.bShowOptions")
+    // watchShowOptions() {
+    //     console.log("-----创建 ----");
+    //     if (this.pageData.bShowOptions) {
+    //         const keyNode = document.querySelector(".el-date-editor");
+    //         if (!keyNode) return;
+    //         console.log("-----创建 --22222--");
+    //         //for (let index = 0; index < keyNode.length; index++) {
+    //         const element = keyNode;
 
-            const iNode = document.createElement("i");
-            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-            element.appendChild(iNode);
+    //         const iNode = document.createElement("i");
+    //         iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+    //         element.appendChild(iNode);
 
-            iNode.style.position = "absolute";
-            iNode.style.top = "13px";
-            iNode.style.right = "12px";
-            iNode.style.color = "#f00";
-            iNode.style.pointerEvents = "none";
-        }
-    }
+    //         iNode.style.position = "absolute";
+    //         // iNode.style.top = "13px";
+    //         iNode.style.right = "12px";
+    //         iNode.style.color = "#f00";
+    //         iNode.style.pointerEvents = "none";
+    //     }
+    // }
 
-    setDatePiker() {
-        const keyNode = document.querySelectorAll(".el-date-editor");
-        if (!keyNode) return;
-        for (let index = 0; index < keyNode.length; index++) {
-            const element = keyNode[index];
+    // setDatePiker() {
+        // const keyNode = document.querySelectorAll(".el-date-editor");
+        // if (!keyNode) return;
+        // for (let index = 0; index < keyNode.length; index++) {
+        //     const element = keyNode[index];
 
-            const iNode = document.createElement("i");
-            iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-            element.appendChild(iNode);
+        //     const iNode = document.createElement("i");
+        //     iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+        //     element.appendChild(iNode);
 
-            iNode.style.position = "absolute";
-            iNode.style.top = "12px";
-            iNode.style.right = "12px";
-            iNode.style.color = "#8E8F91";
-            iNode.style.pointerEvents = "none";
-        }
-    }
+        //     iNode.style.position = "absolute";
+        //     iNode.style.top = "12px";
+        //     iNode.style.right = "12px";
+        //     iNode.style.color = "#8E8F91";
+        //     iNode.style.pointerEvents = "none";
+        // }
+    // }
 
     public get isOtherUser(): any {
         if (!this.groupsTitle) {
@@ -228,13 +228,11 @@ export default class DialogBetRecord extends AbstractView {
     }
 
     onTimeChange() {
-
         if (this.timeRange) {
             const startDate: any = this.timeRange[0];
             const endDate: any = this.timeRange[1];
             if (startDate) {
                 this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
-
             } else {
                 this.pageData.listQuery.start_date = "";
             }
@@ -248,25 +246,6 @@ export default class DialogBetRecord extends AbstractView {
             this.pageData.listQuery.end_date = "";
         }
 
-        // if(!this.$mobile) {
-        //     if (this.timeRange) {
-        //         const startDate: any = this.timeRange[0];
-        //         const endDate: any = this.timeRange[1];
-        //         if (startDate) {
-        //             this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
-        //         } else {
-        //             this.pageData.listQuery.start_date = "";
-        //         }
-        //         if (endDate) {
-        //             this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
-        //         } else {
-        //             this.pageData.listQuery.end_date = "";
-        //         }
-        //     } else {
-        //         this.pageData.listQuery.start_date = "";
-        //         this.pageData.listQuery.end_date = "";
-        //     }
-        // }
         this.pageData.listQuery.page_count = 1;
         this.myProxy.getApi();
     }

@@ -1,18 +1,20 @@
-<v-sheet v-bind="$attrs" color="transparent" width="95%" class="rounded-lg mt-2 mx-auto d-flex timeRange textGray--text">
+<v-sheet v-bind="$attrs" class="rounded-lg d-flex time-range textGray--text">
+    <i v-if="showIcon" class="el-icon-date d-flex align-center ml-2"></i>
     <el-date-picker
         ref="startDate"
-        class="input_range_1"
+        class="input_range_1 d-flex"
         v-model="startTime"
         type="datetime"
         :placeholder="LangUtil('开始日期')"
         default-time="00:00"
         format="yyyy-MM-dd HH:mm"
+        :value-format="valueFormat"
         :clearable="false"
         @blur="startBlur"
         :picker-options="pickerOptionsStart"
     >
     </el-date-picker>
-    <div style="display: grid; align-items: center">-</div>
+    <div style="display: grid; align-items: center" class="mx-1">-</div>
     <el-date-picker
         ref="endDate"
         v-model="endTime"
@@ -21,6 +23,7 @@
         :placeholder="LangUtil('结束日期')"
         default-time="23:59"
         format="yyyy-MM-dd HH:mm"
+        :value-format="valueFormat"
         :clearable="false"
         @blur="endBlur"
         :picker-options="pickerOptionsEnd"

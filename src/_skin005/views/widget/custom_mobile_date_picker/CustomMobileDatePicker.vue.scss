@@ -1,29 +1,29 @@
-.input_range_1 {
+.input_range_1, .input_range_2 {
     ::v-deep .el-icon-date {
         display: none;
     }
     ::v-deep .el-input__inner {
-        padding-left: 10px !important;
+        padding-left: 0px !important;
+        width: 115px;
+        text-align: center;
     }
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 36px !important;
     width: auto;
-}
-.input_range_2 {
-    ::v-deep .el-input__inner {
-        padding-left: 31px !important;
-    }
-    height: 36px !important;
+    flex: 1;
 }
 
 .theme--light {
-    .timeRange {
+    .time-range {
         ::v-deep .el-input__inner {
             height: 36px;
             background-color: transparent !important;
             color: var(--btn_disable_text_dark);
         }
-        background-color: #fff !important;
+        // background-color: #fff !important;
 
         ::v-deep .el-input {
             font-size: 12px !important;
@@ -31,13 +31,13 @@
     }
 }
 .theme--dark {
-    .timeRange {
+    .time-range {
         ::v-deep .el-input__inner {
             color: #8e8f91;
             height: 36px;
             background-color: transparent !important;
         }
-        background-color: #2f3030 !important;
+        // background-color: #2f3030 !important;
 
         ::v-deep .el-input {
             font-size: 12px !important;

@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Statistice from "./Statistice";
+import CustomMobileDatePicker from "@/_skin005/views/widget/custom_mobile_date_picker/CustomMobileDatePicker.vue";
 
-@Component
+@Component({
+    components: {
+        CustomMobileDatePicker,
+    },
+})
 export default class extends Statistice {}
 </script>

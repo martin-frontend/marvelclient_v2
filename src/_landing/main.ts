@@ -1,7 +1,7 @@
 import LandConfig from "./config/LandConfig";
 import { api_public_area_code, api_public_auth_code } from "./net";
 
-var old_channel_id: string;
+let old_channel_id: string;
 
 async function loadConfig() {
     await LandConfig.loadChannelConfig();

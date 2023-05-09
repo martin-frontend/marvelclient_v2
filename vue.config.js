@@ -89,6 +89,19 @@ const skinMap = {
             },
         },
     },
+    /**CF亚娱2 */
+    skin004_2: {
+        public_dir: "public_skin004_2",
+        pages: {
+            skin004_2: {
+                entry: "src/_skin004_2/main.ts",
+                template: "public_skin004_2/skin004_2.html",
+                filename: "index.html",
+                title: "CF亚娱2",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**96in */
     skin005: {
         public_dir: "public_skin005",
@@ -238,7 +251,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007", "skin008","skin009"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007", "skin008", "skin009"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {
             imagesRule.exclude.add(resolve("src/_skin020/icons"));

@@ -1,3 +1,5 @@
+import { getVersion } from "@/core/global/Functions";
+
 const commonIcon = {
     logo: require(`@/_skin005/assets/logo.png`),
     logo_m: require(`@/_skin005/assets/logo_m.png`),
@@ -9,7 +11,7 @@ const commonIcon = {
     about_02_bg: require(`@/_skin005/assets/mine/about_02_icon_bg.png`),
     about_03_bg: require(`@/_skin005/assets/mine/about_03_icon_bg.png`),
     arrow_right: "arrow_right",
-    loading_img: "loding_icon_5.png",
+    loading_img: "loding_icon_5.png?" + getVersion(),
 };
 
 /**游戏分类图标	

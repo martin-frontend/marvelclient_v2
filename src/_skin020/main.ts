@@ -36,8 +36,9 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "@/_skin020/views/header/Header.vue";
+import { getVersion } from "@/core/global/Functions";
 
-Assets.commonIcon.loading_img = "loding_icon_20.png";
+Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
 
@@ -133,7 +134,7 @@ window["vueInit"] = () => {
 
     //
     function WhisperCallback(payload: any) {
-        onWhisperLogin(payload["code"],2);
+        onWhisperLogin(payload["code"], 2);
     }
     //
     function WhisperCallbackOnError(err: any) {
@@ -161,7 +162,7 @@ window.onload = function () {
 //只要黑夜主题
 Vue.vuetify.framework.theme.dark = true;
 
-function onWhisperLogin(code: any,type:number = 1) {
+function onWhisperLogin(code: any, type: number = 1) {
     PanelUtil.message_info("code:" + code);
     if (code) {
         window.localStorage.removeItem("code");
@@ -169,7 +170,7 @@ function onWhisperLogin(code: any,type:number = 1) {
             plat_id: core.plat_id,
             channel_id: core.channel_id,
             code,
-            type:type,
+            type: type,
         });
     }
 }

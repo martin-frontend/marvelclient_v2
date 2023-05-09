@@ -35,8 +35,9 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin008/views/footer/Footer.vue";
 import Header from "@/_skin005/views/header/Header.vue";
+import { getVersion } from "@/core/global/Functions";
 
-Assets.commonIcon.loading_img = "loding_icon_8.png";
+Assets.commonIcon.loading_img = "loding_icon_8.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin008/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
 Assets.commonIcon.cat_icon = require(`@/_skin008/assets/mine/cat_icon.png`);

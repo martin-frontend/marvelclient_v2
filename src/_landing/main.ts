@@ -1,9 +1,12 @@
 import LandConfig from "./config/LandConfig";
 import { api_public_area_code, api_public_auth_code } from "./net";
 
+var old_channel_id: string;
+
 async function loadConfig() {
     await LandConfig.loadChannelConfig();
     await LandConfig.loadPlatConfig();
+    old_channel_id = LandConfig.config.channelID;
     const channelID = core.getQueryVariable("channel_id");
     if (channelID) {
         const config = LandConfig.config;
@@ -21,8 +24,8 @@ function loadTemplate() {
         template_url = "template/" + config.modelID + "/index.html?v=" + version;
         faviconurl = "template/" + config.modelID + "/favicon.ico?v=" + version;
     } else {
-        template_url = "template/" + config.channelID + "/" + config.id + "/" + config.upload_version + "/index.html?v=" + version;
-        faviconurl = "template/" + config.channelID + "/" + config.id + "/" + config.upload_version + "/favicon.ico?v=" + version;
+        template_url = "template/" + old_channel_id + "/" + config.id + "/" + config.upload_version + "/index.html?v=" + version;
+        faviconurl = "template/" + old_channel_id + "/" + config.id + "/" + config.upload_version + "/favicon.ico?v=" + version;
     }
 
     const link: any = document.querySelector("link[rel*='icon']") || document.createElement("link");

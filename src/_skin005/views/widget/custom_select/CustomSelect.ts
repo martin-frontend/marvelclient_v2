@@ -33,7 +33,7 @@ export default class CustomSelect extends AbstractView {
         // let str = "";
         // str = "select-text";
         if (this.isSetChange == null) {
-            if (this.$xsOnly) {
+            if (this.$mobile) {
                 return "select-text";
             }
             return "select-text select_bg-text";

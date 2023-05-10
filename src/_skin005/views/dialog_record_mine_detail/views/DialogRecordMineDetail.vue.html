@@ -1,17 +1,11 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card class="rounded10" :color="!$xsOnly ? 'bgBanner' : 'bgColor'" v-if="!pageData.loading">
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card class="rounded10" :color="!$mobile ? 'bgBanner' : 'bgColor'" v-if="!pageData.loading">
         <!-- pc显示方式 -->
-        <template v-if="!$xsOnly">
-            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$xsOnly">
-                <div class="text-20">{{LangUtil("奖励详情")}}</div>
-                <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </v-card-title> -->
+        <template v-if="!$mobile">
             <com-dialog-title title="奖励详情" @onClose="onClose" />
 
             <v-divider />
-            <v-card-text class="px-5" v-if="!$xsOnly">
+            <v-card-text class="px-5" v-if="!$mobile">
                 <div class="d-flex title_ mb-3 mt-3 d-flex align-center">
                     <div class="text-14 primary--text">
                         <span>

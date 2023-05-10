@@ -61,7 +61,7 @@ export default class DialogRecordExchangeProxy extends AbstractProxy {
         this.pageData.loading = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
 
-        if (window.$xsOnly) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

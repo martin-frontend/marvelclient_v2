@@ -29,7 +29,7 @@
                         >
                         <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="150">
                             <btn-yellow
-                                v-if="!$xsOnly"
+                                v-if="!$mobile"
                                 class="text-16"
                                 min-width="150"
                                 height="32"
@@ -72,7 +72,7 @@
                         <div class="mt-3 d-flex justify-space-between align-center">
                             <div class="leftText--text">{{LangUtil("操作")}}</div>
                             <btn-yellow
-                                v-if="!$xsOnly"
+                                v-if="!$mobile"
                                 class="text-16"
                                 min-width="150"
                                 height="32"

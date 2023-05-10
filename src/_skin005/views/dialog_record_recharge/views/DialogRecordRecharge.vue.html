@@ -3,17 +3,18 @@
     width="838"
     v-model="pageData.bShow"
     :retain-focus="false"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     persistent
     :no-click-animation="$mobile"
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
     <!-- pc显示方式 -->
-    <template v-if="!$xsOnly">
+    <template v-if="!$mobile">
         <v-card class="rounded10 pb-3" color="bgBanner">
             <com-dialog-title title="充币记录" @onClose="onClose" />
 
             <v-divider class="mb-2" />
-            <v-card-text class="px-5" v-if="!$xsOnly">
+            <v-card-text class="px-5" v-if="!$mobile">
                 <v-sheet
                     color="transparent"
                     class="d-flex justify-space-between align-center justify-center px-2 text_center"
@@ -27,7 +28,7 @@
                     <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("状态")}}</v-sheet>
                 </v-sheet>
 
-                <v-sheet v-if="pageData.list.length>0 && !$xsOnly" color="transparent" height="450" class="scroll-y">
+                <v-sheet v-if="pageData.list.length>0 && !$mobile" color="transparent" height="450" class="scroll-y">
                     <v-sheet
                         class="px-2 py-2 rounded10 my-2 sheetOutlined"
                         v-for="(item, key) of pageData.list"

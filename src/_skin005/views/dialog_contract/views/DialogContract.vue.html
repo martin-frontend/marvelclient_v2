@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="596" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="596" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded-lg pb-5" color="bgBanner">
         <com-dialog-title title="关于我们" @onClose="onClose" />
 

@@ -57,7 +57,7 @@ export default class DialogPledgeRecords extends AbstractView {
         }
     }
 
-    @Watch("$xsOnly")
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

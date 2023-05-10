@@ -1,7 +1,7 @@
 <div>
     <v-sheet color="transparent">
         <v-row no-gutters class="mb-5 font-weight-medium">
-            <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$xsOnly">
+            <v-col cols="12" lg="8" class="pr-lg-2" v-if="!$mobile">
                 <v-card class="rounded-lg pa-5" height="100%" color="bgBanner" flat>
                     <div class="d-flex mx-3 align-end">
                         <v-img class="mr-2" :src="chartData.coinA && plat_coins[chartData.coinA].icon" max-width="30" max-height="30">
@@ -43,11 +43,11 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="12" lg="4" :class="$xsOnly ? 'px-2 mt-2' : ''">
+            <v-col cols="12" lg="4" :class="$mobile ? 'px-2 mt-2' : ''">
                 <v-card class="rounded10" color="bgBanner" flat>
                     <v-card-title class="d-flex align-center px-3 px-sm-6 pb-3 pb-sm-4 pt-1 pt-sm-5">
                         <div>
-                            <div class="d-flex align-start primary--text font-weight-bold" :class="$xsOnly ? 'text-16' : 'text-20'">
+                            <div class="d-flex align-start primary--text font-weight-bold" :class="$mobile ? 'text-16' : 'text-20'">
                                 {{LangUtil("交换")}}
                             </div>
                             <!-- <div class="primary--text text-14 ">
@@ -80,7 +80,7 @@
                             </span>
                         </div>
                         <v-sheet width="100%" color="transparent" class="d-flex">
-                            <template v-if="!$xsOnly">
+                            <template v-if="!$mobile">
                                 <CustomInput :placeholder="0" type="number" v-model="form.inputA" @input="onInputA"> </CustomInput>
                                 <btn-yellow
                                     v-if="userInfo.user_id"
@@ -99,7 +99,7 @@
                                         min_width="61"
                                         height="36"
                                         :btn_type="4"
-                                        :class="$xsOnly ? 'text-12' : 'text-14'"
+                                        :class="$mobile ? 'text-12' : 'text-14'"
                                         @click.native="handlerAll"
                                         >{{LangUtil("全部")}}</btn-yellow
                                     >
@@ -142,7 +142,7 @@
                             class="d-flex textGray--text text-14 rounded-lg px-4 align-center"
                             color="transparent"
                             width="100%"
-                            :height="$xsOnly? 37:50"
+                            :height="$mobile? 37:50"
                             style="white-space: nowrap"
                         >
                             <span>{{LangUtil("价格")}}</span>
@@ -152,7 +152,7 @@
                         <v-divider class="mb-2" />
                         <div class="textGray--text text-14 mt-3 mt-sm-7 mb-2 mb-sm-3">{{LangUtil("滑点容差:")}}</div>
                         <v-btn-toggle
-                            v-if="$xsOnly"
+                            v-if="$mobile"
                             :lang="core.lang"
                             mandatory
                             group
@@ -239,7 +239,7 @@
                 </v-card>
             </v-col>
             <!-- 手机 Swap -->
-            <v-col cols="12" lg="8" class="pr-lg-2 mt-3" v-if="$xsOnly">
+            <v-col cols="12" lg="8" class="pr-lg-2 mt-3" v-if="$mobile">
                 <v-card class="rounded-lg pa-4" height="100%" color="colorPanelBg4" flat>
                     <div class="d-flex align-end">
                         <v-img class="mr-2" :src="chartData.coinA && plat_coins[chartData.coinA].icon" max-width="30" max-height="30">
@@ -259,7 +259,7 @@
                         </v-btn>
                         <v-spacer />
                         <CustomSelect
-                            v-if="!$xsOnly"
+                            v-if="!$mobile"
                             class="ml-1 timeSelect"
                             v-model="pageData.chartQuary.type"
                             height="30"
@@ -269,7 +269,7 @@
                         />
                     </div>
 
-                    <template v-if="$xsOnly">
+                    <template v-if="$mobile">
                         <v-divider class="my-2" />
                         <div class="d-flex my-2">
                             <v-btn-toggle :lang="core.lang" mandatory group v-model="pageData.chartQuary.type" @change="onTimeChange">

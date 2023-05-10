@@ -364,7 +364,7 @@
                                     <div class="d-flex justify-center">
                                         <v-card
                                             :height="getHeight(index)"
-                                            :min-width="$xsOnly? 40 : 65"
+                                            :min-width="$mobile? 40 : 65"
                                             class="gradient-type1 daily-radius"
                                         >
                                         </v-card>
@@ -411,7 +411,7 @@
                         >
                             <v-col cols="2" class="d-flex justify-center align-center">
                                 <div v-if="index < 3">
-                                    <v-img :max-width="$xsOnly? 25 :40" contain :src="iconsPrize[index]"> </v-img>
+                                    <v-img :max-width="$mobile? 25 :40" contain :src="iconsPrize[index]"> </v-img>
                                 </div>
                                 <div v-else class="d-flex justify-center align-center textYellow--text text-16 font-weight-bold">
                                     {{ index + 1 }}

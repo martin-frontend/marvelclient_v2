@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded-lg" color="colorPanelBg">
         <!-- <v-card-title class="gradient-bg">
             <div class="text-18">{{LangUtil("备注")}}</div>

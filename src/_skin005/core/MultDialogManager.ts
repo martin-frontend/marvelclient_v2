@@ -3,7 +3,12 @@
  */
 export default class MultDialogManager {
     private static obj_list = <any>[];
-
+    private static get maxShowCount() {
+        if (window.$mobile) {
+            return 3;
+        }
+        return 1;
+    }
     public static onOpenPanel(obj: any) {
         //检测是否已经包含有 此对象
         if (MultDialogManager.obj_list.includes(obj)) {
@@ -11,8 +16,8 @@ export default class MultDialogManager {
             return;
         }
         //打开 一个 界面的时候 将 列表中现有的 第一个元素的 隐藏 掉
-        if (MultDialogManager.obj_list.length > 0) {
-            MultDialogManager.obj_list[0].hidden(true);
+        if (MultDialogManager.obj_list.length >= this.maxShowCount) {
+            MultDialogManager.obj_list[this.maxShowCount - 1].hidden(true);
         }
         //并且将当前 对象 添加 到 数组中
         MultDialogManager.obj_list.unshift(obj);
@@ -27,8 +32,8 @@ export default class MultDialogManager {
         MultDialogManager.obj_list.shift();
 
         console.log("22关闭界面", MultDialogManager.obj_list.length);
-        if (MultDialogManager.obj_list.length > 0) {
-            MultDialogManager.obj_list[0].hidden(false);
+        if (MultDialogManager.obj_list.length >= this.maxShowCount) {
+            MultDialogManager.obj_list[this.maxShowCount - 1].hidden(false);
         }
     }
     /**

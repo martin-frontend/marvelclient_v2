@@ -1,5 +1,5 @@
-<v-dialog v-if="!pageData.bHidden" width="590" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card v-if="!$xsOnly" class="rounded10 pb-3" color="bgBanner">
+<v-dialog v-if="!pageData.bHidden" width="590" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card v-if="!$mobile" class="rounded10 pb-3" color="bgBanner">
         <com-dialog-title title="充值" @onClose="onClose" />
 
         <v-divider />

@@ -3,7 +3,7 @@
         <com-dialog-title title="设置真实姓名" @onClose="onClose" :isDialog="true" />
         <v-divider class="mb-2" />
 
-        <v-card-text v-if="pageData.bShow" class="mt-5 d-flex align-center flex-column" :class="$xsOnly ?  'px-5' : 'px-10'">
+        <v-card-text v-if="pageData.bShow" class="mt-5 d-flex align-center flex-column" :class="$mobile ?  'px-5' : 'px-10'">
             <CustomInput :maxlength="maxcharLength" class="mb-3" :placeholder="LangUtil('昵称为1-10位字符')" v-model="pageData.real_name" />
             <div class="mb-9 navText--text">
                 {{LangUtil("请绑定您的真实姓名，玩家姓名与付款姓名相同、否则支付不到账；（绑定后不能修改）")}}
@@ -13,7 +13,7 @@
             > -->
 
             <btn-yellow
-                :class="$xsOnly ? 'text-14' : 'text-16'"
+                :class="$mobile ? 'text-14' : 'text-16'"
                 min_width="104"
                 height="36"
                 :disabled="!isCheckedId"

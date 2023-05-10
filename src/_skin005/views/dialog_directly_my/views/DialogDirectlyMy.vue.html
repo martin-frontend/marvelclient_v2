@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded-xl" color="bgBanner">
         <!-- 标题 和 关闭按钮 -->
         <!-- <v-card-title class="gradient-bg d-flex justify-center">
@@ -80,10 +80,10 @@
                         <v-btn
                             class="ml-2"
                             small
-                            :width="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
                             min-width="0"
                             depressed
-                            :height="$xsOnly? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="copy(playerInfo.user_id)"
                         >
                             <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
@@ -111,10 +111,10 @@
                         <v-btn
                             class="ml-2"
                             small
-                            :width="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
                             min-width="0"
                             depressed
-                            :height="$xsOnly? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="copy(playerInfo.user_id)"
                         >
                             <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>

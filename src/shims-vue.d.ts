@@ -9,3 +9,4 @@ declare module "element-ui/lib/locale";
 declare module "element-ui/lib/locale/lang/*" {
     export const elementLocale: any;
 }
+declare module 'vuetify/lib/components/transitions/createTransition';

@@ -1,5 +1,5 @@
-<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$xsOnly" persistent>
-    <v-card v-if="!$xsOnly" class="d-flex rounded10" color="bgBanner">
+<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card v-if="!$mobile" class="d-flex rounded10" color="bgBanner">
         <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="350">
             <com-dialog-title :title="forgetData.bShow ? '找回密码' : '登录'" @onClose="onClose" />

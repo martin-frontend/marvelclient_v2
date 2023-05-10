@@ -17,7 +17,7 @@ export default class ComDialogTitle extends AbstractView {
     //检测是否需要切换，
     public get isMoble(): boolean {
         if (this.isSetChange == null) {
-            return this.$xsOnly;
+            return this.$mobile;
         } else {
             return this.isSetChange;
         }

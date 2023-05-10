@@ -78,7 +78,7 @@ export default class DialogPledgeRecordsProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.getCurrentCoin();
 
-        if (window.$xsOnly) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

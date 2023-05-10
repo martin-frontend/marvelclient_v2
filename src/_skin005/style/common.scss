@@ -151,6 +151,7 @@
     }
     .v-dialog {
         box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .theme--light {
         .v-btn-toggle--group {
@@ -328,6 +329,14 @@
     .select_class {
         position: absolute;
         right: 8px;
+    }
+    // 添加侧面抽屉效果
+    .mobile-slide-x-transition {
+        // 进入和离开的状态
+        &-enter,
+        &-leave-to {
+            transform: translateX(800px);
+        }
     }
 }
 html {

@@ -1,6 +1,6 @@
-<v-dialog v-if="!pageData.bHidden" width="500" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card :class="$xsOnly ? '' : 'rounded10'" :color="$xsOnly ? 'bgColor'  :  'bgBanner'">
-        <!-- <v-card-title v-if="!$xsOnly" class="gradient-bg  d-flex flex-column">
+<v-dialog v-if="!pageData.bHidden" width="500" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card :class="$mobile ? '' : 'rounded10'" :color="$mobile ? 'bgColor'  :  'bgBanner'">
+        <!-- <v-card-title v-if="!$mobile" class="gradient-bg  d-flex flex-column">
             <div class="text-20">{{LangUtil("谷歌设定")}}</div>
             <v-btn class="ml-auto" icon @click="onClose">
                 <v-icon>mdi-close</v-icon>

@@ -1,10 +1,10 @@
-<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly">
+<v-dialog v-if="!pageData.bHidden" width="930" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <!-- pc显示方式 -->
-    <template v-if="!$xsOnly">
-        <v-card class="rounded10 d-flex flex-column" :color="!$xsOnly ? 'bgBanner' : 'bgColor'">
+    <template v-if="!$mobile">
+        <v-card class="rounded10 d-flex flex-column" :color="!$mobile ? 'bgBanner' : 'bgColor'">
             <com-dialog-title title="交易记录" @onClose="onClose" />
             <v-divider class="mb-2" />
-            <v-card-text class="px-5" v-if="!$xsOnly">
+            <v-card-text class="px-5" v-if="!$mobile">
                 <template v-if="pageData.list.length>0">
                     <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between mx-2 align-center" min-height="40">
                         <v-sheet color="transparent" min-width="100" class="text-16 primary--text">{{LangUtil("交易ID")}}</v-sheet>

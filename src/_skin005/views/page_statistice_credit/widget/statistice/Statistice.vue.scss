@@ -27,7 +27,12 @@
         width: 190px;
     }
 }
-
+.timeRange_mob {
+    .el-date-editor.el-input,
+    .el-date-editor.el-input__inner {
+        width: 100%;
+    }
+}
 .theme--light {
     .timeRange_pc {
         ::v-deep .el-input__inner {
@@ -81,4 +86,7 @@
 
 .pad_top_mob {
     padding-top: 70px;
+}
+.skeleton_height {
+    height: calc(100vh - 530px);
 }

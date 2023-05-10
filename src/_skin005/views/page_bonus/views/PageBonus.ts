@@ -139,7 +139,7 @@ export default class PageBonus extends AbstractView {
 
     getHeight(index: any) {
         //return 220;
-        const height = this.$xsOnly ? 110 : 220;
+        const height = this.$mobile ? 110 : 220;
         return Math.ceil(this.bonus_recently.slice().reverse()[index].bar * height);
     }
 

@@ -7,6 +7,7 @@
     :fullscreen="$mobile"
     persistent
     :no-click-animation="$mobile"
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
     <v-card v-if="!$mobile" class="rounded10" color="bgBanner">
         <!-- pc显示方式 -->

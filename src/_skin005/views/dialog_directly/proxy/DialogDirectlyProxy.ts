@@ -109,7 +109,7 @@ export default class DialogDirectlyProxy extends puremvc.Proxy {
         Object.assign(this.pageData.pageInfo, data.pageInfo);
         Object.assign(this.limitinfo, data.limit);
 
-        if (window.$xsOnly) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

@@ -35,7 +35,7 @@ export default class DialogGoldWater extends AbstractView {
             this.myProxy.api_user_var_gold_water_index();
         }
     }
-    @Watch("$xsOnly")
+    @Watch("$mobile")
     onWatchXS() {
         if (this.pageData.bShow) {
             this.pageData.listQuery.page_count = 1;

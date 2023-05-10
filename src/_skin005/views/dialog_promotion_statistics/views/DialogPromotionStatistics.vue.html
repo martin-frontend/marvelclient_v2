@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded10" color="bgBanner">
         <!-- <v-card-title class="gradient-bg">
             <div class="text-18">{{LangUtil("代理统计")}}</div>
@@ -11,12 +11,12 @@
         <v-divider class="mb-2" />
         <v-card-text class="px-5">
             <div class="mb-2 ml-2">
-                <div class="d-flex" :class="{ 'flex-column': $xsOnly }">
+                <div class="d-flex" :class="{ 'flex-column': $mobile }">
                     <CustomInput
                         height="41"
                         :placeholder="LangUtil('输入查询ID')"
                         v-model="pageData.search.agent_user_id"
-                        :class="$xsOnly? 'mb-2' : 'mr-2'"
+                        :class="$mobile? 'mb-2' : 'mr-2'"
                         class="w-280"
                     >
                         <v-btn
@@ -65,7 +65,7 @@
                     >
                 </div>
             </div>
-            <div class="overflow-auto" :style="{'height': $xsOnly?'calc(100vh - 250px)':'650px'}">
+            <div class="overflow-auto" :style="{'height': $mobile?'calc(100vh - 250px)':'650px'}">
                 <v-sheet
                     v-if="pageData.isShowFormula == 1 && pageData.formulaData"
                     color="#1d3256"
@@ -114,7 +114,7 @@
                         </v-row>
                     </v-card>
                 </div>
-                <ListNodata :height="$xsOnly ? 200:300" v-if="pageData.tableData.length == 0" />
+                <ListNodata :height="$mobile ? 200:300" v-if="pageData.tableData.length == 0" />
             </div>
         </v-card-text>
     </v-card>

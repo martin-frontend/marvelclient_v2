@@ -1,14 +1,15 @@
 <v-dialog
     v-if="!pageData.bHidden"
     width="unset"
-    :height="$xsOnly ? '' : '670'"
+    :height="$mobile ? '' : '670'"
     v-model="pageData.bShow"
     :retain-focus="false"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     :no-click-animation="$mobile"
     persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
-    <v-card v-if="!$xsOnly" class="rounded10 d-flex" color="bgBanner">
+    <v-card v-if="!$mobile" class="rounded10 d-flex" color="bgBanner">
         <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="350">
             <com-dialog-title title="个人中心" @onClose="onClose" />
@@ -31,11 +32,11 @@
                     </span>
                     <span class="d-flex align-center textGray--text"
                         >{{userInfo.user_id}}
-                        <!-- <v-btn class="ml-2" color="textGray" small :width="$xsOnly? 24 :30"
-                            min-width="0" :height="$xsOnly? 24 :30" @click="copy">
+                        <!-- <v-btn class="ml-2" color="textGray" small :width="$mobile? 24 :30"
+                            min-width="0" :height="$mobile? 24 :30" @click="copy">
                             <v-img max-width="24" src="@/assets/icon/icon_copy.png"></v-img>
                         </v-btn> -->
-                        <v-btn class="ml-2" small :width="$xsOnly? 24 :30" min-width="0" depressed :height="$xsOnly? 24 :30" @click="copy">
+                        <v-btn class="ml-2" small :width="$mobile? 24 :30" min-width="0" depressed :height="$mobile? 24 :30" @click="copy">
                             <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                         </v-btn>
                         <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
@@ -54,8 +55,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerRealName"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -76,8 +77,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerNickName"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -98,8 +99,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetPhone"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -119,8 +120,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetEmail"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -139,8 +140,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetGoogleSettings"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -158,8 +159,8 @@
                             icon
                             class="ml-2"
                             color="textGray"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerTradePassword"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -172,7 +173,7 @@
                     </span>
                     <span class="d-flex align-center colorText1--text">
                         {{LangUtil("设置")}}
-                        <v-btn icon class="ml-2" color="colorInfo" :width="$xsOnly? 24 :30" :height="$xsOnly? 24 :30" @click="handlerPersonalCard">
+                        <v-btn icon class="ml-2" color="colorInfo" :width="$mobile? 24 :30" :height="$mobile? 24 :30" @click="handlerPersonalCard">
                             <v-icon large>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
@@ -207,8 +208,8 @@
                     </span>
                     <span class="d-flex align-center head_btn--text"
                         >{{userInfo.user_id}}
-                        <!-- <v-btn class="ml-2" color="textGray" small :width="$xsOnly? 24 :30"
-                            min-width="0" :height="$xsOnly? 24 :30" @click="copy">
+                        <!-- <v-btn class="ml-2" color="textGray" small :width="$mobile? 24 :30"
+                            min-width="0" :height="$mobile? 24 :30" @click="copy">
                             <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                         </v-btn> -->
 
@@ -232,8 +233,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerRealName"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -254,8 +255,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerNickName"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -276,8 +277,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetPhone"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -298,8 +299,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetEmail"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -319,8 +320,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="goSetGoogleSettings"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -339,8 +340,8 @@
                             icon
                             class="ml-2"
                             color="head_btn"
-                            :width="$xsOnly? 24 :30"
-                            :height="$xsOnly? 24 :30"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
                             @click="handlerTradePassword"
                         >
                             <v-icon>mdi-chevron-right</v-icon>
@@ -353,7 +354,7 @@
                     </span>
                     <span class="d-flex align-center colorText1--text">
                         {{LangUtil("设置")}}
-                        <v-btn icon class="ml-2" color="colorInfo" :width="$xsOnly? 24 :30" :height="$xsOnly? 24 :30" @click="handlerPersonalCard">
+                        <v-btn icon class="ml-2" color="colorInfo" :width="$mobile? 24 :30" :height="$mobile? 24 :30" @click="handlerPersonalCard">
                             <v-icon large>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>

@@ -1,6 +1,6 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <!-- pc显示方式 -->
-    <v-card v-if="!$xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" height="100%">
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="bgBanner" height="100%">
         <com-dialog-title title="消息中心" @onClose="onClose" />
 
         <v-divider class="mb-4" />

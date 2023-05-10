@@ -1,7 +1,7 @@
-<v-dialog v-if="!pageData.bHidden" width="596" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <template v-if="!$xsOnly">
+<v-dialog v-if="!pageData.bHidden" width="596" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <template v-if="!$mobile">
         <v-card class="rounded10 pb-5" color="bgBanner">
-            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$xsOnly">
+            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$mobile">
                 <div class="text-20">{{LangUtil("服务条款")}}</div>
     
                 <v-btn icon @click="onClose">

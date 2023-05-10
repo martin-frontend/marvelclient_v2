@@ -47,7 +47,7 @@ export default class DialogActivityProxy extends puremvc.Proxy {
         //如果是列表，使用以下数据，否则删除
         Object.assign(this.pageData.pageInfo, data.pageInfo);
 
-        if (window.$xsOnly) {
+        if (window.$mobile) {
             const { pageCount, pageCurrent } = this.pageData.pageInfo;
             if (pageCurrent == 1) {
                 this.pageData.list = data.list;

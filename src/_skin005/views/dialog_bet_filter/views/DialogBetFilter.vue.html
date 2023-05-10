@@ -1,4 +1,4 @@
-<v-dialog width="830" v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog width="830" v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="d-flex flex-column rounded10" color="bgBanner">
         <com-dialog-title title="层级筛选" @onClose="onClose" />
         <v-divider class="mb-2" />
@@ -11,7 +11,7 @@
                         color="#6A83B4"></v-radio>
                 </v-radio-group> -->
 
-                <v-btn-toggle v-if="$xsOnly" :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                <v-btn-toggle v-if="$mobile" :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn class="rounded-pill" height="36" min_width="90" value="0">
                         <span class="text-14"> {{LangUtil("团队投注")}} </span>
                     </v-btn>

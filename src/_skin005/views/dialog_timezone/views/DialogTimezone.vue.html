@@ -1,10 +1,10 @@
-<v-dialog v-if="!pageData.bHidden"  v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card :class="!$xsOnly ? 'rounded10' : ''" color="bgColor">
-        <com-dialog-title title="时区选择" @onClose="onClose" :class="$xsOnly ?'title_pos' : ''"/>
+<v-dialog v-if="!pageData.bHidden"  v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card :class="!$mobile ? 'rounded10' : ''" color="bgColor">
+        <com-dialog-title title="时区选择" @onClose="onClose" :class="$mobile ?'title_pos' : ''"/>
 
         <v-card flat color="transparent" class="d-flex py-4 px-4 mb-5" >
             <v-row dense v-if="options && Object.keys(options).length > 1">
-                <v-col :cols="$xsOnly ? 12 : 6" v-for="(item, key) of options" :key="key">
+                <v-col :cols="$mobile ? 12 : 6" v-for="(item, key) of options" :key="key">
                     <v-sheet
                         class="rounded10 py-2 px-2 d-flex justify-space-between"
                         color="transparent"

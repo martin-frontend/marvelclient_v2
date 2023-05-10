@@ -1,10 +1,10 @@
-<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card class="rounded10 overflow-hidden" :color="!$xsOnly ? 'bgBanner' : 'bgColor'">
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card class="rounded10 overflow-hidden" :color="!$mobile ? 'bgBanner' : 'bgColor'">
         <!-- pc显示方式 -->
-        <template v-if="!$xsOnly">
+        <template v-if="!$mobile">
             <com-dialog-title title="质押记录" @onClose="onClose" />
             <v-divider class="mb-2" />
-            <v-card-text class="px-5" v-if="!$xsOnly">
+            <v-card-text class="px-5" v-if="!$mobile">
                 <div>
                     <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
                         <v-btn class="rounded-pill mr-2" height="42" min-width="120">
@@ -19,7 +19,7 @@
                 </div>
                 <v-divider class="my-3" />
 
-                <div v-if="listQuery.cate == 1 && !$xsOnly" class="scroll_box">
+                <div v-if="listQuery.cate == 1 && !$mobile" class="scroll_box">
                     <template v-if="pageData.list.length>0">
                         <v-sheet color="transparent" class="d-flex flex-wrap justify-space-start mb-2 mx-2">
                             <v-sheet color="transparent" min-width="200" class="text-16 primary--text">{{LangUtil("时间")}}</v-sheet>
@@ -66,7 +66,7 @@
                     </template>
                 </div>
 
-                <div v-if="listQuery.cate == 2 && !$xsOnly" class="scroll_box">
+                <div v-if="listQuery.cate == 2 && !$mobile" class="scroll_box">
                     <template v-if="pageData.list.length>0">
                         <v-sheet color="transparent" class="d-flex flex-wrap justify-space-start mb-2 mx-2">
                             <v-sheet color="transparent" min-width="200" class="text-16 primary--text">{{LangUtil("时间")}}</v-sheet>

@@ -34,6 +34,7 @@ import PanelUtil from "./core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "./views/header/Header.vue";
+import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 
 LogUtil.init();
 core.init();
@@ -71,7 +72,10 @@ Vue.component("Footer", Footer);
 Vue.component("Header", Header);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
-
+{
+    const myTransition = createSimpleTransition("mobile-slide-x-transition");
+    Vue.component("mobile-slide-x-transition", myTransition);
+}
 GlobalVar.skin = "skin005";
 
 const vuetify = getVuetify();

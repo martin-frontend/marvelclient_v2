@@ -24,7 +24,7 @@ export default class GameSlideGroup extends AbstractView {
     }
 
     getCols() {
-        if (this.$xsOnly) {
+        if (this.$mobile) {
             return 4;
         }
         return 2;

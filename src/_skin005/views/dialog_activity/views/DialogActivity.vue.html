@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
     <v-card class="d-flex rounded-lg" color="bgBanner">
         <v-sheet color="transparent" width="366" class="d-none d-md-flex">
             <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
@@ -9,8 +9,8 @@
         </v-sheet>
         <v-card width="494" color="transparent">
             <!-- pc显示方式 -->
-            <template v-if="!$xsOnly">
-                <v-card-title class="gradient-bg d-flex justify-start" v-if="!$xsOnly">
+            <template v-if="!$mobile">
+                <v-card-title class="gradient-bg d-flex justify-start" v-if="!$mobile">
                     <div class="text-20">{{LangUtil("精彩活动")}}</div>
                     <!-- <v-spacer /> -->
                     <v-btn class="mr-2" icon @click="onClose">
@@ -18,7 +18,7 @@
                     </v-btn>
                 </v-card-title>
                 <v-divider class="mb-2" />
-                <v-card-text v-if="!$xsOnly">
+                <v-card-text v-if="!$mobile">
                     <v-sheet color="transparent" height="468" class="scroll-y">
                         <v-sheet
                             class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3"
@@ -39,7 +39,7 @@
                         </v-sheet>
                     </v-sheet>
                 </v-card-text>
-                <v-card-actions class="justify-center" v-if="!$xsOnly">
+                <v-card-actions class="justify-center" v-if="!$mobile">
                     <v-pagination
                         v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
                         v-model="pageData.pageInfo.pageCurrent"
@@ -51,7 +51,7 @@
             </template>
             <template v-else>
                 <!-- 手机显示方式 -->
-                <!-- <v-card-text class="pb-3 pa-0" v-if="$xsOnly">
+                <!-- <v-card-text class="pb-3 pa-0" v-if="$mobile">
 
                     <div class="gradient-bg_mob d-flex align-center  justify-center">
                         <div class="text-16 primary--text">{{LangUtil("精彩活动")}}</div>
@@ -63,9 +63,9 @@
                 <com-dialog-title title="精彩活动" @onClose="onClose" />
 
                 <v-divider class="mb-2" />
-                <!-- <v-sheet v-if="$xsOnly" color="transparent" class="overflow-y-auto px-5 "
+                <!-- <v-sheet v-if="$mobile" color="transparent" class="overflow-y-auto px-5 "
                     style="height: calc(100vh - 90px);"> -->
-                <LoadMore1 v-if="$xsOnly" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'" :is_needfinishedtext="pageData.list.length == 0">
+                <LoadMore1 v-if="$mobile" @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :_class="'listbox-mobile'" :is_needfinishedtext="pageData.list.length == 0">
                     <ListNodata v-if="pageData.list.length == 0" height="411" />
                     <v-sheet color="transparent">
                         <v-sheet

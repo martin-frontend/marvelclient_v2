@@ -3,12 +3,13 @@
     :width="isMineWater ? 350 : 800"
     v-model="pageData.bShow"
     :retain-focus="false"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
-    <v-card v-if="!$xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%" :height="isMineWater ? 400 : 540">
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%" :height="isMineWater ? 400 : 540">
         <com-dialog-title :title="isMineWater ? '我的返水' : '返水设置'" @onClose="onClose" />
-        <v-divider v-if="!$xsOnly" class=" " />
+        <v-divider v-if="!$mobile" class=" " />
         <!-- 页面内容 -->
         <v-card-text class=" ">
             <template v-if="!isMineWater">
@@ -19,7 +20,7 @@
                     <div class="ml-10 mr-1">{{LangUtil("用户昵称")}}:</div>
                     <div class="mr-1">{{playerInfo.nick_name}}</div>
                 </v-sheet>
-                <v-divider v-if="!$xsOnly" class=" " />
+                <v-divider v-if="!$mobile" class=" " />
             </template>
             <v-sheet class="d-flex justify-space-between align-centerml-n2 mr-n2 mt-2 text-14 primary--text" color="transparent">
                 <v-sheet class="d-flex primary--text" min-width="120" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>

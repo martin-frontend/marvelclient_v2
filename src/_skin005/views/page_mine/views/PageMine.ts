@@ -22,7 +22,7 @@ export default class PageMine extends AbstractView {
     checkMultiline = checkMultiline;
     ModulesHelper = ModulesHelper;
     core = core;
-    private xsOnly = false;
+    private mobile = false;
     private progressLinear = 6;
     gameProxy = PanelUtil.getProxy_gameproxy;
     commonIcon = Assets.commonIcon;
@@ -31,20 +31,20 @@ export default class PageMine extends AbstractView {
     }
     mounted() {
         //PanelUtil.showAppLoading(false);
-        this.xsOnly = this.$xsOnly;
+        this.mobile = this.$mobile;
         this.checkProgress();
     }
     amountFormat(val: any, isb = true) {
         return amountFormat(val, isb);
     }
-    @Watch("$xsOnly")
-    onWAtchXsOnly() {
-        this.xsOnly = this.$xsOnly;
+    @Watch("$mobile")
+    onWAtchmobile() {
+        this.mobile = this.$mobile;
         this.checkProgress();
     }
 
     checkProgress() {
-        this.progressLinear = this.xsOnly ? 6 : 6;
+        this.progressLinear = this.mobile ? 6 : 6;
     }
 
     vipMap = Assets.VipMap;
@@ -82,7 +82,7 @@ export default class PageMine extends AbstractView {
                 h: 30,
             },
         };
-        return this.$xsOnly ? mapMobile[key] : mapPC[key];
+        return this.$mobile ? mapMobile[key] : mapPC[key];
     }
 
     /**奖励记录 */

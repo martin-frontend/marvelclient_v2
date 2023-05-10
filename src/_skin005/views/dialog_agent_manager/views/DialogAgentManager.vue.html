@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
+<v-dialog v-if="!pageData.bHidden" width="1200" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="bgBanner">
         <!-- pc显示方式 -->
 

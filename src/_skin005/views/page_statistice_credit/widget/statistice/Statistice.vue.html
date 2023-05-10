@@ -640,9 +640,9 @@
             ></v-sheet>
             <template v-if="pageData.loading && pageData.list.length == 0">
                 <v-skeleton-loader
-                    class="px-3 my-2 custom-loader"
+                    class="px-3 my-2 custom-loader skeleton_height"
                     width="100%"
-                    height="410"
+                    min-height="410"
                     type="text@6"
                 ></v-skeleton-loader>
             </template>
@@ -818,134 +818,25 @@
                         </div>
                     </div>
                     <div class="line"></div>
+                    <div class="my-2 d-flex justify-space-between">
+                        <div class="leftText--text">{{LangUtil("直属人数")}}</div>
+    
+                        <div
+                            v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id"
+                            class="textYellow--text"
+                            @click="onBtnClickNextPage(item)"
+                        >
+                            {{item.directly_users}}
+                            <span class="ml-4">></span>
+                        </div>
+                        <div
+                            v-else
+                            class="textYellow--text"
+                        >{{item.directly_users}}</div>
+                    </div>
+                    <div class="line"></div>
                 </v-sheet>
             </template>
-
-            <!-- <ListNodata v-if="pageData.list.length == 0" height="300" /> -->
-            <v-sheet
-                class="px-3 py-2 rounded-lg my-3 textGray--text text-14"
-                color="bgBanner"
-                v-for="(item, key) of pageData.list"
-                :key="key"
-            >
-                <div class="d-flex justify-space-between my-2">
-                    <template v-if="pageData.agent.user_id != item.user_id || !isMine">
-                        <div class="leftText--text">{{LangUtil("直属会员ID")}}</div>
-                        <div
-                            class="text-decoration-underline cursor-pointer"
-                            @click="onUserIdClick(item.user_id)"
-                        >{{item.user_id}}</div>
-                    </template>
-                    <template v-else>
-                        <div class="leftText--text">{{LangUtil("当前会员ID")}}</div>
-                        <div class="textYellow--text">{{item.user_id}}</div>
-                    </template>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <template v-if="pageData.agent.user_id != item.user_id || !isMine">
-                        <div class="leftText--text">{{LangUtil("直属会员帐号")}}</div>
-                        <div>{{item.username}}</div>
-                    </template>
-                    <template v-else>
-                        <div class="leftText--text">{{LangUtil("当前会员帐号")}}</div>
-                        <div class="textYellow--text">{{item.username}}</div>
-                    </template>
-                </div>
-                <div class="line"></div>
-
-                <template v-if="isMine">
-                    <div class="my-2 d-flex justify-space-between">
-                        <div class="leftText--text">{{LangUtil("备注")}}</div>
-                        <div class="head_btn--text">{{item.remark ? item.remark : LangUtil("-")}}</div>
-                    </div>
-                </template>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("下注笔数")}}</div>
-                    <div class="head_btn--text">{{item.record_count}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("下注总额")}}</div>
-                    <div class="head_btn--text">{{amountFormat(item.bet_gold)}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("有效投注")}}</div>
-                    <div class="head_btn--text">{{amountFormat(item.valid_bet_gold)}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("玩家输赢")}}</div>
-                    <div class="head_btn--text" :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("结算返水")}}</div>
-                    <div class="head_btn--text">{{amountFormat(item.back_water_except_user)}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("实际返水")}}</div>
-                    <div class="head_btn--text">{{amountFormat(item.back_water)}}</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("我的利润(占成)")}}</div>
-                    <div class="text-truncate head_btn--text">{{item.self_amount}}({{item.credit_rate_self}})</div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("代理利润(占成)")}}</div>
-                    <div
-                        class="text-truncate head_btn--text"
-                        :class="getMoneyColor(item.agent_amount)"
-                    >
-                        {{getMoneyValue(item.agent_amount)}}({{item.credit_rate_subordinate}})
-                    </div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("平台利润(占成)")}}</div>
-                    <div
-                        class="text-truncate head_btn--text"
-                        :class="getMoneyColor(item.plat_amount)"
-                    >
-                        {{getMoneyValue(item.plat_amount)}}({{item.credit_rate_superior}})
-                    </div>
-                </div>
-                <div class="line"></div>
-
-                <div class="my-2 d-flex justify-space-between">
-                    <div class="leftText--text">{{LangUtil("直属人数")}}</div>
-
-                    <div
-                        v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id"
-                        class="textYellow--text"
-                        @click="onBtnClickNextPage(item)"
-                    >
-                        {{item.directly_users}}
-                        <span class="ml-4">></span>
-                    </div>
-                    <div
-                        v-else
-                        class="textYellow--text"
-                    >{{item.directly_users}}</div>
-                </div>
-                <div class="line"></div>
-
-            </v-sheet>
         </LoadMore1>
     </template>
 </v-sheet>

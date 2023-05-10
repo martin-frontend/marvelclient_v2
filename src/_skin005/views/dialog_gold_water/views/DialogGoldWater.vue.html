@@ -1,7 +1,7 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded10 pb-3" color="bgBanner">
         <!-- pc显示方式 -->
-        <template v-if="!$xsOnly">
+        <template v-if="!$mobile">
             <com-dialog-title title="流水审核" @onClose="onClose" />
 
             <v-divider class="mb-2" />

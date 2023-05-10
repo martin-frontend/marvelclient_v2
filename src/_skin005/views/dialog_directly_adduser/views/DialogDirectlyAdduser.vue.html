@@ -1,5 +1,5 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$xsOnly" persistent>
-    <v-card v-if="!$xsOnly" color="bgBanner">
+<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card v-if="!$mobile" color="bgBanner">
         <com-dialog-title title="添加用户" @onClose="onClose" />
         <v-divider class="mb-2" />
 

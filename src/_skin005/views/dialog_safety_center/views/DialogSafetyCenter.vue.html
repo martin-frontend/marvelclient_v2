@@ -4,13 +4,14 @@
     min-height="670"
     v-model="pageData.bShow"
     :retain-focus="false"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
-    <v-card v-if="!$xsOnly" class="rounded-lg d-flex" color="bgBanner">
+    <v-card v-if="!$mobile" class="rounded-lg d-flex" color="bgBanner">
         <AdvertiseInLogin :height="670" class="d-none d-md-flex" />
         <v-card color="transparent" width="494">
-            <v-card-title v-if="!$xsOnly" class="d-flex justify-start pb-0 gradient-bg">
+            <v-card-title v-if="!$mobile" class="d-flex justify-start pb-0 gradient-bg">
                 <div class="text-18">{{LangUtil("安全中心")}}</div>
                 <!-- <v-spacer /> -->
                 <v-btn icon @click="onClose">
@@ -24,9 +25,9 @@
                 </v-btn>
             </div>
             <v-divider class="mb-2" />
-            <v-card-text class="px-5 px-md-10 mt-2 mb-5" :style="$xsOnly ? 'height: 30px' : 'height: 60px'">
+            <v-card-text class="px-5 px-md-10 mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
                 <div class="d-flex mb-10">
-                    <v-btn-toggle v-if="!$xsOnly" mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn-toggle v-if="!$mobile" mandatory group v-model="typechange" @change="onTimeChange">
                         <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">
                             <span class="text-14"> {{LangUtil("绑定手机")}} </span>
                         </v-btn>
@@ -256,7 +257,7 @@
     <v-card v-else class=" " color="bgColor">
         <com-dialog-title title="安全中心" @onClose="onClose" />
 
-        <v-card-text class="px-2 px-md-10 mt-2 mb-5" :style="$xsOnly ? 'height: 30px' : 'height: 60px'">
+        <v-card-text class="px-2 px-md-10 mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
             <div class="d-flex mb-10">
                 <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn v-if="checkValidateType(2)" class="rounded-pill" height="30" min-width="80" value="0">

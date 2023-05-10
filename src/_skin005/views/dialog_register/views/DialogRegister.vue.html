@@ -4,10 +4,11 @@
     class="regular_text"
     v-model="pageData.bShow"
     overlay-opacity="0.6"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
-    <v-card v-if="!$xsOnly" color="bgBanner" class="d-flex rounded10">
+    <v-card v-if="!$mobile" color="bgBanner" class="d-flex rounded10">
         <AdvertiseInLogin :height="650" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="430" class="">
             <com-dialog-title title="注册" @onClose="onClose" />

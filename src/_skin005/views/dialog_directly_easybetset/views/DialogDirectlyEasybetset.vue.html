@@ -1,5 +1,5 @@
-<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent>
-    <v-card v-if="!$xsOnly" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%">
+<v-dialog v-if="!pageData.bHidden" width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="bgBanner" min-width="100%">
         <com-dialog-title title="EasyBet设置" @onClose="onClose" />
 
         <v-divider class="" />

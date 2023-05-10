@@ -3,24 +3,18 @@
     width="730"
     v-model="pageData.bShow"
     :retain-focus="false"
-    :fullscreen="$xsOnly"
+    :fullscreen="$mobile"
     elevation="0"
     persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
 >
-    <v-card class="rounded10" :color="!$xsOnly ? 'bgBanner' : 'bgColor'">
+    <v-card class="rounded10" :color="!$mobile ? 'bgBanner' : 'bgColor'">
         <!-- pc显示方式 -->
-        <template v-if="!$xsOnly">
-            <!-- <v-card-title class="gradient-bg d-flex justify-center" v-if="!$xsOnly">
-                <div class="text-20">{{LangUtil("奖励记录")}}</div>
-
-                <v-btn icon @click="onClose">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </v-card-title> -->
+        <template v-if="!$mobile">
             <com-dialog-title title="奖励记录" @onClose="onClose" />
 
             <v-divider />
-            <v-card-text class="px-5" v-if="!$xsOnly">
+            <v-card-text class="px-5" v-if="!$mobile">
                 <v-sheet color="transparent" class="d-flex flex-wrap px-2 justify-space-around text-16 font-weight-bold mt-4">
                     <v-sheet color="transparent" class="" min-width="130">{{LangUtil("结算时间")}}</v-sheet>
                     <v-sheet color="transparent" class="" min-width="130">{{LangUtil("结算有效流水")}}</v-sheet>

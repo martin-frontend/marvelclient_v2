@@ -27,14 +27,14 @@ export default class DialogRegister extends AbstractView {
     }
     checkbox = false;
     public get btn_width(): number {
-        if (this.$xsOnly) {
+        if (this.$mobile) {
             return 78;
         } else {
             return 90;
         }
     }
     public get btn_height(): number {
-        if (this.$xsOnly) {
+        if (this.$mobile) {
             return 30;
         } else {
             return 36;

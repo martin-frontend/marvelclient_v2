@@ -7,7 +7,7 @@
     flat
 >
     <!-- <v-lazy> -->
-    <v-sheet v-if="item" color="transparent" class="game-icon" @click="goGamePlay" :class="$xsOnly ? 'loader_class_mob' : ''">
+    <v-sheet v-if="item" color="transparent" class="game-icon" @click="goGamePlay" :class="$mobile ? 'loader_class_mob' : ''">
         <ImgLoader
             v-if="item"
             class="cursor-pointer rounded_img"
@@ -17,7 +17,7 @@
             :src="getIcon(item)"
         >
             <!-- 手机显示 -->
-            <!-- <template v-if="$xsOnly">
+            <!-- <template v-if="$mobile">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain
                         content-class="d-flex flex-column align-start pl-1" width="80px"
                         src="@/assets/tag/tag_background.png">

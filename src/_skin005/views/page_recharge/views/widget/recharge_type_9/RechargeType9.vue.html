@@ -78,7 +78,7 @@
                         <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
                     </div>
                 </v-sheet>
-                <btn-yellow class="ml-auto text-16" min_width="104" height="36" @click.native="onSumbit"
+                <btn-yellow class="ml-auto text-16" min_width="104" height="36" :disabled="!isChecked" @click.native="onSumbit"
                     >{{LangUtil("提交充值")}}</btn-yellow
                 >
             </v-sheet>
@@ -112,7 +112,9 @@
         </v-card>
 
         <v-sheet color="transparent" width="100%" class="d-flex mt-4">
-            <btn-yellow class="ml-auto text-16" min_width="104" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+            <btn-yellow class="ml-auto text-16" min_width="104" height="36" :disabled="!isChecked" @click.native="onSumbit"
+                >{{LangUtil("提交充值")}}</btn-yellow
+            >
         </v-sheet>
     </v-card>
 </div>
@@ -234,6 +236,8 @@
     </v-sheet>
 
     <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex mt-4 mb-16">
-        <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
+        <btn-yellow class="ml-auto text-14" min_width="100%" height="36" :disabled="!isChecked" @click.native="onSumbit"
+            >{{LangUtil("提交充值")}}</btn-yellow
+        >
     </v-sheet>
 </v-card>

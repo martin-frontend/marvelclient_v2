@@ -16,6 +16,29 @@ export default class RechargeType9 extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
     mounted() {}
 
+    get isChecked(): boolean {
+        const { amount } = this.form;
+        if (!amount || !amount.trim()) {
+            //PanelUtil.message_alert(LangUtil("充值金额不能为空"));
+            return false;
+        }
+        const amount_num = parseFloat(amount);
+
+        if (amount_num <= 0) {
+            //PanelUtil.message_alert(LangUtil("充值金额不正确"));
+            return false;
+        }
+        if (this.showRequires && this.showRequires.length > 0) {
+            for (let index = 0; index < this.showRequires.length; index++) {
+                const str = this.onBlurInput(this.showRequires[index]);
+                if (str && str.errorinfo) {
+                    //PanelUtil.message_info(str.title + str.errorinfo);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     // 创建充值订单
     onSumbit() {
         if (!this.form.amount || !this.form.amount.trim()) {
@@ -40,7 +63,7 @@ export default class RechargeType9 extends AbstractView {
                 // }
                 const str = this.onBlurInput(this.showRequires[index]);
                 if (str && str.errorinfo) {
-                    PanelUtil.message_info(str);
+                    PanelUtil.message_info(str.title + " " + str.errorinfo);
                     return;
                 }
             }

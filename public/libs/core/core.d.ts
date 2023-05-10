@@ -85,6 +85,8 @@ declare module net {
         api_user_bind_google_key_var: string;
         /**--会员资料--投注记录详情【只用于配置的体育】*/
         api_vendor_var_bet_log_detail: string;
+        /**--会员资料--取消投注*/
+        api_vendor_var_bet_log_cancel: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -390,6 +392,8 @@ declare module net {
         api_user_bind_google_key_var: string;
         /**--会员资料--投注记录详情【只用于配置的体育】*/
         api_vendor_var_bet_log_detail: string;
+        /**--会员资料--取消投注*/
+        api_vendor_var_bet_log_cancel: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -1897,6 +1901,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_vendor_simple extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 取消投注
+ */
+declare module net {
+    class cmd_api_vendor_var_bet_log_cancel extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

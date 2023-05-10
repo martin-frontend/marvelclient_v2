@@ -45,6 +45,7 @@
         ["api/user/{user_id}/google_key", "获取google验证码"],
         ["api/user/bind_google_key/{user_id}", "绑定google验证码"],
         ["api/vendor/{vendor_id}/bet_log_detail", "投注记录详情【只用于配置的体育】"],
+        ["api/vendor/{vendor_id}/bet_log_cancel", "取消投注"],
 
         "--大厅",
         ["api/plat/{plat_id}/lobby/index", "获取游戏类型,游戏菜单（大厅菜单）"],
@@ -56,8 +57,8 @@
             "获取进入厂商的游戏URL，获取厂商游戏凭证--游客"
         ],
 
-        ["api/plat/{plat_id}/game/menu",                              "获取平台首页菜单游戏列表"],
-        ["api/plat/{plat_id}/game/category",                              "获取平台首页分类游戏列表"],
+        ["api/plat/{plat_id}/game/menu", "获取平台首页菜单游戏列表"],
+        ["api/plat/{plat_id}/game/category", "获取平台首页分类游戏列表"],
 
         "--搜索",
         ["api/user/{user_id}/game/index", "我的游戏"],

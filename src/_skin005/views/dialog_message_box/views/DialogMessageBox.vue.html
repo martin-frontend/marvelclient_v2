@@ -25,10 +25,10 @@
         </v-sheet>
         <v-card-actions class="justify-center pb-5">
             <btn-yellow v-if="pageData.data.bConfirm" class="text-14" width="100" height="36" :btn_type="2" @click.native="onCancel"
-                >{{LangUtil("取消")}}</btn-yellow
+                >{{pageData.data.cancelTxt || LangUtil("取消")}}</btn-yellow
             >
 
-            <btn-yellow class="text-14 mx-2" width="100" height="36" @click.native="onOK">{{LangUtil("确定")}}</btn-yellow>
+            <btn-yellow class="text-14 mx-2" width="100" height="36" @click.native="onOK">{{pageData.data.okTxt || LangUtil("确定")}}</btn-yellow>
 
             <!-- <v-btn v-if="pageData.data.bConfirm" class="mx-2" width="100" height="36" color="colorBtnBg" outlined
                 @click="onCancel">{{LangUtil("取消")}}</v-btn>

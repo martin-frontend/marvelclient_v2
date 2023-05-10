@@ -5,5 +5,7 @@ export default interface MessageVO {
     cancelFun?: Function | null;
     okFun?: Function | null;
     thisObj?: any;
-    closeTime?:number;
+    closeTime?: number;
+    cancelTxt?: string;
+    okTxt?: string;
 }

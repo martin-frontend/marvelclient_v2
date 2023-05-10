@@ -155,21 +155,21 @@ export default class DialogBetRecord extends AbstractView {
     // }
 
     // setDatePiker() {
-        // const keyNode = document.querySelectorAll(".el-date-editor");
-        // if (!keyNode) return;
-        // for (let index = 0; index < keyNode.length; index++) {
-        //     const element = keyNode[index];
+    // const keyNode = document.querySelectorAll(".el-date-editor");
+    // if (!keyNode) return;
+    // for (let index = 0; index < keyNode.length; index++) {
+    //     const element = keyNode[index];
 
-        //     const iNode = document.createElement("i");
-        //     iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-        //     element.appendChild(iNode);
+    //     const iNode = document.createElement("i");
+    //     iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
+    //     element.appendChild(iNode);
 
-        //     iNode.style.position = "absolute";
-        //     iNode.style.top = "12px";
-        //     iNode.style.right = "12px";
-        //     iNode.style.color = "#8E8F91";
-        //     iNode.style.pointerEvents = "none";
-        // }
+    //     iNode.style.position = "absolute";
+    //     iNode.style.top = "12px";
+    //     iNode.style.right = "12px";
+    //     iNode.style.color = "#8E8F91";
+    //     iNode.style.pointerEvents = "none";
+    // }
     // }
 
     public get isOtherUser(): any {
@@ -407,5 +407,38 @@ export default class DialogBetRecord extends AbstractView {
             }
         }
         return "-";
+    }
+
+    /**是否可以取消订单 */
+    isCanCancle(item: any): boolean {
+        if (!item) return false;
+        if (item.cancel_order && (item.cancel_order == 1 || item.cancel_order == "1")) {
+            //return true;
+            //板球判断 1. type=2 下 status=【0】/【1】/【2】
+            if (item.game_info) {
+                if (item.game_info.type && (item.game_info.type == 2 || item.game_info.type == "2")) {
+                    const list = [0, 1, 2];
+                    for (let index = 0; index < list.length; index++) {
+                        const element = list[index];
+                        if (item.game_info.status == element || item.game_info.status == element + "") {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    /**取消订单按钮点击 */
+    onCancleClick(item: any) {
+        console.log("取消清单 按钮被点击", item);
+        PanelUtil.message_confirm({
+            message: LangUtil("是否确认取消这笔订单?"),
+            okFun: () => {
+                this.myProxy.api_vendor_var_bet_log_cancel(item);
+            },
+            okTxt: LangUtil("是"),
+            cancelTxt: LangUtil("否"),
+        });
     }
 }

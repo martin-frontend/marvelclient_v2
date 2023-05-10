@@ -5,6 +5,7 @@ import Vue from "vue";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
@@ -316,5 +317,27 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         //只显示已结算状态。
         if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
+    }
+    /**取消订单 */
+    api_vendor_var_bet_log_cancel(item: any) {
+        PanelUtil.showAppLoading(true);
+        const formCopy = {
+            order_no: item.order_no,
+            vendor_id: item.vendor_id,
+        };
+        console.log("发送取消订单消息");
+        this.sendNotification(net.HttpType.api_vendor_var_bet_log_cancel, formCopy);
+    }
+    api_vendor_var_bet_log_cancel_callback(msg: any) {
+        console.log("收到 取消订单的回调 ", msg);
+        PanelUtil.showAppLoading(false);
+
+        if (msg == true) {
+            //刷新页面
+            this.api_user_show_var_bet();
+            PanelUtil.message_info(LangUtil("订单取消成功"));
+        } else {
+            PanelUtil.message_info(LangUtil("取消订单失败"));
+        }
     }
 }

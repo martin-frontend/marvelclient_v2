@@ -378,9 +378,7 @@
                             <svg-icon class="mx-1" icon="football"></svg-icon>
                             <span class="ml-2">{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span>
                             <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
-                                <span class="font-weight-bold">
-                                    {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}})
-                                </span>
+                                <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                             </span>
                             <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
                             <span class="ml-2 font-weight-bold">{{getOrderTitle(item.game_info)}}</span>
@@ -419,6 +417,14 @@
                                 {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
                                 cricketSwapStatus[item.game_info.status]}}
                             </span>
+                            <v-sheet
+                                v-if="isCanCancle(item)"
+                                color="transparent"
+                                class="ml-2 font-weight-bold cancle_btn_line cursor-pointer"
+                                @click="onCancleClick(item)"
+                            >
+                                {{LangUtil("取消")}}
+                            </v-sheet>
                         </div>
                     </v-sheet>
                 </v-sheet>
@@ -800,15 +806,11 @@
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                         <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="football"></svg-icon>
                         <div>
-                            <div>
-                                {{item.game_info.home_name}} vs {{item.game_info.away_name}}
-                            </div>
+                            <div>{{item.game_info.home_name}} vs {{item.game_info.away_name}}</div>
 
                             <div>
                                 <span class="mr-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
-                                    <span class="font-weight-bold">
-                                        {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}})
-                                    </span>
+                                    <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                                 </span>
                                 <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
                             </div>
@@ -840,21 +842,33 @@
                                     <span class="font-weight-bold">{{item.game_info.handicap }}</span>
                                 </span>
 
-                                <div class="mr-2" >
-                                    <template v-if="item.game_info.priceMatched == 0">
-                                        {{LangUtil("板球订单价格:")}}
-                                        <span class="font-weight-bold">{{item.game_info.price}}</span>
-                                    </template>
-                                    <template v-else>
-                                        {{LangUtil("板球成交价格:")}}
-                                        <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
-                                    </template>
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between">
+                                    <div>
+                                        <template v-if="item.game_info.priceMatched == 0">
+                                            {{LangUtil("板球订单价格:")}}
+                                            <span class="font-weight-bold">{{item.game_info.price}}</span>
+                                        </template>
 
-                                    <span class="mr-2 div-block font-weight-bold float-right">
-                                        {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
-                                        cricketSwapStatus[item.game_info.status]}}
-                                    </span>
-                                </div>
+                                        <template v-else>
+                                            {{LangUtil("板球成交价格:")}}
+                                            <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                                        </template>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="mr-2 font-weight-bold ">
+                                            {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                            cricketSwapStatus[item.game_info.status]}}
+                                        </span>
+                                        <v-sheet
+                                            v-if="isCanCancle(item)"
+                                            class="mr-2 font-weight-bold cancle_btn_line"
+                                            color="transparent"
+                                            @click="onCancleClick(item)"
+                                        >
+                                            {{LangUtil("取消")}}
+                                        </v-sheet>
+                                    </div>
+                                </v-sheet>
                             </div>
                         </div>
                     </div>

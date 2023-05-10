@@ -54,10 +54,14 @@ export default class Wallet extends AbstractView {
     }
 
     public get walletMaxwidth(): string {
-        if (!this.$mobile) {
+        if (!this.$xsOnly) {
             return "";
         }
         if (GlobalVar.skin == "skin008") {
+            if (!SkinVariable.systemKefuTop)
+            {
+                return "menu_width_mob_008_1";
+            }
             return "menu_width_mob_008";
         }
         return "menu_width_mob";

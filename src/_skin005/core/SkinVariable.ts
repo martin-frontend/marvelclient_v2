@@ -30,4 +30,6 @@ export default class SkinVariable {
     public static isShowRestrictions = false;
     /**首页足球是否放在排列的最上面 */
     public static isFootballTop = true;
+    /**手机版的系统自带的客服的位置 */
+    public static systemKefuTop = true;
 }

@@ -11,6 +11,7 @@ import ModulesHelper from "./core/ModulesHelper";
 import PanelUtil from "./core/PanelUtil";
 import LangConfig from "@/core/config/LangConfig";
 import Constant from "@/core/global/Constant";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -22,6 +23,7 @@ export default class APP extends AbstractView {
     myProxy: AppProxy = this.getProxy(AppProxy);
     core = core;
     Constant = Constant;
+    SkinVariable = SkinVariable;
     notice = PanelUtil.getProxy_noticeProxy;
     constructor() {
         super();

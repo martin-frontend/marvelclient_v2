@@ -51,6 +51,7 @@ Assets.commonIcon.about_03_bg = require(`@/_skin008/assets/mine/about_03_icon_bg
 SkinVariable.isShowRestrictions = true;
 SkinVariable.isShowfullLogo = true;
 SkinVariable.isFootballTop = false;
+SkinVariable.systemKefuTop = false;
 LogUtil.init();
 core.init();
 //@ts-ignore

@@ -132,7 +132,7 @@
                         </v-sheet>
                         <!-- <User /> -->
                         <v-spacer />
-                        <v-btn v-if="ModulesHelper.isShow_Kefu()" class="mr-2" icon small @click="onService">
+                        <v-btn v-if="ModulesHelper.isShow_Kefu() && SkinVariable.systemKefuTop" class="mr-2" icon small @click="onService">
                             <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                         </v-btn>
                         <v-badge
@@ -164,7 +164,7 @@
                     >
                     <!-- </v-sheet> -->
 
-                    <v-btn v-if="ModulesHelper.isShow_Kefu() " class="ml-3" icon small @click="onService">
+                    <v-btn v-if="ModulesHelper.isShow_Kefu() && SkinVariable.systemKefuTop" class="ml-3" icon small @click="onService">
                         <svg-icon class="text-24 head_btn--text" icon="service"></svg-icon>
                     </v-btn>
                 </template>

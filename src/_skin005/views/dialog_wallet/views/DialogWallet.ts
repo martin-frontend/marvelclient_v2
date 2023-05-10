@@ -5,6 +5,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogWalletMediator from "../mediator/DialogWalletMediator";
 import DialogWalletProxy from "../proxy/DialogWalletProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogWallet extends AbstractView {
@@ -20,6 +21,19 @@ export default class DialogWallet extends AbstractView {
     }
     typechange = 0;
 
+    get walletType(): number[] {
+        let list = [0, 1, 2];
+        //@ts-ignore
+        const myWalletTab = GameConfig.config["myWalletTab"];
+        if (myWalletTab && myWalletTab.length > 0) {
+            list = myWalletTab;
+        }
+        return list;
+    }
+
+    isShowTip(idx: number): boolean {
+        return this.walletType.includes(idx);
+    }
     /**图标时间选择 */
     onBtnChange(val: any) {
         this.pageData.tabIndex = parseInt(val);
@@ -41,6 +55,11 @@ export default class DialogWallet extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
+        if (this.pageData.bShow) {
+            if (!this.isShowTip(this.pageData.tabIndex)) {
+                this.myProxy.pageData.tabIndex = this.walletType[0];
+            }
+        }
     }
 
     onTimeChange() {

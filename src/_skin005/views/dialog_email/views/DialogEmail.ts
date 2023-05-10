@@ -100,4 +100,26 @@ export default class DialogEmail extends AbstractView {
     getDate(str: string) {
         return changeDateShow(str);
     }
+    /**如果有邮件已经读取了这个 这个按钮才能被点亮 */
+    get isCheckDelete() {
+        if (!this.pageData.list || this.pageData.list.length < 1) {
+            return false;
+        }
+
+        const isHave = this.pageData.list.some((e: any, index: any, array: any) => e.is_read);
+
+        return isHave;
+    }
+    /**检查 是否可以一键领取 */
+    get isCheckGet() {
+        if (!this.pageData.list || this.pageData.list.length < 1) {
+            return false;
+        }
+
+        const isHave = this.pageData.list.some(
+            (e: any, index: any, array: any) => e.attachment_status == 11 || e.attachment_status == "11"
+        );
+
+        return isHave;
+    }
 }

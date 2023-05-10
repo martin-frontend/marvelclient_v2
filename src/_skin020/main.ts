@@ -37,7 +37,7 @@ import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "@/_skin020/views/header/Header.vue";
 import { getVersion } from "@/core/global/Functions";
-
+import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
@@ -83,7 +83,10 @@ Vue.component("Footer", Footer);
 Vue.component("Header", Header);
 
 Vue.component("goldinfo_util", GoldInfoUtil);
-
+{
+    const myTransition = createSimpleTransition("mobile-slide-x-transition");
+    Vue.component("mobile-slide-x-transition", myTransition);
+}
 GlobalVar.skin = "skin020";
 
 const vuetify = getVuetify();

@@ -89,8 +89,8 @@ export default class CustomInputNomal extends AbstractView {
             return;
         }
         if (this.isEnterGold) {
+            event.target.value = event.target.value.replace(/[^0-9.]/g, "");
             if (event.target.value) {
-                event.target.value = event.target.value.replace(/[^0-9.]/g, "");
                 const [numberPart, dotPart] = this.splitLastDot(event.target.value);
                 this.originalNumber = numberPart;
                 this.originalNumber = GoldformatNumber(this.originalNumber).toString() + dotPart;

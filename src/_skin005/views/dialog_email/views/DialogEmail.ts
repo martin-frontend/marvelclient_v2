@@ -39,6 +39,7 @@ export default class DialogEmail extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        this.typechange = 0;
         MultDialogManager.onClosePanel();
         PanelUtil.getProxy_selfproxy.api_user_var_red_dot_tips();
     }

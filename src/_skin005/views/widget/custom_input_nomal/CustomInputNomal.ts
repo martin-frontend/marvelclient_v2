@@ -89,11 +89,15 @@ export default class CustomInputNomal extends AbstractView {
             return;
         }
         if (this.isEnterGold) {
-            event.target.value = event.target.value.replace(/[^0-9.]/g, "");
-            const [numberPart, dotPart] = this.splitLastDot(event.target.value);
-            this.originalNumber = numberPart;
-            this.originalNumber = GoldformatNumber(this.originalNumber).toString() + dotPart;
-            this.inputValue = this.originalNumber;
+            if (event.target.value) {
+                event.target.value = event.target.value.replace(/[^0-9.]/g, "");
+                const [numberPart, dotPart] = this.splitLastDot(event.target.value);
+                this.originalNumber = numberPart;
+                this.originalNumber = GoldformatNumber(this.originalNumber).toString() + dotPart;
+                this.inputValue = this.originalNumber;
+            } else {
+                this.inputValue = event.target.value;
+            }
             //    this.inputValue = GoldformatNumber(this.inputValue).toString();
             this.$emit("input", this.inputValue);
             return;
@@ -124,19 +128,21 @@ export default class CustomInputNomal extends AbstractView {
     onBlur() {
         this.isFocus = false;
         if (this.isEnterGold) {
-            this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 2,
-            });
-            this.originalNumber = GoldformatNumber(this.originalNumber).toString();
-            this.$emit("input", this.originalNumber);
+            if (this.inputValue) {
+                this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                });
+                this.originalNumber = GoldformatNumber(this.originalNumber).toString();
+                this.$emit("input", this.originalNumber);
+            }
         }
 
         this.$emit("blur");
     }
     onFocus() {
         if (this.isEnterGold) {
-            this.inputValue = this.originalNumber;
+            if (this.inputValue) this.inputValue = this.originalNumber;
         }
         this.isFocus = true;
         this.$emit("focus");

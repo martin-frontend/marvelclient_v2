@@ -1,11 +1,11 @@
 <div class="input-text d-flex align-center regular_text">
-    <v-icon v-if="icon" color="disable_text" class="ml-2">{{ icon }}</v-icon>
+    <v-icon v-if="icon" color="disable_text" class="ml-2 mr-2">{{ icon }}</v-icon>
     <div v-if="$slots.pre">
         <slot name="pre"></slot>
     </div>
     <input
         :id="inputId"
-        class="ml-2 fontweight"
+        class=" fontweight"
         :class="[disabled?'text-disabled':'',inputColor]"
         :type="type"
         :placeholder="placeholder"

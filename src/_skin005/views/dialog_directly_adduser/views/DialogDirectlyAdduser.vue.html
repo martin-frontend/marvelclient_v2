@@ -1,4 +1,12 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="838"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
     <v-card v-if="!$mobile" color="bgBanner">
         <com-dialog-title title="添加用户" @onClose="onClose" />
         <v-divider class="mb-2" />
@@ -250,9 +258,10 @@
         <com-dialog-title title="添加用户" @onClose="onClose" />
         <v-sheet class="px-2 mt-2" color="transparent" style="overflow: hidden">
             <!-- <v-sheet class="px-2 px-md-10 mt-2 overflow-y-auto" color="transparent" style="height: calc(100vh - 80px);"> -->
-            <v-sheet color="bgBanner" class="rounded10 px-2 py-2">
+
+            <v-sheet color="bgBanner" class="rounded10 px-3 py-3">
                 <CustomInput
-                    class="mb-6"
+                    class="mb-3"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入注册账号（4-20位）')"
                     maxlength="20"
@@ -261,7 +270,7 @@
                 />
 
                 <CustomPassword
-                    class="mb-6"
+                    class="mb-3"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="form.password"
@@ -269,14 +278,14 @@
                 />
 
                 <CustomInput
-                    class="mb-6"
+                    class="mb-3"
                     icon="mdi-text-box-edit"
                     :placeholder="LangUtil('请输入备注（0-8位）')"
                     maxlength="8"
                     v-model="form.remark"
                 />
 
-                <v-sheet color="transparent" width="100%" class="d-flex mb-6 align-center">
+                <v-sheet color="transparent" width="100%" class="d-flex mb-0 align-center">
                     <CustomInput
                         icon="mdi-shield-check"
                         :placeholder="LangUtil('请输入验证码（4位）')"
@@ -286,8 +295,11 @@
                     </CustomInput>
                     <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
                 </v-sheet>
-                <v-divider class="my-2" />
-                <div class="d-flex justify-space-between align-center my-3 empty_height">
+            </v-sheet>
+            <!-- <v-divider class="my-2" /> -->
+
+            <v-sheet color="bgBanner" class="rounded10 px-3 py-3 mt-2">
+                <v-sheet class="d-flex justify-space-between align-center" color="transparent" height="30">
                     <div class="d-flex align-center primary--text">{{LangUtil("信用类型")}}</div>
                     <span class="d-flex align-center primary--text">
                         <v-radio-group v-model="form.show_credit_set" row class="radio_mob">
@@ -300,16 +312,16 @@
                             ></v-radio>
                         </v-radio-group>
                     </span>
-                </div>
-
+                </v-sheet>
+            </v-sheet>
+            <v-sheet color="bgBanner" class="rounded10 px-3 py-3 mt-2">
                 <template v-if="form.show_credit_set == 1">
-                    <v-divider class="my-2" />
-
                     <!-- 代理占成 -->
-                    <div class="d-flex justify-space-between align-center mt-2">
+                    <div class="d-flex justify-space-between align-center">
                         <div class="d-flex primary--text empty_space text-14">{{LangUtil("代理占成") }}</div>
-                        <div class="d-flex align-center textYellow--text mb-1 text-12">{{LangUtil("每周一可调整一次") }}</div>
+                        <div class="d-flex align-center red--text mb-1 text-12">{{LangUtil("每周一可调整一次") }}</div>
                     </div>
+                    <div  class="line"></div>
                     <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between">
                         <div class="textGray--text text-12 mt-2">
                             {{LangUtil("最低可设置{0},最高可设置{1}",playerInfo.credit_rate_min,playerInfo.credit_rate_max)}}
@@ -340,7 +352,7 @@
                                     </v-sheet>
                                 </template>
                                 <template v-slot:thumb-label="{ value }">
-                                    <div class="primary--text text-12">{{value}}{{LangUtil("%")}}</div>
+                                    <div class="black--text text-12">{{value}}{{LangUtil("%")}}</div>
                                 </template>
                             </v-slider>
                         </v-sheet>
@@ -363,7 +375,7 @@
                                     </v-sheet>
                                 </template>
                                 <template v-slot:thumb-label="{ value }">
-                                    <div class="primary--text text-12">{{value}}{{LangUtil("%")}}</div>
+                                    <div class="black--text text-12">{{value}}{{LangUtil("%")}}</div>
                                 </template>
                             </v-slider>
                         </v-sheet>
@@ -377,40 +389,38 @@
                     </div>
                 </template>
             </v-sheet>
+
             <!-- <v-divider class="mb-2 " /> -->
             <!-- 反水设置 -->
-            <v-sheet color="bgBanner" class="rounded10 px-2 py-2 mt-2">
+            <v-sheet color="bgBanner" class="rounded10 px-3 py-3 mt-2">
                 <v-sheet color="transparent" width="100%" class="d-flex justify-space-between">
                     <div class="d-flex align-center primary--text">{{LangUtil("返水设置") }}</div>
 
-                    <div class="d-flex align-center textYellow--text text-12">{{LangUtil("创建账户后，返水不能修改") }}</div>
+                    <div class="d-flex align-center red--text text-12">{{LangUtil("创建账户后，返水不能修改") }}</div>
                 </v-sheet>
 
-                <v-sheet class="d-flex justify-space-between align-center mt-2 text-12" color="transparent">
-                    <v-sheet class="d-flex primary--text ml-2" min-width="100" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>
-                    <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
+                <v-sheet class="d-flex justify-space-between align-center mt-2 text-12 title_bg py-1 rounded" height="32">
+                    <v-sheet class="d-flex black--text ml-2" min-width="100" color="transparent"> {{LangUtil("返水类型")}} </v-sheet>
+                    <v-sheet class="d-flex justify-center black--text" min-width="100" color="transparent">
                         {{LangUtil("我的返水")}}
                     </v-sheet>
-                    <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
+                    <v-sheet class="d-flex justify-center black--text" min-width="100" color="transparent">
                         {{LangUtil("直属设置")}}
                     </v-sheet>
                 </v-sheet>
 
-                <template v-for="(item, key) of playerInfo.water_config">
-                    <v-sheet
-                        class="d-flex justify-space-between align-center my-3 mt-2 text-12"
-                        color="transparent"
-                        :key="key"
-                        v-if="key!=0"
-                    >
-                        <v-sheet class="d-flex align-center primary--text text-12 ml-2 empty_height" min-width="100" color="transparent">
+                <template v-for="(key, index) of Object.keys(playerInfo.water_config)">
+                    <v-sheet class="d-flex justify-space-between align-center my-1 text-12" color="transparent" :key="key" v-if="key!=0">
+                        <v-sheet class="d-flex align-center primary--text text-12 ml-2" min-width="100" color="transparent">
                             {{getConfigName(key) }}
                         </v-sheet>
 
-                        <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent"> {{item }} </v-sheet>
                         <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent">
+                            {{playerInfo.water_config[key] }}
+                        </v-sheet>
+                        <v-sheet class="d-flex justify-center primary--text input_mob" min-width="100" color="transparent">
                             <CustomInput
-                                class="d-flex justify-center empty_width_2 input-text_2"
+                                class="d-flex justify-center empty_width_2"
                                 height="30"
                                 placeholder="0"
                                 :isNeedCloseBtn="false"
@@ -421,8 +431,38 @@
                             </CustomInput>
                         </v-sheet>
                     </v-sheet>
+                    <div v-if="key != 0 && index < Object.keys(playerInfo.water_config).length -1" class="line"></div>
                     <div v-if="false && key!=0" class="hackhome"></div>
                 </template>
+
+                <!-- <template v-for="(item, key) of playerInfo.water_config">
+                    <v-sheet
+                        class="d-flex justify-space-between align-center my-1 text-12"
+                        color="transparent"
+                        :key="key"
+                        v-if="key!=0"
+                    >
+                        <v-sheet class="d-flex align-center primary--text text-12 ml-2 " min-width="100" color="transparent">
+                            {{getConfigName(key) }}
+                        </v-sheet>
+
+                        <v-sheet class="d-flex justify-center primary--text" min-width="100" color="transparent"> {{item }} </v-sheet>
+                        <v-sheet class="d-flex justify-center primary--text input_mob" min-width="100" color="transparent">
+                            <CustomInput
+                                class="d-flex justify-center empty_width_2 "
+                                height="30"
+                                placeholder="0"
+                                :isNeedCloseBtn="false"
+                                v-model="myProxy.inputWaterData[key]"
+                                :isOnlyFloat="true"
+                                :disabled="false"
+                            >
+                            </CustomInput>
+                        </v-sheet>
+                    </v-sheet>
+                    <div class="line"></div>
+                    <div v-if="false && key!=0" class="hackhome"></div>
+                </template> -->
             </v-sheet>
             <!-- 注册按钮 -->
             <div class="mt-5 pb-5">

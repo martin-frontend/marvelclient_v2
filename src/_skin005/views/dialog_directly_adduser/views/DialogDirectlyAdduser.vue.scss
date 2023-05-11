@@ -67,7 +67,7 @@
     background-repeat: repeat-x;
 }
 .empty_width_2 {
-    width: 80px !important;
+    width: 60px !important;
 }
 .input-text_2 {
     height: 30px;
@@ -107,5 +107,16 @@
 .theme--dark {
     .v-label {
         color: #fff;
+    }
+}
+.title_bg {
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+}
+.input_mob {
+    .input-text {
+        height: 30px !important;
+    }
+    ::v-deep input{
+        text-align: center !important;
     }
 }

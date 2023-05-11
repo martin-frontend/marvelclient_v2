@@ -53,7 +53,7 @@ export default class Agents extends AbstractView {
         return Constant.GameTypeText(type);
     }
     coin_name_unique = "USDT";
-    getBackWaterTxt(water_config: any): string {
+    getBackWaterTxt(water_config: any, ismob: boolean = false): string {
         let str = "";
         if (!water_config) {
             return str;
@@ -64,9 +64,19 @@ export default class Agents extends AbstractView {
             if (element == "0") {
                 continue;
             }
+
             str = str + this.getConfigName(element) + " " + water_config[element];
+
             if (index < coinKeys.length - 1) {
-                str = str + "  ";
+                if (index % 3 == 0 && ismob) {
+                    str = str + "<br>";
+                } else {
+                    if (ismob) {
+                        str = str + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                    } else {
+                        str = str + "  ";
+                    }
+                }
             }
         }
         return str;
@@ -195,5 +205,8 @@ export default class Agents extends AbstractView {
                 this.myProxy.checkboxValue.push("1");
             });
         }
+    }
+    onClickSearch() {
+        PanelUtil.getProxy_agentmanager.search(this.pageData.search);
     }
 }

@@ -59,6 +59,8 @@ export default class DialogWallet extends AbstractView {
             if (!this.isShowTip(this.pageData.tabIndex)) {
                 this.myProxy.pageData.tabIndex = this.walletType[0];
             }
+        } else {
+            this.typechange = this.myProxy.pageData.tabIndex;
         }
     }
 

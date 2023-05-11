@@ -7,7 +7,7 @@
             <v-divider class="mb-2" />
             <v-sheet class="d-flex align-center justify-space-between mx-4 mb-2" width="100%" color="transparent">
                 <v-sheet class="d-flex align-center" color="transparent" width="100%">
-                    <v-btn-toggle mandatory group @change="onBtnChange">
+                    <v-btn-toggle mandatory group v-model="typechange" @change="onBtnChange">
                         <v-btn v-if="isShowTip(0)" class="rounded-pill mr-2" height="36" min-width="90" value="0">
                             <span class="text-16"> {{LangUtil("我的资产")}} </span>
                         </v-btn>
@@ -63,7 +63,7 @@
             <v-sheet class="fix_head_mob" width="100%">
                 <com-dialog-title :title="LangUtil('平台钱包')" @onClose="onClose" />
                 <v-sheet class="d-flex align-center mt-3 ml-1 mr-1" color="transparent" width="100%">
-                    <v-btn-toggle :lang="core.lang" mandatory group @change="onBtnChange">
+                    <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onBtnChange">
                         <v-btn v-if="isShowTip(0)" class="rounded-pill" height="30" min-width="78" value="0">
                             <span class="text-14"> {{LangUtil("我的资产")}} </span>
                         </v-btn>

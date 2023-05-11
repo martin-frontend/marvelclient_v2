@@ -1,8 +1,16 @@
-<v-dialog v-if="!pageData.bHidden"  v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+<v-dialog
+    v-if="!pageData.bHidden"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    scrollable
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
     <v-card :class="!$mobile ? 'rounded10' : ''" color="bgColor">
-        <com-dialog-title title="时区选择" @onClose="onClose" :class="$mobile ?'title_pos' : ''"/>
+        <com-dialog-title title="时区选择" @onClose="onClose" />
 
-        <v-card flat color="transparent" class="d-flex py-4 px-4 mb-5" >
+        <v-card v-if="!$mobile" flat color="transparent" class="d-flex py-4 px-4 mb-5">
             <v-row dense v-if="options && Object.keys(options).length > 1">
                 <v-col :cols="$mobile ? 12 : 6" v-for="(item, key) of options" :key="key">
                     <v-sheet
@@ -20,5 +28,23 @@
                 </v-col>
             </v-row>
         </v-card>
+
+        <v-card-text v-else flat color="transparent" class="d-flex flex-column py-4 px-4 mb-5">
+            <v-sheet
+                v-for="(item, key) of options"
+                :key="key"
+                class="rounded10 py-2 px-2 my-1 d-flex justify-space-between"
+                color="transparent"
+                @click="onChange(item)"
+                :class="isCurItem(item) ? 'onItemSelect'  : 'sheetOutlined'"
+            >
+                <div :class="isCurItem(item) ? 'primary--text' : 'textGray--text'">{{ item.name || item }}</div>
+
+                <v-sheet v-if="isCurItem(item)" color="transparent">
+                    <svg-icon icon="select" class="ml-2 text-14" />
+                </v-sheet>
+            </v-sheet>
+            <div class="pb-4"></div>
+        </v-card-text>
     </v-card>
 </v-dialog>

@@ -103,13 +103,20 @@
     .v-label {
         color: #0f1213;
     }
+    .title_bg {
+        background: linear-gradient(to right, #f4f4f4 0%, #f4f4f4 100%);
+    }
 }
 .theme--dark {
     .v-label {
         color: #fff;
     }
+    .title_bg {
+        background: linear-gradient(to right, #2f3030 0%, #2f3030 100%);
+    }
 }
-.title_bg {
+
+.title_bg_mob {
     background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
 }
 .input_mob {

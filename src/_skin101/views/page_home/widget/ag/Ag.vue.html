@@ -11,7 +11,7 @@
                 </div>
                 <div class="game-wrapper_ag-join">
                     <!-- <h2 class="ag-font">{{ LangUtil("AG旗舰厅") }}</h2> -->
-                    <h2 class="ag-font">{{ data && data.list && data.list[0].vendor_product_name }}</h2>
+                    <h2 class="ag-font">{{ data && data.list && data.list[0] &&  data.list[0].vendor_product_name }}</h2>
                     <p>{{ LangUtil("百万限额，多台下注 | 单注限红高达70万USDT") }}</p>
                 </div>
                 <button class="style1 bubbly-button" @mouseenter="()=>{isEnter1=true;}"
@@ -30,7 +30,7 @@
             <img class="ag-card-img ag-card-img_ag" :src="getIcon(data && data.list && data.list[1])"></img>
             <div class="ag-card-content">
                 <!-- <h5 class="ag-font">{{ LangUtil("AG国际厅") }}</h5> -->
-                <h5 class="ag-font">{{ data && data.list && data.list[1].vendor_product_name }}</h5>
+                <h5 class="ag-font">{{ data && data.list && data.list[1] && data.list[1].vendor_product_name }}</h5>
                 <ul>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '47%')}">{{ LangUtil("万人同场") }}</li>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("美女互动") }}</li>
@@ -44,7 +44,7 @@
             <img class="ag-card-img ag-card-img_evo" :src="getIcon(data && data.list && data.list[2])"></img>
             <div class="ag-card-content">
                 <!-- <h5 class="ag-font">EVO</h5> -->
-                <h5 class="ag-font">{{ data && data.list && data.list[2].vendor_product_name }}</h5>
+                <h5 class="ag-font">{{ data && data.list && data.list[2] && data.list[2].vendor_product_name }}</h5>
                 <ul>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '47%')}">{{ LangUtil("多游戏同屏") }}</li>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("投注新体验") }}</li>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="game-wrapper_ag-join">
                     <!-- <h2 class="ag-font">AGQJ</h2> -->
-                    <h2 class="ag-font">{{ data && data.list && data.list[0].vendor_product_name }}</h2>
+                    <h2 class="ag-font">{{ data && data.list && data.list[0] && data.list[0].vendor_product_name }}</h2>
                     <p>{{ LangUtil("百万限额，多台下注 | 单注限红高达70万USDT") }}</p>
                 </div>
                 <button class="style1 bubbly-button"
@@ -81,7 +81,7 @@
             <img class="ag-card-img ag-card-img_ag" :src="getIcon(data && data.list && data.list[1])"></img>
             <div class="ag-card-content">
                 <!-- <h5 class="ag-font">AG国际厅</h5> -->
-                <h5 class="ag-font">{{ data && data.list && data.list[1].vendor_product_name }}</h5>
+                <h5 class="ag-font">{{ data && data.list && data.list[1] && data.list[1].vendor_product_name }}</h5>
                 <ul>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '50%')}">{{ LangUtil("万人同场") }}</li>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("美女互动") }}</li>
@@ -95,7 +95,7 @@
             <img class="ag-card-img ag-card-img_evo" :src="getIcon(data && data.list && data.list[2])"></img>
             <div class="ag-card-content">
                 <!-- <h5 class="ag-font">EVO</h5> -->
-                <h5 class="ag-font">{{ data && data.list && data.list[2].vendor_product_name }}</h5>
+                <h5 class="ag-font">{{ data && data.list && data.list[2] && data.list[2].vendor_product_name }}</h5>
                 <ul>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '50%')}">{{ LangUtil("多游戏同屏") }}</li>
                     <li :style="{width:(core.lang == 'zh_CN' ? '' : '45%')}">{{ LangUtil("投注新体验") }}</li>

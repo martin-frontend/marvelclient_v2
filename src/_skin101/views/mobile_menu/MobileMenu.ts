@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
 import LoginEnter from "@/_skin101/core/global/LoginEnter";
+import { getVersion } from "@/core/global/Functions";
 // import LoginEnter from "@/core/global/LoginEnter";
 import router from "@/router";
 import { Prop, Watch, Component } from "vue-property-decorator";
@@ -23,6 +24,10 @@ import f_5 from "../../assets/img/mobile_menu/f_5.png";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
+    // getVersion = getVersion;
+    // getChannelID() {
+    //     return core.channel_id;
+    // }
     menuList = [
         { id: 0, name: LangUtil("首页"), icon: f_1, activeIcon: f_1_a, path: "/" },
         { id: 1, name: LangUtil("大厅"), icon: f_2, activeIcon: f_2_a, path: "/page_game_list" },

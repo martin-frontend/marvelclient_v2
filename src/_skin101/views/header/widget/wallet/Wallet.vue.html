@@ -94,11 +94,16 @@
 
     <v-btn v-if="$vuetify.breakpoint.xsOnly"
         class="rounded-pill white--text mr-2 d-flex align-center PingFang font-weight-regular" x-small color="#d85b01"
-        @click="onCoinIn">
-        <div>{{LangUtil("充值")}}</div>
+        >
+        <div>
+            <span @click="onCoinIn(0)">{{LangUtil("充值")}}</span>｜
+            <span @click="onCoinIn(1)">{{LangUtil("提现")}}</span>
+        </div>
     </v-btn>
-    <v-btn v-else class="rounded-pill white--text mr-3 PingFang" height="24" width="74" color="#d85b01"
-        @click="onCoinIn">
-        <div class="mx-1 text-14 font-weight-regular">{{LangUtil("充值")}}</div>
+    <v-btn v-else class="rounded-pill white--text mr-3 PingFang" height="24" color="#d85b01">
+        <div class="mx-1 text-14 font-weight-regular">
+            <span @click="onCoinIn(0)">{{LangUtil("充值")}}</span>｜
+            <span @click="onCoinIn(1)">{{LangUtil("提现")}}</span>
+        </div>
     </v-btn>
 </v-sheet>

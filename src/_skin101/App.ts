@@ -9,12 +9,17 @@ import { isMobile, judgeClient } from "@/core/global/Functions";
 import CopyUtil from "@/core/global/CopyUtil";
 import GameConfig from "@/core/config/GameConfig";
 import Utils from "@/core/global/Utils";
+import { getVersion } from "@/core/global/Functions";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
     headerProxy: HeaderProxy = getProxy(HeaderProxy);
     LangUtil = LangUtil;
     isMobile = isMobile;
+    getVersion = getVersion;
+    getChannelID() {
+        return core.channel_id;
+    }
     //是否显示IOS引导
     guideDrawer = false;
     //是否竖屏

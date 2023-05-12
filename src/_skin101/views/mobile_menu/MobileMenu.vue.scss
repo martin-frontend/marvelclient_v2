@@ -1,3 +1,16 @@
 .active {
     // background-image: linear-gradient(180deg, #1d2a43 0%, #263d63 75px);
 }
+.version {
+    // position: relative;
+    .version-num{
+        font-size: 10px;
+        color: rgb(149, 152, 159,0.2) !important;
+        position: absolute;
+        transform: scale(0.3);
+        transform: translateX(-10%);
+        display: inline-block;
+        right: 0;
+        top: 0;
+    }
+}

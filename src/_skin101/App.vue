@@ -24,6 +24,9 @@
             <!-- <v-main style="background-color: #131e36"> -->
             <v-main style="background-color: transparent">
                 <router-view />
+                <span class="version" v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'">
+                    {{ "version:" + getVersion() + " " + getChannelID() }}
+                </span>
             </v-main>
             <Footer v-if="!$vuetify.breakpoint.mobile" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
@@ -147,6 +150,14 @@ export default class extends APP {
 </script>
 
 <style lang="scss" scoped>
+.version {
+    // margin-left: 20px;
+    // text-align: right;
+    float: right;
+    // display: block;
+    padding-right: 20px;
+    // display: inline-block;
+}
 .right-nav-mobile {
     z-index: 100;
     position: fixed;

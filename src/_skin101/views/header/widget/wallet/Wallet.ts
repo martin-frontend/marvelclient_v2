@@ -28,8 +28,8 @@ export default class Wallet extends AbstractView {
         }
     }
 
-    onCoinIn() {
-        dialog_recharge.show();
+    onCoinIn(index:number) {
+        dialog_recharge.show(index);
     }
 
     handlerGameRate() {

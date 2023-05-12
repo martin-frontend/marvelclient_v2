@@ -36,8 +36,8 @@
                             <v-sheet color="transparent" class="primary--text" min-width="100"
                                 >{{transformMoney(item.water)}}</v-sheet
                             >
-                            <v-sheet color="transparent" :class="getStateColor(item.pass_type)" min-width="100"
-                                >{{getStateText(item.pass_type)}}</v-sheet
+                            <v-sheet color="transparent" :class="getStateColor(item.status_ori)" min-width="100"
+                                >{{getStateText(item.status_ori)}}</v-sheet
                             >
                         </v-sheet>
                     </v-sheet>
@@ -99,7 +99,7 @@
 
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">
                                 <div class="my-0 textGray--text">{{LangUtil("状态")}}</div>
-                                <div class="my-0" :class="getStateColor(item.pass_type)">{{getStateText(item.pass_type)}}</div>
+                                <div class="my-0" :class="getStateColor(item.status_ori)">{{getStateText(item.status_ori)}}</div>
                             </v-sheet>
                         </v-sheet>
                     </v-sheet>

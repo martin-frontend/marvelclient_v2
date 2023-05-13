@@ -32,4 +32,6 @@ export default class SkinVariable {
     public static isFootballTop = true;
     /**手机版的系统自带的客服的位置 */
     public static systemKefuTop = true;
+    /**邮件一键领取 是否需要弹窗确认 */
+    public static mail_get_gift_config = false;
 }

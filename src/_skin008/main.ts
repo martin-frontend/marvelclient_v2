@@ -52,6 +52,7 @@ SkinVariable.isShowRestrictions = true;
 SkinVariable.isShowfullLogo = true;
 SkinVariable.isFootballTop = false;
 SkinVariable.systemKefuTop = false;
+SkinVariable.mail_get_gift_config = true;
 LogUtil.init();
 core.init();
 //@ts-ignore

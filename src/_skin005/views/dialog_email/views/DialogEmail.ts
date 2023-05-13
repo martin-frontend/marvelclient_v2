@@ -10,6 +10,7 @@ import DialogEmailMediator from "../mediator/DialogEmailMediator";
 import DialogEmailProxy from "../proxy/DialogEmailProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import { changeDateShow } from "@/core/global/Functions";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class DialogEmail extends AbstractView {
@@ -82,7 +83,14 @@ export default class DialogEmail extends AbstractView {
     }
 
     onReceiveQuick() {
-        this.myProxy.api_user_var_receiveQuick();
+        if (SkinVariable.mail_get_gift_config) {
+            PanelUtil.message_confirm({
+                message: LangUtil("是否领取所有奖励"),
+                okFun: () => {
+                    this.myProxy.api_user_var_receiveQuick();
+                },
+            });
+        } else this.myProxy.api_user_var_receiveQuick();
     }
 
     onDestroyQuick() {

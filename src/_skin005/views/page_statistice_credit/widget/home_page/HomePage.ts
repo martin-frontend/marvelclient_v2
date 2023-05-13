@@ -18,10 +18,16 @@ export default class HomePage extends AbstractView {
     myProxy: PageStatisticeCreditProxy = this.getProxy(PageStatisticeCreditProxy);
     pageData = this.myProxy.pageData;
     getMoneyColor = getMoneyColor;
-    getMoneyValue = getMoneyValue;
-    amountFormat(val: any) {
-        return amountFormat(val, true);
+    //getMoneyValue = getMoneyValue;
+
+    getMoneyValue(str: any, decimalLang: number = 0)
+    {
+        return getMoneyValue(str, decimalLang);
     }
+    amountFormat(val: any) {
+        return amountFormat(val, false);
+    }
+
     // constructor() {
     //     super(DialogDirectlyMyMediator);
     // }

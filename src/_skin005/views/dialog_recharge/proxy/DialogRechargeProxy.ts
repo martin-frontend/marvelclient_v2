@@ -316,7 +316,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_exchange_method_list, { plat_id: core.plat_id });
     }
 
-    api_user_var_exchange_create_order(requires: any = null) {
+    api_user_var_exchange_create_order(requires: any = null,brl_info:any=null) {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         if (!requires || requires.length < 1) {
@@ -331,7 +331,7 @@ export class ExchangeProxy extends puremvc.Proxy {
                 password_gold,
             } = this.pageData.form;
 
-            this.sendNotification(net.HttpType.api_user_var_exchange_create_order, {
+            const data = <any>{
                 amount,
                 exchange_channel_id,
                 payment_method_type,
@@ -341,7 +341,18 @@ export class ExchangeProxy extends puremvc.Proxy {
                 exchange_channel_method_id,
                 user_id: core.user_id,
                 password_gold: core.MD5.createInstance().hex_md5(password_gold),
-            });
+            };
+            
+            if (brl_info)
+            {
+                data.third_id = this.pageData.form.third_id;
+                data.subtitle = this.pageData.form.subtitle;
+                data.name = brl_info.name;
+                data.pix_key = brl_info.pix_key;
+                data.type = brl_info.type;
+            }
+            console.log("发送信息为",data);
+            this.sendNotification(net.HttpType.api_user_var_exchange_create_order,data);
         } else {
             const {
                 amount,

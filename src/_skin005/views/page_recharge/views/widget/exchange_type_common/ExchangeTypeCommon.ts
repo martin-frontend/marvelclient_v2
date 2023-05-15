@@ -17,6 +17,83 @@ export default class ExchangeTypeCommon extends AbstractView {
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
 
+    pix_key_select = 0;
+
+    pix_key_option = [
+        {
+            name: LangUtil("brl_CFP/CNPJ"), //标题名字
+            key: 3, //传给服务器用的类型
+            Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+            inputValue: "",
+            errinfo: "",
+        },
+        {
+            name: LangUtil("brl_Mobile"),
+            key: 2,
+            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+            inputValue: "",
+            errinfo: "",
+        },
+        {
+            name: LangUtil("brl_Email"),
+            key: 1,
+            Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+            inputValue: "",
+            errinfo: "",
+        },
+    ];
+
+    get pix_key_option_select() {
+        const obj = <any>{};
+        for (let index = 0; index < this.pix_key_option.length; index++) {
+            const element = this.pix_key_option[index];
+            obj[index] = element.name;
+        }
+        return obj;
+    }
+    get curPixkeyItem() {
+        return this.pix_key_option[this.pix_key_select];
+    }
+    onPixkeyChange() {
+        this.curPixkeyItem.errinfo = "";
+        console.log("被修改", this.pix_key_select);
+    }
+    onBlurInput_option() {
+        this.curPixkeyItem.inputValue = this.curPixkeyItem.inputValue.trim();
+        if (!this.curPixkeyItem.inputValue) {
+            return false;
+        }
+        let Regx;
+        switch (this.curPixkeyItem.key) {
+            case 1:
+                Regx = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                break;
+            case 2:
+                Regx = /^[1-9]\d{10}$/;
+                break;
+            case 3:
+                Regx = /^\d{11}$/;
+                break;
+            default:
+                break;
+        }
+        if (!Regx) {
+            console.log("----检测为空----");
+            this.curPixkeyItem.errinfo = "";
+            return true;
+        }
+        if (!Regx.test(this.curPixkeyItem.inputValue)) {
+            console.log("----检测不正确----");
+            this.curPixkeyItem.errinfo = LangUtil("请输入正确的{0}", this.curPixkeyItem.name);
+            return false;
+        }
+        console.log("----正确----");
+        this.curPixkeyItem.errinfo = "";
+        return true;
+    }
     get gold_info() {
         return this.pageData.methodList;
     }
@@ -83,14 +160,40 @@ export default class ExchangeTypeCommon extends AbstractView {
     onSetPassword() {
         PanelUtil.openpanel_trade_password();
     }
-    onSubmit() {
-        if (!this.chickRequires()) {
-            return;
+    setBrlSendData() {
+        const obj = <any>{};
+
+        for (let index = 0; index < this.showRequires.length; index++) {
+            const element = this.showRequires[index];
+            if (element.key == "name") {
+                obj[element.key] = element.inputValue;
+            }
         }
+
+        obj["type"] = this.curPixkeyItem.key;
+        if (this.curPixkeyItem.key == 2) {
+            obj["pix_key"] = "+55" + this.curPixkeyItem.inputValue;
+        } else obj["pix_key"] = this.curPixkeyItem.inputValue;
+        return obj;
+    }
+    onSubmit() {
+        if (this.form.payment_method_type == 8) {
+            //检测输入的内容是否正确
+            if (!this.onBlurInput_option()) {
+                return;
+            }
+        } else {
+            if (!this.chickRequires()) {
+                return;
+            }
+        }
+
         PanelUtil.message_confirm({
             message: LangUtil("确认提交"),
             okFun: () => {
-                this.myProxy.exchangeProxy.api_user_var_exchange_create_order(this.showRequires);
+                if (this.form.payment_method_type == 8) {
+                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order(null, this.setBrlSendData());
+                } else this.myProxy.exchangeProxy.api_user_var_exchange_create_order(this.showRequires);
             },
         });
     }

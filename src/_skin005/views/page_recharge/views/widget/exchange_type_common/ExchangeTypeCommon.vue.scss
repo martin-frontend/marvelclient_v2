@@ -60,7 +60,6 @@
 }
 
 .bank_box {
-
     ::v-deep .input-text {
         border: none !important;
     }
@@ -146,5 +145,11 @@
             position: absolute;
             z-index: 5;
         }
+    }
+}
+
+::v-deep .theme--light {
+    .select-text {
+        background-color: #f4f4f4 !important;
     }
 }

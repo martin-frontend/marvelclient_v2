@@ -12,7 +12,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
-import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
+import { changeDateShow, dateFormat, getDateOffset, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 @Component
 export default class DialogPerformance extends AbstractView {
     //dialogPerformanceDetailProxy: DialogPerformanceDetailProxy = this.getProxy(DialogPerformanceDetailProxy);
@@ -56,10 +56,7 @@ export default class DialogPerformance extends AbstractView {
         return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
     getDate(str: string) {
-        const re_1 = /-/gi;
-        //newstr = newstr.replace(re_1, "/");
-        return str.replace(re_1, "/");
-        //return changeDateShow(str);
+        return changeDateShow(str);
     }
     handlerDetail(date: string) {
         this.dialogPerformanceDetailProxy.parameter.date = date;
@@ -98,5 +95,14 @@ export default class DialogPerformance extends AbstractView {
         const keys = Object.keys(item);
         const coinname = keys[0];
         return CoinTransformHelper.TransformMoney(item[coinname], 2, coinname, coinname);
+    }
+    /**将一个日期时间转为 时间段 例如  "2023-05-15"  转为 "2023-05-15 00：00:00 - "2023-05-15 23:59:59""*/
+    getCommissionDate(date: string): string {
+        const { startTime, endTime } = getDateOffset(date);
+
+        const showTime_start = changeDateShow(startTime);
+        const showTime_end = changeDateShow(endTime);
+
+        return showTime_start + LangUtil(" - ") + showTime_end;
     }
 }

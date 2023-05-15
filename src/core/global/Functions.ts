@@ -44,6 +44,22 @@ export function getTodayOffset(offset: any = 0, offsetSecond: any = 0): Date {
     d.setTime(d.getTime() + 3600 * 1000 * 24 * offset - offsetSecond);
     return d;
 }
+/**
+ * 获取一天的开始时间与结束时间
+ * @param dateString 传入的天数
+ * @returns 返回 开始的时间和结束的时间
+ */
+export function getDateOffset(dateString: string):{ startTime: string; endTime: string } {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    const startTime = `${year}-${month}-${day} 00:00:00`;
+    const endTime = `${year}-${month}-${day} 23:59:59`;
+
+    return { startTime, endTime };
+}
 
 /**
  * 去掉空属性/空符串，并返回一个新对象
@@ -679,7 +695,7 @@ export function isSafari() {
         /Safari/.test(navigator.userAgent) &&
         !/Chrome/.test(navigator.userAgent) &&
         !/iPhone/.test(navigator.userAgent) &&
-        !/iPad/.test(navigator.userAgent) && 
-        !/AppleWebKit/.test(navigator.userAgent)  
+        !/iPad/.test(navigator.userAgent) &&
+        !/AppleWebKit/.test(navigator.userAgent)
     );
 }

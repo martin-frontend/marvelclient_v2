@@ -26,6 +26,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
             direct_water: "",
             group_water: "",
             total_water: "",
+            end_date: "",
+            start_date: "",
         },
         listQuery: {
             start_date: dateFormat(getTodayOffset(-6), "yyyy-MM-dd hh:mm:ss"),
@@ -72,8 +74,8 @@ export default class DialogPerformanceProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         const formCopy = <any>{ user_id: core.user_id };
         Object.assign(formCopy, this.pageData.listQuery);
-        formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
-        formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
+        // formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
+        // formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
         this.sendNotification(
             net.HttpType.api_user_var_commission_commissionlist,
             objectRemoveNull(formCopy, [undefined, null, "", 0, "0"])

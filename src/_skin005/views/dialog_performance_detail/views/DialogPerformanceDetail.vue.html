@@ -21,7 +21,7 @@
                 <v-divider class="my-3" />
                 <div v-if="listQuery.cate == 0" class="scroll-y scroll_box">
                     <div class="textGray--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
-                        <div>{{ parameter.date }}</div>
+                        <div>{{ getCommissionDate(parameter.date) }}</div>
                         <div>{{LangUtil("团队人数(新增)")}}{{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
                         <div>{{LangUtil("直属用户(新增)")}}{{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
                         <div>{{LangUtil("总业绩")}} {{ transformMoney(pageData.statistics_data.total_water_summary) }}</div>
@@ -182,7 +182,7 @@
                 <!-- <v-divider class="my-3" /> -->
                 <div v-if="listQuery.cate == 0" class="scroll-y" style="max-height: calc(100vh - 140px)">
                     <div class="textGray--text text-14 ml-3 mb-3 d-flex flex-wrap listinfo">
-                        <div>{{ parameter.date }}</div>
+                        <div>{{ getCommissionDate(parameter.date) }}</div>
                         <div>{{LangUtil("团队人数(新增)")}}{{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
                         <div>{{LangUtil("直属用户(新增)")}}{{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
                         <div>{{LangUtil("总业绩")}} {{ transformMoney(pageData.statistics_data.total_water_summary) }}</div>

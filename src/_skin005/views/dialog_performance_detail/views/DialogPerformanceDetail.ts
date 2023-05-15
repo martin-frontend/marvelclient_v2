@@ -9,6 +9,7 @@ import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Constant from "@/core/global/Constant";
+import { changeDateShow, getDateOffset } from "@/core/global/Functions";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
@@ -74,5 +75,14 @@ export default class DialogPerformanceDetail extends AbstractView {
         const keys = Object.keys(item);
         const coinname = keys[0];
         return CoinTransformHelper.TransformMoney(item[coinname], 2, coinname, coinname);
+    }
+    /**将一个日期时间转为 时间段 例如  "2023-05-15"  转为 "2023-05-15 00：00:00 - "2023-05-15 23:59:59""*/
+    getCommissionDate(date: string): string {
+        const { startTime, endTime } = getDateOffset(date);
+
+        const showTime_start = changeDateShow(startTime);
+        const showTime_end = changeDateShow(endTime);
+
+        return showTime_start + LangUtil(" - ") + showTime_end;
     }
 }

@@ -80,6 +80,7 @@ export default class AppFacade {
                     break;
                 case EnumPostMessage.REBALANCE:
                     console.log("收到消息-333--", e.data);
+                    PanelUtil.getProxy_selfproxy.api_user_show_var([2, 3]);
                     break;
                 case EnumPostMessage.BETTINGRECORD:
                     console.log("收到消息-4444--", e.data);

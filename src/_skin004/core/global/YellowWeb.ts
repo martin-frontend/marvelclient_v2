@@ -22,7 +22,8 @@ export default function (url: string) {
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 gameProxy.currGame = null;
                 gameProxy.gamePreData.lastRouter = Vue.router.currentRoute.path;
-                page_game_play.show(url);
+                // page_game_play.show(url);
+                OpenLink(url);
             } else {
                 WebViewBridge.getInstance().openBrowser(url);
             }

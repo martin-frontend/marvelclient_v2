@@ -17,6 +17,7 @@ import LoginEnter from "@/_skin005/core/global/LoginEnter";
 import Vue from "vue";
 import axios from "axios";
 import axiosRetry from "axios-retry";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class AppFacade {
     static inst = new AppFacade();
@@ -76,11 +77,16 @@ export default class AppFacade {
                     break;
                 case EnumPostMessage.RECHARGE:
                     console.log("收到消息-222--", e.data);
-                    PanelUtil.openpanel_recharge();
+                    PanelUtil.message_confirm({
+                        message: LangUtil("余额不足，是否充值？"),
+                        okFun: () => {
+                            PanelUtil.openpanel_recharge();
+                        },
+                    });
                     break;
                 case EnumPostMessage.REBALANCE:
                     console.log("收到消息-333--", e.data);
-                    PanelUtil.getProxy_selfproxy.api_user_show_var([2, 3]);
+                    //PanelUtil.getProxy_selfproxy.api_user_show_var([2, 3]);
                     break;
                 case EnumPostMessage.BETTINGRECORD:
                     console.log("收到消息-4444--", e.data);

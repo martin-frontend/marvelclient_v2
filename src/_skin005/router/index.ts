@@ -257,7 +257,12 @@ function changeManifeseJson(start_url: string) {
             link.href = url;
         });
 }
-
+function set_h1_title(str: string) {
+    const html_h1 = document.getElementById("html_h1");
+    if (html_h1) {
+        html_h1.innerText = str;
+    }
+}
 const metaArr = <any[]>[];
 function addMetaWithType(type: string) {
     while (metaArr.length > 0) {
@@ -272,6 +277,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Cricket Betting Odds Online - Betting on Cricket is a thrilling and exciting way to enjoy the game. Now bet on cricket with the best cricket betting tips and win money at 96in.com"
             );
+            set_h1_title("Cricket Betting -  Live Cricket Score Betting Odds, Rules and Tips");
             break;
         case "sports":
             document.title = "Online Sports betting - Best Sports Betting App";
@@ -280,6 +286,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Sports betting - Play the games online with best sports betting app 96in.com and win exciting prizes. Now bet on all sports online legal, safe and secure deposit"
             );
+            set_h1_title("Online Sports betting - Best Sports Betting App");
             break;
         case "fishing":
             document.title = "Fishing games: Tips and strategies to win";
@@ -288,6 +295,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Fishing games have become increasingly popular in recent years. Play fishing games online similar to fishing games on PC, Xbox, PS4 etc"
             );
+            set_h1_title("Fishing games: Tips and strategies to win");
             break;
         case "blockchain":
             document.title = "Blockchain games Online -  Play and win in blockchain games";
@@ -296,6 +304,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Play the best blockchain games online at 96in.com. We provide the top blockchain games and tips to win money online"
             );
+            set_h1_title("Blockchain games Online -  Play and win in blockchain games");
             break;
         case "live":
             document.title = "Live Casino Games Online - Online Casino for Real Money";
@@ -304,6 +313,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Play all live casino games online in 96in.com such as andar bahar, teen patti, roulette, baccarat etc. Play to win Online Casino for Real Money"
             );
+            set_h1_title("Live Casino Games Online - Online Casino for Real Money");
             break;
         case "slot":
             document.title = "Slot games: How to play, rules, tips and strategies";
@@ -312,6 +322,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Slot games are easy to play and offer the excitement of a big win. Now play the best free slot machine games online"
             );
+            set_h1_title("Slot games: How to play, rules, tips and strategies");
             break;
         case "lottery":
             document.title = "Lottery games: How to play, rules, tips and strategies";
@@ -320,6 +331,7 @@ function addMetaWithType(type: string) {
                 "description",
                 "Play the best lottery games online at 96in.com. We provide the top lottery games and tips to win money online"
             );
+            set_h1_title("-");
             break;
         case "cards":
             document.title = "Cards games: How to play, rules, tips and strategies";
@@ -328,9 +340,11 @@ function addMetaWithType(type: string) {
                 "description",
                 "Play the best cards games online at 96in.com. We provide the top cards games and tips to win money online"
             );
+            set_h1_title("-");
             break;
         default:
             document.title = LangUtil("96 Sports");
+            set_h1_title("-");
             break;
     }
 }

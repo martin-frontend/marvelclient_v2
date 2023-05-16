@@ -94,40 +94,7 @@ export default class PageHome extends AbstractView {
     jump(item: core.PlatNoticeVO) {
         //跳转模块:1-不跳转|2-奖励币介绍|3-质押分红|4-游戏挖矿|5-精彩活动|6-推广赚钱|7-币币交易|8-Swap
         console.log(">>>>>", item.open_mode);
-        if (item.open_mode != 1) {
-            switch (item.open_mode) {
-                case 2:
-                    PanelUtil.openpage_introduce();
-                    //page_introduce.show();
-                    break;
-                case 3:
-                    PanelUtil.openpage_bonus();
-                    //LoginEnter(page_bonus.show);
-                    break;
-                case 4:
-                    PanelUtil.openpage_mine();
-                    //LoginEnter(page_mine.show);
-                    break;
-                case 5:
-                    PanelUtil.openpanel_activity();
-                    //dialog_activity.show();
-                    break;
-                case 6:
-                    PanelUtil.openpage_extension();
-                    //LoginEnter(page_extension.show);
-                    break;
-                case 7:
-                    PanelUtil.message_alert(LangUtil("敬请期待"));
-                    //dialog_message_box.alert(LangUtil("敬请期待"));
-                    break;
-                case 8:
-                    PanelUtil.openpage_swap();
-                    //page_swap.show();
-                    break;
-            }
-        } else if (item.open_mode_url && item.open_mode_url != "") {
-            OpenLink(item.open_mode_url);
-        }
+        PanelUtil.jumpTo(item);
     }
     get getBinerSize(): number {
         if (this.$mobile) {

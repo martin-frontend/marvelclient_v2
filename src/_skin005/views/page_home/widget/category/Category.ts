@@ -39,7 +39,7 @@ export default class Category extends AbstractView {
                 return b.index_no - a.index_no;
             });
         }
-        console.log("重新分组的数据为", dataList);
+        //console.log("重新分组的数据为", dataList);
         return dataList;
     }
 }

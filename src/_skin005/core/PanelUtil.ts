@@ -130,6 +130,8 @@ import MultDialogManager from "./MultDialogManager";
 import PageBlur from "./PageBlur";
 import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "./SkinVariable";
+import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -197,7 +199,7 @@ export default class PanelUtil {
     /** 
         page路由 页面 
     */
-    //打开推广赚钱页面
+    /**打开推广赚钱页面 */
     static openpage_extension() {
         this._openpage_base("commissions", false);
     }
@@ -487,7 +489,7 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_service);
         dialog_service.show();
     }
-    //打开 服务条款 窗口
+    //打开 联系我们 窗口
     static openpanel_contract() {
         MultDialogManager.onOpenPanel(dialog_contract);
         dialog_contract.show();
@@ -529,17 +531,17 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_trade_password);
         dialog_trade_password.show();
     }
-    //打开 交易密码 窗口
+    //打开 绑定邀请码 窗口
     static openpanel_bind_invite() {
         MultDialogManager.onOpenPanel(dialog_bind_invite);
         dialog_bind_invite.show();
     }
-    //打开 交易密码 窗口
+    //打开 游戏汇率 窗口
     static openpanel_game_rate() {
         MultDialogManager.onOpenPanel(dialog_game_rate);
         dialog_game_rate.show();
     }
-    //打开 交易密码 窗口
+    //打开 预览 窗口
     static openpanel_preview(url: string) {
         MultDialogManager.onOpenPanel(dialog_preview);
         dialog_preview.show(url);
@@ -550,7 +552,7 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_record_exchange);
         dialog_record_exchange.show();
     }
-    //打开 提款记录 窗口
+    //打开 充值记录 窗口
     static openpanel_record_recharge() {
         MultDialogManager.onOpenPanel(dialog_record_recharge);
         dialog_record_recharge.show();
@@ -561,7 +563,7 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_address_book);
         dialog_address_book.show();
     }
-    //打开 地址本 窗口
+    //打开 奖励 窗口
     static openpanel_award(data: any) {
         MultDialogManager.onOpenPanel(dialog_award);
         dialog_award.show(data);
@@ -702,6 +704,7 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_promotion_statistics);
         dialog_promotion_statistics.show();
     }
+    /**业绩详情 */
     static openpanel_performance_detail() {
         MultDialogManager.onOpenPanel(dialog_performance_detail);
         dialog_performance_detail.show();
@@ -855,5 +858,451 @@ export default class PanelUtil {
     }
     public static get message_error(): Function {
         return dialog_message.error;
+    }
+
+    private static _mapList = <any>[] || undefined;
+    public static get funcMap(): any[] {
+        if (!this._mapList || this._mapList.length < 1) {
+            this._mapList = [
+                {
+                    key: "openpage_extension",
+                    fun: () => {
+                        PanelUtil.openpage_extension();
+                    },
+                },
+                {
+                    key: "openpage_introduce",
+                    fun: () => {
+                        PanelUtil.openpage_introduce();
+                    },
+                },
+                {
+                    key: "openpage_home",
+                    fun: () => {
+                        PanelUtil.openpage_home();
+                    },
+                },
+                {
+                    key: "openpage_gamelist",
+                    fun: () => {
+                        PanelUtil.openpage_gamelist();
+                    },
+                },
+                {
+                    key: "openpage_bonus",
+                    fun: () => {
+                        PanelUtil.openpage_bonus();
+                    },
+                },
+                {
+                    key: "openpage_statist_credit",
+                    fun: () => {
+                        PanelUtil.openpage_statist_credit();
+                    },
+                },
+                {
+                    key: "openpage_soccer",
+                    fun: () => {
+                        PanelUtil.openpage_soccer();
+                    },
+                },
+                {
+                    key: "openpage_soccer_cricket",
+                    fun: () => {
+                        PanelUtil.openpage_soccer_cricket();
+                    },
+                },
+                {
+                    key: "openpage_mine",
+                    fun: () => {
+                        PanelUtil.openpage_mine();
+                    },
+                },
+                {
+                    key: "openpage_swap",
+                    fun: () => {
+                        PanelUtil.openpage_swap();
+                    },
+                },
+                {
+                    key: "openpage_my_info",
+                    fun: () => {
+                        PanelUtil.openpage_my_info();
+                    },
+                },
+                {
+                    key: "openpage_recharge",
+                    fun: () => {
+                        PanelUtil.openpage_recharge();
+                    },
+                },
+                {
+                    key: "openpanel_login",
+                    fun: () => {
+                        PanelUtil.openpanel_login();
+                    },
+                },
+                {
+                    key: "openpanel_register",
+                    fun: () => {
+                        PanelUtil.openpanel_register();
+                    },
+                },
+                {
+                    key: "openpanel_mail",
+                    fun: () => {
+                        PanelUtil.openpanel_mail();
+                    },
+                },
+                {
+                    key: "openpanel_official_mail",
+                    fun: () => {
+                        PanelUtil.openpanel_official_mail();
+                    },
+                },
+                {
+                    key: "openpanel_recharge",
+                    fun: () => {
+                        PanelUtil.openpanel_recharge();
+                    },
+                },
+                {
+                    key: "openpanel_excharge",
+                    fun: () => {
+                        PanelUtil.openpanel_excharge();
+                    },
+                },
+                {
+                    key: "openpanel_activity",
+                    fun: () => {
+                        PanelUtil.openpanel_activity();
+                    },
+                },
+                {
+                    key: "openpanel_gamelist",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist();
+                    },
+                },
+                {
+                    key: "openpanel_record_mine",
+                    fun: () => {
+                        PanelUtil.openpanel_record_mine();
+                    },
+                },
+                {
+                    key: "openpanel_bet_record",
+                    fun: () => {
+                        PanelUtil.openpanel_bet_record();
+                    },
+                },
+                {
+                    key: "openpanel_record_mine_detail",
+                    fun: () => {
+                        PanelUtil.openpanel_record_mine_detail();
+                    },
+                },
+                {
+                    key: "openpanel_directly",
+                    fun: () => {
+                        PanelUtil.openpanel_directly();
+                    },
+                },
+                {
+                    key: "openpanel_google_verification",
+                    fun: () => {
+                        PanelUtil.openpanel_google_verification();
+                    },
+                },
+                {
+                    key: "openpanel_wallet",
+                    fun: () => {
+                        PanelUtil.openpanel_wallet();
+                    },
+                },
+                {
+                    key: "openpanel_performance",
+                    fun: () => {
+                        PanelUtil.openpanel_performance();
+                    },
+                },
+                {
+                    key: "openpanel_promotion_floor",
+                    fun: () => {
+                        PanelUtil.openpanel_promotion_floor();
+                    },
+                },
+                {
+                    key: "openpanel_pledge",
+                    fun: () => {
+                        PanelUtil.openpanel_pledge();
+                    },
+                },
+                {
+                    key: "openpanel_pledge_records",
+                    fun: () => {
+                        PanelUtil.openpanel_pledge_records();
+                    },
+                },
+                {
+                    key: "openpanel_pledge_unstaking",
+                    fun: () => {
+                        PanelUtil.openpanel_pledge_unstaking();
+                    },
+                },
+                {
+                    key: "openpanel_swap_record",
+                    fun: () => {
+                        PanelUtil.openpanel_swap_record();
+                    },
+                },
+                {
+                    key: "openpanel_bonus_ranking",
+                    fun: () => {
+                        PanelUtil.openpanel_bonus_ranking();
+                    },
+                },
+                {
+                    key: "openpanel_service",
+                    fun: () => {
+                        PanelUtil.openpanel_service();
+                    },
+                },
+                {
+                    key: "openpanel_contract",
+                    fun: () => {
+                        PanelUtil.openpanel_contract();
+                    },
+                },
+                {
+                    key: "openpanel_user_center",
+                    fun: () => {
+                        PanelUtil.openpanel_user_center();
+                    },
+                },
+                {
+                    key: "openpanel_real_name",
+                    fun: () => {
+                        PanelUtil.openpanel_real_name();
+                    },
+                },
+                {
+                    key: "openpanel_nick_name",
+                    fun: () => {
+                        PanelUtil.openpanel_nick_name();
+                    },
+                },
+                {
+                    key: "openpanel_safety_center",
+                    fun: () => {
+                        PanelUtil.openpanel_safety_center();
+                    },
+                },
+                {
+                    key: "openpanel_google_settings",
+                    fun: () => {
+                        PanelUtil.openpanel_google_settings();
+                    },
+                },
+                {
+                    key: "openpanel_bind_google",
+                    fun: () => {
+                        PanelUtil.openpanel_bind_google();
+                    },
+                },
+                {
+                    key: "openpanel_trade_password",
+                    fun: () => {
+                        PanelUtil.openpanel_trade_password();
+                    },
+                },
+                {
+                    key: "openpanel_bind_invite",
+                    fun: () => {
+                        PanelUtil.openpanel_bind_invite();
+                    },
+                },
+                {
+                    key: "openpanel_game_rate",
+                    fun: () => {
+                        PanelUtil.openpanel_game_rate();
+                    },
+                },
+                {
+                    key: "openpanel_record_exchange",
+                    fun: () => {
+                        PanelUtil.openpanel_record_exchange();
+                    },
+                },
+                {
+                    key: "openpanel_record_recharge",
+                    fun: () => {
+                        PanelUtil.openpanel_record_recharge();
+                    },
+                },
+                {
+                    key: "openpanel_address_book",
+                    fun: () => {
+                        PanelUtil.openpanel_address_book();
+                    },
+                },
+                {
+                    key: "openpanel_address_book_remark",
+                    fun: () => {
+                        PanelUtil.openpanel_address_book_remark();
+                    },
+                },
+                {
+                    key: "openpanel_order",
+                    fun: () => {
+                        PanelUtil.openpanel_order();
+                    },
+                },
+                {
+                    key: "openpanel_agent_manager",
+                    fun: () => {
+                        PanelUtil.openpanel_agent_manager();
+                    },
+                },
+                {
+                    key: "openpanel_directly_adduser",
+                    fun: () => {
+                        PanelUtil.openpanel_directly_adduser();
+                    },
+                },
+                {
+                    key: "openpanel_statistics_credit",
+                    fun: () => {
+                        PanelUtil.openpanel_statistics_credit();
+                    },
+                },
+                {
+                    key: "openpanel_promotion_statistics",
+                    fun: () => {
+                        PanelUtil.openpanel_promotion_statistics();
+                    },
+                },
+                {
+                    key: "openpanel_performance_detail",
+                    fun: () => {
+                        PanelUtil.openpanel_performance_detail();
+                    },
+                },
+                {
+                    key: "openpanel_gold_waterl",
+                    fun: () => {
+                        PanelUtil.openpanel_gold_waterl();
+                    },
+                },
+                {
+                    key: "openpanel_timezone",
+                    fun: () => {
+                        PanelUtil.openpanel_timezone();
+                    },
+                },
+                {
+                    key: "opencasino_sports",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(64);
+                    },
+                },
+                {
+                    key: "opencasino_live_casino",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(32);
+                    },
+                },
+                {
+                    key: "opencasino_blockchain_games",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(128);
+                    },
+                },
+                {
+                    key: "opencasino_fishing_games",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(8);
+                    },
+                },
+                {
+                    key: "opencasino_slots_games",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(16);
+                    },
+                },
+                {
+                    key: "opencasino_lottery_games",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(4);
+                    },
+                },
+                {
+                    key: "opencasino_cards_games",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(2);
+                    },
+                },
+            ];
+        }
+        return this._mapList;
+    }
+
+    /**系统公告中的跳转功能 */
+    public static jumpTo(item: any): boolean {
+        return PanelUtil.isCanJump(item, true);
+    }
+    /**检测这个对象是否能跳转，到对应的 页面或者 功能 */
+    public static isCanJump(item: any, isRun: boolean = false) {
+        //1. 先判断 打开模块
+        if (item.open_mode != 1) {
+            if (isRun) {
+                switch (item.open_mode) {
+                    case 2:
+                        PanelUtil.openpage_introduce();
+                        return true;
+                    case 3:
+                        PanelUtil.openpage_bonus();
+                        return true;
+                    case 4:
+                        PanelUtil.openpage_mine();
+                        return true;
+                    case 5:
+                        PanelUtil.openpanel_activity();
+                        return true;
+                    case 6:
+                        PanelUtil.openpage_extension();
+                        return true;
+                    case 7:
+                        PanelUtil.message_alert(LangUtil("敬请期待"));
+                        return true;
+                    case 8:
+                        PanelUtil.openpage_swap();
+                        return true;
+                }
+            } else {
+                const list = [2, 3, 4, 5, 6, 7, 8];
+                if (list.indexOf(item.open_mode)) {
+                    return true;
+                }
+            }
+        } else if (item.open_mode_url && item.open_mode_url.trim()) {
+            const fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == item.open_mode_url);
+            //查找是否可以跳转  或者执行
+            if (fitterArr && fitterArr.length > 0) {
+                if (isRun) {
+                    fitterArr[0].fun();
+                    //console.log("执行方法");
+                }
+                return true;
+            }
+
+            //跳转链接
+            if (isRun) {
+                OpenLink(item.open_mode_url);
+            }
+            return true;
+        }
+
+        return false;
     }
 }

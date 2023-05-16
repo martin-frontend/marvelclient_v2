@@ -30,6 +30,7 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType9: <core.PlatNoticeVO[]>[],
         listType10: <core.PlatNoticeVO[]>[],
         listType11: <core.PlatNoticeVO[]>[],
+        listType12: <core.PlatNoticeVO[]>[],
     };
 
     setData(data: core.PlatNoticeVO[]) {
@@ -68,6 +69,9 @@ export default class NoticeProxy extends puremvc.Proxy {
                     break;
                 case 11:
                     this.data.listType11.push(item);
+                    break;
+                case 12:
+                    this.data.listType12.push(item);
                     break;
                 default:
                     break;

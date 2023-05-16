@@ -10,7 +10,7 @@ export default class FooterMediator extends AbstractMediator {
         const body = notification.getBody();
         switch (notification.getName()) {
             case net.EventType.api_plat_var_notice_show_var:
-                if (body.type_position == 11 || body.type_position == "11") {
+                if (body.type_position == 11 || body.type_position == "11" || body.type_position == 12 || body.type_position == "12") {
                     PanelUtil.appproxy.setLoading(false);
                     const obj = {
                         activity_name: body.name,

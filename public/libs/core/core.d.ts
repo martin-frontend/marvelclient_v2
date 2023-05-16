@@ -2985,6 +2985,7 @@ declare module core {
         updated_at: string;
         open_mode: number;
         open_mode_url: string;
+        category: string;
     }
 }
 declare module core {

@@ -201,7 +201,7 @@ export default class PageGameList extends AbstractView {
                 this.myProxy.api_plat_var_game_all_index();
             }
 
-            if (this.$refs.scrollObj && !this.$mobile) {
+            if (this.$refs.scrollObj) {
                 ScrollUtil(0);
             }
             this.myProxy.getCurItemIndex();

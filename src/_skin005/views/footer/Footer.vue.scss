@@ -5,3 +5,40 @@
 .customize_btn_class:hover {
     color: var(--line_primary);
 }
+.v-divider {
+    border-color: #272828 !important;
+}
+
+::v-deep .v-icon.v-icon {
+    color: #fff !important;
+}
+
+.btninfo {
+    cursor: pointer;
+    // border: solid 1px #5a5a5a;
+    // border-radius: 10px;
+}
+
+::v-deep .v-expansion-panels:not(.v-expansion-panels--accordion):not(.v-expansion-panels--tile) > .v-expansion-panel--active {
+    border-radius: 10px !important;
+}
+
+.text_mob {
+    ::v-deep .v-expansion-panel-header {
+        font-size: 14px !important;
+    }
+}
+
+::v-deep .v-expansion-panels .v-expansion-panel {
+    background-color: transparent !important;
+}
+
+.footer_shuoming_item {
+    color: #a0a0a0;
+}
+.footer_shuoming_item:hover {
+    color: var(--line_primary);
+}
+.v-expansion-panels{
+    z-index: 0;
+}

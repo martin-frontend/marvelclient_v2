@@ -80,7 +80,7 @@ Vue.component("goldinfo_util", GoldInfoUtil);
     const myTransition = createSimpleTransition("mobile-slide-x-transition");
     Vue.component("mobile-slide-x-transition", myTransition);
 }
-GlobalVar.skin = "skin005";
+GlobalVar.skin = "skin010";
 
 const vuetify = getVuetify();
 Vue.vuetify = vuetify;

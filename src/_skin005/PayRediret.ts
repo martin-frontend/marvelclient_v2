@@ -34,13 +34,13 @@ export default class PayRediret extends Vue {
                     Object.assign(this.data, result.data);
                     if (this.data.status == 1 || this.data.status == 2) {
                         clearInterval(this.timer);
-                        if (this.user_id && SkinVariable.useGTM) {
-                            if (this.data.status == 1) {
-                                GTM.repeatDepositSuccess("", this.user_id, parseFloat(this.data.gold), this.data.coin_name_unique);
-                            } else if (this.data.status == 2) {
-                                GTM.repeatDepositFailed(this.user_id, parseFloat(this.data.gold), this.data.coin_name_unique);
-                            }
-                        }
+                        // if (this.user_id && SkinVariable.useGTM) {
+                        //     if (this.data.status == 1) {
+                        //         GTM.repeatDepositSuccess("", this.user_id, parseFloat(this.data.gold), this.data.coin_name_unique);
+                        //     } else if (this.data.status == 2) {
+                        //         GTM.repeatDepositFailed(this.user_id, parseFloat(this.data.gold), this.data.coin_name_unique);
+                        //     }
+                        // }
                     }
                 }
             );

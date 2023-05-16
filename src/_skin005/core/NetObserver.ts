@@ -26,7 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
-import { track, TrackTypeMap } from "./TrackManager";
+import { initGTM, track, TrackTypeMap } from "./TrackManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -176,6 +176,7 @@ export default class NetObserver extends AbstractMediator {
                     if (SkinVariable.isNeedKefu) {
                         this.addKefu();
                     }
+                    this.addGTM();
                     document.title = LangUtil("96 Sports");
                 }
                 break;
@@ -461,5 +462,33 @@ export default class NetObserver extends AbstractMediator {
             },
         };
         document.body.appendChild(s);
+    }
+    /**添加GTM的id */
+    addGTM() {
+        //正式环境
+        if (process.env.VUE_APP_ENV == "production") {
+            let gtm_id = GameConfig.config.gtm_id;
+            if (!gtm_id || !gtm_id.trim()) {
+                if (GlobalVar.skin == "skin005") {
+                    gtm_id = "GTM-TL9S3KT";
+                } else if (GlobalVar.skin == "skin008") {
+                    gtm_id = "GTM-NNNNR66";
+                } else {
+                    SkinVariable.useGTM = false;
+                    return;
+                }
+            }
+            SkinVariable.useGTM = true;
+            initGTM(gtm_id);
+        } //非正式环境
+        else {
+            SkinVariable.useGTM = true;
+            let gtm_id = GameConfig.config.gtm_id;
+            console.log("收到的 gtm id 为", gtm_id);
+            if (!gtm_id || !gtm_id.trim()) {
+                gtm_id = "GTM-NDDVSJT";
+            }
+            initGTM(gtm_id);
+        }
     }
 }

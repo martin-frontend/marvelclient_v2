@@ -67,7 +67,7 @@ export interface GameConfigVO {
         total_bet_gold: number;
         total_valid_bet_gold: number;
         total_win_gold: number;
-        total_water:number;
+        total_water: number;
     };
     mybet_title: {
         order_no: number;
@@ -83,4 +83,6 @@ export interface GameConfigVO {
     };
     /**当前h5版本号 */
     h5version: string;
+    /**GTM的id可以多个 */
+    gtm_id: string;
 }

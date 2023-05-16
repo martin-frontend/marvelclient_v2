@@ -76,6 +76,7 @@ export default class AppFacade {
                     break;
                 case EnumPostMessage.RECHARGE:
                     console.log("收到消息-222--", e.data);
+                    PanelUtil.openpanel_recharge();
                     break;
                 case EnumPostMessage.REBALANCE:
                     console.log("收到消息-333--", e.data);

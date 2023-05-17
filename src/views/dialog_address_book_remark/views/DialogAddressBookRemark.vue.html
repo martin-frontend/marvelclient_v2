@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5 mt-1">
-            <v-textarea class="text-14" v-model="pageData.listQuery.account_name" background-color="colorPanelBg" outlined solo :label="LangUtil('输入备注信息(0-100)')"></v-textarea>
+            <v-textarea class="text-14 input-text" v-model="pageData.listQuery.account_name" background-color="colorPanelBg" outlined solo :label="LangUtil('输入备注信息(0-100)')"></v-textarea>
             <v-btn color="colorBtnBg" height="44" block @click="onSubmit">{{LangUtil("保存设置")}}</v-btn>
         </v-card-text>
     </v-card>

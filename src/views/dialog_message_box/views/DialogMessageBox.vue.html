@@ -1,5 +1,5 @@
 <v-dialog width="300" v-model="pageData.bShow" :retain-focus="false" persistent>
-    <v-card class="rounded-lg" color="colorPanelBg">
+    <v-card class="rounded-lg" color="colorBlue2Bg">
         <v-card-title class="gradient-bg justify-center">
             <div class="text-18">{{LangUtil("提示")}}</div>
         </v-card-title>
@@ -12,7 +12,7 @@
 
         </template>
         <template v-else>
-            <v-card-text class="my-3 d-flex justify-center white--text" style="white-space: pre-line;">
+            <v-card-text class="my-3 d-flex justify-center white-text skin004_2-black-text" style="white-space: pre-line;">
                 {{pageData.data.message}}</v-card-text>
         </template>
 

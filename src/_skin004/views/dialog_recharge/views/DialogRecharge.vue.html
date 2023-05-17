@@ -74,7 +74,7 @@
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </div>
-                <div class="px-6 pb-3 d-flex align-center">
+                <div class="px-6 pb-3 d-flex align-center mt-2">
                     <v-btn
                         height="40"
                         max-width="95"
@@ -119,7 +119,8 @@
                     <v-btn
                         v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1"
                         small
-                        color="colorText1 colorBlue--text mr-2"
+                        class="blue-text"
+                        color="colorBtnBg2"
                         @click="goRecord"
                     >
                         <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>

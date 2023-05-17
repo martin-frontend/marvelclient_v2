@@ -115,10 +115,12 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     getFirstMenuIndex() {
         const keys = Object.keys(this.tableMenu);
-        this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
-        this.curMenuIndex = 0;
-        console.log("取第一个值", this.listQuery.vendor_type);
-        console.log("取第一个值", this.curMenuIndex);
+        if(keys.length > 0) {
+            this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
+            this.curMenuIndex = 0;
+            console.log("取第一个值", this.listQuery.vendor_type);
+            console.log("取第一个值", this.curMenuIndex);
+        }
     }
 
     getCurItemIndex() {

@@ -1,4 +1,4 @@
-<v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="#16233B" width="288">
+<v-sheet class="bg rounded-lg pa-3 pt-4" elevation="0" color="colorUserPanelBg1" width="288">
     <v-img class="rounded-pill mx-auto" src="@/_skin001/assets/header/avatar1.png" max-width="56" max-height="56"></v-img>
     <div class="mx-auto mt-2 text-16 font-weight-medium text-decoration-underline cursor-pointer" @click="onCopy(userInfo.user_id)">
         ID:{{userInfo.user_id}}
@@ -7,8 +7,8 @@
         VIP {{userInfo.vip_info && userInfo.vip_info.vip_level}}
     </div> -->
 
-    <v-sheet class="rounded-lg mt-3 py-1" :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''" color="colorPanelTitleBg">
-        <div class="d-flex align-center ml-2 item" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
+    <v-sheet class="rounded-lg mt-3 py-1" :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''" color="colorUserPanelBg">
+        <div class="d-flex align-center ml-2 item skin004_2-black-text" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />
@@ -20,10 +20,10 @@
     <v-sheet
         class="rounded-lg mt-3 py-1"
         :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''"
-        color="colorPanelTitleBg"
+        color="colorUserPanelBg"
         v-if="menuList1.length>0"
     >
-        <div class="d-flex align-center ml-2 item" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
+        <div class="d-flex align-center ml-2 item skin004_2-black-text" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
             <v-icon small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />

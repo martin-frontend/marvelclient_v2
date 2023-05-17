@@ -1,10 +1,12 @@
 import Vue from "vue";
 import App from "@/_skin004_1/App.vue";
 import { getVuetify } from "@/_skin004/plugins/vuetify";
-import router from "@/_skin004/router";
+import router from "@/_skin004_2/router";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/iconfont/iconfont.css";
 import "@/style/common.scss";
+import "@/_skin004_2/style/skin004_2.css";
+import "@/_skin004_2/style/_vars.css";
 import AppFacade from "@/_skin004/AppFacade";
 import VueLoadmore from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
@@ -37,14 +39,21 @@ AppFacade.inst.startup();
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
 
-SkinVariable.pageHead_logo = require(`@/_skin004_1/assets/logo.png`);
+SkinVariable.pageHead_logo = require(`@/_skin004_2/assets/logo.png`);
+SkinVariable.pageHead_logo_mob = require(`@/_skin004_2/assets/logo2.png`);
 SkinVariable.pageHome_project_1 = require(`@/_skin004_1/assets/page_home/project_info_1.png`);
 SkinVariable.pageHome_project_2 = require(`@/_skin004_1/assets/page_home/project_info_2.png`);
 SkinVariable.isSavePhoto = true;
 SkinVariable.savePhotoBg = require(`@/_skin004_1/assets/extension/poster.jpg`);
 SkinVariable.defaultCode = "86";
 SkinVariable.mustShowInvite = true;
-//SkinVariable.isShowSoccerMatche = false ;
+SkinVariable.isShowSoccerMatche = false;
+SkinVariable.icon_home = require(`@/_skin004_2/assets/icon/icon_home.png`);
+SkinVariable.icon_home1 = require(`@/_skin004_2/assets/icon/icon_home1.png`);
+SkinVariable.icon_play = require(`@/_skin004_2/assets/icon/icon_play.png`);
+SkinVariable.icon_play1 = require(`@/_skin004_2/assets/icon/icon_play1.png`);
+SkinVariable.icon_extension = require(`@/_skin004_2/assets/icon/icon_extension.png`);
+SkinVariable.icon_extension1 = require(`@/_skin004_2/assets/icon/icon_extension1.png`);
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
@@ -79,3 +88,35 @@ window.onload = function () {
 
 const commonIcon = Assets.commonIcon;
 commonIcon.loading = require(`@/assets/loading001.gif`);
+commonIcon.nodata = require(`@/_skin004_2/assets/nodata.png`);
+
+// skin004_2 調整h5颜色
+if (vuetify.framework.breakpoint.xsOnly) {
+    vuetify.framework.theme.themes.dark.colorPanelTitleBg = "#e0e0e0";
+    vuetify.framework.theme.themes.dark.colorUserPanelBg = "#f7f7f7";
+    vuetify.framework.theme.themes.dark.colorUserPanelBg1 = "#1678ff";
+    vuetify.framework.theme.themes.dark.colorInfo = "#50607f";
+    vuetify.framework.theme.themes.dark.colorBlue = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorPanelBg = "#f7f7f7";
+    vuetify.framework.theme.themes.dark.colorPanelBg2 = "#e0e0e0";
+    vuetify.framework.theme.themes.dark.colorPanelBg3 = "#e0e0e0";
+    vuetify.framework.theme.themes.dark.colorPanelBg4 = "#1A273F";
+    vuetify.framework.theme.themes.dark.colorUserPanelBg = "#f7f7f7";
+    vuetify.framework.theme.themes.dark.colorBtnBg = "#03259c";
+    vuetify.framework.theme.themes.dark.colorBtnBg1 = "#6fa9fa";
+    vuetify.framework.theme.themes.dark.colorBtnBg2 = "#ff9c00";
+    vuetify.framework.theme.themes.dark.colorBlue2Bg = "#ffffff";
+    vuetify.framework.theme.themes.dark.colorEmailIcon = "#ffffff";
+    vuetify.framework.theme.themes.dark.colorSwitchBtn = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorActivityBg = "#12294a";
+    vuetify.framework.theme.themes.dark.colorMobileMenuBg = "#fff";
+    vuetify.framework.theme.themes.dark.colorMobileMenuText = "#626262";
+    vuetify.framework.theme.themes.dark.colorMobileMenuActiveText = "#1678ff";
+    vuetify.framework.theme.themes.dark.colorMobileHeaderBg = "#1678ff";
+    vuetify.framework.theme.themes.dark.colorEmailIcon = "#ffffff";
+    vuetify.framework.theme.themes.dark.colorSwitchBtn = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorText1 = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorText2 = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorText4 = "#3b3b3b";
+    vuetify.framework.theme.themes.dark.colorText6 = "#3b3b3b";
+}

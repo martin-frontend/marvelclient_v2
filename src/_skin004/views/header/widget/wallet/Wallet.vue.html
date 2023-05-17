@@ -4,7 +4,7 @@
             <div v-bind="attrs" v-on="on">
                 <v-sheet
                     v-if="$vuetify.breakpoint.mobile && selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
-                    class="align-center d-flex rounded-pill ml-2 pr-2"
+                    class="align-center d-flex rounded-pill ml-2 pr-2 skin004_2-black-text"
                     color="colorPanelTitleBg"
                     min-width="80"
                     height="30"
@@ -57,7 +57,7 @@
         <v-sheet width="100%" color="colorPanelTitleBg" class="py-2 px-0">
             <template v-for="(item, key) of selfProxy.userInfo.gold_info">
                 <v-sheet
-                    class="d-flex align-center pl-3 rounded cursor-pointer py-1 listitem"
+                    class="d-flex align-center pl-3 rounded cursor-pointer py-1 listitem skin004_2-black-text"
                     :class="{'select-shadow': gameProxy.coin_name_unique == key}"
                     color="transparent"
                     width="100%"

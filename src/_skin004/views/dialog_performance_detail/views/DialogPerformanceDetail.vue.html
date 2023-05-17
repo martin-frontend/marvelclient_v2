@@ -148,7 +148,7 @@
                 </v-btn>
             </div>
         </v-card-text>
-        <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
+        <v-card-text class="px-5 mt-4" v-if="$vuetify.breakpoint.xsOnly">
             <div>
                 <v-btn
                     height="40"
@@ -185,10 +185,10 @@
                         <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span>
                     </div>
                 </div>
-                <v-sheet v-if="pageData.list.length>0" color="#121E36" class="listbox">
+                <v-sheet v-if="pageData.list.length>0" color="transparent" class="listbox">
                     <v-sheet
                         class="px-3 py-2 rounded-lg mb-3 colorText2--text"
-                        color="#16233F"
+                        color="colorPanelBg2"
                         v-for="(item, key) of pageData.list"
                         :key="key"
                     >
@@ -228,7 +228,7 @@
                 </v-sheet>
                 <ListNodata v-if="pageData.list.length == 0" />
             </div>
-            <v-sheet v-if="listQuery.cate == 1" color="#121E36" class="listbox scroll-y">
+            <v-sheet v-if="listQuery.cate == 1" color="transparent" class="listbox scroll-y">
                 <template v-for="(item, idx) in pageData.directList">
                     <div class="colorText1--text text-16 ml-3 mb-2 d-flex flex-wrap align-center listinfo-detail" :key="'u' + idx">
                         <div class="d-flex align-center">

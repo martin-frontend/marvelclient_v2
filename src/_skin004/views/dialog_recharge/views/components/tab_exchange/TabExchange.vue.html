@@ -23,7 +23,9 @@
             :key="key"
             @click="onChangeSub(item)"
         >
-            {{item.name}}
+            <span :class="{'skin004_2-black-text': form.block_network_id!=item.strkey}">
+                {{item.name}}
+            </span>
         </v-btn>
     </div>
     <div v-if="form.payment_method_type==4 || form.payment_method_type==5">
@@ -32,15 +34,15 @@
             <div class="d-flex align-center mr-n2">
                 <v-tooltip top color="colorText1">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                        <v-btn v-bind="attrs" v-on="on" color="colorBtnBg1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
                     </template>
                     <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
                 </v-tooltip>
 
-                <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onAddressBook"
+                <v-btn color="colorBtnBg1" x-small height="30" class="mr-2" @click="onAddressBook"
                     >{{LangUtil("地址薄")}}</v-btn
                 >
-                <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorText1 colorBlue--text" x-small height="30" @click="onPaste"
+                <v-btn v-if="!$vuetify.breakpoint.mobile" color="colorBtnBg1" x-small height="30" @click="onPaste"
                     >{{LangUtil("粘贴")}}</v-btn
                 >
             </div>
@@ -108,7 +110,7 @@
             <div class="d-flex mt-3 mb-2">
                 <div class="colorText1--text">{{LangUtil("您的银行卡")}}</div>
                 <v-spacer />
-                <v-btn color="colorText1 colorBlue--text" x-small height="30" @click="onBankcardInfo">{{LangUtil("银行卡信息")}}</v-btn>
+                <v-btn color="colorBtnBg1" x-small height="30" @click="onBankcardInfo">{{LangUtil("银行卡信息")}}</v-btn>
             </div>
             <v-sheet color="transparent" height="130" width="100%" class="mt-1 mb-4 d-flex flex-column bank_box_mob rounded-lg" outlined>
                 <v-autocomplete
@@ -188,15 +190,15 @@
             max-width="20"
             height="20"
         ></v-img>
-        <div>{{ balance }}</div>
+        <div class="skin004_2-black-text">{{ balance }}</div>
         <v-spacer />
-        <v-tooltip top color="colorText1">
+        <v-tooltip top color="colorBtnBg1">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+                <v-btn v-bind="attrs" v-on="on" color="colorBtnBg1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
             </template>
             <span>{{LangUtil("余额可能在厂商资产里，如兑换请先从厂商提取")}}</span>
         </v-tooltip>
-        <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onWallet">{{LangUtil("平台钱包")}}</v-btn>
+        <v-btn color="colorBtnBg1" x-small height="30" class="mr-2 blue-text" @click="onWallet">{{LangUtil("平台钱包")}}</v-btn>
     </v-sheet>
 
     <v-row class="colorText1--text mt-3" dense>
@@ -204,20 +206,20 @@
             <v-sheet color="transparent" min-width="300" class="mb-2">
                 <div class="colorText1--text">{{LangUtil("提取金额")}}</div>
                 <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.amount" :isOnlyInt="true">
-                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onAll">{{LangUtil("全部")}}</v-btn>
+                    <v-btn class="blue-text mr-n2" x-small height="30" color="colorBtnBg1" @click="onAll">{{LangUtil("全部")}}</v-btn>
                 </CustomInput>
             </v-sheet>
         </v-col>
         <v-col>
             <div>{{LangUtil("交易密码")}}</div>
             <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
-                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword"
+                <v-btn class="blue-text mr-n2" x-small height="30" color="colorBtnBg1" @click="onSetPassword"
                     >{{LangUtil("设置")}}</v-btn
                 >
             </CustomPassword>
         </v-col>
     </v-row>
-    <div class="text-14 mt-3 color-blue mb-2 d-flex" v-if="pageData.methodList[form.coin_name_unique]">
+    <div class="text-14 mt-3 color-blue mb-2 d-flex skin004_2-black-text" v-if="pageData.methodList[form.coin_name_unique]">
         <span class="mr-1">⚠️</span>
         <div>
             <div v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)">
@@ -226,10 +228,10 @@
         </div>
     </div>
     <!-- <div class="text-12 mb-2 color-blue ml-4">{{LangUtil("2.兑换手续费1%")}}</div> -->
-    <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
-    <v-divider class="mx-5" />
+    <v-btn class="rounded-lg mt-2" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit">{{LangUtil("提交")}}</v-btn>
+    <!-- <v-divider class="mx-5" /> -->
     <v-card-text class="d-flex justify-end mt-3">
-        <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
+        <div class="mr-2 info-text skin004_2-black-text">{{LangUtil("已支持币种")}}</div>
         <v-img
             class="mr-2"
             :src="plat_coins[key].icon"

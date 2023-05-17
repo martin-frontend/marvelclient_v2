@@ -29,7 +29,7 @@
             </v-navigation-drawer>
         </template>
         <template v-else>
-            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app left temporary width="288" color="#16233B">
+            <v-navigation-drawer v-model="headerProxy.pageData.bShowUserPanel" app left temporary width="288" color="colorUserPanelBg1">
                 <UserPanel />
             </v-navigation-drawer>
         </template>

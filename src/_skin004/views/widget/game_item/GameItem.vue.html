@@ -2,6 +2,7 @@
     @click="goGamePlay"
     :color="item?'colorTitleBg':'transparent'"
     :style="{'opacity': item?1:0, 'cursor': 'auto'}"
+    class="game-item"
     :class="getBoxClass()"
 >
     <v-lazy>

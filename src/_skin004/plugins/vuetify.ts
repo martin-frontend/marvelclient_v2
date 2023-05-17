@@ -22,6 +22,7 @@ export function getVuetify(): Vuetify {
 
                         colorCoin: "#F3B952", //used
                         colorTitleBg: "#1d2a43", //used
+                        colorMobileTitleBg: "#1d2a43", //used
                         colorInfo: "#50607f", //used
                         colorBlue: "#9db1d8", //used
                         colorPanelBg: "#121E36", //used
@@ -30,18 +31,30 @@ export function getVuetify(): Vuetify {
                         colorPanelBg4: "#1A273F", //used
                         colorPanelBg5: "#24314A", //used
                         colorPanelTitleBg: "#25324B", //used
+                        colorUserPanelBg: "#25324B", //used
+                        colorUserPanelBg1: "#16233F", //used
                         colorBtnBg: "#6fa9fa", //used
+                        colorBtnBg1: "#4c5d7f", //used
+                        colorBtnBg2: "#4c5d7f", //used
                         colorSelectBg: "#2C3D5C", //used
                         colorExtensionBtn: "#37619A", //used
                         colorBonusBtn: "#6EAAFA", //used
                         colorReceive: "#5E2E2E", //used
-                        colorBlue2Bg: "#2C3952",
+                        colorBlue2Bg: "#121E36", //used
                         colorYellowBg: "#F2A81C",
                         colorGoldBg: "#ffb01b",
                         colorBlueBtn: "3A66BA",
 
                         // //新增
                         colorBtnSeleBg: "#CD30C1", //used
+                        colorActivityBg: "#12294a", //used
+                        colorMobileMenuBg: "#1D2A43", //used
+                        colorMobileMenuText: "#96AAD0", //used
+                        colorMobileMenuActiveText: "#F3B952", //used
+                        colorMobileHeaderBg: "#1D2A43", //used
+                        colorEmailIcon: "#667798", //used
+                        colorSwitchBtn: "#6fa9fa", //used
+                        bgBanner: "#16233F",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

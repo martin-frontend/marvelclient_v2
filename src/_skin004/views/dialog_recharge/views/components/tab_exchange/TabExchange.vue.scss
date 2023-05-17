@@ -74,14 +74,14 @@
         border-radius: 8px;
     }
     ::v-deep .theme--dark.v-list {
-        background: #97abd1 !important;
+        background: #97abd1;
         border-radius: 8px;
     }
     ::v-deep .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
         color: #314361;
     }
     ::v-deep .v-application .primary--text {
-        color: #fff !important;
+        color: #fff;
     }
     ::v-deep .theme--dark.v-label {
         color: #4c5d7f;
@@ -104,4 +104,7 @@
             z-index: 5;
         }
     }
+}
+.blue-text {
+    color: #9db1d8;
 }

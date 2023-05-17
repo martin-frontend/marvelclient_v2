@@ -43,7 +43,7 @@
                                         max-width="30"
                                         max-height="30"
                                     ></v-img>
-                                    <div class="colorText2--tex ml-3">{{ formData.coin_name_unique }}</div>
+                                    <div class="colorText2--tex ml-3 skin004_2-black-text">{{ formData.coin_name_unique }}</div>
 
                                     <div v-if="pageData.isAddMode" class="empty_space ml-auto">
                                         {{LangUtil("我的余额")}} {{gold_info[formData.coin_name_unique].sum_money}}
@@ -119,7 +119,7 @@
                     </template>
                     <v-btn
                         class="rounded-lg colorBtnBg"
-                        color="colorText1 colorBlue--text"
+                        color="colorText1"
                         min-width="61"
                         height="30"
                         @click="onClickGetAll"

@@ -89,7 +89,7 @@
     </v-card-text>
     <v-card-text class="px-5" v-if="$vuetify.breakpoint.xsOnly">
         <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" :listNodata="pageData.list.length == 0">
-            <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+            <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
                 <div class="d-flex justify-space-between">
                     <div class="colorText1--text">{{LangUtil("明细类型")}}</div>
                     <div class="text-truncate">{{listOptions.typeOptions()[item.type]}}</div>

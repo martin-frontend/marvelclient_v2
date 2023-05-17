@@ -43,7 +43,10 @@
 .arrow {
     margin-bottom: -1px !important;
 }
-::v-deep .v-btn__content {
-    color: #98acd3;
-    font-weight: 400;
+// ::v-deep .v-btn__content {
+//     color: #98acd3;
+//     font-weight: 400;
+// }
+.blue-text {
+    color: #9db1d8;
 }

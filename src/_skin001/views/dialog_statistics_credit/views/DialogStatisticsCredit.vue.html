@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex justify-space-between align-center mt-2 px-5">
                     <el-date-picker
-                        class="mr-2"
+                        class="mr-2 input_range_2"
                         v-model="timeRange[0]"
                         type="datetime"
                         :placeholder="LangUtil('开始日期')"
@@ -30,7 +30,7 @@
                     >
                     </el-date-picker>
                     <el-date-picker
-                        class="mr-auto"
+                        class="mr-auto input_range_2"
                         v-model="timeRange[1]"
                         type="datetime"
                         :placeholder="LangUtil('结束日期')"
@@ -132,7 +132,7 @@
                 <LoadMore @onRefresh="onRefresh" @onLoad="onLoad" :finished="pageData.finished" _class="listbox_2-mobile">
                     <template v-if="pageData.list.length > 0">
                         <!-- 汇总 -->
-                        <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="#16233F">
+                        <v-sheet class="px-3 py-2 rounded-lg my-3 colorText2--text" color="colorPanelBg2">
                             <div class="d-flex justify-space-between">
                                 <div class="colorBlue--text">{{LangUtil("汇总")}}</div>
                             </div>
@@ -190,7 +190,7 @@
                     <ListNodata v-if="pageData.list.length == 0" height="300" />
                     <v-sheet
                         class="px-3 py-2 rounded-lg my-3 colorText2--text"
-                        color="#16233F"
+                        color="colorPanelBg2"
                         v-for="(item, key) of pageData.list"
                         :key="key"
                     >
@@ -268,7 +268,7 @@
                             <template v-if="item.directly_users>0 && pageData.agent.user_id!=item.user_id">
                                 <v-sheet
                                     class="d-flex justify-space-between colorYellow2--text cursor-pointer"
-                                    color="#16233F"
+                                    color="colorPanelBg2"
                                     @click.native="onBtnClickNextPage(item)"
                                 >
                                     {{item.directly_users}}

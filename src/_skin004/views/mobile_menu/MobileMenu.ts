@@ -21,6 +21,8 @@ import GameConfig from "@/core/config/GameConfig";
 import OpenLink from "@/core/global/OpenLink";
 import YellowWeb from "@/_skin004/core/global/YellowWeb";
 import page_activity from "@/_skin004/views/page_activity";
+import SkinVariable from "@/_skin004/core/SkinVariable";
+
 
 @Component
 export default class MobileMenu extends AbstractView {
@@ -54,16 +56,16 @@ export default class MobileMenu extends AbstractView {
             {
                 id: 2,
                 name: LangUtil("娱乐城"),
-                icon: require(`@/_skin001/assets/icon/icon_play.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_play1.png`),
+                icon: SkinVariable.icon_play,
+                icon1: SkinVariable.icon_play1,
                 path: "/page_game_list",
             },
 
             {
                 id: 0,
                 name: LangUtil("首页"),
-                icon: require(`@/_skin001/assets/icon/icon_home.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_home1.png`),
+                icon: SkinVariable.icon_home,
+                icon1: SkinVariable.icon_home1,
                 path: "/",
             },
             // {
@@ -90,8 +92,8 @@ export default class MobileMenu extends AbstractView {
             {
                 id: 5,
                 name: LangUtil("推广"),
-                icon: require(`@/_skin001/assets/icon/icon_extension.png`),
-                icon1: require(`@/_skin001/assets/icon/icon_extension1.png`),
+                icon: SkinVariable.icon_extension,
+                icon1: SkinVariable.icon_extension1,
                 path: "/page_extension",
             },
         ];

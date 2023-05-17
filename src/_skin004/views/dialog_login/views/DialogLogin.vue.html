@@ -2,12 +2,12 @@
     <v-card color="colorPanelBg" class="d-flex">
         <AdvertiseInLogin :height="610" class="d-none d-md-flex" />
         <v-card color="transparent" width="488">
-            <v-card-title class="d-flex justify-end pb-0 gradient-bg">
+            <v-card-title class="d-flex justify-end gradient-bg">
                 <div class="ml-2 font-weight-medium white--text text-18">
                     {{forgetData.bShow ? LangUtil('找回密码') : LangUtil('登录')}}
                 </div>
                 <v-spacer />
-                <v-btn class="mr-2" icon @click="onClose">
+                <v-btn class="mr-2 close-icon" icon @click="onClose">
                     <v-icon>{{ forgetData.bShow ? "mdi-keyboard-backspace" : "mdi-close" }}</v-icon>
                 </v-btn>
             </v-card-title>

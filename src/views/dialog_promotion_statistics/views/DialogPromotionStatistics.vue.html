@@ -8,7 +8,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text class="px-5">
-            <div class="mb-2 ml-2">
+            <div class="my-2 ml-2">
                 <div class="d-flex" :class="{ 'flex-column': $vuetify.breakpoint.xsOnly }">
                     <CustomInput
                         height="41"
@@ -59,7 +59,7 @@
             <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 250px)':'650px'}">
                 <v-sheet
                     v-if="pageData.isShowFormula == 1 && pageData.formulaData"
-                    color="#1d3256"
+                    color="colorPanelBg2"
                     class="rounded-lg px-4 py-3 colorText6--text font-weight-bold"
                 >
                     <div>
@@ -83,18 +83,18 @@
                 </v-sheet>
 
                 <div class="py-2">
-                    <v-card color="#1d3256" height="40" class="d-flex align-center rounded-lg">
+                    <v-card color="colorPanelBg2" height="40" class="d-flex align-center rounded-lg">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
                                 {{ LangUtil("统计类型") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
                                 {{ LangUtil("直属统计") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
                                 {{ LangUtil("团队统计") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
                                 {{ LangUtil("总团队统计") }}
                             </v-col>
                         </v-row>
@@ -102,16 +102,16 @@
 
                     <v-card v-for="{ name, directly, group, all } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
                                 {{ LangUtil(name) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
                                 {{ directly }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
                                 {{ group }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center">
+                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
                                 {{ all }}
                             </v-col>
                         </v-row>

@@ -68,82 +68,87 @@
 
     <!-- 手机显示 -->
     <template v-else>
-        <v-card class="rounded-lg" color="transparent">
-            <v-card-text>
-                <v-sheet class="pt-2" color="transparent">
-                    <v-sheet class="pb-2 mt-4 rounded-lg" color="colorPanelBg">
-                        <!-- 关闭按钮 -->
-                        <v-sheet class="d-flex justify-end mr-3 pt-2" color="transparent">
-                            <v-btn icon @click="onClose">
-                                <v-icon large>mdi-close</v-icon>
-                            </v-btn>
-                        </v-sheet>
-                        <!-- 标题 -->
+        <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="100%">
+            <v-card-text class="pa-0 header-mobile">
+                <div class="gradient-bg d-flex align-center px-5">
+                    <div v-if="curShowData" class="text-18">{{curShowData.name}}</div>
+                    <v-spacer />
+                    <v-btn icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </div>
+                <div class="ma-3">
+                    <!-- 关闭按钮 -->
+                    <!-- <v-sheet class="d-flex justify-end mr-3 pt-2" color="transparent">
+                        <v-btn icon @click="onClose">
+                            <v-icon class="skin004_2-black-text" large>mdi-close</v-icon>
+                        </v-btn>
+                    </v-sheet> -->
+                    <!-- 标题 -->
 
-                        <v-sheet v-if="curShowData" class="d-flex justify-center mr-3 text-18 mb-5" color="transparent">
-                            {{curShowData.name}}
+                    <!-- <v-sheet v-if="curShowData" class="d-flex justify-center mr-3 text-18 mb-5 skin004_2-black-text" color="transparent">
+                        {{curShowData.name}}
+                    </v-sheet> -->
+                    <!-- 内容 -->
+                    <v-sheet class="overflow-y-auto page_main" color="transparent">
+                        <!-- 图片 -->
+                        <v-sheet v-if="isShowImg" color="transparent" width="100%">
+                            <v-img class="rounded-lg" :src="img_url" width="482"></v-img>
                         </v-sheet>
-                        <!-- 内容 -->
-                        <v-sheet class="overflow-y-auto ml-2 mr-2 mt-2 page_main" color="colorPanelTitleBg">
-                            <!-- 图片 -->
-                            <v-sheet v-if="isShowImg" color="transparent" width="100%">
-                                <v-img class="rounded-lg" :src="img_url" width="482"></v-img>
-                            </v-sheet>
 
-                            <!-- 视频 -->
-                            <v-sheet
-                                v-else-if="videoUrl != '' && pageData.bShow"
-                                color="transparent"
-                                class="colorBlue--text"
+                        <!-- 视频 -->
+                        <v-sheet
+                            v-else-if="videoUrl != '' && pageData.bShow"
+                            color="transparent"
+                            class="colorBlue--text"
+                            width="100%"
+                            height="100%"
+                        >
+                            <iframe
+                                ref="videoFrame"
                                 width="100%"
                                 height="100%"
+                                :src="videoUrl"
+                                title=""
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
                             >
-                                <iframe
-                                    ref="videoFrame"
-                                    width="100%"
-                                    height="100%"
-                                    :src="videoUrl"
-                                    title=""
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                >
-                                </iframe>
-                            </v-sheet>
+                            </iframe>
+                        </v-sheet>
 
-                            <!-- 文字 -->
-                            <v-sheet v-else="!isShowImg" color="transparent" class="" width="100%" height="100%">
-                                <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
+                        <!-- 文字 -->
+                        <v-sheet v-else="!isShowImg" color="transparent" class="" width="100%" height="100%">
+                            <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
                                     {{ noticeDetialInfo.content}}
                                 </v-sheet> -->
-                                <div v-if="noticeDetialInfo" class="" v-html="noticeDetialInfo.content"></div>
-                            </v-sheet>
+                            <div v-if="noticeDetialInfo" class="skin004_2-black-text pa-2" v-html="noticeDetialInfo.content"></div>
                         </v-sheet>
                     </v-sheet>
+                </div>
 
-                    <!-- 翻译按钮 -->
-                    <v-sheet v-if="isShowPageBtn" class="mt-auto" color="transparent">
-                        <v-sheet class="mt-5 d-flex justify-space-around" color="transparent">
-                            <v-btn
-                                class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
-                                color="colorPanelBg"
-                                min-width="100"
-                                :disabled="lastPageInfo==null"
-                                @click="onLastPageBtnClick"
-                            >
-                                {{LangUtil("上一页")}}</v-btn
-                            >
+                <!-- 翻译按钮 -->
+                <v-sheet v-if="isShowPageBtn" class="mt-auto" color="transparent">
+                    <v-sheet class="mt-5 d-flex justify-space-around" color="transparent">
+                        <v-btn
+                            class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
+                            color="colorBtnBg"
+                            min-width="100"
+                            :disabled="lastPageInfo==null"
+                            @click="onLastPageBtnClick"
+                        >
+                            {{LangUtil("上一页")}}</v-btn
+                        >
 
-                            <v-btn
-                                class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
-                                color="colorPanelBg"
-                                min-width="100"
-                                :disabled="nextPageInfo==null"
-                                @click="onNextPageBtnClick"
-                            >
-                                {{LangUtil("下一页")}}</v-btn
-                            >
-                        </v-sheet>
+                        <v-btn
+                            class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
+                            color="colorBtnBg"
+                            min-width="100"
+                            :disabled="nextPageInfo==null"
+                            @click="onNextPageBtnClick"
+                        >
+                            {{LangUtil("下一页")}}</v-btn
+                        >
                     </v-sheet>
                 </v-sheet>
             </v-card-text>

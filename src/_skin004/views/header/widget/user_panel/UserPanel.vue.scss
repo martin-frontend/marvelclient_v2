@@ -6,7 +6,7 @@
 }
 
 ::v-deep.v-icon.v-icon {
-    color: #9db1d8 !important;
+    color: #9db1d8;
 }
 
 .item {
@@ -19,13 +19,13 @@
 .item:hover {
     color: white;
     i {
-        color: white !important;
+        color: white;
     }
 }
 
 .mob_item_class {
     ::v-deep.v-icon.v-icon {
-        color: #fff !important;
+        color: #fff;
     }
 
     .item {
@@ -38,7 +38,7 @@
     .item:hover {
         color: white;
         i {
-            color: white !important;
+            color: white;
         }
     }
 }

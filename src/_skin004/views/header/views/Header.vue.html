@@ -1,7 +1,7 @@
 <v-app-bar
     class="app-bar"
     :height="$vuetify.breakpoint.xsOnly?80:155"
-    color="colorTitleBg"
+    :color="$vuetify.breakpoint.xsOnly?'colorMobileTitleBg':'colorTitleBg'"
     elevation="0"
     :app="routerPath != '/page_game_play'"
 >

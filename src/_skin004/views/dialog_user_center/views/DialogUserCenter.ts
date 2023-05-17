@@ -14,7 +14,7 @@ import DialogSafetyCenterProxy from "@/_skin004/views/dialog_safety_center/proxy
 import dialog_trade_password from "@/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_real_name from "@/_skin004/views/dialog_real_name";
-import dialog_google_settings from "@/views/dialog_google_settings";
+import dialog_google_settings from "@/_skin004/views/dialog_google_settings";
 import getProxy from "@/core/global/getProxy";
 
 @Component

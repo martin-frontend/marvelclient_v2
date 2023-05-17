@@ -58,8 +58,7 @@ export default class Wallet extends AbstractView {
             return "";
         }
         if (GlobalVar.skin == "skin008") {
-            if (!SkinVariable.systemKefuTop)
-            {
+            if (!SkinVariable.systemKefuTop) {
                 return "menu_width_mob_008_1";
             }
             return "menu_width_mob_008";
@@ -72,5 +71,8 @@ export default class Wallet extends AbstractView {
 
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+    }
+    get isNeedRate(): boolean {
+        return GlobalVar.skin != "skin005";
     }
 }

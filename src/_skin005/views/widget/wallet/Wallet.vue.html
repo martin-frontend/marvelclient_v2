@@ -62,8 +62,11 @@
             <!-- <div class="textYellow--text text-decoration-underline " @click="handlerGameRate">
                 {{LangUtil("游戏汇率查询")}}
             </div> -->
-            <v-btn text height="20" min-width="32" class="pa-0 mt-3" @click="handlerGameRate">
+            <v-btn v-if="isNeedRate" text height="20" min-width="32" class="pa-0 mt-3" @click="handlerGameRate">
                 <span class="textYellow--text text-decoration-underline text-16"> {{LangUtil("游戏汇率查询")}}</span>
+            </v-btn>
+            <v-btn v-else text height="20" min-width="32" class="pa-0 mt-3" @click="onCoinIn">
+                <span class="textYellow--text text-decoration-underline text-16"> {{LangUtil("充值兑换")}}</span>
             </v-btn>
         </v-sheet>
     </v-menu>

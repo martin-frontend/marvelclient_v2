@@ -146,7 +146,7 @@ export default class APP extends AbstractView {
 
         if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 
-        if (this.$route.path.includes("cricket") || this.$route.path.includes("page_game_soccer")) return false;
+        if (this.$route.path.includes("cricket") || this.$route.path.includes("page_game_soccer") || this.$route.path.includes("page_recharge")) return false;
 
         if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
             for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {

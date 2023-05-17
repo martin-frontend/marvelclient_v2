@@ -12,6 +12,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "./HeaderProxy";
+import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class Header extends AbstractView {
@@ -22,6 +23,7 @@ export default class Header extends AbstractView {
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
     GameConfig = GameConfig;
+    head_game_config = GameConfig.config.head_game_config;
     ModulesHelper = ModulesHelper;
     //当前路由
     routerPath = this.$router.app.$route.path;
@@ -82,6 +84,18 @@ export default class Header extends AbstractView {
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
         console.log("路由 修改", this.routerPath);
+
+        //在headgame中搜索 当前路由是否存在 如果存在 则直接 返回 这个对象
+        for (let index = 0; index < this.head_game_config.length; index++) {
+            const element = this.head_game_config[index];
+            if (element.router_name && element.router_name.trim() && this.routerPath.includes(element.router_name)) {
+                console.log("已经找到headgame的游戏", element);
+                //PanelUtil.openpage_soccer(element);
+                this.myProxy.pagetab = index + 1 + "";
+                return;
+            }
+        }
+
         if (this.routerPath.includes("cricket")) {
             this.myProxy.pagetab = "22";
         } else if (this.routerPath.includes("page_game_soccer")) {
@@ -146,11 +160,49 @@ export default class Header extends AbstractView {
     }
 
     public get isShowHeader(): boolean {
+        for (let index = 0; index < this.head_game_config.length; index++) {
+            const element = this.head_game_config[index];
+
+            if (
+                this.routerPath &&
+                this.routerPath.trim() &&
+                this.routerPath.includes(element.router_name) &&
+                element.is_show_head &&
+                element.is_show_head == 1
+            ) {
+                return true;
+            }
+        }
+        if (this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play")) {
+            return false;
+        }
+        return true;
         //return this.routerPath != '/page_game_soccer' && this.routerPath != '/page_game_play';
-        return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
+        //return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+    }
+
+    onHeadgameClick(item: any) {
+        console.log("收到点击", item);
+
+        //如果是打开跳转连接
+        if (item.url && item.url.trim()) {
+            OpenLink(item.url);
+            return;
+        }
+        //需要跳转打开网页
+        if (item.page && item.page.trim()) {
+            PanelUtil.actionByName(item.page);
+            return;
+        }
+        const newItem = JSON.parse(JSON.stringify(item));
+        if (newItem.ori_vendor_extend) {
+            newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
+        }
+        newItem.visitor_allowed = 1;
+        PanelUtil.openpage_soccer(newItem);
     }
     isSearchGameShow = true;
     onchangeGameSearch(val: boolean) {

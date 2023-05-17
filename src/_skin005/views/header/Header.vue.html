@@ -1,7 +1,13 @@
 <v-sheet v-if="!$mobile" height="74" color="head_color" elevation="0" width="100%" class="header mx-0 d-flex align-center">
     <v-sheet class="d-flex align-center" width="100%" color="transparent">
         <v-img v-if="!SkinVariable.isShowfullLogo && isMini" class="ml-4" max-width="42" :src="commonIcon.logo_m"></v-img>
-        <v-img v-if="SkinVariable.isShowfullLogo && isMini" class="ml-0 mr-n4" max-width="112" max-height="42" :src="commonIcon.logo"></v-img>
+        <v-img
+            v-if="SkinVariable.isShowfullLogo && isMini"
+            class="ml-0 mr-n4"
+            max-width="112"
+            max-height="42"
+            :src="commonIcon.logo"
+        ></v-img>
 
         <v-sheet v-if="isSearchGameShow" color="transparent">
             <v-sheet color="transparent" class="d-flex ml-4 head_btn_top">
@@ -16,30 +22,47 @@
                 >
                     <span class="text-14"> {{LangUtil("首页")}} </span>
                 </v-btn>
-                <v-btn
-                    text
-                    v-if="ModulesHelper.IsShow_FootBall()"
-                    class="mr-6"
-                    height="36"
-                    :ripple="false"
-                    min-width="30"
-                    :disabled="myProxy.pagetab == 1"
-                    @click="onTimeChange(1)"
-                >
-                    <span class="text-14"> {{LangUtil("体育运动")}} </span>
-                </v-btn>
-                <v-btn
-                    text
-                    v-if="isShowCricket"
-                    class="mr-6"
-                    height="36"
-                    :ripple="false"
-                    min-width="30"
-                    :disabled="myProxy.pagetab == 22"
-                    @click="onTimeChange(22)"
-                >
-                    <span class="text-14"> {{LangUtil("板球")}} </span>
-                </v-btn>
+                <template v-if="head_game_config && head_game_config.length >0">
+                    <v-btn
+                        v-for="(item, index) of head_game_config"
+                        :key="index"
+                        text
+                        class="mr-6"
+                        height="36"
+                        :ripple="false"
+                        min-width="30"
+                        :disabled="myProxy.pagetab == index+1"
+                        @click="onHeadgameClick(item)"
+                    >
+                        <span class="text-14"> {{LangUtil(item['title'])}} </span>
+                    </v-btn>
+                </template>
+                <template v-else>
+                    <v-btn
+                        text
+                        v-if="ModulesHelper.IsShow_FootBall()"
+                        class="mr-6"
+                        height="36"
+                        :ripple="false"
+                        min-width="30"
+                        :disabled="myProxy.pagetab == 1"
+                        @click="onTimeChange(1)"
+                    >
+                        <span class="text-14"> {{LangUtil("体育运动")}} </span>
+                    </v-btn>
+                    <v-btn
+                        text
+                        v-if="isShowCricket"
+                        class="mr-6"
+                        height="36"
+                        :ripple="false"
+                        min-width="30"
+                        :disabled="myProxy.pagetab == 22"
+                        @click="onTimeChange(22)"
+                    >
+                        <span class="text-14"> {{LangUtil("板球")}} </span>
+                    </v-btn>
+                </template>
                 <v-btn
                     text
                     v-if="isShowStatistice"
@@ -56,7 +79,7 @@
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100" v-if="$vuetify.breakpoint.width >= 1264">
-            <Marquee1 v-if="isSearchGameShow"/>
+            <Marquee1 v-if="isSearchGameShow" />
         </v-sheet>
         <template v-if="isSearchGameShow">
             <v-sheet color="transparent" class="d-flex align-center pr-4">
@@ -84,7 +107,12 @@
                 </template>
 
                 <template v-else>
-                    <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-16" height="36" min_width="72" @click.native="handlerLogin"
+                    <btn-yellow
+                        v-if="GlobalVar.instance.isShowLogin"
+                        class="ml-3 text-16"
+                        height="36"
+                        min_width="72"
+                        @click.native="handlerLogin"
                         >{{LangUtil("登录")}}</btn-yellow
                     >
                     <btn-yellow
@@ -149,7 +177,12 @@
                 </template>
                 <!-- 未登录 -->
                 <template v-else>
-                    <btn-yellow v-if="GlobalVar.instance.isShowLogin" class="ml-3 text-14" height="30" :min_width="60" @click.native="handlerLogin"
+                    <btn-yellow
+                        v-if="GlobalVar.instance.isShowLogin"
+                        class="ml-3 text-14"
+                        height="30"
+                        :min_width="60"
+                        @click.native="handlerLogin"
                         >{{LangUtil("登录")}}</btn-yellow
                     >
                     <!-- <v-sheet color="transparent" class="btn_regi"> -->

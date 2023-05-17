@@ -16,6 +16,12 @@ function show(url: string, isCricket: boolean = false) {
     proxy.pageData.isAction = true;
     proxy.pageData.url = url;
 }
+function show_head_game(url: string, item: any) {
+    Vue.router.push("/" + item.router_name);
+    const proxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
+    proxy.pageData.isAction = true;
+    proxy.pageData.url = url;
+}
 /**打开足球页面 */
 function open_sports() {
     _open(false);
@@ -81,4 +87,4 @@ function Init(isCricket: boolean = false) {
     console.log("--当前游戏11111", PanelUtil.getProxy_gameproxy.currGame);
 }
 
-export default { show, open_sports, open_cricket };
+export default { show, open_sports, open_cricket, show_head_game };

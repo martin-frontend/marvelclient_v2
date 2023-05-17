@@ -236,6 +236,29 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     PanelUtil.showAppLoading(false);
+
+                    //检测返回的游戏 是不是在 head game中的
+                    let headitem;
+                    for (let index = 0; index < GameConfig.config.head_game_config.length; index++) {
+                        const element = GameConfig.config.head_game_config[index];
+                        if (element.vendor_id == this.gameProxy.currGame.vendor_id) {
+                            headitem = element;
+                            const homeProxy = PanelUtil.getProxy_page_home;
+                            //const isCricket = this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId;
+                            const headerProxy = getProxy(HeaderProxy);
+                            headerProxy.resetTab(index + 1);
+                            const url = body.url;
+                            if (homeProxy.pageData.event_id) {
+                                //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                                PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`, false);
+                                homeProxy.pageData.event_id = 0;
+                            } else {
+                                PanelUtil.openpage_headgame(url, element);
+                            }
+                            return;
+                        }
+                    }
+
                     // 如果是体育，直接进入
                     if (
                         (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&

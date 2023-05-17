@@ -83,6 +83,8 @@ export interface GameConfigVO {
     };
     /**当前h5版本号 */
     h5version: string;
+    /**首页表头上面显示的对象配置 */
+    head_game_config: any[];
     /**GTM的id可以多个 */
     gtm_id: string;
 }

@@ -156,6 +156,12 @@ export default class GameProxy extends AbstractProxy {
                 vendor_type: 64,
                 water_rate_accelerate: 0,
             };
+
+        if (data && data.ori_vendor_extend) {
+            if (typeof data.ori_vendor_extend == "object") {
+                data.ori_vendor_extend = JSON.stringify(data.ori_vendor_extend);
+            }
+        }
         this.api_vendor_var_ori_product_show_var(this.currGame);
     }
     isLoadSearch = false; //是否正在加载
@@ -172,7 +178,7 @@ export default class GameProxy extends AbstractProxy {
         });
     }
     searchList = {
-        list:<any>{},
+        list: <any>{},
         params: {
             game_name: "",
         },
@@ -181,7 +187,7 @@ export default class GameProxy extends AbstractProxy {
         this.isLoadSearch = false;
         //this.searchList = data;
         //Object.assign(this.searchList, data);
-        this.searchList = JSON.parse(JSON.stringify( data));
+        this.searchList = JSON.parse(JSON.stringify(data));
     }
     clearSearchResult() {
         Object.assign(this.searchList, {

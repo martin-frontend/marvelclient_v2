@@ -335,6 +335,13 @@ export default class PanelUtil {
         console.log("  进入 体育", url);
         page_game_soccer.show(url, isCricket);
     }
+    /**打开 首页头部的游戏 界面  */
+    static openpage_headgame(url: string, item: any) {
+        //Vue.router.push("/page_game_soccer");
+        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        console.log("  进入 首页游戏", url);
+        page_game_soccer.show_head_game(url, item);
+    }
 
     /*
         弹框页面打开
@@ -1250,6 +1257,13 @@ export default class PanelUtil {
     /**系统公告中的跳转功能 */
     public static jumpTo(item: any): boolean {
         return PanelUtil.isCanJump(item, true);
+    }
+    public static actionByName(actionName: string) {
+        const fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == actionName);
+        //查找是否可以跳转  或者执行
+        if (fitterArr && fitterArr.length > 0) {
+            fitterArr[0].fun();
+        }
     }
     /**检测这个对象是否能跳转，到对应的 页面或者 功能 */
     public static isCanJump(item: any, isRun: boolean = false) {

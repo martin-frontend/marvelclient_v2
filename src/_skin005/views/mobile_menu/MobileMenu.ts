@@ -5,6 +5,7 @@ import { Prop, Watch, Component, Vue } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import Constant from "@/core/global/Constant";
+import OpenLink from "@/core/global/OpenLink";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
@@ -27,8 +28,27 @@ export default class MobileMenu extends AbstractView {
         };
 
         if (GameConfig.config.PhoneMenu && GameConfig.config.PhoneMenu.length > 0) {
-            const keys = Object.keys(list);
+            //将 head_game 中的数据添加 到 列表中
+            for (let index = 0; index < GameConfig.config.head_game_config.length; index++) {
+                const element = GameConfig.config.head_game_config[index];
+                if (!element.mob_type || !element.mob_type.trim()) continue;
+                //检测 当前的手机类型是否已经包含在这个列表中了， 如果不包含则添加
 
+                const isHave = Object.keys(list).some((e: any, idx: any, arr: any) =>  list[e].mob_type == element.mob_type);
+                if (!isHave) {
+                    //如果配置了 mob_type 则 生成 对应的 对象
+                    const length = Object.keys(list).length;
+                    const obj = JSON.parse(JSON.stringify(element));
+                    obj.id = length;
+                    obj.name = LangUtil(element.title);
+                    obj.icon = element.icon_name;
+                    obj.path = "/" + element.router_name;
+                    list[length] = obj;
+                }
+            }
+
+            console.log("--- 当前对象为---", list);
+            const keys = Object.keys(list);
             for (let index = 0; index < GameConfig.config.PhoneMenu.length; index++) {
                 const element = GameConfig.config.PhoneMenu[index];
                 if (element.trim()) {
@@ -86,35 +106,56 @@ export default class MobileMenu extends AbstractView {
         switch (item.id) {
             case 0:
                 PanelUtil.openpage_home();
-                break;
+                return;
+
             case 1:
                 PanelUtil.openpage_soccer();
-                break;
+                return;
+
             case 2:
                 PanelUtil.openpage_gamelist();
-                break;
+                return;
+
             case 3:
                 PanelUtil.openpage_extension();
-                break;
+                return;
+
             case 4:
                 PanelUtil.openpage_bonus();
-                break;
+                return;
+
             case 5:
                 PanelUtil.openpage_my_info();
-                break;
+                return;
+
             case 6:
                 PanelUtil.openpage_statist_credit();
-                break;
+                return;
+
             case 7:
                 PanelUtil.openpage_mine();
-                break;
+                return;
+
             case 8:
                 PanelUtil.openpage_soccer_cricket();
-                break;
+                return;
+
             case 9:
                 PanelUtil.openpage_recharge();
-                break;
+                return;
         }
+
+        //如果是打开跳转连接
+        if (item.url && item.url.trim()) {
+            OpenLink(item.url);
+            return;
+        }
+        //需要跳转打开网页
+        if (item.page && item.page.trim()) {
+            PanelUtil.actionByName(item.page);
+            return;
+        }
+        PanelUtil.openpage_soccer(item);
     }
 
     //是否显示 板球
@@ -133,7 +174,7 @@ export default class MobileMenu extends AbstractView {
 
     isActiveItem(item: any) {
         if (!item) return false;
-
+        //首先判断是否为 在head_game中的游戏
         if (item.id == 8) {
             //板球的判断
             return this.routerPath.includes(item.path) && this.isCricket;
@@ -143,6 +184,11 @@ export default class MobileMenu extends AbstractView {
             return this.routerPath.includes(item.path) && !this.isCricket;
         } else if (item.id == 2) {
             return Constant.isIncludeGameRouter(this.routerPath);
-        } else return this.routerPath.includes(item.path);
+        } else {
+            if (item.path && item.path != "/") {
+                return this.routerPath.includes(item.path);
+            }
+        }
+        return false;
     }
 }

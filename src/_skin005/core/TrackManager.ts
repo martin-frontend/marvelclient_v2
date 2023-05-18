@@ -2,6 +2,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import WebViewBridge from "../../core/native/WebViewBridge";
 import SkinVariable from "./SkinVariable";
 import { AFInAppEventType } from "./enum/AFInAppEventType";
+import dialog_empty_iframe from "../views/dialog_empty_iframe";
 
 /**绑定gtm对象 */
 export function initGTM(id: string) {
@@ -115,6 +116,22 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
         fbq(eventName, data, type);
         flyer(eventName, data);
         clube96(eventName, data, type);
+        /**008皮 页面 跳转  */
+        if (GlobalVar.skin == "skin008") {
+            if (eventName == TrackEventMap.repeatDepositSuccess || eventName == TrackEventMap.FTDDepositSuccess) {
+                const obj = {
+                    title: "充值成功",
+                    url: "./depositsuccess",
+                };
+                dialog_empty_iframe.show(obj);
+            } else if (eventName == TrackEventMap.RegistrationSuccess) {
+                const obj = {
+                    title: "注册成功",
+                    url: "./registersucess",
+                };
+                dialog_empty_iframe.show(obj);
+            }
+        }
     } else {
         if (core.user_id) Object.assign(data, { user_id: core.user_id });
         gmt(eventName, data);

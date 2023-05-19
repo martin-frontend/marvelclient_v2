@@ -16,7 +16,7 @@ export default class NoticeProxy extends puremvc.Proxy {
         this.api_plat_var_notice_index();
     }
 
-    allData = <core.PlatNoticeVO[][]>{};
+    allData = <core.PlatNoticeVO[][]>[];
     data = {
         listAll: <core.PlatNoticeVO[]>[],
         listType1: <core.PlatNoticeVO[]>[],
@@ -29,8 +29,10 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType8: <core.PlatNoticeVO[]>[],
         listType9: <core.PlatNoticeVO[]>[],
         listType10: <core.PlatNoticeVO[]>[],
-        listType11: <core.PlatNoticeVO[]>[],
-        listType12: <core.PlatNoticeVO[]>[],
+        listType11: <core.PlatNoticeVO[]>[],/**底部说明 */
+        listType12: <core.PlatNoticeVO[]>[],/**底部logo */
+        listType13: <core.PlatNoticeVO[]>[],/**游戏加载图片 */
+        listType14: <core.PlatNoticeVO[]>[],/**首页固定游戏 */
     };
 
     setData(data: core.PlatNoticeVO[]) {
@@ -72,6 +74,12 @@ export default class NoticeProxy extends puremvc.Proxy {
                     break;
                 case 12:
                     this.data.listType12.push(item);
+                    break;
+                case 13:
+                    this.data.listType13.push(item);
+                    break;
+                case 14:
+                    this.data.listType14.push(item);
                     break;
                 default:
                     break;

@@ -57,6 +57,18 @@ export default class GameItem extends AbstractView {
         return this.item.status == 1;
     }
     goGamePlay() {
+        if (!this.item) {
+            console.log("对象为空");
+            return;
+        }
+        //从公告管理中配置跳转过来的
+        if (this.item.jumpType == 1) {
+            console.log("---收到点击 对象", this.item);
+            if (!PanelUtil.jumpTo(this.item)) {
+                console.log("不能跳转");
+            }
+            return;
+        }
         if (this.item && this.item.path) {
             if (this.item.category) {
                 PanelUtil.openpanel_gamelist(this.item.category);

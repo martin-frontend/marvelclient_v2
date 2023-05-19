@@ -16,21 +16,9 @@
             {{LangUtil("查看全部")}}
         </v-btn>
     </div>
-    <v-sheet color="transparent">
-        <div v-if="!$vuetify.breakpoint.mobile">
-            <v-row v-for="(items, index) in listPc" :key="index" class="test_sta">
-                <v-col v-for="item in items" :key="item.vendor_prodcut_id">
-                    <GameSportItem :data="item" :category="data.category" />
-                </v-col>
-            </v-row>
-        </div>
-        <div v-else class="mt-2">
-            <!-- <v-row dense v-for="(item, index) in data.list" :key="item.vendor_prodcut_id">
-                <v-col>
-                    <GameSportItem :data="item" :category="data.category" />
-                </v-col>
-            </v-row> -->
-            <v-card
+
+    <v-sheet max-width="1430" class="mx-auto d-flex flex-wrap listbox" color="transparent">
+        <v-card
             :width="width"
             :height="279/697*width"
             color="colorTitleBg"
@@ -41,7 +29,7 @@
             @click="goGamePlay(item)"
         >
             <v-lazy>
-                <v-img class="cursor-pointer d-flex align-center rounded" :height="279/697*width" :src="item.icon">
+                <v-img class="cursor-pointer d-flex align-center rounded" :height="279/697*width" :src="getIcon(item)">
                     <div class="game-icon">
                         <div class="game-title text-30 font-weight-bold">{{item.vendor_product_name}}</div>
                         <div class="vendor-title text-18 mt-2">{{item.vendor_name}}</div>
@@ -61,6 +49,5 @@
                 </v-img>
             </v-lazy>
         </v-card>
-        </div>
     </v-sheet>
 </div>

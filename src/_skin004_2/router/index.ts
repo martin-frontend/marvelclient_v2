@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_game_list",
         name: "page_game_list",
-        component: () => import(/* webpackChunkName: "page_game_list" */ "@/_skin004/views/page_game_list/views/PageGameList.vue"),
+        component: () => import(/* webpackChunkName: "page_game_list" */ "@/_skin004_2/views/page_game_list/views/PageGameList.vue"),
     },
     {
         path: "/page_game_list_chess",

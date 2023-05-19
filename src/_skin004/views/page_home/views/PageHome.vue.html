@@ -5,14 +5,14 @@
             <Marquee1 class="mt-1" />
             <Activity v-if="$vuetify.breakpoint.xsOnly" />
         </div>
-        <div v-else>
+        <div class="px-2" v-else>
             <Activity />
             <Marquee1 class="mt-1" />
         </div>
 
         <SoccerMatche v-if="SkinVariable.isShowSoccerMatche" />
 
-        <div v-for="(item, index) of pageData.lobbyIndex" :key="index" class="mt-n3">
+        <div v-for="(item, index) of pageData.lobbyIndex" :key="index" :class="{'mt-n3': $vuetify.breakpoint.mobile}">
             <GameSlideGroup
                 v-if="item.category != 32 && item.category != 64"
                 :data="item"

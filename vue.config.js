@@ -97,7 +97,7 @@ const skinMap = {
                 entry: "src/_skin004_2/main.ts",
                 template: "public_skin004_2/skin004_2.html",
                 filename: "index.html",
-                title: "CF亚娱2",
+                title: "百乐门",
                 faviconName: "favicon.ico",
             },
         },

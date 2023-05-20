@@ -41,7 +41,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/page_extension",
         name: "page_extension",
-        component: () => import(/* webpackChunkName: "page_extension" */ "@/_skin004/views/page_extension/views/PageExtension.vue"),
+        component: () => import(/* webpackChunkName: "page_extension" */ "@/_skin004_2/views/page_extension/views/PageExtension.vue"),
     },
     {
         path: "/page_mine",

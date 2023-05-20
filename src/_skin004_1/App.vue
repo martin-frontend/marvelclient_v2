@@ -158,7 +158,7 @@ export default class extends APP {}
 }
 
 .footer {
-    margin-bottom: 55px;
+    padding-bottom: 55px;
 }
 .hackhome {
     height: 1px;

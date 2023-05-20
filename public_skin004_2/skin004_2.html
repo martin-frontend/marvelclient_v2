@@ -84,6 +84,7 @@
         }
         .loading {
             height: 100%;
+            background: linear-gradient(#2a8bfe, #8dd8ff, #8dd8ff, #2a8bfe);
             display: flex;
         }
     </style>
@@ -96,7 +97,7 @@
         </noscript>
         <div id="app">
             <div class="loading">
-                <img src="loading001.gif?<%=process.env.version%>" style="margin: auto; width: 100px" />
+                <img class="loading-img" src="loading001.gif?<%=process.env.version%>" style="margin: auto; width: 100px" />
             </div>
         </div>
 

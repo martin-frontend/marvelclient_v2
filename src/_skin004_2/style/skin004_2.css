@@ -1,4 +1,7 @@
 @media (max-width: 600px) {
+    html {
+        background-color: var(--page-background-color) !important;
+    }
     .mobile-background {
         background-color: var(--page-background-color) !important;
     }
@@ -142,4 +145,7 @@
 }
 .logo-mob {
     width: 83px !important;
+}
+.loading-img {
+    width: 150px !important;
 }

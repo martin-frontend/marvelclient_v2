@@ -44,7 +44,7 @@ SkinVariable.pageHead_logo_mob = require(`@/_skin004_2/assets/logo2.png`);
 SkinVariable.pageHome_project_1 = require(`@/_skin004_2/assets/page_home/project_info_1.png`);
 SkinVariable.pageHome_project_2 = require(`@/_skin004_2/assets/page_home/project_info_2.png`);
 SkinVariable.isSavePhoto = true;
-SkinVariable.savePhotoBg = require(`@/_skin004_1/assets/extension/poster.jpg`);
+SkinVariable.savePhotoBg = require(`@/_skin004_2/assets/extension/poster.jpg`);
 SkinVariable.defaultCode = "86";
 SkinVariable.mustShowInvite = true;
 SkinVariable.isShowSoccerMatche = false;
@@ -87,7 +87,7 @@ window.onload = function () {
 };
 
 const commonIcon = Assets.commonIcon;
-commonIcon.loading = require(`@/assets/loading001.gif`);
+commonIcon.loading = require(`@/_skin004_2/assets/loading001.gif`);
 commonIcon.nodata = require(`@/_skin004_2/assets/nodata.png`);
 
 // skin004_2 調整h5颜色

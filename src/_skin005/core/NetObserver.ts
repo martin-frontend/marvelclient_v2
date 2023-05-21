@@ -26,7 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
-import { initGTM, track, TrackTypeMap } from "./TrackManager";
+import { initGTM, track, TrackData, TrackTypeMap } from "./TrackManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -177,6 +177,7 @@ export default class NetObserver extends AbstractMediator {
                         this.addKefu();
                     }
                     this.addGTM();
+                    this.addkwaiq();
                     document.title = LangUtil("96 Sports");
                 }
                 break;
@@ -204,6 +205,9 @@ export default class NetObserver extends AbstractMediator {
                 if (body && body.length > 0) {
                     for (let index = 0; index < body.length; index++) {
                         const element = body[index];
+                        if (!TrackData.Instance.addEventData(element)) {
+                            continue;
+                        }
                         track(element.event_type, element.data, element.type == 1 ? TrackTypeMap.Purchase : TrackTypeMap.normal);
                         this.selfProxy.api_user_var_event_record_update(element.bet_id);
                     }
@@ -512,6 +516,32 @@ export default class NetObserver extends AbstractMediator {
                 gtm_id = "GTM-NDDVSJT";
             }
             initGTM(gtm_id);
+        }
+    }
+
+    addkwaiq() {
+        //@ts-ignore
+        let kwaiq_id = GameConfig.config["kwaiq_id"];
+
+        if (!kwaiq_id) {
+            if (GlobalVar.skin == "skin008") {
+                kwaiq_id = "485558583095734343";
+            } else {
+                return;
+            }
+        }
+
+        console.log("调用----22222");
+        if (kwaiq_id) {
+            //@ts-ignore
+            const kwaiq = window.kwaiq;
+            //@ts-ignore
+            console.log("调用-1111---", window.kwaiq);
+            if (kwaiq) {
+                console.log("调用----");
+                kwaiq.load(kwaiq_id);
+                kwaiq.page();
+            }
         }
     }
 }

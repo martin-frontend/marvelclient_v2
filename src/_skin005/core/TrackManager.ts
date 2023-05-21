@@ -4,6 +4,33 @@ import SkinVariable from "./SkinVariable";
 import { AFInAppEventType } from "./enum/AFInAppEventType";
 import dialog_empty_iframe from "../views/dialog_empty_iframe";
 
+export class TrackData {
+    private static _instance: TrackData;
+    public static get Instance(): TrackData {
+        if (!this._instance) {
+            this._instance = new TrackData();
+        }
+        return this._instance;
+    }
+
+    constructor() {}
+
+    eventData = <any>[];
+
+    addEventData(data: any): boolean {
+        if (!data) return false;
+        if (!this.eventData) {
+            this.eventData = <any>[];
+        }
+
+        //检查当前事件 是否已经包含在 内
+        if (this.eventData.some((e: any, index: any, array: any) => e == data)) {
+            return false;
+        }
+        this.eventData.push(data);
+        return true;
+    }
+}
 /**绑定gtm对象 */
 export function initGTM(id: string) {
     if (!id || !id.trim()) return;

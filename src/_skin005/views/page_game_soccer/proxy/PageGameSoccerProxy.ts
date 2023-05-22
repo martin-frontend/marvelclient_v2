@@ -24,6 +24,7 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
                     const element = GameConfig.config.head_game_config[index];
                     if (curPath.includes(element.router_name)) {
                         console.log("已经找到headgame的游戏", element);
+                        element.visitor_allowed = 1;
                         PanelUtil.openpage_soccer(element);
                         return;
                     }

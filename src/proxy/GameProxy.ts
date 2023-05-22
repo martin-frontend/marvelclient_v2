@@ -157,9 +157,9 @@ export default class GameProxy extends AbstractProxy {
                 water_rate_accelerate: 0,
             };
 
-        if (data && data.ori_vendor_extend) {
-            if (typeof data.ori_vendor_extend == "object") {
-                data.ori_vendor_extend = JSON.stringify(data.ori_vendor_extend);
+        if (this.currGame && this.currGame.ori_vendor_extend) {
+            if (typeof this.currGame.ori_vendor_extend == "object") {
+                this.currGame.ori_vendor_extend = JSON.stringify(this.currGame.ori_vendor_extend);
             }
         }
         this.api_vendor_var_ori_product_show_var(this.currGame);

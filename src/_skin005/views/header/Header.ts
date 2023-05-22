@@ -197,12 +197,12 @@ export default class Header extends AbstractView {
             PanelUtil.actionByName(item.page);
             return;
         }
-        const newItem = JSON.parse(JSON.stringify(item));
-        if (newItem.ori_vendor_extend) {
-            newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
-        }
-        newItem.visitor_allowed = 1;
-        PanelUtil.openpage_soccer(newItem);
+        // const newItem = JSON.parse(JSON.stringify(item));
+        // if (newItem.ori_vendor_extend) {
+        //     newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
+        // }
+        item.visitor_allowed = 1;
+        PanelUtil.openpage_soccer(item);
     }
     isSearchGameShow = true;
     onchangeGameSearch(val: boolean) {

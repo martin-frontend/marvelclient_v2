@@ -177,7 +177,7 @@ export default class NetObserver extends AbstractMediator {
                         this.addKefu();
                     }
                     this.addGTM();
-                    this.addkwaiq();
+                    //this.addkwaiq();
                     document.title = LangUtil("96 Sports");
                 }
                 break;

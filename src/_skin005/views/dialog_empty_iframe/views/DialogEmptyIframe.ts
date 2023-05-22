@@ -25,8 +25,5 @@ export default class DialogEmptyIframe extends AbstractView {
         }
     }
     @Watch("pageData.bShow")
-    onWatchShow() {
-
-        
-    }
+    onWatchShow() {}
 }

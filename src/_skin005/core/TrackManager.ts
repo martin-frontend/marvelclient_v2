@@ -24,7 +24,7 @@ export class TrackData {
         }
 
         //检查当前事件 是否已经包含在 内
-        if (this.eventData.some((e: any, index: any, array: any) => e == data)) {
+        if (this.eventData.some((e: any, index: any, array: any) => e.bet_id == data.bet_id)) {
             return false;
         }
         this.eventData.push(data);
@@ -145,16 +145,23 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
         clube96(eventName, data, type);
         /**008皮 页面 跳转  */
         if (GlobalVar.skin == "skin008") {
+            //@ts-ignore
+            let kwaiq_id = GameConfig.config["kwaiq_id"];
+
+            if (!kwaiq_id) {
+                kwaiq_id = "485558583095734343";
+            }
+
             if (eventName == TrackEventMap.repeatDepositSuccess || eventName == TrackEventMap.FTDDepositSuccess) {
                 const obj = {
                     title: "充值成功",
-                    url: "./depositsuccess",
+                    url: `./depositsuccess?${kwaiq_id}`,
                 };
                 dialog_empty_iframe.show(obj);
             } else if (eventName == TrackEventMap.RegistrationSuccess) {
                 const obj = {
                     title: "注册成功",
-                    url: "./registersucess",
+                    url: `./registersucess${kwaiq_id}`,
                 };
                 dialog_empty_iframe.show(obj);
             }

@@ -87,4 +87,6 @@ export interface GameConfigVO {
     head_game_config: any[];
     /**GTM的id可以多个 */
     gtm_id: string;
+    /**快手分析 */
+    kwaiq_id: string;
 }

@@ -3,6 +3,7 @@ import WebViewBridge from "../../core/native/WebViewBridge";
 import SkinVariable from "./SkinVariable";
 import { AFInAppEventType } from "./enum/AFInAppEventType";
 import dialog_empty_iframe from "../views/dialog_empty_iframe";
+import GameConfig from "@/core/config/GameConfig";
 
 export class TrackData {
     private static _instance: TrackData;
@@ -144,28 +145,26 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
         flyer(eventName, data);
         clube96(eventName, data, type);
         /**008皮 页面 跳转  */
-        // if (GlobalVar.skin == "skin008") {
-        //     //@ts-ignore
-        //     let kwaiq_id = GameConfig.config["kwaiq_id"];
+        if (GlobalVar.skin == "skin008") {
+            let kwaiq_id = GameConfig.config.kwaiq_id;
+            if (!kwaiq_id) {
+                kwaiq_id = "485558583095734343";
+            }
 
-        //     if (!kwaiq_id) {
-        //         kwaiq_id = "485558583095734343";
-        //     }
-
-        //     if (eventName == TrackEventMap.repeatDepositSuccess || eventName == TrackEventMap.FTDDepositSuccess) {
-        //         const obj = {
-        //             title: "充值成功",
-        //             url: `./depositsuccess?${kwaiq_id}`,
-        //         };
-        //         dialog_empty_iframe.show(obj);
-        //     } else if (eventName == TrackEventMap.RegistrationSuccess) {
-        //         const obj = {
-        //             title: "注册成功",
-        //             url: `./registersucess${kwaiq_id}`,
-        //         };
-        //         dialog_empty_iframe.show(obj);
-        //     }
-        // }
+            if (eventName == TrackEventMap.repeatDepositSuccess || eventName == TrackEventMap.FTDDepositSuccess) {
+                const obj = {
+                    title: "充值成功",
+                    url: `./depositsuccess?${kwaiq_id}`,
+                };
+                dialog_empty_iframe.show(obj);
+            } else if (eventName == TrackEventMap.RegistrationSuccess) {
+                const obj = {
+                    title: "注册成功",
+                    url: `./registersucess?${kwaiq_id}`,
+                };
+                dialog_empty_iframe.show(obj);
+            }
+        }
     } else {
         if (core.user_id) Object.assign(data, { user_id: core.user_id });
         gmt(eventName, data);

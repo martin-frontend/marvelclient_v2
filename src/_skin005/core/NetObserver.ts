@@ -520,8 +520,7 @@ export default class NetObserver extends AbstractMediator {
     }
 
     addkwaiq() {
-        //@ts-ignore
-        let kwaiq_id = GameConfig.config["kwaiq_id"];
+        let kwaiq_id = GameConfig.config.kwaiq_id;
 
         if (!kwaiq_id) {
             if (GlobalVar.skin == "skin008") {
@@ -530,13 +529,10 @@ export default class NetObserver extends AbstractMediator {
                 return;
             }
         }
-
-        console.log("调用----22222");
         if (kwaiq_id) {
             //@ts-ignore
             const kwaiq = window.kwaiq;
-            //@ts-ignore
-            console.log("调用-1111---", window.kwaiq);
+            console.log("调用-1111---", kwaiq);
             if (kwaiq) {
                 console.log("调用----");
                 kwaiq.load(kwaiq_id);

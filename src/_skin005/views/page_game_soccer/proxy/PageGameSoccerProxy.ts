@@ -31,7 +31,7 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
 
                 if (curPath.includes("cricket")) {
                     PanelUtil.openpage_soccer_cricket();
-                } else if (curPath.includes("sports")) {
+                } else if (curPath.includes("page_game_soccer")) {
                     //this.Init(false);
                     PanelUtil.openpage_soccer();
                 } else {

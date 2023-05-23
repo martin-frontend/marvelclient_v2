@@ -261,10 +261,10 @@ export default class PanelUtil {
             PanelUtil.showAppLoading(true);
             PanelUtil.getProxy_gameproxy.go_soccer(data);
         } else {
-            LoginEnter(() => {
+            // LoginEnter(() => {
                 PanelUtil.showAppLoading(true);
                 PanelUtil.getProxy_gameproxy.go_soccer(data);
-            });
+            // });
         }
     }
     //请求  板球的链接 界面

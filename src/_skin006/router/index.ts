@@ -188,8 +188,7 @@ export function getRouter(): VueRouter {
                     (to.path.includes("page_recharge") ||
                         to.path.includes("page_game_play") ||
                         to.path.includes("page_my_info") ||
-                        to.path.includes("page_statistice_credit") ||
-                        to.path.includes("page_game_soccer"))
+                        to.path.includes("page_statistice_credit"))
                 ) {
                     next(prePath);
                 } else {

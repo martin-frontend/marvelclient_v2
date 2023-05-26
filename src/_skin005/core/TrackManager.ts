@@ -77,11 +77,27 @@ function fbq(eventName: string, data: any, type: string = "track") {
 /**Apps Flyer */
 function flyer(eventName: string, data: any) {
     if (core.app_type == core.EnumAppType.APP && SkinVariable.useFlyerLog) {
+        //加钱的情况 ， 此时表示 平台收到的钱，钱为正
+        const addMoneyEvens = [TrackEventMap.repeatDepositSuccess, TrackEventMap.FTDDepositSuccess];
+        //标签 用户提走的钱，钱需要为负数
+        const reduceMoneyEvens = [TrackEventMap.withdrawalSuccess];
         const newData: any = {};
         if (data.user_id) newData.UserID = data.user_id;
         if (data.phone) newData.Phone = data.phone;
         if (data.account_name) newData.AccountName = data.account_name;
-        if (data.amount) newData.af_revenue = data.amount;
+
+        if (data.amount) {
+            //设置钱的金额
+            if (addMoneyEvens.includes(eventName)) {
+                newData.af_revenue = data.amount;
+            } else if (reduceMoneyEvens.includes(eventName)) {
+                newData.af_revenue = Number(data.amount) * -1 + "";
+            } //其他情况 用户这个金额不能算
+            else {
+                newData.af_price = data.amount;
+            }
+        }
+
         if (data.coin_name_unique) newData.af_currency = data.coin_name_unique;
         delete data.user_id, data.phone, data.account_name, data.amount, data.coin_name_unique;
         Object.assign(newData, data);

@@ -5,6 +5,8 @@ import DialogDirectlyProxy from "@/views/dialog_directly/proxy/DialogDirectlyPro
 import { Watch, Component } from "vue-property-decorator";
 import DialogPromotionFloorMediator from "../mediator/DialogPromotionFloorMediator";
 import DialogPromotionFloorProxy from "../proxy/DialogPromotionFloorProxy";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import { amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogPromotionFloor extends AbstractView {
@@ -39,5 +41,11 @@ export default class DialogPromotionFloor extends AbstractView {
     setFloor(): void {
         this.pageData.loading = true;
         this.myProxy.api_user_var_agent_var_update();
+    }
+    transformMoney_commission(val: any) {
+        const coinMoney = val;
+        const sss = coinMoney * CoinTransformHelper.GetMainCoinScale;
+
+        return amountFormat(sss, true);
     }
 }

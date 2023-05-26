@@ -39,10 +39,10 @@
                     <div>{{ parameter.date }}</div>
                     <div>{{LangUtil("团队人数(新增)")}}{{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
                     <div>{{LangUtil("直属用户(新增)")}}{{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
-                    <div>{{LangUtil("总业绩")}} {{ pageData.statistics_data.total_water_summary }}</div>
+                    <div>{{LangUtil("总业绩")}} {{ transformMoney(pageData.statistics_data.total_water_summary) }}</div>
                     <div v-if="selfProxy.userInfo.is_credit_user == 98">
-                        {{LangUtil("佣金总额")}}
-                        <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span>
+                        {{LangUtil("佣金总额")}} {{ get_commission_yongjin(pageData.statistics_data.total_commission) }}
+                        <!-- <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span> -->
                     </div>
                 </div>
                 <v-sheet v-if="pageData.list.length>0" color="#121E36" class="listbox">
@@ -51,7 +51,7 @@
                             <v-sheet class="item-auto" width="100%" color="transparent">
                                 <div>{{LangUtil("业绩类型")}}</div>
                                 <div class="text-truncate text-16 font-weight-regular">
-                                    {{ categoryType[item.type].label }}{{LangUtil("业绩")}}
+                                    {{Constant.GameTypeText(item.type) }}{{LangUtil("业绩")}}
                                 </div>
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent">
@@ -73,13 +73,15 @@
                             <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <div>{{LangUtil("每万返佣")}}</div>
                                 <div class="text-16 font-weight-regular">
-                                    <span class="mr-1" v-for="(val, key) of item.commission_num">{{ key }}: {{val}}</span>
+                                    <!-- <span class="mr-1" v-for="(val, key) of item.commission_num">{{ key }}: {{val}}</span> -->
+                                    {{ item.commission_num }}
                                 </div>
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <div>{{LangUtil("佣金")}}</div>
                                 <div class="text-16 font-weight-regular">
-                                    <span class="mr-1" v-for="(val, key) of item.total_commission">{{ key }}: {{val}}</span>
+                                    {{item.total_commission}}
+                                    <!-- <span class="mr-1" v-for="(val, key) of item.total_commission">{{ key }}: {{val}}</span> -->
                                 </div>
                             </v-sheet>
                         </div>
@@ -110,7 +112,7 @@
                             <v-sheet class="item-auto" width="100%" color="transparent">
                                 <div>{{LangUtil("业绩类型")}}</div>
                                 <div class="text-truncate text-16 font-weight-regular">
-                                    {{ categoryType[name].label }}{{LangUtil("业绩")}}
+                                    {{ Constant.GameTypeText(item.type)}}{{LangUtil("业绩")}}
                                 </div>
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent">
@@ -119,17 +121,19 @@
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent">
                                 <div>{{LangUtil("团队业绩")}}</div>
-                                <div class="text-16 font-weight-regular">{{ val.group_water }}</div>
+                                <div class="text-16 font-weight-regular">{{ transformMoney(val.group_water) }}</div>
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent">
                                 <div>{{LangUtil("自营业绩")}}</div>
-                                <div class="text-16 font-weight-regular">{{ val.self_water }}</div>
+                                <div class="text-16 font-weight-regular">{{ transformMoney(val.self_water) }}</div>
                             </v-sheet>
                             <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98">
                                 <div>{{LangUtil("每万返佣")}}</div>
                                 <div class="text-16 font-weight-regular">
-                                    <span class="mr-1" v-for="(val1, key1) of val.commission_num">{{ key1 }}: {{val1}}</span>
-                                    {{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
+                                    <!-- <span class="mr-1" v-for="(val1, key1) of val.commission_num">{{ key1 }}: {{val1}}</span>
+                                    {{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }} -->
+                                    {{ get_commission_num(val.commission_num) }}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")"
+                                    : "" }}
                                 </div>
                             </v-sheet>
                         </div>
@@ -179,10 +183,10 @@
                     <div>{{ parameter.date }}</div>
                     <div>{{LangUtil("团队人数(新增)")}}{{ pageData.group_users }} ({{ pageData.today_group_users }})</div>
                     <div>{{LangUtil("直属用户(新增)")}}{{ pageData.directly_users }} ({{ pageData.today_directly_users }})</div>
-                    <div>{{LangUtil("总业绩")}} {{ pageData.statistics_data.total_water_summary }}</div>
+                    <div>{{LangUtil("总业绩")}} {{ transformMoney(pageData.statistics_data.total_water_summary) }}</div>
                     <div v-if="selfProxy.userInfo.is_credit_user == 98">
-                        {{LangUtil("佣金总额")}}
-                        <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span>
+                        {{LangUtil("佣金总额")}} {{ get_commission_yongjin(pageData.statistics_data.total_commission) }}
+                        <!-- <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span> -->
                     </div>
                 </div>
                 <v-sheet v-if="pageData.list.length>0" color="transparent" class="listbox">
@@ -194,7 +198,7 @@
                     >
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("业绩类型")}}</div>
-                            <div>{{ categoryType[item.type].label }}{{LangUtil("业绩")}}</div>
+                            <div>{{Constant.GameTypeText(item.type) }}{{LangUtil("业绩")}}</div>
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("总业绩")}}</div>
@@ -214,15 +218,17 @@
                         </div>
                         <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div class="colorText1--text">{{LangUtil("每万返佣")}}</div>
-                            <div>
+                            <div>{{ item.commission_num }}</div>
+                            <!-- <div>
                                 <span class="mr-1" v-for="(val, key) of item.commission_num">{{ key }}: {{val}}</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div class="colorText1--text">{{LangUtil("佣金")}}</div>
-                            <div>
+                            <div>{{ item.total_commission }}</div>
+                            <!-- <div>
                                 <span class="mr-1" v-for="(val, key) of item.total_commission">{{ key }}: {{val}}</span>
-                            </div>
+                            </div> -->
                         </div>
                     </v-sheet>
                 </v-sheet>
@@ -249,7 +255,7 @@
                     >
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("业绩类型")}}</div>
-                            <div>{{ categoryType[name].label }}业绩</div>
+                            <div>{{ Constant.GameTypeText(item.type)}}业绩</div>
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("团队人数")}}</div>
@@ -257,17 +263,19 @@
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("团队业绩")}}</div>
-                            <div>{{ val.group_water }}</div>
+                            <div>{{ transformMoney(val.group_water) }}</div>
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("自营业绩")}}</div>
-                            <div>{{ val.self_water }}</div>
+                            <div>{{ transformMoney(val.self_water) }}</div>
                         </div>
                         <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div class="colorText1--text">{{LangUtil("每万返佣")}}</div>
                             <div>
-                                <span class="mr-1" v-for="(val1, key1) of val.commission_num">{{ key1 }}: {{val1}}</span>
-                                {{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }}
+                                {{ get_commission_num(val.commission_num)}}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : ""
+                                }}
+                                <!-- <span class="mr-1" v-for="(val1, key1) of val.commission_num">{{ key1 }}: {{val1}}</span>
+                                {{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : "" }} -->
                             </div>
                         </div>
                     </v-sheet>

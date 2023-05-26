@@ -6,6 +6,7 @@ import DialogPromotionStatisticsMediator from "../mediator/DialogPromotionStatis
 import DialogPromotionStatisticsProxy from "../proxy/DialogPromotionStatisticsProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message_box from "@/views/dialog_message_box";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 @Component
 export default class DialogPromotionStatistics extends AbstractView {
@@ -55,4 +56,19 @@ export default class DialogPromotionStatistics extends AbstractView {
             this.myProxy.onQuery();
         }
     }
+    transformMoney(val: any) {
+        if (!val) return val;
+        //检查是否为数字
+        if (typeof val == "number")
+        {
+            return val;
+        }
+        if (val.indexOf("$") != -1)
+        {
+            return CoinTransformHelper.TransformMoney(val,2,"","USDT",true,true);
+        }
+       
+        return val;
+    }
+
 }

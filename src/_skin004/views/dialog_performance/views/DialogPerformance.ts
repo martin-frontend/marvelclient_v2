@@ -10,6 +10,8 @@ import DialogPerformanceDetailProxy from "@/_skin004/views/dialog_performance_de
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogPerformance extends AbstractView {
@@ -47,7 +49,9 @@ export default class DialogPerformance extends AbstractView {
 
         return this._curMainCoinName;
     }
-
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
+    }
     handlerDetail(date: string) {
         this.dialogPerformanceDetailProxy.parameter.date = date;
         dialog_performance_detail.show();

@@ -18,9 +18,9 @@
                         </div>
                     </div>
                     <div v-if="summary" class="colorText1--text text-16 ml-3 mb-3 d-flex flex-wrap listinfo">
-                        <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
-                        <div>{{LangUtil("团队总业绩")}} {{ summary.group_water }}</div>
-                        <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
+                        <div>{{LangUtil("总业绩")}} {{ transformMoney(summary.total_water) }}</div>
+                        <div>{{LangUtil("团队总业绩")}} {{ transformMoney(summary.group_water) }}</div>
+                        <div>{{LangUtil("直属业绩")}} {{ transformMoney(summary.direct_water) }}</div>
                         <div v-if="selfProxy.userInfo.is_credit_user == 98">
                             {{LangUtil("总佣金")}}
                             <span class="mr-1" v-for="(val, key) of summary.total_commission">{{ key }}: {{val}}</span>
@@ -45,15 +45,15 @@
                         </div>
                         <div class="item-auto">
                             <div>{{LangUtil("总业绩")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.total_water }}</div>
+                            <div class="text-16 font-weight-regular">{{ transformMoney(item.total_water) }}</div>
                         </div>
                         <div class="item-auto">
                             <div>{{LangUtil("团队业绩")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
+                            <div class="text-16 font-weight-regular">{{ transformMoney(item.group_water) }}</div>
                         </div>
                         <div class="item-auto">
                             <div>{{LangUtil("直属业绩")}}</div>
-                            <div class="text-16 font-weight-regular">{{ item.direct_water }}</div>
+                            <div class="text-16 font-weight-regular">{{ transformMoney(item.direct_water) }}</div>
                         </div>
                         <div class="item-auto" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <div>{{LangUtil("总佣金")}}</div>
@@ -100,9 +100,9 @@
                 </div>
             </div>
             <div class="colorText1--text d-flex flex-wrap listinfo">
-                <div>{{LangUtil("总业绩")}} {{ summary.total_water }}</div>
-                <div>{{LangUtil("团队总业绩")}} {{ summary.group_water }}</div>
-                <div>{{LangUtil("直属业绩")}} {{ summary.direct_water }}</div>
+                <div>{{LangUtil("总业绩")}} {{ transformMoney(summary.total_water) }}</div>
+                <div>{{LangUtil("团队总业绩")}} {{ transformMoney(summary.group_water) }}</div>
+                <div>{{LangUtil("直属业绩")}} {{ transformMoney(summary.direct_water) }}</div>
             </div>
             <div class="colorText1--text d-flex flex-wrap listinfo mb-3" v-if="selfProxy.userInfo.is_credit_user == 98">
                 <div>
@@ -118,15 +118,15 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("总业绩")}}</div>
-                        <div>{{ item.total_water }}</div>
+                        <div>{{ transformMoney(item.total_water) }}</div>
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("团队业绩")}}</div>
-                        <div>{{ item.group_water }}</div>
+                        <div>{{ transformMoney(item.group_water) }}</div>
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("直属业绩")}}</div>
-                        <div>{{ item.direct_water }}</div>
+                        <div>{{ transformMoney(item.direct_water) }}</div>
                     </div>
                     <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
                         <div class="colorText1--text">{{LangUtil("总佣金")}}</div>

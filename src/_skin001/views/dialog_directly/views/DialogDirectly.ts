@@ -12,6 +12,9 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_directly_setting from "../../dialog_directly_setting";
 import dialog_bet_record from "../../dialog_bet_record";
 import dialog_add_user from "../../dialog_directly_adduser";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import { amountFormat } from "@/core/global/Functions";
 
 @Component
 export default class DialogDirectly extends AbstractView {
@@ -102,5 +105,16 @@ export default class DialogDirectly extends AbstractView {
     }
     handlerShowAddUser() {
         dialog_add_user.show();
+    }
+    transformMoney_commission(val: any, isLevel: boolean = false) {
+        let coinMoney = 0;
+        if (isLevel) {
+            coinMoney = val;
+        } else {
+            coinMoney = val[CoinTransformHelper.platCoins.mainCoin.name] || 0;
+        }
+        const sss = coinMoney * CoinTransformHelper.GetMainCoinScale;
+
+        return CoinTransformHelper.amountFormat(sss, 2);
     }
 }

@@ -1,5 +1,6 @@
 import GameConfig from "@/core/config/GameConfig";
-import PanelUtil from "./PanelUtil";
+import getProxy from "@/core/global/getProxy";
+import SelfProxy from "@/proxy/SelfProxy";
 
 function _isValueTrue(str: string, isDefault: boolean = true) {
     if (isDefault) {
@@ -141,7 +142,8 @@ function IsShow_AgentManager() {
     //return IsShow_Directly() == 2;
 
     if (IsShow_Directly() == 2) {
-        const selfProxy = PanelUtil.getProxy_selfproxy;
+        //const selfProxy = PanelUtil.getProxy_selfproxy;
+        const selfProxy: SelfProxy = getProxy(SelfProxy);
         if (!(selfProxy && selfProxy.userInfo && selfProxy.userInfo.user_id != 0)) {
             return false;
         }
@@ -159,7 +161,8 @@ function IsShow_AgentManager() {
  * @returns //1-展示推广赚钱|2-展示代理管理|3-都不展示
  */
 function IsShow_Directly() {
-    const selfProxy = PanelUtil.getProxy_selfproxy;
+    const selfProxy: SelfProxy = getProxy(SelfProxy);
+    //const selfProxy = PanelUtil.getProxy_selfproxy;
     if (!(selfProxy && selfProxy.userInfo && selfProxy.userInfo.user_id != 0)) {
         return 0;
     }
@@ -174,7 +177,7 @@ function IsShow_Directly() {
 }
 
 function isShow_Fan_shui() {
-    const selfProxy = PanelUtil.getProxy_selfproxy;
+    const selfProxy: SelfProxy = getProxy(SelfProxy);
     if (!(selfProxy && selfProxy.userInfo && selfProxy.userInfo.user_id != 0)) {
         return false;
     }

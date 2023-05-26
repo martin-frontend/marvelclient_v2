@@ -18,6 +18,10 @@ import dialog_personal_card from "@/views/dialog_personal_card";
 import SelfProxy from "@/proxy/SelfProxy";
 import dialog_statistics_credit from "@/_skin001/views/dialog_statistics_credit";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import { amountFormat } from "@/core/global/Functions";
+import GameConfig from "@/core/config/GameConfig";
 @Component
 export default class PageExtension extends AbstractView {
     myProxy: PageExtensionProxy = this.getProxy(PageExtensionProxy);
@@ -132,5 +136,39 @@ export default class PageExtension extends AbstractView {
     handlerViewCard() {
         const { invite_user_business_card } = this.selfProxy.userInfo;
         dialog_personal_card.show(invite_user_business_card, false);
+    }
+    transformMoney(val: any) {
+        return this.myProxy.transformMoney(val);
+    }
+    transformMoney_commission(val: any, isLevel: boolean = false) {
+        let coinMoney = 0;
+        if (isLevel) {
+            coinMoney = val;
+        } else {
+            coinMoney = val[CoinTransformHelper.platCoins.mainCoin.name] || 0;
+        }
+        //const coinMoney = val[CoinTransformHelper.platCoins.mainCoin.name] || 0;
+
+        const sss = coinMoney * CoinTransformHelper.GetMainCoinScale;
+
+        if (!ModulesHelper.RebateDisplayType()) {
+            return amountFormat(sss / 100, true) + this.LangUtil("%");
+        }
+        return amountFormat(sss, true);
+    }
+    ModulesHelper = ModulesHelper;
+
+    getCommissionNum_totle(val: any) {
+        if (!ModulesHelper.RebateListType()) {
+            return this.transformMoney(val);
+        }
+        //计算是多少万
+        const res = CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", false, false, false, true);
+        if (parseFloat(res) > 10000) {
+            const aaa = CoinTransformHelper.GetCoinSymbol(GameConfig.config.SettlementCurrency) + amountFormat(res / 10000, true);
+            return LangUtil("{0}万", aaa);
+        }
+
+        return this.transformMoney(val);
     }
 }

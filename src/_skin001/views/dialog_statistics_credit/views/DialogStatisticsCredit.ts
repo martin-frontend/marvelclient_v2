@@ -163,16 +163,30 @@ export default class DialogStatisticsCredit extends AbstractView {
     }
 
     getMoneyColor(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
+        if (!str) return "";
+        let amount = 0;
+        if (typeof str == "string") {
+            const newstr = str.replace("$", "");
+            amount = Number(newstr);
+        } else {
+            amount = str;
+        }
         if (amount == 0) {
             return "";
         }
         return !!str && str.search("-") == -1 ? "colorGreen--text" : "colorRed2--text";
     }
     getMoneyValue(str: string): string {
-        const newstr = str.replace("$", "");
-        const amount = Number(newstr);
+        if (!str) return "";
+        let amount = 0;
+        if (typeof str == "string") {
+            const newstr = str.replace("$", "");
+            amount = Number(newstr);
+        } else {
+            amount = str;
+        }
+        // const newstr = str.replace("$", "");
+        // const amount = Number(newstr);
         if (amount == 0) {
             return str;
         }

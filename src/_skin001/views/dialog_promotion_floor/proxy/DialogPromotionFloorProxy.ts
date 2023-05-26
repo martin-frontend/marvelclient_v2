@@ -1,3 +1,4 @@
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
 
@@ -41,8 +42,12 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
 
     setSelectedFloorData(agent_user_id: number, val: number): void {
         this.parameter.agent_user_id = agent_user_id;
-        this.pageData.amount = val.toString();
-        this.pageData.temp_amount = val.toString();
+        //this.pageData.amount = val.toString();
+        // this.pageData.amount = val * CoinTransformHelper.GetMainCoinScale + "";
+        // this.pageData.temp_amount = val * CoinTransformHelper.GetMainCoinScale + "";
+
+        this.pageData.amount = this.amountFormat(val);
+        this.pageData.temp_amount = this.amountFormat(val);
     }
 
     setData(data: any) {
@@ -52,10 +57,18 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
             this.pageData.bShow = false;
         }
     }
-
+    amountFormat(val: any) {
+        return CoinTransformHelper.amountFormat(val * CoinTransformHelper.GetMainCoinScale, 2);
+    }
     setFloorRange(data: any) {
         this.pageData.origin_amount = this.pageData.temp_amount;
         Object.assign(this.pageData.range, data[0]);
+        console.log("设置的数据为", data[0]);
+        this.pageData.range.min = this.amountFormat(Number(this.pageData.range.min));
+        this.pageData.range.max = this.amountFormat(Number(this.pageData.range.max));
+
+        // this.pageData.range.min = Number(this.pageData.range.min) * CoinTransformHelper.GetMainCoinScale + "";
+        // this.pageData.range.max = Number(this.pageData.range.max) * CoinTransformHelper.GetMainCoinScale + "";
     }
 
     amountToParameter(): void {
@@ -74,6 +87,9 @@ export default class DialogPromotionFloorProxy extends puremvc.Proxy {
     api_user_var_agent_var_update() {
         this.amountToParameter();
         this.parameter.user_id = core.user_id;
-        this.sendNotification(net.HttpType.api_user_var_agent_var_update, this.parameter);
+        const data = JSON.parse(JSON.stringify(this.parameter));
+        data.vendor_type_0 = (data.vendor_type_0 / CoinTransformHelper.GetMainCoinScale).toFixed(2) + "";
+        //this.sendNotification(net.HttpType.api_user_var_agent_var_update, this.parameter);
+        this.sendNotification(net.HttpType.api_user_var_agent_var_update, data);
     }
 }

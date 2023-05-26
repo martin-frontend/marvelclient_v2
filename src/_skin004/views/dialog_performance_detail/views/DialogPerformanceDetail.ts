@@ -6,6 +6,9 @@ import DialogPerformanceDetailMediator from "../mediator/DialogPerformanceDetail
 import DialogPerformanceDetailProxy from "../proxy/DialogPerformanceDetailProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class DialogPerformanceDetail extends AbstractView {
@@ -13,7 +16,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     pageData = this.myProxy.pageData;
     parameter = this.myProxy.parameter;
     listQuery = this.pageData.listQuery;
-    categoryType = this.myProxy.categoryIcons;
+    Constant = Constant;
     LangUtil = LangUtil;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
 
@@ -22,7 +25,9 @@ export default class DialogPerformanceDetail extends AbstractView {
     constructor() {
         super(DialogPerformanceDetailMediator);
     }
-
+    transformMoney(val: any) {
+        return this.myProxy.transformMoney(val);
+    }
     onTabClick(cate: number) {
         this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
@@ -42,5 +47,22 @@ export default class DialogPerformanceDetail extends AbstractView {
             // this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
         }
+    }
+    get_commission_num(item: any, isRebate: boolean = true) {
+        const keys = Object.keys(item);
+        const coinname = keys[0];
+        if (!ModulesHelper.RebateDisplayType() && isRebate) {
+            const sss = parseFloat(item[coinname]);
+            if (sss == undefined) return this.myProxy.transformMoney_commission(item[coinname], coinname);
+
+            return this.myProxy.transformMoney_commission(sss / 100, coinname) + this.LangUtil("%");
+        }
+
+        return this.myProxy.transformMoney_commission(item[coinname], coinname);
+    }
+    get_commission_yongjin(item: any) {
+        const keys = Object.keys(item);
+        const coinname = keys[0];
+        return CoinTransformHelper.TransformMoney(item[coinname], 2, coinname, coinname);
     }
 }

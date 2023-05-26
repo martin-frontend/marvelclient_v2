@@ -72,7 +72,7 @@
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                            {{ statistics_data.total_water_summary }}
+                                            {{ transformMoney(statistics_data.total_water_summary) }}
                                         </span>
                                     </v-col>
                                 </v-row>
@@ -84,7 +84,7 @@
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                            {{ statistics_data.group_water_summary}}
+                                            {{ transformMoney(statistics_data.group_water_summary)}}
                                         </span>
                                     </v-col>
                                 </v-row>
@@ -96,7 +96,7 @@
                                     </v-col>
                                     <v-col cols="5" class="commission">
                                         <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                            {{statistics_data.direct_water_summary}}
+                                            {{transformMoney(statistics_data.direct_water_summary)}}
                                         </span>
                                     </v-col>
                                 </v-row>
@@ -342,7 +342,7 @@
                         class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text"
                     >
                         {{LangUtil("返佣额度(每万)")}}
-                        <v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
+                        <!-- <v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img> -->
                     </v-sheet>
 
                     <v-sheet
@@ -401,14 +401,15 @@
                         </div>
                     </v-sheet>
 
-                    <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center">
+                    <v-sheet color="transparent" min-width="200" class="d-flex justify-center align-center colorText5--text">
                         <!-- <span v-if="item.total_performance >= 10000"> {{LangUtil("{0}万", item.total_performance /
                             10000)}} </span>
                         <span v-else>{{ item.total_performance }}</span> -->
-                        <v-sheet color="transparent" width="100" class="d-flex align-center text-caption text-sm-body-1 colorText5--text">
+                        <span class="text-caption text-sm-body-1 colorText5--text">{{ getCommissionNum_totle(item.total_performance) }}</span>
+                        <!-- <v-sheet color="transparent" width="100" class="d-flex align-center text-caption text-sm-body-1 colorText5--text">
                             <v-img class="mr-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img>
-                            <span>{{ item.total_performance }}</span>
-                        </v-sheet>
+                            <span>{{ getCommissionNum_totle(item.total_performance) }}</span>
+                        </v-sheet> -->
                     </v-sheet>
 
                     <v-sheet
@@ -422,7 +423,7 @@
                             :max-width="$vuetify.breakpoint.mobile? 15 : 30"
                             :height="$vuetify.breakpoint.mobile? 15 : 30"
                         ></v-img>
-                        <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                        <span>{{ transformMoney_commission(item.commission_num) }}</span>
                     </v-sheet>
 
                     <v-sheet
@@ -439,7 +440,7 @@
                                 :max-width="$vuetify.breakpoint.mobile? 15 : 30"
                                 :height="$vuetify.breakpoint.mobile? 15 : 30"
                             ></v-img>
-                            <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                            <span>{{ transformMoney_commission(item.commission_num_added[pageData.platCoins.mainCoin.name],true) }}</span>
                         </span>
                     </v-sheet>
 
@@ -581,7 +582,7 @@
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                                {{ statistics_data.total_water_summary }}
+                                                {{ transformMoney(statistics_data.total_water_summary) }}
                                             </span>
                                         </v-col>
                                     </v-row>
@@ -591,7 +592,7 @@
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                                {{ statistics_data.group_water_summary}}
+                                                {{ transformMoney(statistics_data.group_water_summary)}}
                                             </span>
                                         </v-col>
                                     </v-row>
@@ -601,7 +602,7 @@
                                         </v-col>
                                         <v-col cols="6" class="commission colorTextBlack1--text">
                                             <span class="text-body-2 text-sm-subtitle-1 ml-2 font-weight-medium">
-                                                {{statistics_data.direct_water_summary}}
+                                                {{transformMoney(statistics_data.direct_water_summary)}}
                                             </span>
                                         </v-col>
                                     </v-row>
@@ -903,7 +904,7 @@
                     <span v-else>{{ item.total_performance }}</span> -->
                             <v-sheet color="transparent" class="d-flex align-center text-caption text-sm-body-1 text-gray" width="90">
                                 <v-img class="mr-1" src="@/assets/icon/cm.png" max-width="15" max-height="15"></v-img>
-                                <span>{{ item.total_performance }}</span>
+                                <span>{{ getCommissionNum_totle(item.total_performance) }}</span>
                             </v-sheet>
                         </v-sheet>
                     </v-col>
@@ -920,7 +921,7 @@
                                 :max-width="$vuetify.breakpoint.mobile? 15 : 30"
                                 :height="$vuetify.breakpoint.mobile? 15 : 30"
                             ></v-img>
-                            <span>{{ item.commission_num[pageData.platCoins.mainCoin.name] }}</span>
+                            <span>{{ transformMoney_commission(item.commission_num) }}</span>
                         </v-sheet>
                     </v-col>
 
@@ -938,7 +939,7 @@
                                     :max-width="$vuetify.breakpoint.mobile? 15 : 30"
                                     :height="$vuetify.breakpoint.mobile? 15 : 30"
                                 ></v-img>
-                                <span>{{ item.commission_num_added[pageData.platCoins.mainCoin.name] }}</span>
+                                <span>{{ transformMoney_commission(item.commission_num_added[pageData.platCoins.mainCoin.name],true) }}</span>
                             </span>
                         </v-sheet>
                     </v-col>

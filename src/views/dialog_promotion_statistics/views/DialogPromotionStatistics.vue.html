@@ -69,7 +69,7 @@
                     <div class="d-flex justify-space-around text-center">
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("净亏损(总团队)") }}</span>
-                            <span class="text-green">{{ pageData.formulaData.user_loss }}</span>
+                            <span class="text-green">{{ transformMoney(pageData.formulaData.user_loss) }}</span>
                         </div>
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("分红比例") }}</span>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("分红") }}</span>
-                            <span class="text-red">{{ pageData.formulaData.bonus }}</span>
+                            <span class="text-red">{{ transformMoney(pageData.formulaData.bonus) }}</span>
                         </div>
                     </div>
                 </v-sheet>
@@ -106,13 +106,13 @@
                                 {{ LangUtil(name) }}
                             </v-col>
                             <v-col class="d-flex justify-center align-center skin004_2-black-text">
-                                {{ directly }}
+                                {{ transformMoney(directly) }}
                             </v-col>
                             <v-col class="d-flex justify-center align-center skin004_2-black-text">
-                                {{ group }}
+                                {{ transformMoney(group) }}
                             </v-col>
                             <v-col class="d-flex justify-center align-center skin004_2-black-text">
-                                {{ all }}
+                                {{ transformMoney(all) }}
                             </v-col>
                         </v-row>
                     </v-card>

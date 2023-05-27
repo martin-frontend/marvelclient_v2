@@ -67,7 +67,6 @@ body {
         top: 38.8vh;
         padding: 25px 20px;
         z-index: 10;
-        height: calc(100vh - 48%);
     }
     .reg-panel-logo {
         text-align: center;
@@ -77,7 +76,7 @@ body {
     }
     .logo {
         width: auto !important;
-        height: 50px !important;
+        height: 75px !important;
     }
 }
 @media screen and (min-width: 1200px) {
@@ -104,7 +103,7 @@ body {
 
 @media only screen and (orientation: portrait) {
     .title {
-        font-size: 26px;
+        font-size: 28px;
     }
 }
 
@@ -241,7 +240,7 @@ input {
 .anticon {
     cursor: pointer;
     color: rgba(0, 0, 0, 0.45);
-    border-bottom: 1px solid #2483c6;
+    /* border-bottom: 1px solid #2483c6; */
 }
 
 .svg-box {
@@ -402,9 +401,17 @@ input[type="number"] {
 
 .tag_box {
     display: block;
-    height: 42px;
 }
 
 /* select:focus-visible {
     outline: none;
 } */
+
+#password,
+#password_confirm {
+    border-bottom: unset;
+}
+
+.password {
+    border-bottom: 1px solid #2483c6;
+}

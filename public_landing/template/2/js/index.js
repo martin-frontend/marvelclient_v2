@@ -104,6 +104,14 @@ function init() {
         $("#username").css({ "padding-left": "110px" });
         $("#username").attr("placeholder", str.mobile_placeholder);
     }
+
+    if (isMobile()) {
+        $("#mobile").css("display", "block");
+        $("#pc").css("display", "none");
+    } else {
+        $("#pc").css("display", "block");
+        $("#mobile").css("display", "none");
+    }
 }
 //重置表单
 function resetForm() {
@@ -245,4 +253,11 @@ function isSafari() {
         !/iPhone/.test(navigator.userAgent) &&
         !/iPad/.test(navigator.userAgent)
     );
+}
+
+function isMobile() {
+    const flag = navigator.userAgent.match(
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    );
+    return flag;
 }

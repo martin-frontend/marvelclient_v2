@@ -15,7 +15,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>template</title>
     </head>
-    <link rel="stylesheet" href="./style/index.css?v=1.3.9" />
+    <link rel="stylesheet" href="./style/index.css?v=1.3.10" />
     <body>
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +60,11 @@
         </svg>
         <div class="container">
             <div class="form">
-                <div class="title">Get Unlimited Cashback on 96</div>
-
+                <div class="title" id="pc">Get Unlimited Cashback on 96!</div>
+                <div class="title" id="mobile">
+                    <div>Get Unlimited</div>
+                    <div>Cashback on 96!</div>
+                </div>
                 <div class="tag-box-method" id="tag_box">
                     <div id="btnTagAccount" class="btn-tag">ACCOUNT</div>
                     <div id="btnTagMobile" class="btn-tag">MOBILE</div>
@@ -98,7 +101,7 @@
                         <div id="divImageCode" class="btnImagCode"><img class="imgCode" src="" /></div>
                     </div>
                     <div class="form-item" id="formItemPassword">
-                        <div class="input-box">
+                        <div class="input-box password">
                             <input placeholder="" type="password" id="password" value="" />
                             <span
                                 id="btn_hide_password"
@@ -122,7 +125,7 @@
                         <div id="password_error" class="input-error"></div>
                     </div>
                     <div class="form-item" id="formItemPasswordConfirm">
-                        <div class="input-box">
+                        <div class="input-box password">
                             <input placeholder="" type="password" id="password_confirm" value="" />
                             <span
                                 id="btn_hide_password_confirm"
@@ -199,6 +202,6 @@
     <script src="./js/utils.js?v=1.3.1"></script>
     <script src="./js/jquery.js?v=1.3.1"></script>
     <script src="./js/net.js?v=1.3.6"></script>
-    <script src="./js/index.js?v=1.3.12"></script>
+    <script src="./js/index.js?v=1.3.13"></script>
     <script src="./js/click.js?v=1.3.9"></script>
 </html>

@@ -58,11 +58,11 @@
                     <div class="">{{LangUtil("你的钱包地址")}}</div>
                     <v-sheet color="transparent" class="py-1">
                         <CustomInput class="" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
-                            <div class="d-flex align-center mr-2">
+                            <div class="d-flex align-center">
                                 <v-tooltip top>
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                            <svg-icon icon="help" class="text-16"></svg-icon>
+                                        <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                            <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
                                         </v-sheet>
                                     </template>
                                     <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
@@ -93,7 +93,7 @@
                     <div class="">{{LangUtil("您的银行卡")}}</div>
                     <v-sheet color="transparent" height="36" width="100%" class="d-flex align-center bank_box rounded10">
                         <v-autocomplete
-                            v-model="myProxy.exchangeProxy.curBankinfo"
+                            v-model="exchangeProxy.curBankinfo"
                             :items="bank_list"
                             item-text="bank_name"
                             :label="LangUtil('银行信息')"
@@ -149,7 +149,7 @@
                 </v-card>
             </v-col>
 
-            <!-- <v-col cols="6" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
+            <!-- <v-col cols="6" v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0" v-for="(item, key) of exchangeProxy.showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}}</v-sheet>
                     <v-sheet color="transparent" class="py-1">
@@ -165,7 +165,7 @@
                 </v-card>
             </v-col> -->
             <!-- 巴西币提现 -->
-            <template v-if="form.payment_method_type==8 && showRequires.length > 0">
+            <template v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0">
                 <!-- 选择框 -->
                 <v-col cols="6">
                     <v-card flat color="transparent" class="d-flex flex-column justify-center">
@@ -173,8 +173,8 @@
                         <v-sheet color="transparent" class="d-flex"> {{LangUtil("Pix key类型")}}</v-sheet>
                         <v-sheet color="transparent" class="py-1" width="100%">
                             <CustomSelect
-                                v-model="pix_key_select"
-                                :options="pix_key_option_select"
+                                v-model="exchangeProxy.pix_key_select"
+                                :options="exchangeProxy.pix_key_option_select"
                                 width="100%"
                                 height="36"
                                 fontSize="14"
@@ -183,8 +183,7 @@
                         </v-sheet>
                     </v-card>
                 </v-col>
-
-                <template v-for="(item, key) of showRequires">
+                <template v-for="(item, key) of exchangeProxy.showRequires">
                     <v-col v-if="item.key == 'name'" cols="6" :key="key">
                         <v-card flat color="transparent" class="d-flex flex-column justify-center">
                             <!-- 标题 -->
@@ -203,23 +202,37 @@
                     </v-col>
                 </template>
 
-                <v-col cols="6" v-if="curPixkeyItem">
+                <v-col cols="6" v-if="exchangeProxy.curPixkeyItem">
                     <v-card flat color="transparent" class="d-flex flex-column justify-center">
                         <!-- 标题 -->
-                        <v-sheet color="transparent" class="d-flex"> {{curPixkeyItem.name}}</v-sheet>
+                        <v-sheet color="transparent" class="d-flex"> {{exchangeProxy.curPixkeyItem.name}}</v-sheet>
                         <v-sheet color="transparent" class="py-1">
                             <CustomInput
                                 class=""
-                                :placeholder="curPixkeyItem.placeholder"
+                                :placeholder="exchangeProxy.curPixkeyItem.placeholder"
                                 @blur="onBlurInput_option()"
-                                v-model="curPixkeyItem.inputValue"
+                                v-model="exchangeProxy.curPixkeyItem.inputValue"
                             >
-                                <template v-if="curPixkeyItem.key==2" v-slot:pre>
+                                <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
                                     <div class="mr-2">{{LangUtil("+55")}}</div>
                                 </template>
+                                <div class="d-flex align-center">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                                <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
+                                            </v-sheet>
+                                        </template>
+                                        <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                    </v-tooltip>
+    
+                                    <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                        {{LangUtil("地址薄")}}
+                                    </btn-yellow>
+                                </div>
                             </CustomInput>
                         </v-sheet>
-                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{curPixkeyItem.errinfo}}</v-sheet>
+                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{exchangeProxy.curPixkeyItem.errinfo}}</v-sheet>
                     </v-card>
                 </v-col>
             </template>
@@ -231,7 +244,7 @@
                     <v-sheet color="transparent" class="py-1">
                         <CustomPassword class="" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
                             <btn-yellow
-                                v-if="myProxy.exchangeProxy.isPasswordExist"
+                                v-if="exchangeProxy.isPasswordExist"
                                 class="ml-auto text-14 mr-n2"
                                 min_width="61"
                                 height="36"
@@ -334,11 +347,11 @@
                     <div class="">{{LangUtil("你的钱包地址")}}</div>
                     <v-sheet color="transparent" class="py-1">
                         <CustomInput class="" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
-                            <div class="d-flex align-center mr-2">
+                            <div class="d-flex align-center">
                                 <v-tooltip top>
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                            <svg-icon icon="help" class="text-16"></svg-icon>
+                                        <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                            <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
                                         </v-sheet>
                                     </template>
                                     <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
@@ -369,7 +382,7 @@
                     <div class="">{{LangUtil("您的银行卡")}}</div>
                     <v-sheet color="transparent" height="36" width="100%" class="d-flex align-center bank_box rounded10">
                         <v-autocomplete
-                            v-model="myProxy.exchangeProxy.curBankinfo"
+                            v-model="exchangeProxy.curBankinfo"
                             :items="bank_list"
                             item-text="bank_name"
                             :label="LangUtil('银行信息')"
@@ -425,7 +438,7 @@
                 </v-card>
             </v-col>
 
-            <!-- <v-col cols="12" v-if="form.payment_method_type==8 && showRequires.length > 0" v-for="(item, key) of showRequires" :key="key">
+            <!-- <v-col cols="12" v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0" v-for="(item, key) of exchangeProxy.showRequires" :key="key">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
                     <v-sheet color="transparent" class="py-1">
@@ -449,8 +462,8 @@
                         <v-sheet color="transparent" class="d-flex"> {{LangUtil("Pix key类型")}}</v-sheet>
                         <v-sheet color="transparent" class="py-1" width="100%">
                             <CustomSelect
-                                v-model="pix_key_select"
-                                :options="pix_key_option_select"
+                                v-model="exchangeProxy.pix_key_select"
+                                :options="exchangeProxy.pix_key_option_select"
                                 width="100%"
                                 height="36"
                                 fontSize="14"
@@ -460,27 +473,41 @@
                     </v-card>
                 </v-col>
 
-                <v-col cols="12" v-if="curPixkeyItem">
+                <v-col cols="12" v-if="exchangeProxy.curPixkeyItem">
                     <v-card flat color="transparent" class="d-flex flex-column justify-center">
                         <!-- 标题 -->
-                        <v-sheet color="transparent" class="d-flex"> {{curPixkeyItem.name}}</v-sheet>
+                        <v-sheet color="transparent" class="d-flex"> {{exchangeProxy.curPixkeyItem.name}}</v-sheet>
                         <v-sheet color="transparent" class="py-1">
                             <CustomInput
                                 class=""
-                                :placeholder="curPixkeyItem.placeholder"
+                                :placeholder="exchangeProxy.curPixkeyItem.placeholder"
                                 @blur="onBlurInput_option()"
-                                v-model="curPixkeyItem.inputValue"
+                                v-model="exchangeProxy.curPixkeyItem.inputValue"
                             >
-                            <template v-if="curPixkeyItem.key==2" v-slot:pre>
-                                <div class="mr-2">{{LangUtil("+55")}}</div>
-                            </template>
+                                <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
+                                    <div class="mr-2">{{LangUtil("+55")}}</div>
+                                </template>
+                                <div class="d-flex align-center">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                                <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
+                                            </v-sheet>
+                                        </template>
+                                        <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                    </v-tooltip>
+
+                                    <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                        {{LangUtil("地址薄")}}
+                                    </btn-yellow>
+                                </div>
                             </CustomInput>
                         </v-sheet>
-                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{curPixkeyItem.errinfo}}</v-sheet>
+                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{exchangeProxy.curPixkeyItem.errinfo}}</v-sheet>
                     </v-card>
                 </v-col>
 
-                <template v-for="(item, key) of showRequires">
+                <template v-for="(item, key) of exchangeProxy.showRequires">
                     <v-col v-if="item.key == 'name'" cols="12" :key="key">
                         <v-card flat color="transparent" class="d-flex flex-column justify-center">
                             <!-- 标题 -->
@@ -506,7 +533,7 @@
                     <v-sheet color="transparent" class="py-1">
                         <CustomPassword class="" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
                             <btn-yellow
-                                v-if="myProxy.exchangeProxy.isPasswordExist"
+                                v-if="exchangeProxy.isPasswordExist"
                                 class="ml-auto text-14 mr-n2"
                                 min_width="61"
                                 height="36"

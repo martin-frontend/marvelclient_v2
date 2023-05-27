@@ -11,88 +11,59 @@ export default class ExchangeTypeCommon extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     myProxy = PanelUtil.getProxy_recharge;
+    exchangeProxy = this.myProxy.exchangeProxy;
     addressBooProxy = PanelUtil.getProxy_addressBook;
-    pageData = this.myProxy.exchangeProxy.pageData;
+    pageData = this.exchangeProxy.pageData;
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
 
-    pix_key_select = 0;
+    // pix_key_select = 0;
 
-    pix_key_option = [
-        {
-            name: LangUtil("brl_CFP/CNPJ"), //标题名字
-            key: 3, //传给服务器用的类型
-            Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
-            inputValue: "",
-            errinfo: "",
-        },
-        {
-            name: LangUtil("brl_Mobile"),
-            key: 2,
-            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
-            inputValue: "",
-            errinfo: "",
-        },
-        {
-            name: LangUtil("brl_Email"),
-            key: 1,
-            Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
-            inputValue: "",
-            errinfo: "",
-        },
-    ];
+    // pix_key_option = [
+    //     {
+    //         name: LangUtil("brl_CFP/CNPJ"), //标题名字
+    //         key: 3, //传给服务器用的类型
+    //         Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+    //         placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+    //         inputValue: "",
+    //         errinfo: "",
+    //     },
+    //     {
+    //         name: LangUtil("brl_Mobile"),
+    //         key: 2,
+    //         Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+    //         placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+    //         inputValue: "",
+    //         errinfo: "",
+    //     },
+    //     {
+    //         name: LangUtil("brl_Email"),
+    //         key: 1,
+    //         Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+    //         placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+    //         inputValue: "",
+    //         errinfo: "",
+    //     },
+    // ];
 
-    get pix_key_option_select() {
-        const obj = <any>{};
-        for (let index = 0; index < this.pix_key_option.length; index++) {
-            const element = this.pix_key_option[index];
-            obj[index] = element.name;
-        }
-        return obj;
-    }
-    get curPixkeyItem() {
-        return this.pix_key_option[this.pix_key_select];
-    }
+    // get pix_key_option_select() {
+    //     const obj = <any>{};
+    //     for (let index = 0; index < this.pix_key_option.length; index++) {
+    //         const element = this.pix_key_option[index];
+    //         obj[index] = element.name;
+    //     }
+    //     return obj;
+    // }
+    // get curPixkeyItem() {
+    //     return this.pix_key_option[this.pix_key_select];
+    // }
     onPixkeyChange() {
-        this.curPixkeyItem.errinfo = "";
-        console.log("被修改", this.pix_key_select);
+        this.exchangeProxy.curPixkeyItem.errinfo = "";
+        console.log("被修改", this.exchangeProxy.pix_key_select);
     }
     onBlurInput_option() {
-        this.curPixkeyItem.inputValue = this.curPixkeyItem.inputValue.trim();
-        if (!this.curPixkeyItem.inputValue) {
-            return false;
-        }
-        let Regx;
-        switch (this.curPixkeyItem.key) {
-            case 1:
-                Regx = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-                break;
-            case 2:
-                Regx = /^[1-9]\d{10}$/;
-                break;
-            case 3:
-                Regx = /^\d{11}$/;
-                break;
-            default:
-                break;
-        }
-        if (!Regx) {
-            console.log("----检测为空----");
-            this.curPixkeyItem.errinfo = "";
-            return true;
-        }
-        if (!Regx.test(this.curPixkeyItem.inputValue)) {
-            console.log("----检测不正确----");
-            this.curPixkeyItem.errinfo = LangUtil("请输入正确的{0}", this.curPixkeyItem.name);
-            return false;
-        }
-        console.log("----正确----");
-        this.curPixkeyItem.errinfo = "";
-        return true;
+        return this.exchangeProxy.onBlurInput_option();
     }
     get gold_info() {
         return this.pageData.methodList;
@@ -124,8 +95,8 @@ export default class ExchangeTypeCommon extends AbstractView {
         this.form.password_gold = "";
     }
     get balance() {
-        if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+        if (this.exchangeProxy.gold_info[this.form.coin_name_unique]) {
+            return this.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         }
         return "0.00";
     }
@@ -151,8 +122,8 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
 
     onAll() {
-        if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
-            this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
+        if (this.exchangeProxy.gold_info[this.form.coin_name_unique]) {
+            this.form.amount = this.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;
         } else {
             this.form.amount = "0.00";
         }
@@ -163,17 +134,17 @@ export default class ExchangeTypeCommon extends AbstractView {
     setBrlSendData() {
         const obj = <any>{};
 
-        for (let index = 0; index < this.showRequires.length; index++) {
-            const element = this.showRequires[index];
+        for (let index = 0; index < this.exchangeProxy.showRequires.length; index++) {
+            const element = this.exchangeProxy.showRequires[index];
             if (element.key == "name") {
                 obj[element.key] = element.inputValue;
             }
         }
 
-        obj["type"] = this.curPixkeyItem.key;
-        if (this.curPixkeyItem.key == 2) {
-            obj["pix_key"] = "+55" + this.curPixkeyItem.inputValue;
-        } else obj["pix_key"] = this.curPixkeyItem.inputValue;
+        obj["type"] = this.exchangeProxy.curPixkeyItem.key;
+        if (this.exchangeProxy.curPixkeyItem.key == 2) {
+            obj["pix_key"] = "+55" + this.exchangeProxy.curPixkeyItem.inputValue;
+        } else obj["pix_key"] = this.exchangeProxy.curPixkeyItem.inputValue;
         return obj;
     }
     onSubmit() {
@@ -192,8 +163,8 @@ export default class ExchangeTypeCommon extends AbstractView {
             message: LangUtil("确认提交"),
             okFun: () => {
                 if (this.form.payment_method_type == 8) {
-                    this.myProxy.exchangeProxy.api_user_var_exchange_create_order(null, this.setBrlSendData());
-                } else this.myProxy.exchangeProxy.api_user_var_exchange_create_order(this.showRequires);
+                    this.exchangeProxy.api_user_var_exchange_create_order(null, this.setBrlSendData());
+                } else this.exchangeProxy.api_user_var_exchange_create_order(this.exchangeProxy.showRequires);
             },
         });
     }
@@ -208,8 +179,8 @@ export default class ExchangeTypeCommon extends AbstractView {
 
         if (amount != "" && password_gold != "") {
             const amount_num = parseFloat(amount);
-            if (amount_num > 0 && amount_num <= this.myProxy.exchangeProxy.gold_info[coin_name_unique].sum_money) {
-                if (this.showRequires.length < 1) {
+            if (amount_num > 0 && amount_num <= this.exchangeProxy.gold_info[coin_name_unique].sum_money) {
+                if (this.exchangeProxy.showRequires.length < 1) {
                     return account != "";
                 } else {
                     return true;
@@ -233,11 +204,11 @@ export default class ExchangeTypeCommon extends AbstractView {
     public get allNames(): any {
         if (!this.form.account_name || this.form.account_name == "") {
             return [];
-            //return this.myProxy.exchangeProxy.bankCard_nameArr;
+            //return this.exchangeProxy.bankCard_nameArr;
         }
         const newArr = [];
-        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_nameArr.length; index++) {
-            const element = this.myProxy.exchangeProxy.bankCard_nameArr[index];
+        for (let index = 0; index < this.exchangeProxy.bankCard_nameArr.length; index++) {
+            const element = this.exchangeProxy.bankCard_nameArr[index];
             if (element.indexOf(this.form.account_name) > -1) {
                 newArr.push(element);
             }
@@ -263,12 +234,11 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     onBankcardInfo() {
         console.log(" 点击银行卡 信息");
-        dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo);
+        dialog_bankcard_info.show(this.exchangeProxy.bankCardInfo);
     }
 
-    showRequires = <any>[];
     reSetRequir() {
-        this.showRequires = <any>[];
+        this.exchangeProxy.showRequires = <any>[];
         if (!this.form.requires) return;
 
         const keys = Object.keys(this.form.requires);
@@ -286,18 +256,18 @@ export default class ExchangeTypeCommon extends AbstractView {
                 errinfo: "", //错误信息
                 timeHeadle: null, //错误提示的句柄
             };
-            this.showRequires.push(obj);
+            this.exchangeProxy.showRequires.push(obj);
         }
     }
     chickRequires() {
-        if (this.showRequires.length < 1) {
+        if (this.exchangeProxy.showRequires.length < 1) {
             return true;
         }
-        if (this.showRequires && this.showRequires.length > 0) {
-            //console.log(" 必须的数据" ,this.showRequires);
+        if (this.exchangeProxy.showRequires && this.exchangeProxy.showRequires.length > 0) {
+            //console.log(" 必须的数据" ,this.exchangeProxy.showRequires);
             let isChick = true;
-            for (let index = 0; index < this.showRequires.length; index++) {
-                const element = this.showRequires[index];
+            for (let index = 0; index < this.exchangeProxy.showRequires.length; index++) {
+                const element = this.exchangeProxy.showRequires[index];
 
                 if (!this.onBlurInput(element)) {
                     isChick = false;
@@ -309,23 +279,17 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
 
     onBlurInput(item: any) {
-        item.inputValue = item.inputValue.trim();
-        if (!item.inputValue) {
-            item.errinfo = LangUtil(item.tips);
-            return false;
-        }
-        item.errinfo = "";
-        return true;
+        return this.exchangeProxy.onBlurInput(item);
     }
 
     public get allCardNub(): any {
         if (!this.form.account || this.form.account == "") {
             return [];
-            //return this.myProxy.exchangeProxy.bankCard_numberArr;
+            //return this.exchangeProxy.bankCard_numberArr;
         }
         const newArr = [];
-        for (let index = 0; index < this.myProxy.exchangeProxy.bankCard_numberArr.length; index++) {
-            const element = this.myProxy.exchangeProxy.bankCard_numberArr[index];
+        for (let index = 0; index < this.exchangeProxy.bankCard_numberArr.length; index++) {
+            const element = this.exchangeProxy.bankCard_numberArr[index];
             if (element.indexOf(this.form.account) > -1) {
                 newArr.push(element);
             }

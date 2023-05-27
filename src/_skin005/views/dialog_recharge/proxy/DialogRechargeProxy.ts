@@ -3,6 +3,7 @@ import { convert_vi_to_en } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -219,6 +220,93 @@ export class ExchangeProxy extends puremvc.Proxy {
     bankCard_nameArr = <any>{};
     bankCard_numberArr = <any>{};
 
+    pix_key_select = 0;
+    pix_key_option = [
+        {
+            name: LangUtil("brl_CFP/CNPJ"), //标题名字
+            key: 3, //传给服务器用的类型
+            Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+            inputValue: "",
+            errinfo: "",
+        },
+        {
+            name: LangUtil("brl_Mobile"),
+            key: 2,
+            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+            inputValue: "",
+            errinfo: "",
+        },
+        {
+            name: LangUtil("brl_Email"),
+            key: 1,
+            Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+            inputValue: "",
+            errinfo: "",
+        },
+    ];
+
+    showRequires = <any>[];
+
+    get pix_key_option_select() {
+        const obj = <any>{};
+        for (let index = 0; index < this.pix_key_option.length; index++) {
+            const element = this.pix_key_option[index];
+            obj[index] = element.name;
+        }
+        return obj;
+    }
+    get curPixkeyItem() {
+        return this.pix_key_option[this.pix_key_select];
+    }
+
+    
+    onBlurInput_option() {
+        this.curPixkeyItem.inputValue = this.curPixkeyItem.inputValue.trim();
+        if (!this.curPixkeyItem.inputValue) {
+            return false;
+        }
+        let Regx;
+        switch (this.curPixkeyItem.key) {
+            case 1:
+                Regx = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                break;
+            case 2:
+                Regx = /^[1-9]\d{10}$/;
+                break;
+            case 3:
+                Regx = /^\d{11}$/;
+                break;
+            default:
+                break;
+        }
+        if (!Regx) {
+            console.log("----检测为空----");
+            this.curPixkeyItem.errinfo = "";
+            return true;
+        }
+        if (!Regx.test(this.curPixkeyItem.inputValue)) {
+            console.log("----检测不正确----");
+            this.curPixkeyItem.errinfo = LangUtil("请输入正确的{0}", this.curPixkeyItem.name);
+            return false;
+        }
+        console.log("----正确----");
+        this.curPixkeyItem.errinfo = "";
+        return true;
+    }
+
+    onBlurInput(item: any) {
+        item.inputValue = item.inputValue.trim();
+        if (!item.inputValue) {
+            item.errinfo = LangUtil(item.tips);
+            return false;
+        }
+        item.errinfo = "";
+        return true;
+    }
+
     resetform() {
         Object.assign(this.pageData.form, {
             amount: "",
@@ -227,6 +315,9 @@ export class ExchangeProxy extends puremvc.Proxy {
         });
         this.curBankinfo = null;
         this.setRealName();
+        this.pix_key_select = 0;
+        this.showRequires[0].inputValue = "";
+        this.curPixkeyItem.inputValue = "";
     }
     setRealName() {
         const selfProxy = PanelUtil.getProxy_selfproxy;
@@ -316,7 +407,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_var_exchange_method_list, { plat_id: core.plat_id });
     }
 
-    api_user_var_exchange_create_order(requires: any = null,brl_info:any=null) {
+    api_user_var_exchange_create_order(requires: any = null, brl_info: any = null) {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         if (!requires || requires.length < 1) {
@@ -342,17 +433,16 @@ export class ExchangeProxy extends puremvc.Proxy {
                 user_id: core.user_id,
                 password_gold: core.MD5.createInstance().hex_md5(password_gold),
             };
-            
-            if (brl_info)
-            {
+
+            if (brl_info) {
                 data.third_id = this.pageData.form.third_id;
                 data.subtitle = this.pageData.form.subtitle;
                 data.name = brl_info.name;
                 data.pix_key = brl_info.pix_key;
                 data.type = brl_info.type;
             }
-            console.log("发送信息为",data);
-            this.sendNotification(net.HttpType.api_user_var_exchange_create_order,data);
+            console.log("发送信息为", data);
+            this.sendNotification(net.HttpType.api_user_var_exchange_create_order, data);
         } else {
             const {
                 amount,

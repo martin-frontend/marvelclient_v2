@@ -20,6 +20,10 @@ export default class DialogAddressBook extends AbstractView {
 
     plat_coins = GamePlatConfig.config.plat_coins;
 
+    get payment_method_type() {
+        return this.rechargeProxy.exchangeProxy.pageData.form.payment_method_type;
+    }
+
     constructor() {
         super(DialogAddressBookMediator);
     }
@@ -41,10 +45,22 @@ export default class DialogAddressBook extends AbstractView {
         MultDialogManager.onClosePanel();
     }
 
-    onAddress(address: any) {
+    onAddress(payment_method: any) {
         //this.myProxy.pageData.bShow = false;
         this.onClose();
-        this.rechargeProxy.exchangeProxy.pageData.form.account = address;
+        if (this.payment_method_type == 8) {
+            const index = this.rechargeProxy.exchangeProxy.pix_key_option.findIndex(({ key }) => key == payment_method.type);
+            if (index !== -1) {
+                this.rechargeProxy.exchangeProxy.pix_key_select = index;
+                this.rechargeProxy.exchangeProxy.showRequires[0].inputValue = payment_method.name;
+                this.rechargeProxy.exchangeProxy.curPixkeyItem.inputValue =
+                    payment_method.type == 2 ? payment_method.pix_key.substring(3, payment_method.pix_key.length) : payment_method.pix_key;
+                this.rechargeProxy.exchangeProxy.onBlurInput_option();
+                this.rechargeProxy.exchangeProxy.onBlurInput(this.rechargeProxy.exchangeProxy.showRequires[0]);
+            }
+        } else {
+            this.rechargeProxy.exchangeProxy.pageData.form.account = payment_method.account;
+        }
     }
 
     @Watch("pageData.bShow")
@@ -59,8 +75,13 @@ export default class DialogAddressBook extends AbstractView {
     }
 
     onDelete(item: any) {
-        this.pageData.loading = true;
-        this.addressBookRemark.onDelete(item.id);
+        PanelUtil.message_confirm({
+            message: LangUtil("是否删除纪录"),
+            okFun: () => {
+                this.pageData.loading = true;
+                this.addressBookRemark.onDelete(item.id);
+            },
+        });
     }
 
     onRefresh(done: any) {
@@ -69,5 +90,10 @@ export default class DialogAddressBook extends AbstractView {
 
     onLoad(done: any) {
         this.myProxy.listMore(done);
+    }
+
+    convertPixType(type: any) {
+        const obj = this.rechargeProxy.exchangeProxy.pix_key_option.find(({ key }) => type == key);
+        return obj ? obj.name : "";
     }
 }

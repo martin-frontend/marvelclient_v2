@@ -151,5 +151,9 @@ window.addEventListener("message", function (e) {
                 LandConfig.config.platUrl +
                 `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
             break;
+        case "go_sign_in":
+            this.location.href =
+                LandConfig.config.platUrl;
+            break;
     }
 });

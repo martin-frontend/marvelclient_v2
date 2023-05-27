@@ -52,15 +52,6 @@ function iframeLoaded() {
     ifr.contentWindow.postMessage({ action: "config", params: LandConfig.config }, "*");
     api_public_auth_code();
     api_public_area_code();
-    const config = LandConfig.config;
-    if (config.faceBookEvent) {
-        //@ts-ignore
-        window.initFCP(config.faceBookEvent);
-    }
-    if (config.gtmEvent) {
-        //@ts-ignore
-        window.initGTM(config.gtmEvent);
-    }
 }
 
 core.init();

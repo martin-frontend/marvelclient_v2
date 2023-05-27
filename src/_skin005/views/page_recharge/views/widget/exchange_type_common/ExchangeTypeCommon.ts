@@ -81,6 +81,10 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     mounted() {
         this.reSetRequir();
+        this.exchangeProxy.pix_key_option.forEach(item => {
+            item.name = LangUtil(item.name);
+            item.placeholder = LangUtil("请输入{0}", LangUtil(item.name));
+        });
     }
     onItemClick(key: string) {
         //console.log("   ----当前  点击----", key);

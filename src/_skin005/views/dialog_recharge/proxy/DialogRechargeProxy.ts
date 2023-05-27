@@ -229,26 +229,29 @@ export class ExchangeProxy extends puremvc.Proxy {
     pix_key_select = 0;
     pix_key_option = [
         {
-            name: LangUtil("brl_CFP/CNPJ"), //标题名字
+            name: "brl_CFP/CNPJ", //标题名字
             key: 3, //传给服务器用的类型
             Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+            placeholder: "",
             inputValue: "",
             errinfo: "",
         },
         {
-            name: LangUtil("brl_Mobile"),
+            name: "brl_Mobile",
             key: 2,
             Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+            placeholder: "",
             inputValue: "",
             errinfo: "",
         },
         {
-            name: LangUtil("brl_Email"),
+            name: "brl_Email",
             key: 1,
             Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
-            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+            placeholder: "",
             inputValue: "",
             errinfo: "",
         },
@@ -268,7 +271,6 @@ export class ExchangeProxy extends puremvc.Proxy {
         return this.pix_key_option[this.pix_key_select];
     }
 
-    
     onBlurInput_option() {
         this.curPixkeyItem.inputValue = this.curPixkeyItem.inputValue.trim();
         if (!this.curPixkeyItem.inputValue) {
@@ -525,7 +527,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         console.log("发送的数据为", sendObj);
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
     }
-    
+
     api_user_var_exchange_extend_info() {
         PanelUtil.showAppLoading(true);
         this.sendNotification(net.HttpType.api_user_var_exchange_extend_info, { user_id: core.user_id });

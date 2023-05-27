@@ -32,6 +32,7 @@ export default class PageRechargeProxy extends puremvc.Proxy {
         console.log("初始化----");
         this.exchangeProxy.api_user_var_exchange_method_list();
         this.rechargeProxy.api_user_var_recharge_method_list();
+        this.exchangeProxy.api_user_var_exchange_extend_info();
     }
 
     testShow() {

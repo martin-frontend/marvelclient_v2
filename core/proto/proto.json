@@ -132,6 +132,7 @@
         ["api/user/{user_id}/exchange/create_order", "创建兑换订单"],
         ["api/user/{user_id}/gold_water/index", "流水审核"],
         ["api/user/{user_id}/exchange/manual_refund", "用户手动退款"],
+        ["api/user/{user_id}/exchange/extend_info", "用户兑换扩展信息"],
 
         "--收款管理",
         ["api/user/{user_id}/payment_method/index", "收款方式列表"],

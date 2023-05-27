@@ -215,6 +215,8 @@ declare module net {
         api_user_var_gold_water_index: string;
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: string;
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: string;
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: string;
         /**--收款管理--添加收款方式*/
@@ -522,6 +524,8 @@ declare module net {
         api_user_var_gold_water_index: string;
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: string;
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: string;
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: string;
         /**--收款管理--添加收款方式*/
@@ -1550,6 +1554,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_exchange_create_order extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户兑换扩展信息
+ */
+declare module net {
+    class cmd_api_user_var_exchange_extend_info extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

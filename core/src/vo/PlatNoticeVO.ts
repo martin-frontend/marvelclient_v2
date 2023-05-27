@@ -19,5 +19,6 @@ module core {
 
         open_mode: number;
         open_mode_url: string;
+        category: string;
     }
 }

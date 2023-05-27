@@ -31,6 +31,7 @@ export default class PageRechargeMediator extends AbstractMediator {
             net.EventType.api_user_var_exchange_create_order,
             net.EventType.api_user_var_recharge_create,
             net.EventType.api_user_var_gold_transfer,
+            net.EventType.api_user_var_exchange_extend_info,
         ];
     }
 
@@ -64,6 +65,8 @@ export default class PageRechargeMediator extends AbstractMediator {
                 PanelUtil.showAppLoading(false);
                 MultDialogManager.onClosePanel();
                 PanelUtil.message_success(LangUtil("创建成功"));
+                myProxy.exchangeProxy.init();
+                myProxy.exchangeProxy.resetform();
                 break;
             case net.EventType.api_user_var_recharge_create:
                 PanelUtil.showAppLoading(false);
@@ -82,6 +85,9 @@ export default class PageRechargeMediator extends AbstractMediator {
                 this.selfProxy.api_user_show_var([2]);
                 myProxy.transferProxy.resetform();
                 PanelUtil.message_success(LangUtil("划转成功"));
+                break;
+            case net.EventType.api_user_var_exchange_extend_info:
+                myProxy.exchangeProxy.exemption_amount = body.exemption_amount;
                 break;
         }
     }

@@ -5,6 +5,8 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import { amountFormat } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_bankcard_info from "@/_skin004/views/dialog_bankcard_info";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class ExchangeTypeCommon extends AbstractView {
@@ -17,6 +19,7 @@ export default class ExchangeTypeCommon extends AbstractView {
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
+    enable_exemption_amount = GameConfig.config.enable_exemption_amount;
 
     // pix_key_select = 0;
 
@@ -317,5 +320,21 @@ export default class ExchangeTypeCommon extends AbstractView {
             }
         }
         return false;
+    }
+
+    get exemption_amount() {
+        return this.myProxy.exchangeProxy.exemption_amount;
+    }
+
+    get sum_money() {
+        return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+    }
+
+    transformMoney_sum_money(val: any, isformat: boolean = true) {
+        return CoinTransformHelper.TransformMoney(val, 2, this.form.coin_name_unique, "", isformat, false, false);
+    }
+
+    get progressValue() {
+        return Math.min((this.transformMoney_sum_money(this.exemption_amount, false) / this.sum_money) * 100, 100);
     }
 }

@@ -12,6 +12,8 @@ import {
 } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { inputErrorObj } from "../../../proxy/PageRechargeProxy";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class ExchangeType9 extends AbstractView {
@@ -23,6 +25,7 @@ export default class ExchangeType9 extends AbstractView {
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
+    enable_exemption_amount = GameConfig.config.enable_exemption_amount;
 
     get isChecked(): boolean {
         const { amount, account, coin_name_unique, password_gold } = this.form;
@@ -409,5 +412,21 @@ export default class ExchangeType9 extends AbstractView {
                 });
             }
         }, 200);
+    }
+
+    get exemption_amount() {
+        return this.myProxy.exchangeProxy.exemption_amount;
+    }
+
+    get sum_money() {
+        return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
+    }
+
+    transformMoney_sum_money(val: any, isformat: boolean = true) {
+        return CoinTransformHelper.TransformMoney(val, 2, this.form.coin_name_unique, "", isformat, false, false);
+    }
+
+    get progressValue() {
+        return Math.min((this.transformMoney_sum_money(this.exemption_amount, false) / this.sum_money) * 100, 100);
     }
 }

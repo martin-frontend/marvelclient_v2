@@ -220,6 +220,12 @@ export class ExchangeProxy extends puremvc.Proxy {
     bankCard_nameArr = <any>{};
     bankCard_numberArr = <any>{};
 
+    exemption_amount = "";
+
+    init() {
+        this.api_user_var_exchange_method_list();
+        this.api_user_var_exchange_extend_info();
+    }
     pix_key_select = 0;
     pix_key_option = [
         {
@@ -518,6 +524,11 @@ export class ExchangeProxy extends puremvc.Proxy {
         sendObj.account_name = convert_vi_to_en(sendObj.account_name);
         console.log("发送的数据为", sendObj);
         this.sendNotification(net.HttpType.api_user_var_exchange_create_order, sendObj);
+    }
+    
+    api_user_var_exchange_extend_info() {
+        PanelUtil.showAppLoading(true);
+        this.sendNotification(net.HttpType.api_user_var_exchange_extend_info, { user_id: core.user_id });
     }
 }
 

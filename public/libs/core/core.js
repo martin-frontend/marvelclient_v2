@@ -277,6 +277,8 @@ var net;
         api_user_var_gold_water_index: "api/user/{user_id}/gold_water/index",
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: "api/user/{user_id}/exchange/manual_refund",
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: "api/user/{user_id}/exchange/extend_info",
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api/user/{user_id}/payment_method/index",
         /**--收款管理--添加收款方式*/
@@ -584,6 +586,8 @@ var net;
         api_user_var_gold_water_index: "api_user_var_gold_water_index",
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: "api_user_var_exchange_manual_refund",
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: "api_user_var_exchange_extend_info",
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api_user_var_payment_method_index",
         /**--收款管理--添加收款方式*/
@@ -795,6 +799,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_exchange_create_order, net.cmd_api_user_var_exchange_create_order);
         facade.registerCommand(net.HttpType.api_user_var_gold_water_index, net.cmd_api_user_var_gold_water_index);
         facade.registerCommand(net.HttpType.api_user_var_exchange_manual_refund, net.cmd_api_user_var_exchange_manual_refund);
+        facade.registerCommand(net.HttpType.api_user_var_exchange_extend_info, net.cmd_api_user_var_exchange_extend_info);
         //--收款管理
         facade.registerCommand(net.HttpType.api_user_var_payment_method_index, net.cmd_api_user_var_payment_method_index);
         facade.registerCommand(net.HttpType.api_user_var_payment_method_store, net.cmd_api_user_var_payment_method_store);
@@ -3146,6 +3151,28 @@ var net;
         }
     }
     net.cmd_api_user_var_exchange_create_order = cmd_api_user_var_exchange_create_order;
+})(net || (net = {}));
+/**
+ * 用户兑换扩展信息
+ */
+var net;
+/**
+ * 用户兑换扩展信息
+ */
+(function (net) {
+    class cmd_api_user_var_exchange_extend_info extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_exchange_extend_info, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_exchange_extend_info, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_exchange_extend_info = cmd_api_user_var_exchange_extend_info;
 })(net || (net = {}));
 /**
  * 用户手动退款

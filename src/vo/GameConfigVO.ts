@@ -89,4 +89,6 @@ export interface GameConfigVO {
     gtm_id: string;
     /**快手分析 */
     kwaiq_id: string;
+    /**是否启用免审金额 */
+    enable_exemption_amount: number;
 }

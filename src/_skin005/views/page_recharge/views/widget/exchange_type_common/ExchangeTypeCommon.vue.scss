@@ -153,3 +153,21 @@
         background-color: #f4f4f4 !important;
     }
 }
+
+.flex-1 {
+    flex: 1;
+}
+
+.custom-progress {
+    position: relative;
+    overflow: hidden;
+    .progress-value {
+        position: absolute;
+        line-height: 1;
+        width: 100%;
+    }
+    .progress-bg {
+        height: 100%;
+        background-image: linear-gradient(to left, #ffe64d, #fcb131 100%);
+    }
+}

@@ -221,6 +221,8 @@ module net {
         api_user_var_gold_water_index: "api/user/{user_id}/gold_water/index",
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: "api/user/{user_id}/exchange/manual_refund",
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: "api/user/{user_id}/exchange/extend_info",
 
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api/user/{user_id}/payment_method/index",
@@ -555,6 +557,8 @@ module net {
         api_user_var_gold_water_index: "api_user_var_gold_water_index",
         /**--兑换--用户手动退款*/
         api_user_var_exchange_manual_refund: "api_user_var_exchange_manual_refund",
+        /**--兑换--用户兑换扩展信息*/
+        api_user_var_exchange_extend_info: "api_user_var_exchange_extend_info",
 
         /**--收款管理--收款方式列表*/
         api_user_var_payment_method_index: "api_user_var_payment_method_index",
@@ -780,6 +784,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_exchange_create_order, cmd_api_user_var_exchange_create_order);
         facade.registerCommand(HttpType.api_user_var_gold_water_index, cmd_api_user_var_gold_water_index);
         facade.registerCommand(HttpType.api_user_var_exchange_manual_refund, cmd_api_user_var_exchange_manual_refund);
+        facade.registerCommand(HttpType.api_user_var_exchange_extend_info, cmd_api_user_var_exchange_extend_info);
         //--收款管理
         facade.registerCommand(HttpType.api_user_var_payment_method_index, cmd_api_user_var_payment_method_index);
         facade.registerCommand(HttpType.api_user_var_payment_method_store, cmd_api_user_var_payment_method_store);

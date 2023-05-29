@@ -146,7 +146,7 @@ input {
 .tag-box-method {
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     display: none;
 }
 .btn-tag {
@@ -401,6 +401,7 @@ input[type="number"] {
 
 .tag_box {
     display: block;
+    margin-top: 0px;
 }
 
 /* select:focus-visible {

@@ -58,21 +58,21 @@ function gmt(eventName: string, data: any) {
 }
 /**fackbook pixel */
 function fbq(eventName: string, data: any, type: string = "track") {
-    //@ts-ignore
-    const fbq = window.fbq;
-    if (fbq) {
-        //@ts-ignore
-        // const appid = Object.keys(window.fbq.instance.pixelsByID)[0];
-        if (GlobalVar.skin == "skin008") {
-            if (eventName == TrackEventMap.RegistrationSuccess) {
-                fbq("track", "CompleteRegistration");
-            } else if (type == TrackTypeMap.Purchase) {
-                fbq("track", "Purchase", { value: data.amount, currency: data.coin_name_unique });
-            }
-        } else {
-            fbq("trackCustom", eventName, data);
-        }
-    }
+    // //@ts-ignore
+    // const fbq = window.fbq;
+    // if (fbq) {
+    //     //@ts-ignore
+    //     // const appid = Object.keys(window.fbq.instance.pixelsByID)[0];
+    //     if (GlobalVar.skin == "skin008") {
+    //         if (eventName == TrackEventMap.RegistrationSuccess) {
+    //             fbq("track", "CompleteRegistration");
+    //         } else if (type == TrackTypeMap.Purchase) {
+    //             fbq("track", "Purchase", { value: data.amount, currency: data.coin_name_unique });
+    //         }
+    //     } else {
+    //         fbq("trackCustom", eventName, data);
+    //     }
+    // }
 }
 /**Apps Flyer */
 function flyer(eventName: string, data: any) {

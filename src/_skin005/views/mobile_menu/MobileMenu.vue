@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import MobileMenu from "./MobileMenu";
+import SvgaPlayer from "@/views/widget/svga_player/SvgaPlayer.vue";
 
-@Component
+@Component({
+    components: {
+        SvgaPlayer,
+    },
+})
 export default class extends MobileMenu {}
 </script>

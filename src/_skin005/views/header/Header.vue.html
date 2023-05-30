@@ -86,9 +86,12 @@
                 <template v-if="selfProxy.userInfo.user_id">
                     <User />
                     <Wallet class="ml-5" />
-                    <btn-yellow v-if="isShowRecharge" class="btn-topup ml-4 text-16" height="36" min_width="72" @click.native="onCoinIn"
-                        >{{LangUtil("钱包")}}</btn-yellow
-                    >
+                    <!-- <btn-yellow v-if="isShowRecharge" btn_type="10" class="btn-topup ml-4 text-16" height="36" min_width="36" @click.native="onCoinIn"> -->
+                    <!-- {{LangUtil("钱包")}} -->
+                    <!-- </btn-yellow> -->
+                    <v-btn v-if="isShowRecharge" icon class="ml-4" @click="onCoinIn" width="28" height="28">
+                        <SvgaPlayer class="svga-player" id="wallet" :src="resolveSvgaSrc('wallet')"></SvgaPlayer>
+                    </v-btn>
 
                     <v-btn v-if="ModulesHelper.isShow_Kefu()" icon small @click="onService" class="navIcon--text ml-4">
                         <svg-icon class="text-24" icon="service"></svg-icon>

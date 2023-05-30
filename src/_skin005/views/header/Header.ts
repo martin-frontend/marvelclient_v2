@@ -209,4 +209,8 @@ export default class Header extends AbstractView {
         console.log(" 搜索页面 是否显示", val);
         this.isSearchGameShow = !val;
     }
+
+    resolveSvgaSrc(name: any) {
+        return "svga/" + name + ".svga";
+    }
 }

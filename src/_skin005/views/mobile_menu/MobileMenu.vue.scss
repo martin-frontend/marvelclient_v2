@@ -4,9 +4,15 @@
     }
     .active {
         color: #0f1213;
+        .text {
+            color: #8e8f91;
+        }
     }
     .nomal {
         color: #cb8700;
+        .text {
+            color: #0f1213;
+        }
     }
 }
 
@@ -16,8 +22,24 @@
     }
     .active {
         color: var(--line_primary);
+        .text {
+            color: #cb8700;
+        }
     }
     .nomal {
         color: #8e8f91;
+        .text {
+            color:  var(--line_primary);
+        }
     }
+}
+
+.svga-player {
+    display: none;
+    width: 18px;
+    height: 18px;
+}
+
+.is-show {
+    display: block !important;
 }

@@ -24,7 +24,19 @@ export default class MobileMenu extends AbstractView {
             6: { id: 6, mob_type: "", name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
             7: { id: 7, mob_type: "gameWater", name: LangUtil("返水"), icon: "water", path: "/page_mine" },
             8: { id: 8, mob_type: "cricket", name: LangUtil("板球"), icon: "cricket", path: "/cricket" },
-            9: { id: 9, mob_type: "charge", name: LangUtil("充值"), icon: "water", path: "/page_recharge" },
+            // 9: { id: 9, mob_type: "charge", name: LangUtil("充值"), icon: "water", path: "/page_recharge" },
+            9: {
+                id: 9,
+                mob_type: "charge",
+                name: LangUtil("充值"),
+                svga: {
+                    light: "deposit-1",
+                    dark: "deposit-4",
+                    active_dark: "deposit-2",
+                    active_light: "deposit-3",
+                },
+                path: "/page_recharge",
+            },
         };
 
         if (GameConfig.config.PhoneMenu && GameConfig.config.PhoneMenu.length > 0) {
@@ -34,7 +46,7 @@ export default class MobileMenu extends AbstractView {
                 if (!element.mob_type || !element.mob_type.trim()) continue;
                 //检测 当前的手机类型是否已经包含在这个列表中了， 如果不包含则添加
 
-                const isHave = Object.keys(list).some((e: any, idx: any, arr: any) =>  list[e].mob_type == element.mob_type);
+                const isHave = Object.keys(list).some((e: any, idx: any, arr: any) => list[e].mob_type == element.mob_type);
                 if (!isHave) {
                     //如果配置了 mob_type 则 生成 对应的 对象
                     const length = Object.keys(list).length;
@@ -190,5 +202,21 @@ export default class MobileMenu extends AbstractView {
             }
         }
         return false;
+    }
+
+    curSvgaType(item: any) {
+        if (this.$vuetify.theme.dark && this.isActiveItem(item)) {
+            return "active_dark";
+        } else if (this.$vuetify.theme.dark && !this.isActiveItem(item)) {
+            return "dark";
+        } else if (!this.$vuetify.theme.dark && this.isActiveItem(item)) {
+            return "active_light";
+        } else {
+            return "light";
+        }
+    }
+
+    resolveSvgaSrc(name: any) {
+        return "svga/" + name + ".svga";
     }
 }

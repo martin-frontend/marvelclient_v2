@@ -81,12 +81,12 @@
                     <!-- 关闭按钮 -->
                     <!-- <v-sheet class="d-flex justify-end mr-3 pt-2" color="transparent">
                         <v-btn icon @click="onClose">
-                            <v-icon class="skin004_2-black-text" large>mdi-close</v-icon>
+                            <v-icon class="custom_skin-black-text" large>mdi-close</v-icon>
                         </v-btn>
                     </v-sheet> -->
                     <!-- 标题 -->
 
-                    <!-- <v-sheet v-if="curShowData" class="d-flex justify-center mr-3 text-18 mb-5 skin004_2-black-text" color="transparent">
+                    <!-- <v-sheet v-if="curShowData" class="d-flex justify-center mr-3 text-18 mb-5 custom_skin-black-text" color="transparent">
                         {{curShowData.name}}
                     </v-sheet> -->
                     <!-- 内容 -->
@@ -122,7 +122,7 @@
                             <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
                                     {{ noticeDetialInfo.content}}
                                 </v-sheet> -->
-                            <div v-if="noticeDetialInfo" class="skin004_2-black-text pa-2" v-html="noticeDetialInfo.content"></div>
+                            <div v-if="noticeDetialInfo" class="custom_skin-black-text pa-2" v-html="noticeDetialInfo.content"></div>
                         </v-sheet>
                     </v-sheet>
                 </div>
@@ -131,7 +131,7 @@
                 <v-sheet v-if="isShowPageBtn" class="mt-auto" color="transparent">
                     <v-sheet class="mt-5 d-flex justify-space-around" color="transparent">
                         <v-btn
-                            class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
+                            class="d-flex align-center rounded-lg white--text mr-2"
                             color="colorBtnBg"
                             min-width="100"
                             :disabled="lastPageInfo==null"
@@ -141,7 +141,7 @@
                         >
 
                         <v-btn
-                            class="d-flex align-center rounded-lg colorPanelBg5 white--text mr-2"
+                            class="d-flex align-center rounded-lg white--text mr-2"
                             color="colorBtnBg"
                             min-width="100"
                             :disabled="nextPageInfo==null"

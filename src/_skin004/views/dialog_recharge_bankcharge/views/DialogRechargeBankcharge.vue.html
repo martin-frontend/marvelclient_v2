@@ -78,7 +78,7 @@
         <template v-else>
             <div class="px-6 d-flex mb-3 flex-column mt-2">
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("银行卡号")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("银行卡号")}}</span>
                     <div class="d-flex">
                         <input v-model="fixcontent[0]" min-width="200" class="cusinput px-2 flex-1" type="text" readonly />
                         <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg" @click="copytext(0)"
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("收款人")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("收款人")}}</span>
                     <div class="d-flex">
                         <input v-model="fixcontent[1]" min-width="200" class="cusinput px-2 flex-1" type="text" readonly />
                         <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg" @click="copytext(1)"
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("收款银行")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("收款银行")}}</span>
                     <div class="d-flex">
                         <input v-model="fixcontent[2]" min-width="200" class="cusinput px-2 flex-1" type="text" readonly />
                         <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg" @click="copytext(2)"
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("开户行")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("开户行")}}</span>
                     <div class="d-flex">
                         <input v-model="fixcontent[3]" min-width="200" class="cusinput px-2 flex-1" type="text" readonly />
                         <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg" @click="copytext(3)"
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("充值金额")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("充值金额")}}</span>
                     <div class="d-flex">
                         <input v-model="fixcontent[4]" min-width="200" class="cusinput px-2 flex-1" type="text" readonly />
                         <v-btn class="ml-2 white--text" x-small min-width="69" height="30" color="colorBtnBg" @click="copytext(4)"
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column my-2">
-                    <span class="skin004_2-black-text">{{LangUtil("支付凭证")}}</span>
+                    <span class="custom_skin-black-text">{{LangUtil("支付凭证")}}</span>
                     <div class="d-flex">
                         <input
                             v-model="fixcontent[5]"
@@ -137,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="px-6 skin004_2-black-text">{{LangUtil("付款流程")}}</div>
+            <div class="px-6 custom_skin-black-text">{{LangUtil("付款流程")}}</div>
             <v-sheet class="payinfo pa-3 mt-2">
                 <span
                     >第一步:根据提供的收款银行卡信息，使用银行卡付款<br />

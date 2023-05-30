@@ -1,0 +1,22 @@
+.rounded_img {
+    border-radius: 0px 0px 10px 10px !important;
+}
+.pad_height {
+    min-height: calc(100vh - 600px);
+}
+.phonebg {
+    background-color: #12294a;
+    min-height: 100vh;
+}
+.sheet-bg {
+    // background-image: linear-gradient(118deg, #1e2d4e 1%, #1c3166) !important;
+}
+.rounded_15 {
+    border-radius: 15px;
+}
+.rotate {
+    transform: rotate(90deg);
+}
+::v-deep  .v-btn-toggle--group > .mobile-btn.v-btn.v-btn{
+    background-color: #03259c !important;
+}

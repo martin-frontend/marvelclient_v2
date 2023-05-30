@@ -1,5 +1,5 @@
 <v-sheet :width="width" color="transparent">
-    <v-menu offset-y nudge-bottom="5">
+    <v-menu offset-y nudge-bottom="5" rounded="lg">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
                 class="d-flex align-center rounded-lg px-3 colorText2--text"
@@ -16,13 +16,13 @@
                     :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]"
                 />
-                <div class="text-truncate" style="width:100%" :class="'text-'+fontSize">
+                <div class="text-truncate skin004_3-white-text" style="width:100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}
                 </div>
                 <v-spacer/>
                 <div
                     v-if="options && Object.keys(options).length > 1"
-                    class="icon-box iconfont ml-4 text-14"
+                    class="icon-box iconfont ml-4 text-14 skin004_3-white-text"
                     :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                 >
                     
@@ -37,7 +37,7 @@
         >
             <div class="d-flex align-center listitem pl-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
-                <div>{{ item.name || item }}</div>
+                <div class="skin004_3-white-text">{{ item.name || item }}</div>
             </div>
         </v-sheet>
     </v-menu>

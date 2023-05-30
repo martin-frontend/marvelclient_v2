@@ -84,19 +84,19 @@
                         @click="onAddress(item)"
                     >
                         <div class="d-flex justify-space-between">
-                            <div class="blue1-text skin004_2-black-text">{{LangUtil("银行")}}</div>
+                            <div class="blue1-text custom_skin-black-text">{{LangUtil("银行")}}</div>
                             <div>{{item.payment_method.bank}}</div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="blue1-text skin004_2-black-text">{{LangUtil("姓名")}}</div>
+                            <div class="blue1-text custom_skin-black-text">{{LangUtil("姓名")}}</div>
                             <div>{{ item.payment_method.account_name }}</div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="blue1-text skin004_2-black-text">{{LangUtil("卡号")}}</div>
+                            <div class="blue1-text custom_skin-black-text">{{LangUtil("卡号")}}</div>
                             <div>{{item.payment_method.account}}</div>
                         </div>
                         <div class="d-flex justify-space-between">
-                            <div class="blue1-text skin004_2-black-text">{{LangUtil("操作")}}</div>
+                            <div class="blue1-text custom_skin-black-text">{{LangUtil("操作")}}</div>
                             <!-- <div>{{ item.remark ?item.remark : '-' }}</div> -->
                             <v-btn color="colorBtnBg1" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
                         </div>

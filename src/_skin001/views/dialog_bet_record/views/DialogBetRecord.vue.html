@@ -127,13 +127,13 @@
 
                     <div>{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
 
-                    <div class="ml-5">
+                    <div class="ml-5 custom_skin-hidden">
                         {{LangUtil("总投注额")}}
                         <span v-if="is_send_coin"> {{pageData.total_bet_gold_coin}} </span>
                         <span v-else> ≈{{pageData.total_bet_gold}} </span>
                     </div>
 
-                    <div class="ml-5">
+                    <div class="ml-5 custom_skin-hidden">
                         {{LangUtil("有效投注")}}
                         <span v-if="is_send_coin"> {{pageData.total_valid_bet_gold_coin}} </span>
                         <span v-else> ≈{{pageData.total_valid_bet_gold}} </span>
@@ -332,7 +332,7 @@
 
                 <div class="colorText2--text text-16 d-flex justify-space-between align-center">
                     <div class="ml-5" min-width="150">{{LangUtil("共计{0}条", pageInfo.pageTotal)}}</div>
-                    <div class="mr-5" min-width="150">
+                    <div class="mr-5 custom_skin-hidden" min-width="150">
                         {{LangUtil("总投注额")}}
                         <span v-if="is_send_coin"> {{pageData.total_bet_gold_coin}} </span>
                         <span v-else> ≈{{pageData.total_bet_gold}} </span>
@@ -348,7 +348,7 @@
                             {{getMoneyValue(pageData.total_win_gold_coin)}}</span
                         >
                     </div>
-                    <div class="mr-5" min-width="150">
+                    <div class="mr-5 custom_skin-hidden" min-width="150">
                         {{LangUtil("有效投注")}}
                         <span v-if="is_send_coin"> {{pageData.total_valid_bet_gold_coin}} </span>
                         <span v-else> ≈{{pageData.total_valid_bet_gold}} </span>
@@ -499,7 +499,7 @@
                             <div class="text-truncate">{{item.settlement_at}}</div>
                         </div>
                         <div class="d-flex justify-end" v-if="item.vendor_id == GameConfig.config.SportVendorId">
-                            <v-btn text class="text-decoration-underline pa-0 font-weight-regular text-14 btn skin004_2-blue-text" @click="handlerDetail(item)">
+                            <v-btn text class="text-decoration-underline pa-0 font-weight-regular text-14 btn custom_skin-blue-text" @click="handlerDetail(item)">
                                 {{LangUtil("查看详情")}}>>
                             </v-btn>
                         </div>

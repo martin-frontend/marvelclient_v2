@@ -102,6 +102,19 @@ const skinMap = {
             },
         },
     },
+    /**CF亚娱2 */
+    skin004_3: {
+        public_dir: "public_skin004_3",
+        pages: {
+            skin004_3: {
+                entry: "src/_skin004_3/main.ts",
+                template: "public_skin004_3/skin004_3.html",
+                filename: "index.html",
+                title: "99娱乐",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**96in */
     skin005: {
         public_dir: "public_skin005",

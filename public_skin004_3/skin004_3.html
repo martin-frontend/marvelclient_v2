@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Cache-control" content="no-cache" />
+        <meta http-equiv="Cache" content="no-cache" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <meta name="robots" content="<%= htmlWebpackPlugin.options.meta.robots %>" />
+        <meta name="AdsBot-Google" content="<%= htmlWebpackPlugin.options.meta.AdsBot_Google %>" />
+        <meta name="googlebot" content="<%= htmlWebpackPlugin.options.meta.googlebot %>" />
+        <meta property="og:title" content="<%= htmlWebpackPlugin.options.meta.og_title %>" />
+        <meta property="og:type" content="<%= htmlWebpackPlugin.options.meta.og_type %>" />
+        <meta property="og:description" content="<%= htmlWebpackPlugin.options.meta.og_description %>" />
+        <meta property="og:url" content="<%= htmlWebpackPlugin.options.meta.og_url %>" />
+        <meta property="og:image" content="<%= htmlWebpackPlugin.options.meta.og_image %>" />
+        <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.meta.twitter_title %>" />
+        <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.meta.twitter_description %>" />
+        <meta name="twitter:image" content="<%= htmlWebpackPlugin.options.meta.twitter_image %>" />
+
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico?<%=process.env.version%>" />
+        <link rel="apple-touch-icon" href="img/app004_3.png?<%=process.env.version%>" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <script src="libs/puremvc/puremvc.min.js"></script>
+        <script src="libs/qrcode/qrcode.min.js"></script>
+        <script src="libs/core/core.min.js?<%=process.env.version%>"></script>
+
+        <% if (process.env.VUE_APP_ENV !== 'production' ) { %>
+        <!-- 测试版本 -->
+        <script>
+            window.onerror = function (msg, url, row, col, error) {
+                var _data = {};
+                _data.msg = msg;
+                _data.url = url;
+                _data.row = row;
+                _data.col = col;
+                _data.error = error;
+
+                alert(msg);
+            };
+        </script>
+        <% } %>
+
+        <script>
+            window.bannerNight = function () {};
+            window.onNightModeChanged = function () {};
+            // window.addEventListener(
+            //     "error",
+            //     (event) => {
+            //         var target = event.target || event.srcElement;
+            //         var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
+            //         if (isCheck) {
+            //             let url = target.src || target.href;
+            //             alert("Loading failed, click retry: " + url);
+            //             location.reload();
+            //         }
+            //     },
+            //     true
+            // );
+        </script>
+    </head>
+
+    <style>
+        html {
+            background-color: #121e36ff;
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #app {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .loading {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .mobile-background-img {
+            display: none;
+        }
+        @media (max-width: 600px) {
+            .mobile-background-img {
+                /* display: block; */
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .loading-img {
+            width: 150px;
+        }
+    </style>
+    <body class="skin004_3">
+        <noscript>
+            <strong
+                >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it
+                to continue.</strong
+            >
+        </noscript>
+        <div id="app">
+            <div class="loading">
+                <img class="mobile-background-img" src="mobile_background.jpg?<%=process.env.version%>" />
+                <img class="loading-img" src="loading001.gif?<%=process.env.version%>"/>
+            </div>
+        </div>
+
+        <!-- built files will be auto injected -->
+    </body>
+</html>

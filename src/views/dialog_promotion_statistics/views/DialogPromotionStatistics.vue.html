@@ -85,16 +85,16 @@
                 <div class="py-2">
                     <v-card color="colorPanelBg2" height="40" class="d-flex align-center rounded-lg">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
-                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
                                 {{ LangUtil("统计类型") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
                                 {{ LangUtil("直属统计") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
                                 {{ LangUtil("团队统计") }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-blue-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
                                 {{ LangUtil("总团队统计") }}
                             </v-col>
                         </v-row>
@@ -102,16 +102,16 @@
 
                     <v-card v-for="{ name, directly, group, all } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
-                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
                                 {{ LangUtil(name) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
                                 {{ transformMoney(directly) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
                                 {{ transformMoney(group) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center skin004_2-black-text">
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
                                 {{ transformMoney(all) }}
                             </v-col>
                         </v-row>

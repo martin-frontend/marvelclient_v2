@@ -55,6 +55,12 @@ export function getVuetify(): Vuetify {
                         colorEmailIcon: "#667798", //used
                         colorSwitchBtn: "#6fa9fa", //used
                         bgBanner: "#16233F",
+                        colorActiveBtn: "#6fa9fa",
+                        colorInactiveBtn: "#25324B",
+                        colorInputPlaceholder: "#4c5d7f",
+                        colorListSelectBg: "#ffffff",
+                        colorListSelectBg1: "#ffffff",
+                        colorPageMineCardBg: "#ffffff",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

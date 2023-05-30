@@ -66,7 +66,7 @@
 
         <!-- 手机显示方式 -->
         <template v-else>
-            <v-card-text class="pb-3 px-0">
+            <v-card-text class="pa-0">
                 <div class="gradient-bg d-flex align-center px-5">
                     <div class="text-18">{{LangUtil("数字货币")}}</div>
                     <v-spacer />
@@ -111,8 +111,22 @@
                     >
                         {{LangUtil("划转")}}
                     </v-btn>
+                    <div class="ml-auto display-none custom_skin-show">
+                        <v-btn
+                            v-if="selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1"
+                            small
+                            class="ml-auto blue-text"
+                            color="colorBtnBg2"
+                            @click="goRecord"
+                        >
+                            <span>{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }} </span>
+                        </v-btn>
+                        <v-btn v-if="pageData.tabIndex == 2" small color="colorText1 colorBlue--text mr-2 " @click="viewDetail">
+                            <span>{{ LangUtil("账目明细") }} </span>
+                        </v-btn>
+                    </div>
                 </div>
-                <div class="ml-6">
+                <div class="ml-6 mb-3 custom_skin-hidden">
                     <!-- <v-btn v-if="(selfProxy.userInfo.is_recharge === 1 || selfProxy.userInfo.is_exchange === 1)&& pageData.tabIndex == 1" small color="colorText1 colorBlue--text mr-2" @click="gowater">
                         <span>{{ LangUtil("流水审核") }} </span>
                     </v-btn> -->

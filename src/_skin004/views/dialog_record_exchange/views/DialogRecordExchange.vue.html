@@ -101,30 +101,30 @@
                     <div class="listitem">
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("订单号")}}</div>
-                            <div class="text-truncate text-decoration-underline cursor-pointer my-0 skin004_2-black-text" @click="onCopy(item.order_no)">
+                            <div class="text-truncate text-decoration-underline cursor-pointer my-0 custom_skin-black-text" @click="onCopy(item.order_no)">
                                 {{item.order_no}}
                             </div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("创建时间")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.created_at}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.created_at}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("链名")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.third_order_info ? item.third_order_info.block_name : "-"}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.third_order_info ? item.third_order_info.block_name : "-"}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("币种")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.coin_name_unique}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.coin_name_unique}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("数量")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.gold}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.gold}}</div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("发送地址")}}</div>
                             <div
-                                class="d-flex justify-end my-0 skin004_2-black-text"
+                                class="d-flex justify-end my-0 custom_skin-black-text"
                                 @click="onCopy(item.third_order_info ? item.third_order_info.from_address : '')"
                             >
                                 <div
@@ -151,19 +151,19 @@
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("状态")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.status}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.status}}</div>
                         </div>
                         <div v-if="item.third_order_info && item.third_order_info.tx_scan_url" class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("查询区块")}}</div>
-                            <div class="d-flex justify-end text-decoration-underline cursor-pointer my-0 skin004_2-blue-text">
-                                <a class="skin004_2-blue-text" :href="item.third_order_info && item.third_order_info.tx_scan_url" target="_blank"
+                            <div class="d-flex justify-end text-decoration-underline cursor-pointer my-0 custom_skin-blue-text">
+                                <a class="custom_skin-blue-text" :href="item.third_order_info && item.third_order_info.tx_scan_url" target="_blank"
                                     >{{LangUtil("点击查询")}}</a
                                 >
                             </div>
                         </div>
                         <div class="d-flex justify-space-between my-0">
                             <div class="my-0">{{LangUtil("备注信息")}}</div>
-                            <div class="d-flex justify-end my-0 skin004_2-black-text">{{item.remark==""?'-':item.remark}}</div>
+                            <div class="d-flex justify-end my-0 custom_skin-black-text">{{item.remark==""?'-':item.remark}}</div>
                         </div>
                     </div>
                 </v-sheet>

@@ -23,7 +23,7 @@ body {
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 0;
-        height: 100vh;
+        height: 104vh;
         width: 100%;
     }
 }
@@ -403,6 +403,10 @@ input[type="number"] {
     display: block;
     margin-top: 0px;
 }
+@media only screen and (orientation: landscape) {
+    .tag_box {
+        min-height: 42px;
+    }
 
 /* select:focus-visible {
     outline: none;

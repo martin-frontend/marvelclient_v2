@@ -15,6 +15,7 @@ import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import "@/_skin004/style/skin004.scss";
 
 LogUtil.init();
 core.init();

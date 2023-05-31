@@ -122,4 +122,5 @@ if (vuetify.framework.breakpoint.xsOnly) {
     vuetify.framework.theme.themes.dark.colorActiveBtn = "#ff9c00";
     vuetify.framework.theme.themes.dark.colorInactiveBtn = "#03259c";
     vuetify.framework.theme.themes.dark.colorInputPlaceholder = "#5f6368";
+    vuetify.framework.theme.themes.dark.colorDialogRegisterBg = "#f7f7f7";
 }

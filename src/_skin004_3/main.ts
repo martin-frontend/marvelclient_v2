@@ -131,4 +131,5 @@ if (vuetify.framework.breakpoint.xsOnly) {
     vuetify.framework.theme.themes.dark.colorTextBlueLight2 = "#ffffff";
     vuetify.framework.theme.themes.dark.colorExtensionBtn = "#3e3f41";
     vuetify.framework.theme.themes.dark.colorPageMineCardBg = "#282727";
+    vuetify.framework.theme.themes.dark.colorDialogRegisterBg = "#202121";
 }

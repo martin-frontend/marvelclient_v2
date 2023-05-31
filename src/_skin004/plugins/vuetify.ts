@@ -61,6 +61,7 @@ export function getVuetify(): Vuetify {
                         colorListSelectBg: "#ffffff",
                         colorListSelectBg1: "#ffffff",
                         colorPageMineCardBg: "#ffffff",
+                        colorDialogRegisterBg: "#ffffff",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

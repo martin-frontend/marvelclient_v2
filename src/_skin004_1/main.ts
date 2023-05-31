@@ -79,3 +79,5 @@ window.onload = function () {
 
 const commonIcon = Assets.commonIcon;
 commonIcon.loading = require(`@/assets/loading001.gif`);
+
+vuetify.framework.theme.themes.dark.colorDialogRegisterBg = "#121E36";

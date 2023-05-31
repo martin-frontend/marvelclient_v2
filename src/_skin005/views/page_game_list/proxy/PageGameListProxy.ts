@@ -9,7 +9,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     public onRegister(): void {
         this.readData();
         this.pageData.loading = true;
-        this.api_plat_var_game_all_config();
+        //this.api_plat_var_game_all_config();
     }
     tableData = <any>{};
     noticeData = <any>{};
@@ -43,8 +43,14 @@ export default class PageGameListProxy extends puremvc.Proxy {
         page_count: 1,
         page_size: 30,
     };
-
+    _isInit = false;
     init() {
+        if (!(this.gameMenuData && this.gameMenuData.length > 1))
+        {
+            console.log("menu 数据为空");
+            return;
+        }
+        this._isInit = true;
         this.getFirstMenuIndex();
         this.getFirstItemVendor();
         const vendor_type = Constant.getVendorByRouter(Vue.router.history.current.path);
@@ -113,6 +119,11 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     api_plat_var_game_all_index() {
+        if (!(this.gameMenuData && this.gameMenuData.length > 1))
+        {
+            console.log("menu 数据为空");
+            return;
+        }
         this.saveData();
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
@@ -130,6 +141,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
             }
             sendobj.vendor_ids = JSON.stringify(vendor_ids);
         }
+        console.warn("发送 列表数据");
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, sendobj);
     }
 

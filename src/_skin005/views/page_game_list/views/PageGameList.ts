@@ -199,6 +199,7 @@ export default class PageGameList extends AbstractView {
             this.listQuery.page_count = 1;
             if (!this.isUseMenuData) {
                 this.myProxy.api_plat_var_game_all_index();
+                this.myProxy.clearData();
             }
 
             if (this.$refs.scrollObj) {
@@ -214,6 +215,7 @@ export default class PageGameList extends AbstractView {
         this.listQuery.page_count = 1;
         this.myProxy.getCurItemIndex();
         this.myProxy.api_plat_var_game_all_index();
+        this.myProxy.clearData();
     }
 
     getMore() {

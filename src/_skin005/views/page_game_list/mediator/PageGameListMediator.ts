@@ -7,12 +7,15 @@ export default class PageGameListMediator extends AbstractMediator {
     public onRegister(): void {
         PanelUtil.showAppLoading(false);
         const myProxy: PageGameListProxy = getProxy(PageGameListProxy);
-        if (myProxy.config.loaded) {
-            if (myProxy.pageData.pageInfo.pageCurrent < 2) myProxy.api_plat_var_game_all_index();
-        } else {
-            myProxy.api_plat_var_game_all_config();
-        }
+        // if (myProxy.config.loaded) {
+        //     if (myProxy.pageData.pageInfo.pageCurrent < 2) myProxy.api_plat_var_game_all_index();
+        // } else {
+        //     myProxy.api_plat_var_game_all_config();
+        // }
         //myProxy.api_plat_var_game_menu();
+        if (!myProxy._isInit) {
+            myProxy.init();
+        }
     }
 
     onRemove() {

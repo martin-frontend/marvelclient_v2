@@ -27,7 +27,7 @@ function show(category?: number, vendor_id?: number) {
     proxy.getCurItemIndex();
     proxy.getCurMenuIndex();
 
-    proxy.clearData();
+    //proxy.clearData();
     const path = Constant.getRouterPathByVendor(proxy.listQuery.vendor_type);
     if (path) {
         //@ts-ignore

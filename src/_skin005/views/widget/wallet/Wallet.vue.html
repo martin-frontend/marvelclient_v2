@@ -9,7 +9,7 @@
                     :min-width=" $mobile ? 0 : 206"
                     height="36"
                 >
-                    <v-sheet color="transparent" class="align-center d-flex" @click="ontestclick" width="100%">
+                    <v-sheet color="transparent" class="align-center d-flex" @click="onClickRecharge" width="100%">
                         <v-img
                             :src="GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique] && GamePlatConfig.config.plat_coins[gameProxy.coin_name_unique].icon"
                             :max-width="$mobile ? '20' : '24'"
@@ -19,7 +19,7 @@
                             >{{ amountFormat(selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money ,true)}}</span
                         >
                         <v-spacer />
-                        <div v-if="isShowRecharge" class=" font-weight-bold text-16 textYellow--text" @click="ontestclick">{{LangUtil("首页充值兑换")}}</div>
+                        <div v-if="isShowRecharge" class=" font-weight-bold text-16 textYellow--text" @click="onClickRecharge">{{LangUtil("首页充值兑换")}}</div>
                     </v-sheet>
 
                     <!-- <v-spacer /> -->

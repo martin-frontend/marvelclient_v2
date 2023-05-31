@@ -75,4 +75,8 @@ export default class Wallet extends AbstractView {
     get isNeedRate(): boolean {
         return GlobalVar.skin != "skin005";
     }
+    ontestclick() {
+        //console.log("跳转充值");
+        PanelUtil.openpage_recharge();
+    }
 }

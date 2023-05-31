@@ -25,7 +25,12 @@
                 <v-col cols="6">
                     <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                     <v-sheet color="transparent" width="100%" class="d-flex input_pc">
-                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"></CustomInput>
+                        <CustomInput
+                            :placeholder="LangUtil('输入金额')"
+                            v-model="form.amount"
+                            :isEnterGold="true"
+                            @blur="onBlurInput_Amount()"
+                        ></CustomInput>
 
                         <btn-yellow class="text-16 ml-2 font-weight-bold" min_width="72" height="36" @click.native="addInputMoney(100)"
                             >{{LangUtil("+100")}}</btn-yellow
@@ -35,6 +40,7 @@
                             >{{LangUtil("+500")}}</btn-yellow
                         >
                     </v-sheet>
+                    <v-sheet class="text-12 red--text error_tip" color="transparent"> {{amount_error_info}} </v-sheet>
                 </v-col>
             </v-row>
         </v-card>
@@ -143,7 +149,8 @@
         <v-card flat color="transparent" class="mt-4">
             <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
             <v-sheet color="transparent" width="100%" class="d-flex">
-                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true" @blur="onBlurInput_Amount()">
+                </CustomInput>
 
                 <btn-yellow class="text-14 ml-2" min_width="72" height="36" @click.native="addInputMoney(100)">
                     <span class="bold_text">{{LangUtil("+100")}}</span>
@@ -153,6 +160,7 @@
                     ><span class="bold_text">{{LangUtil("+500")}}</span></btn-yellow
                 >
             </v-sheet>
+            <v-sheet class="text-12 red--text" color="transparent"> {{amount_error_info}} </v-sheet>
         </v-card>
 
         <v-sheet v-if="curSelectItem" color="transparent" class="mt-2">
@@ -162,6 +170,7 @@
 
         <v-card flat color="transparent" class="mt-4">
             <div class="text-14 primary--text mb-2 font-weight-bold">{{LangUtil("选择付款方式")}}</div>
+            
             <v-card flat class="d-flex flex-column" color="transparent">
                 <v-sheet
                     v-for="(item, key) of curShowChannel"

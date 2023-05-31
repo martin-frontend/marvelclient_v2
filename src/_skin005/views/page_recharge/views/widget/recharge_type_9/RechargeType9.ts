@@ -15,8 +15,9 @@ export default class RechargeType9 extends AbstractView {
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
     mounted() {}
-
+    amount_error_info = ""; // 金额的报错信息
     get isChecked(): boolean {
+        return true;
         const { amount } = this.form;
         if (!amount || !amount.trim()) {
             //PanelUtil.message_alert(LangUtil("充值金额不能为空"));
@@ -28,30 +29,34 @@ export default class RechargeType9 extends AbstractView {
             //PanelUtil.message_alert(LangUtil("充值金额不正确"));
             return false;
         }
-        if (this.showRequires && this.showRequires.length > 0) {
-            for (let index = 0; index < this.showRequires.length; index++) {
-                const str = this.onBlurInput(this.showRequires[index]);
-                if (str && str.errorinfo) {
-                    //PanelUtil.message_info(str.title + str.errorinfo);
-                    return false;
-                }
-            }
-        }
+        // if (this.showRequires && this.showRequires.length > 0) {
+        //     for (let index = 0; index < this.showRequires.length; index++) {
+        //         const str = this.onBlurInput(this.showRequires[index]);
+        //         if (str && str.errorinfo) {
+        //             PanelUtil.message_info(str.title + str.errorinfo);
+        //             return false;
+        //         }
+        //     }
+        // }
         return true;
     }
+
+    selectValue_mob = "";
     // 创建充值订单
     onSumbit() {
         if (!this.form.amount || !this.form.amount.trim()) {
-            PanelUtil.message_alert(LangUtil("充值金额不能为空"));
+            this.amount_error_info = LangUtil("充值金额不能为空");
+            PanelUtil.message_info(this.amount_error_info);
             return;
         }
         const amount_num = parseFloat(this.form.amount);
 
         if (amount_num <= 0) {
-            PanelUtil.message_alert(LangUtil("充值金额不正确"));
+            this.amount_error_info = LangUtil("充值金额不正确");
+            PanelUtil.message_info(this.amount_error_info);
             return;
         }
-
+        this.amount_error_info = "";
         //检查 是否 符合要求
         if (this.showRequires && this.showRequires.length > 0) {
             //console.log(" 必须的数据" ,this.showRequires);
@@ -70,6 +75,14 @@ export default class RechargeType9 extends AbstractView {
         }
         this.myProxy.rechargeProxy.api_user_var_recharge_create(this.showRequires);
     }
+
+    onBlurInput_Amount() {
+        if (!this.form.amount || !this.form.amount.trim()) {
+            this.amount_error_info = LangUtil("不能为空");
+        } else {
+            this.amount_error_info = "";
+        }
+    }
     onBlurInput(item: any): inputErrorObj {
         console.log("失去焦点的 输入为", item);
         const errorInfo: inputErrorObj = {
@@ -84,6 +97,7 @@ export default class RechargeType9 extends AbstractView {
             const curBoxTitle = LangUtil("pay_" + this.curSelectItem.subtitle + "_" + item.title);
             errorInfo.title = curBoxTitle;
             errorInfo.errorinfo = LangUtil("不能为空");
+            item.errinfo = errorInfo.errorinfo;
             return errorInfo;
         }
         const errstr: inputErrorObj = {
@@ -126,6 +140,7 @@ export default class RechargeType9 extends AbstractView {
 
         nub += data;
         this.form.amount = nub + "";
+        this.amount_error_info = "";
     }
     @Watch("curSelectItem")
     onChangeCurSelectItem() {

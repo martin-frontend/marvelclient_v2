@@ -91,3 +91,30 @@
 .box-pc {
     margin-right: 160px;
 }
+
+.blink_class {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0% {
+        color: #fe5d00;
+    }
+    50% {
+        color: transparent;
+    }
+    100% {
+        color: #fe5d00;
+    }
+}
+
+// .blink_class{
+//     background: linear-gradient(90deg, rgb(58, 180, 70) 0%, rgb(29, 204, 253) 33.3%, rgba(252,176,69,1) 66.6%, rgba(58, 180, 70,1) 100%);
+//     -webkit-background-clip: blink_class; /*截取背景区域为文字*/
+//     color: transparent;
+//     background-size: 300% 100%; /*扩大背景区域*/
+//     animation: blink_class 2s infinite linear;
+// }
+// @keyframes blink_class{
+//     0%  { background-position: 0 0;}
+//     100% { background-position: -150% 0;}
+// }

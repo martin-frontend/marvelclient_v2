@@ -35,15 +35,22 @@ export default class APP extends AbstractView {
         this.onResize();
     }
 
+    last_mobile_type = false;
     onResize() {
-        const isM = !!isMobile();
-        // PanelUtil.message_alert(navigator.userAgent);
-        if (isM) {
-            window.$mobile = Vue.prototype.$mobile = this.$vuetify.breakpoint.mobile;
-        } else {
-            window.$mobile = Vue.prototype.$mobile = false;
-        }
-        window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
+        // const isM = !!isMobile();
+        // // PanelUtil.message_alert(navigator.userAgent);
+        // if (isM) {
+        //     window.$mobile = Vue.prototype.$mobile = this.$vuetify.breakpoint.mobile;
+        // } else {
+        //     window.$mobile = Vue.prototype.$mobile = false;
+        // }
+        // window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
+
+        window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.xsOnly ;
+        window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile;
+
+        this.last_mobile_type =  window.$mobile;
+        console.log("---上一次名字---",this.last_mobile_type);
     }
 
     mounted() {
@@ -107,6 +114,25 @@ export default class APP extends AbstractView {
                     this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
                 }
             }
+            console.log("---this.$vuetify.breakpoint.mobile",this.$vuetify.breakpoint.mobile);
+            if(this.last_mobile_type != this.$vuetify.breakpoint.mobile)
+            {
+                this.last_mobile_type = this.$vuetify.breakpoint.mobile;
+                window.location.reload();
+            }
+
+            // if (this.$vuetify.breakpoint.width > 1280)
+            // {
+            //     console.log("需要显示 pc版 ");
+            //     console.log("---上一次名字---",this.last_mobile_type);
+            // }
+            // else
+            // {
+            //     console.log("切换 手机版");
+            //     console.log("---上一次名字---",this.last_mobile_type);
+            //     console.log("---上一次名字---",window.$mobile);
+
+            // }
         });
     }
     get isShowHeader() {

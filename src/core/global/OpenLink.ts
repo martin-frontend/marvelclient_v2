@@ -5,8 +5,9 @@ export default function OpenLink(url: string) {
         WebViewBridge.getInstance().openStstemBrowser(url);
     } else {
         try {
-            const winHandler: any = window.open("", "_blank");
-            winHandler.location.href = url;
+            // const winHandler: any = window.open("", "_blank");
+            // winHandler.location.href = url;
+            window.open(url, "_blank");
         } catch (e) {
             const a = document.createElement("a"); //创建a标签
             a.setAttribute("href", url);

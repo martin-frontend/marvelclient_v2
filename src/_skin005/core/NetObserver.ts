@@ -375,6 +375,9 @@ export default class NetObserver extends AbstractMediator {
                 PanelUtil.message_confirm({
                     message: msg,
                     okFun: () => {
+                        if (GlobalVar.skin == "skin020") {
+                            PanelUtil.showAppLoading(true);
+                        }
                         OpenLink(body.url);
                     },
                 });

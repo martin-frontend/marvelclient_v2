@@ -42,6 +42,8 @@ import { createSimpleTransition } from "vuetify/lib/components/transitions/creat
 Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
+SkinVariable.isLobbyGameTop = true;
+//SkinVariable.isShowFootDetail = false;
 SkinVariable.isNeedDownloadBtn = false;
 SkinVariable.isFootballTop = false;
 //SkinVariable.loadingType = "006";

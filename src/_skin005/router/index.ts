@@ -217,7 +217,7 @@ export function getRouter(): VueRouter {
                 if (
                     !core.user_id &&
                     (to.path.includes("page_recharge") ||
-                        to.path.includes("page_game_play") ||
+        
                         to.path.includes("page_my_info") ||
                         to.path.includes("page_statistice_credit"))
                 ) {

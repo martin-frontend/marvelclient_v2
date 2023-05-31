@@ -44,7 +44,16 @@
             };
         </script>
         <% } %>
+        <% if (process.env.VUE_APP_ENV =='production' ) { %>
 
+        <!-- This site is converting visitors into subscribers and customers with https://respond.io -->
+        <script
+            id="respondio__widget"
+            src="https://cdn.respond.io/webchat/widget/widget.js?cId=6d0afca01fadb9177161ea589077ab66934be0d7ecfb3c9102cba92a5e88bde6"
+        ></script>
+        <!-- https://respond.io -->
+
+        <% } %>
         <script>
             window.bannerNight = function () {};
             window.onNightModeChanged = function () {};

@@ -70,7 +70,7 @@ export default class SelfProxy extends AbstractProxy {
     setUserInfo(value: any) {
         Object.assign(this.userInfo, value);
         core.user_id = <any>this.userInfo.user_id;
-
+        //this.deleteCoin();
         if (value.gold_info) {
             const gameProxy: GameProxy = getProxy(GameProxy);
             //const coin = this.defaultCoin(gameProxy.coin_name_unique);
@@ -88,9 +88,7 @@ export default class SelfProxy extends AbstractProxy {
     defaultCoin(coin: string): string {
         const { plat_coins } = GamePlatConfig.config;
 
-        if (plat_coins[coin]?.is_display == 1) {
-            return coin;
-        }
+        if (GamePlatConfig.isShowCoin(coin)) return coin;
 
         //使用 默认的 或者是 金额对多的 将币种排序
         const list = this.userInfo.gold_info;
@@ -103,25 +101,17 @@ export default class SelfProxy extends AbstractProxy {
             const bSumMoney = parseFloat(list[b].sum_money);
             return bSumMoney - aSumMoney;
         });
-        // .reduce((obj, key) => {
-        //      //@ts-ignore
-        //     obj[key] = list[key];
-        //     return obj;
-        // }, {});
 
         //console.log("排序之后的结果", sortedList);
-
         for (let index = 0; index < sortedList.length; index++) {
             const element = sortedList[index];
-            if (plat_coins[element] && plat_coins[element].is_display == 1) {
-                return element;
-            }
+            if (GamePlatConfig.isShowCoin(element)) return element;
         }
 
         const coinKeys = Object.keys(plat_coins);
         let result = "";
         for (const iterator of coinKeys) {
-            if (plat_coins[iterator].is_display == 1) {
+            if (plat_coins[iterator] && plat_coins[iterator].is_display == 1) {
                 return (result = iterator);
             }
         }

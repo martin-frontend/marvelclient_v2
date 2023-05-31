@@ -7,6 +7,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import OpenLink from "@/core/global/OpenLink";
 import MyCanvas from "@/core/ui/MyCanvas";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class RechargeTypeCommon extends AbstractView {
@@ -21,6 +22,7 @@ export default class RechargeTypeCommon extends AbstractView {
     mounted() {
         //this.onChange1("");
         this.reSetRequir();
+        this.myProxy.rechargeProxy.api_user_var_recharge_address();
     }
     onChange1(value: any) {
         const { methodList } = this.pageData;
@@ -345,6 +347,25 @@ export default class RechargeTypeCommon extends AbstractView {
 
         if (options && options.gift_amount_list && options.gift_amount_list.length > 0) {
             return options.gift_amount_list[idx];
+        }
+        return "";
+    }
+    get isNeedCoinShow() {
+        return GlobalVar.skin != "skin020";
+    }
+    get coinSelectLength() {
+        if (this.isNeedCoinShow) {
+            return 12;
+        } else {
+            return 6;
+        }
+    }
+    get goldScaleText() {
+        const obj = this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id];
+        console.log("数据为", this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id]);
+        if (obj.exchange_coin_scale) {
+            const sss = `1 ${obj.coin_name_unique_ori} = ${obj.exchange_coin_scale} ${obj.coin_name_unique_target}`;
+            return LangUtil("当前汇率:") + sss;
         }
         return "";
     }

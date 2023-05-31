@@ -26,6 +26,7 @@ export default class GamePlatConfig {
         validate_type: [],
         is_show_commission: { is_open: 1 },
         is_user_manual_refund: { is_open: 0 },
+        plat_display_coins: <any>{},
     };
     /**枚举 */
     static enums: {
@@ -37,6 +38,29 @@ export default class GamePlatConfig {
         this.enums = data.enum;
         delete data.enum;
         Object.assign(this.config, data);
+        //将隐藏的币种从中去掉
+        if (this.config.plat_coins) {
+            const newObj = <any>{};
+            const keys = Object.keys(this.config.plat_coins);
+            for (let index = 0; index < keys.length; index++) {
+                if (this.config.plat_coins[keys[index]] && this.config.plat_coins[keys[index]].is_display == 1) {
+                    newObj[keys[index]] = this.config.plat_coins[keys[index]];
+                }
+            }
+            this.config.plat_display_coins = JSON.parse(JSON.stringify(newObj));
+            //console.log("修改之后 的币种数据为",this.config.plat_coins);
+        }
+    }
+    /**
+     * 查看当前币种是否显示
+     * @param coinname
+     */
+    static isShowCoin(coinname: string): boolean {
+        if (!coinname) return false;
+        if (this.config.plat_coins && this.config.plat_coins[coinname] && this.config.plat_coins[coinname].is_display == 1) {
+            return true;
+        }
+        return false;
     }
     /**主币 */
     static getMainCoin() {

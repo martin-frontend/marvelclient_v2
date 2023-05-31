@@ -1,5 +1,5 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import { convert_vi_to_en } from "@/core/global/Functions";
+import { convert_vi_to_en, objectRemoveNull } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -140,7 +140,7 @@ export class RechargeProxy extends puremvc.Proxy {
             this.pageData.loading = true;
             const formCopy = { user_id: core.user_id };
             Object.assign(formCopy, this.pageData.form);
-            this.sendNotification(net.HttpType.api_user_var_recharge_address, formCopy);
+            this.sendNotification(net.HttpType.api_user_var_recharge_address, objectRemoveNull(formCopy) );
         }
         this.pageData.address = "";
         this.pageData.qrcode = "";

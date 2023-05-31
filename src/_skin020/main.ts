@@ -42,8 +42,8 @@ import { createSimpleTransition } from "vuetify/lib/components/transitions/creat
 Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
-
-//SkinVariable.isShowFootDetail = false;
+SkinVariable.isNeedDownloadBtn = false;
+SkinVariable.isFootballTop = false;
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
@@ -104,7 +104,7 @@ window["vueInit"] = () => {
         render: (h) => h(App),
     }).$mount("#app");
 
-    const Whisper_client_id: string = "EJpX-56Pou5psx11Uxo1ZQ"; //这个跟 web得 不一样
+    const Whisper_client_id: string = "avuaz2GpcqzP4DL1YiSosg"; //这个跟 web得 不一样
     const Whisper_redirect_uri: string = "https://all.testjj9.com/coinfans/skin020/redirect.html";
 
     // 检测是否再 whisper 钱包内打开应用 用这个来判断
@@ -168,7 +168,7 @@ window.onload = function () {
 Vue.vuetify.framework.theme.dark = true;
 
 function onWhisperLogin(code: any, type: number = 1) {
-    PanelUtil.message_info("code:" + code);
+    //PanelUtil.message_info("code:" + code);
     if (code) {
         window.localStorage.removeItem("code");
         puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_third_login, {

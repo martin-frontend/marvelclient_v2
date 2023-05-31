@@ -132,6 +132,7 @@ import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "./SkinVariable";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
+import GlobalVar from "@/core/global/GlobalVar";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -262,8 +263,8 @@ export default class PanelUtil {
             PanelUtil.getProxy_gameproxy.go_soccer(data);
         } else {
             // LoginEnter(() => {
-                PanelUtil.showAppLoading(true);
-                PanelUtil.getProxy_gameproxy.go_soccer(data);
+            PanelUtil.showAppLoading(true);
+            PanelUtil.getProxy_gameproxy.go_soccer(data);
             // });
         }
     }
@@ -348,6 +349,7 @@ export default class PanelUtil {
     */
     //打开登录窗口
     static openpanel_login(options: any = null) {
+        if (!GlobalVar.instance.isShowLogin) return;
         MultDialogManager.onOpenPanel(dialog_login);
         dialog_login.show();
     }
@@ -1247,6 +1249,12 @@ export default class PanelUtil {
                     key: "opencasino_cards_games",
                     fun: () => {
                         PanelUtil.openpanel_gamelist(2);
+                    },
+                },
+                {
+                    key: "showNovigation",
+                    fun: () => {
+                        PanelUtil.showNovigation(true);
                     },
                 },
             ];

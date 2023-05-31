@@ -32,7 +32,7 @@
         <!-- 用户面板 -->
         <template v-if="$mobile">
             <v-navigation-drawer
-                v-if="isShowHeader"
+            
                 v-model="myProxy.bshowNovigationPanel"
                 left
                 temporary
@@ -90,7 +90,7 @@
         ></div>
 
         <!-- 添加到桌面引导 -->
-        <v-sheet class="btn-guide" color="transparent" v-if="isShowGuide">
+        <v-sheet class="btn-guide" color="transparent" v-if="isShowGuide && SkinVariable.isNeedDownloadBtn">
             <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9" @click.native="onGuide">{{
                 myProxy.guideText
             }}</btn-yellow>

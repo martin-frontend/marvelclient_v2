@@ -12,6 +12,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "@/_skin005/views/header/HeaderProxy";
+import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class Header extends AbstractView {
@@ -23,6 +24,7 @@ export default class Header extends AbstractView {
     red_dot_tips = this.selfProxy.red_dot_tips;
     GlobalVar = GlobalVar;
     GameConfig = GameConfig;
+    head_game_config = GameConfig.config.head_game_config;
     ModulesHelper = ModulesHelper;
     //当前路由
     routerPath = this.$router.app.$route.path;
@@ -153,6 +155,32 @@ export default class Header extends AbstractView {
     public get isShowRecharge(): boolean {
         return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
     }
+    onHeadgameClick(item: any) {
+        console.log("收到点击", item);
+
+        //如果是打开跳转连接
+        if (item.url && item.url.trim()) {
+            OpenLink(item.url);
+            return;
+        }
+        //需要跳转打开网页
+        if (item.page && item.page.trim()) {
+            PanelUtil.actionByName(item.page);
+            return;
+        }
+        // const newItem = JSON.parse(JSON.stringify(item));
+        // if (newItem.ori_vendor_extend) {
+        //     newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
+        // }
+        item.visitor_allowed = 1;
+        PanelUtil.openpage_soccer(item);
+    }
+    isSearchGameShow = true;
+    onchangeGameSearch(val: boolean) {
+        console.log(" 搜索页面 是否显示", val);
+        this.isSearchGameShow = !val;
+    }
+    
     /**连接钱包 */
     onConnect() {
         if (this.$vuetify.breakpoint.mobile) {

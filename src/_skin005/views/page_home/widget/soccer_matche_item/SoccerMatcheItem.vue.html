@@ -15,6 +15,7 @@
                 <v-spacer v-if="states.match_phase == '-'" />
                 <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="13" height="13" />
                 <div v-if="states.corners_ft" class="primary--text">{{states.corners_ft}}</div>
+                <v-spacer v-if="states.corners_ft" />
                 <v-sheet color="transparent" width="154px" class="d-flex fixTestParent">
                     <div class="primary--text mx-4 left_item">{{LangUtil("让球")}}</div>
                     <div class="primary--text right_item">{{LangUtil("大小")}}</div>

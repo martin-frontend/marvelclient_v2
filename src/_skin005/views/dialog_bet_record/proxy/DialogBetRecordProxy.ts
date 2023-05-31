@@ -127,7 +127,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             return Constant.TIME_TYPE;
         },
         moneyOptions: () => {
-            const moneyKeys = Object.keys(GamePlatConfig.config.plat_coins);
+            const moneyKeys = Object.keys(GamePlatConfig.config.plat_display_coins);
             const options: any = { 0: LangUtil("全部币种") };
             for (let index = 0; index < moneyKeys.length; index++) {
                 options[moneyKeys[index]] = moneyKeys[index];

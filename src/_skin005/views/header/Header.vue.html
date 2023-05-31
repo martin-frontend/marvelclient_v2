@@ -23,19 +23,21 @@
                     <span class="text-14"> {{LangUtil("首页")}} </span>
                 </v-btn>
                 <template v-if="head_game_config && head_game_config.length >0">
-                    <v-btn
-                        v-for="(item, index) of head_game_config"
-                        :key="index"
-                        text
-                        class="mr-6"
-                        height="36"
-                        :ripple="false"
-                        min-width="30"
-                        :disabled="myProxy.pagetab == index+1"
-                        @click="onHeadgameClick(item)"
-                    >
-                        <span class="text-14"> {{LangUtil(item['title'])}} </span>
-                    </v-btn>
+                    <template v-for="(item, index) of head_game_config">
+                        <v-btn
+                            v-if="!(item.is_only_mob && item.is_only_mob == 1)"
+                            :key="index"
+                            text
+                            class="mr-6"
+                            height="36"
+                            :ripple="false"
+                            min-width="30"
+                            :disabled="myProxy.pagetab == index+1"
+                            @click="onHeadgameClick(item)"
+                        >
+                            <span class="text-14"> {{LangUtil(item['title'])}} </span>
+                        </v-btn>
+                    </template>
                 </template>
                 <template v-else>
                     <v-btn

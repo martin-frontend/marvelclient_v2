@@ -39,7 +39,7 @@ export default class DialogWalletProxy extends puremvc.Proxy {
                 return Constant.TIME_TYPE;
             },
             coinOptions: () => {
-                const keys = Object.keys(GamePlatConfig.config.plat_coins);
+                const keys = Object.keys(GamePlatConfig.config.plat_display_coins);
                 keys.unshift(LangUtil("全部币种"));
                 return keys;
             },

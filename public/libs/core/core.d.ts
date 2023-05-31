@@ -2768,6 +2768,8 @@ declare module core {
         };
         /**支持的币种 */
         plat_coins: any;
+        /** 显示的币种 */
+        plat_display_coins: any;
         /**语言 */
         language: any;
         /**主语言 */

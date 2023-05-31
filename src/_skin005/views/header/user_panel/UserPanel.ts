@@ -7,16 +7,16 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Assets from "@/_skin005/assets/Assets";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import { List } from "echarts";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
-
+    GlobalVar = GlobalVar;
     get menuList() {
         const list = [
             { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
-            { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
             { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
             { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
             { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
@@ -27,7 +27,11 @@ export default class UserPanel extends AbstractView {
             list.splice(4, 0, obj);
         }
         //list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
-
+        if (!ModulesHelper.IsShow_HideSafeCenter())
+        {
+            const obj = { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" };
+            list.splice(1,0,obj);
+        }
         return list;
     }
 

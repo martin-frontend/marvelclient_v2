@@ -7,31 +7,33 @@
         </v-sheet>
         <!-- <v-divider class="mb-2 " /> -->
         <v-sheet class="listbox" color="transparent" min-height="400">
-            <v-sheet
-                class="d-flex align-center justify-space-between rounded-lg mx-5 px-1 mb-3 regular_text"
-                height="48"
-                outlined
-                v-for="(item, key) of pageData.gold_info"
-                :key="key"
-                style="background-color: transparent !important"
-            >
-                <v-sheet class="d-flex align-center justify-center textGray--text font-weight-bold" color="transparent" width="150">
-                    <v-img :src="plat_coins[key].icon" max-width="25" height="25"></v-img>
-                    <div class="ml-2">{{key}}</div>
+            <template v-for="(item, key) of pageData.gold_info">
+                <v-sheet
+                    v-if="GamePlatConfig.isShowCoin(key)"
+                    class="d-flex align-center justify-space-between rounded-lg mx-5 px-1 mb-3 regular_text"
+                    height="48"
+                    outlined
+                    :key="key"
+                    style="background-color: transparent !important"
+                >
+                    <v-sheet class="d-flex align-center justify-center textGray--text font-weight-bold" color="transparent" width="150">
+                        <v-img :src="plat_coins[key].icon" max-width="25" height="25"></v-img>
+                        <div class="ml-2">{{key}}</div>
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="150"
+                        >{{amountFormat(item.plat_money)}}</v-sheet
+                    >
+                    <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="150"
+                        >{{amountFormat(item.vendors_money)}}</v-sheet
+                    >
                 </v-sheet>
-                <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="150"
-                    >{{amountFormat(item.plat_money)}}</v-sheet
-                >
-                <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent" width="150"
-                    >{{amountFormat(item.vendors_money)}}</v-sheet
-                >
-            </v-sheet>
+            </template>
         </v-sheet>
     </v-sheet>
     <!-- 手机版本 -->
     <div v-else>
         <div v-for="(item, key) of pageData.gold_info" :key="key">
-            <v-sheet color="bgBanner" width="95.5%" class="mb-2 mx-auto rounded-lg pa-4 text-14">
+            <v-sheet v-if="GamePlatConfig.isShowCoin(key)" color="bgBanner" width="95.5%" class="mb-2 mx-auto rounded-lg pa-4 text-14">
                 <div class="d-flex justify-space-between align-center">
                     <div class="leftText--text">{{LangUtil("币种")}}</div>
                     <div class="d-flex align-center">

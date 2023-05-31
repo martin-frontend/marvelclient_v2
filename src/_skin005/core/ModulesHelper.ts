@@ -128,6 +128,24 @@ function IsShow_HideRegisterInvite() {
 }
 
 /**
+ * 是否显示 真实姓名
+ */
+function IsShow_HideRealName() {
+    return _isValueTrue("HideRealName", false);
+}
+/**
+ * 是否显示 安全中心
+ */
+function IsShow_HideSafeCenter() {
+    return _isValueTrue("HideSafeCenter", false);
+}
+/**
+ * 是否显示 安全中心
+ */
+function IsShow_HideEmail() {
+    return _isValueTrue("HideEmail", false);
+}
+/**
  * 是否显示 google设置验证
  */
 function IsShow_GoogleVerification() {
@@ -223,4 +241,7 @@ export default {
     RebateDisplayType,
     RebateListType,
     isShow_SearchGame,
+    IsShow_HideRealName,
+    IsShow_HideSafeCenter,
+    IsShow_HideEmail,
 };

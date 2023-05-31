@@ -9,6 +9,7 @@ import DialogWalletProxy from "../../proxy/DialogWalletProxy";
 @Component
 export default class TabMyAssets extends AbstractView {
     LangUtil = LangUtil;
+    GamePlatConfig = GamePlatConfig;
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
     plat_coins = GamePlatConfig.config.plat_coins;

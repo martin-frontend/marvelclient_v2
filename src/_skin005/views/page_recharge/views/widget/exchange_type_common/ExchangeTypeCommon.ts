@@ -7,6 +7,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_bankcard_info from "@/_skin004/views/dialog_bankcard_info";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class ExchangeTypeCommon extends AbstractView {
@@ -19,7 +20,7 @@ export default class ExchangeTypeCommon extends AbstractView {
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
-    enable_exemption_amount = GameConfig.config.enable_exemption_amount;
+    enable_exemption_amount = GameConfig.config.enable_exemption_amount || false;
 
     // pix_key_select = 0;
 
@@ -340,5 +341,19 @@ export default class ExchangeTypeCommon extends AbstractView {
 
     get progressValue() {
         return Math.min((this.transformMoney_sum_money(this.exemption_amount, false) / this.sum_money) * 100, 100);
+    }
+    get isNeedCoinShow() {
+        return GlobalVar.skin != "skin020";
+    }
+    get goldScaleText() {
+        const obj = this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id];
+        console.log("数据为", this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id]);
+        if (obj.exchange_coin_scale) {
+            //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
+            const sss = `1 ${obj.coin_name_unique_ori} = ${1/obj.exchange_coin_scale} ${obj.coin_name_unique_target}`;
+
+            return LangUtil("当前汇率:") + sss;
+        }
+        return "";
     }
 }

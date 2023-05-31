@@ -55,7 +55,7 @@ export default class PageMyInfo extends AbstractView {
             12: { id: 12, name: LangUtil("我的返水"), icon: "water" },
         };
         newlist.push(list[0]);
-        newlist.push(list[1]);
+        if (!ModulesHelper.IsShow_HideSafeCenter()) newlist.push(list[1]);
         newlist.push(list[2]);
         newlist.push(list[3]);
         newlist.push(list[4]);

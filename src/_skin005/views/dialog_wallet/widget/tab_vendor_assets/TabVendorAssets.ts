@@ -13,7 +13,7 @@ export default class TabVendorAssets extends AbstractView {
     myProxy: DialogWalletProxy = getProxy(DialogWalletProxy);
     pageData = this.myProxy.pageData;
 
-    plat_coins = GamePlatConfig.config.plat_coins;
+    plat_coins = GamePlatConfig.config.plat_display_coins;
     commonIcon = Assets.commonIcon;
     amountFormat(nub: any, isb = true) {
         return amountFormat(nub, isb);

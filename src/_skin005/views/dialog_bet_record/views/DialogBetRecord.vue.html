@@ -15,7 +15,8 @@
 
         <v-divider class="mb-2" />
         <v-sheet class="px-5 pb-1" ref="options" color="transparent">
-            <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text" v-if="pageData.bShowOptions">
+            <!-- <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text" v-if="pageData.bShowOptions"> -->
+                <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text" >
                 <CustomSelect
                     class="mr-2"
                     v-model="listOptions.moneySelect"
@@ -79,9 +80,9 @@
                     >{{LangUtil("层级筛选")}}</btn-yellow
                 >
 
-                <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center primary--text ml-2">
-                    <span> {{LangUtil("结算时间 {0} 至 {1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}} </span>
-                    <span class="ml-2"> (GMT8) </span>
+                <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center primary--text ">
+                    <span>{{LangUtil("结算时间 {0} 至 {1}",getDate(pageData.listQuery.start_date,false),getDate(pageData.listQuery.end_date,false))}} </span>
+                    <!-- <span class="ml-2"> (GMT8) </span> -->
                 </div>
             </div>
 
@@ -451,15 +452,15 @@
             :finished="pageData.finished"
             :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
             class="px-2"
-            :_class=" pageData.bShowOptions ? (isOtherUser ?'listbox-mobile_other' : 'listbox-mobile' ): 'listbox-mobile-nooptions' "
+            _class="listbox-mobile-nooptions "
         >
             <template v-slot:top>
                 <v-sheet class="pb-2" color="bgColor">
                     <com-dialog-title :title="pageData.bShowIsMine? '我的投注' : '投注记录'" :isSetChange="$mobile" @onClose="onClose" />
 
                     <div v-if="pageData.bShowTimeText" class="textGray--text text-14 mx-5 mt-2">
-                        <div class="text-14">{{LangUtil("结算时间")}} <span class="ml-2"> (GMT8)</span></div>
-                        <div class="text-14">{{LangUtil("{0}至{1}",pageData.listQuery.start_date,pageData.listQuery.end_date)}}</div>
+                        <div class="text-14">{{LangUtil("结算时间")}}</div>
+                        <div class="text-14">{{LangUtil("{0}至{1}",getDate(pageData.listQuery.start_date,false),getDate(pageData.listQuery.end_date,false))}}</div>
                     </div>
                     <div class="textGray--text text-14 mx-5 d-flex">
                         <div v-if="pageData.bShowMoneyType" class="mr-2">
@@ -500,7 +501,7 @@
                         :start.sync="timeRange[0]"
                         :end.sync="timeRange[1]"
                     ></CustomMobileDatePicker>
-                    <v-sheet v-if="pageData.bShowOptions" class="px-2 mt-2" width="100%" color="transparent">
+                    <v-sheet class="px-2 mt-2" width="100%" color="transparent">
                         <v-sheet color="transparent" width="100%">
                             <v-row dense>
                                 <v-col cols="4">

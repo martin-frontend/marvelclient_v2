@@ -677,7 +677,9 @@ export function changeDateShow(str: string, ischangeData: boolean = true): strin
     if (str.length < 8) {
         return str;
     }
-    let newstr = Timezone.Instance.convertTime_to_Locale(str);
+    let newstr = str;
+    if (ischangeData)
+        newstr = Timezone.Instance.convertTime_to_Locale(str);
     newstr = newstr.substring(5, newstr.length - 3);
 
     // const re = /(\w+)\s(\w+)/;

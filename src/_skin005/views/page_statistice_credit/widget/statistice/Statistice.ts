@@ -43,7 +43,7 @@ export default class Statistice extends AbstractView {
             {
                 text: LangUtil("最近一个月"),
                 onClick(picker: any) {
-                    const start = getTodayOffset(-30);
+                    const start = getTodayOffset(-29);
                     const end = getTodayOffset(1, 1);
                     picker.$emit("pick", [start, end]);
                 },
@@ -51,7 +51,7 @@ export default class Statistice extends AbstractView {
             {
                 text: LangUtil("最近两个月"),
                 onClick(picker: any) {
-                    const start = getTodayOffset(-60);
+                    const start = getTodayOffset(-59);
                     const end = getTodayOffset(1, 1);
                     picker.$emit("pick", [start, end]);
                 },
@@ -193,9 +193,9 @@ export default class Statistice extends AbstractView {
         };
         PanelUtil.openpanel_bet_record(user_id, this.timeRange[0], this.timeRange[1], false, {
             coin_name_unique: this.myProxy.coin_name_unique,
-            bShowMoneyType: true,
+            bShowMoneyType: false,
             bShowUserId: true,
-            bShowTimeText: true,
+            bShowTimeText: false,
             bShowOptions: false,
             filterBtnInfo: filterInfo,
         });

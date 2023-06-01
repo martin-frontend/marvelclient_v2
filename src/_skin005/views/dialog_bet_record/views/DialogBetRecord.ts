@@ -381,8 +381,8 @@ export default class DialogBetRecord extends AbstractView {
         //console.log("打开筛选 页面");
         PanelUtil.openpanel_bet_filter();
     }
-    getDate(str: string) {
-        return changeDateShow(str);
+    getDate(str: string,isChange:boolean = true) {
+        return changeDateShow(str,isChange);
     }
     /**板球价钱标题 */
     getCricketPriceTitle(item: any) {

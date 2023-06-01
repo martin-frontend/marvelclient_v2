@@ -284,6 +284,11 @@ module.exports = {
         }
 
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
+        config.module
+            .rule("svga")
+            .test(/\.svga$/)
+            .use("svga-loader")
+            .loader("svga-loader");
     },
     configureWebpack: {
         plugins: getCopyDir(),

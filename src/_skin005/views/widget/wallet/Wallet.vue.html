@@ -1,5 +1,5 @@
 <v-sheet color="wallet_bg" :height="$mobile?30:36" class="rounded10 d-flex align-center box" :class="walletMaxwidth" width="100%">
-    <v-menu v-if="!$mobile" :content-class="content_class" offset-y nudge-bottom="2">
+    <v-menu v-if="!$mobile && SkinVariable.isWallet_Recharge" :content-class="content_class" offset-y nudge-bottom="2">
         <template v-slot:activator="{ on, attrs,value }">
             <v-sheet color="transparent" class="" width="100%">
                 <v-sheet

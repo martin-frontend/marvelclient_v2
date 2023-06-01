@@ -48,6 +48,7 @@ SkinVariable.isUsedDialogRecharge = true;
 SkinVariable.isForeShowRecharge = true;
 SkinVariable.isCustomizeFooter = false;
 SkinVariable.isShowMobileFooter = false;
+SkinVariable.isWallet_Recharge = false;
 LogUtil.init();
 core.init();
 //@ts-ignore

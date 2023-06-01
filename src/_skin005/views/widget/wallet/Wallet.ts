@@ -15,6 +15,7 @@ export default class Wallet extends AbstractView {
     amountFormat = amountFormat;
     selfProxy = PanelUtil.getProxy_selfproxy;
     gameProxy = PanelUtil.getProxy_gameproxy;
+    SkinVariable = SkinVariable;
     GlobalVar = GlobalVar;
     GamePlatConfig = GamePlatConfig;
 

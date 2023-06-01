@@ -40,4 +40,6 @@ export default class SkinVariable {
     public static mail_get_gift_config = false;
     /**是否需要下载按钮 */
     public static isNeedDownloadBtn = true;
+    /**是否需要下载按钮 */
+    public static isWallet_Recharge = true;
 }

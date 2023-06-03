@@ -4,6 +4,7 @@ import SkinVariable from "./SkinVariable";
 import { AFInAppEventType } from "./enum/AFInAppEventType";
 import dialog_empty_iframe from "../views/dialog_empty_iframe";
 import GameConfig from "@/core/config/GameConfig";
+import CoinTransformHelper from "./CoinTransformHelper";
 
 export class TrackData {
     private static _instance: TrackData;
@@ -54,6 +55,34 @@ function gmt(eventName: string, data: any) {
         //@ts-ignore
         const dataLayer = window.dataLayer || [];
         dataLayer.push(Object.assign({ event: eventName }, data));
+        /**针对GTM的内置的事件 */
+        switch (eventName) {
+            case TrackEventMap.loginSuccess: //登录成功
+                dataLayer.push(Object.assign({ event: "login" }, data));
+                break;
+            case TrackEventMap.RegistrationSuccess: //注册成功
+                dataLayer.push(Object.assign({ event: "sign_up" }, data));
+                break;
+            case TrackEventMap.repeatDepositSuccess: //充值成功
+            case TrackEventMap.FTDDepositSuccess: //充值成功
+                {
+                    data.value = data.amount_usd;
+                    data.currency = "USD";
+                    data.transaction_id = data.bet_id;
+                    dataLayer.push(Object.assign({ event: "purchase" }, data));
+                }
+                break;
+            case TrackEventMap.withdrawalSuccess: //提现成功
+                {
+                    data.value = data.amount_usd;
+                    data.currency = "USD";
+                    data.transaction_id = data.bet_id;
+                    dataLayer.push(Object.assign({ event: "refund" }, data));
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
 /**fackbook pixel */
@@ -154,6 +183,13 @@ export const TrackEventMap = {
 };
 
 export function track(eventName: string, data: any = {}, type: string = "normal") {
+
+    data.amount = data.gold || 0;
+    if (data.amount) {
+        data.amount_usd = Number(
+            CoinTransformHelper.TransformMoney(data.amount, 4, "USDT", data.coin_name_unique, false, false, false, false)
+        );
+    }
     if (process.env.VUE_APP_ENV == "production") {
         if (core.user_id) Object.assign(data, { user_id: core.user_id });
         gmt(eventName, data);

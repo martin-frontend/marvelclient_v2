@@ -73,7 +73,7 @@
             </v-btn>
         </template>
         <template v-if="$xsOnly">
-            <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop" class="btn-service" icon @click="onService">
+            <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter" class="btn-service" icon @click="onService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon icon="service"></svg-icon>
                 </btn-yellow>

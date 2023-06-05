@@ -315,7 +315,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         formCopy.start_date = Timezone.Instance.convertTime_to_Beijing(formCopy.start_date);
         formCopy.end_date = Timezone.Instance.convertTime_to_Beijing(formCopy.end_date);
         //只显示已结算状态。
-        if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
+        //if (!this.pageData.bShowOptions) formCopy.settlement_status = 11;
         this.sendNotification(net.HttpType.api_user_var_agent_var_bet, objectRemoveNull(formCopy, [undefined, null, "", 0, "0"]));
     }
     /**取消订单 */

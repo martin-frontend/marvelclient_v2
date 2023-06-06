@@ -57,7 +57,7 @@
         <!-- <UserPanel /> -->
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
-        <Orientation v-if="!isScreenV && !Constant.isIncludeGameRouter($route.path)" />
+        <!-- <Orientation v-if="!isScreenV && !Constant.isIncludeGameRouter($route.path)"/> -->
         <template v-if="!$mobile">
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">

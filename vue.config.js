@@ -239,6 +239,8 @@ const skinMap = {
     },
 };
 
+const threadLoader = require("thread-loader");
+threadLoader.warmup({}, ["vue-loader", "eslint-loader"]);
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { js_utils } = require("custer-js-utils");
 const path = require("path");
@@ -258,6 +260,9 @@ module.exports = {
             args[0]["process.env"].version = `"${js_utils.dateFormat(new Date(), "yyyy-MM-dd hh:mm")}"`;
             return args;
         });
+        config.module.rule("eslint").use("thread-loader").loader("thread-loader").before("eslint-loader");
+        config.module.rule("vue").use("thread-loader").loader("thread-loader").before("vue-loader");
+
         // svg rule loader
         const svgRule = config.module.rule("svg"); // 找到svg-loader
         svgRule.uses.clear(); // 清除已有的loader, 如果不这样做会添加在此loader之后

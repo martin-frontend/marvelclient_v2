@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
-import { getRouter } from "@/_skin005/router";
+import { getRouter, routes } from "@/_skin005/router";
 import "@/_skin005/style/_vars.css";
 import "@/_skin005/style/common.scss";
 import AppFacade from "@/_skin005/AppFacade";
@@ -37,6 +37,7 @@ import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "@/_skin005/views/header/Header.vue";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
+import GameConfig from "@/core/config/GameConfig";
 Assets.commonIcon.loading_img = "loding_icon_10.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin010/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin010/assets/logo_m.png`);
@@ -86,6 +87,7 @@ const vuetify = getVuetify();
 Vue.vuetify = vuetify;
 //@ts-ignore
 window["vueInit"] = () => {
+    addRouter();
     const router = getRouter();
     Vue.router = router;
     //@ts-ignore
@@ -124,3 +126,32 @@ setInterval(() => {
         Assets.commonIcon.loading_img = (!isDark ? "loding_icon_10.png" : "loding_icon_10_light.png") ;
     }
 }, 100);
+
+function addRouter() {
+    if (!GameConfig.config.head_game_config) {
+        GameConfig.config.head_game_config = <any>[];
+    }
+    const pageConfig = GameConfig.config.head_game_config;
+    if (!pageConfig || pageConfig.length < 1) {
+        return;
+    }
+    console.log("动态添加  路由进去 ");
+    for (let index = 0; index < pageConfig.length; index++) {
+        const element = pageConfig[index];
+        if (!element.router_name || !element.router_name.trim()) continue;
+
+        //查找 该 对象路由是否已经添加，
+        const isHave = routes.some((ele: any, index: any, arr: any) => {
+            return ele.path == "/" + element.router_name;
+        });
+        if (!isHave) {
+            const obj = {
+                path: "/" + element.router_name,
+                name: "PageGameSoccer_" + element.router_name,
+                component: () =>
+                    import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+            };
+            routes.push(obj);
+        }
+    }
+}

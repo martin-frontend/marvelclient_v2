@@ -191,7 +191,7 @@ const skinMap = {
     skin010: {
         public_dir: "public_skin010",
         pages: {
-            skin009: {
+            skin010: {
                 entry: "src/_skin010/main.ts",
                 template: "public_skin010/skin010.html",
                 filename: "index.html",

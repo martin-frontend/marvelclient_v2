@@ -4,7 +4,7 @@
         <div :class="$vuetify.breakpoint.mobile?'text-14 colorTextBlack1--text':''">{{LangUtil("近期爆奖")}}</div>
     </div>
     <v-sheet
-        :color="$vuetify.breakpoint.mobile? 'colorListSelectBg' :'#192B4E'"
+        :color="$vuetify.breakpoint.mobile? 'colorListSelectBg' :'colorListSelectBg2'"
         rounded
         :height="$vuetify.breakpoint.mobile?30:60"
         class="mb-2 d-flex align-center text-center"
@@ -23,7 +23,7 @@
     <v-sheet class="listbox" color="transparent" :max-height="$vuetify.breakpoint.mobile?372:672">
         <div ref="listbox">
             <v-sheet
-                :color="$vuetify.breakpoint.mobile? 'colorListSelectBg1' :'#192B4E'"
+                :color="$vuetify.breakpoint.mobile? 'colorListSelectBg1' :'colorListSelectBg2'"
                 rounded
                 :height="$vuetify.breakpoint.mobile?120:230"
                 class="mb-2 d-flex align-center"

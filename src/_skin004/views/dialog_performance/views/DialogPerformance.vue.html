@@ -37,7 +37,7 @@
                 </div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
-                <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mb-2 pl-6 pr-4 py-3 rounded-lg" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap justify-space-between listitem">
                         <div class="item-110">
                             <div>{{LangUtil("时间")}}</div>

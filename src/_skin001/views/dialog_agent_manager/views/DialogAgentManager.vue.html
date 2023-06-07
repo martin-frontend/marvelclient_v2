@@ -101,7 +101,7 @@
                     ></v-checkbox>
                 </v-sheet>
 
-                <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38" color="#16233F">
+                <v-sheet class="d-flex align-center justify-space-around rounded-pill px-1 text-14" height="38" color="colorPanelBg2">
                     <v-sheet class="d-flex justify-center colorBlue1--text" color="transparent" min-width="115">
                         {{LangUtil("注册时间")}}</v-sheet
                     >
@@ -135,7 +135,7 @@
                 <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
                     <v-sheet
                         class="d-flex align-center justify-space-around rounded-lg px-1 mt-2 text-14"
-                        color="#16233F"
+                        color="colorPanelBg2"
                         v-for="(item, key) in pageData.list"
                         :key="key"
                     >
@@ -343,7 +343,7 @@
                     <ListNodata v-if="pageData.list.length == 0" />
                     <v-sheet
                         class="px-3 py-2 rounded-lg my-3 colorBlue--text"
-                        color="#16233F"
+                        color="colorPanelBg2"
                         v-for="(item, key) of pageData.list"
                         :key="key"
                     >

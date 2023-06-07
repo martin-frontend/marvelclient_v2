@@ -5,7 +5,7 @@ import OpenLink from "@/core/global/OpenLink";
 import dialog_contract from "@/views/dialog_contract";
 import dialog_service from "@/views/dialog_service";
 import { Prop, Watch, Component } from "vue-property-decorator";
-import dialog_official_mail from "@/_skin001/views/dialog_official_mail";
+import dialog_official_mail from "@/_skin004/views/dialog_official_mail";
 
 @Component
 export default class Footer extends AbstractView {

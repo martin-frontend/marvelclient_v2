@@ -77,7 +77,7 @@
             <v-slide-group ref="slidegroup" class="mt-0" show-arrows center-active v-model="myProxy.curItemIndex">
                 <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
                     <v-card
-                        :color="isCurItem(item) ? '#4D5C78' : '#1D2A43'"
+                        :color="isCurItem(item) ? '#feba00' : '#2f3030'"
                         class="rounded-lg mr-2"
                         @click="toggle"
                         width="180"
@@ -184,7 +184,7 @@
                 elevation="0"
                 plain
                 :height="$vuetify.breakpoint.mobile?22.5:30"
-                :color="$vuetify.breakpoint.mobile?'#213FA7':'transparent '"
+                :color="$vuetify.breakpoint.mobile?'#213FA7':'transparent'"
                 @click="showGameSearch"
             >
                 <v-icon v-if="!$vuetify.breakpoint.mobile" color="color_text_1">mdi-search-web</v-icon>

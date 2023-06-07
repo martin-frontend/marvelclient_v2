@@ -17,7 +17,7 @@
             <div class="icon-box iconfont" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"></div>
         </v-sheet>
     </template>
-    <v-sheet :color="$vuetify.breakpoint.mobile ? '#fff':'#24314a'" :class="$vuetify.breakpoint.mobile?'':'listbox'">
+    <v-sheet :color="$vuetify.breakpoint.mobile ? '#fff':'colorPanelBg5'" :class="$vuetify.breakpoint.mobile?'':'listbox'">
         <template v-for="(item, key) of getOrders()">
             <div
                 class="d-flex align-center cursor-pointer"

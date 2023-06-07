@@ -1,5 +1,5 @@
 <template src="./PageExtension.vue.html" lang="html"></template>
-<style src="@/_skin004/views/page_extension/views/PageExtension.vue.scss" lang="scss" scoped></style>
+<style src="./PageExtension.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";

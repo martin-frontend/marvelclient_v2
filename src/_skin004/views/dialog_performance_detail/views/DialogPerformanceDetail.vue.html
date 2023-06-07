@@ -45,8 +45,8 @@
                         <!-- <span class="mr-1" v-for="(val, key) of pageData.statistics_data.total_commission">{{ key }}: {{val}}</span> -->
                     </div>
                 </div>
-                <v-sheet v-if="pageData.list.length>0" color="#121E36" class="listbox">
-                    <v-sheet class="mb-3 px-6 py-3 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet v-if="pageData.list.length>0" color="colorPanelBg" class="listbox">
+                    <v-sheet class="mb-3 px-6 py-3 rounded-lg" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
                         <div class="d-flex justify-space-between listitem">
                             <v-sheet class="item-auto" width="100%" color="transparent">
                                 <div>{{LangUtil("业绩类型")}}</div>
@@ -89,7 +89,7 @@
                 </v-sheet>
                 <ListNodata v-if="pageData.list.length == 0" height="411" />
             </div>
-            <v-sheet v-if="listQuery.cate == 1" color="#121E36" class="listbox scroll-y">
+            <v-sheet v-if="listQuery.cate == 1" color="colorPanelBg" class="listbox scroll-y">
                 <template v-for="(item, idx) in pageData.directList">
                     <div class="colorText1--text text-16 ml-3 mb-2 d-flex flex-wrap align-center listinfo-detail" :key="'u' + idx">
                         <div class="d-flex align-center">
@@ -104,7 +104,7 @@
                     </div>
                     <v-sheet
                         class="mb-2 px-6 py-2 rounded-lg"
-                        color="#16233F"
+                        color="bgBanner"
                         v-for="(val, name) in item.water_info"
                         :key="'s' + name + idx"
                     >

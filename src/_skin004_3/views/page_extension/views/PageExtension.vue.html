@@ -48,6 +48,7 @@
                         class="rounded-xl rounded-card horizontal-gradient-left down text-body-1 mb-lg-0 px-4 px-sm-6 py-4 py-sm-6"
                         :height="selfProxy.userInfo.is_credit_user == 98 ? '' : '100%'"
                     >
+                        <v-img class="custom-img" width="315" src="@/_skin004_3/assets/extension/commission.png"></v-img>
                         <v-row no-gutters class="d-flex flex-row mb-4 mb-sm-2" v-if="selfProxy.userInfo.is_credit_user == 98">
                             <v-col class="d-flex justify-end align-center">
                                 <span class="text-caption text-sm-subtitle-1 colorText3--text"> {{LangUtil("今日预计佣金")}}</span>
@@ -154,7 +155,7 @@
                                                 height="20"
                                                 min-width="32"
                                                 class="text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1"
-                                                color="colorText4"
+                                                color="colorTextBlue2"
                                                 v-if="myProxy.pageData.btnBind"
                                                 @click="handlerBind"
                                             >
@@ -171,7 +172,7 @@
                                             height="20"
                                             min-width="32"
                                             class="ml-2 text-decoration-underline pa-0 text-body-2 text-sm-subtitle-1 font-weight-bold"
-                                            color="colorText4"
+                                            color="colorTextBlue2"
                                             @click="handlerViewCard"
                                         >
                                             {{LangUtil("查看上级名片")}}
@@ -341,7 +342,7 @@
                         min-width="240"
                         class="d-flex justify-center align-center text-caption text-sm-body-1 colorText5--text"
                     >
-                        {{LangUtil("返佣额度(每万)")}}
+                        {{LangUtil("每万返佣")}}
                         <!-- <v-img class="ml-1" src="@/assets/icon/cm.png" max-width="22" max-height="22"></v-img> -->
                     </v-sheet>
 
@@ -836,8 +837,8 @@
                             min-height="30"
                             class="d-flex justify-center align-center text-caption text-sm-body-1 colorTextBlack1--text"
                         >
-                            {{LangUtil("返佣额度(每万)")}}
-                            <v-img class="ml-1" src="@/assets/icon/cm.png" max-width="15" max-height="15"></v-img>
+                            {{LangUtil("每万返佣")}}
+                            <!-- <v-img class="ml-1" src="@/assets/icon/cm.png" max-width="15" max-height="15"></v-img> -->
                         </v-sheet>
                     </v-col>
 

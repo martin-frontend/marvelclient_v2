@@ -11,7 +11,7 @@
         <v-card-text class="px-5" v-if="!$vuetify.breakpoint.xsOnly">
             <v-divider />
             <v-sheet v-if="pageData.list.length>0 && !$vuetify.breakpoint.xsOnly" color="transparent" height="368" class="scroll-y">
-                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mt-5 px-7 py-2 rounded-lg my-3" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex flex-wrap listitem">
                         <div class="min-width-150">
                             <div>{{LangUtil("订单号")}}</div>

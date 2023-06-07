@@ -31,7 +31,7 @@
                     <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
                         <v-btn
                             class="rounded-lg"
-                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn3'"
                             min-width="61"
                             height="30"
                             @click="search"
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
-                <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="mb-2 px-7 py-4 rounded-lg" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
                     <div class="d-flex">
                         <v-sheet
                             class="listitem d-flex justify-center flex-column"
@@ -214,7 +214,7 @@
                     <CustomInput height="41" :placeholder="LangUtil('输入查询ID')" v-model="pageData.search">
                         <v-btn
                             class="rounded-lg"
-                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            :color="pageData.buttonActive ? 'colorBtnBg' : 'colorExtensionBtn3'"
                             min-width="61"
                             height="30"
                             @click="search"

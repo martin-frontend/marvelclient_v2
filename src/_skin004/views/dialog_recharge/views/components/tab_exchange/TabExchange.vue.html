@@ -67,7 +67,7 @@
     <div v-if="form.payment_method_type==6">
         <template v-if="!$vuetify.breakpoint.xsOnly">
             <div class="colorText1--text mt-3">{{LangUtil("您的银行卡")}}</div>
-            <v-sheet color="transparent" height="50" width="100%" class="mt-1 mb-4 d-flex align-center bank_box rounded-lg" outlined>
+            <v-sheet color="transparent" height="50" width="100%" id="bank_box" class="mt-1 mb-4 d-flex align-center bank_box rounded-lg" outlined>
                 <v-autocomplete
                     v-model="myProxy.exchangeProxy.curBankinfo"
                     :items="bank_list"
@@ -117,7 +117,7 @@
                         </v-list-item-group>
                     </v-list>
                 </v-sheet>
-                <v-btn color="colorText1 colorBlue--text d-flex justify-end" x-small height="30" class="mr-2" @click="onBankcardInfo">
+                <v-btn color="colorBtnBg1 colorBlue--text d-flex justify-end" x-small height="30" class="mr-2" @click="onBankcardInfo">
                     {{LangUtil("银行卡信息")}}
                 </v-btn>
             </v-sheet>

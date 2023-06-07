@@ -1,0 +1,74 @@
+.horizontal-gradient-left {
+    background-image: linear-gradient(to right, #3a3a3a, #282827);
+    position: relative;
+    .custom-img {
+        position: absolute;
+    }
+}
+.horizontal-gradient-right {
+    background: linear-gradient(to right, #3a3a3a, #282827);
+}
+.level_title {
+    background-image: linear-gradient(to right, #3a3a3a, #282827);
+}
+.level_col {
+    position: relative;
+    .level_icon {
+        position: absolute;
+        left: -24px;
+        @media (max-width: 1263px) {
+            left: -20px;
+            top: 4px;
+        }
+        // @media (max-width: 600px) {
+        //     left: 3px;
+        //     top: 2px;
+        //     max-width: 15px;
+        // }
+    }
+}
+// .mobile-commission-background {
+//     background-image: url("~@/_skin001/assets/extension/commission.png");
+//     background-size: auto 90%;
+// }
+
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    width: 180px;
+    height: 180px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 100px;
+        height: 100px;
+    }
+}
+.rounded-card {
+    @media (max-width: 600px) {
+        border-radius: 10px !important;
+    }
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}
+.commission {
+    @media (max-width: 600px) {
+        max-width: 85px !important;
+    }
+}
+.cursor {
+    cursor: pointer;
+}
+.rotate {
+    transform: rotate(90deg);
+}
+.text-gray {
+    color: #646464;
+}

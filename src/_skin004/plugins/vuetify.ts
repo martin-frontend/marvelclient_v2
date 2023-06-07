@@ -38,6 +38,7 @@ export function getVuetify(): Vuetify {
                         colorBtnBg2: "#4c5d7f", //used
                         colorSelectBg: "#2C3D5C", //used
                         colorExtensionBtn: "#37619A", //used
+                        colorExtensionBtn3: "#37619A", //used
                         colorBonusBtn: "#6EAAFA", //used
                         colorReceive: "#5E2E2E", //used
                         colorBlue2Bg: "#121E36", //used
@@ -60,7 +61,9 @@ export function getVuetify(): Vuetify {
                         colorInputPlaceholder: "#4c5d7f",
                         colorListSelectBg: "#ffffff",
                         colorListSelectBg1: "#ffffff",
+                        colorListSelectBg2: "#192B4E",
                         colorPageMineCardBg: "#ffffff",
+                        colorFooterBg: "#131e36",
                         colorDialogRegisterBg: "#ffffff",
 
                         colorText1: "#4c5d7f",

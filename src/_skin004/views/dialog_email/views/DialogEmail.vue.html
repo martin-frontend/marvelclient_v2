@@ -5,7 +5,7 @@
             <div class="text-18">{{LangUtil("消息中心")}}</div>
             <v-spacer />
             <div class="mr-5" @click="goMail">
-                <v-icon class="mr-1" color="#667798">mdi-email</v-icon>
+                <v-icon class="mr-1" color="colorEmailIcon">mdi-email</v-icon>
                 <span class="colorText1--text cursor-pointer">{{LangUtil("官方邮箱")}}</span>
             </div>
             <v-btn icon @click="onClose">
@@ -59,7 +59,7 @@
             </div>
 
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
-                <v-sheet class="px-4 py-3 rounded-lg mb-3 d-flex" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="px-4 py-3 rounded-lg mb-3 d-flex" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
                     <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                     <div class="ml-4" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">

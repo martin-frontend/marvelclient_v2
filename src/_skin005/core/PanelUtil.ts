@@ -132,6 +132,7 @@ import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "./SkinVariable";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
+import dialog_daily_sign from "../views/dialog_daily_sign";
 import GlobalVar from "@/core/global/GlobalVar";
 
 export default class PanelUtil {
@@ -151,17 +152,24 @@ export default class PanelUtil {
     static getThemeDark() {
         if (!this._isSetThem) {
             this._isSetThem = true;
-            //获取设备当前时间
-            const timenow_hour = new Date().getHours();
-            //白天
-            if (timenow_hour > 5 && timenow_hour < 18) {
-                Vue.vuetify.framework.theme.dark = false;
-            } else {
-                Vue.vuetify.framework.theme.dark = true;
+            if (SkinVariable.autoTheme) {
+                //获取设备当前时间
+                const timenow_hour = new Date().getHours();
+                //白天
+                if (timenow_hour > 5 && timenow_hour < 18) {
+                    Vue.vuetify.framework.theme.dark = false;
+                } else {
+                    Vue.vuetify.framework.theme.dark = true;
+                }
             }
-            console.log("---设置 黑夜半天", Vue.vuetify.framework.theme.dark);
         }
         return Vue.vuetify.framework.theme.dark;
+    }
+    static setThemeDark(isDark: boolean = true) {
+        if (!this._isSetThem) {
+            this._isSetThem = true;
+        }
+        Vue.vuetify.framework.theme.dark = isDark;
     }
     /**
      * 常规页面的打开，一般是路由
@@ -745,6 +753,14 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_timezone);
         dialog_timezone.show();
     }
+    /**打开 每日签到界面 */
+    static openpanel_dailysign() {
+        LoginEnter(() => {
+            MultDialogManager.onOpenPanel(dialog_daily_sign);
+            PanelUtil.showNovigation(false);
+            dialog_daily_sign.show();
+        });
+    }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {
         return getProxy(DialogPerformanceDetailProxy);
@@ -1249,6 +1265,12 @@ export default class PanelUtil {
                     key: "opencasino_cards_games",
                     fun: () => {
                         PanelUtil.openpanel_gamelist(2);
+                    },
+                },
+                {
+                    key: "openpanel_dailysign",
+                    fun: () => {
+                        PanelUtil.openpanel_dailysign();
                     },
                 },
                 {

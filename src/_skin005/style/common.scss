@@ -34,6 +34,9 @@
     }
     .canntSelect {
         user-select: none;
+        -webkit-user-select: none; /* 兼容性：Chrome、Safari、Opera */
+        -moz-user-select: none; /* 兼容性：Firefox */
+        -ms-user-select: none; /* 兼容性：Internet Explorer、Edge */
     }
     .v-pagination {
         li {

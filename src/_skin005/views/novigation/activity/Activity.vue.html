@@ -1,0 +1,15 @@
+<v-sheet color="transparent" class="d-flex justify-center" width="100%">
+    <div class="pt-2 px-2 panel-content">
+        <v-sheet
+            v-for="item of options"
+            :key="item.name"
+            height="40px"
+            class="mb-2 px-2 primary--text rounded d-flex align-center cursor-pointer item-hover"
+            :class="list[item.id].color+'-bg'"
+            @click="goCategory(item)"
+        >
+            <v-img :src="list[item.id].img_src" class="mr-4" height="30" max-width="30"></v-img>
+            <span style="min-width: 56px" v-if="!mini"> {{LangUtil(item.name)}} </span>
+        </v-sheet>
+    </div>
+</v-sheet>

@@ -40,3 +40,17 @@ $nov_width: 188px;
     text-align: center;
     font-weight: 500;
 }
+.arrow {
+    transform: rotate(90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(-90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::v-deep .v-expansion-panel-content__wrap {
+    padding: 0;
+}

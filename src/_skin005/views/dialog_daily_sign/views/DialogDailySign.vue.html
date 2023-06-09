@@ -1,0 +1,122 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width=" 610"
+    v-model="pageData.bShow"
+    :fullscreen="$xsOnly"
+    :retain-focus="false"
+    persistent
+>
+    <v-card v-if="!$xsOnly" class="rounded10 px-2" color="transparent">
+        <!-- <div class="div_bg"></div> -->
+        <v-img v-if="!$xsOnly" :src="bg_icon_path" max-width="580" class="main_bg"> </v-img>
+        <v-img v-else :src="bg_icon_path" max-width="260" class="main_bg"> </v-img>
+
+        <v-card flat color="transparent" class="py-2 px-2">
+            <!-- 标题 -->
+            <v-sheet
+                color="transparent"
+                class="d-flex justify-center align-center font-weight-bold"
+                :class="$xsOnly ? 'title_margin_mob': 'title_margin' "
+            >
+                <!-- <div class="gradient_title_shadow_2 mt-2 ml-1 canntSelect">{{LangUtil("每日签到")}}</div> -->
+                <div class="gradient_title_shadow mt-1 canntSelect">{{LangUtil("每日签到")}}</div>
+                <div class="gradient_title canntSelect">{{LangUtil("每日签到")}}</div>
+            </v-sheet>
+            <!-- 副标题 -->
+            <v-sheet color="transparent" class="daily_mini_title--text mt-2" :class="$xsOnly ? 'text-14' : 'text-24'">
+                <div style="text-align: center" v-html="miniTitle"></div>
+            </v-sheet>
+
+            <!-- 下面的内容 -->
+            <v-card flat color="transparent" class="d-flex flex-wrap py-4 align-center justify-center" height="440">
+                <template
+                    v-if="myProxy.daily_data.rules && myProxy.daily_data.rules.length>0"
+                    v-for="(item, key) of myProxy.daily_data.rules"
+                >
+                    <DailyItem
+                        v-if="item"
+                        :key="item.rule_num"
+                        :item="item"
+                        class="mx-1 my-1"
+                        width="130"
+                        height="170"
+                        :isToday="todayData.rule_num == item.rule_num"
+                    />
+                </template>
+            </v-card>
+
+            <!-- 底部的按钮以及信息 -->
+            <v-sheet color="transparent" width="100%" class="d-flex px-4">
+                <btn-yellow class="text-16" width="100%" height="60" @click.native="onGetBones" :disabled="isTodaySign"
+                    >{{LangUtil("立即签到")}}</btn-yellow
+                >
+            </v-sheet>
+            <v-sheet color="transparent" width="100%" class="mt-2" style="text-align: center">
+                {{LangUtil("本周已签到第{0}天",isSignedDays)}}
+            </v-sheet>
+        </v-card>
+
+        <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-4 py-2">
+            <v-btn class="mr-2" icon @click="onClose">
+                <svg-icon icon="close_circle" class="text-40 white--text"></svg-icon>
+            </v-btn>
+        </v-sheet>
+    </v-card>
+    
+    <v-card v-else flat ref="mob_node" color="transparent" class="d-flex justify-center align-center">
+        <v-card flat class="rounded10 px-2 d-flex flex-column align-center" color="transparent" width="375">
+            <v-img :src="bg_icon_path" width="350" class="main_bg_mob"> </v-img>
+
+            <v-card flat color="transparent" class="py-2 px-2 item_main_node" width="360">
+                <!-- 标题 -->
+                <v-sheet
+                    color="transparent"
+                    class="d-flex justify-center align-center font-weight-bold title_margin_mob  "
+                >
+                    <div class="gradient_title_shadow_2 mt-2 ml-1 canntSelect ">{{LangUtil("每日签到")}}</div>
+                    <div class="gradient_title_shadow mt-1 canntSelect ">{{LangUtil("每日签到")}}</div>
+                    <div class="gradient_title canntSelect ">{{LangUtil("每日签到")}}</div>
+                </v-sheet>
+                <!-- 副标题 -->
+                <v-sheet color="transparent" class="daily_mini_title--text mt-2" :class="$xsOnly ? 'text-14' : 'text-24'">
+                    <div style="text-align: center" v-html="miniTitle"></div>
+                </v-sheet>
+
+                <!-- 下面的内容 -->
+                <v-card flat color="transparent" class="d-flex flex-wrap py-4 align-center justify-center item_main_node" height="250">
+                    <template
+                        v-if="myProxy.daily_data.rules && myProxy.daily_data.rules.length>0"
+                        v-for="(item, key) of myProxy.daily_data.rules"
+                    >
+                        <DailyItem
+                            v-if="item"
+                            :key="item.rule_num"
+                            :item="item"
+                            class="mx-1 my-1"
+                            width="75"
+                            height="91.2"
+                            :isToday="todayData.rule_num == item.rule_num"
+                        />
+                    </template>
+                </v-card>
+
+                <!-- 底部的按钮以及信息 -->
+                <v-sheet color="transparent" width="100%" class="d-flex px-4">
+                    <btn-yellow class="text-16" width="100%" height="44" @click.native="onGetBones" :disabled="isTodaySign"
+                        >{{LangUtil("立即签到")}}</btn-yellow
+                    >
+                </v-sheet>
+                <v-sheet color="transparent" width="100%" class="mt-2" style="text-align: center">
+                    {{LangUtil("本周已签到第{0}天",isSignedDays)}}
+                </v-sheet>
+            </v-card>
+
+            <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-2 py-2">
+                <v-btn class="mr-2" icon @click="onClose">
+                    <svg-icon icon="close_circle" class="text-40 daily_close_btn--text"></svg-icon>
+                </v-btn>
+            </v-sheet>
+        </v-card>
+    </v-card>
+
+</v-dialog>

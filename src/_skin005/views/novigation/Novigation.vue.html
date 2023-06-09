@@ -27,7 +27,6 @@
 
         <v-sheet color="transparent" id="category_page" class="d-flex flex-column main_list overflow-y-auto">
             <v-menu
-    
                 right
                 offset-x
                 v-for="(item, index) of lobbyMenuIndex"
@@ -86,13 +85,13 @@
                     <div
                         class="d-flex align-center box text-14"
                         :class="{ 
-                            'navTextHover--text active' : (hover || routerPath.includes(item.path)),
-                            'navIcon--text' : !(hover || routerPath.includes(item.path)),
+                            'navTextHover--text active' : (hover || isShowActive_menu(item) ),
+                            'navIcon--text' : !(hover || isShowActive_menu(item) ),
                         } "
                         @click="goCategory(item)"
                     >
                         <svg-icon
-                            v-if="hover || routerPath.includes(item.path)"
+                            v-if="hover || isShowActive_menu(item) "
                             :icon="item.icon_sel"
                             :class="$mobile ? 'text-18' :'text-20'"
                         ></svg-icon>
@@ -101,8 +100,8 @@
                             v-if="!mini"
                             class="text-no-wrap"
                             :class="{
-                                'navTextHover--text font-weight-bold' : (hover || routerPath.includes(item.path)),
-                                'navText--text' : !(hover || routerPath.includes(item.path)),
+                                'navTextHover--text font-weight-bold' : (hover || isShowActive_menu(item) ),
+                                'navText--text' : !(hover || isShowActive_menu(item) ),
                                 'ml-5': !$mobile,
                                 'ml-2': $mobile,
                             }"
@@ -112,9 +111,13 @@
                     </div>
                 </v-hover>
             </v-sheet>
+            <div v-if="activity_menu.length > 0">
+                <!-- <v-sheet color="bgColor" height="4px"></v-sheet> -->
+                <Activity :options="activity_menu" @goCategory="goCategory" :mini="mini"></Activity>
+            </div>
 
-            <!-- <div class="d-flex flex-column mt-auto mb-0"> -->
             <div class="d-flex flex-column mb-0">
+                <!-- <v-sheet color="bgColor" height="4px"></v-sheet> -->
                 <v-sheet class="d-flex align-center" height="50" color="transparent">
                     <LangSelect
                         v-model="core.lang"

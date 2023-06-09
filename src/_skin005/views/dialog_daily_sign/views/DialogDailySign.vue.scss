@@ -1,0 +1,82 @@
+.theme--dark {
+    .gradient_title {
+        background: linear-gradient(to top, #ffdd3e 0%, #ffffff 80%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+    }
+
+    .gradient_title_shadow {
+        background: linear-gradient(to bottom, #ff8439, #ff8439);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+        //text-shadow: 0 2px 0 #ff8439, 0 2px 4px rgba(0, 0, 0, 0.31);
+    }
+    .gradient_title_shadow_2 {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+        //text-shadow: 0 2px 0 rgba(0, 0, 0, 0.31), 0 2px 4px rgba(0, 0, 0, 0.31);
+        text-shadow: 0 5px 14px rgba(0, 0, 0, 0.31);
+    }
+}
+.theme--light {
+    .gradient_title {
+        background: linear-gradient(to top, #fff 0%, #ffffff 80%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+    }
+
+    .gradient_title_shadow {
+        background: linear-gradient(to bottom, rgba(255,0,0,0.52), rgba(255,0,0,0.52));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+        text-shadow: 0 5px 14px rgba(255, 0, 0, 0.52);
+    }
+    .gradient_title_shadow_2 {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.31), rgba(0, 0, 0, 0.31));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: absolute;
+    }
+}
+.main_bg {
+    position: absolute;
+    left: 15px;
+}
+
+.main_bg_mob {
+    position: absolute;
+    // left: 15px;
+    // right: 15px;
+}
+
+.title_margin {
+    margin-top: 105px;
+    font-size: 48px;
+    height: 50px;
+}
+.title_margin_mob {
+    margin-top: 50px;
+    font-size: 24px;
+    height: 30px;
+}
+.div_bg {
+    width: 602px;
+    height: 187px;
+    border-radius: 42px;
+    background-image: linear-gradient(to bottom, #fbb131, rgba(254, 229, 77, 0.15));
+}
+.item_main_node{
+    max-width: none !important;
+}

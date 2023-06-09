@@ -9,6 +9,7 @@ import Novigation from "./Novigation";
 import GameMenu from "./widget/game_menu/GameMenu.vue";
 import User from "../header/user/User.vue";
 import TimezoneSelect from "@/_skin005/views/novigation/timezone_select/TimezoneSelect.vue";
+import Activity from "@/_skin005/views/novigation/activity/Activity.vue";
 @Component({
     components: {
         LangSelect,
@@ -16,6 +17,7 @@ import TimezoneSelect from "@/_skin005/views/novigation/timezone_select/Timezone
         GameMenu,
         User,
         TimezoneSelect,
+        Activity,
     },
 })
 export default class extends Novigation {}

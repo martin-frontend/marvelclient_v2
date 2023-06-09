@@ -54,7 +54,7 @@ SkinVariable.isFootballTop = false;
 // document.body.style.setProperty("--yellow_color_2", "#BB1A1A");
 // document.body.style.setProperty("--btn_nomal_text", "#fff");
 // document.body.style.setProperty("--btn_disable_text_dark", "#BABABA");
-
+SkinVariable.autoTheme = false;
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -167,7 +167,8 @@ window.onload = function () {
     });
 };
 //只要黑夜主题
-Vue.vuetify.framework.theme.dark = true;
+//Vue.vuetify.framework.theme.dark = true;
+PanelUtil.setThemeDark(true);
 
 function onWhisperLogin(code: any, type: number = 1) {
     //PanelUtil.message_info("code:" + code);

@@ -84,6 +84,12 @@ function IsShow_ActivityDisplay() {
     return _isValueTrue("activityDisplay");
 }
 /**
+ * 是否显示 每日签到
+ */
+function IsShow_DailysignDisplay() {
+    return _isValueTrue("dailysignDisplay",false);
+}
+/**
  * 是否显示 顶部的足球 页签 以及 手机版 底部的页签
  */
 function IsShow_FootBall() {
@@ -241,6 +247,7 @@ export default {
     RebateDisplayType,
     RebateListType,
     isShow_SearchGame,
+    IsShow_DailysignDisplay,
     IsShow_HideRealName,
     IsShow_HideSafeCenter,
     IsShow_HideEmail,

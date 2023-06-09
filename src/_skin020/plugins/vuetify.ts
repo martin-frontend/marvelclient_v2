@@ -47,6 +47,10 @@ export function getVuetify(): Vuetify {
                         msgShowTxt_color: "#FFFFFF",
                         rechargeText: "#b0b0b0",
                         leftText: "#8f8f8f",
+                        daily_bg:"#fcb131",
+                        daily_mini_title:"#a25800",
+                        daily_award_text:"#a65f09",
+                        daily_close_btn:"#fcb131",
                     },
                     dark: {
                         primary: "#FFFFFF",
@@ -85,6 +89,10 @@ export function getVuetify(): Vuetify {
                         msgShowTxt_color: "#1D1E1F",
                         rechargeText: "#7f7f80",
                         leftText: "#abacac",
+                        daily_bg:"#fcb131",
+                        daily_mini_title:"#a25800",
+                        daily_award_text:"#fff",
+                        daily_close_btn:"#fff",
                     },
                 },
                 // dark: true

@@ -49,7 +49,6 @@ export default class Novigation extends AbstractView {
             2: { icon: "extension", icon_sel: "extension_sel", name: "推广赚钱", id: 6, path: "commissions" },
             3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "page_mine" },
             4: { icon: "swap", icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
-            5: { icon: "activity", icon_sel: "activity_sel", name: "精彩活动", id: 4, path: "promotions" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {
@@ -71,11 +70,25 @@ export default class Novigation extends AbstractView {
         if (ModulesHelper.IsShow_Swap()) {
             newlist.push(list[4]);
         }
+        return newlist;
+    }
+
+    get activity_menu() {
+        const newlist = <any>[];
+        const list = {
+            5: { name: "精彩活动", id: 4, path: "promotions" },
+            6: { name: "每日签到", id: 7, path: "" },
+            // id1 :{ name: "幸运转盘", id: id1, path: "" },
+            // id2 :{ name: "有奖标枪", id: id2, path: "" },
+        };
         //精彩活动
         if (ModulesHelper.IsShow_ActivityDisplay()) {
             newlist.push(list[5]);
         }
-
+        //精彩活动
+        if (ModulesHelper.IsShow_DailysignDisplay()) {
+            newlist.push(list[6]);
+        }
         return newlist;
     }
     //抽屉状态
@@ -255,6 +268,9 @@ export default class Novigation extends AbstractView {
             case 6:
                 PanelUtil.openpage_extension();
                 break;
+            case 7:
+                PanelUtil.openpanel_dailysign();
+                break;
             default:
                 break;
         }
@@ -306,6 +322,11 @@ export default class Novigation extends AbstractView {
         return isShow;
     }
 
+    isShowActive_menu(item: any) {
+        if (!item.path || !item.path.trim()) return false;
+
+        return this.routerPath.includes(item.path);
+    }
     getChannelID() {
         return core.channel_id;
     }

@@ -38,6 +38,8 @@ export default class SkinVariable {
     public static systemKefuTop = true;
     /**邮件一键领取 是否需要弹窗确认 */
     public static mail_get_gift_config = false;
+    /**是否使用自动主题 */
+    public static autoTheme = true;
     /**是否需要下载按钮 */
     public static isNeedDownloadBtn = true;
     /**是否需要下载按钮 */

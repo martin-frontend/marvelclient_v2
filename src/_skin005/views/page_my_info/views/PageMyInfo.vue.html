@@ -13,6 +13,26 @@
         <!-- <User :isShowFull="true" /> -->
     </v-sheet>
 
+    <!-- 用户认证 -->
+    <v-sheet
+        v-if="SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open"
+        color="bgBanner"
+        class="ml-2 mr-2 mt-2 rounded10 d-flex align-center"
+        min-height="60"
+        @click="goCategory(13)"
+    >
+        <svg-icon icon="certified" class="text-24 ml-4"></svg-icon>
+        <span class="ml-3 text-14">{{LangUtil("用户认证")}}</span>
+        <v-spacer></v-spacer>
+        <div class="d-flex align-center mr-2">
+            <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small class="text-16 mr-1">
+                {{certificationStatus.icon}}
+            </v-icon>
+            <span class="disable_text_2--text">{{certificationStatus.name}}</span>
+        </div>
+        <svg-icon class="text-12 ml-auto mr-4" icon="arrow_right"></svg-icon>
+    </v-sheet>
+
     <!-- vip等级 -->
     <v-sheet v-if="isShowVipInfo" color="bgBanner" class="ml-2 mr-2 mt-2 rounded10 d-flex align-center" min-height="100">
         <v-sheet color="transparent" width="75" class="d-flex align-center mr-2 ml-2 justify-center">
@@ -160,10 +180,22 @@
                 min-width="85"
                 @click.native="goCategory(item.id)"
             >
-                <svg-icon :icon="item.icon" class="textGray--text" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
-                <v-sheet class="font-weight-medium textGray--text text-12 mt-2" color="transparent" max-width="110">
-                    {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
-                </v-sheet>
+                <template v-if="item.id == 13">
+                    <div class="d-flex justify-center" style="position: relative">
+                        <svg-icon :icon="item.icon" class="textGray--text text-20"></svg-icon>
+                        <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small class="custom-tip text-16 mr-1">
+                            {{certificationStatus.icon}}
+                        </v-icon>
+                    </div>
+                    <div class="text-12 mt-2 textGray--text">{{certificationStatus.name}}</div>
+                </template>
+
+                <template v-else>
+                    <svg-icon :icon="item.icon" class="textGray--text" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
+                    <v-sheet class="font-weight-medium textGray--text text-12 mt-2" color="transparent" max-width="110">
+                        {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
+                    </v-sheet>
+                </template>
             </v-sheet>
         </template>
 

@@ -8,6 +8,8 @@ import Assets from "@/_skin005/assets/Assets";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import { List } from "echarts";
 import GlobalVar from "@/core/global/GlobalVar";
+import SkinVariable from "@/_skin005/core/SkinVariable";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -27,10 +29,13 @@ export default class UserPanel extends AbstractView {
             list.splice(4, 0, obj);
         }
         //list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
-        if (!ModulesHelper.IsShow_HideSafeCenter())
-        {
+        if (!ModulesHelper.IsShow_HideSafeCenter()) {
             const obj = { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" };
-            list.splice(1,0,obj);
+            list.splice(1, 0, obj);
+        }
+        if(SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) {
+            const obj = { id: 16, name: LangUtil("用户认证"), icon: "certified" };
+            list.splice(2, 0, obj);
         }
         return list;
     }
@@ -50,6 +55,7 @@ export default class UserPanel extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     userInfo = this.selfProxy.userInfo;
     red_dot_tips = this.selfProxy.red_dot_tips;
+    platUsersVerificationProxy = PanelUtil.getProxy_get_platUsersVerificationProxy;
 
     onLoginOut() {
         //this.selfProxy.api_user_logout();
@@ -116,11 +122,33 @@ export default class UserPanel extends AbstractView {
                 //dialog_directly_backwater.show(null, true);
                 PanelUtil.openpanel_directly_backwater(null, true);
                 break;
+            case 16:
+                PanelUtil.openpanel_plat_users_verification();
+                break;
         }
     }
 
     onCopy(str: any) {
         CopyUtil(str);
         PanelUtil.message_info(LangUtil("复制成功"));
+    }
+
+    get certificationStatus() {
+        // const status: any = 3;
+        // switch (status) {
+        switch (this.selfProxy.userVerificationStatus) {
+            case 0:
+                return { name: LangUtil("未认证"), icon: "mdi-alert-circle", color: "red" };
+            case 1:
+                return { name: LangUtil("认证通过"), icon: "mdi-check-circle", color: "success" };
+
+            case 2:
+                return { name: LangUtil("认证失败"), icon: "mdi-alert-circle", color: "red" };
+
+            case 3:
+                return { name: LangUtil("审核中"), icon: "mdi-clock", color: "orange" };
+            default:
+                return {};
+        }
     }
 }

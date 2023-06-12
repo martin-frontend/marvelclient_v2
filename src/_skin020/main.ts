@@ -54,6 +54,7 @@ SkinVariable.isFootballTop = false;
 // document.body.style.setProperty("--yellow_color_2", "#BB1A1A");
 // document.body.style.setProperty("--btn_nomal_text", "#fff");
 // document.body.style.setProperty("--btn_disable_text_dark", "#BABABA");
+SkinVariable.isShowPlatUsersVerification = true;
 SkinVariable.autoTheme = false;
 LogUtil.init();
 core.init();

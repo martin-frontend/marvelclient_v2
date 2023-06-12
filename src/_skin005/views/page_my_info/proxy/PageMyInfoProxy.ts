@@ -1,11 +1,14 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageMyInfoProxy extends puremvc.Proxy {
     static NAME = "PageMyInfoProxy";
+    platUsersVerificationProxy = PanelUtil.getProxy_get_platUsersVerificationProxy;
 
     public onRegister(): void {
         this.pageData.loading = true;
         this.getCurrentCoin();
+        this.platUsersVerificationProxy.api_user_var_plat_users_verification_show();
         // TODO 请求初始数据
     }
     gameRateList = <any>{}; //游戏的汇率

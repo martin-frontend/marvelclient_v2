@@ -1,6 +1,6 @@
 <v-sheet color="transparent">
     <template v-if="!$mobile || isShowFull">
-        <v-menu offset-y nudge-bottom="20" nudge-left="50" content-class="content-style">
+        <v-menu offset-y nudge-bottom="20" nudge-left="50" content-class="content-style" @input="showUserPanel">
             <template v-slot:activator="{ on, attrs ,value}">
                 <v-sheet color="transparent" v-bind="attrs" v-on="on" width="100%">
                     <div class="d-flex align-center" :class="isShowFull ? 'textGray--text' : ''">

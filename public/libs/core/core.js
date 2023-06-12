@@ -83,6 +83,12 @@ var net;
         api_public_sms_send: "api/public/sms/send",
         /**--新加的--获取手机区号*/
         api_public_area_code: "api/public/area_code",
+        /**--新加的--获取所有手机区号*/
+        api_public_all_area_code: "api/public/all_area_code",
+        /**--新加的--获取国家*/
+        api_public_country: "api/public/country",
+        /**--新加的--获取城市*/
+        api_public_city: "api/public/city",
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: "api/plat/{plat_id}/game/all/config",
         /**--新加的--所有游戏的查询*/
@@ -371,6 +377,10 @@ var net;
         api_user_var_event_record: "api/user/{user_id}/event_record",
         /**--打点相关--更新用户事件记录状态*/
         api_user_var_event_record_update: "api/user/{user_id}/event_record/update",
+        /**--用户认证--获取用户认证信息*/
+        api_user_var_plat_users_verification_show: "api/user/{user_id}/plat_users_verification/show",
+        /**--用户认证--储存用户认证信息*/
+        api_user_var_plat_users_verification_save: "api/user/{user_id}/plat_users_verification/save",
     };
     /**事件*/
     net.EventType = {
@@ -392,6 +402,12 @@ var net;
         api_public_sms_send: "api_public_sms_send",
         /**--新加的--获取手机区号*/
         api_public_area_code: "api_public_area_code",
+        /**--新加的--获取所有手机区号*/
+        api_public_all_area_code: "api_public_all_area_code",
+        /**--新加的--获取国家*/
+        api_public_country: "api_public_country",
+        /**--新加的--获取城市*/
+        api_public_city: "api_public_city",
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: "api_plat_var_game_all_config",
         /**--新加的--所有游戏的查询*/
@@ -680,6 +696,10 @@ var net;
         api_user_var_event_record: "api_user_var_event_record",
         /**--打点相关--更新用户事件记录状态*/
         api_user_var_event_record_update: "api_user_var_event_record_update",
+        /**--用户认证--获取用户认证信息*/
+        api_user_var_plat_users_verification_show: "api_user_var_plat_users_verification_show",
+        /**--用户认证--储存用户认证信息*/
+        api_user_var_plat_users_verification_save: "api_user_var_plat_users_verification_save",
     };
     /**注册协议*/
     function initCommand() {
@@ -690,6 +710,9 @@ var net;
         facade.registerCommand(net.HttpType.api_public_email_send, net.cmd_api_public_email_send);
         facade.registerCommand(net.HttpType.api_public_sms_send, net.cmd_api_public_sms_send);
         facade.registerCommand(net.HttpType.api_public_area_code, net.cmd_api_public_area_code);
+        facade.registerCommand(net.HttpType.api_public_all_area_code, net.cmd_api_public_all_area_code);
+        facade.registerCommand(net.HttpType.api_public_country, net.cmd_api_public_country);
+        facade.registerCommand(net.HttpType.api_public_city, net.cmd_api_public_city);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_config, net.cmd_api_plat_var_game_all_config);
         facade.registerCommand(net.HttpType.api_plat_var_game_all_index, net.cmd_api_plat_var_game_all_index);
         facade.registerCommand(net.HttpType.api_user_var_block_coins_scale, net.cmd_api_user_var_block_coins_scale);
@@ -860,6 +883,9 @@ var net;
         //--打点相关
         facade.registerCommand(net.HttpType.api_user_var_event_record, net.cmd_api_user_var_event_record);
         facade.registerCommand(net.HttpType.api_user_var_event_record_update, net.cmd_api_user_var_event_record_update);
+        //--用户认证
+        facade.registerCommand(net.HttpType.api_user_var_plat_users_verification_show, net.cmd_api_user_var_plat_users_verification_show);
+        facade.registerCommand(net.HttpType.api_user_var_plat_users_verification_save, net.cmd_api_user_var_plat_users_verification_save);
     }
     net.initCommand = initCommand;
     ;
@@ -1591,6 +1617,28 @@ var net;
     net.cmd_api_plat_var_vip_config = cmd_api_plat_var_vip_config;
 })(net || (net = {}));
 /**
+ * 获取所有手机区号
+ */
+var net;
+/**
+ * 获取所有手机区号
+ */
+(function (net) {
+    class cmd_api_public_all_area_code extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_all_area_code, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_all_area_code, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_public_all_area_code = cmd_api_public_all_area_code;
+})(net || (net = {}));
+/**
  * 获取手机区号
  */
 var net;
@@ -1633,6 +1681,50 @@ var net;
         }
     }
     net.cmd_api_public_auth_code = cmd_api_public_auth_code;
+})(net || (net = {}));
+/**
+ * 获取城市
+ */
+var net;
+/**
+ * 获取城市
+ */
+(function (net) {
+    class cmd_api_public_city extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_city, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_city, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_public_city = cmd_api_public_city;
+})(net || (net = {}));
+/**
+ * 获取国家
+ */
+var net;
+/**
+ * 获取国家
+ */
+(function (net) {
+    class cmd_api_public_country extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_country, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_country, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_public_country = cmd_api_public_country;
 })(net || (net = {}));
 /**
  * 发送邮件
@@ -3613,6 +3705,50 @@ var net;
         }
     }
     net.cmd_api_user_var_payment_method_update_var = cmd_api_user_var_payment_method_update_var;
+})(net || (net = {}));
+/**
+ * 储存用户认证信息
+ */
+var net;
+/**
+ * 储存用户认证信息
+ */
+(function (net) {
+    class cmd_api_user_var_plat_users_verification_save extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_plat_users_verification_save, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_plat_users_verification_save, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_plat_users_verification_save = cmd_api_user_var_plat_users_verification_save;
+})(net || (net = {}));
+/**
+ * 获取用户认证信息
+ */
+var net;
+/**
+ * 获取用户认证信息
+ */
+(function (net) {
+    class cmd_api_user_var_plat_users_verification_show extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_plat_users_verification_show, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_plat_users_verification_show, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_plat_users_verification_show = cmd_api_user_var_plat_users_verification_show;
 })(net || (net = {}));
 /**
  * 一键领取所有邮件对应的奖励

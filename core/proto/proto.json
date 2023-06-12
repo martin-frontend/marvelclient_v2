@@ -7,6 +7,9 @@
         ["api/public/email/send", "发送邮件"],
         ["api/public/sms/send", "发送短信"],
         ["api/public/area_code", "获取手机区号"],
+        ["api/public/all_area_code", "获取所有手机区号"],
+        ["api/public/country", "获取国家"],
+        ["api/public/city", "获取城市"],
         ["api/plat/{plat_id}/game/all/config", "获取所有游戏的查询配置"],
         ["api/plat/{plat_id}/game/all/index", "所有游戏的查询"],
         ["api/user/{user_id}/block_coins_scale ", "获取币种游戏比率"],
@@ -207,6 +210,10 @@
 
         "--打点相关",
         ["api/user/{user_id}/event_record", "获取用户事件记录"],
-        ["api/user/{user_id}/event_record/update", "更新用户事件记录状态"]
+        ["api/user/{user_id}/event_record/update", "更新用户事件记录状态"],
+
+        "--用户认证",
+        ["api/user/{user_id}/plat_users_verification/show", "获取用户认证信息"],
+        ["api/user/{user_id}/plat_users_verification/save", "储存用户认证信息"]
     ]
 }

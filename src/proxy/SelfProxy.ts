@@ -134,6 +134,15 @@ export default class SelfProxy extends AbstractProxy {
         Object.assign(this.red_dot_tips, data);
     }
 
+    userVerificationStatus = 0;
+    setUserVerificationData(data: any) {
+        if (Object.keys(data).length > 0) {
+            this.userVerificationStatus = data.status;
+        } else {
+            this.userVerificationStatus = 0;
+        }
+    }
+
     /**--账号--登出*/
     api_user_logout() {
         this.sendNotification(net.HttpType.api_user_logout);

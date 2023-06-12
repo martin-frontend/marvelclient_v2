@@ -269,6 +269,16 @@ export function checkUserName(value: string): boolean {
 }
 
 /**
+ * 验证用户名是否合法(包含中文)
+ * @param value
+ */
+export function checkUserName1(value: string): boolean {
+    const Regx = /^[\u4E00-\u9FA5A-Za-z0-9]*$/;
+    return value.length >= 4 && value.length <= 20 && Regx.test(value);
+}
+
+
+/**
  * 验证密码是否合法
  * @param value
  */

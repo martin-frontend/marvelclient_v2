@@ -43,6 +43,7 @@ import dialog_notice_detail from "@/_skin005/views/dialog_notice_detail";
 
 /**用户 信息 */
 import dialog_user_center from "@/_skin005/views/dialog_user_center";
+import dialog_plat_users_verification from "@/_skin005/views/dialog_plat_users_verification";
 import dialog_real_name from "@/_skin005/views/dialog_real_name";
 import dialog_nick_name from "@/_skin005/views/dialog_nick_name";
 import dialog_safety_center from "@/_skin005/views/dialog_safety_center";
@@ -113,6 +114,7 @@ import DialogAgentManagerProxy from "@/_skin005/views/dialog_agent_manager/proxy
 import DialogBetRecordProxy from "@/_skin005/views/dialog_bet_record/proxy/DialogBetRecordProxy";
 import DialogStatisticsCreditProxy from "@/_skin005/views/dialog_statistics_credit/proxy/DialogStatisticsCreditProxy";
 import DialogDirectlyMyProxy from "@/_skin005/views/dialog_directly_my/proxy/DialogDirectlyMyProxy";
+import DialogPlatUsersVerificationProxy from "@/_skin005/views/dialog_plat_users_verification/proxy/DialogPlatUsersVerificationProxy";
 
 import PageStatisticeCreditProxy from "@/_skin005/views/page_statistice_credit/proxy/PageStatisticeCreditProxy";
 
@@ -518,6 +520,13 @@ export default class PanelUtil {
             dialog_user_center.show();
         });
     }
+    //打开 用户认证 窗口
+    static openpanel_plat_users_verification() {
+        LoginEnter(() => {
+            MultDialogManager.onOpenPanel(dialog_plat_users_verification);
+            dialog_plat_users_verification.show();
+        });
+    }
     //打开 真实姓名 窗口
     static openpanel_real_name() {
         MultDialogManager.onOpenPanel(dialog_real_name);
@@ -861,6 +870,10 @@ export default class PanelUtil {
     public static get getProxy_get_verityProxy(): DialogGetVerityProxy {
         return getProxy(DialogGetVerityProxy);
     }
+    //用户验证数据
+    public static get getProxy_get_platUsersVerificationProxy(): DialogPlatUsersVerificationProxy {
+        return getProxy(DialogPlatUsersVerificationProxy);
+    }
 
     public static get message_confirm(): Function {
         return dialog_message_box.confirm;
@@ -1103,6 +1116,12 @@ export default class PanelUtil {
                     key: "openpanel_user_center",
                     fun: () => {
                         PanelUtil.openpanel_user_center();
+                    },
+                },
+                {
+                    key: "openpanel_plat_users_verification",
+                    fun: () => {
+                        PanelUtil.openpanel_plat_users_verification();
                     },
                 },
                 {

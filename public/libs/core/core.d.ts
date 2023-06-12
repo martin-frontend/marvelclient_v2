@@ -21,6 +21,12 @@ declare module net {
         api_public_sms_send: string;
         /**--新加的--获取手机区号*/
         api_public_area_code: string;
+        /**--新加的--获取所有手机区号*/
+        api_public_all_area_code: string;
+        /**--新加的--获取国家*/
+        api_public_country: string;
+        /**--新加的--获取城市*/
+        api_public_city: string;
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
@@ -309,6 +315,10 @@ declare module net {
         api_user_var_event_record: string;
         /**--打点相关--更新用户事件记录状态*/
         api_user_var_event_record_update: string;
+        /**--用户认证--获取用户认证信息*/
+        api_user_var_plat_users_verification_show: string;
+        /**--用户认证--储存用户认证信息*/
+        api_user_var_plat_users_verification_save: string;
     };
     /**事件*/
     var EventType: {
@@ -330,6 +340,12 @@ declare module net {
         api_public_sms_send: string;
         /**--新加的--获取手机区号*/
         api_public_area_code: string;
+        /**--新加的--获取所有手机区号*/
+        api_public_all_area_code: string;
+        /**--新加的--获取国家*/
+        api_public_country: string;
+        /**--新加的--获取城市*/
+        api_public_city: string;
         /**--新加的--获取所有游戏的查询配置*/
         api_plat_var_game_all_config: string;
         /**--新加的--所有游戏的查询*/
@@ -618,6 +634,10 @@ declare module net {
         api_user_var_event_record: string;
         /**--打点相关--更新用户事件记录状态*/
         api_user_var_event_record_update: string;
+        /**--用户认证--获取用户认证信息*/
+        api_user_var_plat_users_verification_show: string;
+        /**--用户认证--储存用户认证信息*/
+        api_user_var_plat_users_verification_save: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -920,6 +940,15 @@ declare module net {
     }
 }
 /**
+ * 获取所有手机区号
+ */
+declare module net {
+    class cmd_api_public_all_area_code extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
  * 获取手机区号
  */
 declare module net {
@@ -933,6 +962,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_public_auth_code extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取城市
+ */
+declare module net {
+    class cmd_api_public_city extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取国家
+ */
+declare module net {
+    class cmd_api_public_country extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1743,6 +1790,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_payment_method_update_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 储存用户认证信息
+ */
+declare module net {
+    class cmd_api_user_var_plat_users_verification_save extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取用户认证信息
+ */
+declare module net {
+    class cmd_api_user_var_plat_users_verification_show extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2784,6 +2849,10 @@ declare module core {
         };
         /**用户手动退款 */
         is_user_manual_refund: {
+            is_open: number;
+        };
+        /**是否显示用户认证 */
+        is_user_verification: {
             is_open: number;
         };
     }

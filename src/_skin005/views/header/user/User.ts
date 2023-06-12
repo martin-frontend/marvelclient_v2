@@ -13,6 +13,7 @@ export default class User extends AbstractView {
     //selfProxy = PanelUtil.getProxy_selfproxy;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
+    platUsersVerificationProxy = PanelUtil.getProxy_get_platUsersVerificationProxy;
 
     IsShow_VipInfo = ModulesHelper.IsShow_VipInfo();
     isFilterChange = false;
@@ -24,8 +25,11 @@ export default class User extends AbstractView {
     setIsFilter(val: boolean) {
         this.isFilterChange = val;
     }
-    showUserPanel() {
+    showUserPanel(val: boolean) {
         console.log("点击s-----s");
-        PanelUtil.appproxy.setUserPanelShow(true);
+        // PanelUtil.appproxy.setUserPanelShow(val);
+        if(val) {
+            this.platUsersVerificationProxy.api_user_var_plat_users_verification_show();
+        }
     }
 }

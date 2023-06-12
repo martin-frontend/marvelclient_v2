@@ -24,6 +24,7 @@ export default class PageMyInfo extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     ModulesHelper = ModulesHelper;
     GlobalVar = GlobalVar;
+    SkinVariable = SkinVariable;
     constructor() {
         super(PageMyInfoMediator);
     }
@@ -53,8 +54,10 @@ export default class PageMyInfo extends AbstractView {
             10: { id: 10, name: LangUtil("精彩活动"), icon: "activity" },
             11: { id: 11, name: LangUtil("代理管理"), icon: "agentmenger" },
             12: { id: 12, name: LangUtil("我的返水"), icon: "water" },
+            13: { id: 13, name: LangUtil("用户认证"), icon: "certified" },
         };
         newlist.push(list[0]);
+        if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) newlist.push(list[13]);
         if (!ModulesHelper.IsShow_HideSafeCenter()) newlist.push(list[1]);
         newlist.push(list[2]);
         newlist.push(list[3]);
@@ -135,6 +138,9 @@ export default class PageMyInfo extends AbstractView {
                 break;
             case 12:
                 PanelUtil.openpanel_directly_backwater(null, true);
+                break;
+            case 13:
+                PanelUtil.openpanel_plat_users_verification();
                 break;
         }
     }
@@ -241,5 +247,23 @@ export default class PageMyInfo extends AbstractView {
     }
     transformMoney(val: any) {
         return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
+    }
+    get certificationStatus() {
+        // const status: any = 1;
+        // switch (status) {
+        switch (this.selfProxy.userVerificationStatus) {
+            case 0:
+                return { name: LangUtil("未认证"), icon: "mdi-alert-circle", color: "red" };
+            case 1:
+                return { name: LangUtil("认证通过"), icon: "mdi-check-circle", color: "success" };
+
+            case 2:
+                return { name: LangUtil("认证失败"), icon: "mdi-alert-circle", color: "red" };
+
+            case 3:
+                return { name: LangUtil("审核中"), icon: "mdi-clock", color: "orange" };
+            default:
+                return {};
+        }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>failed</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="用户认证" transform="translate(-1555.000000, -1788.000000)" fill-rule="nonzero">
+            <g id="编组-3备份-5" transform="translate(857.000000, 1228.000000)">
+                <g id="failed" transform="translate(698.000000, 560.000000)">
+                    <circle id="椭圆形" cx="12" cy="12" r="12"></circle>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="11.9097744" cy="18.0451128" r="1.44360903"></circle>
+                    <path d="M11.9533647,4.51557704 C12.8480974,4.51557704 13.4764429,5.26558175 13.4396357,5.76388377 L12.8786753,14.0751879 C12.8418681,14.57349 12.4080765,14.9774437 11.9097744,14.9774437 C11.4114723,14.9774437 10.9819481,14.57349 10.9504052,14.0751879 L10.4599742,5.76388377 C10.4284313,5.26558175 11.0586323,4.51557704 11.9533647,4.51557704 Z" id="矩形" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

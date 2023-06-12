@@ -60,6 +60,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_game_search,
             net.EventType.REQUEST_ERROR,
             net.EventType.api_user_third_login,
+            net.EventType.api_user_var_plat_users_verification_show,
         ];
     }
 
@@ -333,6 +334,10 @@ export default class NetObserver extends AbstractMediator {
             // bet2dream登录
             case net.EventType.api_user_third_login:
                 this.loginSuccess(body);
+                break;
+            // 用户认证状态
+            case net.EventType.api_user_var_plat_users_verification_show:
+                this.selfProxy.setUserVerificationData(body);
                 break;
         }
     }

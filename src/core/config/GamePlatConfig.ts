@@ -27,6 +27,7 @@ export default class GamePlatConfig {
         is_show_commission: { is_open: 1 },
         is_user_manual_refund: { is_open: 0 },
         plat_display_coins: <any>{},
+        is_user_verification: { is_open: 0 },
     };
     /**枚举 */
     static enums: {

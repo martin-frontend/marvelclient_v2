@@ -118,12 +118,13 @@ export class RechargeProxy extends puremvc.Proxy {
                 }
             }
         }
-        this.api_user_var_recharge_address();
+        //this.api_user_var_recharge_address();
     }
 
     async setAddress(data: string) {
         this.pageData.loading = false;
         this.pageData.address = data;
+        PanelUtil.showAppLoading(false);
         this.pageData.qrcode = await Utils.generateQrcode(data);
     }
 
@@ -138,9 +139,10 @@ export class RechargeProxy extends puremvc.Proxy {
             this.pageData.methodList[this.pageData.form.coin_name_unique].payemthod_id == 4
         ) {
             this.pageData.loading = true;
+            PanelUtil.showAppLoading(true);
             const formCopy = { user_id: core.user_id };
             Object.assign(formCopy, this.pageData.form);
-            this.sendNotification(net.HttpType.api_user_var_recharge_address, objectRemoveNull(formCopy) );
+            this.sendNotification(net.HttpType.api_user_var_recharge_address, objectRemoveNull(formCopy));
         }
         this.pageData.address = "";
         this.pageData.qrcode = "";

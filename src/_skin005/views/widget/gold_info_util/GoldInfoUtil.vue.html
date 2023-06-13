@@ -1,5 +1,5 @@
 <v-sheet flat color="transparent" width="100%" height="100%">
-    <v-menu content-class="menu" offset-y nudge-bottom="4" activator>
+    <v-menu content-class="menu" offset-y nudge-bottom="4" activator :disabled="isDisabled">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
@@ -28,7 +28,7 @@
                         <!-- <span v-else>{{userGoldInfo[coin_name_unique].sum_money}}</span> -->
                         <span v-else class="ml-2 bold_text">{{getUserMoney(coin_name_unique)}}</span>
                     </div>
-                    <svg-icon
+                    <svg-icon v-if="!isDisabled"
                         icon="arrow_down_2"
                         class="textGray--text ml-2 text-14"
                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"

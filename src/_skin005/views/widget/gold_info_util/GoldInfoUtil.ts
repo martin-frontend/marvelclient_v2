@@ -77,4 +77,12 @@ export default class GoldInfoUtil extends AbstractView {
     onItemClick(item: any) {
         this.$emit("onItemClick", item);
     }
+
+    get isDisabled()
+    {
+        if (!this.goldInfoData) return true;
+        const keys = Object.keys( this.goldInfoData);
+        
+        return keys.length < 2;
+    }
 }

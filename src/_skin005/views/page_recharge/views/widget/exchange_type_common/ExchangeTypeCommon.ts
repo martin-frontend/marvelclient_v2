@@ -350,7 +350,10 @@ export default class ExchangeTypeCommon extends AbstractView {
         console.log("数据为", this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id]);
         if (obj.exchange_coin_scale) {
             //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
-            const sss = `1 ${obj.coin_name_unique_ori} = ${1/obj.exchange_coin_scale} ${obj.coin_name_unique_target}`;
+            const val = this.form.amount || "1";
+            const nub = Number(val) ;
+            const inputVal = nub / Number(obj.exchange_coin_scale || "1");
+            const sss = `${nub} ${obj.coin_name_unique_ori} = ${inputVal} ${obj.coin_name_unique_target}`;
 
             return LangUtil("当前汇率:") + sss;
         }

@@ -26,7 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
-import { initGTM, track, TrackData, TrackTypeMap } from "./TrackManager";
+import { initGTM, initMainGTM, track, TrackData, TrackTypeMap } from "./TrackManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -525,6 +525,9 @@ export default class NetObserver extends AbstractMediator {
             }
             initGTM(gtm_id);
         }
+        //主账号的是gtm
+        const gtm_main_id = GameConfig.config.gtm_main_id || "GTM-KJ55HHC";
+        initMainGTM(gtm_main_id);
     }
 
     addkwaiq() {

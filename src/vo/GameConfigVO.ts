@@ -87,6 +87,8 @@ export interface GameConfigVO {
     head_game_config: any[];
     /**GTM的id可以多个 */
     gtm_id: string;
+    /**GTM的id可以多个----这个是我们自己用的主的 */
+    gtm_main_id: string;
     /**快手分析 */
     kwaiq_id: string;
     /**是否启用免审金额 */

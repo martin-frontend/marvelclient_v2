@@ -49,11 +49,25 @@ export function initGTM(id: string) {
     })(window, document, "script", "dataLayer", id);
 }
 
-/**google tag manager */
-function gmt(eventName: string, data: any) {
-    if (SkinVariable.useGTM) {
-        //@ts-ignore
-        const dataLayer = window.dataLayer || [];
+/**绑定主 gtm对象 */
+export function initMainGTM(id: string) {
+    if (!id || !id.trim()) return;
+
+    (function (w: any, d: any, s: any, l: any, i: any) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        const f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer_main" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer_main", id);
+}
+//给GTM发送信息
+function gtm_sendmessage(dataLayer:any,eventName: string, data: any) {
+        // //@ts-ignore
+        // const dataLayer = window.dataLayer || [];
         dataLayer.push(Object.assign({ event: eventName }, data));
         /**针对GTM的内置的事件 */
         switch (eventName) {
@@ -83,6 +97,20 @@ function gmt(eventName: string, data: any) {
             default:
                 break;
         }
+}
+
+/**google tag manager */
+function gmt(eventName: string, data: any) {
+    if (SkinVariable.useGTM) {
+        //@ts-ignore
+        const dataLayer = window.dataLayer || [];
+        gtm_sendmessage(dataLayer,eventName,data);
+    }
+    //给主GTM发送信息 也发送一份
+    {
+        //@ts-ignore
+        const dataLayer = window.dataLayer_main || [];
+        gtm_sendmessage(dataLayer,eventName,data);
     }
 }
 /**fackbook pixel */

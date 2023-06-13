@@ -10,6 +10,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -60,7 +61,22 @@ export default class DialogRegister extends AbstractView {
 
     GamePlatConfig = GamePlatConfig;
 
-    private registerTypes = GamePlatConfig.config.register_types;
+    registerSort = [1, 4, 2, 8]; //顺序
+    //private registerTypes = GamePlatConfig.config.register_types;
+    private get registerTypes() {
+        const list = [];
+        let sort = this.registerSort;
+        if (GlobalVar.skin == "skin008") {
+            sort = [4, 8, 2, 1];
+        }
+        for (let index = 0; index < sort.length; index++) {
+            const element = sort[index];
+            if (GamePlatConfig.config.register_types.includes(element)) {
+                list.push(element);
+            }
+        }
+        return list;
+    }
 
     tempSelectCode = null;
 

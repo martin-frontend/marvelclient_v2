@@ -17,42 +17,57 @@
                 <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex mb-5">
                     <template v-slot="{data}">
                         <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
-                            <v-btn
-                                v-if="registerTypes.includes(1)"
-                                class="rounded-pill mr-2"
-                                :height="btn_height"
-                                :min-width="btn_width"
-                                value="1"
-                            >
-                                <span class="text-14"> {{LangUtil("账号注册")}} </span>
-                            </v-btn>
-                            <v-btn
-                                v-if="registerTypes.includes(4)"
-                                class="rounded-pill mr-2"
-                                :height="btn_height"
-                                :min-width="btn_width"
-                                value="4"
-                            >
-                                <span class="text-14"> {{LangUtil("手机注册")}} </span>
-                            </v-btn>
-                            <v-btn
-                                v-if="registerTypes.includes(2)"
-                                class="rounded-pill mr-2"
-                                :height="btn_height"
-                                :min-width="btn_width"
-                                value="2"
-                            >
-                                <span class="text-14"> {{LangUtil("邮箱注册")}} </span>
-                            </v-btn>
-                            <v-btn
-                                v-if="registerTypes.includes(8)"
-                                class="rounded-pill mr-2"
-                                :height="btn_height"
-                                :min-width="btn_width"
-                                value="8"
-                            >
-                                <span class="text-14"> {{LangUtil("手机账号注册")}} </span>
-                            </v-btn>
+                            <template v-for="(item, key) of registerTypes" >
+                                <template v-if="item == 1">
+                                    <v-btn
+                                        v-if="registerTypes.includes(1)"
+                                        class="rounded-pill mr-2"
+                                        :height="btn_height"
+                                        :min-width="btn_width"
+                                        value="1"
+                                        :key="key"
+                                    >
+                                        <span class="text-14"> {{LangUtil("账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+
+                                <template v-else-if="item == 2">
+                                    <v-btn
+                                        v-if="registerTypes.includes(2)"
+                                        class="rounded-pill mr-2"
+                                        :height="btn_height"
+                                        :min-width="btn_width"
+                                        value="2"
+                                        :key="key"
+                                    >
+                                        <span class="text-14"> {{LangUtil("邮箱注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 4">
+                                    <v-btn
+                                        v-if="registerTypes.includes(4)"
+                                        class="rounded-pill mr-2"
+                                        :height="btn_height"
+                                        :min-width="btn_width"
+                                        value="4"
+                                        :key="key"
+                                    >
+                                        <span class="text-14"> {{LangUtil("手机注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 8">
+                                    <v-btn
+                                        v-if="registerTypes.includes(8)"
+                                        class="rounded-pill mr-2"
+                                        :height="btn_height"
+                                        :min-width="btn_width"
+                                        value="8"
+                                        :key="key"
+                                    >
+                                        <span class="text-14"> {{LangUtil("手机账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+                            </template>
                         </v-btn-toggle>
                     </template>
                 </horizontal_scroll>
@@ -261,18 +276,29 @@
         <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex my-3 px-2">
             <template v-slot="{data}">
                 <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
-                    <v-btn v-if="registerTypes.includes(1)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="1">
-                        <span :class="typechange=='1'?'font-weight-bold':''" class="text-14"> {{LangUtil("账号注册")}} </span>
-                    </v-btn>
-                    <v-btn v-if="registerTypes.includes(4)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="4">
-                        <span :class="typechange=='4'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机注册")}} </span>
-                    </v-btn>
-                    <v-btn v-if="registerTypes.includes(2)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="2">
-                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱注册")}} </span>
-                    </v-btn>
-                    <v-btn v-if="registerTypes.includes(8)" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="8">
-                        <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
-                    </v-btn>
+                    <template v-for="(item, key) of registerTypes" >
+                        <template v-if="item == 1">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="1">
+                                <span :class="typechange=='1'?'font-weight-bold':''" class="text-14"> {{LangUtil("账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 2">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="2">
+                                <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 4">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="4">
+                                <span :class="typechange=='4'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 8">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="8">
+                                <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                    </template>
+
                 </v-btn-toggle>
             </template>
         </horizontal_scroll>

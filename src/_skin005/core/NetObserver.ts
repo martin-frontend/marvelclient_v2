@@ -209,6 +209,7 @@ export default class NetObserver extends AbstractMediator {
                         if (!TrackData.Instance.addEventData(element)) {
                             continue;
                         }
+                        element.data.bet_id = element.bet_id;
                         track(element.event_type, element.data, element.type == 1 ? TrackTypeMap.Purchase : TrackTypeMap.normal);
                         this.selfProxy.api_user_var_event_record_update(element.bet_id);
                     }

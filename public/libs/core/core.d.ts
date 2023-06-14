@@ -2045,14 +2045,14 @@ declare module core {
     enum EnumAppType {
         WAP = 1,
         APP = 2,
-        WEB = 4
+        WEB = 4,
     }
 }
 declare module core {
     enum EnumDeviceType {
         IOS = 1,
         ANDROID = 2,
-        OTHER = 3
+        OTHER = 3,
     }
 }
 declare module core {
@@ -2306,41 +2306,41 @@ declare module core {
         /**活动ID*/
         id: number;
         /**模型ID:0-自定义|非0-模型ID*/
-        "model_id": number;
+        model_id: number;
         /**活动类型*/
-        "activity_category": string;
+        activity_category: string;
         /**平台ID*/
-        "plat_id": number;
+        plat_id: number;
         /**跳转模块，详细参考：http://18.166.154.73:8090/pages/viewpage.action?pageId=65696#id-活动配置说明-活动跳转模块*/
-        "model_open_mode": number;
+        model_open_mode: number;
         /**跳转网址*/
-        "open_mode_url": string;
+        open_mode_url: string;
         /**活动名称*/
-        "activity_name": string;
+        activity_name: string;
         /**开始时间*/
-        "start_time": string;
+        start_time: string;
         /**结束时间*/
-        "end_time": string;
+        end_time: string;
         /**结算周期:1-每天|2-每周|3-每月|4-每个活动|5-每半月*/
-        "settlement_period": number;
+        settlement_period: number;
         /**展示方式:0-客户端处理|1-平台H5展示|2-外部链接|4-图片上传*/
-        "show_type": number;
+        show_type: number;
         /**展示方式对应的链接地址*/
-        "link_url": string;
+        link_url: string;
         /**是否预热:0-否|1-是*/
-        "is_preheat": number;
+        is_preheat: number;
         /**发布状态:1-待发布|2-已发布|3-已撤销*/
-        "publish_status": number;
+        publish_status: number;
         /**流程状态:1-待开始|11-进行中|21-关闭|91-结束*/
-        "process_status": number;
+        process_status: number;
         /**提现流水倍数*/
-        "bonus_multiple": number;
+        bonus_multiple: number;
         /**活动描述*/
-        "activity_desc": string;
+        activity_desc: string;
         /**当前活动-待领取任务数量，非0则红点提示 */
-        "unread_num": number;
+        unread_num: number;
         /**规则*/
-        "rules": {
+        rules: {
             /**大规则名称*/
             name: string;
             /**大规则ID*/
@@ -3420,6 +3420,8 @@ declare module core {
         credit_rate_invited?: number;
         /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
         create_credit_user_type?: any;
+        /**是否信用现金用户 */
+        is_cash_agent?: number;
     }
     /**
      * vip 奖励活动相关

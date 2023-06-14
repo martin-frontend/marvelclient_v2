@@ -205,13 +205,13 @@
                     </v-sheet>
 
                     <v-sheet color="transparent" width="100%" class="mt-4 d-flex align-center justify-end">
-                        <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings_clear"
+                        <btn-yellow v-if="!is_cash_agent" class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings_clear"
                             >{{LangUtil("清空额度")}}</btn-yellow
                         >
                         <btn-yellow class="text-16 mx-1" min_width="104" height="36" :btn_type="2" @click.native="assetSettings_add"
                             >{{LangUtil("增加额度")}}</btn-yellow
                         >
-                        <btn-yellow class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings"
+                        <btn-yellow v-if="!is_cash_agent" class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings"
                             >{{LangUtil("减少额度")}}</btn-yellow
                         >
                     </v-sheet>

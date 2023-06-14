@@ -394,10 +394,11 @@ export default class PanelUtil {
 
     //打开充值窗口
     static openpanel_recharge(options: any = null) {
-        if (SkinVariable.isUsedDialogRecharge) {
-            MultDialogManager.onOpenPanel(dialog_recharge);
-            dialog_recharge.show();
-        } else PanelUtil.openpage_recharge();
+        // if (SkinVariable.isUsedDialogRecharge) {
+        //     MultDialogManager.onOpenPanel(dialog_recharge);
+        //     dialog_recharge.show();
+        // } else 
+        PanelUtil.openpage_recharge();
     }
     //打开提现窗口
     static openpanel_excharge(options: any = null) {

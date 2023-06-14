@@ -5,6 +5,7 @@ import PageRechargeProxy from "../proxy/PageRechargeProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GlobalVar from "@/core/global/GlobalVar";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class PageRecharge extends AbstractView {
@@ -54,4 +55,21 @@ export default class PageRecharge extends AbstractView {
         this.myProxy.rechargeProxy.pageData.form.amount = "";
         this.myProxy.exchangeProxy.pageData.form.amount = "";
     }
+
+    public get isShowRecharge(): boolean {
+        return (
+            GlobalVar.instance.isShowRecharge ||
+            (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
+            (this.selfProxy.userInfo.is_credit_user == 1 && this.selfProxy.userInfo.is_cash_agent == 1)
+        );
+    }
+
+    public get isShowExchange(): boolean {
+        return (
+            GlobalVar.instance.isShowExchange ||
+            (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
+            (this.selfProxy.userInfo.is_credit_user == 1 && this.selfProxy.userInfo.is_cash_agent == 1)
+        );
+    }
+
 }

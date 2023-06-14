@@ -181,7 +181,11 @@ export default class Header extends AbstractView {
         //return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
     public get isShowRecharge(): boolean {
-        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+        return (
+            GlobalVar.instance.isShowRecharge ||
+            (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
+            (this.selfProxy.userInfo.is_credit_user == 1 && this.selfProxy.userInfo.is_cash_agent == 1)
+        );
     }
 
     onHeadgameClick(item: any) {

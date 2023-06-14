@@ -229,7 +229,11 @@ export default class PageMyInfo extends AbstractView {
         return needCount;
     }
     public get isShowRecharge(): boolean {
-        return GlobalVar.instance.isShowRecharge || (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98);
+        return (
+            GlobalVar.instance.isShowRecharge ||
+            (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
+            (this.selfProxy.userInfo.is_credit_user == 1 && this.selfProxy.userInfo.is_cash_agent == 1)
+        );
     }
     transformExpAndUsdt(count: any) {
         if (!this.ModulesHelper.IsShow_VipShowDeal()) {

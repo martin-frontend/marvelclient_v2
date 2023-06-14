@@ -45,6 +45,7 @@ export default class SelfProxy extends AbstractProxy {
         show_credit_statistic: 0,
         is_gold_exchange: 0,
         is_credit_user: 0,
+        is_cash_agent: 0,
         is_exchange: 0,
         is_recharge: 0,
         show_credit_set: 0,

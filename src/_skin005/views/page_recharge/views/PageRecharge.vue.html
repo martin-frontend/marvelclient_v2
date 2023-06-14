@@ -1,11 +1,11 @@
 <v-sheet width="100%" color="transparent" class="">
     <v-card v-if="!$mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" width="100%" color="bgBanner">
         <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex">
-            <v-btn v-if="GlobalVar.instance.isShowRecharge" class="rounded-pill mr-2" height="36" min-width="90" value="0">
+            <v-btn v-if="isShowRecharge" class="rounded-pill mr-2" height="36" min-width="90" value="0">
                 <span class="text-14"> {{LangUtil("充值")}} </span>
             </v-btn>
             <v-btn
-                v-if="GlobalVar.instance.isShowExchange || selfProxy.userInfo.is_credit_user == 98"
+                v-if="isShowExchange"
                 class="rounded-pill mr-2"
                 height="36"
                 min-width="90"
@@ -40,7 +40,7 @@
             <v-btn-toggle :lang="core.lang" mandatory group borderless v-model="myProxy.pageData.tabIndex">
                 <v-btn
                     color="textGray"
-                    v-if="GlobalVar.instance.isShowRecharge"
+                    v-if="isShowRecharge"
                     class="tab-btn"
                     active-class="tab-btn-active"
                     height="35"
@@ -51,7 +51,7 @@
                     <span class="text-14"> {{LangUtil("充值")}} </span>
                 </v-btn>
                 <v-btn
-                    v-if="GlobalVar.instance.isShowExchange || selfProxy.userInfo.is_credit_user == 98"
+                    v-if="isShowExchange"
                     class="tab-btn"
                     active-class="tab-btn-active"
                     height="35"

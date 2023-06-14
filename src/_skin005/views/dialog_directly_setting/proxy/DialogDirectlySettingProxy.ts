@@ -19,6 +19,7 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
         gold_info: <any>{},
         vendor_type_switch: <any>{}, //游戏类型总开关
         invite_user_id: 0, //上级id
+        is_cash_agent:0,
     };
     formData = {
         coin_name_unique: "",
@@ -71,6 +72,7 @@ export default class DialogDirectlySettingProxy extends puremvc.Proxy {
             gold_info: <any>{},
             vendor_type_switch: <any>{}, //游戏类型总开关
             invite_user_id: 0, //上级id
+            is_cash_agent:0,
         });
     }
 

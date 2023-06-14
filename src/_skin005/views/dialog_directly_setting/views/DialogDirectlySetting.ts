@@ -170,4 +170,7 @@ export default class DialogDirectlySetting extends AbstractView {
     getConfigName(type: any) {
         return Constant.GameTypeText(type);
     }
+    get is_cash_agent(): boolean {
+        return PanelUtil.getProxy_selfproxy.userInfo.is_cash_agent == 1;
+    }
 }

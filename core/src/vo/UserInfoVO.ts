@@ -18,7 +18,7 @@ module core {
         /**真实姓名*/
         real_name?: string;
         /** */
-        real_name_decrypt?:string;
+        real_name_decrypt?: string;
         /**邮箱*/
         email?: string;
         /**手机号*/
@@ -45,7 +45,7 @@ module core {
         /**
          * 1-信用代理|98-信用玩家
          */
-        show_credit_set?: number;//是否显示多层用户
+        show_credit_set?: number; //是否显示多层用户
         show_promote?: number; //1-展示推广赚钱|2-展示代理管理|3-都不展示
         /**1、用户扩展信息*/
         extend?: {
@@ -154,18 +154,20 @@ module core {
         show_credit_statistic?: number;
         /**是否信用用户 */
         is_credit_user?: number;
+        /**是否信用现金用户 */
+        is_cash_agent ?: number;
         /**是否显示兑换 */
         is_exchange?: number;
         /**是否显示充值 */
         is_recharge?: number;
         /**货币互转开关 */
         is_gold_exchange?: number;
-        water_config?:any;
-        credit_rate_max ?:number;
-        credit_rate_min ?:number;
-        credit_rate_invited ?:number;
+        water_config?: any;
+        credit_rate_max?: number;
+        credit_rate_min?: number;
+        credit_rate_invited?: number;
         /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
-        create_credit_user_type?:any;
+        create_credit_user_type?: any;
     }
 
     /**

@@ -57,8 +57,8 @@
                                             {{LangUtil('vip等级描述_2')}}
                                         </span>
                                         <span class="nomal_text_1--text" v-if="pageData.nextUSDT > 0">
-                                            <span class="textYellow--text">{{pageData.nextUSDT}}</span>
-                                            USDT{{LangUtil('充值')}}
+                                            <span class="textYellow--text">{{transformMoney(pageData.nextUSDT)}}</span>
+                                            {{LangUtil('充值')}}
                                         </span>
                                     </div>
                                 </v-sheet>
@@ -671,7 +671,7 @@
 
                                         <span class="textGray--text" v-if="pageData.nextUSDT > 0">
                                             <span class="textYellow--text"> {{transformMoney(pageData.nextUSDT)}} </span>
-                                            USDT{{LangUtil('充值')}}</span
+                                            {{LangUtil('充值')}}</span
                                         >
                                     </div>
                                 </v-sheet>

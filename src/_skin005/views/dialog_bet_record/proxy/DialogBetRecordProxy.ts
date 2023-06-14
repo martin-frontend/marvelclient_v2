@@ -75,32 +75,21 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
         moneySelect: 0,
         typeOptions: () => {
             //@ts-ignore
-            const filter = GameConfig.config["filter_gametype"];
+            let filter = GameConfig.config["filter_gametype"];
+            if (!filter || filter.length < 1) {
+                filter = [0, 2, 4, 8, 16, 32, 64, 128];
+            }
             if (filter && filter.length > 0) {
                 const list = <any>{};
                 for (let index = 0; index < filter.length; index++) {
                     const obj = {};
                     if (filter[index] == 0) list[filter[index]] = LangUtil("全部游戏");
-                    else if (filter[index] == 2) list[filter[index]] = LangUtil("棋牌");
-                    else if (filter[index] == 4) list[filter[index]] = LangUtil("彩票");
-                    else if (filter[index] == 8) list[filter[index]] = LangUtil("捕鱼");
-                    else if (filter[index] == 16) list[filter[index]] = LangUtil("电子");
-                    else if (filter[index] == 32) list[filter[index]] = LangUtil("真人");
-                    else if (filter[index] == 64) list[filter[index]] = LangUtil("体育");
-                    else if (filter[index] == 128) list[filter[index]] = LangUtil("电竞");
+                    else {
+                        list[filter[index]] = Constant.GameTypeText(filter[index] + "");
+                    }
                 }
                 return list;
             }
-            return {
-                0: LangUtil("全部游戏"),
-                2: LangUtil("棋牌"),
-                4: LangUtil("彩票"),
-                8: LangUtil("捕鱼"),
-                16: LangUtil("电子"),
-                32: LangUtil("真人"),
-                64: LangUtil("体育"),
-                128: LangUtil("电竞"),
-            };
         },
         vendorOptions: () => {
             const options: any = { 0: LangUtil("全部厂商") };

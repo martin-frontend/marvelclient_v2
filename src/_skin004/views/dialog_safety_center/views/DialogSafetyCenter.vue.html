@@ -1,5 +1,5 @@
 <v-dialog width="unset" height="670" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg d-flex" color="colorPanelBg">
+    <v-card class="rounded-lg d-flex" color="colorDialogRegisterBg">
         <AdvertiseInLogin :height="670" class="d-none d-md-flex" />
         <v-card color="transparent" width="494">
             <v-card-title class="d-flex justify-end gradient-bg">
@@ -159,7 +159,7 @@
                         type="tel"
                         v-model="formBindPhone.code"
                     />
-                    <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormMobile" block @click="onBindMobile">
+                    <v-btn class="rounded-lg custom-btn" color="colorBtnBg" height="48" :disabled="!isCheckFormMobile" block @click="onBindMobile">
                         {{LangUtil("绑定")}}
                     </v-btn>
                 </div>
@@ -190,7 +190,7 @@
                         type="tel"
                         v-model="formBindEmail.code"
                     />
-                    <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChckFormEmail" block @click="onBindEmail">
+                    <v-btn class="rounded-lg custom-btn" color="colorBtnBg" height="48" :disabled="!isChckFormEmail" block @click="onBindEmail">
                         {{LangUtil("绑定")}}
                     </v-btn>
                 </div>
@@ -215,7 +215,7 @@
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="formChangePassword.password_confirm"
                 />
-                <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
+                <v-btn class="rounded-lg custom-btn" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
                     {{LangUtil("确定修改")}}
                 </v-btn>
             </v-card-text>

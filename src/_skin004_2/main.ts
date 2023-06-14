@@ -101,6 +101,7 @@ if (vuetify.framework.breakpoint.xsOnly) {
     vuetify.framework.theme.themes.dark.colorPanelBg2 = "#e0e0e0";
     vuetify.framework.theme.themes.dark.colorPanelBg3 = "#e0e0e0";
     vuetify.framework.theme.themes.dark.colorPanelBg4 = "#1A273F";
+    vuetify.framework.theme.themes.dark.colorPanelBg6 = "#e0e0e0";
     vuetify.framework.theme.themes.dark.colorUserPanelBg = "#f7f7f7";
     vuetify.framework.theme.themes.dark.colorBtnBg = "#03259c";
     vuetify.framework.theme.themes.dark.colorBtnBg1 = "#03259c";

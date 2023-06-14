@@ -29,6 +29,7 @@ export function getVuetify(): Vuetify {
                         colorPanelBg3: "#12294A", //used
                         colorPanelBg4: "#1A273F", //used
                         colorPanelBg5: "#24314A", //used
+                        colorPanelBg6: "#16233F", //used
                         colorPanelTitleBg: "#25324B", //used
                         colorBtnBg: "#6fa9fa", //used
                         colorSelectBg: "#2C3D5C", //used
@@ -42,6 +43,7 @@ export function getVuetify(): Vuetify {
 
                         // //新增
                         colorBtnSeleBg: "#CD30C1", //used
+                        colorDialogRegisterBg: "121E36",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

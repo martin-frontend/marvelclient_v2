@@ -30,6 +30,7 @@ export function getVuetify(): Vuetify {
                         colorPanelBg3: "#282827", //used
                         colorPanelBg4: "#1A273F", //used
                         colorPanelBg5: "#282827", //used
+                        colorPanelBg6: "#282827", //used
                         colorPanelTitleBg: "#282827", //used
                         colorUserPanelBg: "#282827", //used
                         colorUserPanelBg1: "#121212", //used

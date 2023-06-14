@@ -68,7 +68,7 @@
 
     <!-- 手机显示 -->
     <template v-else>
-        <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="100%">
+        <v-card class="rounded-lg d-flex flex-column" color="colorDialogRegisterBg" height="100%">
             <v-card-text class="pa-0 header-mobile">
                 <div class="gradient-bg d-flex align-center px-5">
                     <div v-if="curShowData" class="text-18">{{curShowData.name}}</div>
@@ -122,7 +122,11 @@
                             <!-- <v-sheet v-if="noticeDetialInfo" class="text-wrapper" color="transparent colorBlue--text">
                                     {{ noticeDetialInfo.content}}
                                 </v-sheet> -->
-                            <div v-if="noticeDetialInfo" class="custom_skin-black-text pa-2" v-html="noticeDetialInfo.content"></div>
+                            <div
+                                v-if="noticeDetialInfo"
+                                class="custom_skin-black-text skin004-black-text pa-2"
+                                v-html="noticeDetialInfo.content"
+                            ></div>
                         </v-sheet>
                     </v-sheet>
                 </div>
@@ -131,6 +135,7 @@
                 <v-sheet v-if="isShowPageBtn" class="mt-auto" color="transparent">
                     <v-sheet class="mt-5 d-flex justify-space-around" color="transparent">
                         <v-btn
+                            id="custom-btn"
                             class="d-flex align-center rounded-lg white--text mr-2"
                             color="colorBtnBg"
                             min-width="100"
@@ -141,6 +146,7 @@
                         >
 
                         <v-btn
+                            id="custom-btn"
                             class="d-flex align-center rounded-lg white--text mr-2"
                             color="colorBtnBg"
                             min-width="100"

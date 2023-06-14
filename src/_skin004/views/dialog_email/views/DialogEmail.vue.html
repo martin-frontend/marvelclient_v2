@@ -1,5 +1,5 @@
 <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg d-flex flex-column" color="colorPanelBg" height="100%">
+    <v-card class="rounded-lg d-flex flex-column" color="colorDialogRegisterBg" height="100%">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("消息中心")}}</div>
@@ -13,7 +13,7 @@
             </v-btn>
         </v-card-title>
         <v-card-text v-if="!$vuetify.breakpoint.xsOnly">
-            <div>
+            <div class="mt-2">
                 <v-btn
                     height="40"
                     class="rounded-pill font-weight-bold mr-2"
@@ -59,7 +59,7 @@
             </div>
 
             <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
-                <v-sheet class="px-4 py-3 rounded-lg mb-3 d-flex" color="bgBanner" v-for="(item, key) of pageData.list" :key="key">
+                <v-sheet class="px-4 py-3 rounded-lg mb-3 d-flex" color="colorPanelBg6" v-for="(item, key) of pageData.list" :key="key">
                     <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                     <div class="ml-4" style="width: 100%">
                         <div class="d-flex justify-space-between mb-2">
@@ -148,7 +148,7 @@
             :finished="pageData.finished"
             :listNodata="pageData.list.length == 0"
         >
-            <v-sheet class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex" color="colorPanelBg2" v-for="(item, key) of pageData.list" :key="key">
+            <v-sheet class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex mt-2" color="colorPanelBg6" v-for="(item, key) of pageData.list" :key="key">
                 <v-icon class="colorText2--text" size="50">{{item.is_read ? "mdi-email-open" : "mdi-email"}} </v-icon>
                 <div class="ml-4" style="width: 100%">
                     <div class="d-flex justify-space-between mb-2">

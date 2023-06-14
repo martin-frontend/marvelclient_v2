@@ -1,5 +1,5 @@
 <v-dialog width="800" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg" color="colorPanelBg">
+    <v-card class="rounded-lg" color="colorDialogRegisterBg">
         <!-- pc显示方式 -->
         <v-card-title class="gradient-bg" v-if="!$vuetify.breakpoint.xsOnly">
             <div class="text-18">{{LangUtil("平台钱包")}}</div>
@@ -8,7 +8,7 @@
                 <v-icon large>mdi-close</v-icon>
             </v-btn>
         </v-card-title>
-        <v-card-text class="d-flex align-center padding_bottom" v-if="!$vuetify.breakpoint.xsOnly">
+        <v-card-text class="d-flex align-center padding_bottom mt-2" v-if="!$vuetify.breakpoint.xsOnly">
             <v-btn
                 height="40"
                 class="rounded-pill font-weight-bold mr-2"

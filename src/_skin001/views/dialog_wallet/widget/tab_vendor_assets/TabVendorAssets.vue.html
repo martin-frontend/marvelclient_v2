@@ -1,5 +1,5 @@
 <v-card-text class="mt-sm-3 px-0" :class="$vuetify.breakpoint.xsOnly?'mobile':''">
-    <v-sheet class="d-flex align-center justify-space-around rounded-pill mx-5 px-1" height="40" color="colorPanelBg2">
+    <v-sheet class="d-flex align-center justify-space-around rounded-pill mx-5 px-1 mt-2" height="40" color="colorPanelBg6">
         <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("币种")}}</v-sheet>
         <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("厂商")}}</v-sheet>
         <v-sheet class="d-flex justify-center colorText1--text" color="transparent" min-width="80">{{LangUtil("数量")}}</v-sheet>
@@ -11,7 +11,7 @@
                 <v-sheet
                     class="d-flex align-center justify-space-around rounded-pill mx-5 px-1 mb-3"
                     height="40"
-                    color="colorPanelBg2"
+                    color="colorPanelBg6"
                     v-for="(vendor, index) of item.vendors_detail"
                     :key="index"
                 >

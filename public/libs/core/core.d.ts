@@ -151,6 +151,8 @@ declare module net {
         api_user_var_sign_receive: string;
         /**--活动--绑定赠金*/
         api_plat_activity_show_binding: string;
+        /**--活动--活动规则匹配详情*/
+        api_plat_activity_var_rule_id_var: string;
         /**--公告--平台公告*/
         api_plat_var_notice_index: string;
         /**--公告--平台公告数据详细数据*/
@@ -470,6 +472,8 @@ declare module net {
         api_user_var_sign_receive: string;
         /**--活动--绑定赠金*/
         api_plat_activity_show_binding: string;
+        /**--活动--活动规则匹配详情*/
+        api_plat_activity_var_rule_id_var: string;
         /**--公告--平台公告*/
         api_plat_var_notice_index: string;
         /**--公告--平台公告数据详细数据*/
@@ -683,6 +687,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_activity_var_receive extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 活动规则匹配详情
+ */
+declare module net {
+    class cmd_api_plat_activity_var_rule_id_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

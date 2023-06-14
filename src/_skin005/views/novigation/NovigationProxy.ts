@@ -5,6 +5,7 @@ export default class NovigationProxy extends puremvc.Proxy {
     isMenuOpen = <any>{};
 
     isminiMenu = false; //是否为小菜单
+    activityData = <any>[];
 
     setMiniMenu(isMini: boolean = false) {
         this.isminiMenu = isMini;
@@ -15,5 +16,12 @@ export default class NovigationProxy extends puremvc.Proxy {
         for (let index = 0; index < keys.length; index++) {
             this.isMenuOpen[keys[index]] = false;
         }
+    }
+
+    setActivityData(data: any) {
+        this.activityData = [...data.list];
+    }
+    api_plat_activity() {
+        this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
     }
 }

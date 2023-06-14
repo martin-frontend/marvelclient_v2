@@ -14,6 +14,7 @@ import { getVersion, isSafari } from "@/core/global/Functions";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import Constant from "@/core/global/Constant";
+import NovigationMediator from "./NovigationMediator";
 
 @Component
 export default class Novigation extends AbstractView {
@@ -32,7 +33,24 @@ export default class Novigation extends AbstractView {
     GameConfig = GameConfig;
     SkinVariable = SkinVariable;
 
+    get promotion_reward_model_id() {
+        return (
+            GameConfig.config.promotion_reward_model_id ?? {
+                id: 0,
+                rule_id: 0,
+            }
+        );
+    }
+
+    constructor() {
+        super(NovigationMediator);
+    }
+    destroyed() {
+        super.destroyed();
+    }
+
     mounted() {
+        this.myProxy.api_plat_activity();
         if (!this.$mobile) {
             this.mini = this.myProxy.isminiMenu || false;
             this.Change();
@@ -80,14 +98,19 @@ export default class Novigation extends AbstractView {
             6: { name: "每日签到", id: 7, path: "" },
             // id1 :{ name: "幸运转盘", id: id1, path: "" },
             // id2 :{ name: "有奖标枪", id: id2, path: "" },
+            7: { name: "推广奖励", id: 8, path: "" },
         };
         //精彩活动
         if (ModulesHelper.IsShow_ActivityDisplay()) {
             newlist.push(list[5]);
         }
-        //精彩活动
+        //每日签到
         if (ModulesHelper.IsShow_DailysignDisplay()) {
             newlist.push(list[6]);
+        }
+        //推广奖励
+        if (this.isShowPromotionReward) {
+            newlist.push(list[7]);
         }
         return newlist;
     }
@@ -271,6 +294,9 @@ export default class Novigation extends AbstractView {
             case 7:
                 PanelUtil.openpanel_dailysign();
                 break;
+            case 8:
+                PanelUtil.openpanel_promotionreward();
+                break;
             default:
                 break;
         }
@@ -335,5 +361,10 @@ export default class Novigation extends AbstractView {
         this.$nextTick(() => {
             this.resetPageSize();
         });
+    }
+
+    get isShowPromotionReward() {
+        // @ts-ignore
+        return this.myProxy.activityData.find((item) => item.id == this.promotion_reward_model_id.id) != undefined;
     }
 }

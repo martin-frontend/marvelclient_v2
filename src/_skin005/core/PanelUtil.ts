@@ -135,6 +135,8 @@ import SkinVariable from "./SkinVariable";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_daily_sign from "../views/dialog_daily_sign";
+import dialog_promotion_reward from "../views/dialog_promotion_reward";
+import DialogPromotionRewardProxy from "@/_skin005/views/dialog_promotion_reward/proxy/DialogPromotionRewardProxy";
 import GlobalVar from "@/core/global/GlobalVar";
 
 export default class PanelUtil {
@@ -770,6 +772,14 @@ export default class PanelUtil {
             dialog_daily_sign.show();
         });
     }
+    /**打开 每日签到界面 */
+    static openpanel_promotionreward() {
+        LoginEnter(() => {
+            MultDialogManager.onOpenPanel(dialog_promotion_reward);
+            PanelUtil.showNovigation(false);
+            dialog_promotion_reward.show();
+        });
+    }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {
         return getProxy(DialogPerformanceDetailProxy);
@@ -869,6 +879,10 @@ export default class PanelUtil {
     /**获取验证码  */
     public static get getProxy_get_verityProxy(): DialogGetVerityProxy {
         return getProxy(DialogGetVerityProxy);
+    }
+    /**活动的数据  */
+    public static get getProxy_promotion_reward(): DialogPromotionRewardProxy {
+        return getProxy(DialogPromotionRewardProxy);
     }
     //用户验证数据
     public static get getProxy_get_platUsersVerificationProxy(): DialogPlatUsersVerificationProxy {

@@ -22,6 +22,9 @@
         .blue-bg {
             background-image: linear-gradient(to right, rgb(47, 60, 143) 0%, rgba(39, 40, 40, 0.2) 100%);
         }
+        .blue1-bg {
+            background-image: linear-gradient(to right, rgb(12, 73, 152) 0%, rgba(39, 40, 40, 0.2) 100%);
+        }
     }
     .item-hover::before {
         background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgba(39, 40, 40, 0.2) 100%);
@@ -41,6 +44,9 @@
         }
         .blue-bg {
             background-image: linear-gradient(to right, rgb(148, 162, 252) 0%, rgba(244, 244, 244, 0.2) 100%);
+        }
+        .blue1-bg {
+            background-image: linear-gradient(to right, rgb(112, 188, 252) 0%, rgba(242, 242, 242, 0.2) 100%);
         }
     }
     .item-hover::before {

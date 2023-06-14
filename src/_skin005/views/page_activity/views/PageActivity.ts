@@ -4,6 +4,7 @@ import PageActivityMediator from "../mediator/PageActivityMediator";
 import PageActivityProxy from "../proxy/PageActivityProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class PageActivity extends AbstractView {
@@ -12,6 +13,16 @@ export default class PageActivity extends AbstractView {
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;
     core = core;
+
+    get promotion_reward_model_id() {
+        return (
+            GameConfig.config.promotion_reward_model_id ?? {
+                id: 0,
+                rule_id: 0,
+            }
+        );
+    }
+
     constructor() {
         super(PageActivityMediator);
     }
@@ -46,6 +57,12 @@ export default class PageActivity extends AbstractView {
     onItemClick(item: any) {
         console.log("收到点击。。。", item);
         //PanelUtil.openpanel_activity_detail(item);
+
+        // 推广奖励
+        if (item.id == this.promotion_reward_model_id.id) {
+            PanelUtil.openpanel_promotionreward();
+            return;
+        }
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
         } else {

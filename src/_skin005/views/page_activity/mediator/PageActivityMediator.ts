@@ -11,6 +11,7 @@ export default class PageActivityMediator extends AbstractMediator {
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: PageActivityProxy = getProxy(PageActivityProxy);
+        const promotionRewardProxy = PanelUtil.getProxy_promotion_reward;
         switch (notification.getName()) {
             case net.EventType.api_plat_activity:
                 console.log("--关闭 加载");
@@ -24,6 +25,9 @@ export default class PageActivityMediator extends AbstractMediator {
                     myProxy.activityDetailData = <any>{};
                 }
                 myProxy.activityDetailData[body.id] = body;
+                if (promotionRewardProxy.pageData.bShow) {
+                    return;
+                }
                 PanelUtil.openpanel_activity_detail(body);
                 break;
         }

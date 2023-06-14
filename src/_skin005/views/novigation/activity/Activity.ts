@@ -17,6 +17,7 @@ export default class Activity extends AbstractView {
         7: { name: "每日签到", color: "purple", img_src: require("@/_skin005/assets/novigation/activity/sign_in.png") },
         // id1: { name: "幸运转盘", color: "red", img_src: require("@/_skin005/assets/novigation/activity/roulette.png") },
         // id2: { name: "有奖标枪", color: "blue", img_src: require("@/_skin005/assets/novigation/activity/javelin.png") },
+        8: { name: "每日签到", color: "blue1", img_src: require("@/_skin005/assets/novigation/activity/promotion_reward.png") },
     };
 
     // isFilterChange = false;

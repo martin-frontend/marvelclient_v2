@@ -93,4 +93,9 @@ export interface GameConfigVO {
     kwaiq_id: string;
     /**是否启用免审金额 */
     enable_exemption_amount: number;
+    /**推广奖励活动 ID*/
+    promotion_reward_model_id: {
+        id: number,
+        rule_id: number,
+    };
 }

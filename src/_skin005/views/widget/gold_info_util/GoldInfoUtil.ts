@@ -31,6 +31,23 @@ export default class GoldInfoUtil extends AbstractView {
     @Prop({ default: false }) is_recharge!: boolean; //是否为 充值中的 金币
 
     @Prop({ default: true }) formatNumber!: boolean;
+
+    //:trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+    @Prop({ default: undefined }) trans_coin_name_obj!: any | undefined; // 币种名字显示替换
+    @Prop({ default: undefined }) trans_coin_img_obj!: any | undefined; // 币种图片显示替换
+
+    //转换币种
+    trans_coin_name(coinname: string) {
+        if (!this.trans_coin_name_obj || !this.trans_coin_name_obj[coinname]) return coinname;
+        return this.trans_coin_name_obj[coinname];
+    }
+
+    trans_coin_img(coinname: string) {
+        if (!this.trans_coin_img_obj || !this.trans_coin_img_obj[coinname]) return this.GamePlatConfig.config.plat_coins[coinname].icon;
+        //return require(`@/_skin005/assets/coin/volare.png`);
+        return require(`@/_skin005/assets/coin/${this.trans_coin_img_obj[coinname]}.png`);
+    }
+
     public get iconfontsize_str(): string {
         return "text-" + this.font_size_icon;
         //return "text-24" ;
@@ -78,11 +95,10 @@ export default class GoldInfoUtil extends AbstractView {
         this.$emit("onItemClick", item);
     }
 
-    get isDisabled()
-    {
+    get isDisabled() {
         if (!this.goldInfoData) return true;
-        const keys = Object.keys( this.goldInfoData);
-        
+        const keys = Object.keys(this.goldInfoData);
+
         return keys.length < 2;
     }
 }

@@ -369,4 +369,15 @@ export default class RechargeTypeCommon extends AbstractView {
         }
         return "";
     }
+
+    get is_show_money():boolean
+    {
+        return !(GlobalVar.skin == "skin020");
+    }
+    get is_show_coin_title():boolean
+    {
+        if (!this.gold_info) return false;
+        const keys = Object.keys( this.gold_info);
+        return keys.length > 1;
+    }
 }

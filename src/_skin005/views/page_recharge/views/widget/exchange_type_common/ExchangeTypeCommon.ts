@@ -350,7 +350,7 @@ export default class ExchangeTypeCommon extends AbstractView {
         console.log("数据为", this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id]);
         if (obj.exchange_coin_scale) {
             //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
-            const val = this.form.amount || "1";
+            const val = "1";
             const nub = Number(val) ;
             const inputVal = nub / Number(obj.exchange_coin_scale || "1");
             const sss = `${nub} ${obj.coin_name_unique_ori} = ${inputVal} ${obj.coin_name_unique_target}`;
@@ -359,4 +359,29 @@ export default class ExchangeTypeCommon extends AbstractView {
         }
         return "";
     }
+    get goldGotText() {
+        const obj = this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id];
+        console.log("数据为", this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id]);
+        if (obj.exchange_coin_scale) {
+            //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
+            const val = this.form.amount || "0";
+            const nub = Number(val) ;
+            const inputVal = nub / Number(obj.exchange_coin_scale || "1");
+            const sss = `${this.amountFormat(inputVal,true)} ${obj.coin_name_unique_target}`;
+
+            return sss;
+        }
+        return "";
+    }
+    get is_show_money():boolean
+    {
+        return !(GlobalVar.skin == "skin020");
+    }
+    get is_show_coin_title():boolean
+    {
+        if (!this.gold_info) return false;
+        const keys = Object.keys( this.gold_info);
+        return keys.length > 1;
+    }
+
 }

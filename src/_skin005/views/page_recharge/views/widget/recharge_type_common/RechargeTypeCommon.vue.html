@@ -4,7 +4,7 @@
         <v-row>
             <v-col :cols="coinSelectLength">
                 <v-card flat color="transparent">
-                    <div class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                    <div v-if="is_show_coin_title" class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
                     <v-sheet color="transparent">
                         <goldinfo_util
                             :class="{'regular_text':false}"
@@ -15,6 +15,9 @@
                             :is_recharge="true"
                             :coin_name_unique="form.coin_name_unique"
                             :items_min_height="36"
+                            :is_show_money="is_show_money"
+                            :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                            :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
                             @onItemClick="onItemClick"
                         >
                         </goldinfo_util>
@@ -77,7 +80,7 @@
                     </v-sheet>
                 </v-col>
             </v-row>
-            <div class="textYellow--text">{{goldScaleText}}</div>
+            <div class="daily_bg--text">{{goldScaleText}}</div>
             <v-sheet
                 class="rounded-lg ml-3 mt-4"
                 width="100"
@@ -276,7 +279,8 @@
         <v-row>
             <v-col cols="12">
                 <v-card flat color="transparent">
-                    <div class="text-14 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                    <div v-if="is_show_coin_title" class="text-14 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                    <v-sheet v-else class="text-14 primary--text mb-2 bold_text font-weight-bold" min-height="18" color="transparent"></v-sheet>
                     <v-sheet color="transparent">
                         <goldinfo_util
                             :class="{'regular_text':false}"
@@ -287,6 +291,9 @@
                             :is_recharge="true"
                             :coin_name_unique="form.coin_name_unique"
                             :items_min_height="36"
+                            :is_show_money="is_show_money"
+                            :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                            :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
                             @onItemClick="onItemClick"
                         >
                         </goldinfo_util>
@@ -331,7 +338,7 @@
                                     <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
                                 </v-btn>
                             </v-sheet>
-                            <div class="textYellow--text">{{goldScaleText}}</div>
+                            <div class="daily_bg--text">{{goldScaleText}}</div>
                         </div>
                         <!-- okpay topay -->
                         <div

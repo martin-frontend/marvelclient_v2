@@ -14,11 +14,11 @@
                     <v-img
                         class="ml-2"
                         v-if="is_show_coin_icon"
-                        :src="GamePlatConfig.config.plat_coins[coin_name_unique] && GamePlatConfig.config.plat_coins[coin_name_unique].icon"
+                        :src="trans_coin_img(coin_name_unique)"
                         :max-width="img_size"
                         :max-height="img_size"
                     ></v-img>
-                    <div v-if="is_need_coin_name" class="ml-2" :class="coin_class">{{coin_name_unique}}</div>
+                    <div v-if="is_need_coin_name" class="ml-2" :class="coin_class">{{trans_coin_name(coin_name_unique)}}</div>
                     <div v-if="is_show_money" :class="detail_class">
                         <span :class="balanceStrColor" v-if="inside_str"> {{LangUtil(inside_str)}}</span>
                         <span v-if="!is_recharge"
@@ -52,13 +52,13 @@
                     <v-img
                         v-if="is_show_coin_icon"
                         class="ml-1 mr-2"
-                        :src="GamePlatConfig.config.plat_coins[key].icon"
+                        :src="trans_coin_img(key)"
                         :max-width="img_size"
                         :max-height="img_size"
                     >
                     </v-img>
 
-                    <div v-if="is_need_coin_name" class="ml-2" :class="coin_class">{{key}}</div>
+                    <div v-if="is_need_coin_name" class="ml-2" :class="coin_class">{{trans_coin_name(key)}}</div>
 
                     <div v-if="is_show_money" :class="detail_class">
                         <span v-if="inside_str"> {{LangUtil(inside_str)}}</span>

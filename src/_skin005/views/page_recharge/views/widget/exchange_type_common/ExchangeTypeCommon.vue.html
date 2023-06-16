@@ -16,6 +16,9 @@
                             :is_recharge="true"
                             :coin_name_unique="form.coin_name_unique"
                             :items_min_height="36"
+                            :is_show_money="is_show_money"
+                            :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                            :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
                             @onItemClick="onItemClick"
                         >
                         </goldinfo_util>
@@ -45,15 +48,26 @@
                 </v-card>
             </v-col>
             <v-col cols="6">
-                <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+
+                <v-sheet color="transparent" class="d-flex justify-space-between">
+                    <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                    <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
+                </v-sheet>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
+                        <template v-slot:default>
+                            <div color="transparent" class="text-no-wrap">
+                                <span>{{LangUtil("将会得到:")}}</span>
+                                <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
+                            </div>
+                        </template>
+                    </CustomInput>
 
                     <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll"
                         ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
                     >
                 </v-sheet>
-                <div class="textYellow--text">{{goldScaleText}}</div>
+                <div class="daily_bg--text">{{goldScaleText}}</div>
             </v-col>
         </v-row>
     </v-card>
@@ -248,7 +262,7 @@
                                         </template>
                                         <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
                                     </v-tooltip>
-    
+
                                     <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
                                         {{LangUtil("地址薄")}}
                                     </btn-yellow>
@@ -314,7 +328,15 @@
         <v-row>
             <v-col cols="12">
                 <v-card flat color="transparent">
-                    <div class="text-14 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                    <div v-if="is_show_coin_title" class="text-14 primary--text mb-2 bold_text font-weight-bold">
+                        {{LangUtil("选择币种")}}
+                    </div>
+                    <v-sheet
+                        v-else
+                        class="text-14 primary--text mb-2 bold_text font-weight-bold"
+                        min-height="18"
+                        color="transparent"
+                    ></v-sheet>
                     <v-sheet color="transparent">
                         <goldinfo_util
                             :class="{'regular_text':false}"
@@ -325,6 +347,9 @@
                             :is_recharge="true"
                             :coin_name_unique="form.coin_name_unique"
                             :items_min_height="36"
+                            :is_show_money="is_show_money"
+                            :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                            :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
                             @onItemClick="onItemClick"
                         >
                         </goldinfo_util>
@@ -355,41 +380,7 @@
                     <v-progress-linear :value="progressValue" height="5" color="success"></v-progress-linear>
                 </div>
             </v-col>
-            <v-col cols="12">
-                <div class="text-14 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
-                <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
-                    <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
-                        ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
-                    >
-                </v-sheet>
-                <div class="textYellow--text">{{goldScaleText}}</div>
-            </v-col>
-        </v-row>
-    </v-card>
-
-    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3">
-        <v-row>
-            <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
-                <btn-yellow
-                    class="mb-2"
-                    min_width="100%"
-                    height="36"
-                    :btn_type="10"
-                    :disabled="form.block_network_id==key"
-                    @click.native="onChangeSub(key)"
-                >
-                    {{item.name}}
-                </btn-yellow>
-            </v-col>
-        </v-row>
-    </div>
-    <!-- <div v-if="form.payment_method_type==8">
-        
-    </div> -->
-    <v-card flat color="transparent" class="mt-4">
-        <v-row>
             <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="12">
                 <v-card flat color="transparent" class="d-flex flex-column justify-center">
                     <div class="">{{LangUtil("你的钱包地址")}}</div>
@@ -424,6 +415,84 @@
                     </v-sheet>
                 </v-card>
             </v-col>
+
+            <v-col cols="12">
+                <v-sheet color="transparent" class="d-flex justify-space-between">
+                    <div class="text-14 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                    <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
+                </v-sheet>
+                <v-sheet color="transparent" width="100%" class="d-flex">
+                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+
+                    <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
+                        ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                    >
+                </v-sheet>
+                <div class="daily_bg--text mt-2">{{goldScaleText}}</div>
+
+                <div color="transparent" class="text-no-wrap mt-2">
+                    <span>{{LangUtil("将会得到:")}}</span>
+                    <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
+                </div>
+            </v-col>
+        </v-row>
+    </v-card>
+
+    <div v-if="isShowOptions" class="d-flex flex-wrap mt-3">
+        <v-row>
+            <v-col v-for="(item, key) of pageData.methodList[form.coin_name_unique].options" :key="key">
+                <btn-yellow
+                    class="mb-2"
+                    min_width="100%"
+                    height="36"
+                    :btn_type="10"
+                    :disabled="form.block_network_id==key"
+                    @click.native="onChangeSub(key)"
+                >
+                    {{item.name}}
+                </btn-yellow>
+            </v-col>
+        </v-row>
+    </div>
+    <!-- <div v-if="form.payment_method_type==8">
+        
+    </div> -->
+    <v-card flat color="transparent" class="mt-4">
+        <v-row>
+            <!-- <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="12">
+                <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                    <div class="">{{LangUtil("你的钱包地址")}}</div>
+                    <v-sheet color="transparent" class="py-1">
+                        <CustomInput class="" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+                            <div class="d-flex align-center">
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                            <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
+                                        </v-sheet>
+                                    </template>
+                                    <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                </v-tooltip>
+
+                                <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                    {{LangUtil("地址薄")}}
+                                </btn-yellow>
+
+                                <btn-yellow
+                                    v-if="!$mobile"
+                                    class="text-14 ml-2"
+                                    min_width="80"
+                                    height="30"
+                                    :btn_type="2"
+                                    @click.native="onPaste"
+                                >
+                                    {{LangUtil("粘贴")}}
+                                </btn-yellow>
+                            </div>
+                        </CustomInput>
+                    </v-sheet>
+                </v-card>
+            </v-col> -->
 
             <v-col v-if="form.payment_method_type==6" cols="12">
                 <v-card flat color="transparent">

@@ -2,6 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LoginEnter from "@/_skin005/core/global/LoginEnter";
 
 @Component
 export default class GameItem extends AbstractView {
@@ -80,8 +81,15 @@ export default class GameItem extends AbstractView {
             return;
         }
         if (this.item) {
-            if (this.isNomalState) PanelUtil.openpage_soccer(this.item);
-            else {
+            if (this.isNomalState) {
+                if (this.item.visitor_allowed == 1) {
+                    PanelUtil.openpage_soccer(this.item);
+                } else {
+                    LoginEnter(() => {
+                        PanelUtil.openpage_soccer(this.item);
+                    });
+                }
+            } else {
                 PanelUtil.message_alert(LangUtil("{0}正在维护", this.item.vendor_product_name));
             }
         }

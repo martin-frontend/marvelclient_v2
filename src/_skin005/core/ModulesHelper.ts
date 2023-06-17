@@ -218,6 +218,13 @@ function isShow_Fan_shui() {
 function isShow_Kefu() {
     return _isValueTrue("sysService");
 }
+/**
+ * 是否显示合作方客服
+ * @returns
+ */
+function isShow_PartnerKefu() {
+    return _isValueTrue("sysPartnerService");
+}
 
 function isShow_SearchGame() {
     return _isValueTrue("searchGame");
@@ -251,4 +258,5 @@ export default {
     IsShow_HideRealName,
     IsShow_HideSafeCenter,
     IsShow_HideEmail,
+    isShow_PartnerKefu,
 };

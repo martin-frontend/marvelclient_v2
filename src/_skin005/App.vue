@@ -10,7 +10,7 @@
                     <v-sheet color="transparent" class="px-2" width="100%">
                         <v-main id="router_page" class="router_test">
                             <router-view />
-                            <Footer v-if="isShowFooter"/>
+                            <Footer v-if="isShowFooter" />
                         </v-main>
                     </v-sheet>
                 </v-sheet>
@@ -32,7 +32,6 @@
         <!-- 用户面板 -->
         <template v-if="$mobile">
             <v-navigation-drawer
-            
                 v-model="myProxy.bshowNovigationPanel"
                 left
                 temporary
@@ -71,11 +70,28 @@
                     <svg-icon icon="service"></svg-icon>
                 </btn-yellow>
             </v-btn>
+            <!-- partner -->
+            <v-btn v-if="ModulesHelper.isShow_PartnerKefu()" class="btn-partner-service pc" icon @click="onPartnerService">
+                <btn-yellow class="text-24" min_width="0" width="50" height="50">
+                    <svg-icon icon="partner"></svg-icon>
+                </btn-yellow>
+            </v-btn>
         </template>
         <template v-if="$xsOnly">
-            <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter" class="btn-service" icon @click="onService">
+            <v-btn
+                v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter"
+                class="btn-service"
+                icon
+                @click="onService"
+            >
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon icon="service"></svg-icon>
+                </btn-yellow>
+            </v-btn>
+            <!-- partner -->
+            <v-btn v-if="ModulesHelper.isShow_PartnerKefu() && isShowFooter" class="btn-partner-service" icon @click="onPartnerService">
+                <btn-yellow class="text-20" min_width="0" width="40" height="40">
+                    <svg-icon icon="partner"></svg-icon>
                 </btn-yellow>
             </v-btn>
         </template>
@@ -162,14 +178,23 @@ export default class extends App {}
     position: fixed;
     bottom: 85px;
     right: 20px;
-    z-index: 100;
+    z-index: 7;
+}
+.btn-partner-service {
+    position: fixed;
+    bottom: 133px;
+    right: 20px;
+    z-index: 7;
+    &.pc {
+        bottom: 140px;
+    }
 }
 
 .btn-top {
     position: fixed;
     bottom: 30px;
     right: 20px;
-    z-index: 100;
+    z-index: 7;
 }
 
 //以下都是在代码中调用的样式 Novigation.ts

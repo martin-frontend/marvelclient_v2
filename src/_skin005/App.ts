@@ -46,11 +46,11 @@ export default class APP extends AbstractView {
         // }
         // window.$xsOnly = Vue.prototype.$xsOnly = !!Vue.vuetify.framework.breakpoint.xsOnly && !!isMobile();
 
-        window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.xsOnly ;
+        window.$xsOnly = Vue.prototype.$xsOnly = Vue.vuetify.framework.breakpoint.xsOnly;
         window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile;
 
-        this.last_mobile_type =  window.$mobile;
-        console.log("---上一次名字---",this.last_mobile_type);
+        this.last_mobile_type = window.$mobile;
+        console.log("---上一次名字---", this.last_mobile_type);
     }
 
     mounted() {
@@ -77,6 +77,9 @@ export default class APP extends AbstractView {
     }
     onService() {
         ServiceUtil();
+    }
+    onPartnerService() {
+        ServiceUtil("partner");
     }
     onTop() {
         //window.scrollTo(0, 0);
@@ -114,9 +117,8 @@ export default class APP extends AbstractView {
                     this.isScreenV = !window.orientation || window.orientation == 180 || window.orientation == 0;
                 }
             }
-            console.log("---this.$vuetify.breakpoint.mobile",this.$vuetify.breakpoint.mobile);
-            if(this.last_mobile_type != this.$vuetify.breakpoint.mobile)
-            {
+            console.log("---this.$vuetify.breakpoint.mobile", this.$vuetify.breakpoint.mobile);
+            if (this.last_mobile_type != this.$vuetify.breakpoint.mobile) {
                 this.last_mobile_type = this.$vuetify.breakpoint.mobile;
                 window.location.reload();
             }
@@ -172,7 +174,12 @@ export default class APP extends AbstractView {
 
         if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 
-        if (this.$route.path.includes("cricket") || this.$route.path.includes("page_game_soccer") || this.$route.path.includes("page_recharge")) return false;
+        if (
+            this.$route.path.includes("cricket") ||
+            this.$route.path.includes("page_game_soccer") ||
+            this.$route.path.includes("page_recharge")
+        )
+            return false;
 
         if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
             for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {

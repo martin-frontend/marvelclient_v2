@@ -56,6 +56,8 @@ SkinVariable.isFootballTop = false;
 // document.body.style.setProperty("--btn_disable_text_dark", "#BABABA");
 SkinVariable.isShowPlatUsersVerification = true;
 SkinVariable.autoTheme = false;
+SkinVariable.systemKefuTop = false;
+
 LogUtil.init();
 core.init();
 //@ts-ignore

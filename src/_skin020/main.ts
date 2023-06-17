@@ -110,7 +110,7 @@ window["vueInit"] = () => {
     }).$mount("#app");
 
     const Whisper_client_id: string = "avuaz2GpcqzP4DL1YiSosg"; //这个跟 web得 不一样
-    const Whisper_redirect_uri: string = "https://all.testjj9.com/coinfans/skin020/redirect.html";
+    const Whisper_redirect_uri: string =process.env.NODE_ENV == "production" ? "https://bet2dream.com/redirect.html" :  "https://all.testjj9.com/coinfans/skin020/redirect.html";
 
     // 检测是否再 whisper 钱包内打开应用 用这个来判断
     //@ts-ignore

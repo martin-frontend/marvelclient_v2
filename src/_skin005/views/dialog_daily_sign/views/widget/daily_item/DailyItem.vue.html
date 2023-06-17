@@ -7,17 +7,17 @@
         :height="height"
         :class="isToday ? 'item_border_cur':'item_border'"
     >
-        <v-sheet color="daily_bg" class="item_radius white--text text-16" :class="isGot ? 'grays_bg': ''" width="30" style="text-align: center">
+        <v-sheet color="daily_bg" class="item_radius white--text text-12" :class="isGot ? 'grays_bg': ''" width="22" style="text-align: center">
             {{item.rule_num}}
         </v-sheet>
-        <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-n6">
-            <img :src="item_icon_path" :class="isGot ? 'grays_bg': ''" :width="isLastItem ? 280 : 140" />
+        <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-n4">
+            <img :src="item_icon_path" :class="isGot ? 'grays_bg': ''" :width="isLastItem ? 160 : 75" />
             <div v-if="isGot" class="got_img_pos">
-                <img :src="item_icon_got_path" width="60" />
-                <div class="get_text_class font-weight-bold">{{LangUtil("已领取")}}</div>
+                <img :src="item_icon_got_path" width="40" />
+                <div class="get_text_class font-weight-bold text-12">{{LangUtil("已领取")}}</div>
             </div>
         </v-sheet>
-        <v-sheet color="transparent" class="daily_award_text--text text-16 item_bouns_title" :class="isGot ? 'grays_bg': ''" width="100%">
+        <v-sheet color="transparent" class="daily_award_text--text text-12 item_bouns_title" :class="isGot ? 'grays_bg': ''" width="100%">
             <div v-html="award_text"></div>
         </v-sheet>
     </v-sheet>

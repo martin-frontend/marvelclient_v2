@@ -15,8 +15,8 @@
 }
 .got_img_pos {
     position: absolute;
-    top: 40px;
-    left: 55px;
+    top: 24px;
+    // left: 55px;
 }
 .got_img_pos_mob {
     position: absolute;
@@ -31,7 +31,7 @@
 .item_bouns_title {
     text-align: center;
     position: absolute;
-    bottom: 20px;
+    bottom: 13px;
 }
 .item_bouns_title_mob {
     text-align: center;
@@ -44,8 +44,9 @@
     border: solid 2px rgb(220, 54, 54) !important;
     text-align: center;
     transform: rotate(-32deg);
-    width: 70px;
-    top: 17px;
+    width: 51px;
+    height: 18px;
+    top: 11px;
     right: -5px;
     color: rgb(220, 54, 54);
 }

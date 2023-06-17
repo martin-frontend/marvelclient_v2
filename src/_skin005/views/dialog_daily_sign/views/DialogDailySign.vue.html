@@ -1,17 +1,17 @@
 <v-dialog
     v-if="!pageData.bHidden"
-    width=" 610"
+    width="400"
     v-model="pageData.bShow"
     :fullscreen="$xsOnly"
     :retain-focus="false"
     persistent
 >
-    <v-card v-if="!$xsOnly" class="rounded10 px-2" color="transparent">
+    <v-card v-if="!$xsOnly" class="rounded10" color="transparent" elevation="0">
         <!-- <div class="div_bg"></div> -->
-        <v-img v-if="!$xsOnly" :src="bg_icon_path" max-width="580" class="main_bg"> </v-img>
+        <v-img v-if="!$xsOnly" :src="bg_icon_path" width="100%" class="main_bg"> </v-img>
         <v-img v-else :src="bg_icon_path" max-width="260" class="main_bg"> </v-img>
 
-        <v-card flat color="transparent" class="py-2 px-2">
+        <v-card flat color="transparent" class="py-2 px-2" width="100%">
             <!-- 标题 -->
             <v-sheet
                 color="transparent"
@@ -23,12 +23,12 @@
                 <div class="gradient_title canntSelect">{{LangUtil("每日签到")}}</div>
             </v-sheet>
             <!-- 副标题 -->
-            <v-sheet color="transparent" class="daily_mini_title--text mt-2" :class="$xsOnly ? 'text-14' : 'text-24'">
+            <v-sheet color="transparent" class="daily_mini_title--text" :class="$xsOnly ? 'text-14' : 'text-16'" style="line-height: 1.4;">
                 <div style="text-align: center" v-html="miniTitle"></div>
             </v-sheet>
 
             <!-- 下面的内容 -->
-            <v-card flat color="transparent" class="d-flex flex-wrap py-4 align-center justify-center" height="440">
+            <v-card flat color="transparent" class="d-flex flex-wrap py-5 align-center justify-center">
                 <template
                     v-if="myProxy.daily_data.rules && myProxy.daily_data.rules.length>0"
                     v-for="(item, key) of myProxy.daily_data.rules"
@@ -38,27 +38,27 @@
                         :key="item.rule_num"
                         :item="item"
                         class="mx-1 my-1"
-                        width="130"
-                        height="170"
+                        width="85"
+                        height="110"
                         :isToday="todayData.rule_num == item.rule_num"
                     />
                 </template>
             </v-card>
 
             <!-- 底部的按钮以及信息 -->
-            <v-sheet color="transparent" width="100%" class="d-flex px-4">
-                <btn-yellow class="text-16" width="100%" height="60" @click.native="onGetBones" :disabled="isTodaySign"
+            <v-sheet color="transparent" width="100%" class="d-flex mt-1 px-2">
+                <btn-yellow class="text-18" width="100%" height="50" @click.native="onGetBones" :disabled="isTodaySign"
                     >{{LangUtil("立即签到")}}</btn-yellow
                 >
             </v-sheet>
-            <v-sheet color="transparent" width="100%" class="mt-2" style="text-align: center">
+            <v-sheet color="transparent" width="100%" class="mt-3" style="text-align: center">
                 {{LangUtil("本周已签到第{0}天",isSignedDays)}}
             </v-sheet>
         </v-card>
 
-        <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-4 py-2">
+        <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-2 py-2">
             <v-btn class="mr-2" icon @click="onClose">
-                <svg-icon icon="close_circle" class="text-40 white--text"></svg-icon>
+                <svg-icon icon="close_circle" class="text-30 white--text"></svg-icon>
             </v-btn>
         </v-sheet>
     </v-card>

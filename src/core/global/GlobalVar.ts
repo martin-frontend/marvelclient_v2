@@ -40,6 +40,19 @@ export default class GlobalVar {
             return false;
         else return true;
     }
+    /**是否显示 退出按钮 */
+    public get isShowLogout(): boolean {
+        if (GlobalVar.skin == "skin020") {
+            //@ts-ignore
+            const whisper = window["Whisper"];
+            if (!whisper) {
+                return true;
+            }
+        }
+
+        return this.isShowLogin;
+    }
+
     /**是否显示 充值 兑换 */
     public get isShowRecharge(): boolean {
         if (

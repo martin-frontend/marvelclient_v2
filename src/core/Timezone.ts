@@ -4,6 +4,7 @@
 import LangUtil from "@/core/global/LangUtil";
 import moment from "moment-timezone"; //Asia/Shanghai
 import GameConfig from "./config/GameConfig";
+import { dateFormat } from "./global/Functions";
 interface timezoneItem {
     key: string;
     value: string;
@@ -169,6 +170,20 @@ export default class Timezone {
         const seconds24 = this.padZero(time.getSeconds());
         return `${year}-${month}-${day} ${hours24}:${minutes24}:${seconds24}`;
     }
+
+    addTime_other(timeStr: number, duration: string): string {
+        const [hours, minutes] = duration.split(":").map(Number);
+        const time = new Date(timeStr);
+        time.setUTCHours(time.getUTCHours()+hours );
+        time.setUTCMinutes(time.getUTCMinutes() + minutes);
+        const year = time.getUTCFullYear();
+        const month = this.padZero(time.getUTCMonth() + 1);
+        const day = this.padZero(time.getUTCDate());
+        const hours24 = this.padZero(time.getUTCHours());
+        const minutes24 = this.padZero(time.getUTCMinutes());
+        const seconds24 = this.padZero(time.getUTCSeconds());
+        return `${year}-${month}-${day} ${hours24}:${minutes24}:${seconds24}`;
+    }
     /**时间补齐 00 */
     padZero(n: number): string {
         return n < 10 ? `0${n}` : `${n}`;
@@ -192,6 +207,14 @@ export default class Timezone {
         }
         const newdata = this.addTime(datetimeString, "-8:00");
         return this.addTime(newdata, this.getLocalTimezoneString());
+    }
+    convertTime_to_Locale_utc(datetimeString: number): string {
+        if (!GameConfig.timezoneChange) {
+            return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
+        }
+        const newdata = this.addTime_other(datetimeString,this.getLocalTimezoneString());
+        console.log("转换之后的时间" , newdata);
+        return newdata;
     }
     /**
      * 将输入的时间转换为北京时间，如果平台不需要转换时间 会返回 传入值

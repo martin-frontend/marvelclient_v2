@@ -51,7 +51,6 @@
             }
         </script>
 
-        <% if (process.env.VUE_APP_ENV !=='production' ) { %>
         <!-- 测试版本 -->
         <script>
             window.onerror = function (msg, url, row, col, error) {
@@ -61,11 +60,17 @@
                 _data.row = row;
                 _data.col = col;
                 _data.error = error;
+                _data.virsion_client = process.env.version;
+                _data.time = new Date();
+                var dataLayer = window.dataLayer_errinfo || [];
+                dataLayer.push(Object.assign({ event: "windowerror" }, _data));
 
-                alert(JSON.stringify(_data));
+                console.log("  发送 报错 信息");
+                if (process.env.VUE_APP_ENV !== "production") {
+                    alert(JSON.stringify(_data));
+                }
             };
         </script>
-        <% } %>
 
         <script>
             //解决部分手机浏览器报错的问题
@@ -90,6 +95,21 @@
                 });
             });
         </script>
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+                console.log("GTM 添加成功--");
+            })(window, document, "script", "dataLayer", "GTM-MDC52VT");
+        </script>
+        <!-- End Google Tag Manager -->
     </head>
 
     <style>

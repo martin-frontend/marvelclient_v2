@@ -58,11 +58,11 @@ export function initMainGTM(id: string) {
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         const f = d.getElementsByTagName(s)[0],
             j = d.createElement(s),
-            dl = l != "dataLayer_main" ? "&l=" + l : "";
+            dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer_main", id);
+    })(window, document, "script", "dataLayer", id);
 }
 //给GTM发送信息
 function gtm_sendmessage(dataLayer:any,eventName: string, data: any) {
@@ -109,7 +109,7 @@ function gmt(eventName: string, data: any) {
     //给主GTM发送信息 也发送一份
     {
         //@ts-ignore
-        const dataLayer = window.dataLayer_main || [];
+        const dataLayer = window.dataLayer || [];
         gtm_sendmessage(dataLayer,eventName,data);
     }
 }

@@ -4,8 +4,9 @@ import GlobalVar from "../global/GlobalVar";
 import { Base64 } from "js-base64";
 import NotificationName from "../NotificationName";
 import LangUtil from "../global/LangUtil";
-import { getFileVersion } from "../global/Functions";
+import { getFileVersion, getVersion } from "../global/Functions";
 import Vue from "vue";
+import { track_error_event } from "@/core/config/ErrorEvent";
 
 export default class GameConfig {
     static config: GameConfigVO;
@@ -46,6 +47,11 @@ export default class GameConfig {
                 // return;
             } catch (e) {
                 console.log("native platformConfig error");
+                track_error_event(
+                    { msg: "native platformConfig error", url: "", virsion_client: getVersion(), plat_id: plat_id, channel_id: channel_id },
+                    "gameaddressfail"
+                );
+                this.onGetAddressFail();
             }
         }
 
@@ -78,8 +84,13 @@ export default class GameConfig {
                 if (!core.plat_id) core.plat_id = data.plat_id;
                 if (!core.channel_id) core.channel_id = data.channel_id;
 
-                if (!core.plat_id || !core.channel_id) {
+                if (!data || Object.keys(data).length < 1 || !core.plat_id || !core.channel_id) {
+                    track_error_event(
+                        { msg: "渠道或者平台为空", url: url, virsion_client: getVersion(), plat_id: plat_id, channel_id: channel_id },
+                        "gameaddressfail"
+                    );
                     alert("game_address_data_error");
+                    this.onGetAddressFail();
                     return;
                 }
 
@@ -88,11 +99,31 @@ export default class GameConfig {
                 // if (data.api_domain) core.host = data.api_domain;
                 core.host = "";
                 puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
+                this.onGetAddressSuccess();
             })
             .catch((e) => {
-                //alert(e);
+                track_error_event(
+                    { msg: e, url: url, virsion_client: getVersion(), plat_id: plat_id, channel_id: channel_id },
+                    "gameaddressfail"
+                );
                 alert("get game_address fail");
+                this.onGetAddressFail();
             });
+    }
+    static failHandle = 0;
+    static onGetAddressFail() {
+        if (this.failHandle) {
+            clearTimeout(this.failHandle);
+        }
+        //10秒之后 重新加载
+        this.failHandle = setTimeout(() => {
+            window.location.reload();
+        }, 10000);
+    }
+    static onGetAddressSuccess() {
+        if (this.failHandle) {
+            clearTimeout(this.failHandle);
+        }
     }
     /**根据发送过来的 渠道 参数 对当前gameconfig中的参数 重新赋值 */
     static resetConfigFromChannel(data: any) {
@@ -153,6 +184,16 @@ export default class GameConfig {
                 puremvc.Facade.getInstance().sendNotification(NotificationName.GAME_CONFIG);
             })
             .catch(() => {
+                track_error_event(
+                    {
+                        msg: "请求平台config失败或者错误",
+                        url: url,
+                        virsion_client: getVersion(),
+                        plat_id: core.plat_id,
+                        channel_id: core.channel_id,
+                    },
+                    "gameaddressfail"
+                );
                 alert(LangUtil("Failed to get platform configuration file"));
                 window.location.reload();
             });

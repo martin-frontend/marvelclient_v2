@@ -118,6 +118,20 @@
 
             <div class="d-flex flex-column mb-0">
                 <!-- <v-sheet color="bgColor" height="4px"></v-sheet> -->
+                <v-sheet v-if="ModulesHelper.IsShow_telegramButton()" class="d-flex align-center lang cursor-pointer" height="50" color="transparent" @click="openTelegram">
+                    <v-sheet color="transparent" width="100%" max-width="170">
+                        <v-card
+                            class="d-flex align-center navText--text"
+                            :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
+                            height="40px"
+                            ripple
+                            flat
+                        >
+                            <v-img max-width="20" height="20" src="@/_skin005/assets/novigation/telegram_logo.png"></v-img>
+                            <div class="ml-2 font-weight-medium">Telegram</div>
+                        </v-card>
+                    </v-sheet>
+                </v-sheet>
                 <v-sheet class="d-flex align-center" height="50" color="transparent">
                     <LangSelect
                         v-model="core.lang"

@@ -17,6 +17,17 @@ $nov_width: 188px;
 .lang {
     margin-left: 10px;
     margin-right: 10px;
+
+    .boxdiv {
+        padding-left: 9px;
+        border-radius: 10px;
+        border: solid 1px #d6dde3;
+    }
+    .boxdiv-dark {
+        padding-left: 9px;
+        border-radius: 10px;
+        border: solid 1px #3e3f41;
+    }
 }
 
 .navbox {

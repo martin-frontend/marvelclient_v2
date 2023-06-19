@@ -367,4 +367,8 @@ export default class Novigation extends AbstractView {
         // @ts-ignore
         return this.myProxy.activityData.find((item) => item.id == this.promotion_reward_model_id.id) != undefined;
     }
+
+    openTelegram() {
+        window.open(LangUtil("telegram链结"));
+    }
 }

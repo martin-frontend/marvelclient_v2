@@ -159,6 +159,13 @@ function IsShow_GoogleVerification() {
 }
 
 /**
+ * 是否显示 telegram按钮
+ */
+function IsShow_TelegramButton() {
+    return _isValueTrue("TelegramButton", false);
+}
+
+/**
  * //是否显示 代理管理
  * @returns
  */
@@ -223,7 +230,7 @@ function isShow_Kefu() {
  * @returns
  */
 function isShow_PartnerKefu() {
-    return _isValueTrue("sysPartnerService");
+    return _isValueTrue("sysPartnerService", false);
 }
 
 function isShow_SearchGame() {
@@ -259,4 +266,5 @@ export default {
     IsShow_HideSafeCenter,
     IsShow_HideEmail,
     isShow_PartnerKefu,
+    IsShow_TelegramButton,
 };

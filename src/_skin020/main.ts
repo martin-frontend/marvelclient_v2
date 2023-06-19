@@ -182,6 +182,7 @@ function onWhisperLogin(code: any, type: number = 1) {
             channel_id: core.channel_id,
             code,
             type: type,
+            invite_user_id:core.invite_user_id,
         });
     }
 }

@@ -64,8 +64,6 @@
                 _data.time = new Date();
                 var dataLayer = window.dataLayer_errinfo || [];
                 dataLayer.push(Object.assign({ event: "windowerror" }, _data));
-
-                console.log("  发送 报错 信息");
                 if (process.env.VUE_APP_ENV !== "production") {
                     alert(JSON.stringify(_data));
                 }
@@ -106,7 +104,6 @@
                 j.async = true;
                 j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
                 f.parentNode.insertBefore(j, f);
-                console.log("GTM 添加成功--");
             })(window, document, "script", "dataLayer", "GTM-MDC52VT");
         </script>
         <!-- End Google Tag Manager -->

@@ -100,7 +100,7 @@ class FirebaseData {
         newObj.page_info = JSON.parse(JSON.stringify(this.getPageInfo));
         newObj.diver_info = JSON.parse(JSON.stringify(this.getDiverInfo));
         try {
-            const collectionRef = collection(this.firebaseDB,"errinfo", doc_name,newObj.time_info.time);
+            const collectionRef = collection(this.firebaseDB, "errinfo", doc_name, newObj.time_info.time);
             const docRef = await addDoc(collectionRef, newObj);
             //console.log("添加数据成功---", docRef);
         } catch (e) {
@@ -110,6 +110,9 @@ class FirebaseData {
 }
 /** 发送错误 事件  */
 export function track_error_event(data: any = {}, eventName: string = "windowerror") {
+    if (!(process.env.VUE_APP_ENV == "production")) {
+        return;
+    }
     //@ts-ignore
     const dataLayer_info = window.dataLayer || [];
     dataLayer_info.push(Object.assign({ event: eventName }, data));

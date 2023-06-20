@@ -148,6 +148,9 @@ export default class CustomInputNomal extends AbstractView {
         this.$emit("focus");
     }
     splitLastDot(input: string): [string, string] {
+        if (typeof input == "number") {
+            input = input + "";
+        }
         // 找到第一个点的索引
         const firstDotIndex = input.indexOf(".");
 

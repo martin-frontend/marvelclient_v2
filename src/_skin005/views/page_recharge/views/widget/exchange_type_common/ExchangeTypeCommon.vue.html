@@ -54,7 +54,8 @@
                     <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
                 </v-sheet>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
+                    <CustomInput v-if="is_show_money" :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"></CustomInput>
+                    <CustomInput v-else :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
                         <template v-slot:default>
                             <div color="transparent" class="text-no-wrap">
                                 <span>{{LangUtil("将会得到:")}}</span>
@@ -430,8 +431,8 @@
                 </v-sheet>
                 <div class="daily_bg--text mt-2">{{goldScaleText}}</div>
 
-                <div color="transparent" class="text-no-wrap mt-2">
-                    <span>{{LangUtil("将会得到:")}}</span>
+                <div v-if="!is_show_money" color="transparent" class="text-no-wrap mt-2">
+                    <span >{{LangUtil("将会得到:")}}</span>
                     <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
                 </div>
             </v-col>

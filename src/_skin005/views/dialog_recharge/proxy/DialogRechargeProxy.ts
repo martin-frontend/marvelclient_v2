@@ -4,6 +4,7 @@ import getProxy from "@/core/global/getProxy";
 import Utils from "@/core/global/Utils";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LangUtil from "@/core/global/LangUtil";
+import GlobalVar from "@/core/global/GlobalVar";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -229,35 +230,41 @@ export class ExchangeProxy extends puremvc.Proxy {
         this.api_user_var_exchange_extend_info();
     }
     pix_key_select = 0;
-    pix_key_option = [
-        {
-            name: "brl_CFP/CNPJ", //标题名字
-            key: 3, //传给服务器用的类型
-            Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
-            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
-            placeholder: "",
-            inputValue: "",
-            errinfo: "",
-        },
-        {
-            name: "brl_Mobile",
-            key: 2,
-            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
-            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
-            placeholder: "",
-            inputValue: "",
-            errinfo: "",
-        },
-        {
-            name: "brl_Email",
-            key: 1,
-            Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
-            // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
-            placeholder: "",
-            inputValue: "",
-            errinfo: "",
-        },
-    ];
+    get pix_key_option() {
+        const obj = [
+            {
+                name: "brl_CFP/CNPJ", //标题名字
+                key: 3, //传给服务器用的类型
+                Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+                // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+                placeholder: "",
+                inputValue: "",
+                errinfo: "",
+            },
+            {
+                name: "brl_Mobile",
+                key: 2,
+                Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+                // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+                placeholder: "",
+                inputValue: "",
+                errinfo: "",
+            },
+        ];
+        if (GlobalVar.skin != "skin010") {
+
+            obj.push({
+                name: "brl_Email",
+                key: 1,
+                Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+                // placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+                placeholder: "",
+                inputValue: "",
+                errinfo: "",
+            });
+        }
+        return obj;
+    }
 
     showRequires = <any>[];
 

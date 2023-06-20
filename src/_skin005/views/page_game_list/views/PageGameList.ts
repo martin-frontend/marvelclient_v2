@@ -38,6 +38,7 @@ export default class PageGameList extends AbstractView {
 
     mounted() {
         this.resetItemWidth();
+        this.myProxy.api_plat_var_game_all_index();
     }
 
     @Watch("$vuetify.breakpoint.width")
@@ -228,6 +229,8 @@ export default class PageGameList extends AbstractView {
     }
 
     destroyed() {
+        PanelUtil.getProxy_novigation.categoryActive = 0;
+        this.myProxy.clearData();
         clearInterval(this.timer);
         super.destroyed();
     }

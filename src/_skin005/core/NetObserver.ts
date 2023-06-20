@@ -145,6 +145,7 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_plat_var_game_config:
                 GamePlatConfig.init(body);
                 LangConfig.load();
+                PanelUtil.getProxy_noticeProxy.api_plat_var_notice_index();
                 break;
             case NotificationName.LANG_CONFIG:
                 {
@@ -305,6 +306,9 @@ export default class NetObserver extends AbstractMediator {
                 {
                     const noticeProxy = PanelUtil.getProxy_noticeProxy;
                     noticeProxy.setData(body);
+                    if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0) {
+                        PanelUtil.openpanel_notice();
+                    }
                 }
                 break;
             case net.EventType.api_plat_var_notice_show_var:

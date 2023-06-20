@@ -164,7 +164,12 @@ function IsShow_GoogleVerification() {
 function IsShow_TelegramButton() {
     return _isValueTrue("TelegramButton", false);
 }
-
+/**
+ * 是否显示 telegram按钮
+ */
+function IsShow_NoticeBtn() {
+    return _isValueTrue("NoticeButton", false);
+}
 /**
  * //是否显示 代理管理
  * @returns
@@ -267,4 +272,5 @@ export default {
     IsShow_HideEmail,
     isShow_PartnerKefu,
     IsShow_TelegramButton,
+    IsShow_NoticeBtn,
 };

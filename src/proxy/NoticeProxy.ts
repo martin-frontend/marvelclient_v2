@@ -12,9 +12,9 @@ import page_swap from "@/views/page_swap";
 export default class NoticeProxy extends puremvc.Proxy {
     static NAME = "NoticeProxy";
 
-    public onRegister(): void {
-        this.api_plat_var_notice_index();
-    }
+    // public onRegister(): void {
+    //     this.api_plat_var_notice_index();
+    // }
 
     allData = <core.PlatNoticeVO[][]>[];
     data = {

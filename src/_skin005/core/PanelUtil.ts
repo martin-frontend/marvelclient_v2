@@ -40,6 +40,7 @@ import dialog_official_mail from "@/_skin005/views/dialog_official_mail";
 //import dialog_activity from "@/_skin005/views/dialog_activity";
 import dialog_activity_detail from "@/_skin005/views/dialog_activity_detail";
 import dialog_notice_detail from "@/_skin005/views/dialog_notice_detail";
+import dialog_notice from "@/_skin005/views/dialog_notice";
 
 /**用户 信息 */
 import dialog_user_center from "@/_skin005/views/dialog_user_center";
@@ -397,7 +398,7 @@ export default class PanelUtil {
         // if (SkinVariable.isUsedDialogRecharge) {
         //     MultDialogManager.onOpenPanel(dialog_recharge);
         //     dialog_recharge.show();
-        // } else 
+        // } else
         PanelUtil.openpage_recharge();
     }
     //打开提现窗口
@@ -753,6 +754,11 @@ export default class PanelUtil {
     static openpanel_notice_detail(data: any) {
         MultDialogManager.onOpenPanel(dialog_notice_detail);
         dialog_notice_detail.show(data);
+    }
+    /**  弹窗公告 */
+    static openpanel_notice() {
+        MultDialogManager.onOpenPanel(dialog_notice);
+        dialog_notice.show();
     }
     /** 充值弹出的二维码的对话框 */
     static openpanel_recharge_qrcode(data: any, isImg: boolean = false) {

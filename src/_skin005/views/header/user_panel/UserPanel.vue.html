@@ -11,8 +11,8 @@
 
     <v-sheet class="rounded-lg mt-3 py-1" color="transparent">
         <div class="d-flex align-center ml-2 item text-16" v-for="item of menuList" :key="item.id" @click="onMenuItem(item)">
-            <v-icon class="custom-icon" v-if="item.id != 16" small>{{ item.icon }}</v-icon>
-            <svg-icon v-else :icon="item.icon" class="text-16"></svg-icon>
+
+            <svg-icon :icon="item.icon" class="text-22"></svg-icon>
             <div class="ml-2">{{ item.name }}</div>
             <div class="d-flex align-center ml-1" v-if="item.id == '16'">
                 <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small>
@@ -28,15 +28,6 @@
                 :content="red_dot_tips.is_user_mail_num.num"
                 :value="item.id == '4' && red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
             ></v-badge>
-            <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
-        </div>
-    </v-sheet>
-
-    <v-sheet class="rounded-lg mt-3 py-1" color="transparent" v-if="menuList1.length>0">
-        <div class="d-flex align-center ml-2 item text-16" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
-            <v-icon small>{{ item.icon }}</v-icon>
-            <div class="ml-2">{{ item.name }}</div>
-            <v-spacer />
             <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
         </div>
     </v-sheet>

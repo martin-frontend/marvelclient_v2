@@ -55,6 +55,7 @@ export default class PageMyInfo extends AbstractView {
             11: { id: 11, name: LangUtil("代理管理"), icon: "agentmenger" },
             12: { id: 12, name: LangUtil("我的返水"), icon: "water" },
             13: { id: 13, name: LangUtil("用户认证"), icon: "certified" },
+            14: { id: 14, name: LangUtil("公告中心"), icon: "notice" },
         };
         newlist.push(list[0]);
         if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) newlist.push(list[13]);
@@ -94,6 +95,10 @@ export default class PageMyInfo extends AbstractView {
         //代理管理
         if (ModulesHelper.isShow_Fan_shui()) {
             newlist.push(list[12]);
+        }
+        //公告
+        if (ModulesHelper.IsShow_NoticeBtn()) {
+            newlist.push(list[14]);
         }
         return newlist;
     }
@@ -141,6 +146,9 @@ export default class PageMyInfo extends AbstractView {
                 break;
             case 13:
                 PanelUtil.openpanel_plat_users_verification();
+                break;
+            case 14:
+                PanelUtil.openpanel_notice();
                 break;
         }
     }

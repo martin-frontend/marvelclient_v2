@@ -18,24 +18,29 @@ export default class UserPanel extends AbstractView {
     GlobalVar = GlobalVar;
     get menuList() {
         const list = [
-            { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
-            { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
-            { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
-            { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
+            { id: 0, name: LangUtil("个人中心"), icon: "my_info" },
+            { id: 2, name: LangUtil("平台钱包"), icon: "yue" },
+            { id: 3, name: LangUtil("我的投注"), icon: "bet_my" },
+            { id: 4, name: LangUtil("消息中心"), icon: "mail" },
         ];
 
         if (ModulesHelper.isShow_Fan_shui()) {
-            const obj = { id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" };
+            const obj = { id: 15, name: LangUtil("我的返水"), icon: "water" };
             list.splice(4, 0, obj);
         }
         //list.unshift({ id: 15, name: LangUtil("我的返水"), icon: "mdi-medal" });
         if (!ModulesHelper.IsShow_HideSafeCenter()) {
-            const obj = { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" };
+            const obj = { id: 1, name: LangUtil("安全中心"), icon: "sefety" };
             list.splice(1, 0, obj);
         }
-        if(SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) {
+
+        if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) {
             const obj = { id: 16, name: LangUtil("用户认证"), icon: "certified" };
             list.splice(2, 0, obj);
+        }
+        if (ModulesHelper.IsShow_NoticeBtn()) {
+            const obj = { id: 5, name: LangUtil("公告中心"), icon: "notice" };
+            list.push(obj);
         }
         return list;
     }
@@ -88,6 +93,10 @@ export default class UserPanel extends AbstractView {
                 break;
             case 4:
                 PanelUtil.openpanel_mail();
+                //LoginEnter(dialog_email.show);
+                break;
+            case 5:
+                PanelUtil.openpanel_notice();
                 //LoginEnter(dialog_email.show);
                 break;
             case 10:

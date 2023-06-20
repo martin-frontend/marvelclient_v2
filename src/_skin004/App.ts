@@ -12,6 +12,7 @@ import dialog_notice from "./views/dialog_notice";
 import WebViewBridge from "@/core/native/WebViewBridge";
 import ServiceUtil from "./core/global/ServiceUtil";
 import AppProxy from "./AppProxy";
+import { track_error_event } from "@/core/config/ErrorEvent";
 
 export default class APP extends AbstractView {
     gameProxy: GameProxy = getProxy(GameProxy);
@@ -33,6 +34,17 @@ export default class APP extends AbstractView {
 
     get guideImg() {
         return this.core.lang.includes("zh") ? require("@/assets/guide/img03.png") : require("@/assets/guide/img04.png");
+    }
+    /**发送 错误  */
+    errorCaptured(error: any, vm: any, info: any) {
+        const errorData = {
+            error: error.message,
+            component: vm.$options.name,
+            stack: error.stack,
+            info: info,
+        };
+        track_error_event(errorData, "Vue_error");
+        //return false; // 阻止错误继续向上冒泡
     }
 
     @Watch("$vuetify.breakpoint.width")

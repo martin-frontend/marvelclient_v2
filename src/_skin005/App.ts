@@ -12,6 +12,7 @@ import PanelUtil from "./core/PanelUtil";
 import LangConfig from "@/core/config/LangConfig";
 import Constant from "@/core/global/Constant";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import { track_error_event } from "@/core/config/ErrorEvent";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -35,6 +36,18 @@ export default class APP extends AbstractView {
         this.onResize();
     }
 
+    /**发送 错误  */
+    errorCaptured(error:any, vm:any, info:any) {
+        const errorData = {
+            error: error.message,
+            component: vm.$options.name,
+            stack: error.stack,
+            info: info
+          };
+        track_error_event(errorData,"Vue_error");
+        //return false; // 阻止错误继续向上冒泡
+    }
+
     last_mobile_type = false;
     onResize() {
         // const isM = !!isMobile();
@@ -50,7 +63,7 @@ export default class APP extends AbstractView {
         window.$mobile = Vue.prototype.$mobile = Vue.vuetify.framework.breakpoint.mobile;
 
         this.last_mobile_type = window.$mobile;
-        console.log("---上一次名字---", this.last_mobile_type);
+        //console.log("---上一次名字---", this.last_mobile_type);
     }
 
     mounted() {

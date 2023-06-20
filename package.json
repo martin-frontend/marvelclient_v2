@@ -69,6 +69,7 @@
         "echarts": "^5.3.3",
         "element-ui": "^2.15.10",
         "ethers": "^5.6.4",
+        "firebase": "^9.22.2",
         "gsap": "^3.10.4",
         "inobounce": "^0.2.1",
         "js-base64": "^2.5.1",

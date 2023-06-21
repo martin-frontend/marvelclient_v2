@@ -48,13 +48,17 @@
                 </v-card>
             </v-col>
             <v-col cols="6">
-
                 <v-sheet color="transparent" class="d-flex justify-space-between">
                     <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
                     <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
                 </v-sheet>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput v-if="is_show_money" :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"></CustomInput>
+                    <CustomInput
+                        v-if="is_show_money"
+                        :placeholder="LangUtil('输入金额')"
+                        v-model="form.amount"
+                        :isEnterGold="true"
+                    ></CustomInput>
                     <CustomInput v-else :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
                         <template v-slot:default>
                             <div color="transparent" class="text-no-wrap">
@@ -243,7 +247,7 @@
                 <v-col cols="6" v-if="exchangeProxy.curPixkeyItem">
                     <v-card flat color="transparent" class="d-flex flex-column justify-center">
                         <!-- 标题 -->
-                        <v-sheet color="transparent" class="d-flex"> {{exchangeProxy.curPixkeyItem.name}}</v-sheet>
+                        <v-sheet color="transparent" class="d-flex"> {{LangUtil(exchangeProxy.curPixkeyItem.name)}}</v-sheet>
                         <v-sheet color="transparent" class="py-1">
                             <CustomInput
                                 class=""
@@ -432,7 +436,7 @@
                 <div class="daily_bg--text mt-2">{{goldScaleText}}</div>
 
                 <div v-if="!is_show_money" color="transparent" class="text-no-wrap mt-2">
-                    <span >{{LangUtil("将会得到:")}}</span>
+                    <span>{{LangUtil("将会得到:")}}</span>
                     <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
                 </div>
             </v-col>

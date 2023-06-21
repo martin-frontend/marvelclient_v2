@@ -1,8 +1,10 @@
 import AbstractView from "@/core/abstract/AbstractView";
+import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class CustomSelect extends AbstractView {
+    LangUtil = LangUtil;
     @Prop() options!: any;
     @Prop() icons!: any;
     @Prop({ default: "100%" }) width!: string;

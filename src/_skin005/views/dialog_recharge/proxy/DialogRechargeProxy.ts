@@ -225,46 +225,79 @@ export class ExchangeProxy extends puremvc.Proxy {
 
     exemption_amount = "";
 
-    init() {
-        this.api_user_var_exchange_method_list();
-        this.api_user_var_exchange_extend_info();
-    }
-    pix_key_select = 0;
-    get pix_key_option() {
-        const obj = [
-            {
-                name: LangUtil("brl_CFP/CNPJ"), //标题名字
-                key: 3, //传给服务器用的类型
-                Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
-                 placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
-                //placeholder: "",
-                inputValue: "",
-                errinfo: "",
-            },
-            {
-                name: LangUtil("brl_Mobile"),
-                key: 2,
-                Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
-                 placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
-               // placeholder: "",
-                inputValue: "",
-                errinfo: "",
-            },
-        ];
+    public onRegister(): void {
         if (GlobalVar.skin != "skin010") {
-
-            obj.push({
+            this.pix_key_option.push({
                 name: LangUtil("brl_Email"),
                 key: 1,
                 Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
-                 placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+                placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
                 //placeholder: "",
                 inputValue: "",
                 errinfo: "",
             });
         }
-        return obj;
     }
+
+    init() {
+        this.api_user_var_exchange_method_list();
+        this.api_user_var_exchange_extend_info();
+    }
+    pix_key_select = 0;
+    pix_key_option = [
+        {
+            name: LangUtil("brl_CFP/CNPJ"), //标题名字
+            key: 3, //传给服务器用的类型
+            Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+            //placeholder: "",
+            inputValue: "",
+            errinfo: "",
+        },
+        {
+            name: LangUtil("brl_Mobile"),
+            key: 2,
+            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+            placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+            // placeholder: "",
+            inputValue: "",
+            errinfo: "",
+        },
+    ];
+    // get pix_key_option() {
+    //     const obj = [
+    //         {
+    //             name: LangUtil("brl_CFP/CNPJ"), //标题名字
+    //             key: 3, //传给服务器用的类型
+    //             Regular: `/^\d{11}$/`, //检验的正则  11位 纯数字
+    //             placeholder: LangUtil("请输入{0}", LangUtil("input_brl_CFP/CNPJ")),
+    //             //placeholder: "",
+    //             inputValue: "",
+    //             errinfo: "",
+    //         },
+    //         {
+    //             name: LangUtil("brl_Mobile"),
+    //             key: 2,
+    //             Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+    //             placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+    //             // placeholder: "",
+    //             inputValue: "",
+    //             errinfo: "",
+    //         },
+    //     ];
+    //     if (GlobalVar.skin != "skin010") {
+    //         obj.push({
+    //             name: LangUtil("brl_Email"),
+    //             key: 1,
+    //             Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+    //             placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+    //             //placeholder: "",
+    //             inputValue: "",
+    //             errinfo: "",
+    //         });
+    //     }
+    //     return obj;
+    // }
 
     showRequires = <any>[];
 
@@ -281,11 +314,13 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     onBlurInput_option() {
+        console.log("111111111-----", this.curPixkeyItem.inputValue);
         this.curPixkeyItem.inputValue = this.curPixkeyItem.inputValue.trim();
         if (!this.curPixkeyItem.inputValue) {
             return false;
         }
         let Regx;
+        console.log("this.curPixkeyItem.key: ", this.curPixkeyItem.key);
         switch (this.curPixkeyItem.key) {
             case 1:
                 Regx = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;

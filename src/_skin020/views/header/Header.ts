@@ -181,12 +181,20 @@ export default class Header extends AbstractView {
     }
     isSearchGameShow = true;
     onchangeGameSearch(val: boolean) {
-        console.log(" 搜索页面 是否显示", val);
+        //console.log(" 搜索页面 是否显示", val);
         this.isSearchGameShow = !val;
     }
-    
+
     /**连接钱包 */
     onConnect() {
+        PanelUtil.message_confirm({
+            message: LangUtil("是否已经成年，内容只对成年人开放"),
+            okFun: () => {
+                this.goConnect();
+            },
+        });
+    }
+    goConnect() {
         if (this.$vuetify.breakpoint.mobile) {
             const a = document.createElement("a"); //创建a标签
             a.setAttribute("href", GameConfig.config.ThirdLoginUrl);

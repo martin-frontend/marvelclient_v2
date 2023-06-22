@@ -82,10 +82,21 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     mounted() {
         this.reSetRequir();
-        // this.exchangeProxy.pix_key_option.forEach(item => {
-        //     item.name = LangUtil(item.name);
-        //     item.placeholder = LangUtil("请输入{0}", LangUtil(item.name));
-        // });
+        if (GlobalVar.skin != "skin010") {
+            this.exchangeProxy.pix_key_option.push({
+                name: "brl_Email",
+                key: 1,
+                Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+                //placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+                placeholder: "",
+                inputValue: "",
+                errinfo: "",
+            });
+        }
+        this.exchangeProxy.pix_key_option.forEach(item => {
+            item.name = LangUtil(item.name);
+            item.placeholder = LangUtil("请输入{0}", LangUtil(item.name));
+        });
     }
     onItemClick(key: string) {
         //console.log("   ----当前  点击----", key);

@@ -11,7 +11,7 @@ import LogUtil from "@/core/global/LogUtil";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import "@/_skin005/icons";
-import "@/_skin005/assets/text/text.css";
+// import "@/_skin005/assets/text/text.css";
 import "@/assets/iconfont/iconfont.css";
 import "@mdi/font/css/materialdesignicons.css";
 import "element-ui/lib/theme-chalk/index.css";
@@ -115,8 +115,8 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-PanelUtil.getThemeDark();
-
+// PanelUtil.getThemeDark();
+PanelUtil.setThemeDark(true);
 function addRouter() {
     if (!GameConfig.config.head_game_config) {
         GameConfig.config.head_game_config = <any>[];

@@ -12,12 +12,16 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
             net.EventType.api_user_bind_email_var,
             net.EventType.api_user_change_password_var,
             net.EventType.api_public_area_code,
+            net.EventType.api_user_change_password_gold_var,
+            net.EventType.api_public_auth_code,
+            net.EventType.REQUEST_ERROR,
         ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         const body = notification.getBody();
         const myProxy: DialogSafetyCenterProxy = getProxy(DialogSafetyCenterProxy);
+        if (!myProxy.pageData.bShow) return;
         myProxy.pageData.loading = false;
         switch (notification.getName()) {
             case net.EventType.api_user_bind_mobile_var:
@@ -37,6 +41,20 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
             case net.EventType.api_public_area_code:
                 myProxy.pageData.areaCode = body;
                 myProxy.setAreaCode();
+                break;
+            case net.EventType.api_user_change_password_gold_var:
+                myProxy.pageData.loading = false;
+                myProxy.hide();
+                PanelUtil.getProxy_selfproxy.api_user_show_var([2]);
+                PanelUtil.message_success(LangUtil("操作成功"));
+                break;
+            case net.EventType.api_public_auth_code:
+                myProxy.pageData.auth_image = body;
+                break;
+            case net.EventType.REQUEST_ERROR:
+                if (body.url == net.getUrl(net.HttpType.api_user_change_password_gold_var, body.data)) {
+                    myProxy.api_public_auth_code();
+                }
                 break;
         }
     }

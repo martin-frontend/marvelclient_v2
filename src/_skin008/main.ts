@@ -33,7 +33,7 @@ import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
-import Footer from "@/_skin008/views/footer/Footer.vue";
+import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "@/_skin005/views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";

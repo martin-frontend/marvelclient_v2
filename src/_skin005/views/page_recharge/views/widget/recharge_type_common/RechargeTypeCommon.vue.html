@@ -4,7 +4,9 @@
         <v-row>
             <v-col :cols="coinSelectLength">
                 <v-card flat color="transparent">
-                    <div v-if="is_show_coin_title" class="text-16 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                    <div v-if="is_show_coin_title" class="text-16 primary--text mb-2 bold_text font-weight-bold">
+                        {{LangUtil("选择币种")}}
+                    </div>
                     <v-sheet color="transparent">
                         <goldinfo_util
                             :class="{'regular_text':false}"
@@ -275,12 +277,19 @@
 </v-card>
 <!-- 手机版 -->
 <v-card v-else flat class="py-4 rounded-0" color="transparent">
-    <v-card flat class="px-4" color="bgBanner">
+    <v-card flat class="px-4 py-4" color="bgBanner">
         <v-row>
             <v-col cols="12">
                 <v-card flat color="transparent">
-                    <div v-if="is_show_coin_title" class="text-14 primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
-                    <v-sheet v-else class="text-14 primary--text mb-2 bold_text font-weight-bold" min-height="18" color="transparent"></v-sheet>
+                    <div v-if="is_show_coin_title" class="text-14 primary--text mb-2 bold_text font-weight-bold">
+                        {{LangUtil("选择币种")}}
+                    </div>
+                    <v-sheet
+                        v-else
+                        class="text-14 primary--text mb-2 bold_text font-weight-bold"
+                        min-height="18"
+                        color="transparent"
+                    ></v-sheet>
                     <v-sheet color="transparent">
                         <goldinfo_util
                             :class="{'regular_text':false}"
@@ -472,47 +481,71 @@
                             </v-card>
                         </v-card>
 
-                        <v-sheet color="transparent" class="mt-4">
-                            <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("充值通道说明")}}</div>
-                            <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent" width="100%">
-                                <!-- 需要显示二维码 -->
-                                <template
-                                    v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-                                >
-                                    <v-sheet class="d-flex flex-column" color="transparent" style="max-width: calc(100% - 120px)">
-                                        <div
-                                            class="textGray--text text-12"
-                                            v-for="item of transformExplain(getExplain())"
-                                            v-html="item"
-                                        ></div>
-                                    </v-sheet>
-                                    <v-spacer />
-                                    <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
-                                        <div ref="qrcode" class="qrcode" @click="showPreview">
-                                            <v-img v-if="pageData.qrcode" :src="pageData.qrcode"></v-img>
-                                            <v-sheet v-else color="transparent" width="100%" height="100%" class="d-flex align-center justify-center">
-                                                <v-progress-circular indeterminate color="red daily_close_btn"></v-progress-circular>
-                                            </v-sheet>
-                                        </div>
-                                    </v-sheet>
-                                </template>
-                                <!-- 没有二维码 -->
-                                <template v-else>
-                                    <v-sheet class="d-flex flex-column" color="transparent">
-                                        <div
-                                            class="textGray--text text-12"
-                                            v-for="item of transformExplain(getExplain())"
-                                            v-html="item"
-                                        ></div>
-                                    </v-sheet>
-                                </template>
-                            </v-sheet>
+                        <v-sheet
+                            v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4"
+                            id="animbtn"
+                            ref="animbtn"
+                            color="transparent"
+                            width="100%"
+                            class="d-flex "
+                        >
+                            <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit"
+                                >{{LangUtil("提交充值")}}</btn-yellow
+                            >
                         </v-sheet>
+
+
                     </v-card>
                 </v-card>
             </v-col>
         </v-row>
     </v-card>
+
+    <v-card flat class="px-4 py-2 mt-4" color="bgBanner">
+
+            <div class="primary--text font-weight-bold text-14">{{LangUtil("充值通道说明")}}</div>
+            <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent" width="100%">
+                <!-- 需要显示二维码 -->
+                <template
+                    v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
+                >
+                    <v-sheet class="d-flex flex-column" color="transparent" style="max-width: calc(100% - 120px)">
+                        <div
+                            class="textGray--text text-12"
+                            v-for="item of transformExplain(getExplain())"
+                            v-html="item"
+                        ></div>
+                    </v-sheet>
+                    <v-spacer />
+                    <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
+                        <div ref="qrcode" class="qrcode" @click="showPreview">
+                            <v-img v-if="pageData.qrcode" :src="pageData.qrcode"></v-img>
+                            <v-sheet
+                                v-else
+                                color="transparent"
+                                width="100%"
+                                height="100%"
+                                class="d-flex align-center justify-center"
+                            >
+                                <v-progress-circular indeterminate color="red daily_close_btn"></v-progress-circular>
+                            </v-sheet>
+                        </div>
+                    </v-sheet>
+                </template>
+                <!-- 没有二维码 -->
+                <template v-else>
+                    <v-sheet class="d-flex flex-column" color="transparent">
+                        <div
+                            class="textGray--text text-12"
+                            v-for="item of transformExplain(getExplain())"
+                            v-html="item"
+                        ></div>
+                    </v-sheet>
+                </template>
+            </v-sheet>
+
+    </v-card>
+
 
     <v-sheet color="transparent" width="100%" class="d-flex pt-8 justify-center">
         <v-sheet v-if="isNeedCoinShow" class="d-flex justify-start align-center rounded10" color="transparent">
@@ -523,7 +556,7 @@
         </v-sheet>
     </v-sheet>
 
-    <v-sheet
+    <!-- <v-sheet
         v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4"
         id="animbtn"
         ref="animbtn"
@@ -532,5 +565,5 @@
         class="d-flex mt-8 mb-16"
     >
         <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit">{{LangUtil("提交充值")}}</btn-yellow>
-    </v-sheet>
+    </v-sheet> -->
 </v-card>

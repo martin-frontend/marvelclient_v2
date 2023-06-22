@@ -10,6 +10,7 @@ import GameSport from "../widget/game_sport/GameSport.vue";
 import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
 import GameType from "../widget/game_type/GameType.vue";
+import RecentBetting from "../widget/recent_betting/RecentBetting.vue"
 @Component({
     components: {
         SoccerMatche,
@@ -18,6 +19,7 @@ import GameType from "../widget/game_type/GameType.vue";
         Marquee1,
         Category,
         GameType,
+        RecentBetting,
     },
 })
 export default class extends PageHome {

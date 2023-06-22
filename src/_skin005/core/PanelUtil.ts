@@ -57,7 +57,7 @@ import dialog_personal_card from "@/_skin005/views/dialog_personal_card";
 import dialog_recharge from "@/_skin005/views/dialog_recharge";
 import dialog_wallet from "@/_skin005/views/dialog_wallet";
 import dialog_game_rate from "@/_skin005/views/dialog_game_rate";
-import dialog_trade_password from "@/_skin005/views/dialog_trade_password";
+//import dialog_trade_password from "@/_skin005/views/dialog_trade_password";
 import dialog_record_exchange from "@/_skin005/views/dialog_record_exchange";
 import dialog_record_recharge from "@/_skin005/views/dialog_record_recharge";
 import dialog_address_book from "@/_skin005/views/dialog_address_book";
@@ -558,8 +558,9 @@ export default class PanelUtil {
     }
     //打开 交易密码 窗口
     static openpanel_trade_password() {
-        MultDialogManager.onOpenPanel(dialog_trade_password);
-        dialog_trade_password.show();
+        //MultDialogManager.onOpenPanel(dialog_trade_password);
+        //dialog_trade_password.show();
+        this.openpanel_safety_center(3);
     }
     //打开 绑定邀请码 窗口
     static openpanel_bind_invite() {

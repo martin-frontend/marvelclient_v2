@@ -1,9 +1,12 @@
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PanelUtil from "@/_skin005/core/PanelUtil";
+import GameConfig from "@/core/config/GameConfig";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 
 export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     static NAME = "DialogSafetyCenterProxy";
-
+    GameConfig = GameConfig;
     // public onRegister(): void {
 
     // }
@@ -31,6 +34,14 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             password_confirm: "",
         },
         areaCode: <any>[],
+        form: {
+            verify_code: "",
+            password: "",
+            password_confirm: "",
+            area_code: "86",
+            logonPassword: "", //登录密码
+        },
+        auth_image: "",
     };
 
     resetForm() {
@@ -51,6 +62,12 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             password: "",
             password_confirm: "",
         });
+        Object.assign(this.pageData.form, {
+            verify_code: "",
+            password: "",
+            password_confirm: "",
+            ogonPassword: "", //登录密码
+        });
         this.setAreaCode();
         if (this.pageData.tabIndex < 0) {
             const selfProxy: SelfProxy = getProxy(SelfProxy);
@@ -64,6 +81,24 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
                     this.pageData.tabIndex = 0;
                 }
             }
+        }
+    }
+    show() {
+        this.resetForm();
+        this.pageData.bShow = true;
+    }
+
+    hide() {
+        this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
+    }
+    public get passWordShowType(): number {
+        //console.log("------" + this.GameConfig.config.changeGoldPasswordFollowSetting + " ----- " + this.GameConfig.config.changeGoldPasswordFirstSetting);
+        const selfProxy = PanelUtil.getProxy_selfproxy;
+        if (selfProxy.userInfo.password_gold_exists == 1) {
+            return this.GameConfig.config.changeGoldPasswordFollowSetting || 3;
+        } else {
+            return this.GameConfig.config.changeGoldPasswordFirstSetting || 3;
         }
     }
     setAreaCode() {
@@ -95,5 +130,28 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
     /**获取手机区号 */
     api_public_area_code() {
         this.sendNotification(net.HttpType.api_public_area_code);
+    }
+    api_public_auth_code() {
+        this.pageData.loading = true;
+        this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
+    }
+    api_user_change_password_gold_var() {
+        //this.pageData.loading = true;
+        const { password, password_confirm, verify_code, logonPassword } = this.pageData.form;
+        const sendobj = <any>{
+            password: core.MD5.createInstance().hex_md5(password),
+            password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
+            user_id: core.user_id,
+        };
+        if (this.passWordShowType == 1) {
+            sendobj.uuid = core.device;
+            sendobj.code = verify_code;
+        } else if (this.passWordShowType == 2) {
+            sendobj.password_old = core.MD5.createInstance().hex_md5(logonPassword);
+        } else if (this.passWordShowType == 3) {
+            sendobj.code = verify_code;
+        }
+        console.log("发送的数据为", sendobj);
+        this.sendNotification(net.HttpType.api_user_change_password_gold_var, sendobj);
     }
 }

@@ -114,7 +114,7 @@
     <Category v-if="SkinVariable.isLobbyGameTop"/>
     <SoccerMatche v-if="IsShow_FootBallHot && !SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 
-    <v-lazy>
+    <v-lazy v-if="ModulesHelper.isShow_RecentBetting()">
         <RecentBetting :class="$xsOnly ? 'mt-3' : 'mt-8'" />
     </v-lazy>
 

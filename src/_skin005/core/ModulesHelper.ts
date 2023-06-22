@@ -241,6 +241,10 @@ function isShow_PartnerKefu() {
 function isShow_SearchGame() {
     return _isValueTrue("searchGame");
 }
+/**首页投注 */
+function isShow_RecentBetting() {
+    return _isValueTrue("recentBetting",false);
+}
 
 export default {
     IsShow_VipInfo,
@@ -273,4 +277,5 @@ export default {
     isShow_PartnerKefu,
     IsShow_TelegramButton,
     IsShow_NoticeBtn,
+    isShow_RecentBetting,
 };

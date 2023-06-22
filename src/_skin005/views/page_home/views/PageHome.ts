@@ -17,6 +17,7 @@ export default class PageHome extends AbstractView {
     noticeProxy = PanelUtil.getProxy_noticeProxy;
     myProxy: PageHomeProxy = getProxy(PageHomeProxy);
     pageData = this.myProxy.pageData;
+    ModulesHelper = ModulesHelper;
     SkinVariable = SkinVariable;
     IsShow_PledgeDividend = ModulesHelper.IsShow_PledgeDividend();
     IsShow_Promotion = ModulesHelper.IsShow_Promotion();

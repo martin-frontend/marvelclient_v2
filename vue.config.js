@@ -200,6 +200,19 @@ const skinMap = {
             },
         },
     },
+    /**96br 巴西 */
+    skin011: {
+        public_dir: "public_skin011",
+        pages: {
+            skin011: {
+                entry: "src/_skin011/main.ts",
+                template: "public_skin011/skin011.html",
+                filename: "index.html",
+                title: "96br",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**bet2dream */
     skin020: {
         public_dir: "public_skin020",
@@ -278,7 +291,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007", "skin008", "skin009", "skin010"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (["skin005", "skin006", "skin007", "skin008", "skin009", "skin010","skin011"].includes(process.env.VUE_APP_SKIN)) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {
             imagesRule.exclude.add(resolve("src/_skin020/icons"));

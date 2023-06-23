@@ -126,12 +126,16 @@ window["vueInit"] = () => {
         });
         const ret = whisper.isInitialized();
         if (ret) {
-            PanelUtil.message_confirm({
-                message: LangUtil("是否已经成年，内容只对成年人开放"),
-                okFun: () => {
-                    WhisperRequest();
-                },
-            });
+            if (core.token) {
+                WhisperRequest();
+            } else {
+                PanelUtil.message_confirm({
+                    message: LangUtil("是否已经成年，内容只对成年人开放"),
+                    okFun: () => {
+                        WhisperRequest();
+                    },
+                });
+            }
         } else {
             console.error("Whisper init faild." + ret);
             //core.notify2view("Whisper init faild." + ret);

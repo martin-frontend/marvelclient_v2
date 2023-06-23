@@ -39,6 +39,7 @@ import Header from "@/_skin020/views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
+import LangUtil from "@/core/global/LangUtil";
 Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
@@ -60,6 +61,11 @@ SkinVariable.systemKefuTop = false;
 
 LogUtil.init();
 core.init();
+
+//@ts-ignore
+if (window["Whisper"]) {
+    core.token = "";
+}
 //@ts-ignore
 core.plat_id = core.channel_id = undefined;
 core.game_domain = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV != "h5" ? location.host : "skin001.testjj9.com";
@@ -110,7 +116,10 @@ window["vueInit"] = () => {
     }).$mount("#app");
 
     const Whisper_client_id: string = "avuaz2GpcqzP4DL1YiSosg"; //这个跟 web得 不一样
-    const Whisper_redirect_uri: string =process.env.NODE_ENV == "production" ? "https://bet2dream.com/redirect.html" :  "https://all.testjj9.com/coinfans/skin020/redirect.html";
+    const Whisper_redirect_uri: string =
+        process.env.NODE_ENV == "production"
+            ? "https://bet2dream.com/redirect.html"
+            : "https://all.testjj9.com/coinfans/skin020/redirect.html";
 
     // 检测是否再 whisper 钱包内打开应用 用这个来判断
     //@ts-ignore
@@ -122,11 +131,11 @@ window["vueInit"] = () => {
         });
         const ret = whisper.isInitialized();
         if (ret) {
-            whisper.request({
-                event: "connect-wallet",
-                data: { response_type: "code" },
-                callback: WhisperCallback,
-                onError: WhisperCallbackOnError,
+            PanelUtil.message_confirm({
+                message: LangUtil("是否已经成年，内容只对成年人开放"),
+                okFun: () => {
+                    WhisperRequest();
+                },
             });
         } else {
             console.error("Whisper init faild." + ret);
@@ -142,6 +151,14 @@ window["vueInit"] = () => {
         }, 2000);
     }
 
+    function WhisperRequest() {
+        whisper.request({
+            event: "connect-wallet",
+            data: { response_type: "code" },
+            callback: WhisperCallback,
+            onError: WhisperCallbackOnError,
+        });
+    }
     //
     function WhisperCallback(payload: any) {
         onWhisperLogin(payload["code"], 2);
@@ -182,7 +199,7 @@ function onWhisperLogin(code: any, type: number = 1) {
             channel_id: core.channel_id,
             code,
             type: type,
-            invite_user_id:core.invite_user_id,
+            invite_user_id: core.invite_user_id,
         });
     }
 }

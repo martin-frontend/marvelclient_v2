@@ -51,7 +51,7 @@
                 flat
                 tile
             >
-                <template v-if="!isUseMenuData">
+                <template v-if="listQuery.vendor_type != 3">
                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mx-0">
                         <v-lazy>
                             <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
@@ -59,9 +59,9 @@
                     </div>
                 </template>
                 <template v-else>
-                    <div v-for="(item, key) of menudata" :key="key" class="mx-0">
+                    <div v-for="(item, key) of histpry_game_list" :key="key" class="mx-0">
                         <v-lazy>
-                            <GameItem :item="item" :useMenuData="true" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
+                            <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
                         </v-lazy>
                     </div>
                 </template>
@@ -72,6 +72,21 @@
                     </div>
                 </template>
             </v-card>
+
+            <div class="d-flex justify-center pt-2" v-if="listQuery.vendor_type == 3">
+                <div class="d-flex flex-column justify-center align-center">
+                    <btn-yellow
+                        v-if="histpry_game_list.length > 0"
+                        class="text-16 my-5"
+                        min_width="104"
+                        height="36"
+                        @click.native="onClearHistory"
+                        >{{LangUtil("清除记录")}}</btn-yellow
+                    >
+                    <ListNodata v-else height="411" />
+                </div>
+            </div>
+
             <v-lazy v-if="pageData.list && pageData.list.length > 0">
                 <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
                     <div class="d-flex flex-column justify-center align-center">
@@ -263,7 +278,7 @@
                         </v-row> -->
 
                         <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2 mr-n2 ml-1" color="transparent" flat tile>
-                            <template v-if="!isUseMenuData">
+                            <template v-if="listQuery.vendor_type != 3">
                                 <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                     <v-lazy>
                                         <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
@@ -271,9 +286,9 @@
                                 </div>
                             </template>
                             <template v-else>
-                                <div v-for="(item, key) of menudata" :key="key" class="mr-2 mb-2">
+                                <div v-for="(item, key) of histpry_game_list" :key="key" class="mr-2 mb-2">
                                     <v-lazy>
-                                        <GameItem :item="item" :useMenuData="true" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
+                                        <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
                                     </v-lazy>
                                 </div>
                             </template>
@@ -284,6 +299,20 @@
                                 </div>
                             </template>
                         </v-card>
+
+                        <div class="d-flex justify-center pt-2" v-if="listQuery.vendor_type == 3">
+                            <div class="d-flex flex-column justify-center align-center">
+                                <btn-yellow
+                                    v-if="histpry_game_list.length > 0"
+                                    class="text-16 my-5"
+                                    min_width="110"
+                                    height="36"
+                                    @click.native="onClearHistory"
+                                    >{{LangUtil("清除记录")}}</btn-yellow
+                                >
+                                <ListNodata v-else height="300" />
+                            </div>
+                        </div>
 
                         <v-lazy v-if="pageData.list && pageData.list.length > 0">
                             <div class="d-flex justify-center pt-2" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">

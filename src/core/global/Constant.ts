@@ -51,6 +51,7 @@ export default class Constant {
             "slots-games",
             "lottery-games",
             "cards-games",
+            "game-history",
         ];
     }
     /**检测传入路径 是否 包含有 游戏 以及分类的 路径 */
@@ -69,6 +70,8 @@ export default class Constant {
         switch (vendor) {
             case 2:
                 return "cards-games"; //     2	棋牌
+            case 3:
+                return "game-history"; //     3	近期游戏记录
             case 4:
                 return "lottery-games"; // 4	彩票
             case 8:
@@ -98,6 +101,8 @@ export default class Constant {
             return 16;
         } else if (path.includes("lottery-games")) {
             return 4;
+        } else if (path.includes("game-history")) {
+            return 3;
         } else if (path.includes("cards-games")) {
             return 2;
         }

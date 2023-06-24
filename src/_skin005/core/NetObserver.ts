@@ -265,7 +265,7 @@ export default class NetObserver extends AbstractMediator {
                             return;
                         }
                     }
-
+                    this.gameProxy.saveGame();
                     // 如果是体育，直接进入
                     if (
                         (this.gameProxy.currGame.vendor_id == GameConfig.config.SportVendorId &&

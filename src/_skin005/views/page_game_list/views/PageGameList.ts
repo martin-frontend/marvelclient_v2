@@ -75,7 +75,7 @@ export default class PageGameList extends AbstractView {
         if (!this.casinoPageGameList) {
             this.casinoPageGameList = [1, 2, 8, 16, 128, 256, 512];
         }
-
+        if (this.listQuery.vendor_type == 3) return false;
         if (this.casinoPageGameList.includes(this.listQuery.vendor_type)) {
             return false;
         } else {
@@ -233,5 +233,18 @@ export default class PageGameList extends AbstractView {
         this.myProxy.clearData();
         clearInterval(this.timer);
         super.destroyed();
+    }
+    get histpry_game_list() {
+        //console.log("读取  游戏列表", this.gameProxy.gameHistoryList);
+        return this.gameProxy.gameHistoryList;
+    }
+    onClearHistory() {
+        PanelUtil.message_confirm({
+            message: LangUtil("是否清除游戏记录"),
+            okFun: () => {
+                this.gameProxy.deleteGameHistoryAll();
+            },
+            okTxt: LangUtil("清除"),
+        });
     }
 }

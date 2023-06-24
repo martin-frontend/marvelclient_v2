@@ -4,12 +4,14 @@ import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import NotificationName from "@/core/NotificationName";
 import Timezone from "@/core/Timezone";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 export default class GameProxy extends AbstractProxy {
     static NAME = "GameProxy";
 
     public onRegister(): void {
         this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
+        this.gameHistoryList = this.readGameHistory();
     }
 
     /**大厅菜单 */
@@ -81,6 +83,14 @@ export default class GameProxy extends AbstractProxy {
     }
     setGameMenu(body: any) {
         this.lobbyMenuIndex = body;
+        if (ModulesHelper.IsShow_GameHistory()) {
+            const obj = <core.PlatLobbyIndexVO>{
+                vendor_type: 3,
+                vendor_type_name: "近期游戏",
+                list: this.gameHistoryList,
+            };
+            this.lobbyMenuIndex.unshift(obj);
+        }
     }
     setGameCategory(body: any) {
         this.lobbyCategory = body;
@@ -200,5 +210,47 @@ export default class GameProxy extends AbstractProxy {
     api_user_var_game_search_error_back() {
         console.log("返回错误  ");
         this.isLoadSearch = false;
+    }
+
+    //体育/真人/彩票 使用 game/menu里面的数据
+    isUseMenuData(vendor_type: number): boolean {
+        let casinoPageGameList = GameConfig.config.casinoPageGameList;
+        if (!casinoPageGameList) {
+            casinoPageGameList = [1, 2, 8, 16, 128, 256, 512];
+        }
+        if (casinoPageGameList.includes(vendor_type)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    gameHistoryList = <any>[];
+    saveGame() {
+        if (this.currGame) {
+            if (this.isUseMenuData(this.currGame.vendor_type)) return;
+            this.gameHistoryList = this.gameHistoryList.filter(
+                (el: any, idx: any, arr: any) => el.vendor_product_id != this.currGame.vendor_product_id
+            );
+            this.gameHistoryList.unshift(this.currGame);
+            const maxHistoryLength = GameConfig.config.maxHistoryLength || 30;
+            if (this.gameHistoryList.length > maxHistoryLength) {
+                this.gameHistoryList.pop();
+            }
+            //console.log("添加游戏数据", this.gameHistoryList);
+            window.localStorage.setItem("game_histoty_list", JSON.stringify(this.gameHistoryList));
+        }
+    }
+    readGameHistory() {
+        const data = window.localStorage.getItem("game_histoty_list") || "";
+        let list = <any>[];
+        if (data) {
+            list = JSON.parse(data);
+        }
+        return list;
+    }
+    deleteGameHistoryAll() {
+        this.gameHistoryList = <any>[];
+        window.localStorage.setItem("game_histoty_list", JSON.stringify(this.gameHistoryList));
     }
 }

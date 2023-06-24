@@ -37,6 +37,7 @@ const CategoryIcon = Object.freeze({
     128: "c128",
     256: "c128",
     512: "c128",
+    3: "history",
 });
 const CategoryIcon_sel = Object.freeze({
     1: "c1_sel",
@@ -49,6 +50,7 @@ const CategoryIcon_sel = Object.freeze({
     128: "c128_sel",
     256: "c128_sel",
     512: "c128_sel",
+    3: "history",
 });
 
 const VipMap = Object.freeze({

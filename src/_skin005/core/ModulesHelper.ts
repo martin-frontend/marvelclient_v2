@@ -76,7 +76,10 @@ function IsShow_GameWater() {
 function IsShow_Swap() {
     return _isValueTrue("swap");
 }
-
+/**近期游戏记录 */
+function IsShow_GameHistory() {
+    return _isValueTrue("gamehistory", false);
+}
 /**
  * 是否显示 精彩活动
  */
@@ -87,7 +90,7 @@ function IsShow_ActivityDisplay() {
  * 是否显示 每日签到
  */
 function IsShow_DailysignDisplay() {
-    return _isValueTrue("dailysignDisplay",false);
+    return _isValueTrue("dailysignDisplay", false);
 }
 /**
  * 是否显示 顶部的足球 页签 以及 手机版 底部的页签
@@ -277,5 +280,6 @@ export default {
     isShow_PartnerKefu,
     IsShow_TelegramButton,
     IsShow_NoticeBtn,
+    IsShow_GameHistory,
     isShow_RecentBetting,
 };

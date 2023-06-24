@@ -95,7 +95,9 @@ export interface GameConfigVO {
     enable_exemption_amount: number;
     /**推广奖励活动 ID*/
     promotion_reward_model_id: {
-        id: number,
-        rule_id: number,
+        id: number;
+        rule_id: number;
     };
+    /**游戏历史记录最大的个数 */
+    maxHistoryLength: number;
 }

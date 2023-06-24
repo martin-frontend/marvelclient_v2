@@ -1,12 +1,11 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogNoticeMediator from "../mediator/DialogNoticeMediator";
 import DialogNoticeProxy from "../proxy/DialogNoticeProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PageBlur from "@/_skin005/core/PageBlur";
 
 @Component
 export default class DialogNotice extends AbstractView {
@@ -182,7 +181,7 @@ export default class DialogNotice extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-        BlurUtil(this.pageData.bShow);
+        PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             if (this.myProxy.noticeData && this.myProxy.noticeData.length > 0) {

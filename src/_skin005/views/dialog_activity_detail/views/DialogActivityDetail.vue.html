@@ -10,11 +10,11 @@
 
 <v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" width="90%" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card flat color="bgBanner" class="rounded10" style="height: calc(100vh - 150px)">
-        <com-dialog-title :title="pageData.data.activity_name" @onClose="onClose" />
+        <com-dialog-title :title="pageData.data && pageData.data.activity_name" @onClose="onClose" />
         <v-divider class="mb-2" />
         <v-sheet id="main_node" color="transparent" width="100%" class="px-5 overflow-y-auto" style="height: calc(100% - 90px)">
             <!-- <div v-if="pageData.data.show_type == 1" class="textYellow--text" v-html="pageData.data.link_url"></div> -->
-            <div class="mb-6" v-html="pageData.data.link_url" @click="handleLinkClick"></div>
+            <div class="mb-6" v-html="pageData.data && pageData.data.link_url" @click="handleLinkClick"></div>
         </v-sheet>
     </v-card>
 </v-dialog>

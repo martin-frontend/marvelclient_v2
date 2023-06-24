@@ -139,6 +139,7 @@ import dialog_daily_sign from "../views/dialog_daily_sign";
 import dialog_promotion_reward from "../views/dialog_promotion_reward";
 import DialogPromotionRewardProxy from "@/_skin005/views/dialog_promotion_reward/proxy/DialogPromotionRewardProxy";
 import GlobalVar from "@/core/global/GlobalVar";
+import PageActivityProxy from "@/_skin005/views/page_activity/proxy/PageActivityProxy";
 
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -896,6 +897,10 @@ export default class PanelUtil {
     public static get getProxy_get_platUsersVerificationProxy(): DialogPlatUsersVerificationProxy {
         return getProxy(DialogPlatUsersVerificationProxy);
     }
+    //活动的数据
+    public static get getProxy_get_pageActivityProxy(): PageActivityProxy {
+        return getProxy(PageActivityProxy);
+    }
 
     public static get message_confirm(): Function {
         return dialog_message_box.confirm;
@@ -1352,7 +1357,9 @@ export default class PanelUtil {
                         PanelUtil.openpage_mine();
                         return true;
                     case 5:
-                        PanelUtil.openpanel_activity();
+                        if (item.open_mode_url && item.open_mode_url.trim()) {
+                            PanelUtil.getProxy_get_pageActivityProxy.api_plat_activity_var_netback(item.open_mode_url);
+                        } else PanelUtil.openpanel_activity();
                         return true;
                     case 6:
                         PanelUtil.openpage_extension();

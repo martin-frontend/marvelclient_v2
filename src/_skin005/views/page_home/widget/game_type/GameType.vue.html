@@ -1,7 +1,27 @@
 <v-card v-if="logo_list && logo_list.length > 0" flat color="transparent" :class="$mobile ? 'px-2': ''">
-    <v-card v-for="(obj, key) of logo_list" :key="obj.title" flat color="transparent" :class="$mobile ? 'mt-3' : 'mt-8'" class="d-flex flex-column mb-2">
+    <v-card
+        v-for="(obj, key) of logo_list"
+        :key="obj.title"
+        flat
+        color="transparent"
+        :class="$mobile ? 'mt-3' : 'mt-8'"
+        class="d-flex flex-column mb-2"
+    >
         <v-sheet color="transparent" class="d-flex align-center text-20">
-            <div class="font-weight-bold" :class="$mobile?'text-16':''"> {{obj.title}}</div>
+            <div class="font-weight-bold" :class="$mobile?'text-16':''">{{obj.title}}</div>
+            <template v-if="$mobile">
+                <v-spacer />
+                <v-sheet
+                    v-if="!isAll(obj.title)"
+                    class="d-flex disable_text--text align-center cursor-pointer"
+                    :class="$mobile ? 'text-12' :'text-14'"
+                    color="transparent"
+                    @click.native="onShowAll(obj.title)"
+                >
+                    <v-sheet color="transparent" class="disable_text--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
+                    <svg-icon class="text-12" icon="arrow_right"></svg-icon>
+                </v-sheet>
+            </template>
         </v-sheet>
 
         <v-sheet v-if="!$mobile" fluid class="ml-n1" color="transparent">
@@ -11,7 +31,34 @@
                 </v-slide-item>
             </v-slide-group>
         </v-sheet>
-        <v-sheet v-else fluid class="mt-2 scroll-x d-flex overflow-y-hidden" color="transparent">
+        <v-card v-else flat class="mt-2" color="transparent">
+            <v-sheet v-if="!isAll(obj.title)" fluid class="scroll-x d-flex overflow-y-hidden" color="transparent">
+                <template v-for="(item,index) of obj.data">
+                    <GameItem
+                        class="game_item_margin_mob"
+                        :key="index"
+                        :item="item"
+                        :width="itemWidth"
+                        :height="(itemWidth-13.5)/0.8"
+                        :isPageHome="true"
+                    />
+                </template>
+            </v-sheet>
+            <v-sheet v-else color="transparent" fluid class="d-flex flex-wrap">
+                <template v-for="(item,index) of obj.data">
+                    <GameItem
+                        class="game_item_margin_mob mb-2"
+                        :key="index"
+                        :item="item"
+                        :width="itemWidth"
+                        :height="(itemWidth-13.5)/0.8"
+                        :isPageHome="true"
+                    />
+                </template>
+            </v-sheet>
+        </v-card>
+
+        <!-- <v-sheet v-else fluid class="mt-2 scroll-x d-flex overflow-y-hidden" color="transparent">
             <template v-for="(item,index) of obj.data">
                 <GameItem
                     class="game_item_margin_mob"
@@ -22,7 +69,7 @@
                     :isPageHome="true"
                 />
             </template>
-        </v-sheet>
+        </v-sheet> -->
     </v-card>
 
     <!-- <v-card flat color="transparent" :class="$mobile ? 'mt-3' : 'mt-8'" class="d-flex flex-column mb-2">

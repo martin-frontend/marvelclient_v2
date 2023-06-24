@@ -1,12 +1,12 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
+
 import { Watch, Component } from "vue-property-decorator";
 import DialogPromotionRewardMediator from "../mediator/DialogPromotionRewardMediator";
 import DialogPromotionRewardProxy from "../proxy/DialogPromotionRewardProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
+import PageBlur from "@/_skin005/core/PageBlur";
 
 @Component
 export default class DialogPromotionReward extends AbstractView {
@@ -46,7 +46,7 @@ export default class DialogPromotionReward extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
-        BlurUtil(this.pageData.bShow);
+        PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.pageData.promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
             this.myProxy.api_plat_activity_var();

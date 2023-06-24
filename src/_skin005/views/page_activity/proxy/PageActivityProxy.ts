@@ -1,3 +1,6 @@
+import PanelUtil from "@/_skin005/core/PanelUtil";
+import GameConfig from "@/core/config/GameConfig";
+
 export default class PageActivityProxy extends puremvc.Proxy {
     static NAME = "PageActivityProxy";
 
@@ -147,5 +150,35 @@ export default class PageActivityProxy extends puremvc.Proxy {
     api_plat_activity_var(idx: any) {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
+    }
+    get promotion_reward_model_id() {
+        return (
+            GameConfig.config.promotion_reward_model_id ?? {
+                id: 0,
+                rule_id: 0,
+            }
+        );
+    }
+    api_plat_activity_var_netback(idx: any) {
+        if (!core.user_id) return;
+
+        // 推广奖励
+        if (idx == this.promotion_reward_model_id.id) {
+            PanelUtil.openpanel_promotionreward();
+            return;
+        }
+
+        const url = net.getUrl(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
+        PanelUtil.showAppLoading(true);
+        net.Http.request({}, url)
+            .then((response: any) => {
+
+                PanelUtil.showAppLoading(false);
+                PanelUtil.openpanel_activity_detail(response.data);
+            })
+            .catch((e) => {
+                PanelUtil.showAppLoading(false);
+                console.log("请求失败--id--" + idx, e);
+            });
     }
 }

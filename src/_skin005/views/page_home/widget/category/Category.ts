@@ -9,7 +9,16 @@ export default class Category extends AbstractView {
     gameProxy = PanelUtil.getProxy_gameproxy;
 
     get itemWidth(): number {
-        return this.$mobile ? 132 : 181;
+        //return this.$mobile ? 132 : 181;
+        const baseWidth = this.$mobile ? 132 : 181;
+        if (!this.$mobile) return baseWidth;
+
+        const offset = -12;
+        const boxWidth = document.documentElement.clientWidth - offset;
+        const aaa = Math.round(boxWidth / baseWidth);
+        const itemWidth = boxWidth / aaa;
+        // console.log("计算出来的 每个对象的宽度为", itemWidth);
+        return itemWidth;
     }
 
     public get categoryData(): any {
@@ -27,6 +36,10 @@ export default class Category extends AbstractView {
 
             if (!dataList[element.category]) {
                 dataList[element.category] = <any>[];
+                this.listAllBtn.push({
+                    key: element.category,
+                    value: false,
+                });
             }
             dataList[element.category].push(element);
         }
@@ -39,7 +52,29 @@ export default class Category extends AbstractView {
                 return b.index_no - a.index_no;
             });
         }
-        //console.log("重新分组的数据为", dataList);
         return dataList;
+    }
+
+    listAllBtn = <any>[];
+
+    onShowAll(item: any) {
+        //this.listAllBtn[item] = true;
+        console.log("显示全部 --", this.listAllBtn);
+        for (let index = 0; index < this.listAllBtn.length; index++) {
+            const element = this.listAllBtn[index];
+            if (element.key == item) {
+                element.value = !element.value;
+                return;
+            }
+        }
+    }
+    isAll(item: any): boolean {
+        for (let index = 0; index < this.listAllBtn.length; index++) {
+            const element = this.listAllBtn[index];
+            if (element.key == item) {
+                return element.value;
+            }
+        }
+        return false;
     }
 }

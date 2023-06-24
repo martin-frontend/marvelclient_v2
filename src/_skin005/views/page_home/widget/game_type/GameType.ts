@@ -36,6 +36,10 @@ export default class GameType extends AbstractView {
                     data: <core.PlatNoticeVO[]>[],
                 };
                 category_logo_data.push(addObj);
+                this.listAllBtn.push({
+                    key: element.category,
+                    value: false,
+                });
             }
 
             const newObj = JSON.parse(JSON.stringify(element));
@@ -84,6 +88,37 @@ export default class GameType extends AbstractView {
     ];
 
     get itemWidth(): number {
-        return this.$mobile ? 132 : 181;
+        // return this.$mobile ? 132 : 181;
+        const baseWidth = this.$mobile ? 132 : 181;
+        if (!this.$mobile) return baseWidth;
+
+        const offset = -12;
+        const boxWidth = document.documentElement.clientWidth - offset;
+        const aaa = Math.round(boxWidth / baseWidth);
+        const itemWidth = boxWidth / aaa;
+        // console.log("计算出来的 每个对象的宽度为", itemWidth);
+        return itemWidth;
+    }
+    listAllBtn = <any>[];
+
+    onShowAll(item: any) {
+        //this.listAllBtn[item] = true;
+        console.log("显示全部 --", this.listAllBtn);
+        for (let index = 0; index < this.listAllBtn.length; index++) {
+            const element = this.listAllBtn[index];
+            if (element.key == item) {
+                element.value = !element.value;
+                return;
+            }
+        }
+    }
+    isAll(item: any): boolean {
+        for (let index = 0; index < this.listAllBtn.length; index++) {
+            const element = this.listAllBtn[index];
+            if (element.key == item) {
+                return element.value;
+            }
+        }
+        return false;
     }
 }

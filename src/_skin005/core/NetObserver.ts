@@ -307,7 +307,9 @@ export default class NetObserver extends AbstractMediator {
                     const noticeProxy = PanelUtil.getProxy_noticeProxy;
                     noticeProxy.setData(body);
                     if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0) {
-                        PanelUtil.openpanel_notice();
+                        setTimeout(() => {
+                            PanelUtil.openpanel_notice();
+                        }, 2000);
                     }
                 }
                 break;

@@ -97,12 +97,13 @@
                         class="textGray--text ml-2 text-14"
                         :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                     />
+                    <div v-if="isNeedText && isShowRecharge" class=" font-weight-bold text-12 blink_class ml-1" @click.stop="onClickRecharge">{{LangUtil("首页充值兑换")}}</div>
                 </v-sheet>
                 <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
                 {{setIsFilter(value)}}
             </v-sheet>
         </template>
-        <v-sheet width="100%" color="bgBanner" class="py-4 px-0 d-flex flex-column justify-center rounded10">
+        <v-sheet width="100%" color="bgBanner" class="py-4 px-0 d-flex flex-column justify-center rounded10 ">
             <template v-for="(item, key) of selfProxy.userInfo.gold_info">
                 <v-sheet
                     class="d-flex align-center px-3 rounded-lg cursor-pointer regular_text py-1 mb-2 mx-4 listitem"
@@ -139,7 +140,7 @@
         </v-sheet>
     </v-menu>
     <btn-yellow
-        v-if="$mobile && isShowRecharge"
+        v-if="$mobile && !isNeedText && isShowRecharge"
         class="ml-auto"
         :btn_type="4"
         height="29"

@@ -37,6 +37,7 @@ export default class MobileMenu extends AbstractView {
                 },
                 path: "/page_recharge",
             },
+            10: { id: 10, mob_type: "download", name: LangUtil("下载"), icon: "download", path: "" },
         };
 
         if (GameConfig.config.PhoneMenu && GameConfig.config.PhoneMenu.length > 0) {
@@ -101,7 +102,9 @@ export default class MobileMenu extends AbstractView {
             newlist.push(list[6]);
         }
         //我的
-        newlist.push(list[5]);
+        if (ModulesHelper.isShow_MyInfo()) {
+            newlist.push(list[5]);
+        }
 
         PanelUtil.appproxy.set_mobile_menu(newlist);
         return newlist;
@@ -154,6 +157,9 @@ export default class MobileMenu extends AbstractView {
 
             case 9:
                 PanelUtil.openpage_recharge();
+                return;
+            case 10:
+                PanelUtil.appproxy.onGuide();
                 return;
         }
 
@@ -218,5 +224,9 @@ export default class MobileMenu extends AbstractView {
 
     resolveSvgaSrc(name: any) {
         return "svga/" + name + ".svga";
+    }
+    get guideText() {
+        //@ts-ignore
+        return LangUtil(window.navigator.standalone === undefined ? "下载" : "保存");
     }
 }

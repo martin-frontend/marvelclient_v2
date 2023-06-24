@@ -43,3 +43,39 @@
 .is-show {
     display: block !important;
 }
+
+.bounce {
+    // width: 100px;
+    // height: 100px;
+    //background-color: red;
+    position: relative;
+    //animation: bounce 0.5s ease infinite ,doScale 0.5s ease infinite alternate;
+    animation: doScale 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes doScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -72,4 +72,7 @@ export default class PageRecharge extends AbstractView {
         );
     }
 
+    get isSkin008() {
+        return GlobalVar.skin == "skin008";
+    }
 }

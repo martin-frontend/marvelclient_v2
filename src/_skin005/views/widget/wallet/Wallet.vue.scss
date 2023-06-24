@@ -23,7 +23,7 @@
     max-width: calc(100vw - 270px);
 }
 .menu_width_mob_008_1 {
-    max-width: calc(100vw - 230px);
+    max-width: calc(100vw - 200px);
 }
 .theme--dark {
     .box {
@@ -97,13 +97,13 @@
 }
 @keyframes blink {
     0% {
-        color: #fe5d00;
+        color: #fcb131;
     }
     50% {
         color: transparent;
     }
     100% {
-        color: #fe5d00;
+        color: #fcb131;
     }
 }
 

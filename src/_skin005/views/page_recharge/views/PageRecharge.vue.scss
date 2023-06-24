@@ -52,7 +52,12 @@
 .fix_head_mob {
     position: fixed;
     z-index: 2;
+}
+.topHeight {
     top: 50px;
+}
+.topHeight_008 {
+    top: 80px;
 }
 .theme--light {
     .fix_head_mob {

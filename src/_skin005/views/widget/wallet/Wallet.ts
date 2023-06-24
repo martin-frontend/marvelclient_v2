@@ -84,4 +84,7 @@ export default class Wallet extends AbstractView {
         //console.log("跳转充值");
         PanelUtil.openpage_recharge();
     }
+    get isNeedText() {
+        return GlobalVar.skin == "skin008";
+    }
 }

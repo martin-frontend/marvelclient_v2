@@ -248,6 +248,10 @@ function isShow_SearchGame() {
 function isShow_RecentBetting() {
     return _isValueTrue("recentBetting",false);
 }
+/**首页投注 */
+function isShow_MyInfo() {
+    return _isValueTrue("mob_myInfo",false);
+}
 
 export default {
     IsShow_VipInfo,
@@ -282,4 +286,5 @@ export default {
     IsShow_NoticeBtn,
     IsShow_GameHistory,
     isShow_RecentBetting,
+    isShow_MyInfo,
 };

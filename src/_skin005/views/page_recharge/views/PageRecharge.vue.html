@@ -35,7 +35,7 @@
         </v-sheet>
     </v-card>
 
-    <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3" width="100%" color="bgColor">
+    <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3" :class="isSkin008 ? 'topHeight_008' : 'topHeight'" width="100%" color="bgColor">
         <v-sheet class="d-flex align-center" color="transparent">
             <v-btn-toggle :lang="core.lang" mandatory group borderless v-model="myProxy.pageData.tabIndex">
                 <v-btn

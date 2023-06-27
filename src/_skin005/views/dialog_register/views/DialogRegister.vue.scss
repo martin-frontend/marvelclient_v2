@@ -120,3 +120,47 @@
 .v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
     letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
 }
+.date_select {
+    ::v-deep .v-text-field.v-text-field--solo .v-input__control {
+        min-height: 36px !important;
+    }
+    ::v-deep .v-text-field--outlined,
+    .v-text-field--solo {
+        border-radius: 10px;
+    }
+}
+.birth_class {
+    ::v-deep .v-date-picker-title__year {
+        font-size: 16px;
+    }
+    ::v-deep .v-date-picker-title__date {
+        font-size: 16px;
+    }
+}
+.birth_class_mob {
+    ::v-deep .v-date-picker-title__year {
+        font-size: 12px;
+    }
+    ::v-deep .v-date-picker-title__date {
+        font-size: 12px;
+    }
+}
+.borthday_class {
+    font-size: 14px;
+}
+
+::v-deep .theme--dark {
+    .borthday_class input::placeholder {
+        color: #5a5a5a !important;
+    }
+    .borthday_class input[readonly] {
+        opacity: 1 !important;
+    }
+}
+
+::v-deep .theme--light {
+    .borthday_class input::placeholder {
+        color: #a4a4a4 !important;
+        opacity: 1 !important;
+    }
+}

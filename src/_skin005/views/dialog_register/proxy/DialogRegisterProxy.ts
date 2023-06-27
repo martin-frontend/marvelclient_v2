@@ -4,7 +4,11 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     public onRegister(): void {
         // this.api_public_area_code();
     }
-
+    dateObj = {
+        year: "",
+        month: "",
+        day: "",
+    };
     pageData = {
         loading: false,
         bShow: false,
@@ -19,6 +23,8 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             mobile_username: "", //手机账号的 用户名
             register_type: 1, //1：用户名 2：邮箱 4：手机
             area_code: "",
+            email_username :"",
+            birth_date :"",
         },
         auth_image: "",
         areaCode: <any>[],
@@ -37,6 +43,13 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             password_confirm: "",
             verify_code: "",
             mobile_username: "",
+            email_username :"",
+            birth_date :"",
+        });
+        Object.assign(this.dateObj, {
+            year: "",
+            month: "",
+            day: "",
         });
     }
 
@@ -53,7 +66,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     /**--账号--注册*/
     api_user_register() {
         this.pageData.loading = true;
-        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, mobile_username } =
+        const { invite_user_id, username, password, password_confirm, verify_code, area_code, register_type, mobile_username ,email_username ,birth_date} =
             this.pageData.form;
         this.sendNotification(net.HttpType.api_user_register, {
             invite_user_id,
@@ -66,6 +79,8 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             area_code,
             register_type,
             mobile_username,
+            email_username ,
+            birth_date,
         });
     }
 

@@ -330,7 +330,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         } else {
             this.pageData.form.account_name = "";
         }
-        console.log("设置真实信命" + this.pageData.form.account_name);
+        //console.log("设置真实信命" + this.pageData.form.account_name);
     }
     public get isHaveData(): boolean {
         return Object.keys(this.pageData.methodList).length > 0;

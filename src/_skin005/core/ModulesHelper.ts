@@ -173,6 +173,10 @@ function IsShow_TelegramButton() {
 function IsShow_NoticeBtn() {
     return _isValueTrue("NoticeButton", false);
 }
+/**注册时候的18岁选项 */
+function IsShow_register18yearsOld() {
+    return _isValueTrue("register18yearsOld", false);
+}
 /**
  * //是否显示 代理管理
  * @returns
@@ -286,5 +290,6 @@ export default {
     IsShow_NoticeBtn,
     IsShow_GameHistory,
     isShow_RecentBetting,
+    IsShow_register18yearsOld,
     isShow_MyInfo,
 };

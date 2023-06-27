@@ -98,6 +98,8 @@ export interface GameConfigVO {
         id: number;
         rule_id: number;
     };
+    /**是否需要生日 */
+    is_need_birthday: number;
     /**游戏历史记录最大的个数 */
     maxHistoryLength: number;
 }

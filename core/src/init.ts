@@ -28,6 +28,11 @@ module core {
         app_type = EnumAppType.WEB;
         // device_type = parseInt(getQueryVariable("RunType")) || EnumDeviceType.OTHER;
 
+        if (invite_user_id) {
+            window.localStorage.setItem(`invite_${plat_id}_${channel_id}`, invite_user_id);
+        } else {
+            invite_user_id = window.localStorage.getItem(`invite_${plat_id}_${channel_id}`);
+        }
         const runType = parseInt(getQueryVariable("RunType"));
         if (runType) {
             device_type = runType;

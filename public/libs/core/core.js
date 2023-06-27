@@ -45,6 +45,12 @@ var core;
         core.channel_id = core.getQueryVariable("channel_id") || "10001001";
         core.app_type = core.EnumAppType.WEB;
         // device_type = parseInt(getQueryVariable("RunType")) || EnumDeviceType.OTHER;
+        if (core.invite_user_id) {
+            window.localStorage.setItem(`invite_${core.plat_id}_${core.channel_id}`, core.invite_user_id);
+        }
+        else {
+            core.invite_user_id = window.localStorage.getItem(`invite_${core.plat_id}_${core.channel_id}`);
+        }
         const runType = parseInt(core.getQueryVariable("RunType"));
         if (runType) {
             core.device_type = runType;

@@ -227,6 +227,15 @@
                                         <div>{{LangUtil("今日直属业绩")}}</div>
                                         <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
                                     </v-sheet>
+                                    <v-sheet
+                                        v-if="pageData.firstChargeCount>=0"
+                                        color="transparent"
+                                        height="40"
+                                        class="d-flex text-14 textGray--text justify-space-between align-center"
+                                    >
+                                        <div>{{LangUtil("直属首充人数：")}}</div>
+                                        <div>{{ pageData.firstChargeCount}}</div>
+                                    </v-sheet>
                                 </v-card>
                             </v-sheet>
                             <v-spacer />
@@ -425,6 +434,16 @@
                         >
                             <div>{{LangUtil("每万返佣")}}</div>
                             <div>{{ promotionData.commission_num }}</div>
+                        </v-sheet>
+
+                        <v-sheet
+                            v-if="pageData.firstChargeCount>=0"
+                            color="transparent"
+                            height="30"
+                            class="d-flex text-12 textGray--text justify-space-between align-center"
+                        >
+                            <div>{{LangUtil("直属首充人数：")}}</div>
+                            <div>{{ pageData.firstChargeCount}}</div>
                         </v-sheet>
                     </v-sheet>
                     <MaskTool />

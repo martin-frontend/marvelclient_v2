@@ -75,6 +75,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             is_promotion_num_added: 0,
             type: 0,
         },
+        firstChargeCount: -1,
     };
 
     async setLink(url: string) {
@@ -130,6 +131,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             is_promotion_num_added: 0,
             type: 0,
         });
+        this.pageData.firstChargeCount = -1;
     }
     _transformMoney(val: any, target_coin_name: string, src_coin_name: string, isFanyong: boolean = false) {
         return CoinTransformHelper.TransformMoney(val, 2, target_coin_name, src_coin_name, true, !isFanyong, false, false);
@@ -208,7 +210,10 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             }
         });
     }
-
+    setFirstChargeCount(data: any) {
+        this.pageData.loading = false;
+        this.pageData.firstChargeCount = Number(Object.entries(data)[0][1]);
+    }
     /**查询数据 */
     listQuery = {
         user_id: core.user_id,
@@ -269,5 +274,15 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         if (core.user_id) {
             this.sendNotification(net.HttpType.api_user_var_short_chain, { user_id: core.user_id, host: location.origin, force });
         }
+    }
+
+    api_plat_activity_var_rule_id_var() {
+        let promotion_reward_model_id = {
+            id: 0,
+            rule_id: 0,
+        };
+        promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
+
+        this.sendNotification(net.HttpType.api_plat_activity_var_rule_id_var, promotion_reward_model_id);
     }
 }

@@ -36,12 +36,7 @@ export default class DialogPromotionReward extends AbstractView {
     }
 
     onReceive() {
-        // const a = [{ "USDT": 123 }, { "USDT": 234 }];
-        // a.forEach(item => {
-        //     this.myProxy.showAwardDialog(item);
-        // })
-        // return;
-        this.myProxy.api_plat_activity_var_receive(this.pageData.rule_nums.shift());
+        this.myProxy.api_plat_activity_var_receive(this.pageData.rule_nums);
     }
 
     @Watch("pageData.bShow")
@@ -68,10 +63,11 @@ export default class DialogPromotionReward extends AbstractView {
         const before = 8; // 第1點之前寬度 8%
         const range = [0, data[0].count];
         let completions = 0;
+        
 
         // @ts-ignore
         data.forEach((item, index) => {
-            if (!item.match_info && item.receive == 0) return;
+            if (!item.match_info && item.receive == 0 || item.receive === undefined) return;
 
             completions++;
             if (data[index + 1]) {
@@ -94,6 +90,6 @@ export default class DialogPromotionReward extends AbstractView {
     }
 
     get isCanReceive() {
-        return this.pageData.rule_nums.length > 0;
+        return this.pageData.rule_nums != -1;
     }
 }

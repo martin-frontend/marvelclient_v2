@@ -13,7 +13,7 @@ export default class DialogPromotionRewardProxy extends puremvc.Proxy {
         },
         myData: <any>[],
         firstChargeCount: 0,
-        rule_nums: <any>[],
+        rule_nums: -1,
         rewards: <any>[],
     };
 
@@ -29,7 +29,7 @@ export default class DialogPromotionRewardProxy extends puremvc.Proxy {
 
     converList() {
         this.pageData.myData.length = 0;
-        this.pageData.rule_nums.length = 0;
+        this.pageData.rule_nums = -1;
         this.pageData.rewards.length = 0;
 
         // @ts-ignore
@@ -41,24 +41,16 @@ export default class DialogPromotionRewardProxy extends puremvc.Proxy {
                 receive: item.complete,
                 match_info: item.match_info,
             });
-            if (item.complete == 0 && item.match_info != undefined) {
-                this.pageData.rule_nums.push(item.rule_num);
+            if (item.complete === 0 && item.match_info !== undefined) {
+                // 可领取奖励的最後一筆rule_nums
+                this.pageData.rule_nums = item.rule_num;
             }
         });
     }
 
     setReward(msg: any) {
-        const key = Object.keys(msg.list[0].params)[0];
-        this.pageData.rewards.push(msg.list[0].params[key]);
-        if (this.pageData.rule_nums.length == 0) {
-            let nums = 0;
-            // @ts-ignore
-            this.pageData.rewards.map((num) => {
-                nums += num;
-            });
-            this.showAwardDialog({ [key]: nums });
-            this.api_plat_activity_var();
-        }
+        this.showAwardDialog(msg.list[0].params);
+        this.api_plat_activity_var();
     }
 
     showAwardDialog(params: any) {

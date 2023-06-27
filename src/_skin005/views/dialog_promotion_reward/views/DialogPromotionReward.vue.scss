@@ -94,3 +94,24 @@
     font-size: 12px;
     color: rgb(220, 54, 54);
 }
+.theme--dark .custom-btn {
+    &.btn_nomal_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    &.btn_nomal_disable::before {
+        background: linear-gradient(90deg, #d5dce2 0%, #f4f4f4 100%);
+    }
+
+    &.btn_three_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    &.btn_three_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+
+    &.btn_nomal:hover {
+        color: var(--btn_nomal_text);
+    }
+}

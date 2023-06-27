@@ -26,9 +26,6 @@ export default class DialogPromotionRewardMediator extends AbstractMediator {
                 break;
             case net.EventType.api_plat_activity_var_receive:
                 myProxy.setReward(body);
-                if (myProxy.pageData.rule_nums.length > 0) {
-                    myProxy.api_plat_activity_var_receive(myProxy.pageData.rule_nums.shift());
-                }
                 break;
         }
     }

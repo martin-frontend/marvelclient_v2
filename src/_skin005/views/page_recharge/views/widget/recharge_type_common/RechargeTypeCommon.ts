@@ -329,7 +329,7 @@ export default class RechargeTypeCommon extends AbstractView {
             const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
             // if (this.form.coin_name_unique == "BRL")
             // {
-            this.brlOptions = keys.sort((a, b) => options[a]["sort"] - options[b]["sort"]);
+            this.brlOptions = keys.sort((a, b) => options[b]["sort"] - options[a]["sort"]);
             // }
             if (keys && keys.length > 1) {
                 return true;

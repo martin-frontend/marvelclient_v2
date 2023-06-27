@@ -330,14 +330,16 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     public get isShowOptions(): boolean {
         if (this.pageData.methodList[this.form.coin_name_unique] && this.pageData.methodList[this.form.coin_name_unique].options) {
+            const options = this.pageData.methodList[this.form.coin_name_unique].options;
             const keys = Object.keys(this.pageData.methodList[this.form.coin_name_unique].options);
+            this.brlOptions = keys.sort((a, b) => options[b]["sort"] - options[a]["sort"]);
             if (keys && keys.length > 1) {
                 return true;
             }
         }
         return false;
     }
-
+    brlOptions = <any>[];
     get exemption_amount() {
         return this.myProxy.exchangeProxy.exemption_amount;
     }

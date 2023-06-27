@@ -1,78 +1,193 @@
 <div class="mb-5 px-2">
-    <div class="text-16 mb-2 mr-4 d-flex ">
+    <div class="text-16 mb-2 mr-4 d-flex">
         <div class="font-weight-bold" :class="$mobile?'text-16':'text-20'">{{LangUtil("近期投注")}}</div>
     </div>
-
-    <v-sheet
-        color="transparent"
-        rounded
-        :height="$mobile?30:60"
-        class="mb-2 d-flex align-center"
-    >
-        <v-sheet
-            v-if="!$mobile || (key == 0 || key ==1 || key==4)"
-            class="d-flex justify-center font-weight-bold textGray--text"
-            :class="$mobile?'text-12 ':'text-18'"
-            width="300"
-            color="transparent"
-            v-for="(item, key) of titles"
-            :key="key"
-            >{{item}}</v-sheet
-        >
-    </v-sheet>
-    <v-sheet color="transparent" class="hackhome mb-2 mt-n2" width="100%"></v-sheet>
-    <v-sheet class="listbox " color="transparent" :max-height="$mobile?160:340">
-        <div ref="listbox">
+    <template v-if="!$xsOnly">
+        <v-sheet color="transparent" rounded :height="itemHeight" class="mb-2 d-flex align-center px-2 justify-space-around">
             <v-sheet
-                rounded
-                :height="$mobile?30:60"
-                class="mb-2 d-flex align-center sheetOutlined sheetOutlined_bg "
-                v-for="(item, key) of pageData.list"
-                :key="key"
+                class="d-flex justify-center font-weight-bold textGray--text align-center"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                :width="$mobile? 150 : 410"
             >
+                <v-sheet color="transparent" width="60"></v-sheet>
                 <v-sheet
-                    class="d-flex justify-center"
-                    :class="$mobile?'text-12 colorText2--text colorTextBlack1--text':'text-18 colorText2--text'"
-                    width="300"
                     color="transparent"
+                    width="350"
+                    class="d-flex justify-center font-weight-bold textGray--text"
+                    :class="$mobile?'text-12 ':'text-18'"
                 >
-                    {{item.game_name}}
-                </v-sheet>
-                <v-sheet
-                    class="d-flex justify-center"
-                    :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
-                    width="300"
-                    color="transparent"
-                >
-                    {{item.username}}
-                </v-sheet>
-                <v-sheet
-                    v-if="!$mobile"
-                    class="d-flex justify-center"
-                    :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
-                    width="300"
-                    color="transparent"
-                >
-                    {{item.bet_time}}
-                </v-sheet>
-                <v-sheet
-                    v-if="!$mobile"
-                    class="d-flex justify-center"
-                    :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
-                    width="300"
-                    color="transparent"
-                >
-                    {{item.bet_gold}}
-                </v-sheet>
-                <v-sheet
-                    class="d-flex justify-center"
-                    :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
-                    width="300"
-                    color="transparent"
-                >
-                    {{item.win_gold}}
+                    {{LangUtil("游戏名称")}}
                 </v-sheet>
             </v-sheet>
-        </div>
-    </v-sheet>
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="150"
+                >{{LangUtil("玩家")}}</v-sheet
+            >
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="150"
+                v-if="!$mobile"
+                >{{LangUtil("时间")}}</v-sheet
+            >
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="300"
+                v-if="!$mobile"
+                >{{LangUtil("投注金额(USD)")}}</v-sheet
+            >
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="300"
+                >{{LangUtil("盈利(USD)")}}</v-sheet
+            >
+        </v-sheet>
+
+        <v-sheet color="transparent" class="hackhome mb-2 mt-n2" width="100%"></v-sheet>
+        <v-sheet class="listbox" color="transparent" :max-height="$mobile?160:340">
+            <div ref="listbox">
+                <v-sheet
+                    rounded
+                    :height="itemHeight"
+                    class="mb-2 d-flex align-center sheetOutlined sheetOutlined_bg px-2 justify-space-around"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
+                    <v-sheet class="d-flex justify-center align-center" :width="$mobile?150:410" color="transparent">
+                        <v-sheet class="" :width="itemHeight" color="transparent">
+                            <v-img
+                                :class="$mobile ? 'rounded-lg' : 'rounded10'"
+                                :src="item.icon"
+                                :max-height="itemHeight - 5"
+                                :max-width="itemHeight - 5"
+                            >
+                            </v-img>
+                        </v-sheet>
+                        <v-sheet
+                            v-if="!$mobile"
+                            class="d-flex justify-center text-truncate"
+                            :width="$mobile? 120 : 350"
+                            color="transparent"
+                            :class="$mobile?'text-12 ':'text-18'"
+                        >
+                            {{item.game_name}}
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                        width="150"
+                        color="transparent"
+                    >
+                        {{item.username}}
+                    </v-sheet>
+                    <v-sheet
+                        v-if="!$mobile"
+                        class="d-flex justify-center"
+                        :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                        width="150"
+                        color="transparent"
+                    >
+                        {{getDate(item.bet_time)}}
+                    </v-sheet>
+                    <v-sheet
+                        v-if="!$mobile"
+                        class="d-flex justify-center"
+                        :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                        width="300"
+                        color="transparent"
+                    >
+                        {{transformMoney(item.bet_gold)}}
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex justify-center textYellow--text"
+                        :class="$mobile?'text-12':'text-18'"
+                        width="300"
+                        color="transparent"
+                    >
+                        {{transformMoney(item.win_gold)}}
+                    </v-sheet>
+                </v-sheet>
+            </div>
+        </v-sheet>
+    </template>
+    <template v-else>
+        <v-sheet color="transparent" rounded :height="itemHeight" class="mb-2 d-flex align-center px-2 justify-space-around">
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text align-center"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                :width="$mobile? 150 : 410"
+            >
+                {{LangUtil("游戏名称")}}
+            </v-sheet>
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="150"
+                >{{LangUtil("玩家")}}</v-sheet
+            >
+
+            <v-sheet
+                class="d-flex justify-center font-weight-bold textGray--text"
+                :class="$mobile?'text-12 ':'text-18'"
+                color="transparent"
+                width="300"
+                >{{LangUtil("盈利(USD)")}}</v-sheet
+            >
+        </v-sheet>
+
+        <v-sheet color="transparent" class="hackhome mb-2 mt-n2" width="100%"></v-sheet>
+        <v-sheet class="listbox" color="transparent" :max-height="$mobile?210:340">
+            <div ref="listbox">
+                <v-sheet
+                    rounded
+                    :height="itemHeight"
+                    class="mb-2 d-flex align-center sheetOutlined sheetOutlined_bg px-2 justify-space-around"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
+                    <v-sheet class="d-flex justify-center align-center" :width="$mobile?150:410" color="transparent">
+                        <v-sheet class="" :width="itemHeight" color="transparent">
+                            <v-img
+                                :class="$mobile ? 'rounded-lg' : 'rounded10'"
+                                :src="item.icon"
+                                :max-height="itemHeight - 5"
+                                :max-width="itemHeight - 5"
+                            >
+                            </v-img>
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-sheet
+                        class="d-flex justify-center"
+                        :class="$mobile?'text-12 colorTextBlack1--text':'text-18 colorText2--text'"
+                        width="150"
+                        color="transparent"
+                    >
+                        {{item.username}}
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex justify-center textYellow--text"
+                        :class="$mobile?'text-12':'text-18'"
+                        width="300"
+                        color="transparent"
+                    >
+                        {{transformMoney(item.win_gold)}}
+                    </v-sheet>
+                </v-sheet>
+            </div>
+        </v-sheet>
+    </template>
 </div>

@@ -11,7 +11,6 @@ export default class GameProxy extends AbstractProxy {
 
     public onRegister(): void {
         this.coin_name_unique = window.localStorage.getItem("coin_name_unique") || "";
-        this.gameHistoryList = this.readGameHistory();
     }
 
     /**大厅菜单 */
@@ -84,6 +83,8 @@ export default class GameProxy extends AbstractProxy {
     setGameMenu(body: any) {
         this.lobbyMenuIndex = body;
         if (ModulesHelper.IsShow_GameHistory()) {
+            this.gameHistoryList = this.readGameHistory();
+
             const obj = <core.PlatLobbyIndexVO>{
                 vendor_type: 3,
                 vendor_type_name: "近期游戏",
@@ -227,6 +228,7 @@ export default class GameProxy extends AbstractProxy {
 
     gameHistoryList = <any>[];
     saveGame() {
+        if (!core.user_id) return [];
         if (this.currGame) {
             if (this.isUseMenuData(this.currGame.vendor_type)) return;
             this.gameHistoryList = this.gameHistoryList.filter(
@@ -238,11 +240,12 @@ export default class GameProxy extends AbstractProxy {
                 this.gameHistoryList.pop();
             }
             //console.log("添加游戏数据", this.gameHistoryList);
-            window.localStorage.setItem("game_histoty_list", JSON.stringify(this.gameHistoryList));
+            window.localStorage.setItem("game_histoty_list" + core.user_id, JSON.stringify(this.gameHistoryList));
         }
     }
     readGameHistory() {
-        const data = window.localStorage.getItem("game_histoty_list") || "";
+        if (!core.user_id) return [];
+        const data = window.localStorage.getItem("game_histoty_list" + core.user_id) || "";
         let list = <any>[];
         if (data) {
             list = JSON.parse(data);
@@ -250,7 +253,8 @@ export default class GameProxy extends AbstractProxy {
         return list;
     }
     deleteGameHistoryAll() {
+        if (!core.user_id) return;
         this.gameHistoryList = <any>[];
-        window.localStorage.setItem("game_histoty_list", JSON.stringify(this.gameHistoryList));
+        window.localStorage.setItem("game_histoty_list" + core.user_id, JSON.stringify(this.gameHistoryList));
     }
 }

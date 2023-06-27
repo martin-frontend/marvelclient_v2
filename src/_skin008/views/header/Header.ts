@@ -217,8 +217,7 @@ export default class Header extends AbstractView {
     resolveSvgaSrc(name: any) {
         return "svga/" + name + ".svga";
     }
-    onUserBtnClick()
-    {
+    onUserBtnClick() {
         PanelUtil.openpage_my_info();
     }
 }

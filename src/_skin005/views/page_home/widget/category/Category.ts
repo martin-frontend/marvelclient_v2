@@ -59,7 +59,6 @@ export default class Category extends AbstractView {
 
     onShowAll(item: any) {
         //this.listAllBtn[item] = true;
-        console.log("显示全部 --", this.listAllBtn);
         for (let index = 0; index < this.listAllBtn.length; index++) {
             const element = this.listAllBtn[index];
             if (element.key == item) {

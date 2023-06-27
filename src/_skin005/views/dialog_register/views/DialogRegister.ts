@@ -21,9 +21,9 @@ export default class DialogRegister extends AbstractView {
     pageData = this.myProxy.pageData;
     form = this.pageData.form;
     core = core;
+    ModulesHelper = ModulesHelper;
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     SkinVariable = SkinVariable;
-    ModulesHelper = ModulesHelper;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
     email_error_info = "";
     constructor() {
@@ -64,13 +64,13 @@ export default class DialogRegister extends AbstractView {
 
     GamePlatConfig = GamePlatConfig;
 
-    registerSort = [1, 4, 2, 8, 16]; //顺序
+    registerSort = [1, 4, 2, 8, 16, 32]; //顺序
     //private registerTypes = GamePlatConfig.config.register_types;
     private get registerTypes() {
         const list = [];
         let sort = this.registerSort;
         if (GlobalVar.skin == "skin008") {
-            sort = [4, 8, 2, 1];
+            sort = [4, 8, 2, 1, 16, 32];
         }
         for (let index = 0; index < sort.length; index++) {
             const element = sort[index];
@@ -147,7 +147,10 @@ export default class DialogRegister extends AbstractView {
         this.pageData.form.area_code = item.area_code;
         this.areaCodeMenu = false;
     }
-
+    checkBrlPhone(str: string) {
+        const Regx = /^[1-9]\d{10}$/; // 电话  11位 非0 开头的纯数字
+        return Regx.test(str);
+    }
     get isCheck(): boolean {
         if (this.SkinVariable.isShowRestrictions && !this.checkbox) {
             return false;
@@ -156,6 +159,7 @@ export default class DialogRegister extends AbstractView {
         return (
             password == password_confirm &&
             ((register_type == 1 && checkUserName(username)) ||
+                (register_type == 32 && this.checkBrlPhone(username)) ||
                 (register_type == 2 && checkMail(username)) ||
                 (register_type == 4 && checkPhone(username)) ||
                 (register_type == 8 && checkPhone(username) && checkUserName(mobile_username)) ||

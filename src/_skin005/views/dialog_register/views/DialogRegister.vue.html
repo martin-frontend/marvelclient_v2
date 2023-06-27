@@ -19,57 +19,33 @@
                         <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
                             <template v-for="(item, key) of registerTypes">
                                 <template v-if="item == 1">
-                                    <v-btn
-                                        v-if="registerTypes.includes(1)"
-                                        class="rounded-pill mr-2"
-                                        :height="btn_height"
-                                        :min-width="btn_width"
-                                        value="1"
-                                        :key="key"
-                                    >
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1" :key="key">
                                         <span class="text-14"> {{LangUtil("账号注册")}} </span>
                                     </v-btn>
                                 </template>
-
                                 <template v-else-if="item == 2">
-                                    <v-btn
-                                        v-if="registerTypes.includes(2)"
-                                        class="rounded-pill mr-2"
-                                        :height="btn_height"
-                                        :min-width="btn_width"
-                                        value="2"
-                                        :key="key"
-                                    >
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2" :key="key">
                                         <span class="text-14"> {{LangUtil("邮箱注册")}} </span>
                                     </v-btn>
                                 </template>
                                 <template v-else-if="item == 4">
-                                    <v-btn
-                                        v-if="registerTypes.includes(4)"
-                                        class="rounded-pill mr-2"
-                                        :height="btn_height"
-                                        :min-width="btn_width"
-                                        value="4"
-                                        :key="key"
-                                    >
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4" :key="key">
                                         <span class="text-14"> {{LangUtil("手机注册")}} </span>
                                     </v-btn>
                                 </template>
                                 <template v-else-if="item == 8">
-                                    <v-btn
-                                        v-if="registerTypes.includes(8)"
-                                        class="rounded-pill mr-2"
-                                        :height="btn_height"
-                                        :min-width="btn_width"
-                                        value="8"
-                                        :key="key"
-                                    >
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8" :key="key">
                                         <span class="text-14"> {{LangUtil("手机账号注册")}} </span>
                                     </v-btn>
                                 </template>
                                 <template v-else-if="item == 16">
                                     <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="16" :key="key">
                                         <span class="text-14"> {{LangUtil("邮箱账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 32">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="32" :key="key">
+                                        <span class="text-14"> {{LangUtil("手机号码")}} </span>
                                     </v-btn>
                                 </template>
                             </template>
@@ -103,53 +79,42 @@
                     v-model="form.email_username"
                     @blur="onMobileUsernameBlur"
                 />
-
-                <!-- <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-6 date_select" v-model="form.birth_date" width="100%">
-                    <v-menu
-                        ref="menu"
-                        v-model="date_menu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        hide-details
-                        width="100%"
-                        attach
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                                flat
-                                background-color="water_bg"
-                                height="36"
-                                solo
+                <CustomInput
+                    v-if="form.register_type==32"
+                    class="mb-6"
+                    icon="mdi-phone"
+                    type="tel"
+                    :placeholder="LangUtil('请输入手机号')"
+                    maxlength="11"
+                    v-model="form.username"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
                                 hide-details
-                                v-model="form.birth_date"
-                                readonly
-                                v-bind="attrs"
-                                v-on="on"
-                                color="disable_text"
-                                :placeholder="LangUtil('请输入生日')"
-                                class="borthday_class"
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
                             >
-                                <template v-slot:prepend-inner>
-                                    <div class=" mr-2">
-                                        <svg-icon class="text-16 disable_text--text" icon="birthday"></svg-icon>
-                                    </div>
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
                                 </template>
-                            </v-text-field>
-                        </template>
-                        <v-date-picker
-                            v-model="form.birth_date"
-                            :active-picker.sync="activePicker"
-                            :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
-                            min="1950-01-01"
-                            full-width
-                            @change="save_date"
-                            :locale="localLang"
-                            class="birth_class"
-                        ></v-date-picker>
-                    </v-menu>
-                    <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
-                </v-sheet> -->
+                            </v-autocomplete>
+                        </v-sheet>
+                    </template>
+                </CustomInput>
 
                 <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-6 mt-n2" v-model="form.birth_date" width="100%">
                     <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
@@ -223,7 +188,7 @@
                         @blur="onBlurInput()"
                     >
                         <btn-yellow
-                            class="ml-auto mr-n2 text-14"
+                            class="ml-auto text-14"
                             min_width="80"
                             height="36"
                             :btn_type="4"
@@ -339,7 +304,7 @@
 
                 <CustomInput
                     class="mb-6"
-                    v-if="form.register_type != 1"
+                    v-if="form.register_type != 1 && form.register_type != 32"
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（6位）')"
                     maxlength="6"
@@ -359,7 +324,12 @@
                     v-model="form.password_confirm"
                     @blur="onPasswordConfirmBlur"
                 />
-                <v-sheet v-if="form.register_type == 1" color="transparent" width="100%" class="d-flex mb-6 align-center">
+                <v-sheet
+                    v-if="form.register_type == 1 || form.register_type == 32"
+                    color="transparent"
+                    width="100%"
+                    class="d-flex mb-6 align-center"
+                >
                     <CustomInput
                         icon="mdi-shield-check"
                         :placeholder="LangUtil('请输入验证码（4位）')"
@@ -374,8 +344,14 @@
                     >{{LangUtil("注册")}}</v-btn > -->
 
                 <!-- 未成年勾选框 -->
-                <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-6">
-                    <v-checkbox v-model="checkbox" :label="LangUtil('我确认我已满18周岁')" color="textYellow" dense hide-details></v-checkbox>
+                <v-sheet v-if="SkinVariable.isShowRestrictions" color="transparent" class="d-flex mt-n2 mb-6">
+                    <v-checkbox
+                        v-model="checkbox"
+                        :label="LangUtil('我确认我已满18周岁')"
+                        color="textYellow"
+                        dense
+                        hide-details
+                    ></v-checkbox>
                 </v-sheet>
                 <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onRegister"
                     >{{LangUtil("注册")}}</btn-yellow
@@ -419,12 +395,17 @@
                         </template>
                         <template v-else-if="item == 8">
                             <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="8">
-                                <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
+                                <span :class="typechange=='8'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
                             </v-btn>
                         </template>
                         <template v-else-if="item == 16">
                             <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="16">
-                                <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱账号注册")}} </span>
+                                <span :class="typechange=='16'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 32">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="32">
+                                <span :class="typechange=='32'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机号码")}} </span>
                             </v-btn>
                         </template>
                     </template>
@@ -459,116 +440,106 @@
                 v-model="form.email_username"
                 @blur="onMobileUsernameBlur"
             />
-
-            <!-- <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-4 date_select" v-model="form.birth_date" width="100%">
-                <v-menu
-                    ref="menu"
-                    v-model="date_menu"
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    hide-details
-                    width="100%"
-                    attach
-                >
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                            flat
-                            background-color="water_bg"
-                            height="36"
-                            solo
+            <CustomInput
+                v-if="form.register_type==32 "
+                class="mb-4"
+                icon="mdi-phone"
+                type="tel"
+                :placeholder="LangUtil('请输入手机号')"
+                maxlength="11"
+                v-model="form.username"
+            >
+                <template v-slot:pre>
+                    <v-sheet color="transparent" class="codeSelect">
+                        <v-autocomplete
+                            class="ml-1"
+                            v-model="tempSelectCode"
+                            :items="areaCodeArr"
+                            item-text="area_code"
+                            :label="curShowCode"
                             hide-details
-                            v-model="form.birth_date"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            color="disable_text"
-                            :placeholder="LangUtil('请输入生日')"
-                            class="borthday_class"
+                            solo
+                            flat
+                            background-color="transparent"
+                            attach
+                            return-object
+                            :no-data-text="LangUtil('没有更多数据')"
+                            :filter="customFilter"
                         >
-                            <template v-slot:prepend-inner>
-                                <div class="mr-2">
-                                    <svg-icon class="text-16 disable_text--text" icon="birthday"></svg-icon>
-                                </div>
+                            <template v-slot:item="data">
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                    <div>{{data.item.area_code}}</div>
+                                    <div>{{data.item.name}}</div>
+                                </v-sheet>
                             </template>
-                        </v-text-field>
-                    </template>
-                    <v-date-picker
-                        v-model="form.birth_date"
-                        :active-picker.sync="activePicker"
-                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
-                        min="1950-01-01"
-                        full-width
-                        @change="save_date"
-                        :locale="localLang"
-                        class="birth_class_mob"
-                    ></v-date-picker>
-                </v-menu>
-                <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
-            </v-sheet> -->
-
-            <v-sheet color="transparent" class="mb-4 mt-n2 date_select"  width="100%">
-                <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
-                    <v-sheet color="transparent" class="d-flex">
-                        <CustomInput
-                            :placeholder="LangUtil('日')"
-                            v-model="myProxy.dateObj.day"
-                            :isOnlyInt="true"
-                            :isNeedCloseBtn="false"
-                            @blur="onBirthdateInput"
-                        >
-                            <template v-slot:default>
-                                <div class="mr-2 d-flex flex-column">
-                                    <div class="" @click="onBtnDateUp('day')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
-                                    </div>
-                                    <div @click="onBtnDateDown('day')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
-                                    </div>
-                                </div>
-                            </template>
-                        </CustomInput>
-
-                        <CustomInput
-                            :placeholder="LangUtil('月')"
-                            v-model="myProxy.dateObj.month"
-                            class="mx-2"
-                            :isOnlyInt="true"
-                            :isNeedCloseBtn="false"
-                            @blur="onBirthdateInput"
-                        >
-                            <template v-slot:default>
-                                <div class="mr-2 d-flex flex-column">
-                                    <div class="" @click="onBtnDateUp('month')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
-                                    </div>
-                                    <div @click="onBtnDateDown('month')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
-                                    </div>
-                                </div>
-                            </template>
-                        </CustomInput>
-                        <CustomInput
-                            :placeholder="LangUtil('年')"
-                            v-model="myProxy.dateObj.year"
-                            :isOnlyInt="true"
-                            :isNeedCloseBtn="false"
-                            @blur="onBirthdateInput"
-                        >
-                            <template v-slot:default>
-                                <div class="mr-2 d-flex flex-column">
-                                    <div class="" @click="onBtnDateUp('year')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
-                                    </div>
-                                    <div @click="onBtnDateDown('year')">
-                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
-                                    </div>
-                                </div>
-                            </template>
-                        </CustomInput>
+                        </v-autocomplete>
                     </v-sheet>
-                    <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
+                </template>
+            </CustomInput>
+
+            <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-4 mt-n2 date_select" width="100%">
+                <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
+                <v-sheet color="transparent" class="d-flex">
+                    <CustomInput
+                        :placeholder="LangUtil('日')"
+                        v-model="myProxy.dateObj.day"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('day')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('day')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+
+                    <CustomInput
+                        :placeholder="LangUtil('月')"
+                        v-model="myProxy.dateObj.month"
+                        class="mx-2"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('month')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('month')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+                    <CustomInput
+                        :placeholder="LangUtil('年')"
+                        v-model="myProxy.dateObj.year"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('year')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('year')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+                </v-sheet>
+                <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
             </v-sheet>
+
             <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="">
                 <CustomInput
                     icon="mdi-account"
@@ -687,7 +658,7 @@
 
             <CustomInput
                 class="mb-4 mt-4"
-                v-if="form.register_type != 1"
+                v-if="form.register_type != 1 && form.register_type != 32"
                 icon="mdi-shield-check"
                 :placeholder="LangUtil('请输入验证码（6位）')"
                 maxlength="6"
@@ -707,7 +678,12 @@
                 v-model="form.password_confirm"
                 @blur="onPasswordConfirmBlur"
             />
-            <v-sheet v-if="form.register_type == 1" color="transparent" width="100%" class="d-flex mb-4 align-center">
+            <v-sheet
+                v-if="form.register_type == 1 || form.register_type == 32"
+                color="transparent"
+                width="100%"
+                class="d-flex mb-4 align-center"
+            >
                 <CustomInput
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（4位）')"
@@ -719,7 +695,7 @@
             </v-sheet>
 
             <!-- 未成年勾选框 -->
-            <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-4">
+            <v-sheet v-if="SkinVariable.isShowRestrictions" color="transparent" class="d-flex mt-n2 mb-4">
                 <v-checkbox v-model="checkbox" :label="LangUtil('我确认我已满18周岁')" color="textYellow" dense hide-details></v-checkbox>
             </v-sheet>
 

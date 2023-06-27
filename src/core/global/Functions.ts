@@ -49,7 +49,7 @@ export function getTodayOffset(offset: any = 0, offsetSecond: any = 0): Date {
  * @param dateString 传入的天数
  * @returns 返回 开始的时间和结束的时间
  */
-export function getDateOffset(dateString: string):{ startTime: string; endTime: string } {
+export function getDateOffset(dateString: string): { startTime: string; endTime: string } {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -276,7 +276,6 @@ export function checkUserName1(value: string): boolean {
     const Regx = /^[\u4E00-\u9FA5A-Za-z0-9]*$/;
     return value.length >= 4 && value.length <= 20 && Regx.test(value);
 }
-
 
 /**
  * 验证密码是否合法
@@ -688,8 +687,7 @@ export function changeDateShow(str: string, ischangeData: boolean = true): strin
         return str;
     }
     let newstr = str;
-    if (ischangeData)
-        newstr = Timezone.Instance.convertTime_to_Locale(str);
+    if (ischangeData) newstr = Timezone.Instance.convertTime_to_Locale(str);
     newstr = newstr.substring(5, newstr.length - 3);
 
     // const re = /(\w+)\s(\w+)/;

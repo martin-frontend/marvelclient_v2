@@ -5,6 +5,9 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import RecentBettingMediator from "./RecentBettingMediator";
 import RecentBettingProxy from "./RecentBettingProxy";
 import gsap, { Linear, Elastic } from "gsap";
+import { changeDateShow } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class RecentBetting extends AbstractView {
@@ -19,6 +22,9 @@ export default class RecentBetting extends AbstractView {
 
     timer = 0;
 
+    get itemHeight() {
+        return this.$xsOnly ? 45 : 60;
+    }
     mounted() {
         this.timer = setInterval(() => {
             if (this.pageData.catchList.length > 0) {
@@ -27,13 +33,19 @@ export default class RecentBetting extends AbstractView {
                     this.pageData.list.pop();
                 }
                 const listbox: HTMLElement = <any>this.$refs.listbox;
-                gsap.fromTo(listbox, { y: -(this.$vuetify.breakpoint.xsOnly ? 30 : 60) }, { y: 0, duration: 1 });
+                gsap.fromTo(listbox, { y: -this.itemHeight }, { y: 0, duration: 0.5 });
             }
-        }, 5000);
+        }, 2000);
     }
 
     destroyed() {
         clearInterval(this.timer);
         super.destroyed();
+    }
+    getDate(str: string, isChange: boolean = true) {
+        return changeDateShow(str, isChange);
+    }
+    transformMoney(val: string) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT");
     }
 }

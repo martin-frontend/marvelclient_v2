@@ -27,7 +27,7 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeSearch = "";
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
-
+    is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
     typechange = "0";
 
     email_error_info = ""; //邮箱的错误信息
@@ -201,4 +201,19 @@ export default class DialogSafetyCenter extends AbstractView {
         }
         return "";
     }
+    tabOptions = () => {
+        if (!this.is_password_gold_transfer.is_open) {
+            return {
+                0: LangUtil("绑定手机"),
+                1: LangUtil("绑定邮箱"),
+                2: LangUtil("修改密码"),
+            };
+        }
+        return {
+            0: LangUtil("绑定手机"),
+            1: LangUtil("绑定邮箱"),
+            2: LangUtil("修改密码"),
+            3: LangUtil("交易密码"),
+        };
+    };
 }

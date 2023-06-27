@@ -1,6 +1,7 @@
 import GameConfig from "@/core/config/GameConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
+import OpenLink from "@/core/global/OpenLink";
 
 export default class AppProxy extends puremvc.Proxy {
     static NAME = "AppProxy";
@@ -77,6 +78,11 @@ export default class AppProxy extends puremvc.Proxy {
         //将参数复制到剪切板
         const data = { code: core.invite_user_id || core.user_id, pid: core.plat_id, channel: core.channel_id };
         CopyUtil(JSON.stringify(data));
+        if (!url.includes(".apk")) {
+            // console.log("打开浏览器",url);
+            OpenLink(url);
+            return;
+        }
         //下载apk
         const src = url;
         const form = document.createElement("form");

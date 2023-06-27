@@ -159,7 +159,7 @@ export default class Timezone {
      */
     addTime(timeStr: string, duration: string): string {
         const [hours, minutes] = duration.split(":").map(Number);
-        const time = new Date(timeStr.replace(/-/g,'/'));
+        const time = new Date(timeStr.replace(/-/g, "/"));
         time.setHours(time.getHours() + hours);
         time.setMinutes(time.getMinutes() + minutes);
         const year = time.getFullYear();
@@ -174,7 +174,7 @@ export default class Timezone {
     addTime_other(timeStr: number, duration: string): string {
         const [hours, minutes] = duration.split(":").map(Number);
         const time = new Date(timeStr);
-        time.setUTCHours(time.getUTCHours()+hours );
+        time.setUTCHours(time.getUTCHours() + hours);
         time.setUTCMinutes(time.getUTCMinutes() + minutes);
         const year = time.getUTCFullYear();
         const month = this.padZero(time.getUTCMonth() + 1);
@@ -212,8 +212,8 @@ export default class Timezone {
         if (!GameConfig.timezoneChange) {
             return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
         }
-        const newdata = this.addTime_other(datetimeString,this.getLocalTimezoneString());
-        console.log("转换之后的时间" , newdata);
+        const newdata = this.addTime_other(datetimeString, this.getLocalTimezoneString());
+        console.log("转换之后的时间", newdata);
         return newdata;
     }
     /**

@@ -20,8 +20,7 @@ export default class HomePage extends AbstractView {
     getMoneyColor = getMoneyColor;
     //getMoneyValue = getMoneyValue;
 
-    getMoneyValue(str: any, decimalLang: number = 0)
-    {
+    getMoneyValue(str: any, decimalLang: number = 0) {
         return getMoneyValue(str, decimalLang);
     }
     amountFormat(val: any) {

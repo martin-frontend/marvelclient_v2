@@ -21,7 +21,9 @@
             <v-divider class="mb-2" />
             <v-card-text class="mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
                 <div class="d-flex mb-10">
-                    <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                    <horizontal_scroll>
+                        <template v-slot="{data}">
+                    <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
                         <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">
                             <span class="text-14"> {{LangUtil("绑定手机")}} </span>
                         </v-btn>
@@ -31,10 +33,12 @@
                         <v-btn class="rounded-pill mr-2" height="42" min-width="110" value="2">
                             <span class="text-14"> {{LangUtil("修改密码")}} </span>
                         </v-btn>
-                        <v-btn class="rounded-pill mr-2" height="42" min-width="110" value="3">
+                        <v-btn v-if="is_password_gold_transfer.is_open" class="rounded-pill mr-2" height="42" min-width="110" value="3">
                             <span class="text-14"> {{LangUtil("交易密码")}} </span>
                         </v-btn>
                     </v-btn-toggle>
+                </template>
+            </horizontal_scroll>
                 </div>
             </v-card-text>
             <!-- 绑定手机 -->
@@ -237,9 +241,9 @@
             </v-card-text>
 
             <!-- 交易密码 -->
-            <div v-if="pageData.tabIndex == 3">
+            <v-card-text v-if="pageData.tabIndex == 3">
                 <TradePassword></TradePassword>
-            </div>
+            </v-card-text>
         </v-card>
     </v-card>
 
@@ -249,7 +253,7 @@
 
         <v-card-text class="px-2 px-md-10 mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
             <div class="d-flex mb-10">
-                <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                <!-- <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn v-if="checkValidateType(2)" class="rounded-pill" height="30" min-width="80" value="0">
                         <span class="text-14"> {{LangUtil("绑定手机")}} </span>
                     </v-btn>
@@ -262,7 +266,16 @@
                     <v-btn class="rounded-pill" height="30" min-width="80" value="3">
                         <span class="text-14"> {{LangUtil("交易密码")}} </span>
                     </v-btn>
-                </v-btn-toggle>
+                </v-btn-toggle> -->
+
+                <CustomSelect
+                    class="mr-2"
+                    v-model="typechange"
+                    :options="tabOptions()"
+                    fontSize="14"
+                    width="100%"
+                    @change="onTimeChange"
+                />
             </div>
         </v-card-text>
         <!-- 绑定手机 -->
@@ -456,9 +469,9 @@
         </v-sheet>
 
         <!-- 交易密码 -->
-        <div v-if="pageData.tabIndex == 3">
+        <v-sheet v-if="pageData.tabIndex == 3" class="px-5 py-5 mx-2 px-md-10 rounded10" color="bgBanner">
             <TradePassword></TradePassword>
-        </div>
+        </v-sheet>
     </v-card>
 
     <Overlay v-model="pageData.loading" />

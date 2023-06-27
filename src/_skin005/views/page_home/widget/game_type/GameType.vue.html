@@ -12,14 +12,19 @@
             <template v-if="$mobile">
                 <v-spacer />
                 <v-sheet
-                    v-if="!isAll(obj.title)"
-                    class="d-flex disable_text--text align-center cursor-pointer"
+                    class="d-flex textGray--text align-center cursor-pointer"
                     :class="$mobile ? 'text-12' :'text-14'"
                     color="transparent"
                     @click.native="onShowAll(obj.title)"
                 >
-                    <v-sheet color="transparent" class="disable_text--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
-                    <svg-icon class="text-12" icon="arrow_right"></svg-icon>
+                    <template v-if="!isAll(obj.title)">
+                        <v-sheet color="transparent" class="textGray--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
+                        <svg-icon class="text-12" icon="arrow_down_2"></svg-icon>
+                    </template>
+                    <template v-else>
+                        <v-sheet color="transparent" class="textGray--text mr-1"> {{LangUtil("收起")}} </v-sheet>
+                        <svg-icon class="text-12" icon="arrow_down_2" style="transform: rotateZ(180deg);"></svg-icon>
+                    </template>
                 </v-sheet>
             </template>
         </v-sheet>

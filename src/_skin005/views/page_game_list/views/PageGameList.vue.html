@@ -200,7 +200,7 @@
                             :class="isCurMenu(item) ? 'textYellow--text' :'textGray--text'"
                         ></svg-icon>
                         <div :class="isCurMenu(item) ? 'textYellow--text' :'textGray--text'" style="text-align: center">
-                            {{ getItemCategoryName(item) }}
+                            {{LangUtil(getItemCategoryName(item)) }}
                         </div>
                     </v-sheet>
                 </v-card>

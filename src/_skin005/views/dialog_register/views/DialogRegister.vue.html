@@ -344,7 +344,7 @@
                     >{{LangUtil("注册")}}</v-btn > -->
 
                 <!-- 未成年勾选框 -->
-                <v-sheet v-if="SkinVariable.isShowRestrictions" color="transparent" class="d-flex mt-n2 mb-6">
+                <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-6">
                     <v-checkbox
                         v-model="checkbox"
                         :label="LangUtil('我确认我已满18周岁')"
@@ -695,7 +695,7 @@
             </v-sheet>
 
             <!-- 未成年勾选框 -->
-            <v-sheet v-if="SkinVariable.isShowRestrictions" color="transparent" class="d-flex mt-n2 mb-4">
+            <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-4">
                 <v-checkbox v-model="checkbox" :label="LangUtil('我确认我已满18周岁')" color="textYellow" dense hide-details></v-checkbox>
             </v-sheet>
 

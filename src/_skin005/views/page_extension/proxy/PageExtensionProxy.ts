@@ -283,6 +283,9 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         };
         promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
 
+        if (!promotion_reward_model_id || !promotion_reward_model_id.id || !promotion_reward_model_id.rule_id) {
+            return;
+        }
         this.sendNotification(net.HttpType.api_plat_activity_var_rule_id_var, promotion_reward_model_id);
     }
 }

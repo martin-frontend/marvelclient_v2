@@ -253,8 +253,8 @@ function isShow_RecentBetting() {
     return _isValueTrue("recentBetting",false);
 }
 /**首页投注 */
-function isShow_MyInfo() {
-    return _isValueTrue("mob_myInfo",false);
+function isHide_MyInfo() {
+    return _isValueTrue("mob_hidemyInfo",false);
 }
 
 export default {
@@ -291,5 +291,5 @@ export default {
     IsShow_GameHistory,
     isShow_RecentBetting,
     IsShow_register18yearsOld,
-    isShow_MyInfo,
+    isHide_MyInfo,
 };

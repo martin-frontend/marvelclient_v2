@@ -4,7 +4,7 @@
         <slot name="pre"></slot>
     </div>
     <input
-   
+        :id="generateComponentId"
         class=" fontweight"
         :class="[disabled?'text-disabled':'',inputColor]"
         :type="type"

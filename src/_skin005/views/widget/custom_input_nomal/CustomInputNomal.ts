@@ -4,6 +4,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 
 @Component
 export default class CustomInputNomal extends AbstractView {
+    static count = 1;
     @Prop() icon!: string;
     @Prop() placeholder!: string;
     @Prop({ default: "text" }) type!: string;
@@ -20,20 +21,29 @@ export default class CustomInputNomal extends AbstractView {
     @Prop() inputColor!: string;
     @Prop({ default: false }) formatNumber!: boolean;
     @Prop({ default: false }) isEnterGold!: boolean;
+    @Prop({ default: "" }) inputId!: string;
     @Prop({
         default: function () {
             return { thousandSeparated: true };
         },
     })
-    @Prop({ default: "" })
-    inputId!: string;
-
     Custnumbro!: object; //thousandSeparated 表示千分位 mantissa表示保留后面几位小数点0 表示整数位
 
     inputValue = "";
     originalNumber = "";
     _lang = core.lang.replace("_", "-");
     isFocus = false;
+
+    get generateComponentId() {
+        console.log("inputId>>>", this.inputId);
+        if (this.inputId && this.inputId.trim()) {
+            return this.inputId;
+        }
+        CustomInputNomal.count++;
+        console.log("----", CustomInputNomal.count);
+        // 生成唯一的组件ID
+        return "component-" + CustomInputNomal.count;
+    }
 
     @Prop() value!: any;
     @Watch("value", { immediate: true })

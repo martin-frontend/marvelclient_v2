@@ -102,7 +102,7 @@ export default class MobileMenu extends AbstractView {
             newlist.push(list[6]);
         }
         //我的
-        if (ModulesHelper.isShow_MyInfo()) {
+        if (!ModulesHelper.isHide_MyInfo()) {
             newlist.push(list[5]);
         }
 

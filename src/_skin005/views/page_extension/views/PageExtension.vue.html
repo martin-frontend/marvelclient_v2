@@ -228,13 +228,13 @@
                                         <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
                                     </v-sheet>
                                     <v-sheet
-                                        v-if="pageData.firstChargeCount>=0"
+                                        v-if="promotionData.directly_first_recharge_num>=0"
                                         color="transparent"
                                         height="40"
                                         class="d-flex text-14 textGray--text justify-space-between align-center"
                                     >
                                         <div>{{LangUtil("直属首充人数：")}}</div>
-                                        <div>{{ pageData.firstChargeCount}}</div>
+                                        <div>{{ promotionData.directly_first_recharge_num}}</div>
                                     </v-sheet>
                                 </v-card>
                             </v-sheet>
@@ -437,13 +437,13 @@
                         </v-sheet>
 
                         <v-sheet
-                            v-if="pageData.firstChargeCount>=0"
+                            v-if="promotionData.directly_first_recharge_num>=0"
                             color="transparent"
                             height="30"
                             class="d-flex text-12 textGray--text justify-space-between align-center"
                         >
                             <div>{{LangUtil("直属首充人数：")}}</div>
-                            <div>{{ pageData.firstChargeCount}}</div>
+                            <div>{{ promotionData.directly_first_recharge_num}}</div>
                         </v-sheet>
                     </v-sheet>
                     <MaskTool />

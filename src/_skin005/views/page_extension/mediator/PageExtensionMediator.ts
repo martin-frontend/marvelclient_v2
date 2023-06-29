@@ -21,7 +21,6 @@ export default class PageExtensionMediator extends AbstractMediator {
         //this.myProxy.api_user_var_short_chain();
         this.myProxy.api_user_var_commission_commissiondetail();
         this.myProxy.api_user_var_commission_commissionnum();
-        this.myProxy.api_plat_activity_var_rule_id_var();
     }
 
     private isToday(someDate: any) {
@@ -38,7 +37,6 @@ export default class PageExtensionMediator extends AbstractMediator {
             net.EventType.api_user_update_var,
             net.EventType.api_user_var_commission_receive,
             net.EventType.api_plat_var_promotion_config,
-            net.EventType.api_plat_activity_var_rule_id_var,
         ];
     }
 
@@ -68,9 +66,6 @@ export default class PageExtensionMediator extends AbstractMediator {
             case net.EventType.api_plat_var_promotion_config:
                 console.log(" 配置信息回复", body);
                 myProxy.setPromotionConfig(body);
-                break;
-            case net.EventType.api_plat_activity_var_rule_id_var:
-                myProxy.setFirstChargeCount(body);
                 break;
         }
     }

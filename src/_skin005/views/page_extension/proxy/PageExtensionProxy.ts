@@ -47,6 +47,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             commission_info: {},
             commission_num: 0,
             pretty_user_id: 0,
+            directly_first_recharge_num: -1,
         },
         statistics_data: <any>{
             total_commission: {}, // 预计今日总佣金
@@ -106,6 +107,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             commission_info: {},
             commission_num: 0,
             pretty_user_id: 0,
+            directly_first_recharge_num: -1,
         });
 
         Object.assign(this.pageData.statistics_data, {
@@ -210,10 +212,6 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             }
         });
     }
-    setFirstChargeCount(data: any) {
-        this.pageData.loading = false;
-        this.pageData.firstChargeCount = Number(Object.entries(data)[0][1]);
-    }
     /**查询数据 */
     listQuery = {
         user_id: core.user_id,
@@ -276,16 +274,16 @@ export default class PageExtensionProxy extends puremvc.Proxy {
         }
     }
 
-    api_plat_activity_var_rule_id_var() {
-        let promotion_reward_model_id = {
-            id: 0,
-            rule_id: 0,
-        };
-        promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
+    // api_plat_activity_var_rule_id_var() {
+    //     let promotion_reward_model_id = {
+    //         id: 0,
+    //         rule_id: 0,
+    //     };
+    //     promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
 
-        if (!promotion_reward_model_id || !promotion_reward_model_id.id || !promotion_reward_model_id.rule_id) {
-            return;
-        }
-        this.sendNotification(net.HttpType.api_plat_activity_var_rule_id_var, promotion_reward_model_id);
-    }
+    //     if (!promotion_reward_model_id || !promotion_reward_model_id.id || !promotion_reward_model_id.rule_id) {
+    //         return;
+    //     }
+    //     this.sendNotification(net.HttpType.api_plat_activity_var_rule_id_var, promotion_reward_model_id);
+    // }
 }

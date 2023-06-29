@@ -128,8 +128,7 @@ window["vueInit"] = () => {
         });
         const ret = whisper.isInitialized();
         if (ret) {
-            const code = window.localStorage.getItem("code");
-            if (code) {
+            if (core.token) {
                 WhisperRequest();
             } else {
                 PanelUtil.message_confirm({

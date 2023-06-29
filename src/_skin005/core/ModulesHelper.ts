@@ -250,9 +250,16 @@ function isShow_SearchGame() {
 }
 /**首页投注 */
 function isShow_RecentBetting() {
-    return _isValueTrue("recentBetting",false);
+    return _isValueTrue("recentBetting", false);
 }
-/**首页投注 */
+/*是否需要登录验证 */
+function isNeed_loginVerifiy() {
+    return _isValueTrue("loginVerifiy", false);
+}
+/*是否需要注册验证 */
+function isNeed_registerVerifiy() {
+    return _isValueTrue("registerVerifiy", false);
+}
 function isHide_MyInfo() {
     return _isValueTrue("mob_hidemyInfo",false);
 }
@@ -291,5 +298,7 @@ export default {
     IsShow_GameHistory,
     isShow_RecentBetting,
     IsShow_register18yearsOld,
+    isNeed_loginVerifiy,
+    isNeed_registerVerifiy,
     isHide_MyInfo,
 };

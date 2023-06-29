@@ -38,6 +38,7 @@ import Header from "@/_skin005/views/header/Header.vue";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 import GameConfig from "@/core/config/GameConfig";
+import SlideVerify from 'vue-monoplasty-slide-verify';
 Assets.commonIcon.loading_img = "loding_icon_10.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin010/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin010/assets/logo_m.png`);
@@ -57,6 +58,7 @@ if (process.env.VUE_APP_GAME_DOMAIN) {
 }
 
 Vue.config.productionTip = false;
+Vue.use(SlideVerify);
 Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });

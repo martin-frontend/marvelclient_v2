@@ -141,6 +141,7 @@ import DialogPromotionRewardProxy from "@/_skin005/views/dialog_promotion_reward
 import GlobalVar from "@/core/global/GlobalVar";
 import PageActivityProxy from "@/_skin005/views/page_activity/proxy/PageActivityProxy";
 
+import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -788,6 +789,11 @@ export default class PanelUtil {
             PanelUtil.showNovigation(false);
             dialog_promotion_reward.show();
         });
+    }
+    /**打开 验证界面 */
+    static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null) {
+        MultDialogManager.onOpenPanel(DialogSpeedVerification);
+        DialogSpeedVerification.show(successFun, failFun);
     }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {

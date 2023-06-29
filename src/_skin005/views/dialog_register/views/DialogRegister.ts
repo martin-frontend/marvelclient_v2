@@ -188,7 +188,11 @@ export default class DialogRegister extends AbstractView {
     // }
 
     onRegister() {
-        this.myProxy.api_user_register();
+        if (ModulesHelper.isNeed_registerVerifiy())
+            PanelUtil.openpanel_speed_verification(() => {
+                this.myProxy.api_user_register();
+            });
+        else this.myProxy.api_user_register();
     }
 
     onClose() {

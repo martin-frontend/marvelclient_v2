@@ -10,6 +10,7 @@ import DialogLoginProxy from "../proxy/DialogLoginProxy";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 @Component
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
@@ -141,7 +142,11 @@ export default class DialogLogin extends AbstractView {
     }
 
     private onSubmitLogin() {
-        this.myProxy.api_user_login_check();
+        if (ModulesHelper.isNeed_loginVerifiy())
+            PanelUtil.openpanel_speed_verification(() => {
+                this.myProxy.api_user_login_check();
+            });
+        else this.myProxy.api_user_login_check();
     }
 
     private goForget() {

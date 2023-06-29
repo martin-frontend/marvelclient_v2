@@ -36,7 +36,7 @@ import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "./views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
-
+import SlideVerify from 'vue-monoplasty-slide-verify';
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -48,6 +48,7 @@ if (process.env.VUE_APP_GAME_DOMAIN) {
 }
 
 Vue.config.productionTip = false;
+Vue.use(SlideVerify);
 Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });

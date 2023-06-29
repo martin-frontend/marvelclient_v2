@@ -1,0 +1,22 @@
+<v-dialog width="300" v-model="pageData.bShow" :retain-focus="false"  persistent>
+    <v-card class="rounded10 pb-5" color="bgBanner">
+        <com-dialog-title title="滑动验证" @onClose="onClose" :isDialog="true"/>
+        <div class="d-flex justify-center ">
+            <slide-verify
+                :l="42"
+                :r="10"
+                :w="270"
+                :h="151"
+                :slider-text="sliderText"
+                :imgs="sliderimgs"
+                @success="onsuccess"
+                @fail="onfail"
+                @refresh="onRefresh"
+                ref="sliderVerifyBlock"
+            ></slide-verify>
+        </div>
+
+    </v-card>
+
+
+</v-dialog>

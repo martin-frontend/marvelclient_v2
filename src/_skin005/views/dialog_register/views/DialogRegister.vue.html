@@ -116,6 +116,14 @@
                     </template>
                 </CustomInput>
 
+                <CustomInput
+                    v-if="registerOption && registerOption.email "
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    v-model="form.email_username"
+                />
+
                 <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-6 mt-n2" v-model="form.birth_date" width="100%">
                     <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
                     <v-sheet color="transparent" class="d-flex">
@@ -178,6 +186,43 @@
                     </v-sheet>
                     <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
                 </v-sheet>
+
+                <CustomInput
+                    v-if="registerOption && registerOption.phone "
+                    class="mb-6"
+                    icon="mdi-phone"
+                    type="tel"
+                    :placeholder="LangUtil('请输入手机号')"
+                    maxlength="11"
+                    v-model="form.mobile_username"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
+                    </template>
+                </CustomInput>
 
                 <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="mb-6">
                     <CustomInput
@@ -431,6 +476,15 @@
                 v-model="form.username"
                 @blur="onUsernameBlur"
             />
+
+            <CustomInput
+                v-if="registerOption && registerOption.email "
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入邮箱')"
+                v-model="form.email_username"
+            />
+
             <CustomInput
                 v-if="form.register_type==16"
                 class="mb-4"
@@ -539,7 +593,42 @@
                 </v-sheet>
                 <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
             </v-sheet>
-
+            <CustomInput
+                v-if="registerOption && registerOption.phone "
+                class="mb-4"
+                icon="mdi-phone"
+                type="tel"
+                :placeholder="LangUtil('请输入手机号')"
+                maxlength="11"
+                v-model="form.mobile_username"
+            >
+                <template v-slot:pre>
+                    <v-sheet color="transparent" class="codeSelect">
+                        <v-autocomplete
+                            class="ml-1"
+                            v-model="tempSelectCode"
+                            :items="areaCodeArr"
+                            item-text="area_code"
+                            :label="curShowCode"
+                            hide-details
+                            solo
+                            flat
+                            background-color="transparent"
+                            attach
+                            return-object
+                            :no-data-text="LangUtil('没有更多数据')"
+                            :filter="customFilter"
+                        >
+                            <template v-slot:item="data">
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                    <div>{{data.item.area_code}}</div>
+                                    <div>{{data.item.name}}</div>
+                                </v-sheet>
+                            </template>
+                        </v-autocomplete>
+                    </v-sheet>
+                </template>
+            </CustomInput>
             <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="">
                 <CustomInput
                     icon="mdi-account"

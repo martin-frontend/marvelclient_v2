@@ -34,15 +34,20 @@ export default class CustomInputNomal extends AbstractView {
     _lang = core.lang.replace("_", "-");
     isFocus = false;
 
+    private _generateComponentId = "";
     get generateComponentId() {
-        console.log("inputId>>>", this.inputId);
+        //console.log("inputId>>>", this.inputId);
         if (this.inputId && this.inputId.trim()) {
             return this.inputId;
         }
-        CustomInputNomal.count++;
-        console.log("----", CustomInputNomal.count);
+        if(!this._generateComponentId)
+        {
+            CustomInputNomal.count++;
+            this._generateComponentId = "component-" + CustomInputNomal.count;
+        }
+        console.log("----", this._generateComponentId);
         // 生成唯一的组件ID
-        return "component-" + CustomInputNomal.count;
+        return this._generateComponentId;
     }
 
     @Prop() value!: any;

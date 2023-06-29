@@ -102,4 +102,6 @@ export interface GameConfigVO {
     is_need_birthday: number;
     /**游戏历史记录最大的个数 */
     maxHistoryLength: number;
+    /**注册时候的选项 */
+    registerOption:any;
 }

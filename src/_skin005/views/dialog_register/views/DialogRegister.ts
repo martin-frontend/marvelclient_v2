@@ -81,6 +81,10 @@ export default class DialogRegister extends AbstractView {
         return list;
     }
 
+    get registerOption() {
+        const option = GameConfig.config.registerOption || <any>{};
+        return option[this.form.register_type];
+    }
     tempSelectCode = null;
 
     public get areaCodeArr(): any {
@@ -156,6 +160,9 @@ export default class DialogRegister extends AbstractView {
             return false;
         }
         const { username, password, password_confirm, verify_code, register_type, mobile_username, email_username, birth_date } = this.form;
+        if (!this.chickYears()) {
+            return false;
+        }
         return (
             password == password_confirm &&
             ((register_type == 1 && checkUserName(username)) ||

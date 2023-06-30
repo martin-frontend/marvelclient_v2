@@ -342,6 +342,9 @@ module net {
         api_user_var_plat_users_verification_show: "api/user/{user_id}/plat_users_verification/show",
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: "api/user/{user_id}/plat_users_verification/save",
+
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: "api/plat/{plat_id}/is_allowed",
     };
     /**事件*/
     export var EventType = {
@@ -691,6 +694,9 @@ module net {
         api_user_var_plat_users_verification_show: "api_user_var_plat_users_verification_show",
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: "api_user_var_plat_users_verification_save",
+
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: "api_plat_var_is_allowed",
     };
     /**注册协议*/
     export function initCommand() {
@@ -878,6 +884,8 @@ module net {
         //--用户认证
         facade.registerCommand(HttpType.api_user_var_plat_users_verification_show, cmd_api_user_var_plat_users_verification_show);
         facade.registerCommand(HttpType.api_user_var_plat_users_verification_save, cmd_api_user_var_plat_users_verification_save);
+        //--IP限制
+        facade.registerCommand(HttpType.api_plat_var_is_allowed, cmd_api_plat_var_is_allowed);
     };
 
 }

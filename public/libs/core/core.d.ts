@@ -321,6 +321,8 @@ declare module net {
         api_user_var_plat_users_verification_show: string;
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: string;
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: string;
     };
     /**事件*/
     var EventType: {
@@ -642,6 +644,8 @@ declare module net {
         api_user_var_plat_users_verification_show: string;
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: string;
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -822,6 +826,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_game_search extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * IP限制
+ */
+declare module net {
+    class cmd_api_plat_var_is_allowed extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -389,6 +389,8 @@ var net;
         api_user_var_plat_users_verification_show: "api/user/{user_id}/plat_users_verification/show",
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: "api/user/{user_id}/plat_users_verification/save",
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: "api/plat/{plat_id}/is_allowed",
     };
     /**事件*/
     net.EventType = {
@@ -710,6 +712,8 @@ var net;
         api_user_var_plat_users_verification_show: "api_user_var_plat_users_verification_show",
         /**--用户认证--储存用户认证信息*/
         api_user_var_plat_users_verification_save: "api_user_var_plat_users_verification_save",
+        /**--IP限制--IP限制*/
+        api_plat_var_is_allowed: "api_plat_var_is_allowed",
     };
     /**注册协议*/
     function initCommand() {
@@ -897,6 +901,8 @@ var net;
         //--用户认证
         facade.registerCommand(net.HttpType.api_user_var_plat_users_verification_show, net.cmd_api_user_var_plat_users_verification_show);
         facade.registerCommand(net.HttpType.api_user_var_plat_users_verification_save, net.cmd_api_user_var_plat_users_verification_save);
+        //--IP限制
+        facade.registerCommand(net.HttpType.api_plat_var_is_allowed, net.cmd_api_plat_var_is_allowed);
     }
     net.initCommand = initCommand;
     ;
@@ -1340,6 +1346,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_game_search = cmd_api_plat_var_game_search;
+})(net || (net = {}));
+/**
+ * IP限制
+ */
+var net;
+/**
+ * IP限制
+ */
+(function (net) {
+    class cmd_api_plat_var_is_allowed extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_is_allowed, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_is_allowed, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_var_is_allowed = cmd_api_plat_var_is_allowed;
 })(net || (net = {}));
 /**
  * 获取语言列表

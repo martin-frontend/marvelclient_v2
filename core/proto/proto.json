@@ -215,6 +215,9 @@
 
         "--用户认证",
         ["api/user/{user_id}/plat_users_verification/show", "获取用户认证信息"],
-        ["api/user/{user_id}/plat_users_verification/save", "储存用户认证信息"]
+        ["api/user/{user_id}/plat_users_verification/save", "储存用户认证信息"],
+
+        "--IP限制",
+        ["api/plat/{plat_id}/is_allowed", "IP限制"]
     ]
 }

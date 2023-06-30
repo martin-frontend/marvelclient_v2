@@ -65,52 +65,52 @@ export function initMainGTM(id: string) {
     })(window, document, "script", "dataLayer", id);
 }
 //给GTM发送信息
-function gtm_sendmessage(dataLayer:any,eventName: string, data: any) {
-        // //@ts-ignore
-        // const dataLayer = window.dataLayer || [];
-        dataLayer.push(Object.assign({ event: eventName }, data));
-        /**针对GTM的内置的事件 */
-        switch (eventName) {
-            case TrackEventMap.loginSuccess: //登录成功
-                dataLayer.push(Object.assign({ event: "login" }, data));
-                break;
-            case TrackEventMap.RegistrationSuccess: //注册成功
-                dataLayer.push(Object.assign({ event: "sign_up" }, data));
-                break;
-            case TrackEventMap.repeatDepositSuccess: //充值成功
-            case TrackEventMap.FTDDepositSuccess: //充值成功
-                {
-                    data.value = data.amount_usd;
-                    data.currency = "USD";
-                    data.transaction_id = data.bet_id;
-                    dataLayer.push(Object.assign({ event: "purchase" }, data));
-                }
-                break;
-            case TrackEventMap.withdrawalSuccess: //提现成功
-                {
-                    data.value = data.amount_usd;
-                    data.currency = "USD";
-                    data.transaction_id = data.bet_id;
-                    dataLayer.push(Object.assign({ event: "refund" }, data));
-                }
-                break;
-            default:
-                break;
-        }
+function gtm_sendmessage(dataLayer: any, eventName: string, data: any) {
+    // //@ts-ignore
+    // const dataLayer = window.dataLayer || [];
+    dataLayer.push(Object.assign({ event: eventName }, data));
+    /**针对GTM的内置的事件 */
+    switch (eventName) {
+        case TrackEventMap.loginSuccess: //登录成功
+            dataLayer.push(Object.assign({ event: "login" }, data));
+            break;
+        case TrackEventMap.RegistrationSuccess: //注册成功
+            dataLayer.push(Object.assign({ event: "sign_up" }, data));
+            break;
+        case TrackEventMap.repeatDepositSuccess: //充值成功
+        case TrackEventMap.FTDDepositSuccess: //充值成功
+            {
+                data.value = data.amount_usd;
+                data.currency = "USD";
+                data.transaction_id = data.bet_id;
+                dataLayer.push(Object.assign({ event: "purchase" }, data));
+            }
+            break;
+        case TrackEventMap.withdrawalSuccess: //提现成功
+            {
+                data.value = data.amount_usd;
+                data.currency = "USD";
+                data.transaction_id = data.bet_id;
+                dataLayer.push(Object.assign({ event: "refund" }, data));
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /**google tag manager */
 function gmt(eventName: string, data: any) {
-    if (SkinVariable.useGTM) {
-        //@ts-ignore
-        const dataLayer = window.dataLayer || [];
-        gtm_sendmessage(dataLayer,eventName,data);
-    }
+    // if (SkinVariable.useGTM) {
+    //     //@ts-ignore
+    //     const dataLayer = window.dataLayer || [];
+    //     gtm_sendmessage(dataLayer,eventName,data);
+    // }
     //给主GTM发送信息 也发送一份
     {
         //@ts-ignore
         const dataLayer = window.dataLayer || [];
-        gtm_sendmessage(dataLayer,eventName,data);
+        gtm_sendmessage(dataLayer, eventName, data);
     }
 }
 /**fackbook pixel */
@@ -211,7 +211,6 @@ export const TrackEventMap = {
 };
 
 export function track(eventName: string, data: any = {}, type: string = "normal") {
-
     data.amount = data.gold || 0;
     if (data.amount) {
         data.amount_usd = Number(

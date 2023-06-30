@@ -60,7 +60,7 @@ export default class MobileMenu extends AbstractView {
                 }
             }
 
-            console.log("--- 当前对象为---", list);
+            //console.log("--- 当前对象为---", list);
             const keys = Object.keys(list);
             for (let index = 0; index < GameConfig.config.PhoneMenu.length; index++) {
                 const element = GameConfig.config.PhoneMenu[index];
@@ -68,7 +68,10 @@ export default class MobileMenu extends AbstractView {
                     for (let n = 0; n < keys.length; n++) {
                         const el = list[keys[n]];
                         if (element == el.mob_type) {
-                            newlist.push(el);
+                            if (element == "download") {
+                                //需要检测是否在app 和 是否已经 保存
+                                if (this.isShowGuide) newlist.push(el);
+                            } else newlist.push(el);
                         }
                     }
                 }
@@ -114,6 +117,14 @@ export default class MobileMenu extends AbstractView {
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
+    }
+
+    get isShowGuide() {
+        //@ts-ignore
+        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone === true) {
+            return false;
+        }
+        return true;
     }
 
     onItemClick(item: any) {

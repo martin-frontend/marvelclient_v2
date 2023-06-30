@@ -105,7 +105,8 @@ export default class DialogUserCenter extends AbstractView {
     }
 
     handlerTradePassword() {
-        PanelUtil.openpanel_trade_password();
+        //PanelUtil.openpanel_trade_password();
+        PanelUtil.openpanel_safety_center(3)
     }
 
     handlerPersonalCard() {

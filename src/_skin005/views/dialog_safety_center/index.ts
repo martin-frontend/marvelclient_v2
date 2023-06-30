@@ -7,9 +7,10 @@ const proxy: DialogSafetyCenterProxy = getProxy(DialogSafetyCenterProxy);
 function show(index: number = -1) {
     DialogMount(DialogSafetyCenter);
     hidden(false);
+    proxy.resetForm();
     proxy.pageData.tabIndex = index;
     proxy.pageData.bShow = true;
-    proxy.resetForm();
+    
 }
 
 function hidden(bhidden: boolean = true) {

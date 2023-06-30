@@ -151,7 +151,7 @@
                         </v-btn>
                     </span>
                 </div>
-                <!-- <div class="d-flex justify-space-between align-center mb-5 text-14" v-if="is_password_gold_transfer.is_open">
+                <div class="d-flex justify-space-between align-center mb-5 text-14" v-if="is_password_gold_transfer.is_open">
                     <span class="d-flex textGray--text">
                         {{LangUtil("交易密码")}}
                     </span>
@@ -168,7 +168,7 @@
                             <v-icon>mdi-chevron-right</v-icon>
                         </v-btn>
                     </span>
-                </div> -->
+                </div>
                 <!-- <div class="d-flex justify-space-between align-center mb-5">
                     <span class="d-flex colorBlue--text">
                         <v-icon class="mr-2" color="colorInfo">mdi-account-box</v-icon>{{LangUtil("个人名片")}}
@@ -339,7 +339,7 @@
                     </div>
                     <div class="line mt-2" v-if="is_password_gold_transfer.is_open"></div>
                 </template>
-                <!-- <template v-if="is_password_gold_transfer.is_open">
+                <template v-if="is_password_gold_transfer.is_open">
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             {{LangUtil("交易密码")}}
@@ -359,7 +359,7 @@
                         </span>
                     </div>
                     <div class="line mt-2"></div>
-                </template> -->
+                </template>
             </v-card-text>
         </v-sheet>
         <v-card-actions v-if="GlobalVar.instance.isShowLogout" class="px-2 d-flex align-end">

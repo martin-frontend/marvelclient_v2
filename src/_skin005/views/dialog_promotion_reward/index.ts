@@ -6,6 +6,7 @@ const proxy: DialogPromotionRewardProxy = getProxy(DialogPromotionRewardProxy);
 
 function show() {
     DialogMount(DialogPromotionReward);
+    hidden(false);
     proxy.pageData.bShow = true;
 }
 function hidden(bhidden: boolean = true) {

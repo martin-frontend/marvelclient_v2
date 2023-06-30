@@ -7,6 +7,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
 import PageBlur from "@/_skin005/core/PageBlur";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
 
 @Component
 export default class DialogPromotionReward extends AbstractView {
@@ -33,6 +34,7 @@ export default class DialogPromotionReward extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 
     onReceive() {
@@ -50,8 +52,9 @@ export default class DialogPromotionReward extends AbstractView {
     }
 
     goExtension() {
-        this.myProxy.pageData.bShow = false;
+        //this.myProxy.pageData.bShow = false;
         PanelUtil.openpage_extension();
+        this.onClose();
     }
 
     get progressValue() {

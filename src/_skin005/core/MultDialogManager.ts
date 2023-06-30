@@ -4,9 +4,9 @@
 export default class MultDialogManager {
     private static obj_list = <any>[];
     private static get maxShowCount() {
-        if (window.$mobile) {
-            return 3;
-        }
+        // if (window.$mobile) {
+        //     return 3;
+        // }
         return 1;
     }
     public static onOpenPanel(obj: any) {

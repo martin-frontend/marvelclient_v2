@@ -20,6 +20,7 @@ export default class DialogRealName extends AbstractView {
     constructor() {
         super(DialogRealNameMediator);
     }
+    cpf = "";
 
     onClose() {
         this.pageData.bShow = false;
@@ -31,6 +32,21 @@ export default class DialogRealName extends AbstractView {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             this.myProxy.pageData.real_name = "";
+            this.cpf = "";
+        }
+    }
+
+    get isCheckedCPF(): boolean {
+        return this.cpf.length == 11;
+    }
+    onSubmit_cpf() {
+        const data: any = {};
+        if (this.isCheckedCPF) {
+            data.cpf = this.cpf;
+            this.pageData.loading = true;
+            this.selfProxy.api_user_update_var(data);
+        } else {
+            PanelUtil.message_info(LangUtil("CPF为11为数字"));
         }
     }
 

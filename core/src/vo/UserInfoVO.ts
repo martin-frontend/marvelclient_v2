@@ -155,7 +155,7 @@ module core {
         /**是否信用用户 */
         is_credit_user?: number;
         /**是否信用现金用户 */
-        is_cash_agent ?: number;
+        is_cash_agent?: number;
         /**是否显示兑换 */
         is_exchange?: number;
         /**是否显示充值 */
@@ -168,6 +168,7 @@ module core {
         credit_rate_invited?: number;
         /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
         create_credit_user_type?: any;
+        cpf?: string;
     }
 
     /**

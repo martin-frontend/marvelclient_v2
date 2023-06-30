@@ -99,6 +99,10 @@ export default class DialogUserCenter extends AbstractView {
         //设置真实姓名
         PanelUtil.openpanel_real_name();
     }
+    handlerCPF() {
+        //设置CPF
+        PanelUtil.openpanel_real_name(true);
+    }
 
     handlerNickName() {
         PanelUtil.openpanel_nick_name();

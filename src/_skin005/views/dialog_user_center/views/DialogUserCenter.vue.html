@@ -65,6 +65,28 @@
                     </span>
                 </div>
 
+                <div v-if="ModulesHelper.IsShow_SetCPF()" class="d-flex justify-space-between align-center mb-5 text-14">
+                    <span class="d-flex textGray--text">
+                        <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
+                        {{LangUtil("CPF")}}
+                    </span>
+                    <span class="d-flex align-center textGray--text">
+                        {{userInfo.cpf ? userInfo.cpf : LangUtil("未设置")}}
+                        <v-btn
+                            v-if="!userInfo.cpf"
+                            icon
+                            class="ml-2"
+                            color="textGray"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
+                            @click="handlerCPF"
+                        >
+                            <v-icon>mdi-chevron-right</v-icon>
+                        </v-btn>
+                        <div v-else class="empty_width"></div>
+                    </span>
+                </div>
+
                 <div class="d-flex justify-space-between align-center mb-5 text-14">
                     <span class="d-flex textGray--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
@@ -247,6 +269,32 @@
                     </div>
                     <div class="line mt-2"></div>
                 </template>
+
+                <template v-if="ModulesHelper.IsShow_SetCPF()">
+                    <div class="d-flex justify-space-between align-center mt-2 text-14">
+                        <span class="d-flex leftText--text">
+                            <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
+                            {{LangUtil("CPF")}}
+                        </span>
+                        <span class="d-flex align-center head_btn--text">
+                            {{userInfo.cpf ? userInfo.cpf : LangUtil("未设置")}}
+                            <v-btn
+                                v-if="!userInfo.cpf"
+                                icon
+                                class="ml-2"
+                                color="head_btn"
+                                :width="$mobile? 24 :30"
+                                :height="$mobile? 24 :30"
+                                @click="handlerCPF"
+                            >
+                                <v-icon>mdi-chevron-right</v-icon>
+                            </v-btn>
+                            <div v-else class="empty_width"></div>
+                        </span>
+                    </div>
+                    <div class="line mt-2"></div>
+                </template>
+
                 <div class="d-flex justify-space-between align-center mt-2 text-14">
                     <span class="d-flex leftText--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->

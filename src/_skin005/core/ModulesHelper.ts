@@ -263,7 +263,10 @@ function isNeed_registerVerifiy() {
 function isHide_MyInfo() {
     return _isValueTrue("mob_hidemyInfo",false);
 }
-
+/**设置CPF的入口 */
+function IsShow_SetCPF() {
+    return _isValueTrue("setCPF",false);
+}
 export default {
     IsShow_VipInfo,
     IsShow_CoinIntroduce,
@@ -301,4 +304,5 @@ export default {
     isNeed_loginVerifiy,
     isNeed_registerVerifiy,
     isHide_MyInfo,
+    IsShow_SetCPF,
 };

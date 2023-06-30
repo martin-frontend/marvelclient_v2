@@ -4,10 +4,11 @@ import DialogRealNameProxy from "./proxy/DialogRealNameProxy";
 import DialogRealName from "./views/DialogRealName.vue";
 const proxy: DialogRealNameProxy = getProxy(DialogRealNameProxy);
 
-function show() {
+function show(isCPF: boolean = false) {
     DialogMount(DialogRealName);
     hidden(false);
     proxy.pageData.bShow = true;
+    proxy.pageData.isCPF = isCPF;
 }
 
 function hidden(bhidden: boolean = true) {

@@ -254,6 +254,7 @@
                                 :placeholder="exchangeProxy.curPixkeyItem.placeholder"
                                 @blur="onBlurInput_option()"
                                 v-model="exchangeProxy.curPixkeyItem.inputValue"
+                                :disabled="bindCPF"
                             >
                                 <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
                                     <div class="mr-2">{{LangUtil("+55")}}</div>
@@ -608,6 +609,7 @@
                                     :placeholder="exchangeProxy.curPixkeyItem.placeholder"
                                     @blur="onBlurInput_option()"
                                     v-model="exchangeProxy.curPixkeyItem.inputValue"
+                                    :disabled="bindCPF"
                                 >
                                     <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
                                         <div class="mr-2">{{LangUtil("+55")}}</div>

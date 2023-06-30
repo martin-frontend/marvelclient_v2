@@ -93,7 +93,7 @@ export default class ExchangeTypeCommon extends AbstractView {
                 errinfo: "",
             });
         }
-        this.exchangeProxy.pix_key_option.forEach(item => {
+        this.exchangeProxy.pix_key_option.forEach((item) => {
             item.name = LangUtil(item.name);
             item.placeholder = LangUtil("请输入{0}", LangUtil(item.name));
         });
@@ -364,7 +364,7 @@ export default class ExchangeTypeCommon extends AbstractView {
         if (obj.exchange_coin_scale) {
             //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
             const val = "1";
-            const nub = Number(val) ;
+            const nub = Number(val);
             const inputVal = nub / Number(obj.exchange_coin_scale || "1");
             const sss = `${nub} ${obj.coin_name_unique_ori} = ${inputVal} ${obj.coin_name_unique_target}`;
 
@@ -378,23 +378,27 @@ export default class ExchangeTypeCommon extends AbstractView {
         if (obj.exchange_coin_scale) {
             //const sss = `${obj.exchange_coin_scale} ${obj.coin_name_unique_target}=1 ${obj.coin_name_unique_ori}`;
             const val = this.form.amount || "0";
-            const nub = Number(val) ;
+            const nub = Number(val);
             const inputVal = nub / Number(obj.exchange_coin_scale || "1");
-            const sss = `${this.amountFormat(inputVal,true)} ${obj.coin_name_unique_target}`;
+            const sss = `${this.amountFormat(inputVal, true)} ${obj.coin_name_unique_target}`;
 
             return sss;
         }
         return "";
     }
-    get is_show_money():boolean
-    {
+    get is_show_money(): boolean {
         return !(GlobalVar.skin == "skin020");
     }
-    get is_show_coin_title():boolean
-    {
+    get is_show_coin_title(): boolean {
         if (!this.gold_info) return false;
-        const keys = Object.keys( this.gold_info);
+        const keys = Object.keys(this.gold_info);
         return keys.length > 1;
     }
 
+    get bindCPF() {
+        if (this.exchangeProxy.curPixkeyItem.key == 3 && this.selfProxy.userInfo.cpf && this.selfProxy.userInfo.cpf.trim()) {
+            return this.selfProxy.userInfo.cpf;
+        }
+        return null;
+    }
 }

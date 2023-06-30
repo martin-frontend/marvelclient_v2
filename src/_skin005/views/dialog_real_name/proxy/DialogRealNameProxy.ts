@@ -8,6 +8,7 @@ export default class DialogRealNameProxy extends puremvc.Proxy {
         bShow: false,
         bHidden: false, //暂时隐藏
         real_name: "",
+        isCPF:false,
     };
 
     setData(data: any) {

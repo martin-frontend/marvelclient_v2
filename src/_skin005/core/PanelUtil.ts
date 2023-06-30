@@ -534,9 +534,9 @@ export default class PanelUtil {
         });
     }
     //打开 真实姓名 窗口
-    static openpanel_real_name() {
+    static openpanel_real_name(isCPF:boolean = false) {
         MultDialogManager.onOpenPanel(dialog_real_name);
-        dialog_real_name.show();
+        dialog_real_name.show(isCPF);
     }
     //打开 昵称修改 窗口
     static openpanel_nick_name() {

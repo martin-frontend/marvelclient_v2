@@ -262,7 +262,13 @@ export class ExchangeProxy extends puremvc.Proxy {
         return obj;
     }
     get curPixkeyItem() {
-        return this.pix_key_option[this.pix_key_select];
+        const item = this.pix_key_option[this.pix_key_select];
+        if (item.key == 3) {
+            if (PanelUtil.getProxy_selfproxy.userInfo.cpf && PanelUtil.getProxy_selfproxy.userInfo.cpf.trim()) {
+                item.inputValue = PanelUtil.getProxy_selfproxy.userInfo.cpf;
+            }
+        }
+        return item;
     }
 
     onBlurInput_option() {

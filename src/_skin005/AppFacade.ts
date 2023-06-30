@@ -52,7 +52,7 @@ export default class AppFacade {
 
         GameConfig.load();
 
-        await this.isIpAllow();
+        
         //五分钟检测一次网络
         setInterval(() => {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
@@ -97,6 +97,7 @@ export default class AppFacade {
                     break;
             }
         });
+        await this.isIpAllow();
     }
 
     private initProxy() {
@@ -116,6 +117,7 @@ export default class AppFacade {
         this.facade.registerMediator(new NetObserver(NetObserver.NAME));
     }
     private async isIpAllow() {
+        if (!core.plat_id) return;
         const url = net.getUrl(net.HttpType.api_plat_var_is_allowed, { plat_id: core.plat_id });
         return await net.Http.request({}, url)
             .then((response: any) => {

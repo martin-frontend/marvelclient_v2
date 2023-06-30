@@ -131,7 +131,7 @@ window["vueInit"] = () => {
             if (core.token) {
                 WhisperRequest();
             } else {
-                PanelUtil.message_confirm({
+                PanelUtil.message_alert({
                     message: LangUtil("是否已经成年，内容只对成年人开放"),
                     okFun: () => {
                         WhisperRequest();

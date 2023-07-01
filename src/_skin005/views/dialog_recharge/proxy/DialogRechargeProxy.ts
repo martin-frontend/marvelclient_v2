@@ -225,7 +225,10 @@ export class ExchangeProxy extends puremvc.Proxy {
     bankCard_nameArr = <any>{};
     bankCard_numberArr = <any>{};
 
-    exemption_amount = "";
+    extend_info = {
+        exemption_amount: "0",
+        gold_water_pass: false,
+    }
 
     init() {
         this.api_user_var_exchange_method_list();

@@ -25,7 +25,7 @@
                             <span>{{LangUtil("解锁金额")}}</span>
                             <v-sheet color="water_bg" class="rounded10 flex-1 mx-2 custom-progress" height="16px">
                                 <div class="progress-value text-center">
-                                    <span class="ml-1 text-14 success--text">{{transformMoney_sum_money(exemption_amount)}}</span>
+                                    <span class="ml-1 text-14 success--text">{{exemption_amount}}</span>
                                     <span class="text-14 nomal_text--text">/{{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span>
                                 </div>
                                 <div class="progress-bg" :style="{'width': `${progressValue || 0}%`}"></div>
@@ -38,7 +38,7 @@
                                 </template>
                                 <span>
                                     {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                                    transformMoney_sum_money(exemption_amount), form.coin_name_unique) }}
+                                    exemption_amount, form.coin_name_unique) }}
                                 </span>
                             </v-tooltip>
                         </div>
@@ -183,7 +183,7 @@
                 <div class="text-14 primary--text mb-2 bold_text font-weight-bold d-flex align-end">
                     <div class="mr-auto">
                         {{LangUtil("解锁金额")}}
-                        <span class="ml-1 text-12 success--text">{{transformMoney_sum_money(exemption_amount)}}</span>
+                        <span class="ml-1 text-12 success--text">{{exemption_amount}}</span>
                         <span class="text-12">/{{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span>
                     </div>
                     <v-tooltip max-width="90%" top>
@@ -194,7 +194,7 @@
                         </template>
                         <span>
                             {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                            transformMoney_sum_money(exemption_amount), form.coin_name_unique) }}
+                            exemption_amount, form.coin_name_unique) }}
                         </span>
                     </v-tooltip>
                 </div>

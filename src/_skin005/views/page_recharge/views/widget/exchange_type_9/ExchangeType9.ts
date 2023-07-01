@@ -26,6 +26,7 @@ export default class ExchangeType9 extends AbstractView {
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
     enable_exemption_amount = GameConfig.config.enable_exemption_amount;
+    extend_info = this.myProxy.exchangeProxy.extend_info;
 
     get isChecked(): boolean {
         const { amount, account, coin_name_unique, password_gold } = this.form;
@@ -414,16 +415,19 @@ export default class ExchangeType9 extends AbstractView {
         }, 200);
     }
 
-    get exemption_amount() {
-        return this.myProxy.exchangeProxy.exemption_amount;
-    }
-
     get sum_money() {
         return this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].sum_money;
     }
 
     transformMoney_sum_money(val: any, isformat: boolean = true) {
         return CoinTransformHelper.TransformMoney(val, 2, this.form.coin_name_unique, "", isformat, false, false);
+    }
+
+    get exemption_amount() {
+        const { exemption_amount, gold_water_pass } = this.extend_info;
+        const t = this.transformMoney_sum_money(exemption_amount);
+        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money,true);
+        return t;
     }
 
     get progressValue() {

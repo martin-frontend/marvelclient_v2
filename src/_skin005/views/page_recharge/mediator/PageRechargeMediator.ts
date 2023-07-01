@@ -87,7 +87,9 @@ export default class PageRechargeMediator extends AbstractMediator {
                 PanelUtil.message_success(LangUtil("划转成功"));
                 break;
             case net.EventType.api_user_var_exchange_extend_info:
-                myProxy.exchangeProxy.exemption_amount = body.exemption_amount;
+                Object.assign(myProxy.exchangeProxy.extend_info, {
+                    ...body,
+                });
                 break;
         }
     }

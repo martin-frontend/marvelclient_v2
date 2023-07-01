@@ -267,6 +267,11 @@ function isHide_MyInfo() {
 function IsShow_SetCPF() {
     return _isValueTrue("setCPF",false);
 }
+/**首页投注 */
+function isShow_RechargeActivityCheckbox() {
+    return _isValueTrue("rechargeActivityCheckbox",false);
+}
+
 export default {
     IsShow_VipInfo,
     IsShow_CoinIntroduce,
@@ -301,6 +306,7 @@ export default {
     IsShow_GameHistory,
     isShow_RecentBetting,
     IsShow_register18yearsOld,
+    isShow_RechargeActivityCheckbox,
     isNeed_loginVerifiy,
     isNeed_registerVerifiy,
     isHide_MyInfo,

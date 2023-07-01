@@ -5,6 +5,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import { amountFormat, checkMail, checkOnlyEnglishChar } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { inputErrorObj } from "../../../proxy/PageRechargeProxy";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class RechargeType9 extends AbstractView {
@@ -16,6 +17,7 @@ export default class RechargeType9 extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
     mounted() {}
     amount_error_info = ""; // 金额的报错信息
+    ModulesHelper = ModulesHelper;
     get isChecked(): boolean {
         return true;
         const { amount } = this.form;

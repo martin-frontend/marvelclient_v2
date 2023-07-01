@@ -45,6 +45,7 @@ export class RechargeProxy extends puremvc.Proxy {
             third_id: "",
             subtitle: "",
             requires: <any>{},
+            in_activity: "1", // 0-不参与|1-参与
         },
         gold_index: 0,
         isLoadData: true, //是否正在加载数据，或者是否正在等待 数据
@@ -153,7 +154,7 @@ export class RechargeProxy extends puremvc.Proxy {
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         //const data = <any>{ user_id: core.user_id };
-        const { coin_name_unique, block_network_id, recharge_channel_id, amount, third_id, subtitle } = this.pageData.form;
+        const { coin_name_unique, block_network_id, recharge_channel_id, amount, third_id, subtitle, in_activity } = this.pageData.form;
         //Object.assign(data, this.pageData.form);
 
         const data = <any>{
@@ -164,6 +165,7 @@ export class RechargeProxy extends puremvc.Proxy {
             amount: amount,
             third_id: third_id,
             subtitle: subtitle,
+            in_activity: in_activity,
         };
 
         if (requires && requires.length > 0) {

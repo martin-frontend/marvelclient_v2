@@ -8,6 +8,7 @@ import CopyUtil from "@/core/global/CopyUtil";
 import OpenLink from "@/core/global/OpenLink";
 import MyCanvas from "@/core/ui/MyCanvas";
 import GlobalVar from "@/core/global/GlobalVar";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class RechargeTypeCommon extends AbstractView {
@@ -18,6 +19,7 @@ export default class RechargeTypeCommon extends AbstractView {
     amountFormat = amountFormat;
     GamePlatConfig = GamePlatConfig;
     plat_coins = GamePlatConfig.config.plat_coins;
+    ModulesHelper = ModulesHelper;
 
     mounted() {
         //this.onChange1("");
@@ -342,10 +344,10 @@ export default class RechargeTypeCommon extends AbstractView {
 
     /**奖励的金额 */
     public bouns_value(idx: number): string {
-        const { coin_name_unique, block_network_id, third_id } = this.form;
+        const { coin_name_unique, block_network_id, third_id, in_activity } = this.form;
         const options = this.pageData.methodList[coin_name_unique].options[block_network_id];
 
-        if (options && options.gift_amount_list && options.gift_amount_list.length > 0) {
+        if (options && options.gift_amount_list && options.gift_amount_list.length > 0 && in_activity == "1") {
             return options.gift_amount_list[idx];
         }
         return "";
@@ -379,5 +381,9 @@ export default class RechargeTypeCommon extends AbstractView {
         if (!this.gold_info) return false;
         const keys = Object.keys( this.gold_info);
         return keys.length > 1;
+    }
+
+    get isShowActivityCheckBox() {
+        return true;
     }
 }

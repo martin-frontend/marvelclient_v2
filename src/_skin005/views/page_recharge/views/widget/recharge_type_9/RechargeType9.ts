@@ -329,4 +329,8 @@ export default class RechargeType9 extends AbstractView {
         }
         return errorInfo;
     }
+
+    get isShow_RechargeActivityCheckbox() {
+        return ModulesHelper.isShow_RechargeActivityCheckbox();
+    }
 }

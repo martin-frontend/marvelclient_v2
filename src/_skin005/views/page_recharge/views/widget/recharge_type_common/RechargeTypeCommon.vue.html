@@ -252,7 +252,7 @@
             </v-card>
         </v-card>
 
-        <v-sheet color="transparent" class="d-flex mt-n2" v-if="ModulesHelper.isShow_RechargeActivityCheckbox()">
+        <v-sheet color="transparent" class="d-flex mt-n2" v-if="isShow_RechargeActivityCheckbox">
             <v-checkbox
                 v-model="form.in_activity"
                 :label="LangUtil('不参加优惠活动')"
@@ -494,7 +494,7 @@
                         </v-card>
                         
 
-                        <v-sheet color="transparent" class="d-flex mt-n4 mb-4" v-if="ModulesHelper.isShow_RechargeActivityCheckbox()">
+                        <v-sheet color="transparent" class="d-flex mt-n4 mb-4" v-if="isShow_RechargeActivityCheckbox">
                             <v-checkbox
                                 v-model="form.in_activity"
                                 :label="LangUtil('不参加优惠活动')"

@@ -120,6 +120,7 @@ export default class RechargeTypeCommon extends AbstractView {
                 }
             }
         }
+        this.form.in_activity = "1";
     }
 
     onCopy() {
@@ -385,5 +386,9 @@ export default class RechargeTypeCommon extends AbstractView {
 
     get isShowActivityCheckBox() {
         return true;
+    }
+
+    get isShow_RechargeActivityCheckbox() {
+        return ModulesHelper.isShow_RechargeActivityCheckbox() && this.pageData.methodList[this.form.coin_name_unique].payemthod_id != 4;
     }
 }

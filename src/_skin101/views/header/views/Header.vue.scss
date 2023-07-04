@@ -92,7 +92,17 @@ a {
         position: absolute;
         width: 159px;
         height: 38px;                         
-        left: 50%;            
+        left: 45%;            
+        // top: 74px;            
+        top: 60px;            
+        transform: translate(-50%,0);
+     
+    }
+    .jb-logo{
+        position: absolute;
+        width: 159px;
+        height: 38px;                         
+        left: 55%;            
         // top: 74px;            
         top: 60px;            
         transform: translate(-50%,0);

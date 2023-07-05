@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+<v-dialog v-if="!pageData.bHidden" width="938" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
     <v-card class="rounded10 pb-3" color="bgBanner">
         <!-- pc显示方式 -->
         <template v-if="!$mobile">
@@ -17,6 +17,7 @@
                     <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("币种")}}</v-sheet>
                     <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("数量")}}</v-sheet>
                     <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("状态")}}</v-sheet>
+                    <v-sheet color="transparent" class="textGray--text" width="100">{{LangUtil("备注")}}</v-sheet>
                     <v-sheet v-if="is_user_manual_refund.is_open == 1" color="transparent" class="textGray--text" min-width="100"
                         >{{LangUtil("操作")}}</v-sheet
                     >
@@ -43,6 +44,23 @@
                             <v-sheet color="transparent" :class="getStateColor(item.status_ori)" min-width="100"
                                 >{{getStateText(item.status_ori)}}</v-sheet
                             >
+
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-sheet
+                                        v-bind="attrs" v-on="on"
+                                        color="transparent"
+                                        class=" textGray--text text-truncate "
+                                        width="100"
+                                        max-width="100"
+                                    >
+                                        {{item.remark}}
+                                    </v-sheet>
+                                </template>
+                                <span>{{item.remark}}</span>
+                            </v-tooltip>
+
+                            <!-- <v-sheet color="transparent" class="primary--text" width="100">{{item.remark}}</v-sheet> -->
                             <v-sheet v-if="is_user_manual_refund.is_open == 1" color="transparent" :class="" min-width="100">
                                 <btn-yellow
                                     class="text-14"
@@ -171,6 +189,12 @@
                             <v-sheet color="transparent" class="d-flex justify-space-between align-center">
                                 <div class="my-0 textGray--text">{{LangUtil("状态")}}</div>
                                 <div class="my-0" :class="getStateColor(item.status_ori)">{{getStateText(item.status_ori)}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("备注")}}</div>
+                                <!-- <div class="my-0 text-truncate cursor-pointer" @click.stop="onBtnClickRemark(item)" style="max-width: 220px;">{{item.remark}}</div> -->
+                                <div class="my-0 text-truncate cursor-pointer" style="max-width: 220px;">{{item.remark}}</div>
                             </v-sheet>
 
                             <v-sheet

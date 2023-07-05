@@ -115,4 +115,8 @@ export default class DialogRecordExchange extends AbstractView {
         return item.show_refund_btn;
         return item.status_ori == 1;
     }
+    onBtnClickRemark(item: any) {
+        if (!item.remark) return;
+        PanelUtil.message_alert(item.remark);
+    }
 }

@@ -13,8 +13,10 @@ import WebViewBridge from "@/core/native/WebViewBridge";
 import ServiceUtil from "./core/global/ServiceUtil";
 import AppProxy from "./AppProxy";
 import { track_error_event } from "@/core/config/ErrorEvent";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 export default class APP extends AbstractView {
+    SkinVariable = SkinVariable;
     gameProxy: GameProxy = getProxy(GameProxy);
     headerProxy: HeaderProxy = getProxy(HeaderProxy);
 

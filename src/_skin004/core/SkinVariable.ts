@@ -36,4 +36,6 @@ export default class SkinVariable {
     public static savePhotoBg = require(`@/assets/extension/poster.jpg`);
     /**默认区号 */
     public static defaultCode = "84";
+
+    public static play_audio = false;
 }

@@ -20,6 +20,8 @@ import dialog_agentmanager from "@/_skin001/views/dialog_agent_manager";
 import dialog_user_center from "@/_skin004/views/dialog_user_center";
 import dialog_directly_backwater from "@/_skin001/views/dialog_directly_backwater";
 import dialog_notice from "@/_skin004/views/dialog_notice";
+import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -63,8 +65,10 @@ export default class UserPanel extends AbstractView {
     }
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
+    audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
     userInfo = this.selfProxy.userInfo;
     red_dot_tips = this.selfProxy.red_dot_tips;
+    SkinVariable = SkinVariable;
 
     onLoginOut() {
         this.selfProxy.api_user_logout();

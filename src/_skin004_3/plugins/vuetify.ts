@@ -55,7 +55,7 @@ export function getVuetify(): Vuetify {
                         colorMobileMenuActiveText: "#feba00", //used
                         colorMobileHeaderBg: "#1b1c1c", //used
                         colorEmailIcon: "#ffffff", //used
-                        colorSwitchBtn: "#3b3b3b", //used
+                        colorSwitchBtn: "#feba00", //used
                         bgBanner: "#282827",
                         colorActiveBtn: "#feba00",
                         colorInactiveBtn: "#2f3030",

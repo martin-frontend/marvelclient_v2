@@ -16,6 +16,7 @@
             <Footer class="footer" v-if="$route.path != '/page_game_soccer'" />
             <MobileMenu v-if="$vuetify.breakpoint.mobile && $route.path != '/page_game_play'" />
             <Overlay v-model="gameProxy.loading" />
+            <AudioPlayer v-if="SkinVariable.play_audio"></AudioPlayer>
         </div>
         <DialogMessage />
         <!-- 不是竖屏时提醒 -->
@@ -105,6 +106,7 @@ import UserPanel from "@/_skin004/views/header/widget/user_panel/UserPanel.vue";
 import APP from "@/_skin004/App";
 import GameSearch from "@/views/game_search/views/GameSearch.vue";
 import HeaderMobile from "@/_skin004/views/header_mobile/views/HeaderMobile.vue";
+import AudioPlayer from "@/_skin004/views/widget/audio_player/AudioPlayer.vue";
 
 @Component({
     components: {
@@ -117,6 +119,7 @@ import HeaderMobile from "@/_skin004/views/header_mobile/views/HeaderMobile.vue"
         Orientation,
         UserPanel,
         GameSearch,
+        AudioPlayer,
     },
 })
 export default class extends APP {}

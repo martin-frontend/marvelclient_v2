@@ -54,6 +54,7 @@ SkinVariable.icon_play = require(`@/_skin004_3/assets/icon/icon_play.png`);
 SkinVariable.icon_play1 = require(`@/_skin004_3/assets/icon/icon_play1.png`);
 SkinVariable.icon_extension = require(`@/_skin004_3/assets/icon/icon_extension.png`);
 SkinVariable.icon_extension1 = require(`@/_skin004_3/assets/icon/icon_extension1.png`);
+SkinVariable.play_audio = true;
 
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);

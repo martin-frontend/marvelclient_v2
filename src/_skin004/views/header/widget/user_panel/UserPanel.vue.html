@@ -23,11 +23,30 @@
         color="colorUserPanelBg"
         v-if="menuList1.length>0"
     >
-        <div class="d-flex align-center ml-2 item custom_skin-black-text" v-for="item of menuList1" :key="item.id" @click="onMenuItem(item)">
+        <div
+            class="d-flex align-center ml-2 item custom_skin-black-text"
+            v-for="item of menuList1"
+            :key="item.id"
+            @click="onMenuItem(item)"
+        >
             <v-icon class="custom-icon" small>{{ item.icon }}</v-icon>
             <div class="ml-2">{{ item.name }}</div>
             <v-spacer />
             <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div>
+        </div>
+    </v-sheet>
+
+    <v-sheet
+        v-if="SkinVariable.play_audio"
+        class="rounded-lg mt-3 py-1"
+        :class="$vuetify.breakpoint.xsOnly ? 'mob_item_class' : ''"
+        color="colorUserPanelBg"
+    >
+        <div class="d-flex align-center ml-2 item custom_skin-black-text">
+            <v-icon class="custom-icon" small>mdi-music</v-icon>
+            <div class="ml-2">{{ LangUtil("音乐") }}</div>
+            <v-spacer />
+            <v-switch color="colorBtnBg" v-model="audioProxy.isBackgroundPlaying" class="mr-4"></v-switch>
         </div>
     </v-sheet>
 

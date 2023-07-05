@@ -1,0 +1,11 @@
+<div>
+    <audio style="display: none" ref="backgroundAudio" loop controls autoplay>
+        <source :src="backgroundAudioSource" type="audio/mpeg" />
+    </audio>
+    <audio style="display: none" ref="clickAudio" controls>
+        <source :src="clickAudioSource" type="audio/mpeg" />
+    </audio>
+    <!-- Your browser does not support the audio element. -->
+    <!-- <button v-if="isPlay" @click="pauseAudio">暫停</button>
+    <button v-else @click="playAudio">播放</button> -->
+</div>

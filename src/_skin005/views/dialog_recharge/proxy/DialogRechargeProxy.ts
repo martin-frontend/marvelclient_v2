@@ -245,15 +245,6 @@ export class ExchangeProxy extends puremvc.Proxy {
             inputValue: "",
             errinfo: "",
         },
-        {
-            name: "brl_Mobile",
-            key: 2,
-            Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
-            //placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
-            placeholder: "",
-            inputValue: "",
-            errinfo: "",
-        },
     ];
 
     showRequires = <any>[];

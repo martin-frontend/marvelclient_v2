@@ -84,15 +84,38 @@ export default class ExchangeTypeCommon extends AbstractView {
     mounted() {
         this.reSetRequir();
         if (GlobalVar.skin != "skin010") {
-            this.exchangeProxy.pix_key_option.push({
-                name: "brl_Email",
-                key: 1,
-                Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
-                //placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
-                placeholder: "",
-                inputValue: "",
-                errinfo: "",
-            });
+            {
+                const fitter = this.exchangeProxy.pix_key_option.some((ele: any, index: any, arr: any) => {
+                    return ele.key == 2;
+                });
+                if (!fitter) {
+                    this.exchangeProxy.pix_key_option.push({
+                        name: "brl_Mobile",
+                        key: 2,
+                        Regular: `/^[1-9]\d{10}$/`, // 电话  11位 非0 开头的纯数字
+                        //placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Mobile")),
+                        placeholder: "",
+                        inputValue: "",
+                        errinfo: "",
+                    });
+                }
+            }
+            {
+                const fitter = this.exchangeProxy.pix_key_option.some((ele: any, index: any, arr: any) => {
+                    return ele.key == 1;
+                });
+                if (!fitter) {
+                    this.exchangeProxy.pix_key_option.push({
+                        name: "brl_Email",
+                        key: 1,
+                        Regular: `/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/`,
+                        //placeholder: LangUtil("请输入{0}", LangUtil("input_brl_Email")),
+                        placeholder: "",
+                        inputValue: "",
+                        errinfo: "",
+                    });
+                }
+            }
         }
         this.exchangeProxy.pix_key_option.forEach((item) => {
             item.name = LangUtil(item.name);
@@ -349,7 +372,7 @@ export default class ExchangeTypeCommon extends AbstractView {
     get exemption_amount() {
         const { exemption_amount, gold_water_pass } = this.extend_info;
         const t = this.transformMoney_sum_money(exemption_amount);
-        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money,true);
+        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money, true);
         return t;
     }
 

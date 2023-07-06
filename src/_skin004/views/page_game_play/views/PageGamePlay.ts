@@ -10,6 +10,7 @@ import dialog_message_box from "@/views/dialog_message_box";
 import { Watch, Component } from "vue-property-decorator";
 import PageGamePlayMediator from "../mediator/PageGamePlayMediator";
 import PageGamePlayProxy from "../proxy/PageGamePlayProxy";
+import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 
 @Component
 export default class PageGamePlay extends AbstractView {
@@ -170,6 +171,8 @@ export default class PageGamePlay extends AbstractView {
     }
 
     destroyed() {
+        const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
+        audioProxy.isBackgroundPlaying = true;
         super.destroyed();
     }
 }

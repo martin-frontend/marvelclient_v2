@@ -33,6 +33,7 @@ import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "../views/header/proxy/HeaderProxy";
 import dialog_notice from "@/_skin004/views/dialog_notice";
 import page_game_list from "@/_skin004/views/page_game_list";
+import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -187,6 +188,9 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
+                    const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
+                    audioProxy.isBackgroundPlaying = false;
+
                     this.gameProxy.loading = false;
                     //PT电子，不使用外部地址打开
                     if (body.url.indexOf("http") == -1) {
@@ -234,6 +238,9 @@ export default class NetObserver extends AbstractMediator {
                         okFun: () => {
                             this.openGame(body, ori_vendor_extend);
                         },
+                        cancelFun: () => {
+                            audioProxy.isBackgroundPlaying = true;
+                        }
                     });
                 }
                 break;
@@ -306,5 +313,8 @@ export default class NetObserver extends AbstractMediator {
             gameUrl += hash;
             WebViewBridge.getInstance().openBrowser(gameUrl);
         }
+
+        const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
+        audioProxy.isBackgroundPlaying = false;
     }
 }

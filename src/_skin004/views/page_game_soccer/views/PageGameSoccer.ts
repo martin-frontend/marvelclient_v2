@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import dialog_message from "@/views/dialog_message";
 import dialog_message_box from "@/views/dialog_message_box";
 import ScrollUtil from "@/core/global/ScrollUtil";
+import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 
 @Component
 export default class PageGameSoccer extends AbstractView {
@@ -60,5 +61,7 @@ export default class PageGameSoccer extends AbstractView {
     destroyed() {
         super.destroyed();
         clearInterval(this.timer);
+        const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
+        audioProxy.isBackgroundPlaying = true;
     }
 }

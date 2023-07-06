@@ -3,6 +3,8 @@ import GlobalVar from "../global/GlobalVar";
 // import SoundManager from "../global/SoundManager";
 
 import NativeEventType from "./NativeEventType";
+import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
+import getProxy from "@/core/global/getProxy";
 
 export enum H2NType {
     SYSTEM_INFO, //设备系统信息
@@ -42,6 +44,7 @@ export default class WebViewBridge extends puremvc.Proxy {
         super("WebViewBridge");
     }
 
+
     public static getInstance(): WebViewBridge {
         if (!this.instance) {
             this.instance = new WebViewBridge();
@@ -52,6 +55,7 @@ export default class WebViewBridge extends puremvc.Proxy {
     // private bSoundOpen: boolean;      //是否通过壳关闭音乐
     public receiveNative(type: number, msg: any) {
         console.log(">>>>>>>>>>>>>>>receiveNative: " + type);
+        const audioProxy: AudioPlayerProxy = getProxy(AudioPlayerProxy);
 
         try {
             msg = JSON.parse(msg);
@@ -60,14 +64,17 @@ export default class WebViewBridge extends puremvc.Proxy {
         }
         switch (type) {
             case N2HType.ANDROID_BACK:
+                audioProxy.isBackgroundPlaying = true;
                 //也没有必要处理返回按钮消息
                 // WebViewBridge.getInstance().sendNotification(NativeEventType.ANDROID_BACK);
                 router.back();
                 break;
             case N2HType.APP_PAUSE:
+                audioProxy.isBackgroundPlaying = false;
                 // SoundManager.getInstance().clearMusic();
                 break;
             case N2HType.APP_RESUME:
+                audioProxy.isBackgroundPlaying = true;
                 // puremvc.Facade.getInstance().sendNotification(net.HttpType.api_user_show_var, {
                 //     user_id: core.user_id,
                 //     modules: 2,

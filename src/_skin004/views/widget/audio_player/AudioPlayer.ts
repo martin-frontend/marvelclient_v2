@@ -21,13 +21,13 @@ export default class Question extends AbstractView {
 
     leavePage() {
         // console.warn("页面失去焦点时的处理逻辑");
-        this.pauseBackgroundAudioAudio();
+        this.myProxy.isBackgroundPlaying = false;
     }
 
     backToPage() {
         // console.warn("用户返回当前页面时的处理逻辑");
         if (this.$route.name != "page_game_play" && this.$route.name != "page_game_soccer") {
-            this.playBackgroundAudioAudio();
+            this.myProxy.isBackgroundPlaying = true;
         }
     }
 
@@ -46,30 +46,31 @@ export default class Question extends AbstractView {
     }
 
     pauseBackgroundAudioAudio() {
+        if (!this.$refs.backgroundAudio) return;
         //@ts-ignore
         this.$refs.backgroundAudio.pause();
     }
 
     playBackgroundAudioAudio() {
+        if (!this.$refs.backgroundAudio) return;
         //@ts-ignore
         this.$refs.backgroundAudio.play();
     }
 
-    @Watch("myProxy.isBackgroundPlaying")
-    onChangeBackground(val: boolean) {
+    @Watch("myProxy.isBackgroundOpen")
+    onChangeMute(val: boolean) {
         //@ts-ignore
         this.$refs.backgroundAudio.muted = !val;
         //@ts-ignore
         this.$refs.clickAudio.muted = !val;
     }
 
-    @Watch("$route")
-    onWatchRouter(newVal: any, oldVal: any) {
-        if (newVal.name == "page_game_play" || newVal.name == "page_game_soccer") {
-            this.pauseBackgroundAudioAudio();
-        }
-        if (oldVal.name == "page_game_play" || oldVal.name == "page_game_soccer") {
+    @Watch("myProxy.isBackgroundPlaying")
+    onWatchPlaying(val: boolean) {
+        if (val) {
             this.playBackgroundAudioAudio();
+        } else {
+            this.pauseBackgroundAudioAudio();
         }
     }
 }

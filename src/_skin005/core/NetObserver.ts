@@ -31,7 +31,6 @@ import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
-import axios from "axios";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -359,15 +358,11 @@ export default class NetObserver extends AbstractMediator {
                 {
                     if (body && body.IP && !body.is_allowed) {
                         const url = `./forbidden/index.html`;
-                        axios
-                            .get(url)
-                            .then((response: any) => {
-                                window.location.href = `./forbidden?${body.IP}`;
-                            })
-                            .catch(() => {
-                                //console .error("加载失败--");
-                            });
+                        if (GlobalVar.skin == "skin020") {
+                            window.location.href = `./forbidden?${body.IP}`;
+                        }
                     }
+                    console.log("--");
                 }
                 break;
         }

@@ -98,7 +98,6 @@ export default class GameConfig {
                 GlobalVar.host_urls = data.api_domain;
                 // if (data.api_domain) core.host = data.api_domain;
                 core.host = "";
-                this.isIpAllow();
                 puremvc.Facade.getInstance().sendNotification(NotificationName.CHECK_SPEED);
                 this.onGetAddressSuccess();
             })
@@ -111,37 +110,7 @@ export default class GameConfig {
                 this.onGetAddressFail();
             });
     }
-    static async isIpAllow() {
-        if (!core.plat_id) {
-            console.log("-----平台为空--", core.plat_id);
-            return;
-        }
-        const url = net.getUrl(net.HttpType.api_plat_var_is_allowed, { plat_id: core.plat_id });
-        return await net.Http.request({}, url)
-            .then((response: any) => {
-                const data = response.data.data ?? response.data;
-                //if (data && data.is_allowed )
-                if (data && data.IP && !data.is_allowed) {
-                    const url = `./forbidden/index.html`;
-                    return axios
-                        .get(url)
-                        .then((response: any) => {
-                            //console.log("--- 加载成功");
-                            window.location.href = `./forbidden?${data.IP}`;
-                        })
-                        .catch(() => {
-                            //console .error("加载失败--");
-                        });
 
-                    // window.location.href=`./forbidden?${data.IP}`;
-                    // return ;
-                }
-            })
-            .catch(() => {
-                // alert(" 错误");
-                console.log("---allow--error----");
-            });
-    }
     static failHandle = 0;
     static onGetAddressFail() {
         if (this.failHandle) {

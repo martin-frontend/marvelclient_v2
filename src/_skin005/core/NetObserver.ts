@@ -31,6 +31,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
+import axios from "axios";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -62,6 +63,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_third_login,
             net.EventType.api_user_var_plat_users_verification_show,
             net.EventType.api_user_login,
+            net.EventType.api_plat_var_is_allowed,
         ];
     }
 
@@ -79,7 +81,7 @@ export default class NetObserver extends AbstractMediator {
                 }
                 //获取语言配置
                 this.sendNotification(net.HttpType.api_plat_var_language_config, { plat_id: core.plat_id });
-
+                this.sendNotification(net.HttpType.api_plat_var_is_allowed, { plat_id: core.plat_id });
                 break;
             case net.EventType.api_plat_var_language_config:
                 {
@@ -352,6 +354,21 @@ export default class NetObserver extends AbstractMediator {
             // 用户认证状态
             case net.EventType.api_user_var_plat_users_verification_show:
                 this.selfProxy.setUserVerificationData(body);
+                break;
+            case net.EventType.api_plat_var_is_allowed:
+                {
+                    if (body && body.IP && !body.is_allowed) {
+                        const url = `./forbidden/index.html`;
+                        axios
+                            .get(url)
+                            .then((response: any) => {
+                                window.location.href = `./forbidden?${body.IP}`;
+                            })
+                            .catch(() => {
+                                //console .error("加载失败--");
+                            });
+                    }
+                }
                 break;
         }
     }

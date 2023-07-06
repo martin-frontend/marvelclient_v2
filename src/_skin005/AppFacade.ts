@@ -24,7 +24,7 @@ export default class AppFacade {
 
     private facade = puremvc.Facade.getInstance();
 
-    async startup() {
+    startup() {
         this.initProxy();
         this.initCommand();
         this.initObserver();
@@ -52,7 +52,6 @@ export default class AppFacade {
 
         GameConfig.load();
 
-        
         //五分钟检测一次网络
         setInterval(() => {
             if (GlobalVar.host_urls) this.facade.sendNotification(NotificationName.CHECK_SPEED);
@@ -97,7 +96,6 @@ export default class AppFacade {
                     break;
             }
         });
-        await this.isIpAllow();
     }
 
     private initProxy() {
@@ -115,33 +113,5 @@ export default class AppFacade {
 
     private initObserver() {
         this.facade.registerMediator(new NetObserver(NetObserver.NAME));
-    }
-    private async isIpAllow() {
-        if (!core.plat_id) return;
-        const url = net.getUrl(net.HttpType.api_plat_var_is_allowed, { plat_id: core.plat_id });
-        return await net.Http.request({}, url)
-            .then((response: any) => {
-                const data = response.data.data ?? response.data;
-                //if (data && data.is_allowed )
-                if (data && data.IP && !data.is_allowed) {
-                    const url = `./forbidden/index.html`;
-                    return axios
-                        .get(url)
-                        .then((response: any) => {
-                            //console.log("--- 加载成功");
-                            window.location.href = `./forbidden?${data.IP}`;
-                        })
-                        .catch(() => {
-                            //console .error("加载失败--");
-                        });
-
-                    // window.location.href=`./forbidden?${data.IP}`;
-                    // return ;
-                }
-            })
-            .catch(() => {
-                // alert(" 错误");
-                console.log("---allow--error----");
-            });
     }
 }

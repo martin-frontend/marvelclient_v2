@@ -62,7 +62,6 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_third_login,
             net.EventType.api_user_var_plat_users_verification_show,
             net.EventType.api_user_login,
-            net.EventType.api_plat_var_is_allowed,
         ];
     }
 
@@ -80,7 +79,6 @@ export default class NetObserver extends AbstractMediator {
                 }
                 //获取语言配置
                 this.sendNotification(net.HttpType.api_plat_var_language_config, { plat_id: core.plat_id });
-                this.sendNotification(net.HttpType.api_plat_var_is_allowed, { plat_id: core.plat_id });
                 break;
             case net.EventType.api_plat_var_language_config:
                 {
@@ -353,22 +351,6 @@ export default class NetObserver extends AbstractMediator {
             // 用户认证状态
             case net.EventType.api_user_var_plat_users_verification_show:
                 this.selfProxy.setUserVerificationData(body);
-                break;
-            case net.EventType.api_plat_var_is_allowed:
-                {
-                    if (body && body.IP && !body.is_allowed) {
-                        if (GlobalVar.skin == "skin020") {
-                            const url =
-                                process.env.VUE_APP_ENV != "production" && process.env.VUE_APP_ENV != "development"
-                                    ? "forbidden/index_dev.html"
-                                    : "forbidden/index.html";
-                            //const url = `./forbidden/index.html`;
-
-                            window.location.href = `${url}?${body.IP}`;
-                        }
-                    }
-                    console.log("--");
-                }
                 break;
         }
     }

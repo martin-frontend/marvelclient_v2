@@ -40,8 +40,8 @@
                                 </v-sheet>
                             </template>
                             <span>
-                                {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                                exemption_amount, form.coin_name_unique) }}
+                                {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                                form.coin_name_unique) }}
                             </span>
                         </v-tooltip>
                     </div>
@@ -58,8 +58,9 @@
                         :placeholder="LangUtil('输入金额')"
                         v-model="form.amount"
                         :isEnterGold="true"
+                        :maxDigits="exchangeDigits"
                     ></CustomInput>
-                    <CustomInput v-else :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true">
+                    <CustomInput v-else :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true" :maxDigits="exchangeDigits">
                         <template v-slot:default>
                             <div color="transparent" class="text-no-wrap">
                                 <span>{{LangUtil("将会得到:")}}</span>
@@ -88,7 +89,7 @@
                     :disabled="form.block_network_id==item"
                     @click.native="onChangeSub(item)"
                 >
-                {{pageData.methodList[form.coin_name_unique].options[item].name}}
+                    {{pageData.methodList[form.coin_name_unique].options[item].name}}
                 </btn-yellow>
             </v-col>
         </v-row>
@@ -378,8 +379,8 @@
                                 </v-sheet>
                             </template>
                             <span>
-                                {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                                exemption_amount, form.coin_name_unique) }}
+                                {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                                form.coin_name_unique) }}
                             </span>
                         </v-tooltip>
                     </div>
@@ -431,7 +432,7 @@
                         </div>
                     </v-sheet>
                     <v-sheet color="transparent" width="100%" class="d-flex">
-                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true" :maxDigits="exchangeDigits"> </CustomInput>
 
                         <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
                             ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
@@ -683,13 +684,10 @@
             </v-row>
         </v-card>
 
-        <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex my-4 ">
+        <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex my-4">
             <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSubmit">{{LangUtil("提交兑换")}}</btn-yellow>
         </v-sheet>
-
     </v-card>
-
-
 
     <v-card flat color="bgBanner" class="px-4 py-2 mt-4">
         <div class="primary--text font-weight-bold text-14">{{LangUtil("兑换说明")}}</div>

@@ -23,6 +23,15 @@ export default class ExchangeTypeCommon extends AbstractView {
     enable_exemption_amount = GameConfig.config.enable_exemption_amount || false;
     extend_info = this.myProxy.exchangeProxy.extend_info;
 
+    get exchangeDigits() {
+        if (GameConfig.config.exchangeDigits == undefined) {
+            return 2;
+        }
+        if (GameConfig.config.exchangeDigits == 0) {
+            return 0;
+        }
+        return GameConfig.config.exchangeDigits;
+    }
     // pix_key_select = 0;
 
     // pix_key_option = [

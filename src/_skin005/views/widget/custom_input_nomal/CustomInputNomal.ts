@@ -10,6 +10,7 @@ export default class CustomInputNomal extends AbstractView {
     @Prop({ default: "text" }) type!: string;
     @Prop({ default: "#ff0" }) iconcolor!: string;
     @Prop({ default: 100 }) maxlength!: number;
+    @Prop({ default: 2 }) maxDigits!: number;
     @Prop() disabled!: number;
     @Prop() readonly!: number;
     @Prop() height!: string;
@@ -40,12 +41,10 @@ export default class CustomInputNomal extends AbstractView {
         if (this.inputId && this.inputId.trim()) {
             return this.inputId;
         }
-        if(!this._generateComponentId)
-        {
+        if (!this._generateComponentId) {
             CustomInputNomal.count++;
             this._generateComponentId = "component-" + CustomInputNomal.count;
         }
-        console.log("----", this._generateComponentId);
         // 生成唯一的组件ID
         return this._generateComponentId;
     }
@@ -61,9 +60,12 @@ export default class CustomInputNomal extends AbstractView {
         if (this.isEnterGold && val && !this.isFocus) {
             const [numberPart, dotPart] = this.splitLastDot(val);
             this.originalNumber = numberPart;
+            if (this.maxDigits == 0) {
+                this.originalNumber = Math.floor(Number(this.originalNumber)) + "";
+            }
             this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
                 minimumFractionDigits: 0,
-                maximumFractionDigits: 2,
+                maximumFractionDigits: this.maxDigits,
             });
             this.inputValue = this.inputValue + dotPart;
         } else {
@@ -104,7 +106,11 @@ export default class CustomInputNomal extends AbstractView {
             return;
         }
         if (this.isEnterGold) {
-            event.target.value = event.target.value.replace(/[^0-9.]/g, "");
+            if (this.maxDigits == 0) {
+                event.target.value = event.target.value.replace(/[^0-9]/g, "");
+            } else {
+                event.target.value = event.target.value.replace(/[^0-9.]/g, "");
+            }
             if (event.target.value) {
                 const [numberPart, dotPart] = this.splitLastDot(event.target.value);
                 this.originalNumber = numberPart;
@@ -146,7 +152,7 @@ export default class CustomInputNomal extends AbstractView {
             if (this.inputValue) {
                 this.inputValue = parseFloat(this.originalNumber).toLocaleString(core.lang.substring(0, 2), {
                     minimumFractionDigits: 0,
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: this.maxDigits,
                 });
                 this.originalNumber = GoldformatNumber(this.originalNumber).toString();
                 this.$emit("input", this.originalNumber);

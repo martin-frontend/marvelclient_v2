@@ -106,4 +106,6 @@ export interface GameConfigVO {
     registerOption: any;
     /**弹窗管理 */
     dialog_manager: string[];
+    /**提现的小数 */
+    exchangeDigits: number;
 }

@@ -201,7 +201,19 @@ export default class ExchangeTypeCommon extends AbstractView {
                 return;
             }
         }
-
+        //检测 CPF是否绑定
+        if (GlobalVar.skin == "skin010") {
+            if (!this.selfProxy.userInfo.cpf) {
+                PanelUtil.message_confirm({
+                    message: LangUtil("请先绑定CPF"),
+                    okTxt: LangUtil("去绑定"),
+                    okFun: () => {
+                        PanelUtil.openpanel_real_name(true);
+                    },
+                });
+                return;
+            }
+        }
         PanelUtil.message_confirm({
             message: LangUtil("确认提交"),
             okFun: () => {

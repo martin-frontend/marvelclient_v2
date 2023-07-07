@@ -54,4 +54,10 @@ export default class CustomSelect extends AbstractView {
         }
         return text_font;
     }
+    get isDisabled() {
+        if (this.options && Object.keys(this.options).length > 1) {
+            return false;
+        }
+        return true;
+    }
 }

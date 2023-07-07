@@ -1,5 +1,5 @@
 <v-sheet :width="width" color="transparent" :class="inputClass">
-    <v-menu offset-y nudge-bottom="5" v-bind="$attrs">
+    <v-menu offset-y nudge-bottom="5" v-bind="$attrs" :disabled="isDisabled">
         <template v-slot:activator="{ on, attrs }">
             <v-sheet
                 class="d-flex align-center rounded-lg px-3 textGray--text title_class"
@@ -21,7 +21,7 @@
                 </div>
                 <v-spacer />
                 <div
-                    v-if="options && Object.keys(options).length > 1"
+                    v-if="!isDisabled"
                     class="icon-box iconfont text-14"
                     :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
                 >
@@ -29,7 +29,7 @@
                 </div>
             </v-sheet>
         </template>
-        <v-sheet class="rounded-lg py-2 scroll-y" max-height="420" color="bgBanner" v-if="options && Object.keys(options).length > 1">
+        <v-sheet class="rounded-lg py-2 scroll-y" max-height="420" color="bgBanner" v-if="!isDisabled">
             <div class="d-flex align-center listitem px-4 cursor-pointer" v-for="(item, key) of options" :key="key" @click="onChange(key)">
                 <v-img v-if="icons" class="mr-2" :src="icons[key].icon || icons[key]" max-width="20" height="20"></v-img>
                 <!-- <div>{{ item.name || item }}</div> -->

@@ -357,9 +357,14 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_plat_var_is_allowed:
                 {
                     if (body && body.IP && !body.is_allowed) {
-                        const url = `./forbidden/index.html`;
                         if (GlobalVar.skin == "skin020") {
-                            window.location.href = `./forbidden?${body.IP}`;
+                            const url =
+                                process.env.VUE_APP_ENV != "production" && process.env.VUE_APP_ENV != "development"
+                                    ? "forbidden/index_dev.html"
+                                    : "forbidden/index.html";
+                            //const url = `./forbidden/index.html`;
+
+                            window.location.href = `${url}?${body.IP}`;
                         }
                     }
                     console.log("--");

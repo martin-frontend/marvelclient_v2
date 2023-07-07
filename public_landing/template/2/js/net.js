@@ -29,14 +29,22 @@ window.addEventListener("message", (e) => {
             $("#dialog_confirm").css("display", "flex");
             break;
         case "register_succeed":
-            token = e.data.params.data.token;
-            user_id = e.data.params.data.user_id;
-            uuid = e.data.uuid;
-            $("#loading").css("display", "none");
-            sendPostMessage({ action: "go_home", params: { token: token, uuid: uuid, user_id: user_id } });
-            // $("#dialog_succeed").css("display", "flex");
-            // resetForm();
-            // sendPostMessage({ action: "auth_code" });
+            {
+                token = e.data.params.data.token;
+                user_id = e.data.params.data.user_id;
+                uuid = e.data.uuid;
+                $("#loading").css("display", "none");
+                dataLayer = window.dataLayer || [];
+                data = {
+                    user_id: user_id,
+                    uuid: uuid,
+                };
+                dataLayer.push(Object.assign({ event: "RegistrationSuccess" }, data));
+                sendPostMessage({ action: "go_home", params: { token: token, uuid: uuid, user_id: user_id } });
+                // $("#dialog_succeed").css("display", "flex");
+                // resetForm();
+                // sendPostMessage({ action: "auth_code" });
+            }
             break;
         case "api_public_sms_send":
             $("#loading").css("display", "none");

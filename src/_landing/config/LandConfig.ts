@@ -15,7 +15,7 @@ export default class LandConfig {
     static loadPlatConfig() {
         const url2 = "config/" + this.config.platID + ".json?" + getFileVersion();
         return axios.get(url2).then((response: any) => {
-            Object.assign(this.config, response.data);
+            this.config = Object.assign({}, response.data, this.config);
         });
     }
 }

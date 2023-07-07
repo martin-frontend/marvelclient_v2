@@ -58,6 +58,10 @@ function iframeLoaded() {
         window.initGTM(config.gtmEvent);
     }
 
+    if (config.gtmEvent_template) {
+        //@ts-ignore
+        window.initGTM(config.gtmEvent_template);
+    }
 }
 
 core.init();

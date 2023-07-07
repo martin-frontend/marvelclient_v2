@@ -18,4 +18,5 @@ interface ConfigVO {
     gtmEvent: string;
     inviteHide: number;
     phoneGraphic: number;
+    gtmEvent_template: string;
 }

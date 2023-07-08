@@ -45,6 +45,7 @@ Assets.commonIcon.logo_m = require(`@/_skin008/assets/logo_m.png`);
 Assets.commonIcon.cat_icon = require(`@/_skin008/assets/mine/cat_icon.png`);
 Assets.commonIcon.about_02_bg = require(`@/_skin008/assets/mine/about_02_icon_bg.png`);
 Assets.commonIcon.about_03_bg = require(`@/_skin008/assets/mine/about_03_icon_bg.png`);
+Assets.commonIcon.seventh_day_img = require(`@/_skin008/assets/daily_sign/gold_7.png`);
 
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";

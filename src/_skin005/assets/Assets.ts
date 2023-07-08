@@ -12,6 +12,7 @@ const commonIcon = {
     about_03_bg: require(`@/_skin005/assets/mine/about_03_icon_bg.png`),
     arrow_right: "arrow_right",
     loading_img: "loding_icon_5.png?" + getVersion(),
+    seventh_day_img: require(`@/_skin005/assets/daily_sign/gold_7.png`),
 };
 
 /**游戏分类图标	

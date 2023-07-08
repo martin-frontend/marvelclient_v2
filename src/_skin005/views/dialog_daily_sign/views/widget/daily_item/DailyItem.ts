@@ -1,6 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
+import Assets from "@/_skin005/assets/Assets";
 
 @Component
 export default class DailyItem extends AbstractView {
@@ -11,6 +12,9 @@ export default class DailyItem extends AbstractView {
     @Prop({ default: false }) isToday!: boolean; //是否为今天
 
     get item_icon_path() {
+        if (this.item.rule_num == 7) {
+            return Assets.commonIcon.seventh_day_img;
+        }
         return require(`@/_skin005/assets/daily_sign/gold_${this.item.rule_num}.png`);
     }
     get item_icon_got_path() {
@@ -41,7 +45,7 @@ export default class DailyItem extends AbstractView {
         const keys = Object.keys(params);
 
         for (let index = 0; index < keys.length; index++) {
-            str = str + keys[index] +"<span class='font-weight-bold'>" + LangUtil("X") + params[keys[index]] +"</span>";
+            str = str + keys[index] + "<span class='font-weight-bold'>" + LangUtil("X") + params[keys[index]] + "</span>";
             if (index < keys.length - 1) {
                 str = str + "<br>";
             }

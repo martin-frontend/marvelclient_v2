@@ -103,10 +103,10 @@ export default class GameConfig {
 
                 if (data && data.ip_veri && data.ip_veri.is_allowed == false) {
                     if (GlobalVar.skin == "skin020") {
-                        process.env.VUE_APP_ENV != "production" && process.env.VUE_APP_ENV != "development"
+                        const cururl = process.env.VUE_APP_ENV != "production" && process.env.VUE_APP_ENV != "development"
                             ? "forbidden/index_dev.html"
                             : "forbidden/index.html";
-                        window.location.href = `${url}?${data.ip_veri.IP}`;
+                        window.location.href = `${cururl}?${data.ip_veri.IP}`;
                     }
                 }
             })

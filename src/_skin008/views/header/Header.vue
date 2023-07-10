@@ -9,7 +9,7 @@ import Header from "./Header";
 import User from "@/_skin005/views/header/user/User.vue";
 import GameSearch_pc from "@/_skin005/views/widget/game_search/GameSearch.vue";
 import GameSearch from "./game_search/GameSearch.vue";
-import SvgaPlayer from "@/views/widget/svga_player/SvgaPlayer.vue";
+import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 
 @Component({
     components: {

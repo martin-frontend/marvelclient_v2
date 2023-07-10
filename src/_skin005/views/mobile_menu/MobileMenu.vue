@@ -4,7 +4,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import MobileMenu from "./MobileMenu";
-import SvgaPlayer from "@/views/widget/svga_player/SvgaPlayer.vue";
+import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 
 @Component({
     components: {

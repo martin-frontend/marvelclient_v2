@@ -4,9 +4,11 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import DialogAward from "./DialogAward";
-
+import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 @Component({
-    components: {},
+    components: {
+        SvgaPlayer,
+    },
 })
 export default class extends DialogAward {}
 </script>

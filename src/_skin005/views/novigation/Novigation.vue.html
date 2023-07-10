@@ -76,9 +76,9 @@
                             </div>
                         </v-hover>
                     </v-sheet>
-                    {{setFilters(index,value)}}
+                    <template v-if="item.vendor_type != 3"> {{setFilters(index,value)}} </template>
                 </template>
-                <GameMenu v-if="!$mobile && ModulesHelper.IsShow_pcMenuTip()" :data="item" />
+                <GameMenu v-if="!$mobile && ModulesHelper.IsShow_pcMenuTip() && item.vendor_type != 3" :data="item" />
             </v-menu>
 
             <v-sheet class="d-flex align-center" :min-height="$mobile ? 50 : 64" v-for="item in menu" :key="item.name" color="transparent">
@@ -119,7 +119,13 @@
 
             <div class="d-flex flex-column mb-0">
                 <!-- <v-sheet color="bgColor" height="4px"></v-sheet> -->
-                <v-sheet v-if="ModulesHelper.IsShow_TelegramButton()" class="d-flex align-center lang cursor-pointer" height="50" color="transparent" @click="openTelegram">
+                <v-sheet
+                    v-if="ModulesHelper.IsShow_TelegramButton()"
+                    class="d-flex align-center lang cursor-pointer"
+                    height="50"
+                    color="transparent"
+                    @click="openTelegram"
+                >
                     <v-sheet color="transparent" width="100%" max-width="170">
                         <v-card
                             class="d-flex align-center navText--text"

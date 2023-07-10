@@ -6,7 +6,9 @@
     :retain-focus="false"
     persistent
 >
-    <v-card v-if="!$xsOnly" class="rounded10" color="transparent" elevation="0">
+
+<div class="container_daily">
+    <v-card v-if="!$xsOnly" ref="card_node" class="rounded10" color="transparent" elevation="0" width="100%">
         <!-- <div class="div_bg"></div> -->
         <v-img v-if="!$xsOnly" :src="bg_icon_path" width="100%" class="main_bg"> </v-img>
         <v-img v-else :src="bg_icon_path" max-width="260" class="main_bg"> </v-img>
@@ -63,7 +65,7 @@
         </v-sheet>
     </v-card>
     
-    <v-card v-else flat ref="mob_node" color="transparent" class="d-flex justify-center align-center">
+    <v-card v-else flat ref="card_node" color="transparent" class="d-flex justify-center align-center">
         <v-card flat class="rounded10 px-2 d-flex flex-column align-center" color="transparent" width="375">
             <v-img :src="bg_icon_path" width="350" class="main_bg_mob"> </v-img>
 
@@ -118,5 +120,5 @@
             </v-sheet>
         </v-card>
     </v-card>
-
+</div>
 </v-dialog>

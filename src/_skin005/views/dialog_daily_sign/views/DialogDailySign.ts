@@ -16,9 +16,11 @@ export default class DialogDailySign extends AbstractView {
     constructor() {
         super(DialogDailySignMediator);
     }
-    mounted(){
-        this.$nextTick(()=>{
-            this.onWatchScreen();
+    async mounted() {
+        await this.$nextTick(() => {
+            this.resetCardScale();
+            // this.onWatchScreen();
+            // this.onWatchScreen_height();
         });
     }
     onClose() {
@@ -81,22 +83,35 @@ export default class DialogDailySign extends AbstractView {
     // }
     @Watch("$vuetify.breakpoint.width")
     onWatchScreen() {
-        if (!this.$xsOnly) return;
-
-        if (this.$refs.mob_node)
-        {
-            let scale = this.$vuetify.breakpoint.width / 375;
-            if (scale > 1)
-            {
-                scale = 1;
-            }
-            console.log("······- 设置比例----",scale);
-            //@ts-ignore
-            this.$refs.mob_node.$el.style.scale = scale;
-        }
-
-    
+        this.resetCardScale();
     }
+    @Watch("$vuetify.breakpoint.height")
+    onWatchScreen_height() {
+        this.resetCardScale();
+    }
+    resetCardScale() {
+        //PC版
+        if (!this.$xsOnly) {
+            if (this.$refs.card_node) {
+                let scale_height = this.$vuetify.breakpoint.height / 720;
+                scale_height = scale_height > 1 ? 1 : scale_height;
+                //@ts-ignore
+                this.$refs.card_node.$el.style.scale = scale_height;
+            }
+        } else {
+            if (this.$refs.card_node) {
+                let scale_height = this.$vuetify.breakpoint.height / 600;
+                scale_height = scale_height > 1 ? 1 : scale_height;
+
+                let scale_width = this.$vuetify.breakpoint.width / 375;
+                scale_width = scale_width > 1 ? 1 : scale_width;
+
+                //@ts-ignore
+                this.$refs.card_node.$el.style.scale = scale_height > scale_width ? scale_width : scale_height;
+            }
+        }
+    }
+
     onGetBones() {
         console.log("点击领取奖励--");
         this.myProxy.api_user_var_sign_store();

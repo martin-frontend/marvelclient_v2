@@ -55,8 +55,16 @@ export default class GameMenu extends AbstractView {
         PanelUtil.openpage_soccer(item);
     }
     get getImgPath(): any {
+        try {
+            return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);
+          } catch (error) {
+            // Handle the exception/error here
+            //console.error('An error occurred while requiring the image:', error);
+            return "";
+          }
+
         //return require(`@/_skin005/assets/novigation/menu_icon_16.png`);
-        return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);
+        // return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);
     }
 
     public get cardMinheight(): number {

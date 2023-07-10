@@ -98,10 +98,10 @@ export default class PageGameListProxy extends puremvc.Proxy {
     setTableData(data: any) {
         this.tableData = <any>[];
         const keys = Object.keys(data);
-        for (let index = 0; index < keys.length; index++) {
-            const element = data[keys[index]];
-            element.src = require(`@/_skin004/assets/categoryicon/${element.vendor_type}.png`);
-        }
+        // for (let index = 0; index < keys.length; index++) {
+        //     const element = data[keys[index]];
+        //     element.src = require(`@/_skin004/assets/categoryicon/${element.vendor_type}.png`);
+        // }
     }
 
     api_plat_var_lobby_index() {

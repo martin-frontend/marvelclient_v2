@@ -5,7 +5,8 @@ import { Watch, Component } from "vue-property-decorator";
 import ${className}Mediator from "../mediator/${className}Mediator";
 import ${className}Proxy from "../proxy/${className}Proxy";
 import LangUtil from "@/core/global/LangUtil";
-
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import PageBlur from "@/_skin005/core/PageBlur";
 @Component
 export default class ${className} extends AbstractView {
     LangUtil = LangUtil;
@@ -18,15 +19,16 @@ export default class ${className} extends AbstractView {
 
     onClose() {
         this.pageData.bShow = false;
+        MultDialogManager.onClosePanel();
     }
 
     @Watch("pageData.bShow")
     onWatchShow() {
-        BlurUtil(this.pageData.bShow);
+        PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
-            this.myProxy.api_xxx();
+            // this.myProxy.api_xxx();
         }
     }
 }

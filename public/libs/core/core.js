@@ -375,6 +375,8 @@ var net;
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
+        /**--充值弹窗--充值弹窗*/
+        api_user_var_notice: "api/user/{user_id}/notice",
         /**--skin003--三方登录*/
         api_user_third_login: "/api/user/third_login",
         /**--推广--返佣等级配置*/
@@ -698,6 +700,8 @@ var net;
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
+        /**--充值弹窗--充值弹窗*/
+        api_user_var_notice: "api_user_var_notice",
         /**--skin003--三方登录*/
         api_user_third_login: "api_user_third_login",
         /**--推广--返佣等级配置*/
@@ -890,6 +894,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_credit_transfer, net.cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(net.HttpType.api_user_var_direct_register, net.cmd_api_user_var_direct_register);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
+        //--充值弹窗
+        facade.registerCommand(net.HttpType.api_user_var_notice, net.cmd_api_user_var_notice);
         //--skin003
         facade.registerCommand(net.HttpType.api_user_third_login, net.cmd_api_user_third_login);
         //--推广
@@ -3678,6 +3684,28 @@ var net;
         }
     }
     net.cmd_api_user_var_messages_show_var = cmd_api_user_var_messages_show_var;
+})(net || (net = {}));
+/**
+ * 充值弹窗
+ */
+var net;
+/**
+ * 充值弹窗
+ */
+(function (net) {
+    class cmd_api_user_var_notice extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_notice, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_notice, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_notice = cmd_api_user_var_notice;
 })(net || (net = {}));
 /**
  * 银行列表

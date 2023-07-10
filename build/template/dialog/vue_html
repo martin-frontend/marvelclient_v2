@@ -1,12 +1,10 @@
-<v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent>
-    <v-card class="rounded-lg" color="colorPanelBg">
-        <v-card-title class="gradient-bg">
-            <div class="text-18">${moduleName}</div>
-            <v-spacer />
-            <v-btn icon @click="onClose">
-                <v-icon large>mdi-close</v-icon>
-            </v-btn>
-        </v-card-title>
+<!-- <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent> -->
+<v-dialog v-if="!pageData.bHidden" width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card flat color="bgBanner" class="rounded10">
+        <com-dialog-title title= `${moduleName}` @onClose="onClose" />
+        <v-sheet color="transparent">
+
+        </v-sheet>
     </v-card>
     <Overlay v-model="pageData.loading"/>
 </v-dialog>

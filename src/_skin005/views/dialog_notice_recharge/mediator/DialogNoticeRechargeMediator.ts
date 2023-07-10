@@ -1,15 +1,15 @@
 import AbstractMediator from "@/core/abstract/AbstractMediator";
-import ${className}Proxy from "../proxy/${className}Proxy";
+import DialogNoticeRechargeProxy from "../proxy/DialogNoticeRechargeProxy";
 import getProxy from "@/core/global/getProxy";
 
-export default class ${className}Mediator extends AbstractMediator{
+export default class DialogNoticeRechargeMediator extends AbstractMediator{
     public listNotificationInterests(): string[] {
         return [];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
         // const body = notification.getBody();
-        // const myProxy:${className}Proxy = getProxy(${className}Proxy);
+        // const myProxy:DialogNoticeRechargeProxy = getProxy(DialogNoticeRechargeProxy);
         // switch(notification.getName()){}
     }
 }

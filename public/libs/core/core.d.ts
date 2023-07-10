@@ -307,6 +307,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--充值弹窗--充值弹窗*/
+        api_user_var_notice: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
         /**--推广--返佣等级配置*/
@@ -630,6 +632,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--充值弹窗--充值弹窗*/
+        api_user_var_notice: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
         /**--推广--返佣等级配置*/
@@ -1780,6 +1784,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_messages_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 充值弹窗
+ */
+declare module net {
+    class cmd_api_user_var_notice extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

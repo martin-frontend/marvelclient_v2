@@ -202,6 +202,9 @@
         ["api/user/{user_id}/direct_register", "注册直属"],
         ["api/user/{user_id}/agent_direct_deduction_all", "清空直属所有额度"],
 
+        "--充值弹窗",
+        ["api/user/{user_id}/notice", "充值弹窗"],
+
         "--skin003",
         ["/api/user/third_login", "三方登录"],
 

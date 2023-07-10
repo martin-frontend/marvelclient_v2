@@ -1,3 +1,4 @@
+import GlobalVar from "@/core/global/GlobalVar";
 import LangUtil from "@/core/global/LangUtil";
 import LoginEnter from "@/core/global/LoginEnter";
 import OpenLink from "@/core/global/OpenLink";
@@ -147,6 +148,6 @@ export default class NoticeProxy extends puremvc.Proxy {
     }
 
     api_plat_var_notice_index() {
-        this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id, custom_host: GlobalVar.host_urls });
     }
 }

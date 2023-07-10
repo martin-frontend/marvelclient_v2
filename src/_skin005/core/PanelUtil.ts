@@ -142,6 +142,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import PageActivityProxy from "@/_skin005/views/page_activity/proxy/PageActivityProxy";
 
 import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification";
+import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -534,7 +535,7 @@ export default class PanelUtil {
         });
     }
     //打开 真实姓名 窗口
-    static openpanel_real_name(isCPF:boolean = false) {
+    static openpanel_real_name(isCPF: boolean = false) {
         MultDialogManager.onOpenPanel(dialog_real_name);
         dialog_real_name.show(isCPF);
     }
@@ -794,6 +795,11 @@ export default class PanelUtil {
     static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null) {
         MultDialogManager.onOpenPanel(DialogSpeedVerification);
         DialogSpeedVerification.show(successFun, failFun);
+    }
+    /**打开 充值弹窗 */
+    static openpanel_notice_recharge(data: any) {
+        MultDialogManager.onOpenPanel(DialogNoticeRecharge);
+        DialogNoticeRecharge.show(data);
     }
 
     public static get getProxy_performance_detail(): DialogPerformanceDetailProxy {

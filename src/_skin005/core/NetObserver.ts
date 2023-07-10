@@ -62,6 +62,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_third_login,
             net.EventType.api_user_var_plat_users_verification_show,
             net.EventType.api_user_login,
+            net.EventType.api_user_var_notice,
         ];
     }
 
@@ -146,6 +147,7 @@ export default class NetObserver extends AbstractMediator {
                 GamePlatConfig.init(body);
                 LangConfig.load();
                 PanelUtil.getProxy_noticeProxy.api_plat_var_notice_index();
+                PanelUtil.getProxy_selfproxy.api_user_var_notice();
                 break;
             case NotificationName.LANG_CONFIG:
                 {
@@ -317,6 +319,7 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_login:
                 setTimeout(() => {
                     this.openNoticeDialog();
+                    PanelUtil.getProxy_selfproxy.api_user_var_notice();
                 }, 1000);
                 break;
             case net.EventType.api_plat_var_notice_show_var:
@@ -351,6 +354,9 @@ export default class NetObserver extends AbstractMediator {
             // 用户认证状态
             case net.EventType.api_user_var_plat_users_verification_show:
                 this.selfProxy.setUserVerificationData(body);
+                break;
+            case net.EventType.api_user_var_notice:
+                if (body && body.length > 0) PanelUtil.openpanel_notice_recharge(body);
                 break;
         }
     }

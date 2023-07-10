@@ -3,10 +3,15 @@ import getProxy from "@/core/global/getProxy";
 import ${className}Proxy from "./proxy/${className}Proxy";
 import ${className} from "./views/${className}.vue";
 
+const proxy: ${className}Proxy = getProxy(${className}Proxy);
 function show() {
     DialogMount(${className});
-    const proxy: ${className}Proxy = getProxy(${className}Proxy);
+    hidden(false);
     proxy.pageData.bShow = true;
 }
 
-export default { show };
+function hidden(bhidden: boolean = true) {
+    proxy.pageData.bHidden = bhidden;
+}
+
+export default { show, hidden };

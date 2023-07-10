@@ -1,0 +1,27 @@
+<!-- <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent> -->
+<v-dialog v-if="!pageData.bHidden" width="310" v-model="pageData.bShow" :retain-focus="false" persistent>
+    <v-card flat color="transparent" class="rounded10">
+        <!-- <com-dialog-title :title= "pageData.name" @onClose="onClose" />
+        <v-divider class="mb-2" /> -->
+        <v-sheet color="transparent">
+            <!-- <v-img :src="data.img_uris img_src" width="310" class="rounded10"> -->
+            <template v-for="(item,i) in pageData.noticeArr">
+                <v-img
+                    :key="i"
+                    v-if="myProxy.pageData.curIndex == i"
+                    :src="item_img_src(item)"
+                    width="310"
+                    class="rounded10"
+                    @click="onImgClick"
+                >
+                </v-img>
+            </template>
+            <v-sheet color="transparent" width="100%" class="d-flex justify-center mt-2 py-2">
+                <v-btn class="" icon @click="onClose">
+                    <svg-icon icon="close_circle" class="text-30 white--text"></svg-icon>
+                </v-btn>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

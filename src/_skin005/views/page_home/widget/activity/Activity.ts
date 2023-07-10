@@ -10,6 +10,8 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 @Component
 export default class Activity extends AbstractView {
     @Prop({ default: 0 }) showDataType!: number;
+    /**是否需要区别 手机版与 pc 版 */
+    @Prop({ default: true }) isChangePhone!: boolean;
     LangUtil = LangUtil;
     //proxy
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
@@ -54,6 +56,24 @@ export default class Activity extends AbstractView {
         return [];
     }
 
+    get resetData(): any {
+        if (!this.isChangePhone) return this.getShowData;
+
+        const list = <core.PlatNoticeVO[]>[];
+        for (let index = 0; index < this.getShowData.length; index++) {
+            const element = this.getShowData[index];
+            if (this.$xsOnly) {
+                if (element.img_url_phone && element.img_url_phone.trim()) {
+                    list.push(element);
+                }
+            } else {
+                if (element.img_url && element.img_url.trim()) {
+                    list.push(element);
+                }
+            }
+        }
+        return list;
+    }
     onBigItemClick(item: any) {
         this.noticeProxy.jump(item);
     }

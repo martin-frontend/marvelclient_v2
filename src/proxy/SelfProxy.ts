@@ -185,4 +185,15 @@ export default class SelfProxy extends AbstractProxy {
         if (!core.user_id) return;
         this.sendNotification(net.HttpType.api_user_var_event_record_update, { user_id: core.user_id, bet_id: id });
     }
+    api_user_var_notice() {
+        if (!core.user_id) return;
+        const gameProxy: GameProxy = getProxy(GameProxy);
+        this.sendNotification(net.HttpType.api_user_var_notice, {
+            user_id: core.user_id,
+            plat_id: core.plat_id,
+            channel_id: core.channel_id,
+            currency: gameProxy.coin_name_unique,
+            custom_host:GlobalVar.host_urls,
+        });
+    }
 }

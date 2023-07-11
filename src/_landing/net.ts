@@ -147,13 +147,26 @@ window.addEventListener("message", function (e) {
             api_user_register(e.data.params);
             break;
         case "go_home":
-            this.location.href =
-                LandConfig.config.platUrl +
-                `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
+            {
+                try {
+                    //@ts-ignore
+                    const dataLayer = window.dataLayer || [];
+                    const data = {
+                        user_id: e.data.params.user_id,
+                        uuid: e.data.params.uuid,
+                    };
+                    dataLayer.push(Object.assign({ event: "RegistrationSuccess_land" }, data));
+                } catch {
+                    console.log("GTM-error");
+                }
+
+                this.location.href =
+                    LandConfig.config.platUrl +
+                    `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
+            }
             break;
         case "go_sign_in":
-            this.location.href =
-                LandConfig.config.platUrl;
+            this.location.href = LandConfig.config.platUrl;
             break;
     }
 });

@@ -34,12 +34,6 @@ window.addEventListener("message", (e) => {
                 user_id = e.data.params.data.user_id;
                 uuid = e.data.uuid;
                 $("#loading").css("display", "none");
-                dataLayer = window.dataLayer || [];
-                data = {
-                    user_id: user_id,
-                    uuid: uuid,
-                };
-                dataLayer.push(Object.assign({ event: "RegistrationSuccess_land" }, data));
                 sendPostMessage({ action: "go_home", params: { token: token, uuid: uuid, user_id: user_id } });
                 // $("#dialog_succeed").css("display", "flex");
                 // resetForm();

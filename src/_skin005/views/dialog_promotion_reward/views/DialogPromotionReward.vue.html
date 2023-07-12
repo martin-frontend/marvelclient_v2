@@ -6,6 +6,7 @@
     v-model="pageData.bShow"
     :retain-focus="false"
     persistent
+    @click:outside="onClose"
 >
     <!-- pc -->
     <v-card v-if="!$xsOnly" class="rounded-lg" color="transparent relative promotion-reward" elevation="0">

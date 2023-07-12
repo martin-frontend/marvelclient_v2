@@ -16,12 +16,15 @@ export default class DialogDailySign extends AbstractView {
     constructor() {
         super(DialogDailySignMediator);
     }
-    async mounted() {
-        await this.$nextTick(() => {
+    mounted() {
+        setTimeout(() => {
             this.resetCardScale();
-            // this.onWatchScreen();
-            // this.onWatchScreen_height();
-        });
+        }, 200);
+        // this.$nextTick(() => {
+        //     this.resetCardScale();
+        //     // this.onWatchScreen();
+        //     // this.onWatchScreen_height();
+        // });
     }
     onClose() {
         this.pageData.bShow = false;
@@ -96,7 +99,7 @@ export default class DialogDailySign extends AbstractView {
                 let scale_height = this.$vuetify.breakpoint.height / 720;
                 scale_height = scale_height > 1 ? 1 : scale_height;
                 //@ts-ignore
-                this.$refs.card_node.$el.style.scale = scale_height;
+                this.$refs.card_node.style.scale = scale_height;
             }
         } else {
             if (this.$refs.card_node) {
@@ -107,7 +110,7 @@ export default class DialogDailySign extends AbstractView {
                 scale_width = scale_width > 1 ? 1 : scale_width;
 
                 //@ts-ignore
-                this.$refs.card_node.$el.style.scale = scale_height > scale_width ? scale_width : scale_height;
+                this.$refs.card_node.style.scale = scale_height > scale_width ? scale_width : scale_height;
             }
         }
     }
@@ -121,4 +124,12 @@ export default class DialogDailySign extends AbstractView {
     //     console.log("---item--", item);
     //     this.myProxy.api_user_var_sign_store();
     // }
+    onPhoneClose() {
+        if (!this.$xsOnly) return;
+        // console.log(" 点击关闭");
+        this.onClose();
+    }
+    onPhoneCardClick() {
+        console.log("截断点击");
+    }
 }

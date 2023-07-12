@@ -66,11 +66,10 @@ export default class DialogPromotionReward extends AbstractView {
         const before = 8; // 第1點之前寬度 8%
         const range = [0, data[0].count];
         let completions = 0;
-        
 
         // @ts-ignore
         data.forEach((item, index) => {
-            if (!item.match_info && item.receive == 0 || item.receive === undefined) return;
+            if ((!item.match_info && item.receive == 0) || item.receive === undefined) return;
 
             completions++;
             if (data[index + 1]) {
@@ -94,5 +93,13 @@ export default class DialogPromotionReward extends AbstractView {
 
     get isCanReceive() {
         return this.pageData.rule_nums != -1;
+    }
+    onPhoneClose() {
+        if (!this.$xsOnly) return;
+        console.log(" 点击关闭");
+        //this.onClose();
+    }
+    onPhoneCardClick() {
+        console.log("截断点击");
     }
 }

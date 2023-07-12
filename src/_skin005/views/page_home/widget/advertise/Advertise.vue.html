@@ -14,10 +14,9 @@
             <v-lazy>
                 <v-img
                     :src="item.img_url"
-                    class="box"
                     :height="height"
                     @click="onBigItemClick(item)"
-                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $mobile}"
+                    :class="{'cursor-pointer':(item.open_mode!=1 || item.open_mode_url != ''), 'mobile-box' : $mobile , 'box_football' : isFootball , 'box': !isFootball}"
                 >
                     <template v-slot:placeholder>
                         <v-row class="fill-height ma-0" align="center" justify="center">

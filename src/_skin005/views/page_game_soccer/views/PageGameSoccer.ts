@@ -4,7 +4,6 @@ import PageGameSoccerMediator from "../mediator/PageGameSoccerMediator";
 import PageGameSoccerProxy from "../proxy/PageGameSoccerProxy";
 import LangUtil from "@/core/global/LangUtil";
 
-import ScrollUtil from "@/core/global/ScrollUtil";
 import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameProxy from "@/proxy/GameProxy";
@@ -18,10 +17,34 @@ export default class PageGameSoccer extends AbstractView {
     pageData = this.myProxy.pageData;
     timer = 0;
 
+    get isHaveBanner() {
+        const isCricket = this.$router.app.$route.path.includes("cricket");
+        const list = isCricket ? PanelUtil.getProxy_noticeProxy.data.listType17 : PanelUtil.getProxy_noticeProxy.data.listType16;
+        const isHave = list && list.length > 0;
+        if (!isHave) return 0;
+        return isCricket ? 217 : 216;
+    }
+
+    get isCricket() {
+        const curPath = this.$router.app.$route.path;
+        return curPath.includes("cricket");
+    }
+    public get sheetClass(): string {
+        if (!this.$mobile) return "";
+        return this.isCricket ? "ad_class_cricket" : "ad_class";
+    }
+
     get gameFrameClass() {
         if (this.$mobile) {
-            const curPath = this.$router.app.$route.path;
-            if (curPath.includes("cricket")) {
+            if (this.isHaveBanner && this.$xsOnly) {
+                if (this.isCricket) {
+                    return "frame-mobile_cricket_banner";
+                } else {
+                    return "frame-mobile_banner";
+                }
+            }
+
+            if (this.isCricket) {
                 return "frame-mobile_cricket";
             } else {
                 return "frame-mobile";
@@ -74,14 +97,14 @@ export default class PageGameSoccer extends AbstractView {
         this.timer = setInterval(() => {
             const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
             if (gameFrame && this.$mobile) {
-                const curPath = this.$router.app.$route.path;
-                if (curPath.includes("cricket")) {
-                    gameFrame.style.height = window.innerHeight - 105 + "px";
+                let height = 60;
+                if (this.isCricket) {
+                    height = this.isHaveBanner ? 220 : 105;
                 } else {
-                    gameFrame.style.height = window.innerHeight - 60 + "px";
+                    height = this.isHaveBanner ? 175 : 60;
                 }
 
-                //gameFrame.style.height = window.innerHeight - 60 + "px";
+                gameFrame.style.height = window.innerHeight - height + "px";
             }
         }, 100);
         PanelUtil.showAppLoading(false);
@@ -98,13 +121,15 @@ export default class PageGameSoccer extends AbstractView {
         console.log("路由切换-0-----");
         const gameFrame: HTMLElement = <any>this.$refs.gameFrame;
         if (gameFrame && this.$mobile) {
-            const curPath = this.$router.app.$route.path;
-            console.log("路由切换-222-----", curPath);
-            if (curPath.includes("cricket")) {
-                gameFrame.style.height = window.innerHeight - 105 + "px";
+            let height = 60;
+            if (this.isCricket) {
+                height = this.isHaveBanner ? 220 : 105;
+                // gameFrame.style.height = window.innerHeight - 105 + "px";
             } else {
-                gameFrame.style.height = window.innerHeight - 60 + "px";
+                height = this.isHaveBanner ? 175 : 60;
+                // gameFrame.style.height = window.innerHeight - 60 + "px";
             }
+            gameFrame.style.height = window.innerHeight - height + "px";
         }
     }
     onFullScreen() {

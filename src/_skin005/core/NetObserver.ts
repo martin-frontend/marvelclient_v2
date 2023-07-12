@@ -250,6 +250,13 @@ export default class NetObserver extends AbstractMediator {
                     let headitem;
                     for (let index = 0; index < GameConfig.config.head_game_config.length; index++) {
                         const element = GameConfig.config.head_game_config[index];
+                        //手机版
+                        if (window.$mobile) {
+                            if (!element.mob_type || !element.mob_type.trim()) continue;
+                        } else {
+                            //PC 版
+                            if (element.is_only_mob && element.is_only_mob == 1) continue;
+                        }
                         if (element.vendor_id == this.gameProxy.currGame.vendor_id) {
                             headitem = element;
                             const homeProxy = PanelUtil.getProxy_page_home;

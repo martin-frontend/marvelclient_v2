@@ -4,9 +4,11 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageGameSoccer from "./PageGameSoccer";
-
+import Advertise from "@/_skin005/views/page_home/widget/advertise/Advertise.vue";
 @Component({
-    components: {},
+    components: {
+        Advertise,
+    },
 })
 export default class extends PageGameSoccer {
     mounted() {

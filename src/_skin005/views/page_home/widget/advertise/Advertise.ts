@@ -7,6 +7,7 @@ import gsap, { Linear } from "gsap";
 @Component
 export default class Advertise extends AbstractView {
     @Prop({ default: 0 }) showDataType!: number;
+    @Prop({ default: false }) isFootball!: boolean;
 
     noticeProxy: NoticeProxy = getProxy(NoticeProxy);
     selectIndex = 0;
@@ -15,6 +16,21 @@ export default class Advertise extends AbstractView {
     };
 
     get height(): number {
+        if (this.isFootball) {
+            return 100;
+            // if (this.$vuetify.breakpoint.width <= 390) return 70;
+            // switch (this.$vuetify.breakpoint.name) {
+            //     case "xs":
+            //         return 90;
+            //     case "sm":
+            //         return 90;
+            //     case "md":
+            //         return 90;
+            //     default:
+            //         return 90;
+            // }
+        }
+
         if (this.$vuetify.breakpoint.width <= 390) return 150;
         switch (this.$vuetify.breakpoint.name) {
             case "xs":
@@ -46,6 +62,10 @@ export default class Advertise extends AbstractView {
                 return this.noticeProxy.data.listType9;
             case 128:
                 return this.noticeProxy.data.listType10;
+            case 216:
+                return this.noticeProxy.data.listType16;
+            case 217:
+                return this.noticeProxy.data.listType17;
             default:
                 break;
         }

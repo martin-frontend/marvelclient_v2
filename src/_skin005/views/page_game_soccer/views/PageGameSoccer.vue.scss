@@ -13,6 +13,15 @@
     left: 0px;
     top: 0px;
 }
+.frame-mobile_banner {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 70px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 100px;
+}
 .frame-mobile_cricket {
     border: 0;
     width: 100vw;
@@ -21,6 +30,15 @@
     position: fixed;
     left: 0px;
     top: 45px;
+}
+.frame-mobile_cricket_banner {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 150px;
 }
 
 .theme--dark {
@@ -55,4 +73,15 @@
 
 .box-mobile {
     min-height: 2000px;
+}
+
+.ad_class {
+    position: fixed;
+    top: 0px;
+    // z-index: 7;
+}
+.ad_class_cricket {
+    position: fixed;
+    top: 50px;
+    // z-index: 7;
 }

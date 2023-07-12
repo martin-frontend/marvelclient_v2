@@ -7,6 +7,7 @@ import PageGameListProxy from "../proxy/PageGameListProxy";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import ScrollUtil, { scrollUtil_div } from "@/core/global/ScrollUtil";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class PageGameList extends AbstractView {
@@ -17,7 +18,7 @@ export default class PageGameList extends AbstractView {
     noticeProxy = PanelUtil.getProxy_noticeProxy;
     pageData = this.myProxy.pageData;
     listQuery = this.myProxy.listQuery;
-
+    SkinVariable = SkinVariable;
     casinoPageGameList = GameConfig.config.casinoPageGameList;
     timer = 0;
     itemWidth = 181;
@@ -38,6 +39,13 @@ export default class PageGameList extends AbstractView {
 
     mounted() {
         this.resetItemWidth();
+
+        this.$nextTick(()=>{
+            if (this.isUseCategoryData && this.curCategoryData) {
+                this.categoryName = Object.keys(this.curCategoryData)[0];
+            }
+        });
+
         this.myProxy.api_plat_var_game_all_index();
     }
 
@@ -217,6 +225,10 @@ export default class PageGameList extends AbstractView {
         this.myProxy.getCurItemIndex();
         this.myProxy.api_plat_var_game_all_index();
         this.myProxy.clearData();
+        // if (this.isUseCategoryData) {
+        //     this.categoryName = Object.keys(this.curCategoryData)[0];
+        // }
+        this.categoryIndex = 0;
     }
 
     getMore() {
@@ -233,6 +245,87 @@ export default class PageGameList extends AbstractView {
         this.myProxy.clearData();
         clearInterval(this.timer);
         super.destroyed();
+    }
+
+    get categoryData() {
+        switch (this.listQuery.vendor_type) {
+            case 2:
+                return this.gameProxy.lobbyCategory_2;
+            case 4:
+                return this.gameProxy.lobbyCategory_4;
+            case 8:
+                return this.gameProxy.lobbyCategory_8;
+            case 16:
+                return this.gameProxy.lobbyCategory_16;
+            case 32:
+                return this.gameProxy.lobbyCategory_32;
+            case 64:
+                return this.gameProxy.lobbyCategory_64;
+            case 128:
+                return this.gameProxy.lobbyCategory_128;
+        }
+        return [];
+    }
+
+    categoryIndex = 0;
+    categoryName = "";
+    onBtnClickCategory(item: any) {
+        console.log("收到点击", item);
+        this.categoryName = item;
+    }
+    isCurCategoryItem(item: any) {
+        return false;
+    }
+    get isUseCategoryData() {
+        return this.categoryData.length > 0;
+    }
+    get curListData() {
+        return this.curCategoryData[this.categoryName] || [];
+    }
+    categoryTitle = <any>[];
+    public get curCategoryData(): any {
+        if (!this.categoryData || this.categoryData.length < 1) return null;
+
+        const dataList = <any>{};
+
+        //现将数据排序
+        const sort_category = this.categoryData.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
+            return b.tag_sort - a.tag_sort;
+        });
+        this.categoryTitle = <any>[];
+        dataList[LangUtil("全部游戏")] = <any>[];
+        this.categoryTitle.push(LangUtil("全部游戏"));
+
+        //将数据分组
+        for (let index = 0; index < sort_category.length; index++) {
+            const element = sort_category[index];
+
+            if (!dataList[element.category]) {
+                dataList[element.category] = <any>[];
+            }
+            if (element.icon_name) {
+                if (this.categoryTitle.indexOf(element.category) == -1) {
+                    this.categoryTitle.push(element.category);
+                }
+            }
+            dataList[element.category].push(element);
+            dataList[LangUtil("全部游戏")].push(element);
+        }
+
+        // // 将数据 排序
+        // const keys = Object.keys(dataList);
+        // for (let index = 0; index < keys.length; index++) {
+        //     const element = dataList[keys[index]];
+        //     element.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
+        //         return b.index_no - a.index_no;
+        //     });
+        // }
+
+        console.log("重新分组的数据为", dataList);
+
+        this.categoryName = LangUtil("全部游戏");
+        this.categoryIndex = 0;
+        return dataList;
     }
     get histpry_game_list() {
         //console.log("读取  游戏列表", this.gameProxy.gameHistoryList);

@@ -39,6 +39,7 @@ module core {
         //game_menu
         vendor_type: number; //厂商游戏类型
         vendor_type_name: string;
+        tag_sort:number; //分类的排序
     }
     /**
      * 厂商产品

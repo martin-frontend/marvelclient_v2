@@ -16,7 +16,15 @@ export default class GameProxy extends AbstractProxy {
     /**大厅菜单 */
     lobbyIndex: core.PlatLobbyIndexVO[] = [];
     lobbyMenuIndex: core.PlatLobbyIndexVO[] = [];
-    lobbyCategory: core.PlatLobbyCategoryIndexVO[] = [];
+    lobbyCategory: core.PlatLobbyCategoryIndexVO[] = []; //首页游戏
+    lobbyCategory_0: core.PlatLobbyCategoryIndexVO[] = []; //全部的数据
+    lobbyCategory_2: core.PlatLobbyCategoryIndexVO[] = []; // 棋牌
+    lobbyCategory_4: core.PlatLobbyCategoryIndexVO[] = []; // 彩票
+    lobbyCategory_8: core.PlatLobbyCategoryIndexVO[] = []; // 捕鱼
+    lobbyCategory_16: core.PlatLobbyCategoryIndexVO[] = []; // 电子
+    lobbyCategory_32: core.PlatLobbyCategoryIndexVO[] = []; // 真人
+    lobbyCategory_64: core.PlatLobbyCategoryIndexVO[] = []; // 体育电竞
+    lobbyCategory_128: core.PlatLobbyCategoryIndexVO[] = []; // 链游
     /**当前正在玩的游戏 */
     currGame: any = {
         vendor_id: 0,
@@ -94,7 +102,57 @@ export default class GameProxy extends AbstractProxy {
         }
     }
     setGameCategory(body: any) {
-        this.lobbyCategory = body;
+        this.lobbyCategory_0 = body;
+
+        this.lobbyCategory = <core.PlatLobbyCategoryIndexVO[]>[]; //首页游戏
+        this.lobbyCategory_2 = <core.PlatLobbyCategoryIndexVO[]>[]; // 棋牌
+        this.lobbyCategory_4 = <core.PlatLobbyCategoryIndexVO[]>[]; // 彩票
+        this.lobbyCategory_8 = <core.PlatLobbyCategoryIndexVO[]>[]; // 捕鱼
+        this.lobbyCategory_16 = <core.PlatLobbyCategoryIndexVO[]>[]; // 电子
+        this.lobbyCategory_32 = <core.PlatLobbyCategoryIndexVO[]>[]; // 真人
+        this.lobbyCategory_64 = <core.PlatLobbyCategoryIndexVO[]>[]; // 体育电竞
+        this.lobbyCategory_128 = <core.PlatLobbyCategoryIndexVO[]>[]; // 链游
+
+        //对结果进行筛选和分类
+        for (let index = 0; index < body.length; index++) {
+            switch (body[index].type) {
+                case "1":
+                case 1:
+                    this.lobbyCategory.push(body[index]);
+                    break;
+                case "2":
+                case 2:
+                    this.lobbyCategory_2.push(body[index]);
+                    break;
+                case "4":
+                case 4:
+                    this.lobbyCategory_4.push(body[index]);
+                    break;
+                case "8":
+                case 8:
+                    this.lobbyCategory_8.push(body[index]);
+                    break;
+                case "16":
+                case 16:
+                    this.lobbyCategory_16.push(body[index]);
+                    break;
+                case "32":
+                case 32:
+                    this.lobbyCategory_32.push(body[index]);
+                    break;
+                case "64":
+                case 64:
+                    this.lobbyCategory_64.push(body[index]);
+                    break;
+                case "128":
+                case 128:
+                    this.lobbyCategory_128.push(body[index]);
+                    break;
+                default:
+                    this.lobbyCategory.push(body[index]);
+                    break;
+            }
+        }
     }
     setCoin(coin_name_unique: string) {
         const old_coin = this.coin_name_unique;

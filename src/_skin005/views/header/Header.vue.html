@@ -136,7 +136,7 @@
             </v-sheet>
         </template>
 
-        <GameSearch v-if="ModulesHelper.isShow_SearchGame()" @gameSearchChange="onchangeGameSearch" class="mr-2 ml-2" />
+        <GameSearch v-if="isShowSearch" @gameSearchChange="onchangeGameSearch" class="mr-2 ml-2" />
     </v-sheet>
 </v-sheet>
 
@@ -211,7 +211,7 @@
                 <svg-icon class="text-24 head_btn--text" icon="search"></svg-icon>
             </v-btn> -->
 
-            <GameSearch v-if="ModulesHelper.isShow_SearchGame()" @gameSearchChange="onchangeGameSearch" class="ml-2 mr-n2" />
+            <GameSearch v-if="isShowSearch" @gameSearchChange="onchangeGameSearch" class="ml-2 mr-n2" />
         </v-sheet>
     </v-sheet>
 </v-app-bar>

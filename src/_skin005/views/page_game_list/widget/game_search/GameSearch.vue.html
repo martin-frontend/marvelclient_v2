@@ -1,0 +1,123 @@
+<v-sheet color="transparent" :height="$mobile?30:36" class="rounded10 d-flex align-center">
+    <v-menu offset-y nudge-bottom="2" :close-on-content-click="false" right v-model="bshow">
+        <template v-slot:activator="{ on, attrs,value }">
+            <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
+                <!-- <v-sheet class="align-center d-flex pr-2" color="transparent" height="36">
+                    <svg-icon class="text-24" :class="icon_color" icon="search"></svg-icon>
+                </v-sheet> -->
+
+                <v-sheet color="transparent" class="d-flex search_class" >
+                    <CustomInput
+                        inputId="searchInput"
+                        :placeholder="LangUtil('请输入搜索内容')"
+                        v-model="searchInput"
+                        @blur="onBlurInput"
+                        @input="onInput"
+                        @endInput="endInput"
+                    >
+                        <template slot="default">
+                            <v-sheet class="align-center d-flex pr-2" color="transparent" height="36" @click="onSearchClick">
+                                <svg-icon class="text-24 primary--text" icon="search"></svg-icon>
+                            </v-sheet>
+                        </template>
+                    </CustomInput>
+                    <!-- <v-sheet color="transparent" width="50" height="30" @click="onSearchClick" :class="$mobile ? '': 'search_btn_pc'">
+                    </v-sheet> -->
+                </v-sheet>
+
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                <!-- {{setIsFilter(value)}} -->
+            </v-sheet>
+        </template>
+        <v-sheet width="100%" color="transparent" class="px-0 d-flex flex-column justify-center">
+            <v-card flat color="head_color" class="px-2" :class="$mobile ? 'rounded0' : 'rounded10'" width="100%">
+                <!-- 电脑版的 -->
+                <v-card
+                    v-if=" listSearchHistery.length > 0 && !searchInput"
+                    flat
+                    color="transparent"
+                    class="d-flex flex-wrap align-center px-2 py-4 rounded0"
+                >
+                    <v-sheet color="transparent" class="d-flex pb-4" :class="$mobile ? 'text-14':'text-16'" width="100%">
+                        {{LangUtil("搜索历史")}}
+                    </v-sheet>
+                    <v-sheet
+                        color="water_bg"
+                        class="text-14 d-flex align-center px-2 py-1 mx-1 my-1 rounded10"
+                        v-for="(item, key) of listSearchHistery"
+                        :key="key"
+                        min-height="30"
+                    >
+                        <div class="cursor-pointer" @click="onHisteryClick(item)">
+                            <svg-icon class="text-14 copy_icon--text" icon="time"></svg-icon>
+                            <span class="copy_icon--text ml-2">{{item}}</span>
+                        </div>
+                        <!-- <v-spacer /> -->
+                        <div class="mr-0 ml-4 cursor-pointer" @click="onDeleteItem(key)">
+                            <svg-icon class="text-14 copy_icon--text" icon="clear"></svg-icon>
+                        </div>
+                    </v-sheet>
+                    <v-sheet class="d-flex align-center justify-center mt-4" color="transparent" width="100%">
+                        <div class="cursor-pointer" @click="onDeltetAll">
+                            <svg-icon class="text-14 copy_icon--text" icon="delete"></svg-icon>
+                            <span class="copy_icon--text ml-2">{{LangUtil("删除历史记录")}}</span>
+                        </div>
+                    </v-sheet>
+                </v-card>
+
+                <div class="loading my-4 py-4" v-if="gameProxy.isLoadSearch">
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </div>
+
+                <v-sheet
+                    v-if="gameProxy.searchList.params.game_name"
+                    color="transparent"
+                    class="py-2 mt-4"
+                    :class="$mobile ? 'text-14':'text-16'"
+                    width="100%"
+                    style="text-align: center"
+                >
+                    <span class="font-weight-bold">{{gameProxy.searchList.params.game_name}}</span> {{LangUtil("搜索结果")}}
+                </v-sheet>
+                <template v-if="isHaveData">
+                    <v-card
+                        flat
+                        color="transparent"
+                        class="d-flex flex-wrap align-content-start justify-start mb-4"
+                        :class="searchpanel_class"
+                    >
+                        <div v-for="item of gameProxy.searchList.list" class="mx-1 my-2">
+                            <GameItem
+                                class="game_item_margin_mob"
+                                :key="item.vendor_prodcut_id"
+                                :item="item"
+                                :width="relWidth"
+                                :height="(relWidth-13.5)/0.8"
+                            />
+                        </div>
+                    </v-card>
+                </template>
+
+                <v-sheet
+                    v-if="!isHaveData && !gameProxy.isLoadSearch && gameProxy.searchList.params.game_name"
+                    color="transparent"
+                    class="py-4 mb-4"
+                    width="100%"
+                    style="text-align: center"
+                >
+                    <div class="d-flex flex-column align-center justify-center">
+                        <v-img max-width="60" src="@/_skin005/assets/nodata_2.png"> </v-img>
+                        <div class="my-2">{{LangUtil("没有搜索结果")}}</div>
+                    </div>
+                    <!-- <ListNodata height="200" /> -->
+                    <!-- {{LangUtil("没有更多数据")}} -->
+                </v-sheet>
+                <!-- <v-sheet color="transparent" class="d-flex justify-center my-4" width="100%">
+                    <btn-yellow class=" mr-2" :class="$mobile ? 'text-12' : 'text-14'" :min_width="$mobile ? 50 : 100" :height="$mobile ? 22 : 36" :btn_type="3" @click.native="oncloce">{{LangUtil("关闭")}}</btn-yellow>
+                </v-sheet> -->
+            </v-card>
+        </v-sheet>
+    </v-menu>
+</v-sheet>

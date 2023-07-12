@@ -6,7 +6,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 @Component
 export default class Category extends AbstractView {
     LangUtil = LangUtil;
-    gameProxy = PanelUtil.getProxy_gameproxy;
+    @Prop({default: []}) lobbyCategory!: core.PlatLobbyCategoryIndexVO[];
 
     get itemWidth(): number {
         //return this.$mobile ? 132 : 181;
@@ -22,13 +22,13 @@ export default class Category extends AbstractView {
     }
 
     public get categoryData(): any {
-        const { lobbyCategory } = this.gameProxy;
-        if (!lobbyCategory || lobbyCategory.length < 1) return null;
+
+        if (!this.lobbyCategory || this.lobbyCategory.length < 1) return null;
 
         const dataList = <any>{};
         //现将数据排序
-        const sort_category = lobbyCategory.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
-            return b.index_no - a.index_no;
+        const sort_category = this.lobbyCategory.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
+            return b.tag_sort - a.tag_sort;
         });
         //将数据分组
         for (let index = 0; index < sort_category.length; index++) {

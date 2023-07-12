@@ -3041,6 +3041,8 @@ declare module core {
         index: number;
         vendor_type: number;
         vendor_type_name: string;
+        icon_name:string;
+        tag_sort:number; //分类的排序
     }
     /**
      * 厂商产品

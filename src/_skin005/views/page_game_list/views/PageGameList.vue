@@ -11,6 +11,9 @@ import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
 import Advertise from "@/_skin005/views/page_home/widget/advertise/Advertise.vue";
 import ImgLoader from "@/_skin005/views/widget/img_loader/ImgLoader.vue";
 import Marquee1 from "../../widget/marquee1/Marquee1.vue";
+import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
+import GameSearch from "@/_skin005/views/page_game_list/widget/game_search/GameSearch.vue";
+
 @Component({
     components: {
         GameListSelect,
@@ -19,6 +22,8 @@ import Marquee1 from "../../widget/marquee1/Marquee1.vue";
         Advertise,
         ImgLoader,
         Marquee1,
+        Category,
+        GameSearch,
     },
 })
 export default class extends PageGameList {

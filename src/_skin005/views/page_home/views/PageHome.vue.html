@@ -106,12 +106,12 @@
 
     <GameType  />
 
-    <Category v-if="!SkinVariable.isLobbyGameTop"/>
+    <Category v-if="!SkinVariable.isLobbyGameTop" :lobbyCategory="gameProxy.lobbyCategory"/>
     <div v-for="(item, index) of gameProxy.lobbyIndex" :key="index" :class="{'boxpadding': $mobile}">
         <GameSlideGroup v-if=" item.category != 32" :data="item" :bShowAll="true" :name="item.category" :id="item.category" />
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
-    <Category v-if="SkinVariable.isLobbyGameTop"/>
+    <Category v-if="SkinVariable.isLobbyGameTop" :lobbyCategory="gameProxy.lobbyCategory"/>
     <SoccerMatche v-if="IsShow_FootBallHot && !SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 
     <v-lazy v-if="ModulesHelper.isShow_RecentBetting()">

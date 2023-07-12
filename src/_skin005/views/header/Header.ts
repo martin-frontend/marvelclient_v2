@@ -13,6 +13,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import GameConfig from "@/core/config/GameConfig";
 import HeaderProxy from "./HeaderProxy";
 import OpenLink from "@/core/global/OpenLink";
+import Constant from "@/core/global/Constant";
 
 @Component
 export default class Header extends AbstractView {
@@ -216,5 +217,10 @@ export default class Header extends AbstractView {
 
     resolveSvgaSrc(name: any) {
         return "svga/" + name + ".svga";
+    }
+
+    get isShowSearch()
+    {
+        return  ModulesHelper.isShow_SearchGame() && (!SkinVariable.gamelist_other || !Constant.isIncludeGameRouter(this.$route.path))
     }
 }

@@ -45,8 +45,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     };
     _isInit = false;
     init() {
-        if (!(this.gameMenuData && this.gameMenuData.length > 1))
-        {
+        if (!(this.gameMenuData && this.gameMenuData.length > 1)) {
             console.log("menu 数据为空");
             return;
         }
@@ -119,8 +118,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     api_plat_var_game_all_index() {
-        if (!(this.gameMenuData && this.gameMenuData.length > 1))
-        {
+        if (!(this.gameMenuData && this.gameMenuData.length > 1)) {
             console.log("menu 数据为空");
             return;
         }
@@ -173,7 +171,14 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     getFirstMenuIndex() {
         const keys = Object.keys(this.tableMenu);
-        this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
+        //this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
+        for (let index = 0; index < keys.length; index++) {
+            const element = keys[index];
+            if (this.tableMenu[element].vendor_type != 3) {
+                this.listQuery.vendor_type = this.tableMenu[element].vendor_type;
+                break;
+            }
+        }
         this.curMenuIndex = 0;
     }
 

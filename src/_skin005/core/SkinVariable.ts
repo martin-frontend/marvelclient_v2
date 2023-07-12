@@ -44,6 +44,7 @@ export default class SkinVariable {
     public static isNeedDownloadBtn = true;
     /**是否需要下载按钮 */
     public static isWallet_Recharge = true;
+    public static gamelist_other = false;
     /**是否显示用户认证 */
     public static isShowPlatUsersVerification = false;
 }

@@ -150,17 +150,14 @@
             </v-card>
 
             <div class="d-flex justify-center pt-2" v-if="listQuery.vendor_type == 3">
-                <div class="d-flex flex-column justify-center align-center">
-                    <btn-yellow
-                        v-if="histpry_game_list.length > 0"
-                        class="text-16 my-5"
-                        min_width="104"
-                        height="36"
-                        @click.native="onClearHistory"
-                        >{{LangUtil("清除记录")}}</btn-yellow
-                    >
+                <v-sheet class="d-flex flex-column justify-center align-center" color="transparent" width="100%">
+                    <v-sheet v-if="histpry_game_list.length > 0" color="transparent" width="100%" class="d-flex justify-end align-center">
+                        <btn-yellow class="text-16 my-5" min_width="104" height="36" @click.native="onClearHistory" btn_type="2"
+                            >{{LangUtil("清除记录")}}</btn-yellow
+                        >
+                    </v-sheet>
                     <ListNodata v-else height="411" />
-                </div>
+                </v-sheet>
             </div>
 
             <v-lazy v-if="pageData.list && pageData.list.length > 0">
@@ -377,17 +374,19 @@
                             </v-card>
 
                             <div class="d-flex justify-center pt-2" v-if="listQuery.vendor_type == 3">
-                                <div class="d-flex flex-column justify-center align-center">
-                                    <btn-yellow
+                                <v-sheet class="d-flex flex-column justify-center align-center" width="100%" color="transparent">
+                                    <v-sheet
                                         v-if="histpry_game_list.length > 0"
-                                        class="text-16 my-5"
-                                        min_width="110"
-                                        height="36"
-                                        @click.native="onClearHistory"
-                                        >{{LangUtil("清除记录")}}</btn-yellow
+                                        class="d-flex justify-end align-center"
+                                        width="100%"
+                                        color="transparent"
                                     >
+                                        <btn-yellow class="text-12 my-5" min_width="90" height="30" @click.native="onClearHistory" btn_type="2"
+                                            >{{LangUtil("清除记录")}}</btn-yellow
+                                        >
+                                    </v-sheet>
                                     <ListNodata v-else height="300" />
-                                </div>
+                                </v-sheet>
                             </div>
 
                             <v-lazy v-if="pageData.list && pageData.list.length > 0">
@@ -680,17 +679,19 @@
                             </v-card>
 
                             <div class="d-flex justify-center pt-2" v-if="listQuery.vendor_type == 3">
-                                <div class="d-flex flex-column justify-center align-center">
-                                    <btn-yellow
+                                <v-sheet class="d-flex flex-column justify-center align-center" width="100%" color="transparent">
+                                    <v-sheet
                                         v-if="histpry_game_list.length > 0"
-                                        class="text-16 my-5"
-                                        min_width="110"
-                                        height="36"
-                                        @click.native="onClearHistory"
-                                        >{{LangUtil("清除记录")}}</btn-yellow
+                                        class="d-flex justify-end align-center"
+                                        width="100%"
+                                        color="transparent"
                                     >
+                                        <btn-yellow class="text-12 my-5" min_width="90" height="30" @click.native="onClearHistory" btn_type="2"
+                                            >{{LangUtil("清除记录")}}</btn-yellow
+                                        >
+                                    </v-sheet>
                                     <ListNodata v-else height="300" />
-                                </div>
+                                </v-sheet>
                             </div>
 
                             <v-lazy v-if="pageData.list && pageData.list.length > 0">

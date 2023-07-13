@@ -2,6 +2,9 @@
     <v-card class="rounded10" color="bgBanner">
         <v-card-title class="gradient-bg justify-center">
             <div class="text-20">{{LangUtil("提示")}}</div>
+            <v-btn v-if="pageData.data.isNeetClose" class="ml-auto" icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
         </v-card-title>
         <v-divider />
 
@@ -23,12 +26,14 @@
                 >
             </template>
         </v-sheet>
-        <v-card-actions class="justify-center pb-5">
-            <btn-yellow v-if="pageData.data.bConfirm" class="text-14" width="100" height="36" :btn_type="2" @click.native="onCancel"
+        <v-card-actions class="d-flex justify-space-around pb-5">
+            <btn-yellow v-if="pageData.data.bConfirm" class="text-14" min_width="100" height="36" :btn_type="2" @click.native="onCancel"
                 >{{pageData.data.cancelTxt || LangUtil("取消")}}</btn-yellow
             >
 
-            <btn-yellow class="text-14 mx-2" width="100" height="36" @click.native="onOK">{{pageData.data.okTxt || LangUtil("确定")}}</btn-yellow>
+            <btn-yellow class="text-14 mx-2" min_width="100" height="36" @click.native="onOK"
+                >{{pageData.data.okTxt || LangUtil("确定")}}</btn-yellow
+            >
 
             <!-- <v-btn v-if="pageData.data.bConfirm" class="mx-2" width="100" height="36" color="colorBtnBg" outlined
                 @click="onCancel">{{LangUtil("取消")}}</v-btn>

@@ -17,7 +17,9 @@ export default class DialogMessageBox extends AbstractView {
     public get isMultMessage(): boolean {
         return !(typeof this.pageData.data.message == "string");
     }
-
+    onClose() {
+        this.myProxy.pageData.bShow = false;
+    }
     onOK() {
         this.myProxy.handlerOK();
     }

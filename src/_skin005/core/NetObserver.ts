@@ -30,6 +30,7 @@ import { initGTM, initMainGTM, track, TrackData, TrackTypeMap } from "./TrackMan
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
+import CoinTransformHelper from "./CoinTransformHelper";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -304,10 +305,34 @@ export default class NetObserver extends AbstractMediator {
                     }
                     let msgstr = LangUtil("进入游戏");
                     let isShowConfig = false;
+                    //@ts-ignore
+                    let sum_money = this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money;
+
+                    // msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
                     if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique) {
-                        msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
+                        //msgstr = LangUtil("您当前使用的货币为{0}将会折算成等价的{1}进入游戏", coin_name_unique, settle_coin_name_unique);
+                        const sum_money_2 = CoinTransformHelper.TransformMoney(
+                            sum_money,
+                            2,
+                            settle_coin_name_unique,
+                            coin_name_unique,
+                            false,
+                            false
+                        );
+                        msgstr = LangUtil(
+                            "当前币种余额{0}:{1},将会折算成{2}:{3}进入游戏",
+                            coin_name_unique,
+                            sum_money,
+                            settle_coin_name_unique,
+                            sum_money_2
+                        );
+                        sum_money = sum_money_2;
+                        //msgstr = LangUtil("当前余额为{0}:{2}",coin_name_unique,this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money);
                         isShowConfig = true;
+                    } else {
+                        msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
                     }
+
                     this.openGameUrl(body, msgstr, isShowConfig);
                 }
                 break;
@@ -411,6 +436,12 @@ export default class NetObserver extends AbstractMediator {
                         }
                         OpenLink(body.url);
                     },
+                    cancelFun: () => {
+                        PanelUtil.openpage_recharge();
+                    },
+                    cancelTxt: LangUtil("充值"),
+                    okTxt: LangUtil("进入游戏"),
+                    isNeetClose: true,
                 });
             } else {
                 if (isShowConfig) {
@@ -419,6 +450,12 @@ export default class NetObserver extends AbstractMediator {
                         okFun: () => {
                             PanelUtil.openpage_game_play(body.url);
                         },
+                        cancelFun: () => {
+                            PanelUtil.openpage_recharge();
+                        },
+                        cancelTxt: LangUtil("充值"),
+                        okTxt: LangUtil("进入游戏"),
+                        isNeetClose: true,
                     });
                 } else {
                     PanelUtil.openpage_game_play(body.url);

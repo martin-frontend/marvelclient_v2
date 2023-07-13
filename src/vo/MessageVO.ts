@@ -8,4 +8,5 @@ export default interface MessageVO {
     closeTime?: number;
     cancelTxt?: string;
     okTxt?: string;
+    isNeetClose?: boolean;
 }

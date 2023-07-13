@@ -142,6 +142,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import PageActivityProxy from "@/_skin005/views/page_activity/proxy/PageActivityProxy";
 
 import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification";
+import DialogSpeedVerificationProxy from "@/_skin005/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
 import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -792,9 +793,13 @@ export default class PanelUtil {
         });
     }
     /**打开 验证界面 */
-    static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null) {
+    static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null, verification: number = -1) {
         MultDialogManager.onOpenPanel(DialogSpeedVerification);
-        DialogSpeedVerification.show(successFun, failFun);
+        DialogSpeedVerification.show(successFun, failFun, verification);
+    }
+
+    public static get getProxy_speed_verification(): DialogSpeedVerificationProxy {
+        return getProxy(DialogSpeedVerificationProxy);
     }
     /**打开 充值弹窗 */
     static openpanel_notice_recharge(data: any) {

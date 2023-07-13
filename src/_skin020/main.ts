@@ -40,7 +40,7 @@ import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 import LangUtil from "@/core/global/LangUtil";
-import SlideVerify from 'vue-monoplasty-slide-verify';
+import SlideVerify from "@/_skin005/views/widget/slide_verify/SlideVerify.vue";
 Assets.commonIcon.loading_img = "loding_icon_20.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin020/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin020/assets/logo_m.png`);
@@ -71,7 +71,6 @@ if (process.env.VUE_APP_GAME_DOMAIN) {
 }
 
 Vue.config.productionTip = false;
-Vue.use(SlideVerify);
 Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
@@ -90,7 +89,7 @@ Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
 Vue.component("Footer", Footer);
 Vue.component("Header", Header);
-
+Vue.component("SlideVerify_1", SlideVerify);
 Vue.component("goldinfo_util", GoldInfoUtil);
 {
     const myTransition = createSimpleTransition("mobile-slide-x-transition");

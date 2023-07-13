@@ -163,6 +163,9 @@ export default class DialogRegister extends AbstractView {
         if (!this.chickYears()) {
             return false;
         }
+        if (!this.isDragAuth && !checkVerifyVode(verify_code)) {
+            return false;
+        }
         return (
             password == password_confirm &&
             ((register_type == 1 && checkUserName(username)) ||
@@ -171,7 +174,6 @@ export default class DialogRegister extends AbstractView {
                 (register_type == 4 && checkPhone(username)) ||
                 (register_type == 8 && checkPhone(username) && checkUserName(mobile_username)) ||
                 (register_type == 16 && checkUserName(email_username) && checkMail(username) && this.chickYears())) &&
-            checkVerifyVode(verify_code) &&
             checkUserPassword(password)
         );
     }
@@ -194,7 +196,24 @@ export default class DialogRegister extends AbstractView {
     //     }
     // }
 
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
     onRegister() {
+        if (this.isDragAuth) {
+            const that = this;
+            const successFun = function (val: any) {
+                that.myProxy.pageData.form.verify_code = val;
+                that.myProxy.api_user_register();
+            };
+            const failFun = function () {
+                that.myProxy.api_public_auth_drag();
+            };
+            that.myProxy.api_public_auth_drag();
+            PanelUtil.openpanel_speed_verification(successFun, failFun, this.myProxy.pageData.auth_drag_position);
+            return;
+        }
+
         if (ModulesHelper.isNeed_registerVerifiy())
             PanelUtil.openpanel_speed_verification(() => {
                 this.myProxy.api_user_register();
@@ -211,7 +230,12 @@ export default class DialogRegister extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
-            this.myProxy.api_public_auth_code();
+            if (this.isDragAuth) {
+                //this.myProxy.api_public_auth_drag();
+                console.log("");
+            } else {
+                this.myProxy.api_public_auth_code();
+            }
             this.typechange = 0;
             this.onTimeChange(this.registerTypes[this.typechange]);
             //this.onTabClick(this.form.register_type);

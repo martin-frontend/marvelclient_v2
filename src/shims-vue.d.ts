@@ -10,4 +10,3 @@ declare module "element-ui/lib/locale/lang/*" {
     export const elementLocale: any;
 }
 declare module 'vuetify/lib/components/transitions/createTransition';
-declare module 'vue-monoplasty-slide-verify';

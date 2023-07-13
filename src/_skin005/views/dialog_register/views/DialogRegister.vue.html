@@ -370,7 +370,7 @@
                     @blur="onPasswordConfirmBlur"
                 />
                 <v-sheet
-                    v-if="form.register_type == 1 || form.register_type == 32"
+                    v-if="!isDragAuth && (form.register_type == 1 || form.register_type == 32)"
                     color="transparent"
                     width="100%"
                     class="d-flex mb-6 align-center"
@@ -768,7 +768,7 @@
                 @blur="onPasswordConfirmBlur"
             />
             <v-sheet
-                v-if="form.register_type == 1 || form.register_type == 32"
+                v-if="!isDragAuth && (form.register_type == 1 || form.register_type == 32)"
                 color="transparent"
                 width="100%"
                 class="d-flex mb-4 align-center"

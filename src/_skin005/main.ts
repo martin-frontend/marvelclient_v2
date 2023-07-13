@@ -36,7 +36,7 @@ import Footer from "@/_skin005/views/footer/Footer.vue";
 import Header from "./views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
-import SlideVerify from 'vue-monoplasty-slide-verify';
+import SlideVerify from "@/_skin005/views/widget/slide_verify/SlideVerify.vue";
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -48,7 +48,6 @@ if (process.env.VUE_APP_GAME_DOMAIN) {
 }
 
 Vue.config.productionTip = false;
-Vue.use(SlideVerify);
 Vue.use(VueLoadmore);
 Vue.use(VueLoadmore);
 Vue.use(Notifications, { velocity });
@@ -72,7 +71,7 @@ Vue.component("custom-tree", CustomTree);
 Vue.component("com-dialog-title", ComDialogTitle);
 Vue.component("Footer", Footer);
 Vue.component("Header", Header);
-
+Vue.component("SlideVerify_1", SlideVerify);
 Vue.component("goldinfo_util", GoldInfoUtil);
 {
     const myTransition = createSimpleTransition("mobile-slide-x-transition");

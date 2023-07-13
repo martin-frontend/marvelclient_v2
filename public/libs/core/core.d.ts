@@ -15,6 +15,8 @@ declare module net {
         api_plat_var_language_config: string;
         /**--新加的--获取验证码图片*/
         api_public_auth_code: string;
+        /**--新加的--获取滑动验证的位置*/
+        api_public_auth_drag: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
         /**--新加的--发送短信*/
@@ -340,6 +342,8 @@ declare module net {
         api_plat_var_language_config: string;
         /**--新加的--获取验证码图片*/
         api_public_auth_code: string;
+        /**--新加的--获取滑动验证的位置*/
+        api_public_auth_drag: string;
         /**--新加的--发送邮件*/
         api_public_email_send: string;
         /**--新加的--发送短信*/
@@ -992,6 +996,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_public_auth_code extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取滑动验证的位置
+ */
+declare module net {
+    class cmd_api_public_auth_drag extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2894,6 +2907,8 @@ declare module core {
         is_user_verification: {
             is_open: number;
         };
+        /** 简单密码的验证方式 1 为 4位的 图形验证码 2 为滑动验证码*/
+        auth_types: number;
     }
 }
 declare module core {

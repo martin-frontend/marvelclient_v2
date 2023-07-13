@@ -10,6 +10,7 @@ export default class DialogRegisterMediator extends AbstractMediator {
         return [
             net.EventType.api_user_register,
             net.EventType.api_public_auth_code,
+            net.EventType.api_public_auth_drag,
             net.EventType.api_public_area_code,
             net.EventType.REQUEST_ERROR,
         ];
@@ -31,6 +32,10 @@ export default class DialogRegisterMediator extends AbstractMediator {
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;
                 break;
+            case net.EventType.api_public_auth_drag:
+                myProxy.setAuthDrag(body);
+                break;
+
             case net.EventType.api_public_area_code:
                 myProxy.pageData.areaCode = body;
                 myProxy.setAreaCode();

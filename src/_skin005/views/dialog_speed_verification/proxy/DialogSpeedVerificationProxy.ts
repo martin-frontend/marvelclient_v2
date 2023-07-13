@@ -1,3 +1,5 @@
+import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
+
 export default class DialogSpeedVerificationProxy extends puremvc.Proxy {
     static NAME = "DialogSpeedVerificationProxy";
 
@@ -7,6 +9,7 @@ export default class DialogSpeedVerificationProxy extends puremvc.Proxy {
         bHidden: false, //暂时隐藏
         successCallback: <Function | null>null,
         failCallback: <Function | null>null,
+        verification: 0, //块所在的位置
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -17,9 +20,6 @@ export default class DialogSpeedVerificationProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
-        this.pageData.loading = false;
-        // //如果是列表，使用以下数据，否则删除
-        // Object.assign(this.pageData.pageInfo, data.pageInfo);
-        // this.pageData.list = data.list;
+        this.pageData.verification = getAuthDragValue(data);
     }
 }

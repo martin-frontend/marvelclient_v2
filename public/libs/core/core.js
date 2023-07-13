@@ -83,6 +83,8 @@ var net;
         api_plat_var_language_config: "api/plat/{plat_id}/language/config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api/public/auth_code",
+        /**--新加的--获取滑动验证的位置*/
+        api_public_auth_drag: "api/public/auth_drag",
         /**--新加的--发送邮件*/
         api_public_email_send: "api/public/email/send",
         /**--新加的--发送短信*/
@@ -408,6 +410,8 @@ var net;
         api_plat_var_language_config: "api_plat_var_language_config",
         /**--新加的--获取验证码图片*/
         api_public_auth_code: "api_public_auth_code",
+        /**--新加的--获取滑动验证的位置*/
+        api_public_auth_drag: "api_public_auth_drag",
         /**--新加的--发送邮件*/
         api_public_email_send: "api_public_email_send",
         /**--新加的--发送短信*/
@@ -725,6 +729,7 @@ var net;
         //--新加的
         facade.registerCommand(net.HttpType.api_plat_var_language_config, net.cmd_api_plat_var_language_config);
         facade.registerCommand(net.HttpType.api_public_auth_code, net.cmd_api_public_auth_code);
+        facade.registerCommand(net.HttpType.api_public_auth_drag, net.cmd_api_public_auth_drag);
         facade.registerCommand(net.HttpType.api_public_email_send, net.cmd_api_public_email_send);
         facade.registerCommand(net.HttpType.api_public_sms_send, net.cmd_api_public_sms_send);
         facade.registerCommand(net.HttpType.api_public_area_code, net.cmd_api_public_area_code);
@@ -1748,6 +1753,28 @@ var net;
         }
     }
     net.cmd_api_public_auth_code = cmd_api_public_auth_code;
+})(net || (net = {}));
+/**
+ * 获取滑动验证的位置
+ */
+var net;
+/**
+ * 获取滑动验证的位置
+ */
+(function (net) {
+    class cmd_api_public_auth_drag extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_public_auth_drag, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_public_auth_drag, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_public_auth_drag = cmd_api_public_auth_drag;
 })(net || (net = {}));
 /**
  * 获取城市

@@ -51,5 +51,7 @@ module core {
         is_user_manual_refund: { is_open: number };
         /**是否显示用户认证 */
         is_user_verification: { is_open: number };
+        /** 简单密码的验证方式 1 为 4位的 图形验证码 2 为滑动验证码*/
+        auth_types: number;
     }
 }

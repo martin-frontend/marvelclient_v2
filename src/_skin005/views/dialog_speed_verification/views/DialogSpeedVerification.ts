@@ -52,13 +52,13 @@ export default class DialogSpeedVerification extends AbstractView {
         }
     }
 
-    onsuccess() {
+    onsuccess(value:any) {
         // if (this.myProxy.pageData.successCallback) {
         //     this.myProxy.pageData.successCallback();
         // }
         this.closeHandle = setTimeout(() => {
             if (this.myProxy.pageData.successCallback) {
-                this.myProxy.pageData.successCallback();
+                this.myProxy.pageData.successCallback(value);
             }
             this.onClose();
         }, 500);

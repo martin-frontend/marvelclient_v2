@@ -5,6 +5,8 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import RecentBettingMediator from "./RecentBettingMediator";
 import RecentBettingProxy from "./RecentBettingProxy";
 import gsap, { Linear, Elastic } from "gsap";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class RecentBetting extends AbstractView {
@@ -35,5 +37,8 @@ export default class RecentBetting extends AbstractView {
     destroyed() {
         clearInterval(this.timer);
         super.destroyed();
+    }
+    transformMoney(val: string) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT");
     }
 }

@@ -86,7 +86,7 @@ export default class RechargeTypeCommon extends AbstractView {
         const data = methodList[coin_name_unique].options[block_network_id];
         if (!data) return;
         const payemthod_id = data.payemthod_id;
-        if (payemthod_id == 5 || payemthod_id == 8 || payemthod_id == 10) {
+        if (payemthod_id == 5 || payemthod_id == 8 || payemthod_id == 10 || payemthod_id == 12) {
             const fixed_gold_list = data.fixed_gold_list;
 
             if (fixed_gold_list && fixed_gold_list.length > 0) {
@@ -151,7 +151,8 @@ export default class RechargeTypeCommon extends AbstractView {
         if (
             options[block_network_id].payemthod_id == 6 ||
             options[block_network_id].payemthod_id == 8 ||
-            options[block_network_id].payemthod_id == 10
+            options[block_network_id].payemthod_id == 10 ||
+            options[block_network_id].payemthod_id == 12
         ) {
             const fixed_gold_list = options[block_network_id].channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
@@ -196,7 +197,7 @@ export default class RechargeTypeCommon extends AbstractView {
             return channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
         }
 
-        if (data.payemthod_id == 10) {
+        if (data.payemthod_id == 10 || data.payemthod_id == 12) {
             return data.fixed_gold_list;
         }
         return [];

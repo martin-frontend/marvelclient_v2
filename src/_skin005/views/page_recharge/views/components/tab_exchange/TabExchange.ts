@@ -19,7 +19,7 @@ export default class TabExchange extends AbstractView {
 
     public get isUnityExchange(): boolean {
         const { coin_name_unique } = this.form;
-        console.log("----- 兑换数据-----", this.pageData.methodList[coin_name_unique]);
+        // console.log("----- 兑换数据-----", this.pageData.methodList[coin_name_unique]);
         return this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].payment_method_type == 7;
     }
 

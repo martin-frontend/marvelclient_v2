@@ -13,6 +13,7 @@ export default class CustomSelect extends AbstractView {
     @Prop({ default: 16 }) fontSize!: number;
     @Prop({ default: 30 }) iconSize!: number;
     @Prop({ default: null }) isSetChange!: boolean | undefined;
+    @Prop({ default: "" }) placeholder!: string;
     private selectValue = this.getValue;
 
     @Prop() value!: any;

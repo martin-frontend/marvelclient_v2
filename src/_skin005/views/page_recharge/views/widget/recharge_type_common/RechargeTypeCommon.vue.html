@@ -126,7 +126,7 @@
         <!-- alipay wechat bank -->
         <div
             v-if="pageData.methodList[form.coin_name_unique] && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8
-            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10)"
+            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 12)"
         >
             <div v-if="isShowChannel" class="mt-4">
                 <div class="primary--text font-weight-bold text-16">{{LangUtil("选择支付通道")}}</div>
@@ -390,7 +390,7 @@
                         <!-- alipay wechat bank -->
                         <div
                             v-if="pageData.methodList[form.coin_name_unique] && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8 
-                            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10)"
+                            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 12)"
                         >
                             <template v-if="isShowChannel">
                                 <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("选择支付通道")}}</div>

@@ -71,7 +71,7 @@ export default class PageRechargeMediator extends AbstractMediator {
             case net.EventType.api_user_var_recharge_create:
                 PanelUtil.showAppLoading(false);
                 console.log("收到 body", body);
-                if (body.paymethod_id && body.paymethod_id == 10) {
+                if (body.paymethod_id && (body.paymethod_id == 10 || body.paymethod_id == 12)) {
                     //console.log("打开 二维码");
                     //myProxy.showPreview(body.qrcode);
                     myProxy.api_user_var_recharge_create_callback(body);

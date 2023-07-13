@@ -76,6 +76,11 @@ export default class ExchangeTypeCommon extends AbstractView {
         this.exchangeProxy.curPixkeyItem.errinfo = "";
         console.log("被修改", this.exchangeProxy.pix_key_select);
     }
+
+    onBankChange() {
+        console.log("银行修改---");
+    }
+
     onBlurInput_option() {
         return this.exchangeProxy.onBlurInput_option();
     }
@@ -134,6 +139,9 @@ export default class ExchangeTypeCommon extends AbstractView {
     onItemClick(key: string) {
         //console.log("   ----当前  点击----", key);
         this.form.coin_name_unique = key;
+        this.$nextTick(() => {
+            this.onChangeSub(this.form.block_network_id);
+        });
     }
 
     onChangeSub(value: any) {
@@ -305,9 +313,10 @@ export default class ExchangeTypeCommon extends AbstractView {
         this.exchangeProxy.showRequires = <any>[];
         if (!this.form.requires) return;
 
-        const keys = Object.keys(this.form.requires);
+        let keys = Object.keys(this.form.requires);
         if (keys.length < 1) return;
 
+        keys = keys.sort((a: any, b: any) => this.form.requires[b].sort - this.form.requires[a].sort);
         for (let index = 0; index < keys.length; index++) {
             const element = this.form.requires[keys[index]];
 
@@ -319,7 +328,11 @@ export default class ExchangeTypeCommon extends AbstractView {
                 inputValue: "", //用户的输入值
                 errinfo: "", //错误信息
                 timeHeadle: null, //错误提示的句柄
+                isSelect: false,
             };
+            if (element.options) {
+                obj.isSelect = true;
+            }
             this.exchangeProxy.showRequires.push(obj);
         }
     }

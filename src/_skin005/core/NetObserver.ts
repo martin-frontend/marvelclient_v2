@@ -305,8 +305,11 @@ export default class NetObserver extends AbstractMediator {
                     }
                     let msgstr = LangUtil("进入游戏");
                     let isShowConfig = false;
-                    //@ts-ignore
-                    let sum_money = this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money;
+                    let sum_money = 0;
+                    if (core.user_id) {
+                        //@ts-ignore
+                        sum_money = this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money;
+                    }
 
                     // msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
                     if (settle_coin_name_unique && settle_coin_name_unique != coin_name_unique) {
@@ -330,7 +333,7 @@ export default class NetObserver extends AbstractMediator {
                         //msgstr = LangUtil("当前余额为{0}:{2}",coin_name_unique,this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money);
                         isShowConfig = true;
                     } else {
-                        msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
+                        if (coin_name_unique) msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
                     }
 
                     this.openGameUrl(body, msgstr, isShowConfig);

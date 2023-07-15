@@ -265,10 +265,10 @@
         <!-- vip 等级 -->
         <v-card flat color="transparent" class="mt-8" max-width="100%" id="vipLevel">
             <span class="text-20 font-weight-bold">{{LangUtil('VIP等级')}} </span>
-            <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text">
+            <!-- <p class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text">
                 {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
-            </p>
-
+            </p> -->
+            <div class="ma-0 mt-1 ml-2 ml-md-0 text-14 nomal_text_1--text" v-html="LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')"></div>
             <v-slide-group class="mt-10" show-arrows>
                 <v-slide-item v-for="(item, level) of pageData.vipConfig" :key="level">
                     <v-card color="transparent">
@@ -738,9 +738,8 @@
         <!-- vip 等级 -->
         <v-card flat color="transparent" class="mt-8" max-width="100%" id="vipLevel">
             <span class="text-16 font-weight-bold">{{LangUtil('VIP等级')}} </span>
-            <p class="ma-0 mt-1 ml-md-0 text-12 textGray--text">
-                {{LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')}}
-            </p>
+            <div class="ma-0 mt-1 ml-md-0 text-12 textGray--text" v-html="LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')"></div>
+
             <div class="mt-3">
                 <!-- 手机 -->
                 <v-sheet

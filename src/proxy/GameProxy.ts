@@ -98,7 +98,9 @@ export default class GameProxy extends AbstractProxy {
                 vendor_type_name: "近期游戏",
                 list: this.gameHistoryList,
             };
-            this.lobbyMenuIndex.unshift(obj);
+            if (GlobalVar.skin == "skin009") {
+                this.lobbyMenuIndex.push(obj);
+            } else this.lobbyMenuIndex.unshift(obj);
         }
     }
     setGameCategory(body: any) {

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "GOTHAM_BOLD";
+    src: url('./Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: "GOTHAM_BOOK";
+    src: url('./Roboto-Regular.ttf');
+}

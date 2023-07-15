@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode, containsAllChars } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { Component, Watch } from "vue-property-decorator";
 import DialogRegisterMediator from "../mediator/DialogRegisterMediator";
@@ -26,6 +26,7 @@ export default class DialogRegister extends AbstractView {
     SkinVariable = SkinVariable;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
     email_error_info = "";
+    password_error_info = "";
     constructor() {
         super(DialogRegisterMediator);
     }
@@ -95,6 +96,9 @@ export default class DialogRegister extends AbstractView {
         return "+" + this.form.area_code;
     }
 
+    get phoneLength() {
+        return GlobalVar.skin == "skin010" ? 10 : 11;
+    }
     @Watch("tempSelectCode")
     onBankInfoChange() {
         console.log("区号值变化了", this.tempSelectCode);
@@ -162,6 +166,11 @@ export default class DialogRegister extends AbstractView {
         const { username, password, password_confirm, verify_code, register_type, mobile_username, email_username, birth_date } = this.form;
         if (!this.chickYears()) {
             return false;
+        }
+        if (GameConfig.config.register_regex == 2) {
+            if (!containsAllChars(password)) {
+                return false;
+            }
         }
         if (!this.isDragAuth && !checkVerifyVode(verify_code)) {
             return false;
@@ -254,21 +263,96 @@ export default class DialogRegister extends AbstractView {
             PanelUtil.message_success(LangUtil("账号小于4位，请重新输入"));
         }
     }
+    get passwordTips() {
+        if (GameConfig.config.register_regex == 2) {
+            return [
+                { title: "必须包含字母大写", state: 0, id: 0, select: /[A-Z]/ },
+                { title: "必须包含字母小写", state: 0, id: 1, select: /[a-z]/ },
+                { title: "必须包含数字", state: 0, id: 2, select: /\d/ },
+                { title: "必须包含特殊字符", state: 0, id: 3, select: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/ },
+                { title: "长度6-20位", state: 0, id: 4, select: /^.{6,20}$/ },
+            ];
+        } else {
+            return [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
+        }
+    }
+    show = false;
+    get passwordConfirmTips() {
+        const list = JSON.parse(JSON.stringify(this.passwordTips));
+        for (let index = 0; index < this.passwordTips.length; index++) {
+            this.passwordTips[index].state = 0;
+        }
+        list.push({ title: "必须与密码相同", state: 0, id: 50, select: null });
+        return list;
+    }
+
+    private _checkTips(str: string, tips: any) {
+        for (let index = 0; index < tips.length; index++) {
+            const element = tips[index];
+            let res = false;
+            if (element.id == 50) {
+                res = !!this.form.password && !!this.form.password.trim() && this.form.password == this.form.password_confirm;
+            } else {
+                res = this.passwordTips[element.id].select.test(str);
+            }
+            // console.log("  当前条件 " + element.title+ " 结果",res);
+            element.state = res ? 1 : 0;
+        }
+    }
+    onPasswordInput() {
+        this._checkTips(this.form.password, this.passwordTips);
+    }
+    onPasswordConfirmInput() {
+        this._checkTips(this.form.password_confirm, this.passwordConfirmTips);
+    }
     onPasswordBlur() {
         if (this.form.password == "") return;
-        if (!checkUserPassword(this.form.password)) {
-            PanelUtil.message_success(LangUtil("密码太短"));
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.form.password)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.form.password)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        } else {
+            if (!checkUserPassword(this.form.password)) {
+                // PanelUtil.message_success(LangUtil("密码太短"));
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
         }
+        this.password_error_info = "";
     }
 
     onPasswordConfirmBlur() {
         if (this.form.password_confirm == "") return;
+
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.form.password_confirm)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.form.password_confirm)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        }
+
         if (!checkUserPassword(this.form.password)) {
-            PanelUtil.message_success(LangUtil("密码太短"));
+            // PanelUtil.message_success(LangUtil("密码太短"));
+            this.password_error_info = LangUtil("密码太短");
+            return;
         }
         if (this.form.password !== this.form.password_confirm) {
-            PanelUtil.message_success(LangUtil("密码不一致"));
+            // PanelUtil.message_success(LangUtil("密码不一致"));
+            this.password_error_info = LangUtil("密码不一致");
+            return;
         }
+        this.password_error_info = "";
     }
     public get verityString(): string {
         if (this.getverityProxy.pageData.downcount > 0) {
@@ -323,6 +407,7 @@ export default class DialogRegister extends AbstractView {
     @Watch("form.register_type")
     ontypechange() {
         this.email_error_info = "";
+        this.password_error_info = "";
         this.birthday_error_info = "";
         this.checkbox = false;
     }

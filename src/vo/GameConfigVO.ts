@@ -108,6 +108,8 @@ export interface GameConfigVO {
     dialog_manager: string[];
     /**提现的小数 */
     exchangeDigits: number;
+    /**是否使用 复杂的密码 1为普通密码  2为复杂密码 */
+    register_regex: number;
     /** FB厂商id */
     FBVendorId: number;
 }

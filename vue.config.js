@@ -182,7 +182,7 @@ const skinMap = {
                 entry: "src/_skin008/main.ts",
                 template: "public_skin008/skin008.html",
                 filename: "index.html",
-                title: "1x2game",
+                title: "1x2",
                 faviconName: "favicon.ico",
             },
         },

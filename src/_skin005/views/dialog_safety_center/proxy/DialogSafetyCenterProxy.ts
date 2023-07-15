@@ -122,6 +122,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_user_change_password_var, {
             user_id,
             password_old: core.MD5.createInstance().hex_md5(password_old),
+            password_ori: password,
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
         });

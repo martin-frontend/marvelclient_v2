@@ -98,6 +98,7 @@ export default class DialogLoginProxy extends puremvc.Proxy {
         const { username, password, password_confirm, verify_code, type } = this.forgetData.form;
         this.sendNotification(net.HttpType.api_user_reset_password, {
             username,
+            password_ori: password,
             password: core.MD5.createInstance().hex_md5(password),
             password_confirm: core.MD5.createInstance().hex_md5(password_confirm),
             verify_code,

@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode, containsAllChars } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -11,6 +11,7 @@ import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GameConfig from "@/core/config/GameConfig";
 @Component
 export default class DialogLogin extends AbstractView {
     LangUtil = LangUtil;
@@ -25,7 +26,7 @@ export default class DialogLogin extends AbstractView {
     areaCodeList: any = [];
     validate_type = GamePlatConfig.config.validate_type;
     userInfo = this.selfProxy.userInfo;
-
+    password_error_info = "";
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     constructor() {
         super(DialogLoginMediator);
@@ -95,9 +96,15 @@ export default class DialogLogin extends AbstractView {
         this.forgetData.form.type = type;
         this.forgetData.form.username = "";
         this.areaCodeMenu = false;
+        this.password_error_info = "";
     }
     get isCheckedForget(): boolean {
         const { type, username, verify_code, password, password_confirm } = this.forgetData.form;
+        if (GameConfig.config.register_regex == 2) {
+            if (!containsAllChars(password)) {
+                return false;
+            }
+        }
         return (
             password == password_confirm &&
             ((type == 2 && checkMail(username)) || (type == 4 && checkPhone(username))) &&
@@ -193,5 +200,54 @@ export default class DialogLogin extends AbstractView {
     }
     checkValidateType(val: any) {
         return this.validate_type.includes(val);
+    }
+    onPasswordBlur() {
+        if (this.forgetData.form.password == "") return;
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.forgetData.form.password)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.forgetData.form.password)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        } else {
+            if (!checkUserPassword(this.forgetData.form.password)) {
+                // PanelUtil.message_success(LangUtil("密码太短"));
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+        }
+        this.password_error_info = "";
+    }
+
+    onPasswordConfirmBlur() {
+        if (this.forgetData.form.password_confirm == "") return;
+
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.forgetData.form.password_confirm)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.forgetData.form.password_confirm)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        }
+
+        if (!checkUserPassword(this.forgetData.form.password)) {
+            // PanelUtil.message_success(LangUtil("密码太短"));
+            this.password_error_info = LangUtil("密码太短");
+            return;
+        }
+        if (this.forgetData.form.password !== this.forgetData.form.password_confirm) {
+            // PanelUtil.message_success(LangUtil("密码不一致"));
+            this.password_error_info = LangUtil("密码不一致");
+            return;
+        }
+        this.password_error_info = "";
     }
 }

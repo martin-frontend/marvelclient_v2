@@ -286,7 +286,20 @@ export function checkUserPassword(value: string): boolean {
     // const Regx = new RegExp("(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}");
     return value.length >= 6 && value.length <= 20; // && Regx.test(value);
 }
+export function containsAllChars(input: string): boolean {
+    // console.log("检测是的为",input);
+    // 匹配字母、数字和特殊字符的正则表达式
+    // 匹配以大写字母开头的正则表达式
+    const regex_1 = /^[A-Z]/;
+    if (!regex_1.test(input)) return false;
 
+    //const regex = /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/;
+    //const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[\w!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/;
+    const regex = /^(?=.*[A-Z])(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[\w!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/;
+    const res = regex.test(input);
+    // console.log("结果为" ,res);
+    return regex.test(input);
+}
 /**
  * 检测是否只有英语大写与数字
  * @param value

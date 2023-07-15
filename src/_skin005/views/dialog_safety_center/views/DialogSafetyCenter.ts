@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import PageBlur from "@/_skin005/core/PageBlur";
-import { checkMail, checkPhone, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import { checkMail, checkPhone, checkUserPassword, checkVerifyVode, containsAllChars } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -10,6 +10,8 @@ import DialogSafetyCenterProxy from "../proxy/DialogSafetyCenterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import GameConfig from "@/core/config/GameConfig";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogSafetyCenter extends AbstractView {
@@ -97,7 +99,55 @@ export default class DialogSafetyCenter extends AbstractView {
         const { password_old, password, password_confirm } = this.formChangePassword;
         return password == password_confirm && checkUserPassword(password_old) && checkUserPassword(password);
     }
+    get phoneLength() {
+        return GlobalVar.skin == "skin010" ? 10 : 11;
+    }
+    get passwordTips() {
+        if (GameConfig.config.register_regex == 2) {
+            return [
+                { title: "必须包含字母大写", state: 0, id: 0, select: /[A-Z]/ },
+                { title: "必须包含字母小写", state: 0, id: 1, select: /[a-z]/ },
+                { title: "必须包含数字", state: 0, id: 2, select: /\d/ },
+                { title: "必须包含特殊字符", state: 0, id: 3, select: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/ },
+                { title: "长度6-20位", state: 0, id: 4, select: /^.{6,20}$/ },
+            ];
+        } else {
+            return [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
+        }
+    }
+    show = false;
+    get passwordConfirmTips() {
+        const list = JSON.parse(JSON.stringify(this.passwordTips));
+        for (let index = 0; index < this.passwordTips.length; index++) {
+            this.passwordTips[index].state = 0;
+        }
+        list.push({ title: "必须与密码相同", state: 0, id: 50, select: null });
 
+        return list;
+    }
+
+    private _checkTips(str: string, tips: any) {
+        for (let index = 0; index < tips.length; index++) {
+            const element = tips[index];
+            let res = false;
+            if (element.id == 50) {
+                res =
+                    !!this.formChangePassword.password &&
+                    !!this.formChangePassword.password.trim() &&
+                    this.formChangePassword.password == this.formChangePassword.password_confirm;
+            } else {
+                res = this.passwordTips[element.id].select.test(str);
+            }
+            // console.log("  当前条件 " + element.title+ " 结果",res);
+            element.state = res ? 1 : 0;
+        }
+    }
+    onPasswordInput() {
+        this._checkTips(this.formChangePassword.password, this.passwordTips);
+    }
+    onPasswordConfirmInput() {
+        this._checkTips(this.formChangePassword.password_confirm, this.passwordConfirmTips);
+    }
     // getCode() {
     //     if (this.pageData.tabIndex == 0) {
     //         dialog_get_verity.showSmsVerity(1, this.formBindPhone.area_code, this.formBindPhone.mobile);
@@ -105,6 +155,56 @@ export default class DialogSafetyCenter extends AbstractView {
     //         dialog_get_verity.showEmailVerity(7, this.formBindEmail.email);
     //     }
     // }
+    password_error_info = "";
+    onPasswordBlur() {
+        if (this.formChangePassword.password == "") return;
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.formChangePassword.password)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.formChangePassword.password)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        } else {
+            if (!checkUserPassword(this.formChangePassword.password)) {
+                // PanelUtil.message_success(LangUtil("密码太短"));
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+        }
+        this.password_error_info = "";
+    }
+
+    onPasswordConfirmBlur() {
+        if (this.formChangePassword.password_confirm == "") return;
+
+        if (GameConfig.config.register_regex == 2) {
+            if (!checkUserPassword(this.formChangePassword.password_confirm)) {
+                this.password_error_info = LangUtil("密码太短");
+                return;
+            }
+
+            if (!containsAllChars(this.formChangePassword.password_confirm)) {
+                this.password_error_info = LangUtil("用户密码必须是6-20位字母、数字、特殊字符");
+                return;
+            }
+        }
+
+        if (!checkUserPassword(this.formChangePassword.password)) {
+            // PanelUtil.message_success(LangUtil("密码太短"));
+            this.password_error_info = LangUtil("密码太短");
+            return;
+        }
+        if (this.formChangePassword.password !== this.formChangePassword.password_confirm) {
+            // PanelUtil.message_success(LangUtil("密码不一致"));
+            this.password_error_info = LangUtil("密码不一致");
+            return;
+        }
+        this.password_error_info = "";
+    }
 
     onAreaCodeInput() {
         if (this.areaCodeSearch == "") {
@@ -125,6 +225,9 @@ export default class DialogSafetyCenter extends AbstractView {
 
     onTabClick(tabIndex: number) {
         this.pageData.tabIndex = tabIndex;
+        this.password_error_info = "";
+        this.email_error_info = "";
+        this.myProxy.resetForm();
     }
 
     onBindMobile() {

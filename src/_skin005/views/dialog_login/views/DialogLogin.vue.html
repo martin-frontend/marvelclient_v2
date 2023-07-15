@@ -136,16 +136,18 @@
                     v-model="forgetData.form.verify_code"
                 />
                 <CustomPassword
-                    class="mb-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="forgetData.form.password"
+                    @blur="onPasswordBlur"
                 />
+                <v-sheet class="text-12 red--text" color="transparent" style="position: absolute;"> {{password_error_info}} </v-sheet>
                 <CustomPassword
-                    class="mb-6"
+                    class="my-6"
                     icon="mdi-lock"
                     :placeholder="LangUtil('密码确认')"
                     v-model="forgetData.form.password_confirm"
+                    @blur="onPasswordConfirmBlur"
                 />
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedForget" block @click="onSubmitForget">
                     {{LangUtil("提交")}}
@@ -323,13 +325,14 @@
                     v-model="forgetData.form.verify_code"
                 />
                 <CustomPassword
-                    class="mb-4"
+
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="forgetData.form.password"
                 />
+                <v-sheet class="text-12 red--text" color="transparent" style="position: absolute;"> {{password_error_info}} </v-sheet>
                 <CustomPassword
-                    class="mb-6"
+                    class="my-4"
                     icon="mdi-lock"
                     :placeholder="LangUtil('密码确认')"
                     v-model="forgetData.form.password_confirm"

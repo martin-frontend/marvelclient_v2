@@ -38,6 +38,10 @@ export default class CustomInput extends AbstractView {
             return;
         }
         if (this.isOnlyInt) {
+            if (this.inputValue.length > this.maxlength) {
+                this.$emit("input", this.inputValue);
+                return;
+            }
             this.inputValue = event.target.value.replace(/[^0-9]/g, "");
             this.$emit("input", this.inputValue);
             return;

@@ -156,11 +156,25 @@
     .borthday_class input[readonly] {
         opacity: 1 !important;
     }
+    .tip_main_class{
+        background: #202121;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
+    }
 }
 
 ::v-deep .theme--light {
     .borthday_class input::placeholder {
         color: #a4a4a4 !important;
         opacity: 1 !important;
+    }
+    .tip_main_class{
+        background: #fff;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
     }
 }

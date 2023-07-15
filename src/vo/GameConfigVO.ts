@@ -108,4 +108,6 @@ export interface GameConfigVO {
     dialog_manager: string[];
     /**提现的小数 */
     exchangeDigits: number;
+    /** FB厂商id */
+    FBVendorId: number;
 }

@@ -12,7 +12,7 @@
     >
         <template v-if="item.icon">
             <div :class="item.id==3 ? 'bounce' : ''">
-                <svg-icon :icon="item.icon" class="text-18 mt-2"></svg-icon>
+                <svg-icon :icon="item.icon" class="text-16 mt-2"></svg-icon>
             </div>
         </template>
         <template v-else>
@@ -25,7 +25,7 @@
                 :class="{'is-show':curSvgaType(item) == key}"
             ></SvgaPlayer>
         </template>
-        <div v-if="item.id!=10" class="text-12" style="text-align: center" :class="{'text':item.id==9}">{{item.name}}</div>
-        <div v-else class="text-12" style="text-align: center" :class="{'text':item.id==9}">{{guideText}}</div>
+        <div v-if="item.id!=10" class="text-10" style="text-align: center" :class="{'text':item.id==9}">{{item.name}}</div>
+        <div v-else class="text-10" style="text-align: center" :class="{'text':item.id==9}">{{guideText}}</div>
     </v-sheet>
 </v-footer>

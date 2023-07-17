@@ -151,22 +151,22 @@ export default class PageActivityProxy extends puremvc.Proxy {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
     }
-    get promotion_reward_model_id() {
-        return (
-            GameConfig.config.promotion_reward_model_id ?? {
-                id: 0,
-                rule_id: 0,
-            }
-        );
-    }
+    // get promotion_reward_model_id() {
+    //     return (
+    //         GameConfig.config.promotion_reward_model_id ?? {
+    //             id: 0,
+    //             rule_id: 0,
+    //         }
+    //     );
+    // }
     api_plat_activity_var_netback(idx: any) {
         if (!core.user_id) return;
 
         // 推广奖励
-        if (idx == this.promotion_reward_model_id.id) {
-            PanelUtil.openpanel_promotionreward();
-            return;
-        }
+        // if (idx == this.promotion_reward_model_id.id) {
+        //     PanelUtil.openpanel_promotionreward();
+        //     return;
+        // }
 
         const url = net.getUrl(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
         PanelUtil.showAppLoading(true);

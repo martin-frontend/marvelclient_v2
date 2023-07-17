@@ -31,6 +31,7 @@
                         width="24%"
                         height="47%"
                         v-for="(i,index) in data"
+                        :key="index"
                         style="position: relative"
                     >
                         <v-img
@@ -120,6 +121,7 @@
                         height="47%"
                         v-for="(i,index) in data"
                         style="position: relative"
+                        :key="index"
                     >
                         <v-img
                             v-if="i.match_info"

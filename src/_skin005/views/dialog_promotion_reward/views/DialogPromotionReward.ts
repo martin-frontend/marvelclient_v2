@@ -16,13 +16,6 @@ export default class DialogPromotionReward extends AbstractView {
     myProxy: DialogPromotionRewardProxy = this.getProxy(DialogPromotionRewardProxy);
     pageData = this.myProxy.pageData;
     data = this.pageData.myData;
-    coinImg = [
-        require("@/_skin005/assets/promotion_reward/USDT1.png"),
-        require("@/_skin005/assets/promotion_reward/USDT2.png"),
-        require("@/_skin005/assets/promotion_reward/USDT3.png"),
-        require("@/_skin005/assets/promotion_reward/USDT4.png"),
-        require("@/_skin005/assets/promotion_reward/USDT5.png"),
-    ];
     promotion_reward_model_id = this.pageData.promotion_reward_model_id;
     GamePlatConfig = GamePlatConfig;
     get got_path() {
@@ -124,7 +117,6 @@ export default class DialogPromotionReward extends AbstractView {
         let lang = core.lang;
         
         const inc: any = ["zh_CN", "en_EN", "es_ES", "pt_PT"];
-        console.warn('lang', lang, inc.includes(inc));
         if (!inc.includes(lang)) {
             lang = "zh_CN";
         }

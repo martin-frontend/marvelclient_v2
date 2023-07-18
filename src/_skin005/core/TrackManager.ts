@@ -130,6 +130,26 @@ function fbq(eventName: string, data: any, type: string = "track") {
     //         fbq("trackCustom", eventName, data);
     //     }
     // }
+    if (!(core.app_type == core.EnumAppType.APP && GameConfig.config.useFacebookLog == 1)) return;
+    switch (eventName) {
+        case TrackEventMap.RegistrationSuccess: //注册成功
+            WebViewBridge.getInstance().facebookLog({ eventName: "CompleteRegistration", eventValues: data, type: "track" });
+            break;
+        case TrackEventMap.repeatDepositSuccess: //充值成功
+        case TrackEventMap.FTDDepositSuccess: //充值成功
+            {
+                data.value = data.amount_usd;
+                data.currency = "USD";
+                data.transaction_id = data.bet_id;
+                WebViewBridge.getInstance().facebookLog({ eventName: "Purchase", eventValues: data, type: "track" });
+            }
+            break;
+        default:
+            {
+                WebViewBridge.getInstance().facebookLog({ eventName: eventName, eventValues: data, type: "trackCustom" });
+            }
+            break;
+    }
 }
 /**Apps Flyer */
 function flyer(eventName: string, data: any) {

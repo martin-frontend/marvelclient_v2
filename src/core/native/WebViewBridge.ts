@@ -25,6 +25,7 @@ export enum H2NType {
     OPEN_ALIPAY, //打开支付宝
     OPEN_BROWSER_SYSTEM, //系统浏览器打开外部网页
     APPSFLYER_LOG, //appsflyer打点
+    FACEBOOK_LOG, //appsflyer打点
 }
 export enum N2HType {
     ANDROID_BACK, //Android设备返回按钮
@@ -43,7 +44,6 @@ export default class WebViewBridge extends puremvc.Proxy {
     constructor() {
         super("WebViewBridge");
     }
-
 
     public static getInstance(): WebViewBridge {
         if (!this.instance) {
@@ -244,5 +244,10 @@ export default class WebViewBridge extends puremvc.Proxy {
     public flyerLog(data: any) {
         console.warn(">>>>>>flyerLog: ", data);
         this.sendNative(H2NType.APPSFLYER_LOG, data, null);
+    }
+    /**facebook打点 */
+    public facebookLog(data: any) {
+        console.warn(">>>>>>facebookLog: ", data);
+        this.sendNative(H2NType.FACEBOOK_LOG, data, null);
     }
 }

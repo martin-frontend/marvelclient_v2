@@ -112,4 +112,6 @@ export interface GameConfigVO {
     register_regex: number;
     /** FB厂商id */
     FBVendorId: number;
+    /**使用内置的FB事件 */
+    useFacebookLog:number;
 }

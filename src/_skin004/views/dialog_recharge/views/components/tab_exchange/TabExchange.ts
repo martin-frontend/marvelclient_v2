@@ -215,7 +215,7 @@ export default class TabExchange extends AbstractView {
         this.form.account = item;
     }
     onBankcardInfo() {
-        dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo);
+        dialog_bankcard_info.show(this.myProxy.exchangeProxy.bankCardInfo, true);
     }
     public get allCardNub(): any {
         if (!this.form.account || this.form.account == "") {

@@ -40,7 +40,7 @@
                     </v-sheet>
                     <v-spacer />
                     <v-btn class="colorBtnBg mr-3" small @click.stop.prevent="onEdit(item)">{{LangUtil("备注")}}</v-btn>
-                    <v-btn color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
+                    <v-btn class="skin004_3-text2-color" color="colorBlue" small @click.stop.prevent="onDelete(item)">{{LangUtil("删除")}}</v-btn>
                 </v-sheet>
             </v-sheet>
             <ListNodata v-if="pageData.list.length == 0" height="411" />

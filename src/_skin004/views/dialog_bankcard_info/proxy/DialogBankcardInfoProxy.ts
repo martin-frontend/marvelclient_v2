@@ -1,3 +1,5 @@
+import { objectRemoveNull } from "@/core/global/Functions";
+
 export default class DialogBankcardInfoProxy extends puremvc.Proxy {
     static NAME = "DialogBankcardInfoProxy";
 
@@ -6,6 +8,10 @@ export default class DialogBankcardInfoProxy extends puremvc.Proxy {
         bShow: false,
         //如果是列表，使用以下数据，否则删除
         listQuery: {
+            user_id: core.user_id,
+            type: 4,
+            coin_name_unique: "",
+            block_network_id: "",
             page_count: 1,
             page_size: 20,
         },
@@ -20,6 +26,10 @@ export default class DialogBankcardInfoProxy extends puremvc.Proxy {
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
         Object.assign(this.pageData.listQuery, {
+            user_id: "",
+            type: "",
+            coin_name_unique: "",
+            block_network_id: "",
             page_count: 1,
             page_size: 20,
         });
@@ -44,5 +54,11 @@ export default class DialogBankcardInfoProxy extends puremvc.Proxy {
         // Object.assign(this.pageData.pageInfo, data.pageInfo);
         this.pageData.list = data;
         //this.pageData.list = this.setTestData();
+    }
+
+    api_user_var_payment_method_index() {
+        this.pageData.loading = true;
+        this.pageData.listQuery.user_id = core.user_id;
+        this.sendNotification(net.HttpType.api_user_var_payment_method_index, objectRemoveNull(this.pageData.listQuery));
     }
 }

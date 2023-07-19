@@ -11,7 +11,7 @@ import dialog_nick_name from "@/_skin004/views/dialog_nick_name";
 import dialog_safety_center from "@/_skin004/views/dialog_safety_center";
 import dialog_personal_card from "@/_skin004/views/dialog_personal_card";
 import DialogSafetyCenterProxy from "@/_skin004/views/dialog_safety_center/proxy/DialogSafetyCenterProxy";
-import dialog_trade_password from "@/views/dialog_trade_password";
+import dialog_trade_password from "@/_skin004/views/dialog_trade_password";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_real_name from "@/_skin004/views/dialog_real_name";
 import dialog_google_settings from "@/_skin004/views/dialog_google_settings";

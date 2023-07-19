@@ -5,6 +5,7 @@ import DialogSpeedVerificationProxy from "../proxy/DialogSpeedVerificationProxy"
 import LangUtil from "@/core/global/LangUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PageBlur from "@/_skin005/core/PageBlur";
+import Assets from "@/_skin005/assets/Assets";
 @Component
 export default class DialogSpeedVerification extends AbstractView {
     LangUtil = LangUtil;
@@ -15,18 +16,7 @@ export default class DialogSpeedVerification extends AbstractView {
     constructor() {
         super(DialogSpeedVerificationMediator);
     }
-    sliderimgs = [
-        require(`@/_skin005/assets/verify/bg_1.jpg`),
-        require(`@/_skin005/assets/verify/bg_2.jpg`),
-        require(`@/_skin005/assets/verify/bg_3.jpg`),
-        require(`@/_skin005/assets/verify/bg_4.jpg`),
-        require(`@/_skin005/assets/verify/bg_5.jpg`),
-        require(`@/_skin005/assets/verify/bg_6.jpg`),
-        require(`@/_skin005/assets/verify/bg_7.jpg`),
-        require(`@/_skin005/assets/verify/bg_8.jpg`),
-        require(`@/_skin005/assets/verify/bg_9.jpg`),
-        require(`@/_skin005/assets/verify/bg_10.jpg`),
-    ];
+    sliderimgs = Assets.verityImgArr;
     closeHandle = 0;
     onClose() {
         this.pageData.bShow = false;
@@ -45,14 +35,23 @@ export default class DialogSpeedVerification extends AbstractView {
                 clearTimeout(this.closeHandle);
                 this.closeHandle = 0;
             }
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
                 //@ts-ignore
                 if (this.$refs.sliderVerifyBlock) this.$refs.sliderVerifyBlock.reset();
             });
         }
     }
 
-    onsuccess(value:any) {
+    @Watch("pageData.verification")
+    onChangePos()
+    {
+        if( this.$refs.sliderVerifyBlock)
+        {
+            //@ts-ignore
+            this.$refs.sliderVerifyBlock.refresh();
+        }
+    }
+    onsuccess(value: any) {
         // if (this.myProxy.pageData.successCallback) {
         //     this.myProxy.pageData.successCallback();
         // }

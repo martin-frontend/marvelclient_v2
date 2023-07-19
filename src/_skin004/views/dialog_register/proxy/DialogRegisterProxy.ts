@@ -1,4 +1,5 @@
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
 
 export default class DialogRegisterProxy extends puremvc.Proxy {
     static NAME = "DialogRegisterProxy";
@@ -22,9 +23,13 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             backup_phone: "", //账号注册里面的手机号
         },
         auth_image: "",
+        auth_drag_position: -1, //滑动验证滑块所在的位置
         areaCode: <any>[],
     };
-
+    setAuthDrag(data: any) {
+        this.pageData.loading = false;
+        this.pageData.auth_drag_position = getAuthDragValue(data);
+    }
     resetForm() {
         Object.assign(this.pageData.form, {
             invite_user_id: core.invite_user_id,
@@ -68,5 +73,9 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
     /**获取手机区号 */
     api_public_area_code() {
         this.sendNotification(net.HttpType.api_public_area_code);
+    }
+    api_public_auth_drag() {
+        this.pageData.loading = true;
+        this.sendNotification(net.HttpType.api_public_auth_drag, { uuid: core.device });
     }
 }

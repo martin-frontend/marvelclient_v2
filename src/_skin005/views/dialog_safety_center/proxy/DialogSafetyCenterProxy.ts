@@ -1,3 +1,4 @@
+import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
@@ -42,6 +43,7 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             logonPassword: "", //登录密码
         },
         auth_image: "",
+        auth_drag_position: -1,
     };
 
     resetForm() {
@@ -82,6 +84,10 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
                 }
             }
         }
+    }
+    setAuthDrag(data: any) {
+        PanelUtil.showAppLoading(false);
+        this.pageData.auth_drag_position = getAuthDragValue(data);
     }
     show() {
         this.resetForm();
@@ -154,5 +160,9 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
         }
         console.log("发送的数据为", sendobj);
         this.sendNotification(net.HttpType.api_user_change_password_gold_var, sendobj);
+    }
+    api_public_auth_drag() {
+        PanelUtil.showAppLoading(true);
+        this.sendNotification(net.HttpType.api_public_auth_drag, { uuid: core.device });
     }
 }

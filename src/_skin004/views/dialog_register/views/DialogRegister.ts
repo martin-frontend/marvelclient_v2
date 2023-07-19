@@ -11,6 +11,8 @@ import DialogRegisterProxy from "../proxy/DialogRegisterProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_message from "@/views/dialog_message";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import DialogSpeedVerification from "@/_skin004/views/dialog_speed_verification";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class DialogRegister extends AbstractView {
@@ -105,16 +107,20 @@ export default class DialogRegister extends AbstractView {
 
     get isCheck(): boolean {
         const { username, password, password_confirm, verify_code, register_type } = this.form;
+        if (!this.isDragAuth && !checkVerifyVode(verify_code)) {
+            return false;
+        }
         return (
             password == password_confirm &&
             ((register_type == 1 && checkUserName(username)) ||
                 (register_type == 2 && checkMail(username)) ||
                 (register_type == 4 && checkPhone(username))) &&
-            checkVerifyVode(verify_code) &&
             checkUserPassword(password)
         );
     }
-
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
     goLogin() {
         this.pageData.bShow = false;
         dialog_login.show();
@@ -133,7 +139,26 @@ export default class DialogRegister extends AbstractView {
     // }
 
     onRegister() {
-        this.myProxy.api_user_register();
+        // this.myProxy.api_user_register();
+        if (this.isDragAuth && (this.form.register_type == 1 || this.form.register_type == 32)) {
+            const that = this;
+            const successFun = function (val: any) {
+                that.myProxy.pageData.form.verify_code = val;
+                that.myProxy.api_user_register();
+            };
+            const failFun = function () {
+                that.myProxy.api_public_auth_drag();
+            };
+            that.myProxy.api_public_auth_drag();
+            DialogSpeedVerification.show(successFun, failFun, this.myProxy.pageData.auth_drag_position);
+            return;
+        }
+
+        if (ModulesHelper.isNeed_registerVerifiy())
+            DialogSpeedVerification.show(() => {
+                this.myProxy.api_user_register();
+            });
+        else this.myProxy.api_user_register();
     }
 
     onClose() {
@@ -144,7 +169,7 @@ export default class DialogRegister extends AbstractView {
     onWatchShow() {
         BlurUtil(this.pageData.bShow);
         if (this.pageData.bShow) {
-            this.myProxy.api_public_auth_code();
+            if (!this.isDragAuth) this.myProxy.api_public_auth_code();
 
             //没有账号注册
             if (!this.registerTypes.includes(1)) {

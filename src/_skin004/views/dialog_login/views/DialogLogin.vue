@@ -2,7 +2,7 @@
 <style src="./DialogLogin.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-import DialogGetVerity from "@/views/dialog_get_verity/views/DialogGetVerity.vue";
+import DialogGetVerity from "@/_skin004/views/dialog_get_verity/views/DialogGetVerity.vue";
 import AdvertiseInLogin from "@/views/widget/advertise_in_login/AdvertiseInLogin.vue";
 import CustomInput from "@/views/widget/custom_input/CustomInput.vue";
 import CustomPassword from "@/views/widget/custom_password/CustomPassword.vue";

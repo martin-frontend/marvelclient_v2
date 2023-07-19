@@ -9,7 +9,12 @@ export default class DialogTradePasswordMediator extends AbstractMediator {
     LangUtil = LangUtil;
 
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_change_password_gold_var, net.EventType.api_public_auth_code, net.EventType.REQUEST_ERROR];
+        return [
+            net.EventType.api_user_change_password_gold_var,
+            net.EventType.api_public_auth_code,
+            net.EventType.REQUEST_ERROR,
+            net.EventType.api_public_auth_drag,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -25,6 +30,9 @@ export default class DialogTradePasswordMediator extends AbstractMediator {
                 break;
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;
+                break;
+            case net.EventType.api_public_auth_drag:
+                myProxy.setAuthDrag(body);
                 break;
             case net.EventType.REQUEST_ERROR:
                 if (body.url == net.getUrl(net.HttpType.api_user_change_password_gold_var, body.data)) {

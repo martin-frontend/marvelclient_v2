@@ -1,6 +1,7 @@
 import GameConfig from "@/core/config/GameConfig";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
 
 export default class DialogTradePasswordProxy extends puremvc.Proxy {
     static NAME = "DialogTradePasswordProxy";
@@ -17,8 +18,12 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
             logonPassword: "", //登录密码
         },
         auth_image: "",
+        auth_drag_position: -1,
     };
-
+    setAuthDrag(data: any) {
+        PanelUtil.showAppLoading(false);
+        this.pageData.auth_drag_position = getAuthDragValue(data);
+    }
     resetForm() {
         Object.assign(this.pageData.form, {
             verify_code: "",
@@ -77,5 +82,9 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
     api_public_auth_code() {
         this.pageData.loading = true;
         this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
+    }
+    api_public_auth_drag() {
+        PanelUtil.showAppLoading(true);
+        this.sendNotification(net.HttpType.api_public_auth_drag, { uuid: core.device });
     }
 }

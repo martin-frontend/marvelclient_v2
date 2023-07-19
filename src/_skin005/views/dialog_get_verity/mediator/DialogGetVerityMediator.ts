@@ -10,6 +10,7 @@ export default class DialogGetVerityMediator extends AbstractMediator {
             net.EventType.api_public_auth_code,
             net.EventType.api_public_email_send,
             net.EventType.api_public_sms_send,
+            net.EventType.api_public_auth_drag,
             core.EventType.REQUEST_ERROR,
         ];
     }
@@ -22,6 +23,9 @@ export default class DialogGetVerityMediator extends AbstractMediator {
             case net.EventType.api_public_auth_code:
                 myProxy.pageData.auth_image = body;
                 PanelUtil.showAppLoading(false);
+                break;
+            case net.EventType.api_public_auth_drag:
+                myProxy.setAuthDrag(body);
                 break;
             case net.EventType.api_public_email_send:
             case net.EventType.api_public_sms_send:

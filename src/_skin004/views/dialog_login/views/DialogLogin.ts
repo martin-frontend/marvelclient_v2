@@ -10,6 +10,8 @@ import dialog_register from "@/_skin004/views/dialog_register";
 import { Component, Watch } from "vue-property-decorator";
 import DialogLoginMediator from "../mediator/DialogLoginMediator";
 import DialogLoginProxy from "../proxy/DialogLoginProxy";
+import DialogSpeedVerification from "@/_skin004/views/dialog_speed_verification";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class DialogLogin extends AbstractView {
@@ -114,7 +116,11 @@ export default class DialogLogin extends AbstractView {
     }
 
     private onSubmitLogin() {
-        this.myProxy.api_user_login_check();
+        if (ModulesHelper.isNeed_loginVerifiy())
+            DialogSpeedVerification.show(() => {
+                this.myProxy.api_user_login_check();
+            });
+        else this.myProxy.api_user_login_check();
     }
 
     private goForget() {

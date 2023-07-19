@@ -77,5 +77,16 @@ const VipMap = Object.freeze({
     19: require(`@/_skin005/assets/mine/VIP19.png`),
     20: require(`@/_skin005/assets/mine/VIP20.png`),
 });
-
-export default { commonIcon, CategoryIcon, VipMap, CategoryIcon_sel };
+const verityImgArr = [
+    require(`@/_skin005/assets/verify/bg_1.jpg`),
+    require(`@/_skin005/assets/verify/bg_2.jpg`),
+    require(`@/_skin005/assets/verify/bg_3.jpg`),
+    require(`@/_skin005/assets/verify/bg_4.jpg`),
+    require(`@/_skin005/assets/verify/bg_5.jpg`),
+    require(`@/_skin005/assets/verify/bg_6.jpg`),
+    require(`@/_skin005/assets/verify/bg_7.jpg`),
+    require(`@/_skin005/assets/verify/bg_8.jpg`),
+    require(`@/_skin005/assets/verify/bg_9.jpg`),
+    require(`@/_skin005/assets/verify/bg_10.jpg`),
+];
+export default { commonIcon, CategoryIcon, VipMap, CategoryIcon_sel, verityImgArr };

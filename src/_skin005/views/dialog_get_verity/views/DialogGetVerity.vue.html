@@ -1,4 +1,4 @@
-<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" max-width="400" persistent>
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :max-width="!isDragAuth ? 400 : 300" persistent>
     <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn class="text-12 mr-n4" color="transparent" elevation="0" text width="90"
             :disabled="!isCheck || pageData.downcount > 0" v-bind="attrs" v-on="on">
@@ -10,14 +10,13 @@
             </btn-yellow>
         </v-btn>
     </template> -->
-    <v-card class="rounded10" color="bgBanner" width="400" height="207">
+    <v-card v-if="!isDragAuth" class="rounded10" color="bgBanner" width="400" height="207">
         <com-dialog-title
             class="primary--text"
             :title="pageData.category == 0 ? '获取邮箱验证码' : '获取短信验证码'"
             @onClose="onClose"
             :isDialog="true"
         />
-
         <v-divider />
         <v-card-text class="d-flex mt-6 align-center">
             <CustomInput type="tel" icon="mdi-shield-check" v-model="pageData.form.auth_code" :placeholder="LangUtil('请输入验证码')">
@@ -27,6 +26,24 @@
         <v-card-actions class="mx-5 d-flex justify-center mt-n2">
             <btn-yellow class="text-14" min_width="90" height="30" @click.native="onSend">{{LangUtil("确定")}}</btn-yellow>
         </v-card-actions>
+    </v-card>
+    <v-card v-else class="rounded10 pb-5" color="bgBanner">
+        <com-dialog-title :title="pageData.category == 0 ? '获取邮箱验证码' : '获取短信验证码'" @onClose="onClose" :isDialog="true" />
+        <div class="d-flex justify-center">
+            <SlideVerify_1
+                :l="42"
+                :r="10"
+                :w="270"
+                :h="151"
+                :slider-text="sliderText"
+                :imgs="sliderimgs"
+                @success="onsuccess"
+                @fail="onfail"
+                @refresh="onRefresh"
+                ref="sliderVerifyBlock"
+                :positionX="pageData.verification"
+            ></SlideVerify_1>
+        </div>
     </v-card>
     <!-- <Overlay v-model="pageData.loading" /> -->
 </v-dialog>

@@ -14,6 +14,7 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
             net.EventType.api_public_area_code,
             net.EventType.api_user_change_password_gold_var,
             net.EventType.api_public_auth_code,
+            // net.EventType.api_public_auth_drag,
             net.EventType.REQUEST_ERROR,
         ];
     }
@@ -42,6 +43,9 @@ export default class DialogSafetyCenterMediator extends AbstractMediator {
                 myProxy.pageData.areaCode = body;
                 myProxy.setAreaCode();
                 break;
+            // case net.EventType.api_public_auth_drag:
+            //     myProxy.setAuthDrag(body);
+            //     break;
             case net.EventType.api_user_change_password_gold_var:
                 myProxy.pageData.loading = false;
                 myProxy.hide();

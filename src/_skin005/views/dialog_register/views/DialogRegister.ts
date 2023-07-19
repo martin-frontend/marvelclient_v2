@@ -122,6 +122,7 @@ export default class DialogRegister extends AbstractView {
     mounted() {
         //console.warn(this.registerTypes);
         this.myProxy.api_public_area_code();
+        this.initTips();
     }
 
     @Watch("pageData.areaCode")
@@ -160,7 +161,7 @@ export default class DialogRegister extends AbstractView {
         return Regx.test(str);
     }
     get isCheck(): boolean {
-        if (this.SkinVariable.isShowRestrictions && !this.checkbox) {
+        if (ModulesHelper.IsShow_register18yearsOld() && !this.checkbox) {
             return false;
         }
         const { username, password, password_confirm, verify_code, register_type, mobile_username, email_username, birth_date } = this.form;
@@ -209,7 +210,7 @@ export default class DialogRegister extends AbstractView {
         return GamePlatConfig.config.auth_types == 2;
     }
     onRegister() {
-        if (this.isDragAuth) {
+        if (this.isDragAuth && (this.form.register_type == 1 || this.form.register_type == 32)) {
             const that = this;
             const successFun = function (val: any) {
                 that.myProxy.pageData.form.verify_code = val;
@@ -263,9 +264,9 @@ export default class DialogRegister extends AbstractView {
             PanelUtil.message_success(LangUtil("账号小于4位，请重新输入"));
         }
     }
-    get passwordTips() {
+    initTips() {
         if (GameConfig.config.register_regex == 2) {
-            return [
+            this.passwordTips = [
                 { title: "必须包含字母大写", state: 0, id: 0, select: /[A-Z]/ },
                 { title: "必须包含字母小写", state: 0, id: 1, select: /[a-z]/ },
                 { title: "必须包含数字", state: 0, id: 2, select: /\d/ },
@@ -273,18 +274,17 @@ export default class DialogRegister extends AbstractView {
                 { title: "长度6-20位", state: 0, id: 4, select: /^.{6,20}$/ },
             ];
         } else {
-            return [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
+            this.passwordTips = [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
         }
-    }
-    show = false;
-    get passwordConfirmTips() {
-        const list = JSON.parse(JSON.stringify(this.passwordTips));
+
+        this.passwordConfirmTips = JSON.parse(JSON.stringify(this.passwordTips));
         for (let index = 0; index < this.passwordTips.length; index++) {
             this.passwordTips[index].state = 0;
         }
-        list.push({ title: "必须与密码相同", state: 0, id: 50, select: null });
-        return list;
+        this.passwordConfirmTips.push({ title: "必须与密码相同", state: 0, id: 50, select: null });
     }
+    passwordTips = <any>[];
+    passwordConfirmTips = <any>[];
 
     private _checkTips(str: string, tips: any) {
         for (let index = 0; index < tips.length; index++) {
@@ -299,13 +299,22 @@ export default class DialogRegister extends AbstractView {
             element.state = res ? 1 : 0;
         }
     }
+    show = false;
+    showConfirm = false;
     onPasswordInput() {
         this._checkTips(this.form.password, this.passwordTips);
     }
     onPasswordConfirmInput() {
         this._checkTips(this.form.password_confirm, this.passwordConfirmTips);
     }
+    onPasswordConfirmFocus() {
+        this.showConfirm = true;
+    }
+    onPasswordFocus() {
+        this.show = true;
+    }
     onPasswordBlur() {
+        this.show = false;
         if (this.form.password == "") return;
         if (GameConfig.config.register_regex == 2) {
             if (!checkUserPassword(this.form.password)) {
@@ -328,6 +337,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     onPasswordConfirmBlur() {
+        this.showConfirm = false;
         if (this.form.password_confirm == "") return;
 
         if (GameConfig.config.register_regex == 2) {
@@ -410,6 +420,15 @@ export default class DialogRegister extends AbstractView {
         this.password_error_info = "";
         this.birthday_error_info = "";
         this.checkbox = false;
+
+        for (let index = 0; index < this.passwordTips.length; index++) {
+            const element = this.passwordTips[index];
+            element.state = 0;
+        }
+        for (let index = 0; index < this.passwordConfirmTips.length; index++) {
+            const element = this.passwordConfirmTips[index];
+            element.state = 0;
+        }
     }
 
     @Watch("date_menu")

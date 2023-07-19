@@ -4,6 +4,7 @@ import LangUtil from "@/core/global/LangUtil";
 import DialogSafetyCenterProxy from "../../proxy/DialogSafetyCenterProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class TradePassword extends AbstractView {
@@ -20,17 +21,21 @@ export default class TradePassword extends AbstractView {
         if (this.myProxy.passWordShowType == 1) this.getImageVerity();
     }
 
-
     get isCheck(): boolean {
         const { password, password_confirm, verify_code } = this.form;
-        return password == password_confirm && checkVerifyVode(verify_code) && checkUserPassword(password);
+        if (!(this.myProxy.passWordShowType == 1 && this.isDragAuth)) {
+            if (!checkVerifyVode(verify_code)) return false;
+        }
+        return password == password_confirm && checkUserPassword(password);
     }
 
     get isCheck_logon(): boolean {
         const { password, password_confirm, logonPassword } = this.form;
         return password == password_confirm && checkUserPassword(logonPassword) && checkUserPassword(password);
     }
-
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
     getCode() {
         PanelUtil.message_alert(LangUtil("请先绑定邮箱或者手机"));
     }
@@ -64,10 +69,24 @@ export default class TradePassword extends AbstractView {
         } else if (this.pageData.form.password != this.pageData.form.password_confirm) {
             PanelUtil.message_info("两次输入的密码不一致"); //
         } else {
-            if (this.myProxy.passWordShowType == 1 || this.myProxy.passWordShowType == 3) {
-                if (this.pageData.form.verify_code == "") {
-                    PanelUtil.message_info("请输入验证码"); //
+            if (this.myProxy.passWordShowType == 1) {
+                if (this.isDragAuth) {
+                    const that = this;
+                    const successFun = function (val: any) {
+                        that.myProxy.pageData.form.verify_code = val;
+                        that.myProxy.api_user_change_password_gold_var();
+                    };
+                    const failFun = function () {
+                        that.myProxy.api_public_auth_drag();
+                    };
+                    that.myProxy.api_public_auth_drag();
+                    PanelUtil.openpanel_speed_verification(successFun, failFun, this.myProxy.pageData.auth_drag_position);
                     return;
+                } else {
+                    if (this.pageData.form.verify_code == "") {
+                        PanelUtil.message_info("请输入验证码"); //
+                        return;
+                    }
                 }
             } else if (this.myProxy.passWordShowType == 2) {
                 if (!checkUserPassword(this.pageData.form.logonPassword)) {
@@ -77,6 +96,11 @@ export default class TradePassword extends AbstractView {
                 //     PanelUtil.message_info("输入6个以上字符"); //
                 //     return;
                 // }
+            } else if (this.myProxy.passWordShowType == 3) {
+                if (this.pageData.form.verify_code == "") {
+                    PanelUtil.message_info("请输入验证码"); //
+                    return;
+                }
             }
 
             this.myProxy.api_user_change_password_gold_var();
@@ -124,7 +148,7 @@ export default class TradePassword extends AbstractView {
     }
 
     getImageVerity() {
-        this.myProxy.api_public_auth_code();
+        if (!this.isDragAuth) this.myProxy.api_public_auth_code();
     }
 
     error_info = "";

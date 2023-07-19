@@ -263,7 +263,7 @@
 
                 <CustomInput
                     class="mb-6"
-                    v-if="form.register_type == 1"
+                    v-if="!isDragAuth && form.register_type == 1"
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（4位）')"
                     maxlength="4"

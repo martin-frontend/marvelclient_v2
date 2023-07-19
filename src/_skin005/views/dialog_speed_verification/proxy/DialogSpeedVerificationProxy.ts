@@ -1,4 +1,5 @@
 import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class DialogSpeedVerificationProxy extends puremvc.Proxy {
     static NAME = "DialogSpeedVerificationProxy";
@@ -20,6 +21,7 @@ export default class DialogSpeedVerificationProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
+        PanelUtil.showAppLoading(false);
         this.pageData.verification = getAuthDragValue(data);
     }
 }

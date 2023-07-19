@@ -172,7 +172,6 @@ export default class PageActivityProxy extends puremvc.Proxy {
         PanelUtil.showAppLoading(true);
         net.Http.request({}, url)
             .then((response: any) => {
-
                 PanelUtil.showAppLoading(false);
                 PanelUtil.openpanel_activity_detail(response.data);
             })

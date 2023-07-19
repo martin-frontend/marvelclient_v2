@@ -374,54 +374,67 @@
                         </v-sheet>
                     </v-card>
                 </v-tooltip> -->
-
-                <v-tooltip bottom content-class="tip_main_class" attach > 
-                    <template v-slot:activator="{ on, attrs }">
-                        <CustomPassword
-                            v-bind="attrs"
-                            v-on="on"
-                            icon="mdi-lock"
-                            :placeholder="LangUtil('请输入密码（6-20位）')"
-                            v-model="form.password"
-                            @blur="onPasswordBlur"
-                            @input="onPasswordInput"
-                        />
-                    </template>
-                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
-                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
-                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
-                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
-                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
-                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
-                                >{{LangUtil(item.title)}}</span
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach>
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('请输入密码（6-20位）')"
+                                v-model="form.password"
+                                @blur="onPasswordBlur"
+                                @input="onPasswordInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordTips"
+                                :key="item.id"
                             >
-                        </v-sheet>
-                    </v-card>
-                </v-tooltip>
-                <v-tooltip bottom content-class="tip_main_class" attach > 
-                    <template v-slot:activator="{ on, attrs }">
-                        <CustomPassword
-                            v-bind="attrs"
-                            v-on="on"
-                            icon="mdi-lock"
-                            class="my-6"
-                            :placeholder="LangUtil('确认密码（6-20位）')"
-                            v-model="form.password_confirm"
-                            @blur="onPasswordConfirmBlur"
-                            @input="onPasswordConfirmInput"
-                        />
-                    </template>
-                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
-                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
-                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordConfirmTips" :key="item.id">
-                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
-                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
-                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
-                                >{{LangUtil(item.title)}}</span
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach>
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                class="my-6"
+                                :placeholder="LangUtil('确认密码（6-20位）')"
+                                v-model="form.password_confirm"
+                                @blur="onPasswordConfirmBlur"
+                                @input="onPasswordConfirmInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordConfirmTips"
+                                :key="item.id"
                             >
-                        </v-sheet>
-                    </v-card>
-                </v-tooltip>
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
                 <!-- <CustomPassword
                     class="my-6"
                     icon="mdi-lock"
@@ -813,55 +826,62 @@
                 maxlength="6"
                 v-model="form.verify_code"
             />
-            <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50"> 
-                <template v-slot:activator="{ on, attrs }">
-                    <CustomPassword
-                        v-bind="attrs"
-                        v-on="on"
-                        icon="mdi-lock"
-                        :placeholder="LangUtil('请输入密码（6-20位）')"
-                        v-model="form.password"
-                        @blur="onPasswordBlur"
-                        @input="onPasswordInput"
-                    />
-                </template>
-                <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
-                    <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
-                    <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
-                        <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
-                        <svg-icon v-else class="mx-1" icon="select"></svg-icon>
-                        <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
-                            >{{LangUtil(item.title)}}</span
+            <v-sheet color="transparent">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('请输入密码（6-20位）')"
+                            v-model="form.password"
+                            @blur="onPasswordBlur"
+                            @input="onPasswordInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+            </v-sheet>
+            <v-sheet color="transparent">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            class="my-4"
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('确认密码（6-20位）')"
+                            v-model="form.password_confirm"
+                            @blur="onPasswordConfirmBlur"
+                            @input="onPasswordConfirmInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex my-1 align-center"
+                            v-for="(item, key) of passwordConfirmTips"
+                            :key="item.id"
                         >
-                    </v-sheet>
-                </v-card>
-            </v-tooltip>
-
-            <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50"> 
-                <template v-slot:activator="{ on, attrs }">
-                    <CustomPassword
-                    class="my-4"
-                        v-bind="attrs"
-                        v-on="on"
-                        icon="mdi-lock"
-                        :placeholder="LangUtil('确认密码（6-20位）')"
-                        v-model="form.password_confirm"
-                        @blur="onPasswordConfirmBlur"
-                        @input="onPasswordConfirmInput"
-                    />
-                </template>
-                <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
-                    <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
-                    <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordConfirmTips" :key="item.id">
-                        <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
-                        <svg-icon v-else class="mx-1" icon="select"></svg-icon>
-                        <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
-                            >{{LangUtil(item.title)}}</span
-                        >
-                    </v-sheet>
-                </v-card>
-            </v-tooltip>
-
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+            </v-sheet>
             <!-- <CustomPassword
                 icon="mdi-lock"
                 :placeholder="LangUtil('请输入密码（6-20位）')"

@@ -16,6 +16,7 @@ import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import SkinVariable from "@/_skin004/core/SkinVariable";
 import "@/_skin004/style/skin004.scss";
+import SlideVerify from "@/_skin005/views/widget/slide_verify/SlideVerify.vue";
 
 LogUtil.init();
 core.init();
@@ -42,7 +43,7 @@ SkinVariable.isExchargeVndk = true;
 Vue.config.productionTip = false;
 Vue.use(VueLoadmore);
 Vue.component("custom-tree", CustomTree);
-
+Vue.component("SlideVerify_1", SlideVerify);
 const vuetify = getVuetify();
 Vue["vuetify"] = vuetify;
 Vue["router"] = router;

@@ -1,5 +1,6 @@
 import { objectRemoveNull } from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
 
 export default class DialogGetVerityProxy extends puremvc.Proxy {
     static NAME = "DialogGetVerityProxy";
@@ -32,6 +33,7 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         auth_image: "",
         //倒计时计数
         downcount: 0,
+        verification: -1,
     };
 
     setData(data: any) {
@@ -61,6 +63,7 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
             uuid: core.device,
             user_id: core.user_id,
         });
+        this.pageData.verification = -1;
         this.pageData.category = 0;
         this.api_public_auth_code();
     }
@@ -68,7 +71,10 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
     public get isCanClick(): boolean {
         return this.pageData.downcount < 1;
     }
-
+    setAuthDrag(data: any) {
+        PanelUtil.showAppLoading(false);
+        this.pageData.verification = getAuthDragValue(data);
+    }
     beginDowncount() {
         this.pageData.downcount = 60;
         this.timer = setInterval(this.downcountHandler.bind(this), 1000);
@@ -79,6 +85,11 @@ export default class DialogGetVerityProxy extends puremvc.Proxy {
         PanelUtil.showAppLoading(true);
         this.pageData.form.auth_code = "";
         this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
+    }
+    api_public_auth_drag() {
+        PanelUtil.showAppLoading(true);
+        this.pageData.form.auth_code = "";
+        this.sendNotification(net.HttpType.api_public_auth_drag, { uuid: core.device });
     }
 
     api_public_email_send() {

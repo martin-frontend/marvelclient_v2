@@ -2,7 +2,7 @@
 <style src="./DialogSafetyCenter.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
-import DialogGetVerity from "@/views/dialog_get_verity/views/DialogGetVerity.vue";
+import DialogGetVerity from "@/_skin004/views/dialog_get_verity/views/DialogGetVerity.vue";
 import Component from "vue-class-component";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogSafetyCenter from "./DialogSafetyCenter";

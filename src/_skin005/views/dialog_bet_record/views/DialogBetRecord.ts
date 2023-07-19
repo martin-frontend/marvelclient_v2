@@ -381,8 +381,8 @@ export default class DialogBetRecord extends AbstractView {
         //console.log("打开筛选 页面");
         PanelUtil.openpanel_bet_filter();
     }
-    getDate(str: string,isChange:boolean = true) {
-        return changeDateShow(str,isChange);
+    getDate(str: string, isChange: boolean = true) {
+        return changeDateShow(str, isChange);
     }
     /**板球价钱标题 */
     getCricketPriceTitle(item: any) {
@@ -440,5 +440,11 @@ export default class DialogBetRecord extends AbstractView {
             okTxt: LangUtil("是"),
             cancelTxt: LangUtil("否"),
         });
+    }
+    fb_icon_name(item: any) {
+        if (item.sport_id) {
+            return "sport_" + item.sport_id;
+        }
+        return "fb";
     }
 }

@@ -40,7 +40,8 @@ export default class PageGameList extends AbstractView {
     mounted() {
         this.resetItemWidth();
 
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
+            this.resetSelectType();
             if (this.isUseCategoryData && this.curCategoryData) {
                 this.categoryName = Object.keys(this.curCategoryData)[0];
             }
@@ -217,6 +218,7 @@ export default class PageGameList extends AbstractView {
             this.myProxy.getCurItemIndex();
         }
         this.myProxy.pageData.list = <any>[];
+        this.resetSelectType();
     }
 
     @Watch("listQuery.vendor_id")
@@ -284,7 +286,7 @@ export default class PageGameList extends AbstractView {
     }
     categoryTitle = <any>[];
     public get curCategoryData(): any {
-        if (!this.categoryData || this.categoryData.length < 1) return null;
+        if (!this.categoryData || this.categoryData.length < 1) return [];
 
         const dataList = <any>{};
 
@@ -339,5 +341,30 @@ export default class PageGameList extends AbstractView {
             },
             okTxt: LangUtil("清除"),
         });
+    }
+    get selectType() {
+        if (!this.isUseCategoryData) {
+            return ["厂商分类"];
+        }
+        return ["标签分类", "厂商分类"];
+    }
+    curSelectType = 0;
+    onChange() {
+        console.log("---切换----", this.curSelectType);
+    }
+    resetSelectType() {
+        if (!this.isUseCategoryData) {
+            this.curSelectType = 1;
+            return;
+        }
+        this.curSelectType = -1;
+        if (this.isUseCategoryData) {
+            this.curSelectType = 0;
+            return;
+        }
+        if (!this.isUseMenuData) {
+            this.curSelectType = 1;
+            return;
+        }
     }
 }

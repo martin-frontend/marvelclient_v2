@@ -568,6 +568,10 @@ export default class NetObserver extends AbstractMediator {
     addGTM() {
         //正式环境
         if (process.env.VUE_APP_ENV == "production") {
+            //主账号的是gtm
+            const gtm_main_id = GameConfig.config.gtm_main_id || "GTM-KJ55HHC";
+            initMainGTM(gtm_main_id);
+
             let gtm_id = GameConfig.config.gtm_id;
             if (!gtm_id || !gtm_id.trim()) {
                 if (GlobalVar.skin == "skin005") {
@@ -591,9 +595,6 @@ export default class NetObserver extends AbstractMediator {
             }
             initGTM(gtm_id);
         }
-        //主账号的是gtm
-        const gtm_main_id = GameConfig.config.gtm_main_id || "GTM-KJ55HHC";
-        initMainGTM(gtm_main_id);
     }
 
     addkwaiq() {

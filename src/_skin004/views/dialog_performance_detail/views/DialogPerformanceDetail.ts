@@ -19,7 +19,7 @@ export default class DialogPerformanceDetail extends AbstractView {
     Constant = Constant;
     LangUtil = LangUtil;
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
-
+    ModulesHelper = ModulesHelper;
     commonIcon = Assets.commonIcon;
 
     constructor() {

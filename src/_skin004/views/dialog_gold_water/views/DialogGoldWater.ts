@@ -5,6 +5,8 @@ import DialogGoldWaterMediator from "../mediator/DialogGoldWaterMediator";
 import DialogGoldWaterProxy from "../proxy/DialogGoldWaterProxy";
 import LangUtil from "@/core/global/LangUtil";
 import { changeDateShow } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogGoldWater extends AbstractView {
@@ -73,5 +75,8 @@ export default class DialogGoldWater extends AbstractView {
             default:
                 return LangUtil("未知");
         }
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
 }

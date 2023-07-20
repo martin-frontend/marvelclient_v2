@@ -4,6 +4,8 @@ import LangUtil from "@/core/global/LangUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogRecordMineDetailMediator from "../mediator/DialogRecordMineDetailMediator";
 import DialogRecordMineDetailProxy from "../proxy/DialogRecordMineDetailProxy";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogRecordMineDetail extends AbstractView {
@@ -34,5 +36,17 @@ export default class DialogRecordMineDetail extends AbstractView {
         console.log("分页 >>", val);
         // this.listQuery.page_count = val;
         // this.myProxy.api_user_var_mail();
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
+    }
+    transform_backwater(item: any, isreword: boolean = false) {
+        if (isreword) {
+            const val = item.reward_coin_backwater_rate * CoinTransformHelper.GetCoinScale(item.reward_coin_name_unique) * 100;
+            return CoinTransformHelper.GetCoinSymbol(item.reward_coin_name_unique) + val.toFixed(2) + LangUtil("%");
+        } else {
+            const val = item.main_coin_backwater_rate * CoinTransformHelper.GetCoinScale(item.main_coin_name_unique) * 100;
+            return CoinTransformHelper.GetCoinSymbol(item.main_coin_name_unique) + val.toFixed(2) + LangUtil("%");
+        }
     }
 }

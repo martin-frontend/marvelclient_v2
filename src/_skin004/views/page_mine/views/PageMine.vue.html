@@ -31,55 +31,73 @@
                                         v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}}
                                     </span>
                                     <span class="white--text" v-if="pageData.nextExp > 0">
-                                        <span class="colorYellowBg--text">{{ pageData.nextExp
-                                            }}</span>{{LangUtil('有效流水')}} </span>
+                                        <span class="colorYellowBg--text">{{ transformMoney(pageData.nextExp)}}</span>
+                                        <span>{{LangUtil('有效流水')}}</span>
                                     </span>
                                     <span class="white--text" v-if="pageData.nextUSDT > 0">
-                                        <span class="colorYellowBg--text">{{ pageData.nextUSDT }}</span>
-                                        USDT{{LangUtil('充值')}}</span>
+                                        <span class="colorYellowBg--text">{{ transformMoney(pageData.nextUSDT) }}</span>
+                                        <span>USDT{{LangUtil('充值')}}</span>
                                     </span>
                                 </div>
                             </v-sheet>
                         </v-col>
 
-                        <v-col class="d-flex mb-1 mb-md-0 mt-md-16 down_box px-2">
+                        <v-col class="d-flex mb-1 mb-md-0 down_box px-2">
                             <v-row no-gutters class="mt-3 px-md-0">
                                 <!-- 主币 -->
-                                <!-- <v-col cols="6" md="12" lg="6" class="pl-1 pt-md-2 pl-md-0 pl-lg-1 pt-lg-0" v-if="pageData.backwaterConfigMain.now > 0">
-                                <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-2 px-md-4 pt-2 pb-1 next_group">
-                                    <div class="d-flex align-center align-md-start">
-                                        <v-img max-width="25" height="26" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
-                                        <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2 next_title">{{ pageData.platCoins.mainCoin.name }}{{LangUtil('返水')}}</span>
-                                    </div>
-                                    <div class="d-flex align-center justify-space-between mt-1 mt-md-3">
-                                        <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigMain.now }}%</span>
-                                        <v-img max-width="40" height="22" contain src="~@/assets/mine/arrow_icon.png"></v-img>
-                                        <span class="colorTextNext--text text-h6 text-md-h5">{{ pageData.backwaterConfigMain.next }}%</span>
-                                    </div>
-                                </v-sheet>
-                            </v-col> -->
+                                <v-col cols="12" class="pt-md-2 pl-md-0 pt-lg-0" v-if="pageData.backwaterConfigMain.now > 0">
+                                    <v-sheet color="colorBorderBlue" outlined class="rounded-lg  next_group d-flex align-center py-4 px-5 my-1">
+                                        <v-img max-width="50" height="50" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
+                                        <div class="ml-3">
+                                            <div class="d-flex align-center align-md-start">
+                                                <!-- <span
+                                                    class="colorTextBlueLight--text text-body-2 text-md-body-1 next_title">{{
+                                                    pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
+                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
+                                                </span> -->
+                                                <span class="colorTextBlueLight--text text-body-2 text-md-body-1 next_title">
+                                                    {{LangUtil("返水晋级奖励1")}}
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-center justify-space-between">
+                                                <span class="colorTextGreen--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigMain.now)}}
+                                                </span>
+                                                <v-img max-width="40" height="22" contain
+                                                    src="~@/assets/mine/arrow_icon.png" class="mx-md-5"></v-img>
+                                                <span class="colorTextNext--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigMain.next)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </v-sheet>
+                                </v-col>
                                 <!-- 奖励币 -->
                                 <v-col cols="12" v-if="pageData.backwaterConfigReward.now > 0">
                                     <v-sheet color="colorBorderBlue" outlined
-                                        class="rounded-lg  next_group d-flex align-center py-4 px-5">
+                                        class="rounded-lg  next_group d-flex align-center py-4 px-5 my-1">
                                         <v-img max-width="50" height="50" contain
                                             :src="pageData.platCoins.mainCoin.icon"></v-img>
                                         <div class="ml-3">
                                             <div class="d-flex align-center align-md-start">
-                                                <span
+                                                <!-- <span
                                                     class="colorTextBlueLight--text text-body-2 text-md-body-1 next_title">{{
                                                     pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
-                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span>
+                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
+                                                </span> -->
+                                                <span class="colorTextBlueLight--text text-body-2 text-md-body-1 next_title">
+                                                    {{LangUtil("返水晋级奖励2")}}
+                                                </span>
                                             </div>
                                             <div class="d-flex align-center justify-space-between">
-                                                <span class="colorTextGreen--text text-h6 text-md-h5">{{
-                                                    pageData.backwaterConfigReward.now }}{{
-                                                    pageData.platCoins.mainCoin.name }}</span>
+                                                <span class="colorTextGreen--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigReward.now)}}
+                                                </span>
                                                 <v-img max-width="40" height="22" contain
                                                     src="~@/assets/mine/arrow_icon.png" class="mx-md-5"></v-img>
-                                                <span class="colorTextNext--text text-h6 text-md-h5">{{
-                                                    pageData.backwaterConfigReward.next }}{{
-                                                    pageData.platCoins.mainCoin.name }}</span>
+                                                <span class="colorTextNext--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigReward.next)}}
+                                                </span>
                                             </div>
                                         </div>
                                     </v-sheet>
@@ -177,7 +195,7 @@
                                 <v-img mxx-width="80" width="80" contain class="ml-10" :src="vipMap[level+1]"></v-img>
                                 <div class="d-flex flex-column mt-n3 justify-center align-center pt-2 text-body-1">
                                     <div class="mt-1 mb-2">VIP {{ myProxy.getVipLevel(level) }}</div>
-                                    <div class="d-flex flex-column mt-n3 justify-start align-center vip_config_box">
+                                    <div class="d-flex flex-column mt-n3 justify-start align-center vip_config_box" v-if="false">
                                         <!-- 主币 -->
                                         <div class="mt-1 font-weight-medium colorVipLevelText--text"
                                             v-if="item.backwater_config[2].backwater_rate > 0">{{LangUtil('{0}返水',pageData.platCoins.mainCoin.name)}}</div>
@@ -194,6 +212,70 @@
                                             v-if="item.backwater_config[3].backwater_rate > 0">
                                             {{(item.backwater_config[3].backwater_rate * 10000).toFixed(0)}}{{
                                             pageData.platCoins.mainCoin.name }}</div>
+                                    </div>
+                                    <div class="d-flex flex-column justify-center align-center vip_config_box">
+                                        <!-- 主币 -->
+                                        <v-sheet
+                                            v-if="item.backwater_config[2].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
+                                            <v-sheet
+                                                class="mt-1 nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</v-sheet
+                                            >
+                                            <v-sheet
+                                                class="my-3 nomal_text_1--text text-truncate"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_main_2_"+(level + 1))}}
+                                            </v-sheet>
+                                            <v-sheet
+                                                class="nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</v-sheet
+                                            >
+                                        </v-sheet>
+                                        <!-- 奖励币 -->
+                                        <v-sheet
+                                            v-if="item.backwater_config[3].backwater_rate > 0"
+                                            color="transparent"
+                                            class="d-flex flex-column justify-start align-center"
+                                        >
+                                            <v-sheet
+                                                class="mt-1 nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</v-sheet
+                                            >
+                                            <v-sheet
+                                                class="my-3 nomal_text_1--text text-truncate"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}
+                                            </v-sheet>
+                                            <v-sheet
+                                                class="nomal_text_1--text text-truncate bold_text"
+                                                color="transparent"
+                                                width="155"
+                                                style="text-align: center"
+                                            >
+                                                {{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</v-sheet
+                                            >
+                                        </v-sheet>
                                     </div>
                                 </div>
                             </v-img>
@@ -358,12 +440,12 @@
                                         v-if="pageData.vipLevel !=  pageData.vipMaxLevel && (pageData.nextExp > 0 || pageData.nextUSDT > 0)">{{LangUtil('距离下一个等级还差')}}
                                     </span>
                                     <span class="colorTextBlack1--text" v-if="pageData.nextExp > 0">
-                                        <span class="colorTextOrange--text">{{ pageData.nextExp
-                                            }}</span>{{LangUtil('有效流水')}} </span>
+                                        <span class="colorTextOrange--text">{{ transformMoney(pageData.nextExp)}}</span>
+                                        <span>{{LangUtil('有效流水')}}</span>
                                     </span>
                                     <span class="colorTextBlack1--text" v-if="pageData.nextUSDT > 0">
-                                        <span class="colorTextOrange--text">{{ pageData.nextUSDT }}</span>
-                                        USDT{{LangUtil('充值')}}</span>
+                                        <span class="colorTextOrange--text">{{ transformMoney(pageData.nextUSDT) }}</span>
+                                        <span>USDT{{LangUtil('充值')}}</span>
                                     </span>
                                 </div>
                             </v-sheet>
@@ -372,41 +454,63 @@
                         <v-col class="d-flex mb-1 mb-md-0 mt-md-16 down_box px-2 ml-2 mr-2">
                             <v-row no-gutters class="mt-3 px-md-0">
                                 <!-- 主币 -->
-                                <!-- <v-col cols="6" md="12" lg="6" class="pl-1 pt-md-2 pl-md-0 pl-lg-1 pt-lg-0" v-if="pageData.backwaterConfigMain.now > 0">
-                                    <v-sheet color="colorBorderBlue" outlined class="rounded-lg px-2 px-md-4 pt-2 pb-1 next_group">
-                                        <div class="d-flex align-center align-md-start">
-                                            <v-img max-width="25" height="26" contain :src="pageData.platCoins.mainCoin.icon"></v-img>
-                                            <span class="colorTextBlueLight--text text-body-2 text-md-body-1 ml-2 next_title">{{ pageData.platCoins.mainCoin.name }}{{LangUtil('返水')}}</span>
-                                        </div>
-                                        <div class="d-flex align-center justify-space-between mt-1 mt-md-3">
-                                            <span class="colorTextGreen--text text-h6 text-md-h5">{{ pageData.backwaterConfigMain.now }}%</span>
-                                            <v-img max-width="40" height="22" contain src="~@/assets/mine/arrow_icon.png"></v-img>
-                                            <span class="colorTextNext--text text-h6 text-md-h5">{{ pageData.backwaterConfigMain.next }}%</span>
-                                        </div>
-                                    </v-sheet>
-                                </v-col> -->
-                                <!-- 奖励币 -->
-                                <v-col cols="12" v-if="pageData.backwaterConfigReward.now > 0">
+                                <v-col cols="12" v-if="pageData.backwaterConfigMain.now > 0">
                                     <v-sheet color="colorBorderBlue" outlined
-                                        class="rounded-lg  next_group d-flex align-center py-4 px-5">
+                                        class="rounded-lg  next_group d-flex align-center py-4 px-5 my-1">
                                         <v-img max-width="50" height="50" contain
                                             :src="pageData.platCoins.mainCoin.icon"></v-img>
                                         <div class="ml-3">
                                             <div class="d-flex align-center align-md-start">
-                                                <span
+                                                <!-- <span
                                                     class="colorTextBlue2--text text-body-2 text-md-body-1 next_title">{{
                                                     pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
-                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span>
+                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
+                                                </span> -->
+                                                <span
+                                                    class="colorTextBlue2--text text-body-2 text-md-body-1 next_title">
+                                                    {{LangUtil("返水晋级奖励1")}}
+                                                </span>
                                             </div>
                                             <div class="d-flex align-center justify-space-between">
-                                                <span class="colorTextGreen--text text-h6 text-md-h5">{{
-                                                    pageData.backwaterConfigReward.now }}{{
-                                                    pageData.platCoins.mainCoin.name }}</span>
+                                                <span class="colorTextGreen--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigMain.now)}}
+                                                </span>
                                                 <v-img max-width="40" height="22" contain
                                                     src="~@/assets/mine/arrow_icon.png" class="mx-md-5"></v-img>
-                                                <span class="colorTextNext--text text-h6 text-md-h5">{{
-                                                    pageData.backwaterConfigReward.next }}{{
-                                                    pageData.platCoins.mainCoin.name }}</span>
+                                                <span class="colorTextNext--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigMain.next)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </v-sheet>
+                                </v-col>
+                                <!-- 奖励币 -->
+                                <v-col cols="12" v-if="pageData.backwaterConfigReward.now > 0">
+                                    <v-sheet color="colorBorderBlue" outlined
+                                        class="rounded-lg  next_group d-flex align-center py-4 px-5 my-1">
+                                        <v-img max-width="50" height="50" contain
+                                            :src="pageData.platCoins.mainCoin.icon"></v-img>
+                                        <div class="ml-3">
+                                            <div class="d-flex align-center align-md-start">
+                                                <!-- <span
+                                                    class="colorTextBlue2--text text-body-2 text-md-body-1 next_title">{{
+                                                    pageData.platCoins.mainCoin.name }}{{LangUtil('挖矿')}}
+                                                    ({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)
+                                                </span> -->
+                                                <span
+                                                    class="colorTextBlue2--text text-body-2 text-md-body-1 next_title">
+                                                    {{LangUtil("返水晋级奖励2")}}
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-center justify-space-between">
+                                                <span class="colorTextGreen--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigReward.now)}}
+                                                </span>
+                                                <v-img max-width="40" height="22" contain
+                                                    src="~@/assets/mine/arrow_icon.png" class="mx-md-5"></v-img>
+                                                <span class="colorTextNext--text text-h6 text-md-h5">
+                                                    {{transformBackwater(pageData.backwaterConfigReward.next)}}
+                                                </span>
                                             </div>
                                         </div>
                                     </v-sheet>
@@ -514,30 +618,36 @@
                         <span class="text-body-2 font-weight-medium colorTextBlack1--text">VIP {{
                             myProxy.getVipLevel(level) }}</span>
                     </div>
-                    <!-- 主币 -->
-                    <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
-                        <span class="text-caption colorVipLevelText--text">
-                            {{LangUtil('{0}返水',pageData.platCoins.mainCoin.name)}} </span>
-                    </div>
-                    <div class="d-flex align-center" v-if="item.backwater_config[2].backwater_rate > 0">
-                        <span
-                            class="text-body-1 font-weight-medium colorTextGold--text">{{(item.backwater_config[2].backwater_rate
-                            * 10000).toFixed(0)}}{{pageData.platCoins.mainCoin.name}}
-                        </span>
-                    </div>
-                    <!-- 奖励币 -->
-                    <div class="d-flex flex-column justify-center align-center"
-                        v-if="item.backwater_config[3].backwater_rate > 0">
-                        <span class="text-caption colorTextBlue2--text">{{ pageData.platCoins.mainCoin.name
-                            }}挖矿</span>
-                        <span
-                            class="text-caption colorTextBlue2--text">({{pageData.platCoins.mainCoin.name}}/{{LangUtil('万')}}$)</span>
-                    </div>
-                    <div class="d-flex align-center" v-if="item.backwater_config[3].backwater_rate > 0">
-                        <span
-                            class="text-body-1 font-weight-medium colorTextOrange--text">{{(item.backwater_config[3].backwater_rate
-                            * 10000).toFixed(0)}}{{ pageData.platCoins.mainCoin.name }}</span>
-                    </div>
+
+                    <v-sheet color="transparent" class="d-flex flex-column align-end mr-4" width="220">
+                        <template v-if="item.backwater_config[2].backwater_rate > 0">
+                            <!-- 主币 -->
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_main_1_"+(level + 1))}}</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_main_2_"+(level + 1))}}</span>
+                            </div>
+
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_main_3_"+(level + 1))}}</span>
+                            </div>
+                        </template>
+
+                        <!-- 奖励币 -->
+                        <template v-if="item.backwater_config[3].backwater_rate > 0">
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_reward_1_"+(level + 1))}}</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_reward_2_"+(level + 1))}}</span>
+                            </div>
+
+                            <div class="d-flex align-center">
+                                <span class="textGray--text bold_text colorVipLevelText--text">{{LangUtil("vip_level_deal_reward_3_"+(level + 1))}}</span>
+                            </div>
+                        </template>
+                    </v-sheet>
                 </v-sheet>
 
             </v-sheet>

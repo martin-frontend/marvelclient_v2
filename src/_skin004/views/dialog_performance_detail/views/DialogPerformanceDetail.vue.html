@@ -70,7 +70,7 @@
                                 <div>{{LangUtil("团队业绩")}}</div>
                                 <div class="text-16 font-weight-regular">{{ item.group_water }}</div>
                             </v-sheet>
-                            <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98">
+                            <v-sheet class="item-auto" width="100%" color="transparent" v-if="ModulesHelper.MyRebate()">
                                 <div>{{LangUtil("每万返佣")}}</div>
                                 <div class="text-16 font-weight-regular">
                                     <!-- <span class="mr-1" v-for="(val, key) of item.commission_num">{{ key }}: {{val}}</span> -->
@@ -127,7 +127,7 @@
                                 <div>{{LangUtil("自营业绩")}}</div>
                                 <div class="text-16 font-weight-regular">{{ transformMoney(val.self_water) }}</div>
                             </v-sheet>
-                            <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98">
+                            <v-sheet class="item-auto" width="100%" color="transparent" v-if="selfProxy.userInfo.is_credit_user == 98 && ModulesHelper.MyRebate()">
                                 <div>{{LangUtil("每万返佣")}}</div>
                                 <div class="text-16 font-weight-regular">
                                     <!-- <span class="mr-1" v-for="(val1, key1) of val.commission_num">{{ key1 }}: {{val1}}</span>
@@ -216,7 +216,7 @@
                             <div class="colorText1--text">{{LangUtil("团队业绩")}}</div>
                             <div>{{ item.group_water }}</div>
                         </div>
-                        <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
+                        <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98 && ModulesHelper.MyRebate()">
                             <div class="colorText1--text">{{LangUtil("每万返佣")}}</div>
                             <div>{{ item.commission_num }}</div>
                             <!-- <div>
@@ -269,7 +269,7 @@
                             <div class="colorText1--text">{{LangUtil("自营业绩")}}</div>
                             <div>{{ transformMoney(val.self_water) }}</div>
                         </div>
-                        <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98">
+                        <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 98 && ModulesHelper.MyRebate()">
                             <div class="colorText1--text">{{LangUtil("每万返佣")}}</div>
                             <div>
                                 {{ get_commission_num(val.commission_num)}}{{ val.is_promotion_floor > 0 ? "(" + LangUtil('保底') + ")" : ""

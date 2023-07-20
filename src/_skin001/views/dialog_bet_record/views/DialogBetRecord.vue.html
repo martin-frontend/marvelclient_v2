@@ -130,19 +130,19 @@
                     <div class="ml-5 custom_skin-hidden">
                         {{LangUtil("总投注额")}}
                         <span v-if="is_send_coin"> {{pageData.total_bet_gold_coin}} </span>
-                        <span v-else> ≈{{pageData.total_bet_gold}} </span>
+                        <span v-else> ≈{{transformMoney(pageData,"total_bet_gold")}} </span>
                     </div>
 
                     <div class="ml-5 custom_skin-hidden">
                         {{LangUtil("有效投注")}}
                         <span v-if="is_send_coin"> {{pageData.total_valid_bet_gold_coin}} </span>
-                        <span v-else> ≈{{pageData.total_valid_bet_gold}} </span>
+                        <span v-else> ≈{{transformMoney(pageData,"total_valid_bet_gold")}} </span>
                     </div>
 
                     <div class="ml-5 d-flex flex-wrap">
                         {{LangUtil("输赢")}}
                         <div v-if="!is_send_coin" :class="getMoneyColor(pageData.total_win_gold)">
-                            ≈{{getMoneyValue(pageData.total_win_gold)}}
+                            ≈{{transformMoney(pageData,"total_win_gold",true)}}
                         </div>
                         <div v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
                             {{getMoneyValue(pageData.total_win_gold_coin)}}
@@ -218,17 +218,17 @@
                                 <div>{{item.coin_name_unique}}</div>
                             </div>
                             <div>
-                                <div>{{is_send_coin ? item.bet_gold_coin : item.bet_gold}}</div>
+                                <div>{{is_send_coin ? item.bet_gold_coin : transformMoney(item,"bet_gold",false,true)}}</div>
                             </div>
                             <div>
-                                <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
+                                <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">{{transformMoney(item,"win_gold",false,true)}}</div>
                                 <div v-else :class="getMoneyColor(item.win_gold_coin)">{{getMoneyValue(item.win_gold_coin)}}</div>
                             </div>
                             <div>
-                                <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
+                                <div>{{is_send_coin?item.valid_bet_gold_coin:transformMoney(item,"valid_bet_gold",false,true)}}</div>
                             </div>
                             <div>
-                                <div>{{is_send_coin?item.water_coin:item.water}}</div>
+                                <div>{{is_send_coin?item.water_coin:transformMoney(item,"water",false,true)}}</div>
                             </div>
                             <div>
                                 <div>{{listOptions.statusOptions()[item.settlement_status]}}</div>
@@ -335,14 +335,14 @@
                     <div class="mr-5 custom_skin-hidden" min-width="150">
                         {{LangUtil("总投注额")}}
                         <span v-if="is_send_coin"> {{pageData.total_bet_gold_coin}} </span>
-                        <span v-else> ≈{{pageData.total_bet_gold}} </span>
+                        <span v-else> ≈{{transformMoney(pageData,"total_bet_gold")}} </span>
                     </div>
                 </div>
                 <div class="colorText2--text text-16 d-flex justify-space-between align-center">
                     <div class="ml-5" min-width="150">
                         {{LangUtil("输赢")}}
                         <span v-if="!is_send_coin" :class="getMoneyColor(pageData.total_win_gold)">
-                            ≈{{getMoneyValue(pageData.total_win_gold)}}</span
+                            ≈{{transformMoney(pageData,"total_win_gold",true)}}</span
                         >
                         <span v-else :class="getMoneyColor(pageData.total_win_gold_coin)">
                             {{getMoneyValue(pageData.total_win_gold_coin)}}</span
@@ -351,7 +351,7 @@
                     <div class="mr-5 custom_skin-hidden" min-width="150">
                         {{LangUtil("有效投注")}}
                         <span v-if="is_send_coin"> {{pageData.total_valid_bet_gold_coin}} </span>
-                        <span v-else> ≈{{pageData.total_valid_bet_gold}} </span>
+                        <span v-else> ≈{{transformMoney(pageData,"total_valid_bet_gold")}} </span>
                     </div>
                 </div>
                 <div v-if="isShowMyWater" class="colorText2--text text-16 d-flex justify-space-between align-center">
@@ -469,21 +469,21 @@
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("投注金额")}}</div>
-                            <div>{{is_send_coin?item.bet_gold_coin: item.bet_gold}}</div>
+                            <div>{{is_send_coin?item.bet_gold_coin: transformMoney(item,"bet_gold",false,true)}}</div>
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("游戏输赢")}}</div>
-                            <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">{{getMoneyValue(item.win_gold)}}</div>
+                            <div v-if="!is_send_coin" :class="getMoneyColor(item.win_gold)">{{transformMoney(item,"win_gold",false,true)}}</div>
                             <div v-else :class="getMoneyColor(item.win_gold_coin)">{{getMoneyValue(item.win_gold_coin)}}</div>
                         </div>
 
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("有效投注")}}</div>
-                            <div>{{is_send_coin?item.valid_bet_gold_coin:item.valid_bet_gold}}</div>
+                            <div>{{is_send_coin?item.valid_bet_gold_coin:transformMoney(item,"valid_bet_gold",false,true)}}</div>
                         </div>
                         <div class="d-flex justify-space-between">
                             <div class="colorText1--text">{{LangUtil("结算流水")}}</div>
-                            <div>{{is_send_coin?item.water_coin:item.water}}</div>
+                            <div>{{is_send_coin?item.water_coin:transformMoney(item,"water",false,true)}}</div>
                         </div>
 
                         <div class="d-flex justify-space-between">

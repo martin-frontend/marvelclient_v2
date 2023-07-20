@@ -15,7 +15,7 @@
                         {{LangUtil("结算时间")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>
                     </span>
                     <span>
-                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>
+                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{ transformMoney(pageData.data.title.endWater) }} </span>
                     </span>
                     <span> {{LangUtil("奖励")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span> </span>
                 </p>
@@ -25,11 +25,11 @@
                     <div class="d-flex flex-wrap listitem">
                         <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
                             <div>{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
-                            <div class="text-body-1">{{ item.water }}</div>
+                            <div class="text-body-1">{{transformMoney(item.water)}}</div>
                         </div>
                         <div class="item" v-if="item.main_coin_backwater_rate > 0">
                             <div>{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
-                            <div class="text-body-1">{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                            <div class="text-body-1">{{ transform_backwater(item)}}</div>
                         </div>
                         <div class="item" v-if="item.main_coin_backwater > 0">
                             <div>{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
@@ -38,7 +38,7 @@
                         <template v-if="item.reward_coin_backwater && item.reward_coin_backwater > 0">
                         <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
                             <div >{{ item.reward_coin_name_unique }}{{LangUtil("返水比例")}}</div>
-                            <div class="text-body-1">{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                            <div class="text-body-1"> {{transform_backwater(item,true)}}</div>
                         </div>
                         <div class="item" :class="item.main_coin_backwater_rate > 0?'':'item_3'">
                             <div>{{LangUtil("奖励")}}{{ item.reward_coin_name_unique }}</div>
@@ -67,7 +67,7 @@
                         {{LangUtil("结算时间")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endTime }}</span>
                     </span>
                     <span>
-                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.endWater }} </span>
+                        {{LangUtil("结算有效流水")}} <span class="colorTextBlueLight2--text mx-2">{{transformMoney(pageData.data.title.endWater)}} </span>
                     </span>
                     <span> {{LangUtil("奖励")}} <span class="colorTextBlueLight2--text mx-2">{{ pageData.data.title.award }}</span> </span>
                 </p>
@@ -76,21 +76,21 @@
                 <v-sheet class="px-3 py-2 rounded-lg mb-3 colorText2--text" color="colorPanelBg2" v-for="(item, key) of pageData.data.detail" :key="key">
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{ typeOptions(item.vendor_type) }}{{LangUtil("有效流水")}}</div>
-                        <div>{{ item.water }}</div>
+                        <div>{{transformMoney(item.water)}}</div>
                     </div>
                     <div class="d-flex justify-space-between" v-if="item.main_coin_backwater_rate > 0">
                         <div class="colorText1--text">{{ item.main_coin_name_unique }}{{LangUtil("返水比例")}}</div>
-                        <div>{{ (item.main_coin_backwater_rate * 100).toFixed(2)}}%</div>
+                        <div> {{transform_backwater(item)}}</div>
                     </div>
                     <div class="d-flex justify-space-between" v-if="item.main_coin_backwater > 0">
                         <div class="colorText1--text">{{LangUtil("奖励")}}{{ item.main_coin_name_unique }}</div>
                         <div>{{ item.main_coin_backwater }}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between" v-if="item.reward_coin_backwater_rate > 0">
                         <div class="colorText1--text">{{ item.reward_coin_name_unique }}{{LangUtil("返水比例")}}</div>
-                        <div>{{ (item.reward_coin_backwater_rate * 100).toFixed(2) }}%</div>
+                        <div> {{transform_backwater(item,true)}}</div>
                     </div>
-                    <div class="d-flex justify-space-between">
+                    <div class="d-flex justify-space-between" v-if="item.reward_coin_backwater > 0">
                         <div class="colorText1--text">{{LangUtil("奖励")}}{{ item.reward_coin_name_unique }}</div>
                         <div>{{ item.reward_coin_backwater }}</div>
                     </div>

@@ -12,6 +12,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import dialog_bet_filter from "../../dialog_bet_filter";
 import CopyUtil from "@/core/global/CopyUtil";
 import dialog_message from "@/views/dialog_message";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -298,5 +299,33 @@ export default class DialogBetRecord extends AbstractView {
     onFilterBtnClick() {
         //console.log("打开筛选 页面");
         dialog_bet_filter.show();
+    }
+    transformMoney(item: any, key: string, ismoney: boolean = false, donotTrans: boolean = false) {
+        let val; //
+        if (donotTrans) {
+            val = item[key + "_coin"] || 0;
+            return CoinTransformHelper.TransformMoney(val, 2, item.coin_name_unique, item.coin_name_unique, true, true, ismoney);
+        }
+        //先判断需要取哪个值来使用
+        // 带有 coin 的值 为 对应的币种的金额  不带的  为美元金额
+        if (this.is_send_coin || donotTrans) {
+            //如果带有 coin 的值 则 只需要对应的 添加 货币符号 然后格式化 就可以了
+            val = item[key + "_coin"] || 0;
+            return CoinTransformHelper.TransformMoney(
+                val,
+                2,
+                this.listQuery.coin_name_unique,
+                this.listQuery.coin_name_unique,
+                true,
+                true,
+                ismoney
+            );
+        } else {
+            //这个是美元的金额，需要 转换为 设置的结算 币种的金额 然后添加货币符号 和格式化
+
+            val = item[key] || 0;
+
+            return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, ismoney);
+        }
     }
 }

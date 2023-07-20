@@ -5,6 +5,8 @@ import DialogRecordMineMediator from "../mediator/DialogRecordMineMediator";
 import DialogRecordMineProxy from "../proxy/DialogRecordMineProxy";
 import Assets from "@/assets/Assets";
 import LangUtil from "@/core/global/LangUtil";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogRecordMine extends AbstractView {
@@ -64,5 +66,8 @@ export default class DialogRecordMine extends AbstractView {
         const md = `${data.split(" ")[0].split("-")[1]}-${data.split(" ")[0].split("-")[2]}`;
         const ti = data.split(" ")[1];
         return `${md} ${ti}`;
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
 }

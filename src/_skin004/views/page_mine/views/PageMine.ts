@@ -9,7 +9,10 @@ import page_game_list from "@/views/page_game_list";
 import dialog_message_box from "@/views/dialog_message_box";
 import LangUtil from "@/core/global/LangUtil";
 import FagProxy from "@/proxy/FagProxy";
-import { checkMultiline } from "@/core/global/Functions";
+import { amountFormat, checkMultiline } from "@/core/global/Functions";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
+import GameConfig from "@/core/config/GameConfig";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class PageMine extends AbstractView {
@@ -138,5 +141,24 @@ export default class PageMine extends AbstractView {
 
     destroyed() {
         super.destroyed();
+    }
+    transformMoney(val: any) {
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
+    }
+    transformBackwater(val: any) {
+        let sss = val * CoinTransformHelper.GetMainCoinScale;
+        if (!ModulesHelper.RebateDisplayType()) {
+            sss = sss / 100;
+        }
+        let str = "";
+        if (!ModulesHelper.RebateDisplayType()) {
+            str = amountFormat(sss, true, 2) + this.LangUtil("%");
+        } else {
+            str = amountFormat(sss, false);
+        }
+        str = CoinTransformHelper.GetMainCoinSymbol + str;
+        //const str = amountFormat(sss,false);
+
+        return str;
     }
 }

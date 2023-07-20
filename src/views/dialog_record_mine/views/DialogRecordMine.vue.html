@@ -23,7 +23,7 @@
                         </div>
                         <div class="item" :class="item.total_backwater[Object.keys(item.total_backwater)[1]]?'':'item_4'">
                             <div>{{LangUtil("结算有效流水")}}</div>
-                            <div class="text-body-1">{{item.total_water}}</div>
+                            <div class="text-body-1">{{transformMoney(item.total_water)}}</div>
                         </div>
                         <div
                             class="item"
@@ -88,7 +88,7 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <div class="colorText1--text">{{LangUtil("结算有效流水")}}</div>
-                        <div>{{item.total_water}}</div>
+                        <div>{{transformMoney(item.total_water)}}</div>
                     </div>
                     <div class="d-flex justify-space-between" v-if="item.total_backwater[Object.keys(item.total_backwater)[0]]">
                         <div class="colorText1--text">{{LangUtil("奖励")}}{{ Object.keys(item.total_backwater)[0]}}</div>

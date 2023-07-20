@@ -103,7 +103,7 @@
                                 <v-row
                                     no-gutters
                                     class="d-flex flex-row align-center mb-1 mb-sm-2"
-                                    v-if="selfProxy.userInfo.is_credit_user == 98"
+                                    v-if="ModulesHelper.MyRebate()"
                                 >
                                     <v-col cols="7" class="d-flex justify-end">
                                         <span class="text-right text-caption text-sm-subtitle-2 colorText3--text">
@@ -606,7 +606,7 @@
                                             </span>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2 mb-md-0">
+                                    <v-row no-gutters class="d-flex flex-row align-center mb-1 mb-sm-2 mb-md-0" v-if="ModulesHelper.MyRebate()">
                                         <v-col cols="6" class="d-flex justify-end">
                                             <span class="text-right text-14 colorTextBlack1--text"> {{LangUtil("每万返佣")}} </span>
                                         </v-col>

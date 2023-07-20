@@ -115,6 +115,10 @@
                 </button>
 
                 <v-spacer />
+                <button class="nav-button" :class="routerPath == '/page_mine' ? 'active' : ''" @click="goMine">
+                    <v-icon>mdi-mine</v-icon>
+                    <div class="ml-1">{{LangUtil("游戏挖矿")}}</div>
+                </button>
                 <button class="nav-button" :class="routerPath == '/page_activity' ? 'active' : ''" @click="goActivity">
                     <v-icon>mdi-gift</v-icon>
                     <div class="ml-1">{{LangUtil("优惠活动")}}</div>

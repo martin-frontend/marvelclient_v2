@@ -61,7 +61,7 @@
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
                     <svg-icon icon="arrow_top" class="text-14"></svg-icon>
-                    <div class="text-14 font-weight-bold mb-2">Top</div>
+                    <div class="text-14 font-weight-bold mb-2">{{ LangUtil("Top") }}</div>
                 </btn-yellow>
             </v-btn>
 
@@ -136,6 +136,7 @@ import Novigation from "./views/novigation/Novigation.vue";
 import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
 import GuideDrawer from "@/_skin005/views/widget/guide_drawer/GuideDrawer.vue";
 import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMessageBox.vue";
+import LangUtil from "@/core/global/LangUtil";
 @Component({
     components: {
         Novigation,
@@ -147,7 +148,9 @@ import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMe
         DialogMessageBox,
     },
 })
-export default class extends App {}
+export default class extends App {
+    LangUtil = LangUtil;
+}
 </script>
 
 <style lang="scss" scoped>

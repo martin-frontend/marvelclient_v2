@@ -315,15 +315,15 @@ export default class PageGameList extends AbstractView {
         }
 
         // // 将数据 排序
-        // const keys = Object.keys(dataList);
-        // for (let index = 0; index < keys.length; index++) {
-        //     const element = dataList[keys[index]];
-        //     element.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
-        //         return b.index_no - a.index_no;
-        //     });
-        // }
+        const keys = Object.keys(dataList);
+        for (let index = 0; index < keys.length; index++) {
+            const element = dataList[keys[index]];
+            element.sort((a: core.PlatLobbyCategoryIndexVO, b: core.PlatLobbyCategoryIndexVO) => {
+                return b.index_no - a.index_no;
+            });
+        }
 
-        console.log("重新分组的数据为", dataList);
+        // console.log("重新分组的数据为", dataList);
 
         this.categoryName = LangUtil("全部游戏");
         this.categoryIndex = 0;

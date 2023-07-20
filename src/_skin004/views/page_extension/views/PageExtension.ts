@@ -125,12 +125,12 @@ export default class PageExtension extends AbstractView {
 
     private copy() {
         this.myProxy.copy();
-        dialog_message.warn(LangUtil("复制成功"));
+        // dialog_message.warn(LangUtil("复制成功"));
     }
 
     private copyMyId() {
         this.myProxy.copyId();
-        dialog_message.warn(LangUtil("复制成功"));
+        // dialog_message.warn(LangUtil("复制成功"));
     }
 
     handlerViewCard() {

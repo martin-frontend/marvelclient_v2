@@ -26,7 +26,7 @@
 }
 .v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
     letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
-  }
+}
 ::v-deep.v-input--dense {
     margin: 0 !important;
     padding: 0 !important;
@@ -95,5 +95,25 @@
 .icon_mob {
     ::v-deep .v-icon.v-icon {
         font-size: 20px;
+    }
+}
+
+::v-deep .theme--dark {
+    .tip_main_class {
+        background: #202121;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
+    }
+}
+
+::v-deep .theme--light {
+    .tip_main_class {
+        background: #fff;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
     }
 }

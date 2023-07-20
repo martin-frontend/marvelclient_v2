@@ -1,4 +1,12 @@
-<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" overlay-opacity="0.6" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
     <v-card v-if="!$mobile" class="d-flex rounded10" color="bgBanner">
         <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
         <v-card color="transparent" width="350">
@@ -26,7 +34,7 @@
                     v-model="forgetData.form.username"
                 >
                     <btn-yellow
-                        class="ml-auto text-14"
+                        class="mr-n4 text-14"
                         min_width="80"
                         height="36"
                         :btn_type="4"
@@ -118,7 +126,7 @@
                         </v-menu>
                     </template>
                     <btn-yellow
-                        class="ml-auto text-14"
+                        class="mr-n4 text-14"
                         min_width="80"
                         height="36"
                         :btn_type="4"
@@ -135,7 +143,7 @@
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 />
-                <CustomPassword
+                <!-- <CustomPassword
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="forgetData.form.password"
@@ -148,7 +156,69 @@
                     :placeholder="LangUtil('密码确认')"
                     v-model="forgetData.form.password_confirm"
                     @blur="onPasswordConfirmBlur"
-                />
+                /> -->
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach>
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('请输入密码（6-20位）')"
+                                v-model="forgetData.form.password"
+                                @blur="onPasswordBlur"
+                                @input="onPasswordInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordTips"
+                                :key="item.id"
+                            >
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach>
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                class="my-6"
+                                :placeholder="LangUtil('确认密码（6-20位）')"
+                                v-model="forgetData.form.password_confirm"
+                                @blur="onPasswordConfirmBlur"
+                                @input="onPasswordConfirmInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordConfirmTips"
+                                :key="item.id"
+                            >
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedForget" block @click="onSubmitForget">
                     {{LangUtil("提交")}}
                 </v-btn> -->
@@ -198,10 +268,10 @@
         <v-card-text v-if="forgetData.bShow" class="px-2 mt-3">
             <div class="d-flex mb-3">
                 <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
-                    <v-btn class="rounded-pill" height="30" min-width="78">
+                    <v-btn v-if="checkValidateType(1)" class="rounded-pill" height="30" min-width="78">
                         <span class="text-14"> {{LangUtil("邮箱找回")}} </span>
                     </v-btn>
-                    <v-btn class="rounded-pill" height="30" min-width="78">
+                    <v-btn v-if="checkValidateType(2)" class="rounded-pill" height="30" min-width="78">
                         <span class="text-14"> {{LangUtil("手机找回")}} </span>
                     </v-btn>
                 </v-btn-toggle>
@@ -216,7 +286,7 @@
                     v-model="forgetData.form.username"
                 >
                     <btn-yellow
-                        class="ml-auto text-14"
+                        class="mr-n4 text-14"
                         min_width="80"
                         height="36"
                         :btn_type="4"
@@ -307,7 +377,7 @@
                     </template>
 
                     <btn-yellow
-                        class="ml-auto text-14"
+                        class="mr-n4 text-14"
                         min_width="80"
                         height="36"
                         :btn_type="4"
@@ -324,19 +394,71 @@
                     type="tel"
                     v-model="forgetData.form.verify_code"
                 />
-                <CustomPassword
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('请输入密码（6-20位）')"
+                                v-model="forgetData.form.password"
+                                @blur="onPasswordBlur"
+                                @input="onPasswordInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                class="my-4"
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('确认密码（6-20位）')"
+                                v-model="forgetData.form.password_confirm"
+                                @blur="onPasswordConfirmBlur"
+                                @input="onPasswordConfirmInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordConfirmTips"
+                                :key="item.id"
+                            >
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
 
-                    icon="mdi-lock"
-                    :placeholder="LangUtil('请输入密码（6-20位）')"
-                    v-model="forgetData.form.password"
-                />
-                <v-sheet class="text-12 red--text" color="transparent" style="position: absolute;"> {{password_error_info}} </v-sheet>
+                <!-- <CustomPassword icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="forgetData.form.password" />
+                <v-sheet class="text-12 red--text" color="transparent" style="position: absolute"> {{password_error_info}} </v-sheet>
                 <CustomPassword
                     class="my-4"
                     icon="mdi-lock"
                     :placeholder="LangUtil('密码确认')"
                     v-model="forgetData.form.password_confirm"
-                />
+                /> -->
                 <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedForget" block @click="onSubmitForget">
                     {{LangUtil("提交")}}
                 </v-btn> -->

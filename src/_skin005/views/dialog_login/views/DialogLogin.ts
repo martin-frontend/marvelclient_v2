@@ -33,6 +33,7 @@ export default class DialogLogin extends AbstractView {
     }
     mounted() {
         this.myProxy.api_public_area_code();
+        this.initTips();
     }
 
     public get verityString(): string {
@@ -83,6 +84,15 @@ export default class DialogLogin extends AbstractView {
         this.forgetData.form.type = parseInt(val) * 2 + 2;
         this.onTabClick(this.forgetData.form.type);
         this.myProxy.resetForm();
+
+        for (let index = 0; index < this.passwordTips.length; index++) {
+            const element = this.passwordTips[index];
+            element.state = 0;
+        }
+        for (let index = 0; index < this.passwordConfirmTips.length; index++) {
+            const element = this.passwordConfirmTips[index];
+            element.state = 0;
+        }
     }
 
     private checkMail = checkMail;
@@ -201,6 +211,55 @@ export default class DialogLogin extends AbstractView {
     checkValidateType(val: any) {
         return this.validate_type.includes(val);
     }
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
+    initTips() {
+        if (GameConfig.config.register_regex == 2) {
+            this.passwordTips = [
+                { title: "必须包含字母大写", state: 0, id: 0, select: /[A-Z]/ },
+                { title: "必须包含字母小写", state: 0, id: 1, select: /[a-z]/ },
+                { title: "必须包含数字", state: 0, id: 2, select: /\d/ },
+                { title: "必须包含特殊字符", state: 0, id: 3, select: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/ },
+                { title: "长度6-20位", state: 0, id: 4, select: /^.{6,20}$/ },
+            ];
+        } else {
+            this.passwordTips = [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
+        }
+
+        this.passwordConfirmTips = JSON.parse(JSON.stringify(this.passwordTips));
+        for (let index = 0; index < this.passwordTips.length; index++) {
+            this.passwordTips[index].state = 0;
+        }
+        this.passwordConfirmTips.push({ title: "必须与密码相同", state: 0, id: 50, select: null });
+    }
+    passwordTips = <any>[];
+    passwordConfirmTips = <any>[];
+
+    private _checkTips(str: string, tips: any) {
+        for (let index = 0; index < tips.length; index++) {
+            const element = tips[index];
+            let res = false;
+            if (element.id == 50) {
+                res =
+                    !!this.forgetData.form.password &&
+                    !!this.forgetData.form.password.trim() &&
+                    this.forgetData.form.password == this.forgetData.form.password_confirm;
+            } else {
+                res = this.passwordTips[element.id].select.test(str);
+            }
+            // console.log("  当前条件 " + element.title+ " 结果",res);
+            element.state = res ? 1 : 0;
+        }
+    }
+
+    onPasswordInput() {
+        this._checkTips(this.forgetData.form.password, this.passwordTips);
+    }
+    onPasswordConfirmInput() {
+        this._checkTips(this.forgetData.form.password_confirm, this.passwordConfirmTips);
+    }
+
     onPasswordBlur() {
         if (this.forgetData.form.password == "") return;
         if (GameConfig.config.register_regex == 2) {

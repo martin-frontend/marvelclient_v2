@@ -226,6 +226,19 @@ const skinMap = {
             },
         },
     },
+    /**int.game 墨西哥 */
+    skin012: {
+        public_dir: "public_skin012",
+        pages: {
+            skin011: {
+                entry: "src/_skin012/main.ts",
+                template: "public_skin012/skin012.html",
+                filename: "index.html",
+                title: "int.game",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**bet2dream */
     skin020: {
         public_dir: "public_skin020",
@@ -304,7 +317,9 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
-        } else if (["skin005", "skin006", "skin007", "skin008", "skin009", "skin010","skin011"].includes(process.env.VUE_APP_SKIN)) {
+        } else if (
+            ["skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012"].includes(process.env.VUE_APP_SKIN)
+        ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {
             imagesRule.exclude.add(resolve("src/_skin020/icons"));

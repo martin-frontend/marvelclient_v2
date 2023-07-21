@@ -24,7 +24,10 @@
                     <horizontal_scroll>
                         <template v-slot="{data}">
                             <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
-                                <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">
+                                <v-btn class="rounded-pill mr-2" height="42" min-width="110" v-for="(item , key) of tabOptions()" :value="Number(key)" :key="key">
+                                    <span class="text-14"> {{item}} </span>
+                                </v-btn>
+                                <!-- <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">
                                     <span class="text-14"> {{LangUtil("绑定手机")}} </span>
                                 </v-btn>
                                 <v-btn v-if="checkValidateType(1)" class="rounded-pill mr-2" height="42" min-width="110" value="1">
@@ -41,7 +44,7 @@
                                     value="3"
                                 >
                                     <span class="text-14"> {{LangUtil("交易密码")}} </span>
-                                </v-btn>
+                                </v-btn> -->
                             </v-btn-toggle>
                         </template>
                     </horizontal_scroll>
@@ -146,7 +149,7 @@
                             </v-menu>
                         </template>
                         <btn-yellow
-                            class="ml-auto text-14"
+                            class="mr-n4 text-14"
                             min_width="80"
                             height="36"
                             :btn_type="4"

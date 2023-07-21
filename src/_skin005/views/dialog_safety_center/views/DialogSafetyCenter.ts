@@ -305,18 +305,17 @@ export default class DialogSafetyCenter extends AbstractView {
         return "";
     }
     tabOptions = () => {
-        if (!this.is_password_gold_transfer.is_open) {
-            return {
-                0: LangUtil("绑定手机"),
-                1: LangUtil("绑定邮箱"),
-                2: LangUtil("修改密码"),
-            };
+        const obj = <any>{};
+        if (this.checkValidateType(2)) {
+            obj[0] = LangUtil("绑定手机");
         }
-        return {
-            0: LangUtil("绑定手机"),
-            1: LangUtil("绑定邮箱"),
-            2: LangUtil("修改密码"),
-            3: LangUtil("交易密码"),
-        };
+        if (this.checkValidateType(1)) {
+            obj[1] = LangUtil("绑定邮箱");
+        }
+        obj[2] = LangUtil("修改密码");
+        if (this.is_password_gold_transfer.is_open) {
+            obj[3] = LangUtil("交易密码");
+        }
+        return obj;
     };
 }

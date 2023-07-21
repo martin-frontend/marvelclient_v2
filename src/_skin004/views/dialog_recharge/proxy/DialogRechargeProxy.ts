@@ -140,6 +140,9 @@ export class RechargeProxy extends puremvc.Proxy {
             if (!item1["sort"]) {
                 item1.sort = 1000;
             }
+            if (item1["name"] == "OKPAY" || item1["name"] == "TOPAY") {
+                item1.sort = 0;
+            }
         }
         const sortedOptions = Object.values(tempdata).sort((a: any, b: any) => a.sort - b.sort);
 

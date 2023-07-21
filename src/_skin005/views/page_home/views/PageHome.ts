@@ -57,14 +57,24 @@ export default class PageHome extends AbstractView {
 
     public get viewWidth(): number {
         if (this.$mobile) {
-            return 100;
+            if (this.$vuetify.breakpoint.width < 360) {
+                return 80;
+            }
+            if (this.$vuetify.breakpoint.width < 500) {
+                return 90;
+            }
+            if (this.$vuetify.breakpoint.width < 800) {
+                return 130;
+            }
+            return 180;
         }
-        if (this.$vuetify.breakpoint.width > 1400) {
-            return 340;
+        if (this.$vuetify.breakpoint.width > 1700) {
+            return 350;
         } else if (this.$vuetify.breakpoint.width > 1280) {
-            return 290;
+            return 265;
         }
-        return 240;
+        return 350;
+        // return 240;
     }
 
     //推广赚钱

@@ -49,6 +49,15 @@ export function initGTM(id: string) {
     })(window, document, "script", "dataLayer", id);
 }
 
+export function initFB(id: string) {
+    //@ts-ignore
+    const fbq = window.fbq;
+    if (fbq) {
+        fbq("init", id);
+        fbq("track", "PageView");
+    }
+}
+
 /**绑定主 gtm对象 */
 export function initMainGTM(id: string) {
     if (!id || !id.trim()) return;
@@ -115,40 +124,52 @@ function gmt(eventName: string, data: any) {
 }
 /**fackbook pixel */
 function fbq(eventName: string, data: any, type: string = "track") {
-    // //@ts-ignore
-    // const fbq = window.fbq;
-    // if (fbq) {
-    //     //@ts-ignore
-    //     // const appid = Object.keys(window.fbq.instance.pixelsByID)[0];
-    //     if (GlobalVar.skin == "skin008") {
-    //         if (eventName == TrackEventMap.RegistrationSuccess) {
-    //             fbq("track", "CompleteRegistration");
-    //         } else if (type == TrackTypeMap.Purchase) {
-    //             fbq("track", "Purchase", { value: data.amount, currency: data.coin_name_unique });
-    //         }
-    //     } else {
-    //         fbq("trackCustom", eventName, data);
-    //     }
-    // }
-    if (!(core.app_type == core.EnumAppType.APP && GameConfig.config.useFacebookLog == 1)) return;
-    switch (eventName) {
-        case TrackEventMap.RegistrationSuccess: //注册成功
-            WebViewBridge.getInstance().facebookLog({ eventName: "CompleteRegistration", eventValues: data, type: "track" });
-            break;
-        case TrackEventMap.repeatDepositSuccess: //充值成功
-        case TrackEventMap.FTDDepositSuccess: //充值成功
-            {
-                data.value = data.amount_usd;
-                data.currency = "USD";
-                data.transaction_id = data.bet_id;
-                WebViewBridge.getInstance().facebookLog({ eventName: "Purchase", eventValues: data, type: "track" });
+    if (!(core.app_type == core.EnumAppType.APP && GameConfig.config.useFacebookLog == 1)) {
+        if (!GameConfig.config.fb_id || !GameConfig.config.fb_id.trim()) return;
+        //@ts-ignore
+        const fbq = window.fbq;
+        if (fbq) {
+            switch (eventName) {
+                case TrackEventMap.RegistrationSuccess: //注册成功
+                    fbq("track", "CompleteRegistration", data);
+                    break;
+                case TrackEventMap.repeatDepositSuccess: //充值成功
+                case TrackEventMap.FTDDepositSuccess: //充值成功
+                    {
+                        data.value = data.amount_usd;
+                        data.currency = "USD";
+                        data.transaction_id = data.bet_id;
+                        fbq("track", "Purchase", data);
+                    }
+                    break;
+                default:
+                    {
+                        fbq("trackCustom", eventName, data);
+                    }
+                    break;
             }
-            break;
-        default:
-            {
-                WebViewBridge.getInstance().facebookLog({ eventName: eventName, eventValues: data, type: "trackCustom" });
-            }
-            break;
+        }
+    } else {
+        // if (!(core.app_type == core.EnumAppType.APP && GameConfig.config.useFacebookLog == 1)) return;
+        switch (eventName) {
+            case TrackEventMap.RegistrationSuccess: //注册成功
+                WebViewBridge.getInstance().facebookLog({ eventName: "CompleteRegistration", eventValues: data, type: "track" });
+                break;
+            case TrackEventMap.repeatDepositSuccess: //充值成功
+            case TrackEventMap.FTDDepositSuccess: //充值成功
+                {
+                    data.value = data.amount_usd;
+                    data.currency = "USD";
+                    data.transaction_id = data.bet_id;
+                    WebViewBridge.getInstance().facebookLog({ eventName: "Purchase", eventValues: data, type: "track" });
+                }
+                break;
+            default:
+                {
+                    WebViewBridge.getInstance().facebookLog({ eventName: eventName, eventValues: data, type: "trackCustom" });
+                }
+                break;
+        }
     }
 }
 /**Apps Flyer */
@@ -267,5 +288,6 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
     } else {
         if (core.user_id) Object.assign(data, { user_id: core.user_id });
         gmt(eventName, data);
+        fbq(eventName, data, type);
     }
 }

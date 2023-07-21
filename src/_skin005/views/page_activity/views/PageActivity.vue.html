@@ -62,11 +62,11 @@
                                     color="transparent"
                                     width="100%"
                                     :class="$mobile ? 'loader_class_mob' : ''"
-                                    :height="$mobile ? 120 : 230"
+                                    :height="viewWidth"
                                 >
                                     <!-- <v-img class="rounded_img" :height="$mobile ? 120 : 230"
                                         :src="item.icon"></v-img> -->
-                                    <ImgLoader class="rounded_img" :height="$mobile ? 120 : 230" :src="item.icon"></ImgLoader>
+                                    <ImgLoader class="rounded_img" :height="viewWidth" :src="item.icon"></ImgLoader>
                                 </v-sheet>
                             </v-card>
                         </v-col>

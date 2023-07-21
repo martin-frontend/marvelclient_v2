@@ -26,7 +26,7 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "./PanelUtil";
 import SkinVariable from "./SkinVariable";
 import HeaderProxy from "../views/header/HeaderProxy";
-import { initGTM, initMainGTM, track, TrackData, TrackTypeMap } from "./TrackManager";
+import { initFB, initGTM, initMainGTM, track, TrackData, TrackTypeMap } from "./TrackManager";
 import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
@@ -183,6 +183,7 @@ export default class NetObserver extends AbstractMediator {
                     }
                     this.addGTM();
                     //this.addkwaiq();
+                    this.addFb();
                     document.title = LangUtil("96 Sports");
                 }
                 break;
@@ -597,6 +598,11 @@ export default class NetObserver extends AbstractMediator {
         }
     }
 
+    addFb() {
+        if (GameConfig.config.fb_id && GameConfig.config.fb_id.trim()) {
+            initFB(GameConfig.config.fb_id);
+        }
+    }
     addkwaiq() {
         let kwaiq_id = GameConfig.config.kwaiq_id;
 

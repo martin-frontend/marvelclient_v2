@@ -89,6 +89,7 @@ export interface GameConfigVO {
     gtm_id: string;
     /**GTM的id可以多个----这个是我们自己用的主的 */
     gtm_main_id: string;
+    fb_id: string;
     /**快手分析 */
     kwaiq_id: string;
     /**是否启用免审金额 */
@@ -113,5 +114,5 @@ export interface GameConfigVO {
     /** FB厂商id */
     FBVendorId: number;
     /**使用内置的FB事件 */
-    useFacebookLog:number;
+    useFacebookLog: number;
 }

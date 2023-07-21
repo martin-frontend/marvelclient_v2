@@ -70,4 +70,21 @@ export default class PageActivity extends AbstractView {
             this.myProxy.api_plat_activity_var(item.id);
         }
     }
+
+    public get viewWidth(): number {
+        if (this.$mobile) {
+            if (this.$vuetify.breakpoint.width > 800) {
+                return 150;
+            }
+            return 120;
+        }
+        if (this.$vuetify.breakpoint.width < 1400) {
+            return 200;
+        } 
+        // else if (this.$vuetify.breakpoint.width > 1280) {
+        //     return 265;
+        // }
+        return 230;
+        // return 240;
+    }
 }

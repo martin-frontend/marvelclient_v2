@@ -356,6 +356,7 @@ export default class NetObserver extends AbstractMediator {
                 setTimeout(() => {
                     this.openNoticeDialog();
                     PanelUtil.getProxy_selfproxy.api_user_var_notice();
+                    this.gameProxy.resetGamehistory();
                 }, 1000);
                 break;
             case net.EventType.api_plat_var_notice_show_var:

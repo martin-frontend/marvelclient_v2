@@ -103,6 +103,31 @@ export default class GameProxy extends AbstractProxy {
             } else this.lobbyMenuIndex.unshift(obj);
         }
     }
+    resetGamehistory() {
+        if (ModulesHelper.IsShow_GameHistory()) {
+            this.gameHistoryList = this.readGameHistory();
+
+            let obj: any;
+            for (let index = 0; index < this.lobbyMenuIndex.length; index++) {
+                const element = this.lobbyMenuIndex[index];
+                if (element.vendor_type == 3) {
+                    obj = element;
+                    this.lobbyMenuIndex[index].list = JSON.parse(JSON.stringify(this.gameHistoryList));
+                    break;
+                }
+            }
+            if (!obj) {
+                obj = <core.PlatLobbyIndexVO>{
+                    vendor_type: 3,
+                    vendor_type_name: "近期游戏",
+                    list: this.gameHistoryList,
+                };
+                if (GlobalVar.skin == "skin009") {
+                    this.lobbyMenuIndex.push(obj);
+                } else this.lobbyMenuIndex.unshift(obj);
+            }
+        }
+    }
     setGameCategory(body: any) {
         this.lobbyCategory_0 = body;
 

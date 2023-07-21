@@ -100,7 +100,7 @@ export default class DialogSafetyCenter extends AbstractView {
         return password == password_confirm && checkUserPassword(password_old) && checkUserPassword(password);
     }
     get phoneLength() {
-        return GlobalVar.skin == "skin010" ? 10 : 11;
+        return GlobalVar.skin == "skin009" ? 10 : 11;
     }
     get passwordTips() {
         if (GameConfig.config.register_regex == 2) {

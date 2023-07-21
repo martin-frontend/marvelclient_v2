@@ -97,7 +97,7 @@ export default class DialogRegister extends AbstractView {
     }
 
     get phoneLength() {
-        return GlobalVar.skin == "skin010" ? 10 : 11;
+        return GlobalVar.skin == "skin009" ? 10 : 11;
     }
     @Watch("tempSelectCode")
     onBankInfoChange() {

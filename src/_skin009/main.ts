@@ -47,6 +47,7 @@ Assets.commonIcon.logo_m = require(`@/_skin009/assets/logo_m.png`);
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
+SkinVariable.isShowGameListNovigation = false;
 GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();

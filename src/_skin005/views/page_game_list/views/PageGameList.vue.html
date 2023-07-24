@@ -5,8 +5,7 @@
             <v-sheet color="transparent" width="100%">
                 <GameSearch class="my-2" />
             </v-sheet>
-
-            <v-sheet class="mt-6 rounded10 px-4 d-flex align-center" color="bgBanner" min-height="50">
+            <v-sheet class="mt-4 rounded10 px-1 d-flex align-center" color="bgBanner" min-height="50">
                 <v-slide-group ref="slidegroup" class="mt-0" show-arrows center-active v-model="myProxy.curItemIndex">
                     <v-slide-item v-if="selectType && selectType.length> 1">
                         <v-card color="transparent" flat class="">
@@ -107,7 +106,7 @@
         <template v-if="curSelectType == 0">
             <v-card
                 ref="pcItemBox"
-                class="d-flex flex-wrap mb-2 mt-4"
+                class="d-flex flex-wrap mb-2 mt-1"
                 :class="$mobile ? 'justify-center' : 'justify-start'"
                 color="transparent"
                 flat
@@ -128,10 +127,10 @@
             </v-card>
         </template>
 
-        <template v-else-if=" curSelectType == 1 && !isUseMenuData">
+        <template v-else-if="curSelectType == 1 && !isUseMenuData">
             <v-card
                 ref="pcItemBox"
-                class="d-flex flex-wrap mb-2 mt-4"
+                class="d-flex flex-wrap mb-2 mt-1"
                 :class="$mobile ? 'justify-center' : 'justify-start'"
                 color="transparent"
                 flat
@@ -261,7 +260,7 @@
             <!-- 内容 -->
             <v-sheet color="transparent" class="d-flex mt-2" width="100%" height="100%">
                 <!-- 左边导航 -->
-                <v-sheet color="bgBanner" class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg" width="60" height="100%">
+                <v-sheet color="bgBanner" class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg" width="60" height="100%" v-if="SkinVariable.isShowGameListNovigation">
                     <v-card
                         color="transparent"
                         elevation="0"
@@ -290,7 +289,11 @@
                 </v-sheet>
                 <!-- 右边内容 -->
                 <v-sheet color="transparent" class="d-flex justify-center" width="100%">
-                    <v-sheet color="transparent" class="d-flex flex-column mob_row" style="width: calc(100vw - 65px)">
+                    <v-sheet
+                        color="transparent"
+                        class="d-flex flex-column mob_row"
+                        :style="{'width': SkinVariable.isShowGameListNovigation?'calc(100vw - 65px)':'calc(100vw - 20px)'}"
+                    >
                         <!-- 上面的 厂商选择 -->
                         <v-sheet
                         v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
@@ -409,23 +412,23 @@
 
                         <!-- 下方的列表 -->
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2 mr-n2 ml-1" color="transparent" flat tile>
-                                <Category v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
-                                <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2">
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1" color="transparent" flat tile>
+                                <Category class="mt-2" v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
+                                <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2 mt-2">
                                     <v-lazy>
                                         <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
                                     </v-lazy>
                                 </div>
 
                                 <template v-for="key of 10">
-                                    <div class="mr-2 mb-2">
+                                    <div class="mr-2 mb-2 mt-2">
                                         <GameItem />
                                     </div>
                                 </template>
                             </v-card>
                         </template>
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2 mr-n2 ml-1" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1 mt-2" color="transparent" flat tile>
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>
@@ -494,7 +497,7 @@
                             </v-lazy>
                         </template>
                         <template v-else>
-                            <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
+                            <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between" color="transparent" elevation="0">
                                 <v-sheet
                                     v-for="(item, key) of menudata"
                                     :key="key"
@@ -563,7 +566,7 @@
             <!-- 内容 -->
             <v-sheet color="transparent" class="d-flex flex-column px-2" width="100%" height="100%">
                 <!-- 左边导航 -->
-                <v-sheet color="bgBanner" class="d-flex align-center rounded10" width="100%">
+                <v-sheet color="bgBanner" class="d-flex align-center rounded10" width="100%" v-if="SkinVariable.isShowGameListNovigation">
                     <v-card
                         color="transparent"
                         elevation="0"
@@ -594,17 +597,17 @@
                 </v-sheet>
 
                 <!-- 右边内容 -->
-                <v-sheet color="transparent" class="d-flex justify-center mt-2" width="100%">
+                <v-sheet color="transparent" class="d-flex justify-center" width="100%">
                     <v-sheet color="transparent" class="d-flex flex-column mob_row" width="100%">
                         <!-- 上面的 厂商选择 -->
                         <v-sheet
                         v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
-                            class="mx-0 rounded10 d-flex align-center overflow-hidden"
+                            class="mx-0 rounded10 d-flex align-center overflow-hidden mt-2"
                             min-height="49"
                             color="bgBanner"
                             width="100%"
                         >
-                            <v-slide-group class="mt-0 mr-2 ml-2">
+                            <v-slide-group class="mt-0 px-2">
                                 <v-slide-item v-if="selectType && selectType.length> 1">
                                     <v-card color="transparent" flat class="">
                                         <CustomSelect
@@ -713,7 +716,7 @@
                         </v-sheet>
 
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2 mr-n2 ml-1" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 mt-2" color="transparent" flat tile>
                                 <Category v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
                                 <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2">
                                     <v-lazy>
@@ -731,7 +734,7 @@
 
                         <!-- 下方的列表 -->
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2 mr-n2 ml-1" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1 mt-2" color="transparent" flat tile>
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>

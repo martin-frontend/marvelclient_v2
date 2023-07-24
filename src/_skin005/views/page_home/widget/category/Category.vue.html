@@ -1,5 +1,5 @@
-<v-card v-if="lobbyCategory && lobbyCategory.length > 0" flat color="transparent" :class="$mobile ? 'px-2': ''" width="100%">
-    <v-card flat color="transparent" :class="$mobile ? 'mt-3' : 'mt-8'" class="d-flex flex-column mb-2" v-for="(itemList, key) of categoryData" :key="key">
+<v-card v-if="lobbyCategory && lobbyCategory.length > 0" flat color="transparent" width="100%">
+    <v-card flat color="transparent" :class="$mobile ? '' : 'mb-3'" class="d-flex flex-column mb-2" v-for="(itemList, key) of categoryData" :key="key">
         <v-sheet color="transparent" class="d-flex align-center text-20">
             <div class="font-weight-bold" :class="$mobile?'text-16':''">{{ key }}</div>
             <template v-if="$mobile">

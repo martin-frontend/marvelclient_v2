@@ -1,6 +1,5 @@
-<div class="d-flex">
+<div class="d-flex" v-if="getShowData && getShowData.length > 0">
     <v-carousel
-        v-if="getShowData && getShowData.length > 0"
         v-model="selectIndex"
         cycle
         :height="height"

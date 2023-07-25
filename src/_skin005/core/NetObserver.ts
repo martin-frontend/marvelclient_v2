@@ -64,6 +64,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_var_plat_users_verification_show,
             net.EventType.api_user_login,
             net.EventType.api_user_var_notice,
+            net.EventType.api_user_var_coin_task_index,
         ];
     }
 
@@ -394,6 +395,10 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_notice:
                 if (body && body.length > 0) PanelUtil.openpanel_notice_recharge(body);
+                break;
+            // 奖励任务列表
+            case net.EventType.api_user_var_coin_task_index:
+                this.selfProxy.setCoinTaskData(body);
                 break;
         }
     }

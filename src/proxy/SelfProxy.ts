@@ -68,6 +68,14 @@ export default class SelfProxy extends AbstractProxy {
             num: 0, // 数量
         },
     };
+    /**小贴士位置 */
+    coinTipData = {
+        top: 0,
+        left: 0,
+        isShow: false,
+        width: 0,
+    }
+
 
     setUserInfo(value: any) {
         Object.assign(this.userInfo, value);
@@ -146,6 +154,20 @@ export default class SelfProxy extends AbstractProxy {
         } else {
             this.userVerificationStatus = 0;
         }
+    }
+
+    coinTaskData = {
+        list: <any>[],
+        pageInfo: {
+            pageCurrent: 1,
+            pageCount: 1,
+            pageSize: 20,
+            pageTotal: 9,
+        },
+    }
+    setCoinTaskData(data: any) {
+        Object.assign(this.coinTaskData.pageInfo, data.pageInfo);
+        this.coinTaskData.list = data.list;
     }
 
     /**--账号--登出*/

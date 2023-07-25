@@ -32,6 +32,7 @@ export default class Novigation extends AbstractView {
     selfProxy = PanelUtil.getProxy_selfproxy;
     GameConfig = GameConfig;
     SkinVariable = SkinVariable;
+    activityProxy = PanelUtil.getProxy_get_pageActivityProxy;
 
     get promotion_reward_model_id() {
         return (
@@ -99,6 +100,7 @@ export default class Novigation extends AbstractView {
             // id1 :{ name: "幸运转盘", id: id1, path: "" },
             // id2 :{ name: "有奖标枪", id: id2, path: "" },
             7: { name: "推广奖励", id: 8, path: "" },
+            8: { name: "奖励币任务", id: 9, path: "page_coin_task" },
         };
         //精彩活动
         if (ModulesHelper.IsShow_ActivityDisplay()) {
@@ -112,6 +114,11 @@ export default class Novigation extends AbstractView {
         if (this.isShowPromotionReward) {
             newlist.push(list[7]);
         }
+        //奖励币任务
+        if(ModulesHelper.IsShow_CoinTaskDisplay()) {
+            newlist.push(list[8]);
+        }
+
         return newlist;
     }
     //抽屉状态
@@ -296,6 +303,9 @@ export default class Novigation extends AbstractView {
                 break;
             case 8:
                 PanelUtil.openpanel_promotionreward();
+                break;
+            case 9:
+                PanelUtil.openpanel_coin_task();
                 break;
             default:
                 break;

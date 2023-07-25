@@ -395,6 +395,10 @@ var net;
         api_user_var_plat_users_verification_save: "api/user/{user_id}/plat_users_verification/save",
         /**--IP限制--IP限制*/
         api_plat_var_is_allowed: "api/plat/{plat_id}/is_allowed",
+        /**--奖励任务--奖励任务列表*/
+        api_user_var_coin_task_index: "api/user/{user_id}/coin_task/index",
+        /**--奖励任务--放弃奖励任务*/
+        api_user_var_coin_task_cancel: "api/user/{user_id}/coin_task/cancel",
     };
     /**事件*/
     net.EventType = {
@@ -722,6 +726,10 @@ var net;
         api_user_var_plat_users_verification_save: "api_user_var_plat_users_verification_save",
         /**--IP限制--IP限制*/
         api_plat_var_is_allowed: "api_plat_var_is_allowed",
+        /**--奖励任务--奖励任务列表*/
+        api_user_var_coin_task_index: "api_user_var_coin_task_index",
+        /**--奖励任务--放弃奖励任务*/
+        api_user_var_coin_task_cancel: "api_user_var_coin_task_cancel",
     };
     /**注册协议*/
     function initCommand() {
@@ -914,6 +922,9 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_plat_users_verification_save, net.cmd_api_user_var_plat_users_verification_save);
         //--IP限制
         facade.registerCommand(net.HttpType.api_plat_var_is_allowed, net.cmd_api_plat_var_is_allowed);
+        //--奖励任务
+        facade.registerCommand(net.HttpType.api_user_var_coin_task_index, net.cmd_api_user_var_coin_task_index);
+        facade.registerCommand(net.HttpType.api_user_var_coin_task_cancel, net.cmd_api_user_var_coin_task_cancel);
     }
     net.initCommand = initCommand;
     ;
@@ -3029,6 +3040,50 @@ var net;
         }
     }
     net.cmd_api_user_var_coin_recharge_confirm = cmd_api_user_var_coin_recharge_confirm;
+})(net || (net = {}));
+/**
+ * 放弃奖励任务
+ */
+var net;
+/**
+ * 放弃奖励任务
+ */
+(function (net) {
+    class cmd_api_user_var_coin_task_cancel extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_coin_task_cancel, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_coin_task_cancel, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_coin_task_cancel = cmd_api_user_var_coin_task_cancel;
+})(net || (net = {}));
+/**
+ * 奖励任务列表
+ */
+var net;
+/**
+ * 奖励任务列表
+ */
+(function (net) {
+    class cmd_api_user_var_coin_task_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_coin_task_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_coin_task_index, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_coin_task_index = cmd_api_user_var_coin_task_index;
 })(net || (net = {}));
 /**
  * 按日期获取佣金详情

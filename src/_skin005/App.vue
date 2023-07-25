@@ -122,6 +122,8 @@
         >
             <GuideDrawer @onClose="onCloseGuide" />
         </v-navigation-drawer>
+
+        <CoinTip />
     </v-app>
 </template>
 
@@ -137,6 +139,8 @@ import Orientation from "@/_skin005/views/widget/orientation/Orientation.vue";
 import GuideDrawer from "@/_skin005/views/widget/guide_drawer/GuideDrawer.vue";
 import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMessageBox.vue";
 import LangUtil from "@/core/global/LangUtil";
+import CoinTip from "@/_skin005/views/widget/wallet/coin_tip/CoinTip.vue";
+
 @Component({
     components: {
         Novigation,
@@ -146,6 +150,7 @@ import LangUtil from "@/core/global/LangUtil";
         Orientation,
         GuideDrawer,
         DialogMessageBox,
+        CoinTip,
     },
 })
 export default class extends App {

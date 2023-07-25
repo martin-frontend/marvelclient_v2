@@ -5,10 +5,14 @@ import PageActivityProxy from "../proxy/PageActivityProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
+import SkinVariable from "@/_skin005/core/SkinVariable";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class PageActivity extends AbstractView {
     LangUtil = LangUtil;
+    SkinVariable = SkinVariable;
+    ModulesHelper = ModulesHelper;
     myProxy: PageActivityProxy = this.getProxy(PageActivityProxy);
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;

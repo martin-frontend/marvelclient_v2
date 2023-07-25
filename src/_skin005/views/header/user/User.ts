@@ -5,6 +5,8 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import PageBlur from "@/_skin005/core/PageBlur";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import SkinVariable from "@/_skin005/core/SkinVariable";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class User extends AbstractView {
@@ -28,8 +30,10 @@ export default class User extends AbstractView {
     showUserPanel(val: boolean) {
         console.log("点击s-----s");
         // PanelUtil.appproxy.setUserPanelShow(val);
-        if(val) {
-            this.platUsersVerificationProxy.api_user_var_plat_users_verification_show();
+        if (val) {
+            if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) {
+                this.platUsersVerificationProxy.api_user_var_plat_users_verification_show();
+            }
         }
     }
 }

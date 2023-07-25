@@ -142,6 +142,11 @@ export const routes: Array<RouteConfig> = [
         component: () =>
             import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
     },
+    {
+        path: "/page_coin_task",
+        name: "page_coin_task",
+        component: () => import(/* webpackChunkName: "skin005_page_coin_task" */ "@/_skin005/views/page_coin_task/views/PageCoinTask.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
@@ -222,9 +227,9 @@ export function getRouter(): VueRouter {
                 if (
                     !core.user_id &&
                     (to.path.includes("page_recharge") ||
-        
                         to.path.includes("page_my_info") ||
-                        to.path.includes("page_statistice_credit"))
+                        to.path.includes("page_statistice_credit") ||
+                        to.path.includes("page_coin_task"))
                 ) {
                     next(prePath);
                 } else {

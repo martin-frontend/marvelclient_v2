@@ -327,6 +327,10 @@ declare module net {
         api_user_var_plat_users_verification_save: string;
         /**--IP限制--IP限制*/
         api_plat_var_is_allowed: string;
+        /**--奖励任务--奖励任务列表*/
+        api_user_var_coin_task_index: string;
+        /**--奖励任务--放弃奖励任务*/
+        api_user_var_coin_task_cancel: string;
     };
     /**事件*/
     var EventType: {
@@ -654,6 +658,10 @@ declare module net {
         api_user_var_plat_users_verification_save: string;
         /**--IP限制--IP限制*/
         api_plat_var_is_allowed: string;
+        /**--奖励任务--奖励任务列表*/
+        api_user_var_coin_task_index: string;
+        /**--奖励任务--放弃奖励任务*/
+        api_user_var_coin_task_cancel: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1518,6 +1526,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_coin_recharge_confirm extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 放弃奖励任务
+ */
+declare module net {
+    class cmd_api_user_var_coin_task_cancel extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 奖励任务列表
+ */
+declare module net {
+    class cmd_api_user_var_coin_task_index extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -3056,8 +3082,8 @@ declare module core {
         index: number;
         vendor_type: number;
         vendor_type_name: string;
-        icon_name:string;
-        tag_sort:number; //分类的排序
+        icon_name: string;
+        tag_sort: number;
     }
     /**
      * 厂商产品

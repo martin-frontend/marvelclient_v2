@@ -140,6 +140,7 @@ import dialog_promotion_reward from "../views/dialog_promotion_reward";
 import DialogPromotionRewardProxy from "@/_skin005/views/dialog_promotion_reward/proxy/DialogPromotionRewardProxy";
 import GlobalVar from "@/core/global/GlobalVar";
 import PageActivityProxy from "@/_skin005/views/page_activity/proxy/PageActivityProxy";
+import PageCoinTaskProxy from "@/_skin005/views/page_coin_task/proxy/PageCoinTaskProxy";
 
 import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification";
 import DialogSpeedVerificationProxy from "@/_skin005/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
@@ -415,6 +416,12 @@ export default class PanelUtil {
     //打开精彩活动窗口
     static openpanel_activity(options: any = null) {
         this._openpage_base("promotions", false);
+    }
+    //打开奖励币任务窗口
+    static openpanel_coin_task(options: any = null) {
+        LoginEnter(() => {
+            this._openpage_base("page_coin_task");
+        });
     }
 
     //打开游戏列表窗口
@@ -917,6 +924,10 @@ export default class PanelUtil {
     //活动的数据
     public static get getProxy_get_pageActivityProxy(): PageActivityProxy {
         return getProxy(PageActivityProxy);
+    }
+    //活动的数据
+    public static get getProxy_get_pageCoinTaskProxy(): PageCoinTaskProxy {
+        return getProxy(PageCoinTaskProxy);
     }
 
     public static get message_confirm(): Function {

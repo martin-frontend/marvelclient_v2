@@ -77,12 +77,14 @@
 }
 
 .menu {
-    overflow: unset;
+    overflow: auto;
     contain: unset;
     z-index: 12 !important;
+    max-height: 90vh;
 }
 .transform_mob {
     transform: scale(0.8);
+    max-height: 115vh;
 }
 // .CNY{
 //     height: 105px;
@@ -118,3 +120,10 @@
 //     0%  { background-position: 0 0;}
 //     100% { background-position: -150% 0;}
 // }
+
+.custom-progress {
+    border-radius: 20px;
+    ::v-deep .v-progress-linear__determinate {
+        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+    }
+}

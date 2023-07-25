@@ -160,6 +160,12 @@ function IsShow_HideEmail() {
 function IsShow_GoogleVerification() {
     return _isValueTrue("GoogleVerification");
 }
+/**
+ * 是否显示 奖励币任务
+ */
+function IsShow_CoinTaskDisplay() {
+    return _isValueTrue("coinTaskDisplay", false);
+}
 
 /**
  * 是否显示 telegram按钮
@@ -301,6 +307,7 @@ export default {
     IsShow_HideSafeCenter,
     IsShow_HideEmail,
     isShow_PartnerKefu,
+    IsShow_CoinTaskDisplay,
     IsShow_TelegramButton,
     IsShow_NoticeBtn,
     IsShow_GameHistory,

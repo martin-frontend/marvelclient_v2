@@ -1,0 +1,244 @@
+<v-sheet width="100%" color="transparent" class="px-4 pad_height">
+    <template v-if="!pageData.isLoadData">
+        <v-card flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" color="bgBanner" width="100%">
+            <v-btn-toggle v-if="$mobile" :lang="core.lang" mandatory group v-model="tabIndex" width="100%" class="overflow-x-auto">
+                <template v-for="(item, key) of tabOptions">
+                    <v-btn
+                        :key="item.status"
+                        class="rounded-pill text-14"
+                        height="36"
+                        :value="item.status"
+                        :min-width="$mobile ? 72 : 90"
+                        v-if="item.status < 5 || item.status == 'all'"
+                    >
+                        <span> {{item.title}} </span>
+                    </v-btn>
+                </template>
+            </v-btn-toggle>
+            <v-btn-toggle v-else :lang="core.lang" mandatory group v-model="tabIndex" width="100%" class="overflow-x-auto">
+                <template v-for="(item, key) of tabOptions">
+                    <v-btn
+                        :key="key"
+                        class="rounded-pill mr-2 text-14"
+                        height="36"
+                        :value="item.status"
+                        :min-width="$mobile ? 72 : 90"
+                        v-if="item.status < 5 || item.status == 'all'"
+                    >
+                        <span> {{item.title}} </span>
+                    </v-btn>
+                </template>
+            </v-btn-toggle>
+        </v-card>
+
+        <!-- 奖励任务 -->
+        <template v-if="!$mobile">
+            <!-- pc -->
+            <v-card flat class="mt-4 mb-4" color="transparent" width="100%" min-height="500">
+                <v-row no-gutters>
+                    <template v-for="item of coinTaskList">
+                        <v-col class="mb-4" cols="12" :key="item.id">
+                            <v-card flat class="rounded10" color="bgBanner">
+                                <v-sheet class="pa-4 d-flex align-center" color="transparent" min-height="110">
+                                    <v-sheet
+                                        class="rounded-circle d-flex align-center justify-center mr-4 custom-avatar"
+                                        height="80"
+                                        width="80"
+                                        min-width="80"
+                                        color="bgColor"
+                                    >
+                                        <v-img
+                                            contain
+                                            :src="mappingImg(item.task_coin_name_unique)"
+                                            max-height="100%"
+                                            max-width="100%"
+                                        ></v-img>
+                                        <span class="coin-text white--text">{{convertCoinName(item.task_coin_name_unique)}}</span>
+                                    </v-sheet>
+                                    <v-sheet
+                                        color="transparent"
+                                        class="d-flex flex-column justify-space-between"
+                                        width="100%"
+                                        min-height="80px"
+                                    >
+                                        <div class="d-flex justify-space-between">
+                                            <span class="font-weight-bold">{{item.activity_name}}</span>
+                                            <div class="d-flex">
+                                                <v-tooltip top>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                            <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
+                                                        </v-sheet>
+                                                    </template>
+                                                    <span>
+                                                        {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
+                                                        ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
+                                                        }}
+                                                    </span>
+                                                </v-tooltip>
+                                                <span class="ml-1">
+                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}} {{item.task_coin_amount}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <v-progress-linear
+                                            class="custom-progress my-1"
+                                            background-color="bgColor"
+                                            :value="calculateProgress(item)"
+                                            height="15"
+                                        >
+                                            <template v-slot:default="{ value }">
+                                                <span class="navText--text">{{LangUtil("任务流水进度 ({0}%)", Math.trunc(value))}}</span>
+                                            </template>
+                                        </v-progress-linear>
+                                        <div class="d-flex justify-space-between">
+                                            <div class="nomal_text_2--text">{{LangUtil("任务开始时间")}}： {{item.start_time}}</div>
+                                            <div class="ml-auto">
+                                                <span class="red--text mr-2" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
+                                                <span class="success--text mr-2" v-if="item.status == 2"
+                                                    >{{statusOptions[item.status]}}</span
+                                                >
+                                                <span class="nomal_text_2--text" v-if="item.status < 3">
+                                                    {{LangUtil("任务剩余时间")}}： {{downcount(item.end_time)}}
+                                                </span>
+
+                                                <template v-if="item.status == 2">
+                                                    <span class="nomal_text_2--text ml-2">
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                                    </span>
+                                                    <span
+                                                        class="ml-2 textYellow--text cursor-pointer text-decoration-underline"
+                                                        @click="onGiveUp(item.id)"
+                                                        >{{LangUtil("放弃任务")}}
+                                                    </span>
+                                                </template>
+
+                                                <template v-if="item.status == 3">
+                                                    <span class="nomal_text_2--text mr-2">{{item.end_time}}</span>
+                                                    <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
+                                                    <span class="nomal_text_2--text">
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                                    </span>
+                                                </template>
+
+                                                <template v-if="item.status > 3">
+                                                    <span class="nomal_text_2--text mr-2">{{ item.end_time }}</span>
+                                                    <span class="textYellow--text">{{ statusOptions[item.status] }}</span>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </v-sheet>
+                                </v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </v-row>
+            </v-card>
+        </template>
+        <template v-else>
+            <!-- mobile -->
+            <v-card flat class="mt-4 mb-4" color="transparent" width="100%">
+                <v-row no-gutters>
+                    <template v-for="item of coinTaskList">
+                        <v-col cols="12" class="mb-4" :key="item.id">
+                            <v-card flat class="rounded10" color="bgBanner">
+                                <v-sheet class="pa-4 d-flex" color="transparent" min-height="150">
+                                    <v-sheet
+                                        class="rounded-circle d-flex align-end justify-center mr-4 custom-avatar"
+                                        height="70"
+                                        width="70"
+                                        min-width="70"
+                                        color="bgColor"
+                                    >
+                                        <v-img
+                                            contain
+                                            :src="mappingImg(item.task_coin_name_unique)"
+                                            max-height="100%"
+                                            max-width="100%"
+                                        ></v-img>
+                                        <span class="coin-text white--text">{{convertCoinName(item.task_coin_name_unique)}}</span>
+                                    </v-sheet>
+                                    <v-sheet
+                                        color="transparent"
+                                        class="d-flex flex-column justify-space-between"
+                                        width="100%"
+                                        min-height="100%"
+                                    >
+                                        <div class="d-flex justify-space-between">
+                                            <span class="font-weight-bold">{{item.activity_name}}</span>
+                                            <span class="success--text" v-if="item.status == 2">{{statusOptions[item.status]}}</span>
+                                            <span class="red--text" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
+                                            <span class="success--text mr-2" v-if="item.status == 3">{{statusOptions[item.status]}}</span>
+                                            <span class="textYellow--text ml-auto" v-if="item.status > 3"
+                                                >{{ statusOptions[item.status] }}</span
+                                            >
+                                        </div>
+                                        <div class="nomal_text_2--text">{{LangUtil("任务开始时间")}}： {{item.start_time}}</div>
+                                        <span class="nomal_text_2--text" v-if="item.status < 3"
+                                            >{{LangUtil("任务剩余时间")}}： {{downcount(item.end_time)}}</span
+                                        >
+                                        <div v-if="item.status > 2" class="nomal_text_2--text">
+                                            {{LangUtil("任务结束时间")}}： {{ item.end_time }}
+                                        </div>
+                                        <v-progress-linear
+                                            class="custom-progress my-1"
+                                            background-color="bgColor"
+                                            :value="calculateProgress(item)"
+                                            height="14"
+                                        >
+                                            <template v-slot:default="{ value }">
+                                                <span class="navText--text text-12"
+                                                    >{{LangUtil("任务流水进度 ({0}%)", Math.trunc(value))}}</span
+                                                >
+                                            </template>
+                                        </v-progress-linear>
+                                        <div class="d-flex">
+                                            <span class="mr-1">{{LangUtil("当前奖励币数量")}}</span>
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                        <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
+                                                    </v-sheet>
+                                                </template>
+                                                <span>
+                                                    {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
+                                                    ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
+                                                    }}
+                                                </span>
+                                            </v-tooltip>
+                                        </div>
+                                        <div class="d-flex justify-space-between">
+                                            <span>{{item.task_coin_name_unique}} {{item.task_coin_amount}}</span>
+                                            <!-- <template>
+                                                <span
+                                                    v-if="item.status == 2"
+                                                    class="ml-2 textYellow--text cursor-pointer text-decoration-underline"
+                                                    @click="onGiveUp(item.id)"
+                                                >
+                                                    {{LangUtil("放弃任务")}}
+                                                </span>
+                                            </template> -->
+                                        </div>
+                                        <div v-if="item.status == 3 || item.status == 2" class="d-flex">
+                                            {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                            <span
+                                                v-if="item.status == 2"
+                                                class="ml-auto textYellow--text cursor-pointer text-decoration-underline"
+                                                @click="onGiveUp(item.id)"
+                                            >
+                                                {{LangUtil("放弃任务")}}
+                                            </span>
+                                        </div>
+                                    </v-sheet>
+                                </v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </v-row>
+            </v-card>
+        </template>
+
+        <!-- <ListNodata v-else height="500" /> -->
+    </template>
+    <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto mt-4" type="image"></v-skeleton-loader>
+</v-sheet>

@@ -1,10 +1,19 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class CoinTip extends AbstractView {
     LangUtil = LangUtil;
+    selfProxy = PanelUtil.getProxy_selfproxy;
+    pcWidth = 160;
+    mobileWidth = 120;
+
+    get coinTipData() {
+        return this.selfProxy.coinTipData;
+    }
+
     @Prop({ default: true }) isLeft!: boolean;
 
     get tipsClass(): string {
@@ -33,5 +42,19 @@ export default class CoinTip extends AbstractView {
         }
 
         return _class;
+    }
+
+    get styleObj() {
+        if (this.$mobile) {
+            return {
+                top: this.coinTipData.top + "px",
+                left: this.coinTipData.left + this.coinTipData.width + 15 + "px",
+            };
+        }
+
+        return {
+            top: this.coinTipData.top + "px",
+            left: this.coinTipData.left - this.pcWidth - 15 + "px",
+        };
     }
 }

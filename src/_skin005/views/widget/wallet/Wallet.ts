@@ -8,6 +8,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class Wallet extends AbstractView {
@@ -18,6 +19,19 @@ export default class Wallet extends AbstractView {
     SkinVariable = SkinVariable;
     GlobalVar = GlobalVar;
     GamePlatConfig = GamePlatConfig;
+    coinTaskProxy = PanelUtil.getProxy_get_pageCoinTaskProxy;
+    tId = <any>null;
+
+    waterOptions = ["water_2", "water_4", "water_8", "water_16", "water_32", "water_64", "water_128"];
+    waterNeedOptions = [
+        "water_need_2",
+        "water_need_4",
+        "water_need_8",
+        "water_need_16",
+        "water_need_32",
+        "water_need_64",
+        "water_need_128",
+    ];
 
     onItemClick(key: string) {
         this.gameProxy.setCoin(key);
@@ -33,6 +47,9 @@ export default class Wallet extends AbstractView {
         //console.log("  user 修改值" ,this);
         // PageBlur.blur_mainpage(this.isFilterChange,false );
         PageBlur.blur_novigation(this.isFilterChange, false);
+        if (val && ModulesHelper.IsShow_CoinTaskDisplay()) {
+            this.coinTaskProxy.api_user_var_coin_task_index();
+        }
     }
     setIsFilter(val: boolean) {
         this.isFilterChange = val;
@@ -86,5 +103,54 @@ export default class Wallet extends AbstractView {
     }
     get isNeedText() {
         return GlobalVar.skin == "skin008";
+    }
+
+    get coinTask() {
+        // @ts-ignore
+        return this.selfProxy.coinTaskData.list.find((item) => item.status == 2);
+    }
+
+    calculateProgress(data: any) {
+        const curVal = data.water;
+        const endVal = data.water_need;
+        return Math.min((curVal / endVal) * 100, 100);
+    }
+
+    showCoinTask() {
+        PanelUtil.openpanel_coin_task();
+    }
+
+    setCoinTipPosition(val: any) {
+        if (val) {
+            const element: any = this.$refs[this.gameProxy.coin_name_unique];
+            if (element && element.length > 0) {
+                const rect = element[0].$el.getBoundingClientRect();
+                Object.assign(this.selfProxy.coinTipData, {
+                    top: rect.top,
+                    left: rect.left,
+                    width: rect.width,
+                    isShow: true,
+                });
+                // console.warn("this.selfProxy.coinTipData", this.selfProxy.coinTipData);
+                // console.warn("this.tId", this.tId);
+                if (!this.tId) {
+                    this.tId = setInterval(() => {
+                        this.setCoinTipPosition(this.selfProxy.coinTipData.isShow);
+                    });
+                }
+            }
+        } else {
+            clearInterval(this.tId);
+            this.tId = null;
+            this.selfProxy.coinTipData.isShow = false;
+        }
+    }
+
+    isActivityCoin(name: any) {
+        const coin = GamePlatConfig.config.plat_coins[name];
+        if (coin) {
+            return coin.type == 4;
+        }
+        return false;
     }
 }

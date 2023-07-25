@@ -126,7 +126,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
 
     reseData() {
         console.log("重置数据");
-        this.pageData.tabIndex = 0;
+        // this.pageData.tabIndex = 0;
     }
     setData(data: any) {
         this.pageData.loading = false;
@@ -137,7 +137,7 @@ export default class PageActivityProxy extends puremvc.Proxy {
         //this.pageData.list = this.setTestData();
 
         this.setCategoryData();
-        this.pageData.tabIndex = 0;
+        // this.pageData.tabIndex = 0;
     }
 
     /**获取活动列表 */

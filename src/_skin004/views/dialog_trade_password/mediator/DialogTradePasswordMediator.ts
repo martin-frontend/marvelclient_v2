@@ -34,7 +34,8 @@ export default class DialogTradePasswordMediator extends AbstractMediator {
             case net.EventType.REQUEST_ERROR:
                 myProxy.pageData.loading = false;
                 if (body.url == net.getUrl(net.HttpType.api_user_change_password_gold_var, body.data)) {
-                    myProxy.api_public_auth_code();
+                    // myProxy.api_public_auth_code();
+                    myProxy.onAuthcode_error();
                 }
                 break;
         }

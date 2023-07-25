@@ -30,7 +30,8 @@ export default class DialogTradePassword extends AbstractView {
         this.pageData.bShow = false;
     }
     get isDragAuth() {
-        return GamePlatConfig.config.auth_types == 2;
+        // return GamePlatConfig.config.auth_types == 2;
+        return this.myProxy.isDragAuth;
     }
     get isCheck(): boolean {
         const { password, password_confirm, verify_code } = this.form;

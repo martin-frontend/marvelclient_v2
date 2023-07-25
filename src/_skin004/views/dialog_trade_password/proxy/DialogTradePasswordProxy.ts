@@ -1,4 +1,5 @@
 import GameConfig from "@/core/config/GameConfig";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 
@@ -46,6 +47,16 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
     //         user_id: core.user_id,
     //     });
     // }
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
+    onAuthcode_error() {
+        this.pageData.form.verify_code = "";
+        if (!this.isDragAuth) {
+            this.api_public_auth_code();
+        }
+    }
+
     api_user_change_password_gold_var() {
         this.pageData.loading = true;
         const { password, password_confirm, verify_code, logonPassword } = this.pageData.form;
@@ -57,11 +68,9 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
         if (this.passWordShowType == 1) {
             sendobj.uuid = core.device;
             sendobj.code = verify_code;
-        }
-        else if (this.passWordShowType == 2) {
+        } else if (this.passWordShowType == 2) {
             sendobj.password_old = core.MD5.createInstance().hex_md5(logonPassword);
-        }
-        else if (this.passWordShowType == 3) {
+        } else if (this.passWordShowType == 3) {
             sendobj.code = verify_code;
         }
         console.log("发送的数据为", sendobj);
@@ -72,8 +81,7 @@ export default class DialogTradePasswordProxy extends puremvc.Proxy {
         const selfProxy: SelfProxy = getProxy(SelfProxy);
         if (selfProxy.userInfo.password_gold_exists == 1) {
             return this.GameConfig.config.changeGoldPasswordFollowSetting || 3;
-        }
-        else {
+        } else {
             return this.GameConfig.config.changeGoldPasswordFirstSetting || 3;
         }
     }

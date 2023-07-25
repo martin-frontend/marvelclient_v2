@@ -119,7 +119,8 @@ export default class DialogRegister extends AbstractView {
         );
     }
     get isDragAuth() {
-        return GamePlatConfig.config.auth_types == 2;
+        // return GamePlatConfig.config.auth_types == 2;
+        return this.myProxy.isDragAuth;
     }
     goLogin() {
         this.pageData.bShow = false;

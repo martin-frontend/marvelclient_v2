@@ -1,5 +1,6 @@
 import SkinVariable from "@/_skin004/core/SkinVariable";
 import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 export default class DialogRegisterProxy extends puremvc.Proxy {
     static NAME = "DialogRegisterProxy";
@@ -51,6 +52,16 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_public_auth_code, { uuid: core.device });
     }
 
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
+
+    onAuthcode_error() {
+        this.pageData.form.verify_code = "";
+        if (this.isDragAuth && (this.pageData.form.register_type == 1 || this.pageData.form.register_type == 32)) {
+            console.log("--");
+        } else this.api_public_auth_code();
+    }
     /**--账号--注册*/
     api_user_register() {
         this.pageData.loading = true;

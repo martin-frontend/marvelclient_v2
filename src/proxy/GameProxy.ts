@@ -45,6 +45,8 @@ export default class GameProxy extends AbstractProxy {
     loading = false;
 
     coin_name_unique_list_obj = <any>{};
+
+    isFirstGetGameCategory = false;
     /**保存到本地 */
     save_coin_to_localStorage() {
         if (core.user_id) {
@@ -180,6 +182,7 @@ export default class GameProxy extends AbstractProxy {
                     break;
             }
         }
+        this.isFirstGetGameCategory = true;
     }
     setCoin(coin_name_unique: string) {
         const old_coin = this.coin_name_unique;

@@ -142,7 +142,13 @@ export default class Footer extends AbstractView {
     public get logo_list(): any {
         return this._setCategoryData(this.footerNoticeData_logo);
     }
+    
+    public get isHaveShouming_list() : boolean {
+        if (!this.shouming_list) return false;
 
+        return this.shouming_list.length > 0;
+    }
+    
     //将底部说明 按照 标签分类
     public get shouming_list(): any {
         //console.log("--- 底部 分类 数据---", this.footerNoticeData);

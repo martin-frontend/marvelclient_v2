@@ -48,29 +48,14 @@
         <script>
             window.bannerNight = function () {};
             window.onNightModeChanged = function () {};
-            // window.addEventListener(
-            //     "error",
-            //     (event) => {
-            //         var target = event.target || event.srcElement;
-            //         var isCheck = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement;
-            //         if (isCheck) {
-            //             let url = target.src || target.href;
-            //             alert("Loading failed, click retry: " + url);
-            //             location.reload();
-            //         }
-            //     },
-            //     true
-            // );
-        </script>
-        <script>
             //获取设备当前时间
-            const timenow_hour = new Date().getHours();
-            //白天
-            if (timenow_hour > 5 && timenow_hour < 18) {
-                document.getElementsByTagName("html")[0].style.backgroundColor = "#fff";
-            } else {
-                document.getElementsByTagName("html")[0].style.backgroundColor = "#202121";
-            }
+            // const timenow_hour = new Date().getHours();
+            // //白天
+            // if (timenow_hour > 5 && timenow_hour < 18) {
+            //     document.getElementsByTagName("html")[0].style.backgroundColor = "#fff";
+            // } else {
+            document.getElementsByTagName("html")[0].style.backgroundColor = "#202121";
+            // }
         </script>
     </head>
 

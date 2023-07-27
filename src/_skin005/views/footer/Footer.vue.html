@@ -4,7 +4,7 @@
     style="margin-top: 100px !important"
     :class="$mobile ? 'px-2 text-14' :'ml-n3 mr-n3 text-16 '"
 >
-    <v-img :src="commonIcon.logo" max-width="130" max-height="45"></v-img>
+    <v-img :src="commonIcon.logo" max-width="130" ></v-img>
 
     <!-- 底部说明与logo的配置 pc版显示-->
     <v-sheet v-if="!$mobile" color="transparent" class="px-16 d-flex flex-column align-center" width="100%">
@@ -33,7 +33,7 @@
                 </v-sheet>
             </v-card>
         </v-card>
-        <v-sheet color="transparent" class="px-n2" width="100%">
+        <v-sheet v-if="isHaveShouming_list" color="transparent" class="px-n2" width="100%">
             <v-divider class="my-8"></v-divider>
         </v-sheet>
         <!-- 底部logo -->

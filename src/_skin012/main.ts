@@ -47,6 +47,7 @@ Assets.commonIcon.logo_m = require(`@/_skin012/assets/logo_m.png`);
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
+SkinVariable.autoTheme = false;
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -116,7 +117,8 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-PanelUtil.getThemeDark();
+// PanelUtil.getThemeDark();
+PanelUtil.setThemeDark(true);
 function addRouter() {
     if (!GameConfig.config.head_game_config) {
         GameConfig.config.head_game_config = <any>[];

@@ -8,7 +8,7 @@
                     class="ml-2"
                     :src="commonIcon.logo"
                     max-width="112"
-                    max-height="42"
+       
                 ></v-img>
                 <v-img
                     v-if="!mini && SkinVariable.isShowfullLogo"
@@ -154,7 +154,7 @@
                 <v-sheet v-if="GameConfig.timezoneChange" class="d-flex align-center" height="50" color="transparent">
                     <TimezoneSelect :icons="LangConfig.language" :fontSize="$mobile ? 14 : 14" :iconSize="20" :mini="mini" class="lang" />
                 </v-sheet>
-                <div class="com-theme">
+                <div class="com-theme" v-if="SkinVariable.autoTheme">
                     <v-sheet class="d-flex align-center" height="50" width="100%" color="transparent">
                         <LightDark :mini="mini" @onChange="onLightChange" />
                     </v-sheet>

@@ -41,7 +41,7 @@ export default class PageGameList extends AbstractView {
         this.resetItemWidth();
 
         this.$nextTick(() => {
-            // this.resetSelectType();
+            this.resetSelectType();
             if (this.isUseCategoryData && this.curCategoryData) {
                 this.categoryName = Object.keys(this.curCategoryData)[0];
             }

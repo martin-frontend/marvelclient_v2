@@ -645,8 +645,7 @@ export default class NetObserver extends AbstractMediator {
                     break;
                 case "promotionreward":
                     {
-                        if (!core.user_id) return;
-                        PanelUtil.openpanel_promotionreward();
+                        if (core.user_id) PanelUtil.openpanel_promotionreward();
                     }
                     break;
                 default:

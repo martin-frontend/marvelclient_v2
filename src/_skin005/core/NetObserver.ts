@@ -632,7 +632,6 @@ export default class NetObserver extends AbstractMediator {
     }
     /**显示 所有的 进入 弹窗都在这个地方显示 */
     openNoticeDialog() {
-        if (!core.user_id) return;
         //获取 其他窗口的 弹窗
         //const dialog_manager = ["dailysign", "promotionreward"];
         const dialog_manager = GameConfig.config.dialog_manager || [];
@@ -645,7 +644,10 @@ export default class NetObserver extends AbstractMediator {
                     PanelUtil.openpanel_dailysign();
                     break;
                 case "promotionreward":
-                    PanelUtil.openpanel_promotionreward();
+                    {
+                        if (!core.user_id) return;
+                        PanelUtil.openpanel_promotionreward();
+                    }
                     break;
                 default:
                     break;

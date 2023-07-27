@@ -785,11 +785,11 @@ export default class PanelUtil {
     }
     /**打开 每日签到界面 */
     static openpanel_dailysign() {
-        LoginEnter(() => {
+        // LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_daily_sign);
             PanelUtil.showNovigation(false);
             dialog_daily_sign.show();
-        });
+        // });
     }
     /**打开 每日签到界面 */
     static openpanel_promotionreward() {

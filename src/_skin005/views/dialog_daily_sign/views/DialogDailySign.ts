@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PageBlur from "@/_skin005/core/PageBlur";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import LoginEnter from "@/_skin005/core/global/LoginEnter";
 
 @Component
 export default class DialogDailySign extends AbstractView {
@@ -99,7 +100,7 @@ export default class DialogDailySign extends AbstractView {
                 let scale_height = this.$vuetify.breakpoint.height / 720;
                 scale_height = scale_height > 1 ? 1 : scale_height;
                 //@ts-ignore
-                this.$refs.card_node.style.scale = scale_height;
+                this.$refs.card_node.$el.style.scale = scale_height;
             }
         } else {
             if (this.$refs.card_node) {
@@ -117,8 +118,10 @@ export default class DialogDailySign extends AbstractView {
 
     onGetBones() {
         console.log("点击领取奖励--");
-        this.myProxy.api_user_var_sign_store();
-        //this.myProxy.api_user_var_sign_receive(this.myProxy.daily_data.id, this.todayData.rule_num);
+        LoginEnter(() => {
+            this.myProxy.api_user_var_sign_store();
+            //this.myProxy.api_user_var_sign_receive(this.myProxy.daily_data.id, this.todayData.rule_num);
+        });
     }
     // onItemClick(item: any) {
     //     console.log("---item--", item);

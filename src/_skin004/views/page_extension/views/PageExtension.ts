@@ -145,6 +145,7 @@ export default class PageExtension extends AbstractView {
         if (isLevel) {
             coinMoney = val;
         } else {
+            const scale = CoinTransformHelper.GetMainCoinScale;
             coinMoney = val[CoinTransformHelper.platCoins.mainCoin.name] || 0;
         }
         const sss = coinMoney * CoinTransformHelper.GetMainCoinScale;

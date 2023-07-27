@@ -19,6 +19,7 @@ export default class Fanyong extends AbstractView {
     }
 
     transformMoney_commission(val: any) {
+        const scale = CoinTransformHelper.GetMainCoinScale;
         const coinMoney = val[CoinTransformHelper.platCoins.mainCoin.name] || 0;
 
         const sss = coinMoney * CoinTransformHelper.GetMainCoinScale;

@@ -292,6 +292,13 @@
         </v-sheet>
     </v-card>
     <v-divider class="mx-5" />
+
+    <!-- okpay topay 安装包下载按钮 -->
+    <v-card-text class="custom_skin-black-text" v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 5">
+        {{LangUtil("没有安装 {0} ?", datalist.name)}}
+        <span class="text-decoration-underline cursor-pointer colorActiveBtn--text" @click="onLink(linkUrl)"> {{LangUtil("点我下载")}} {{datalist.name}} </span>
+    </v-card-text>
+
     <v-card-text class="d-flex justify-end mt-3">
         <div class="mr-2 info-text custom_skin-black-text">{{LangUtil("已支持币种")}}</div>
         <div v-for="(item, key) of pageData.methodList" :key="key">

@@ -116,4 +116,8 @@ export interface GameConfigVO {
     /**使用内置的FB事件 */
     useFacebookLog: number;
     home_sport_option: any; //首页足球相关的配置
+    /** okpay安装包下载url */
+    okpayUrl: string;
+    /** topay安装包下载url */
+    topayUrl: string;
 }

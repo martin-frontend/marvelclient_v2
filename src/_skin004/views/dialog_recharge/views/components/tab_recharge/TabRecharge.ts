@@ -10,6 +10,7 @@ import { Component, Watch } from "vue-property-decorator";
 import dialog_preview from "@/views/dialog_preview";
 import MyCanvas from "@/core/ui/MyCanvas";
 import dialog_message from "@/views/dialog_message";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class TabRecharge extends AbstractView {
@@ -18,6 +19,7 @@ export default class TabRecharge extends AbstractView {
     pageData = this.myProxy.rechargeProxy.pageData;
     form = this.pageData.form;
     plat_coins = GamePlatConfig.config.plat_coins;
+    GameConfig = GameConfig;
 
     onChange1(value: any) {
         const { methodList } = this.pageData;
@@ -201,5 +203,20 @@ export default class TabRecharge extends AbstractView {
             }
         }
         return false;
+    }
+
+    get linkUrl() {
+        let url = "";
+        if (this.datalist && this.datalist.payemthod_id == 5) {
+            switch (this.datalist.name.toLowerCase()) {
+                case "okpay":
+                    url = GameConfig.config.okpayUrl;
+                    break;
+                case "topay":
+                    url = GameConfig.config.topayUrl;
+                    break;
+            }
+        }
+        return url;
     }
 }

@@ -1,5 +1,5 @@
 <v-sheet color="transparent" :width="width" class="advertisen_class">
-    <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
+    <v-carousel height="100%" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
         <v-carousel-item v-for="(item, index) of noticeProxy.data.listType2" :key="index">
             <v-img :src="item.img_url" width="366" :height="height"></v-img>
         </v-carousel-item>

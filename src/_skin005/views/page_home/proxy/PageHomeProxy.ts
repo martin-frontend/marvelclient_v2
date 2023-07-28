@@ -2,6 +2,7 @@ import LangConfig from "@/core/config/LangConfig";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import { CompetitionVO } from "@/_skin005/vo/CompetitionVO";
 import Vue from "vue";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
@@ -101,6 +102,13 @@ export default class PageHomeProxy extends puremvc.Proxy {
             market_type =
                 "MATCH_ODDS,MATCH_ODDS_HALF_TIME,ASIAN_HANDICAP,ASIAN_HANDICAP_HALF_TIME,ASIAN_OVER_UNDER,ASIAN_OVER_UNDER_HALF_TIME";
         }
-        this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
+
+        if (window.$mobile && GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.mobile) {
+            this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.mobile);
+        } else if (GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.pc) {
+            this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.pc);
+        } else {
+            this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
+        }
     }
 }

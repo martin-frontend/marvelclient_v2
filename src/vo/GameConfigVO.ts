@@ -115,4 +115,5 @@ export interface GameConfigVO {
     FBVendorId: number;
     /**使用内置的FB事件 */
     useFacebookLog: number;
+    home_sport_option: any; //首页足球相关的配置
 }

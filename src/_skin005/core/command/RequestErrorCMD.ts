@@ -74,7 +74,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 PanelUtil.message_alert(body.result.msg);
             }
         } else {
-            PanelUtil.message_alert(LangUtil("未知错误"));
+            PanelUtil.message_alert(LangUtil("未知错误") + "/n" + JSON.stringify(result));
             console.warn(">>>>>>>>>result: ", result);
         }
         /**埋点 */

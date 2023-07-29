@@ -223,6 +223,10 @@ var net;
         api_plat_activity_show_binding: "api/plat/activity/show/binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api/plat/activity/{id}/rule_id/{rule_id}",
+        /**--活动--每日派奖详情*/
+        api_plat_activity_daily_rewards_var: "api/plat/activity/daily_rewards/{id}",
+        /**--活动--领取每日派奖奖励*/
+        api_plat_activity_daily_rewards_var_receive: "api/plat/activity/daily_rewards/{id}/receive",
         /**--公告--平台公告*/
         api_plat_var_notice_index: "api/plat/{plat_id}/notice/index",
         /**--公告--平台公告数据详细数据*/
@@ -554,6 +558,10 @@ var net;
         api_plat_activity_show_binding: "api_plat_activity_show_binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api_plat_activity_var_rule_id_var",
+        /**--活动--每日派奖详情*/
+        api_plat_activity_daily_rewards_var: "api_plat_activity_daily_rewards_var",
+        /**--活动--领取每日派奖奖励*/
+        api_plat_activity_daily_rewards_var_receive: "api_plat_activity_daily_rewards_var_receive",
         /**--公告--平台公告*/
         api_plat_var_notice_index: "api_plat_var_notice_index",
         /**--公告--平台公告数据详细数据*/
@@ -815,6 +823,8 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_sign_receive, net.cmd_api_user_var_sign_receive);
         facade.registerCommand(net.HttpType.api_plat_activity_show_binding, net.cmd_api_plat_activity_show_binding);
         facade.registerCommand(net.HttpType.api_plat_activity_var_rule_id_var, net.cmd_api_plat_activity_var_rule_id_var);
+        facade.registerCommand(net.HttpType.api_plat_activity_daily_rewards_var, net.cmd_api_plat_activity_daily_rewards_var);
+        facade.registerCommand(net.HttpType.api_plat_activity_daily_rewards_var_receive, net.cmd_api_plat_activity_daily_rewards_var_receive);
         //--公告
         facade.registerCommand(net.HttpType.api_plat_var_notice_index, net.cmd_api_plat_var_notice_index);
         facade.registerCommand(net.HttpType.api_plat_var_notice_show_var, net.cmd_api_plat_var_notice_show_var);
@@ -950,6 +960,50 @@ var net;
         }
     }
     net.cmd_api_plat_activity = cmd_api_plat_activity;
+})(net || (net = {}));
+/**
+ * 每日派奖详情
+ */
+var net;
+/**
+ * 每日派奖详情
+ */
+(function (net) {
+    class cmd_api_plat_activity_daily_rewards_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_daily_rewards_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_daily_rewards_var, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_daily_rewards_var = cmd_api_plat_activity_daily_rewards_var;
+})(net || (net = {}));
+/**
+ * 领取每日派奖奖励
+ */
+var net;
+/**
+ * 领取每日派奖奖励
+ */
+(function (net) {
+    class cmd_api_plat_activity_daily_rewards_var_receive extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_daily_rewards_var_receive, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_daily_rewards_var_receive, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_daily_rewards_var_receive = cmd_api_plat_activity_daily_rewards_var_receive;
 })(net || (net = {}));
 /**
  * 每日任务

@@ -39,6 +39,7 @@ import dialog_email_detail from "@/_skin005/views/dialog_email_detail";
 import dialog_official_mail from "@/_skin005/views/dialog_official_mail";
 //import dialog_activity from "@/_skin005/views/dialog_activity";
 import dialog_activity_detail from "@/_skin005/views/dialog_activity_detail";
+import dialog_activity_7days from "@/_skin005/views/dialog_activity_7days";
 import dialog_notice_detail from "@/_skin005/views/dialog_notice_detail";
 import dialog_notice from "@/_skin005/views/dialog_notice";
 
@@ -70,6 +71,7 @@ import DialogRechargeProxy from "@/_skin005/views/dialog_recharge/proxy/DialogRe
 import DialogAddressBookProxy from "@/_skin005/views/dialog_address_book/proxy/DialogAddressBookProxy";
 import DialogAddressBookRemarkProxy from "@/_skin005/views/dialog_address_book_remark/proxy/DialogAddressBookRemarkProxy";
 
+import PageRechargeProxy from "@/_skin005/views/page_recharge/proxy/PageRechargeProxy";
 /**代理 */
 import dialog_directly from "@/_skin005/views/dialog_directly";
 import dialog_bind_invite from "@/_skin005/views/dialog_bind_invite";
@@ -645,6 +647,11 @@ export default class PanelUtil {
      * @param data 数据
      */
     static openpanel_activity_detail(data: any) {
+        if (data && data.award_type && data.award_type == 16) {
+            MultDialogManager.onOpenPanel(dialog_activity_7days);
+            dialog_activity_7days.show(data);
+            return;
+        }
         MultDialogManager.onOpenPanel(dialog_activity_detail);
         dialog_activity_detail.show(data);
     }
@@ -900,6 +907,12 @@ export default class PanelUtil {
     public static get getProxy_recharge(): DialogRechargeProxy {
         return getProxy(DialogRechargeProxy);
     }
+
+    //充值的数据
+    public static get getProxy_page_recharge(): PageRechargeProxy {
+        return getProxy(PageRechargeProxy);
+    }
+
     //地址的的数据
     public static get getProxy_addressBook(): DialogAddressBookProxy {
         return getProxy(DialogAddressBookProxy);

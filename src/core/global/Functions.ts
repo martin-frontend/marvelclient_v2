@@ -689,7 +689,7 @@ export function convert_vi_to_en(str: string): string {
     return str;
 }
 /**将时间中的 - 换成 /  */
-export function changeDateShow(str: string, ischangeData: boolean = true): string {
+export function changeDateShow(str: string, ischangeData: boolean = true, iaHaveYear: boolean = false): string {
     if (!str) {
         return str;
     }
@@ -702,7 +702,7 @@ export function changeDateShow(str: string, ischangeData: boolean = true): strin
     }
     let newstr = str;
     if (ischangeData) newstr = Timezone.Instance.convertTime_to_Locale(str);
-    newstr = newstr.substring(5, newstr.length - 3);
+    if (!iaHaveYear) newstr = newstr.substring(5, newstr.length - 3);
 
     // const re = /(\w+)\s(\w+)/;
     // let newstr = str.replace(re, "$1");

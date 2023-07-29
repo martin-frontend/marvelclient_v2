@@ -175,6 +175,16 @@ export default class CoinTransformHelper {
         }
         return this.GetCoinSymbol(this.platCoins.mainCoin.name);
     }
+    static get GetMainCoinName() {
+        if (!this.platCoins.mainCoin.name) {
+            this._getCurrentCoin();
+        }
+        return this.platCoins.mainCoin.name;
+        // if (!GameConfig.config.SettlementCurrency) {
+        //     GameConfig.config.SettlementCurrency = "USDT";
+        // }
+        // return GameConfig.config.SettlementCurrency;
+    }
     /**判断主币 是否与 结算货币 相同 */
     static get isSelectSameMain() {
         if (!this.platCoins.mainCoin.name) {

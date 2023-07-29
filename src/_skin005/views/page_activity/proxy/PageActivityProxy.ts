@@ -160,15 +160,8 @@ export default class PageActivityProxy extends puremvc.Proxy {
     //     );
     // }
     api_plat_activity_var_netback(idx: any) {
-        if (!core.user_id) return;
 
-        // 推广奖励
-        // if (idx == this.promotion_reward_model_id.id) {
-        //     PanelUtil.openpanel_promotionreward();
-        //     return;
-        // }
-
-        const url = net.getUrl(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
+        const url = net.getUrl(net.HttpType.api_plat_activity_var, { id: idx });
         PanelUtil.showAppLoading(true);
         net.Http.request({}, url)
             .then((response: any) => {

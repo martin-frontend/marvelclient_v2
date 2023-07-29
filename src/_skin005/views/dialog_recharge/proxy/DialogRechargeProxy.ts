@@ -55,14 +55,28 @@ export class RechargeProxy extends puremvc.Proxy {
         return Object.keys(this.pageData.methodList).length > 0;
     }
 
-    setData(data: any) {
+    clearFrom() {
+        Object.assign(this.pageData.form, {
+            coin_name_unique: "",
+            block_network_id: "",
+            recharge_channel_id: "",
+            amount: "",
+            third_id: "",
+            subtitle: "",
+            requires: <any>{},
+            in_activity: "1", // 0-不参与|1-参与
+        });
+        this.pageData.methodList = <any>{};
+    }
+    setData(data: any, coin_name_unique: string = "") {
+        console.log("----设置充值----");
         this.pageData.loading = false;
         this.pageData.methodList = data;
         this.pageData.isLoadData = false;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
         const gameProxy = PanelUtil.getProxy_gameproxy;
-        let coin_name_unique = gameProxy.coin_name_unique;
+        if (!coin_name_unique) coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
             coin_name_unique = keys[0];
         }
@@ -186,7 +200,7 @@ export class RechargeProxy extends puremvc.Proxy {
         //         data[requires[keys[index]]] = "-";
         //     }
         // }
-        console.log("请求 充值 数据", data);
+        console.warn("请求 充值 数据", data);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);
     }
 }
@@ -228,7 +242,7 @@ export class ExchangeProxy extends puremvc.Proxy {
     extend_info = {
         exemption_amount: "0",
         gold_water_pass: false,
-    }
+    };
 
     init() {
         this.api_user_var_exchange_method_list();

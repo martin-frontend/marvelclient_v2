@@ -157,6 +157,10 @@ module net {
         api_plat_activity_show_binding: "api/plat/activity/show/binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api/plat/activity/{id}/rule_id/{rule_id}",
+        /**--活动--每日派奖详情*/
+        api_plat_activity_daily_rewards_var: "api/plat/activity/daily_rewards/{id}",
+        /**--活动--领取每日派奖奖励*/
+        api_plat_activity_daily_rewards_var_receive: "api/plat/activity/daily_rewards/{id}/receive",
 
         /**--公告--平台公告*/
         api_plat_var_notice_index: "api/plat/{plat_id}/notice/index",
@@ -519,6 +523,10 @@ module net {
         api_plat_activity_show_binding: "api_plat_activity_show_binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api_plat_activity_var_rule_id_var",
+        /**--活动--每日派奖详情*/
+        api_plat_activity_daily_rewards_var: "api_plat_activity_daily_rewards_var",
+        /**--活动--领取每日派奖奖励*/
+        api_plat_activity_daily_rewards_var_receive: "api_plat_activity_daily_rewards_var_receive",
 
         /**--公告--平台公告*/
         api_plat_var_notice_index: "api_plat_var_notice_index",
@@ -802,6 +810,8 @@ module net {
         facade.registerCommand(HttpType.api_user_var_sign_receive, cmd_api_user_var_sign_receive);
         facade.registerCommand(HttpType.api_plat_activity_show_binding, cmd_api_plat_activity_show_binding);
         facade.registerCommand(HttpType.api_plat_activity_var_rule_id_var, cmd_api_plat_activity_var_rule_id_var);
+        facade.registerCommand(HttpType.api_plat_activity_daily_rewards_var, cmd_api_plat_activity_daily_rewards_var);
+        facade.registerCommand(HttpType.api_plat_activity_daily_rewards_var_receive, cmd_api_plat_activity_daily_rewards_var_receive);
         //--公告
         facade.registerCommand(HttpType.api_plat_var_notice_index, cmd_api_plat_var_notice_index);
         facade.registerCommand(HttpType.api_plat_var_notice_show_var, cmd_api_plat_var_notice_show_var);

@@ -22,9 +22,13 @@ export default class DialogActivity7daysProxy extends puremvc.Proxy {
         }
         return false;
     }
-
+    public setData(data: any): void {
+        console.warn("---->>>设置数据",data);
+        // Object.assign(this.pageData.data, data);
+        this.pageData.data = JSON.parse(JSON.stringify(data));
+    }
     testData() {
-        for (let index = 0; index < 6; index++) {
+        for (let index = 0; index < 7; index++) {
             const obj = {
                 award_id: 1851,
                 reward_status: 1, // 奖励状态 1:不能领奖 2:可以领奖 3:已经领奖 4:已过期
@@ -79,13 +83,27 @@ export default class DialogActivity7daysProxy extends puremvc.Proxy {
         PanelUtil.openpanel_award(msg.award_info);
         this.api_plat_activity_daily_rewards_var();
     }
-
+    /**获取活动列表 */
+    api_plat_activity_var(idx: any) {
+        // this.pageData.loading = true;
+        PanelUtil.showAppLoading(true);
+        this.sendNotification(net.HttpType.api_plat_activity_var, { id: idx });
+    }
     onRecharge(data: any) {
         PanelUtil.showAppLoading(false);
         const recharge_proxy = PanelUtil.getProxy_recharge.rechargeProxy;
-        recharge_proxy.setData(data,this.pageData.rechargeItem.coin_name_unique);
+        recharge_proxy.setData(data, this.pageData.rechargeItem.coin_name_unique);
         // recharge_proxy.pageData.form.coin_name_unique = this.pageData.rechargeItem.coin_name_unique;
-        const res = CoinTransformHelper.TransformMoney(this.pageData.rechargeItem.params, 2, this.pageData.rechargeItem.coin_name_unique, "USDT", false, false, false, false);
+        const res = CoinTransformHelper.TransformMoney(
+            this.pageData.rechargeItem.params,
+            2,
+            this.pageData.rechargeItem.coin_name_unique,
+            "USDT",
+            false,
+            false,
+            false,
+            false
+        );
         recharge_proxy.pageData.form.amount = res;
         recharge_proxy.api_user_var_recharge_create();
     }

@@ -656,6 +656,13 @@ export default class PanelUtil {
         dialog_activity_detail.show(data);
     }
 
+    static openpanel_activity_detail_recharge(data: any) {
+        if (data && data.award_type && data.award_type == 16) {
+            MultDialogManager.onOpenPanel(dialog_activity_7days);
+            dialog_activity_7days.show(data, false);
+            return;
+        }
+    }
     /**
      * 代理管理
      */
@@ -793,9 +800,9 @@ export default class PanelUtil {
     /**打开 每日签到界面 */
     static openpanel_dailysign() {
         // LoginEnter(() => {
-            MultDialogManager.onOpenPanel(dialog_daily_sign);
-            PanelUtil.showNovigation(false);
-            dialog_daily_sign.show();
+        MultDialogManager.onOpenPanel(dialog_daily_sign);
+        PanelUtil.showNovigation(false);
+        dialog_daily_sign.show();
         // });
     }
     /**打开 每日签到界面 */

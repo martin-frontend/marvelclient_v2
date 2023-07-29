@@ -350,7 +350,7 @@ export default class NetObserver extends AbstractMediator {
                         if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0) {
                             PanelUtil.openpanel_notice();
                         }
-                    }, 2000);
+                    }, 3000);
                 }
                 break;
             case net.EventType.api_user_login:
@@ -633,7 +633,7 @@ export default class NetObserver extends AbstractMediator {
     /**显示 所有的 进入 弹窗都在这个地方显示 */
     openNoticeDialog() {
         //获取 其他窗口的 弹窗
-        //const dialog_manager = ["dailysign", "promotionreward"];
+        // const dialog_manager = ["rechargeactivity", "dailysign"];
         const dialog_manager = GameConfig.config.dialog_manager || [];
         const newArr = dialog_manager.reverse();
         for (let index = 0; index < newArr.length; index++) {
@@ -646,6 +646,19 @@ export default class NetObserver extends AbstractMediator {
                 case "promotionreward":
                     {
                         if (core.user_id) PanelUtil.openpanel_promotionreward();
+                    }
+                    break;
+                case "rechargeactivity":
+                    {
+                        const activelist = PanelUtil.getProxy_novigation.activityData;
+
+                        for (let index = 0; index < activelist.length; index++) {
+                            const element = activelist[index];
+                            if (element.award_type && element.award_type == 16) {
+                                PanelUtil.openpanel_activity_detail_recharge(element);
+                                break;
+                            }
+                        }
                     }
                     break;
                 default:

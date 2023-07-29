@@ -8,7 +8,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import OpenLink from "@/core/global/OpenLink";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import PanelUtil from "@/_skin005/core/PanelUtil";
-import { changeDateShow, dateFormat } from "@/core/global/Functions";
+import { changeDateShow, dateFormat, getDateOffset } from "@/core/global/Functions";
 import GameConfig from "@/core/config/GameConfig";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
 @Component
@@ -100,8 +100,6 @@ export default class DialogActivity7days extends AbstractView {
             let scale_width = this.$vuetify.breakpoint.width / 980;
             scale_height = scale_height < 1 ? scale_height : 1;
             scale_width = scale_width < 1 ? scale_width : 1;
-            // console.log("--scale_height-", scale_height);
-            // console.log("--scale_width-", scale_width);
             if (!this.$xsOnly) {
                 //判断是横屏还是竖屏
                 const isHorizontal = scale_height < scale_width;
@@ -147,17 +145,12 @@ export default class DialogActivity7days extends AbstractView {
                 this.myProxy.api_plat_activity_daily_rewards_var_receive(this.curCanGetItem.award_id);
                 return;
             }
-
             const proxy = PanelUtil.getProxy_recharge;
-            // proxy.transferProxy.gold_info = this.selfProxy.userInfo.gold_info;
             proxy.rechargeProxy.api_user_var_recharge_method_list();
             this.myProxy.pageData.rechargeItem = JSON.parse(JSON.stringify(this.curRuleData));
 
             PanelUtil.showAppLoading(true);
         });
-
-        // PanelUtil.openpage_recharge(0);
-        // this.onClose();
     }
     get chickIsCanTouch() {
         //还没有充值过
@@ -381,13 +374,28 @@ export default class DialogActivity7days extends AbstractView {
             }
         }
     }
+    @Watch("pageData.data")
+    onDataChange() {
+        console.log("---->>>刷新--数据--");
+        // this.myProxy.api_plat_activity_daily_rewards_var();
+        this.resetRule();
+    }
+
     @Watch("core.user_id")
     onRefresh() {
         console.log("---->>>刷新----");
         this.myProxy.api_plat_activity_daily_rewards_var();
     }
-    getDate(str: string, isChange: boolean = true) {
-        let newstr = changeDateShow(str, isChange, true);
+    getDate(str: string, isChange: boolean = true, isend: boolean = false) {
+        const obj = getDateOffset(str);
+
+        let newstr = "";
+        if (isend) {
+            newstr = changeDateShow(obj.endTime, isChange, true);
+        } else {
+            newstr = changeDateShow(obj.startTime, isChange, true);
+        }
+
         if (newstr) newstr = newstr.substring(0, newstr.length - 3);
         return newstr;
     }

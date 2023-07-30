@@ -114,6 +114,7 @@ export function api_user_register(params: any) {
             uuid: core.device,
             mobile_username: params.mobile_username,
             lang: LandConfig.config.lang || "en_EN",
+            utm_source: window.location.search.substring(1),
         },
         function (data: any) {
             const ifr: any = document.getElementById("ifr");

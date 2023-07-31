@@ -122,24 +122,22 @@
                         <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
                     </v-sheet>
                 </v-btn> -->
-                <v-row dense>
-                    <v-col :cols="$vuetify.breakpoint.xsOnly?'4':'auto'" v-for="(item, index) of datalist.channel" :key="index">
-                        <v-btn
-                            class="mb-1"
-                            min-width="100"
-                            width="100%"
-                            height="51"
-                            color="colorPanelTitleBg"
-                            :style="{border: form.third_id==item.third_id ? 'solid 2px #6fa9fa !important' : 'none'}"
-                            @click="paymethodThirdClick(item)"
-                        >
-                            <v-sheet color="transparent">
-                                <div class="text-truncate text-16 custom_skin-black-text">{{item.subtitle}}</div>
-                                <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
-                            </v-sheet>
-                        </v-btn>
-                    </v-col>
-                </v-row>
+                <div class="pa-1" :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}" v-for="(item, index) of datalist.channel" :key="index">
+                    <v-btn
+                        class="px-2"
+                        min-width="100"
+                        width="100%"
+                        height="51"
+                        :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
+                        color="colorPanelTitleBg"
+                        @click="paymethodThirdClick(item)"
+                    >
+                        <v-sheet color="transparent">
+                            <div class="text-truncate text-14 custom_skin-black-text">{{item.subtitle}}</div>
+                            <div class="third-fee text-12">{{LangUtil("手续费")}}</div>
+                        </v-sheet>
+                    </v-btn>
+                </div>
             </div>
             <v-divider></v-divider>
             <div class="colorText1--text mt-3 custom_skin-bold text-16">{{LangUtil("常用充值金额")}}</div>
@@ -201,24 +199,23 @@
                         <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
                     </v-sheet>
                 </v-btn> -->
-                <v-row dense>
-                    <v-col :cols="$vuetify.breakpoint.xsOnly?'4':'auto'" v-for="(item, index) of datalist.channel" :key="index">
-                        <v-btn
-                            class="mb-1"
-                            min-width="100"
-                            width="100%"
-                            height="51"
-                            color="colorPanelTitleBg"
-                            :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
-                            @click="paymethodThirdClick(item)"
-                        >
-                            <v-sheet color="transparent">
-                                <div class="text-truncate text-16 custom_skin-black-text">{{item.subtitle}}</div>
-                                <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
-                            </v-sheet>
-                        </v-btn>
-                    </v-col>
-                </v-row>
+                
+                <div class="pa-1" :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}" v-for="(item, index) of datalist.channel" :key="index">
+                    <v-btn
+                        class="px-2"
+                        min-width="100"
+                        width="100%"
+                        height="51"
+                        :style="{border: form.third_id==item.third_id ? 'solid 1px #6fa9fa !important' : 'none'}"
+                        color="colorPanelTitleBg"
+                        @click="paymethodThirdClick(item)"
+                    >
+                        <v-sheet color="transparent">
+                            <div class="text-truncate text-14 custom_skin-black-text">{{item.subtitle}}</div>
+                            <div class="third-fee text-12">{{LangUtil("手续费")}}</div>
+                        </v-sheet>
+                    </v-btn>
+                </div>
             </div>
             <v-divider></v-divider>
 

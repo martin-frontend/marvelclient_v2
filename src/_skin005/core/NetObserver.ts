@@ -661,6 +661,9 @@ export default class NetObserver extends AbstractMediator {
                         }
                     }
                     break;
+                case "limitedbonus":
+                    PanelUtil.openpanel_limited_bonus();
+                    break;
                 default:
                     break;
             }

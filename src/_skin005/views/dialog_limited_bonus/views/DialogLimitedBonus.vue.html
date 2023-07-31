@@ -1,0 +1,47 @@
+<!-- <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent> -->
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="container_daily" @click.stop="onPhoneClose">
+        <v-card flat color="transparent" hide-overlay ref="card_node" class="rounded10" :ripple="false" @click.stop="onPhoneCardClick">
+            <v-card flat width="680" height="390" class="main_bg_recharge my-4">
+                <div class="pt-4">
+                    <v-img :src="titleImg" width="426" height="218"> </v-img>
+                </div>
+                <v-sheet class="btn_close cursor-pointer" color="transparent" @click.stop="onClose">
+                    <v-img src="~@/_skin005/assets/limit_bonus/public/btn_close.png" width="36" height="32"> </v-img>
+                </v-sheet>
+                <div class="d-flex mx-2 align-center" style="position: absolute; bottom: 98px; left: 40px;height: 80px;">
+                    <div class="d-flex align-center" style="width: 125px;">
+                        <div class="mx-2">
+                            <v-img :src="getTimeImg(timeArr[0])" width="45"> </v-img>
+                        </div>
+                        <div class="mx-3">
+                            <v-img :src="getTimeImg(timeArr[1])" width="45"> </v-img>
+                        </div>
+                    </div>
+                    <div class="d-flex align-center ml-9" style="width: 125px;">
+                        <div class="mx-2">
+                            <v-img :src="getTimeImg(timeArr[2])" width="45"> </v-img>
+                        </div>
+                        <div class="mx-3">
+                            <v-img :src="getTimeImg(timeArr[3])" width="45"> </v-img>
+                        </div>
+                    </div>
+                </div>
+            </v-card>
+            <v-sheet color="transparent" class="d-flex justify-center align-center" width="100%">
+                <v-sheet
+                    color="transparent"
+                    @click.stop="onGetBtnClick"
+                    class="recharge_btn cursor-pointer d-flex justify-center align-center dosccale"
+                    :class="chickIsCanTouch ? '' : 'recharge_btn_disabled'"
+                    width="335"
+                    height="98"
+                >
+                    <v-sheet color="transparent" class="">
+                        <v-img :src="getBtnTextImg" width="201"></v-img>
+                    </v-sheet>
+                </v-sheet>
+            </v-sheet>
+        </v-card>
+    </div>
+</v-dialog>

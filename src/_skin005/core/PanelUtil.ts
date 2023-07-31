@@ -147,6 +147,7 @@ import PageCoinTaskProxy from "@/_skin005/views/page_coin_task/proxy/PageCoinTas
 import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification";
 import DialogSpeedVerificationProxy from "@/_skin005/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
 import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
+import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -662,6 +663,11 @@ export default class PanelUtil {
             dialog_activity_7days.show(data, false);
             return;
         }
+    }
+    static openpanel_limited_bonus(data: any=null) {
+        MultDialogManager.onOpenPanel(dialog_limited_bonus);
+        dialog_limited_bonus.show(data);
+        return;
     }
     /**
      * 代理管理

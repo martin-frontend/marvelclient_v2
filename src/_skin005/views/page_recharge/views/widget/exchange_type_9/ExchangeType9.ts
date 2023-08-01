@@ -25,7 +25,7 @@ export default class ExchangeType9 extends AbstractView {
     form = this.pageData.form;
     amountFormat = amountFormat;
     plat_coins = GamePlatConfig.config.plat_coins;
-    enable_exemption_amount = GameConfig.config.enable_exemption_amount;
+    enable_exemption_amount = GameConfig.config.enable_exemption_amount || false;
     extend_info = this.myProxy.exchangeProxy.extend_info;
 
     get isChecked(): boolean {
@@ -131,10 +131,27 @@ export default class ExchangeType9 extends AbstractView {
                 inputValue: "", //用户的输入值
                 errinfo: "", //错误信息
                 timeHeadle: null, //错误提示的句柄
+                isSelect: false,
+                options: <any>{},
+                option_key: "",
             };
+            if (element == "reference5") {
+                obj.options = {
+                    EMAIL: "reference5_EMAIL",
+                    PHONE: "reference5_PHONE",
+                    CPF: "reference5_CPF/CNPJ",
+                };
+                obj.isSelect = true;
+                obj.inputValue = Object.keys(obj.options)[0];
+            }
+
             this.showRequires.push(obj);
         }
     }
+    onBankChange() {
+        console.log("options修改---");
+    }
+
     onAll() {
         if (this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique]) {
             this.form.amount = this.myProxy.exchangeProxy.gold_info[this.form.coin_name_unique].plat_money;

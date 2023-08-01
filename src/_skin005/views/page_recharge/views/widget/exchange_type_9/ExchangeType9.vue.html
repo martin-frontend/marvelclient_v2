@@ -26,7 +26,9 @@
                             <v-sheet color="water_bg" class="rounded10 flex-1 mx-2 custom-progress" height="16px">
                                 <div class="progress-value text-center">
                                     <span class="ml-1 text-14 success--text">{{exemption_amount}}</span>
-                                    <span class="text-14 nomal_text--text">/{{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span>
+                                    <span class="text-14 nomal_text--text"
+                                        >/{{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span
+                                    >
                                 </div>
                                 <div class="progress-bg" :style="{'width': `${progressValue || 0}%`}"></div>
                             </v-sheet>
@@ -37,8 +39,8 @@
                                     </v-sheet>
                                 </template>
                                 <span>
-                                    {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                                    exemption_amount, form.coin_name_unique) }}
+                                    {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                                    form.coin_name_unique) }}
                                 </span>
                             </v-tooltip>
                         </div>
@@ -101,25 +103,60 @@
         <!-- 下面的需要填的选项 -->
         <v-card flat class="d-flex flex-column" color="transparent">
             <v-row>
-                <v-col cols="6" v-for="(item, key) of showRequires" :key="key">
-                    <v-card flat color="transparent" class="d-flex flex-column justify-center">
-                        <!-- 标题 -->
-                        <v-sheet color="transparent" class="d-flex">
-                            {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
-                        </v-sheet>
-                        <v-sheet color="transparent" class="py-1">
-                            <CustomInput
-                                class=""
-                                :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
-                                @blur="onBlurInput(item)"
-                                v-model="item.inputValue"
-                            >
-                            </CustomInput>
-                        </v-sheet>
-                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}} </v-sheet>
-                    </v-card>
-                </v-col>
+                <template v-for="(item, key) of showRequires">
+                    <!-- 如果是选项，针对巴西币的 CPF -->
+                    <v-col v-if="item.isSelect" cols="6" :key="item.title">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex">
+                                {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title + '_options')}}
+                            </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomSelect
+                                    v-model="item.inputValue"
+                                    :options="item.options"
+                                    width="100%"
+                                    height="36"
+                                    fontSize="14"
+                                    @change="onBankChange"
+                                    :placeholder="LangUtil('请选择{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
+                                />
+                            </v-sheet>
+                            <!-- <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}} </v-sheet> -->
+                        </v-card>
+                    </v-col>
 
+                    <v-col v-else cols="6" :key="key">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet v-if="!item.isSelect" color="transparent" class="d-flex">
+                                {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
+                            </v-sheet>
+                            <v-sheet v-else color="transparent" class="d-flex">
+                                {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title+"_"+item.options[item.option_key])}}
+                            </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    v-if="!item.isSelect"
+                                    class=""
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
+                                    @blur="onBlurInput(item)"
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                                <CustomInput
+                                    v-else
+                                    class=""
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title+'_'+item.options[item.option_key]) "
+                                    @blur="onBlurInput(item)"
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}} </v-sheet>
+                        </v-card>
+                    </v-col>
+                </template>
                 <v-col cols="6">
                     <v-card flat color="transparent" class="d-flex flex-column justify-center">
                         <!-- 标题 -->
@@ -193,8 +230,8 @@
                             </v-sheet>
                         </template>
                         <span>
-                            {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。",
-                            exemption_amount, form.coin_name_unique) }}
+                            {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                            form.coin_name_unique) }}
                         </span>
                     </v-tooltip>
                 </div>
@@ -257,20 +294,55 @@
         <v-card flat class="d-flex flex-column" color="transparent">
             <v-sheet color="transparent" width="100%">
                 <template v-for="(item, key) of showRequires">
-                    <v-card flat color="transparent" class="d-flex flex-column justify-center" :key="key">
+                    <v-card v-if="item.isSelect" flat color="transparent" class="d-flex flex-column justify-center" :key="item.title">
                         <!-- 标题 -->
                         <v-sheet color="transparent" class="d-flex">
-                            {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
+                            {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title + '_options')}}
                         </v-sheet>
                         <v-sheet color="transparent" class="py-1">
-                            <CustomInput
-                                class=""
-                                @blur="onBlurInput(item)"
-                                :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_' + curSelectItem.subtitle + '_' + item.title) "
+                            <CustomSelect
                                 v-model="item.inputValue"
-                            >
-                            </CustomInput>
+                                :options="item.options"
+                                width="100%"
+                                height="36"
+                                fontSize="14"
+                                @change="onBankChange"
+                                :placeholder="LangUtil('请选择{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title) "
+                            />
                         </v-sheet>
+                        <!-- <v-sheet class="text-12 red--text" color="transparent"> {{item.errinfo}} </v-sheet> -->
+                    </v-card>
+
+                    <v-card v-else flat color="transparent" class="d-flex flex-column justify-center" :key="key">
+                        <!-- 标题 -->
+                        <template v-if="!item.isSelect">
+                            <v-sheet color="transparent" class="d-flex">
+                                {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title)}}
+                            </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    @blur="onBlurInput(item)"
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_' + curSelectItem.subtitle + '_' + item.title) "
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                        </template>
+                        <template v-else>
+                            <v-sheet color="transparent" class="d-flex">
+                                {{LangUtil("exc_"+ curSelectItem.subtitle + '_'+ item.title+"_"+item.options[item.option_key])}}
+                            </v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    @blur="onBlurInput(item)"
+                                    :placeholder="LangUtil('请输入{0}','') + LangUtil('exc_'+ curSelectItem.subtitle + '_'+ item.title+'_'+item.options[item.option_key]) "
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                        </template>
                         <v-sheet class="text-12 red--text" color="transparent"> {{item.errinfo}} </v-sheet>
                     </v-card>
                 </template>

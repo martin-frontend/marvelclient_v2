@@ -497,6 +497,11 @@ export class ExchangeProxy extends puremvc.Proxy {
                     data[element.key] = element.inputValue;
                 } else {
                     data[element.title] = element.inputValue;
+                    // if (element.title == "reference5") {
+                    //     // data.type = element.option_key;
+                    //     data.accountnumber = element.inputValue;
+                    //     data[element.title] = element.options[element.option_key];
+                    // }
                 }
             }
             console.log(" 兑换发送的数据", data);

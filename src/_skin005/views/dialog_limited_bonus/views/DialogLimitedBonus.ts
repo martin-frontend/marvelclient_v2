@@ -47,9 +47,9 @@ export default class DialogLimitedBonus extends AbstractView {
         this.myProxy.pageData.timeCount = second;
         this.timeHandle = setInterval(() => {
             this.myProxy.pageData.timeCount--;
-           
+
             if (this.myProxy.pageData.timeCount < 0) {
-                this.myProxy.pageData.timeCount =0;
+                this.myProxy.pageData.timeCount = 0;
                 this.onTimeFinish();
             }
             this.setTimeArr(this.myProxy.pageData.timeCount);
@@ -112,10 +112,10 @@ export default class DialogLimitedBonus extends AbstractView {
                 //     //@ts-ignore
                 //     this.$refs.card_node.$el.style.top = top_count + "px";
                 // } else {
-                    //@ts-ignore
-                    this.$refs.card_node.$el.style.scale = scale_width;
-                    //@ts-ignore
-                    this.$refs.card_node.$el.style.top = "auto";
+                //@ts-ignore
+                this.$refs.card_node.$el.style.scale = scale_width;
+                //@ts-ignore
+                this.$refs.card_node.$el.style.top = "auto";
                 // }
             } else {
                 // console.log("手机版----");
@@ -142,6 +142,17 @@ export default class DialogLimitedBonus extends AbstractView {
     }
     onGetBtnClick() {
         console.log("---领取按钮");
+        if (core.user_id) {
+            const activelist = PanelUtil.getProxy_novigation.activityData;
+
+            for (let index = 0; index < activelist.length; index++) {
+                const element = activelist[index];
+                if (element.award_type && element.award_type == 16) {
+                    PanelUtil.openpanel_activity_detail_recharge(element);
+                    return;
+                }
+            }
+        }
         PanelUtil.openpage_recharge();
     }
     get chickIsCanTouch() {

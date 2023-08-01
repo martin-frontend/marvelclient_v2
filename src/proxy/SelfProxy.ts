@@ -54,6 +54,7 @@ export default class SelfProxy extends AbstractProxy {
         vip_info: <any>{},
         water_config: <any>{},
         cpf: "",
+        utm_source:"",
     };
     /**红点信息 */
     red_dot_tips = {
@@ -82,6 +83,9 @@ export default class SelfProxy extends AbstractProxy {
         core.user_id = <any>this.userInfo.user_id;
         if (value && value.extend && value.extend.cpf) {
             this.userInfo.cpf = value.extend.cpf;
+        }
+        if (value && value.extend && value.extend.utm_source) {
+            this.userInfo.utm_source = value.extend.utm_source;
         }
         //this.deleteCoin();
         if (value.gold_info) {

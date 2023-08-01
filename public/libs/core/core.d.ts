@@ -3529,6 +3529,7 @@ declare module core {
         /**信用创建类型: 在创建下级信用用户时使用  1, 代理， 2 玩家 */
         create_credit_user_type?: any;
         cpf?: string;
+        utm_source?: string;
     }
     /**
      * vip 奖励活动相关

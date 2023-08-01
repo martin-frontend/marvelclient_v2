@@ -216,6 +216,7 @@ export default class NetObserver extends AbstractMediator {
                             continue;
                         }
                         element.data.bet_id = element.bet_id;
+                        element.data.utm_source = this.selfProxy.userInfo.utm_source || "";
                         track(element.event_type, element.data, element.type == 1 ? TrackTypeMap.Purchase : TrackTypeMap.normal);
                         this.selfProxy.api_user_var_event_record_update(element.bet_id);
                     }

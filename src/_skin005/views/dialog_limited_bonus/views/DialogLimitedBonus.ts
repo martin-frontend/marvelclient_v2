@@ -57,6 +57,10 @@ export default class DialogLimitedBonus extends AbstractView {
     }
 
     onClose() {
+        if (this.closeHandle) {
+            clearTimeout(this.closeHandle);
+            this.closeHandle = 0;
+        }
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
     }
@@ -140,12 +144,14 @@ export default class DialogLimitedBonus extends AbstractView {
     onPhoneCardClick() {
         console.log("截断点击");
     }
+    closeHandle = 0;
     onGetBtnClick() {
         console.log("---领取按钮");
-        this.onClose();
         if (core.user_id) {
             const activelist = PanelUtil.getProxy_novigation.activityData;
-
+            this.closeHandle = setTimeout(() => {
+                this.onClose();
+            }, 200);
             for (let index = 0; index < activelist.length; index++) {
                 const element = activelist[index];
                 if (element.award_type && element.award_type == 16) {
@@ -153,8 +159,18 @@ export default class DialogLimitedBonus extends AbstractView {
                     return;
                 }
             }
+            PanelUtil.openpage_recharge();
         }
-        PanelUtil.openpage_recharge();
+        PanelUtil.message_confirm({
+            message: LangUtil("请您登录游戏"),
+            okFun: () => {
+                PanelUtil.openpanel_login();
+                this.closeHandle = setTimeout(() => {
+                    this.onClose();
+                }, 200);
+            },
+        });
+       
     }
     get chickIsCanTouch() {
         return true;

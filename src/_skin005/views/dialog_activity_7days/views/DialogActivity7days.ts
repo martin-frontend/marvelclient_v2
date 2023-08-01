@@ -187,7 +187,7 @@ export default class DialogActivity7days extends AbstractView {
     };
     rechargeRule = <any>[];
     resetRule() {
-        if (!this.myProxy.pageData.data || !this.myProxy.pageData.data.rules || this.myProxy.pageData.data.rules.length < 1) return [];
+        if (!this.myProxy.pageData.data || !this.myProxy.pageData.data.rules || !this.myProxy.pageData.data.rules.length || this.myProxy.pageData.data.rules.length < 1) return [];
         /**只有一个 */
         const rules = this.pageData.data.rules[0].list;
         // const id = GameConfig.config.recharge_model_id.rule_id || "51";

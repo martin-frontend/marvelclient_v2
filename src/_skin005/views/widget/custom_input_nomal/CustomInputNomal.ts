@@ -74,7 +74,7 @@ export default class CustomInputNomal extends AbstractView {
         } else {
             this.inputValue = val;
         }
-        if (!this.isFocus) {
+        if (!this.isFocus && this.inputValue) {
             this.$emit("input", this.inputValue.replace(/,/g, ""));
         }
     }

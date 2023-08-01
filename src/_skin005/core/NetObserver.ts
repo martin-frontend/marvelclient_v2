@@ -216,7 +216,7 @@ export default class NetObserver extends AbstractMediator {
                             continue;
                         }
                         element.data.bet_id = element.bet_id;
-                        element.data.utm_source = this.selfProxy.userInfo.utm_source || "";
+                        element.data.utm_source = this.trans_utm_source(this.selfProxy.userInfo.utm_source || "");
                         track(element.event_type, element.data, element.type == 1 ? TrackTypeMap.Purchase : TrackTypeMap.normal);
                         this.selfProxy.api_user_var_event_record_update(element.bet_id);
                     }
@@ -670,5 +670,19 @@ export default class NetObserver extends AbstractMediator {
             }
             // }, 200);
         }
+    }
+
+    trans_utm_source(utm_source: string) {
+        const obj = <any>{};
+        if (typeof utm_source == "string") {
+            const arrs = utm_source.split("&");
+            for (let i = 0; i < arrs.length; i++) {
+                const pair = arrs[i].split("=");
+                obj[pair[0]] = pair[1];
+            }
+        } else {
+            obj.other = utm_source;
+        }
+        return obj;
     }
 }

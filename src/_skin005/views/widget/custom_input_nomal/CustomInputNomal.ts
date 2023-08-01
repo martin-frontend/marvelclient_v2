@@ -55,6 +55,9 @@ export default class CustomInputNomal extends AbstractView {
         if (this.isOnlyNumber) {
             //this.inputValue = val.replace(/[^\d.]/g, "");
             this.inputValue = this.formatNumber ? amountFormat(val.replace(/[^\d]/g, "")) : val.replace(/[^\d]/g, "");
+            if (!this.isFocus) {
+                this.$emit("input", this.inputValue.replace(/,/g, ""));
+            }
             return;
         }
         if (this.isEnterGold && val && !this.isFocus) {
@@ -70,6 +73,9 @@ export default class CustomInputNomal extends AbstractView {
             this.inputValue = this.inputValue + dotPart;
         } else {
             this.inputValue = val;
+        }
+        if (!this.isFocus) {
+            this.$emit("input", this.inputValue.replace(/,/g, ""));
         }
     }
 

@@ -664,7 +664,7 @@ export default class PanelUtil {
             return;
         }
     }
-    static openpanel_limited_bonus(data: any=null) {
+    static openpanel_limited_bonus(data: any = null) {
         MultDialogManager.onOpenPanel(dialog_limited_bonus);
         dialog_limited_bonus.show(data);
         return;

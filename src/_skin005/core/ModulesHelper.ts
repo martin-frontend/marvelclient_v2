@@ -267,15 +267,15 @@ function isNeed_registerVerifiy() {
     return _isValueTrue("registerVerifiy", false);
 }
 function isHide_MyInfo() {
-    return _isValueTrue("mob_hidemyInfo",false);
+    return _isValueTrue("mob_hidemyInfo", false);
 }
 /**设置CPF的入口 */
 function IsShow_SetCPF() {
-    return _isValueTrue("setCPF",false);
+    return _isValueTrue("setCPF", false);
 }
 /**首页投注 */
 function isShow_RechargeActivityCheckbox() {
-    return _isValueTrue("rechargeActivityCheckbox",false);
+    return _isValueTrue("rechargeActivityCheckbox", false);
 }
 
 export default {

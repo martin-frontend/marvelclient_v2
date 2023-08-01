@@ -426,7 +426,7 @@ export default class ExchangeType9 extends AbstractView {
     get exemption_amount() {
         const { exemption_amount, gold_water_pass } = this.extend_info;
         const t = this.transformMoney_sum_money(exemption_amount);
-        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money,true);
+        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money, true);
         return t;
     }
 

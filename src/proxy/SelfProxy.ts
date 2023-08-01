@@ -54,7 +54,7 @@ export default class SelfProxy extends AbstractProxy {
         vip_info: <any>{},
         water_config: <any>{},
         cpf: "",
-        utm_source:"",
+        utm_source: "",
     };
     /**红点信息 */
     red_dot_tips = {
@@ -75,8 +75,7 @@ export default class SelfProxy extends AbstractProxy {
         left: 0,
         isShow: false,
         width: 0,
-    }
-
+    };
 
     setUserInfo(value: any) {
         Object.assign(this.userInfo, value);
@@ -168,7 +167,7 @@ export default class SelfProxy extends AbstractProxy {
             pageSize: 20,
             pageTotal: 9,
         },
-    }
+    };
     setCoinTaskData(data: any) {
         Object.assign(this.coinTaskData.pageInfo, data.pageInfo);
         this.coinTaskData.list = data.list;
@@ -219,7 +218,7 @@ export default class SelfProxy extends AbstractProxy {
             plat_id: core.plat_id,
             channel_id: core.channel_id,
             currency: gameProxy.coin_name_unique,
-            custom_host:GlobalVar.host_urls,
+            custom_host: GlobalVar.host_urls,
         });
     }
 }

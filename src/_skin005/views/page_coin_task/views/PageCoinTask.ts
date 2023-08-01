@@ -174,7 +174,7 @@ export default class PageCoinTask extends AbstractView {
         const indexA = statusOrder.indexOf(statusA);
         const indexB = statusOrder.indexOf(statusB);
 
-        const nameOrder = ["All" ,"Slots", "Live", "Casino", "Cricket", "FootBall", "Sport"]; // 狀態的特定順序
+        const nameOrder = ["All", "Slots", "Live", "Casino", "Cricket", "FootBall", "Sport"]; // 狀態的特定順序
         const nameA = a.task_coin_name_unique.split("-")[1];
         const nameB = b.task_coin_name_unique.split("-")[1];
 

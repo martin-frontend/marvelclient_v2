@@ -115,7 +115,7 @@ export default class Novigation extends AbstractView {
             newlist.push(list[7]);
         }
         //奖励币任务
-        if(ModulesHelper.IsShow_CoinTaskDisplay()) {
+        if (ModulesHelper.IsShow_CoinTaskDisplay()) {
             newlist.push(list[8]);
         }
 

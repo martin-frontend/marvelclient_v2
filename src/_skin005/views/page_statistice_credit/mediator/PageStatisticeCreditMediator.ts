@@ -21,6 +21,7 @@ export default class PageStatisticeCreditMediator extends AbstractMediator {
         ];
     }
     private isToday(someDate: any) {
+        if (!someDate || !someDate.trim()) return false;
         const today = getTodayGMT();
         const [year, month, day] = someDate.split("-");
         return Number(day) == today.getDate() && Number(month) == today.getMonth() + 1 && Number(year) == today.getFullYear();

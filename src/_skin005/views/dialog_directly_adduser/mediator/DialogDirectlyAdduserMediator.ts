@@ -12,7 +12,8 @@ export default class DialogDirectlyAdduserMediator extends AbstractMediator {
         const body = notification.getBody();
         const myProxy: DialogDirectlyAdduserProxy = getProxy(DialogDirectlyAdduserProxy);
         myProxy.pageData.loading = false;
-        const dialogDirectly = PanelUtil.getProxy_directly;
+        // const dialogDirectly = PanelUtil.getProxy_directly;
+        const dialogDirectly = PanelUtil.getProxy_agentmanager;
 
         switch (notification.getName()) {
             case net.EventType.api_public_auth_code:

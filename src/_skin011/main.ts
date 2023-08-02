@@ -48,7 +48,7 @@ Assets.commonIcon.logo_m = require(`@/_skin011/assets/logo_m.png`);
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
 SkinVariable.isShowGameListNovigation = false;
-SkinVariable.isFootballTop = false;
+// SkinVariable.isFootballTop = true;
 GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();
@@ -119,8 +119,8 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-PanelUtil.getThemeDark();
-// PanelUtil.setThemeDark(true);
+// PanelUtil.getThemeDark();
+PanelUtil.setThemeDark(true);
 function addRouter() {
     if (!GameConfig.config.head_game_config) {
         GameConfig.config.head_game_config = <any>[];

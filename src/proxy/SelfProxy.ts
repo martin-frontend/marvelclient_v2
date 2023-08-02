@@ -85,6 +85,7 @@ export default class SelfProxy extends AbstractProxy {
         }
         if (value && value.extend && value.extend.utm_source) {
             this.userInfo.utm_source = value.extend.utm_source;
+            window.localStorage.setItem("utm_source_" + this.userInfo.user_id, value.extend.utm_source);
         }
         //this.deleteCoin();
         if (value.gold_info) {

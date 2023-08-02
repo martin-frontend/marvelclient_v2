@@ -258,6 +258,8 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
             CoinTransformHelper.TransformMoney(data.amount, 4, "USDT", data.coin_name_unique, false, false, false, false)
         );
     }
+    const utm_source = window.localStorage.getItem("utm_source_" + core.user_id);
+    data.utm_source = trans_utm_source(utm_source || "");
     if (process.env.VUE_APP_ENV == "production") {
         if (core.user_id) Object.assign(data, { user_id: core.user_id });
         gmt(eventName, data);
@@ -290,4 +292,18 @@ export function track(eventName: string, data: any = {}, type: string = "normal"
         gmt(eventName, data);
         fbq(eventName, data, type);
     }
+}
+
+function trans_utm_source(utm_source: string) {
+    const obj = <any>{};
+    if (typeof utm_source == "string") {
+        const arrs = utm_source.split("&");
+        for (let i = 0; i < arrs.length; i++) {
+            const pair = arrs[i].split("=");
+            obj[pair[0]] = pair[1];
+        }
+    } else {
+        obj.other = utm_source;
+    }
+    return obj;
 }

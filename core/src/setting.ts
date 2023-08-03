@@ -359,6 +359,8 @@ module net {
         api_user_var_coin_task_index: "api/user/{user_id}/coin_task/index",
         /**--奖励任务--放弃奖励任务*/
         api_user_var_coin_task_cancel: "api/user/{user_id}/coin_task/cancel",
+        /**--奖励任务--平台银行列表*/
+        api_plat_var_bank_list: "api/plat/{plat_id}/bank_list",
     };
     /**事件*/
     export var EventType = {
@@ -725,6 +727,8 @@ module net {
         api_user_var_coin_task_index: "api_user_var_coin_task_index",
         /**--奖励任务--放弃奖励任务*/
         api_user_var_coin_task_cancel: "api_user_var_coin_task_cancel",
+        /**--奖励任务--平台银行列表*/
+        api_plat_var_bank_list: "api_plat_var_bank_list",
     };
     /**注册协议*/
     export function initCommand() {
@@ -922,6 +926,7 @@ module net {
         //--奖励任务
         facade.registerCommand(HttpType.api_user_var_coin_task_index, cmd_api_user_var_coin_task_index);
         facade.registerCommand(HttpType.api_user_var_coin_task_cancel, cmd_api_user_var_coin_task_cancel);
+        facade.registerCommand(HttpType.api_plat_var_bank_list, cmd_api_plat_var_bank_list);
     };
 
 }

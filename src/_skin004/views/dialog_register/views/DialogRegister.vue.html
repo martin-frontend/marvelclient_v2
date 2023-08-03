@@ -17,7 +17,7 @@
                 </v-btn>
             </v-card-title>
             <v-card-text class="px-5 px-md-10 mt-5">
-                <div class="d-flex mb-10">
+                <div class="d-flex mb-5">
                     <v-btn
                         v-if="registerTypes.includes(1)"
                         height="40"
@@ -55,7 +55,7 @@
 
                 <CustomInput
                     v-if="!core.invite_user_id || SkinVariable.mustShowInvite"
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"
                     v-model="form.invite_user_id"
@@ -63,7 +63,7 @@
                 />
                 <CustomInput
                     v-if="form.register_type==1"
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入注册账号（4-20位）')"
                     maxlength="20"
@@ -72,7 +72,7 @@
                 />
                 <CustomInput
                     v-if="form.register_type==2"
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入邮箱')"
                     maxlength="30"
@@ -86,7 +86,7 @@
 
                 <CustomInput
                     v-if="form.register_type==4"
-                    class="mb-6 codeSelect"
+                    class="mb-4 codeSelect"
                     icon="mdi-phone"
                     type="tel"
                     :placeholder="LangUtil('请输入手机号')"
@@ -182,22 +182,67 @@
                 </CustomInput>
 
                 <CustomInput
-                    class="mb-6"
+                    class="mb-4"
                     v-if="form.register_type != 1"
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（6位）')"
                     maxlength="6"
                     v-model="form.verify_code"
                 />
+                <template v-if="myProxy.isNeedBankInfo && myProxy.curBankInfo.bankInfo && myProxy.curBankInfo.bankInfo.length>0">
+                    <CustomInput
+                        class="mb-4"
+                        icon="mdi-account"
+                        :placeholder="LangUtil('请输入姓名')"
+                        v-model="myProxy.curBankInfo.realName"
+                        @blur="onBankNameBlur"
+                    />
+                    <v-sheet
+                        color="transparent"
+                        height="50"
+                        width="100%"
+                        class="mt-1 mb-4 d-flex align-center bank_box border-radius"
+                        outlined
+                    >
+                        <v-autocomplete
+                            v-model="myProxy.curBankInfo.curSelectBankInfo"
+                            :items="myProxy.curBankInfo.bankInfo"
+                            item-text="bank_name"
+                            :label="LangUtil('银行信息')"
+                            hide-details
+                            solo
+                            flat
+                            background-color="transparent"
+                            color="colorText1 colorBlue--text"
+                            attach
+                            menu-props="{class='test_cloas'}"
+                            return-object
+                            :no-data-text="LangUtil('没有找到数据')"
+                        ></v-autocomplete>
+
+                        <v-sheet color="transparent" min-width="250" class="name_select">
+                            <CustomInput
+                                @blur="onNumberInputBlur"
+                                @input="onNumberInputInput"
+                                height="40"
+                                :isOnlyNumber="true"
+                                :placeholder="LangUtil('银行卡号')"
+                                v-model="myProxy.curBankInfo.cardNumber"
+                            >
+                            </CustomInput>
+                        </v-sheet>
+                    </v-sheet>
+                </template>
+
                 <CustomPassword
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-lock"
                     :placeholder="LangUtil('请输入密码（6-20位）')"
                     v-model="form.password"
                     @blur="onPasswordBlur"
                 />
                 <CustomPassword
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-lock"
                     :placeholder="LangUtil('确认密码（6-20位）')"
                     v-model="form.password_confirm"
@@ -206,7 +251,7 @@
                 <!-- 账号注册里面的手机 -->
                 <CustomInput
                     v-if="form.register_type==1"
-                    class="mb-6"
+                    class="mb-4"
                     icon="mdi-phone"
                     type="tel"
                     :placeholder="LangUtil('请输入手机号')"
@@ -262,7 +307,7 @@
                 </CustomInput>
 
                 <CustomInput
-                    class="mb-6"
+                    class="mb-4"
                     v-if="!isDragAuth && form.register_type == 1"
                     icon="mdi-shield-check"
                     :placeholder="LangUtil('请输入验证码（4位）')"

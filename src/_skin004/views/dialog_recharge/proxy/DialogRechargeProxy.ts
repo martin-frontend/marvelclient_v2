@@ -228,6 +228,7 @@ export class ExchangeProxy extends puremvc.Proxy {
         });
         this.curBankinfo = null;
         this.setRealName();
+        this.setDefaultBankInfo();
     }
 
     setRealName() {
@@ -237,6 +238,25 @@ export class ExchangeProxy extends puremvc.Proxy {
             this.pageData.form.account_name = "";
         }
         console.log("设置真实信命" + this.pageData.form.account_name);
+    }
+    setDefaultBankInfo() {
+        if (this.bankCardInfo && this.bankCardInfo.length > 0) {
+            let item = <any>{};
+            for (let index = 0; index < this.bankCardInfo.length; index++) {
+                const element = this.bankCardInfo[index];
+
+                if (element.coin_name_unique == this.pageData.form.coin_name_unique) {
+                    item = element;
+                }
+            }
+            if (item) {
+                // const item = this.bankCardInfo[0];
+                this.pageData.form.account = item.payment_method.account;
+                this.pageData.form.account_name = item.payment_method.account_name;
+                //设置 银行名字 和银行id
+                this.setCurBankInfo(item.payment_method.bank_id);
+            }
+        }
     }
     addusdt() {
         const data: any = {};
@@ -368,6 +388,7 @@ export class ExchangeProxy extends puremvc.Proxy {
                 this.bankCard_numberArr.push(element.payment_method.account);
             }
         }
+        this.setDefaultBankInfo();
     }
 
     api_user_var_exchange_method_list() {

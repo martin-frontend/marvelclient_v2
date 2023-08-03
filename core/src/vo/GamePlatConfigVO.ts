@@ -53,5 +53,7 @@ module core {
         is_user_verification: { is_open: number };
         /** 简单密码的验证方式 1 为 4位的 图形验证码 2 为滑动验证码*/
         auth_types: number;
+        /**注册时否绑定银行卡 */
+        is_register_store_bank_info: { is_open: number };
     }
 }

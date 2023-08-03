@@ -335,6 +335,8 @@ declare module net {
         api_user_var_coin_task_index: string;
         /**--奖励任务--放弃奖励任务*/
         api_user_var_coin_task_cancel: string;
+        /**--奖励任务--平台银行列表*/
+        api_plat_var_bank_list: string;
     };
     /**事件*/
     var EventType: {
@@ -670,6 +672,8 @@ declare module net {
         api_user_var_coin_task_index: string;
         /**--奖励任务--放弃奖励任务*/
         api_user_var_coin_task_cancel: string;
+        /**--奖励任务--平台银行列表*/
+        api_plat_var_bank_list: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -769,6 +773,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_backwater_setting_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 平台银行列表
+ */
+declare module net {
+    class cmd_api_plat_var_bank_list extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -2972,6 +2985,10 @@ declare module core {
         };
         /** 简单密码的验证方式 1 为 4位的 图形验证码 2 为滑动验证码*/
         auth_types: number;
+        /**注册时否绑定银行卡 */
+        is_register_store_bank_info: {
+            is_open: number;
+        };
     }
 }
 declare module core {

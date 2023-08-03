@@ -20,7 +20,9 @@
     color: #6fa9fa;
     font-size: 13px;
 }
-
+.border-radius{
+    border-radius:12px !important;
+}
 .loginWrap {
     display: flex;
     justify-content: center;
@@ -90,5 +92,95 @@
 
     .mytest {
         min-width: 200px !important;
+    }
+}
+
+.bank_box {
+    border-color: #4c5d7f !important;
+    ::v-deep .input-text {
+        border: none !important;
+    }
+    ::v-deep.v-autocomplete__content.v-menu__content,
+    .v-autocomplete__content.v-menu__content .v-card {
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list {
+        background: #25324b !important;
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+        color: #96aad0;
+    }
+    ::v-deep .v-application .primary--text {
+        color: #fff !important;
+    }
+    ::v-deep .theme--dark.v-label {
+        color: #96aad0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    ::v-deep .theme--dark.v-icon {
+        color: #4c5d7f;
+    }
+    ::v-deep .theme--dark.v-input input {
+        color: #4c5d7f;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .name_select {
+        position: relative;
+
+        .name_list {
+            position: absolute;
+            z-index: 5;
+        }
+    }
+}
+
+.bank_box_mob {
+    border-color: #4c5d7f !important;
+
+    ::v-deep .input-text {
+        border: none !important;
+        height: 35px;
+        input {
+            height: 35px;
+        }
+    }
+    ::v-deep.v-autocomplete__content.v-menu__content,
+    .v-autocomplete__content.v-menu__content .v-card {
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list {
+        background: #97abd1 !important;
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+        color: #314361;
+    }
+    ::v-deep .v-application .primary--text {
+        color: #fff !important;
+    }
+    ::v-deep .theme--dark.v-label {
+        color: #4c5d7f;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    ::v-deep .theme--dark.v-icon {
+        color: #4c5d7f;
+    }
+    ::v-deep .theme--dark.v-input input {
+        color: #96a9d0;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .name_select {
+        position: relative;
+
+        .name_list {
+            position: absolute;
+            z-index: 5;
+        }
     }
 }

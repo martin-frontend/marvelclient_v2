@@ -9,7 +9,7 @@ import CustomPassword from "@/views/widget/custom_password/CustomPassword.vue";
 import Overlay from "@/views/widget/overlay/Overlay.vue";
 import Component from "vue-class-component";
 import DialogRegister from "./DialogRegister";
-
+import CustomSelect from "@/views/widget/custom_select/CustomSelect.vue";
 @Component({
     components: {
         AdvertiseInLogin,
@@ -17,6 +17,7 @@ import DialogRegister from "./DialogRegister";
         CustomPassword,
         Overlay,
         DialogGetVerity,
+        CustomSelect,
     },
 })
 export default class extends DialogRegister {}

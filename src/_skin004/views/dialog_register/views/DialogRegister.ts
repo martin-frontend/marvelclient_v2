@@ -25,7 +25,7 @@ export default class DialogRegister extends AbstractView {
     constructor() {
         super(DialogRegisterMediator);
     }
-
+    bankCardInfo = this.myProxy.bankCardInfo;
     checkUserName = checkUserName;
     checkMail = checkMail;
     checkPhone = checkPhone;
@@ -105,10 +105,20 @@ export default class DialogRegister extends AbstractView {
         this.areaCodeMenu = false;
     }
 
+    chickString(val: any) {
+        if (!val || !val.trim()) {
+            return false;
+        }
+        return true;
+    }
     get isCheck(): boolean {
         const { username, password, password_confirm, verify_code, register_type } = this.form;
         if (!this.isDragAuth && !checkVerifyVode(verify_code)) {
             return false;
+        }
+        if (this.myProxy.isNeedBankInfo) {
+            if (!this.chickString(this.myProxy.curBankInfo.cardNumber) || !this.chickString(this.myProxy.curBankInfo.realName))
+                return false;
         }
         return (
             password == password_confirm &&
@@ -180,6 +190,10 @@ export default class DialogRegister extends AbstractView {
                     this.onTabClick(2);
                 }
             }
+
+            if (this.myProxy.isNeedBankInfo) {
+                this.myProxy.api_plat_var_bank_list();
+            }
         }
     }
 
@@ -205,5 +219,36 @@ export default class DialogRegister extends AbstractView {
         if (this.form.password !== this.form.password_confirm) {
             dialog_message.success(LangUtil("密码不一致"));
         }
+    }
+    plat_coins = GamePlatConfig.config.plat_coins;
+    bankCard_nameArr = <any>{};
+    bankCard_numberArr = <any>{};
+
+    onChange1(val: any) {
+        this.myProxy.curBankInfo.coin_name_unique = val;
+        this.myProxy.resetCurbankInfo();
+    }
+
+    onBankNameBlur() {
+        console.log("---->> 银行部分输入名字----");
+    }
+
+    bshowAllNameList = false; //是否显示 名字的下拉菜单
+
+    onNameInputInput() {
+        this.bshowAllNameList = true;
+        //console.log("正在编辑");
+    }
+    onNameInputBlur() {
+        //console.log("失去焦点");
+        setTimeout(() => {
+            this.bshowAllNameList = false;
+        }, 100);
+    }
+    onNumberInputBlur() {
+        console.log(" 银行卡输入结束");
+    }
+    onNumberInputInput() {
+        console.log(" 银行卡输入");
     }
 }

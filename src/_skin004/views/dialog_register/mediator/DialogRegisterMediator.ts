@@ -13,6 +13,7 @@ export default class DialogRegisterMediator extends AbstractMediator {
             net.EventType.api_public_auth_code,
             net.EventType.api_public_auth_drag,
             net.EventType.api_public_area_code,
+            net.EventType.api_plat_var_bank_list,
             net.EventType.REQUEST_ERROR,
         ];
     }
@@ -38,6 +39,10 @@ export default class DialogRegisterMediator extends AbstractMediator {
             case net.EventType.api_public_area_code:
                 myProxy.pageData.areaCode = body;
                 break;
+            case net.EventType.api_plat_var_bank_list:
+                myProxy.setBankInfo(body);
+                break;
+
             case net.EventType.REQUEST_ERROR:
                 {
                     if (body.url == net.HttpType.api_user_register) {

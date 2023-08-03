@@ -5,7 +5,7 @@ import PageCoinTaskProxy from "../proxy/PageCoinTaskProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import Timezone from "@/core/Timezone";
-import { moneyFormat } from "@/core/global/Functions";
+import { moneyFormat, dateFormat } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
@@ -93,8 +93,8 @@ export default class PageCoinTask extends AbstractView {
     }
 
     downcount(end_time: any) {
-        const nowTime = new Date().getTime();
-        const endTime = new Date(end_time).getTime();
+        const nowTime = new Date(this.Timezone.convertTime_to_Locale_utc(<any>dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss"))).getTime();
+        const endTime = new Date(this.Timezone.convertTime_to_Locale_utc(end_time)).getTime();
         const remainingTime = endTime - nowTime;
 
         const remainingValue = this.convertRemainingTime(remainingTime);

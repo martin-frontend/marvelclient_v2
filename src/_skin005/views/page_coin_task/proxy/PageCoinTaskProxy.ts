@@ -1,5 +1,7 @@
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
+import { dateFormat } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
 export default class PageCoinTaskProxy extends puremvc.Proxy {
@@ -27,10 +29,21 @@ export default class PageCoinTaskProxy extends puremvc.Proxy {
         isLoadData: true,
     };
     setData(data: any) {
+        this.pageData.list.length = 0; 
         this.pageData.loading = false;
         this.pageData.isLoadData = false;
         Object.assign(this.pageData.pageInfo, data.pageInfo);
-        this.pageData.list = data.list;
+        const nowTime = new Date(Timezone.Instance.convertTime_to_Locale_utc(<any>dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss"))).getTime();
+        // @ts-ignore
+        data.list.forEach((item) => {
+            if (item.status == 2) {
+                const endTime = new Date(Timezone.Instance.convertTime_to_Locale_utc(item.end_time)).getTime();
+                if (nowTime >= endTime) {
+                    item.status = -1; // 隐藏不显示
+                }
+            }
+            this.pageData.list.push(item);
+        });
     }
     /**奖励任务列表 */
     api_user_var_coin_task_index() {

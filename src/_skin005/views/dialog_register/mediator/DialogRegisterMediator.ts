@@ -42,7 +42,8 @@ export default class DialogRegisterMediator extends AbstractMediator {
                 break;
             case net.EventType.REQUEST_ERROR:
                 if (body.url == net.HttpType.api_user_register) {
-                    myProxy.api_public_auth_code();
+                    // myProxy.api_public_auth_code();
+                    myProxy.onAuthcode_error();
                 }
                 break;
         }

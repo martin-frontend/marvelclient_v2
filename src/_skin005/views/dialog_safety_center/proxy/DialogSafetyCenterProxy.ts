@@ -2,6 +2,7 @@ import { getAuthDragValue } from "@/_skin005/core/AuthDragFun";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import SelfProxy from "@/proxy/SelfProxy";
 
@@ -105,6 +106,15 @@ export default class DialogSafetyCenterProxy extends puremvc.Proxy {
             return this.GameConfig.config.changeGoldPasswordFollowSetting || 3;
         } else {
             return this.GameConfig.config.changeGoldPasswordFirstSetting || 3;
+        }
+    }
+    get isDragAuth() {
+        return GamePlatConfig.config.auth_types == 2;
+    }
+    onAuthcode_error() {
+        this.pageData.form.verify_code = "";
+        if (!this.isDragAuth) {
+            this.api_public_auth_code();
         }
     }
     setAreaCode() {

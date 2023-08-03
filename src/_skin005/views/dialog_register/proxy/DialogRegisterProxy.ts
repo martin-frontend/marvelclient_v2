@@ -36,7 +36,13 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
 
     setAreaCode() {
         if (this.pageData.areaCode && this.pageData.areaCode.length > 0) {
-            this.pageData.form.area_code = this.pageData.areaCode[0].area_code;
+            // @ts-ignore
+            const obj = this.pageData.areaCode.find((item) => item.default);
+            if (obj) {
+                this.pageData.form.area_code = obj.area_code;
+            } else {
+                this.pageData.form.area_code = this.pageData.areaCode[0].area_code;
+            }
         }
     }
     setAuthDrag(data: any) {

@@ -160,12 +160,18 @@ export default class PageActivityProxy extends puremvc.Proxy {
     //     );
     // }
     api_plat_activity_var_netback(idx: any) {
-
         const url = net.getUrl(net.HttpType.api_plat_activity_var, { id: idx });
         PanelUtil.showAppLoading(true);
         net.Http.request({}, url)
             .then((response: any) => {
                 PanelUtil.showAppLoading(false);
+
+                const promotion_reward_model_id = GameConfig.config.promotion_reward_model_id;
+                if (promotion_reward_model_id && promotion_reward_model_id.id && promotion_reward_model_id.id == response.data.id) {
+                    PanelUtil.openpanel_promotionreward();
+                    return;
+                }
+
                 PanelUtil.openpanel_activity_detail(response.data);
             })
             .catch((e) => {

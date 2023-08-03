@@ -63,10 +63,10 @@ export default class PageActivity extends AbstractView {
         //PanelUtil.openpanel_activity_detail(item);
 
         // 推广奖励
-        // if (item.id == this.promotion_reward_model_id.id) {
-        //     PanelUtil.openpanel_promotionreward();
-        //     return;
-        // }
+        if (item.id == this.promotion_reward_model_id.id) {
+            PanelUtil.openpanel_promotionreward();
+            return;
+        }
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
         } else {

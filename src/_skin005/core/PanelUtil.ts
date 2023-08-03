@@ -811,7 +811,7 @@ export default class PanelUtil {
         dialog_daily_sign.show();
         // });
     }
-    /**打开 每日签到界面 */
+    /**打开 推广奖励界面 */
     static openpanel_promotionreward() {
         LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_promotion_reward);

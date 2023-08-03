@@ -161,7 +161,7 @@ export default class GameSearch extends AbstractView {
             return "menu ";
         } else {
             if (PanelUtil.getProxy_novigation.isminiMenu) {
-                if (GlobalVar.skin == "skin008") {
+                if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012") {
                     return "menu_pc menu_pc_width_mini_008";
                 }
                 return "menu_pc menu_pc_width_mini";
@@ -172,7 +172,7 @@ export default class GameSearch extends AbstractView {
 
     public get searchInputClass(): string {
         if (this.$mobile) {
-            if (GlobalVar.skin == "skin008") {
+            if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012") {
                 return "searchInput_008";
             }
             return "searchInput ";

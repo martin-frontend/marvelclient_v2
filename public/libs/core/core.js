@@ -5354,10 +5354,12 @@ var net;
                                     }
                                 }
                                 else {
+                                    console.log("---11111->>>>", this.response);
                                     facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, result });
                                 }
                             }
                             catch (e) {
+                                console.log("---222222->>>>", this.response);
                                 facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, e });
                             }
                         }

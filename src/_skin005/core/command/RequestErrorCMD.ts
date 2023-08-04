@@ -9,7 +9,10 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
         const body = notification.getBody();
         const { url, data, result } = body;
         // console.warn(">>>>>>>>>>>>", body);
-
+        console.log(">>>>>>>>>result: ", result);
+        console.log(">>>>>>>>>url: ", url);
+        console.log(">>>>>>>>>data: ", data);
+        console.log(">>>>>>>>>body: ", body);
         if (result) {
             // 错误码：http://18.166.154.73:8090/pages/viewpage.action?pageId=66089
             const ERROR_MAINTAIN = [10136]; //平台维护

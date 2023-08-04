@@ -36,6 +36,29 @@ const http = {
     },
 };
 
+function decode_url(url: string) {
+    const obj = <any>{};
+    if (typeof url == "string") {
+        const arrs = url.split("&");
+        for (let i = 0; i < arrs.length; i++) {
+            const pair = arrs[i].split("=");
+            obj[pair[0]] = pair[1];
+        }
+    } else {
+        obj.other = url;
+    }
+    return obj;
+}
+function recode_url(obj: any): string {
+    let str = "";
+    const keys = Object.keys(obj);
+    for (let index = 0; index < keys.length; index++) {
+        if (index != 0) str = str + "&";
+        str = keys[index] + "=" + obj[keys[index]];
+    }
+    return str;
+}
+
 export function api_public_area_code() {
     http.post("/api/public/area_code", { lang: LandConfig.config.lang || "en_EN" }, function (response: any) {
         const ifr: any = document.getElementById("ifr");
@@ -161,9 +184,18 @@ window.addEventListener("message", function (e) {
                     console.log("GTM-error");
                 }
 
-                this.location.href =
-                    LandConfig.config.platUrl +
-                    `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
+                try {
+                    const obj = decode_url(window.location.search.substring(1));
+                    obj.token = encodeURIComponent(e.data.params.token);
+                    obj.user_id = e.data.params.user_id;
+                    obj.uuid = e.data.params.uuid;
+                    this.location.href = LandConfig.config.platUrl + "?" + recode_url(obj);
+                } catch {
+                    console.log("recode url error");
+                    this.location.href =
+                        LandConfig.config.platUrl +
+                        `?token=${encodeURIComponent(e.data.params.token)}&user_id=${e.data.params.user_id}&uuid=${e.data.params.uuid}`;
+                }
             }
             break;
         case "go_sign_in":

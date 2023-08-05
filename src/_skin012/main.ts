@@ -47,6 +47,8 @@ Assets.commonIcon.logo_m = require(`@/_skin012/assets/logo_m.png`);
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
+// SkinVariable.isLobbyGameTop = true;
+SkinVariable.isFootballTop = false;
 SkinVariable.systemKefuTop = false;
 SkinVariable.autoTheme = false;
 LogUtil.init();

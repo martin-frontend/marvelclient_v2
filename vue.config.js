@@ -195,7 +195,7 @@ const skinMap = {
                 entry: "src/_skin009/main.ts",
                 template: "public_skin009/skin009.html",
                 filename: "index.html",
-                title: "96tr",
+                title: "96 Turkiye",
                 faviconName: "favicon.ico",
             },
         },

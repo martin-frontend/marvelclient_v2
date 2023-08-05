@@ -4,7 +4,7 @@
     style="margin-top: 100px !important"
     :class="$mobile ? 'px-2 text-14' :'ml-n3 mr-n3 text-16 '"
 >
-    <v-img :src="commonIcon.logo" max-width="130" ></v-img>
+    <v-img :src="commonIcon.logo" max-width="130"></v-img>
 
     <!-- 底部说明与logo的配置 pc版显示-->
     <v-sheet v-if="!$mobile" color="transparent" class="px-16 d-flex flex-column align-center" width="100%">
@@ -53,7 +53,17 @@
                             :class="isCanClick(item) ? 'cursor-pointer ' : ''"
                             @click="onFooterClick(item)"
                         >
-                            <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                            <template v-if="isShowImg(item)">
+                                <v-tooltip v-if="isShowTooltip(item)" top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                            <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                        </v-sheet>
+                                    </template>
+                                    <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                </v-tooltip>
+                                <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                            </template>
                             <span v-else>{{item.name}}</span>
                         </v-sheet>
                     </template>
@@ -110,7 +120,18 @@
                                         :class="isCanClick(item) ? 'cursor-pointer ' : ''"
                                         @click="onFooterClick(item)"
                                     >
-                                        <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                        <template v-if="isShowImg(item)">
+                                            <v-tooltip v-if="isShowTooltip(item)" top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                        <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                                    </v-sheet>
+                                                </template>
+                                                <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                            </v-tooltip>
+                                            <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                        </template>
+                                        <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
                                         <span v-else>{{item.name}}</span>
                                     </v-sheet>
                                 </template>

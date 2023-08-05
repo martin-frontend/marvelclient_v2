@@ -345,20 +345,20 @@ export default class NetObserver extends AbstractMediator {
                 {
                     const noticeProxy = PanelUtil.getProxy_noticeProxy;
                     noticeProxy.setData(body);
-                    setTimeout(() => {
-                        this.openNoticeDialog();
-                        if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0) {
-                            PanelUtil.openpanel_notice();
-                        }
-                    }, 3000);
+                    // setTimeout(() => {
+                    //     this.openNoticeDialog();
+                    //     if (noticeProxy.data.listType3 && noticeProxy.data.listType3.length > 0) {
+                    //         PanelUtil.openpanel_notice();
+                    //     }
+                    // }, 3000);
                 }
                 break;
             case net.EventType.api_user_login:
                 setTimeout(() => {
-                    this.openNoticeDialog();
-                    PanelUtil.getProxy_selfproxy.api_user_var_notice();
+                    // this.openNoticeDialog();
+                    // PanelUtil.getProxy_selfproxy.api_user_var_notice();
                     this.gameProxy.resetGamehistory();
-                }, 1000);
+                }, 100);
                 break;
             case net.EventType.api_plat_var_notice_show_var:
                 {
@@ -393,9 +393,9 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_var_plat_users_verification_show:
                 this.selfProxy.setUserVerificationData(body);
                 break;
-            case net.EventType.api_user_var_notice:
-                if (body && body.length > 0) PanelUtil.openpanel_notice_recharge(body);
-                break;
+            // case net.EventType.api_user_var_notice:
+            //     if (body && body.length > 0) PanelUtil.openpanel_notice_recharge(body);
+            //     break;
             // 奖励任务列表
             case net.EventType.api_user_var_coin_task_index:
                 this.selfProxy.setCoinTaskData(body);

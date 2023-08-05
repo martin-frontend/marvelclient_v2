@@ -45,9 +45,9 @@ export default class Timezone {
         if (!this.curTimezoneItem || !this.curTimezoneItem.value) {
             //this.curTimezoneItem = this.timezonename[0];
             const offsettime = this.getLocalTimezoneOffset();
-            console.log("当前时区偏差为", offsettime);
+            // console.log("当前时区偏差为", offsettime);
             const nearItem = this.findClosestValue(offsettime);
-            console.log("查找到的最接近的对象为", nearItem);
+            // console.log("查找到的最接近的对象为", nearItem);
             this.curTimezoneItem = nearItem;
         }
 
@@ -56,7 +56,7 @@ export default class Timezone {
 
     findClosestValue(value: string) {
         const targetMinutes = this.getMinutesFromOffset(value);
-        console.log("------------targetMinutes--------", targetMinutes);
+        // console.log("------------targetMinutes--------", targetMinutes);
         let closest = null;
         let closestDiff = Infinity;
 
@@ -85,8 +85,8 @@ export default class Timezone {
         this.curSelectIndex = val.key;
         if (this.curTimezoneItem != val) {
             this.curTimezoneItem = val;
-            console.log("修改 事件区域---", this.curTimezoneItem);
-            console.log("--- 当前----选择的时区为为 ", this.timezoneOffset);
+            // console.log("修改 事件区域---", this.curTimezoneItem);
+            // console.log("--- 当前----选择的时区为为 ", this.timezoneOffset);
             window.localStorage.setItem("timezoneitem", JSON.stringify(this.curTimezoneItem));
             return true;
         }
@@ -213,7 +213,7 @@ export default class Timezone {
             return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
         }
         const newdata = this.addTime_other(datetimeString, this.getLocalTimezoneString());
-        console.log("转换之后的时间", newdata);
+        // console.log("转换之后的时间", newdata);
         return newdata;
     }
     /**

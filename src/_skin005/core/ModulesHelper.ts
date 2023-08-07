@@ -277,6 +277,10 @@ function IsShow_SetCPF() {
 function isShow_RechargeActivityCheckbox() {
     return _isValueTrue("rechargeActivityCheckbox", false);
 }
+/**首页投注 */
+function isHide_HomeDownloadBtn() {
+    return _isValueTrue("isHideHomeDownloadBtn", false);
+}
 
 export default {
     IsShow_VipInfo,
@@ -318,4 +322,5 @@ export default {
     isNeed_registerVerifiy,
     isHide_MyInfo,
     IsShow_SetCPF,
+    isHide_HomeDownloadBtn,
 };

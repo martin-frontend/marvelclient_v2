@@ -37,14 +37,14 @@ export default class APP extends AbstractView {
     }
 
     /**发送 错误  */
-    errorCaptured(error:any, vm:any, info:any) {
+    errorCaptured(error: any, vm: any, info: any) {
         const errorData = {
             error: error.message,
             component: vm.$options.name,
             stack: error.stack,
-            info: info
-          };
-        track_error_event(errorData,"Vue_error");
+            info: info,
+        };
+        track_error_event(errorData, "Vue_error");
         //return false; // 阻止错误继续向上冒泡
     }
 
@@ -183,6 +183,7 @@ export default class APP extends AbstractView {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
     }
     get isShowGuide() {
+        if (ModulesHelper.isHide_HomeDownloadBtn()) return false;
         if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
         if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;

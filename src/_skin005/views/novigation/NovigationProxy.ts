@@ -25,10 +25,8 @@ export default class NovigationProxy extends puremvc.Proxy {
         this.activityData = [...data.list];
     }
     api_plat_activity() {
+        if(!core.user_id) return;
         this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
-    }
-    api_plat_var_notice_popup() {
-        this.sendNotification(net.HttpType.api_plat_var_notice_popup, { plat_id: core.plat_id });
     }
 
     timeHandle = 0;

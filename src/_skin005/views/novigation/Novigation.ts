@@ -58,9 +58,6 @@ export default class Novigation extends AbstractView {
         }
         //console.log("导航打开 ");
         this.onWatchRouter();
-        if (!this.core.user_id) {
-            this.myProxy.api_plat_var_notice_popup();
-        }
     }
     //基础菜单
     get menu() {

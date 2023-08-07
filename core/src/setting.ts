@@ -331,8 +331,10 @@ module net {
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
 
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api/user/{user_id}/notice",
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: "/api/plat/{plat_id}/notice/popup",
 
         /**--skin003--三方登录*/
         api_user_third_login: "/api/user/third_login",
@@ -699,8 +701,10 @@ module net {
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
 
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api_user_var_notice",
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: "api_plat_var_notice_popup",
 
         /**--skin003--三方登录*/
         api_user_third_login: "api_user_third_login",
@@ -910,6 +914,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);
         //--充值弹窗
         facade.registerCommand(HttpType.api_user_var_notice, cmd_api_user_var_notice);
+        facade.registerCommand(HttpType.api_plat_var_notice_popup, cmd_api_plat_var_notice_popup);
         //--skin003
         facade.registerCommand(HttpType.api_user_third_login, cmd_api_user_third_login);
         //--推广

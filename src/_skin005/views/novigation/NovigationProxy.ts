@@ -27,6 +27,9 @@ export default class NovigationProxy extends puremvc.Proxy {
     api_plat_activity() {
         this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
     }
+    api_plat_var_notice_popup() {
+        this.sendNotification(net.HttpType.api_plat_var_notice_popup, { plat_id: core.plat_id });
+    }
 
     timeHandle = 0;
     openList = <any>[];
@@ -58,39 +61,39 @@ export default class NovigationProxy extends puremvc.Proxy {
         for (let index = 0; index < newArr.length; index++) {
             const element = newArr[index];
             // setTimeout(() => {
-                switch (element.name) {
-                    case "dailysign":
-                        PanelUtil.openpanel_dailysign();
-                        break;
-                    case "promotionreward":
-                        {
-                            if (core.user_id) PanelUtil.openpanel_promotionreward();
-                        }
-                        break;
-                    case "rechargeactivity":
-                        {
-                            const activelist = PanelUtil.getProxy_novigation.activityData;
-                            for (let index = 0; index < activelist.length; index++) {
-                                const element = activelist[index];
-                                if (element.award_type && element.award_type == 16) {
-                                    PanelUtil.openpanel_activity_detail_recharge(element);
-                                    break;
-                                }
+            switch (element.name) {
+                case "dailysign":
+                    PanelUtil.openpanel_dailysign();
+                    break;
+                case "promotionreward":
+                    {
+                        if (core.user_id) PanelUtil.openpanel_promotionreward();
+                    }
+                    break;
+                case "rechargeactivity":
+                    {
+                        const activelist = PanelUtil.getProxy_novigation.activityData;
+                        for (let index = 0; index < activelist.length; index++) {
+                            const element = activelist[index];
+                            if (element.award_type && element.award_type == 16) {
+                                PanelUtil.openpanel_activity_detail_recharge(element);
+                                break;
                             }
                         }
-                        break;
-                    case "limitedbonus":
-                        PanelUtil.openpanel_limited_bonus();
-                        break;
-                    case "rechargenotice":
-                        PanelUtil.openpanel_notice_recharge(element.data); //充值弹窗
-                        break;
-                    case "dialognotice":
-                        PanelUtil.openpanel_notice();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                case "limitedbonus":
+                    PanelUtil.openpanel_limited_bonus();
+                    break;
+                case "rechargenotice":
+                    PanelUtil.openpanel_notice_recharge(element.data); //充值弹窗
+                    break;
+                case "dialognotice":
+                    PanelUtil.openpanel_notice();
+                    break;
+                default:
+                    break;
+            }
             // }, 100);
         }
     }

@@ -313,8 +313,10 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: string;
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
         /**--推广--返佣等级配置*/
@@ -650,8 +652,10 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: string;
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: string;
         /**--skin003--三方登录*/
         api_user_third_login: string;
         /**--推广--返佣等级配置*/
@@ -926,6 +930,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_notice_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 充值弹窗列表（无需登入）
+ */
+declare module net {
+    class cmd_api_plat_var_notice_popup extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1867,7 +1880,7 @@ declare module net {
     }
 }
 /**
- * 充值弹窗
+ * 充值弹窗列表（需登入）
  */
 declare module net {
     class cmd_api_user_var_notice extends puremvc.SimpleCommand {

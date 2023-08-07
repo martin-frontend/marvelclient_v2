@@ -207,7 +207,8 @@
         ["api/user/{user_id}/agent_direct_deduction_all", "清空直属所有额度"],
 
         "--充值弹窗",
-        ["api/user/{user_id}/notice", "充值弹窗"],
+        ["api/user/{user_id}/notice", "充值弹窗列表（需登入）"],
+        ["/api/plat/{plat_id}/notice/popup", "充值弹窗列表（无需登入）"],
 
         "--skin003",
         ["/api/user/third_login", "三方登录"],

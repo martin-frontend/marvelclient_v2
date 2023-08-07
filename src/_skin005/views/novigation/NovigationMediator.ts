@@ -10,6 +10,7 @@ export default class NovigationMediator extends AbstractMediator {
             net.EventType.api_plat_var_notice_index,
             net.EventType.api_user_login,
             net.EventType.api_user_var_notice,
+            net.EventType.api_plat_var_notice_popup,
         ];
     }
 
@@ -35,6 +36,7 @@ export default class NovigationMediator extends AbstractMediator {
                 }, 100);
                 break;
             case net.EventType.api_user_var_notice: // 充值公告
+            case net.EventType.api_plat_var_notice_popup: // 充值公告
                 setTimeout(() => {
                     if (body && body.length > 0) myProxy.openDialogArr({ name: "rechargenotice", sort: 2, data: body });
                     myProxy.openDialogArr(null);

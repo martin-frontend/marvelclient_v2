@@ -381,8 +381,10 @@ var net;
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api/user/{user_id}/notice",
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: "/api/plat/{plat_id}/notice/popup",
         /**--skin003--三方登录*/
         api_user_third_login: "/api/user/third_login",
         /**--推广--返佣等级配置*/
@@ -718,8 +720,10 @@ var net;
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
-        /**--充值弹窗--充值弹窗*/
+        /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api_user_var_notice",
+        /**--充值弹窗--充值弹窗列表（无需登入）*/
+        api_plat_var_notice_popup: "api_plat_var_notice_popup",
         /**--skin003--三方登录*/
         api_user_third_login: "api_user_third_login",
         /**--推广--返佣等级配置*/
@@ -923,6 +927,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
         //--充值弹窗
         facade.registerCommand(net.HttpType.api_user_var_notice, net.cmd_api_user_var_notice);
+        facade.registerCommand(net.HttpType.api_plat_var_notice_popup, net.cmd_api_plat_var_notice_popup);
         //--skin003
         facade.registerCommand(net.HttpType.api_user_third_login, net.cmd_api_user_third_login);
         //--推广
@@ -1559,6 +1564,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_notice_index = cmd_api_plat_var_notice_index;
+})(net || (net = {}));
+/**
+ * 充值弹窗列表（无需登入）
+ */
+var net;
+/**
+ * 充值弹窗列表（无需登入）
+ */
+(function (net) {
+    class cmd_api_plat_var_notice_popup extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_notice_popup, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_notice_popup, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_var_notice_popup = cmd_api_plat_var_notice_popup;
 })(net || (net = {}));
 /**
  * 平台公告数据详细数据
@@ -3849,11 +3876,11 @@ var net;
     net.cmd_api_user_var_messages_show_var = cmd_api_user_var_messages_show_var;
 })(net || (net = {}));
 /**
- * 充值弹窗
+ * 充值弹窗列表（需登入）
  */
 var net;
 /**
- * 充值弹窗
+ * 充值弹窗列表（需登入）
  */
 (function (net) {
     class cmd_api_user_var_notice extends puremvc.SimpleCommand {

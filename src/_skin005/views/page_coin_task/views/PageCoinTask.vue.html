@@ -77,7 +77,7 @@
                                                     </span>
                                                 </v-tooltip>
                                                 <span class="ml-1">
-                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}} {{item.task_coin_amount}}
+                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}} <span class="font-weight-bold">{{item.transfer_amount}} / {{item.task_coin_amount}}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
 
                                                 <template v-if="item.status == 2">
                                                     <span class="nomal_text_2--text ml-2">
-                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +<span class="font-weight-bold">{{item.transfer_amount}}</span>
                                                     </span>
                                                     <span
                                                         class="ml-2 textYellow--text cursor-pointer text-decoration-underline"

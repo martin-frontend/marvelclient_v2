@@ -47,7 +47,7 @@
                     :key="key"
                     @click="onItemClick(key)"
                     color="transparent"
-                    v-if="GamePlatConfig.isShowCoin(key) && (!isActivityCoin(key) || (isActivityCoin(key) && item.sum_money > 0))"
+                    v-if="GamePlatConfig.isShowCoin(key) && (!isActivityCoin(key) || (isActivityCoin(key) && (item.sum_money > 0 || (coinTask && coinTask.task_coin_name_unique == key) )))"
                     :ref="key"
                 >
                     <div>
@@ -78,7 +78,7 @@
                     <span class="red--text cursor-pointer text-decoration-underline" @click="showCoinTask">{{LangUtil("详情")}}</span>
                 </div>
                 <div>{{coinTask.activity_name}}</div>
-                <div>{{coinTask.task_coin_name_unique}} {{LangUtil("余额")}}： {{coinTask.task_coin_amount}}</div>
+                <div>{{coinTask.task_coin_name_unique}} {{LangUtil("余额")}}： <span class="font-weight-bold">{{coinTask.transfer_amount}}</span></div>
                 <div class="d-flex align-center">
                     <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(coinTask)" height="5">
                         <!-- <template v-slot:default="{ value }">

@@ -2,6 +2,7 @@ import GameConfig from "@/core/config/GameConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
+import PanelUtil from "./core/PanelUtil";
 
 export default class AppProxy extends puremvc.Proxy {
     static NAME = "AppProxy";
@@ -60,9 +61,12 @@ export default class AppProxy extends puremvc.Proxy {
 
     get guideText() {
         //@ts-ignore
-        return LangUtil(window.navigator.standalone === undefined ? "下载APP" : "添加到桌面");
+        return LangUtil(window.navigator.standalone === undefined && this.isHaveApk ? "下载APP" : "添加到桌面");
     }
 
+    get isHaveApk() {
+        return GameConfig.config.AndroidApkUrl && GameConfig.config.AndroidApkUrl.trim();
+    }
     onGuide() {
         // this.guideDrawer = true;
         // return;
@@ -70,7 +74,12 @@ export default class AppProxy extends puremvc.Proxy {
         if (window.navigator.standalone === false) {
             this.guideDrawer = true;
         } else {
-            this.downloadApp(GameConfig.config.AndroidApkUrl);
+            if (this.isHaveApk) this.downloadApp(GameConfig.config.AndroidApkUrl);
+            else {
+                PanelUtil.message_alert({
+                    message: LangUtil("请点击浏览器菜单，选择'添加到主屏幕'来添加快捷方式。"),
+                });
+            }
         }
     }
     //下载apk

@@ -40,7 +40,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             if (ERROR_CODE_ACCOUNT.includes(result.status)) {
                 if (core.user_id || core.token) {
                     selfProxy.loginout();
-                    Vue.router.push("/").catch((err: any) => err);
+                    Vue.router.push("/");
                 }
                 PanelUtil.message_alert({
                     message: body.result.msg,

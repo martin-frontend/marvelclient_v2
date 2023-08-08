@@ -12,7 +12,7 @@ export default class GameConfig {
     static config: GameConfigVO;
 
     static load() {
-        const platformConfig = core.getQueryVariable("platformConfig");
+        let platformConfig = core.getQueryVariable("platformConfig");
         //老版本，读取URL参数
         let plat_id = core.getQueryVariable("plat_id");
         let channel_id = core.getQueryVariable("channel_id");
@@ -32,12 +32,14 @@ export default class GameConfig {
 
         plat_id && (core.plat_id = plat_id);
         channel_id && (core.channel_id = channel_id);
+
+        if (!platformConfig) {
+            platformConfig = window.localStorage.getItem("platformConfig_app") || "";
+        }
         if (platformConfig) {
-            if (platformConfig) {
-                core.app_type = core.EnumAppType.APP;
-            } else {
-                core.app_type = core.EnumAppType.WEB;
-            }
+            window.localStorage.setItem("platformConfig_app", platformConfig);
+            core.app_type = core.EnumAppType.APP;
+
             const conf: string = decodeURI(platformConfig);
             try {
                 const configstr: string = Base64.decode(conf);
@@ -53,6 +55,8 @@ export default class GameConfig {
                 );
                 this.onGetAddressFail();
             }
+        } else {
+            core.app_type = core.EnumAppType.WEB;
         }
 
         core.host = this.getApiUrl();
@@ -230,7 +234,7 @@ export default class GameConfig {
                 }
             } else {
                 apiUrl = "https://api.testjj9.com";
-                //apiUrl = "https://api.betnow.co";
+                // apiUrl = "https://api.96in.com";
             }
         }
         return apiUrl;

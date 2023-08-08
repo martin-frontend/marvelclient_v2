@@ -54,7 +54,7 @@ function recode_url(obj: any): string {
     const keys = Object.keys(obj);
     for (let index = 0; index < keys.length; index++) {
         if (index != 0) str = str + "&";
-        str = keys[index] + "=" + obj[keys[index]];
+        str = str + keys[index] + "=" + obj[keys[index]];
     }
     return str;
 }

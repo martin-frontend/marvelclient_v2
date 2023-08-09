@@ -186,7 +186,7 @@ export default class APP extends AbstractView {
         if (ModulesHelper.isHide_HomeDownloadBtn()) return false;
         if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
-        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
+        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/" || this.$route.path.includes("page_my_info")) return true;
 
         if (
             this.$route.path.includes("cricket") ||
@@ -195,19 +195,19 @@ export default class APP extends AbstractView {
         )
             return false;
 
-        if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
-            for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {
-                const element = this.myProxy.mobile_menu_ary[index];
-                if (element.id != 0) {
-                    if (this.$route.path.includes(element.path)) {
-                        return true;
-                    }
-                }
-            }
-            if (this.Constant.isIncludeGameRouter(this.$route.path)) {
-                return true;
-            }
-        }
+        // if (this.myProxy.mobile_menu_ary && this.myProxy.mobile_menu_ary.length > 0) {
+        //     for (let index = 0; index < this.myProxy.mobile_menu_ary.length; index++) {
+        //         const element = this.myProxy.mobile_menu_ary[index];
+        //         if (element.id != 0) {
+        //             if (this.$route.path.includes(element.path)) {
+        //                 return true;
+        //             }
+        //         }
+        //     }
+        //     if (this.Constant.isIncludeGameRouter(this.$route.path)) {
+        //         return true;
+        //     }
+        // }
         return false;
     }
     onGuide() {

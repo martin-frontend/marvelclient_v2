@@ -106,8 +106,31 @@ export default class Wallet extends AbstractView {
     }
 
     get coinTask() {
-        // @ts-ignore
-        return this.selfProxy.coinTaskData.list.find((item) => item.status == 2);
+        return this.selfProxy.coinTaskData.list.filter((item: any) => item.status == 2);
+    }
+    //过期或者取消的活动币
+    get liveActivity() {
+        return this.selfProxy.coinTaskData.list.filter((item: any) => item.status != 5 && item.status != 6);
+    }
+
+    //活动币是否显示
+    isShowActivityCoin(key: string): boolean {
+        //是否为活动币
+        if (!this.isActivityCoin(key)) return false;
+
+        //检查当前币种的活动是否在列表中
+        const isActive = this.selfProxy.coinTaskData.list.some((ele: any, index: any, arr: any) => {
+            return ele.task_coin_name_unique == key;
+        });
+        if (!isActive) return false;
+
+        //判断需要展示的情况
+        const isNeedShow = this.liveActivity.some((ele: any, index: any, arr: any) => {
+            return ele.task_coin_name_unique == key;
+        });
+        if (isNeedShow) return true;
+
+        return false;
     }
 
     calculateProgress(data: any) {

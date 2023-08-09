@@ -56,6 +56,7 @@ SkinVariable.isShowfullLogo = true;
 SkinVariable.isFootballTop = false;
 SkinVariable.systemKefuTop = false;
 SkinVariable.mail_get_gift_config = true;
+SkinVariable.autoTheme = false;
 LogUtil.init();
 core.init();
 //@ts-ignore
@@ -125,8 +126,8 @@ window.onload = function () {
         event.preventDefault();
     });
 };
-PanelUtil.getThemeDark();
-
+// PanelUtil.getThemeDark();
+PanelUtil.setThemeDark(true);
 // setInterval(() => {
 //     //@ts-ignore
 //     if (window["vm"]) {

@@ -45,6 +45,9 @@ export default class DialogTimezone extends AbstractView {
                 gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
             }
         }
+        setTimeout(() => {
+            this.onClose();
+        }, 100);
     }
     isCurItem(item: any) {
         if (this.Timezone.curTimezoneItem.value == item.value) {

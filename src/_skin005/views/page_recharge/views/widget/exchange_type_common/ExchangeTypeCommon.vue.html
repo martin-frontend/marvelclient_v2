@@ -49,20 +49,20 @@
             </v-col>
             <v-col cols="6">
                 <v-sheet color="transparent" class="d-flex justify-space-between">
-                    <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                    <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
                     <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
                 </v-sheet>
                 <v-sheet color="transparent" width="100%" class="d-flex">
                     <CustomInput
                         v-if="is_show_money"
-                        :placeholder="LangUtil('输入金额')"
+                        :placeholder="LangUtil('输入金额兑换内容')"
                         v-model="form.amount"
                         :isEnterGold="true"
                         :maxDigits="exchangeDigits"
                     ></CustomInput>
                     <CustomInput
                         v-else
-                        :placeholder="LangUtil('输入金额')"
+                        :placeholder="LangUtil('输入金额兑换内容')"
                         v-model="form.amount"
                         :isEnterGold="true"
                         :maxDigits="exchangeDigits"
@@ -467,14 +467,14 @@
 
                 <v-col cols="12">
                     <v-sheet color="transparent" class="d-flex justify-space-between">
-                        <div class="text-14 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                        <div class="text-14 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
                         <div v-if="!is_show_money">
                             {{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}
                         </div>
                     </v-sheet>
                     <v-sheet color="transparent" width="100%" class="d-flex">
                         <CustomInput
-                            :placeholder="LangUtil('输入金额')"
+                            :placeholder="LangUtil('输入金额兑换内容')"
                             v-model="form.amount"
                             :isEnterGold="true"
                             :maxDigits="exchangeDigits"

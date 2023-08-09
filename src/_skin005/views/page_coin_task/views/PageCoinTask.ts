@@ -18,6 +18,7 @@ export default class PageCoinTask extends AbstractView {
     Timezone = Timezone.Instance;
     moneyFormat = moneyFormat;
     GamePlatConfig = GamePlatConfig;
+    selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
     tabIndex = "all"; //用于  切换标签的
     tabOptions = <any>[
@@ -27,7 +28,6 @@ export default class PageCoinTask extends AbstractView {
         { status: "3", title: LangUtil("完成") },
         { status: "4", title: LangUtil("过期") },
     ];
-
     statusOptions = {
         1: LangUtil("未激活"),
         2: LangUtil("进行中"),
@@ -206,5 +206,9 @@ export default class PageCoinTask extends AbstractView {
         }
 
         return 0;
+    }
+    isCanPlayGame(coinname: string) {
+        //@ts-ignore
+        return this.selfProxy.userInfo.gold_info[coinname] && this.selfProxy.userInfo.gold_info[coinname].can_play_game == 1;
     }
 }

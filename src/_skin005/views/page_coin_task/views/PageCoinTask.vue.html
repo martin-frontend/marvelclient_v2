@@ -77,7 +77,12 @@
                                                     </span>
                                                 </v-tooltip>
                                                 <span class="ml-1">
-                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}} <span class="font-weight-bold">{{item.transfer_amount}} / {{item.task_coin_amount}}</span>
+                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}}
+                                                    <span class="font-weight-bold"
+                                                        ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
+                                                            >{{item.transfer_amount}} / </span
+                                                        >{{item.task_coin_amount}}</span
+                                                    >
                                                 </span>
                                             </div>
                                         </div>
@@ -92,7 +97,9 @@
                                             </template>
                                         </v-progress-linear>
                                         <div class="d-flex justify-space-between">
-                                            <div class="nomal_text_2--text">{{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}</div>
+                                            <div class="nomal_text_2--text">
+                                                {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}
+                                            </div>
                                             <div class="ml-auto">
                                                 <span class="red--text mr-2" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
                                                 <span class="success--text mr-2" v-if="item.status == 2"
@@ -104,7 +111,10 @@
 
                                                 <template v-if="item.status == 2">
                                                     <span class="nomal_text_2--text ml-2">
-                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +<span class="font-weight-bold">{{item.transfer_amount}}</span>
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +<span
+                                                            class="font-weight-bold"
+                                                            >{{item.transfer_amount}}</span
+                                                        >
                                                     </span>
                                                     <span
                                                         class="ml-2 textYellow--text cursor-pointer text-decoration-underline"
@@ -114,7 +124,9 @@
                                                 </template>
 
                                                 <template v-if="item.status == 3">
-                                                    <span class="nomal_text_2--text mr-2">{{Timezone.convertTime_to_Locale_utc(item.end_time)}}</span>
+                                                    <span class="nomal_text_2--text mr-2"
+                                                        >{{Timezone.convertTime_to_Locale_utc(item.end_time)}}</span
+                                                    >
                                                     <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
                                                     <span class="nomal_text_2--text">
                                                         {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
@@ -122,7 +134,9 @@
                                                 </template>
 
                                                 <template v-if="item.status > 3">
-                                                    <span class="nomal_text_2--text mr-2">{{ Timezone.convertTime_to_Locale_utc(item.end_time) }}</span>
+                                                    <span class="nomal_text_2--text mr-2"
+                                                        >{{ Timezone.convertTime_to_Locale_utc(item.end_time) }}</span
+                                                    >
                                                     <span class="textYellow--text">{{ statusOptions[item.status] }}</span>
                                                 </template>
                                             </div>
@@ -173,7 +187,9 @@
                                                 >{{ statusOptions[item.status] }}</span
                                             >
                                         </div>
-                                        <div class="nomal_text_2--text">{{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}</div>
+                                        <div class="nomal_text_2--text">
+                                            {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}
+                                        </div>
                                         <span class="nomal_text_2--text" v-if="item.status < 3"
                                             >{{LangUtil("任务剩余时间")}}： {{downcount(item.end_time)}}</span
                                         >
@@ -208,7 +224,14 @@
                                             </v-tooltip>
                                         </div>
                                         <div class="d-flex justify-space-between">
-                                            <span>{{item.task_coin_name_unique}} {{item.task_coin_amount}}</span>
+                                            <span
+                                                >{{item.task_coin_name_unique}}
+                                                <span class="font-weight-bold"
+                                                    ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
+                                                        >{{item.transfer_amount}} / </span
+                                                    >{{item.task_coin_amount}}</span
+                                                ></span
+                                            >
                                             <!-- <template>
                                                 <span
                                                     v-if="item.status == 2"

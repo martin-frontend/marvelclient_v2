@@ -155,9 +155,9 @@
                 <v-row>
                     <v-col cols="12">
                         <v-card flat color="transparent">
-                            <div class="text-16 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                            <div class="text-16 primary--text font-weight-bold mb-2">{{LangUtil("输入金额充值")}}</div>
                             <v-sheet color="transparent" width="100%" class="d-flex input_pc">
-                                <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"></CustomInput>
+                                <CustomInput :placeholder="LangUtil('输入金额充值内容')" v-model="form.amount" :isEnterGold="true"></CustomInput>
                             </v-sheet>
                         </v-card>
                     </v-col>
@@ -419,10 +419,10 @@
                                 <v-row>
                                     <v-col cols="12">
                                         <v-card flat color="transparent">
-                                            <div class="text-14 primary--text font-weight-bold mb-2 mt-2">{{LangUtil("输入金额")}}</div>
+                                            <div class="text-14 primary--text font-weight-bold mb-2 mt-2">{{LangUtil("输入金额充值")}}</div>
                                             <v-sheet color="transparent" width="100%" class="d-flex input_pc">
                                                 <CustomInput
-                                                    :placeholder="LangUtil('输入金额')"
+                                                    :placeholder="LangUtil('输入金额充值内容')"
                                                     v-model="form.amount"
                                                     :isEnterGold="true"
                                                 ></CustomInput>

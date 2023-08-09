@@ -47,9 +47,9 @@
                     </v-card>
                 </v-col>
                 <v-col cols="6">
-                    <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                    <div class="text-16 primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
                     <v-sheet color="transparent" width="100%" class="d-flex">
-                        <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+                        <CustomInput :placeholder="LangUtil('输入金额兑换内容')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                         <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll"
                             ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
@@ -241,9 +241,9 @@
             </div>
             <!-- 输入金额 -->
             <v-card flat color="transparent" class="mt-4">
-                <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额")}}</div>
+                <div class="text-14 primary--text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
                 <v-sheet color="transparent" width="100%" class="d-flex">
-                    <CustomInput :placeholder="LangUtil('输入金额')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
+                    <CustomInput :placeholder="LangUtil('输入金额兑换内容')" v-model="form.amount" :isEnterGold="true"> </CustomInput>
 
                     <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
                         ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow

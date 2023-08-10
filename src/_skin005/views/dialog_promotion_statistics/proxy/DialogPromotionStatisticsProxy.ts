@@ -1,3 +1,4 @@
+import GameConfig from "@/core/config/GameConfig";
 import { dateFormat, getTodayOffset, objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 
@@ -40,7 +41,7 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
         });
         Object.assign(this.pageData.search, {
             agent_user_id: core.user_id,
-            dateArr: [dateFormat(getTodayOffset(-6), "yyyy-MM-dd"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd")],
+            dateArr: [dateFormat(getTodayOffset(-6), "yyyy-MM-dd hh:mm:ss"), dateFormat(getTodayOffset(1, 1), "yyyy-MM-dd hh:mm:ss")],
         });
     }
 
@@ -254,18 +255,19 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
         } = this.pageData.list.statistic_info;
 
         this.pageData.tableData.push(
-            { name: "人数", directly: total_directly_users, group: total_group_users, all: total_group_all_users },
-            { name: "新增", directly: directly_users, group: group_users, all: group_all_users },
+            { name: "人数", directly: total_directly_users, group: total_group_users, all: total_group_all_users ,type:"string"},
+            { name: "新增人数", directly: directly_users, group: group_users, all: group_all_users ,type:"string"},
             {
                 name: "首充人数",
                 directly: directly_first_recharge_count,
                 group: group_first_recharge_count,
                 all: group_all_first_recharge_count,
+                type:"string"
             },
-            { name: "充值笔数", directly: directly_recharge_count, group: group_recharge_count, all: group_all_recharge_count },
+            { name: "充值笔数", directly: directly_recharge_count, group: group_recharge_count, all: group_all_recharge_count,type:"string" },
             { name: "充值金额", directly: directly_recharge, group: group_recharge, all: group_all_recharge },
             { name: "充值手续费", directly: directly_recharge_fee, group: group_recharge_fee, all: group_all_recharge_fee },
-            { name: "兑换笔数", directly: directly_exchange_count, group: group_exchange_count, all: group_all_exchange_count },
+            { name: "兑换笔数", directly: directly_exchange_count, group: group_exchange_count, all: group_all_exchange_count ,type:"string"},
             { name: "兑换金额", directly: directly_exchange, group: group_exchange, all: group_all_exchange },
             // { name: "玩家总盈利", directly: total_directly_profit, group: total_group_profit, all: total_group_all_profit },
             { name: "兑换手续费", directly: directly_exchange_fee, group: group_exchange_fee, all: group_all_exchange_fee },
@@ -325,8 +327,37 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             { name: "体育电竞流水", directly: directly_water_64, group: group_water_64, all: group_all_water_64 },
             { name: "链游流水", directly: directly_water_128, group: group_water_128, all: group_all_water_128 }
         );
+
+        //筛选出不需要的
+        const hideList = GameConfig.config.promotion_hide_list || [];
+        if (hideList && hideList.length > 0) {
+            this.pageData.tableData = this.pageData.tableData.filter((element: any, index: any, array: any) => {
+                return !this.isHave(hideList, element.name);
+            });
+        }
+
+        //展示显示的
+        let showList = GameConfig.config.promotion_show_list || [];
+
+        if (showList.length <1  && hideList.length < 1) {
+            showList = ["新增", "首充人数", "新增人数", "充值笔数", "充值金额", "总投注", "玩家总输赢"];
+        }
+        if (showList && showList.length > 0) {
+            console.log("--->>>",showList);
+            this.pageData.tableData = this.pageData.tableData.filter((element: any, index: any, array: any) => {
+                return this.isHave(showList, element.name);
+            });
+        }
     }
 
+    isHave(arr: any, key: any) {
+        for (let index = 0; index < arr.length; index++) {
+            if (arr[index] == key) {
+                return true;
+            }
+        }
+        return false;
+    }
     converToFormulaString(formula: any) {
         const keyArr = Object.keys(formula);
         const res = keyArr.map((key) => {

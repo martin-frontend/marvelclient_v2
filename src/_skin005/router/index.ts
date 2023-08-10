@@ -143,6 +143,14 @@ export const routes: Array<RouteConfig> = [
             import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
     },
     {
+        path: "/page_promotion_statistics",
+        name: "page_promotion_statistics",
+        component: () =>
+            import(
+                /* webpackChunkName: "skin005_page_promotion_statistics" */ "@/_skin005/views/page_promotion_statistics/views/PagePromotionStatistics.vue"
+            ),
+    },
+    {
         path: "/page_coin_task",
         name: "page_coin_task",
         component: () => import(/* webpackChunkName: "skin005_page_coin_task" */ "@/_skin005/views/page_coin_task/views/PageCoinTask.vue"),
@@ -229,6 +237,7 @@ export function getRouter(): VueRouter {
                     (to.path.includes("page_recharge") ||
                         to.path.includes("page_my_info") ||
                         to.path.includes("page_statistice_credit") ||
+                        to.path.includes("page_promotion_statistics") ||
                         to.path.includes("page_coin_task"))
                 ) {
                     next(prePath);

@@ -1,0 +1,110 @@
+.level_col {
+    position: relative;
+    .level_icon {
+        position: absolute;
+        left: 15px;
+        max-width: 24px;
+        @media (max-width: 750px) {
+            left: 15px;
+            top: 3px;
+            max-width: 20px;
+        }
+        @media (max-width: 600px) {
+            left: -5px;
+            top: 0px;
+            max-width: 15px;
+        }
+    }
+}
+
+.hackhome {
+    height: 1px;
+    background-image: linear-gradient(to right, #333435 0%, #333435 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+}
+.theme--light {
+    .timeRange {
+        ::v-deep .el-input__inner {
+            background-color: #f4f4f4 !important;
+        }
+
+        ::v-deep .el-input {
+            font-size: 12px !important;
+        }
+    }
+}
+.timeRange_pc {
+    .el-date-editor.el-input,
+    .el-date-editor.el-input__inner {
+        width: 190px;
+    }
+}
+.timeRange_mob {
+    .el-date-editor.el-input,
+    .el-date-editor.el-input__inner {
+        width: 100%;
+    }
+}
+.theme--light {
+    .timeRange_pc {
+        ::v-deep .el-input__inner {
+            background-color: #f4f4f4 !important;
+        }
+    }
+}
+
+::v-deep .input_range_1 {
+    .el-input__inner {
+        width: 150px;
+    }
+}
+::v-deep .input_range_2 {
+    .el-input__inner {
+        width: 150px;
+    }
+}
+.theme--dark {
+    .timeRange_pc {
+        ::v-deep .el-input__inner {
+            background-color: #2f3030 !important;
+        }
+    }
+}
+
+.input_range_1 {
+    ::v-deep .el-icon-date {
+        display: none;
+    }
+    ::v-deep .el-input__inner {
+        padding-left: 10px !important;
+    }
+
+    height: 36px !important;
+    width: auto;
+}
+.input_range_2 {
+    ::v-deep .el-input__inner {
+        padding-left: 31px !important;
+    }
+    height: 36px !important;
+}
+::v-deep .el-date-editor {
+    position: relative;
+
+    .el-input__prefix {
+        display: none;
+    }
+}
+
+::v-deep .el-range__icon {
+    display: none;
+}
+
+::v-deep .el-input--prefix .el-input__inner {
+    padding-left: 20px;
+}
+
+::v-deep .el-icon-date {
+    font-size: 16px;
+}

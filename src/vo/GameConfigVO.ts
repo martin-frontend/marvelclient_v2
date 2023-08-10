@@ -124,4 +124,6 @@ export interface GameConfigVO {
     okpayUrl: string;
     /** topay安装包下载url */
     topayUrl: string;
+    promotion_hide_list: string[]; //代理统计隐藏表
+    promotion_show_list: string[]; //代理统计显示表
 }

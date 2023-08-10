@@ -1,0 +1,289 @@
+<v-sheet color="transparent" width="100%" :class="$mobile? 'pl-2 pr-2' : ''" style="min-height: calc(100vh - 505px)">
+    <template v-if="!$mobile">
+        <v-row no-gutters class="mb-5 mt-4">
+            <v-col cols="12" lg="6" class="pr-lg-2">
+                <v-card class="rounded10 px-4" color="bgBanner" min-height="250" flat>
+                    <v-card width="100%" height="100%" flat color="transparent" class="d-flex mb-4">
+                        <v-card flat color="transparent" class="d-flex pt-6" width="350">
+                            <v-sheet color="transparent" flat height="100%" width="200" class="">
+                                <div class="d-flex justify-center cursor" @click="showPreview">
+                                    <div ref="qrcode" class="qrcode">
+                                        <v-img :src="pageData.qrCode"></v-img>
+                                    </div>
+                                </div>
+                            </v-sheet>
+                            <v-sheet color="transparent" class="d-flex justify-center flex-column align-center">
+                                <btn-yellow class="text-16 mb-5" min_width="136" height="36" :btn_type="2" @click.native="reget"
+                                    >{{LangUtil("重新获取")}}</btn-yellow
+                                >
+                                <btn-yellow class="text-16" min_width="136" height="36" :btn_type="2" @click.native="showPreview"
+                                    >{{LangUtil("保存图片")}}</btn-yellow
+                                >
+                            </v-sheet>
+                        </v-card>
+                        <v-divider vertical class="mx-1" style="border-style: dashed" />
+                        <!-- <v-divider vertical class="mx-1" /> -->
+                        <v-card flat class="d-flex flex-column pt-5" color="transparent" height="100%" style="width: calc(100% - 360px)">
+                            <div class="mb-2 primary--text">{{LangUtil("推广链接")}}</div>
+                            <v-sheet
+                                :height="$mobile? 35 :46"
+                                color="transparent"
+                                class="pl-2 pl-sm-4 sheetOutlined d-flex align-center justify-space-between mb-2 textGray--text"
+                            >
+                                <v-sheet class="text-truncate" color="transparent" style="max-width: calc(100% - 50px)"
+                                    >{{ myProxy.pageData.link }}</v-sheet
+                                >
+                                <v-btn
+                                    class="mr-1"
+                                    color="bgBanner"
+                                    small
+                                    depressed
+                                    :width="$mobile? 24 :30"
+                                    min-width="0"
+                                    :height="$mobile? 24 :30"
+                                    @click="copy"
+                                >
+                                    <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                                </v-btn>
+                            </v-sheet>
+
+                            <div class="mb-2 primary--text">{{LangUtil("邀请码")}}</div>
+                            <v-sheet
+                                color="transparent "
+                                :height="$mobile? 35 :46"
+                                class="pl-2 pl-sm-4 sheetOutlined d-flex align-center justify-space-between mb-2 textGray--text"
+                            >
+                                {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
+                                <v-btn
+                                    class="mr-1"
+                                    color="bgBanner"
+                                    small
+                                    depressed
+                                    :width="$mobile? 24 :30"
+                                    min-width="0"
+                                    :height="$mobile? 24 :30"
+                                    @click="copyMyId"
+                                >
+                                    <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                                </v-btn>
+                            </v-sheet>
+                        </v-card>
+                    </v-card>
+
+                    <v-sheet color="transparent" width="100%" class="d-flex">
+                        <v-sheet color="transparent" class="">
+                            <div class="text-14">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
+                            <div class="text-14">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="d-flex ml-auto mb-4" height="100%">
+                            <div class="d-flex justify-start">
+                                <btn-yellow class="text-16 ml-2" min-width="104" height="36" :btn_type="2" @click.native="handlerDirectly"
+                                    >{{LangUtil("我的直属")}}</btn-yellow
+                                >
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+                    <MaskTool />
+                </v-card>
+            </v-col>
+            <v-col cols="12" lg="6" class="mt-2 mt-lg-0">
+                <v-card min-width="90" class="rounded10 px-4 py-4 d-flex flex-column" height="100%" color="bgBanner" flat>
+                    <!-- 数据 -->
+                    <v-sheet color="transparent" width="100%" height="100%">
+                        <v-sheet color="transparent" class="d-flex" width="100%" height="100%">
+                            <v-sheet color="transparent" min-width="40%" height="100%">
+                                <v-card flat color="transparent" class="d-flex flex-column justify-space-around" width="100%" height="100%">
+                                    <v-sheet
+                                        color="transparent"
+                                        height="40"
+                                        class="d-flex text-14 textGray--text justify-space-between align-center"
+                                    >
+                                        <div>{{LangUtil("今日直属业绩")}}</div>
+                                        <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
+                                    </v-sheet>
+                                    <v-sheet
+                                        v-if="promotionData.directly_first_recharge_num>=0"
+                                        color="transparent"
+                                        height="40"
+                                        class="d-flex text-14 textGray--text justify-space-between align-center"
+                                    >
+                                        <div>{{LangUtil("直属首充人数：")}}</div>
+                                        <div>{{ promotionData.directly_first_recharge_num}}</div>
+                                    </v-sheet>
+                                    <v-sheet
+                                        color="transparent"
+                                        height="40"
+                                        class="d-flex text-14 textGray--text justify-space-between align-center"
+                                    >
+                                        <div>{{LangUtil("直属总数")}}</div>
+                                        <div>{{ promotionData.directly_users }}</div>
+                                    </v-sheet>
+
+                                    <v-sheet
+                                        color="transparent"
+                                        height="40"
+                                        class="d-flex text-14 textGray--text justify-space-between align-center"
+                                    >
+                                        <div>{{LangUtil("新增直属")}}</div>
+                                        <div>{{ promotionData.today_directly_users }}</div>
+                                    </v-sheet>
+                                </v-card>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" width="100%" class="mr-4 ml-8" height="100%">
+                                <!-- <DateMap> </DateMap> -->
+                                <Chart></Chart>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                    <MaskTool />
+                </v-card>
+            </v-col>
+        </v-row>
+    </template>
+    <!-- 手机版 -->
+    <template v-else>
+        <v-row no-gutters class="mb-5 mt-4">
+            <v-col cols="12" lg="6" class="pr-lg-2">
+                <v-card min-width="90" class="rounded10 px-4 py-4 d-flex flex-column" color="bgBanner" flat>
+                    <!-- 数据 -->
+                    <v-sheet color="transparent" width="100%" height="100%" class="d-flex flex-column pr-2">
+                        <v-sheet color="transparent" height="30" class="d-flex text-14 textGray--text justify-space-between align-center">
+                            <div>{{LangUtil("今日直属业绩")}}</div>
+                            <div>{{ transformMoney(statistics_data.direct_water_summary) }}</div>
+                        </v-sheet>
+                        <v-sheet color="transparent" height="30" class="d-flex text-14 textGray--text justify-space-between align-center">
+                            <div>{{LangUtil("直属总数")}}</div>
+                            <div>{{ promotionData.directly_users }}</div>
+                        </v-sheet>
+                        <v-sheet color="transparent" height="30" class="d-flex text-14 textGray--text justify-space-between align-center">
+                            <div>{{LangUtil("新增直属")}}</div>
+                            <div>{{ promotionData.today_directly_users }}</div>
+                        </v-sheet>
+
+                        <v-sheet
+                            v-if="promotionData.directly_first_recharge_num>=0"
+                            color="transparent"
+                            height="30"
+                            class="d-flex text-14 textGray--text justify-space-between align-center"
+                        >
+                            <div>{{LangUtil("直属首充人数：")}}</div>
+                            <div>{{ promotionData.directly_first_recharge_num}}</div>
+                        </v-sheet>
+                    </v-sheet>
+                    <MaskTool />
+                </v-card>
+            </v-col>
+            <v-col cols="12" lg="6" class="mt-2">
+                <v-card class="rounded10 px-4 px-sm-6" color="bgBanner" min-height="320" flat>
+                    <v-sheet color="transparent" width="100%" class="d-flex pt-4">
+                        <v-sheet class="d-flex justify-center cursor" @click="showPreview" min-width="120" color="transparent">
+                            <div ref="qrcode" class="qrcode">
+                                <v-img :src="pageData.qrCode"></v-img>
+                            </div>
+                        </v-sheet>
+
+                        <v-sheet color="transparent" width="100%" class="d-flex justify-center align-center">
+                            <!-- <v-sheet color="transparent" class="d-flex flex-column justify-center"> -->
+                            <btn-yellow class="text-12" min_width="80" height="30" :btn_type="2" @click.native="reget"
+                                >{{LangUtil("重新获取")}}</btn-yellow
+                            >
+                            <btn-yellow class="text-12 ml-2" min_width="80" height="30" :btn_type="2" @click.native="showPreview"
+                                >{{LangUtil("保存图片")}}</btn-yellow
+                            >
+                            <!-- </v-sheet> -->
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-row no-gutters class="pt-4">
+                        <v-col cols="12" class="textGray--text">
+                            <v-card flat class="d-flex flex-column text-14" color="transparent" height="100%">
+                                <div class="mb-2 primary--text">{{LangUtil("推广链接")}}</div>
+                                <v-sheet
+                                    color="transparent"
+                                    :height="$mobile? 42 :46"
+                                    class="pl-2 pl-sm-4 d-flex align-center justify-space-between mb-2 sheetOutlined textGray--text"
+                                >
+                                    <span class="text-truncate">{{ myProxy.pageData.link }}</span>
+                                    <v-btn
+                                        class="mr-1"
+                                        color="bgBanner"
+                                        small
+                                        depressed
+                                        :width="30"
+                                        min-width="0"
+                                        :height="30"
+                                        @click="copy"
+                                    >
+                                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                                    </v-btn>
+                                </v-sheet>
+
+                                <div class="mb-2 primary--text">{{LangUtil("邀请码")}}</div>
+                                <v-sheet
+                                    color="transparent"
+                                    :height="$mobile? 42 :46"
+                                    class="textGray--text pl-2 pl-sm-4 rounded-lg d-flex align-center justify-space-between mb-2 sheetOutlined"
+                                >
+                                    {{ promotionData.pretty_user_id == ""? promotionData.user_id:promotionData.pretty_user_id }}
+                                    <v-btn
+                                        class="mr-1"
+                                        color="bgBanner"
+                                        small
+                                        depressed
+                                        width="30"
+                                        min-width="0"
+                                        height="30"
+                                        @click="copyMyId"
+                                    >
+                                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                                    </v-btn>
+                                </v-sheet>
+                                <div class="textGray--text text-12">{{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}</div>
+                                <div class="textGray--text text-12">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
+
+                                <v-sheet color="transparent" class="d-flex align-end justify-end mb-4" height="100%">
+                                    <div class="d-flex justify-start">
+                                        <!-- <btn-yellow
+                                            class="text-12 mr-2"
+                                            min_width="80"
+                                            height="30"
+                                            :btn_type="2"
+                                            v-if="selfProxy.userInfo.show_credit_statistic === 1"
+                                            @click.native="handlerCredit"
+                                            >{{LangUtil("信用统计")}}</btn-yellow
+                                        >
+
+                                        <btn-yellow
+                                            class="text-12 mr-2"
+                                            min_width="80"
+                                            height="30"
+                                            :btn_type="2"
+                                            v-if="selfProxy.userInfo.is_show_agent_statistic === 1"
+                                            @click.native="handlerPromotion"
+                                            >{{LangUtil("代理统计")}}</btn-yellow
+                                        > -->
+
+                                        <btn-yellow class="text-12" min_width="80" height="30" :btn_type="2" @click.native="handlerDirectly"
+                                            >{{LangUtil("我的直属")}}</btn-yellow
+                                        >
+                                    </div>
+                                </v-sheet>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                    <MaskTool />
+                </v-card>
+            </v-col>
+        </v-row>
+    </template>
+
+    <!-- 返佣等级 -->
+    <div class="px-0 px-sm-3">
+        <Fanyong> </Fanyong>
+    </div>
+
+    <!-- 常见问题 -->
+    <!-- <Question v-if="fagProxy.qData.type1 && fagProxy.qData.type1.length>0" :questions="fagProxy.qData.type1"></Question> -->
+</v-sheet>

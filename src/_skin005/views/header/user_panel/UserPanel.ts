@@ -42,6 +42,10 @@ export default class UserPanel extends AbstractView {
             const obj = { id: 5, name: LangUtil("公告中心"), icon: "notice" };
             list.push(obj);
         }
+        if (this.selfProxy.userInfo.is_show_agent_statistic === 1) {
+            const obj = { id: 6, name: LangUtil("推广代理"), icon: "agentmenger" };
+            list.push(obj);
+        }
         return list;
     }
 
@@ -97,6 +101,10 @@ export default class UserPanel extends AbstractView {
                 break;
             case 5:
                 PanelUtil.openpanel_notice();
+                //LoginEnter(dialog_email.show);
+                break;
+            case 6:
+                PanelUtil.openpage_promotion_statistic();
                 //LoginEnter(dialog_email.show);
                 break;
             case 10:

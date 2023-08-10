@@ -68,6 +68,7 @@ export default class Novigation extends AbstractView {
             2: { icon: "extension", icon_sel: "extension_sel", name: "推广赚钱", id: 6, path: "commissions" },
             3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "page_mine" },
             4: { icon: "swap", icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
+            5: { icon: "agentmenger", icon_sel: "agentmenger", name: "推广代理", id: 10, path: "page_promotion_statistics" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {
@@ -88,6 +89,9 @@ export default class Novigation extends AbstractView {
         //SWAP交易
         if (ModulesHelper.IsShow_Swap()) {
             newlist.push(list[4]);
+        }
+        if (this.selfProxy.userInfo.is_show_agent_statistic === 1) {
+            newlist.push(list[5]);
         }
         return newlist;
     }
@@ -306,6 +310,9 @@ export default class Novigation extends AbstractView {
                 break;
             case 9:
                 PanelUtil.openpanel_coin_task();
+                break;
+            case 10:
+                PanelUtil.openpage_promotion_statistic();
                 break;
             default:
                 break;

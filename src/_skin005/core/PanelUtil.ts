@@ -334,6 +334,11 @@ export default class PanelUtil {
         this._openpage_base("page_swap");
     }
 
+    //打开 推广代理 界面
+    static openpage_promotion_statistic() {
+        this._openpage_base("page_promotion_statistics");
+    }
+
     //打开 我的界面 界面
     static openpage_my_info() {
         this._openpage_base("page_my_info");

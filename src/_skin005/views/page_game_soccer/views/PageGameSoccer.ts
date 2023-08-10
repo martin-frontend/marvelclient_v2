@@ -26,8 +26,13 @@ export default class PageGameSoccer extends AbstractView {
     }
 
     get isCricket() {
-        const curPath = this.$router.app.$route.path;
-        return curPath.includes("cricket");
+        if (!this.myProxy.pageData.other_data) {
+            const curPath = this.$router.app.$route.path;
+            return curPath.includes("cricket");
+        } else {
+            return this.myProxy.pageData.other_data && this.myProxy.pageData.other_data.is_show_head === 1;
+            // return this.myProxy.pageData.other_data ;
+        }
     }
     public get sheetClass(): string {
         if (!this.$mobile) return "";

@@ -167,11 +167,10 @@ export default class Header extends AbstractView {
             if (
                 this.routerPath &&
                 this.routerPath.trim() &&
-                this.routerPath.includes(element.router_name) &&
-                element.is_show_head &&
-                element.is_show_head == 1
+                this.routerPath.includes(element.router_name)
             ) {
-                return true;
+                if (element.is_show_head === 1) return true;
+                else if (element.is_show_head === 0) return false;
             }
         }
         if (this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play")) {
@@ -219,8 +218,7 @@ export default class Header extends AbstractView {
         return "svga/" + name + ".svga";
     }
 
-    get isShowSearch()
-    {
-        return  ModulesHelper.isShow_SearchGame() && (!SkinVariable.gamelist_other || !Constant.isIncludeGameRouter(this.$route.path))
+    get isShowSearch() {
+        return ModulesHelper.isShow_SearchGame() && (!SkinVariable.gamelist_other || !Constant.isIncludeGameRouter(this.$route.path));
     }
 }

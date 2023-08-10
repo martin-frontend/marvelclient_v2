@@ -10,6 +10,7 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
         loading: false,
         url: "",
         token: "",
+        other_data:<any>{},
     };
 
     public onRegister(): void {

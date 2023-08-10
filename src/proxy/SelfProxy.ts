@@ -144,7 +144,7 @@ export default class SelfProxy extends AbstractProxy {
         window.localStorage.removeItem("username");
         window.localStorage.removeItem("coin_name_unique");
         this.userInfo.user_id = 0;
-        router.push("/");
+        // router.push("/");
     }
 
     redDotTips(data: any) {

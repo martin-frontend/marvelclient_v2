@@ -15,12 +15,14 @@ function show(url: string, isCricket: boolean = false) {
     const proxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
     proxy.pageData.isAction = true;
     proxy.pageData.url = url;
+    proxy.pageData.other_data = {};
 }
 function show_head_game(url: string, item: any) {
     Vue.router.push("/" + item.router_name);
     const proxy: PageGameSoccerProxy = getProxy(PageGameSoccerProxy);
     proxy.pageData.isAction = true;
     proxy.pageData.url = url;
+    proxy.pageData.other_data = JSON.parse(JSON.stringify(item));
 }
 /**打开足球页面 */
 function open_sports() {
@@ -40,6 +42,7 @@ function _open(isCricket: boolean = false) {
         Vue.router.push("/page_game_soccer");
     }
     Init(isCricket);
+    proxy.pageData.other_data = {};
 }
 
 function Init(isCricket: boolean = false) {

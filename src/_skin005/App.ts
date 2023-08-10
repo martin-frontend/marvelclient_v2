@@ -13,6 +13,7 @@ import LangConfig from "@/core/config/LangConfig";
 import Constant from "@/core/global/Constant";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import { track_error_event } from "@/core/config/ErrorEvent";
+import GameConfig from "@/core/config/GameConfig";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -160,7 +161,7 @@ export default class APP extends AbstractView {
             return true;
         }
     }
-
+    head_game_config = GameConfig.config.head_game_config || [];
     get isShowFooter() {
         if (this.$mobile) {
             if (
@@ -169,6 +170,13 @@ export default class APP extends AbstractView {
                 this.$route.path.includes("cricket")
             ) {
                 return false;
+            }
+            for (let index = 0; index < this.head_game_config.length; index++) {
+                const element = this.head_game_config[index];
+
+                if (this.$route.path.includes(element.router_name)) {
+                    return false;
+                }
             }
             return true;
         } else {
@@ -186,7 +194,8 @@ export default class APP extends AbstractView {
         if (ModulesHelper.isHide_HomeDownloadBtn()) return false;
         if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
-        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/" || this.$route.path.includes("page_my_info")) return true;
+        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/" || this.$route.path.includes("page_my_info"))
+            return true;
 
         if (
             this.$route.path.includes("cricket") ||

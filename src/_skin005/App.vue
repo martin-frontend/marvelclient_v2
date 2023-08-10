@@ -106,8 +106,13 @@
         ></div>
 
         <!-- 添加到桌面引导 -->
-        <v-sheet class="btn-guide" color="transparent" v-if="isShowGuide && SkinVariable.isNeedDownloadBtn">
-            <btn-yellow class="text-14" height="36" min_width="90" :btn_type="9" @click.native="onGuide">{{
+        <v-sheet
+            class="btn-guide d-flex justify-center"
+            color="transparent"
+            width="100%"
+            v-if="isShowGuide && SkinVariable.isNeedDownloadBtn"
+        >
+            <btn-yellow class="text-14 download_btn" height="36" min_width="90" :btn_type="9" @click.native.stop="onGuide">{{
                 myProxy.guideText
             }}</btn-yellow>
         </v-sheet>
@@ -173,9 +178,12 @@ export default class extends App {
     //text-align: center;
     position: fixed;
     bottom: 70px;
-    left: calc(50% - 45px);
+    pointer-events: none;
+    //left: calc(50% - 45px);
 }
-
+.download_btn {
+    pointer-events: auto;
+}
 .main-pc {
     padding-left: 94px;
 }

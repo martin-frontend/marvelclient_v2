@@ -251,6 +251,7 @@ export default class DialogSafetyCenter extends AbstractView {
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
+            this.myProxy.pageData.tabIndex = Number(Object.keys(this.tabOptions())[0]);
             this.typechange = this.pageData.tabIndex + "";
         }
     }

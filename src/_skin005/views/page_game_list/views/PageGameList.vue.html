@@ -292,7 +292,7 @@
                     <v-sheet
                         color="transparent"
                         class="d-flex flex-column mob_row"
-                        :style="{'width': SkinVariable.isShowGameListNovigation?'calc(100vw - 65px)':'calc(100vw - 20px)'}"
+                        :style="{'width': SkinVariable.isShowGameListNovigation?'calc(100vw - 65px)':'calc(100vw - 15px)'}"
                     >
                         <!-- 上面的 厂商选择 -->
                         <v-sheet
@@ -412,7 +412,7 @@
 
                         <!-- 下方的列表 -->
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2" color="transparent" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" flat tile>
                                 <Category class="mt-2" v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
                                 <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2 mt-2">
                                     <v-lazy>
@@ -428,7 +428,7 @@
                             </v-card>
                         </template>
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1 mt-2" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" color="transparent" flat tile>
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>
@@ -716,7 +716,7 @@
                         </v-sheet>
 
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 mt-2" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2'" color="transparent" flat tile>
                                 <Category v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
                                 <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2">
                                     <v-lazy>
@@ -734,7 +734,7 @@
 
                         <!-- 下方的列表 -->
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mr-n2 ml-1 mt-2" color="transparent" flat tile>
+                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" color="transparent" flat tile>
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>

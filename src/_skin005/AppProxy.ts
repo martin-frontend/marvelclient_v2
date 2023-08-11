@@ -51,9 +51,14 @@ export default class AppProxy extends puremvc.Proxy {
     //是否显示IOS引导
     guideDrawer = false;
 
+    // 检查是否在安卓全屏模式下运行
+    isAndroidFullScreen() {
+        return window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: standalone)").matches;
+    }
+
     get isShowGuide() {
         //@ts-ignore
-        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone === true) {
+        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone === true || this.isAndroidFullScreen()) {
             return false;
         }
         return true;

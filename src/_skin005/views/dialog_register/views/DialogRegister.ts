@@ -299,6 +299,16 @@ export default class DialogRegister extends AbstractView {
             element.state = res ? 1 : 0;
         }
     }
+    get passwordTipsHaveError() {
+        return this.passwordTips.some((ele: any, index: any, arr: any) => {
+            return ele.state == 0;
+        });
+    }
+    get passwordConfirmTipsHaveError() {
+        return this.passwordConfirmTips.some((ele: any, index: any, arr: any) => {
+            return ele.state == 0;
+        });
+    }
     show = false;
     showConfirm = false;
     onPasswordInput() {

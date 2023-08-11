@@ -108,7 +108,7 @@
         <Marquee1 />
     </v-sheet>
 
-    <SoccerMatche v-if="IsShow_FootBallHot && SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
+    <SoccerMatche v-if="IsShow_FootBallHot && SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" class="mb-2"/>
 
     <GameType />
 
@@ -121,6 +121,6 @@
     <SoccerMatche v-if="IsShow_FootBallHot && !SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 
     <v-lazy v-if="ModulesHelper.isShow_RecentBetting()">
-        <RecentBetting :class="$xsOnly ? 'mt-3' : 'mt-8'" />
+        <RecentBetting :class="$xsOnly ? 'mt-3 mb-n16' : 'mt-8'" />
     </v-lazy>
 </div>

@@ -85,14 +85,15 @@
                         <v-expansion-panel-content class="nomal_text_1--text text-12" eager>
                             <v-sheet color="transparent" class="d-flex flex-column">
                                 <template v-for="(item, index) of obj.data">
-                                    <v-sheet
-                                        :key="index"
-                                        color="transparent"
-                                        class="text-14 cursor-pointer my-1 footer_shuoming_item"
-                                        @click="onFooterClick(item)"
-                                    >
-                                        {{item.name}}
-                                    </v-sheet>
+                                    <v-lazy :key="index">
+                                        <v-sheet
+                                            color="transparent"
+                                            class="text-14 cursor-pointer my-1 footer_shuoming_item"
+                                            @click="onFooterClick(item)"
+                                        >
+                                            {{item.name}}
+                                        </v-sheet>
+                                    </v-lazy>
                                 </template>
                             </v-sheet>
                         </v-expansion-panel-content>
@@ -113,27 +114,28 @@
                         <v-expansion-panel-content class="nomal_text_1--text text-12">
                             <v-sheet color="transparent" class="d-flex flex-wrap">
                                 <template v-for="(item, index) of obj.data">
-                                    <v-sheet
-                                        :key="index"
-                                        color="transparent"
-                                        class="text-14 textGray--text mx-1"
-                                        :class="isCanClick(item) ? 'cursor-pointer ' : ''"
-                                        @click="onFooterClick(item)"
-                                    >
-                                        <template v-if="isShowImg(item)">
-                                            <v-tooltip v-if="isShowTooltip(item)" top>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                                        <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
-                                                    </v-sheet>
-                                                </template>
-                                                <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
-                                            </v-tooltip>
-                                            <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
-                                        </template>
-                                        <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
-                                        <span v-else>{{item.name}}</span>
-                                    </v-sheet>
+                                    <v-lazy :key="index">
+                                        <v-sheet
+                                            color="transparent"
+                                            class="text-14 textGray--text mx-1"
+                                            :class="isCanClick(item) ? 'cursor-pointer ' : ''"
+                                            @click="onFooterClick(item)"
+                                        >
+                                            <template v-if="isShowImg(item)">
+                                                <v-tooltip v-if="isShowTooltip(item)" top>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                            <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                                        </v-sheet>
+                                                    </template>
+                                                    <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                                </v-tooltip>
+                                                <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                            </template>
+                                            <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
+                                            <span v-else>{{item.name}}</span>
+                                        </v-sheet>
+                                    </v-lazy>
                                 </template>
                             </v-sheet>
                         </v-expansion-panel-content>

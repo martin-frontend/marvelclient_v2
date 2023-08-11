@@ -225,12 +225,7 @@
                 </CustomInput>
 
                 <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="mb-6">
-                    <CustomInput
-                        icon="mdi-account"
-                        :placeholder="LangUtil('请输入邮箱')"
-                        v-model="form.username"
-                        @blur="onBlurInput()"
-                    >
+                    <CustomInput icon="mdi-account" :placeholder="LangUtil('请输入邮箱')" v-model="form.username" @blur="onBlurInput()">
                         <btn-yellow
                             class="ml-auto text-14"
                             min_width="80"
@@ -374,7 +369,7 @@
                     </v-card>
                 </v-tooltip> -->
                 <v-sheet color="transparent">
-                    <v-tooltip bottom content-class="tip_main_class" attach>
+                    <v-tooltip bottom content-class="tip_main_class" attach :disabled="!passwordTipsHaveError">
                         <template v-slot:activator="{ on, attrs }">
                             <CustomPassword
                                 v-bind="attrs"
@@ -404,7 +399,7 @@
                     </v-tooltip>
                 </v-sheet>
                 <v-sheet color="transparent">
-                    <v-tooltip bottom content-class="tip_main_class" attach>
+                    <v-tooltip bottom content-class="tip_main_class" attach :disabled="!passwordConfirmTipsHaveError">
                         <template v-slot:activator="{ on, attrs }">
                             <CustomPassword
                                 v-bind="attrs"
@@ -702,12 +697,7 @@
                 </template>
             </CustomInput>
             <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="">
-                <CustomInput
-                    icon="mdi-account"
-                    :placeholder="LangUtil('请输入邮箱')"
-                    v-model="form.username"
-                    @blur="onBlurInput()"
-                >
+                <CustomInput icon="mdi-account" :placeholder="LangUtil('请输入邮箱')" v-model="form.username" @blur="onBlurInput()">
                     <btn-yellow
                         class="ml-auto text-14"
                         min_width="80"
@@ -825,7 +815,7 @@
                 v-model="form.verify_code"
             />
             <v-sheet color="transparent">
-                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50" :disabled="!passwordTipsHaveError">
                     <template v-slot:activator="{ on, attrs }">
                         <CustomPassword
                             v-bind="attrs"
@@ -850,7 +840,7 @@
                 </v-tooltip>
             </v-sheet>
             <v-sheet color="transparent">
-                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50" :disabled="!passwordConfirmTipsHaveError">
                     <template v-slot:activator="{ on, attrs }">
                         <CustomPassword
                             class="my-4"

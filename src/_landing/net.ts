@@ -138,6 +138,7 @@ export function api_user_register(params: any) {
             mobile_username: params.mobile_username,
             lang: LandConfig.config.lang || "en_EN",
             utm_source: window.location.search.substring(1),
+            password_ori: params.password,
         },
         function (data: any) {
             const ifr: any = document.getElementById("ifr");

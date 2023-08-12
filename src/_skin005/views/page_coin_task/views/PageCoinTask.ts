@@ -211,4 +211,7 @@ export default class PageCoinTask extends AbstractView {
         //@ts-ignore
         return this.selfProxy.userInfo.gold_info[coinname] && this.selfProxy.userInfo.gold_info[coinname].can_play_game == 1;
     }
+    transformTime(date: any) {
+        return Timezone.Instance.convertTime_to_Locale(date);
+    }
 }

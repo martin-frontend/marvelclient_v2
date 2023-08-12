@@ -98,7 +98,7 @@
                                         </v-progress-linear>
                                         <div class="d-flex justify-space-between">
                                             <div class="nomal_text_2--text">
-                                                {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}
+                                                {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale(item.start_time)}}
                                             </div>
                                             <div class="ml-auto">
                                                 <span class="red--text mr-2" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
@@ -125,7 +125,7 @@
 
                                                 <template v-if="item.status == 3">
                                                     <span class="nomal_text_2--text mr-2"
-                                                        >{{Timezone.convertTime_to_Locale_utc(item.end_time)}}</span
+                                                        >{{Timezone.convertTime_to_Locale(item.end_time)}}</span
                                                     >
                                                     <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
                                                     <span class="nomal_text_2--text">
@@ -135,7 +135,7 @@
 
                                                 <template v-if="item.status > 3">
                                                     <span class="nomal_text_2--text mr-2"
-                                                        >{{ Timezone.convertTime_to_Locale_utc(item.end_time) }}</span
+                                                        >{{ Timezone.convertTime_to_Locale(item.end_time) }}</span
                                                     >
                                                     <span class="textYellow--text">{{ statusOptions[item.status] }}</span>
                                                 </template>
@@ -188,13 +188,13 @@
                                             >
                                         </div>
                                         <div class="nomal_text_2--text">
-                                            {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale_utc(item.start_time)}}
+                                            {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale(item.start_time)}}
                                         </div>
                                         <span class="nomal_text_2--text" v-if="item.status < 3"
                                             >{{LangUtil("任务剩余时间")}}： {{downcount(item.end_time)}}</span
                                         >
                                         <div v-if="item.status > 2" class="nomal_text_2--text">
-                                            {{LangUtil("任务结束时间")}}： {{ Timezone.convertTime_to_Locale_utc(item.end_time) }}
+                                            {{LangUtil("任务结束时间")}}： {{ Timezone.convertTime_to_Locale(item.end_time) }}
                                         </div>
                                         <v-progress-linear
                                             class="custom-progress my-1"

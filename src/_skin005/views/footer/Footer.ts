@@ -68,16 +68,18 @@ export default class Footer extends AbstractView {
         //加载结束之后获取 这个对象
         const baseHeight = this.$mobile ? 30 : 40;
         const img: any = document.getElementById(item.id);
+        // console.log("---加载图为", img);
+        // console.log("---naturalWidth----", img.naturalWidth);
+        // console.log("---naturalHeight----", img.naturalHeight);
         if (!img) return;
         this.$nextTick(() => {
-            const imgL = new Image();
-            imgL.src = img.src;
-            const imgW = imgL.naturalWidth;
-            const imgH = imgL.naturalHeight;
+            const imgW = img.naturalWidth;
+            const imgH = img.naturalHeight;
             if (this.$mobile) {
                 //如果已经计算过图片缩放的比例了 就不需要再计算
                 if (this.item_scale) {
-                    img.style.height = this.item_scale * imgH + "px";
+                    // img.style.height = this.item_scale * imgH + "px";
+                    this.replaceImg(img, this.item_scale * imgH);
                     return;
                 }
                 //计算手机缩放的尺寸
@@ -96,14 +98,25 @@ export default class Footer extends AbstractView {
                 const temp_height = imgH * this.item_scale;
                 //console.log("重新计算高度为", temp_height);
 
-                img.style.height = temp_height + "px";
+                // img.style.height = temp_height + "px";
+                this.replaceImg(img, temp_height);
                 return;
             }
 
             const bodyH = (imgH / 160) * baseHeight;
-            img.style.height = bodyH + "px";
+            // img.style.height = bodyH + "px";
+            this.replaceImg(img, bodyH);
             //console.log("重新设置 高度为", bodyH);
         });
+    }
+    replaceImg(img: any, height: number) {
+        // 创建新的图片元素
+        const newImgElement = new Image();
+        newImgElement.src = img.src;
+        newImgElement.style.height = `${height}px`;
+
+        // 将新图片元素替代原始图片
+        img.parentNode.replaceChild(newImgElement, img);
     }
     loadstart(item: any) {
         console.log("--开始加载->>", item);

@@ -65,45 +65,48 @@ export default class Footer extends AbstractView {
     }
     item_scale = 0; //手机版 item 的高度
     load(item: any) {
-        //console.log("加载完成",item);
         //加载结束之后获取 这个对象
         const baseHeight = this.$mobile ? 30 : 40;
         const img: any = document.getElementById(item.id);
         if (!img) return;
+        this.$nextTick(() => {
+            const imgL = new Image();
+            imgL.src = img.src;
+            const imgW = imgL.naturalWidth;
+            const imgH = imgL.naturalHeight;
+            if (this.$mobile) {
+                //如果已经计算过图片缩放的比例了 就不需要再计算
+                if (this.item_scale) {
+                    img.style.height = this.item_scale * imgH + "px";
+                    return;
+                }
+                //计算手机缩放的尺寸
+                const offset = 70;
+                const boxWidth = document.documentElement.clientWidth - offset;
+                const bodyH = (imgH / 160) * baseHeight;
+                const baseWidth = (bodyH * imgW) / imgH;
+                const count = Math.round(boxWidth / baseWidth);
+                //重新计算的长度
+                const resWidth = boxWidth / count - 10;
 
-        const imgL = new Image();
-        imgL.src = img.src;
-        const imgW = imgL.naturalWidth;
-        const imgH = imgL.naturalHeight;
-        if (this.$mobile) {
-            //如果已经计算过图片缩放的比例了 就不需要再计算
-            if (this.item_scale) {
-                img.style.height = this.item_scale * imgH + "px";
+                //新的最终的尺寸高度为
+                const new_height = (resWidth * imgH) / imgW;
+                this.item_scale = new_height / imgH;
+
+                const temp_height = imgH * this.item_scale;
+                //console.log("重新计算高度为", temp_height);
+
+                img.style.height = temp_height + "px";
                 return;
             }
-            //计算手机缩放的尺寸
-            const offset = 70;
-            const boxWidth = document.documentElement.clientWidth - offset;
+
             const bodyH = (imgH / 160) * baseHeight;
-            const baseWidth = (bodyH * imgW) / imgH;
-            const count = Math.round(boxWidth / baseWidth);
-            //重新计算的长度
-            const resWidth = boxWidth / count - 10;
-
-            //新的最终的尺寸高度为
-            const new_height = (resWidth * imgH) / imgW;
-            this.item_scale = new_height / imgH;
-
-            const temp_height = imgH * this.item_scale;
-            //console.log("重新计算高度为", temp_height);
-
-            img.style.height = temp_height + "px";
-            return;
-        }
-
-        const bodyH = (imgH / 160) * baseHeight;
-        img.style.height = bodyH + "px";
-        //console.log("重新设置 高度为", bodyH);
+            img.style.height = bodyH + "px";
+            //console.log("重新设置 高度为", bodyH);
+        });
+    }
+    loadstart(item: any) {
+        console.log("--开始加载->>", item);
     }
     /**将list对象中的数据 按照 category字段 分类 返回  数组 对象 */
     private _setCategoryData(data: core.PlatNoticeVO[]) {

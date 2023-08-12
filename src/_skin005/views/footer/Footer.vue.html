@@ -114,28 +114,29 @@
                         <v-expansion-panel-content class="nomal_text_1--text text-12">
                             <v-sheet color="transparent" class="d-flex flex-wrap">
                                 <template v-for="(item, index) of obj.data">
-                                    <v-lazy :key="index">
-                                        <v-sheet
-                                            color="transparent"
-                                            class="text-14 textGray--text mx-1"
-                                            :class="isCanClick(item) ? 'cursor-pointer ' : ''"
-                                            @click="onFooterClick(item)"
-                                        >
-                                            <template v-if="isShowImg(item)">
-                                                <v-tooltip v-if="isShowTooltip(item)" top>
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                                            <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
-                                                        </v-sheet>
-                                                    </template>
-                                                    <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
-                                                </v-tooltip>
-                                                <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                    <v-sheet
+                                        color="transparent"
+                                        class="text-14 textGray--text mx-1"
+                                        :class="isCanClick(item) ? 'cursor-pointer ' : ''"
+                                        @click="onFooterClick(item)"
+                                        :key="index"
+                                    >
+                                        <template v-if="isShowImg(item)">
+                                            <v-tooltip v-if="isShowTooltip(item)" top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                        <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                                    </v-sheet>
+                                                </template>
+                                                <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                            </v-tooltip>
+                                            <template v-else>
+                                                <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
                                             </template>
-                                            <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
-                                            <span v-else>{{item.name}}</span>
-                                        </v-sheet>
-                                    </v-lazy>
+                                        </template>
+                                        <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
+                                        <span v-else>{{item.name}}</span>
+                                    </v-sheet>
                                 </template>
                             </v-sheet>
                         </v-expansion-panel-content>

@@ -70,10 +70,14 @@
                                                             <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
                                                         </v-sheet>
                                                     </template>
-                                                    <span>
+                                                    <span v-if="isCanPlayGame(item.task_coin_name_unique)">
                                                         {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
                                                         ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
                                                         }}
+                                                    </span>
+                                                    <span v-else="">
+                                                        {{
+                                                        LangUtil(`当任务进度条达到100%时，您的奖金将转入您的${item.task_coin_name_unique}钱包`)}}
                                                     </span>
                                                 </v-tooltip>
                                                 <span class="ml-1">
@@ -216,10 +220,14 @@
                                                         <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
                                                     </v-sheet>
                                                 </template>
-                                                <span>
+                                                <span v-if="isCanPlayGame(item.task_coin_name_unique)">
                                                     {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
                                                     ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
                                                     }}
+                                                </span>
+                                                <span v-else="">
+                                                    {{
+                                                    LangUtil(`当任务进度条达到100%时，您的奖金将转入您的${item.task_coin_name_unique}钱包`)}}
                                                 </span>
                                             </v-tooltip>
                                         </div>

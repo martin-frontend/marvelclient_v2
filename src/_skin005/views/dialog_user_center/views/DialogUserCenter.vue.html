@@ -244,8 +244,8 @@
                         <!-- <v-icon class="ml-2" color="colorInfo">mdi-account</v-icon> -->
                     </span>
                 </div>
-                <div class="line mt-2"></div>
                 <template v-if="!ModulesHelper.IsShow_HideRealName()">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
@@ -267,10 +267,11 @@
                             <div v-else class="empty_width"></div>
                         </span>
                     </div>
-                    <div class="line mt-2"></div>
+                   
                 </template>
 
                 <template v-if="ModulesHelper.IsShow_SetCPF()">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
@@ -292,9 +293,8 @@
                             <div v-else class="empty_width"></div>
                         </span>
                     </div>
-                    <div class="line mt-2"></div>
                 </template>
-
+                <div class="line mt-2"></div>
                 <div class="d-flex justify-space-between align-center mt-2 text-14">
                     <span class="d-flex leftText--text">
                         <!-- <v-icon class="mr-2" color="textGray">mdi-account-edit</v-icon> -->
@@ -316,8 +316,8 @@
                         <div v-else class="empty_width"></div>
                     </span>
                 </div>
-                <div class="line mt-2"></div>
                 <template v-if="checkValidateType(2)">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             <!-- <v-icon class="mr-2" color="textGray">mdi-cellphone</v-icon> -->
@@ -339,9 +339,9 @@
                             <div v-else class="empty_width"></div>
                         </span>
                     </div>
-                    <div class="line mt-2" v-if="checkValidateType(1)"></div>
                 </template>
                 <template v-if="checkValidateType(1) && !ModulesHelper.IsShow_HideEmail()">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             <!-- <v-icon class="mr-2" color="textGray">mdi-email</v-icon> -->
@@ -362,10 +362,10 @@
                             </v-btn>
                             <div v-else class="empty_width"></div>
                         </span>
-                    </div>
-                    <div class="line mt-2" v-if="IsShow_GoogleVerification"></div>
+                    </div> 
                 </template>
                 <template v-if="IsShow_GoogleVerification">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             <!-- <v-icon class="mr-2" color="textGray">mdi-google</v-icon> -->
@@ -388,6 +388,7 @@
                     <div class="line mt-2" v-if="is_password_gold_transfer.is_open"></div>
                 </template>
                 <template v-if="is_password_gold_transfer.is_open">
+                    <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
                         <span class="d-flex leftText--text">
                             {{LangUtil("交易密码")}}

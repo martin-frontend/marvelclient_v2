@@ -114,7 +114,7 @@
                     <v-sheet width="100%" color="bgBanner" class="py-2 px-0 d-flex flex-column justify-center rounded-lg">
                         <template v-for="(item, key) of selfProxy.userInfo.gold_info">
                             <v-sheet
-                                v-if="item && GamePlatConfig.isShowCoin(key)"
+                                v-if="GamePlatConfig.isShowCoin(key) && (!isActivityCoin(key) || isShowActivityCoin(key))"
                                 class="d-flex align-center rounded-lg cursor-pointer py-1 mb-2 ml-2 mr-2 listitem"
                                 :class="{'select-shadow': gameProxy.coin_name_unique == key}"
                                 min-height="40"
@@ -126,7 +126,7 @@
                                     <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                                 </div>
                                 <div class="ml-3 text-12">
-                                    <div class="font-weight-bold textGray--text">{{ key }}{{LangUtil("钱包")}}</div>
+                                    <div class="font-weight-bold textGray--text">{{ key }} {{isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
                                     <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{  item.sum_money }}</div> -->
                                     <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
                                     <div v-if="key == 'CNY'" class="primary--text">
@@ -174,10 +174,10 @@
         <template v-for="(item, key) in menuList">
             <v-sheet
                 color="transparent"
-                class="d-flex flex-column align-center justify-center"
+                class="d-flex flex-column align-center"
                 :key="item.name"
                 min-height="70"
-                min-width="85"
+                width="100"
                 @click.native="goCategory(item.id)"
             >
                 <template v-if="item.id == 13">
@@ -187,12 +187,12 @@
                             {{certificationStatus.icon}}
                         </v-icon>
                     </div>
-                    <div class="text-12 mt-2 textGray--text">{{certificationStatus.name}}</div>
+                    <div class="text-12 mt-2 textGray--text" style="text-align: center;">{{certificationStatus.name}}</div>
                 </template>
 
                 <template v-else>
-                    <svg-icon :icon="item.icon" class="textGray--text" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
-                    <v-sheet class="font-weight-medium textGray--text text-12 mt-2" color="transparent" max-width="110">
+                    <svg-icon :icon="item.icon" class="textGray--text mt-4" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
+                    <v-sheet class="font-weight-medium textGray--text text-12 mt-2" style="text-align: center;" color="transparent" max-width="110">
                         {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
                     </v-sheet>
                 </template>
@@ -200,7 +200,7 @@
         </template>
 
         <template v-for="(idx) in item_count">
-            <v-sheet color="transparent" class="d-flex flex-column align-center justify-center" min-height="70" min-width="85"> </v-sheet>
+            <v-sheet color="transparent" class="d-flex flex-column align-center justify-center" min-height="70" width="100"> </v-sheet>
         </template>
     </v-sheet>
     <v-sheet v-if="GlobalVar.instance.isShowLogout" color="transparent" class="px-2">

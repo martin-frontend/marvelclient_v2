@@ -5,7 +5,7 @@
             <v-expansion-panels :class="{'btninfo-light': !$vuetify.theme.dark, 'btninfo-dark': $vuetify.theme.dark}" flat>
                 <v-expansion-panel :class="$mobile ? 'text_mob': ''">
                     <v-expansion-panel-header class="primary--text"> {{ item.name }} </v-expansion-panel-header>
-                    <v-expansion-panel-content class="nomal_text_1--text" :class="$mobile ? 'text-12': 'text-14'" style="white-space: pre-line;">
+                    <v-expansion-panel-content class="nomal_text_1--text" :class="$mobile ? 'text-14': 'text-14'" style="white-space: pre-line;">
                         {{ item.content }}
                     </v-expansion-panel-content>
                 </v-expansion-panel>

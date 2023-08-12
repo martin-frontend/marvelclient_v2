@@ -132,7 +132,10 @@ export default class PageCoinTask extends AbstractView {
         return [days, hours, minutes, seconds];
     }
     mappingImg(task_coin_name_unique: any) {
-        const type = task_coin_name_unique.split("-")[1];
+        let type = task_coin_name_unique.split("-")[1];
+        if (!type) {
+            type = task_coin_name_unique.split("-")[0];
+        }
         //Slots、Live、Casino、Cricket、FootBall、Sport
         const map = <any>{
             Slots: require("@/_skin005/assets/coin_task/slots.png"),
@@ -142,6 +145,7 @@ export default class PageCoinTask extends AbstractView {
             FootBall: require("@/_skin005/assets/coin_task/footBall.png"),
             Sport: require("@/_skin005/assets/coin_task/sport.png"),
             All: require("@/_skin005/assets/coin_task/all.png"),
+            Bonus: require("@/_skin005/assets/coin_task/bonus.png"),
         };
         return map[type];
     }

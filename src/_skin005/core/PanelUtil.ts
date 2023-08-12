@@ -326,7 +326,7 @@ export default class PanelUtil {
     }
     //打开 游戏返水 界面
     static openpage_mine() {
-        this._openpage_base("page_mine", false);
+        this._openpage_base("vip_rewards", false);
     }
 
     //打开 SWAP交易 界面

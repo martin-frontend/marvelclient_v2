@@ -266,7 +266,7 @@ export default class PageMyInfo extends AbstractView {
         return newNub;
     }
     transformMoney(val: any) {
-        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, true);
+        return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
     get certificationStatus() {
         // const status: any = 1;
@@ -285,5 +285,36 @@ export default class PageMyInfo extends AbstractView {
             default:
                 return {};
         }
+    }
+    isActivityCoin(name: any) {
+        const coin = GamePlatConfig.config.plat_coins[name];
+        if (coin) {
+            return coin.type == 4;
+        }
+        return false;
+    }
+    //过期或者取消的活动币
+    get liveActivity() {
+        return this.selfProxy.coinTaskData.list.filter((item: any) => item.status != 5 && item.status != 6);
+    }
+
+    //活动币是否显示
+    isShowActivityCoin(key: string): boolean {
+        //是否为活动币
+        if (!this.isActivityCoin(key)) return false;
+
+        //检查当前币种的活动是否在列表中
+        const isActive = this.selfProxy.coinTaskData.list.some((ele: any, index: any, arr: any) => {
+            return ele.task_coin_name_unique == key;
+        });
+        if (!isActive) return false;
+
+        //判断需要展示的情况
+        const isNeedShow = this.liveActivity.some((ele: any, index: any, arr: any) => {
+            return ele.task_coin_name_unique == key;
+        });
+        if (isNeedShow) return true;
+
+        return false;
     }
 }

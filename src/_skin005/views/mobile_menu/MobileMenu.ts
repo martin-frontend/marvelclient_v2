@@ -22,7 +22,7 @@ export default class MobileMenu extends AbstractView {
             4: { id: 4, mob_type: "pledgeDividend", name: LangUtil("分红"), icon: "bouns", path: "/page_bonus" },
             5: { id: 5, mob_type: "", name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, mob_type: "", name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
-            7: { id: 7, mob_type: "gameWater", name: LangUtil("返水"), icon: "water", path: "/page_mine" },
+            7: { id: 7, mob_type: "gameWater", name: LangUtil("返水"), icon: "water", path: "/vip_rewards" },
             8: { id: 8, mob_type: "cricket", name: LangUtil("板球"), icon: "cricket", path: "/cricket" },
             // 9: { id: 9, mob_type: "charge", name: LangUtil("充值"), icon: "water", path: "/page_recharge" },
             9: {

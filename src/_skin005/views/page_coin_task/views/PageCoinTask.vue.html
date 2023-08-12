@@ -34,7 +34,7 @@
         <!-- 奖励任务 -->
         <template v-if="!$mobile">
             <!-- pc -->
-            <v-card flat class="mt-4 mb-4" color="transparent" width="100%" min-height="500">
+            <v-card v-if="coinTaskList && coinTaskList.length>0" flat class="mt-4 mb-4" color="transparent" width="100%" min-height="500">
                 <v-row no-gutters>
                     <template v-for="item of coinTaskList">
                         <v-col class="mb-4" cols="12" :key="item.id">
@@ -261,7 +261,7 @@
             </v-card>
         </template>
 
-        <!-- <ListNodata v-else height="500" /> -->
+        <ListNodata v-if=" !coinTaskList || coinTaskList.length<1" height="500" />
     </template>
     <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto mt-4" type="image"></v-skeleton-loader>
 </v-sheet>

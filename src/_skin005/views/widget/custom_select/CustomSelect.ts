@@ -14,6 +14,7 @@ export default class CustomSelect extends AbstractView {
     @Prop({ default: 30 }) iconSize!: number;
     @Prop({ default: null }) isSetChange!: boolean | undefined;
     @Prop({ default: "" }) placeholder!: string;
+    @Prop({ default: false }) isForeSelect!: boolean;
     private selectValue = this.getValue;
 
     @Prop() value!: any;
@@ -56,6 +57,7 @@ export default class CustomSelect extends AbstractView {
         return text_font;
     }
     get isDisabled() {
+        if (this.isForeSelect) return false;
         if (this.options && Object.keys(this.options).length > 1) {
             return false;
         }

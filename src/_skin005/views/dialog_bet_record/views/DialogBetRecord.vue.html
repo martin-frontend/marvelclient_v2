@@ -39,6 +39,7 @@
                     :options="listOptions.vendorOptions()"
                     fontSize="14"
                     width="140"
+                    :isForeSelect="true"
                     @change="onVendorChange"
                 />
                 <CustomSelect
@@ -549,6 +550,7 @@
                                         :isSetChange="$mobile"
                                         :options="listOptions.vendorOptions()"
                                         width="100%"
+                                        :isForeSelect="true"
                                         @change="onVendorChange"
                                     />
                                 </v-col>

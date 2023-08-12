@@ -66,7 +66,7 @@ export default class Novigation extends AbstractView {
             0: { icon: "coin", icon_sel: "coin_sel", name: "币种介绍", id: 5, path: "page_introduce" },
             1: { icon: "chips", icon_sel: "chips_sel", name: "质押分红", id: 1, path: "page_bonus" },
             2: { icon: "extension", icon_sel: "extension_sel", name: "推广赚钱", id: 6, path: "commissions" },
-            3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "page_mine" },
+            3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "vip_rewards" },
             4: { icon: "swap", icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
             5: { icon: "agentmenger", icon_sel: "agentmenger", name: "推广代理", id: 10, path: "page_promotion_statistics" },
         };

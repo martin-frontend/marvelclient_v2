@@ -8,6 +8,7 @@ import dialog_bankcard_info from "@/_skin004/views/dialog_bankcard_info";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
 
 @Component
 export default class ExchangeTypeCommon extends AbstractView {
@@ -219,7 +220,7 @@ export default class ExchangeTypeCommon extends AbstractView {
             }
         }
         //检测 CPF是否绑定
-        if (GlobalVar.skin == "skin010" || GlobalVar.skin == "skin011") {
+        if (ModulesHelper.IsShow_SetCPF() || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin011") {
             if (!this.selfProxy.userInfo.cpf) {
                 PanelUtil.message_confirm({
                     message: LangUtil("请先绑定CPF"),

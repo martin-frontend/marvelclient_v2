@@ -93,8 +93,8 @@ export const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin005_page_extension" */ "@/_skin005/views/page_extension/views/PageExtension.vue"),
     },
     {
-        path: "/page_mine",
-        name: "page_mine",
+        path: "/vip_rewards",
+        name: "vip_rewards",
         component: () => import(/* webpackChunkName: "skin005_page_mine" */ "@/_skin005/views/page_mine/views/PageMine.vue"),
     },
     {

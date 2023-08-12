@@ -628,7 +628,7 @@
                 <v-card color="bgBanner" class="rounded10 pt-5 pb-2 d-flex flex-column" width="100%" height="100%">
                     <v-sheet color="transparent" width="100%" class="d-flex justify-space-between px-5">
                         <div class="primary--text text-16 font-weight-bold">{{LangUtil('挖矿等级')}}</div>
-                        <div class="textYellow--text text-decoration-underline cursop_pointer text-12" @click="jumpTo('#vipLevel')">
+                        <div class="textYellow--text text-decoration-underline cursop_pointer text-14" @click="jumpTo('#vipLevel')">
                             {{LangUtil('查看所有等级')}}
                         </div>
                     </v-sheet>
@@ -656,7 +656,7 @@
                                         :height="progressLinear"
                                         class="rounded-xl"
                                     ></v-progress-linear>
-                                    <div class="ma-0 ml-2 mt-1 mt-md-3 textGray--text text-12">
+                                    <div class="ma-0 ml-2 mt-1 mt-md-3 textGray--text text-14">
                                         <p class="textGray--text" v-if="pageData.vipLevel ==  pageData.vipMaxLevel">
                                             {{LangUtil('您已经升级早最高等级')}}
                                         </p>
@@ -738,7 +738,7 @@
         <!-- vip 等级 -->
         <v-card flat color="transparent" class="mt-8" max-width="100%" id="vipLevel">
             <span class="text-16 font-weight-bold">{{LangUtil('VIP等级')}} </span>
-            <div class="ma-0 mt-1 ml-md-0 text-12 textGray--text" v-html="LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')"></div>
+            <div class="ma-0 mt-1 ml-md-0 text-14 textGray--text" v-html="LangUtil('个人投注额和好友投注额增加时会提高洗码等级，业绩与洗码等级的关系如下图所示，最高级可达0.9%洗码。')"></div>
 
             <div class="mt-3">
                 <!-- 手机 -->

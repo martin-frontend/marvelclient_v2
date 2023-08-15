@@ -1446,7 +1446,27 @@ export default class PanelUtil {
                 }
                 return true;
             }
-
+            try {
+                //针对公告跳转到游戏
+                const strArr = item.open_mode_url.split("##");
+                if (strArr && strArr.length > 1) {
+                    
+                    const obj =  JSON.parse(strArr[1]);
+                    PanelUtil.openpage_soccer(obj);
+                    return true;
+                    // fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == strArr[0]);
+                    // if (fitterArr && fitterArr.length > 0) {
+                    //     if (isRun) {
+                    //         console.log("执行方法------>>>" + strArr[0], strArr[1]);
+                    //         fitterArr[0].fun(JSON.parse(strArr[1]));
+                    //         //console.log("执行方法");
+                    //     }
+                    //     return true;
+                    // }
+                }
+            } catch {
+                console.log("打开失败");
+            }
             //跳转链接
             if (isRun) {
                 OpenLink(item.open_mode_url);

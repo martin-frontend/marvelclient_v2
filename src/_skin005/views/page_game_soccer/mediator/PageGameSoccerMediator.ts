@@ -35,7 +35,7 @@ export default class PageGameSoccerMediator extends AbstractMediator {
                     if (gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId) {
                         PanelUtil.openpage_soccer_cricket();
                     } else {
-                        PanelUtil.openpage_soccer();
+                        myProxy.refreshGame();
                     }
                 }
 

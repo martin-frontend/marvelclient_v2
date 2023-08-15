@@ -109,206 +109,254 @@ $select_line_height_long_mob: 313px;
     color: $text_color_3; /* 文字颜色 */
 }
 
-.gold_bg_nomal {
-    background: url("~@/_skin005/assets/activity_recharge/gold_bg_nomal.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $text_color_4;
+.card_pc {
+    .main_bg_recharge {
+        background: url("~@/_skin005/assets/activity_recharge/bg.png");
+        background-size: 100% 100%;
+        width: 880px;
+        height: 707px;
     }
-}
-.gold_bg_nomal:hover {
-    background: url("~@/_skin005/assets/activity_recharge/gold_bg_select.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $miaobian_color_title;
+    .gold_bg_nomal {
+        background: url("~@/_skin005/assets/activity_recharge/gold_bg_nomal.png");
+        background-size: 100% 100%;
+        width: 133px;
+        min-height: 82px;
+        .text_color {
+            color: $text_color_4;
+        }
+    }
+    .gold_bg_nomal:hover {
+        background: url("~@/_skin005/assets/activity_recharge/gold_bg_select.png");
+        background-size: 100% 100%;
+        width: 133px;
+        min-height: 82px;
+        .text_color {
+            color: $miaobian_color_title;
+        }
+    }
+
+    .gold_bg_select {
+        background: url("~@/_skin005/assets/activity_recharge/gold_bg_select.png");
+        background-size: 100% 100%;
+        width: 133px;
+        min-height: 82px;
+        .text_color {
+            color: $miaobian_color_title;
+        }
+    }
+
+    .progress_bg {
+        background: url("~@/_skin005/assets/activity_recharge/slider_bg.png");
+        background-size: 100% 100%;
+        z-index: 10;
     }
 }
 
-.gold_bg_nomal_mob {
-    background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_nomal.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $text_color_4;
+.gold_item_pc {
+    .item_size {
+        width: 98px;
+        height: 123px;
+    }
+    .gold_item {
+        .line_1 {
+            background: url("~@/_skin005/assets/activity_recharge/ling_duan.png");
+            background-size: 100% 100%;
+            width: $line_width;
+            height: $line_height_duan;
+            z-index: 1;
+        }
+        .slider {
+            position: absolute;
+            top: -20px;
+            z-index: 10;
+        }
+        .line_2 {
+            background: url("~@/_skin005/assets/activity_recharge/line_long.png");
+            background-size: 100% 100%;
+            width: $line_width;
+            height: $line_height_long;
+            z-index: 1;
+        }
+
+        .item_main_1 {
+            background: url("~@/_skin005/assets/activity_recharge/item_bg_no_select.png");
+            background-size: 100% 100%;
+        }
+        .text_color {
+            color: $text_color_5;
+        }
+    }
+    .gold_item_select {
+        .line_1 {
+            background: url("~@/_skin005/assets/activity_recharge/line_duan_used.png");
+            background-size: 100% 100%;
+            width: $line_width;
+            height: $select_line_height_duan;
+            z-index: 1;
+        }
+        .slider {
+            position: absolute;
+            top: -20px;
+            z-index: 10;
+        }
+        .line_2 {
+            background: url("~@/_skin005/assets/activity_recharge/line_long_used.png");
+            background-size: 100% 100%;
+            width: $line_width;
+            height: $select_line_height_long;
+            z-index: 1;
+        }
+        .item_main_1 {
+            background: url("~@/_skin005/assets/activity_recharge/item_bg_no_select.png");
+            background-size: 100% 100%;
+        }
+        .item_main_1_active {
+            background: url("~@/_skin005/assets/activity_recharge/item_bg_select.png");
+            background-size: 100% 100%;
+        }
+
+        .text_color {
+            color: $text_color_5;
+        }
+        .item_passd {
+            position: absolute;
+            .state_text {
+                text-align: center;
+                color: $miaobian_color_title;
+                transform: rotateZ(329deg);
+                margin-top: 48px;
+            }
+        }
     }
 }
-.gold_bg_nomal_mob:hover {
-    background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_select.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $miaobian_color_title;
+.gold_item_5_pic {
+    .item_size {
+        width: 120px !important;
+        height: 123px !important;
     }
-}
-.gold_bg_select_mob {
-    background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_select.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $miaobian_color_title;
+    .item_main_1 {
+        background: url("~@/_skin005/assets/activity_recharge/less_item/item_bg_no_select.png") !important;
+        background-size: 100% 100% !important;
     }
-}
-.main_bg_recharge_mob {
-    background: url("~@/_skin005/assets/activity_recharge/mob/bg.png");
-    background-size: 100% 100%;
-}
-.progress_bg_mob {
-    background: url("~@/_skin005/assets/activity_recharge/mob/slider_bg.png");
-    background-size: 100% 100%;
-    z-index: 10;
+    .item_main_1_active {
+        background: url("~@/_skin005/assets/activity_recharge/less_item/item_bg_select.png") !important;
+        background-size: 100% 100% !important;
+    }
 }
 
 .gold_item_mob {
-    .line_1 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/ling_duan.png");
-        background-size: 100% 100%;
-        height: $line_height_duan_mob;
-        z-index: 1;
+    .item_size {
+        width: 98px;
+        height: 118px;
     }
-    .slider {
-        position: absolute;
-        top: -20px;
-        z-index: 10;
+    .gold_item {
+        .line_1 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/ling_duan.png");
+            background-size: 100% 100%;
+            height: $line_height_duan_mob;
+            z-index: 1;
+        }
+        .slider {
+            position: absolute;
+            top: -20px;
+            z-index: 10;
+        }
+        .line_2 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/line_long.png");
+            background-size: 100% 100%;
+            height: $line_height_long_mob;
+            z-index: 1;
+        }
+        .item_main_1 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_no_select.png");
+            background-size: 100% 100%;
+        }
+        .text_color {
+            color: $text_color_5;
+        }
     }
-    .line_2 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/line_long.png");
-        background-size: 100% 100%;
-        height: $line_height_long_mob;
-        z-index: 1;
-    }
-    .item_main_1 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_no_select.png");
-        background-size: 100% 100%;
-    }
-    .text_color {
-        color: $text_color_5;
-    }
-}
-.gold_item_select_mob {
-    .line_1 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/line_duan_used.png");
-        background-size: 100% 100%;
-        height: $select_line_height_duan_mob;
-        z-index: 1;
-    }
-    .slider {
-        position: absolute;
-        top: -14px;
-        z-index: 10;
-    }
-    .line_2 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/line_long_used.png");
-        background-size: 100% 100%;
-        height: $select_line_height_long_mob;
-        z-index: 1;
-    }
-    .item_main_1 {
-        background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_no_select.png");
-        background-size: 100% 100%;
-    }
-    .item_main_1_active {
-        background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_select.png");
-        background-size: 100% 100%;
-    }
+    .gold_item_select {
+        .line_1 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/line_duan_used.png");
+            background-size: 100% 100%;
+            height: $select_line_height_duan_mob;
+            z-index: 1;
+        }
+        .slider {
+            position: absolute;
+            top: -14px;
+            z-index: 10;
+        }
+        .line_2 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/line_long_used.png");
+            background-size: 100% 100%;
+            height: $select_line_height_long_mob;
+            z-index: 1;
+        }
+        .item_main_1 {
+            background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_no_select.png");
+            background-size: 100% 100%;
+        }
+        .item_main_1_active {
+            background: url("~@/_skin005/assets/activity_recharge/mob/item_bg_select.png");
+            background-size: 100% 100%;
+        }
 
-    .text_color {
-        color: $text_color_5;
-    }
-    .item_passd {
-        position: absolute;
+        .text_color {
+            color: $text_color_5;
+        }
+        .item_passd {
+            position: absolute;
 
-        .state_text {
-            text-align: center;
-            color: $miaobian_color_title;
-            transform: rotateZ(329deg);
-            margin-top: 48px;
+            .state_text {
+                text-align: center;
+                color: $miaobian_color_title;
+                transform: rotateZ(329deg);
+                margin-top: 48px;
+            }
         }
     }
 }
-.gold_bg_select {
-    background: url("~@/_skin005/assets/activity_recharge/gold_bg_select.png");
-    background-size: 100% 100%;
-    .text_color {
-        color: $miaobian_color_title;
-    }
-}
-.main_bg_recharge {
-    background: url("~@/_skin005/assets/activity_recharge/bg.png");
-    background-size: 100% 100%;
-}
-.progress_bg {
-    background: url("~@/_skin005/assets/activity_recharge/slider_bg.png");
-    background-size: 100% 100%;
-    z-index: 10;
-}
-.gold_item {
-    .line_1 {
-        background: url("~@/_skin005/assets/activity_recharge/ling_duan.png");
+.card_mob {
+    .main_bg_recharge {
+        background: url("~@/_skin005/assets/activity_recharge/mob/bg.png");
         background-size: 100% 100%;
-        width: $line_width;
-        height: $line_height_duan;
-        z-index: 1;
+        width: 702px;
+        height: 840px;
     }
-    .slider {
-        position: absolute;
-        top: -20px;
-        z-index: 10;
-    }
-    .line_2 {
-        background: url("~@/_skin005/assets/activity_recharge/line_long.png");
+    .gold_bg_nomal {
+        background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_nomal.png");
         background-size: 100% 100%;
-        width: $line_width;
-        height: $line_height_long;
-        z-index: 1;
-    }
-    .item_main_1 {
-        background: url("~@/_skin005/assets/activity_recharge/item_bg_no_select.png");
-        background-size: 100% 100%;
-    }
-    .text_color {
-        color: $text_color_5;
-    }
-}
-.gold_item_select {
-    .line_1 {
-        background: url("~@/_skin005/assets/activity_recharge/line_duan_used.png");
-        background-size: 100% 100%;
-        width: $line_width;
-        height: $select_line_height_duan;
-        z-index: 1;
-    }
-    .slider {
-        position: absolute;
-        top: -20px;
-        z-index: 10;
-    }
-    .line_2 {
-        background: url("~@/_skin005/assets/activity_recharge/line_long_used.png");
-        background-size: 100% 100%;
-        width: $line_width;
-        height: $select_line_height_long;
-        z-index: 1;
-    }
-    .item_main_1 {
-        background: url("~@/_skin005/assets/activity_recharge/item_bg_no_select.png");
-        background-size: 100% 100%;
-    }
-    .item_main_1_active {
-        background: url("~@/_skin005/assets/activity_recharge/item_bg_select.png");
-        background-size: 100% 100%;
-    }
-
-    .text_color {
-        color: $text_color_5;
-    }
-    .item_passd {
-        position: absolute;
-
-        .state_text {
-            text-align: center;
-            color: $miaobian_color_title;
-            transform: rotateZ(329deg);
-            margin-top: 48px;
+        width: 162px;
+        min-height: 81px;
+        .text_color {
+            color: $text_color_4;
         }
     }
+    .gold_bg_nomal:hover {
+        background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_select.png");
+        background-size: 100% 100%;
+        .text_color {
+            color: $miaobian_color_title;
+        }
+    }
+    .gold_bg_select {
+        background: url("~@/_skin005/assets/activity_recharge/mob/gold_bg_select.png");
+        background-size: 100% 100%;
+        width: 162px;
+        min-height: 81px;
+        .text_color {
+            color: $miaobian_color_title;
+        }
+    }
+
+    .progress_bg {
+        background: url("~@/_skin005/assets/activity_recharge/mob/slider_bg.png");
+        background-size: 100% 100%;
+        z-index: 10;
+    }
 }
+
 .recharge_btn {
     background: url("~@/_skin005/assets/activity_recharge/btn.png");
     background-size: 100% 100%;

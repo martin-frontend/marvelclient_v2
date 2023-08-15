@@ -187,7 +187,13 @@ export default class DialogActivity7days extends AbstractView {
     };
     rechargeRule = <any>[];
     resetRule() {
-        if (!this.myProxy.pageData.data || !this.myProxy.pageData.data.rules || !this.myProxy.pageData.data.rules.length || this.myProxy.pageData.data.rules.length < 1) return [];
+        if (
+            !this.myProxy.pageData.data ||
+            !this.myProxy.pageData.data.rules ||
+            !this.myProxy.pageData.data.rules.length ||
+            this.myProxy.pageData.data.rules.length < 1
+        )
+            return [];
         /**只有一个 */
         const rules = this.pageData.data.rules[0].list;
         // const id = GameConfig.config.recharge_model_id.rule_id || "51";
@@ -269,6 +275,25 @@ export default class DialogActivity7days extends AbstractView {
             }
         }
         return str;
+    }
+    //比较大小
+    isMaxItemIcon(item: any) {
+        let coinname = "";
+        let max = 0;
+        for (let index = 0; index < this.dailyDataArray.length; index++) {
+            const element = this.dailyDataArray[index];
+            const keys = Object.keys(element.award_info);
+            if (!coinname || coinname == "") {
+                coinname = keys[0];
+            }
+            if (Number(element.award_info[coinname]) > max) {
+                max = Number(element.award_info[coinname]);
+            }
+        }
+        if (item.award_info[coinname] < max) {
+            return false;
+        }
+        return true;
     }
     /** 每个元素的状态 */
     item_stage(item: any) {
@@ -398,5 +423,10 @@ export default class DialogActivity7days extends AbstractView {
 
         if (newstr) newstr = newstr.substring(0, newstr.length - 3);
         return newstr;
+    }
+    get uselessItem() {
+        if (this.$xsOnly) {
+            return this.dailyDataArray && this.dailyDataArray.length < 5;
+        } else return this.dailyDataArray && this.dailyDataArray.length <= 5;
     }
 }

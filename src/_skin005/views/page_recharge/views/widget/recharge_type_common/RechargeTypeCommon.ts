@@ -176,7 +176,11 @@ export default class RechargeTypeCommon extends AbstractView {
                 inputValue: "", //用户的输入值
                 errinfo: "", //错误信息
                 timeHeadle: null, //错误提示的句柄
+                isSelect: false,
             };
+            if (element.options) {
+                obj.isSelect = true;
+            }
             this.showRequires.push(obj);
         }
     }

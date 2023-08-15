@@ -238,13 +238,25 @@
                             <!-- 标题 -->
                             <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
                             <v-sheet color="transparent" class="py-1">
-                                <CustomInput
-                                    class=""
-                                    :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
-                                    @blur="onBlurInput(item)"
-                                    v-model="item.inputValue"
-                                >
-                                </CustomInput>
+                                <template v-if="item.isSelect">
+                                    <CustomSelect
+                                        v-model="item.inputValue"
+                                        :options="form.requires[item.key].options"
+                                        width="100%"
+                                        height="36"
+                                        fontSize="14"
+                                        :placeholder="item.tips || '请选择银行'"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <CustomInput
+                                        class=""
+                                        :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                                        @blur="onBlurInput(item)"
+                                        v-model="item.inputValue"
+                                    >
+                                    </CustomInput>
+                                </template>
                             </v-sheet>
                             <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
                         </v-card>
@@ -476,13 +488,25 @@
                                             <!-- 标题 -->
                                             <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
                                             <v-sheet color="transparent" class="py-1">
-                                                <CustomInput
-                                                    class=""
-                                                    :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
-                                                    @blur="onBlurInput(item)"
-                                                    v-model="item.inputValue"
-                                                >
-                                                </CustomInput>
+                                                <template v-if="item.isSelect">
+                                                    <CustomSelect
+                                                        v-model="item.inputValue"
+                                                        :options="form.requires[item.key].options"
+                                                        width="100%"
+                                                        height="36"
+                                                        fontSize="14"
+                                                        :placeholder="item.tips || '请选择银行'"
+                                                    />
+                                                </template>
+                                                <template v-else>
+                                                    <CustomInput
+                                                        class=""
+                                                        :placeholder="LangUtil('请输入{0}','') + LangUtil(item.title)"
+                                                        @blur="onBlurInput(item)"
+                                                        v-model="item.inputValue"
+                                                    >
+                                                    </CustomInput>
+                                                </template>
                                             </v-sheet>
                                             <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
                                         </v-card>

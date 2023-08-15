@@ -86,7 +86,7 @@ export default class RechargeTypeCommon extends AbstractView {
         const data = methodList[coin_name_unique].options[block_network_id];
         if (!data) return;
         const payemthod_id = data.payemthod_id;
-        if (payemthod_id == 5 || payemthod_id == 8 || payemthod_id == 10 || payemthod_id == 12) {
+        if (this.isNeedChoicePayWay || payemthod_id == 5 ) {
             const fixed_gold_list = data.fixed_gold_list;
 
             if (fixed_gold_list && fixed_gold_list.length > 0) {
@@ -148,12 +148,7 @@ export default class RechargeTypeCommon extends AbstractView {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id, third_id } = this.form;
         const options = methodList[coin_name_unique].options;
-        if (
-            options[block_network_id].payemthod_id == 6 ||
-            options[block_network_id].payemthod_id == 8 ||
-            options[block_network_id].payemthod_id == 10 ||
-            options[block_network_id].payemthod_id == 12
-        ) {
+        if (this.isNeedChoicePayWay) {
             const fixed_gold_list = options[block_network_id].channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
             this.pageData.form.amount = fixed_gold_list[2] || fixed_gold_list[1] || fixed_gold_list[0] || 0;
             this.pageData.gold_index = fixed_gold_list.indexOf(this.pageData.form.amount);
@@ -197,7 +192,7 @@ export default class RechargeTypeCommon extends AbstractView {
             return channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
         }
 
-        if (data.payemthod_id == 10 || data.payemthod_id == 12) {
+        if (data.payemthod_id == 10 || data.payemthod_id == 12 || data.payemthod_id == 13) {
             return data.fixed_gold_list;
         }
         return [];
@@ -374,14 +369,12 @@ export default class RechargeTypeCommon extends AbstractView {
         return "";
     }
 
-    get is_show_money():boolean
-    {
+    get is_show_money(): boolean {
         return !(GlobalVar.skin == "skin020");
     }
-    get is_show_coin_title():boolean
-    {
+    get is_show_coin_title(): boolean {
         if (!this.gold_info) return false;
-        const keys = Object.keys( this.gold_info);
+        const keys = Object.keys(this.gold_info);
         return keys.length > 1;
     }
 
@@ -391,5 +384,10 @@ export default class RechargeTypeCommon extends AbstractView {
 
     get isShow_RechargeActivityCheckbox() {
         return ModulesHelper.isShow_RechargeActivityCheckbox() && this.pageData.methodList[this.form.coin_name_unique].payemthod_id != 4;
+    }
+    // alipay wechat bank
+    get isNeedChoicePayWay(): boolean {
+        const notShowList = [0, 1, 2, 3, 4, 5, 7, 9];
+        return !notShowList.includes(this.pageData.methodList[this.form.coin_name_unique].options[this.form.block_network_id].payemthod_id);
     }
 }

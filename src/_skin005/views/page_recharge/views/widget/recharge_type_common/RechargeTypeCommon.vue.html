@@ -124,10 +124,7 @@
             </CustomInput>
         </div>
         <!-- alipay wechat bank -->
-        <div
-            v-if="pageData.methodList[form.coin_name_unique] && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8
-            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 12)"
-        >
+        <div v-if="pageData.methodList[form.coin_name_unique] && isNeedChoicePayWay">
             <div v-if="isShowChannel" class="mt-4">
                 <div class="primary--text font-weight-bold text-16">{{LangUtil("选择支付通道")}}</div>
                 <div class="d-flex flex-wrap my-2 mx-n2">
@@ -157,7 +154,11 @@
                         <v-card flat color="transparent">
                             <div class="text-16 primary--text font-weight-bold mb-2">{{LangUtil("输入金额充值")}}</div>
                             <v-sheet color="transparent" width="100%" class="d-flex input_pc">
-                                <CustomInput :placeholder="LangUtil('输入金额充值内容')" v-model="form.amount" :isEnterGold="true"></CustomInput>
+                                <CustomInput
+                                    :placeholder="LangUtil('输入金额充值内容')"
+                                    v-model="form.amount"
+                                    :isEnterGold="true"
+                                ></CustomInput>
                             </v-sheet>
                         </v-card>
                     </v-col>
@@ -288,7 +289,7 @@
     </v-sheet>
 </v-card>
 <!-- 手机版 -->
-<v-card v-else flat class=" rounded-0" color="transparent">
+<v-card v-else flat class="rounded-0" color="transparent">
     <v-card flat class="px-4 py-4" color="bgBanner">
         <v-row>
             <v-col cols="12">
@@ -388,10 +389,7 @@
                             </CustomInput>
                         </div>
                         <!-- alipay wechat bank -->
-                        <div
-                            v-if="pageData.methodList[form.coin_name_unique] && (pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 6 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 8 
-                            || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 10 || pageData.methodList[form.coin_name_unique].options[form.block_network_id].payemthod_id == 12)"
-                        >
+                        <div v-if="pageData.methodList[form.coin_name_unique] && isNeedChoicePayWay">
                             <template v-if="isShowChannel">
                                 <div class="primary--text mt-4 font-weight-bold text-14">{{LangUtil("选择支付通道")}}</div>
                                 <div class="d-flex flex-wrap my-2 mx-n2">
@@ -492,7 +490,6 @@
                                 </v-row>
                             </v-card>
                         </v-card>
-                        
 
                         <v-sheet color="transparent" class="d-flex mt-n4 mb-4" v-if="isShow_RechargeActivityCheckbox">
                             <v-checkbox
@@ -512,14 +509,12 @@
                             ref="animbtn"
                             color="transparent"
                             width="100%"
-                            class="d-flex "
+                            class="d-flex"
                         >
                             <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSumbit"
                                 >{{LangUtil("提交充值")}}</btn-yellow
                             >
                         </v-sheet>
-
-
                     </v-card>
                 </v-card>
             </v-col>
@@ -527,50 +522,31 @@
     </v-card>
 
     <v-card flat class="px-4 py-2 mt-4" color="bgBanner">
-
-            <div class="primary--text font-weight-bold text-14">{{LangUtil("充值通道说明")}}</div>
-            <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent" width="100%">
-                <!-- 需要显示二维码 -->
-                <template
-                    v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4"
-                >
-                    <v-sheet class="d-flex flex-column" color="transparent" style="max-width: calc(100% - 120px)">
-                        <div
-                            class="textGray--text text-12"
-                            v-for="item of transformExplain(getExplain())"
-                            v-html="item"
-                        ></div>
-                    </v-sheet>
-                    <v-spacer />
-                    <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
-                        <div ref="qrcode" class="qrcode" @click="showPreview">
-                            <v-img v-if="pageData.qrcode" :src="pageData.qrcode"></v-img>
-                            <v-sheet
-                                v-else
-                                color="transparent"
-                                width="100%"
-                                height="100%"
-                                class="d-flex align-center justify-center"
-                            >
-                                <v-progress-circular indeterminate color="red daily_close_btn"></v-progress-circular>
-                            </v-sheet>
-                        </div>
-                    </v-sheet>
-                </template>
-                <!-- 没有二维码 -->
-                <template v-else>
-                    <v-sheet class="d-flex flex-column" color="transparent">
-                        <div
-                            class="textGray--text text-12"
-                            v-for="item of transformExplain(getExplain())"
-                            v-html="item"
-                        ></div>
-                    </v-sheet>
-                </template>
-            </v-sheet>
-
+        <div class="primary--text font-weight-bold text-14">{{LangUtil("充值通道说明")}}</div>
+        <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent" width="100%">
+            <!-- 需要显示二维码 -->
+            <template v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id == 4">
+                <v-sheet class="d-flex flex-column" color="transparent" style="max-width: calc(100% - 120px)">
+                    <div class="textGray--text text-12" v-for="item of transformExplain(getExplain())" v-html="item"></div>
+                </v-sheet>
+                <v-spacer />
+                <v-sheet class="rounded-lg ml-3" width="100" min-width="100" height="100" color="white">
+                    <div ref="qrcode" class="qrcode" @click="showPreview">
+                        <v-img v-if="pageData.qrcode" :src="pageData.qrcode"></v-img>
+                        <v-sheet v-else color="transparent" width="100%" height="100%" class="d-flex align-center justify-center">
+                            <v-progress-circular indeterminate color="red daily_close_btn"></v-progress-circular>
+                        </v-sheet>
+                    </div>
+                </v-sheet>
+            </template>
+            <!-- 没有二维码 -->
+            <template v-else>
+                <v-sheet class="d-flex flex-column" color="transparent">
+                    <div class="textGray--text text-12" v-for="item of transformExplain(getExplain())" v-html="item"></div>
+                </v-sheet>
+            </template>
+        </v-sheet>
     </v-card>
-
 
     <v-sheet color="transparent" width="100%" class="d-flex pt-8 justify-center">
         <v-sheet v-if="isNeedCoinShow" class="d-flex justify-start align-center rounded10" color="transparent">

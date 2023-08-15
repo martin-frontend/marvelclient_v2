@@ -107,7 +107,8 @@ export class RechargeProxy extends puremvc.Proxy {
                     if (
                         data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
                         data[coin_name_unique].options[block_network_id].payemthod_id == 8 ||
-                        data[coin_name_unique].options[block_network_id].payemthod_id == 10
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 10 ||
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 13 
                     ) {
                         const channel = data[coin_name_unique].options[block_network_id].channel;
                         if (channel && channel.length > 0) {

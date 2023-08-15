@@ -73,7 +73,7 @@ export default class PageRechargeProxy extends puremvc.Proxy {
     }
     onCreateOrder(data: any) {
         console.log("收到 body", data);
-        if (data.paymethod_id && (data.paymethod_id == 10 || data.paymethod_id == 12)) {
+        if (data.paymethod_id && (data.paymethod_id == 10 || data.paymethod_id == 12 || data.paymethod_id == 13)) {
             //console.log("打开 二维码");
             //myProxy.showPreview(body.qrcode);
             this.api_user_var_recharge_create_callback(data);

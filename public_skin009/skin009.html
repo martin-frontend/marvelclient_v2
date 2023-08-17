@@ -13,10 +13,18 @@
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="title" content="96in Online Betting - Best Online Gaming and Casino Site" />
+        <meta
+            name="description"
+            content="96tr is a popular online gambling platform offering a wide range of sports betting, casino games, and esports. Enjoy competitive odds, exciting promotions, and a user-friendly experience at 96tr.com."
+        />
         <link rel="icon" href="<%= BASE_URL %>favicon.ico?<%=process.env.version%>" />
         <link rel="apple-touch-icon" href="app009.png?<%=process.env.version%>" />
         <link rel="canonical" href="https://96tr.com/" />
         <link rel="manifest" href="/manifest.json" />
+
+        <link rel="alternate" hreflang="x-default" href="https://96tr.com/" />
+        <link rel="alternate" hreflang="en-IN" href="https://96tr.com/en/" />
 
         <% if (process.env.VUE_APP_ENV =='production' && !process.env.VUE_APP_GAME_DOMAIN) { %>
         <base href="/" />
@@ -29,6 +37,20 @@
         <script src="libs/qrcode/qrcode.min.js"></script>
         <script src="libs/core/core.min.js?<%=process.env.version%>"></script>
 
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "VideoObject",
+                "name": "How to make payments using UPI Neo?",
+                "description": "",
+                "thumbnailUrl": "https://i.ytimg.com/vi/EjLcM1aO3UY/default.jpg",
+                "uploadDate": "2023-03-23T11:37:55Z",
+                "duration": "PT1M2S",
+                "embedUrl": "https://www.youtube.com/embed/EjLcM1aO3UY",
+                "interactionCount": "46"
+            }
+        </script>
+        
         <% if (process.env.VUE_APP_ENV !=='production' ) { %>
         <!-- 测试版本 -->
         <script>

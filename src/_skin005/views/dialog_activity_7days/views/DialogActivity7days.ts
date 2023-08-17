@@ -11,6 +11,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import { changeDateShow, dateFormat, getDateOffset } from "@/core/global/Functions";
 import GameConfig from "@/core/config/GameConfig";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
+import Vue from "vue";
 @Component
 export default class DialogActivity7days extends AbstractView {
     LangUtil = LangUtil;
@@ -23,8 +24,10 @@ export default class DialogActivity7days extends AbstractView {
     }
 
     onClose() {
+        if (!Vue.router.history.current.path.includes("page_recharge")) {
+            PanelUtil.getProxy_recharge.rechargeProxy.clearFrom();
+        }
         this.pageData.bShow = false;
-        PanelUtil.getProxy_recharge.rechargeProxy.clearFrom();
         MultDialogManager.onClosePanel();
     }
 

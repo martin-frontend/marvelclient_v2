@@ -271,12 +271,18 @@ export default class NetObserver extends AbstractMediator {
                                 //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                                 PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`, false);
                                 homeProxy.pageData.event_id = 0;
+                                return;
+                            } else {
+                                if (this.gameProxy.currGame.ori_vendor_extend) {
+                                    const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
+                                    //@ts-ignore   // iframe无法正常显示的游戏
+                                    if (ori_vendor_extend.iframe_bad || ori_vendor_extend.iframe_all_bad) {
+                                        break;
+                                    }
+                                }
+                                PanelUtil.openpage_headgame(url, element);
+                                return;
                             }
-                            // else {
-                            //     PanelUtil.openpage_headgame(url, element);
-                            // }
-                            // return;
-                            break;
                         }
                     }
                     this.gameProxy.saveGame();

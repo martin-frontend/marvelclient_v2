@@ -293,57 +293,51 @@ function addMetaWithType(type: string) {
                 "Cricket Betting Odds Online - Betting on Cricket is a thrilling and exciting way to enjoy the game. Now bet on cricket with the best cricket betting tips and win money at 96tr.com"
             );
             set_h1_title("Cricket Betting -  Live Cricket Score Betting Odds, Rules and Tips");
-            set_h2_title("Cricket Betting -  Live Cricket Score Betting Odds, Rules and Tips");
             break;
         case "sports":
-            document.title = "Online Sports betting - Best Sports Betting App";
-            addMeta("title", "Best Sports Betting Site Online - Legal Sports Betting odds");
+            document.title = "Çevrimiçi Spor Bahisleri - En İyi Spor Bahisleri Sitesi";
+            addMeta("title", "Çevrimiçi Spor Bahisleri - En İyi Spor Bahisleri Sitesi");
             addMeta(
                 "description",
-                "Sports betting - Play the games online with best sports betting app 96tr.com and win exciting prizes. Now bet on all sports online legal, safe and secure deposit"
+                "Spor bahisleri - En iyi spor bahisleri sitesi 96tr.com ile oyunları online oynayın ve heyecan verici ödüller kazanın. Şimdi geniş bahis çeşitleri ile çevrimiçi, güvenli para yatırma ve çekim ile bahis yapın"
             );
-            set_h1_title("Online Sports betting - Best Sports Betting App");
-            set_h2_title("Online Sports betting - Best Sports Betting App");
+            set_h1_title("Çevrimiçi Spor Bahisleri - En İyi Spor Bahisleri Sitesi");
             break;
         case "fishing":
-            document.title = "Fishing games: Tips and strategies to win";
-            addMeta("title", "Play Fishing Games Online and Win Money");
+            document.title = "Slot games: How to play, rules, tips and strategie";
+            addMeta("title", "Slot games: How to play, rules, tips and strategie");
             addMeta(
                 "description",
-                "Fishing games have become increasingly popular in recent years. Play fishing games online similar to fishing games on PC, Xbox, PS4 etc"
+                "Slot oyunlarını oynamak kolaydır ve büyük bir kazanç heyecanı sunar. Şimdi en iyi ücretsiz slot makinesi oyunlarını oynayın"
             );
-            set_h1_title("Fishing games: Tips and strategies to win");
-            set_h2_title("Fishing games: Tips and strategies to win");
+            set_h1_title("Slot games: How to play, rules, tips and strategie");
             break;
         case "blockchain":
-            document.title = "Blockchain games Online -  Play and win in blockchain games";
-            addMeta("title", "Blockchain Games - Top Blockchain Games  Online");
+            document.title = "Casino Oyunları - Kazandıran Casino Oyunları";
+            addMeta("title", "Casino Oyunları - Kazandıran Casino Oyunları");
             addMeta(
                 "description",
-                "Play the best blockchain games online at 96tr.com. We provide the top blockchain games and tips to win money online"
+                "96tr.com'da Blackjack, Rulet, Poker, Baccarat gibi tüm canlı casino oyunlarını oynayın. Gerçek parayla Casino oyunlarında kazanmak oynayın"
             );
-            set_h1_title("Blockchain games Online -  Play and win in blockchain games");
-            set_h2_title("Blockchain games Online -  Play and win in blockchain games");
+            set_h1_title("Casino Oyunları - Kazandıran Casino Oyunları");
             break;
         case "live":
-            document.title = "Live Casino Games Online - Online Casino for Real Money";
-            addMeta("title", "Online Casino Games - Online Casino for Real Money");
+            document.title = "Casino Oyunları - Kazandıran Casino Oyunları";
+            addMeta("title", "Casino Oyunları - Kazandıran Casino Oyunları");
             addMeta(
                 "description",
-                "Play all live casino games online in 96tr.com such as andar bahar, teen patti, roulette, baccarat etc. Play to win Online Casino for Real Money"
+                "96tr.com'da Blackjack, Rulet, Poker, Baccarat gibi tüm canlı casino oyunlarını oynayın. Gerçek parayla Casino oyunlarında kazanmak oynayın"
             );
-            set_h1_title("Live Casino Games Online - Online Casino for Real Money");
-            set_h2_title("Live Casino Games Online - Online Casino for Real Money");
+            set_h1_title("Casino Oyunları - Kazandıran Casino Oyunları");
             break;
         case "slot":
-            document.title = "Slot games: How to play, rules, tips and strategies";
-            addMeta("title", "Slot Games - Best Free Slot Machine Games Online");
+            document.title = "Slot games: How to play, rules, tips and strategie";
+            addMeta("title", "Slot games: How to play, rules, tips and strategie");
             addMeta(
                 "description",
-                "Slot games are easy to play and offer the excitement of a big win. Now play the best free slot machine games online"
+                "Slot oyunlarını oynamak kolaydır ve büyük bir kazanç heyecanı sunar. Şimdi en iyi ücretsiz slot makinesi oyunlarını oynayın"
             );
-            set_h1_title("Slot games: How to play, rules, tips and strategies");
-            set_h2_title("Slot games: How to play, rules, tips and strategies");
+            set_h1_title("Slot games: How to play, rules, tips and strategie");
             break;
         case "lottery":
             document.title = "Lottery games: How to play, rules, tips and strategies";
@@ -353,21 +347,19 @@ function addMetaWithType(type: string) {
                 "Play the best lottery games online at 96tr.com. We provide the top lottery games and tips to win money online"
             );
             set_h1_title("-");
-            set_h2_title("-");
             break;
         case "cards":
-            document.title = "Cards games: How to play, rules, tips and strategies";
-            addMeta("title", "Cards Games - Top Cards Games Online");
+            document.title = "Kart Oyunları- En İyi Kart Oyunları Bahis Sitesi";
+            addMeta("title", "Kart Oyunları- En İyi Kart Oyunları Bahis Sitesi");
             addMeta(
                 "description",
-                "Play the best cards games online at 96tr.com. We provide the top cards games and tips to win money online"
+                "Kart Oyunları - En iyi kart oyunları bahis sitesi 96tr.com ile oyunları çevrimiçi oynayın ve heyecan verici ödüller kazanın. Şimdi tüm kart oyunlarına çevrimiçi, güvenli para yatırma ve çekim ile bahis yapın"
             );
-            set_h1_title("-");
-            set_h2_title("-");
+            set_h1_title("Kart Oyunları- En İyi Kart Oyunları Bahis Sitesi");
             break;
         default:
             document.title = LangUtil("96 Turkiye");
-            set_h1_title("-");
+            set_h1_title("96 Turkiye");
             break;
     }
 }

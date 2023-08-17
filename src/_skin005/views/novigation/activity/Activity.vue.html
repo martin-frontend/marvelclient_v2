@@ -1,9 +1,8 @@
 <v-sheet color="transparent" class="d-flex justify-center" :class="{'px-2':!mini}" width="100%">
     <div class="pt-2 px-2 panel-content" :class="{'panel-content-bg':!mini}">
-        <v-hover v-slot="{ hover }" v-for="item of options">
+        <v-hover v-slot="{ hover }" v-for="item of options" :key="item.name">
             <template v-if="list[item.id].svga">
                 <v-sheet
-                    :key="item.name"
                     height="40px"
                     class="mb-2 px-2 primary--text d-flex align-center cursor-pointer"
                     :class="[mini? 'gary-bg':list[item.id].color+'-bg',{'item-hover': list[item.id].svga && !mini}]"
@@ -17,7 +16,6 @@
             </template>
             <template v-else>
                 <v-sheet
-                    :key="item.name"
                     height="40px"
                     class="mb-2 px-2 primary--text d-flex align-center cursor-pointer gary-bg"
                     :class="hover || isShowActive_menu(item) ? 'navTextHover--text gary-bg-hover font-weight-bold' : 'navText--text'"

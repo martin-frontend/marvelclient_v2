@@ -271,10 +271,12 @@ export default class NetObserver extends AbstractMediator {
                                 //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                                 PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`, false);
                                 homeProxy.pageData.event_id = 0;
-                            } else {
-                                PanelUtil.openpage_headgame(url, element);
                             }
-                            return;
+                            // else {
+                            //     PanelUtil.openpage_headgame(url, element);
+                            // }
+                            // return;
+                            break;
                         }
                     }
                     this.gameProxy.saveGame();
@@ -435,6 +437,10 @@ export default class NetObserver extends AbstractMediator {
                 }
             } else {
                 isNeetConfig = true;
+            }
+            if (body.token) {
+                console.warn("---设置 token----");
+                document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
             }
 
             if (isNeetConfig) {
@@ -670,5 +676,4 @@ export default class NetObserver extends AbstractMediator {
             // }, 200);
         }
     }
-
 }

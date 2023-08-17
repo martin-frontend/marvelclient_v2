@@ -5,7 +5,7 @@
             <v-sheet color="transparent" width="100%">
                 <GameSearch class="my-2" />
             </v-sheet>
-            <v-sheet class="mt-4 rounded10 px-1 d-flex align-center" color="bgBanner" min-height="50">
+            <v-sheet v-if="listQuery.vendor_type != 3" class="mt-4 rounded10 px-1 d-flex align-center" color="bgBanner" min-height="50">
                 <v-slide-group ref="slidegroup" class="mt-0" show-arrows center-active v-model="myProxy.curItemIndex">
                     <v-slide-item v-if="selectType && selectType.length> 1">
                         <v-card color="transparent" flat class="">

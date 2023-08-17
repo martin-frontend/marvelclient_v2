@@ -1,15 +1,33 @@
-<v-sheet color="transparent" class="d-flex justify-center" width="100%">
-    <div class="pt-2 px-2 panel-content">
-        <v-sheet
-            v-for="item of options"
-            :key="item.name"
-            height="40px"
-            class="mb-2 px-2 primary--text rounded d-flex align-center cursor-pointer item-hover"
-            :class="list[item.id].color+'-bg'"
-            @click="goCategory(item)"
-        >
-            <v-img :src="list[item.id].img_src" class="mr-4" height="30" max-width="30"></v-img>
-            <span style="min-width: 56px" v-if="!mini"> {{LangUtil(item.name)}} </span>
-        </v-sheet>
+<v-sheet color="transparent" class="d-flex justify-center" :class="{'px-2':!mini}" width="100%">
+    <div class="pt-2 px-2 panel-content" :class="{'panel-content-bg':!mini}">
+        <v-hover v-slot="{ hover }" v-for="item of options">
+            <template v-if="list[item.id].svga">
+                <v-sheet
+                    :key="item.name"
+                    height="40px"
+                    class="mb-2 px-2 primary--text d-flex align-center cursor-pointer"
+                    :class="[mini? 'gary-bg':list[item.id].color+'-bg',{'item-hover': list[item.id].svga && !mini}]"
+                    @click="goCategory(item)"
+                    style="border-radius: 2px"
+                >
+                    <SvgaPlayer class="svga-player mr-3" :id="list[item.id].svga" :src="resolveSvgaSrc(list[item.id].svga)"></SvgaPlayer>
+                    <span style="min-width: 56px" v-if="!mini" class="svga-tex text-no-wrap"> {{LangUtil(item.name)}} </span>
+                    <!-- <v-img v-else :src="list[item.id].img_src" class="mr-4" height="30" max-width="30"></v-img> -->
+                </v-sheet>
+            </template>
+            <template v-else>
+                <v-sheet
+                    :key="item.name"
+                    height="40px"
+                    class="mb-2 px-2 primary--text d-flex align-center cursor-pointer gary-bg"
+                    :class="hover || isShowActive_menu(item) ? 'navTextHover--text gary-bg-hover font-weight-bold' : 'navText--text'"
+                    @click="goCategory(item)"
+                    style="border-radius: 2px"
+                >
+                    <svg-icon :icon="list[item.id].icon" class="text-20" style="margin-left: 5px; margin-right: 17px"></svg-icon>
+                    <span class="text-no-wrap" style="min-width: 56px" v-if="!mini"> {{LangUtil(item.name)}} </span>
+                </v-sheet>
+            </template>
+        </v-hover>
     </div>
 </v-sheet>

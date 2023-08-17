@@ -13,12 +13,18 @@ export default class Activity extends AbstractView {
     LangUtil = LangUtil;
     // expandedPanels = [0];
     list = {
-        4: { name: "精彩活动", color: "pink", img_src: require("@/_skin005/assets/novigation/activity/exciting_activities.png") },
-        7: { name: "每日签到", color: "purple", img_src: require("@/_skin005/assets/novigation/activity/sign_in.png") },
-        // id1: { name: "幸运转盘", color: "red", img_src: require("@/_skin005/assets/novigation/activity/roulette.png") },
-        // id2: { name: "有奖标枪", color: "blue", img_src: require("@/_skin005/assets/novigation/activity/javelin.png") },
-        8: { name: "每日签到", color: "blue1", img_src: require("@/_skin005/assets/novigation/activity/promotion_reward.png") },
-        9: { name: "奖励币任务", color: "red", img_src: require("@/_skin005/assets/novigation/activity/coin_task.png") },
+        4: {
+            name: "精彩活动",
+            color: "gary",
+            icon: "gift",
+        },
+        7: {
+            name: "每日签到",
+            color: "green",
+            svga: "sign",
+        },
+        8: { name: "推广奖励", color: "blue", svga: "trumpet" },
+        9: { name: "奖励币任务", color: "purple", svga: "coin" },
     };
 
     // isFilterChange = false;
@@ -34,5 +40,14 @@ export default class Activity extends AbstractView {
     // }
     goCategory(item: any) {
         this.$emit("goCategory", item);
+    }
+
+    resolveSvgaSrc(name: any) {
+        return "svga/" + name + ".svga";
+    }
+
+    isShowActive_menu(item: any) {
+        if (!item.path || !item.path.trim()) return false;
+        return this.$route.path.includes(item.path);
     }
 }

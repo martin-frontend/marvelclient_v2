@@ -4,7 +4,12 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import Activity from "./Activity";
+import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 
-@Component
+@Component({
+    components: {
+        SvgaPlayer,
+    },
+})
 export default class extends Activity {}
 </script>

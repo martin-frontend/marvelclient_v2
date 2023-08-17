@@ -14,16 +14,23 @@
             background-image: linear-gradient(to right, rgb(151, 18, 75) 0%, rgba(39, 40, 40, 0.2) 100%);
         }
         .purple-bg {
-            background-image: linear-gradient(to right, rgb(97, 32, 155) 0%, rgba(39, 40, 40, 0.2) 100%);
-        }
-        .red-bg {
-            background-image: linear-gradient(to right, rgb(143, 31, 31) 0%, rgba(39, 40, 40, 0.2) 100%);
+            background-image: linear-gradient(to right, #824eff 0%, rgba(39, 40, 40, 0.2) 100%);
         }
         .blue-bg {
-            background-image: linear-gradient(to right, rgb(47, 60, 143) 0%, rgba(39, 40, 40, 0.2) 100%);
+            background-image: linear-gradient(to right, #386bff 0%, rgba(39, 40, 40, 0.2) 100%);
         }
-        .blue1-bg {
-            background-image: linear-gradient(to right, rgb(12, 73, 152) 0%, rgba(39, 40, 40, 0.2) 100%);
+        .green-bg {
+            background-image: linear-gradient(to right, #60cc3d 0%, rgba(39, 40, 40, 0.2) 100%);
+        }
+        .gary-bg {
+            background-color: #202121;
+            &.gary-bg-hover,
+            &:hover {
+                background-image: linear-gradient(to right, #fbb131 0%, #ffe64d 100%);
+            }
+        }
+        .svga-text {
+            color: #ffffff;
         }
     }
     .item-hover::before {
@@ -32,21 +39,31 @@
 }
 
 .theme--light {
+    .panel-content-bg {
+        background-color: #f6f6f6;
+    }
     .panel-content {
         .pink-bg {
             background-image: linear-gradient(to right, rgb(248, 144, 189) 0%, rgba(244, 244, 244, 0.2) 100%);
         }
         .purple-bg {
-            background-image: linear-gradient(to right, rgb(199, 144, 248) 0%, rgba(244, 244, 244, 0.2) 100%);
-        }
-        .red-bg {
-            background-image: linear-gradient(to right, rgb(255, 130, 130) 0%, rgba(244, 244, 244, 0.2) 100%);
+            background-image: linear-gradient(to right, #824eff 0%, rgba(130, 78, 255, 0.15) 100%);
         }
         .blue-bg {
-            background-image: linear-gradient(to right, rgb(148, 162, 252) 0%, rgba(244, 244, 244, 0.2) 100%);
+            background-image: linear-gradient(to right, #386bff 0%, rgba(55, 124, 255, 0.15) 100%);
         }
-        .blue1-bg {
-            background-image: linear-gradient(to right, rgb(112, 188, 252) 0%, rgba(242, 242, 242, 0.2) 100%);
+        .green-bg {
+            background-image: linear-gradient(to right, #60cc3d 0%, rgba(107, 213, 73, 0.15) 100%);
+        }
+        .gary-bg {
+            background-color: #f6f6f6;
+            &.gary-bg-hover,
+            &:hover {
+                background-image: linear-gradient(to right, #fbb131 0%, #ffe64d 100%);
+            }
+        }
+        .svga-text {
+            color: #000000;
         }
     }
     .item-hover::before {
@@ -59,6 +76,7 @@
 .panel-content {
     position: relative;
     width: 100%;
+    border-radius: 2px;
 }
 .item-hover {
     position: relative;
@@ -74,6 +92,14 @@
         transition: opacity 0.2s;
     }
     &:hover::before {
-        opacity: 0.3;
+        opacity: 0.2;
     }
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+.svga-player {
+    width: 30px;
+    height: 30px;
 }

@@ -49,6 +49,7 @@ Assets.commonIcon.logo_m = require(`@/_skin009/assets/logo_m.png`);
 // SkinVariable.isForeShowRecharge = true;
 SkinVariable.isShowGameListNovigation = false;
 SkinVariable.isFootballTop = false;
+SkinVariable.isUseVendorType = true;
 GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();

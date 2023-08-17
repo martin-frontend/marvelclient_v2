@@ -358,6 +358,10 @@ export default class PageGameList extends AbstractView {
             return;
         }
         this.curSelectType = -1;
+        if (SkinVariable.isUseVendorType) {
+            this.curSelectType = 1;
+            return;
+        }
         if (this.isUseCategoryData) {
             this.curSelectType = 0;
             return;
@@ -371,5 +375,4 @@ export default class PageGameList extends AbstractView {
     initSelectType() {
         this.resetSelectType();
     }
-
 }

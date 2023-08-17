@@ -49,4 +49,6 @@ export default class SkinVariable {
     public static isShowPlatUsersVerification = false;
     /**是否显示GameList的導航 */
     public static isShowGameListNovigation = true;
+    /**是否默认按厂商分类 */
+    public static isUseVendorType = false;
 }

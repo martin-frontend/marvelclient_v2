@@ -20,7 +20,7 @@ export default class MobileMenu extends AbstractView {
             2: { id: 2, mob_type: "casino", name: LangUtil("娱乐城"), icon: "c16", path: "/page_game_list" },
             3: { id: 3, mob_type: "promotion", name: LangUtil("推广"), icon: "extension", path: "/commissions" },
             4: { id: 4, mob_type: "pledgeDividend", name: LangUtil("分红"), icon: "bouns", path: "/page_bonus" },
-            5: { id: 5, mob_type: "", name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
+            5: { id: 5, mob_type: "myInfo", name: LangUtil("我的"), icon: "my_info", path: "/page_my_info" },
             6: { id: 6, mob_type: "", name: LangUtil("代理管理"), icon: "agentmenger", path: "/page_statistice_credit" },
             7: { id: 7, mob_type: "gameWater", name: LangUtil("返水"), icon: "water", path: "/vip_rewards" },
             8: { id: 8, mob_type: "cricket", name: LangUtil("板球"), icon: "cricket", path: "/cricket" },
@@ -40,7 +40,8 @@ export default class MobileMenu extends AbstractView {
             10: { id: 10, mob_type: "download", name: LangUtil("下载"), icon: "download", path: "" },
         };
 
-        if (GameConfig.config.PhoneMenu && GameConfig.config.PhoneMenu.length > 0) {
+        const phoneMenu = GameConfig.config.PhoneMenu || [];
+        if (phoneMenu.length > 0) {
             //将 head_game 中的数据添加 到 列表中
             for (let index = 0; index < GameConfig.config.head_game_config.length; index++) {
                 const element = GameConfig.config.head_game_config[index];
@@ -62,8 +63,8 @@ export default class MobileMenu extends AbstractView {
 
             //console.log("--- 当前对象为---", list);
             const keys = Object.keys(list);
-            for (let index = 0; index < GameConfig.config.PhoneMenu.length; index++) {
-                const element = GameConfig.config.PhoneMenu[index];
+            for (let index = 0; index < phoneMenu.length; index++) {
+                const element = phoneMenu[index];
                 if (element.trim()) {
                     for (let n = 0; n < keys.length; n++) {
                         const el = list[keys[n]];
@@ -99,13 +100,12 @@ export default class MobileMenu extends AbstractView {
                 newlist.push(list[4]);
             }
         }
-
         //代理管理
         if (ModulesHelper.IsShow_AgentManager()) {
             newlist.push(list[6]);
         }
         //我的
-        if (!ModulesHelper.isHide_MyInfo()) {
+        if (!ModulesHelper.isHide_MyInfo() && !phoneMenu.includes("myInfo")) {
             newlist.push(list[5]);
         }
 

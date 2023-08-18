@@ -304,13 +304,13 @@ function addMetaWithType(type: string) {
             set_h1_title("Çevrimiçi Spor Bahisleri - En İyi Spor Bahisleri Sitesi");
             break;
         case "fishing":
-            document.title = "Slot games: How to play, rules, tips and strategie";
-            addMeta("title", "Slot games: How to play, rules, tips and strategie");
+            document.title = "Casino Oyunları - Kazandıran Casino Oyunları";
+            addMeta("title", "Casino Oyunları - Kazandıran Casino Oyunları");
             addMeta(
                 "description",
-                "Slot oyunlarını oynamak kolaydır ve büyük bir kazanç heyecanı sunar. Şimdi en iyi ücretsiz slot makinesi oyunlarını oynayın"
+                "96 Türkiye, bahis severlere canlı ve yüksek oranlı bahis imkanı sunmaktadır. Spor, casino ve benzeri pek çok oyunla sizlere hizmet sunmakta."
             );
-            set_h1_title("Slot games: How to play, rules, tips and strategie");
+            set_h1_title("Casino Oyunları - Kazandıran Casino Oyunları");
             break;
         case "blockchain":
             document.title = "Casino Oyunları - Kazandıran Casino Oyunları";
@@ -331,20 +331,20 @@ function addMetaWithType(type: string) {
             set_h1_title("Casino Oyunları - Kazandıran Casino Oyunları");
             break;
         case "slot":
-            document.title = "Slot games: How to play, rules, tips and strategie";
-            addMeta("title", "Slot games: How to play, rules, tips and strategie");
+            document.title = "96 Türkiye | Canlı Bahis | Canlı Casino";
+            addMeta("title", "96 Türkiye | Canlı Bahis | Canlı Casino");
             addMeta(
                 "description",
-                "Slot oyunlarını oynamak kolaydır ve büyük bir kazanç heyecanı sunar. Şimdi en iyi ücretsiz slot makinesi oyunlarını oynayın"
+                "96 Türkiye, bahis severlere canlı ve yüksek oranlı bahis imkanı sunmaktadır. Spor, casino ve benzeri pek çok oyunla sizlere hizmet sunmakta."
             );
-            set_h1_title("Slot games: How to play, rules, tips and strategie");
+            set_h1_title("96 Türkiye | Canlı Bahis | Canlı Casino");
             break;
         case "lottery":
-            document.title = "Lottery games: How to play, rules, tips and strategies";
-            addMeta("title", "Lottery Games - Top Lottery Games Online");
+            document.title = "96 Türkiye | Canlı Bahis | Canlı Casino";
+            addMeta("title", "96 Türkiye | Canlı Bahis | Canlı Casino");
             addMeta(
                 "description",
-                "Play the best lottery games online at 96tr.com. We provide the top lottery games and tips to win money online"
+                "96 Türkiye, bahis severlere canlı ve yüksek oranlı bahis imkanı sunmaktadır. Spor, casino ve benzeri pek çok oyunla sizlere hizmet sunmakta."
             );
             set_h1_title("-");
             break;

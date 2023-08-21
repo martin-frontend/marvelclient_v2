@@ -114,7 +114,7 @@
                                     </span>
                                     <span
                                         v-else
-                                        class="text-decoration-underline cursor-pointer userInfo_color--text"
+                                        class="underline cursor-pointer userInfo_color--text"
                                         color="transparent"
                                         @click="onBtnClickUserInfo(item)"
                                     >
@@ -125,7 +125,7 @@
                                     <span v-if="key==0" class="userInfo_color--text ml-0 mr-0" color="transparent"> .. </span>
                                     <span
                                         v-else
-                                        class="text-decoration-underline cursor-pointer userInfo_color--text ml-0 mr-0"
+                                        class="underline cursor-pointer userInfo_color--text ml-0 mr-0"
                                         color="transparent"
                                         @click="onBtnClickUserInfo(item)"
                                     >
@@ -280,7 +280,7 @@
                                         <v-sheet v-bind="attrs" v-on="on" color="transparent">
                                             <v-sheet
                                                 color="transparent"
-                                                class="primary--text text-truncate text-decoration-underline cursor-pointer"
+                                                class="primary--text text-truncate underline cursor-pointer"
                                                 width="150"
                                                 @click="onCopyOrderClick(item.order_no)"
                                                 >{{item.order_no}}</v-sheet
@@ -300,14 +300,20 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-sheet v-bind="attrs" v-on="on" color="transparent">
                                             <v-sheet color="transparent" class="primary--text text-truncate">
-                                                {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn
-                                                || item.vendor_product_name}}
+                                                <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                                <span v-else>
+                                                    {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name
+                                                    :item.game_info.cpn || item.vendor_product_name}}</span
+                                                >
                                             </v-sheet>
                                         </v-sheet>
                                     </template>
                                     <div class="">
-                                        {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
-                                        item.vendor_product_name}}
+                                        <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                        <span v-else>
+                                            {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
+                                            item.vendor_product_name}}</span
+                                        >
                                     </div>
                                 </v-tooltip>
                             </v-sheet>
@@ -317,7 +323,7 @@
                                 class="primary--text"
                                 width="120"
                                 v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_gold"
-                                >{{ transformMoney(item,"bet_gold",false,true)}}</v-sheet
+                                ><span>{{ transformMoney(item,"bet_gold",false,true)}}</span></v-sheet
                             >
                             <v-sheet
                                 color="transparent"
@@ -325,7 +331,9 @@
                                 width="120"
                                 v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"
                             >
-                                <div :class="getMoneyColor(item.win_gold_coin)">{{ transformMoney(item,"win_gold",false,true)}}</div>
+                                <div :class="getMoneyColor(item.win_gold_coin)">
+                                    <span>{{ transformMoney(item,"win_gold",false,true)}}</span>
+                                </div>
                             </v-sheet>
                             <v-sheet
                                 v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
@@ -333,7 +341,7 @@
                                 class="primary--text"
                                 width="120"
                             >
-                                {{ transformMoney(item,"valid_bet_gold",false,true)}}
+                                <span>{{ transformMoney(item,"valid_bet_gold",false,true)}}</span>
                             </v-sheet>
 
                             <v-sheet
@@ -342,7 +350,7 @@
                                 width="120"
                                 v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"
                             >
-                                {{ transformMoney(item,"water",false,true)}}
+                                <span>{{ transformMoney(item,"water",false,true)}}</span>
                             </v-sheet>
 
                             <v-sheet
@@ -351,7 +359,7 @@
                                 width="80"
                                 v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_status"
                             >
-                                {{listOptions.statusOptions()[item.settlement_status]}}
+                                <span>{{listOptions.statusOptions()[item.settlement_status]}}</span>
                             </v-sheet>
 
                             <v-sheet
@@ -385,7 +393,12 @@
                         </div>
                         <div class="detail mt-1 d-flex align-center black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                             <svg-icon class="mx-1" icon="football"></svg-icon>
-                            <span class="ml-2">{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span>
+                            <span
+                                class="ml-2"
+                                :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                @click="onClickFootballName(item)"
+                                >{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span
+                            >
                             <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
                                 <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                             </span>
@@ -439,18 +452,37 @@
                             class="detail mt-1 d-flex align-center black--text"
                             v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
                         >
-                            <svg-icon class="mx-1" :icon="fb_icon_name(item)"></svg-icon>
-                            <span class="ml-2">{{item.game_info.betList[0].matchName}}</span>
-                            <span class="ml-2" v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore">
-                                <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}}) </span>
-                            </span>
-                            <span class="ml-2">[{{item.game_info.betList[0].marketName}}]</span>
-                            <span class="ml-2 font-weight-bold">{{item.game_info.betList[0].optionName}}</span>
-                            <span class="ml-2">@{{item.game_info.betList[0].odds }}</span>
-                            <v-spacer />
-                            <!-- <div @click="handlerDetail(item.game_info.betList[0])" class="cursor-pointer">
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
-                            </div> -->
+                            <template v-if="!isChuanDan(item)">
+                                <svg-icon class="mx-1" :icon="fb_icon_name(item)"></svg-icon>
+                                <span
+                                    class="ml-2"
+                                    :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                    @click="onClickFootballName(item)"
+                                    >{{item.game_info.betList[0].matchName}}</span
+                                >
+                                <span class="ml-2" v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore">
+                                    <span class="font-weight-bold">
+                                        {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}})
+                                    </span>
+                                </span>
+                                <span class="ml-2">[{{item.game_info.betList[0].marketName}}]</span>
+                                <span class="ml-2 font-weight-bold">{{item.game_info.betList[0].optionName}}</span>
+                                <span class="ml-2">@{{item.game_info.betList[0].odds }}</span>
+                                <v-spacer />
+                                <div @click="handlerDetail(item)" class="cursor-pointer">
+                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <span
+                                    class="mr-2"
+                                    :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                    @click="onClickFootballName(item)"
+                                    >{{item.vendor_name}}
+                                </span>
+                                <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+                                <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
+                            </template>
                         </div>
                     </v-sheet>
                 </v-sheet>
@@ -703,7 +735,7 @@
                                     </span>
                                     <span
                                         v-else
-                                        class="text-decoration-underline cursor-pointer textYellow--text"
+                                        class="underline cursor-pointer textYellow--text"
                                         color="transparent"
                                         @click="onBtnClickUserInfo(item)"
                                     >
@@ -714,7 +746,7 @@
                                     <span v-if="key==0" class="textYellow--text" color="transparent"> .. </span>
                                     <span
                                         v-else
-                                        class="text-decoration-underline cursor-pointer textYellow--text"
+                                        class="underline cursor-pointer textYellow--text"
                                         color="transparent"
                                         @click="onBtnClickUserInfo(item)"
                                     >
@@ -747,7 +779,7 @@
                         v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.order_no"
                     >
                         <div class="leftText--text">{{LangUtil("订单号")}}</div>
-                        <div class="text-decoration-underline cursor-pointer head_btn--text" @click="onCopyOrderClick(item.order_no)">
+                        <div class="underline cursor-pointer head_btn--text" @click="onCopyOrderClick(item.order_no)">
                             {{item.order_no}}
                         </div>
                     </div>
@@ -758,10 +790,11 @@
                         v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
                     >
                         <div class="leftText--text">{{LangUtil("游戏名称")}}</div>
-                        <div class="head_btn--text">
+                        <div v-if="!isChuanDan(item)" class="head_btn--text">
                             {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
                             item.vendor_product_name}}
                         </div>
+                        <div v-else class="head_btn--text">{{ LangUtil("-")}}</div>
                     </div>
                     <!-- <div class="line mt-2 mx-3"></div> -->
                     <!-- <div class="d-flex justify-space-between mt-2">
@@ -838,7 +871,9 @@
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
                         <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="football"></svg-icon>
                         <div>
-                            <div>{{item.game_info.home_name}} vs {{item.game_info.away_name}}</div>
+                            <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                                {{item.game_info.home_name}} vs {{item.game_info.away_name}}
+                            </div>
 
                             <div>
                                 <span class="mr-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
@@ -860,7 +895,9 @@
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
                         <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="cricket_1"></svg-icon>
                         <div style="width: 100%">
-                            <div>{{item.game_info.marketName}}</div>
+                            <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                                {{item.game_info.marketName}}
+                            </div>
                             <div>
                                 <span class="mr-2 div-block">
                                     {{LangUtil("板球选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
@@ -908,24 +945,47 @@
                         class="detail mt-1 d-flex black--text"
                         v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
                     >
-                        <svg-icon class="mr-2 ml-1" style="margin-top: 3px" :icon="fb_icon_name(item)"></svg-icon>
-                        <div>
-                            <div class="">{{item.game_info.betList[0].matchName}}</div>
+                        <template v-if="!isChuanDan(item)">
+                            <svg-icon class="mr-2 ml-1" style="margin-top: 3px" :icon="fb_icon_name(item)"></svg-icon>
                             <div>
-                                <span class="mr-2 div-block" v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore">
-                                    <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}}) </span>
-                                </span>
-                                <div class="mr-2 div-block">{{item.game_info.betList[0].marketName}}</div>
+                                <div
+                                    class=""
+                                    :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                    @click="onClickFootballName(item)"
+                                >
+                                    {{item.game_info.betList[0].matchName}}
+                                </div>
+                                <div>
+                                    <span
+                                        class="mr-2 div-block"
+                                        v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore"
+                                    >
+                                        <span class="font-weight-bold">
+                                            {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}})
+                                        </span>
+                                    </span>
+                                    <div class="mr-2 div-block">{{item.game_info.betList[0].marketName}}</div>
+                                </div>
+                                <div>
+                                    <span class="mr-2 div-block font-weight-bold">{{item.game_info.betList[0].optionName}} </span>
+                                    <span class="div-block">@{{item.game_info.betList[0].odds }}</span>
+                                </div>
+                                <v-spacer />
+                                <div @click="handlerDetail(item)" class="cursor-pointer">
+                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                </div>
                             </div>
-                            <div>
-                                <span class="mr-2 div-block font-weight-bold">{{item.game_info.betList[0].optionName}} </span>
-                                <span class="div-block">@{{item.game_info.betList[0].odds }}</span>
-                            </div>
-                            <v-spacer />
-                            <!-- <div @click="handlerDetail(item.game_info.betList[0])" class="cursor-pointer">
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
-                            </div> -->
-                        </div>
+                        </template>
+                        <template v-else>
+                            <span
+                                class="mr-2"
+                                :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                @click="onClickFootballName(item)"
+                                >{{item.vendor_name}}
+                            </span>
+                            <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+                            <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
+                        </template>
                     </div>
                 </v-sheet>
             </template>

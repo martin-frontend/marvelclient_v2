@@ -3,12 +3,11 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import Overlay from "@/views/widget/overlay/Overlay.vue";
 import DialogOrder from "./DialogOrder";
-
+import FootballOrder from "./widget/football_order/FootballOrder.vue"
 @Component({
     components: {
-        Overlay,
+        FootballOrder,
     },
 })
 export default class extends DialogOrder {}

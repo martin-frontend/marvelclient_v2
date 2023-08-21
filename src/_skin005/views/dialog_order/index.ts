@@ -8,7 +8,8 @@ function show(data: any) {
     DialogMount(DialogOrder);
     hidden(false);
     proxy.pageData.bShow = true;
-    proxy.api_vendor_var_bet_log_detail(data.order_no);
+    proxy.api_vendor_var_bet_log_detail(data.order_no,data.vendor_id);
+    proxy.pageData.itemData = JSON.parse(JSON.stringify(data));
 }
 
 function hidden(bhidden: boolean = true) {

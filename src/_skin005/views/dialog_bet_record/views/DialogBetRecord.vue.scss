@@ -263,6 +263,15 @@
 .pclist-height-1 {
     height: calc(100vh - 380px);
 }
-.cancle_btn_line{
+.cancle_btn_line {
     border-bottom: 1px solid #000 !important;
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 5px;
+}
+.underline:hover {
+    font-weight: 700;
 }

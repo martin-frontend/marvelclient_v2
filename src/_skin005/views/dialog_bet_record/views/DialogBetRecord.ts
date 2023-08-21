@@ -16,6 +16,7 @@ import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
 import exportOrder from "@/core/global/OrderTitleUtils";
+import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -446,5 +447,59 @@ export default class DialogBetRecord extends AbstractView {
             return "sport_" + item.sport_id;
         }
         return "fb";
+    }
+    isChuanDan(item: any): boolean {
+        if (item && item.bet_type && item.bet_type.trim()) {
+            const strArr = item.bet_type.split("x");
+            if (strArr.length == 2 && (strArr[0] != 1 || strArr[0] != "1")) {
+                return true;
+            }
+        }
+        return false;
+    }
+    chickIsCanClick(item: any): boolean {
+        if (!item || !item.vendor_id) return false;
+
+        const headGameConfig = GameConfig.config.head_game_config;
+        for (let index = 0; index < headGameConfig.length; index++) {
+            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
+                return true;
+            }
+        }
+        return false;
+    }
+    onClickFootballName(item: any) {
+        console.log("足球名字被惦记", item);
+        if (!item || !item.vendor_id) return false;
+
+        const headGameConfig = GameConfig.config.head_game_config;
+        for (let index = 0; index < headGameConfig.length; index++) {
+            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
+                this.onHeadgameClick(headGameConfig[index]);
+                this.onClose();
+                return true;
+            }
+        }
+        return false;
+    }
+    onHeadgameClick(item: any) {
+        console.log("收到点击", item);
+
+        //如果是打开跳转连接
+        if (item.url && item.url.trim()) {
+            OpenLink(item.url);
+            return;
+        }
+        //需要跳转打开网页
+        if (item.page && item.page.trim()) {
+            PanelUtil.actionByName(item.page);
+            return;
+        }
+        // const newItem = JSON.parse(JSON.stringify(item));
+        // if (newItem.ori_vendor_extend) {
+        //     newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
+        // }
+        item.visitor_allowed = 1;
+        PanelUtil.openpage_soccer(item);
     }
 }

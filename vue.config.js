@@ -252,6 +252,19 @@ const skinMap = {
             },
         },
     },
+    /**96 总站 */
+    skin013: {
+        public_dir: "public_skin013",
+        pages: {
+            skin007: {
+                entry: "src/_skin013/main.ts",
+                template: "public_skin013/skin013.html",
+                filename: "index.html",
+                title: "96",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin100: {
         public_dir: "public_skin100",
         pages: {
@@ -318,7 +331,9 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012"].includes(process.env.VUE_APP_SKIN)
+            ["skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013"].includes(
+                process.env.VUE_APP_SKIN
+            )
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {

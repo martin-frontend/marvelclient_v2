@@ -163,6 +163,8 @@ var net;
         api_vendor_var_bet_log_detail: "api/vendor/{vendor_id}/bet_log_detail",
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: "api/vendor/{vendor_id}/bet_log_cancel",
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: "api/user/show_url/{plat_id}/{bet_id}",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
         /**--大厅--获取厂商列表*/
@@ -502,6 +504,8 @@ var net;
         api_vendor_var_bet_log_detail: "api_vendor_var_bet_log_detail",
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: "api_vendor_var_bet_log_cancel",
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: "api_user_show_url_var_var",
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
         /**--大厅--获取厂商列表*/
@@ -796,6 +800,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_bind_google_key_var, net.cmd_api_user_bind_google_key_var);
         facade.registerCommand(net.HttpType.api_vendor_var_bet_log_detail, net.cmd_api_vendor_var_bet_log_detail);
         facade.registerCommand(net.HttpType.api_vendor_var_bet_log_cancel, net.cmd_api_vendor_var_bet_log_cancel);
+        facade.registerCommand(net.HttpType.api_user_show_url_var_var, net.cmd_api_user_show_url_var_var);
         //--大厅
         facade.registerCommand(net.HttpType.api_plat_var_lobby_index, net.cmd_api_plat_var_lobby_index);
         facade.registerCommand(net.HttpType.api_vendor_simple, net.cmd_api_vendor_simple);
@@ -2378,6 +2383,28 @@ var net;
         }
     }
     net.cmd_api_user_reset_password = cmd_api_user_reset_password;
+})(net || (net = {}));
+/**
+ * 详情页接口
+ */
+var net;
+/**
+ * 详情页接口
+ */
+(function (net) {
+    class cmd_api_user_show_url_var_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_show_url_var_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_show_url_var_var, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_show_url_var_var = cmd_api_user_show_url_var_var;
 })(net || (net = {}));
 /**
  * 获取用户基本信息

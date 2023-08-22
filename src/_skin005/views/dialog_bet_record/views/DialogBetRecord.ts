@@ -502,4 +502,7 @@ export default class DialogBetRecord extends AbstractView {
         item.visitor_allowed = 1;
         PanelUtil.openpage_soccer(item);
     }
+    handlerDetailLink(item: any) {
+        this.myProxy.api_user_show_url_var_var(item);
+    }
 }

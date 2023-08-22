@@ -329,4 +329,13 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             PanelUtil.message_info(LangUtil("取消订单失败"));
         }
     }
+    api_user_show_url_var_var(item: any) {
+        const query = {
+            plat_id: core.plat_id,
+            channel_id: core.channel_id,
+            user_id: core.user_id,
+            bet_id: item.bet_id,
+        };
+        this.sendNotification(net.HttpType.api_user_show_url_var_var, query);
+    }
 }

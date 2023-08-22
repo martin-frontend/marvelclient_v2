@@ -92,6 +92,8 @@ module net {
         api_vendor_var_bet_log_detail: "api/vendor/{vendor_id}/bet_log_detail",
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: "api/vendor/{vendor_id}/bet_log_cancel",
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: "api/user/show_url/{plat_id}/{bet_id}",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api/plat/{plat_id}/lobby/index",
@@ -462,6 +464,8 @@ module net {
         api_vendor_var_bet_log_detail: "api_vendor_var_bet_log_detail",
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: "api_vendor_var_bet_log_cancel",
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: "api_user_show_url_var_var",
 
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: "api_plat_var_lobby_index",
@@ -783,6 +787,7 @@ module net {
         facade.registerCommand(HttpType.api_user_bind_google_key_var, cmd_api_user_bind_google_key_var);
         facade.registerCommand(HttpType.api_vendor_var_bet_log_detail, cmd_api_vendor_var_bet_log_detail);
         facade.registerCommand(HttpType.api_vendor_var_bet_log_cancel, cmd_api_vendor_var_bet_log_cancel);
+        facade.registerCommand(HttpType.api_user_show_url_var_var, cmd_api_user_show_url_var_var);
         //--大厅
         facade.registerCommand(HttpType.api_plat_var_lobby_index, cmd_api_plat_var_lobby_index);
         facade.registerCommand(HttpType.api_vendor_simple, cmd_api_vendor_simple);

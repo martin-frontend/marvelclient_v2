@@ -95,6 +95,8 @@ declare module net {
         api_vendor_var_bet_log_detail: string;
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: string;
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -434,6 +436,8 @@ declare module net {
         api_vendor_var_bet_log_detail: string;
         /**--会员资料--取消投注*/
         api_vendor_var_bet_log_cancel: string;
+        /**--会员资料--详情页接口*/
+        api_user_show_url_var_var: string;
         /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
         api_plat_var_lobby_index: string;
         /**--大厅--获取厂商列表*/
@@ -1263,6 +1267,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_reset_password extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 详情页接口
+ */
+declare module net {
+    class cmd_api_user_show_url_var_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

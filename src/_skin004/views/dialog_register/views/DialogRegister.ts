@@ -1,6 +1,6 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import BlurUtil from "@/core/global/BlurUtil";
-import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import { checkMail, checkPhone, checkUserName, checkUserPassword, checkVerifyVode, convert_vi_to_en } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_get_verity from "@/views/dialog_get_verity";
 import dialog_login from "@/_skin004/views/dialog_login";
@@ -231,6 +231,11 @@ export default class DialogRegister extends AbstractView {
 
     onBankNameBlur() {
         console.log("---->> 银行部分输入名字----");
+        if (!this.myProxy.curBankInfo.realName || !this.myProxy.curBankInfo.realName.trim()) {
+            return;
+        }
+        this.myProxy.curBankInfo.realName = convert_vi_to_en(this.myProxy.curBankInfo.realName.trim());
+        this.myProxy.curBankInfo.realName = this.myProxy.curBankInfo.realName.toUpperCase();
     }
 
     bshowAllNameList = false; //是否显示 名字的下拉菜单

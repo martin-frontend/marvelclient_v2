@@ -1,0 +1,29 @@
+<div class="input-text regular_text">
+    <div :class="{ 'myflex' : inputValue && !disabled && isNeedCloseBtn }">
+        <v-icon v-if="icon" color="disable_text" class="mr-2">{{ icon }}</v-icon>
+        <div v-if="$slots.pre">
+            <slot name="pre"></slot>
+        </div>
+        <input
+            :id="generateComponentId"
+            class=" fontweight rounded-0"
+            :class="[disabled?'text-disabled':'',inputColor]"
+            :type="type"
+            :placeholder="placeholder"
+            @blur="onBlur"
+            @on="$listeners"
+            @input="onInput"
+            @focus="onFocus"
+            v-model="inputValue"
+            :maxlength="maxlength"
+            :disabled="disabled"
+            @keydown.enter="endInput"
+        />
+        <v-btn v-if="inputValue && !disabled && isNeedCloseBtn" class="pr-5-5" icon width="20" height="20" @click="onClear">
+            <v-icon color="disable_text" class="mx-3" size="20">mdi-close-circle</v-icon>
+        </v-btn>
+        <div v-if="$slots.default" class="">
+            <slot></slot>
+        </div>
+    </div>
+</div>

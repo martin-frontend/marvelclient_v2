@@ -12,8 +12,11 @@ import GlobalVar from "@/core/global/GlobalVar";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
+import Assets from "@/_skin005/assets/Assets";
+
 @Component
 export default class DialogLogin extends AbstractView {
+    commonIcon = Assets.commonIcon;
     LangUtil = LangUtil;
     core = core;
     myProxy: DialogLoginProxy = this.getProxy(DialogLoginProxy);
@@ -28,6 +31,7 @@ export default class DialogLogin extends AbstractView {
     userInfo = this.selfProxy.userInfo;
     password_error_info = "";
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
+    clicked =  false;
     constructor() {
         super(DialogLoginMediator);
     }
@@ -159,6 +163,12 @@ export default class DialogLogin extends AbstractView {
     }
 
     private onSubmitLogin() {
+        // 登入介面按钮效果
+        this.clicked = !this.clicked;
+        if (this.pageData.form.username == '' || this.pageData.form.password == '') {
+            PanelUtil.message_info(LangUtil("请输入账户与密码"));
+            return false
+        }
         if (ModulesHelper.isNeed_loginVerifiy())
             PanelUtil.openpanel_speed_verification(() => {
                 this.myProxy.api_user_login_check();

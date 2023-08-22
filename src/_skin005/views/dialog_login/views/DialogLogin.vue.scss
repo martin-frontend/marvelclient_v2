@@ -117,3 +117,156 @@
         opacity: 1;
     }
 }
+
+.h-100 {
+    height: 100vh;
+}
+
+.login_mobile {
+    position: relative;
+    .login_close_btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 45px;
+        height: 45px;
+    }
+    .login_title {
+        font-weight: 600;
+        line-height: 28px;
+        color: #29313d;
+        margin-top: 54px;
+        margin-bottom: 14px;
+    }
+    .forget_password {
+        margin-bottom: 10px;
+    }
+    .forget_password_text {
+        font-weight: normal;
+        line-height: 20px;
+    }
+    .text-yellow {
+        color: #d89f00;
+    }
+    .btn-login-submit {
+        border-radius: 2px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 22px;
+        color: #202630;
+        padding: 9px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        cursor: pointer;
+        transition: ease-in-out 1s; /* 缩短过渡时间 */
+        &::before {
+            // content: "";
+            // position: absolute;
+            // z-index: -1;
+            // top: 50%;
+            // left: 50%;
+            // width: 319px;
+            // height: 319px;
+            // transform: translate3d(-50%,-50%,0) scale(0,0);
+            // border-radius: 50%;
+            // background-color: rgba(#fff, .5);
+            // transform-origin: center;
+            // transition: transform ease-in-out .5s;
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            width: 319px;
+            height: 319px;
+            transform: translate3d(-50%, -50%, 0) scale(0, 0);
+            border-radius: 50%;
+            background-color: rgba(#fff, .1);
+            transform-origin: center;
+            transition: ease-in-out 1s; /* 缩短过渡时间 */
+        }
+        // &:active::before{
+        //     transform: translate3d(-50%,-50%,0) scale(15,15);
+        // }
+    }
+    .btn-login-submit.clicked {
+        background-color: #fff;
+    }
+    .btn-login-submit.clicked::before {
+        transform: translate3d(-50%, -50%, 0) scale(15, 15);
+    }
+    .apply_account {
+        line-height: 20px;
+        color: #848e9c;
+    }
+    ::v-deep .v-input--selection-controls__input {
+        width: 14px;
+        height: 14px;
+        margin-right: 10px !important;
+    }
+    ::v-deep .v-input--selection-controls.v-input--dense:not(.v-input--switch) .v-input--selection-controls__ripple {
+        top: calc(50% - 14px);
+        opacity: 0;
+    }
+    ::v-deep .v-input--selection-controls.v-input--dense .v-input--selection-controls__ripple {
+        width: 14px;
+        height: 14px;
+        left: -8px;
+    }
+    ::v-deep .v-application--is-ltr .v-input--selection-controls__input {
+        margin-right: 10px;
+    }
+    ::v-deep .v-input .v-label {
+        line-height: 20px;
+        color: #848e9c;
+    }
+    
+}
+::v-deep .theme--light {
+    .btn_9:hover {
+        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+    }
+}
+
+::v-deep .theme--dark {
+    // #202121 !important
+    &.v-icon {
+        color: #848e9c;
+    }
+    &.loginColor {
+        background-color: #202630 !important;
+        border-color: #202630 !important;
+    }
+    &.loginBanner {
+        background-color: #202630 !important;
+        border-color: #202630 !important;
+    }
+    .login_mobile {
+        .login_title {
+            color: #eaecef;
+        }
+        .text-yellow {
+            color: #f0b90b;
+        }
+    }
+}
+
+// .theme--light .btn_9_disable, .theme--dark .btn_9_disable{
+//     color: #202630 !important;
+//     background: linear-gradient(to left, #fff092, #fee38b 0%) !important;
+// }
+
+::v-deep .v-card>:last-child:not(.v-btn):not(.v-chip):not(.v-avatar).btnweight {
+    font-weight: 600;
+}
+
+::v-deep .v-dialog--fullscreen {
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+    height: 100vh !important;
+}

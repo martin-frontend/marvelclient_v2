@@ -261,11 +261,13 @@
     </v-card>
 
     <!-- 手机版 -->
-    <v-card v-else color="bgColor" class="rounded-0">
-        <com-dialog-title :title="forgetData.bShow ? '找回密码' : '登录'" @onClose="onClose" />
+    <v-card v-else :color="forgetData.bShow ? 'bgColor' : 'loginColor'" class="rounded-0">
+        <!-- <com-dialog-title :title="forgetData.bShow ? '找回密码' : '登录'" @onClose="onClose" /> -->
 
         <!-- 找回密码 -->
         <v-card-text v-if="forgetData.bShow" class="px-2 mt-3">
+            <com-dialog-title :title="forgetData.bShow ? '找回密码' : '登录'" @onClose="onClose" class="mt-n3 mx-n2" />
+
             <div class="d-flex mb-3">
                 <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
                     <v-btn v-if="checkValidateType(1)" class="rounded-pill" height="30" min-width="78">
@@ -469,27 +471,32 @@
             </v-sheet>
         </v-card-text>
         <!-- 登录 -->
-        <v-sheet v-else class="px-5 mx-2 py-4 mt-2 rounded10 shadow-0" color="bgBanner">
-            <CustomInput
-                class="mb-5"
-                icon="mdi-account"
+        <v-sheet v-else class="rounded-0 shadow-0 h-100 pa-7 login_mobile" :color="forgetData.bShow ? 'bgBanner': 'loginBanner'">
+            <div class="login_close_btn" @click="onClose">
+                <svg-icon icon="close" class="text-14"></svg-icon>
+            </div>
+            <v-img :src="commonIcon.logo_m" width="72" height="53" class="mt-13"></v-img>
+            <div class="login_title text-20">{{LangUtil('登录')}}</div>
+            <CustomInputLoginMobile 
                 :placeholder="LangUtil('请输入账号/手机号/邮箱')"
                 v-model="pageData.form.username"
             />
-            <CustomPassword icon="mdi-lock" :placeholder="LangUtil('请输入密码（6-20位）')" v-model="pageData.form.password" />
-            <div class="password-operate textGray--text">
+            <CustomPasswordLoginMobile :placeholder="LangUtil('请输入密码（6-20位）')" v-model="pageData.form.password"/>
+            <div class="mb-4">
                 <v-checkbox v-model="pageData.remember" :label="LangUtil('记住密码')" color="textYellow" dense hide-details></v-checkbox>
-                <div class="text-14 mt-1 cursor-pointer" @click="goForget">{{LangUtil("忘记密码")}}？</div>
             </div>
             <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedLogin" block @click="onSubmitLogin"
                     >{{LangUtil("登录")}}</v-btn> -->
-            <btn-yellow class="text-14 mt-10" width="100%" height="36" :disabled="!isCheckedLogin" @click.native="onSubmitLogin"
+            <btn-yellow class="text-14 btn-login-submit mb-4" :class="{ 'clicked': clicked }" width="100%" height="40" @click.native="onSubmitLogin"
                 >{{LangUtil("登录")}}</btn-yellow
             >
-
-            <div v-if="GlobalVar.instance.isShowRegiter" class="copy_icon--text text-center mt-4 text-12">
+            <div class="text-14 cursor-pointer forget_password">
+                <a href="#" @click.prevent="goForget" class="forget_password_text text-yellow text-14">{{LangUtil("忘记密码")}}？</a>
+            </div>
+            <div v-if="GlobalVar.instance.isShowRegiter" class="text-14 apply_account">
                 {{LangUtil("还没有账户？")}}
-                <button class="textYellow--text" @click="goRegister">{{LangUtil("去注册")}}</button>
+                <!-- <button class="" @click="goRegister"><a href="#" class="text-yellow" @click.prevent="goRegister">{{LangUtil("去注册")}}</a></button> -->
+                <a href="#" class="text-yellow" @click.prevent="goRegister">{{LangUtil("去注册")}}</a>
             </div>
         </v-sheet>
     </v-card>

@@ -270,8 +270,10 @@ $sss: #3e3f41;
 .theme--dark {
     .btn_9:hover {
         color: var(--btn_hover_text) !important;
+        // color: #202630 !important;
         border: 1px solid transparent;
         background-image: linear-gradient(to right, #272828, #272828), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        // background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
     }
     .btn_9_disable {
         color: var(--btn_disable_text_light);

@@ -265,6 +265,19 @@ const skinMap = {
             },
         },
     },
+    /**开源 */
+    skin015: {
+        public_dir: "public_skin015",
+        pages: {
+            skin007: {
+                entry: "src/_skin015/main.ts",
+                template: "public_skin015/skin015.html",
+                filename: "index.html",
+                title: "KY",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin100: {
         public_dir: "public_skin100",
         pages: {
@@ -331,7 +344,7 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013"].includes(
+            ["skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
                 process.env.VUE_APP_SKIN
             )
         ) {

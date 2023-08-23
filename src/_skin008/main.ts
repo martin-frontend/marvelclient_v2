@@ -57,6 +57,7 @@ SkinVariable.isFootballTop = false;
 SkinVariable.systemKefuTop = false;
 SkinVariable.mail_get_gift_config = true;
 SkinVariable.autoTheme = false;
+GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();
 //@ts-ignore

@@ -57,6 +57,7 @@ SkinVariable.isFootballTop = false;
 SkinVariable.systemKefuTop = false;
 SkinVariable.mail_get_gift_config = true;
 SkinVariable.autoTheme = false;
+SkinVariable.gameIconType = 1;
 SkinVariable.adjustBannerHeightFor08Skin = true;
 GlobalVar.game_address_method = 1;
 LogUtil.init();

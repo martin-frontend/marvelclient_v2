@@ -7,15 +7,8 @@
     flat
 >
     <!-- <v-lazy> -->
-    <v-sheet v-if="item" color="transparent" class="game-icon" @click="goGamePlay" :class="$mobile ? 'loader_class_mob' : ''">
-        <ImgLoader
-            v-if="item"
-            class="cursor-pointer rounded_img"
-            min-height="100"
-            :width="width"
-            :height="height"
-            :src="getIcon(item)"
-        >
+    <v-sheet v-if="item" color="transparent" @click="goGamePlay" :class="{ 'loader_class_mob' : $mobile ,'game-icon' : !isNeetPlayBtn}">
+        <ImgLoader v-if="item" class="cursor-pointer rounded_img" min-height="100" :width="width" :height="height" :src="getIcon(item)">
             <!-- 手机显示 -->
             <!-- <template v-if="$mobile">
                     <v-img v-if="item.water_rate_accelerate" class="float-left" contain
@@ -47,13 +40,13 @@
             </v-img>
             <v-img v-if="getTag != ''" class="float-right" width="50px" :src="getTag"></v-img>
             <!-- </template> -->
-            <!-- <div class="egame__item__mask">
+            <div v-if="isNeetPlayBtn" class="egame__item__mask">
                 <div class="egame__item__play-icon">
                     <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
                         <div class="icon-chevron-right icon__icon mt-n1"></div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             <div v-if="!isNomalState" class="mask_base d-flex justify-center align-center" :class="$mobile ? 'mob_mask' : 'pc_mask'">
                 <v-sheet class="d-flex justify-center align-center cursor-pointer" @click="onClickItem" color="transparent">
@@ -63,6 +56,7 @@
         </ImgLoader>
 
         <v-sheet
+            v-if="!isNeetPlayBtn"
             class="text_bg rounded_text d-flex justify-center align-center"
             width="100%"
             :height="title_height"
@@ -72,6 +66,20 @@
             <div class="game-title" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">
                 {{useMenuData ? item.alias : item.vendor_product_name }}
             </div>
+        </v-sheet>
+
+        <v-sheet
+            v-else
+            class="text_bg rounded_text d-flex justify-center align-center flex-column mb-1"
+            width="100%"
+            :height="title_height"
+            color="transparent"
+            flat
+        >
+            <div class="game-title font-weight-bold text-with-shadow" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">
+                {{useMenuData ? item.alias : item.vendor_product_name }}
+            </div>
+            <div class="text-with-shadow" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">{{ item.vendor_name }}</div>
         </v-sheet>
 
         <template v-slot:placeholder>

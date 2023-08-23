@@ -51,6 +51,8 @@ export default class SkinVariable {
     public static isShowGameListNovigation = true;
     /**是否默认按厂商分类 */
     public static isUseVendorType = false;
+    /**游戏icon的类型 */
+    public static gameIconType = 0;
     /**調整08皮banner高度 */
     public static adjustBannerHeightFor08Skin = false;
 }

@@ -3,6 +3,7 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class GameItem extends AbstractView {
@@ -100,5 +101,8 @@ export default class GameItem extends AbstractView {
 
     onClickItem() {
         console.log("---dasd --");
+    }
+    get isNeetPlayBtn() {
+        return SkinVariable.gameIconType == 1;
     }
 }

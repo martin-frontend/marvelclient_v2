@@ -56,6 +56,8 @@ export default class PageHome extends AbstractView {
     }
 
     public get viewWidth(): number {
+        if (SkinVariable.adjustBannerHeightFor08Skin) return this.viewWidthFor08Skin;
+
         if (this.$mobile) {
             if (this.$vuetify.breakpoint.width < 360) {
                 return 80;
@@ -75,6 +77,16 @@ export default class PageHome extends AbstractView {
         }
         return 350;
         // return 240;
+    }
+
+    get viewWidthFor08Skin(): number {
+        if (this.$mobile) {
+            return this.$vuetify.breakpoint.width / (1440 / 450);
+        } else if (this.$vuetify.breakpoint.width > 1700) {
+            return 450;
+        } else {
+            return 340;
+        }
     }
 
     //推广赚钱

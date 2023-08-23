@@ -277,6 +277,51 @@ function getScoreStr(item: any) {
         marketType.TEAM_B_WIN_TO_NIL_HALF_TIME,
         marketType.ODD_OR_EVEN_HALF_TIME,
         marketType.CORRECT_SCORE_HALF_TIME,
+        marketType.MATCH_ODDS_HALF_TIME,
+        marketType.DRAW_NO_BET_HALF_TIME,
+        marketType.TOTAL_GOALS_HALF_TIME,
+        marketType.ODD_OR_EVEN_HALF_TIME,
+        marketType.CORRECT_SCORE_HALF_TIME,
+        marketType.DOUBLE_CHANCE_HALF_TIME,
+        marketType.WINNING_MARGIN_HALF_TIME,
+        marketType.TEAM_A_TO_SCORE_HALF_TIME,
+        marketType.TEAM_B_TO_SCORE_HALF_TIME,
+        marketType.ASIAN_OVER_UNDER_HALF_TIME,
+        marketType.TEAM_A_WIN_TO_NIL_HALF_TIME,
+        marketType.TEAM_B_WIN_TO_NIL_HALF_TIME,
+        marketType.TOTAL_GOALS_RANGE_HALF_TIME,
+        marketType.TEAM_A_EXACT_GOALS_HALF_TIME,
+        marketType.TEAM_B_EXACT_GOALS_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_HALF_TIME,
+        marketType.EITHER_TEAM_TO_SCORE_HALF_TIME,
+        marketType.WAY_OVER_UNDER_1_HALF_TIME,
+        marketType.WAY_OVER_UNDER_2_HALF_TIME,
+        marketType.WAY_OVER_UNDER_3_HALF_TIME,
+        marketType.WAY_OVER_UNDER_4_HALF_TIME,
+        marketType.WAY_OVER_UNDER_5_HALF_TIME,
+        marketType.WAY_OVER_UNDER_6_HALF_TIME,
+        marketType.WAY_OVER_UNDER_7_HALF_TIME,
+        marketType.WAY_OVER_UNDER_8_HALF_TIME,
+        marketType.WAY_HANDICAP_MINUS_4_HALF_TIME,
+        marketType.WAY_HANDICAP_MINUS_3_HALF_TIME,
+        marketType.WAY_HANDICAP_MINUS_2_HALF_TIME,
+        marketType.WAY_HANDICAP_MINUS_1_HALF_TIME,
+        marketType.WAY_HANDICAP_PLUS_1_HALF_TIME,
+        marketType.WAY_HANDICAP_PLUS_2_HALF_TIME,
+        marketType.WAY_HANDICAP_PLUS_3_HALF_TIME,
+        marketType.WAY_HANDICAP_PLUS_4_HALF_TIME,
+        marketType.TEAM_A_GOALS_ODD_OR_EVEN_HALF_TIME,
+        marketType.TEAM_B_GOALS_ODD_OR_EVEN_HALF_TIME,
+        marketType.TEAM_A_TO_SCORE_TWICE_OR_MORE_HALF_TIME,
+        marketType.TEAM_B_TO_SCORE_TWICE_OR_MORE_HALF_TIME,
+        marketType.MATCH_ODDS_AND_OVER_UNDER_2_5_HALF_TIME,
+        marketType.ODD_OR_EVEN_AND_OVER_UNDER_2_5_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_TWICE_OR_MORE_HALF_TIME,
+        marketType.EITHER_TEAM_TO_SCORE_TWICE_OR_MORE_HALF_TIME,
+        marketType.EITHER_TEAM_TO_SCORE_THREE_OR_MORE_HALF_TIME,
+        marketType.MATCH_ODDS_AND_BOTH_TEAMS_TO_SCORE_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_AND_OVER_UNDER_2_5_HALF_TIME,
+        marketType.BOTH_TEAMS_TO_SCORE_AND_ONE_TEAM_TO_SCORE_TWICE_OR_MORE_HALF_TIME,
     ];
     /**罚牌数量 */
     const cardMarket_type = [
@@ -304,9 +349,10 @@ function getScoreStr(item: any) {
     } else if (firstHalfarr.indexOf(item.market_type) != -1) {
         if (!state.goals_ht) return "";
         return " " + LangUtil("半场比分") + "(" + state.goals_ht + ")";
-        // } else if (cardMarket_type.indexOf(item.market_type) != -1) {
-        //     if (!state.yellow_cards_ht) return "";
-        //     return " " + LangUtil("罚牌") + "(" + state.yellow_cards_ht + ")";
+    } else if (cardMarket_type.indexOf(item.market_type) != -1) {
+        if (!state.yellow_cards_ft && !state.red_cards_ft) return "";
+        // return " " + LangUtil("罚牌") + "(" + state.yellow_cards_ht + ")";
+        return " " + LangUtil("黄牌") + "(" + state.yellow_cards_ft + ")" + "<br/>" + LangUtil("红牌") + "(" + state.red_cards_ft + ")";
     } else {
         if (!state.goals_ft) return "";
         return " " + LangUtil("比分") + "(" + state.goals_ft + ")";

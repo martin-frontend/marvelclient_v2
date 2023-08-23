@@ -273,14 +273,13 @@ function getSelectionName(market_type: string, selection: FixSelectionVO, matche
         case EnumMarketType.WAY_OVER_UNDER_5_HALF_TIME:
         case EnumMarketType.WAY_OVER_UNDER_6_HALF_TIME:
         case EnumMarketType.WAY_OVER_UNDER_7_HALF_TIME:
-        case EnumMarketType.WAY_OVER_UNDER_8_HALF_TIME:
-            {
-                console.warn("--type--", selection.type);
-            
+        case EnumMarketType.WAY_OVER_UNDER_8_HALF_TIME: {
+            console.warn("--type--", selection.type);
+
             //return `${selection.type == "Over" ? LangUtil("大大") : selection.type == "Under" ? LangUtil("小小") : LangUtil("和和")}`;
             return `${selection.type == "Over" ? LangUtil("大大") : selection.type == "Exactly" ? LangUtil("和和") : LangUtil("小小")}`;
         }
-        }
+    }
     if (selection.type == "Home-Draw" && noBet) return `${LangUtil("主")}-${LangUtil("和")}`;
     if (selection.type == "Away-Draw" && noBet) return `${LangUtil("客")}-${LangUtil("和")}`;
     if (selection.type == "Home-Home" && noBet) return `${LangUtil("主")}-${LangUtil("主")}`;

@@ -227,9 +227,12 @@
     }
     
 }
-::v-deep .theme--light {
-    .btn_9:hover {
-        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+::v-deep .theme--light, ::v-deep .theme--dark {
+    .login_mobile {
+        .btn_9:hover {
+            background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+            color: #202630 !important;
+        }
     }
 }
 

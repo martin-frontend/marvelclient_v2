@@ -93,9 +93,12 @@ export default class PageCoinTask extends AbstractView {
     }
 
     downcount(end_time: any) {
-        const nowTime = new Date(this.Timezone.convertTime_to_Locale_utc(<any>dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss"))).getTime();
-        const endTime = new Date(this.Timezone.convertTime_to_Locale_utc(end_time)).getTime();
-        const remainingTime = endTime - nowTime;
+        const endTime = new Date(end_time);
+        endTime.setUTCHours(endTime.getHours() - 8);
+        const nowTime = Date.now();
+        // const nowTime = new Date(this.Timezone.convertTime_to_Locale_utc(<any>dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss"))).getTime();
+        // const endTime = new Date(this.Timezone.convertTime_to_Locale_utc(end_time)).getTime();
+        const remainingTime = endTime.getTime() - nowTime;
 
         const remainingValue = this.convertRemainingTime(remainingTime);
         if (remainingValue[0] >= 1) {

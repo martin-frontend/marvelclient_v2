@@ -5,6 +5,7 @@ import DialogOrderProxy from "../proxy/DialogOrderProxy";
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class DialogOrder extends AbstractView {
@@ -28,5 +29,9 @@ export default class DialogOrder extends AbstractView {
         if (!this.pageData.bShow) {
             this.myProxy.resetQuery();
         }
+    }
+
+    get isExchangeVendor() {
+        return this.pageData.itemData?.vendor_id == GameConfig.config.ExchangeVendorId;
     }
 }

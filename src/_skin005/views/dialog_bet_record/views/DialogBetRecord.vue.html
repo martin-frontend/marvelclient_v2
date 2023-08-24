@@ -484,6 +484,20 @@
                                 <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
                             </template>
                         </div>
+                        <div class="detail mt-1 d-flex align-center black--text" v-if="item.vendor_id == GameConfig.config.ExchangeVendorId">
+                            <span class="ml-2 font-weight-bold">{{item.game_info.event_type_name}}</span>
+                            <span class="ml-2">{{item.game_info.event_name}}</span>
+                            <span class="ml-2">[{{item.game_info.market_name}}]</span>
+                            <span class="ml-2 font-weight-bold"> {{item.game_info.selection_name}} </span>
+                            <span class="ml-2">{{item.game_info.price}}</span>
+                            <v-spacer />
+                            <div @click="handlerDetail(item)" class="cursor-pointer">
+                                <span class="mr-2 font-weight-bold">
+                                    {{item.game_info.side?"Back":"Lay"}}
+                                </span>
+                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                            </div>
+                        </div>
                     </v-sheet>
                 </v-sheet>
                 <ListNodata v-if="pageData.list.length == 0" style="height: calc(100vh - 450px)" />
@@ -986,6 +1000,28 @@
                             <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
                             <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
                         </template>
+                    </div>
+                    <div class="detail mt-1 d-flex align-start black--text" v-if="item.vendor_id == GameConfig.config.ExchangeVendorId">
+                        <div>
+                            <div>
+                                <span class="ml-2 div-block font-weight-bold">{{item.game_info.event_type_name}}</span>
+                            </div>
+                            <div>
+                                <span class="ml-2 div-block">{{item.game_info.event_name}}</span>
+                            </div>
+                            <div>
+                                <span class="ml-2 div-block">[{{item.game_info.market_name}}]</span>
+                                <span class="ml-2 div-block font-weight-bold"> {{item.game_info.selection_name}} </span>
+                                <span class="ml-2 div-block">{{item.game_info.price}}</span>
+                            </div>
+                        </div>
+                        <v-spacer />
+                        <div @click="handlerDetail(item)" class="d-flex align-center cursor-pointer">
+                            <span class="mr-2 font-weight-bold">
+                                {{item.game_info.side?"Back":"Lay"}}
+                            </span>
+                            <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                        </div>
                     </div>
                 </v-sheet>
             </template>

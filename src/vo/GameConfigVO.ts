@@ -126,4 +126,6 @@ export interface GameConfigVO {
     topayUrl: string;
     promotion_hide_list: string[]; //代理统计隐藏表
     promotion_show_list: string[]; //代理统计显示表
+    /** 交易所id */
+    ExchangeVendorId: number;
 }

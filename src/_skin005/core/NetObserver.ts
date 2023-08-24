@@ -265,7 +265,9 @@ export default class NetObserver extends AbstractMediator {
                             const homeProxy = PanelUtil.getProxy_page_home;
                             //const isCricket = this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId;
                             const headerProxy = getProxy(HeaderProxy);
-                            headerProxy.resetTab(index + 1);
+                            if (this.gameProxy.currGame.vendor_id != (GameConfig.config.ExchangeVendorId ?? 201)) {
+                                headerProxy.resetTab(index + 1);
+                            }
                             const url = body.url;
                             if (homeProxy.pageData.event_id) {
                                 //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);

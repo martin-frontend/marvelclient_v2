@@ -19,7 +19,7 @@
                             >{{ amountFormat(selfProxy.userInfo.gold_info[gameProxy.coin_name_unique].sum_money ,true)}}</span
                         >
                         <v-spacer />
-                        <div v-if="isShowRecharge" class="font-weight-bold text-16 textYellow--text" @click="onClickRecharge">
+                        <div v-if="isShowRecharge" class="text-16 textYellow--text cursor-pointer recharge-btn" @click="onClickRecharge">
                             {{LangUtil("首页充值兑换")}}
                         </div>
                     </v-sheet>

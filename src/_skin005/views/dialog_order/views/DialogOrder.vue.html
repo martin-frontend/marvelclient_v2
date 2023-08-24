@@ -14,7 +14,8 @@
             <iframe height="275" width="100%" frameborder="0" :src="pageData.url"> </iframe>
         </v-card-text>
         <v-card-text v-if="!pageData.url && pageData.isHaveData && pageData.itemData">
-            <FootballOrder />
+            <ExchangeOrder v-if="isExchangeVendor" />
+            <FootballOrder v-else />
         </v-card-text>
     </v-card>
 </v-dialog>

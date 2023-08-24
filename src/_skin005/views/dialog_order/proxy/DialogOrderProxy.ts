@@ -26,7 +26,7 @@ export default class DialogOrderProxy extends puremvc.Proxy {
             settle_result: "",
             settle_amount: "",
         },
-        itemData: null,
+        itemData: <any>null,
         url: "",
         isHaveData:false,
     };

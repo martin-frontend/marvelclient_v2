@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Cache-control" content="no-cache" />
+        <meta http-equiv="Cache" content="no-cache" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>template</title>
+    </head>
+    <link rel="stylesheet" href="./style/index.css?v=1.3.8" />
+    <body>
+        <div class="container">
+            <div class="form">
+                <div class="logo_title"></div>
+                <div class="wheel_parent_class">
+                    <div class="img_bg_class">
+                        <img src="./assets/rool.png?v=1.1" class="wheel" id="wheel" />
+                    </div>
+                </div>
+
+                <div class="reg-panel-logo">
+                    <div id="spinButton">
+                        <div class="btn_spin">SPIN</div>
+                    </div>
+                </div>
+            </div>
+            <div id="dialog_confirm" class="form dialog">
+                <div class="dialog-container">
+                    <div id="txtMsg" class="txtMsg"></div>
+                    <div id="btnCloseConfirm">Obtenha</div>
+                </div>
+            </div>
+            <div id="loading" class="form dialog">
+                <img src="assets/loading.gif" style="margin: auto; width: 30px" />
+            </div>
+        </div>
+    </body>
+    <script src="./js/str.js?v=1.3.1"></script>
+    <script src="./js/utils.js?v=1.3.1"></script>
+    <script src="./js/jquery.js?v=1.3.1"></script>
+    <script src="./js/net.js?v=1.3.5"></script>
+    <script src="./js/index.js?v=1.3.12"></script>
+    <script src="./js/click.js?v=1.3.8"></script>
+    <script>
+        const wheel = document.getElementById("wheel");
+        const spinButton = document.getElementById("spinButton");
+        const overlay = document.getElementById("van-overlay");
+        const dialog_confirm = document.getElementById("dialog_confirm");
+        spinButton.addEventListener("click", () => {
+            console.warn("收到点击");
+            const rotationAngle = 650; // 旋转 5 圈，每圈 360 度
+            // 设置转盘的旋转角度和过渡时间
+            wheel.style.transform = `rotate(${rotationAngle}deg)`;
+            wheel.style.transition = "transform 3s ease-out"; // 设置过渡时间为 5 秒
+            wheel.addEventListener("transitionend", handleTransitionEnd);
+        });
+
+        function handleTransitionEnd() {
+            console.warn("旋转结束");
+            // 过渡结束后，重置转盘的旋转角度和过渡时间
+            // wheel.style.transform = 'rotate(0deg)';
+            // wheel.style.transition = 'none';
+            $("#txtMsg").append("Você recebe 100% de bônus");
+            $("#dialog_confirm").css("display", "flex");
+
+            // 移除过渡结束事件监听器，以避免重复触发
+            wheel.removeEventListener("transitionend", handleTransitionEnd);
+        }
+        function load() {
+            wheel.style.transform = "rotate(0deg)";
+            wheel.style.transition = "none";
+        }
+    </script>
+</html>

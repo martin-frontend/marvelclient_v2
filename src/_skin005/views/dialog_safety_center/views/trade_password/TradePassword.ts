@@ -130,6 +130,24 @@ export default class TradePassword extends AbstractView {
     }
     //发送 手机验证码
     sendVerith() {
+        /**只用邮箱验证 */
+        if (this.myProxy.passWordShowType == 4) {
+            if (!this.userInfo.email) {
+                PanelUtil.message_confirm({
+                    message: LangUtil("请先绑定邮箱或者手机"),
+                    okFun: () => {
+                        PanelUtil.openpanel_safety_center();
+                    },
+                });
+                return;
+            }
+            const obj = {
+                category: 0,
+                type: 5,
+            };
+            PanelUtil.openpanel_get_verity(obj);
+            return;
+        }
         if (this.userInfo.phone || this.userInfo.email) {
             const obj = {
                 category: this.userInfo.phone ? 1 : 0,

@@ -1,6 +1,8 @@
 :root {
     --yellow_color_1: #d63333;
     --yellow_color_2: #bb1a1a;
+    --yellow_color_3: #d63333;
+    --yellow_color_4: #bb1a1a;
 
     --btn_hover_text: #fff;
     --btn_nomal_text: #fff;
@@ -9,4 +11,6 @@
     --btn_disable_text_light: #a4a4a4;
 
     --line_primary: #d63333;
+
+    --login_color_text: #fff;
 }

@@ -42,6 +42,7 @@ import SlideVerify from "@/_skin005/views/widget/slide_verify/SlideVerify.vue";
 Assets.commonIcon.loading_img = "loding_icon_6.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin006/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin006/assets/logo_m.png`);
+Assets.commonIcon.login_logo_m = require(`@/_skin006/assets/login_logo_m.png`);
 
 SkinVariable.isShowFootDetail = false;
 SkinVariable.loadingType = "006";

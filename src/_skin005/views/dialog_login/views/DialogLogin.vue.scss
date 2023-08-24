@@ -157,13 +157,15 @@
         font-size: 16px;
         font-weight: 600;
         line-height: 22px;
-        color: #202630;
+        color: var(--login_color_text);
         padding: 9px;
         position: relative;
         z-index: 1;
         overflow: hidden;
         cursor: pointer;
-        transition: ease-in-out 1s; /* 缩短过渡时间 */
+        background-image: linear-gradient(to left, var(--yellow_color_3), var( --yellow_color_4) 0%);
+        box-shadow: 0 0;
+        // transition: ease-in-out 1s; /* 缩短过渡时间 */
         &::before {
             // content: "";
             // position: absolute;
@@ -177,29 +179,29 @@
             // background-color: rgba(#fff, .5);
             // transform-origin: center;
             // transition: transform ease-in-out .5s;
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: 50%;
-            left: 50%;
-            width: 319px;
-            height: 319px;
-            transform: translate3d(-50%, -50%, 0) scale(0, 0);
-            border-radius: 50%;
-            background-color: rgba(#fff, .1);
-            transform-origin: center;
-            transition: ease-in-out 1s; /* 缩短过渡时间 */
+            // content: "";
+            // position: absolute;
+            // z-index: -1;
+            // top: 50%;
+            // left: 50%;
+            // width: 319px;
+            // height: 319px;
+            // transform: translate3d(-50%, -50%, 0) scale(0, 0);
+            // border-radius: 50%;
+            // background-color: rgba(#fff, .1);
+            // transform-origin: center;
+            // transition: ease-in-out 1s; /* 缩短过渡时间 */
         }
         // &:active::before{
         //     transform: translate3d(-50%,-50%,0) scale(15,15);
         // }
     }
-    .btn-login-submit.clicked {
-        background-color: #fff;
-    }
-    .btn-login-submit.clicked::before {
-        transform: translate3d(-50%, -50%, 0) scale(15, 15);
-    }
+    // .btn-login-submit.clicked {
+    //     background-color: #fff;
+    // }
+    // .btn-login-submit.clicked::before {
+    //     transform: translate3d(-50%, -50%, 0) scale(15, 15);
+    // }
     .apply_account {
         line-height: 20px;
         color: #848e9c;
@@ -272,4 +274,11 @@
     overflow-y: hidden !important;
     overflow-x: hidden !important;
     height: 100vh !important;
+}
+
+.theme--light.btn-login-submit.v-btn:hover:before {
+    opacity: 0 !important;
+}
+.theme--dark.btn-login-submit.v-btn:hover:before {
+    opacity: 0 !important;
 }

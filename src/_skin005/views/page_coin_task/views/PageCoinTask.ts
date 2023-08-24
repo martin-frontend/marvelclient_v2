@@ -9,7 +9,7 @@ import { moneyFormat, dateFormat } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
-
+import * as moment from "moment-timezone";
 @Component
 export default class PageCoinTask extends AbstractView {
     LangUtil = LangUtil;
@@ -93,13 +93,16 @@ export default class PageCoinTask extends AbstractView {
     }
 
     downcount(end_time: any) {
-        const endTime = new Date(end_time);
-        endTime.setUTCHours(endTime.getHours() - 8);
-        const nowTime = Date.now();
-        // const nowTime = new Date(this.Timezone.convertTime_to_Locale_utc(<any>dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss"))).getTime();
-        // const endTime = new Date(this.Timezone.convertTime_to_Locale_utc(end_time)).getTime();
-        const remainingTime = endTime.getTime() - nowTime;
+        console.log("收到时间为", end_time);
+        const endTime = moment.tz(end_time, "Asia/Shanghai");
+        // 将北京时间转换为本地时间
+        const localTime = endTime.local();
 
+        // 获取本地时间对象的时间戳（以毫秒为单位）
+        const localTimestamp = localTime.valueOf();
+        console.log("转为本地之后的时间戳为", localTimestamp);
+        const nowTime = Date.now();
+        const remainingTime = localTimestamp - nowTime;
         const remainingValue = this.convertRemainingTime(remainingTime);
         if (remainingValue[0] >= 1) {
             return remainingValue[0] + LangUtil("天");

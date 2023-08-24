@@ -89,6 +89,7 @@
         "inobounce": "^0.2.1",
         "js-base64": "^2.5.1",
         "js-cookie": "^3.0.1",
+        "moment": "^2.29.4",
         "moment-timezone": "^0.5.43",
         "svgaplayerweb": "^2.3.2",
         "swiper": "^6.8.4",

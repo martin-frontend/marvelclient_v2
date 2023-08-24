@@ -76,10 +76,16 @@
             color="transparent"
             flat
         >
-            <div class="game-title font-weight-bold text-with-shadow" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">
+            <div
+                class="game-title font-weight-bold text-with-shadow"
+                :class="$mobile ? 'text-12 title_text_mob' : 'text-16'"
+                style="text-align: center; line-height: 0.9"
+            >
                 {{useMenuData ? item.alias : item.vendor_product_name }}
             </div>
-            <div class="text-with-shadow" :class="$mobile ? 'text-12 title_text_mob' : 'text-16'" style="text-align: center">{{ item.vendor_name }}</div>
+            <div class="text-with-shadow" :class="$mobile ? 'text-12 title_text_mob' : 'text-14'" style="text-align: center">
+                {{ item.vendor_name }}
+            </div>
         </v-sheet>
 
         <template v-slot:placeholder>

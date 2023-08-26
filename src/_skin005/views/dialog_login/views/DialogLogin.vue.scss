@@ -118,41 +118,17 @@
     }
 }
 
+// pc & mobile 共用
 .h-100 {
     height: 100vh;
 }
-
-.login_mobile {
-    position: relative;
-    .login_close_btn {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        width: 45px;
-        height: 45px;
-    }
+.login_mobile, .login_pc {
     .login_title {
         font-weight: 600;
         line-height: 28px;
-        color: #29313d;
-        margin-top: 54px;
-        margin-bottom: 14px;
-    }
-    .forget_password {
-        margin-bottom: 10px;
-    }
-    .forget_password_text {
-        font-weight: normal;
-        line-height: 20px;
-    }
-    .text-yellow {
-        color: #d89f00;
     }
     .btn-login-submit {
+        height: 40px !important;
         border-radius: 2px;
         font-size: 16px;
         font-weight: 600;
@@ -165,46 +141,40 @@
         cursor: pointer;
         background-image: linear-gradient(to left, var(--yellow_color_3), var( --yellow_color_4) 0%);
         box-shadow: 0 0;
-        // transition: ease-in-out 1s; /* 缩短过渡时间 */
         &::before {
-            // content: "";
-            // position: absolute;
-            // z-index: -1;
-            // top: 50%;
-            // left: 50%;
-            // width: 319px;
-            // height: 319px;
-            // transform: translate3d(-50%,-50%,0) scale(0,0);
-            // border-radius: 50%;
-            // background-color: rgba(#fff, .5);
-            // transform-origin: center;
-            // transition: transform ease-in-out .5s;
-            // content: "";
-            // position: absolute;
-            // z-index: -1;
-            // top: 50%;
-            // left: 50%;
-            // width: 319px;
-            // height: 319px;
-            // transform: translate3d(-50%, -50%, 0) scale(0, 0);
-            // border-radius: 50%;
-            // background-color: rgba(#fff, .1);
-            // transform-origin: center;
-            // transition: ease-in-out 1s; /* 缩短过渡时间 */
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            width: 319px;
+            height: 319px;
+            transform: translate3d(-50%, -50%, 0) scale(0, 0);
+            border-radius: 50%;
+            background-color: rgba(#fff, .1);
+            transform-origin: center;
+            transition: ease-in-out 1s; /* 缩短过渡时间 */
         }
-        // &:active::before{
-        //     transform: translate3d(-50%,-50%,0) scale(15,15);
-        // }
     }
-    // .btn-login-submit.clicked {
-    //     background-color: #fff;
-    // }
-    // .btn-login-submit.clicked::before {
-    //     transform: translate3d(-50%, -50%, 0) scale(15, 15);
-    // }
+    .btn-login-submit.clicked {
+        background-color: #fff;
+    }
+    .btn-login-submit.clicked::before {
+        transform: translate3d(-50%, -50%, 0) scale(15, 15);
+    }
+    .text-yellow {
+        color: #d89f00;
+    }
     .apply_account {
         line-height: 20px;
         color: #848e9c;
+    }
+    .forget_password {
+        margin-bottom: 10px;
+    }
+    .forget_password_text {
+        font-weight: normal;
+        line-height: 20px;
     }
     ::v-deep .v-input--selection-controls__input {
         width: 14px;
@@ -227,19 +197,140 @@
         line-height: 20px;
         color: #848e9c;
     }
-    
+    .login_close_btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 45px;
+        height: 45px;
+    }
 }
+
+// pc 登入
+.login_pc_bgColor {
+    &.theme--dark.v-card {
+        background-color: #202630 !important;
+    }
+}
+.login_pc_carousel {
+    ::v-deep .v-image {
+        width: 100% !important;
+    } 
+}
+
+.login_pc {
+    .login_pc_imgBg {
+        width: 100%;
+        height: 218px;
+        background-color: #fff;
+        position: relative;
+    }
+    .login_pc_imgBanner {
+        display: block;
+        width: 100%;
+        height: 43px;
+        // background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%, #f5f5f5 100%);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .login_pc_logo {
+        position: absolute;
+        top: 87px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .login_title {
+        color: #202630;
+        margin-top: 14px;
+        margin-bottom: 14px;
+    }
+    .btn-login-submit {
+        width: 100% !important;
+    }
+    .forget_password_text {
+        display: block;
+    }
+}
+
+::v-deep .theme--light {
+    .login_pc_logo {
+        .v-image {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+::v-deep .theme--dark {
+    .login_pc_imgBg {
+        background-color: #202630;
+    }
+    .login_pc_logo {
+        .v-image {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+// 手機登入
+.login_mobile {
+    position: relative;
+    .login_title {
+        color: #29313d;
+        margin-top: 54px;
+        margin-bottom: 14px;
+    }
+    .btn-login-submit {
+        transition: ease-in-out 1s; /* 缩短过渡时间 */
+    }
+}
+
+// pc 登入按鈕
+::v-deep .theme--light {
+    .login_pc {
+        .btn_9:hover {
+            color: var(--btn_nomal_text) !important;
+            background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        }
+        .btn_9:active  {
+            background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        }
+    }
+}
+
+::v-deep .theme--dark {
+    .login_pc {
+        .btn_9:hover {
+            color: #fff !important;
+            background-image: linear-gradient(to right, #202630, #202630), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        }
+        .btn_9:active  {
+            background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        }
+    }
+}
+
+
+// 手機登入按鈕
 ::v-deep .theme--light, ::v-deep .theme--dark {
     .login_mobile {
         .btn_9:hover {
             background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
             color: #202630 !important;
         }
+        .v-image {
+            width: 100%;
+        }
     }
 }
 
 ::v-deep .theme--dark {
-    // #202121 !important
     &.v-icon {
         color: #848e9c;
     }
@@ -251,7 +342,7 @@
         background-color: #202630 !important;
         border-color: #202630 !important;
     }
-    .login_mobile {
+    .login_mobile, .login_pc {
         .login_title {
             color: #eaecef;
         }
@@ -260,11 +351,6 @@
         }
     }
 }
-
-// .theme--light .btn_9_disable, .theme--dark .btn_9_disable{
-//     color: #202630 !important;
-//     background: linear-gradient(to left, #fff092, #fee38b 0%) !important;
-// }
 
 ::v-deep .v-card>:last-child:not(.v-btn):not(.v-chip):not(.v-avatar).btnweight {
     font-weight: 600;

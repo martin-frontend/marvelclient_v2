@@ -31,7 +31,7 @@ export default class DialogLogin extends AbstractView {
     userInfo = this.selfProxy.userInfo;
     password_error_info = "";
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
-    clicked =  false;
+    clicked = false;
     constructor() {
         super(DialogLoginMediator);
     }
@@ -165,9 +165,9 @@ export default class DialogLogin extends AbstractView {
     private onSubmitLogin() {
         // 登入介面按钮效果
         this.clicked = !this.clicked;
-        if (this.pageData.form.username == '' || this.pageData.form.password == '') {
+        if (this.pageData.form.username == "" || this.pageData.form.password == "") {
             PanelUtil.message_info(LangUtil("请输入账户与密码"));
-            return false
+            return false;
         }
         if (ModulesHelper.isNeed_loginVerifiy())
             PanelUtil.openpanel_speed_verification(() => {
@@ -318,5 +318,12 @@ export default class DialogLogin extends AbstractView {
             return;
         }
         this.password_error_info = "";
+    }
+    getTheme() {
+        if (!this.$vuetify.theme.dark) {
+            return `${this.commonIcon.login_banner_pc_light}`;
+        } else {
+            return `${this.commonIcon.login_banner_pc_dark}`;
+        }
     }
 }

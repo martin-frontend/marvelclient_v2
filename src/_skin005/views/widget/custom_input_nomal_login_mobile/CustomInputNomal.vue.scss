@@ -27,7 +27,7 @@ input[type="number"] {
 }
 
 .skin005 {
-    .login_mobile {
+    .login_mobile, .login_pc {
         .input-text {
             border-radius: 0;
             margin-bottom: 10px;
@@ -53,7 +53,7 @@ input[type="number"] {
 }
 .skin005 {
     .theme--dark {
-        .login_mobile {
+        .login_mobile, .login_pc {
             .input-text {
                 background-color: #29313d;
                 input {

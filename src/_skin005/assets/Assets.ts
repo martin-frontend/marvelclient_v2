@@ -13,6 +13,8 @@ const commonIcon = {
     arrow_right: "arrow_right",
     loading_img: "loding_icon_5.png?" + getVersion(),
     login_logo_m: require(`@/_skin005/assets/login_logo_m.png`),
+    login_banner_pc_light: require(`@/_skin005/assets/login_banner_pc_light.png`),
+    login_banner_pc_dark: require(`@/_skin005/assets/login_banner_pc_dark.png`),
     seventh_day_img: require(`@/_skin005/assets/daily_sign/gold_7.png`),
 };
 

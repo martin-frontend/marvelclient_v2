@@ -5,7 +5,7 @@ import PageCoinTaskProxy from "../proxy/PageCoinTaskProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import Timezone from "@/core/Timezone";
-import { moneyFormat, dateFormat } from "@/core/global/Functions";
+import { moneyFormat, dateFormat, amountFormat } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
@@ -20,6 +20,7 @@ export default class PageCoinTask extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
+    amountFormat = amountFormat;
     tabIndex = "all"; //用于  切换标签的
     tabOptions = <any>[
         { status: "all", title: LangUtil("全部任务") },

@@ -618,7 +618,7 @@ export function amountFormat(val: any, decimal: boolean = false, decimalLang: nu
         newVal = val.replace("$", "");
     }
     const intValue = parseFloat(newVal);
-    if (!intValue) {
+    if (!intValue && intValue !== 0) {
         return val.toLocaleString(core.lang.substring(0, 2));
     }
 

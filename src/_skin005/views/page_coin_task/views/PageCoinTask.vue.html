@@ -84,8 +84,8 @@
                                                     {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}}
                                                     <span class="font-weight-bold"
                                                         ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
-                                                            >{{item.transfer_amount}} / </span
-                                                        >{{item.task_coin_amount}}</span
+                                                            >{{amountFormat(item.transfer_amount, true)}} / </span
+                                                        >{{amountFormat(item.task_coin_amount, true)}}</span
                                                     >
                                                 </span>
                                             </div>
@@ -117,7 +117,7 @@
                                                     <span class="nomal_text_2--text ml-2">
                                                         {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +<span
                                                             class="font-weight-bold"
-                                                            >{{item.transfer_amount}}</span
+                                                            >{{amountFormat(item.transfer_amount, 2)}}</span
                                                         >
                                                     </span>
                                                     <span
@@ -133,7 +133,7 @@
                                                     >
                                                     <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
                                                     <span class="nomal_text_2--text">
-                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount, true)}}
                                                     </span>
                                                 </template>
 
@@ -236,8 +236,8 @@
                                                 >{{item.task_coin_name_unique}}
                                                 <span class="font-weight-bold"
                                                     ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
-                                                        >{{item.transfer_amount}} / </span
-                                                    >{{item.task_coin_amount}}</span
+                                                        >{{amountFormat(item.transfer_amount, true)}} / </span
+                                                    >{{amountFormat(item.task_coin_amount, true)}}</span
                                                 ></span
                                             >
                                             <!-- <template>
@@ -251,7 +251,7 @@
                                             </template> -->
                                         </div>
                                         <div v-if="item.status == 3 || item.status == 2" class="d-flex">
-                                            {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{item.transfer_amount}}
+                                            {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount, true)}}
                                             <span
                                                 v-if="item.status == 2"
                                                 class="ml-auto textYellow--text cursor-pointer text-decoration-underline"

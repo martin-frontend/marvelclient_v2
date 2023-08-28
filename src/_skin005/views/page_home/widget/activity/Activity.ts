@@ -6,6 +6,7 @@ import NoticeProxy from "@/proxy/NoticeProxy";
 import getProxy from "@/core/global/getProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class Activity extends AbstractView {
@@ -24,6 +25,40 @@ export default class Activity extends AbstractView {
     /**判断登入 */
     get isUserLogin() {
         return this.selfProxy.userInfo.user_id ? true : false;
+    }
+
+    public get viewWidth(): number {
+        if (SkinVariable.adjustBannerHeightFor08Skin) return this.viewWidthFor08Skin;
+
+        if (this.$mobile) {
+            if (this.$vuetify.breakpoint.width < 360) {
+                return 80;
+            }
+            if (this.$vuetify.breakpoint.width < 500) {
+                return 90;
+            }
+            if (this.$vuetify.breakpoint.width < 800) {
+                return 130;
+            }
+            return 180;
+        }
+        if (this.$vuetify.breakpoint.width > 1700) {
+            return 350;
+        } else if (this.$vuetify.breakpoint.width > 1280) {
+            return 265;
+        }
+        return 350;
+        // return 240;
+    }
+
+    get viewWidthFor08Skin(): number {
+        if (this.$mobile) {
+            return this.$vuetify.breakpoint.width / (1440 / 450);
+        } else if (this.$vuetify.breakpoint.width > 1700) {
+            return 450;
+        } else {
+            return 340;
+        }
     }
 
     public get box_height(): number {
@@ -49,6 +84,10 @@ export default class Activity extends AbstractView {
                 return this.noticeProxy.data.listType9;
             case 128:
                 return this.noticeProxy.data.listType10;
+            case 216:
+                return this.noticeProxy.data.listType16;
+            case 217:
+                return this.noticeProxy.data.listType17;
             default:
                 break;
         }

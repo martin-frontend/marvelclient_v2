@@ -1,7 +1,7 @@
 <v-sheet color="transparent" :class="$mobile?'pa-0':'mt-2'">
     <v-sheet class="rounded-lg" :class="$mobile ? 'box-mobile' : ''"  color="bgBanner" >
-        <v-sheet v-if="$xsOnly && isHaveBanner" color="transparent" class="" :class="sheetClass" width="100%">
-            <Advertise class="" :showDataType="isHaveBanner" :isFootball="true" />
+        <v-sheet v-if="$vuetify.breakpoint.xsOnly && isHaveBanner" color="transparent" class="" :class="sheetClass" width="100%">
+            <Activity class="" :showDataType="isHaveBanner"  />
         </v-sheet>
         <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true"></iframe>
         <div class="d-flex justify-end my-2 mr-3" v-if="!$mobile">

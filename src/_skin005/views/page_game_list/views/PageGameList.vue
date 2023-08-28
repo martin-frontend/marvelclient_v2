@@ -8,7 +8,6 @@ import GameListSelect from "../widget/game_list_select/GameListSelect.vue";
 import GameItem from "../widget/game_item/GameItem.vue";
 
 import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
-import Advertise from "@/_skin005/views/page_home/widget/advertise/Advertise.vue";
 import ImgLoader from "@/_skin005/views/widget/img_loader/ImgLoader.vue";
 import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
@@ -19,7 +18,6 @@ import CustomSelect from "@/_skin005/views/widget/custom_select/CustomSelect.vue
         GameListSelect,
         GameItem,
         Activity,
-        Advertise,
         ImgLoader,
         Marquee1,
         Category,

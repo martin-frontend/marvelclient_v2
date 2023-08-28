@@ -11,6 +11,7 @@ import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
 import GameType from "../widget/game_type/GameType.vue";
 import RecentBetting from "../widget/recent_betting/RecentBetting.vue"
+import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
 @Component({
     components: {
         SoccerMatche,
@@ -20,6 +21,7 @@ import RecentBetting from "../widget/recent_betting/RecentBetting.vue"
         Category,
         GameType,
         RecentBetting,
+        Activity,
     },
 })
 export default class extends PageHome {

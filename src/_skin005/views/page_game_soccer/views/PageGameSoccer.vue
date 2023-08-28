@@ -4,10 +4,10 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import PageGameSoccer from "./PageGameSoccer";
-import Advertise from "@/_skin005/views/page_home/widget/advertise/Advertise.vue";
+import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
 @Component({
     components: {
-        Advertise,
+        Activity,
     },
 })
 export default class extends PageGameSoccer {

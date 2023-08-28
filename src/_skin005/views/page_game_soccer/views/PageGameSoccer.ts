@@ -41,7 +41,7 @@ export default class PageGameSoccer extends AbstractView {
 
     get gameFrameClass() {
         if (this.$mobile) {
-            if (this.isHaveBanner && this.$xsOnly) {
+            if (this.isHaveBanner && this.$vuetify.breakpoint.xsOnly) {
                 if (this.isCricket) {
                     return "frame-mobile_cricket_banner";
                 } else {

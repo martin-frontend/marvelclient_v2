@@ -1,15 +1,14 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import getProxy from "@/core/global/getProxy";
-import NoticeProxy from "@/proxy/NoticeProxy";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import gsap, { Linear } from "gsap";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class Advertise extends AbstractView {
     @Prop({ default: 0 }) showDataType!: number;
     @Prop({ default: false }) isFootball!: boolean;
 
-    noticeProxy: NoticeProxy = getProxy(NoticeProxy);
+    noticeProxy = PanelUtil.getProxy_noticeProxy;
     selectIndex = 0;
     progressObj = {
         value: 0,
@@ -79,7 +78,8 @@ export default class Advertise extends AbstractView {
     }
 
     onBigItemClick(item: any) {
-        this.noticeProxy.jump(item);
+        // this.noticeProxy.jump(item);
+        PanelUtil.jumpTo(item);
     }
 
     onChange() {

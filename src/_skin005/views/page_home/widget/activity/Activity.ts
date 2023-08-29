@@ -2,8 +2,6 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import { moneyFormat } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
-import NoticeProxy from "@/proxy/NoticeProxy";
-import getProxy from "@/core/global/getProxy";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
@@ -15,7 +13,7 @@ export default class Activity extends AbstractView {
     @Prop({ default: true }) isChangePhone!: boolean;
     LangUtil = LangUtil;
     //proxy
-    noticeProxy: NoticeProxy = getProxy(NoticeProxy);
+    noticeProxy = PanelUtil.getProxy_noticeProxy;
     selfProxy = PanelUtil.getProxy_selfproxy;
 
     moneyFormat = moneyFormat;
@@ -114,7 +112,7 @@ export default class Activity extends AbstractView {
         return list;
     }
     onBigItemClick(item: any) {
-        this.noticeProxy.jump(item);
+        PanelUtil.jumpTo(item);
     }
 
     goPageBouns() {

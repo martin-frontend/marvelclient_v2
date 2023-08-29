@@ -43,13 +43,14 @@ export default class DialogPlatUsersVerificationProxy extends puremvc.Proxy {
             address: "",
             province: "",
             post_code: "",
+            verify_code_mail: "",
         },
         countryList: <any>[{ name: "test", id: 7 }],
         cityList: <any>[],
         areaCodeList: <any>[],
     };
 
-    resetForm(resetCountry: boolean = true) {
+    resetForm() {
         Object.assign(this.pageData.form, {
             city: "",
             verification_name: "",
@@ -59,12 +60,8 @@ export default class DialogPlatUsersVerificationProxy extends puremvc.Proxy {
             address: "",
             province: "",
             post_code: "",
+            verify_code_mail: "",
         });
-        if (resetCountry) {
-            Object.assign(this.pageData.form, {
-                country: "",
-            });
-        }
     }
 
     setData(data: any) {
@@ -81,6 +78,7 @@ export default class DialogPlatUsersVerificationProxy extends puremvc.Proxy {
                 address: data.address ?? "",
                 province: data.province ?? "",
                 post_code: data.post_code ?? "",
+                verify_code_mail: data.verify_code_mail ?? "",
             });
             // if (data.country) {
             //     this.api_public_city(data.country);

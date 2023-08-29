@@ -117,7 +117,25 @@
                     :disabled="isFormDisabled"
                     v-model="form.email"
                 >
+                    <btn-yellow
+                        v-if="!isFormDisabled"
+                        class="ml-auto text-14 mr-n2"
+                        min_width="80"
+                        height="36"
+                        :btn_type="4"
+                        :disabled="!checkMail(form.email) || isVerifyDisable"
+                        @click.native="sendVerifyMail"
+                        >{{verifyString}}</btn-yellow
+                    >
                 </CustomInput>
+                <CustomInput
+                    v-if="!isFormDisabled"
+                    class="mb-6"
+                    :placeholder="LangUtil('请输入验证码（6位）')"
+                    :disabled="isFormDisabled"
+                    maxlength="6"
+                    v-model="form.verify_code_mail"
+                />
                 <!-- <div class="input-text py-2 pa-3 mb-5" style="height: 150px !important">
                     <textarea maxlength="300" :autofocus="false" :placeholder="LangUtil('请输入地址')" v-model="form.address" />
                 </div> -->

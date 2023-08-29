@@ -7,7 +7,15 @@ import DialogPlatUsersVerificationProxy from "../proxy/DialogPlatUsersVerificati
 import LangUtil from "@/core/global/LangUtil";
 import PageBlur from "@/_skin005/core/PageBlur";
 import SkinVariable from "@/_skin005/core/SkinVariable";
-import { checkMail, checkOnlyNub, checkPhone, checkUserName, checkUserName1, checkUserPassword, checkVerifyVode } from "@/core/global/Functions";
+import {
+    checkMail,
+    checkOnlyNub,
+    checkPhone,
+    checkUserName,
+    checkUserName1,
+    checkUserPassword,
+    checkVerifyVode,
+} from "@/core/global/Functions";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
@@ -22,6 +30,7 @@ export default class DialogPlatUsersVerification extends AbstractView {
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     checkbox = false;
     checkPhone = checkPhone;
+    checkMail = checkMail;
 
     constructor() {
         super(DialogPlatUsersVerificationMediator);
@@ -48,15 +57,33 @@ export default class DialogPlatUsersVerification extends AbstractView {
         this.myProxy.api_user_var_plat_users_verification_save();
     }
 
-    searchCity(country_id: any) {
-        if (!country_id) return;
-        this.myProxy.api_public_city(country_id);
-        this.myProxy.resetForm(false);
-        this.setAreaCode(country_id);
-    }
+    // searchCity(country_id: any) {
+    //     if (!country_id) return;
+    //     this.myProxy.api_public_city(country_id);
+    //     Object.assign(this.form, {
+    //         city: "",
+    //         verification_name: "",
+    //         area_code: "",
+    //         mobile: "",
+    //         email: "",
+    //         address: "",
+    //         province: "",
+    //         post_code: "",
+    //         verify_code_mail: "",
+    //     });
+    //     this.setAreaCode(country_id);
+    // }
 
     onCountryChange(country_id: any) {
-        this.myProxy.resetForm(false);
+        Object.assign(this.form, {
+            city: "",
+            // verification_name: "",
+            area_code: "",
+            mobile: "",
+            address: "",
+            province: "",
+            post_code: "",
+        });
         this.setAreaCode(country_id);
     }
 
@@ -85,15 +112,16 @@ export default class DialogPlatUsersVerification extends AbstractView {
         if (this.SkinVariable.isShowRestrictions && !this.checkbox) {
             return false;
         }
-        const { country, city, verification_name, area_code, mobile, email, verify_code } = this.form;
-        return country && city && checkOnlyNub(area_code) && checkUserName1(verification_name) && checkMail(email) && checkPhone(mobile);
-    }
-    get isdeisable(): boolean {
-        if (this.isFormDisabled) return true;
-        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
-
-        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
-        return this.getverityProxy.pageData.downcount > 0;
+        const { country, city, verification_name, area_code, mobile, email, verify_code_mail } = this.form;
+        return (
+            country &&
+            city &&
+            checkOnlyNub(area_code) &&
+            checkUserName1(verification_name) &&
+            checkMail(email) &&
+            checkVerifyVode(verify_code_mail) &&
+            checkPhone(mobile)
+        );
     }
 
     get isFormDisabled() {
@@ -115,5 +143,30 @@ export default class DialogPlatUsersVerification extends AbstractView {
             default:
                 return {};
         }
+    }
+
+    public get verifyString(): string {
+        if (this.getverityProxy.pageData.downcount > 0) {
+            return this.getverityProxy.pageData.downcount + "";
+        } else {
+            return LangUtil("获取验证码");
+        }
+    }
+
+    //发送 邮件 验证码
+    sendVerifyMail() {
+        const obj = {
+            category: 0,
+            type: 8,
+            email: this.form.email,
+        };
+        PanelUtil.openpanel_get_verity(obj);
+    }
+
+    public get isVerifyDisable(): boolean {
+        if (!this.getverityProxy || !this.getverityProxy.pageData || !this.getverityProxy.pageData.downcount) return false;
+
+        console.log(" 获取验证码 中的数据", this.getverityProxy.pageData.downcount);
+        return this.getverityProxy.pageData.downcount > 0;
     }
 }

@@ -3,13 +3,7 @@
         <v-sheet class="d-flex align-center" :height="$mobile ? 70 : 74" @click="onMiniChange" color="transparent">
             <div class="d-flex align-center box">
                 <svg-icon icon="menu" class="text-22"></svg-icon>
-                <v-img
-                    v-if="!mini && !SkinVariable.isShowfullLogo"
-                    class="ml-2"
-                    :src="commonIcon.logo"
-                    max-width="112"
-       
-                ></v-img>
+                <v-img v-if="!mini && !SkinVariable.isShowfullLogo" class="ml-2" :src="commonIcon.logo" max-width="112"></v-img>
                 <v-img
                     v-if="!mini && SkinVariable.isShowfullLogo"
                     class="mx-n2"

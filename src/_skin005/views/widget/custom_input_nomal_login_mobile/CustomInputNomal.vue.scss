@@ -36,8 +36,29 @@ input[type="number"] {
                 height: 100%;
                 padding: 10px;
                 &::placeholder {
+                    color: #b7bdc6 !important;
+                }
+
+                /* Safari 4.0 - 7.0 */
+                &::-webkit-input-placeholder {
                     color: #b7bdc6;
                 }
+
+                /* Firefox 19+ */
+                &::-moz-placeholder {
+                    color: #b7bdc6;
+                }
+
+                /* Internet Explorer 10+ */
+                &:-ms-input-placeholder {
+                    color: #b7bdc6;
+                }
+
+                /* Internet Explorer 9- */
+                &:-moz-placeholder {
+                    color: #b7bdc6;
+                }
+
                 &:focus {
                     border:1px solid #f0b90b;
                     background-color: #fffdf8;
@@ -58,13 +79,90 @@ input[type="number"] {
                 background-color: #29313d;
                 input {
                     &::placeholder {
+                        color: #4f5867 !important;
+                    }
+
+                    /* Safari 4.0 - 7.0 */
+                    &::-webkit-input-placeholder {
                         color: #4f5867;
                     }
+
+                    /* Firefox 19+ */
+                    &::-moz-placeholder {
+                        color: #4f5867;
+                    }
+
+                    /* Internet Explorer 10+ */
+                    &:-ms-input-placeholder {
+                        color: #4f5867;
+                    }
+
+                    /* Internet Explorer 9- */
+                    &:-moz-placeholder {
+                        color: #4f5867;
+                    }
+
                     &:focus {
                         border: 1px solid #f0b90b;
                         background-color: #29313d;
                     }
                 }
+            }
+        }
+    }
+}
+.skin005 {
+    .theme--dark {
+        //针对google 自动填充的问题
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            // -webkit-text-fill-color: #fff !important;
+            // -webkit-transition-delay: 99999s;
+            // transition: background-color 99999ss ease-in-out 0s;
+            // -webkit-box-shadow: 0 0 0px 1000px white inset;
+            // -webkit-text-fill-color: #333 !important;
+            box-shadow: inset 0 0 0 500px #29313d !important;
+            -webkit-text-fill-color: #fff !important;
+            &::placeholder {
+                color: #4f5867 !important;
+                -webkit-text-fill-color: #4f5867 !important;
+            }
+        }
+        input:-internal-autofill-selected {
+            box-shadow: inset 0 0 0 500px #29313d !important;
+            -webkit-text-fill-color: #fff !important;
+            &::placeholder {
+                color: #4f5867 !important;
+                -webkit-text-fill-color: #4f5867 !important;
+            }
+        }
+    }
+    .theme--light {
+        //针对google 自动填充的问题
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            // -webkit-text-fill-color: #0f1213 !important;
+            // -webkit-transition-delay: 99999s;
+            // transition: background-color 99999s ease-in-out 0s;
+            // -webkit-box-shadow: 0 0 0px 1000px white inset;
+            // -webkit-text-fill-color: #333 !important;
+            box-shadow: inset 0 0 0 500px #f4f4f4 !important;
+            -webkit-text-fill-color: #000 !important;
+            &::placeholder {
+                color: #b7bdc6 !important;
+                -webkit-text-fill-color: #b7bdc6 !important;
+            }
+        }
+        input:-internal-autofill-selected {
+            box-shadow: inset 0 0 0 500px #f4f4f4 !important;
+            -webkit-text-fill-color: #000 !important;
+            &::placeholder {
+                color: #b7bdc6 !important;
+                -webkit-text-fill-color: #b7bdc6 !important;
             }
         }
     }

@@ -80,7 +80,7 @@
                     </div>
                     <div>{{item.activity_name}}</div>
                     <div>
-                        {{item.task_coin_name_unique}} {{LangUtil("余额")}}： <span class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</span>
+                        {{convertCoinName(item.task_coin_name_unique)}} {{LangUtil("余额")}}： <span class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</span>
                     </div>
                     <div class="d-flex align-center">
                         <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="5">
@@ -177,7 +177,7 @@
                         >
                     </div>
                     <div>{{item.activity_name}}</div>
-                    <div>{{item.task_coin_name_unique}} {{LangUtil("余额")}}：</div>
+                    <div>{{convertCoinName(item.task_coin_name_unique)}} {{LangUtil("余额")}}：</div>
                     <div>{{amountFormat(item.task_coin_amount, true)}}</div>
                     <div class="d-flex align-center mt-1">
                         <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="12">

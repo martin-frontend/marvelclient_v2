@@ -10,6 +10,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import * as moment from "moment-timezone";
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class PageCoinTask extends AbstractView {
     LangUtil = LangUtil;
@@ -20,6 +21,7 @@ export default class PageCoinTask extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     selfProxy = PanelUtil.getProxy_selfproxy;
     core = core;
+    GlobalVar = GlobalVar;
     amountFormat = amountFormat;
     tabIndex = "all"; //用于  切换标签的
     tabOptions = <any>[
@@ -75,7 +77,8 @@ export default class PageCoinTask extends AbstractView {
     }
 
     convertCoinName(coinStr: any) {
-        return coinStr.split("-")[0];
+        return coinStr.substring(coinStr.indexOf("-") + 1);
+        // return coinStr.split("-")[0];
     }
 
     calculateProgress(data: any) {
@@ -94,14 +97,14 @@ export default class PageCoinTask extends AbstractView {
     }
 
     downcount(end_time: any) {
-        console.log("收到时间为", end_time);
+        // console.log("收到时间为", end_time);
         const endTime = moment.tz(end_time, "Asia/Shanghai");
         // 将北京时间转换为本地时间
         const localTime = endTime.local();
 
         // 获取本地时间对象的时间戳（以毫秒为单位）
         const localTimestamp = localTime.valueOf();
-        console.log("转为本地之后的时间戳为", localTimestamp);
+        // console.log("转为本地之后的时间戳为", localTimestamp);
         const nowTime = Date.now();
         const remainingTime = localTimestamp - nowTime;
         const remainingValue = this.convertRemainingTime(remainingTime);
@@ -139,7 +142,8 @@ export default class PageCoinTask extends AbstractView {
         return [days, hours, minutes, seconds];
     }
     mappingImg(task_coin_name_unique: any) {
-        let type = task_coin_name_unique.split("-")[1];
+        // let type = task_coin_name_unique.split("-")[1];
+        let type = task_coin_name_unique.substring(task_coin_name_unique.indexOf("-") + 1);
         if (!type) {
             type = task_coin_name_unique.split("-")[0];
         }
@@ -147,13 +151,36 @@ export default class PageCoinTask extends AbstractView {
         const map = <any>{
             Slots: require("@/_skin005/assets/coin_task/slots.png"),
             Live: require("@/_skin005/assets/coin_task/live.png"),
-            Casino: require("@/_skin005/assets/coin_task/live.png"),
+            Casino: require("@/_skin005/assets/coin_task/casino.png"),
             Cricket: require("@/_skin005/assets/coin_task/cricket.png"),
             FootBall: require("@/_skin005/assets/coin_task/footBall.png"),
             Sport: require("@/_skin005/assets/coin_task/sport.png"),
             All: require("@/_skin005/assets/coin_task/all.png"),
             Bonus: require("@/_skin005/assets/coin_task/bonus.png"),
         };
+
+        map["Sports"] = require("@/_skin005/assets/coin_task/sport.png");
+        map["All-Types"] = require("@/_skin005/assets/coin_task/all.png");
+        map["Live-Casino"] = require("@/_skin005/assets/coin_task/live.png");
+
+        if (GlobalVar.skin == "skin005") {
+            map["Sports"] = require("@/_skin005/assets/coin_task/96in/sport.png");
+            map["All-Types"] = require("@/_skin005/assets/coin_task/96in/all.png");
+            map["Live-Casino"] = require("@/_skin005/assets/coin_task/96in/live.png");
+            map["Casino"] = require("@/_skin005/assets/coin_task/96in/casino.png");
+            map["Cricket"] = require("@/_skin005/assets/coin_task/96in/cricket.png");
+            map["Football"] = require("@/_skin005/assets/coin_task/96in/footBall.png");
+            map["Slots"] = require("@/_skin005/assets/coin_task/96in/slots.png");
+            map["Bonus"] = require("@/_skin005/assets/coin_task/96in/bonus.png");
+        }
+
+        const keys = Object.keys(map);
+        if (!keys.includes(type)) {
+            const new_type = type.split("-")[1];
+            if (new_type) {
+                type = new_type;
+            }
+        }
         return map[type];
     }
 

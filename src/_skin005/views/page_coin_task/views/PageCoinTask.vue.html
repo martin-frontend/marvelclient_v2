@@ -53,7 +53,9 @@
                                             max-height="100%"
                                             max-width="100%"
                                         ></v-img>
-                                        <span class="coin-text white--text">{{convertCoinName(item.task_coin_name_unique)}}</span>
+                                        <span v-if="GlobalVar.skin != 'skin005'" class="coin-text white--text"
+                                            >{{convertCoinName(item.task_coin_name_unique)}}</span
+                                        >
                                     </v-sheet>
                                     <v-sheet
                                         color="transparent"
@@ -70,7 +72,7 @@
                                                             <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
                                                         </v-sheet>
                                                     </template>
-                                                    <span v-if="isCanPlayGame(item.task_coin_name_unique)">
+                                                    <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
                                                         {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
                                                         ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
                                                         }}
@@ -81,9 +83,9 @@
                                                     </span>
                                                 </v-tooltip>
                                                 <span class="ml-1">
-                                                    {{LangUtil("当前奖励币数量")}} {{item.task_coin_name_unique}}
+                                                    {{LangUtil("当前奖励币数量")}} {{convertCoinName(item.task_coin_name_unique)}}
                                                     <span class="font-weight-bold"
-                                                        ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
+                                                        ><span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))"
                                                             >{{amountFormat(item.transfer_amount, true)}} / </span
                                                         >{{amountFormat(item.task_coin_amount, true)}}</span
                                                     >
@@ -133,7 +135,8 @@
                                                     >
                                                     <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
                                                     <span class="nomal_text_2--text">
-                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount, true)}}
+                                                        {{LangUtil("获得")}} {{item.transfer_coin_name_unique}}
+                                                        +{{amountFormat(item.transfer_amount, true)}}
                                                     </span>
                                                 </template>
 
@@ -174,7 +177,9 @@
                                             max-height="100%"
                                             max-width="100%"
                                         ></v-img>
-                                        <span class="coin-text white--text">{{convertCoinName(item.task_coin_name_unique)}}</span>
+                                        <span v-if="GlobalVar.skin != 'skin005'" class="coin-text white--text"
+                                            >{{convertCoinName(item.task_coin_name_unique)}}</span
+                                        >
                                     </v-sheet>
                                     <v-sheet
                                         color="transparent"
@@ -220,7 +225,7 @@
                                                         <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
                                                     </v-sheet>
                                                 </template>
-                                                <span v-if="isCanPlayGame(item.task_coin_name_unique)">
+                                                <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
                                                     {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
                                                     ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
                                                     }}
@@ -233,9 +238,9 @@
                                         </div>
                                         <div class="d-flex justify-space-between">
                                             <span
-                                                >{{item.task_coin_name_unique}}
+                                                >{{convertCoinName(item.task_coin_name_unique)}}
                                                 <span class="font-weight-bold"
-                                                    ><span v-if="isCanPlayGame(item.task_coin_name_unique)"
+                                                    ><span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))"
                                                         >{{amountFormat(item.transfer_amount, true)}} / </span
                                                     >{{amountFormat(item.task_coin_amount, true)}}</span
                                                 ></span
@@ -251,7 +256,8 @@
                                             </template> -->
                                         </div>
                                         <div v-if="item.status == 3 || item.status == 2" class="d-flex">
-                                            {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount, true)}}
+                                            {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount,
+                                            true)}}
                                             <span
                                                 v-if="item.status == 2"
                                                 class="ml-auto textYellow--text cursor-pointer text-decoration-underline"

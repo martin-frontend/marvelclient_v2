@@ -8,7 +8,7 @@ import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
-import { judgeClient } from "@/core/global/Functions";
+import { amountFormat, judgeClient } from "@/core/global/Functions";
 import OpenLink from "@/core/global/OpenLink";
 
 import { MapLang } from "@/core/map/MapLang";
@@ -345,7 +345,7 @@ export default class NetObserver extends AbstractMediator {
                         //msgstr = LangUtil("当前余额为{0}:{2}",coin_name_unique,this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money);
                         isShowConfig = true;
                     } else {
-                        if (coin_name_unique) msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, sum_money);
+                        if (coin_name_unique) msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, amountFormat(sum_money, true));
                     }
 
                     this.openGameUrl(body, msgstr, isShowConfig);

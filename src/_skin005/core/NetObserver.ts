@@ -466,7 +466,7 @@ export default class NetObserver extends AbstractMediator {
             }
 
             if (isNeetConfig) {
-                message_obj.onFun = () => {
+                message_obj.okFun = () => {
                     if (GlobalVar.skin == "skin020") {
                         PanelUtil.showAppLoading(true);
                     }
@@ -476,7 +476,7 @@ export default class NetObserver extends AbstractMediator {
                 PanelUtil.message_confirm(message_obj);
             } else {
                 if (isShowConfig) {
-                    message_obj.onFun = () => {
+                    message_obj.okFun = () => {
                         PanelUtil.openpage_game_play(body.url);
                     };
                     PanelUtil.message_confirm(message_obj);

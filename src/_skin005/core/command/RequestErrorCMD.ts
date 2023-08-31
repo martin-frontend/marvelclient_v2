@@ -63,7 +63,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 PanelUtil.message_alert(body.result.msg);
             } else if (ERROR_CODE_PHONE.includes(result.status)) {
                 // TODO 绑定手机
-                PanelUtil.message_alert(body.result.msg);
+                // PanelUtil.message_alert(body.result.msg);
+                PanelUtil.message_confirm({ message: body.result.msg, okFun: PanelUtil.openpanel_safety_center() });
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
                 PanelUtil.message_confirm({ message: body.result.msg, okFun: PanelUtil.openpanel_real_name });
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {

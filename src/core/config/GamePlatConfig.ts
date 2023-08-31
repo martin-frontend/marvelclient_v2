@@ -63,6 +63,14 @@ export default class GamePlatConfig {
         }
         return false;
     }
+    /**是否为活动币 */
+    static isActivityCoin(coinname: string): boolean {
+        const coin = this.config.plat_coins[coinname];
+        if (coin) {
+            return coin.type == 4;
+        }
+        return false;
+    }
     /**主币 */
     static getMainCoin() {
         const coins = this.config.plat_coins;

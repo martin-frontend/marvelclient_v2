@@ -287,11 +287,7 @@ export default class PageMyInfo extends AbstractView {
         }
     }
     isActivityCoin(name: any) {
-        const coin = GamePlatConfig.config.plat_coins[name];
-        if (coin) {
-            return coin.type == 4;
-        }
-        return false;
+        return GamePlatConfig.isActivityCoin(name);
     }
     //过期或者取消的活动币
     get liveActivity() {

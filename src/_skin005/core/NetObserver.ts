@@ -275,13 +275,14 @@ export default class NetObserver extends AbstractMediator {
                                 homeProxy.pageData.event_id = 0;
                                 return;
                             } else {
-                                if (this.gameProxy.currGame.ori_vendor_extend) {
-                                    const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
-                                    //@ts-ignore   // iframe无法正常显示的游戏
-                                    if (ori_vendor_extend.iframe_bad || ori_vendor_extend.iframe_all_bad) {
-                                        break;
-                                    }
-                                }
+                                // if (this.gameProxy.currGame.ori_vendor_extend) {
+                                //     const ori_vendor_extend = JSON.parse(this.gameProxy.currGame.ori_vendor_extend);
+                                //     //@ts-ignore   // iframe无法正常显示的游戏
+                                //     if (ori_vendor_extend.iframe_bad || ori_vendor_extend.iframe_all_bad) {
+                                //         console.warn("---标题对象11111",element);
+                                //         break;
+                                //     }
+                                // }
                                 PanelUtil.openpage_headgame(url, element);
                                 return;
                             }
@@ -451,36 +452,34 @@ export default class NetObserver extends AbstractMediator {
                 document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
             }
 
+            const message_obj = <any>{
+                message: msg,
+                okTxt: LangUtil("进入游戏"),
+                isNeetClose: true,
+            };
+            const { coin_name_unique } = this.gameProxy;
+            if (!GamePlatConfig.isActivityCoin(coin_name_unique)) {
+                message_obj.cancelFun = () => {
+                    PanelUtil.openpage_recharge();
+                };
+                message_obj.cancelTxt = LangUtil("充值");
+            }
+
             if (isNeetConfig) {
-                PanelUtil.message_confirm({
-                    message: msg,
-                    okFun: () => {
-                        if (GlobalVar.skin == "skin020") {
-                            PanelUtil.showAppLoading(true);
-                        }
-                        OpenLink(body.url);
-                    },
-                    cancelFun: () => {
-                        PanelUtil.openpage_recharge();
-                    },
-                    cancelTxt: LangUtil("充值"),
-                    okTxt: LangUtil("进入游戏"),
-                    isNeetClose: true,
-                });
+                message_obj.onFun = () => {
+                    if (GlobalVar.skin == "skin020") {
+                        PanelUtil.showAppLoading(true);
+                    }
+                    OpenLink(body.url);
+                };
+
+                PanelUtil.message_confirm(message_obj);
             } else {
                 if (isShowConfig) {
-                    PanelUtil.message_confirm({
-                        message: msg,
-                        okFun: () => {
-                            PanelUtil.openpage_game_play(body.url);
-                        },
-                        cancelFun: () => {
-                            PanelUtil.openpage_recharge();
-                        },
-                        cancelTxt: LangUtil("充值"),
-                        okTxt: LangUtil("进入游戏"),
-                        isNeetClose: true,
-                    });
+                    message_obj.onFun = () => {
+                        PanelUtil.openpage_game_play(body.url);
+                    };
+                    PanelUtil.message_confirm(message_obj);
                 } else {
                     PanelUtil.openpage_game_play(body.url);
                 }

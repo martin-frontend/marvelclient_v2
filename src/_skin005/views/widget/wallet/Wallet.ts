@@ -175,10 +175,6 @@ export default class Wallet extends AbstractView {
     }
 
     isActivityCoin(name: any) {
-        const coin = GamePlatConfig.config.plat_coins[name];
-        if (coin) {
-            return coin.type == 4;
-        }
-        return false;
+        return GamePlatConfig.isActivityCoin(name);
     }
 }

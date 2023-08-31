@@ -104,7 +104,7 @@
                                         </v-progress-linear>
                                         <div class="d-flex justify-space-between">
                                             <div class="nomal_text_2--text">
-                                                {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale(item.start_time)}}
+                                                {{LangUtil("任务开始时间")}}： {{getDate(Timezone.convertTime_to_Locale(item.start_time))}}
                                             </div>
                                             <div class="ml-auto">
                                                 <span class="red--text mr-2" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
@@ -131,7 +131,7 @@
 
                                                 <template v-if="item.status == 3">
                                                     <span class="nomal_text_2--text mr-2"
-                                                        >{{Timezone.convertTime_to_Locale(item.end_time)}}</span
+                                                        >{{getDate(Timezone.convertTime_to_Locale(item.end_time))}}</span
                                                     >
                                                     <span class="success--text mr-1">{{statusOptions[item.status]}}</span>
                                                     <span class="nomal_text_2--text">
@@ -142,7 +142,7 @@
 
                                                 <template v-if="item.status > 3">
                                                     <span class="nomal_text_2--text mr-2"
-                                                        >{{ Timezone.convertTime_to_Locale(item.end_time) }}</span
+                                                        >{{ getDate(Timezone.convertTime_to_Locale(item.end_time) )}}</span
                                                     >
                                                     <span class="textYellow--text">{{ statusOptions[item.status] }}</span>
                                                 </template>
@@ -166,17 +166,11 @@
                                 <v-sheet class="pa-4 d-flex" color="transparent" min-height="150">
                                     <v-sheet
                                         class="rounded-circle d-flex align-end justify-center mr-4 custom-avatar"
-                                        height="70"
-                                        width="70"
-                                        min-width="70"
+                                        height="40"
+                                        width="40"
                                         color="bgColor"
                                     >
-                                        <v-img
-                                            contain
-                                            :src="mappingImg(item.task_coin_name_unique)"
-                                            max-height="100%"
-                                            max-width="100%"
-                                        ></v-img>
+                                        <v-img :src="mappingImg(item.task_coin_name_unique)" height="40" width="40"></v-img>
                                         <span v-if="GlobalVar.skin != 'skin005'" class="coin-text white--text"
                                             >{{convertCoinName(item.task_coin_name_unique)}}</span
                                         >
@@ -189,21 +183,24 @@
                                     >
                                         <div class="d-flex justify-space-between">
                                             <span class="font-weight-bold">{{item.activity_name}}</span>
+                                        </div>
+                                        <div class="d-flex">
                                             <span class="success--text" v-if="item.status == 2">{{statusOptions[item.status]}}</span>
                                             <span class="red--text" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
-                                            <span class="success--text mr-2" v-if="item.status == 3">{{statusOptions[item.status]}}</span>
-                                            <span class="textYellow--text ml-auto" v-if="item.status > 3"
-                                                >{{ statusOptions[item.status] }}</span
-                                            >
+                                            <span class="success--text" v-if="item.status == 3">{{statusOptions[item.status]}}</span>
+                                            <span class="textYellow--text" v-if="item.status > 3">{{ statusOptions[item.status] }}</span>
                                         </div>
-                                        <div class="nomal_text_2--text">
-                                            {{LangUtil("任务开始时间")}}： {{Timezone.convertTime_to_Locale(item.start_time)}}
+                                        <div class="nomal_text_2--text d-flex justify-space-between">
+                                            <span>{{LangUtil("任务开始时间")}}：</span>
+                                            <span>{{getDate(Timezone.convertTime_to_Locale(item.start_time))}}</span>
                                         </div>
-                                        <span class="nomal_text_2--text" v-if="item.status < 3"
-                                            >{{LangUtil("任务剩余时间")}}： {{downcount(item.end_time)}}</span
-                                        >
-                                        <div v-if="item.status > 2" class="nomal_text_2--text">
-                                            {{LangUtil("任务结束时间")}}： {{ Timezone.convertTime_to_Locale(item.end_time) }}
+                                        <div class="nomal_text_2--text d-flex justify-space-between" v-if="item.status < 3">
+                                            <span>{{LangUtil("任务剩余时间")}}：</span>
+                                            <span>{{downcount(item.end_time)}}</span>
+                                        </div>
+                                        <div v-if="item.status > 2" class="nomal_text_2--text d-flex justify-space-between">
+                                            <span>{{LangUtil("任务结束时间")}}：</span>
+                                            <span>{{ getDate(Timezone.convertTime_to_Locale(item.end_time)) }}</span>
                                         </div>
                                         <v-progress-linear
                                             class="custom-progress my-1"
@@ -217,55 +214,71 @@
                                                 >
                                             </template>
                                         </v-progress-linear>
-                                        <div class="d-flex">
-                                            <span class="mr-1">{{LangUtil("当前奖励币数量")}}</span>
-                                            <v-tooltip bottom>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
-                                                        <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
-                                                    </v-sheet>
-                                                </template>
-                                                <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
-                                                    {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
-                                                    ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
-                                                    }}
-                                                </span>
-                                                <span v-else="">
-                                                    {{
-                                                    LangUtil(`当任务进度条达到100%时，您的奖金将转入您的${item.task_coin_name_unique}钱包`)}}
-                                                </span>
-                                            </v-tooltip>
-                                        </div>
                                         <div class="d-flex justify-space-between">
-                                            <span
-                                                >{{convertCoinName(item.task_coin_name_unique)}}
-                                                <span class="font-weight-bold"
-                                                    ><span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))"
-                                                        >{{amountFormat(item.transfer_amount, true)}} / </span
-                                                    >{{amountFormat(item.task_coin_amount, true)}}</span
-                                                ></span
-                                            >
-                                            <!-- <template>
-                                                <span
-                                                    v-if="item.status == 2"
-                                                    class="ml-2 textYellow--text cursor-pointer text-decoration-underline"
-                                                    @click="onGiveUp(item.id)"
-                                                >
-                                                    {{LangUtil("放弃任务")}}
-                                                </span>
-                                            </template> -->
+                                            <div>{{convertCoinName(item.task_coin_name_unique)}}{{LangUtil("总数")}}</div>
+                                            <div class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</div>
                                         </div>
+                                        <div
+                                            v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))"
+                                            class="d-flex justify-space-between"
+                                        >
+                                            <div class="d-flex">
+                                                <span class="mr-1">{{LangUtil("当前奖励币数量")}}</span>
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                            <svg-icon icon="help" class="text-16 navText--text"></svg-icon>
+                                                        </v-sheet>
+                                                    </template>
+                                                    <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
+                                                        {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
+                                                        ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
+                                                        }}
+                                                    </span>
+                                                    <span v-else="">
+                                                        {{
+                                                        LangUtil(`当任务进度条达到100%时，您的奖金将转入您的${item.task_coin_name_unique}钱包`)}}
+                                                    </span>
+                                                </v-tooltip>
+                                            </div>
+                                            <div class="font-weight-bold">{{amountFormat(item.transfer_amount, true)}}</div>
+                                        </div>
+                                        <!-- <div class="d-flex justify-space-between">
+                                            <span>
+                                                {{convertCoinName(item.task_coin_name_unique)}}
+                                                <span class="font-weight-bold">
+                                                    <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
+                                                        {{amountFormat(item.transfer_amount, true)}} / 
+                                                    </span>
+                                                        {{amountFormat(item.task_coin_amount, true)}}
+                                                </span>
+                                            </span>
+                                        </div> -->
                                         <div v-if="item.status == 3 || item.status == 2" class="d-flex">
                                             {{LangUtil("获得")}} {{item.transfer_coin_name_unique}} +{{amountFormat(item.transfer_amount,
                                             true)}}
-                                            <span
+                                            <!-- <span
                                                 v-if="item.status == 2"
                                                 class="ml-auto textYellow--text cursor-pointer text-decoration-underline"
                                                 @click="onGiveUp(item.id)"
                                             >
                                                 {{LangUtil("放弃任务")}}
-                                            </span>
+                                            </span> -->
                                         </div>
+                                        <v-sheet
+                                            v-if="item.status == 3 || item.status == 2"
+                                            class="d-flex"
+                                            color="transparent"
+                                            width="100%"
+                                        >
+                                            <div
+                                                v-if="item.status == 2"
+                                                class="ml-auto textYellow--text cursor-pointer text-decoration-underline"
+                                                @click="onGiveUp(item.id)"
+                                            >
+                                                {{LangUtil("放弃任务")}}
+                                            </div>
+                                        </v-sheet>
                                     </v-sheet>
                                 </v-sheet>
                             </v-card>

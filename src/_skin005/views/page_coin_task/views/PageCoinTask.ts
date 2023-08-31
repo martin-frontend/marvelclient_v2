@@ -5,7 +5,7 @@ import PageCoinTaskProxy from "../proxy/PageCoinTaskProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import Timezone from "@/core/Timezone";
-import { moneyFormat, dateFormat, amountFormat } from "@/core/global/Functions";
+import { moneyFormat, dateFormat, amountFormat, changeDateShow } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
@@ -251,5 +251,8 @@ export default class PageCoinTask extends AbstractView {
     }
     transformTime(date: any) {
         return Timezone.Instance.convertTime_to_Locale(date);
+    }
+    getDate(str: string, isChange: boolean = true) {
+        return changeDateShow(str, isChange);
     }
 }

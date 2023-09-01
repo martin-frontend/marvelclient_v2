@@ -281,7 +281,10 @@ function isShow_RechargeActivityCheckbox() {
 function isHide_HomeDownloadBtn() {
     return _isValueTrue("isHideHomeDownloadBtn", false);
 }
-
+/**是否显示每日任务的入口 */
+function isShow_DailyTaskBtn() {
+    return _isValueTrue("isShowDailyTaskBtn",false);
+}
 export default {
     IsShow_VipInfo,
     IsShow_CoinIntroduce,
@@ -323,4 +326,5 @@ export default {
     isHide_MyInfo,
     IsShow_SetCPF,
     isHide_HomeDownloadBtn,
+    isShow_DailyTaskBtn,
 };

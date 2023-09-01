@@ -10,6 +10,11 @@ export default class NovigationProxy extends puremvc.Proxy {
     isminiMenu = false; //是否为小菜单
     activityData = <any>[];
 
+    dailyTaskData = <any>{
+        unread_num: 0, //用户未领取的数量
+        list: <any>[],
+    };
+    isfirst = true;
     setMiniMenu(isMini: boolean = false) {
         this.isminiMenu = isMini;
     }
@@ -24,11 +29,31 @@ export default class NovigationProxy extends puremvc.Proxy {
     setActivityData(data: any) {
         this.activityData = [...data.list];
     }
+
+    //每日任务的数据
+    setDailyTaskData(data: any) {
+        Object.assign(this.dailyTaskData, data);
+        this.dailyTaskData.list = [...data.list];
+        this.isHaveDailytask =
+            this.dailyTaskData.list[0] && this.dailyTaskData.list[0].rules && this.dailyTaskData.list[0].rules.length > 0;
+
+        if (this.isHaveDailytask && this.isfirst) {
+            this.isfirst = false;
+            this.openDialogArr("dialogdailytask");
+        }
+    }
+    isHaveDailytask = false;
+    /**活动相关的数据 */
     api_plat_activity() {
-        if(!core.user_id) return;
+        if (!core.user_id) return;
         this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
     }
+    api_plat_activity_index_everyday() {
+        // if (!core.user_id) return;
+        this.sendNotification(net.HttpType.api_plat_activity_index_everyday, { user_id: core.user_id });
+    }
 
+    /** 获取每日任务 */
     timeHandle = 0;
     openList = <any>[];
     openDialogArr(dialogData: any = null) {
@@ -88,6 +113,9 @@ export default class NovigationProxy extends puremvc.Proxy {
                     break;
                 case "dialognotice":
                     PanelUtil.openpanel_notice();
+                    break;
+                case "dialogdailytask":
+                    PanelUtil.openpanel_dailytask();
                     break;
                 default:
                     break;

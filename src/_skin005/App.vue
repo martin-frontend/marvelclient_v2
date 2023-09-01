@@ -57,7 +57,20 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- <Orientation v-if="!isScreenV && !Constant.isIncludeGameRouter($route.path)"/> -->
-        <template v-if="!$mobile">
+        <template v-if="!$xsOnly">
+            <div class="btn-dailytask" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()">
+                <v-badge
+                    color="red"
+                    overlap
+                    :content="red_dot_tips.is_everyday_award_num.num"
+                    :value="red_dot_tips.is_everyday_award_num.status == 2 && red_dot_tips.is_everyday_award_num.num"
+                >
+                    <div @click="onClicBtnkDailyTask">
+                        <SvgaPlayer class="svga-player" id="dailytask_btn" src="svga/dailytask.svga"></SvgaPlayer>
+                    </div>
+                </v-badge>
+            </div>
+
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
                     <svg-icon icon="arrow_top" class="text-14"></svg-icon>
@@ -78,6 +91,19 @@
             </v-btn>
         </template>
         <template v-if="$xsOnly">
+            <div class="btn-dailytask_mob" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()">
+                <v-badge
+                    color="red"
+                    overlap
+                    :content="red_dot_tips.is_everyday_award_num.num"
+                    :value="red_dot_tips.is_everyday_award_num.status == 2 && red_dot_tips.is_everyday_award_num.num"
+                >
+                    <div @click="onClicBtnkDailyTask">
+                        <SvgaPlayer class="svga-player_mob" id="dailytask_btn" src="svga/dailytask.svga"></SvgaPlayer>
+                    </div>
+                </v-badge>
+            </div>
+
             <v-btn
                 v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter"
                 class="btn-service"
@@ -145,7 +171,7 @@ import GuideDrawer from "@/_skin005/views/widget/guide_drawer/GuideDrawer.vue";
 import DialogMessageBox from "@/_skin005/views/dialog_message_box/views/DialogMessageBox.vue";
 import LangUtil from "@/core/global/LangUtil";
 import CoinTip from "@/_skin005/views/widget/wallet/coin_tip/CoinTip.vue";
-
+import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 @Component({
     components: {
         Novigation,
@@ -156,6 +182,7 @@ import CoinTip from "@/_skin005/views/widget/wallet/coin_tip/CoinTip.vue";
         GuideDrawer,
         DialogMessageBox,
         CoinTip,
+        SvgaPlayer,
     },
 })
 export default class extends App {
@@ -267,5 +294,32 @@ export default class extends App {
 .blur-mask-bottom_mob {
     z-index: 11;
     top: 50px;
+}
+.svga-player {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-dailytask {
+    position: fixed;
+    bottom: 188px;
+    right: 13px;
+    width: 50px;
+    height: 50px;
+    z-index: 7;
+    cursor: pointer;
+}
+.svga-player_mob {
+    width: 40px;
+    height: 40px;
+}
+.btn-dailytask_mob {
+    position: fixed;
+    bottom: 176px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    z-index: 7;
+    cursor: pointer;
 }
 </style>

@@ -95,7 +95,7 @@
         ["api/user/{user_id}/sign/receive", "领取用户签到奖励"],
         ["api/plat/activity/show/binding", "绑定赠金"],
         ["api/plat/activity/{id}/rule_id/{rule_id}", "活动规则匹配详情"],
-        
+
         ["api/plat/activity/daily_rewards/{id}", "每日派奖详情"],
         ["api/plat/activity/daily_rewards/{id}/receive", "领取每日派奖奖励"],
 
@@ -233,7 +233,7 @@
         ["api/user/{user_id}/coin_task/index", "奖励任务列表"],
         ["api/user/{user_id}/coin_task/cancel", "放弃奖励任务"],
 
-        ["api/plat/{plat_id}/bank_list", "平台银行列表"]
-       
+        ["api/plat/{plat_id}/bank_list", "平台银行列表"],
+        ["api/user/{user_id}/jump/store", "跳转记录"]
     ]
 }

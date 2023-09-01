@@ -148,6 +148,7 @@ import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification"
 import DialogSpeedVerificationProxy from "@/_skin005/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
 import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
 import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
+import dialog_daily_task from "@/_skin005/views/dialog_daily_task";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -824,6 +825,14 @@ export default class PanelUtil {
             dialog_promotion_reward.show();
         });
     }
+    /**打开 每日任务 */
+    static openpanel_dailytask() {
+        // LoginEnter(() => {
+        MultDialogManager.onOpenPanel(dialog_daily_task);
+        PanelUtil.showNovigation(false);
+        dialog_daily_task.show();
+        // });
+    }
     /**打开 验证界面 */
     static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null, verification: number = -1) {
         MultDialogManager.onOpenPanel(DialogSpeedVerification);
@@ -1229,6 +1238,18 @@ export default class PanelUtil {
                     },
                 },
                 {
+                    key: "openpanel_safety_center_email",
+                    fun: () => {
+                        PanelUtil.openpanel_safety_center(1);
+                    },
+                },
+                {
+                    key: "openpanel_safety_center_phone",
+                    fun: () => {
+                        PanelUtil.openpanel_safety_center(0);
+                    },
+                },
+                {
                     key: "openpanel_google_settings",
                     fun: () => {
                         PanelUtil.openpanel_google_settings();
@@ -1384,6 +1405,24 @@ export default class PanelUtil {
                         PanelUtil.showNovigation(true);
                     },
                 },
+                {
+                    key: "openpanel_dailytask",
+                    fun: () => {
+                        PanelUtil.openpanel_dailytask();
+                    },
+                },
+                {
+                    key: "openpanel_promotionreward",
+                    fun: () => {
+                        PanelUtil.openpanel_promotionreward();
+                    },
+                },
+                {
+                    key: "openpanel_set_cpf",
+                    fun: () => {
+                        PanelUtil.openpanel_real_name(true);
+                    },
+                },
             ];
         }
         return this._mapList;
@@ -1403,7 +1442,7 @@ export default class PanelUtil {
     /**检测这个对象是否能跳转，到对应的 页面或者 功能 */
     public static isCanJump(item: any, isRun: boolean = false) {
         //1. 先判断 打开模块
-        if (item.open_mode != 1) {
+        if (item.open_mode && item.open_mode != 1) {
             if (isRun) {
                 switch (item.open_mode) {
                     case 2:
@@ -1450,9 +1489,8 @@ export default class PanelUtil {
                 //针对公告跳转到游戏
                 const strArr = item.open_mode_url.split("##");
                 if (strArr && strArr.length > 1) {
-                    
-                    const obj =  JSON.parse(strArr[1]);
-                    PanelUtil.openpage_soccer(obj);
+                    const obj = JSON.parse(strArr[1]);
+                    if (isRun) PanelUtil.openpage_soccer(obj);
                     return true;
                     // fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == strArr[0]);
                     // if (fitterArr && fitterArr.length > 0) {

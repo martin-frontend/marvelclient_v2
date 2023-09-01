@@ -67,6 +67,10 @@ export default class PageActivity extends AbstractView {
             PanelUtil.openpanel_promotionreward();
             return;
         }
+        if (PanelUtil.isCanJump(item)) {
+            PanelUtil.isCanJump(item, true);
+            return;
+        }
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
         } else {
@@ -84,7 +88,7 @@ export default class PageActivity extends AbstractView {
         }
         if (this.$vuetify.breakpoint.width < 1400) {
             return 200;
-        } 
+        }
         // else if (this.$vuetify.breakpoint.width > 1280) {
         //     return 265;
         // }

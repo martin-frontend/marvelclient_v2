@@ -11,6 +11,7 @@ export default class NovigationMediator extends AbstractMediator {
             net.EventType.api_user_login,
             net.EventType.api_user_var_notice,
             net.EventType.api_plat_var_notice_popup,
+            net.EventType.api_plat_activity_index_everyday,
         ];
     }
 
@@ -24,6 +25,8 @@ export default class NovigationMediator extends AbstractMediator {
             case net.EventType.api_user_login: //用户登录
                 setTimeout(() => {
                     PanelUtil.getProxy_selfproxy.api_user_var_notice();
+                    myProxy.isfirst = true;
+                    myProxy.api_plat_activity_index_everyday();
                 }, 100);
                 break;
             case net.EventType.api_plat_var_notice_index: //公告 弹窗
@@ -41,6 +44,9 @@ export default class NovigationMediator extends AbstractMediator {
                     if (body && body.length > 0) myProxy.openDialogArr({ name: "rechargenotice", sort: 2, data: body });
                     myProxy.openDialogArr(null);
                 }, 100);
+                break;
+            case net.EventType.api_plat_activity_index_everyday:
+                myProxy.setDailyTaskData(body);
                 break;
         }
     }

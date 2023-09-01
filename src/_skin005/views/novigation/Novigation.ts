@@ -52,6 +52,7 @@ export default class Novigation extends AbstractView {
 
     mounted() {
         this.myProxy.api_plat_activity();
+        this.myProxy.api_plat_activity_index_everyday();
         if (!this.$mobile) {
             this.mini = this.myProxy.isminiMenu || false;
             this.Change();

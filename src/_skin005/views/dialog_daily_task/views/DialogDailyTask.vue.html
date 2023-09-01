@@ -1,0 +1,83 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="container_daily" @click.stop="onPhoneClose">
+        <v-card
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="rounded10 card_pc"
+            :ripple="false"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-card flat class="d-flex flex-column align-center main_bg_recharge pa-6">
+                <v-sheet color="transparent" class="btn_rule cursor-pointer" @click="onClickRuleBtn">
+                    <v-sheet color="transparent">
+                        <v-img src="~@/_skin005/assets/daily_task/btn_rule.png" width="32"></v-img>
+                    </v-sheet>
+                </v-sheet>
+
+                <v-sheet color="transparent" class="d-flex justify-center align-center title_img" width="100%">
+                    <div>
+                        <v-img :src="titleImg" width="387"></v-img>
+                    </div>
+                </v-sheet>
+
+                <!-- 下方的任务列表 -->
+                <v-sheet color="#212121" width="100%" height="660" class="overflow-y-auto d-flex flex-column pa-4 rounded10">
+                    <template v-for="(item, key) of taskList">
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex justify-space-between align-center item_bg pa-1 mb-2 rounded"
+                            v-if="item.is_show==1"
+                            :key="key"
+                        >
+                            <!-- 任务名字 -->
+                            <v-sheet color="transparent" class="black--text text-22">{{LangUtil(item.condition.name)}}</v-sheet>
+
+                            <!-- 任务奖励的进度 -->
+                            <v-sheet color="transparent" class="d-flex">
+                                <!-- 任务的奖励 -->
+                                <v-sheet color="transparent" class="item_bonus mx-2">
+                                    <div>
+                                        <v-img src="~@/_skin005/assets/daily_task/bonus_coin.png" width="69" height="69"></v-img>
+                                    </div>
+                                    <v-sheet
+                                        color="transparent"
+                                        width="100%"
+                                        class="item_award d-flex justify-center align-center white--text"
+                                    >
+                                        {{getItemAward(item)}}
+                                    </v-sheet>
+                                </v-sheet>
+                                <!-- 任务的完成状态 -->
+                                <v-sheet color="transparent" class="d-flex justify-center align-center" width="192">
+                                    <div v-if="isComplete(item)">
+                                        <v-img src="~@/_skin005/assets/daily_task/complete.png" width="65"></v-img>
+                                    </div>
+                                    <v-sheet
+                                        v-else
+                                        color="#1c4c18"
+                                        class="d-flex justify-center align-center cursor-pointer rounded text-22 white--text"
+                                        width="100%"
+                                        height="65"
+                                        @click="onReceiveTask(item)"
+                                        style="text-align: center"
+                                    >
+                                        {{getShowTest(item)}}
+                                        <!-- <span v-if="isCanReceive(item)">{{LangUtil('领取')}}</span>
+                                    <span v-else> {{item.condition.match_num}}/{{item.condition.params}}</span> -->
+                                    </v-sheet>
+                                </v-sheet>
+                            </v-sheet>
+                        </v-sheet>
+                    </template>
+                </v-sheet>
+            </v-card>
+            <v-sheet color="transparent" class="d-flex justify-center align-center mt-4" width="100%">
+                <v-sheet class="cursor-pointer" color="transparent" @click.stop="onClose">
+                    <v-img src="~@/_skin005/assets/daily_task/btn_close.png" width="52" height="52"> </v-img>
+                </v-sheet>
+            </v-sheet>
+        </v-card>
+    </div>
+</v-dialog>

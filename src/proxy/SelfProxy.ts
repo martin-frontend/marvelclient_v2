@@ -68,6 +68,10 @@ export default class SelfProxy extends AbstractProxy {
             status: 1, // 状态:1-不提示|2-提示
             num: 0, // 数量
         },
+        is_everyday_award_num: {
+            status: 1, // 状态:1-不提示|2-提示
+            num: 0, // 数量
+        },
     };
     /**小贴士位置 */
     coinTipData = {
@@ -215,7 +219,7 @@ export default class SelfProxy extends AbstractProxy {
         if (!core.user_id) {
             this.api_plat_var_notice_popup();
             return;
-        };
+        }
         const gameProxy: GameProxy = getProxy(GameProxy);
         this.sendNotification(net.HttpType.api_user_var_notice, {
             user_id: core.user_id,

@@ -341,6 +341,8 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
+        /**--奖励任务--跳转记录*/
+        api_user_var_jump_store: string;
     };
     /**事件*/
     var EventType: {
@@ -682,6 +684,8 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
+        /**--奖励任务--跳转记录*/
+        api_user_var_jump_store: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -1843,6 +1847,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_invite_user_info extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 跳转记录
+ */
+declare module net {
+    class cmd_api_user_var_jump_store extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

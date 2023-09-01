@@ -409,6 +409,8 @@ var net;
         api_user_var_coin_task_cancel: "api/user/{user_id}/coin_task/cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api/plat/{plat_id}/bank_list",
+        /**--奖励任务--跳转记录*/
+        api_user_var_jump_store: "api/user/{user_id}/jump/store",
     };
     /**事件*/
     net.EventType = {
@@ -750,6 +752,8 @@ var net;
         api_user_var_coin_task_cancel: "api_user_var_coin_task_cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api_plat_var_bank_list",
+        /**--奖励任务--跳转记录*/
+        api_user_var_jump_store: "api_user_var_jump_store",
     };
     /**注册协议*/
     function initCommand() {
@@ -950,6 +954,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_coin_task_index, net.cmd_api_user_var_coin_task_index);
         facade.registerCommand(net.HttpType.api_user_var_coin_task_cancel, net.cmd_api_user_var_coin_task_cancel);
         facade.registerCommand(net.HttpType.api_plat_var_bank_list, net.cmd_api_plat_var_bank_list);
+        facade.registerCommand(net.HttpType.api_user_var_jump_store, net.cmd_api_user_var_jump_store);
     }
     net.initCommand = initCommand;
     ;
@@ -3791,6 +3796,28 @@ var net;
         }
     }
     net.cmd_api_user_var_invite_user_info = cmd_api_user_var_invite_user_info;
+})(net || (net = {}));
+/**
+ * 跳转记录
+ */
+var net;
+/**
+ * 跳转记录
+ */
+(function (net) {
+    class cmd_api_user_var_jump_store extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_jump_store, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_jump_store, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_jump_store = cmd_api_user_var_jump_store;
 })(net || (net = {}));
 /**
  * 获取用户邮件列表

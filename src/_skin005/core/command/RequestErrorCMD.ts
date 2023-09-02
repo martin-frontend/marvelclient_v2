@@ -24,6 +24,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             const ERROR_CODE_PHONE = [11002126, 1100139];
             //设置真实姓名
             const ERROR_CODE_REAL_NAME = [1106014];
+            //设置CPF
+            const ERROR_CODE_CPF = [1106027];
             //游戏进入失败
             const ERROR_CODE_PLAY_GAME = [1102136, 1102128];
             //注册失败
@@ -67,6 +69,13 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 PanelUtil.message_confirm({ message: body.result.msg, okFun: PanelUtil.openpanel_safety_center() });
             } else if (ERROR_CODE_REAL_NAME.includes(result.status)) {
                 PanelUtil.message_confirm({ message: body.result.msg, okFun: PanelUtil.openpanel_real_name });
+            } else if (ERROR_CODE_CPF.includes(result.status)) {
+                PanelUtil.message_confirm({
+                    message: body.result.msg,
+                    okFun: () => {
+                        PanelUtil.openpanel_real_name(true);
+                    },
+                });
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
                 PanelUtil.message_alert(body.result.msg);
             } else if (ERROR_CODE_NO_PERMISSION.includes(result.status)) {

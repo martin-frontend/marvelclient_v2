@@ -4,7 +4,7 @@ import GlobalVar from "../global/GlobalVar";
 import { Base64 } from "js-base64";
 import NotificationName from "../NotificationName";
 import LangUtil from "../global/LangUtil";
-import { getFileVersion, getVersion } from "../global/Functions";
+import { decode_url, getFileVersion, getVersion } from "../global/Functions";
 import Vue from "vue";
 import { track_error_event } from "@/core/config/ErrorEvent";
 
@@ -20,6 +20,10 @@ export default class GameConfig {
         if (channelCode && channelCode.length == 8) {
             plat_id = channelCode.substring(0, 5);
             channel_id = channelCode;
+        }
+        const ma_token = core.getQueryVariable("ma_token");
+        if (ma_token && ma_token.trim()) {
+            core.other_params = decode_url(window.location.search.substring(1));
         }
         //新版本，读取URL参数
         const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";

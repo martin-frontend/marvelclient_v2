@@ -723,3 +723,25 @@ export function isSafari() {
         !/AppleWebKit/.test(navigator.userAgent)
     );
 }
+export function decode_url(url: string): any {
+    const obj = <any>{};
+    if (typeof url == "string") {
+        const arrs = url.split("&");
+        for (let i = 0; i < arrs.length; i++) {
+            const pair = arrs[i].split("=");
+            obj[pair[0]] = pair[1];
+        }
+    } else {
+        obj.other = url;
+    }
+    return obj;
+}
+export function recode_url(obj: any): string {
+    let str = "";
+    const keys = Object.keys(obj);
+    for (let index = 0; index < keys.length; index++) {
+        if (index != 0) str = str + "&";
+        str = str + keys[index] + "=" + obj[keys[index]];
+    }
+    return str;
+}

@@ -100,7 +100,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             email_username,
             birth_date,
         } = this.pageData.form;
-        this.sendNotification(net.HttpType.api_user_register, {
+        const sendObj = <any>{
             invite_user_id,
             username,
             password_ori: password,
@@ -113,7 +113,21 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             mobile_username,
             email_username,
             birth_date,
-        });
+
+        };
+        if (core.other_params && core.other_params.ma_token && core.other_params.ma_token.trim()) {
+            const exArr = ["plat_id", "channel_id", "channelCode", "platformConfig"];
+            const keys_send = Object.keys(sendObj);
+            const keys_other = Object.keys(core.other_params);
+            for (let index = 0; index < keys_other.length; index++) {
+                const element = keys_other[index];
+                const val = core.other_params[element];
+                if (val && val.trim() && !keys_send.includes(element) && !exArr.includes(element)) {
+                    sendObj[element] = val;
+                }
+            }
+        }
+        this.sendNotification(net.HttpType.api_user_register, sendObj);
     }
 
     /**获取手机区号 */

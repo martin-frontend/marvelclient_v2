@@ -28,5 +28,6 @@ module core {
     export var configVo: ConfigVO;
     /**语言 */
     export var lang:string = "en_EN";
-    
+    /**其他参数 */
+    export var other_params: any;
 }

@@ -2406,6 +2406,8 @@ declare module core {
     var configVo: ConfigVO;
     /**语言 */
     var lang: string;
+    /**其他参数 */
+    var other_params: any;
 }
 declare module net {
     class Http {

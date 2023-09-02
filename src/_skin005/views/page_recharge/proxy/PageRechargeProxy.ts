@@ -56,6 +56,12 @@ export default class PageRechargeProxy extends puremvc.Proxy {
             PanelUtil.openpanel_recharge_qrcode(data);
         } else if (data.type == 3) {
             PanelUtil.openpanel_recharge_qrcode(data, true);
+        } else if (data.type == 4) {
+            //在内部打开支付方式
+            window.location.href = data.url;
+        }
+        else{
+            this.openUrl(data.url);
         }
     }
     /**打开跳转链接 */
@@ -79,7 +85,10 @@ export default class PageRechargeProxy extends puremvc.Proxy {
             this.api_user_var_recharge_create_callback(data);
             return;
         }
-
+        if (data.type) {
+            this.api_user_var_recharge_create_callback(data);
+            return;
+        }
         this.openUrl(data);
     }
 }

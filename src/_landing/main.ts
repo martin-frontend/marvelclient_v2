@@ -1,6 +1,10 @@
 import LandConfig from "./config/LandConfig";
 import { api_public_area_code, api_public_auth_code } from "./net";
-
+import Vue from "vue";
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import Home from "./Home.vue";
+import { getVuetify } from "./plugins/vuetify";
 let old_channel_id: string;
 
 async function loadConfig() {
@@ -64,5 +68,38 @@ function iframeLoaded() {
     }
 }
 
+function logInit() {
+    // @ts-ignore
+    const compiletype = process.env.VUE_APP_ENV;
+    if (compiletype === "production") {
+        if (window.console) {
+            const methods = ["log", "debug", "warn", "info", "group", "groupCollapsed"];
+            for (let i = 0; i < methods.length; i++) {
+                const c: any = console;
+                c[methods[i]] = function () {};
+            }
+        }
+    }
+}
+
+logInit();
 core.init();
 loadConfig();
+const vuetify = getVuetify();
+Vue.vuetify = vuetify;
+
+Vue.use(VueRouter);
+const routes = [
+    { path: "/", component: Home },
+    { path: "/signup", component: Home },
+];
+const router = new VueRouter({
+    routes,
+});
+Vue.router = router;
+//@ts-ignore
+window["vm"] = new Vue({
+    router,
+    vuetify,
+    render: (h) => h(App),
+}).$mount("#app");

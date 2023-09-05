@@ -1,14 +1,14 @@
 <v-sheet color="transparent" :class="$mobile?'pa-0':'mt-2'">
-    <v-sheet class="rounded-lg" :class="$mobile ? 'box-mobile' : ''"  color="bgBanner" >
+    <v-sheet class="rounded" :class="$mobile ? 'box-mobile' : ''" color="bgBanner">
         <v-sheet v-if="$vuetify.breakpoint.xsOnly && isHaveBanner" color="transparent" class="" :class="sheetClass" width="100%">
-            <Activity class="" :showDataType="isHaveBanner"  />
+            <Activity class="" :showDataType="isHaveBanner" />
         </v-sheet>
         <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true"></iframe>
-        <div class="d-flex justify-end my-2 mr-3" v-if="!$mobile">
-            <v-btn class="my-2 ml-3" icon @click="onFullScreen">
+        <div class="d-flex justify-end mr-3 align-center" v-if="!$mobile">
+            <v-btn class="ml-3" icon @click="onFullScreen">
                 <v-icon>mdi-fullscreen</v-icon>
             </v-btn>
-            <v-btn class="my-2 ml-3" icon @click="onBack">
+            <v-btn class="ml-3" icon @click="onBack">
                 <v-icon>mdi-keyboard-backspace</v-icon>
             </v-btn>
         </div>

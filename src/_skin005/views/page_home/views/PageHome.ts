@@ -128,4 +128,23 @@ export default class PageHome extends AbstractView {
         }
         return 12;
     }
+    destroyed(): void {
+        if (this.updataHandle) {
+            clearInterval(this.updataHandle);
+        }
+    }
+    updataHandle = 0;
+    mounted() {
+        /**客户端更新  10分钟更新一次 */
+        const updataTime = 10 * 60 * 1000;
+
+        const lastUpdataTime = window.localStorage.getItem("updataTime_" + core.plat_id) || "0";
+        if (Date.now() - Number(lastUpdataTime) > updataTime * 0.5) {
+            window.localStorage.setItem("updataTime_" + core.plat_id, Date.now() + "");
+            this.myProxy.api_plat_var_client_config();
+        }
+        this.updataHandle = setInterval(() => {
+            this.myProxy.api_plat_var_client_config();
+        }, updataTime);
+    }
 }

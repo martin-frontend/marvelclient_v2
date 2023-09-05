@@ -274,6 +274,8 @@ module net {
 
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: "api/plat/{plat_id}/client/config",
         /**--其它--常见问题*/
         api_plat_fag_index: "api/plat/fag/index",
         /**--其它--跑马灯*/
@@ -648,6 +650,8 @@ module net {
 
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: "api_plat_var_client_config",
         /**--其它--常见问题*/
         api_plat_fag_index: "api_plat_fag_index",
         /**--其它--跑马灯*/
@@ -889,6 +893,7 @@ module net {
         facade.registerCommand(HttpType.api_plat_var_reward_coin_info, cmd_api_plat_var_reward_coin_info);
         //--其它
         facade.registerCommand(HttpType.api_plat_var_game_config, cmd_api_plat_var_game_config);
+        facade.registerCommand(HttpType.api_plat_var_client_config, cmd_api_plat_var_client_config);
         facade.registerCommand(HttpType.api_plat_fag_index, cmd_api_plat_fag_index);
         facade.registerCommand(HttpType.api_plat_var_marquee_index, cmd_api_plat_var_marquee_index);
         facade.registerCommand(HttpType.api_user_var_messages_index, cmd_api_user_var_messages_index);

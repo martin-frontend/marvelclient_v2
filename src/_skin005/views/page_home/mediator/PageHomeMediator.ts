@@ -24,6 +24,7 @@ export default class PageHomeMediator extends AbstractMediator {
             net.EventType.api_plat_var_swap_k,
             net.EventType.api_plat_var_backwater_setting_info,
             net.EventType.api_vendor_96_products,
+            net.EventType.api_plat_var_client_config,
         ];
     }
 
@@ -45,6 +46,9 @@ export default class PageHomeMediator extends AbstractMediator {
                 break;
             case net.EventType.api_vendor_96_products:
                 myProxy.set_vendor_96_products(body);
+                break;
+            case net.EventType.api_plat_var_client_config:
+                myProxy.checkClientVersion(body);
                 break;
         }
     }

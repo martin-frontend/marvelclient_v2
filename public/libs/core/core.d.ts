@@ -263,6 +263,8 @@ declare module net {
         api_plat_var_reward_coin_info: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: string;
         /**--其它--常见问题*/
         api_plat_fag_index: string;
         /**--其它--跑马灯*/
@@ -606,6 +608,8 @@ declare module net {
         api_plat_var_reward_coin_info: string;
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: string;
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: string;
         /**--其它--常见问题*/
         api_plat_fag_index: string;
         /**--其它--跑马灯*/
@@ -830,6 +834,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_bonus_recently extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 客户端配置
+ */
+declare module net {
+    class cmd_api_plat_var_client_config extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

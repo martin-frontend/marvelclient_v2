@@ -3,6 +3,7 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import { CompetitionVO } from "@/_skin005/vo/CompetitionVO";
 import Vue from "vue";
 import GameConfig from "@/core/config/GameConfig";
+import { getVersion } from "@/core/global/Functions";
 
 export default class PageHomeProxy extends puremvc.Proxy {
     static NAME = "PageHomeProxy";
@@ -109,6 +110,25 @@ export default class PageHomeProxy extends puremvc.Proxy {
             this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.pc);
         } else {
             this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
+        }
+    }
+    /**获取平台配置信息 */
+    api_plat_var_client_config() {
+        this.sendNotification(net.HttpType.api_plat_var_client_config, { plat_id: core.plat_id });
+    }
+
+    checkClientVersion(data: any) {
+        if (data && data.client_version && data.client_version.trim()) {
+            const client_version = data.client_version;
+            try {
+                const timeData = new Date(client_version).getTime();
+                const localTimeData = new Date(getVersion()).getTime();
+                if (timeData > localTimeData) {
+                    window.location.reload();
+                }
+            } catch {
+                console.log("---转换失败----");
+            }
         }
     }
 }

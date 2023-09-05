@@ -167,6 +167,7 @@
 
         "--其它",
         ["api/plat/{plat_id}/game/config", "配置数据 枚举"],
+        ["api/plat/{plat_id}/client/config", "客户端配置"],
         ["api/plat/fag/index", "常见问题"],
         ["api/plat/{plat_id}/marquee/index", "跑马灯"],
         ["api/user/{user_id}/messages/index", "获取未读取的消息列表"],
@@ -235,5 +236,6 @@
 
         ["api/plat/{plat_id}/bank_list", "平台银行列表"],
         ["api/user/{user_id}/jump/store", "跳转记录"]
+        
     ]
 }

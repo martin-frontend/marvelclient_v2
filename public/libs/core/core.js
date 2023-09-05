@@ -331,6 +331,8 @@ var net;
         api_plat_var_reward_coin_info: "api/plat/{plat_id}/reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api/plat/{plat_id}/game/config",
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: "api/plat/{plat_id}/client/config",
         /**--其它--常见问题*/
         api_plat_fag_index: "api/plat/fag/index",
         /**--其它--跑马灯*/
@@ -674,6 +676,8 @@ var net;
         api_plat_var_reward_coin_info: "api_plat_var_reward_coin_info",
         /**--其它--配置数据 枚举*/
         api_plat_var_game_config: "api_plat_var_game_config",
+        /**--其它--客户端配置*/
+        api_plat_var_client_config: "api_plat_var_client_config",
         /**--其它--常见问题*/
         api_plat_fag_index: "api_plat_fag_index",
         /**--其它--跑马灯*/
@@ -902,6 +906,7 @@ var net;
         facade.registerCommand(net.HttpType.api_plat_var_reward_coin_info, net.cmd_api_plat_var_reward_coin_info);
         //--其它
         facade.registerCommand(net.HttpType.api_plat_var_game_config, net.cmd_api_plat_var_game_config);
+        facade.registerCommand(net.HttpType.api_plat_var_client_config, net.cmd_api_plat_var_client_config);
         facade.registerCommand(net.HttpType.api_plat_fag_index, net.cmd_api_plat_fag_index);
         facade.registerCommand(net.HttpType.api_plat_var_marquee_index, net.cmd_api_plat_var_marquee_index);
         facade.registerCommand(net.HttpType.api_user_var_messages_index, net.cmd_api_user_var_messages_index);
@@ -1310,6 +1315,28 @@ var net;
         }
     }
     net.cmd_api_plat_var_bonus_recently = cmd_api_plat_var_bonus_recently;
+})(net || (net = {}));
+/**
+ * 客户端配置
+ */
+var net;
+/**
+ * 客户端配置
+ */
+(function (net) {
+    class cmd_api_plat_var_client_config extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_var_client_config, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_var_client_config, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_var_client_config = cmd_api_plat_var_client_config;
 })(net || (net = {}));
 /**
  * 平台入口配置获取

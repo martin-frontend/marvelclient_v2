@@ -108,7 +108,7 @@ export class RechargeProxy extends puremvc.Proxy {
                         data[coin_name_unique].options[block_network_id].payemthod_id == 6 ||
                         data[coin_name_unique].options[block_network_id].payemthod_id == 8 ||
                         data[coin_name_unique].options[block_network_id].payemthod_id == 10 ||
-                        data[coin_name_unique].options[block_network_id].payemthod_id == 13 
+                        data[coin_name_unique].options[block_network_id].payemthod_id == 13
                     ) {
                         const channel = data[coin_name_unique].options[block_network_id].channel;
                         if (channel && channel.length > 0) {
@@ -319,10 +319,14 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     onBlurInput(item: any) {
-        item.inputValue = item.inputValue.trim();
-        if (!item.inputValue) {
+        if (!item.inputValue && item.inputValue != 0) {
             item.errinfo = LangUtil(item.tips);
             return false;
+        }
+        if (typeof item.inputValue == "string") {
+            item.inputValue = item.inputValue.trim();
+        } else {
+            item.inputValue = item.inputValue + "";
         }
         item.errinfo = "";
         return true;

@@ -408,7 +408,7 @@
                             <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
                                 <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                             </span>
-                            <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
+                            <span class="ml-2">[{{item.market_show_name}}]</span>
                             <span class="ml-2 font-weight-bold">{{getOrderTitle(item.game_info)}}</span>
                             <!-- <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
                             <span class="ml-2">@{{item.game_info.odds }}</span>
@@ -471,7 +471,7 @@
                                         {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}})
                                     </span>
                                 </span>
-                                <span class="ml-2">[{{item.game_info.betList[0].marketName}}]</span>
+                                <span class="ml-2">[{{item.market_show_name}}]</span>
                                 <span class="ml-2 font-weight-bold">{{item.game_info.betList[0].optionName}}</span>
                                 <span class="ml-2">@{{item.game_info.betList[0].odds }}</span>
                                 <v-spacer />
@@ -905,7 +905,7 @@
                                 <span class="mr-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
                                     <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                                 </span>
-                                <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
+                                <div class="mr-2 div-block">{{item.market_show_name}}</div>
                             </div>
                             <div>
                                 <span class="mr-2 div-block font-weight-bold">{{getOrderTitle(item.game_info)}} </span>
@@ -979,7 +979,7 @@
                                     :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
                                     @click="onClickFootballName(item)"
                                 >
-                                    {{item.game_info.betList[0].matchName}}
+                                    {{item.market_show_name}}
                                 </div>
                                 <div>
                                     <span

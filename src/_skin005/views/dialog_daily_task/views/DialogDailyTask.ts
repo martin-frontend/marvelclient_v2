@@ -79,7 +79,7 @@ export default class DialogDailyTask extends AbstractView {
     get titleImg() {
         let lang = core.lang;
 
-        const inc: any = ["zh_CN", "en_EN", "pt_PT"];
+        const inc: any = ["zh_CN", "en_EN", "pt_PT","es_ES"];
         if (!inc.includes(lang)) {
             lang = "zh_CN";
         }

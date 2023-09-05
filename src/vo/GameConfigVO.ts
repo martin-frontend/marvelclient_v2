@@ -128,4 +128,6 @@ export interface GameConfigVO {
     promotion_show_list: string[]; //代理统计显示表
     /** 交易所id */
     ExchangeVendorId: number;
+    /**是否不保存邀请码 0保存 1不保存 */
+    isNotSaveInviteID: number;
 }

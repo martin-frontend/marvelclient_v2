@@ -185,6 +185,7 @@ export default class NetObserver extends AbstractMediator {
                     this.addGTM();
                     //this.addkwaiq();
                     this.addFb();
+                    this.dontSaveInviteId();
                     document.title = LangUtil("96 Sports");
                 }
                 break;
@@ -681,6 +682,13 @@ export default class NetObserver extends AbstractMediator {
                     break;
             }
             // }, 200);
+        }
+    }
+
+    /**是否不保存邀请码 */
+    dontSaveInviteId() {
+        if (GameConfig.config.isNotSaveInviteID && GameConfig.config.isNotSaveInviteID == 1) {
+            window.localStorage.setItem(`invite_${core.plat_id}_${core.channel_id}`, "");
         }
     }
 }

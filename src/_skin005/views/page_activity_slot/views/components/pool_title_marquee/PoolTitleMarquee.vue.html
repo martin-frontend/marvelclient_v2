@@ -1,0 +1,13 @@
+<v-card flat ref="card_node" color="transparent" width="596" height="109" class="pool_title_class d-flex align-center justify-center">
+    <div ref="pool_title_marquee" class="pool_title_marquee"></div>
+
+    <v-sheet class="d-flex" color="transparent" >
+        <template v-for="(item, index) of poolstrarr">
+            <v-sheet color="transparent" width="60" :key="index" class="d-flex justify-center align-center">
+                <!-- <v-sheet :class="getNubClass(item)" width="50" height="60"> </v-sheet> -->
+                <ArtNumber :data="item" />
+            </v-sheet>
+        </template>
+    </v-sheet>
+
+</v-card>

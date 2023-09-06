@@ -68,6 +68,10 @@ export default class SelfProxy extends AbstractProxy {
             status: 1, // 状态:1-不提示|2-提示
             num: 0, // 数量
         },
+        is_ball_award_num: {
+            status: 1, // 状态:1-不提示|2-提示
+            num: 0, // 数量
+        },
         is_everyday_award_num: {
             status: 1, // 状态:1-不提示|2-提示
             num: 0, // 数量

@@ -1,0 +1,20 @@
+<!-- <div>
+    <audio id="audio_background" controls>
+        <source id="source_background" :src="backgroundSrc" type="audio/wav" />
+    </audio>
+
+    <audio id="audio_effect" controls>
+        <source id="source_effect" :src="effectSrc" type="audio/mpeg" />
+    </audio>
+</div> -->
+<div id="audio_node">
+    <audio style="display: none" ref="audio_background" loop controls autoplay>
+        <source ref="source_background" :src="backgroundSrc" type="audio/mpeg" />
+    </audio>
+    <audio style="display: none" ref="audio_effect" controls>
+        <source ref="source_effect" :src="effectSrc" type="audio/mpeg" />
+    </audio>
+    <!-- Your browser does not support the audio element. -->
+    <!-- <button v-if="isPlay" @click="pauseAudio">暫停</button>
+    <button v-else @click="playAudio">播放</button> -->
+</div>

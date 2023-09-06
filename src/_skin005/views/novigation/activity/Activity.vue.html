@@ -7,11 +7,19 @@
                     class="mb-2 px-2 primary--text d-flex align-center cursor-pointer"
                     :class="[mini? 'gary-bg':list[item.id].color+'-bg',{'item-hover': list[item.id].svga && !mini}]"
                     @click="goCategory(item)"
-                    style="border-radius: 2px"
+                    style="border-radius: 2px; position: relative"
                 >
                     <SvgaPlayer class="svga-player mr-3" :id="list[item.id].svga" :src="resolveSvgaSrc(list[item.id].svga)"></SvgaPlayer>
                     <span style="min-width: 56px" v-if="!mini" class="svga-tex text-no-wrap"> {{LangUtil(item.name)}} </span>
-                    <!-- <v-img v-else :src="list[item.id].img_src" class="mr-4" height="30" max-width="30"></v-img> -->
+                    <v-badge
+                        v-if="item.id == 105"
+                        color="red"
+                        dot
+                        :content="red_dot_tips.is_ball_award_num.num"
+                        :value="red_dot_tips.is_ball_award_num.status==2 && red_dot_tips.is_ball_award_num.num"
+                        style="position: absolute; right: 10px; top: 10px"
+                    >
+                    </v-badge>
                 </v-sheet>
             </template>
             <template v-else>

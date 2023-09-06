@@ -343,7 +343,15 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
-        /**--奖励任务--跳转记录*/
+        /**--彩球活动--用户抽奖*/
+        api_plat_activity_ball_lottery_award_var: string;
+        /**--彩球活动--重置抽奖*/
+        api_plat_activity_ball_lottery_init_var: string;
+        /**--彩球活动--彩球信息*/
+        api_plat_activity_ball_info_var: string;
+        /**--彩球活动--领取奖励*/
+        api_plat_activity_ball_rewards_var_receive: string;
+        /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
     };
     /**事件*/
@@ -688,7 +696,15 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
-        /**--奖励任务--跳转记录*/
+        /**--彩球活动--用户抽奖*/
+        api_plat_activity_ball_lottery_award_var: string;
+        /**--彩球活动--重置抽奖*/
+        api_plat_activity_ball_lottery_init_var: string;
+        /**--彩球活动--彩球信息*/
+        api_plat_activity_ball_info_var: string;
+        /**--彩球活动--领取奖励*/
+        api_plat_activity_ball_rewards_var_receive: string;
+        /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
     };
     /**注册协议*/
@@ -699,6 +715,42 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_activity extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 彩球信息
+ */
+declare module net {
+    class cmd_api_plat_activity_ball_info_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户抽奖
+ */
+declare module net {
+    class cmd_api_plat_activity_ball_lottery_award_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 重置抽奖
+ */
+declare module net {
+    class cmd_api_plat_activity_ball_lottery_init_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 领取奖励
+ */
+declare module net {
+    class cmd_api_plat_activity_ball_rewards_var_receive extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -9,6 +9,8 @@ export default class NovigationProxy extends puremvc.Proxy {
 
     isminiMenu = false; //是否为小菜单
     activityData = <any>[];
+    ballAwardData = null; //彩球活动的详细数据
+    ballAwardId = 0; //彩球活动的详细数据
 
     dailyTaskData = <any>{
         unread_num: 0, //用户未领取的数量
@@ -28,6 +30,18 @@ export default class NovigationProxy extends puremvc.Proxy {
 
     setActivityData(data: any) {
         this.activityData = [...data.list];
+        this.getBallAwardData();
+    }
+    /**获取彩球游戏的数据 */
+    getBallAwardData() {
+        //如果是在活动页面则不发送详情
+        for (let index = 0; index < this.activityData.length; index++) {
+            if (this.activityData[index] && this.activityData[index].model_type == 12) {
+                this.ballAwardId = this.activityData[index].id;
+                break;
+            }
+        }
+        this.ballAwardData = null;
     }
 
     //每日任务的数据
@@ -45,7 +59,7 @@ export default class NovigationProxy extends puremvc.Proxy {
     isHaveDailytask = false;
     /**活动相关的数据 */
     api_plat_activity() {
-        if (!core.user_id) return;
+        // if (!core.user_id) return;
         this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
     }
     api_plat_activity_index_everyday() {
@@ -80,7 +94,7 @@ export default class NovigationProxy extends puremvc.Proxy {
 
     openDialog() {
         const newArr = this.openList.sort((a: any, b: any) => b.sort - a.sort);
-        console.log("--->", newArr);
+        // console.log("--->", newArr);
         for (let index = 0; index < newArr.length; index++) {
             const element = newArr[index];
             // setTimeout(() => {

@@ -121,6 +121,7 @@ import DialogPlatUsersVerificationProxy from "@/_skin005/views/dialog_plat_users
 
 import PageStatisticeCreditProxy from "@/_skin005/views/page_statistice_credit/proxy/PageStatisticeCreditProxy";
 
+import PageActivitySlotProxy from "@/_skin005/views/page_activity_slot/proxy/PageActivitySlotProxy";
 /** 其他  */
 import dialog_swap_record from "@/_skin005/views/dialog_swap_record";
 import dialog_bonus_ranking from "@/_skin005/views/dialog_bonus_ranking";
@@ -148,6 +149,7 @@ import DialogSpeedVerification from "@/_skin005/views/dialog_speed_verification"
 import DialogSpeedVerificationProxy from "@/_skin005/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
 import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
 import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
+import dialog_award_ball from "@/_skin005/views/dialog_award_ball";
 import dialog_daily_task from "@/_skin005/views/dialog_daily_task";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -230,7 +232,11 @@ export default class PanelUtil {
     static openpage_introduce() {
         this._openpage_base("page_introduce");
     }
-
+    //转盘抽奖页面
+    static openpage_activity_slots(data: any) {
+        this._openpage_base("page_activity_slot");
+        // this.getProxy_pageActivitySlotProxy.setBallAwardDetail(data);
+    }
     //打开 主页
     static openpage_home() {
         if (Vue.router.app.$route.path != Vue.prePath) {
@@ -619,7 +625,11 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(dialog_award);
         dialog_award.show(data);
     }
-
+    //打开 奖励 窗口
+    static openpanel_award_ball(data: any, onCloseFun: Function | null = null) {
+        MultDialogManager.onOpenPanel(dialog_award_ball);
+        dialog_award_ball.show(data, onCloseFun);
+    }
     //打开 地址 备注 修改 窗口
     static openpanel_address_book_remark() {
         MultDialogManager.onOpenPanel(dialog_address_book_remark);
@@ -968,6 +978,10 @@ export default class PanelUtil {
     //活动的数据
     public static get getProxy_get_pageCoinTaskProxy(): PageCoinTaskProxy {
         return getProxy(PageCoinTaskProxy);
+    }
+    //彩球活动的数据
+    public static get getProxy_pageActivitySlotProxy(): PageActivitySlotProxy {
+        return getProxy(PageActivitySlotProxy);
     }
 
     public static get message_confirm(): Function {
@@ -1403,6 +1417,12 @@ export default class PanelUtil {
                     key: "showNovigation",
                     fun: () => {
                         PanelUtil.showNovigation(true);
+                    },
+                },
+                {
+                    key: "openpage_activity_slots",
+                    fun: () => {
+                        PanelUtil.openpage_activity_slots(null);
                     },
                 },
                 {

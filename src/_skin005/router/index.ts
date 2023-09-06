@@ -155,6 +155,12 @@ export const routes: Array<RouteConfig> = [
         name: "page_coin_task",
         component: () => import(/* webpackChunkName: "skin005_page_coin_task" */ "@/_skin005/views/page_coin_task/views/PageCoinTask.vue"),
     },
+    {
+        path: "/page_activity_slot",
+        name: "page_activity_slot",
+        component: () =>
+            import(/* webpackChunkName: "skin005_page_activity_slot" */ "@/_skin005/views/page_activity_slot/views/PageActivitySlot.vue"),
+    },
 ];
 
 /**修正router push 相同页时Avoided redundant navigation to current location 错误 */
@@ -238,7 +244,8 @@ export function getRouter(): VueRouter {
                         to.path.includes("page_my_info") ||
                         to.path.includes("page_statistice_credit") ||
                         to.path.includes("page_promotion_statistics") ||
-                        to.path.includes("page_coin_task"))
+                        to.path.includes("page_coin_task") ||
+                        to.path.includes("page_activity_slot"))
                 ) {
                     next(prePath);
                 } else {

@@ -1,0 +1,33 @@
+//旋转对象的
+.turn_item {
+    background: url("~@/_skin005/assets/ballaward/item_bg_no_select.png");
+    background-size: 100% 100%;
+}
+
+.turn_item_active {
+    background: url("~@/_skin005/assets/ballaward/item_bg_select.png");
+    background-size: 100% 100%;
+}
+
+.item_get {
+    animation: doScale 0.5s ease 1s 4;
+}
+
+@keyframes doScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.award_item_bg {
+    position: absolute;
+    pointer-events: none;
+    bottom: 6px;
+}

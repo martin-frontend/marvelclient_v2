@@ -359,6 +359,18 @@ module.exports = {
             .test(/\.svga$/)
             .use("svga-loader")
             .loader("svga-loader");
+        config.module
+            .rule("audio")
+            .test(/\.(mp3|wav)$/)
+            .use("file-loader")
+            .loader("file-loader")
+            .tap((options) => {
+                return {
+                    ...options,
+                    name: "[name].[hash].[ext]",
+                    outputPath: "audio",
+                };
+            });
     },
     configureWebpack: {
         plugins: getCopyDir(),

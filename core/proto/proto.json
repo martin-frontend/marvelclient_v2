@@ -235,6 +235,12 @@
         ["api/user/{user_id}/coin_task/cancel", "放弃奖励任务"],
 
         ["api/plat/{plat_id}/bank_list", "平台银行列表"],
+
+        "--彩球活动",
+        ["api/plat/activity/ball_lottery_award/{id}", "用户抽奖"],
+        ["api/plat/activity/ball_lottery_init/{id}", "重置抽奖"],
+        ["api/plat/activity/ball_info/{id}", "彩球信息"],
+        ["api/plat/activity/ball_rewards/{id}/receive", "领取奖励"],
         ["api/user/{user_id}/jump/store", "跳转记录"]
         
     ]

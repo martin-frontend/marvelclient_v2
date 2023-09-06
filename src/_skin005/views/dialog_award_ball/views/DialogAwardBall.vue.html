@@ -1,0 +1,78 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="container_daily" @click.stop="onPhoneClose">
+        <v-card
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="rounded10 card_pc"
+            :ripple="false"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-card flat class="d-flex flex-column align-center main_bg_recharge px-15 py-10 pb-3 my-5">
+                <v-sheet class="btn_close cursor-pointer" color="transparent" @click.stop="onClose">
+                    <v-img src="~@/_skin005/assets/ballaward/dialog_award/btn_close.png" width="60" height="60"> </v-img>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex flex-column align-center" width="100%">
+                    <v-sheet
+                        color="transparent"
+                        class="d-flex justify-center align-center text-48 title_test_color font-weight-bold my-5"
+                        width="100%"
+                    >
+                        {{LangUtil("恭喜获得彩球奖励")}}
+                    </v-sheet>
+                    <v-sheet color="transparent" width="100%" class="d-flex align-center justify-center">
+                        <v-sheet color="transparent" class="title_bg d-flex align-center justify-center text-20 white--text" style="text-align: center">
+                            <div v-html="LangUtil('恭喜获得!<br/>你获得{0} 和 {1}号球',award_coin,awardData.ball_code)"></div>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+
+                <v-sheet color="transparent" class="d-flex align-center justify-center mt-2" width="100%" height="400">
+                    <v-sheet color="transparent" class="d-flex flex-column align-center">
+                        <v-sheet
+                            color="transparent"
+                            height="220"
+                            width="240"
+                            class="d-flex align-center flex-column"
+                            style="position: relative"
+                        >
+                            <SvgaPlayer class="svga-player" id="award_coin" :src="resolveSvgaSrc('get_award_bg')"> </SvgaPlayer>
+                            <div style="position: absolute; bottom: 10px">
+                                <v-img src="~@/_skin005/assets/ballaward/item_bonus_1.png" width="171"></v-img>
+                            </div>
+                        </v-sheet>
+                        <v-sheet color="transparent" width="100%" class="d-flex justify-center text-20 font-weight-bold white--text mt-2">
+                            <div v-for="(item , key) of myProxy.pageData.data.award" class="text-20 white--test" :key="key">
+                                <span>{{key}}</span>
+                                <span class="ml-2">{{item}}</span>
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+                    <v-sheet color="transparent" class="d-flex flex-column align-center">
+                        <v-sheet color="transparent" height="220" width="240" class="d-flex align-center justify-center">
+                            <SvgaPlayer class="svga-player" id="award_ball" :src="resolveSvgaSrc('get_award_bg')"> </SvgaPlayer>
+                            <SingleBall :data="awardData.ball_code" :img_index="`${awardData.surplus_lottery_num - 1}`" :item_width="100" :text_font="40"></SingleBall>
+                        </v-sheet>
+                        <v-sheet color="transparent" width="100%" class="d-flex justify-center text-20 font-weight-bold white--text mt-2">
+                            {{LangUtil("幸运号码")}}
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex align-center justify-center mt-auto mb-16" width="100%">
+                    <v-sheet color="transparent" @click.stop="onGetBtnClick" class="recharge_btn cursor-pointer" width="335" height="98">
+                        <v-sheet color="transparent" height="100%" width="100%" class="d-flex align-center">
+                            <v-sheet
+                                color="transparent"
+                                width="100%"
+                                class="d-flex align-center justify-center text-40 get_btn white--text font-weight-bold"
+                            >
+                                {{LangUtil("领取")}}
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+            </v-card>
+        </v-card>
+    </div>
+</v-dialog>

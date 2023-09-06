@@ -67,6 +67,10 @@ export default class PageActivity extends AbstractView {
             PanelUtil.openpanel_promotionreward();
             return;
         }
+        if (item.id == PanelUtil.getProxy_novigation.ballAwardId) {
+            PanelUtil.openpage_activity_slots(null);
+            return;
+        }
         if (PanelUtil.isCanJump(item)) {
             PanelUtil.isCanJump(item, true);
             return;

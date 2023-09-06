@@ -1,0 +1,19 @@
+.pool_title_class {
+    position: relative;
+    background: url("~@/_skin005/assets/ballaward/pool_title_bg.png");
+    background-size: 100% 100%;
+    .pool_title_marquee {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        pointer-events: none;
+    }
+    .marquee_1 {
+        background: url("~@/_skin005/assets/ballaward/pool_title_1.png");
+        background-size: 100% 100%;
+    }
+    .marquee_2 {
+        background: url("~@/_skin005/assets/ballaward/pool_title_2.png");
+        background-size: 100% 100%;
+    }
+}

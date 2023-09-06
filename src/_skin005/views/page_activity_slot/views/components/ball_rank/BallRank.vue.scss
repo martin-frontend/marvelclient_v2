@@ -1,0 +1,59 @@
+.tab_active {
+    color: #000;
+    background-image: linear-gradient(to right, #eca342, #f4d150);
+}
+
+.tab_nomal {
+    background-image: transparent;
+    color: #fff;
+}
+.tab_nomal:hover {
+    color: #000;
+    background-image: linear-gradient(to right, #eca342, #f4d150);
+}
+.rank_text_color_3 {
+    color: #fac925;
+}
+.rank_text_color_other {
+    color: #fff;
+}
+.test {
+    color: #8d9590;
+}
+.reward_text_color {
+    color: rgb(255, 206, 64);
+}
+.test_my {
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border-radius: 16px;
+    background-image: linear-gradient(to right, #242422, #242422), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+}
+.record_tab_nomal {
+    background-image: linear-gradient(to right, #656565, #656565);
+    border-radius: 10px 10px 0px 0px;
+    color: #fff;
+}
+.record_tab_nomal:hover {
+    background-image: linear-gradient(to right, #f2cb4e, #f2cb4e);
+    border-radius: 10px 10px 0px 0px;
+    color: #000;
+}
+.record_tab_active {
+    background-image: linear-gradient(to right, #f2cb4e, #f2cb4e);
+    border-radius: 10px 10px 0px 0px;
+    color: #000;
+}
+
+.getBtn_nomal {
+    color: #fff;
+    background-image: linear-gradient(to right, #e6823a, #ecad45);
+}
+.getBtn_nomal_disabled {
+    filter: grayscale(1);
+}
+
+.text-center {
+    text-align: center;
+}

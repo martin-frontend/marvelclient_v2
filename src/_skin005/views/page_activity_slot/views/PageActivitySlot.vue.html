@@ -1,0 +1,48 @@
+<v-card flat color="#0e0f0f" class="py-4 d-flex mb-n16" width="100%">
+    <!-- <AudioNode /> -->
+    <template v-if="!$mobile">
+        <v-sheet color="transparent" min-width="600" width="100%" class="d-flex flex-column align-center">
+            <PoolTitleMarquee />
+            <BallAwardSlot />
+        </v-sheet>
+        <v-sheet color="transparent" width="100%" class="px-4 py-4">
+            <BallRank />
+            <v-sheet color="#656565" class="d-flex align-center btn_rule_class pr-6 rounded10 cursor-pointer" @click="onClickRuleBtn" >
+                <div>
+                    <v-img src="~@/_skin005/assets/ballaward/btn_rule.png" width="36"></v-img>
+                </div>
+                <div class="ml-2 white--text">
+                    {{LangUtil("帮助")}}
+                </div>
+            </v-sheet>
+        </v-sheet>
+    </template>
+    <template v-else>
+        <v-sheet class="d-flex flex-column" color="transparent" width="100%">
+            <v-sheet color="transparent" min-width="600" width="100%" class="d-flex flex-column align-center">
+                <PoolTitleMarquee />
+                <BallAwardSlot />
+                <v-sheet color="#656565" class="d-flex align-center btn_rule_class_mob pr-6 rounded10 cursor-pointer" @click="onClickRuleBtn">
+                    <div class="ml-0">
+                        <v-img src="~@/_skin005/assets/ballaward/btn_rule.png" width="24"></v-img>
+                    </div>
+                    <div class="ml-2  white--text">
+                        {{LangUtil("帮助")}}
+                    </div>
+                </v-sheet>
+            </v-sheet>
+            <v-sheet color="transparent" width="100%" class="px-4 py-4">
+                <BallRank />
+            </v-sheet>
+        </v-sheet>
+        <!-- <v-row no-gutters>
+            <v-col cols="12" class="d-flex flex-column align-center">
+                <PoolTitleMarquee />
+                <BallAwardSlot />
+            </v-col>
+            <v-col cols="12" class="px-4 py-4">
+                <BallRank />
+            </v-col>
+        </v-row> -->
+    </template>
+</v-card>

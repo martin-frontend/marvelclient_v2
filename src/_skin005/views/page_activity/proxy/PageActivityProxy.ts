@@ -144,12 +144,12 @@ export default class PageActivityProxy extends puremvc.Proxy {
     api_plat_activity() {
         this.pageData.loading = true;
         this.pageData.isLoadData = true;
-        this.sendNotification(net.HttpType.api_plat_activity, { user_id: core.user_id, have_content: "0" });
+        this.sendNotification(net.HttpType.api_plat_activity, { have_content: "0" });
     }
     /**获取活动列表 */
     api_plat_activity_var(idx: any) {
         this.pageData.loading = true;
-        this.sendNotification(net.HttpType.api_plat_activity_var, { user_id: core.user_id, id: idx });
+        this.sendNotification(net.HttpType.api_plat_activity_var, { id: idx });
     }
     // get promotion_reward_model_id() {
     //     return (

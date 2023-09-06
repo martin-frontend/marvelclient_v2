@@ -94,6 +94,7 @@ export default class Novigation extends AbstractView {
         if (this.selfProxy.userInfo.is_show_agent_statistic === 1) {
             newlist.push(list[5]);
         }
+
         return newlist;
     }
 
@@ -106,6 +107,7 @@ export default class Novigation extends AbstractView {
             // id2 :{ name: "有奖标枪", id: id2, path: "" },
             7: { name: "推广奖励", id: 8, path: "" },
             8: { name: "奖励币任务", id: 9, path: "page_coin_task" },
+            105: { name: "彩球活动", id: 105, path: "page_activity_slot" },
         };
         //精彩活动
         if (ModulesHelper.IsShow_ActivityDisplay()) {
@@ -123,7 +125,10 @@ export default class Novigation extends AbstractView {
         if (ModulesHelper.IsShow_CoinTaskDisplay()) {
             newlist.push(list[8]);
         }
-
+        // 彩球活動判斷是否配置
+        if (this.myProxy.ballAwardId) {
+            newlist.push(list[105]);
+        }
         return newlist;
     }
     //抽屉状态
@@ -315,6 +320,9 @@ export default class Novigation extends AbstractView {
             case 10:
                 PanelUtil.openpage_promotion_statistic();
                 break;
+            case 105:
+                PanelUtil.openpage_activity_slots(this.myProxy.ballAwardData);
+                break;
             default:
                 break;
         }
@@ -388,5 +396,10 @@ export default class Novigation extends AbstractView {
 
     openTelegram() {
         window.open(LangUtil("telegram链结"));
+    }
+    @Watch("core.user_id")
+    onRefresh() {
+        console.warn("---->>>刷新----");
+        this.myProxy.api_plat_activity();
     }
 }

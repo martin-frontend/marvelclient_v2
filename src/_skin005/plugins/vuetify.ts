@@ -53,6 +53,7 @@ export function getVuetify(): Vuetify {
                         daily_award_text:"#a65f09",
                         daily_close_btn:"#fcb131",
                         nomal_text_2: "#5a5a5a",
+                        ball_award_rank_bg:"#656665"
                     },
                     dark: {
                         primary: "#FFFFFF",
@@ -97,6 +98,7 @@ export function getVuetify(): Vuetify {
                         daily_award_text:"#fff",
                         daily_close_btn:"#fff",
                         nomal_text_2: "#8d8e91",
+                        ball_award_rank_bg:"#282826"
                     },
                 },
                 // dark: true

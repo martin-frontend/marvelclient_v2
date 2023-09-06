@@ -367,7 +367,16 @@ module net {
         api_user_var_coin_task_cancel: "api/user/{user_id}/coin_task/cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api/plat/{plat_id}/bank_list",
-        /**--奖励任务--跳转记录*/
+
+        /**--彩球活动--用户抽奖*/
+        api_plat_activity_ball_lottery_award_var: "api/plat/activity/ball_lottery_award/{id}",
+        /**--彩球活动--重置抽奖*/
+        api_plat_activity_ball_lottery_init_var: "api/plat/activity/ball_lottery_init/{id}",
+        /**--彩球活动--彩球信息*/
+        api_plat_activity_ball_info_var: "api/plat/activity/ball_info/{id}",
+        /**--彩球活动--领取奖励*/
+        api_plat_activity_ball_rewards_var_receive: "api/plat/activity/ball_rewards/{id}/receive",
+        /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api/user/{user_id}/jump/store",
     };
     /**事件*/
@@ -743,7 +752,16 @@ module net {
         api_user_var_coin_task_cancel: "api_user_var_coin_task_cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api_plat_var_bank_list",
-        /**--奖励任务--跳转记录*/
+
+        /**--彩球活动--用户抽奖*/
+        api_plat_activity_ball_lottery_award_var: "api_plat_activity_ball_lottery_award_var",
+        /**--彩球活动--重置抽奖*/
+        api_plat_activity_ball_lottery_init_var: "api_plat_activity_ball_lottery_init_var",
+        /**--彩球活动--彩球信息*/
+        api_plat_activity_ball_info_var: "api_plat_activity_ball_info_var",
+        /**--彩球活动--领取奖励*/
+        api_plat_activity_ball_rewards_var_receive: "api_plat_activity_ball_rewards_var_receive",
+        /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api_user_var_jump_store",
     };
     /**注册协议*/
@@ -946,6 +964,11 @@ module net {
         facade.registerCommand(HttpType.api_user_var_coin_task_index, cmd_api_user_var_coin_task_index);
         facade.registerCommand(HttpType.api_user_var_coin_task_cancel, cmd_api_user_var_coin_task_cancel);
         facade.registerCommand(HttpType.api_plat_var_bank_list, cmd_api_plat_var_bank_list);
+        //--彩球活动
+        facade.registerCommand(HttpType.api_plat_activity_ball_lottery_award_var, cmd_api_plat_activity_ball_lottery_award_var);
+        facade.registerCommand(HttpType.api_plat_activity_ball_lottery_init_var, cmd_api_plat_activity_ball_lottery_init_var);
+        facade.registerCommand(HttpType.api_plat_activity_ball_info_var, cmd_api_plat_activity_ball_info_var);
+        facade.registerCommand(HttpType.api_plat_activity_ball_rewards_var_receive, cmd_api_plat_activity_ball_rewards_var_receive);
         facade.registerCommand(HttpType.api_user_var_jump_store, cmd_api_user_var_jump_store);
     };
 

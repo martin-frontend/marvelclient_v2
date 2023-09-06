@@ -1,0 +1,52 @@
+<v-card flat ref="card_node" color="transparent" width="596" height="640">
+    <v-card flat color="transparent" width="596" height="596" class="ball_award_class d-flex align-center justify-center">
+        <div ref="ball_award_marquee" class="ball_award_marquee canntSelect"></div>
+        <v-sheet color="transparent">
+            <!-- 第一排 -->
+            <v-sheet color="transparent" height="173" width="100%" class="d-flex">
+                <TurnItem ref="item_0" :data="awardItemData(0)"></TurnItem>
+                <TurnItem ref="item_1" :data="awardItemData(1)"></TurnItem>
+                <TurnItem ref="item_2" :data="awardItemData(2)"></TurnItem>
+                <TurnItem ref="item_3" :data="awardItemData(3)"></TurnItem>
+            </v-sheet>
+            <!-- 中间大的 -->
+            <v-sheet color="transparent" height="173" width="100%" class="d-flex my-2">
+                <TurnItem ref="item_9" :data="awardItemData(9)"></TurnItem>
+                <v-sheet
+                    color="transparent"
+                    width="248"
+                    height="100%"
+                    class="d-flex justify-center align-center mx-2 cursor-pointer"
+                    @click="onTurn"
+                >
+                    <v-sheet color="transparent" :class="isNeedRestart ? 'turn_btn_reset' : 'turn_btn'" class="d-flex justify-center align-center flex-column" width="242" height="148">
+                        <div v-if="!isNeedRestart" class="turn_text_color text-48 font-weight-bold">
+                            {{getCoinSymbol(curLotteryCons.params.key)}} {{curLotteryCons.params.value}}
+                        </div>
+                        <div v-else class="turn_text_color text-48 font-weight-bold">
+                            {{getCoinSymbol(curDayNumInitConfig.params.key)}} {{curDayNumInitConfig.params.value}}
+                        </div>
+                        <div class="turn_text_color text-30 font-weight-bold">
+                            <template v-if="!isNeedRestart">
+                                <span> {{LangUtil("抽奖")}}</span>
+                                <span>{{LangUtil("({0}/{1})",(ball_info.lottery_total_num - ball_info.surplus_lottery_num),ball_info.lottery_total_num)}}</span>
+                            </template>
+                            <template v-else>
+                                <span> {{LangUtil("重置")}}</span>
+                            </template>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <TurnItem ref="item_4" :data="awardItemData(4)"></TurnItem>
+            </v-sheet>
+            <!-- 最下面一排 -->
+            <v-sheet color="transparent" height="173" width="100%" class="d-flex">
+                <TurnItem ref="item_8" :data="awardItemData(8)"></TurnItem>
+                <TurnItem ref="item_7" :data="awardItemData(7)"></TurnItem>
+                <TurnItem ref="item_6" :data="awardItemData(6)"></TurnItem>
+                <TurnItem ref="item_5" :data="awardItemData(5)"></TurnItem>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <v-sheet color="transparent" width="100%" class="d-flex justify-center align-center text-30 font-weight-bold white--text"> {{timeStr}} </v-sheet>
+</v-card>

@@ -1,0 +1,19 @@
+<v-sheet color="transparent" width="125" height="100%" class="mx-1" ref="award_id">
+    <v-sheet
+        color="transparent "
+        width="100%"
+        height="100%"
+        class="d-flex justify-center black--text px-2 py-6"
+        style="position: relative"
+        :class="itemClass"
+    >
+        <div v-if="data" class="award_item_bg">
+            <v-img :src="bonusImg" width="115"></v-img>
+        </div>
+
+        <v-sheet v-if="data" color="transparent" width="100%" class="white--text text-20 d-flex justify-center font-weight-bold">
+            <span v-if="data.type == 4"> {{coinName}}{{data.params.value}}%</span>
+            <span v-else> {{data.params.value}} {{coinName}} </span>
+        </v-sheet>
+    </v-sheet>
+</v-sheet>

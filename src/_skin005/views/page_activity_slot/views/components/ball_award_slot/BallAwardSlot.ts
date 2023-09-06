@@ -39,6 +39,7 @@ export default class BallAwardSlot extends AbstractView {
     runCount = 0;
     runCount_slow = 0;
     isRunning = false;
+    // data
     clickAgain = false;
 
     /**重置方法 */
@@ -139,7 +140,6 @@ export default class BallAwardSlot extends AbstractView {
     }
     endTurn() {
         clearInterval(this.interval);
-        this.isRunning = false;
         this.items.forEach((item: any) => {
             // item.$el.classList.remove("turn_item_active");
             item.setNomal();
@@ -148,33 +148,30 @@ export default class BallAwardSlot extends AbstractView {
             this.items[this.targetIndex].setGet();
             // AudioManager.Instance.playSound_slot_end();
             setTimeout(() => {
-                PanelUtil.openpanel_award_ball({...this.award_data, ...this.ball_info}, () => {
+                PanelUtil.openpanel_award_ball({ ...this.award_data, ...this.ball_info }, () => {
                     //刷新界面 重新请求数据
                     this.onWatchBallAwardId();
                     this.items.forEach((item: any) => {
                         item.setNomal();
                     });
-                    // 打開抽獎按鈕，可以抽獎
-                    setTimeout(() => {
-                        this.clickAgain = false;
-                    }, 1300);
                 });
+                this.isRunning = false;
             }, 2000);
-        }
+        } else this.isRunning = false;
     }
 
     onTurn() {
         console.log("-->>>收到点击开关");
         // this.testSound();
 
-        // 如果正在抽獎中，則點擊按鈕無效
-        if (this.clickAgain) return;
-
         // 最后一期结算后，显示活动已结束
         if (this.pageData.ball_award_detail.cycle_status == 2) {
-            PanelUtil.message_alert(LangUtil("活动已结束"))
+            PanelUtil.message_alert(LangUtil("活动已结束"));
             return;
         }
+
+        // 處理抽獎次數太頻繁 bug
+        if (!this.myProxy.isCanClick) return;
 
         if (!this.chick()) return;
         if (this.isNeedRestart) {
@@ -320,7 +317,6 @@ export default class BallAwardSlot extends AbstractView {
 
                     return element;
                 }
-               
             }
             if (lastEle) {
                 return lastEle;

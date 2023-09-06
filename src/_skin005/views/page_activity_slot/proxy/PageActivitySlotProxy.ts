@@ -23,7 +23,7 @@ export default class PageActivitySlotProxy extends puremvc.Proxy {
             cycle_end_time: 0, //结束时间
             pre_end_time: 0, //上一期结束时间
             coin_unique: "", // 奖池币种
-            id:0,
+            id: 0,
         },
         ball_info: <any>{
             award_record: <any>[], // 用户号码记录
@@ -43,24 +43,38 @@ export default class PageActivitySlotProxy extends puremvc.Proxy {
             award_status: 0,
             award: <any>{}, //奖励
         },
-        dataSource: <any>{}, //原始数据
+        dataSource: <any>{}, //原始数据,
     };
+
+    is_ballinfo_return: Boolean = false; // 抽獎次數太頻繁 bug
+    is_maindata_return: Boolean = false; // 抽獎次數太頻繁 bug
+
+    get isCanClick() {
+        return this.is_ballinfo_return && this.is_maindata_return;
+    }
     refreshAllData() {
         const novigationProxy = PanelUtil.getProxy_novigation;
         if (novigationProxy.ballAwardId) {
             this.api_plat_activity_ball_info_var(novigationProxy.ballAwardId);
             this.api_plat_activity_var(novigationProxy.ballAwardId);
+            // false 為還沒接收到資料
+            this.is_ballinfo_return = false;
+            this.is_maindata_return = false;
         }
     }
     setBallInfoData(data: any) {
         // this.pageData.ball_info = JSON.parse(JSON.stringify(data));
         Object.assign(this.pageData.ball_info, data);
         console.log("设置球的数据----", this.pageData.ball_info);
+        // true 為接收到資料
+        this.is_ballinfo_return = true;
     }
     /**设置彩球活动的详细数据 */
     setBallAwardDetail(data: any) {
         this.pageData.dataSource = JSON.parse(JSON.stringify(data));
         Object.assign(this.pageData.ball_award_detail, data);
+        // true 為接收到資料
+        this.is_maindata_return = true;
     }
     /**设置中奖信息 */
     setAwardData(data: any) {

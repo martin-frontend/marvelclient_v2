@@ -15,6 +15,7 @@ export default class Wallet extends AbstractView {
     selfProxy: SelfProxy = getProxy(SelfProxy);
     gameProxy: GameProxy = getProxy(GameProxy);
     headerProxy: HeaderProxy = getProxy(HeaderProxy);
+    @Prop() nudgeLeft!: number;
 
     GamePlatConfig = GamePlatConfig;
 

@@ -1,4 +1,6 @@
+import SkinVariable from "@/_skin004/core/SkinVariable";
 import HeaderProxy from "@/_skin004/views/header/proxy/HeaderProxy";
+import LangUtil from "@/core/global/LangUtil";
 import getProxy from "@/core/global/getProxy";
 
 export default class PageGameListProxy extends puremvc.Proxy {
@@ -86,7 +88,14 @@ export default class PageGameListProxy extends puremvc.Proxy {
         this.saveData();
         this.pageData.loading = true;
         this.listQuery.plat_id = core.plat_id;
-        this.sendNotification(net.HttpType.api_plat_var_game_all_index, this.listQuery);
+        const query: any = { ...this.listQuery };
+        if (this.listQuery.vendor_id == 0 && this.listQuery.vendor_type != 0 && SkinVariable.isShowAllVendor) {
+            const vendor_ids = this.gameMenuData.map((item: any) => item.vendor_id);
+            vendor_ids.shift();
+            query.vendor_ids = JSON.stringify(vendor_ids); 
+            delete query.vendor_id;
+        }
+        this.sendNotification(net.HttpType.api_plat_var_game_all_index, query);
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
@@ -115,7 +124,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
     getFirstMenuIndex() {
         const keys = Object.keys(this.tableMenu);
-        if(keys.length > 0) {
+        if (keys.length > 0) {
             this.listQuery.vendor_type = this.tableMenu[keys[0]].vendor_type;
             this.curMenuIndex = 0;
             console.log("取第一个值", this.listQuery.vendor_type);
@@ -176,6 +185,13 @@ export default class PageGameListProxy extends puremvc.Proxy {
                 if (this.curTotleData.list[n].entrance_type == 1) {
                     list.push(this.curTotleData.list[n]);
                 }
+            }
+            if (list.length > 0 && SkinVariable.isShowAllVendor) {
+                const obj = {
+                    vendor_id: 0,
+                    alias: LangUtil("全部厂商"),
+                };
+                list.unshift(obj);
             }
             return list;
         } else {

@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import GameProxy from "@/proxy/GameProxy";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
-import { Watch } from "vue-property-decorator";
+import { Watch, Component } from "vue-property-decorator";
 import OpenLink from "@/core/global/OpenLink";
 import HeaderProxy from "@/_skin004/views/header/proxy/HeaderProxy";
 import { isMobile, judgeClient } from "@/core/global/Functions";
@@ -14,7 +14,7 @@ import ServiceUtil from "./core/global/ServiceUtil";
 import AppProxy from "./AppProxy";
 import { track_error_event } from "@/core/config/ErrorEvent";
 import SkinVariable from "@/_skin004/core/SkinVariable";
-
+@Component
 export default class APP extends AbstractView {
     SkinVariable = SkinVariable;
     gameProxy: GameProxy = getProxy(GameProxy);

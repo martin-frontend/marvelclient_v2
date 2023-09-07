@@ -1,5 +1,5 @@
 <v-sheet color="colorPanelTitleBg" :height="$vuetify.breakpoint.mobile?30:45" class="rounded-pill d-flex align-center">
-    <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y nudge-bottom="2">
+    <v-menu content-class="menu" v-model="headerProxy.isOpenWalletMenu" offset-y :nudge-left="nudgeLeft" nudge-bottom="2">
         <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
                 <v-sheet
@@ -25,7 +25,7 @@
                     >
                         
                     </div>
-                </v-sheet>
+                                    </v-sheet>
                 <v-sheet
                     class="align-center d-flex rounded-pill pr-3"
                     color="colorPanelTitleBg"

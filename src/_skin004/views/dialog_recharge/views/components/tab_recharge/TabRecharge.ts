@@ -21,8 +21,9 @@ export default class TabRecharge extends AbstractView {
     plat_coins = GamePlatConfig.config.plat_coins;
     GameConfig = GameConfig;
 
-    onChange1(value: any) {
+    onChange1(item: any) {
         const { methodList } = this.pageData;
+        this.form.coin_name_unique = item.name;
         const { coin_name_unique } = this.form;
         const keys = Object.keys(methodList[coin_name_unique].options);
 

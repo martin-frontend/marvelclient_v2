@@ -55,6 +55,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_fag_index,
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
+            net.EventType.api_plat_var_game_search,
         ];
     }
 
@@ -240,7 +241,7 @@ export default class NetObserver extends AbstractMediator {
                         },
                         cancelFun: () => {
                             audioProxy.isBackgroundPlaying = true;
-                        }
+                        },
                     });
                 }
                 break;
@@ -262,6 +263,11 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_red_dot_tips:
                 this.selfProxy.redDotTips(body);
+                break;
+            case net.EventType.api_plat_var_game_search:
+                {
+                    this.gameProxy.setSearchResult(body);
+                }
                 break;
         }
     }

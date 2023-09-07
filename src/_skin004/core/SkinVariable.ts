@@ -38,4 +38,10 @@ export default class SkinVariable {
     public static defaultCode = "84";
 
     public static play_audio = false;
+    /**是否显示娱乐城 */
+    public static isShowGameList = true;
+    /**banner图片宽高比例 */
+    public static bannerImageRatio: null | number = null;
+    /**显示全部厂商 */
+    public static isShowAllVendor = false;
 }

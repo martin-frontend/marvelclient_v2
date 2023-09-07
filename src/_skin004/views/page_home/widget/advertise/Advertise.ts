@@ -3,6 +3,7 @@ import getProxy from "@/core/global/getProxy";
 import NoticeProxy from "@/proxy/NoticeProxy";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import gsap, { Linear } from "gsap";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class Advertise extends AbstractView {
@@ -15,7 +16,9 @@ export default class Advertise extends AbstractView {
     };
 
     get height(): number {
-        //return this.$vuetify.breakpoint.width* (316 / 1185);
+        if (SkinVariable.bannerImageRatio && !this.$vuetify.breakpoint.md) {
+            return this.$vuetify.breakpoint.width * SkinVariable.bannerImageRatio;
+        }
 
         if (this.$vuetify.breakpoint.width <= 390) return 150;
         switch (this.$vuetify.breakpoint.name) {

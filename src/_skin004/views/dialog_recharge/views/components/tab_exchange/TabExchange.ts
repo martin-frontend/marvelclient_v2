@@ -65,8 +65,9 @@ export default class TabExchange extends AbstractView {
         }
     }
 
-    onChange(value: any) {
+    onChange(item: any) {
         const { methodList } = this.pageData;
+        this.form.coin_name_unique = item.name;
         const { coin_name_unique } = this.form;
         const keys = Object.keys(methodList[coin_name_unique].options);
 
@@ -81,7 +82,7 @@ export default class TabExchange extends AbstractView {
         this.form.block_network_id = block_network_id;
         this.form.exchange_channel_method_id = methodList[coin_name_unique].options[block_network_id].exchange_channel_method_id;
         // 地址簿
-        this.addressBooProxy.pageData.listQuery.coin_name_unique = value;
+        this.addressBooProxy.pageData.listQuery.coin_name_unique = coin_name_unique;
     }
 
     onChangeSub(item: any) {

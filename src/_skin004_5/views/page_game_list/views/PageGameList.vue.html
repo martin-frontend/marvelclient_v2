@@ -1,0 +1,327 @@
+<v-container id="gamelist" class="pa-0 pb-5">
+    <GameSearch v-if="$vuetify.breakpoint.mobile" class="mt-2" />
+    <!-- 手机版 需要显示分类 -->
+    <div class="d-flex">
+        <v-sheet width="45" min-width="45" v-if="isNeetMenu" color="transparent" class="mt-1" style="border-radius: 4px">
+            <v-sheet color="#272828" class="mt-0 d-inline-flex flex-column py-2" center-active>
+                <div v-if="hotGame.category == 1">
+                    <v-card color="transparent" elevation="0" class="py-2">
+                        <v-sheet color="transparent" @click="goCategory(getItemCategory(hotGame))" class="d-flex flex-column align-center">
+                            <!-- <v-sheet class="rounded-circle mb-2" width="45" height="45" :class="isCurMenu(hotGame) ? 'item_active' : 'item_nomal'">
+                                    <v-img src="@/_skin001/assets/icon/icon_fire.png" width="30" height="30" style="top: 8px; left: 8px"></v-img>
+                                </v-sheet> -->
+                            <svg-icon
+                                :icon="CategoryIcon[getItemCategory(hotGame)]"
+                                class="text-23 mb-1"
+                                :class="isCurMenu(hotGame) ? 'colorTextBlue2--text' :'colorInfo--text'"
+                            ></svg-icon>
+                            <div
+                                class="text-12"
+                                :class="isCurMenu(hotGame) ? 'colorTextBlue2--text' :'colorInfo--text'"
+                                style="text-align: center"
+                            >
+                                {{ hotGame.category_name }}
+                            </div>
+                        </v-sheet>
+                    </v-card>
+                </div>
+                <div v-for="(item, key) of tableMenu" :key="key">
+                    <v-card color="transparent" elevation="0" class="py-2">
+                        <!-- <button class="d-flex align-center flex-column mr-2" @click="goCategory(getItemCategory(item))">
+                                <div class="tableMenuIcon d-flex align-center"
+                                    :class="isCurMenu(item) ? 'tableMenuIcon_cur' : 'tableMenuIcon_no'">
+                                    <v-img :class="item.vendor_type==16 ? 'img_16' : 'img'" class="ma-1 d-flex align-center"
+                                        max-width="30" max-height="40" :src="getLocalIconPath(item.vendor_type)"></v-img>
+                                </div>
+                                <div :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorTextBlack--text'">
+                                    {{ getItemCategoryName(item) }}</div>
+                            </button> -->
+                        <v-sheet color="transparent" @click="goCategory(getItemCategory(item))" class="d-flex flex-column align-center">
+                            <!-- <v-sheet class="rounded-circle mb-2" width="45" height="45" :class="isCurMenu(item) ? 'item_active' : 'item_nomal'">
+                                    <v-img :src="getLocalIconPath(item.vendor_type)" width="30" height="30" style="top: 8px; left: 8px"></v-img>
+                                </v-sheet> -->
+                            <svg-icon
+                                :icon="CategoryIcon[getItemCategory(item)]"
+                                class="text-23 mb-1"
+                                :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorInfo--text'"
+                            ></svg-icon>
+                            <div
+                                class="text-12"
+                                :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorInfo--text'"
+                                style="text-align: center"
+                            >
+                                {{ getItemCategoryName(item) }}
+                            </div>
+                        </v-sheet>
+                        <!-- <button class="d-flex align-center flex-column mr-2" @click="goCategory(getItemCategory(item))">
+                                <div class="tableMenuIcon d-flex align-center"
+                                    :class="isCurMenu(item) ? 'tableMenuIcon_cur' : 'tableMenuIcon_no'">
+                                    <v-img :class="item.vendor_type==16 ? 'img_16' : 'img'" class="ma-1 d-flex align-center"
+                                        max-width="30" max-height="40" :src="getLocalIconPath(item.vendor_type)"></v-img>
+                                </div>
+                                <div :class="isCurMenu(item) ? 'colorTextBlue2--text' :'colorTextBlack--text'">
+                                    {{ getItemCategoryName(item) }}</div>
+                            </button> -->
+                    </v-card>
+                </div>
+            </v-sheet>
+        </v-sheet>
+        <div class="pl-1" style="width: calc(100% - 45px)">
+            <v-sheet v-if="isNeedVendor && gameMenuData && gameMenuData.length >0" class="mt-1 rounded-lg px-2">
+                <v-slide-group class="mt-0 mr-2">
+                    <!-- <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
+                            <v-card
+                                :color="vendor_id == item.vendor_id ? 'colorBtnBg' : 'colorBackgroundGray'"
+                                class="mx-1 rounded-lg mt-1 mb-1"
+                                @click="toggle"
+                                width="70"
+                                height="50"
+                                elevation="0"
+                            >
+                                <v-sheet color="transparent" class="d-flex flex-column align-center box_test_mob" @click="onBtnClick(item)">
+                                    <v-img
+                                        class="cursor-pointer rounded-lg d-flex mt-2"
+                                        :class="isCurItem(item) ? 'icon_test_cur_mob' : 'icon_test_mob'"
+                                        :src="getIcon(item)"
+                                    >
+                                    </v-img>
+                                    <div class="d-flex align-end text-12" :class="isCurItem(item) ? 'icon_text_cur_mob' : 'icon_text_mob'">
+                                        {{item.alias}}
+                                    </div>
+                                </v-sheet>
+                            </v-card>
+                        </v-slide-item> -->
+                    <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
+                        <v-card flat color="transparent" class="d-flex justify-center align-center">
+                            <v-card
+                                :class="vendor_id == item.vendor_id ? 'item_btn_active' : 'item_btn'"
+                                class="px-1 mt-1 mb-1 d-flex align-center justify-center"
+                                @click="toggle"
+                                elevation="0"
+                                color="transparent"
+                            >
+                                <v-sheet color="transparent" class="text-14 d-flex align-center justify-center" @click="onBtnClick(item)">
+                                    <v-sheet
+                                        color="transparent"
+                                        :class="vendor_id == item.vendor_id ? 'colorTextBlue2--text bold_text font-weight-bold' : 'colorInfo--text'"
+                                    >
+                                        {{item.alias}}
+                                    </v-sheet>
+                                </v-sheet>
+                            </v-card>
+
+                            <!-- 后面的圆点 -->
+                            <v-sheet
+                                v-if="key!=gameMenuData.length-1"
+                                color="transparent"
+                                class="d-flex justify-center align-center"
+                                width="30"
+                            >
+                                <v-sheet class="rounded-circle" color="colorInfo" width="6" height="6" />
+                            </v-sheet>
+                        </v-card>
+                    </v-slide-item>
+                </v-slide-group>
+            </v-sheet>
+            <div v-if="hotGame.category == 1 && listQuery.vendor_type == 1">
+                <!-- <div class="text-16 ml-2 mr-4 d-flex align-center" :class="$vuetify.breakpoint.mobile?'':'mb-2'">
+                    <img class="mr-1" src="@/_skin001/assets/icon/icon_fire.png" :width="$vuetify.breakpoint.mobile?14:20" />
+                    <div :class="$vuetify.breakpoint.mobile?'text-12 colorTextBlack1--text':''">{{ hotGame.category_name }}</div>
+                </div>
+                <v-sheet v-if="$vuetify.breakpoint.mobile" color="transparent" class="d-flex">
+                    <GameItem v-for="item of hotGame.list" :key="item.vendor_prodcut_id" :item="item" />
+                </v-sheet>
+                <v-sheet v-else max-width="1430" class="mx-auto" color="transparent">
+                    <v-slide-group show-arrows>
+                        <v-slide-item v-for="item of hotGame.list" :key="item.vendor_prodcut_id">
+                            <GameItem :item="item" />
+                        </v-slide-item>
+                    </v-slide-group>
+                </v-sheet> -->
+                <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+                    <div v-for="item of hotGame.list" :key="item.vendor_prodcut_id" class="mx-n1">
+                        <v-lazy>
+                            <GameItem :item="item" />
+                        </v-lazy>
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                </v-card>
+            </div>
+
+            <!-- <template v-if="!isNeetMenu">
+                <v-sheet
+                    class="d-flex align-center"
+                    :class="$vuetify.breakpoint.mobile ? 'rounded pr-2 my-2': 'rounded-lg px-5 my-5'"
+                    :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
+                    :height="$vuetify.breakpoint.mobile ? '35' : '70'"
+                >
+                    <v-img
+                        v-if="$vuetify.breakpoint.mobile"
+                        src="@/_skin001/assets/icon/icon_blue.png"
+                        :max-height="15"
+                        :max-width="15"
+                        class="mr-1 rotate ml-n1"
+                    >
+                    </v-img>
+                    <div class="d-flex ml-n1">
+                        <GameListSelect
+                            :options="myProxy.config.vendor_type"
+                            :orders="myProxy.config.vendor_type_order"
+                            v-model="listQuery.vendor_type"
+                        />
+                        <GameListSelect
+                            v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+                            :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
+                            v-model="listQuery.vendor_id"
+                        />
+                    </div>
+                    <v-spacer />
+                    <v-btn
+                        class="ml-1 rounded-pill"
+                        :small="$vuetify.breakpoint.mobile"
+                        :height="$vuetify.breakpoint.mobile?22.5:35"
+                        :color="$vuetify.breakpoint.mobile?'#213FA7':'colorBtnBg'"
+                        @click="showGameSearch"
+                    >
+                        <v-icon v-if="!$vuetify.breakpoint.mobile">mdi-search-web</v-icon>
+                        {{LangUtil("搜索")}}
+                    </v-btn>
+                </v-sheet>
+            </template> -->
+            <!-- <template v-else>
+                <v-sheet
+                    class="d-flex align-center mt-2 mb-1"
+                    :class="$vuetify.breakpoint.mobile ? 'rounded pr-2': 'rounded-lg px-5 '"
+                    :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
+                    :height="$vuetify.breakpoint.mobile ? '35' : '35'"
+                >
+                    <v-img
+                        v-if="$vuetify.breakpoint.mobile"
+                        src="@/_skin001/assets/icon/icon_blue.png"
+                        :max-height="15"
+                        :max-width="15"
+                        class="mr-1 rotate ml-n1"
+                    >
+                    </v-img>
+                    <div :class="$vuetify.breakpoint.mobile ? 'colorTextBlack1--text' : 'icon_text_title text-16'">
+                        {{curMenuVendorTypeName}}{{LangUtil("游戏列表")}}
+                    </div>
+        
+                    <v-spacer />
+                    <v-btn
+                        class="ml-1 btn_search color_text_1--text"
+                        :small="$vuetify.breakpoint.mobile"
+                        elevation="0"
+                        plain
+                        :height="$vuetify.breakpoint.mobile?22.5:30"
+                        :color="$vuetify.breakpoint.mobile?'#213FA7':'transparent '"
+                        @click="showGameSearch"
+                        v-if="!$vuetify.breakpoint.mobile"
+                    >
+                        <v-icon color="color_text_1">mdi-search-web</v-icon>
+                        {{LangUtil("搜索")}}
+                    </v-btn>
+                </v-sheet>
+            </template> -->
+            <template v-if="!isUseMenuData">
+                <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+                    <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
+                        <v-lazy>
+                            <GameItem :item="item" />
+                        </v-lazy>
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                    <div class="mx-n1">
+                        <GameItem />
+                    </div>
+                </v-card>
+                <v-lazy>
+                    <div class="d-flex justify-center pt-2 mr-12" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                        <div class="d-flex flex-column justify-center align-center">
+                            <div class="mb-3" :style="$vuetify.breakpoint.mobile?'color: #5e5e5e':'color: #ffffff66'">
+                                {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
+                                pageData.pageInfo.pageCurrent)}}
+                            </div>
+                            <v-progress-linear
+                                :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'primary'"
+                                :value="(pageData.pageInfo.pageCurrent / pageData.pageInfo.pageCount) * 100"
+                                height="2"
+                            >
+                            </v-progress-linear>
+                            <v-btn
+                                class="rounded-pill my-5"
+                                :color="$vuetify.breakpoint.mobile?'colorTextBlue2':'colorBtnBg'"
+                                :width="$vuetify.breakpoint.mobile?125:196"
+                                :height="$vuetify.breakpoint.mobile?25:40"
+                                @click="getMore"
+                                >{{LangUtil("加载更多")}}</v-btn
+                            >
+                        </div>
+                    </div>
+                </v-lazy>
+            </template>
+            <template v-else>
+                <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-1" color="transparent" elevation="0">
+                    <v-sheet
+                        v-for="(item, key) of menudata"
+                        :key="key"
+                        class="mb-3"
+                        color="transparent"
+                        :width="$vuetify.breakpoint.mobile ? '100%' : '49.5%'"
+                    >
+                        <v-lazy>
+                            <v-card class="transparent" elevation="0">
+                                <v-img
+                                    v-if="item"
+                                    class="d-flex game-icon_menu cursor-pointer rounded-lg"
+                                    :src="getGameIcon(item)"
+                                    @click="onClick(item)"
+                                >
+                                    <div class="menu_title d-flex align-center flex-column">{{item.alias}}</div>
+                                    <div class="menu_title_1 d-flex align-center flex-column">{{item.game_desc}}</div>
+                                    <div class="egame__item__mask_menu">
+                                        <div class="egame__item__play-icon">
+                                            <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
+                                                <div class="icon-chevron-right icon__icon mt-n1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </v-img>
+                            </v-card>
+                        </v-lazy>
+                    </v-sheet>
+                </v-card>
+            </template>
+
+            <!-- <v-container v-if="$vuetify.breakpoint.mobile">
+                <div class="all-rights-reserved">version:{{getVersion()}}</div>
+                <div class="all-rights-reserved">{{getChannelID()}}</div>
+            </v-container> -->
+        </div>
+    </div>
+</v-container>

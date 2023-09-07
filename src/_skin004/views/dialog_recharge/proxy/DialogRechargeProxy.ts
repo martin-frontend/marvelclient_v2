@@ -249,7 +249,7 @@ export class ExchangeProxy extends puremvc.Proxy {
                     item = element;
                 }
             }
-            if (item) {
+            if (Object.keys(item).length > 0) {
                 // const item = this.bankCardInfo[0];
                 this.pageData.form.account = item.payment_method.account;
                 this.pageData.form.account_name = item.payment_method.account_name;
@@ -361,7 +361,7 @@ export class ExchangeProxy extends puremvc.Proxy {
 
     setCurBankInfo(bank_id: number) {
         console.log("需要搜索的银行id ", bank_id);
-        const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list;
+        const arr = this.pageData.methodList[this.pageData.form.coin_name_unique].bank_list || [];
         for (let index = 0; index < arr.length; index++) {
             const element = arr[index];
             if (element.bank_id == bank_id) {

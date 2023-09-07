@@ -286,3 +286,15 @@ $prev-right: var(--prev-right);
     text-align: center;
     font-weight: 500;
 }
+
+.underline {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background-color: #feba00 ;
+    }
+}

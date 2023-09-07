@@ -13,6 +13,7 @@ import dialog_recharge from "@/_skin004/views/dialog_recharge";
 import dialog_email from "@/_skin004/views/dialog_email";
 import SelfProxy from "@/proxy/SelfProxy";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import HeaderProxy from "@/views/header/proxy/HeaderProxy";
 @Component
 export default class HeaderMobile extends AbstractView {
     LangUtil = LangUtil;
@@ -26,6 +27,8 @@ export default class HeaderMobile extends AbstractView {
     routerPath = this.$router.app.$route.path;
 
     red_dot_tips = this.selfProxy.red_dot_tips;
+
+    headerProxy: HeaderProxy = this.getProxy(HeaderProxy);
 
     constructor() {
         super(HeaderMobileMediator);
@@ -84,5 +87,9 @@ export default class HeaderMobile extends AbstractView {
     }
     openMail() {
         dialog_email.show();
+    }
+    showUserPanel() {
+        if (!this.core.user_id) return;
+        this.headerProxy.pageData.bShowUserPanel = true;
     }
 }

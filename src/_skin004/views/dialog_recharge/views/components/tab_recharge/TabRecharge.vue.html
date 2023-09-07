@@ -7,7 +7,25 @@
         </a>
     </div>
     <div class="d-flex mt-3">
-        <CustomSelect :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange1" />
+        <v-row dense>
+            <v-col :cols="$vuetify.breakpoint.xsOnly?'6':'auto'" v-for="(item, key) of pageData.methodList" :key="key">
+                <v-btn
+                    :width="$vuetify.breakpoint.xsOnly? '100%': 100"
+                    height="30"
+                    :color="form.coin_name_unique==item.name ? 'colorActiveBtn' : 'colorInactiveBtn'"
+                    @click="onChange1(item)"
+                >
+                    <img
+                        v-if="plat_coins"
+                        class="mr-2"
+                        width="20"
+                        :src="(plat_coins[item.name] && plat_coins[item.name].icon) || plat_coins[item.name]"
+                    />
+                    <span> {{item.name}} </span>
+                </v-btn>
+            </v-col>
+        </v-row>
+        <!-- <CustomSelect :icons="plat_coins" :options="pageData.methodList" v-model="form.coin_name_unique" @change="onChange1" /> -->
         <!-- <CustomSelect
             v-if="pageData.methodList[form.coin_name_unique]"
             :options="pageData.methodList[form.coin_name_unique].options"
@@ -122,7 +140,12 @@
                         <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
                     </v-sheet>
                 </v-btn> -->
-                <div class="pa-1" :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}" v-for="(item, index) of datalist.channel" :key="index">
+                <div
+                    class="pa-1"
+                    :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}"
+                    v-for="(item, index) of datalist.channel"
+                    :key="index"
+                >
                     <v-btn
                         class="px-2"
                         min-width="100"
@@ -134,7 +157,7 @@
                     >
                         <v-sheet color="transparent">
                             <div class="text-truncate text-14 custom_skin-black-text">{{item.subtitle}}</div>
-                            <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
+                            <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee || "0%"}}</div>
                         </v-sheet>
                     </v-btn>
                 </div>
@@ -199,8 +222,13 @@
                         <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
                     </v-sheet>
                 </v-btn> -->
-                
-                <div class="pa-1" :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}" v-for="(item, index) of datalist.channel" :key="index">
+
+                <div
+                    class="pa-1"
+                    :style="{'min-width':$vuetify.breakpoint.xsOnly?'33%':'120px'}"
+                    v-for="(item, index) of datalist.channel"
+                    :key="index"
+                >
                     <v-btn
                         class="px-2"
                         min-width="100"
@@ -212,7 +240,7 @@
                     >
                         <v-sheet color="transparent">
                             <div class="text-truncate text-14 custom_skin-black-text">{{item.subtitle}}</div>
-                            <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee}}</div>
+                            <div class="third-fee text-12">{{LangUtil("手续费")}}{{item.fee || "0%"}}</div>
                         </v-sheet>
                     </v-btn>
                 </div>
@@ -293,7 +321,9 @@
     <!-- okpay topay 安装包下载按钮 -->
     <v-card-text class="custom_skin-black-text" v-if="pageData.methodList[form.coin_name_unique] && datalist.payemthod_id == 5">
         {{LangUtil("没有安装 {0} ?", datalist.name)}}
-        <span class="text-decoration-underline cursor-pointer colorActiveBtn--text" @click="onLink(linkUrl)"> {{LangUtil("点我下载")}} {{datalist.name}} </span>
+        <span class="text-decoration-underline cursor-pointer colorActiveBtn--text" @click="onLink(linkUrl)">
+            {{LangUtil("点我下载")}} {{datalist.name}}
+        </span>
     </v-card-text>
 
     <v-card-text class="d-flex justify-end mt-3">

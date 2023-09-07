@@ -162,6 +162,36 @@
     }
 }
 
+@media screen and (max-width: 400px) {
+    .skin004_5 {
+        .box {
+            width: 100px;
+        }
+        .box-height {
+            height: 125px;
+        }
+        .game-icon {
+            width: 100px;
+            height: 125px;
+        }
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .skin004_5 {
+        .box {
+            width: 95px;
+        }
+        .box-height {
+            height: 118.75px;
+        }
+        .game-icon {
+            width: 95px;
+            height: 118.75px;
+        }
+    }
+}
+
 .filter-gray {
     filter: grayscale(1);
 }

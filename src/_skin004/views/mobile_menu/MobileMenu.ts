@@ -23,7 +23,6 @@ import YellowWeb from "@/_skin004/core/global/YellowWeb";
 import page_activity from "@/_skin004/views/page_activity";
 import SkinVariable from "@/_skin004/core/SkinVariable";
 
-
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
@@ -31,7 +30,7 @@ export default class MobileMenu extends AbstractView {
     pageGameListProxy: PageGameListProxy = getProxy(PageGameListProxy);
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     get menuList() {
-        const list = [
+        let list = [
             // {
             //     id: 0,
             //     name: LangUtil("首页"),
@@ -97,6 +96,10 @@ export default class MobileMenu extends AbstractView {
                 path: "/page_extension",
             },
         ];
+
+        if (!SkinVariable.isShowGameList) {
+            list = list.filter(({ id }) => id != 2);
+        }
 
         //@ts-ignore
         if (GameConfig.config.pornWebsite) {

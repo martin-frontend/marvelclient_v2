@@ -291,7 +291,8 @@ export default class PageMyInfo extends AbstractView {
     }
     //过期或者取消的活动币
     get liveActivity() {
-        return this.selfProxy.coinTaskData.list.filter((item: any) => item.status != 5 && item.status != 6);
+        // return this.selfProxy.coinTaskData.list.filter((item: any) => item.status != 5 && item.status != 6);
+        return this.selfProxy.coinTaskData.list.filter((item: any) => item.status == 2);
     }
 
     //活动币是否显示

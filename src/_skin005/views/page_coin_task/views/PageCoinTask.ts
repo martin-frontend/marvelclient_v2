@@ -37,7 +37,7 @@ export default class PageCoinTask extends AbstractView {
         3: LangUtil("完成"),
         4: LangUtil("失败"),
         5: LangUtil("过期"),
-        6: LangUtil("取消"),
+        6: LangUtil("已取消"),
     }; //状态:1-未激活|2-进行中|3-成功|4-失败|5-过期|6-取消
 
     constructor() {

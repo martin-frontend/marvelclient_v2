@@ -144,7 +144,7 @@
                                                     <span class="nomal_text_2--text mr-2"
                                                         >{{ getDate(Timezone.convertTime_to_Locale(item.end_time) )}}</span
                                                     >
-                                                    <span class="textYellow--text">{{ statusOptions[item.status] }}</span>
+                                                    <span class="" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'">{{ statusOptions[item.status] }}</span>
                                                 </template>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                             <span class="success--text" v-if="item.status == 2">{{statusOptions[item.status]}}</span>
                                             <span class="red--text" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
                                             <span class="success--text" v-if="item.status == 3">{{statusOptions[item.status]}}</span>
-                                            <span class="textYellow--text" v-if="item.status > 3">{{ statusOptions[item.status] }}</span>
+                                            <span v-if="item.status > 3" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'">{{ statusOptions[item.status] }}</span>
                                         </div>
                                         <div class="nomal_text_2--text d-flex justify-space-between">
                                             <span>{{LangUtil("任务开始时间")}}：</span>

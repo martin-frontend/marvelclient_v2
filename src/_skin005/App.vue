@@ -91,7 +91,7 @@
             </v-btn>
         </template>
         <template v-if="$xsOnly">
-            <div class="btn-dailytask_mob" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()">
+            <div class="btn-dailytask_mob" v-if="isShowFooter && (novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn())">
                 <v-badge
                     color="red"
                     overlap

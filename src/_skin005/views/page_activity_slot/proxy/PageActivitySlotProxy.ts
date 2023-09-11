@@ -78,6 +78,7 @@ export default class PageActivitySlotProxy extends puremvc.Proxy {
     }
     /**设置中奖信息 */
     setAwardData(data: any) {
+        PanelUtil.showAppLoading(false);
         Object.assign(this.pageData.award_data, data);
         this.pageData.award_data.award = JSON.parse(JSON.stringify(data.award));
         console.log("--抽奖--", data);
@@ -103,6 +104,7 @@ export default class PageActivitySlotProxy extends puremvc.Proxy {
     /**抽奖 */
     api_plat_activity_ball_lottery_award_var(idx: any) {
         if (!core.user_id) return;
+        PanelUtil.showAppLoading(true);
         const obj = {
             user_id: core.user_id,
             current_cycle: this.pageData.ball_award_detail.current_cycle,

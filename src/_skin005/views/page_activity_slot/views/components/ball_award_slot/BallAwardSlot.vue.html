@@ -29,7 +29,8 @@
                         <div class="turn_text_color text-30 font-weight-bold">
                             <template v-if="!isNeedRestart">
                                 <span> {{LangUtil("抽奖")}}</span>
-                                <span>{{LangUtil("({0}/{1})",(ball_info.lottery_total_num - ball_info.surplus_lottery_num),ball_info.lottery_total_num)}}</span>
+                                <!-- <span>{{LangUtil("({0}/{1})",(ball_info.lottery_total_num - ball_info.surplus_lottery_num),ball_info.lottery_total_num)}}</span> -->
+                                <span class=""> : {{ ball_info.surplus_lottery_num}}</span>
                             </template>
                             <template v-else>
                                 <span> {{LangUtil("重置")}}</span>

@@ -75,12 +75,12 @@ export default class DialogNoticeRecharge extends AbstractView {
             //如果是列表，使用以下数据，否则删除
             this.myProxy.resetQuery();
             // this.myProxy.api_xxx();
-
-            this.$nextTick(() => {
+            setTimeout(() => {
                 if (!this.img_src) {
+                    console.warn("--空的值  需要关闭", this.curNoticeData);
                     this.onClose();
                 }
-            });
+            }, 500);
         }
     }
     onImgClick() {

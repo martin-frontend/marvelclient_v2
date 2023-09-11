@@ -116,7 +116,12 @@
                 </template>
             </v-sheet>
             <!-- 僅在上次排名出現 -->
-            <v-sheet v-if="tabIndex == 1" color="transparent" class="d-flex justify-center align-center text-14 font-weight-bold white--text" width="100%">
+            <v-sheet
+                v-if="tabIndex == 1"
+                color="transparent"
+                class="d-flex justify-center align-center text-14 font-weight-bold white--text"
+                width="100%"
+            >
                 <span>{{LangUtil("上次排名结束时间：")}}</span>
                 <span>{{timeStr}}</span>
             </v-sheet>
@@ -228,70 +233,9 @@
         </v-sheet>
     </v-sheet>
     <!-- 下方的数据 -->
-    <v-card flat color="transparent" class="d-flex flex-column justify-center" width="100%">
+    <v-card flat color="transparent" class="d-flex flex-column justify-center mb-8" width="100%">
         <!-- 排名 -->
         <v-card v-if="tabIndex == 0 || tabIndex == 1" flat color="transparent" class="d-flex flex-column justify-center">
-            <!-- 表格 -->
-            <v-sheet color="#242422" class="d-flex flex-column rounded10 overflow-y-auto mt-2" height="500">
-                <v-sheet
-                    v-if="rankDataList && rankDataList.length >0"
-                    v-for="(data,index) of rankDataList"
-                    :key="index"
-                    color="transparent"
-                    class="d-flex flex-column px-2 py-1"
-                    :class="data.is_my ? 'tab_active' : ''"
-                >
-                    <v-sheet color="transparent" class="d-flex justify-center flex-column my-1 justify-space-between" width="100%">
-                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
-                            <div class="text-14 font-weight-bold white--text">{{LangUtil("排名")}}</div>
-                            <div class="text-14 font-weight-bold">
-                                <div v-if="getRankImg( index +1)">
-                                    <v-img :src="getRankImg(index+1)" width="25"></v-img>
-                                </div>
-                                <span v-else :class="data.is_my ? '' : 'white--text'">{{index+1}}</span>
-                            </div>
-                        </v-sheet>
-
-                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
-                            <div class="text-14 font-weight-bold  white--text">{{LangUtil("ID")}}</div>
-                            <div
-                                class="text-14 font-weight-bold"
-                                :class="{
-                                'rank_text_color_other' : !data.is_my && !getRankImg(index+1),
-                                'rank_text_color_3' : !data.is_my && getRankImg(index+1),
-                            }"
-                            >
-                                {{data.user_id}}
-                            </div>
-                        </v-sheet>
-
-                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
-                            <div class="text-14 font-weight-bold  white--text">{{LangUtil("奖励")}}</div>
-                            <div class="text-14 font-weight-bold" :class="data.is_my ? '' : 'reward_text_color'">
-                                <div v-html="getAwardValue(data)"></div>
-                            </div>
-                        </v-sheet>
-
-                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
-                            <div class="text-14 font-weight-bold  white--text">{{LangUtil("号码")}}</div>
-                            <div class="text-14 font-weight-bold d-flex align-center">
-                                <SingleBall
-                                    v-for="(value , key) of getBallData(data.lottery_code)"
-                                    :data="value"
-                                    :img_index="key"
-                                    :key="key"
-                                    :item_width="20"
-                                    :text_font="12"
-                                    class=""
-                                />
-                            </div>
-                        </v-sheet>
-                    </v-sheet>
-                    <v-sheet color="#8d9590" width="100%" height="1"></v-sheet>
-                </v-sheet>
-                <ListNodata v-if="rankDataList.length==0" height="411" />
-            </v-sheet>
-
             <!-- 我的排名 -->
             <v-sheet color="transparent" class="d-flex align-center my-2 flex-column">
                 <v-sheet class="d-flex align-center justify-space-between" color="transparent" width="100%">
@@ -356,8 +300,75 @@
                     </v-sheet>
                 </v-sheet>
             </v-sheet>
+
+            <!-- 表格 -->
+            <v-sheet color="#242422" class="d-flex flex-column rounded10 overflow-y-auto mt-2" height="500">
+                <v-sheet
+                    v-if="rankDataList && rankDataList.length >0"
+                    v-for="(data,index) of rankDataList"
+                    :key="index"
+                    color="transparent"
+                    class="d-flex flex-column px-2 py-1"
+                    :class="data.is_my ? 'tab_active' : ''"
+                >
+                    <v-sheet color="transparent" class="d-flex justify-center flex-column my-1 justify-space-between" width="100%">
+                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
+                            <div class="text-14 font-weight-bold white--text">{{LangUtil("排名")}}</div>
+                            <div class="text-14 font-weight-bold">
+                                <div v-if="getRankImg( index +1)">
+                                    <v-img :src="getRankImg(index+1)" width="25"></v-img>
+                                </div>
+                                <span v-else :class="data.is_my ? '' : 'white--text'">{{index+1}}</span>
+                            </div>
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
+                            <div class="text-14 font-weight-bold white--text">{{LangUtil("ID")}}</div>
+                            <div
+                                class="text-14 font-weight-bold"
+                                :class="{
+                                'rank_text_color_other' : !data.is_my && !getRankImg(index+1),
+                                'rank_text_color_3' : !data.is_my && getRankImg(index+1),
+                            }"
+                            >
+                                {{data.user_id}}
+                            </div>
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
+                            <div class="text-14 font-weight-bold white--text">{{LangUtil("奖励")}}</div>
+                            <div class="text-14 font-weight-bold" :class="data.is_my ? '' : 'reward_text_color'">
+                                <div v-html="getAwardValue(data)"></div>
+                            </div>
+                        </v-sheet>
+
+                        <v-sheet color="transparent" class="text-14 font-weight-bold d-flex justify-space-between" width="100%">
+                            <div class="text-14 font-weight-bold white--text">{{LangUtil("号码")}}</div>
+                            <div class="text-14 font-weight-bold d-flex align-center">
+                                <SingleBall
+                                    v-for="(value , key) of getBallData(data.lottery_code)"
+                                    :data="value"
+                                    :img_index="key"
+                                    :key="key"
+                                    :item_width="20"
+                                    :text_font="12"
+                                    class=""
+                                />
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+                    <v-sheet color="#8d9590" width="100%" height="1"></v-sheet>
+                </v-sheet>
+                <ListNodata v-if="rankDataList.length==0" height="411" />
+            </v-sheet>
+
             <!-- 僅在上次排名出現 -->
-            <v-sheet v-if="tabIndex == 1" color="transparent" class="d-flex justify-center align-center text-12 font-weight-bold  white--text" width="100%">
+            <v-sheet
+                v-if="tabIndex == 1"
+                color="transparent"
+                class="d-flex justify-center align-center text-12 font-weight-bold white--text mt-2"
+                width="100%"
+            >
                 <span>{{LangUtil("上次排名结束时间：")}}</span>
                 <span>{{timeStr}}</span>
             </v-sheet>

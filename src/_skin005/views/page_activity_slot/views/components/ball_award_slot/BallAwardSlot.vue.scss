@@ -19,21 +19,15 @@
     }
 }
 
-
-.turn_btn{
+.turn_btn {
     background: url("~@/_skin005/assets/ballaward/item_turn_btn.png");
     background-size: 100% 100%;
 }
-.turn_btn_reset{
+.turn_btn_reset {
     background: url("~@/_skin005/assets/ballaward/item_turn_btn_reset.png");
     background-size: 100% 100%;
 }
-.item_get {
-    animation: doScale 0.5s ease 1s 4;
-}
 
-
-.turn_text_color{
+.turn_text_color {
     color: #6f290a;
 }
-

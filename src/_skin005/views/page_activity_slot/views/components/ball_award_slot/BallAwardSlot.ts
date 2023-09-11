@@ -18,11 +18,11 @@ export default class BallAwardSlot extends AbstractView {
     award_data = this.myProxy.pageData.award_data;
 
     items = <any>[];
-    duration = 4000; // 抽奖转动总时长（毫秒）
-    slowStartDuration = 1500; // 开始加速的时长
-    slowEndDuration = 2500; // 结束减速的时长
+    duration = 2000; // 抽奖转动总时长（毫秒）
+    slowStartDuration = 1000; // 开始加速的时长
+    slowEndDuration = 1500; // 结束减速的时长
     targetIndex = -1; // 停在指定的抽奖项索引
-    maxRunTime = 10000; //最大运行时间
+    maxRunTime = 6000; //最大运行时间
 
     currentTime = 0; // 当前已经过去的时间
     interval = 0;
@@ -34,8 +34,9 @@ export default class BallAwardSlot extends AbstractView {
     isSpeedUp = false; //是否加速
 
     time_speed = 0; //什么时候切换到下一个对象
-    arr_upSpeed = [15, 10, 5, 2];
-    arr_slowSpeed = [2, 5, 10];
+    // arr_upSpeed = [15, 10, 5, 2];
+    arr_upSpeed = [8, 5, 2];
+    arr_slowSpeed = [2, 5, 8];
     runCount = 0;
     runCount_slow = 0;
     isRunning = false;
@@ -131,10 +132,10 @@ export default class BallAwardSlot extends AbstractView {
         // }
     }
 
-    startTurn() {
+    startTurn(index: number = -1) {
         this.isRunning = true;
         // this.initOptions(Math.round(Math.random() * 9));
-        this.initOptions(-1);
+        this.initOptions(index);
         // AudioManager.Instance.playSound_slot_begin();
         this.interval = setInterval(this.updateItems, this.fixsUpdataTime); // 每帧更新一次
     }
@@ -181,7 +182,7 @@ export default class BallAwardSlot extends AbstractView {
         if (!this.isRunning) {
             // 關閉抽獎按鈕，避免重複點擊
             this.clickAgain = true;
-            this.startTurn();
+            // this.startTurn();
             this.myProxy.api_plat_activity_ball_lottery_award_var(this.novigationProxy.ballAwardId);
         }
     }
@@ -265,8 +266,8 @@ export default class BallAwardSlot extends AbstractView {
 
     getCoinSymbol(coinname: string) {
         if (!coinname) return "";
-        // return CoinTransformHelper.GetCoinSymbol(coinname);
-        return coinname;
+        return CoinTransformHelper.GetCoinSymbol(coinname);
+        // return coinname;
     }
     /**获取当前抽奖消耗 */
     get curLotteryCons() {
@@ -336,8 +337,7 @@ export default class BallAwardSlot extends AbstractView {
         console.warn("更新中心信息");
         if (this.award_data.award_index != -1) {
             this.targetIndex = this.award_data.award_index % 10;
-            // console.warn(" 设置目标为", this.targetIndex);
-            // console.log("修改的数值为", this.award_data);
+            this.startTurn(this.targetIndex);
         }
     }
     get turnBtnDisabled() {
@@ -411,6 +411,9 @@ export default class BallAwardSlot extends AbstractView {
     setTimeStr() {
         if (!this.timeCount) return "";
 
+        if (this.pageData.ball_award_detail.cycle_status == 2) {
+            return LangUtil("活动已结束");
+        }
         //将这个时间转为天时分秒
         const newTimeTotle = this.timeCount;
         // 计算天数
@@ -423,11 +426,28 @@ export default class BallAwardSlot extends AbstractView {
         const minutes = Math.floor(remainingSecondsAfterHours / 60);
         // 计算剩余的秒数
         const seconds = remainingSecondsAfterHours % 60;
-        if (days < 1) {
-            return LangUtil("{0}时{1}分{2}秒", hours, minutes, seconds);
+
+        let str = "";
+
+        if (days > 0) {
+            str = str + days + LangUtil("天");
         }
 
-        return LangUtil("{0}天{1}时{2}分{3}秒", days, hours, minutes, seconds);
+        if (!(days < 1 && hours < 1)) {
+            str = str + hours + LangUtil("时");
+        }
+
+        if (!(days < 1 && hours < 1 && minutes < 1)) {
+            str = str + minutes + LangUtil("分");
+        }
+
+        str = str + seconds + LangUtil("秒");
+
+        return str;
+        // if (days < 1) {
+        //     return LangUtil("{0}时{1}分{2}秒", hours, minutes, seconds);
+        // }
+        // return LangUtil("{0}天{1}时{2}分{3}秒", days, hours, minutes, seconds);
     }
     // @Watch("myProxy.pageData.ball_award_detail.current_cycle")
     // onBallAwardDetailChange(val: any, oldVal: any) {

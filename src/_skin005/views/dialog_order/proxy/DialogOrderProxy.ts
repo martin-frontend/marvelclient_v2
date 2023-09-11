@@ -25,10 +25,18 @@ export default class DialogOrderProxy extends puremvc.Proxy {
             settle_time: "",
             settle_result: "",
             settle_amount: "",
+            game_info: <any>{
+                betList: <any>[],
+                cashOutCount: 0,
+                orderStatus: 0,
+                cashOutPayoutStake: "",
+                cashOutTotalStake: "",
+                settleStatus:0,
+            },
         },
         itemData: <any>null,
         url: "",
-        isHaveData:false,
+        isHaveData: false,
     };
     //如果是列表，使用以下数据，否则删除
     resetQuery() {
@@ -49,11 +57,20 @@ export default class DialogOrderProxy extends puremvc.Proxy {
             settle_result: "",
             settle_amount: "",
         });
+
         this.pageData.url = "";
         this.pageData.itemData = null;
-        this.pageData.isHaveData=false;
+        this.pageData.isHaveData = false;
     }
 
+    setGameinfo(data: any) {
+        console.warn("设置gameinfo 数据");
+        if (!data) {
+            this.pageData.data.game_info = null;
+            return;
+        }
+        Object.assign(this.pageData.data.game_info, data);
+    }
     setData(data: any) {
         this.pageData.loading = false;
         Object.assign(this.pageData.data, data);

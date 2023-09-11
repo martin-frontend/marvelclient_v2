@@ -373,9 +373,9 @@ export default class DialogBetRecord extends AbstractView {
         PanelUtil.message_info(LangUtil("复制成功"));
     }
 
-    handlerDetail(data: string) {
+    handlerDetail(data: any) {
         //dialog_order.show(data);
-        PanelUtil.openpanel_order(data);
+        PanelUtil.openpanel_order(data, data.game_info);
     }
     //筛选按钮点击
     onFilterBtnClick() {

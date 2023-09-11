@@ -655,9 +655,9 @@ export default class PanelUtil {
      * 订单
      * @param data
      */
-    static openpanel_order(data: any = null) {
+    static openpanel_order(data: any = null, game_info: any = null) {
         MultDialogManager.onOpenPanel(dialog_order);
-        dialog_order.show(data);
+        dialog_order.show(data, game_info);
     }
     /**
      * 活动详情

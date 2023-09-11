@@ -2,9 +2,9 @@
  * 平台各个币种之间的转换
  */
 import LangUtil from "@/core/global/LangUtil";
-import moment from "moment-timezone"; //Asia/Shanghai
 import GameConfig from "./config/GameConfig";
 import { dateFormat } from "./global/Functions";
+import * as moment from "moment-timezone";
 interface timezoneItem {
     key: string;
     value: string;
@@ -212,9 +212,10 @@ export default class Timezone {
         if (!GameConfig.timezoneChange) {
             return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
         }
-        const newdata = this.addTime_other(datetimeString, this.getLocalTimezoneString());
-        // console.log("转换之后的时间", newdata);
-        return newdata;
+        const formattedDate = moment.tz(datetimeString, "Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
+        console.warn("转换之后的是", formattedDate);
+
+        return this.convertTime_to_Locale(formattedDate);
     }
     /**
      * 将输入的时间转换为北京时间，如果平台不需要转换时间 会返回 传入值

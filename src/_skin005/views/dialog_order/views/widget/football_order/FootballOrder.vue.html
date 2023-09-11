@@ -14,9 +14,13 @@
     >
         <div class="d-flex align-center">
             <img src="@/_skin005/assets/order_detail/icon_blue.png" max-height="30" height="30" max-width="10" width="10" />
-            <div style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">{{item.tournament_name}}</div>
+            <div v-if="!isChuanDan(item)" style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">
+                {{item.tournament_name}}
+            </div>
+            <div v-else style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">{{item.bet_type}}</div>
         </div>
         <div
+            v-if="!isChuanDan(item)"
             class="rounded order-content"
             style="
                 background-color: #fff;
@@ -71,16 +75,111 @@
                 <span class="font-weight-bold"> {{getDate(item.settle_time)}}</span>
             </div>
 
-            <div style="margin-right: 10px" class="winlostdiv" v-if="item.settle_amount && item.is_settle == 1">
+            <div style="margin-right: 10px" class="winlostdiv" v-if="!isPreSettle(item) && item.settle_amount && item.is_settle == 1">
                 <span style="margin-right: 4px">{{LangUtil("输赢")}} {{item.currency}}</span>
                 <span class="font-weight-bold" :class="item.settle_amount>=0 ? 'success--text' : 'error--text' ">
                     {{item.settle_amount>=0 ? "+" : ""}}{{amountFormat(item.settle_amount,true,2)}}
                 </span>
             </div>
+            <!-- 提前结算 -->
+            <div style="margin-right: 10px" class="winlostdiv" v-if="isPreSettle(item)">
+                <span style="margin-right: 4px">{{LangUtil("输赢")}} {{item.currency}}</span>
+                <span class="font-weight-bold" :class="winAmount(item)>=0 ? 'success--text' : 'error--text' ">
+                    {{winAmount(item)>=0 ? "+" : ""}}{{amountFormat(winAmount(item),true,2)}}
+                </span>
+            </div>
+
             <div class="win-type">
                 <img style="width: 100px; height: 100px" :src="getWinType(item)" v-if="item.win_type" />
                 <p>{{getWinTypeStr(item)}}</p>
             </div>
+        </div>
+        <!-- 串单的样式 -->
+        <div
+            v-else
+            class="rounded order-content"
+            style="
+                background-color: #fff;
+                margin: 12px, 0px;
+                padding: 12px;
+                margin-left: 12px;
+                margin-right: 12px;
+                margin-top: 8px;
+                line-height: normal;
+                position: relative;
+            "
+        >
+            <div width="100%">
+                {{LangUtil("订单状态")}}
+                <span class="font-weight-bold" :style="{ 'color': statusMapColor[item.order_status]}"
+                    >{{statusMap[item.order_status]}}</span
+                >
+            </div>
+            <div width="100%">
+                {{LangUtil("投注金额")}}<span class="font-weight-bold"> {{item.currency}} {{amountFormat(item.stake_amount,true) }}</span>
+            </div>
+
+            <div width="100%" v-if="item.game_info.orderStatus == 5">
+                <span style="margin-right: 4px">{{LangUtil("输赢")}} {{item.currency}}</span>
+
+                <span class="font-weight-bold" :class="chuanDanWinAmount(item.game_info)>=0 ? 'success--text' : 'error--text' ">
+                    {{chuanDanWinAmount(item.game_info)>=0 ? "+" : ""}}{{amountFormat(chuanDanWinAmount(item.game_info),true,2)}}
+                </span>
+            </div>
+            <div width="100%" v-else>
+                {{LangUtil("预计可赢")}}
+                <span class="font-weight-bold" style="color: #0325b4"
+                    >{{item.currency+" "+amountFormat(item.game_info.maxWinAmount,true,2)}}</span
+                >
+            </div>
+            <div class="win-type-chuan">
+                <img style="width: 80px; height: 80px" :src="getWinType_chuanDan(item.game_info)"  v-if="item.game_info.orderStatus == 5" />
+                <p>{{chuanDanWinAmount(item.game_info)>=0 ? LangUtil('赢') : LangUtil('输')}}</p>
+            </div>
+            <div width="100%">{{LangUtil("订单编号")}} <span class="font-weight-bold"> {{item.order_id}}</span></div>
+
+            <div width="100%">
+                {{LangUtil("投注时间")}}
+                <span class="font-weight-bold"> {{getDate(item.create_time)}}</span>
+            </div>
+            <div width="100%" v-if="item.settle_time">
+                {{LangUtil("结算时间")}}
+                <span class="font-weight-bold"> {{getDate(item.settle_time)}}</span>
+            </div>
+            <div style="margin-top: 8px; margin-bottom: 8px" class="custom-hr"></div>
+
+            <v-sheet
+                color="transparent"
+                width="100%"
+                class="mt-2 black--text"
+                v-for="(item_info , key) of item.game_info.betList"
+                :key="key"
+                style="position: relative"
+            >
+                <div width="100%">
+                    <span class="font-weight-bold"> {{item_info.tournamentName}}</span>
+                </div>
+                <div width="100%" style="max-width: 70%">
+                    <span class=""> {{item_info.matchName}}</span>
+                </div>
+                <div width="100%">
+                    <span class=""> {{item_info.optionName}}</span>
+                    <span class="font-weight-bold ml-2">@{{item_info.betOdds}}</span>
+                </div>
+
+                <div width="100%">
+                    <span class=""> {{item_info.marketName}}</span>
+                </div>
+
+                <div class="chuandan_win">
+                    <div :style="{ 'color': getWinColor_chuandan(item_info)}">{{getWinTypeStr_chuandan(item_info)}}</div>
+                </div>
+                <!-- <div class="win-type-chuan">
+                    <img style="width: 80px; height: 80px" :src="getWinType_chuandan(item_info)" v-if="item_info.settleResult" />
+                    <p>{{getWinTypeStr_chuandan(item_info)}}</p>
+                </div> -->
+                <div style="margin-top: 8px; margin-bottom: 8px" class="custom-hr"></div>
+            </v-sheet>
         </div>
     </div>
 </div>

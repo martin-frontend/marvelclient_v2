@@ -82,7 +82,7 @@ function logInit() {
     }
 }
 
-// logInit();
+logInit();
 core.init();
 loadConfig();
 const vuetify = getVuetify();

@@ -75,7 +75,7 @@ export default class GameConfig {
             url = `/resource/game_address/${core.MD5.createInstance().hex_md5(core.game_domain)}.json?${getFileVersion()}`;
             if (process.env.VUE_APP_ENV == "production") {
                 // url = location.origin + url;
-                url = location.protocol + "//uxdz.wfxdmj1990.com" + url;
+                url = location.protocol + "//cdew.p8a432s.pro" + url;
             } else {
                 url = "https://sftpuser.testjj9.com" + url;
             }

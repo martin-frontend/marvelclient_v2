@@ -132,7 +132,7 @@
                     >{{item.currency+" "+amountFormat(item.game_info.maxWinAmount,true,2)}}</span
                 >
             </div>
-            <div class="win-type-chuan">
+            <div class="win-type-chuan"  v-if="item.game_info.orderStatus == 5">
                 <img style="width: 80px; height: 80px" :src="getWinType_chuanDan(item.game_info)"  v-if="item.game_info.orderStatus == 5" />
                 <p>{{chuanDanWinAmount(item.game_info)>=0 ? LangUtil('赢') : LangUtil('输')}}</p>
             </div>

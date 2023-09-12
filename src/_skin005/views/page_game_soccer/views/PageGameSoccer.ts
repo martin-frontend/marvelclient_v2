@@ -91,7 +91,10 @@ export default class PageGameSoccer extends AbstractView {
         const ifr: any = document.getElementById("gameFrame");
         if (ifr) {
             ifr.contentWindow.postMessage({ action: "sportbookLogin", params: this.pageData.token }, "*");
+            ifr.src =  this.pageData.url;
+            console.warn("刷新");
         }
+        
     }
 
     mounted() {

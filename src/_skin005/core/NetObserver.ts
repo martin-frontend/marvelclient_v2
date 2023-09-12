@@ -450,7 +450,11 @@ export default class NetObserver extends AbstractMediator {
             }
             if (body.token) {
                 console.warn("---设置 token----");
-                document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
+                if (process.env.VUE_APP_ENV == "production") {
+                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
+                } else {
+                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.testjj9.com; path=/; Secure`;
+                }
             }
 
             const message_obj = <any>{

@@ -277,7 +277,9 @@ export default class DialogRegister extends AbstractView {
             this.passwordTips = [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
         }
 
-        this.passwordConfirmTips = JSON.parse(JSON.stringify(this.passwordTips));
+        if(!SkinVariable.adjustPasswordConfirmTips) {
+            this.passwordConfirmTips = JSON.parse(JSON.stringify(this.passwordTips));
+        }
         for (let index = 0; index < this.passwordTips.length; index++) {
             this.passwordTips[index].state = 0;
         }

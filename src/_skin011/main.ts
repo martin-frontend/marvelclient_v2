@@ -49,6 +49,7 @@ Assets.commonIcon.login_logo_m = require(`@/_skin011/assets/login_logo_m.png`);
 // SkinVariable.isUsedDialogRecharge  = true;
 // SkinVariable.isForeShowRecharge = true;
 SkinVariable.isShowGameListNovigation = false;
+SkinVariable.adjustPasswordConfirmTips = true;
 // SkinVariable.isFootballTop = true;
 GlobalVar.game_address_method = 1;
 LogUtil.init();

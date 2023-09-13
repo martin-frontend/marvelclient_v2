@@ -55,4 +55,6 @@ export default class SkinVariable {
     public static gameIconType = 0;
     /**調整08皮banner高度 */
     public static adjustBannerHeightFor08Skin = false;
+    /**确认密码栏位 只需要一个提示 */
+    public static adjustPasswordConfirmTips = false;
 }

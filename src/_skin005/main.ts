@@ -57,6 +57,7 @@ SkinVariable.useFlyerLog = true;
 SkinVariable.useGTM = true;
 SkinVariable.isShowGameType = true;
 SkinVariable.gamelist_other = true;
+SkinVariable.adjustPasswordConfirmTips = true;
 LangConfig.lang_type = 18;
 // 注册到全局
 // Vue.component("btn-yellow", BtnYellow);

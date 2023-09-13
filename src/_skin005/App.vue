@@ -80,13 +80,15 @@
 
             <v-btn v-if="ModulesHelper.isShow_Kefu()" class="btn-service" icon @click="onService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
-                    <svg-icon icon="service"></svg-icon>
+                    <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
+                    <svg-icon v-else icon="service"></svg-icon>
                 </btn-yellow>
             </v-btn>
             <!-- partner -->
             <v-btn v-if="ModulesHelper.isShow_PartnerKefu()" class="btn-partner-service pc" icon @click="onPartnerService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
-                    <svg-icon icon="partner"></svg-icon>
+                    <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="partner_full"></svg-icon>
+                    <svg-icon v-else icon="partner"></svg-icon>
                 </btn-yellow>
             </v-btn>
         </template>
@@ -111,13 +113,15 @@
                 @click="onService"
             >
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
-                    <svg-icon icon="service"></svg-icon>
+                    <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
+                    <svg-icon v-else icon="service"></svg-icon>
                 </btn-yellow>
             </v-btn>
             <!-- partner -->
             <v-btn v-if="ModulesHelper.isShow_PartnerKefu() && isShowFooter" class="btn-partner-service" icon @click="onPartnerService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
-                    <svg-icon icon="partner"></svg-icon>
+                    <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="partner_full"></svg-icon>
+                    <svg-icon v-else icon="partner"></svg-icon>
                 </btn-yellow>
             </v-btn>
         </template>

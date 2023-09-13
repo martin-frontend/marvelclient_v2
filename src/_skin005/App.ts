@@ -15,6 +15,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import { track_error_event } from "@/core/config/ErrorEvent";
 import GameConfig from "@/core/config/GameConfig";
 import SelfProxy from "@/proxy/SelfProxy";
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -236,5 +237,8 @@ export default class APP extends AbstractView {
     }
     onClicBtnkDailyTask() {
         PanelUtil.openpanel_dailytask();
+    }
+    get isUseColorfullIcon(){
+        return GlobalVar.skin == "skin008";
     }
 }

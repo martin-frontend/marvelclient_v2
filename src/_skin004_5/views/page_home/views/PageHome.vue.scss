@@ -1,0 +1,70 @@
+.block-yellow {
+    //border: solid 2px #ffe64d !important;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    //background-image: url("~@/_skin005/assets/texture_money.png");
+    //background-size: contain;
+}
+.item_bg {
+    position: absolute;
+    width: 165px;
+    //height: 100%;
+    z-index: -1;
+    //opacity: 0.3;
+    border-radius: 20px;
+    overflow: hidden;
+    .img {
+        position: relative;
+    }
+}
+.btn-yellow {
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    height: 24px;
+    border-radius: 5px;
+    width: fit-content;
+    font-size: 12px;
+    cursor: pointer;
+}
+.panel-bouns {
+    background-image: url("~@/_skin005/assets/pagehome/01_tuiguang.png");
+    background-position: right top 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.panel-swap {
+    background-image: url("~@/_skin005/assets/pagehome/02_huodong.png");
+    background-position: right top 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.panel-mine {
+    background-image: url("~@/_skin005/assets/pagehome/03_wakuang.png");
+    background-position: right top 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.btn-panel {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    min-height: 24px;
+}
+.boxpadding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bannritem_mob {
+    height: 170px;
+}
+
+.bannritem {
+    height: 240px !important;
+}
+
+.skin004_2 {
+    .version-text {
+        color: #3b3b3b;
+    }
+}

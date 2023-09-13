@@ -357,7 +357,7 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin004_5","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
+            ["skin004_2","skin004_5","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
                 process.env.VUE_APP_SKIN
             )
         ) {

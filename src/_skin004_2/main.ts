@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from "@/_skin004_1/App.vue";
+import App from "@/_skin004_5/App.vue";
 import { getVuetify } from "@/_skin004_2/plugins/vuetify";
 import router from "@/_skin004_2/router";
 import "@mdi/font/css/materialdesignicons.css";
@@ -17,6 +17,7 @@ import CustomTree from "@/_skin001/views/widget/custom_tree/CustomTree.vue";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import "@/_skin005/icons";
 
 LogUtil.init();
 core.init();
@@ -54,8 +55,11 @@ SkinVariable.icon_play = require(`@/_skin004_2/assets/icon/icon_play.png`);
 SkinVariable.icon_play1 = require(`@/_skin004_2/assets/icon/icon_play1.png`);
 SkinVariable.icon_extension = require(`@/_skin004_2/assets/icon/icon_extension.png`);
 SkinVariable.icon_extension1 = require(`@/_skin004_2/assets/icon/icon_extension1.png`);
-
+SkinVariable.isShowGameList = false;
+SkinVariable.bannerImageRatio = 1/3.5;
+SkinVariable.isShowAllVendor = true;
 Vue.config.productionTip = false;
+
 Vue.use(VueLoadmore);
 Vue.component("custom-tree", CustomTree);
 
@@ -70,6 +74,8 @@ window["vm"] = new Vue({
 });
 // .$mount("#app");
 
+window.$mobile = Vue.prototype.$mobile = false;
+window.$xsOnly = Vue.prototype.$xsOnly = false;
 //native调用
 //@ts-ignore
 window["receiveNative"] = WebViewBridge.getInstance().receiveNative;

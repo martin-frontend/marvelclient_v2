@@ -123,4 +123,20 @@ $box_width_mini: 98px;
 }
 .text-with-shadow {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-  }
+}
+.text_bg {
+    background: #282827;
+}
+.skin004_2 {
+    .text_bg {
+        background: #474747;
+    }
+    .game-icon:hover {
+        .game-title {
+            color: #fff;
+        }
+        .text_bg {
+            background: #474747 !important;
+        }
+    }
+}

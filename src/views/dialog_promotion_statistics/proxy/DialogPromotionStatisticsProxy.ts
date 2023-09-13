@@ -350,7 +350,7 @@ export default class DialogPromotionStatisticsProxy extends puremvc.Proxy {
             if (key == "win_loss") {
                 label = LangUtil("玩家总输赢");
             }
-            return `${label} (${arr.join(" / ")})`;
+            return `${label} (${LangUtil("全部类型游戏")})`;
         });
         this.pageData.formulaString = res.join(" + ");
     }

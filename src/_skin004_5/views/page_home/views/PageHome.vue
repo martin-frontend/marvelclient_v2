@@ -1,5 +1,5 @@
 <template src="./PageHome.vue.html" lang="html"></template>
-<style src="@/_skin005/views/page_home/views/PageHome.vue.scss" lang="scss" scoped></style>
+<style src="@/_skin004_5/views/page_home/views/PageHome.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";

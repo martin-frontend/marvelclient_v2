@@ -32,7 +32,7 @@
             <v-sheet v-if="core.user_id" color="transparent" @click="showUserPanel">
                 <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
             </v-sheet>
-            <img :src="SkinVariable.pageHead_logo_mob" height="20" width="auto" alt="" style="object-fit: contain;" />
+            <img class="header-logo" :src="SkinVariable.pageHead_logo_mob" width="auto" alt="" style="object-fit: contain;" />
 
             <!-- 语言 -->
             <!-- <div v-if="LangConfig.language" class="mr-4 d-flex align-center">
@@ -66,7 +66,7 @@
 
             <!-- 登录过了 -->
             <template v-if="core.user_id">
-                <Wallet class="mx-1" nudgeLeft="70" />
+                <Wallet class="ml-1 ml-2" nudgeLeft="70" />
                 <!-- <v-btn color="#EE1C25" class="rounded-pill white--text mx-1" x-small @click="onCoinIn" elevation="0">
                     {{LangUtil("充值")}}
                 </v-btn> -->

@@ -66,6 +66,9 @@ export function getVuetify(): Vuetify {
                         colorPageMineCardBg: "#ffffff",
                         colorFooterBg: "#131e36",
                         colorDialogRegisterBg: "#121E36",
+                        head_color: "#f1f1f1",
+                        copy_icon: "#474747",
+                        water_bg: "#dfdfdf",
 
                         colorText1: "#4c5d7f",
                         colorText2: "#96AAD0",

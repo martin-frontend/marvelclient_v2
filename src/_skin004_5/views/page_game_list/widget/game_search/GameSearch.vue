@@ -1,5 +1,5 @@
 <template src="@/_skin004_5/views/page_game_list/widget/game_search/GameSearch.vue.html" lang="html"></template>
-<style src="@/_skin005/views/page_game_list/widget/game_search/GameSearch.vue.scss" lang="scss" scoped></style>
+<style src="@/_skin004_5/views/page_game_list/widget/game_search/GameSearch.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
 import Component from "vue-class-component";

@@ -3,7 +3,7 @@
     <!-- 手机版 需要显示分类 -->
     <div class="d-flex">
         <v-sheet width="45" min-width="45" v-if="isNeetMenu" color="transparent" class="mt-1" style="border-radius: 4px">
-            <v-sheet color="#272828" class="mt-0 d-inline-flex flex-column py-2" center-active>
+            <v-sheet class="mt-0 d-inline-flex flex-column py-2 left-nav-bg" center-active>
                 <div v-if="hotGame.category == 1">
                     <v-card color="transparent" elevation="0" class="py-2">
                         <v-sheet color="transparent" @click="goCategory(getItemCategory(hotGame))" class="d-flex flex-column align-center">
@@ -67,7 +67,7 @@
             </v-sheet>
         </v-sheet>
         <div class="pl-1" style="width: calc(100% - 45px)">
-            <v-sheet v-if="isNeedVendor && gameMenuData && gameMenuData.length >0" class="mt-1 rounded-lg px-2">
+            <v-sheet v-if="isNeedVendor && gameMenuData && gameMenuData.length >0" class="mt-1 rounded-lg px-2 top-nav-bg">
                 <v-slide-group class="mt-0 mr-2">
                     <!-- <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
                             <v-card

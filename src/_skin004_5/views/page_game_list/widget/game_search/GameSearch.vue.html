@@ -17,7 +17,7 @@
                     >
                         <template slot="default">
                             <v-sheet class="align-center d-flex pr-2" color="transparent" height="30" @click="onSearchClick">
-                                <svg-icon class="text-20 primary--text" icon="search"></svg-icon>
+                                <svg-icon class="text-20 search-text" icon="search"></svg-icon>
                             </v-sheet>
                         </template>
                     </CustomInput>
@@ -38,7 +38,7 @@
                     color="transparent"
                     class="d-flex flex-wrap align-center px-2 py-4 rounded0"
                 >
-                    <v-sheet color="transparent" class="d-flex pb-4" :class="$mobile ? 'text-14':'text-16'" width="100%">
+                    <v-sheet color="transparent" class="d-flex pb-4 copy_icon--text" :class="$mobile ? 'text-14':'text-16'" width="100%">
                         {{LangUtil("搜索历史")}}
                     </v-sheet>
                     <v-sheet
@@ -74,7 +74,7 @@
                 <v-sheet
                     v-if="gameProxy.searchList.params.game_name"
                     color="transparent"
-                    class="py-2 mt-4"
+                    class="py-2 mt-4 copy_icon--text"
                     :class="$mobile ? 'text-14':'text-16'"
                     width="100%"
                     style="text-align: center"
@@ -96,7 +96,7 @@
                     width="100%"
                     style="text-align: center"
                 >
-                    <div class="d-flex flex-column align-center justify-center">
+                    <div class="d-flex flex-column align-center justify-center copy_icon--text">
                         <v-img max-width="60" src="@/_skin005/assets/nodata_2.png"> </v-img>
                         <div class="my-2">{{LangUtil("没有搜索结果")}}</div>
                     </div>

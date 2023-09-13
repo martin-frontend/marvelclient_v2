@@ -164,3 +164,14 @@
 .custom_skin-show {
     display: block !important;
 }
+
+.search_class {
+    .input-text {
+        width: 100%;
+        border-radius: 4px;
+        background-color: #f1f1f1;
+        input {
+            width: 100%;
+        }
+    }
+}

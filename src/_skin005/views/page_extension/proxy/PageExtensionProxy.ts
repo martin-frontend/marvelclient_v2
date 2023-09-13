@@ -246,7 +246,7 @@ export default class PageExtensionProxy extends puremvc.Proxy {
             const obj = <any>{
                 user_id: core.user_id,
             };
-            if (GameConfig.timezoneChange) {
+            if (!Timezone.Instance.isNotUseTimezone) {
                 obj.start_date = Timezone.Instance.convertTime_to_Beijing(
                     core.dateFormat(core.getTodayOffset(), "yyyy-MM-dd") + ` 00:00:00`
                 );

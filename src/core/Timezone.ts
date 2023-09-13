@@ -141,7 +141,18 @@ export default class Timezone {
     public get timezoneOffset(): string {
         return this.curTimezoneItem.key;
     }
-
+    /** 根据配置设置默认的时区 */
+    getDefaultTimezone(): boolean {
+        if (GameConfig.config.defalutTimezone && GameConfig.config.defalutTimezone.trim()) {
+            const fitterArr = this.timezonename.filter((e: any, idx: any, array: any) => e.key == GameConfig.config.defalutTimezone);
+            //查找是否可以跳转  或者执行
+            if (fitterArr && fitterArr.length > 0) {
+                this.setTimezone(fitterArr[0]);
+                return true;
+            }
+        }
+        return false;
+    }
     /**获取本地时间与 +0 时区 之间的时差 */
     getLocalTimezoneOffset(): string {
         const offsetMinutes = new Date().getTimezoneOffset();
@@ -195,21 +206,24 @@ export default class Timezone {
         }
         return this.curTimezoneItem.key;
     }
-
+    /**不使用时区 */
+    get isNotUseTimezone() {
+        return !GameConfig.timezoneChange && !this.getDefaultTimezone();
+    }
     /**
      * 将传入的时间 转换为 本地时间 输出   传入 例如2023-01-18 15:28:33
      * @param datetimeString 传入的 时间文本 例如 "2023-01-18 15:28:33"
      * @returns
      */
     convertTime_to_Locale(datetimeString: string): string {
-        if (!GameConfig.timezoneChange) {
+        if (this.isNotUseTimezone) {
             return datetimeString;
         }
         const newdata = this.addTime(datetimeString, "-8:00");
         return this.addTime(newdata, this.getLocalTimezoneString());
     }
     convertTime_to_Locale_utc(datetimeString: number): string {
-        if (!GameConfig.timezoneChange) {
+        if (this.isNotUseTimezone) {
             return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
         }
         const formattedDate = moment.tz(datetimeString, "Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
@@ -223,7 +237,7 @@ export default class Timezone {
      * @returns 转换之后的文本
      */
     convertTime_to_Beijing(datetimeString: string): string {
-        if (!GameConfig.timezoneChange) {
+        if (this.isNotUseTimezone) {
             return datetimeString;
         }
         let newstr = this.getLocalTimezoneString();

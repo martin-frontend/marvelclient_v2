@@ -217,7 +217,7 @@ export default class GameProxy extends AbstractProxy {
             coin_name_unique: this.coin_name_unique,
             lobby_url: location.origin,
         };
-        if (GameConfig.timezoneChange) {
+        if (!Timezone.Instance.isNotUseTimezone) {
             form.timezone = Timezone.Instance.timezoneOffset;
         }
         if (GlobalVar.skin) form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";

@@ -90,7 +90,7 @@ export default class DialogOrderProxy extends puremvc.Proxy {
             order_no: order_no,
             vendor_id: my_vendor_id,
         };
-        if (GameConfig.timezoneChange) {
+        if (!Timezone.Instance.isNotUseTimezone) {
             formCopy.timezone = Timezone.Instance.timezoneOffset;
         }
         this.sendNotification(net.HttpType.api_vendor_var_bet_log_detail, formCopy);

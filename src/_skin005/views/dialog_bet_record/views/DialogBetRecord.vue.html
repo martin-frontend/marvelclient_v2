@@ -391,8 +391,14 @@
                                 </v-btn>
                             </v-sheet> -->
                             <v-sheet color="transparent" width="15">
-                                <v-sheet v-if="item.bet_detail_url == 1 && item.vendor_id != GameConfig.config.SportVendorId" width="15" class="cursor-pointer" color="transparent">
-                                    <svg-icon v-if="item.bet_detail_url == 1" icon="arrow_next"></svg-icon>
+                                <v-sheet
+                                    v-if="item.bet_detail_url == 1 && item.vendor_id != GameConfig.config.SportVendorId"
+                                    width="15"
+                                    class="cursor-pointer"
+                                    color="transparent"
+                                    click.native="handlerDetail(item)"
+                                >
+                                    <svg-icon icon="bet_record"></svg-icon>
                                 </v-sheet>
                             </v-sheet>
                         </div>
@@ -413,7 +419,7 @@
                             <span class="ml-2">@{{item.game_info.odds }}</span>
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div>
                         </div>
                         <div class="d-flex detail mt-1 black--text align-center" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
@@ -475,7 +481,7 @@
                                 <span class="ml-2">@{{item.game_info.betList[0].odds }}</span>
                                 <v-spacer />
                                 <div @click="handlerDetail(item)" class="cursor-pointer">
-                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                    <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                                 </div>
                             </template>
                             <template v-else>
@@ -489,7 +495,7 @@
                                 <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
                                 <v-spacer />
                                 <div @click="handlerDetail(item)" class="cursor-pointer">
-                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                    <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                                 </div>
                             </template>
                         </div>
@@ -505,7 +511,7 @@
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
                                 <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div>
                         </div>
                     </v-sheet>
@@ -884,7 +890,7 @@
                     <template v-if="item.bet_detail_url == 1 && item.vendor_id != GameConfig.config.SportVendorId">
                         <div class="line mt-2 mx-3"></div>
                         <div @click="handlerDetailLink(item)" class="cursor-pointer d-flex justify-end mt-2 mx-3 mb-2 py-1">
-                            <svg-icon icon="arrow_next"></svg-icon>
+                            <svg-icon icon="bet_record"></svg-icon>
                         </div>
                     </template>
                     <!-- <div class="line mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId"></div>
@@ -919,7 +925,7 @@
                         </div>
                         <v-spacer />
                         <div @click="handlerDetail(item)">
-                            <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                            <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                         </div>
                     </div>
                     <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
@@ -1003,7 +1009,7 @@
                             </div>
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div>
                         </template>
                         <template v-else>
@@ -1019,7 +1025,7 @@
                             </div>
                             <v-spacer />
                             <div @click="handlerDetail(item)" class="cursor-pointer">
-                                <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div>
                         </template>
                     </div>
@@ -1040,7 +1046,7 @@
                         <v-spacer />
                         <div @click="handlerDetail(item)" class="d-flex align-center cursor-pointer">
                             <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
-                            <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                            <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                         </div>
                     </div>
                 </v-sheet>

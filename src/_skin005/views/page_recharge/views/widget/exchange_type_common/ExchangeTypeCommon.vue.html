@@ -286,9 +286,7 @@
                     </v-card>
                 </v-col>
             </template>
-
-            <!-- 墨西哥币兑换 -->
-            <template v-if="(form.payment_method_type==9 || form.payment_method_type==10) && exchangeProxy.showRequires.length > 0">
+            <template v-else-if=" exchangeProxy.showRequires.length > 0">
                 <template v-for="(item, key) of exchangeProxy.showRequires">
                     <v-col cols="6" :key="key">
                         <v-card flat color="transparent" class="d-flex flex-column justify-center">

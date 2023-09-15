@@ -51,14 +51,12 @@ export default class RechargeTypeCommon extends AbstractView {
     getPaymethod_fixed_gold_list() {
         const { methodList } = this.pageData;
         const { coin_name_unique, block_network_id, third_id } = this.form;
-        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 6) {
+        const id_list = [6, 8, 14];
+        if (id_list.includes(methodList[coin_name_unique].options[block_network_id].payemthod_id)) {
             const channel = methodList[coin_name_unique].options[block_network_id].channel;
             return channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
         }
-        if (methodList[coin_name_unique].options[block_network_id].payemthod_id == 8) {
-            const channel = methodList[coin_name_unique].options[block_network_id].channel;
-            return channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
-        }
+
         return [];
     }
     onChange2(value: any) {
@@ -86,7 +84,7 @@ export default class RechargeTypeCommon extends AbstractView {
         const data = methodList[coin_name_unique].options[block_network_id];
         if (!data) return;
         const payemthod_id = data.payemthod_id;
-        if (this.isNeedChoicePayWay || payemthod_id == 5 ) {
+        if (this.isNeedChoicePayWay || payemthod_id == 5) {
             const fixed_gold_list = data.fixed_gold_list;
 
             if (fixed_gold_list && fixed_gold_list.length > 0) {
@@ -98,7 +96,7 @@ export default class RechargeTypeCommon extends AbstractView {
             console.log("---data.requires----", this.myProxy.rechargeProxy.pageData.form.requires);
             this.reSetRequir();
         }
-        if (data.payemthod_id == 6) {
+        if (data.payemthod_id == 6 || data.payemthod_id == 14) {
             const fixed_gold_list = data.fixed_gold_list;
 
             if (fixed_gold_list && fixed_gold_list.length > 0) {
@@ -191,15 +189,15 @@ export default class RechargeTypeCommon extends AbstractView {
         const data = methodList[coin_name_unique].options[block_network_id];
         if (!data) return;
 
+        const explainList = [1, 2, 3, 4, 5, 7, 9, 11];
         if (data.payemthod_id == 6 || data.payemthod_id == 8) {
             const channel = methodList[coin_name_unique].options[block_network_id].channel;
             return channel.find((item: any) => item.third_id == third_id).fixed_gold_list;
-        }
-
-        if (data.payemthod_id == 10 || data.payemthod_id == 12 || data.payemthod_id == 13) {
+        } else if (!explainList.includes(data.payemthod_id)) {
             return data.fixed_gold_list;
+        } else {
+            return [];
         }
-        return [];
     }
 
     chickRequires() {

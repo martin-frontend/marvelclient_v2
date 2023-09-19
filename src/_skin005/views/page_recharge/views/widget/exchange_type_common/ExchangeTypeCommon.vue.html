@@ -626,7 +626,7 @@
                 </v-card>
             </v-col> -->
 
-                <template v-if="form.payment_method_type==8">
+                <template v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0">
                     <!-- 选择框 -->
                     <v-col cols="12">
                         <v-card flat color="transparent" class="d-flex flex-column justify-center">
@@ -707,8 +707,7 @@
                         </v-col>
                     </template>
                 </template>
-
-                <template v-if="form.payment_method_type==9 || form.payment_method_type==10">
+                <template v-else-if=" exchangeProxy.showRequires.length > 0">
                     <template v-for="(item, key) of exchangeProxy.showRequires">
                         <v-col cols="12" :key="key">
                             <v-card flat color="transparent" class="d-flex flex-column justify-center">

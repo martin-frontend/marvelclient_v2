@@ -19,6 +19,9 @@ export default class ExchangeOrder extends AbstractView {
         return price;
     }
     getDate(date: any) {
+        if (date === 0) {
+            return "-";
+        }
         return changeDateShow(Timezone.Instance.convertTime_to_Locale_utc(Number(date)), true, true);
     }
     //根据盘口展示已结算的赛果角球还是比分等

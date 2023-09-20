@@ -48,7 +48,7 @@
             </div>
             <div width="100%">{{LangUtil("订单编号")}} <span class="font-weight-bold"> {{itemData.order_no}}</span></div>
 
-            <div width="100%" v-if="itemData.settlement_status = 11">
+            <div width="100%" v-if="itemData.settlement_status == 11">
                 {{LangUtil("结算时间")}}
                 <span class="font-weight-bold"> {{getDate(itemData.game_info.settled_date)}}</span>
             </div>
@@ -56,17 +56,19 @@
                 {{LangUtil("投注时间")}}
                 <span class="font-weight-bold"> {{getDate(itemData.game_info.creation_date)}}</span>
             </div>
-
-            <div style="margin-right: 10px" class="winlostdiv" v-if="itemData.settlement_status == 11">
-                <span style="margin-right: 4px">{{LangUtil("输赢")}} {{itemData.coin_name_unique}}</span>
-                <span class="font-weight-bold" :class="itemData.game_info.virtual_profit>=0 ? 'success--text' : 'error--text' ">
-                    {{itemData.game_info.virtual_profit>=0 ? "+" : ""}}{{amountFormat(itemData.game_info.virtual_profit,true,2)}}
-                </span>
-            </div>
-            <div class="win-type">
-                <img style="width: 100px; height: 100px" :src="getWinType(itemData)" v-if="itemData.win_type" />
-                <p>{{getWinTypeStr(itemData)}}</p>
-            </div>
+            
+            <template v-if="itemData.settlement_status == 11">
+                <div style="margin-right: 10px" class="winlostdiv">
+                    <span style="margin-right: 4px">{{LangUtil("输赢")}} {{itemData.coin_name_unique}}</span>
+                    <span class="font-weight-bold" :class="itemData.game_info.virtual_profit>=0 ? 'success--text' : 'error--text' ">
+                        {{itemData.game_info.virtual_profit>=0 ? "+" : ""}}{{amountFormat(itemData.game_info.virtual_profit,true,2)}}
+                    </span>
+                </div>
+                <div class="win-type">
+                    <img style="width: 100px; height: 100px" :src="getWinType(itemData)" v-if="itemData.win_type" />
+                    <p>{{getWinTypeStr(itemData)}}</p>
+                </div>
+            </template>
         </div>
     </div>
 </div>

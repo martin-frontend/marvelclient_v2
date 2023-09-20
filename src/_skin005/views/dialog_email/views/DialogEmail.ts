@@ -28,12 +28,14 @@ export default class DialogEmail extends AbstractView {
 
     /**图标时间选择 */
     onTimeChange(val: any) {
-        this.listQuery.cate = parseInt(val);
-        this.onTabClick(this.listQuery.cate);
+        if (this.listQuery.cate != parseInt(val)) {
+            this.listQuery.cate = parseInt(val);
+            this.onTabClick(this.listQuery.cate);
+        }
     }
 
     onTabClick(cate: number) {
-        this.listQuery.cate = cate;
+        // this.listQuery.cate = cate;
         this.listQuery.page_count = 1;
         this.myProxy.api_user_var_mail();
     }
@@ -53,7 +55,7 @@ export default class DialogEmail extends AbstractView {
             this.myProxy.resetQuery();
             this.myProxy.api_user_var_mail();
 
-            console.log("ssss----", this);
+            // console.log("ssss----", this);
         }
     }
 

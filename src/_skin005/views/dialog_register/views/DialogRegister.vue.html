@@ -54,7 +54,7 @@
                 </horizontal_scroll>
 
                 <CustomInput
-                    v-if="!IsShow_HideRegisterInvite"
+                    v-if="!IsShow_HideRegisterInvite && !IsShow_DownRegisterInvite"
                     class="mb-6"
                     icon="mdi-account"
                     :placeholder="LangUtil('请输入推荐人（选填）')"
@@ -429,6 +429,15 @@
                         </v-card>
                     </v-tooltip>
                 </v-sheet>
+                <!-- 放在下面 -->
+                <CustomInput
+                    v-if="!IsShow_HideRegisterInvite && IsShow_DownRegisterInvite"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入推荐人（选填）')"
+                    v-model="form.invite_user_id"
+                    :disabled="hasInviteUser()"
+                />
                 <!-- <CustomPassword
                     class="my-6"
                     icon="mdi-lock"
@@ -527,7 +536,7 @@
 
         <v-sheet class="px-4 mx-3 py-4 mt-2 rounded10" color="bgBanner">
             <CustomInput
-                v-if="!IsShow_HideRegisterInvite"
+                v-if="!IsShow_HideRegisterInvite && !IsShow_DownRegisterInvite"
                 class="mb-4"
                 icon="mdi-account"
                 :placeholder="LangUtil('请输入推荐人（选填）')"
@@ -870,6 +879,15 @@
                     </v-card>
                 </v-tooltip>
             </v-sheet>
+            <!-- 放在下面 -->
+            <CustomInput
+                v-if="!IsShow_HideRegisterInvite && IsShow_DownRegisterInvite"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入推荐人（选填）')"
+                v-model="form.invite_user_id"
+                :disabled="hasInviteUser()"
+            />
             <!-- <CustomPassword
                 icon="mdi-lock"
                 :placeholder="LangUtil('请输入密码（6-20位）')"

@@ -137,6 +137,13 @@ function IsShow_HideRegisterInvite() {
 }
 
 /**
+ * @returns 是否将注册页的推荐人放在密码下面
+ */
+function IsShow_DownRegisterInvite() {
+    return _isValueTrue("DownRegisterInvite", false);
+}
+
+/**
  * 是否显示 真实姓名
  */
 function IsShow_HideRealName() {
@@ -283,7 +290,7 @@ function isHide_HomeDownloadBtn() {
 }
 /**是否显示每日任务的入口 */
 function isShow_DailyTaskBtn() {
-    return _isValueTrue("isShowDailyTaskBtn",false);
+    return _isValueTrue("isShowDailyTaskBtn", false);
 }
 export default {
     IsShow_VipInfo,
@@ -304,6 +311,7 @@ export default {
     IsShow_GameWaterGuide,
     IsShow_VipShowDeal,
     IsShow_HideRegisterInvite,
+    IsShow_DownRegisterInvite,
     IsShow_GoogleVerification,
     MyRebate,
     RebateDisplayType,

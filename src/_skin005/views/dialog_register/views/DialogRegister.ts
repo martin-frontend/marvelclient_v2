@@ -25,6 +25,7 @@ export default class DialogRegister extends AbstractView {
     getverityProxy = PanelUtil.getProxy_get_verityProxy;
     SkinVariable = SkinVariable;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
+    IsShow_DownRegisterInvite = ModulesHelper.IsShow_DownRegisterInvite();
     email_error_info = "";
     password_error_info = "";
     constructor() {
@@ -277,7 +278,7 @@ export default class DialogRegister extends AbstractView {
             this.passwordTips = [{ title: "长度6-20位", state: 0, id: 0, select: /^.{6,20}$/ }];
         }
 
-        if(!SkinVariable.adjustPasswordConfirmTips) {
+        if (!SkinVariable.adjustPasswordConfirmTips) {
             this.passwordConfirmTips = JSON.parse(JSON.stringify(this.passwordTips));
         }
         for (let index = 0; index < this.passwordTips.length; index++) {

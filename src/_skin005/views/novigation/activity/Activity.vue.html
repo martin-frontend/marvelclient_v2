@@ -20,6 +20,14 @@
                         style="position: absolute; right: 10px; top: 10px"
                     >
                     </v-badge>
+                    <v-badge
+                        v-if="item.id == 9"
+                        color="red"
+                        :content="red_dot_tips.is_task_coin_num.num"
+                        :value="red_dot_tips.is_task_coin_num.status==2 && red_dot_tips.is_task_coin_num.num"
+                        style="position: absolute; right: 17px"
+                    >
+                    </v-badge>
                 </v-sheet>
             </template>
             <template v-else>

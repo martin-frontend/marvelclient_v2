@@ -109,3 +109,26 @@
     width: 30px;
     height: 30px;
 }
+
+.bounce {
+    // width: 100px;
+    // height: 100px;
+    //background-color: red;
+    position: relative;
+    //animation: bounce 0.5s ease infinite ,doScale 0.5s ease infinite alternate;
+    animation: bounce 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

@@ -76,6 +76,10 @@ export default class SelfProxy extends AbstractProxy {
             status: 1, // 状态:1-不提示|2-提示
             num: 0, // 数量
         },
+        is_task_coin_num: {
+            status: 1, // 状态:1-不提示|2-提示
+            num: 0, // 数量
+        },
     };
     /**小贴士位置 */
     coinTipData = {

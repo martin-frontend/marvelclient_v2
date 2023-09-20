@@ -129,7 +129,7 @@ export default class NovigationProxy extends puremvc.Proxy {
                     PanelUtil.openpanel_notice();
                     break;
                 case "dialogdailytask":
-                    PanelUtil.openpanel_dailytask();
+                    if (this.isHaveDailytask) PanelUtil.openpanel_dailytask();
                     break;
                 default:
                     break;

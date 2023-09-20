@@ -65,6 +65,14 @@
                                     >
                                         <div class="d-flex justify-space-between">
                                             <span class="font-weight-bold">{{item.activity_name}}</span>
+
+                                            <div v-if="isCoinNotEnough(item) && isCanPlayGame(convertCoinName(item.task_coin_name_unique))" class="d-flex align-center">
+                                                <svg-icon icon="gantanhao_2" class="text-16 textYellow--text"></svg-icon>
+                                                <span class="ml-1 textYellow--text">
+                                                    <span>{{LangUtil("您的奖金余额很低!")}}</span> 
+                                                    <!-- <span class="font-weight-bold ml-1">{{isCoinNotEnough(item)}}</span> -->
+                                                </span>
+                                            </div>
                                             <div class="d-flex">
                                                 <v-tooltip top>
                                                     <template v-slot:activator="{ on, attrs }">
@@ -144,7 +152,9 @@
                                                     <span class="nomal_text_2--text mr-2"
                                                         >{{ getDate(Timezone.convertTime_to_Locale(item.end_time) )}}</span
                                                     >
-                                                    <span class="" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'">{{ statusOptions[item.status] }}</span>
+                                                    <span class="" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'"
+                                                        >{{ statusOptions[item.status] }}</span
+                                                    >
                                                 </template>
                                             </div>
                                         </div>
@@ -188,7 +198,9 @@
                                             <span class="success--text" v-if="item.status == 2">{{statusOptions[item.status]}}</span>
                                             <span class="red--text" v-if="item.status == 1">{{statusOptions[item.status]}}</span>
                                             <span class="success--text" v-if="item.status == 3">{{statusOptions[item.status]}}</span>
-                                            <span v-if="item.status > 3" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'">{{ statusOptions[item.status] }}</span>
+                                            <span v-if="item.status > 3" :class="item.status == 6 ? 'textGray--text' : 'textYellow--text'"
+                                                >{{ statusOptions[item.status] }}</span
+                                            >
                                         </div>
                                         <div class="nomal_text_2--text d-flex justify-space-between">
                                             <span>{{LangUtil("任务开始时间")}}：</span>
@@ -264,6 +276,13 @@
                                             >
                                                 {{LangUtil("放弃任务")}}
                                             </span> -->
+                                        </div>
+                                        <div v-if="isCoinNotEnough(item) && isCanPlayGame(convertCoinName(item.task_coin_name_unique))" class="d-flex align-center">
+                                            <svg-icon icon="gantanhao_2" class="text-16 textYellow--text"></svg-icon>
+                                            <span class="ml-1 textYellow--text">
+                                                <span>{{LangUtil("您的奖金余额很低!")}}</span> 
+                                                <!-- <span class="font-weight-bold ml-1">{{isCoinNotEnough(item)}}</span> -->
+                                            </span>
                                         </div>
                                         <v-sheet
                                             v-if="item.status == 3 || item.status == 2"

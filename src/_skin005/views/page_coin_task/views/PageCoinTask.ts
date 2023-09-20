@@ -44,11 +44,23 @@ export default class PageCoinTask extends AbstractView {
         super(PageCoinTaskMediator);
     }
     destroyed() {
+        if (this.timeHandle) {
+            clearInterval(this.timeHandle);
+            this.timeHandle = 0;
+        }
         super.destroyed();
     }
+    timeHandle = 0;
     mounted() {
         if (ModulesHelper.IsShow_CoinTaskDisplay()) {
             this.myProxy.api_user_var_coin_task_index();
+
+            if (this.timeHandle) {
+                clearInterval(this.timeHandle);
+            }
+            this.timeHandle = setInterval(() => {
+                this.myProxy.api_user_var_coin_task_index();
+            }, 30 * 1000);
         }
     }
 
@@ -254,5 +266,17 @@ export default class PageCoinTask extends AbstractView {
     }
     getDate(str: string, isChange: boolean = true) {
         return changeDateShow(str, isChange);
+    }
+
+    isCoinNotEnough(item: any) {
+        if (item.status == 1 || item.status == "1") return false;
+        const transfer_amount = Number(item.transfer_amount);
+        const task_coin_amount = Number(item.task_coin_amount);
+        const res = (transfer_amount / task_coin_amount) * 100;
+        if (res > 10) {
+            return false;
+        }
+
+        return amountFormat(res, true) + "%";
     }
 }

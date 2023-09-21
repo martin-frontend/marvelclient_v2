@@ -58,6 +58,7 @@ SkinVariable.icon_extension1 = require(`@/_skin004_2/assets/icon/icon_extension1
 SkinVariable.isShowGameList = false;
 SkinVariable.bannerImageRatio = 1/3.5;
 SkinVariable.isShowAllVendor = true;
+SkinVariable.play_audio = true;
 Vue.config.productionTip = false;
 
 Vue.use(VueLoadmore);

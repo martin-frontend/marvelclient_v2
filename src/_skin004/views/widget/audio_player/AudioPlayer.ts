@@ -7,8 +7,8 @@ import getProxy from "@/core/global/getProxy";
 @Component
 export default class Question extends AbstractView {
     LangUtil = LangUtil;
-    backgroundAudioSource = "./music/backgroud.mp3";
-    clickAudioSource = "./music/click.mp3";
+    backgroundAudioSource = "./music/backgroud.mp3?" + Date.now();
+    clickAudioSource = "./music/click.mp3?" + Date.now();
     myProxy: AudioPlayerProxy = getProxy(AudioPlayerProxy);
 
     firstInteraction = true;

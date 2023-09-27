@@ -31,6 +31,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 import CoinTransformHelper from "./CoinTransformHelper";
+import ActivityConfig from "@/core/config/ActivityConfig";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -65,6 +66,8 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_login,
             net.EventType.api_user_var_notice,
             net.EventType.api_user_var_coin_task_index,
+            net.EventType.api_plat_var_pop_index,
+            net.EventType.api_plat_activity_config,
         ];
     }
 
@@ -157,8 +160,16 @@ export default class NetObserver extends AbstractMediator {
                     // window["vm"].$mount("#app");
                     window["vueInit"]();
 
-                    //获取用户信息
-                    this.selfProxy.api_user_show_var([2, 3, 6]);
+                    if (core.user_id) {
+                        //获取用户信息
+                        this.selfProxy.api_user_show_var([2, 3, 6]);
+                    } else {
+                        //获取弹窗列表
+                        this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id });
+                        //活动配置
+                        this.sendNotification(net.HttpType.api_plat_activity_config);
+                    }
+
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
 
@@ -228,17 +239,10 @@ export default class NetObserver extends AbstractMediator {
                 break;
             case net.EventType.api_plat_var_lobby_index:
                 this.gameProxy.setLobbyIndex(body);
-                // {
-                //     const headerProxy:HeaderProxy = getProxy(HeaderProxy);
-                //     headerProxy.setLobbyIndex(body);
-                // }
+
                 break;
             case net.EventType.api_plat_var_game_menu:
                 this.gameProxy.setGameMenu(body);
-                // {
-                //     const headerProxy: HeaderProxy = getProxy(HeaderProxy);
-                //     headerProxy.setGameMenu(body);
-                // }
                 break;
             case net.EventType.api_plat_var_game_category:
                 this.gameProxy.setGameCategory(body);
@@ -412,6 +416,51 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_var_coin_task_index:
                 this.selfProxy.setCoinTaskData(body);
                 break;
+            /**进入时弹窗 */
+            case net.EventType.api_plat_var_pop_index:
+                console.log(">>>>>>>.弹窗列表");
+                {
+                    const timer = setInterval(() => {
+                        const overlayDiv = document.getElementsByClassName("v-overlay--active");
+                        console.warn(overlayDiv);
+                        if (overlayDiv.length == 0) {
+                            const item = body.pop();
+                            if (item) {
+                                //公告
+                                if (item.type == 1) {
+                                    if (item.data.type_position == 15) {
+                                        PanelUtil.openpanel_notice_recharge([item.data]);
+                                    } else {
+                                        PanelUtil.openpanel_notice_detail(item.data);
+                                    }
+                                }
+                                //活动
+                                if (item.type == 2) {
+                                    //每日任务
+                                    if (item.model_type == 4) {
+                                        PanelUtil.openpanel_dailytask();
+                                    }
+                                    //每日签到
+                                    else if (item.model_type == 10) {
+                                        PanelUtil.openpanel_dailysign(item.data);
+                                    } else {
+                                        PanelUtil.openpanel_activity_detail(item.data);
+                                    }
+                                }
+                                if (item.type == 3) {
+                                    PanelUtil.jumpTo(item.data);
+                                }
+                            } else {
+                                clearInterval(timer);
+                            }
+                        }
+                    }, 500);
+                }
+                break;
+            //活动配置信息
+            case net.EventType.api_plat_activity_config:
+                ActivityConfig.init(body);
+                break;
         }
     }
 
@@ -519,9 +568,6 @@ export default class NetObserver extends AbstractMediator {
         }
     }
 
-    private insertStr(soure: string, start: number, newStr: string): string {
-        return soure.slice(0, start) + newStr + soure.slice(start);
-    }
     //根据选择的语言 设置 不同的字体
     private setLanguageFont() {
         //console.log("page 对象", page);
@@ -646,46 +692,6 @@ export default class NetObserver extends AbstractMediator {
                 kwaiq.load(kwaiq_id);
                 kwaiq.page();
             }
-        }
-    }
-    /**显示 所有的 进入 弹窗都在这个地方显示 */
-    openNoticeDialog() {
-        //获取 其他窗口的 弹窗
-        // const dialog_manager = ["rechargeactivity", "dailysign"];
-        const dialog_manager = GameConfig.config.dialog_manager || [];
-        const newArr = dialog_manager.reverse();
-        for (let index = 0; index < newArr.length; index++) {
-            const element = newArr[index];
-            // setTimeout(() => {
-            switch (element) {
-                case "dailysign":
-                    PanelUtil.openpanel_dailysign();
-                    break;
-                case "promotionreward":
-                    {
-                        if (core.user_id) PanelUtil.openpanel_promotionreward();
-                    }
-                    break;
-                case "rechargeactivity":
-                    {
-                        const activelist = PanelUtil.getProxy_novigation.activityData;
-
-                        for (let index = 0; index < activelist.length; index++) {
-                            const element = activelist[index];
-                            if (element.award_type && element.award_type == 16) {
-                                PanelUtil.openpanel_activity_detail_recharge(element);
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                case "limitedbonus":
-                    PanelUtil.openpanel_limited_bonus();
-                    break;
-                default:
-                    break;
-            }
-            // }, 200);
         }
     }
 

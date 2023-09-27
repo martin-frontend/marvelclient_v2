@@ -6,12 +6,14 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import Constant from "@/core/global/Constant";
 import OpenLink from "@/core/global/OpenLink";
+import ActivityConfig from "@/core/config/ActivityConfig";
 @Component
 export default class MobileMenu extends AbstractView {
     LangUtil = LangUtil;
     selfProxy = PanelUtil.getProxy_selfproxy;
     GameConfig = GameConfig;
     gameProxy = PanelUtil.getProxy_gameproxy;
+    activityConfig = ActivityConfig.config;
     get menuList() {
         const newlist = [];
         const list = <any>{
@@ -107,6 +109,11 @@ export default class MobileMenu extends AbstractView {
         //我的
         if (!ModulesHelper.isHide_MyInfo() && !phoneMenu.includes("myInfo")) {
             newlist.push(list[5]);
+        }
+        //检测是否应该排除彩球
+        if (!this.activityConfig.ball_rank.is_open) {
+            const idx = newlist.findIndex((item) => item.mob_type == "activity_slot");
+            if (idx >= 0) newlist.splice(idx, 1);
         }
 
         PanelUtil.appproxy.set_mobile_menu(newlist);

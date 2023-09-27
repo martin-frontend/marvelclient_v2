@@ -15,6 +15,7 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import Constant from "@/core/global/Constant";
 import NovigationMediator from "./NovigationMediator";
+import ActivityConfig from "@/core/config/ActivityConfig";
 
 @Component
 export default class Novigation extends AbstractView {
@@ -33,6 +34,8 @@ export default class Novigation extends AbstractView {
     GameConfig = GameConfig;
     SkinVariable = SkinVariable;
     activityProxy = PanelUtil.getProxy_get_pageActivityProxy;
+
+    activityConfig = ActivityConfig.config;
 
     get promotion_reward_model_id() {
         return (
@@ -114,7 +117,8 @@ export default class Novigation extends AbstractView {
             newlist.push(list[5]);
         }
         //每日签到
-        if (ModulesHelper.IsShow_DailysignDisplay()) {
+        // if (ModulesHelper.IsShow_DailysignDisplay()) {
+        if (this.activityConfig.sign_info.is_open) {
             newlist.push(list[6]);
         }
         //推广奖励
@@ -126,7 +130,8 @@ export default class Novigation extends AbstractView {
             newlist.push(list[8]);
         }
         // 彩球活動判斷是否配置
-        if (this.myProxy.ballAwardId) {
+        // if (this.myProxy.ballAwardId) {
+        if (this.activityConfig.ball_rank.is_open) {
             newlist.push(list[105]);
         }
         return newlist;

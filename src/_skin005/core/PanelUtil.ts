@@ -820,11 +820,11 @@ export default class PanelUtil {
         dialog_timezone.show();
     }
     /**打开 每日签到界面 */
-    static openpanel_dailysign() {
+    static openpanel_dailysign(data: any = null) {
         // LoginEnter(() => {
         MultDialogManager.onOpenPanel(dialog_daily_sign);
         PanelUtil.showNovigation(false);
-        dialog_daily_sign.show();
+        dialog_daily_sign.show(data);
         // });
     }
     /**打开 推广奖励界面 */
@@ -1441,6 +1441,12 @@ export default class PanelUtil {
                     key: "openpanel_set_cpf",
                     fun: () => {
                         PanelUtil.openpanel_real_name(true);
+                    },
+                },
+                {
+                    key: "openpanel_limited_bonus",
+                    fun: () => {
+                        PanelUtil.openpanel_limited_bonus();
                     },
                 },
             ];

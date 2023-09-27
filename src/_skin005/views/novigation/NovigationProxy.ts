@@ -86,10 +86,10 @@ export default class NovigationProxy extends puremvc.Proxy {
         if (this.timeHandle) {
             return;
         }
-        this.timeHandle = setTimeout(() => {
-            this.timeHandle = 0;
-            this.openDialog();
-        }, 3000);
+        // this.timeHandle = setTimeout(() => {
+        //     this.timeHandle = 0;
+        //     this.openDialog();
+        // }, 3000);
     }
 
     openDialog() {

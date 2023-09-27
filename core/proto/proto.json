@@ -95,6 +95,7 @@
         ["api/user/{user_id}/sign/receive", "领取用户签到奖励"],
         ["api/plat/activity/show/binding", "绑定赠金"],
         ["api/plat/activity/{id}/rule_id/{rule_id}", "活动规则匹配详情"],
+        ["api/plat/activity/config", "活动配置信息"],
 
         ["api/plat/activity/daily_rewards/{id}", "每日派奖详情"],
         ["api/plat/activity/daily_rewards/{id}/receive", "领取每日派奖奖励"],
@@ -241,7 +242,9 @@
         ["api/plat/activity/ball_lottery_init/{id}", "重置抽奖"],
         ["api/plat/activity/ball_info/{id}", "彩球信息"],
         ["api/plat/activity/ball_rewards/{id}/receive", "领取奖励"],
-        ["api/user/{user_id}/jump/store", "跳转记录"]
-        
+        ["api/user/{user_id}/jump/store", "跳转记录"],
+
+        "--获取弹窗 登录时要打开的弹窗列表",
+        ["api/plat/{plat_id}/pop/index", "获取弹窗"]
     ]
 }

@@ -164,3 +164,51 @@ export default class NoticeProxy extends puremvc.Proxy {
         this.sendNotification(net.HttpType.api_plat_var_notice_index, { plat_id: core.plat_id, custom_host: GlobalVar.host_urls });
     }
 }
+
+/**
+ * type_position
+// 公告位置类型:1-首页Banner|2-弹窗Banner|3-弹窗公告
+//|4-棋牌Banner|5-捕鱼Banner|6-电子Banner|7-真人Banner|8-体育Banner|9-彩票Banner|10-链游Banner
+const TYPE_POSITION_INDEX = 1;
+const TYPE_POSITION_LOGIN = 2;
+const TYPE_POSITION_POP = 3;
+const TYPE_POSITION_CHESS = 4;
+const TYPE_POSITION_CATCH_FISH = 5;
+const TYPE_POSITION_ELECTRONIC = 6;
+const TYPE_POSITION_GAMER = 7;
+const TYPE_POSITION_SPORTS = 8;
+const TYPE_POSITION_LOTTERY = 9;
+const TYPE_POSITION_ARCADE = 10;
+const TYPE_POSITION_BOTTOM = 11;
+const TYPE_POSITION_BOTTOM_LOGO = 12;
+const TYPE_POSITION_GAME_LOADING = 13;
+const TYPE_POSITION_INDEX_FIX_GAME = 14;
+const TYPE_POSITION_POPUP_RECHARGE = 15;
+const TYPE_POSITION_FOOTBALL = 16;
+const TYPE_POSITION_CRICKET = 17;
+const TYPE_POSITION_PROMOTION = 18;
+const TYPE_POSITION_VENDOR_LOGO = 19;
+
+const TYPE_POSITION = [
+    self::TYPE_POSITION_INDEX => '首页Banner',
+    self::TYPE_POSITION_LOGIN => '弹窗Banner',
+    self::TYPE_POSITION_POP => '弹窗公告',
+    self::TYPE_POSITION_CHESS => '棋牌Banner',
+    self::TYPE_POSITION_CATCH_FISH => '捕鱼Banner',
+    self::TYPE_POSITION_ELECTRONIC => '电子Banner',
+    self::TYPE_POSITION_GAMER => '真人Banner',
+    self::TYPE_POSITION_SPORTS => '体育Banner',
+    self::TYPE_POSITION_LOTTERY => '彩票Banner',
+    self::TYPE_POSITION_ARCADE => '链游Banner',
+    self::TYPE_POSITION_BOTTOM => '底部说明',
+    self::TYPE_POSITION_BOTTOM_LOGO => '底部LOGO',
+    self::TYPE_POSITION_GAME_LOADING => '游戏加载Banner',
+    self::TYPE_POSITION_INDEX_FIX_GAME => '首页固定游戏',
+    self::TYPE_POSITION_POPUP_RECHARGE => '弹窗充值',
+    self::TYPE_POSITION_FOOTBALL => '足球Banner',
+    self::TYPE_POSITION_CRICKET => '板球Banner',
+    self::TYPE_POSITION_PROMOTION => '推广赚钱Banner',
+    self::TYPE_POSITION_VENDOR_LOGO => '厂商LOGO'
+];
+
+ */

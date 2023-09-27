@@ -16,6 +16,7 @@ import { track_error_event } from "@/core/config/ErrorEvent";
 import GameConfig from "@/core/config/GameConfig";
 import SelfProxy from "@/proxy/SelfProxy";
 import GlobalVar from "@/core/global/GlobalVar";
+import ActivityConfig from "@/core/config/ActivityConfig";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -33,7 +34,9 @@ export default class APP extends AbstractView {
 
     selfProxy: SelfProxy = this.getProxy(SelfProxy);
     red_dot_tips = this.selfProxy.red_dot_tips;
-    
+
+    activityConfig = ActivityConfig.config;
+
     constructor() {
         super();
         this.onWatchTheme();
@@ -238,7 +241,7 @@ export default class APP extends AbstractView {
     onClicBtnkDailyTask() {
         PanelUtil.openpanel_dailytask();
     }
-    get isUseColorfullIcon(){
+    get isUseColorfullIcon() {
         return GlobalVar.skin == "skin008";
     }
 }

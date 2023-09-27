@@ -58,7 +58,8 @@
         <div id="dialog_container"></div>
         <!-- <Orientation v-if="!isScreenV && !Constant.isIncludeGameRouter($route.path)"/> -->
         <template v-if="!$xsOnly">
-            <div class="btn-dailytask" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()">
+            <!-- <div class="btn-dailytask" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()"> -->
+            <div class="btn-dailytask" v-if="activityConfig.every_day.is_open">
                 <v-badge
                     color="red"
                     overlap

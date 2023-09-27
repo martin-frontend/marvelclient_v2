@@ -10,6 +10,7 @@ export default class SelfProxy extends AbstractProxy {
     static NAME = "SelfProxy";
 
     private timerCount = 0;
+    private userInfoCount = 0;
 
     public onRegister(): void {
         setInterval(() => {
@@ -91,6 +92,7 @@ export default class SelfProxy extends AbstractProxy {
 
     setUserInfo(value: any) {
         Object.assign(this.userInfo, value);
+
         core.user_id = <any>this.userInfo.user_id;
         if (value && value.extend && value.extend.cpf) {
             this.userInfo.cpf = value.extend.cpf;
@@ -111,7 +113,16 @@ export default class SelfProxy extends AbstractProxy {
                 coin = this.defaultCoin(gameProxy.coin_name_unique);
             }
             gameProxy.setCoin(coin);
+            // 如果是刚登录
+            if (this.userInfoCount == 0) {
+                //获取弹窗列表
+                this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id, currency: gameProxy.coin_name_unique });
+                //活动配置
+                this.sendNotification(net.HttpType.api_plat_activity_config);
+            }
         }
+
+        this.userInfoCount++;
     }
 
     defaultCoin(coin: string): string {

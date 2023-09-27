@@ -157,6 +157,8 @@ declare module net {
         api_plat_activity_show_binding: string;
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: string;
+        /**--活动--活动配置信息*/
+        api_plat_activity_config: string;
         /**--活动--每日派奖详情*/
         api_plat_activity_daily_rewards_var: string;
         /**--活动--领取每日派奖奖励*/
@@ -353,6 +355,8 @@ declare module net {
         api_plat_activity_ball_rewards_var_receive: string;
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
+        /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
+        api_plat_var_pop_index: string;
     };
     /**事件*/
     var EventType: {
@@ -510,6 +514,8 @@ declare module net {
         api_plat_activity_show_binding: string;
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: string;
+        /**--活动--活动配置信息*/
+        api_plat_activity_config: string;
         /**--活动--每日派奖详情*/
         api_plat_activity_daily_rewards_var: string;
         /**--活动--领取每日派奖奖励*/
@@ -706,6 +712,8 @@ declare module net {
         api_plat_activity_ball_rewards_var_receive: string;
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
+        /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
+        api_plat_var_pop_index: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -751,6 +759,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_activity_ball_rewards_var_receive extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 活动配置信息
+ */
+declare module net {
+    class cmd_api_plat_activity_config extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -1030,6 +1047,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_var_plat_big_award extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取弹窗
+ */
+declare module net {
+    class cmd_api_plat_var_pop_index extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -159,6 +159,8 @@ module net {
         api_plat_activity_show_binding: "api/plat/activity/show/binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api/plat/activity/{id}/rule_id/{rule_id}",
+        /**--活动--活动配置信息*/
+        api_plat_activity_config: "api/plat/activity/config",
         /**--活动--每日派奖详情*/
         api_plat_activity_daily_rewards_var: "api/plat/activity/daily_rewards/{id}",
         /**--活动--领取每日派奖奖励*/
@@ -378,6 +380,9 @@ module net {
         api_plat_activity_ball_rewards_var_receive: "api/plat/activity/ball_rewards/{id}/receive",
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api/user/{user_id}/jump/store",
+
+        /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
+        api_plat_var_pop_index: "api/plat/{plat_id}/pop/index",
     };
     /**事件*/
     export var EventType = {
@@ -544,6 +549,8 @@ module net {
         api_plat_activity_show_binding: "api_plat_activity_show_binding",
         /**--活动--活动规则匹配详情*/
         api_plat_activity_var_rule_id_var: "api_plat_activity_var_rule_id_var",
+        /**--活动--活动配置信息*/
+        api_plat_activity_config: "api_plat_activity_config",
         /**--活动--每日派奖详情*/
         api_plat_activity_daily_rewards_var: "api_plat_activity_daily_rewards_var",
         /**--活动--领取每日派奖奖励*/
@@ -763,6 +770,9 @@ module net {
         api_plat_activity_ball_rewards_var_receive: "api_plat_activity_ball_rewards_var_receive",
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api_user_var_jump_store",
+
+        /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
+        api_plat_var_pop_index: "api_plat_var_pop_index",
     };
     /**注册协议*/
     export function initCommand() {
@@ -849,6 +859,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_sign_receive, cmd_api_user_var_sign_receive);
         facade.registerCommand(HttpType.api_plat_activity_show_binding, cmd_api_plat_activity_show_binding);
         facade.registerCommand(HttpType.api_plat_activity_var_rule_id_var, cmd_api_plat_activity_var_rule_id_var);
+        facade.registerCommand(HttpType.api_plat_activity_config, cmd_api_plat_activity_config);
         facade.registerCommand(HttpType.api_plat_activity_daily_rewards_var, cmd_api_plat_activity_daily_rewards_var);
         facade.registerCommand(HttpType.api_plat_activity_daily_rewards_var_receive, cmd_api_plat_activity_daily_rewards_var_receive);
         //--公告
@@ -970,6 +981,8 @@ module net {
         facade.registerCommand(HttpType.api_plat_activity_ball_info_var, cmd_api_plat_activity_ball_info_var);
         facade.registerCommand(HttpType.api_plat_activity_ball_rewards_var_receive, cmd_api_plat_activity_ball_rewards_var_receive);
         facade.registerCommand(HttpType.api_user_var_jump_store, cmd_api_user_var_jump_store);
+        //--获取弹窗 登录时要打开的弹窗列表
+        facade.registerCommand(HttpType.api_plat_var_pop_index, cmd_api_plat_var_pop_index);
     };
 
 }

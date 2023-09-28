@@ -745,3 +745,21 @@ export function recode_url(obj: any): string {
     }
     return str;
 }
+/**为一个URL添加参数 */
+export function urlAddParams(uri: string, params: any): string {
+    const hashIndex = uri.indexOf("#");
+    let hash = "";
+    if (hashIndex >= 0) {
+        hash = uri.substring(hashIndex);
+        uri = uri.substring(0, hashIndex);
+    }
+
+    let addParamsStr = "";
+    for (const key in params) addParamsStr += key + "=" + params[key] + "&";
+
+    if (uri.includes("?")) {
+        return uri + "&" + addParamsStr + hash;
+    } else {
+        return uri + "?" + addParamsStr + hash;
+    }
+}

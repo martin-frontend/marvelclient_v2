@@ -1,4 +1,12 @@
-<v-dialog v-if="!pageData.bHidden" width="838" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="838"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
     <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="bgBanner">
         <!-- pc端设置 -->
         <com-dialog-title title="直属信息" @onClose="onClose" />
@@ -205,13 +213,25 @@
                     </v-sheet>
 
                     <v-sheet color="transparent" width="100%" class="mt-4 d-flex align-center justify-end">
-                        <btn-yellow v-if="!is_cash_agent" class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings_clear"
+                        <btn-yellow
+                            v-if="!is_cash_agent"
+                            class="text-16"
+                            min_width="104"
+                            height="36"
+                            :btn_type="2"
+                            @click.native="assetSettings_clear"
                             >{{LangUtil("清空额度")}}</btn-yellow
                         >
                         <btn-yellow class="text-16 mx-1" min_width="104" height="36" :btn_type="2" @click.native="assetSettings_add"
                             >{{LangUtil("增加额度")}}</btn-yellow
                         >
-                        <btn-yellow v-if="!is_cash_agent" class="text-16" min_width="104" height="36" :btn_type="2" @click.native="assetSettings"
+                        <btn-yellow
+                            v-if="!is_cash_agent"
+                            class="text-16"
+                            min_width="104"
+                            height="36"
+                            :btn_type="2"
+                            @click.native="assetSettings"
                             >{{LangUtil("减少额度")}}</btn-yellow
                         >
                     </v-sheet>
@@ -400,7 +420,8 @@
                         <span v-if="playerInfo.show_credit_set == 1"> /{{LangUtil("代理占成")}} </span>
                     </div>
                     <div class="mx-4">
-                        {{playerInfo.parent_credit_rate}}%
+                        <!-- {{playerInfo.parent_credit_rate}}% -->
+                        {{playerInfo.credit_rate_invited}}%
                         <template v-if="playerInfo.show_credit_set == 1">
                             <span> / </span>
                             <span class="textYellow--text"> {{playerInfo.credit_rate}}% </span>
@@ -433,7 +454,9 @@
                 <btn-yellow class="text-14 mx-3" min_width="100" height="30" :btn_type="2" @click.native="assetSettings_add"
                     >{{LangUtil("增加额度")}}</btn-yellow
                 >
-                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="assetSettings">{{LangUtil("减少额度")}}</btn-yellow>
+                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="assetSettings"
+                    >{{LangUtil("减少额度")}}</btn-yellow
+                >
             </v-sheet>
         </v-sheet>
 
@@ -445,7 +468,9 @@
 
             <v-sheet color="transparent" class="d-flex align-center justify-space-between" min-height="35">
                 <div>{{LangUtil("EsayBet投注设置")}}</div>
-                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="esayBetSetting">{{LangUtil("设置")}}</btn-yellow>
+                <btn-yellow class="text-14" min_width="100" height="30" :btn_type="2" @click.native="esayBetSetting"
+                    >{{LangUtil("设置")}}</btn-yellow
+                >
             </v-sheet>
         </v-sheet>
     </v-card>

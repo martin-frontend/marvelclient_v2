@@ -116,7 +116,7 @@ module core {
     export function getFormWithObject(obj: any) {
         const fData = new FormData();
         for (const key of Object.keys(obj)) {
-            if (obj[key] && key != "hideWaiting") fData.append(key, obj[key]);
+            if (key != "hideWaiting") fData.append(key, obj[key]);
         }
         return fData;
     }

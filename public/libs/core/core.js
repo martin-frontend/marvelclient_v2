@@ -5017,7 +5017,7 @@ var core;
     function getFormWithObject(obj) {
         const fData = new FormData();
         for (const key of Object.keys(obj)) {
-            if (obj[key] && key != "hideWaiting")
+            if (key != "hideWaiting")
                 fData.append(key, obj[key]);
         }
         return fData;

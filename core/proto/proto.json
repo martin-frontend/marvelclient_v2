@@ -237,6 +237,10 @@
 
         ["api/plat/{plat_id}/bank_list", "平台银行列表"],
 
+        "--币种兑换",
+        ["api/user/currency_conversion/index", "查询平台币种兑换汇率"],
+        ["/api/user/currency_conversion/create_order", "生成币种兑换订单"],
+
         "--彩球活动",
         ["api/plat/activity/ball_lottery_award/{id}", "用户抽奖"],
         ["api/plat/activity/ball_lottery_init/{id}", "重置抽奖"],

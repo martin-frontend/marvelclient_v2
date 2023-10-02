@@ -370,6 +370,11 @@ module net {
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api/plat/{plat_id}/bank_list",
 
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: "api/user/currency_conversion/index",
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: "/api/user/currency_conversion/create_order",
+
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: "api/plat/activity/ball_lottery_award/{id}",
         /**--彩球活动--重置抽奖*/
@@ -760,6 +765,11 @@ module net {
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api_plat_var_bank_list",
 
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: "api_user_currency_conversion_index",
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: "api_user_currency_conversion_create_order",
+
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: "api_plat_activity_ball_lottery_award_var",
         /**--彩球活动--重置抽奖*/
@@ -975,6 +985,9 @@ module net {
         facade.registerCommand(HttpType.api_user_var_coin_task_index, cmd_api_user_var_coin_task_index);
         facade.registerCommand(HttpType.api_user_var_coin_task_cancel, cmd_api_user_var_coin_task_cancel);
         facade.registerCommand(HttpType.api_plat_var_bank_list, cmd_api_plat_var_bank_list);
+        //--币种兑换
+        facade.registerCommand(HttpType.api_user_currency_conversion_index, cmd_api_user_currency_conversion_index);
+        facade.registerCommand(HttpType.api_user_currency_conversion_create_order, cmd_api_user_currency_conversion_create_order);
         //--彩球活动
         facade.registerCommand(HttpType.api_plat_activity_ball_lottery_award_var, cmd_api_plat_activity_ball_lottery_award_var);
         facade.registerCommand(HttpType.api_plat_activity_ball_lottery_init_var, cmd_api_plat_activity_ball_lottery_init_var);

@@ -1,3 +1,11 @@
+/*
+ * @Author: custer custer@xx.xx
+ * @Date: 2023-09-18 10:38:30
+ * @LastEditors: custer custer@xx.xx
+ * @LastEditTime: 2023-09-25 17:59:28
+ * @FilePath: /marvelclient_v2/src/_skin005/views/page_recharge/views/PageRecharge.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import AbstractView from "@/core/abstract/AbstractView";
 import { Watch, Component } from "vue-property-decorator";
 import PageRechargeMediator from "../mediator/PageRechargeMediator";
@@ -6,6 +14,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import GamePlatConfig from "@/core/config/GamePlatConfig";
 
 @Component
 export default class PageRecharge extends AbstractView {
@@ -13,6 +22,7 @@ export default class PageRecharge extends AbstractView {
     myProxy: PageRechargeProxy = this.getProxy(PageRechargeProxy);
     pageData = this.myProxy.pageData;
     selfProxy = PanelUtil.getProxy_selfproxy;
+    platConfig = GamePlatConfig.config;
     core = core;
     GlobalVar = GlobalVar;
     constructor() {

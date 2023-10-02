@@ -17,6 +17,7 @@ export default class GamePlatConfig {
         is_bind_phone_transfer: { is_open: 1 },
         is_gold_transfer: { is_open: 1 },
         is_password_gold_transfer: { is_open: 1 },
+        is_currency_conversion: { is_open: 0 }, //是否显示币种转换
         promotion_info: { is_open: 1 },
         sign_info: { is_open: 0 },
         vip_info: { is_open: 1 },

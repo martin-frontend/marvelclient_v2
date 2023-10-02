@@ -1,16 +1,18 @@
+<!--
+ * @Author: custer custer@xx.xx
+ * @Date: 2023-07-12 09:51:56
+ * @LastEditors: custer custer@xx.xx
+ * @LastEditTime: 2023-09-27 21:20:55
+ * @FilePath: /marvelclient_v2/src/_skin005/views/page_recharge/views/PageRecharge.vue.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <v-sheet width="100%" color="transparent" class="">
     <v-card v-if="!$mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" width="100%" color="bgBanner">
         <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex">
             <v-btn v-if="isShowRecharge" class="rounded-pill mr-2" height="36" min-width="90" value="0">
                 <span class="text-14"> {{LangUtil("充值")}} </span>
             </v-btn>
-            <v-btn
-                v-if="isShowExchange"
-                class="rounded-pill mr-2"
-                height="36"
-                min-width="90"
-                value="1"
-            >
+            <v-btn v-if="isShowExchange" class="rounded-pill mr-2" height="36" min-width="90" value="1">
                 <span class="text-14"> {{LangUtil("兑换")}} </span>
             </v-btn>
             <v-btn
@@ -21,6 +23,9 @@
                 value="11"
             >
                 <span class="text-14"> {{LangUtil("划转")}} </span>
+            </v-btn>
+            <v-btn v-if="platConfig.is_currency_conversion.is_open == 1" class="rounded-pill mr-2" height="36" min-width="90" value="2">
+                <span class="text-14"> {{LangUtil("币种转换")}} </span>
             </v-btn>
         </v-btn-toggle>
 
@@ -35,7 +40,14 @@
         </v-sheet>
     </v-card>
 
-    <v-sheet v-else flat class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3" :class="isSkin008 ? 'topHeight_008' : 'topHeight'" width="100%" color="bgColor">
+    <v-sheet
+        v-else
+        flat
+        class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3"
+        :class="isSkin008 ? 'topHeight_008' : 'topHeight'"
+        width="100%"
+        color="bgColor"
+    >
         <v-sheet class="d-flex align-center" color="transparent">
             <v-btn-toggle :lang="core.lang" mandatory group borderless v-model="myProxy.pageData.tabIndex">
                 <v-btn
@@ -50,14 +62,7 @@
                 >
                     <span class="text-14"> {{LangUtil("充值")}} </span>
                 </v-btn>
-                <v-btn
-                    v-if="isShowExchange"
-                    class="tab-btn"
-                    active-class="tab-btn-active"
-                    height="35"
-                    min_width="78"
-                    value="1"
-                >
+                <v-btn v-if="isShowExchange" class="tab-btn" active-class="tab-btn-active" height="35" min_width="78" value="1">
                     <span class="text-14"> {{LangUtil("兑换")}} </span>
                 </v-btn>
                 <v-btn
@@ -68,6 +73,9 @@
                     value="11"
                 >
                     <span class="text-12"> {{LangUtil("划转")}} </span>
+                </v-btn>
+                <v-btn v-if="platConfig.is_currency_conversion.is_open == 1" class="tab-btn" height="35" min_width="78" value="2">
+                    <span class="text-12"> {{LangUtil("币种转换")}} </span>
                 </v-btn>
             </v-btn-toggle>
             <v-spacer />
@@ -86,4 +94,5 @@
     <TabRecharge v-if="pageData.tabIndex==0" :class="$mobile ? 'px-2-5' : 'mt-4'"></TabRecharge>
     <TabExchange v-if="pageData.tabIndex==1" :class="$mobile ? 'px-2-5' : 'mt-4'"></TabExchange>
     <TabTransfer v-if="pageData.tabIndex==11" :class="$mobile ? ' ml-2' : 'mt-4'"></TabTransfer>
+    <TabCurrencyExchange v-if="pageData.tabIndex==2" :class="$mobile ? ' ml-2' : 'mt-4'"></TabCurrencyExchange>
 </v-sheet>

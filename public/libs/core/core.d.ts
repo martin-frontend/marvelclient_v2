@@ -345,6 +345,10 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: string;
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: string;
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: string;
         /**--彩球活动--重置抽奖*/
@@ -702,6 +706,10 @@ declare module net {
         api_user_var_coin_task_cancel: string;
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: string;
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: string;
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: string;
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: string;
         /**--彩球活动--重置抽奖*/
@@ -1317,6 +1325,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_coin_exchange_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 生成币种兑换订单
+ */
+declare module net {
+    class cmd_api_user_currency_conversion_create_order extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 查询平台币种兑换汇率
+ */
+declare module net {
+    class cmd_api_user_currency_conversion_index extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

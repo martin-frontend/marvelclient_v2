@@ -1,0 +1,120 @@
+<!--
+ * @Author: custer custer@xx.xx
+ * @Date: 2023-09-25 19:38:04
+ * @LastEditors: custer custer@xx.xx
+ * @LastEditTime: 2023-09-29 12:48:25
+ * @FilePath: /marvelclient_v2/src/_skin005/views/page_recharge/views/components/tab_currency_exchange/TabCurrencyExchange.vue.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<v-card flat class="" color="transparent" width="100%" :class="$mobile ? 'pad_top_mob' : 'pad_height'">
+    <v-card flat class="rounded10 px-4 py-4" color="bgBanner" :class="$mobile ? 'text-14' : 'text-16' ">
+        <!-- 选择币种与金额 -->
+        <v-card flat color="transparent">
+            <v-row>
+                <v-col :cols="$mobile?12:6">
+                    <v-card flat color="transparent">
+                        <div class="primary--text mb-2 bold_text font-weight-bold">{{LangUtil("选择币种")}}</div>
+                        <v-sheet color="transparent" height="36">
+                            <goldinfo_util
+                                :class="{'regular_text':false}"
+                                balanceStrColor="textGray--text"
+                                :is_need_coin_name="true"
+                                inside_str="我的余额"
+                                :goldInfoData="from_gold_info"
+                                :is_recharge="true"
+                                :coin_name_unique="form.from_coin"
+                                :items_min_height="36"
+                                :is_show_money="is_show_money"
+                                :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                                :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
+                                @onItemClick="onItemClick"
+                            >
+                            </goldinfo_util>
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+                <v-col :cols="$mobile?12:6">
+                    <v-sheet color="transparent" class="d-flex justify-space-between">
+                        <div class="primary--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
+                        <div v-if="!is_show_money">
+                            {{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}
+                        </div>
+                    </v-sheet>
+                    <v-sheet color="transparent" width="100%" class="d-flex">
+                        <CustomInput
+                            :placeholder="LangUtil('输入金额兑换内容')"
+                            v-model="form.amount"
+                            :isEnterGold="true"
+                            :maxDigits="exchangeDigits"
+                        ></CustomInput>
+
+                        <btn-yellow class="ml-2" min_width="72" height="36" @click.native="onAll" :class="$mobile ? 'text-14' : 'text-16' "
+                            ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                        >
+                    </v-sheet>
+                </v-col>
+            </v-row>
+        </v-card>
+
+        <v-row class="mt-2">
+            <v-col :cols="$mobile?12:6" :class="$mobile ? 'text-14' : 'text-18'" class="d-flex justify-center">
+                <span v-if="rate_info"
+                    >{{LangUtil('当前汇率')}} ：1 {{rate_info.from_coin}}={{(1/rate_info.rate).toFixed(2)}} {{rate_info.to_coin}}</span
+                >
+            </v-col>
+        </v-row>
+
+        <!-- 选择需要兑换的币种与金额 -->
+        <v-card flat color="transparent">
+            <v-row>
+                <v-col :cols="$mobile?12:6">
+                    <v-card flat color="transparent">
+                        <div class="primary--text mb-2 bold_text font-weight-bold">{{LangUtil("兑换币种")}}</div>
+                        <v-sheet color="transparent" height="36">
+                            <goldinfo_util
+                                :class="{'regular_text':false}"
+                                balanceStrColor="textGray--text"
+                                :is_need_coin_name="true"
+                                inside_str="我的余额"
+                                :goldInfoData="to_gold_info"
+                                :is_recharge="true"
+                                :coin_name_unique="form.to_coin"
+                                :items_min_height="36"
+                                :is_show_money="is_show_money"
+                                :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                                :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
+                                @onItemClick="onItemClick1"
+                            >
+                            </goldinfo_util>
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+                <v-col :cols="$mobile?12:6">
+                    <v-sheet color="transparent" class="d-flex justify-space-between">
+                        <div class="primary--text bold_text font-weight-bold mb-2">{{LangUtil("换算金额")}}</div>
+                        <div v-if="!is_show_money">
+                            {{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}
+                        </div>
+                    </v-sheet>
+                    <v-sheet color="transparent" width="100%" class="d-flex">
+                        <CustomInput
+                            :value="rate_info ? (form.amount / rate_info.rate).toFixed(2) : ''"
+                            :isEnterGold="true"
+                            :maxDigits="exchangeDigits"
+                            :disabled="true"
+                        ></CustomInput>
+
+                        <btn-yellow
+                            class="ml-2"
+                            min_width="72"
+                            height="36"
+                            @click.native="onSubmit"
+                            :class="$mobile ? 'text-14' : 'text-16' "
+                            ><span class="font-weight-bold">{{LangUtil("确认")}}</span></btn-yellow
+                        >
+                    </v-sheet>
+                </v-col>
+            </v-row>
+        </v-card>
+    </v-card>
+</v-card>

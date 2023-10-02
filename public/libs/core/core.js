@@ -413,6 +413,10 @@ var net;
         api_user_var_coin_task_cancel: "api/user/{user_id}/coin_task/cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api/plat/{plat_id}/bank_list",
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: "api/user/currency_conversion/index",
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: "/api/user/currency_conversion/create_order",
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: "api/plat/activity/ball_lottery_award/{id}",
         /**--彩球活动--重置抽奖*/
@@ -770,6 +774,10 @@ var net;
         api_user_var_coin_task_cancel: "api_user_var_coin_task_cancel",
         /**--奖励任务--平台银行列表*/
         api_plat_var_bank_list: "api_plat_var_bank_list",
+        /**--币种兑换--查询平台币种兑换汇率*/
+        api_user_currency_conversion_index: "api_user_currency_conversion_index",
+        /**--币种兑换--生成币种兑换订单*/
+        api_user_currency_conversion_create_order: "api_user_currency_conversion_create_order",
         /**--彩球活动--用户抽奖*/
         api_plat_activity_ball_lottery_award_var: "api_plat_activity_ball_lottery_award_var",
         /**--彩球活动--重置抽奖*/
@@ -984,6 +992,9 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_coin_task_index, net.cmd_api_user_var_coin_task_index);
         facade.registerCommand(net.HttpType.api_user_var_coin_task_cancel, net.cmd_api_user_var_coin_task_cancel);
         facade.registerCommand(net.HttpType.api_plat_var_bank_list, net.cmd_api_plat_var_bank_list);
+        //--币种兑换
+        facade.registerCommand(net.HttpType.api_user_currency_conversion_index, net.cmd_api_user_currency_conversion_index);
+        facade.registerCommand(net.HttpType.api_user_currency_conversion_create_order, net.cmd_api_user_currency_conversion_create_order);
         //--彩球活动
         facade.registerCommand(net.HttpType.api_plat_activity_ball_lottery_award_var, net.cmd_api_plat_activity_ball_lottery_award_var);
         facade.registerCommand(net.HttpType.api_plat_activity_ball_lottery_init_var, net.cmd_api_plat_activity_ball_lottery_init_var);
@@ -2469,6 +2480,50 @@ var net;
         }
     }
     net.cmd_api_user_coin_exchange_var = cmd_api_user_coin_exchange_var;
+})(net || (net = {}));
+/**
+ * 生成币种兑换订单
+ */
+var net;
+/**
+ * 生成币种兑换订单
+ */
+(function (net) {
+    class cmd_api_user_currency_conversion_create_order extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_currency_conversion_create_order, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_currency_conversion_create_order, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_currency_conversion_create_order = cmd_api_user_currency_conversion_create_order;
+})(net || (net = {}));
+/**
+ * 查询平台币种兑换汇率
+ */
+var net;
+/**
+ * 查询平台币种兑换汇率
+ */
+(function (net) {
+    class cmd_api_user_currency_conversion_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_currency_conversion_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_currency_conversion_index, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_currency_conversion_index = cmd_api_user_currency_conversion_index;
 })(net || (net = {}));
 /**
  * 登入

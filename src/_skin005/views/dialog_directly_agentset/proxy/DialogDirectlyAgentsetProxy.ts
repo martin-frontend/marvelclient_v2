@@ -1,3 +1,9 @@
+/*
+ * @Author: custer
+ * @Date: 2023-04-12 09:57:51
+ * @LastEditors: custer
+ * @LastEditTime: 2023-10-02 21:17:39
+ */
 import { objectRemoveNull } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
@@ -71,7 +77,7 @@ export default class DialogDirectlyAgentsetProxy extends puremvc.Proxy {
             direct_user_id: this.playerInfo.user_id,
             //credit_rate: _credit_rate,
             credit_rate: this.pageData.form.credit_rate,
-            credit_rate_invited: this.pageData.form.credit_rate_invited,
+            credit_rate_invited: this.pageData.form.credit_rate_invited.toString(),
         };
         console.log("发送的信息为", formData);
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(formData));

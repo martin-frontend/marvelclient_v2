@@ -98,6 +98,15 @@ window["vueInit"] = () => {
         vuetify,
         render: (h) => h(App),
     }).$mount("#app");
+
+    setTimeout(() => {
+        const page = document.getElementById("app");
+        if (page) {
+            page.style.fontFamily = "'Roboto', 'sans-serif'";
+        }
+        const root: any = document.querySelector(".skin005 .font-weight-bold");
+        if (root) root.style.setProperty("font-family", "Roboto");
+    }, 1000);
 };
 
 AppFacade.inst.startup();

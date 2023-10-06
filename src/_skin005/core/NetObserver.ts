@@ -32,6 +32,7 @@ import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 import CoinTransformHelper from "./CoinTransformHelper";
 import ActivityConfig from "@/core/config/ActivityConfig";
+import { js_utils } from "custer-js-utils";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -160,7 +161,17 @@ export default class NetObserver extends AbstractMediator {
                     // window["vm"].$mount("#app");
                     window["vueInit"]();
 
-                    if (core.user_id) {
+                    /**69登录 */
+                    const token69 = js_utils.getQueryVariable("69token");
+                    if (token69) {
+                        this.sendNotification(net.HttpType.api_user_third_login, {
+                            plat_id: core.plat_id,
+                            channel_id: core.channel_id,
+                            code: token69,
+                            invite_user_id: core.invite_user_id,
+                            vendor_unique_name: "Game69",
+                        });
+                    } else if (core.user_id) {
                         //获取用户信息
                         this.selfProxy.api_user_show_var([2, 3, 6]);
                     } else {

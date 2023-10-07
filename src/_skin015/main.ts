@@ -39,10 +39,12 @@ import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 import SlideVerify from "@/_skin005/views/widget/slide_verify/SlideVerify.vue";
+
 Assets.commonIcon.loading_img = "loding_icon_15.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin015/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin015/assets/logo_m.png`);
 Assets.commonIcon.login_logo_m = require(`@/_skin015/assets/login_logo_m.png`);
+Assets.navMenuImgArr[16] = require(`@/_skin015/assets/novigation/menu_icon_16.png`);
 
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";

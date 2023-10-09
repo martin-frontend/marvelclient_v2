@@ -276,6 +276,7 @@ export default class GameProxy extends AbstractProxy {
             plat_id: core.plat_id,
             uuid: core.device,
             game_name: search,
+            coin_name_unique: this.coin_name_unique,
         });
     }
     searchList = {

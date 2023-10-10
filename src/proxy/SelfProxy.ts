@@ -112,7 +112,7 @@ export default class SelfProxy extends AbstractProxy {
             } else {
                 coin = this.defaultCoin(gameProxy.coin_name_unique);
             }
-            gameProxy.setCoin(coin);
+            if (gameProxy.coin_name_unique != coin) gameProxy.setCoin(coin);
             // 如果是刚登录
             if (this.userInfoCount == 0) {
                 //获取弹窗列表

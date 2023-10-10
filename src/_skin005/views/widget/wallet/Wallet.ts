@@ -9,6 +9,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import PageGameListProxy from "../../page_game_list/proxy/PageGameListProxy";
 
 @Component
 export default class Wallet extends AbstractView {
@@ -39,6 +40,11 @@ export default class Wallet extends AbstractView {
         if (this.$route.path.includes("page_game_play")) {
             this.gameProxy.api_vendor_var_ori_product_show_var(this.gameProxy.currGame);
         }
+        //重新获取游戏列表
+        const gameListProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
+        gameListProxy.clearData();
+        gameListProxy.init();
+        gameListProxy.api_plat_var_lobby_index();
     }
 
     isFilterChange = false;

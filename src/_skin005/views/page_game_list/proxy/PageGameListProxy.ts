@@ -104,7 +104,10 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     api_plat_var_lobby_index() {
-        this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_lobby_index, {
+            plat_id: core.plat_id,
+            coin_name_unique: this.gameProxy.coin_name_unique,
+        });
         this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
     }
 
@@ -139,6 +142,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
             }
             sendobj.vendor_ids = JSON.stringify(vendor_ids);
         }
+
+        sendobj.coin_name_unique = this.gameProxy.coin_name_unique;
         console.warn("发送 列表数据");
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, sendobj);
     }

@@ -1,0 +1,25 @@
+<v-sheet color="transparent" width="100%" max-width="150">
+    <v-card
+        class="d-flex align-center navText--text"
+        :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
+        :height="height"
+        :min-height="height"
+        @click="onClick"
+        ripple
+        flat
+        color="transparent"
+    >
+        <svg-icon v-if="icons" class="navIcon--text" :class="'text-'+iconSize" icon="timezone"></svg-icon>
+
+        <div v-if="!mini" class="ml-2 text-truncate font-weight-medium navIcon--text" style="width: 100%" :class="'text-'+fontSize">
+            {{ Timezone.curTimezoneItem.name }}
+        </div>
+        <!-- <v-spacer v-if="!mini" />
+                <div
+                    v-if="!mini && options && Object.keys(options).length > 1"
+                    class="ml-4 mr-3 text-12 arrow"
+                >
+                    <svg-icon :icon="commonIcon.arrow_right"></svg-icon>
+                </div> -->
+    </v-card>
+</v-sheet>

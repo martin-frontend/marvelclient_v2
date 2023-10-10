@@ -1,0 +1,48 @@
+<v-container class="pb-0 pt-0 mt-4">
+    <NoticeCard class=""></NoticeCard>
+    <GameSearch v-if="!$mobile" class="mt-6" />
+
+    <v-card color="transparent" flat class="d-flex flex-column justify-center mt-6">
+        <!-- 页签 -->
+        <v-sheet color="transparent" class="d-flex">
+            <horizontal_scroll>
+                <template v-slot="{data}">
+                    <v-sheet color="bgBanner" class="rounded-pill pa-0">
+                        <v-btn-toggle :lang="core.lang" mandatory group v-model="myProxy.tabIndex" @change="onTimeChange">
+                            <template v-for="(item, index) of categoryData">
+                                <v-btn
+                                    class="rounded-pill mr-2"
+                                    :height="!$mobile ? 42 : 30"
+                                    v-if="item.vendor_type != 3"
+                                    :key="item.vendor_type"
+                                    :value="item.vendor_type"
+                                >
+                                    <svg-icon :icon="CategoryIcon[item.vendor_type]" class="navIcon--text text-18"></svg-icon>
+                                    <span :class="!$mobile ? 'text-14' : 'text-12'"> {{item.vendor_type_name}} </span>
+                                </v-btn>
+                            </template>
+                        </v-btn-toggle>
+                    </v-sheet>
+                </template>
+            </horizontal_scroll>
+        </v-sheet>
+        <!-- 下方的游戏 -->
+        <v-sheet v-if="myProxy.tabIndex == 0" color="transparent" width="100%" class="mt-5">
+            <template v-for="(item ,key,index) of homeData">
+                <GameList :key="key" :category_name="key" :data="item" :vendor_type="item.vendor_type" :autoOffset="60"></GameList>
+                <VendorList class="mb-3" v-if="index == 1" :data="myProxy.imgData"></VendorList>
+            </template>
+        </v-sheet>
+        <v-sheet v-else color="transparent" width="100%" class="mt-5">
+            <GameList
+                :data="getCategoryData(myProxy.tabIndex)"
+                :vendor_type="myProxy.tabIndex"
+                :isSingle="true"
+                :isShowAllGames="true"
+                @getMore="getMore"
+                @getAllGame="getAllGame"
+                :pageInfo="getCategoryPageInfo(myProxy.tabIndex)"
+            ></GameList>
+        </v-sheet>
+    </v-card>
+</v-container>

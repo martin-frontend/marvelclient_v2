@@ -1,0 +1,59 @@
+.frame {
+    border: 0;
+    width: 100%;
+    height: calc(100vh - 142px);
+    background: #272828;
+}
+.frame-mobile {
+    border: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #272828;
+}
+.frame-mobile-standalone {
+    border: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0d1525;
+}
+.flow-btn {
+    position: fixed;
+    right: 55px;
+    top: 60px;
+}
+.ad_node_class_offset_pc {
+    top: 8px;
+}
+.ad_node_class_offset_mob {
+    top: 0px;
+}
+.ad_node_class {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 142px);
+    left: 0;
+    background: rgba($color: #000, $alpha: 0.6);
+    .card_node {
+        width: 80%;
+        max-height: 80%;
+        text-align: center; /* 将父节点的文本水平居中 */
+        display: flex; /* 使用Flex布局 */
+        justify-content: center; /* 将子元素在主轴方向上居中 */
+        align-items: center; /* 将子元素在交叉轴方向上居中 */
+        position: relative;
+        overflow: hidden;
+        .title_node {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .img_node {
+            //max-width: 100%;
+            max-height: calc(100% - 60px);
+            vertical-align: middle; /* 将图片垂直居中 */
+        }
+    }
+    // left: 50%;
+    // top:50%;
+    // transform: translate(-50%, -50%);
+}

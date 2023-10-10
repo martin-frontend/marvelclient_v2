@@ -1,0 +1,8 @@
+.btninfo-light {
+    cursor: pointer;
+    border: solid 1px #e8e8e2;
+}
+.btninfo-dark {
+    cursor: pointer;
+    border: solid 1px var(--btn_disable_text_dark);
+}

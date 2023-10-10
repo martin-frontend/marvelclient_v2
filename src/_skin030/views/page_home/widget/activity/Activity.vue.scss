@@ -1,0 +1,32 @@
+.box-container {
+    display: grid;
+    gap: 10px;
+}
+.box {
+    border-radius: 10px;
+}
+
+::v-deep .v-ripple__container {
+    border-radius: 10px !important;
+}
+::v-deep .v-btn--icon.v-size--small {
+    height: 8px !important;
+    width: 8px !important;
+}
+::v-deep .v-btn__content {
+    :first-child {
+        font-size: 16px !important;
+        transform: scale(0.5);
+    }
+}
+::v-deep .v-carousel__controls {
+    height: 30px;
+}
+::v-deep .v-carousel__controls__item .v-icon {
+    opacity: 0.7;
+}
+
+::v-deep .theme--dark.v-btn--active:before,
+.theme--dark.v-btn--active:hover:before {
+    opacity: 1 !important;
+}

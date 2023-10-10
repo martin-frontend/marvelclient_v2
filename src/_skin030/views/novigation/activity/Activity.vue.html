@@ -1,0 +1,33 @@
+<v-sheet color="transparent" class="d-flex justify-center" width="100%">
+    <div class="pt-2  panel-content" :class="{'panel-content-bg':!mini}">
+        <v-hover v-slot="{ hover }" v-for="item of options" :key="item.name">
+            <template v-if="list[item.id].svga">
+                <v-sheet
+                    color="transparent"
+                    height="40px"
+                    class="mb-2 d-flex align-center cursor-pointer px-2"
+                    :class="[{'item-hover': list[item.id].svga && !mini}]"
+                    @click="goCategory(item)"
+                    style="border-radius: 2px"
+                >
+                    <SvgaPlayer class="svga-player mr-3" :id="list[item.id].svga" :src="resolveSvgaSrc(list[item.id].svga)"></SvgaPlayer>
+                    <span style="min-width: 56px;z-index: 2;" v-if="!mini" class="text-no-wrap"> {{LangUtil(item.name)}} </span>
+                    <!-- <v-img v-else :src="list[item.id].img_src" class="mr-4" height="30" max-width="30"></v-img> -->
+                </v-sheet>
+            </template>
+            <template v-else>
+                <v-sheet
+                    height="40px"
+                    color="transparent"
+                    class="mb-2 primary--text d-flex align-center cursor-pointer gary-bg px-2"
+                    :class="hover || isShowActive_menu(item) ? 'wallet_btn--text gary-bg-hover font-weight-bold' : 'navIcon--text'"
+                    @click="goCategory(item)"
+                    style="border-radius: 2px"
+                >
+                    <svg-icon :icon="list[item.id].icon" class="text-20" style="margin-left: 5px; margin-right: 17px"></svg-icon>
+                    <span class="text-no-wrap" style="min-width: 56px" v-if="!mini"> {{LangUtil(item.name)}} </span>
+                </v-sheet>
+            </template>
+        </v-hover>
+    </div>
+</v-sheet>

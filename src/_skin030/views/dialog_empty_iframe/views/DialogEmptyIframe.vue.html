@@ -1,0 +1,9 @@
+<div id="empty_iframe" class="dialog_pos">
+    <v-card flat class="rounded10 d-flex flex-column" color="dialog_bg" height="100%">
+        <com-dialog-title :title="pageData.title" @onClose="onClose" />
+
+        <v-sheet class="rounded10" color="bgBanner">
+            <iframe id="gameFrame" ref="gameFrame" :class="gameFrameClass " :src="pageData.url" allowfullscreen="true"></iframe>
+        </v-sheet>
+    </v-card>
+</div>

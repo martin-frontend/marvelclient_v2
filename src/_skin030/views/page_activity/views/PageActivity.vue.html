@@ -1,0 +1,167 @@
+<v-sheet color="transparent" width="100%" class="d-flex flex-column">
+    <v-sheet color="wallet_bg" width="100%">
+        <v-container :class="!$mobile ? 'py-0' : ''">
+            <v-sheet color="transparent" class="d-flex align-center justify-space-between" :height="!$mobile ? 115 : 70">
+                <v-sheet color="transparent" class="d-flex align-center text-18 font-weight-bold" v-if="$mobile">
+                    <span class="mobile_bg ml-5"> {{LangUtil('精彩活动')}} </span>
+                    <v-img src="@/_skin030/assets/pagehome/category_active.png" :height="!$mobile ? 115 : 94" :width="img_width"></v-img>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex text-32 font-weight-bold" v-if="!$mobile"> {{LangUtil('精彩活动')}} </v-sheet>
+                <v-sheet color="transparent" class="" v-if="!$mobile">
+                    <v-img src="@/_skin030/assets/pagehome/category_active.png" :height="!$mobile ? 115 : 70" :width="img_width"></v-img>
+                </v-sheet>
+            </v-sheet>
+            <!-- <v-sheet color="transparent" class="d-flex align-center justify-space-between" height="115">
+                <v-sheet color="transparent" class="d-flex text-20 font-weight-bold">{{LangUtil('精彩活动')}}</v-sheet>
+                <v-sheet color="transparent" class="" height="100%">
+                    <v-img src="@/_skin030/assets/pagehome/category_active.png" height="115" width="388"></v-img>
+                </v-sheet>
+            </v-sheet> -->
+        </v-container>
+    </v-sheet>
+    <v-container class="pa-0">
+        <v-sheet color="transparent" class="pad_height" :class="$mobile ? 'mx-9' : ''">
+            <template v-if="!pageData.isLoadData">
+                <template v-if="myProxy.pageData.list && myProxy.pageData.list.length > 0">
+                    <!-- <v-card flat class="d-flex mt-5 align-center rounded10" color="transparent" width="100%">
+                        <v-sheet color="bgBanner" class="rounded-pill pa-0">
+                            <v-btn-toggle
+                                v-if="$mobile"
+                                :lang="core.lang"
+                                mandatory
+                                group
+                                v-model="myProxy.pageData.tabIndex"
+                                @change="onTimeChange"
+                                width="100%"
+                                class="overflow-x-auto"
+                            >
+                                <v-btn
+                                    v-for="(item, key) of myProxy.pageData.categoryData"
+                                    :key="key"
+                                    class="rounded-pill text-14"
+                                    height="36"
+                                    :min-width="$mobile ? 72 : 90"
+                                >
+                                    <span> {{LangUtil(item.title)}} </span>
+                                </v-btn>
+                            </v-btn-toggle>
+                            <v-btn-toggle
+                                v-else
+                                mandatory
+                                group
+                                v-model="myProxy.pageData.tabIndex"
+                                @change="onTimeChange"
+                                width="100%"
+                                class="overflow-x-auto"
+                            >
+                                <v-btn
+                                    v-for="(item, key) of myProxy.pageData.categoryData"
+                                    :key="key"
+                                    class="rounded-pill mr-2 text-14"
+                                    height="36"
+                                    :min-width="$mobile ? 72 : 90"
+                                >
+                                    <span> {{LangUtil(item.title)}} </span>
+                                </v-btn>
+                            </v-btn-toggle>
+                        </v-sheet>
+                    </v-card> -->
+                    <v-card flat class="d-flex mt-5 align-center" color="transparent" width="100%">
+                        <v-row>
+                            <template v-for="(item, key) of myProxy.pageData.categoryData">
+                                <v-col :cols="$mobile ? 12 : 6" :key="key" v-if="key != 0">
+                                    <v-sheet
+                                        color="wallet_bg"
+                                        width="100%"
+                                        class="d-flex align-center cursor-pointer rounded"
+                                        @click.native="onCategoryChange(key)"
+                                    >
+                                        <v-sheet color="transparent">
+                                            <v-img class="rounded" :src="getCategoryImg(key)" height="55" width="55"></v-img>
+                                        </v-sheet>
+                                        <v-sheet color="transparent" class="ml-4 text-16 font-weight-bold">
+                                            {{LangUtil(item.title)}}
+                                        </v-sheet>
+                                        <v-sheet color="transparent" class="ml-auto mr-4">
+                                            <svg-icon
+                                                icon="arrow_down_2"
+                                                class="textGray--text ml-2 text-16"
+                                                style="transform: rotate(-90deg)"
+                                            />
+                                        </v-sheet>
+                                    </v-sheet>
+                                </v-col>
+                            </template>
+                        </v-row>
+                    </v-card>
+                    <v-card v-if="curActivityData" flat class="" color="transparent" width="100%">
+                        <div class="mb-7 text-16 font-weight-bold" :class="$mobile ? 'd-flex justify-center mt-3' : 'mt-7 text-20'">
+                            {{LangUtil('最新活动')}}
+                        </div>
+                        <v-row>
+                            <template v-for="(item, key) of curActivityData.data">
+                                <v-col :cols="$mobile ? 12 : 4" :key="item.id">
+                                    <v-card flat class="rounded cursor-pointer" color="transparent">
+                                        <v-img :src="item.icon" width="100%" class="rounded d-flex">
+                                            <v-card flat color="transparent" class="d-flex flex-column px-4 py-4" height="100%">
+                                                <div color="transparent" class="d-flex">
+                                                    <v-sheet :color="getCateIndex(item)" class="text-12 px-4 rounded-pill">
+                                                        {{LangUtil(item.activity_category)}}
+                                                    </v-sheet>
+                                                </div>
+                                                <v-sheet color="transparent" class="text-18 font-weight-bold mt-4" max-width="50%">
+                                                    {{item.activity_name }}
+                                                </v-sheet>
+                                                <v-sheet color="transparent" class="d-flex align-center mt-4 mb-4">
+                                                    <btn-yellow
+                                                        class="text-14"
+                                                        height="30"
+                                                        min_width="100"
+                                                        @click.native.stop="onClickGetIt(item)"
+                                                        >{{LangUtil("立即获取")}}</btn-yellow
+                                                    >
+                                                    <btn-yellow
+                                                        class="ml-3 text-14"
+                                                        height="30"
+                                                        :btn_type="10"
+                                                        min_width="80"
+                                                        @click.native.stop="onItemClick(item)"
+                                                        >{{LangUtil("规则")}}</btn-yellow
+                                                    >
+                                                </v-sheet>
+                                            </v-card>
+                                        </v-img>
+
+                                        <v-sheet color="transparent" class="textGray--text text-12 mt-4 mb-2">
+                                            {{ getDate(item.end_time)}}
+                                        </v-sheet>
+                                        <v-sheet
+                                            color="transparent"
+                                            width="100%"
+                                            class="font-weight-bold"
+                                            :class="$mobile ? 'text-14' : 'text-20'"
+                                        >
+                                            {{item.activity_name}}
+                                        </v-sheet>
+
+                                        <!-- <v-sheet
+                                            color="transparent"
+                                            width="100%"
+                                            :class="$mobile ? 'loader_class_mob' : ''"
+                                            :height="viewWidth"
+                                        >
+                                            <ImgLoader class="rounded_img" :height="viewWidth" :src="item.icon"></ImgLoader>
+                                        </v-sheet> -->
+                                    </v-card>
+                                </v-col>
+                            </template>
+                        </v-row>
+                    </v-card>
+                </template>
+                <ListNodata v-else height="411" />
+                <!-- <ListNodata v-else height="500" /> -->
+            </template>
+            <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto mt-4" type="image"></v-skeleton-loader>
+        </v-sheet>
+    </v-container>
+</v-sheet>

@@ -1,0 +1,59 @@
+<v-sheet color="transparent" width="100%" class="d-flex flex-column">
+    <v-sheet color="wallet_bg" width="100%">
+        <v-container :class="!$mobile ? 'py-0' : ''">
+            <v-sheet color="transparent" class="d-flex align-center justify-space-between" :height="!$mobile ? 115 : 70">
+                <v-sheet color="transparent" class="d-flex align-center text-18 font-weight-bold" v-if="$mobile">
+                    <span class="mobile_bg ml-5">{{getTittle()}}</span>
+                    <v-img :src="getRouteImg()" :height="!$mobile ? 115 : 94" :width="img_width"></v-img>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex text-32 font-weight-bold" v-if="!$mobile">{{getTittle()}}</v-sheet>
+                <v-sheet color="transparent" class="" v-if="!$mobile">
+                    <v-img :src="getRouteImg()" :height="!$mobile ? 115 : 70" :width="img_width"></v-img>
+                </v-sheet>
+            </v-sheet>
+        </v-container>
+    </v-sheet>
+    <v-container class="d-flex flex-column">
+        <GameSearch v-if="!$mobile" class="my-6" />
+
+        <v-card v-if="!myProxy.isVendor && !isVendorPage && myProxy.curVendorData.length>0" flat color="transparent" class="d-flex mb-4">
+            <v-menu v-model="menu" :close-on-content-click="false" nudge-bottom="2" :nudge-width="200" offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-sheet color="bgBanner" class="d-flex pa-2 rounded align-center" v-bind="attrs" v-on="on">
+                        <svg-icon icon="ky_filter" class="navIcon--text text-22"></svg-icon>
+                        <span class="white--text text-14 mx-1">{{LangUtil('厂商筛选')}}</span>
+                    </v-sheet>
+                </template>
+
+                <v-card flat color="bgBanner" class="d-flex flex-column pa-2">
+                    <v-sheet color="transparent" class="checkbox_class" v-for="(item , key) of myProxy.curVendorData" :key="key">
+                        <v-checkbox v-model="myProxy.filterVenderArr" :value="item.vendor_id" color="wallet_btn" class="mt-0" hide-details>
+                            <template v-slot:label>
+                                <div
+                                    class="text-14"
+                                    :class="myProxy.filterVenderArr.includes(item.vendor_id) ? 'wallet_btn--text' : 'navIcon--text'"
+                                >
+                                    {{item.alias}}
+                                </div>
+                            </template>
+                        </v-checkbox>
+                    </v-sheet>
+                </v-card>
+            </v-menu>
+        </v-card>
+        <template v-if="!myProxy.isVendor">
+            <!-- <VendorList class="mt-0" :data="myProxy.curVendorData"  :isSingle="false" :isNeedTitle="true"></VendorList> -->
+            <GameList
+                :data="listData"
+                @getMore="getMore"
+                :pageInfo="myProxy.pageData.pageInfo"
+                :isSingle="true"
+                :isNeedTitle="false"
+            ></GameList>
+            <ListNodata v-if="listData.length == 0" height="411" />
+            <VendorList class="mt-5" :data="vendorData"></VendorList>
+        </template>
+        <VendorList class="px-3" v-else :data="vendorData" :isSingle="true" :isNeedTitle="false"></VendorList>
+        <RecentBetting :class="$xsOnly ? 'mt-3 ' : 'mt-8'" class="mb-n16" />
+    </v-container>
+</v-sheet>

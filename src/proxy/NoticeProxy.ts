@@ -37,67 +37,26 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType15: <core.PlatNoticeVO[]>[] /**充值弹窗 */,
         listType16: <core.PlatNoticeVO[]>[] /**足球弹窗 */,
         listType17: <core.PlatNoticeVO[]>[] /**板球弹窗 */,
+        listType18: <core.PlatNoticeVO[]>[] /**推广赚钱Banner */,
+        /**游戏厂商 */
+        listType19: <core.PlatNoticeVO[]>[] ,
+        listType20: <core.PlatNoticeVO[]>[] /** */,
+        listType21: <core.PlatNoticeVO[]>[] /** */,
+        listType22: <core.PlatNoticeVO[]>[] /** */,
+        listType23: <core.PlatNoticeVO[]>[] /** */,
+        listType24: <core.PlatNoticeVO[]>[] /** */,
+        listType25: <core.PlatNoticeVO[]>[] /** */,
+        listType26: <core.PlatNoticeVO[]>[] /** */,
     };
 
     setData(data: core.PlatNoticeVO[]) {
         for (const item of data) {
             this.data.listAll.push(item);
-            switch (item.type_position) {
-                case 1:
-                    this.data.listType1.push(item);
-                    break;
-                case 2:
-                    this.data.listType2.push(item);
-                    break;
-                case 3:
-                    this.data.listType3.push(item);
-                    break;
-                case 4:
-                    this.data.listType4.push(item);
-                    break;
-                case 5:
-                    this.data.listType5.push(item);
-                    break;
-                case 6:
-                    this.data.listType6.push(item);
-                    break;
-                case 7:
-                    this.data.listType7.push(item);
-                    break;
-                case 8:
-                    this.data.listType8.push(item);
-                    break;
-                case 9:
-                    this.data.listType9.push(item);
-                    break;
-                case 10:
-                    this.data.listType10.push(item);
-                    break;
-                case 11:
-                    this.data.listType11.push(item);
-                    break;
-                case 12:
-                    this.data.listType12.push(item);
-                    break;
-                case 13:
-                    this.data.listType13.push(item);
-                    break;
-                case 14:
-                    this.data.listType14.push(item);
-                    break;
-                case 15:
-                    this.data.listType15.push(item);
-                    break;
-                case 16:
-                    this.data.listType16.push(item);
-                    break;
-                case 17:
-                    this.data.listType17.push(item);
-                    break;
-
-                default:
-                    break;
+            if (item.type_position) {
+                //@ts-ignore
+                this.data[`listType${item.type_position}`].push(item);
             }
+
             if (!this.allData[item.type_position]) {
                 this.allData[item.type_position] = <core.PlatNoticeVO[]>[];
             }

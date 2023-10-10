@@ -1,0 +1,41 @@
+<v-card v-if="isShow" flat color="transparent" class="d-flex flex-column" width="100%">
+    <v-sheet v-if="isNeedTitle" color="transparent" class="d-flex my-1 align-center">
+        <svg-icon icon="ky_provider" class="navIcon--text text-18"></svg-icon>
+        <span class="mx-2 font-weight-bold" :class="!$mobile ? 'text-16' : 'text-14'"> {{categoryName}} </span>
+    </v-sheet>
+    <v-sheet color="transparent" width="100%">
+        <v-slide-group v-if="!isSingle" show-arrows>
+            <v-slide-item v-for="item of data" :key="item.vendor_prodcut_id">
+                <v-sheet
+                    color="transparent"
+                    class="game_item_class cursor-pointer"
+                    :width="!$mobile ? 150 : 110"
+                    @click="onClickItem(item)"
+                >
+                    <v-sheet color="transparent" width="100%" class="move_item">
+                        <v-img v-if="!$mobile" :src="get_img_path(item)" width="136.5" height="55"> </v-img>
+                        <v-img v-else :src="get_img_path(item)" width="100" height="40"> </v-img>
+                    </v-sheet>
+                </v-sheet>
+            </v-slide-item>
+        </v-slide-group>
+        <v-sheet v-else color="transparent" class="d-flex flex-wrap justify-center" width="100%">
+            <v-sheet color="transparent" class="d-flex flex-wrap align-center" width="100%">
+                <template v-for="(item ,index) of data">
+                    <v-sheet
+                        color="transparent"
+                        :key="item.vendor_prodcut_id"
+                        class="game_item_class cursor-pointer my-2"
+                        :width="!$mobile ? 150 : ''"
+                        @click="onClickItem(item)"
+                    >
+                        <v-sheet color="transparent" width="100%" class="move_item">
+                            <v-img v-if="!$mobile" :src="get_img_path(item)" width="136.5" height="55"> </v-img>
+                            <v-img v-else :src="get_img_path(item)" width="105" height="40"> </v-img>
+                        </v-sheet>
+                    </v-sheet>
+                </template>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-card>

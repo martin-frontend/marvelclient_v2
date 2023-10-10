@@ -1,0 +1,65 @@
+$next-right: var(--next-right);
+$prev-right: var(--prev-right);
+
+@media only screen and (max-width: 1264px) {
+    ::v-deep .v-slide-group__prev {
+        right: 35px !important;
+    }
+    ::v-deep .v-slide-group__next {
+        right: 0px !important;
+    }
+}
+
+::v-deep .v-slide-group__prev {
+    position: absolute;
+    top: -25px;
+    right: 35px;
+    //right: $prev-right;
+    min-width: 0;
+    border-radius: 12pt 0pt 0pt 12pt;
+    width: 32px;
+    height: 24px;
+    i {
+        font-size: 30px;
+    }
+}
+::v-deep .v-slide-group__next {
+    position: absolute;
+    top: -25px;
+    right: 0px;
+    //right: $next-right;
+    min-width: 0;
+    border-radius: 0pt 12pt 12pt 0pt;
+    width: 32px;
+    height: 24px;
+    i {
+        font-size: 30px;
+    }
+}
+
+::v-deep .theme--dark {
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        background: rgba(243, 231, 231, 0.098);
+    }
+}
+::v-deep .theme--light {
+    .v-slide-group__prev,
+    .v-slide-group__next {
+        background: rgba(243, 231, 231, 0.098);
+    }
+}
+.test_item {
+    background-color: transparent;
+}
+
+.game_item_close {
+    filter: grayscale(1);
+}
+.game_item {
+    filter: grayscale(0);
+}
+
+.game_item_margin_mob {
+    margin: 0 2px;
+}

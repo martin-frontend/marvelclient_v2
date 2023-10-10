@@ -1,0 +1,76 @@
+::v-deep.v-text-field--outlined fieldset {
+    color: #314361 !important;
+}
+
+::v-deep.v-text-field {
+    width: 100%;
+}
+
+.btn-all {
+    position: absolute;
+    margin-top: -33px;
+    margin-right: 10px;
+}
+
+.color-blue {
+    color: #97abd1;
+}
+
+.onItemSelect {
+    border: solid 1px #ffcd43 !important;
+}
+
+::v-deep .money_class {
+    height: 36px;
+}
+
+.pad_top_mob {
+    padding-top: 110px;
+}
+
+.pad_height {
+    min-height: calc(100vh - 600px);
+}
+
+::v-deep input::placeholder {
+    font-size: 14px !important;
+}
+
+.error_tip {
+    position: absolute;
+    bottom: -20px;
+}
+.button-animation {
+    animation: pulse 0.2s 3;
+    animation-duration: 0.3s;
+    animation-delay: 0.7s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.flex-1 {
+    flex: 1;
+}
+.custom-progress {
+    position: relative;
+    overflow: hidden;
+    .progress-value {
+        position: absolute;
+        line-height: 1;
+        width: 100%;
+    }
+    .progress-bg {
+        height: 100%;
+        background-image: linear-gradient(to left, #ffe64d, #fcb131 100%);
+    }
+}

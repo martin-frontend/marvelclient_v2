@@ -1,0 +1,54 @@
+<v-sheet
+    class="ml-0"
+    color="transparent"
+    :min-height="$vuetify.breakpoint.smAndDown ? 120 : 214"
+    :class="$vuetify.breakpoint.smAndUp ? 'intro-intro-md' : ''"
+>
+    <!-- :class="$vuetify.breakpoint.smAndUp ? 'intro-intro-md' : ''" -->
+    <!-- <v-sheet color="transparent" class="d-flex " width="100%">
+        <v-sheet color="transparent" width="65%">
+            <v-sheet color="transparent" class="font-weight-bold primary--text text-20">
+                {{LangUtil("{0}介绍", awardCoin)}}
+            </v-sheet>
+
+            <v-sheet color="transparent" class="d-flex flex-column textGray--text">
+                <div color="transparent">
+                    {{LangUtil("币种专题页介绍", awardCoin, awardCoin, awardCoin)}}
+                </div>
+                <div class="mt-2 textYellow--text font-weight-bold text-decoration-underline cursor-pointer"
+                    style="position: relative; z-index: 2" @click="goWhitePage">
+                    {{LangUtil("{0}白皮书", awardCoin)}}
+                </div>
+            </v-sheet>
+
+        </v-sheet>
+        <v-sheet color="transparent" width="35%" class="">
+            <v-img width="240" height="214" src="@/_skin030/assets/introduce/1.png"></v-img>
+        </v-sheet>
+    </v-sheet> -->
+
+    <v-row>
+        <v-col cols="12" sm="7" md="7" lg="8">
+            <v-row>
+                <v-col>
+                    <div class="font-weight-bold primary--text" :class="$vuetify.breakpoint.smAndDown ? 'text-16' : 'text-20'">
+                        {{LangUtil("{0}介绍", awardCoin)}}
+                    </div>
+                </v-col>
+            </v-row>
+            <v-row class="mt-n4">
+                <v-col cols="12" class="textGray--text" :class="$vuetify.breakpoint.smAndDown ? 'text-12' : 'text-16'">
+                    {{LangUtil("币种专题页介绍", awardCoin, awardCoin, awardCoin)}}
+                </v-col>
+                <div
+                    class="mt-2 textYellow--text font-weight-bold text-decoration-underline cursor-pointer"
+                    :class="$vuetify.breakpoint.smAndDown ? 'ml-4 mb-4' : ''"
+                    style="position: relative; z-index: 2"
+                    @click="goWhitePage"
+                >
+                    {{LangUtil("{0}白皮书", awardCoin)}}
+                </div>
+            </v-row>
+        </v-col>
+    </v-row>
+</v-sheet>

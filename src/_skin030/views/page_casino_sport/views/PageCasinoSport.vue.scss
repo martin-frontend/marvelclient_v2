@@ -1,0 +1,29 @@
+.menu_title {
+    position: absolute;
+    left: 30px;
+    bottom: 60%;
+    //font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    @media only screen and (max-width: 750px) {
+        left: 20px;
+    }
+}
+.menu_title_1 {
+    position: absolute;
+    left: 30px;
+    top: 40%;
+    color: #fff;
+    max-width: 50%;
+    //font-size: 14px;
+    font-weight: 500;
+    @media only screen and (max-width: 750px) {
+        left: 20px;
+    }
+}
+.test_ball {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}

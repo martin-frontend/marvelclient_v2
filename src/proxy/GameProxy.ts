@@ -97,6 +97,7 @@ export default class GameProxy extends AbstractProxy {
 
             const obj = <core.PlatLobbyIndexVO>{
                 vendor_type: 3,
+                id: 3,
                 vendor_type_name: "近期游戏",
                 list: this.gameHistoryList,
             };
@@ -104,7 +105,59 @@ export default class GameProxy extends AbstractProxy {
                 this.lobbyMenuIndex.push(obj);
             } else this.lobbyMenuIndex.unshift(obj);
         }
+        for (let index = 0; index < this.lobbyMenuIndex.length; index++) {
+            const element = this.lobbyMenuIndex[index];
+            if (!element.id) {
+                element.id = element.vendor_type;
+            }
+        }
     }
+    /**通过分类 获取 该分类下面的 厂商 信息 */
+    getVendorData_by_vendor(vendor_type: any) {
+        const newlist = [];
+        const keys = Object.keys(this.lobbyMenuIndex);
+        for (let index = 0; index < keys.length; index++) {
+            //@ts-ignore
+            const element = this.lobbyMenuIndex[keys[index]];
+            if (element.vendor_type == vendor_type) {
+                for (let n = 0; n < element.list.length; n++) {
+                    const item = element.list[n];
+                    if (item.entrance_type == 1) {
+                        newlist.push(item);
+                    }
+                }
+            }
+        }
+        // console.warn("--->>>", newlist);
+        return newlist;
+    }
+    /**menu中的厂商数据 */
+    public get menu_vendor_data(): any {
+        const data = [];
+        const keys = Object.keys(this.lobbyMenuIndex);
+        for (let index = 0; index < keys.length; index++) {
+            //@ts-ignore
+            const element = this.lobbyMenuIndex[keys[index]];
+
+            for (let n = 0; n < element.list.length; n++) {
+                const ele = element.list[n];
+                if (ele.vendor_icon && ele.vendor_icon != "" && ele.vendor_icon != "-") {
+                    let ishave = false;
+                    for (let p = 0; p < data.length; p++) {
+                        if (data[p].vendor_id === ele.vendor_id) {
+                            ishave = true;
+                            break;
+                        }
+                    }
+                    if (!ishave) {
+                        data.push(ele);
+                    }
+                }
+            }
+        }
+        return data;
+    }
+
     resetGamehistory() {
         if (ModulesHelper.IsShow_GameHistory()) {
             this.gameHistoryList = this.readGameHistory();
@@ -182,6 +235,7 @@ export default class GameProxy extends AbstractProxy {
                     break;
             }
         }
+        // console.warn("棋牌的分类", this.lobbyCategory_2);
         this.isFirstGetGameCategory = true;
     }
     setCoin(coin_name_unique: string) {

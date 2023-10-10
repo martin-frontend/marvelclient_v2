@@ -1,0 +1,9 @@
+Sitemap: https://ky.game/sitemap.xml
+Sitemap: https://ky.game/sitemap.txt
+
+User-Agent: Baiduspider
+Disallow: /
+
+User-Agent: *
+Disallow: /white/
+Disallow: /libs/

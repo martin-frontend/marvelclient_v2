@@ -1,0 +1,35 @@
+<v-sheet color="wallet_bg" class="py-2 rounded10">
+    <v-sheet v-if="$slots.pre" color="transparent" width="100%" class="d-flex justify-space-between align-center justify-center px-2 py-2">
+        <slot name="pre"></slot>
+    </v-sheet>
+
+    <template v-if="isLoading!=undefined && isLoading">
+        <v-skeleton-loader class="px-3 my-2 custom-loader" height="385" width="100%" type="text@6"></v-skeleton-loader>
+    </template>
+    <v-sheet v-else color="transparent" :height="height" class="overflow-y-auto">
+        <template v-if="!isNoData">
+            <v-sheet
+                class="px-2 py-2"
+                v-for="(item, key,index) of data"
+                :key="key"
+                height="40"
+                :color="(index || key) % 2 ==0 ? 'form_item_bg_1' : 'form_item_bg_2'"
+            >
+                <v-sheet color="transparent" class="d-flex justify-space-between align-center" width="100%">
+                    <slot :item="item"></slot>
+                </v-sheet>
+            </v-sheet>
+        </template>
+        <ListNodata v-if="isNoData" :height="height" />
+        <template v-if="pageInfo">
+            <v-spacer />
+            <v-pagination
+                v-if="pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                v-model="pageInfo.pageCurrent"
+                :length="pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </template>
+    </v-sheet>
+</v-sheet>

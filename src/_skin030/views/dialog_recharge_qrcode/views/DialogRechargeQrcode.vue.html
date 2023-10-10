@@ -1,0 +1,127 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="590"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded10 pb-3" color="dialog_bg">
+        <com-dialog-title title="充值" @onClose="onClose" />
+
+        <v-divider />
+
+        <v-card flat color="transparent" class="px-4 py-4 mt-8 d-flex" width="100%">
+            <v-card flat color="transparent" class="d-flex flex-column" width="170">
+                <!-- <img ref="img" :src="pageData.img_url" /> -->
+
+                <div ref="box" class="d-flex align-center justify-center cursor-pointer" @click="showPreview">
+                    <img ref="img" :src="pageData.img_url" width="120" />
+                </div>
+                <v-sheet color="transparent" class="d-flex align-center justify-center mt-6" width="100%">
+                    <btn-yellow class="text-16 ml-2" min_width="104" height="36" @click.native="copyQRcore"
+                        >{{LangUtil("复制QR码")}}</btn-yellow
+                    >
+                </v-sheet>
+            </v-card>
+            <v-divider vertical class="mr-4"> </v-divider>
+            <v-card flat color="transparent" class="d-flex flex-column mb-4">
+                <v-sheet color="transparent" class="text-16 font-weight-bold"> {{LangUtil("支付金额")}} </v-sheet>
+
+                <v-sheet color="transparent" class="mt-3 text-24 textYellow--text font-weight-bold">
+                    {{GamePlatConfig.getcoin_symbol(infodata.order_info.coin_name_unique)}}{{infodata.order_info.gold}}
+                </v-sheet>
+                <v-sheet color="transparent" class="mt-3 text-14 textGray--text">
+                    {{LangUtil("请扫描左方二维码进行支付，打开手机进行支付流程")}}
+                </v-sheet>
+                <!-- <v-sheet color="transparent" class="mt-2 text-14 red--text"> {{infodata.order_info.notice}} </v-sheet> -->
+                <!-- <div class="mt-2 text-14 red--text" v-html="LangUtil('巴西币充值支付说明提示1')"></div>
+                <v-sheet color="transparent" class="mt-2 text-14 textGray--text d-flex align-center justify-space-between">
+                    <div>
+                        {{LangUtil("订单号")}}{{LangUtil(":")}}
+                        <span class="text-truncate"> {{infodata.order_info.third_order_no}} </span>
+                    </div>
+
+                    <v-btn
+                        class="mr-1"
+                        color="bgBanner"
+                        small
+                        depressed
+                        :width="$mobile? 24 :30"
+                        min-width="0"
+                        :height="$mobile? 24 :30"
+                        @click="copyOrder"
+                    >
+                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet> -->
+
+                <!-- <v-sheet v-if="infodata.order_info.icon_url" color="transparent" class="d-flex">
+                    <img :src="infodata.order_info.icon_url" height="40" class="mx-2" />
+                </v-sheet> -->
+            </v-card>
+        </v-card>
+    </v-card>
+
+    <!-- 手机版 -->
+    <v-card v-else class="pb-3" color="dialog_bg">
+        <com-dialog-title title="充值" @onClose="onClose" />
+
+        <v-card flat color="transparent" class="px-4 py-4 d-flex flex-column" width="100%">
+            <v-card flat color="transparent" class="d-flex flex-column align-center" width="100%">
+                <v-sheet color="transparent" class="text-14"> {{LangUtil("支付金额")}} </v-sheet>
+
+                <v-sheet color="transparent" class="mt-3 text-24 textYellow--text font-weight-bold"
+                    >{{GamePlatConfig.getcoin_symbol(infodata.order_info.coin_name_unique)}}{{infodata.order_info.gold}}
+                </v-sheet>
+            </v-card>
+
+            <v-card flat color="bgBanner" class="d-flex flex-column align-center rounded10 px-2 py-4 mt-3">
+                <div ref="box" class="d-flex align-center justify-center" @click="showPreview">
+                    <img ref="img" :src="pageData.img_url" width="120" />
+                </div>
+
+                <v-sheet color="transparent" class="text-12 mt-4 textGray--text">
+                    {{LangUtil("请扫描左方二维码进行支付，打开手机进行支付流程")}}
+                </v-sheet>
+                <!-- <div class="mt-2 text-12 red--text" v-html="LangUtil('巴西币充值支付说明提示1')"></div> -->
+                <!-- <v-sheet color="transparent" class="d-flex">
+                    <img :src="pageData.data.icon_url" height="40" class="mx-2" />
+                </v-sheet> -->
+
+                <!-- <v-sheet v-if="infodata.order_info.icon_url" color="transparent" class="d-flex">
+                    <img :src="infodata.order_info.icon_url" height="40" class="mx-2" />
+                </v-sheet> -->
+
+                <!-- <v-divider class="my-2" />
+
+                <v-sheet color="transparent" class="d-flex align-center justify-space-between" width="100%">
+                    <v-sheet color="transparent" class="d-flex" max-width="91%">
+                        <div class="text-truncate text-12">
+                            {{LangUtil("订单号")}}{{LangUtil(":")}}{{infodata.order_info.third_order_no}}
+                        </div>
+                    </v-sheet>
+
+                    <v-btn
+                        class="mr-1"
+                        color="bgBanner"
+                        small
+                        depressed
+                        :width="$mobile? 24 :30"
+                        min-width="0"
+                        :height="$mobile? 24 :30"
+                        @click="copyOrder"
+                    >
+                        <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                    </v-btn>
+                </v-sheet> -->
+            </v-card>
+            <v-sheet color="transparent" class="d-flex align-center justify-center mt-4" width="100%">
+                <btn-yellow class="text-16 ml-2" min_width="100%" height="36" @click.native="copyQRcore"
+                    >{{LangUtil("复制QR码")}}</btn-yellow
+                >
+            </v-sheet>
+        </v-card>
+    </v-card>
+</v-dialog>

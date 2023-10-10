@@ -291,6 +291,26 @@ const skinMap = {
             },
         },
     },
+    /**开源 */
+    skin030: {
+        public_dir: "public_skin030",
+        pages: {
+            skin005: {
+                entry: "src/_skin030/main.ts",
+                template: "public_skin030/skin030.html",
+                filename: "index.html",
+                title: "ky.game",
+                faviconName: "favicon.ico",
+            },
+            pay_redirect: {
+                entry: "src/_skin030/pay_redirect.ts",
+                template: "public_skin030/pay_redirect.html",
+                filename: "pay_redirect.html",
+                title: "pay",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin100: {
         public_dir: "public_skin100",
         pages: {
@@ -362,6 +382,8 @@ module.exports = {
             )
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
+        } else if (process.env.VUE_APP_SKIN == "skin030") {
+            imagesRule.exclude.add(resolve("src/_skin030/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {
             imagesRule.exclude.add(resolve("src/_skin020/icons"));
         }

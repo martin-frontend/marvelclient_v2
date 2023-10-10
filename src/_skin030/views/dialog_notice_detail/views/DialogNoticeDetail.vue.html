@@ -1,0 +1,27 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    v-model="pageData.bShow"
+    width="60%"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card flat color="dialog_bg" class="rounded10 relative" style="height: calc(100vh - 150px)">
+        <footer-dialog-title :title="pageData.data.activity_name" @onClose="onClose">
+            <v-sheet color="transparent" class="d-flex align-center btn-header-group" width="208px">
+                <a :href="`./pdf/${pageData.data.activity_name}.pdf`">
+                    <btn-yellow height="29"> {{LangUtil("列印")}} </btn-yellow>
+                </a>
+                <a :href="`./pdf/${pageData.data.activity_name}.pdf`">
+                    <btn-yellow height="29"> {{LangUtil("下载")}} </btn-yellow>
+                </a>
+            </v-sheet>
+        </footer-dialog-title>
+        <v-divider class="mb-2" />
+        <v-sheet id="main_node" color="transparent" width="100%" class="px-5 overflow-y-auto" style="max-height: calc(100% - 90px)">
+            <!-- <div v-if="pageData.data.show_type == 1" class="textYellow--text" v-html="pageData.data.link_url"></div> -->
+            <div class="mb-6" v-html="pageData.data.link_url" @click="handleLinkClick"></div>
+        </v-sheet>
+    </v-card>
+</v-dialog>

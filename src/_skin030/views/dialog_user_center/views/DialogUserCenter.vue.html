@@ -1,0 +1,115 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    :height="$mobile ? '' : '670'"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    :no-click-animation="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded10 d-flex" color="dialog_bg">
+        <AdvertiseInLogin :height="600" :width="300" class="d-none d-md-flex" />
+        <v-card color="transparent" width="350">
+            <com-dialog-title title="个人中心" @onClose="onClose" />
+            <v-divider class="mb-2" />
+            <v-card-text class="px-4 px-md-7 mt-2 text_height regular_text">
+                <div class="d-flex justify-space-between align-center mb-5 text-14" v-for="(item,key) of menuList" :key="key">
+                    <div class="d-flex textGray--text">{{LangUtil(item.name)}}</div>
+                    <div class="d-flex align-center textGray--text">
+                        <span
+                            :class="!item.onclick || (item.onclick && !getItemIsCanClick(item)) || (item.id==2) ? 'white--text font-weight-bold' : 'item_bg_2--text'"
+                            >{{getitemValue(item)}}</span
+                        >
+                        <v-btn
+                            v-if="item.id==2"
+                            class="ml-2"
+                            icon
+                            small
+                            :width="$mobile? 24 :30"
+                            min-width="0"
+                            depressed
+                            :height="$mobile? 24 :30"
+                            @click="copy"
+                        >
+                            <svg-icon icon="copy" class="text-16 white--text"></svg-icon>
+                        </v-btn>
+
+                        <v-btn
+                            v-else-if="item.onclick && getItemIsCanClick(item)"
+                            icon
+                            class="ml-2"
+                            color="item_bg_2"
+                            :width="$mobile? 24 :30"
+                            :height="$mobile? 24 :30"
+                            @click="item.onclick"
+                        >
+                            <v-icon>mdi-chevron-right</v-icon>
+                        </v-btn>
+
+                        <div v-else class="empty_width"></div>
+                    </div>
+                </div>
+            </v-card-text>
+            <v-card-actions v-if="GlobalVar.instance.isShowLogin" class="px-5 d-flex align-end mb-4">
+                <btn-yellow class="text-16" width="100%" height="36" @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
+            </v-card-actions>
+        </v-card>
+    </v-card>
+    <!-- 手机版 -->
+    <v-card v-else class=" " color="dialog_bg">
+        <com-dialog-title title="个人中心" @onClose="onClose" />
+
+        <v-sheet color="bgBanner" class="px-2 py-2 my-2 mx-2 rounded10">
+            <v-card-text class="px-2 text_height regular_text">
+                <template v-for="(item,key) of menuList">
+                    <div class="d-flex justify-space-between align-center mt-2 text-14" :key="key">
+                        <div class="d-flex leftText--text">{{LangUtil(item.name)}}</div>
+                        <div class="d-flex align-center head_btn--text">
+                            <span
+                                :class="!item.onclick || (item.onclick && !getItemIsCanClick(item)) || (item.id==2) ? 'white--text font-weight-bold' : 'item_bg_2--text'"
+                                >{{getitemValue(item)}}</span
+                            >
+                            <v-btn
+                                v-if="item.id==2"
+                                class="ml-2"
+                                icon
+                                small
+                                :width="$mobile? 24 :30"
+                                min-width="0"
+                                depressed
+                                :height="$mobile? 24 :30"
+                                @click="copy"
+                            >
+                                <svg-icon icon="copy" class="text-16 white--text"></svg-icon>
+                            </v-btn>
+
+                            <v-btn
+                                v-else-if="item.onclick && getItemIsCanClick(item)"
+                                icon
+                                class="ml-2"
+                                color="item_bg_2"
+                                :width="$mobile? 24 :30"
+                                :height="$mobile? 24 :30"
+                                @click="item.onclick"
+                            >
+                                <v-icon>mdi-chevron-right</v-icon>
+                            </v-btn>
+
+                            <div v-else class="empty_width"></div>
+                        </div>
+                    </div>
+                    <div class="line mt-2"></div>
+                </template>
+            </v-card-text>
+        </v-sheet>
+        <v-card-actions v-if="GlobalVar.instance.isShowLogout" class="px-2 d-flex align-end">
+            <btn-yellow class="text-16 font-weight-bold" width="100%" height="42" @click.native="onLoginOut"
+                >{{LangUtil("退出登录")}}</btn-yellow
+            >
+        </v-card-actions>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

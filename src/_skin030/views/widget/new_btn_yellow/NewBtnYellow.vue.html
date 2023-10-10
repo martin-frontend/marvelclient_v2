@@ -1,0 +1,8 @@
+<v-card
+    class="elevation-0 text-14 px-2 d-flex align-center justify-center rounded-lg btnclass"
+    :class="{'is-active':isActive}"
+    v-bind="$attrs"
+>
+    <div v-if="money" class="text-12 font-weight-bold money-icon px-2">+{{money}}</div>
+    <slot></slot>
+</v-card>

@@ -1,0 +1,226 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="800"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="dialog_bg" min-width="100%">
+        <com-dialog-title title="EasyBet设置" @onClose="onClose" />
+
+        <v-divider class="" />
+        <!-- 页面内容 -->
+        <v-card-text v-if="input_market_config" class="text_height">
+            <v-sheet color="transparent" width="100%" class="d-flex align-center" min-height="40">
+                <v-sheet color="transparent" class="d-flex align-center textGray--text text-14">
+                    <div>{{LangUtil("用户ID")}}</div>
+                    <div class="ml-2">{{ playerInfo.user_id}}</div>
+                </v-sheet>
+
+                <v-sheet color="transparent" class="ml-4 d-flex align-center textGray--text text-14">
+                    <div>{{LangUtil("用户昵称")}}</div>
+                    <div class="ml-2">{{ playerInfo.nick_name}}</div>
+                </v-sheet>
+
+                <!-- 用户身上的币种 -->
+                <v-sheet color="transparent" class="my-2 ml-auto" min-width="200">
+                    <goldinfo_util
+                        :is_show_money="false"
+                        :is_need_coin_name="true"
+                        :goldInfoData="myProxy.playerInfo.vendor_config.market_type_config"
+                        :coin_name_unique="formData.coin_name_unique"
+                        @onItemClick="onItemClick"
+                    ></goldinfo_util>
+                </v-sheet>
+            </v-sheet>
+            <v-divider class="mb-2" />
+
+            <div v-if="input_market_config.length>0" class="scroll-y listitem_height" ref="scrollObj" color="transparent">
+                <v-sheet class="mt-2 py-1 rounded-lg my-0" color="transparent" v-for="(item, key) of input_market_config" :key="key">
+                    <v-sheet class="d-flex justify-space-between align-center my-2" color="transparent">
+                        <div v-if="!myProxy.isShowGropSet" class="primary--text text-16">{{LangUtil("盘口类型名称") }}</div>
+                        <div class="primary--text text-16">{{LangUtil(item.market_type_text) }}</div>
+                    </v-sheet>
+                    <!-- <div class="hackhome"></div> -->
+                    <!-- <v-divider /> -->
+
+                    <v-sheet color="transparent" class="d-flex">
+                        <v-row>
+                            <v-col cols="6">
+                                <v-card flat color="transparent" class="d-flex align-center">
+                                    <v-sheet class="textGray--text text-16 text-no-wrap" color="transparent">
+                                        {{LangUtil("单场累计下注限额") }}
+                                    </v-sheet>
+                                    <v-sheet class="pl-2 text-16" color="transparent">
+                                        <CustomInput
+                                            class="input-text"
+                                            height="30"
+                                            :isOnlyInt="true"
+                                            :placeholder="item.setting.single_field_max_bet ? item.setting.single_field_max_bet : '-'"
+                                            :isNeedCloseBtn="false"
+                                            v-model="input_market_config[key].setting.single_field_max_bet"
+                                        >
+                                        </CustomInput>
+                                    </v-sheet>
+                                </v-card>
+                            </v-col>
+
+                            <v-col cols="6">
+                                <v-card flat color="transparent" class="d-flex align-center">
+                                    <v-sheet class="d-flex textGray--text text-16 text-no-wrap" color="transparent">
+                                        {{LangUtil("单场下注限额") }}
+                                    </v-sheet>
+                                    <v-sheet class="pl-2 text-16" color="transparent" width="100%">
+                                        <CustomInput
+                                            class="input-text"
+                                            height="30"
+                                            :isOnlyInt="true"
+                                            :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'"
+                                            :isNeedCloseBtn="false"
+                                            v-model="input_market_config[key].setting.single_max_bet"
+                                        >
+                                        </CustomInput>
+                                    </v-sheet>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-sheet>
+
+                    <v-sheet v-if="false" color="transparent" width="100%" class="d-flex">
+                        <v-sheet class="d-flex justify-space-between align-center my-2 rounded10" width="50%" color="wallet_bg_2">
+                            <v-sheet class="textGray--text text-16 ml-2" color="transparent"> {{LangUtil("单场累计下注限额") }} </v-sheet>
+                            <v-sheet class="text-16" color="transparent">
+                                <CustomInput
+                                    class="input-text ml-4"
+                                    height="30"
+                                    :isOnlyInt="true"
+                                    :placeholder="item.setting.single_field_max_bet ? item.setting.single_field_max_bet : '-'"
+                                    :isNeedCloseBtn="false"
+                                    v-model="input_market_config[key].setting.single_field_max_bet"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                        </v-sheet>
+
+                        <v-sheet class="d-flex justify-space-between align-center my-2 ml-4 rounded10" width="50%" color="wallet_bg_2">
+                            <v-sheet class="d-flex textGray--text text-16 ml-2" color="transparent" width="100%">
+                                {{LangUtil("单场下注限额") }}
+                            </v-sheet>
+                            <v-sheet class="text-16" color="transparent" width="100%">
+                                <CustomInput
+                                    class="input-text ml-4"
+                                    height="30"
+                                    :isOnlyInt="true"
+                                    :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'"
+                                    :isNeedCloseBtn="false"
+                                    v-model="input_market_config[key].setting.single_max_bet"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+            </div>
+            <ListNodata v-if="input_market_config.length == 0" class="listitem_height" />
+            <v-spacer />
+
+            <!-- 确定按钮 -->
+            <div class="rounded-lg mb-1 mt-1">
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="40" :disabled="!isChecked" block
+                    @click="onClickSure">
+                    {{LangUtil("确定")}}</v-btn> -->
+
+                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isChecked" @click.native="onClickSure"
+                    >{{LangUtil("确定")}}</btn-yellow
+                >
+            </div>
+        </v-card-text>
+    </v-card>
+
+    <v-card v-else class="rounded10 d-flex flex-column" color="dialog_bg" min-width="100%" height="660">
+        <com-dialog-title title="EasyBet设置" @onClose="onClose" />
+
+        <!-- 页面内容 -->
+        <v-sheet v-if="input_market_config" class="px-2 text_height" color="transparent" width="100%">
+            <div>
+                <v-sheet color="transparent" class="d-flex flex-column mt-4 px-4">
+                    <v-sheet color="transparent" class="d-flex align-center justify-space-between textGray--text text-14">
+                        <div>{{LangUtil("用户ID")}}</div>
+                        <div class="ml-2">{{ playerInfo.user_id}}</div>
+                    </v-sheet>
+
+                    <v-sheet color="transparent" class="d-flex align-center justify-space-between textGray--text text-14">
+                        <div>{{LangUtil("用户昵称")}}</div>
+                        <div class="ml-2">{{ playerInfo.nick_name}}</div>
+                    </v-sheet>
+                </v-sheet>
+                <!-- 用户身上的币种 -->
+                <v-sheet color="transparent" class="my-2 px-2 py-2 rounded10">
+                    <goldinfo_util
+                        :is_show_money="false"
+                        :is_need_coin_name="true"
+                        bgColor="bgNavigation"
+                        :goldInfoData="myProxy.playerInfo.vendor_config.market_type_config"
+                        :coin_name_unique="formData.coin_name_unique"
+                        @onItemClick="onItemClick"
+                    ></goldinfo_util>
+                </v-sheet>
+            </div>
+            <div v-if="input_market_config.length>0" class="scroll-y listitem_height" ref="scrollObj">
+                <v-sheet class="mt-2 py-1 rounded-lg my-0 px-4" color="bgNavigation" v-for="(item, key) of input_market_config" :key="key">
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div v-if="!myProxy.isShowGropSet" class="textGray--text text-14">{{LangUtil("盘口类型名称") }}</div>
+                        <div class="primary--text text-14">{{LangUtil(item.market_type_text) }}</div>
+                    </div>
+                    <!-- <div class="hackhome"></div> -->
+                    <v-divider />
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div class="textGray--text text-12">{{LangUtil("单场累计下注限额") }}</div>
+                        <v-sheet class="text-14" color="transparent" width="84">
+                            <CustomInput
+                                class="input-text"
+                                height="30"
+                                :isOnlyInt="true"
+                                :placeholder="item.setting.single_field_max_bet ? item.setting.single_field_max_bet : '-'"
+                                :isNeedCloseBtn="false"
+                                v-model="input_market_config[key].setting.single_field_max_bet"
+                            >
+                            </CustomInput>
+                        </v-sheet>
+                    </div>
+
+                    <div class="d-flex justify-space-between align-center my-2">
+                        <div class="d-flex textGray--text text-12">{{LangUtil("单场下注限额") }}</div>
+                        <v-sheet class="text-16" color="transparent" width="84">
+                            <CustomInput
+                                class="input-text"
+                                height="30"
+                                :isOnlyInt="true"
+                                :placeholder="item.setting.single_max_bet ? item.setting.single_max_bet : '-'"
+                                :isNeedCloseBtn="false"
+                                v-model="input_market_config[key].setting.single_max_bet"
+                            >
+                            </CustomInput>
+                        </v-sheet>
+                    </div>
+                </v-sheet>
+            </div>
+            <ListNodata v-if="input_market_config.length == 0" class="listitem_height" />
+            <v-spacer />
+
+            <!-- 确定按钮 -->
+            <div class="rounded-lg mb-1 mt-1">
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="40" :disabled="!isChecked" block
+                    @click="onClickSure">
+                    {{LangUtil("确定")}}</v-btn> -->
+
+                <btn-yellow class="text-16" width="100%" height="40" :disabled="!isChecked" @click.native="onClickSure"
+                    >{{LangUtil("确定")}}</btn-yellow
+                >
+            </div>
+        </v-sheet>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

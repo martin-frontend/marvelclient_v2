@@ -1,0 +1,185 @@
+::v-deep.v-text-field--outlined fieldset {
+    color: #314361 !important;
+}
+
+::v-deep.v-text-field {
+    width: 100%;
+}
+
+.btn-all {
+    position: absolute;
+    margin-top: -33px;
+    margin-right: 10px;
+}
+
+.color-blue {
+    color: #97abd1;
+}
+
+.onItemSelect {
+    border: solid 1px #ffcd43 !important;
+}
+
+::v-deep .money_class {
+    height: 36px;
+}
+
+.pad_top_mob {
+    padding-top: 110px;
+}
+
+.pad_height {
+    min-height: calc(100vh - 600px);
+}
+
+::v-deep input::placeholder {
+    font-size: 14px !important;
+}
+
+.error_tip {
+    position: absolute;
+    top: 60px;
+}
+.button-animation {
+    animation: pulse 0.2s 3;
+    animation-duration: 0.3s;
+    animation-delay: 0.7s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bank_box {
+    ::v-deep .input-text {
+        border: none !important;
+    }
+    ::v-deep.v-autocomplete__content.v-menu__content,
+    .v-autocomplete__content.v-menu__content .v-card {
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list {
+        background: #97abd1 !important;
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+        color: #314361;
+    }
+    ::v-deep .v-application .primary--text {
+        color: #fff !important;
+    }
+    ::v-deep .theme--dark.v-label {
+        color: #4c5d7f;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    ::v-deep .theme--dark.v-icon {
+        color: #4c5d7f;
+    }
+    ::v-deep .theme--dark.v-input input {
+        color: #96a9d0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .name_select {
+        position: relative;
+
+        .name_list {
+            position: absolute;
+            z-index: 5;
+        }
+    }
+}
+
+.bank_box_mob {
+    border-color: #4c5d7f !important;
+
+    ::v-deep .input-text {
+        border: none !important;
+        height: 35px;
+        input {
+            height: 35px;
+        }
+    }
+    ::v-deep.v-autocomplete__content.v-menu__content,
+    .v-autocomplete__content.v-menu__content .v-card {
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list {
+        background: #97abd1 !important;
+        border-radius: 8px;
+    }
+    ::v-deep .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+        color: #314361;
+    }
+    ::v-deep .v-application .primary--text {
+        color: #fff !important;
+    }
+    ::v-deep .theme--dark.v-label {
+        color: #4c5d7f;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    ::v-deep .theme--dark.v-icon {
+        color: #4c5d7f;
+    }
+    ::v-deep .theme--dark.v-input input {
+        color: #96a9d0;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .name_select {
+        position: relative;
+
+        .name_list {
+            position: absolute;
+            z-index: 5;
+        }
+    }
+}
+
+::v-deep .theme--light {
+    .select-text {
+        background-color: #f4f4f4 !important;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.custom-progress {
+    position: relative;
+    overflow: hidden;
+    .progress-value {
+        position: absolute;
+        line-height: 1;
+        width: 100%;
+    }
+    .progress-bg {
+        height: 100%;
+        background-image: linear-gradient(to left, #3ac167, #3ac167 100%);
+    }
+}
+.mob_height{
+    height: calc(100vh - 160px);
+}
+.rounded-6{
+    border-radius: 6px;
+}
+.placeholder-12 {
+    input::placeholder {
+        font-size: 12px !important;
+        font-weight: bold;
+    }
+}

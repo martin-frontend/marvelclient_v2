@@ -1,0 +1,122 @@
+$nov_width: 240px;
+
+.box {
+    // margin-left: 10px;
+    // margin-right: 10px;
+    // padding-left: 10px;
+    // padding-right: 10px;
+    min-height: 42px;
+    // border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+.active {
+    background-image: linear-gradient(to right, #215844, #215844);
+}
+
+.lang {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .boxdiv {
+        padding-left: 9px;
+        border-radius: 10px;
+        border: solid 1px #d6dde3;
+    }
+    .boxdiv-dark {
+        padding-left: 9px;
+        border-radius: 10px;
+        border: solid 1px #3e3f41;
+    }
+}
+
+.navbox {
+    min-width: $nov_width;
+    height: 100vh;
+    z-index: 15;
+}
+.navscroll {
+    position: fixed;
+    width: $nov_width;
+    height: 100vh;
+    //overflow-y: scroll;
+    z-index: 10;
+    box-shadow: 4px 0 5px 0 rgba(0, 22, 16, 0.5);
+}
+
+.main_list {
+    height: calc(100vh - 90px);
+}
+
+.all-rights-reserved {
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+}
+.arrow {
+    transform: rotate(90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(-90deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::v-deep .v-expansion-panel-content__wrap {
+    padding: 0;
+}
+
+
+
+.btn_casino {
+    background-image: linear-gradient(to bottom, transparent, transparent);
+    color: #aaddcb;
+}
+.btn_casino:hover {
+    background-image: linear-gradient(to bottom, rgba(219, 45, 255), rgba(170, 68, 255));
+    color: #fff;
+}
+.btn_casino_active {
+    background-image: linear-gradient(to bottom, rgba(219, 45, 255), rgba(170, 68, 255));
+    color: #fff;
+}
+
+.btn_sports {
+    background-image: linear-gradient(to bottom, transparent, transparent);
+    color: #aaddcb;
+}
+.btn_sports:hover {
+    background-image: linear-gradient(to bottom, rgba(255, 194, 82), rgba(255, 59, 2));
+    color: #fff;
+}
+.btn_sports_active {
+    background-image: linear-gradient(to bottom, rgba(255, 194, 82), rgba(255, 59, 2));
+    color: #fff;
+}
+
+.btn_casino_mini {
+    background-image: linear-gradient(to bottom, #174131, #174131);
+    color: #aaddcb;
+}
+.btn_casino_mini:hover {
+    background-image: linear-gradient(to bottom, rgba(219, 45, 255), rgba(170, 68, 255));
+    color: #fff;
+}
+.btn_casino_mini_active {
+    background-image: linear-gradient(to bottom, rgba(219, 45, 255), rgba(170, 68, 255));
+    color: #fff;
+}
+.btn_sports_mini {
+    background-image: linear-gradient(to bottom, #174131, #174131);
+    color: #aaddcb;
+}
+.btn_sports_mini:hover {
+    background-image: linear-gradient(to bottom, rgba(255, 194, 82), rgba(255, 59, 2));
+    color: #fff;
+}
+.btn_sports_mini_active {
+    background-image: linear-gradient(to bottom, rgba(255, 194, 82), rgba(255, 59, 2));
+    color: #fff;
+}

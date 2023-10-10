@@ -1,0 +1,117 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="500"
+    v-model="pageData.bShow"
+    :fullscreen="$xsOnly"
+    :retain-focus="false"
+    persistent
+    @click:outside="onClose"
+>
+    <v-card color="dialog_bg" class="rounded-15">
+        <v-card-title class="d-flex justify-start">
+            <svg-icon class="text-24 mr-2" icon="ky_levle_lotto"></svg-icon>
+            <div class="text-20 font-weight-bold title">{{LangUtil('每日签到')}}</div>
+
+            <v-btn class="ml-auto" icon @click="onClose">
+                <v-icon color="navIcon" large>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title>
+        <!-- <com-dialog-title title="每日签到" @onClose="onClose" /> -->
+        <!-- <v-divider class="mb-2" /> -->
+        <v-card flat color="transparent" class="d-flex flex-column align-center justify-center pa-5">
+            <div>
+                <v-img src="~@/_skin030/assets/daily_sign/bitmap.png" width="85" height="90" />
+            </div>
+            <div class="text-18 font-weight-bold white--text mt-4">{{LangUtil("每日签到")}}</div>
+            <div class="text-14 textGray--text mt-2 mb-5">{{LangUtil("每日签到刷新时间")}}</div>
+            <div class="d-flex align-center">
+                <v-sheet color="transparent" class="d-flex flex-column align-center" v-for="(item ,index) of timeTextArr" :key="index">
+                    <v-sheet
+                        width="58"
+                        height="58"
+                        color="transparent"
+                        rounded
+                        class="text-18 d-flex align-center justify-center mx-2 time_box font-weight-bold"
+                    >
+                        {{item}}
+                    </v-sheet>
+                    <div class="text-14 textGray--text font-weight-bold mt-1">
+                        <span v-if="index == 0">{{LangUtil("时")}}</span>
+                        <span v-else-if="index == 1">{{LangUtil("分")}}</span>
+                        <span v-else-if="index == 2">{{LangUtil("秒")}}</span>
+                    </div>
+                </v-sheet>
+            </div>
+
+            <v-sheet color="bgBanner" class="d-flex align-center justify-center rounded10 mt-4" width="100%">
+                <v-row no-gutters class="d-flex align-center">
+                    <template
+                        v-if="myProxy.daily_data.rules && myProxy.daily_data.rules.length>0"
+                        v-for="(item, key) of myProxy.daily_data.rules"
+                    >
+                        <v-col
+                            v-if="key < 4"
+                            cols="3"
+                            :key="item.rule_num"
+                            :class="key < 3 ? 'right_border' : ''"
+                            class="d-flex align-center"
+                        >
+                            <v-card flat color="transparent" class="d-flex align-center justify-center pa-4" width="100%">
+                                <div v-if="isGot(item)">
+                                    <svg-icon class="ml-1 text-30" icon="ky_check"></svg-icon>
+                                </div>
+                                <v-sheet v-else color="transparent" class="d-flex flex-column align-center">
+                                    <div
+                                        :class="todayData.rule_num == item.rule_num ? 'textYellow--text' : 'textGray--text'"
+                                        class="text-16 font-weight-bold"
+                                    >
+                                        {{LangUtil(item.name)}}
+                                    </div>
+                                    <div v-html="award_text(item)"></div>
+                                </v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </v-row>
+            </v-sheet>
+
+            <v-sheet color="bgBanner" class="d-flex align-center justify-center rounded10 mt-3" width="100%">
+                <v-row no-gutters class="d-flex align-center">
+                    <template
+                        v-if="myProxy.daily_data.rules && myProxy.daily_data.rules.length>0"
+                        v-for="(item, key) of myProxy.daily_data.rules"
+                    >
+                        <v-col
+                            v-if="key >= 4"
+                            :cols="key==myProxy.daily_data.rules.length -1 ? 6 : 3"
+                            :key="item.rule_num"
+                            :class=" key !=myProxy.daily_data.rules.length -1 ? 'right_border' :''"
+                            class="d-flex align-center"
+                        >
+                            <v-card flat color="transparent" class="d-flex align-center justify-center pa-4" width="100%">
+                                <div v-if="isGot(item)">
+                                    <svg-icon class="ml-1 text-30" icon="ky_check"></svg-icon>
+                                </div>
+                                <v-sheet v-else color="transparent" class="d-flex flex-column align-center">
+                                    <div
+                                        :class="todayData.rule_num == item.rule_num ? 'textYellow--text' : 'textGray--text'"
+                                        class="text-16 font-weight-bold"
+                                    >
+                                        {{LangUtil(item.name)}}
+                                    </div>
+                                    <div v-html="award_text(item)"></div>
+                                </v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </v-row>
+            </v-sheet>
+        </v-card>
+
+        <v-sheet color="transparent" width="100%" class="d-flex justify-center pb-5">
+            <btn-yellow class="text-16 rounded-6" width="55%" height="43" @click.native="onGetBones" :disabled="isTodaySign"
+                >{{LangUtil("立即签到")}}</btn-yellow
+            >
+        </v-sheet>
+    </v-card>
+</v-dialog>

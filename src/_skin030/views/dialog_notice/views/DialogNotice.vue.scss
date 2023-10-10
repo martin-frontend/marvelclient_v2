@@ -1,0 +1,12 @@
+.active {
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+}
+.box {
+    min-height: 42px;
+    border-radius: 10px;
+    width: 100%;
+}
+.page_main {
+    //width: calc(100%-50px);
+    height: calc(100vh - 160px);
+}

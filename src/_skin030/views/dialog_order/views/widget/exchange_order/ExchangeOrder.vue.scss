@@ -1,0 +1,52 @@
+.default-color {
+    color: #302f2f !important;
+    box-shadow: 0px 2px 4px 0px #9f9f9f !important;
+}
+.d-flex {
+    display: flex !important;
+}
+.align-center {
+    align-content: center;
+}
+.font-weight-bold {
+    font-weight: bold;
+}
+.order-content {
+    position: relative;
+    .order-result-icon {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+}
+.winlostdiv {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    align-items: center;
+}
+.success--text {
+    color: #007e29;
+}
+.error--text {
+    color: #ff2828;
+}
+.win-type {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    p {
+        margin-top: -66px;
+        color: white;
+        font-size: 18px;
+        transform: rotate(-17deg);
+    }
+}
+.custom-hr {
+    border-top: 1px dashed #d8d8d8;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

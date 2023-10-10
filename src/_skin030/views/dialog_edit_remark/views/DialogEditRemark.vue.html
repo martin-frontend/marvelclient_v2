@@ -1,0 +1,29 @@
+<v-dialog v-if="!pageData.bHidden" width="420" v-model="pageData.bShow" :retain-focus="false" persistent>
+    <v-card class="rounded10 d-flex flex-column" color="dialog_bg">
+        <!-- <v-card-title class="d-flex justify-center gradient-bg">
+            <div class="text-20">
+                {{LangUtil("修改备注")}}
+            </div>
+    
+            <v-btn icon @click="onClose">
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-card-title> -->
+
+        <com-dialog-title title="修改备注" @onClose="onClose" :isDialog="true" />
+
+        <v-divider class="mb-2" />
+        <v-card-text v-if="pageData.bShow" class="px-10 mt-2">
+            <CustomInput maxlength="8" class="mb-3" :placeholder="LangUtil('请输入备注（0-8位）')" v-model="inputData" />
+
+            <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckedId" @click="onClickSure" block
+                >{{LangUtil("确定")}}</v-btn
+            > -->
+
+            <btn-yellow class="text-16 mt-5" width="100%" height="36" :disabled="!isCheckedId" @click.native="onClickSure"
+                >{{LangUtil("确定")}}</btn-yellow
+            >
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

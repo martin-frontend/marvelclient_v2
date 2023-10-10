@@ -1,0 +1,104 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="838"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :no-click-animation="$mobile"
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <!-- pc显示方式 -->
+    <template v-if="!$mobile">
+        <v-card class="rounded10 pb-3" color="dialog_bg">
+            <com-dialog-title title="充币记录" @onClose="onClose" />
+
+            <v-divider class="mb-2" />
+            <v-sheet class="px-3" color="transparent">
+                <UtilForm :data="pageData.list" :isNoData="!pageData.list || pageData.list.length == 0" width="100%">
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="textGray--text" width="180">{{LangUtil("订单号")}}</v-sheet>
+                        <v-sheet color="transparent" class="textGray--text" min-width="120">{{LangUtil("创建时间")}}</v-sheet>
+                        <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("币种")}}</v-sheet>
+                        <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("数量")}}</v-sheet>
+                        <v-sheet color="transparent" class="textGray--text" min-width="100">{{LangUtil("状态")}}</v-sheet>
+                    </template>
+
+                    <template v-slot:default="{ item }">
+                        <v-sheet
+                            color="transparent"
+                            class="primary--text text-truncate text-decoration-underline cursor-pointer"
+                            width="180"
+                            @click="onCopy(item.order_no)"
+                            >{{item.order_no}}</v-sheet
+                        >
+                        <v-sheet color="transparent" class="primary--text" min-width="120">{{getDate(item.created_at)}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text" min-width="100">{{item.coin_name_unique}}</v-sheet>
+                        <v-sheet color="transparent" class="primary--text" min-width="100">{{amountFormat(item.gold,true)}}</v-sheet>
+                        <v-sheet color="transparent" :class="getStateColor(item.status)" min-width="100"
+                            >{{statusOptions[item.status]}}</v-sheet
+                        >
+                    </template>
+                </UtilForm>
+            </v-sheet>
+        </v-card>
+    </template>
+    <template v-else>
+        <v-card class="pb-3" color="dialog_bg">
+            <LoadMore1
+                v-if="pageData.bShow"
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+            >
+                <template v-slot:top>
+                    <com-dialog-title title="充币记录" @onClose="onClose" />
+
+                    <v-divider class="mb-2" />
+                </template>
+
+                <v-sheet id="mobile_main" color="transparent" class="overflow-y-auto px-5">
+                    <ListNodata v-if="pageData.list.length == 0" height="411" />
+                    <v-sheet
+                        class="px-3 py-2 my-3 primary--text rounded10"
+                        color="wallet_bg"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                    >
+                        <v-sheet color="transparent" class="d-flex flex-column" width="100%">
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("订单号")}}</div>
+                                <div class="text-truncate text-decoration-underline cursor-pointer my-0" @click="onCopy(item.order_no)">
+                                    {{item.order_no}}
+                                </div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("创建时间")}}</div>
+                                <div class="my-0">{{getDate(item.created_at)}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("币种")}}</div>
+                                <div class="my-0">{{item.coin_name_unique}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("数量")}}</div>
+                                <div class="my-0">{{amountFormat(item.gold,true)}}</div>
+                            </v-sheet>
+
+                            <v-sheet color="transparent" class="d-flex justify-space-between align-center">
+                                <div class="my-0 textGray--text">{{LangUtil("状态")}}</div>
+                                <div class="my-0" :class="getStateColor(item.status)">{{statusOptions[item.status]}}</div>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+            </LoadMore1>
+        </v-card>
+    </template>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -1,0 +1,186 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="550"
+    max-width="90%"
+    content-class="ma-0 custom-dialog"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    persistent
+    @click:outside="onClose"
+>
+    <!-- pc -->
+    <v-card v-if="!$xsOnly" class="rounded-lg" color="transparent relative promotion-reward" elevation="0">
+        <v-card-text class="pa-0 relative">
+            <v-img src="@/_skin030/assets/promotion_reward/background.png"></v-img>
+            <v-sheet color="transparent" class="content white--text d-flex flex-column">
+                <!-- <div class="font-weight-bold text-center text-50 title-text font-italic">{{LangUtil("推广奖励")}}</div> -->
+                <v-img max-height="10%" contain class="title-text" :src="titleImg"></v-img>
+                <v-sheet color="transparent" class="d-flex align-center text-20" style="margin: 0 0 6% 18%">
+                    <span class="font-weight-bold text-gray text-24">{{LangUtil("直属首充人数：")}}</span>
+                    <span class="text-gray ml-2 mr-auto text-28">{{pageData.firstChargeCount}}</span>
+                    <div @click="goActivity" class="d-flex align-center cursor rule-wrap py-1 pl-1">
+                        <v-icon color="#50d4cd">mdi-help-circle</v-icon>
+                        <span class="text-gray ml-2 mr-1">{{LangUtil("规则说明")}}</span>
+                    </div>
+                </v-sheet>
+
+                <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between" width="100%" height="70%" style="padding: 0 4%">
+                    <v-sheet
+                        color="transparent"
+                        class="d-flex rounded-sm mb-1"
+                        width="24%"
+                        height="47%"
+                        v-for="(i,index) in data"
+                        :key="index"
+                        style="position: relative"
+                    >
+                        <v-img
+                            v-if="i.match_info"
+                            width="100%"
+                            max-width="100%"
+                            src="@/_skin030/assets/promotion_reward/frame2.png"
+                        ></v-img>
+                        <v-img v-else width="100%" max-width="100%" src="@/_skin030/assets/promotion_reward/frame1.png"></v-img>
+                        <v-img
+                            v-if="i.match_info"
+                            class="frame-light mx-auto"
+                            width="75%"
+                            max-width="75%"
+                            src="@/_skin030/assets/promotion_reward/light.png"
+                        ></v-img>
+                        <v-sheet class="frame-content text-center d-flex flex-column" color="transparent" width="100%" height="100%">
+                            <v-img
+                                :class="{bounce: i.match_info}"
+                                :src="boxImgPath(index)"
+                                class="mx-auto frame-box"
+                                contain
+                                max-height="33%"
+                            ></v-img>
+                            <div class="white--text text-16 d-flex align-center justify-center" style="height: 19%">
+                                {{Math.min(pageData.firstChargeCount,i.count)}}/{{i.count}}
+                            </div>
+                            <v-sheet
+                                color="transparent"
+                                class="text-gray font-weight-bold text-20 mt-auto d-flex align-center justify-center"
+                                height="26%"
+                            >
+                                {{GamePlatConfig.getcoin_symbol(i.coin_type)}} {{i.coin_amount}}
+                            </v-sheet>
+                        </v-sheet>
+                        <v-img
+                            v-if="i.receive"
+                            class="frame-get mx-auto"
+                            width="81%"
+                            max-width="81%"
+                            src="@/_skin030/assets/promotion_reward/get.png"
+                        ></v-img>
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex mt-auto justify-center text-20 mb-2" width="100%">
+                    <btn-yellow
+                        :btn_type="1"
+                        class="text-12 mr-9 custom-btn"
+                        min_width="40"
+                        height="40"
+                        :disabled="!isCanReceive"
+                        @click.native="onReceive"
+                    >
+                        <span class="font-weight-bold mx-2 text-20"> {{LangUtil("一键领取")}} </span>
+                    </btn-yellow>
+                    <btn-yellow :btn_type="1" class="text-12 custom-btn" min_width="40" height="40" @click.native="goExtension">
+                        <span class="font-weight-bold mx-2 text-20"> {{LangUtil("立即推广")}} </span>
+                    </btn-yellow>
+                </v-sheet>
+            </v-sheet>
+        </v-card-text>
+        <v-btn class="close-btn" icon @click="onClose">
+            <v-img src="@/_skin030/assets/promotion_reward/close.png" max-width="30"></v-img>
+        </v-btn>
+    </v-card>
+
+    <!-- mobile -->
+    <v-card v-else class="rounded-lg" color="transparent relative promotion-reward" elevation="0">
+        <v-card-text class="pa-0 relative">
+            <v-img src="@/_skin030/assets/promotion_reward/background.png"></v-img>
+            <v-sheet color="transparent" class="content white--text d-flex flex-column">
+                <!-- <div class="font-weight-bold text-center text-50 title-text font-italic">{{LangUtil("推广奖励")}}</div> -->
+                <v-img max-height="10%" contain class="title-text" :src="titleImg"></v-img>
+                <v-sheet color="transparent" class="d-flex align-center text-14" style="margin: 0% 0 3% 18%">
+                    <span class="font-weight-bold text-gray">{{LangUtil("直属首充人数：")}}</span>
+                    <span class="text-gray ml-2 mr-auto text-16">{{pageData.firstChargeCount}}</span>
+                    <div @click="goActivity" class="d-flex align-center cursor rule-wrap py-1 pl-1">
+                        <v-icon color="#50d4cd">mdi-help-circle</v-icon>
+                        <span class="text-gray mx-1 text-14" style="line-height: 1; white-space: nowrap">{{LangUtil("规则说明")}}</span>
+                    </div>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex flex-wrap justify-space-between" width="100%" height="70%" style="padding: 0 4%">
+                    <v-sheet
+                        color="transparent"
+                        class="d-flex rounded-sm mb-1"
+                        width="24%"
+                        height="47%"
+                        v-for="(i,index) in data"
+                        style="position: relative"
+                        :key="index"
+                    >
+                        <v-img
+                            v-if="i.match_info"
+                            width="100%"
+                            max-width="100%"
+                            src="@/_skin030/assets/promotion_reward/frame2.png"
+                        ></v-img>
+                        <v-img v-else width="100%" max-width="100%" src="@/_skin030/assets/promotion_reward/frame1.png"></v-img>
+                        <v-img
+                            v-if="i.match_info"
+                            class="frame-light mx-auto"
+                            width="75%"
+                            max-width="75%"
+                            src="@/_skin030/assets/promotion_reward/light.png"
+                        ></v-img>
+                        <v-sheet class="frame-content text-center d-flex flex-column" color="transparent" width="100%" height="100%">
+                            <v-img
+                                :class="{bounce: i.match_info}"
+                                :src="boxImgPath(index)"
+                                class="mx-auto frame-box"
+                                contain
+                                max-height="33%"
+                            ></v-img>
+                            <div class="white--text text-12 d-flex justify-center align-center" style="height: 20%">
+                                {{Math.min(pageData.firstChargeCount,i.count)}}/{{i.count}}
+                            </div>
+                            <div class="text-gray font-weight-bold text-14 mt-auto" style="height: 25%">
+                                {{GamePlatConfig.getcoin_symbol(i.coin_type)}} {{i.coin_amount}}
+                            </div>
+                        </v-sheet>
+                        <v-img
+                            v-if="i.receive"
+                            class="frame-get mx-auto"
+                            width="81%"
+                            max-width="81%"
+                            src="@/_skin030/assets/promotion_reward/get.png"
+                        ></v-img>
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex mt-auto justify-center text-20 mb-2" width="100%">
+                    <btn-yellow
+                        :btn_type="1"
+                        class="mr-7 custom-btn"
+                        min_width="30"
+                        height="30"
+                        :disabled="!isCanReceive"
+                        @click.native="onReceive"
+                    >
+                        <span class="font-weight-bold mx-2 text-16"> {{LangUtil("一键领取")}} </span>
+                    </btn-yellow>
+                    <btn-yellow :btn_type="1" class="custom-btn" min_width="30" height="30" @click.native="goExtension">
+                        <span class="font-weight-bold mx-2 text-16"> {{LangUtil("立即推广")}} </span>
+                    </btn-yellow>
+                </v-sheet>
+            </v-sheet>
+        </v-card-text>
+        <v-btn class="close-btn mob" icon @click="onClose">
+            <v-img src="@/_skin030/assets/promotion_reward/close.png" max-width="25"></v-img>
+        </v-btn>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

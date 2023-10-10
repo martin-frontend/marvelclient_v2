@@ -1,0 +1,780 @@
+<!-- P C版 -->
+<v-card v-if="!$mobile" flat class="rounded10 px-5 py-4" color="dialog_bg">
+    <!-- 选择币种与金额 -->
+    <v-card flat color="transparent">
+        <v-row>
+            <v-col cols="12">
+                <v-card flat color="transparent" width="100%">
+                    <v-sheet color="transparent" width="100%" class="d-flex align-center">
+                        <div class="text-16 textGray--text text-no-wrap mr-2">{{LangUtil("选择币种")}}</div>
+                        <v-sheet color="transparent" width="100%">
+                            <goldinfo_util
+                                :class="{'regular_text':false}"
+                                balanceStrColor="textGray--text"
+                                :is_need_coin_name="true"
+                                inside_str="我的余额"
+                                :goldInfoData="gold_info"
+                                :is_recharge="true"
+                                :coin_name_unique="form.coin_name_unique"
+                                :items_min_height="36"
+                                :is_show_money="is_show_money"
+                                :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                                :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
+                                @onItemClick="onItemClick"
+                            >
+                            </goldinfo_util>
+                        </v-sheet>
+                    </v-sheet>
+                    <!-- 解锁金额展示 -->
+                    <div class="mt-2 d-flex flex-column" v-if="enable_exemption_amount">
+                        <div class="textGray--text">
+                            <span>{{LangUtil("解锁金额")}}</span>
+                            <span class="text-14 font-weight-bold ml-2">
+                                <span class="wallet_btn--text">{{exemption_amount}}</span>
+                                <span class="white--text"> / {{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-space-between align-center">
+                            <v-sheet color="wallet_bg" class="rounded10 flex-1 custom-progress" height="14px">
+                                <div class="progress-bg" :style="{'width': `${progressValue || 0}%`}"></div>
+                            </v-sheet>
+                            <v-tooltip top open-on-click>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-sheet v-bind="attrs" v-on="on" color="transparent" class="d-flex align-center ml-2">
+                                        <svg-icon icon="help" class="text-16 navIcon--text"></svg-icon>
+                                    </v-sheet>
+                                </template>
+                                <span>
+                                    {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                                    form.coin_name_unique) }}
+                                </span>
+                            </v-tooltip>
+                        </div>
+                    </div>
+                </v-card>
+            </v-col>
+            <v-col cols="12" class="d-flex align-center">
+                <v-sheet color="transparent" class="d-flex justify-space-between">
+                    <div class="text-16 textGray--text text-no-wrap mr-2">{{LangUtil("输入金额兑换")}}</div>
+                    <div v-if="!is_show_money">{{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}</div>
+                </v-sheet>
+                <v-sheet color="transparent" width="100%" class="d-flex aling-center">
+                    <CustomInput
+                        v-if="is_show_money"
+                        :placeholder="LangUtil('输入金额兑换内容')"
+                        v-model="form.amount"
+                        :isEnterGold="true"
+                        :maxDigits="exchangeDigits"
+                    ></CustomInput>
+                    <CustomInput
+                        v-else
+                        :placeholder="LangUtil('输入金额兑换内容')"
+                        v-model="form.amount"
+                        :isEnterGold="true"
+                        :maxDigits="exchangeDigits"
+                    >
+                        <template v-slot:default>
+                            <div color="transparent" class="text-no-wrap">
+                                <span>{{LangUtil("将会得到:")}}</span>
+                                <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
+                            </div>
+                        </template>
+                    </CustomInput>
+
+                    <btn-yellow class="text-16 ml-2" min_width="72" height="36" @click.native="onAll"
+                        ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                    >
+                </v-sheet>
+                <div class="daily_bg--text">{{goldScaleText}}</div>
+            </v-col>
+        </v-row>
+    </v-card>
+    <template v-if="isShowOptions">
+        <v-sheet class="d-flex align-center mt-4 mb-4" color="transparent" width="100%">
+            <div class="textGray--text text-16 mr-2">{{LangUtil("选择支付通道")}}</div>
+            <recharge-method-select
+                :methodOptions="pageData.methodList[form.coin_name_unique].options"
+                :curChannel="form.block_network_id"
+                @onItemClick="onChangeSub"
+            />
+        </v-sheet>
+    </template>
+    <v-card flat color="transparent">
+        <v-row dense>
+            <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="12">
+                <v-card flat color="transparent" class="d-flex flex-column justify-center text-16">
+                    <div class="textGray--text">{{LangUtil("你的钱包地址")}}</div>
+                    <v-sheet color="transparent" class="py-1">
+                        <CustomInput class="" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+                            <div class="d-flex align-center">
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                            <svg-icon icon="help" class="text-16 navIcon--text ml-1"></svg-icon>
+                                        </v-sheet>
+                                    </template>
+                                    <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                </v-tooltip>
+
+                                <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                    {{LangUtil("地址薄")}}
+                                </btn-yellow>
+
+                                <btn-yellow
+                                    v-if="!$mobile"
+                                    class="text-14 ml-2"
+                                    min_width="80"
+                                    height="30"
+                                    :btn_type="2"
+                                    @click.native="onPaste"
+                                >
+                                    {{LangUtil("粘贴")}}
+                                </btn-yellow>
+                            </div>
+                        </CustomInput>
+                    </v-sheet>
+                </v-card>
+            </v-col>
+
+            <v-col v-if="form.payment_method_type==6" cols="12">
+                <v-card flat color="transparent">
+                    <div class="">{{LangUtil("您的银行卡")}}</div>
+                    <v-sheet color="transparent" height="36" width="100%" class="d-flex align-center bank_box rounded10">
+                        <v-autocomplete
+                            v-model="exchangeProxy.curBankinfo"
+                            :items="bank_list"
+                            item-text="bank_name"
+                            :label="LangUtil('银行信息')"
+                            hide-details
+                            solo
+                            flat
+                            background-color="bgColor"
+                            color="colorText1 colorBlue--text"
+                            attach
+                            menu-props="{class='test_cloas'}"
+                            return-object
+                            :no-data-text="LangUtil('没有找到数据')"
+                        ></v-autocomplete>
+
+                        <v-sheet color="transparent" min-width="150" class="name_select">
+                            <div class="">{{form.account_name}}</div>
+                            <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
+                                <v-list-item-group color="primary">
+                                    <v-list-item v-for="(item, i) in allNames" :key="i" @click="onClickNameSelect(item)">
+                                        <v-list-item-content>
+                                            <v-list-item-title v-text="item"></v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list-item-group>
+                            </v-list>
+                        </v-sheet>
+                        <v-sheet color="transparent" min-width="250" class="name_select">
+                            <CustomInput
+                                @blur="onNumberInputBlur"
+                                @input="onNumberInputInput"
+                                height="40"
+                                :isOnlyNumber="true"
+                                :placeholder="LangUtil('银行卡号')"
+                                v-model="form.account"
+                            >
+                            </CustomInput>
+
+                            <v-list v-if="bshowNumberList && allCardNub && allCardNub.length > 0" class="name_list" width="100%">
+                                <v-list-item-group color="primary">
+                                    <v-list-item v-for="(item, i) in allCardNub" :key="i" @click="onClickNumberSelect(item)">
+                                        <v-list-item-content>
+                                            <v-list-item-title v-text="item"></v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list-item-group>
+                            </v-list>
+                        </v-sheet>
+
+                        <btn-yellow class="text-16 ml-2" min_width="90" height="36" @click.native="onBankcardInfo"
+                            >{{LangUtil("银行卡信息")}}</btn-yellow
+                        >
+                    </v-sheet>
+                </v-card>
+            </v-col>
+            <!-- 巴西币提现 -->
+            <template v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0">
+                <!-- 选择框 -->
+                <v-col cols="12">
+                    <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                        <!-- 标题 -->
+                        <v-sheet color="transparent" class="d-flex textGray--text"> {{LangUtil("Pix key类型")}}</v-sheet>
+                        <v-sheet color="transparent" class="py-1" width="100%">
+                            <CustomSelect
+                                v-model="exchangeProxy.pix_key_select"
+                                :options="exchangeProxy.pix_key_option_select"
+                                width="100%"
+                                height="36"
+                                fontSize="14"
+                                @change="onPixkeyChange"
+                            />
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+                <template v-for="(item, key) of exchangeProxy.showRequires">
+                    <v-col v-if="item.key == 'name'" cols="12" :key="key">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex textGray--text"> {{LangUtil(item.title)}}</v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
+                                    @blur="onBlurInput(item)"
+                                    v-model="item.inputValue"
+                                >
+                                </CustomInput>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                        </v-card>
+                    </v-col>
+                </template>
+
+                <v-col cols="12" v-if="exchangeProxy.curPixkeyItem">
+                    <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                        <!-- 标题 -->
+                        <v-sheet color="transparent" class="d-flex textGray--text"> {{exchangeProxy.curPixkeyItem.name}}</v-sheet>
+                        <v-sheet color="transparent" class="py-1">
+                            <CustomInput
+                                class=""
+                                :placeholder="exchangeProxy.curPixkeyItem.placeholder"
+                                @blur="onBlurInput_option()"
+                                v-model="exchangeProxy.curPixkeyItem.inputValue"
+                                :disabled="bindCPF"
+                            >
+                                <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
+                                    <div class="mr-2">{{LangUtil("+55")}}</div>
+                                </template>
+                                <div class="d-flex align-center">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                                <svg-icon icon="help" class="text-16 navIcon--text ml-1"></svg-icon>
+                                            </v-sheet>
+                                        </template>
+                                        <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                    </v-tooltip>
+
+                                    <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                        {{LangUtil("地址薄")}}
+                                    </btn-yellow>
+                                </div>
+                            </CustomInput>
+                        </v-sheet>
+                        <v-sheet class="text-12 red--text error_tip" color="transparent"> {{exchangeProxy.curPixkeyItem.errinfo}}</v-sheet>
+                    </v-card>
+                </v-col>
+            </template>
+
+            <!-- 墨西哥币兑换 -->
+            <template v-if="(form.payment_method_type==9 || form.payment_method_type==10) && exchangeProxy.showRequires.length > 0">
+                <template v-for="(item, key) of exchangeProxy.showRequires">
+                    <v-col cols="12" :key="key">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex textGray--text"> {{LangUtil(item.title)}}</v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <template v-if="item.isSelect">
+                                    <CustomSelect
+                                        v-model="item.inputValue"
+                                        :options="form.requires[item.key].options"
+                                        width="100%"
+                                        height="36"
+                                        fontSize="14"
+                                        @change="onBankChange"
+                                        :placeholder="item.tips || '请选择银行'"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <CustomInput
+                                        class=""
+                                        :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
+                                        @blur="onBlurInput(item)"
+                                        v-model="item.inputValue"
+                                    >
+                                    </CustomInput>
+                                </template>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                        </v-card>
+                    </v-col>
+                </template>
+            </template>
+
+            <v-col cols="12">
+                <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                    <!-- 标题 -->
+                    <v-sheet color="transparent" class="textGray--text text-16"> {{LangUtil("交易密码")}} </v-sheet>
+                    <v-sheet color="transparent" class="py-1">
+                        <CustomPassword class="" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                            <btn-yellow
+                                v-if="exchangeProxy.isPasswordExist"
+                                class="ml-auto text-14 mr-n2"
+                                min_width="61"
+                                height="36"
+                                :btn_type="4"
+                                @click.native="onSetPassword"
+                                >{{LangUtil("设置")}}</btn-yellow
+                            >
+                        </CustomPassword>
+                    </v-sheet>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-card>
+
+    <v-sheet color="transparent" class="mt-4">
+        <div class="textGray--text mt-4 font-weight-bold text-16">{{LangUtil("兑换说明")}}</div>
+
+        <v-sheet class="text-14 d-flex textGray--text rounded10" v-if="pageData.methodList[form.coin_name_unique]" color="transparent">
+            <div v-if="pageData.methodList[form.coin_name_unique].options[form.block_network_id]" class="mt-2">
+                <div
+                    v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)"
+                    v-html="item"
+                ></div>
+            </div>
+        </v-sheet>
+    </v-sheet>
+    <v-sheet color="transparent" width="100%" class="d-flex mt-auto pt-4">
+        <!-- <v-sheet v-if="isNeedCoinShow" class="d-flex justify-start rounded10 align-center" color="transparent">
+            <div class="mr-2 primary-text">{{LangUtil("已支持兑换币种")}}</div>
+            <div v-for="(item, key) of pageData.methodList" :key="key">
+                <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+            </div>
+        </v-sheet> -->
+
+        <btn-yellow class="text-16 rounded-6" min_width="100%" height="50" :disabled="!isChecked" @click.native="onSubmit"
+            >{{LangUtil("提交兑换")}}</btn-yellow
+        >
+    </v-sheet>
+</v-card>
+<!-- 手机版 -->
+<v-card v-else flat class="rounded-0 mob_height overflow-y-auto" color="transparent">
+    <!-- 选择币种与金额 -->
+    <v-card flat class="px-4 py-4" color="transparent">
+        <v-card flat color="transparent">
+            <v-row>
+                <v-col cols="12">
+                    <v-card flat color="transparent">
+                        <div v-if="is_show_coin_title" class="text-14 textGray--text mb-2">{{LangUtil("选择币种")}}</div>
+                        <v-sheet v-else class="text-14 textGray--text mb-2" min-height="18" color="transparent"></v-sheet>
+                        <v-sheet color="transparent">
+                            <goldinfo_util
+                                :class="{'regular_text':false}"
+                                balanceStrColor="textGray--text"
+                                :is_need_coin_name="true"
+                                inside_str="我的余额"
+                                :goldInfoData="gold_info"
+                                :is_recharge="true"
+                                :coin_name_unique="form.coin_name_unique"
+                                :items_min_height="36"
+                                :is_show_money="is_show_money"
+                                :trans_coin_name_obj="{'VOL':'Volare','BAL':'Volare'}"
+                                :trans_coin_img_obj="{'VOL':'volare','BAL':'volare'}"
+                                @onItemClick="onItemClick"
+                            >
+                            </goldinfo_util>
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+                <v-col cols="12" v-if="enable_exemption_amount">
+                    <!-- 解锁金额展示 -->
+                    <div class="text-14 primary--text mb-2 d-flex align-end flex-nowrap">
+                        <div class="d-flex mr-auto">
+                            <div class="textGray--text">{{LangUtil("解锁金额")}}</div>
+                            <div class="bold_text">
+                                <span class="ml-1 text-12 success--text">{{exemption_amount}}</span>
+                                <span class="text-12">/{{amountFormat(sum_money,true)}} {{form.coin_name_unique}}</span>
+                            </div>
+                        </div>
+                        <v-tooltip max-width="90%" top>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                    <svg-icon icon="help" class="text-16 navIcon--text"></svg-icon>
+                                </v-sheet>
+                            </template>
+                            <span>
+                                {{ LangUtil("当前解锁金额为 {0} {1}，当流水审核通过以后即可解锁全部余额。", exemption_amount,
+                                form.coin_name_unique) }}
+                            </span>
+                        </v-tooltip>
+                    </div>
+                    <div>
+                        <v-progress-linear :value="progressValue" height="5" color="success"></v-progress-linear>
+                    </div>
+                </v-col>
+
+                <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="12">
+                    <v-card flat color="transparent" class="d-flex flex-column justify-center textGray--text">
+                        <div class="">{{LangUtil("你的钱包地址")}}</div>
+                        <v-sheet color="transparent" class="py-1">
+                            <CustomInput class="text-12 placeholder-12" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+                                <div class="d-flex align-center">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                                <svg-icon icon="help" class="text-16 navIcon--text ml-1"></svg-icon>
+                                            </v-sheet>
+                                        </template>
+                                        <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                    </v-tooltip>
+
+                                    <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                        {{LangUtil("地址薄")}}
+                                    </btn-yellow>
+
+                                    <btn-yellow
+                                        v-if="!$mobile"
+                                        class="text-14 ml-2"
+                                        min_width="80"
+                                        height="30"
+                                        :btn_type="2"
+                                        @click.native="onPaste"
+                                    >
+                                        {{LangUtil("粘贴")}}
+                                    </btn-yellow>
+                                </div>
+                            </CustomInput>
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-sheet color="transparent" class="d-flex justify-space-between">
+                        <div class="text-14 textGray--text bold_text font-weight-bold mb-2">{{LangUtil("输入金额兑换")}}</div>
+                        <div v-if="!is_show_money">
+                            {{LangUtil("我的余额")}} {{exchangeProxy.gold_info[form.coin_name_unique].plat_money}}
+                        </div>
+                    </v-sheet>
+                    <v-sheet color="transparent" width="100%" class="d-flex">
+                        <CustomInput
+                            class="text-12 placeholder-12"
+                            :placeholder="LangUtil('输入金额兑换内容')"
+                            v-model="form.amount"
+                            :isEnterGold="true"
+                            :maxDigits="exchangeDigits"
+                        >
+                        </CustomInput>
+
+                        <btn-yellow class="text-14 ml-2 font-weight-bold" min_width="72" height="36" @click.native="onAll"
+                            ><span class="font-weight-bold">{{LangUtil("全部")}}</span></btn-yellow
+                        >
+                    </v-sheet>
+                    <div class="daily_bg--text mt-2">{{goldScaleText}}</div>
+
+                    <div v-if="!is_show_money" color="transparent" class="text-no-wrap mt-2">
+                        <span>{{LangUtil("将会得到:")}}</span>
+                        <span class="text-no-wrap daily_bg--text"> {{goldGotText}}</span>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-card>
+
+        <template v-if="isShowOptions">
+            <v-sheet class="d-flex align-center mt-4 mb-4" color="transparent" width="100%">
+                <div class="textGray--text text-14 mr-2">{{LangUtil("选择支付通道")}}</div>
+                <recharge-method-select
+                    :methodOptions="pageData.methodList[form.coin_name_unique].options"
+                    :curChannel="form.block_network_id"
+                    @onItemClick="onChangeSub"
+                />
+            </v-sheet>
+        </template>
+        <!-- <div v-if="form.payment_method_type==8">
+        
+    </div> -->
+        <v-card flat color="transparent" class="mt-4">
+            <v-row>
+                <!-- <v-col v-if="form.payment_method_type==4 || form.payment_method_type==5" cols="12">
+                <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                    <div class="">{{LangUtil("你的钱包地址")}}</div>
+                    <v-sheet color="transparent" class="py-1">
+                        <CustomInput class="" :placeholder="LangUtil('输入钱包地址')" v-model="form.account">
+                            <div class="d-flex align-center">
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                            <svg-icon icon="help" class="text-16 disable_text--text ml-1"></svg-icon>
+                                        </v-sheet>
+                                    </template>
+                                    <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                </v-tooltip>
+
+                                <btn-yellow class="text-14 ml-2" min_width="80" height="30" :btn_type="2" @click.native="onAddressBook">
+                                    {{LangUtil("地址薄")}}
+                                </btn-yellow>
+
+                                <btn-yellow
+                                    v-if="!$mobile"
+                                    class="text-14 ml-2"
+                                    min_width="80"
+                                    height="30"
+                                    :btn_type="2"
+                                    @click.native="onPaste"
+                                >
+                                    {{LangUtil("粘贴")}}
+                                </btn-yellow>
+                            </div>
+                        </CustomInput>
+                    </v-sheet>
+                </v-card>
+            </v-col> -->
+
+                <v-col v-if="form.payment_method_type==6" cols="12">
+                    <v-card flat color="transparent">
+                        <div class="">{{LangUtil("您的银行卡")}}</div>
+                        <v-sheet color="transparent" height="36" width="100%" class="d-flex align-center bank_box rounded10">
+                            <v-autocomplete
+                                v-model="exchangeProxy.curBankinfo"
+                                :items="bank_list"
+                                item-text="bank_name"
+                                :label="LangUtil('银行信息')"
+                                hide-details
+                                solo
+                                flat
+                                background-color="bgColor"
+                                color="colorText1 colorBlue--text"
+                                attach
+                                menu-props="{class='test_cloas'}"
+                                return-object
+                                :no-data-text="LangUtil('没有找到数据')"
+                            ></v-autocomplete>
+
+                            <v-sheet color="transparent" min-width="150" class="name_select">
+                                <div class="">{{form.account_name}}</div>
+                                <v-list v-if="bshowAllNameList && allNames && allNames.length > 0" class="name_list" width="100%">
+                                    <v-list-item-group color="primary">
+                                        <v-list-item v-for="(item, i) in allNames" :key="i" @click="onClickNameSelect(item)">
+                                            <v-list-item-content>
+                                                <v-list-item-title v-text="item"></v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                            <v-sheet color="transparent" min-width="250" class="name_select">
+                                <CustomInput
+                                    @blur="onNumberInputBlur"
+                                    @input="onNumberInputInput"
+                                    height="40"
+                                    :isOnlyNumber="true"
+                                    :placeholder="LangUtil('银行卡号')"
+                                    v-model="form.account"
+                                >
+                                </CustomInput>
+
+                                <v-list v-if="bshowNumberList && allCardNub && allCardNub.length > 0" class="name_list" width="100%">
+                                    <v-list-item-group color="primary">
+                                        <v-list-item v-for="(item, i) in allCardNub" :key="i" @click="onClickNumberSelect(item)">
+                                            <v-list-item-content>
+                                                <v-list-item-title v-text="item"></v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+
+                            <btn-yellow class="text-16 ml-2" min_width="90" height="36" @click.native="onBankcardInfo"
+                                >{{LangUtil("银行卡信息")}}</btn-yellow
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+
+                <!-- <v-col cols="12" v-if="form.payment_method_type==8 && exchangeProxy.showRequires.length > 0" v-for="(item, key) of exchangeProxy.showRequires" :key="key">
+                <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                    <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}} </v-sheet>
+                    <v-sheet color="transparent" class="py-1">
+                        <CustomInput
+                            class=""
+                            :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
+                            @blur="onBlurInput(item)"
+                            v-model="item.inputValue"
+                        >
+                        </CustomInput>
+                    </v-sheet>
+                    <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                </v-card>
+            </v-col> -->
+
+                <template v-if="form.payment_method_type==8">
+                    <!-- 选择框 -->
+                    <v-col cols="12">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex"> {{LangUtil("Pix key类型")}}</v-sheet>
+                            <v-sheet color="transparent" class="py-1" width="100%">
+                                <CustomSelect
+                                    v-model="exchangeProxy.pix_key_select"
+                                    :options="exchangeProxy.pix_key_option_select"
+                                    width="100%"
+                                    height="36"
+                                    fontSize="14"
+                                    @change="onPixkeyChange"
+                                />
+                            </v-sheet>
+                        </v-card>
+                    </v-col>
+
+                    <v-col cols="12" v-if="exchangeProxy.curPixkeyItem">
+                        <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                            <!-- 标题 -->
+                            <v-sheet color="transparent" class="d-flex"> {{exchangeProxy.curPixkeyItem.name}}</v-sheet>
+                            <v-sheet color="transparent" class="py-1">
+                                <CustomInput
+                                    class=""
+                                    :placeholder="exchangeProxy.curPixkeyItem.placeholder"
+                                    @blur="onBlurInput_option()"
+                                    v-model="exchangeProxy.curPixkeyItem.inputValue"
+                                    :disabled="bindCPF"
+                                >
+                                    <template v-if="exchangeProxy.curPixkeyItem.key==2" v-slot:pre>
+                                        <div class="mr-2">{{LangUtil("+55")}}</div>
+                                    </template>
+                                    <div class="d-flex align-center">
+                                        <v-tooltip top>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <v-sheet v-bind="attrs" v-on="on" class="d-flex" color="transparent">
+                                                    <svg-icon icon="help" class="text-16 navIcon--text ml-1"></svg-icon>
+                                                </v-sheet>
+                                            </template>
+                                            <span>{{LangUtil("兑换成功的地址会自动添加地址簿")}}</span>
+                                        </v-tooltip>
+
+                                        <btn-yellow
+                                            class="text-14 ml-2"
+                                            min_width="80"
+                                            height="30"
+                                            :btn_type="2"
+                                            @click.native="onAddressBook"
+                                        >
+                                            {{LangUtil("地址薄")}}
+                                        </btn-yellow>
+                                    </div>
+                                </CustomInput>
+                            </v-sheet>
+                            <v-sheet class="text-12 red--text error_tip" color="transparent">
+                                {{exchangeProxy.curPixkeyItem.errinfo}}</v-sheet
+                            >
+                        </v-card>
+                    </v-col>
+
+                    <template v-for="(item, key) of exchangeProxy.showRequires">
+                        <v-col v-if="item.key == 'name'" cols="12" :key="key">
+                            <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                                <!-- 标题 -->
+                                <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}}</v-sheet>
+                                <v-sheet color="transparent" class="py-1">
+                                    <CustomInput
+                                        class=""
+                                        :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
+                                        @blur="onBlurInput(item)"
+                                        v-model="item.inputValue"
+                                    >
+                                    </CustomInput>
+                                </v-sheet>
+                                <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </template>
+
+                <template v-if="form.payment_method_type==9 || form.payment_method_type==10">
+                    <template v-for="(item, key) of exchangeProxy.showRequires">
+                        <v-col cols="12" :key="key">
+                            <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                                <!-- 标题 -->
+                                <v-sheet color="transparent" class="d-flex"> {{LangUtil(item.title)}}</v-sheet>
+                                <v-sheet color="transparent" class="py-1">
+                                    <template v-if="item.isSelect">
+                                        <CustomSelect
+                                            v-model="item.inputValue"
+                                            :options="form.requires[item.key].options"
+                                            width="100%"
+                                            height="36"
+                                            fontSize="14"
+                                            @change="onBankChange"
+                                            :placeholder="item.tips || '请选择银行'"
+                                        />
+                                    </template>
+                                    <template v-else>
+                                        <CustomInput
+                                            class=""
+                                            :placeholder="LangUtil('请输入{0}',LangUtil('input_' + item.title))"
+                                            @blur="onBlurInput(item)"
+                                            v-model="item.inputValue"
+                                        >
+                                        </CustomInput>
+                                    </template>
+                                </v-sheet>
+                                <v-sheet class="text-12 red--text error_tip" color="transparent"> {{item.errinfo}}</v-sheet>
+                            </v-card>
+                        </v-col>
+                    </template>
+                </template>
+
+                <v-col cols="12">
+                    <v-card flat color="transparent" class="d-flex flex-column justify-center">
+                        <!-- 标题 -->
+                        <v-sheet color="transparent" class="d-flex textGray--text"> {{LangUtil("交易密码")}} </v-sheet>
+                        <v-sheet color="transparent" class="py-1">
+                            <CustomPassword class="text-12 placeholder-12" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                                <btn-yellow
+                                    v-if="exchangeProxy.isPasswordExist"
+                                    class="ml-auto text-14 mr-n2"
+                                    min_width="61"
+                                    height="36"
+                                    :btn_type="4"
+                                    @click.native="onSetPassword"
+                                    >{{LangUtil("设置")}}</btn-yellow
+                                >
+                            </CustomPassword>
+                        </v-sheet>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-card>
+
+        <v-sheet id="animbtn" ref="animbtn" color="transparent" width="100%" class="d-flex my-4">
+            <btn-yellow class="ml-auto text-14" min_width="100%" height="36" @click.native="onSubmit">{{LangUtil("提交兑换")}}</btn-yellow>
+        </v-sheet>
+    </v-card>
+
+    <v-card flat color="transparent" class="px-4 py-2 mt-4">
+        <div class="primary--text font-weight-bold text-14">{{LangUtil("兑换说明")}}</div>
+
+        <v-sheet class="text-14 d-flex textGray--text rounded10" v-if="pageData.methodList[form.coin_name_unique]" color="transparent">
+            <div v-if="pageData.methodList[form.coin_name_unique].options[form.block_network_id]" class="mt-2">
+                <div
+                    v-for="item of transformExplain(pageData.methodList[form.coin_name_unique].options[form.block_network_id].explain)"
+                    v-html="item"
+                ></div>
+            </div>
+        </v-sheet>
+    </v-card>
+    <!-- <v-sheet color="transparent" width="100%" class="d-flex mt-4">
+        <v-sheet class="d-flex justify-start rounded10 align-center" color="transparent">
+            <div class="mr-2 primary-text">{{LangUtil("已支持币种")}}</div>
+            <div v-for="(item, key) of pageData.methodList" :key="key">
+                <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+            </div>
+        </v-sheet>
+
+        <btn-yellow class="ml-auto text-16" min_width="104" height="36" :disabled="!isChecked" @click.native="onSubmit"
+            >{{LangUtil("提交")}}</btn-yellow
+        >
+    </v-sheet> -->
+
+    <v-sheet v-if="isNeedCoinShow" color="transparent" width="100%" class="d-flex mt-4 mb-16 ml-4">
+        <v-sheet class="d-flex justify-start align-center rounded10" color="transparent">
+            <div class="mr-4 primary-text font-weight-bold">{{LangUtil("已支持兑换币种")}}</div>
+            <div v-for="(item, key) of pageData.methodList" :key="key">
+                <v-img class="mr-2" v-if="plat_coins[key]" :src="plat_coins[key].icon" max-width="20" height="20"></v-img>
+            </div>
+        </v-sheet>
+    </v-sheet>
+</v-card>

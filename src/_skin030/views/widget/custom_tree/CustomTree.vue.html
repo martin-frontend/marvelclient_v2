@@ -1,0 +1,123 @@
+<div>
+    <!-- 创建本层的信息 -->
+    <!-- pc显示方式 -->
+    <template v-if="!$mobile">
+        <v-sheet
+            class="d-flex align-center rounded-xl sheetOutlined px-4 py-2 my-1"
+            color="transparent"
+            @click.stop="onClick"
+            disabled="!isCreateOther"
+        >
+            <!-- 前面的图标和层级 -->
+            <v-sheet class="d-flex justify-start" color="transparent">
+                <v-icon class="d-flex align-center" color="userInfo_color">
+                    {{ isCreateOther ?(isshow? "mdi-filter-minus-outline" : "mdi-filter-plus-outline") : "mdi-filter-minus-outline"}}
+                </v-icon>
+                <v-sheet class="userInfo_color--text ml-5" color="transparent"> {{getlevelText(layerCount)}} </v-sheet>
+            </v-sheet>
+            <!-- 中间文字 -->
+            <v-sheet class="d-flex justify-around userInfo_color--text ml-5" color="transparent">
+                <template v-if="layerCount!=directlyLayer">
+                    <v-sheet class="d-flex justify-center userInfo_color--text" color="transparent">
+                        {{LangUtil("ID：")}}{{showdata.user_id}}
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center userInfo_color--text ml-2" color="transparent">
+                        {{LangUtil("(直属成员{0})",showdata.directly_users)}}
+                    </v-sheet>
+                </template>
+                <template v-else>
+                    <v-sheet class="d-flex justify-center userInfo_color--text" color="transparent">
+                        {{LangUtil("ID：")}}{{showdata.user_id}}
+                    </v-sheet>
+                    <v-sheet v-if="showdata.username" class="d-flex justify-center userInfo_color--text ml-2" color="transparent">
+                        {{LangUtil("账号：")}}{{showdata.username}}
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center userInfo_color--text ml-2" color="transparent">
+                        {{LangUtil("备注：")}}{{showdata.remark ? showdata.remark : "-"}}
+                    </v-sheet>
+                    <v-sheet class="d-flex justify-center userInfo_color--text ml-2" color="transparent">
+                        {{LangUtil("(直属成员{0})",showdata.directly_users)}}
+                    </v-sheet>
+                </template>
+            </v-sheet>
+            <!-- 后面按钮 -->
+            <v-sheet
+                v-if="layerCount!=selfLayer"
+                class="d-flex justify-end textYellow--text ml-auto text-14"
+                color="transparent"
+                @click.stop="onClickSure"
+            >
+                {{LangUtil("确定筛选")}}
+            </v-sheet>
+        </v-sheet>
+
+        <template v-if="isCreateOther && isshow">
+            <div v-for="(item, key) in dataarr.childs" :key="key">
+                <custom-tree
+                    :dataarr="item"
+                    class="ml-5"
+                    :layerCount="nextLayerCount"
+                    :selfLayer="selfLayer"
+                    :directlyLayer="directlyLayer"
+                    @onClickSure="onClickSure"
+                    @onClick="onClick"
+                />
+            </div>
+        </template>
+    </template>
+    <!-- 手机显示方式 -->
+    <template v-else>
+        <v-sheet class="d-flex align-center rounded-xl" color="transparent" @click.stop="onClick" disabled="!isCreateOther">
+            <!-- 前面的图标和层级 -->
+            <v-sheet class="d-flex justify-start userInfo_color--text" color="transparent">
+                <v-icon class="d-flex align-center" color="userInfo_color">
+                    {{ isCreateOther ?(isshow? "mdi-filter-minus-outline" : "mdi-filter-plus-outline") : "mdi-filter-remove-outline"}}
+                </v-icon>
+                <v-sheet class="userInfo_color--text ml-2" color="transparent"> {{getlevelText(layerCount)}} </v-sheet>
+            </v-sheet>
+            <!-- 中间文字 -->
+            <v-sheet class="d-flex flex-column ml-2" color="transparent">
+                <template v-if="layerCount==directlyLayer">
+                    <v-sheet class="userInfo_color--text" color="transparent"> {{LangUtil("ID：")}}{{showdata.user_id}} </v-sheet>
+                    <v-sheet v-if="showdata.username" class="text-truncate userInfo_color--text" color="transparent" width="120">
+                        {{LangUtil("账号：")}}{{showdata.username}}
+                    </v-sheet>
+                    <v-sheet class="userInfo_color--text" color="transparent">
+                        {{LangUtil("备注：")}}{{showdata.remark ? showdata.remark : "-"}}
+                    </v-sheet>
+                    <v-sheet class="userInfo_color--text" color="transparent">
+                        {{LangUtil("(直属成员{0})",showdata.directly_users)}}
+                    </v-sheet>
+                </template>
+                <template v-else>
+                    <v-sheet class="userInfo_color--text" color="transparent"> {{LangUtil("ID：")}}{{showdata.user_id}} </v-sheet>
+                    <v-sheet class="userInfo_color--text" color="transparent">
+                        {{LangUtil("(直属成员{0})",showdata.directly_users)}}
+                    </v-sheet>
+                </template>
+            </v-sheet>
+            <!-- 后面按钮 -->
+            <v-sheet
+                v-if="layerCount!=selfLayer"
+                class="d-flex justify-end textYellow--text ml-auto"
+                color="transparent"
+                @click.stop="onClickSure"
+            >
+                {{LangUtil("确定筛选")}}
+            </v-sheet>
+        </v-sheet>
+        <template v-if="isCreateOther && isshow">
+            <div v-for="(item, key) in dataarr.childs" :key="key">
+                <custom-tree
+                    :dataarr="item"
+                    class="ml-5"
+                    :layerCount="nextLayerCount"
+                    :selfLayer="selfLayer"
+                    :directlyLayer="directlyLayer"
+                    @onClickSure="onClickSure"
+                    @onClick="onClick"
+                />
+            </div>
+        </template>
+    </template>
+</div>

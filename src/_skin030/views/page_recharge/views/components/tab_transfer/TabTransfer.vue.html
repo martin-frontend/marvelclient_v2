@@ -1,0 +1,59 @@
+<v-card-text class="mt-5 overflow-auto">
+    <div class="colorText1--text" v-html="bindHtml">
+        <!-- 为保证您的资金安全，请先在 <a class="text-decoration-underline colorBtnBg--text">安全中心</a> 绑定谷歌两步验证。 -->
+        <!-- {{LangUtil("为保证您的资金安全，请先在 {0} 绑定谷歌两步验证。", LangUtil("安全中心"))}} -->
+    </div>
+    <div class="d-flex mt-3">
+        <CustomSelect class="mr-3" :icons="plat_coins" :options="methodList" v-model="form.coin_name_unique" @change="onChange" />
+    </div>
+
+    <div class="colorText1--text mt-3">{{LangUtil("用户ID")}}</div>
+    <CustomInput class="mt-1" :placeholder="LangUtil('请输入用户ID')" v-model="form.to_user_id" />
+
+    <div class="colorText1--text mt-3">{{LangUtil("平台余额")}}</div>
+    <v-sheet class="d-flex align-center pl-4 mt-1 rounded-lg" color="colorPanelTitleBg" height="44">
+        <v-img
+            class="mr-2"
+            :src="plat_coins[form.coin_name_unique] && plat_coins[form.coin_name_unique].icon"
+            max-width="20"
+            height="20"
+        ></v-img>
+        <div>{{ balance }}</div>
+        <v-spacer />
+        <v-tooltip top color="colorText1">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" color="colorText1" icon small class="mr-1"><v-icon>mdi-help-circle</v-icon></v-btn>
+            </template>
+            <span>{{LangUtil("余额可能在厂商资产里，如兑换请先从厂商提取")}}</span>
+        </v-tooltip>
+        <v-btn color="colorText1 colorBlue--text" x-small height="30" class="mr-2" @click="onWallet">{{LangUtil("平台钱包")}}</v-btn>
+    </v-sheet>
+
+    <v-row class="colorText1--text mt-3" dense>
+        <v-col class="mr-1">
+            <v-sheet color="transparent" min-width="300" class="mb-2">
+                <div class="colorText1--text">{{LangUtil("划转金额")}}</div>
+                <CustomInput class="mt-1" :placeholder="LangUtil('输入金额')" v-model="form.gold">
+                    <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onAll">{{LangUtil("全部")}}</v-btn>
+                </CustomInput>
+            </v-sheet>
+        </v-col>
+        <v-col>
+            <div>{{LangUtil("交易密码")}}</div>
+            <CustomPassword class="mt-1" :placeholder="LangUtil('输入密码')" v-model="form.password_gold">
+                <v-btn class="colorBlue--text mr-n2" x-small height="30" color="colorText1" @click="onSetPassword"
+                    >{{LangUtil("设置")}}</v-btn
+                >
+            </CustomPassword>
+        </v-col>
+    </v-row>
+    <v-btn class="rounded-lg mt-10" color="colorBtnBg" height="48" :disabled="!isChecked" block @click="onSubmit"
+        >{{LangUtil("划转")}}</v-btn
+    >
+    <v-divider class="mx-5" />
+    <v-card-text class="d-flex justify-end mt-3">
+        <div class="mr-2 info-text">{{LangUtil("已支持币种")}}</div>
+        <v-img class="mr-2" :src="plat_coins[key].icon" max-width="20" height="20" v-for="(item, key) of plat_coins" :key="key"></v-img>
+    </v-card-text>
+    <Overlay v-model="pageData.loading" />
+</v-card-text>

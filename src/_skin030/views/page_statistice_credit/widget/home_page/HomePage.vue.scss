@@ -1,0 +1,116 @@
+.cursor {
+    cursor: pointer;
+}
+.qrcode {
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 6px;
+    width: 120px;
+    height: 120px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 78px;
+        height: 78px;
+    }
+}
+// .theme--dark {
+//     .qrcode {
+//         background-color: #272828;
+//     }
+// }
+// .theme--light {
+//     .qrcode {
+//         background-color: white;
+//     }
+// }
+.rounded-card {
+    @media (max-width: 600px) {
+        border-radius: 10px !important;
+    }
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}
+
+.regular_text {
+    font-family: "GOTHAM_BOOK";
+}
+.yellowweight {
+    --font-weight: bold;
+}
+
+.pad_top_mob {
+    padding-top: 70px;
+}
+.pad_height {
+    min-height: calc(100vh - 600px);
+}
+
+.skin030 .theme--light .head_btn_top {
+    .v-btn {
+        border: none !important;
+        color: #5d5d5d !important;
+        padding: 0 4px !important;
+    }
+
+    .v-btn.v-btn--disabled {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+
+    .v-btn:hover:before {
+        opacity: 0;
+    }
+
+    .v-btn:hover {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #0f1213 !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+}
+
+.skin030 .theme--dark .head_btn_top {
+    .v-btn {
+        border: none !important;
+        color: var(--btn_disable_text_dark) !important;
+        padding: 0 4px !important;
+    }
+
+    .v-btn.v-btn--disabled {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #fff !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+
+    .v-btn:hover:before {
+        opacity: 0;
+    }
+
+    .v-btn:hover {
+        border: none !important;
+        border-radius: unset;
+        border-bottom: 2px solid #ffcd43 !important;
+        color: #fff !important;
+        font-family: "GOTHAM_BOLD";
+        font-weight: 700;
+    }
+}
+.skeleton_height {
+    height: calc(100vh - 730px);
+}

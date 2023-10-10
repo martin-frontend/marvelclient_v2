@@ -1,0 +1,1046 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="1200"
+    v-model="pageData.bShow"
+    class="overflow-y-hidden"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :no-click-animation="$mobile"
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded10" color="dialog_bg">
+        <!-- pc显示方式 -->
+        <com-dialog-title :title="pageData.bShowIsMine? '我的投注' : '投注记录'" @onClose="onClose" />
+
+        <v-divider class="mb-2" />
+        <v-sheet class="px-5 pb-1" ref="options" color="transparent">
+            <!-- <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text" v-if="pageData.bShowOptions"> -->
+            <div class="d-flex flex-wrap align-center mb-2 timeRange_pc regular_text">
+                <CustomSelect
+                    class="mr-2"
+                    v-model="listOptions.moneySelect"
+                    :options="listOptions.moneyOptions()"
+                    fontSize="14"
+                    width="140"
+                    @change="onMoneyTypeChange"
+                />
+                <CustomSelect
+                    class="mr-2"
+                    v-model="listOptions.typeSelect"
+                    :options="listOptions.typeOptions()"
+                    fontSize="14"
+                    width="140"
+                    @change="onTypeChange"
+                />
+                <CustomSelect
+                    class="mr-2"
+                    v-model="listOptions.vendorSelect"
+                    :options="listOptions.vendorOptions()"
+                    fontSize="14"
+                    width="140"
+                    :isForeSelect="true"
+                    @change="onVendorChange"
+                />
+                <CustomSelect
+                    class="mr-2"
+                    v-model="listOptions.statusSelect"
+                    :options="listOptions.statusOptions()"
+                    fontSize="14"
+                    width="140"
+                    @change="onStatusChange"
+                />
+                <CustomSelect
+                    class="mr-2"
+                    v-model="listOptions.betTimeSelect"
+                    :options="listOptions.betTimeOptions()"
+                    fontSize="14"
+                    width="140"
+                    @change="onBetTimeChange"
+                />
+                <el-date-picker
+                    v-model="timeRange"
+                    type="datetimerange"
+                    :picker-options="pickerOptions"
+                    range-separator="-"
+                    :start-placeholder="LangUtil('开始日期')"
+                    :end-placeholder="LangUtil('结束日期')"
+                    :default-time="[`00:00:00`, `23:59:00`]"
+                    align="right"
+                    format="yyyy-MM-dd HH:mm"
+                    class="input_range align-center"
+                    @change="onTimeChange"
+                    :clearable="false"
+                >
+                    <template slot="range-separator">-</template>
+                </el-date-picker>
+            </div>
+
+            <div class="d-flex justify-start align-center ml-3 mb-2">
+                <btn-yellow v-if="pageData.bShowFilterBtn" class="text-14" width="115" height="30" @click.native="onFilterBtnClick"
+                    >{{LangUtil("层级筛选")}}</btn-yellow
+                >
+
+                <div v-if="pageData.bShowTimeText" class="d-flex flex-wrap align-center primary--text">
+                    <span
+                        >{{LangUtil("结算时间 {0} 至
+                        {1}",getDate(pageData.listQuery.start_date,false),getDate(pageData.listQuery.end_date,false))}}
+                    </span>
+                    <!-- <span class="ml-2"> (GMT8) </span> -->
+                </div>
+            </div>
+
+            <div class="colorBlue1--text text-16 ml-3 d-flex mb-2">
+                <div v-if="pageData.bShowMoneyType" class="mr-3 textGray--text">
+                    {{LangUtil("结算币种")}}
+                    <span class="userInfo_color--text"> {{listQuery.coin_name_unique}}</span>
+                </div>
+                <div v-if="pageData.bShowUserId" class="mr-3 textGray--text">
+                    {{LangUtil("用户ID")}}
+
+                    <template v-if="isOtherUser">
+                        <span class="userInfo_color--text"> {{isOtherUser}}</span>
+                    </template>
+                    <template v-else>
+                        <template v-if="showMultUserList && showMultUserList.length  > 0">
+                            <template v-for="(item, key) in showMultUserList">
+                                <template v-if="showMultUserList.length - key < 4">
+                                    <span
+                                        v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                                        class="userInfo_color--text"
+                                        color="transparent"
+                                    >
+                                        {{item}}
+                                    </span>
+                                    <span
+                                        v-else
+                                        class="underline cursor-pointer userInfo_color--text"
+                                        color="transparent"
+                                        @click="onBtnClickUserInfo(item)"
+                                    >
+                                        {{item}}
+                                    </span>
+                                </template>
+                                <template v-else>
+                                    <span v-if="key==0" class="userInfo_color--text ml-0 mr-0" color="transparent"> .. </span>
+                                    <span
+                                        v-else
+                                        class="underline cursor-pointer userInfo_color--text ml-0 mr-0"
+                                        color="transparent"
+                                        @click="onBtnClickUserInfo(item)"
+                                    >
+                                        ..
+                                    </span>
+                                </template>
+                                <span v-if="key!= showMultUserList.length-1" class="userInfo_color--text ml-0 mr-0"> > </span>
+                            </template>
+                        </template>
+                        <template v-else>
+                            <span class="userInfo_color--text" color="transparent"> {{listQuery.agent_user_id}} </span>
+                        </template>
+                    </template>
+                </div>
+
+                <div class="textGray--text mr-5" v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.pageTotal">
+                    {{LangUtil("共计{0}条", pageInfo.pageTotal)}}
+                </div>
+
+                <div class="mr-5 textGray--text" v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_bet_gold">
+                    {{LangUtil("总投注额")}}
+                    <span class="white--text"> {{transformMoney(pageData,"total_bet_gold")}} </span>
+                </div>
+
+                <div class="mr-5 textGray--text" v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_water">
+                    {{LangUtil("总流水")}}
+                    <span class="white--text"> {{transformMoney(pageData,"total_water")}} </span>
+                </div>
+
+                <div v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold" class="mr-5 textGray--text">
+                    {{LangUtil("有效投注")}}
+                    <span class="white--text"> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
+                </div>
+
+                <div class="mr-5 textGray--text" v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold">
+                    {{LangUtil("输赢")}}
+
+                    <span class="white--text">
+                        <span :class="getMoneyColor(pageData.total_win_gold)"> {{transformMoney(pageData,"total_win_gold",true)}}</span>
+                    </span>
+                </div>
+
+                <div v-if="isShowMyWater" class="mr-5 textGray--text">
+                    {{LangUtil("用户返水")}}
+                    <span class="white--text"> {{ getBackWater(pageData.total_backwater_coin)}} </span>
+                </div>
+            </div>
+            <!-- <div class="hackhome"></div> -->
+        </v-sheet>
+        <v-sheet class="px-5 pb-1" color="transparent" style="height: calc(100vh - 310px)">
+            <v-sheet color="wallet_bg" class=" rounded10">
+                <v-sheet class="d-flex align-center px-2 text-14 justify-space-between" height="38" color="transparent" width="100%">
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="150"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.order_no"
+                        >{{LangUtil("订单号")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="150"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
+                        >{{LangUtil("游戏名称")}}</v-sheet
+                    >
+                    <!-- <v-sheet color="transparent" class="primary--text" width="80">{{LangUtil("投注币种")}}</v-sheet> -->
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="120"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_gold"
+                        >{{LangUtil("投注金额")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="120"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"
+                        >{{LangUtil("游戏输赢")}}</v-sheet
+                    >
+                    <v-sheet
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                        color="transparent"
+                        class="textGray--text"
+                        width="120"
+                        >{{LangUtil("有效投注")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="120"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"
+                        >{{LangUtil("结算流水")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="80"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_status"
+                        >{{LangUtil("下注状态")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="100"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"
+                        >{{LangUtil("投注时间")}}</v-sheet
+                    >
+                    <v-sheet
+                        color="transparent"
+                        class="textGray--text"
+                        width="100"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_at"
+                        >{{LangUtil("结算时间")}}</v-sheet
+                    >
+                    <!-- <v-sheet color="transparent" class="primary--text" width="30">{{LangUtil("")}}</v-sheet> -->
+                    <v-sheet color="transparent" width="15"></v-sheet>
+                </v-sheet>
+                <template v-if="pageData.loading">
+                    <v-skeleton-loader
+                        class="px-3 my-2 custom-loader"
+                        width="100%"
+                        type="text@6"
+                        style="height: calc(100vh - 500px)"
+                    ></v-skeleton-loader>
+                </template>
+                <template v-else>
+                    <v-sheet
+                        ref="scrollObj"
+                        v-if="pageData.list.length>0"
+                        color="transparent"
+                        class="scroll-y"
+                        :class="pageData.pageInfo.pageCount > 1 ? 'pclist-height' : 'pclist-height-1'"
+                        
+                    >
+                        <v-sheet
+                            class="overflow-hidden"
+                            outlined
+                            width="100%"
+                            min-height="40"
+                            v-for="(item, key) of pageData.list"
+                            :key="key"
+                            :color="key % 2 ==0 ? 'form_item_bg_1' : 'form_item_bg_2'"
+                        >
+                            <div class="d-flex align-center rounded-lg mb-2 px-2 mt-2 justify-space-between">
+                                <v-sheet
+                                    width="150"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.order_no"
+                                    color="transparent"
+                                >
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                <v-sheet
+                                                    color="transparent"
+                                                    class="primary--text text-truncate underline cursor-pointer"
+                                                    width="150"
+                                                    @click="onCopyOrderClick(item.order_no)"
+                                                    >{{item.order_no}}</v-sheet
+                                                >
+                                            </v-sheet>
+                                        </template>
+                                        <div class="">{{item.order_no}}</div>
+                                    </v-tooltip>
+                                </v-sheet>
+
+                                <v-sheet
+                                    width="150"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
+                                    color="transparent"
+                                >
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                <v-sheet color="transparent" class="primary--text text-truncate">
+                                                    <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                                    <span v-else>
+                                                        {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name
+                                                        :item.game_info.cpn || item.vendor_product_name}}</span
+                                                    >
+                                                </v-sheet>
+                                            </v-sheet>
+                                        </template>
+                                        <div class="">
+                                            <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                            <span v-else>
+                                                {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn
+                                                || item.vendor_product_name}}</span
+                                            >
+                                        </div>
+                                    </v-tooltip>
+                                </v-sheet>
+
+                                <v-sheet
+                                    color="transparent"
+                                    class="primary--text"
+                                    width="120"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_gold"
+                                    ><span>{{ transformMoney(item,"bet_gold",false,true)}}</span></v-sheet
+                                >
+                                <v-sheet
+                                    color="transparent"
+                                    class="primary--text"
+                                    width="120"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"
+                                >
+                                    <div :class="getMoneyColor(item.win_gold_coin)">
+                                        <span>{{ transformMoney(item,"win_gold",false,true)}}</span>
+                                    </div>
+                                </v-sheet>
+                                <v-sheet
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                                    color="transparent"
+                                    class="primary--text"
+                                    width="120"
+                                >
+                                    <span>{{ transformMoney(item,"valid_bet_gold",false,true)}}</span>
+                                </v-sheet>
+
+                                <v-sheet
+                                    color="transparent"
+                                    class="primary--text"
+                                    width="120"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"
+                                >
+                                    <span>{{ transformMoney(item,"water",false,true)}}</span>
+                                </v-sheet>
+
+                                <v-sheet
+                                    color="transparent"
+                                    class="primary--text"
+                                    width="80"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_status"
+                                >
+                                    <span>{{listOptions.statusOptions()[item.settlement_status]}}</span>
+                                </v-sheet>
+
+                                <v-sheet
+                                    color="transparent"
+                                    class="primary--text text-truncate"
+                                    width="100"
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"
+                                >
+                                    {{getDate(item.bet_at)}}
+                                </v-sheet>
+
+                                <v-sheet
+                                    v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_at"
+                                    color="transparent"
+                                    class="primary--text text-truncate"
+                                    width="100"
+                                >
+                                    {{getDate(item.settlement_at)}}
+                                </v-sheet>
+                                <!-- <v-sheet color="transparent" class="primary--text" width="30">
+                                <v-btn
+                                    v-if="item.vendor_id == GameConfig.config.SportVendorId"
+                                    text
+                                    class="font-weight-regular text-14 btn mb-n3"
+                                    @click="handlerDetail(item)"
+                                >
+                                    <span class="mb-3 textGray--text">></span>
+                                </v-btn>
+                            </v-sheet> -->
+                                <v-sheet @click="handlerDetailLink(item)" width="15" class="cursor-pointer" color="transparent">
+                                    <svg-icon v-if="item.bet_detail_url == 1" icon="arrow_next"></svg-icon>
+                                </v-sheet>
+                            </div>
+                            <div
+                                class="detail mt-1 d-flex align-center black--text"
+                                v-if="item.vendor_id == GameConfig.config.SportVendorId"
+                            >
+                                <svg-icon class="mx-1" icon="football"></svg-icon>
+                                <span
+                                    class="ml-2"
+                                    :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                    @click="onClickFootballName(item)"
+                                    >{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span
+                                >
+                                <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                                    <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
+                                </span>
+                                <span class="ml-2">[{{item.game_info.market_type_text}}]</span>
+                                <span class="ml-2 font-weight-bold">{{getOrderTitle(item.game_info)}}</span>
+                                <!-- <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
+                                <span class="ml-2">@{{item.game_info.odds }}</span>
+                                <v-spacer />
+                                <div @click="handlerDetail(item)" class="cursor-pointer">
+                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex detail mt-1 black--text align-center"
+                                v-if="item.vendor_id == GameConfig.config.CricketVendorId"
+                            >
+                                <svg-icon class="mx-1" icon="cricket_1"></svg-icon>
+                                {{item.game_info.marketName}}
+                                <span class="ml-2">
+                                    {{LangUtil("板球选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
+                                </span>
+                                <span class="ml-2" v-if="item.game_info.type == 2">
+                                    {{LangUtil("板球类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
+                                </span>
+
+                                <template v-if="item.game_info.resultType == 'Line'">
+                                    <span class="ml-2">{{LangUtil("板球line:")}}</span>
+                                    <span class="font-weight-bold">{{item.game_info.handicap }}</span>
+                                </template>
+
+                                <span class="ml-2" v-if="item.game_info.priceMatched == 0">
+                                    {{LangUtil("板球订单价格:")}}
+                                    <span class="font-weight-bold">{{item.game_info.price}}</span>
+                                </span>
+                                <span class="ml-2" v-else>
+                                    {{LangUtil("板球成交价格:")}}
+                                    <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                                </span>
+                                <v-spacer />
+                                <span class="ml-2 font-weight-bold">
+                                    {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                    cricketSwapStatus[item.game_info.status]}}
+                                </span>
+                                <v-sheet
+                                    v-if="isCanCancle(item)"
+                                    color="transparent"
+                                    class="ml-2 font-weight-bold cancle_btn_line cursor-pointer"
+                                    @click="onCancleClick(item)"
+                                >
+                                    {{LangUtil("取消")}}
+                                </v-sheet>
+                            </div>
+                            <div
+                                class="detail mt-1 d-flex align-center black--text"
+                                v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
+                            >
+                                <template v-if="!isChuanDan(item)">
+                                    <svg-icon class="mx-1" :icon="fb_icon_name(item)"></svg-icon>
+                                    <span
+                                        class="ml-2"
+                                        :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                        @click="onClickFootballName(item)"
+                                        >{{item.game_info.betList[0].matchName}}</span
+                                    >
+                                    <span class="ml-2" v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore">
+                                        <span class="font-weight-bold">
+                                            {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}})
+                                        </span>
+                                    </span>
+                                    <span class="ml-2">[{{item.game_info.betList[0].marketName}}]</span>
+                                    <span class="ml-2 font-weight-bold">{{item.game_info.betList[0].optionName}}</span>
+                                    <span class="ml-2">@{{item.game_info.betList[0].odds }}</span>
+                                    <v-spacer />
+                                    <div @click="handlerDetail(item)" class="cursor-pointer">
+                                        <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <span
+                                        class="mr-2"
+                                        :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                        @click="onClickFootballName(item)"
+                                        >{{item.vendor_name}}
+                                    </span>
+                                    <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+                                    <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
+                                </template>
+                            </div>
+                            <div
+                                class="detail mt-1 d-flex align-center black--text"
+                                v-if="item.vendor_id == GameConfig.config.ExchangeVendorId"
+                            >
+                                <span class="ml-2 font-weight-bold">{{item.game_info.event_type_name}}</span>
+                                <span class="ml-2">{{item.game_info.event_name}}</span>
+                                <span class="ml-2">[{{item.game_info.market_name}}]</span>
+                                <span class="ml-2 font-weight-bold"> {{item.game_info.selection_name}} </span>
+                                <span class="ml-2">{{item.game_info.price}}</span>
+                                <v-spacer />
+                                <div @click="handlerDetail(item)" class="cursor-pointer">
+                                    <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
+                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                </div>
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+                    <ListNodata v-if="pageData.list.length == 0" style="height: calc(100vh - 370px)" />
+                    <v-spacer />
+                    <v-pagination
+                        class="my-5"
+                        v-if="pageData.pageInfo.pageCount > 1"
+                        v-model="pageData.pageInfo.pageCurrent"
+                        :length="pageData.pageInfo.pageCount"
+                        :total-visible="7"
+                        @input="onPageChange"
+                    ></v-pagination>
+                </template>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <v-card v-else class="" color="dialog_bg">
+        <!-- 手机显示方式 -->
+
+        <LoadMore1
+            v-if="pageData.bShow"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
+            class="px-2"
+            _class="listbox-mobile-nooptions "
+        >
+            <template v-slot:top>
+                <v-sheet class="pb-2" color="dialog_bg">
+                    <com-dialog-title :title="pageData.bShowIsMine? '我的投注' : '投注记录'" :isSetChange="$mobile" @onClose="onClose" />
+
+                    <div v-if="pageData.bShowTimeText" class="textGray--text text-14 mx-5 mt-2">
+                        <div class="text-14">{{LangUtil("结算时间")}}</div>
+                        <div class="text-14">
+                            {{LangUtil("{0}至{1}",getDate(pageData.listQuery.start_date,false),getDate(pageData.listQuery.end_date,false))}}
+                        </div>
+                    </div>
+                    <div class="textGray--text text-14 mx-5 d-flex">
+                        <div v-if="pageData.bShowMoneyType" class="mr-2">
+                            {{LangUtil("结算币种")}}
+                            <span class="textYellow--text ml-2"> {{listQuery.coin_name_unique}}</span>
+                        </div>
+                    </div>
+
+                    <!-- <v-sheet color="transparent" width="95%" class="rounded-lg mt-2 mx-auto d-flex timeRange textGray--text">
+                        <el-date-picker
+                            class="input_range_1"
+                            v-model="timeRange[0]"
+                            type="datetime"
+                            :placeholder="LangUtil('开始日期')"
+                            default-time="00:00"
+                            format="yyyy-MM-dd HH:mm"
+                            @change="onTimeChange"
+                            :clearable="false"
+                        >
+                        </el-date-picker>
+                        <div style="display: grid; align-items: center">-</div>
+                        <el-date-picker
+                            v-model="timeRange[1]"
+                            class="input_range_2"
+                            type="datetime"
+                            :placeholder="LangUtil('结束日期')"
+                            default-time="23:59"
+                            format="yyyy-MM-dd HH:mm"
+                            @change="onTimeChange"
+                            :clearable="false"
+                        >
+                        </el-date-picker>
+                    </v-sheet> -->
+                    <CustomMobileDatePicker
+                        color="wallet_bg_2"
+                        class="mt-2 mx-2"
+                        @change="onTimeChange"
+                        :start.sync="timeRange[0]"
+                        :end.sync="timeRange[1]"
+                    ></CustomMobileDatePicker>
+                    <v-sheet class="px-2 mt-2" width="100%" color="transparent">
+                        <v-sheet color="transparent" width="100%">
+                            <v-row dense>
+                                <v-col cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.typeSelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.typeOptions()"
+                                        width="100%"
+                                        @change="onTypeChange"
+                                    />
+                                </v-col>
+                                <v-col cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.vendorSelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.vendorOptions()"
+                                        width="100%"
+                                        :isForeSelect="true"
+                                        @change="onVendorChange"
+                                    />
+                                </v-col>
+                                <v-col cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.statusSelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.statusOptions()"
+                                        width="100%"
+                                        @change="onStatusChange"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-sheet>
+                        <v-sheet color="transparent" width="100%" class="mt-1">
+                            <v-row dense>
+                                <v-col cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.betTimeSelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.betTimeOptions()"
+                                        width="100%"
+                                        @change="onBetTimeChange"
+                                    />
+                                </v-col>
+                                <v-col cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.moneySelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.moneyOptions()"
+                                        width="100%"
+                                        @change="onMoneyTypeChange"
+                                    />
+                                </v-col>
+                                <v-col v-if="false" cols="4">
+                                    <CustomSelect
+                                        class="cusSelect"
+                                        v-model="listOptions.statusSelect"
+                                        :fontSize="12"
+                                        :isSetChange="$mobile"
+                                        :options="listOptions.statusOptions()"
+                                        width="100%"
+                                        @change="onStatusChange"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-sheet>
+                    </v-sheet>
+
+                    <v-divider class="my-2 mx-2" />
+                    <v-sheet width="100%" color="transparent" class="px-5">
+                        <span
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.pageTotal"
+                        >
+                            <span class="leftText--text mr-2">{{ pageInfoText[0] }}</span>
+                            <span class="head_btn--text">{{ pageInfoText[1]+pageInfoText[2] }}</span>
+                        </span>
+
+                        <span
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_bet_gold"
+                        >
+                            <span class="leftText--text mr-2">{{LangUtil("总投注额")}}</span>
+                            <span class="head_btn--text">
+                                <span> {{transformMoney(pageData,"total_bet_gold")}} </span>
+                            </span>
+                        </span>
+
+                        <span
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_water"
+                        >
+                            <span class="leftText--text mr-2">{{LangUtil("总流水")}}</span>
+                            <span class="head_btn--text">
+                                <span> {{transformMoney(pageData,"total_water")}} </span>
+                            </span>
+                        </span>
+
+                        <span
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_win_gold"
+                        >
+                            <span class="leftText--text mr-2">{{LangUtil("输赢")}}</span>
+                            <span class="head_btn--text">
+                                <span :class="getMoneyColor(pageData.total_win_gold)">
+                                    {{transformMoney(pageData,"total_win_gold",true)}}
+                                </span>
+                            </span>
+                        </span>
+
+                        <span
+                            v-if="GameConfig.config.mybet_total && GameConfig.config.mybet_total.total_valid_bet_gold"
+                            width="100%"
+                            class="text-14 div-block mr-5"
+                            color="transparent"
+                            min-height="30"
+                        >
+                            <span class="leftText--text mr-2">{{LangUtil("有效投注")}}</span>
+                            <span class="head_btn--text">
+                                <span> {{transformMoney(pageData,"total_valid_bet_gold")}} </span>
+                            </span>
+                        </span>
+
+                        <span v-if="isShowMyWater" width="100%" class="text-14 div-block" color="transparent" min-height="30">
+                            <span class="leftText--text mr-2">{{LangUtil("用户返水")}} </span>
+                            <span class="head_btn--text">
+                                <v-btn
+                                    v-if="pageData.bShowFilterBtn"
+                                    class="rounded-lg colorPanelBg5 colorTextBlueLight2--text mr-5"
+                                    :disabled="false"
+                                    @click="onFilterBtnClick"
+                                >
+                                    {{LangUtil("层级筛选")}}</v-btn
+                                >
+                                <span> {{ getBackWater(pageData.total_backwater_coin)}}</span>
+                            </span>
+                        </span>
+                    </v-sheet>
+
+                    <div v-if="pageData.bShowUserId " class="primary--text mx-5 mt-2 text-14">
+                        <div class="mr-2">
+                            <span class="leftText--text">{{LangUtil("用户ID")}}</span>
+                            <template v-if="!isOtherUser && showMultUserList" v-for="(item, key) in showMultUserList">
+                                <template v-if="showMultUserList.length - key < 3">
+                                    <span
+                                        v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                                        class="textYellow--text"
+                                        color="transparent"
+                                    >
+                                        {{item}}
+                                    </span>
+                                    <span
+                                        v-else
+                                        class="underline cursor-pointer textYellow--text"
+                                        color="transparent"
+                                        @click="onBtnClickUserInfo(item)"
+                                    >
+                                        {{item}}
+                                    </span>
+                                </template>
+                                <template v-else>
+                                    <span v-if="key==0" class="textYellow--text" color="transparent"> .. </span>
+                                    <span
+                                        v-else
+                                        class="underline cursor-pointer textYellow--text"
+                                        color="transparent"
+                                        @click="onBtnClickUserInfo(item)"
+                                    >
+                                        ..
+                                    </span>
+                                </template>
+                                <span v-if="key!= showMultUserList.length-1" class="textYellow--text"> > </span>
+                            </template>
+                            <span v-if="isOtherUser" class="primary--text ml-2"> {{isOtherUser}}</span>
+                            <template v-if="!isOtherUser && (!showMultUserList || (showMultUserList && showMultUserList.length < 1))">
+                                <span class="primary--text" color="transparent"> {{listQuery.agent_user_id}} </span>
+                            </template>
+                        </div>
+                    </div>
+                </v-sheet>
+            </template>
+            <template v-if="pageData.loading && pageData.list.length == 0">
+                <v-skeleton-loader class="my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <ListNodata v-if="pageData.list.length == 0" height="305" />
+                <v-sheet
+                    class="pt-3 rounded-lg my-3 text-14 overflow-hidden"
+                    color="bgBanner"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                >
+                    <div
+                        class="d-flex justify-space-between mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.order_no"
+                    >
+                        <div class="leftText--text">{{LangUtil("订单号")}}</div>
+                        <div class="underline cursor-pointer head_btn--text" @click="onCopyOrderClick(item.order_no)">
+                            {{item.order_no}}
+                        </div>
+                    </div>
+
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.order_no"></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
+                    >
+                        <div class="leftText--text">{{LangUtil("游戏名称")}}</div>
+                        <div v-if="!isChuanDan(item)" class="head_btn--text">
+                            {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
+                            item.vendor_product_name}}
+                        </div>
+                        <div v-else class="head_btn--text">{{ LangUtil("-")}}</div>
+                    </div>
+                    <!-- <div class="line mt-2 mx-3"></div> -->
+                    <!-- <div class="d-flex justify-space-between mt-2">
+                    <div class="leftText--text">{{LangUtil("投注币种")}}</div>
+                    <div class="head_btn--text">{{item.coin_name_unique}}</div>
+                </div> -->
+                    <div
+                        class="line mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
+                    ></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_gold"
+                    >
+                        <div class="leftText--text">{{LangUtil("投注金额")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"bet_gold",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_gold"></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"
+                    >
+                        <div class="leftText--text">{{LangUtil("游戏输赢")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"win_gold",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.win_gold"></div>
+                    <div
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold"
+                        class="d-flex justify-space-between mt-2 mx-3"
+                    >
+                        <div class="leftText--text">{{LangUtil("有效投注")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"valid_bet_gold",false,true)}}</div>
+                    </div>
+                    <div v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold" class="line mt-2 mx-3"></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"
+                    >
+                        <div class="leftText--text">{{LangUtil("结算流水")}}</div>
+                        <div class="head_btn--text">{{ transformMoney(item,"water",false,true)}}</div>
+                    </div>
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.water"></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_status"
+                    >
+                        <div class="leftText--text">{{LangUtil("下注状态")}}</div>
+                        <div class="head_btn--text">{{listOptions.statusOptions()[item.settlement_status]}}</div>
+                    </div>
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"></div>
+                    <div class="d-flex justify-space-between mt-2 mx-3">
+                        <div class="leftText--text">{{LangUtil("投注时间")}}</div>
+                        <div class="text-truncate head_btn--text">{{getDate(item.bet_at)}}</div>
+                    </div>
+                    <div class="line mt-2 mx-3" v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.bet_at"></div>
+                    <div
+                        class="d-flex justify-space-between mt-2 mx-3 mb-2"
+                        v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.settlement_at"
+                    >
+                        <div class="leftText--text">{{LangUtil("结算时间")}}</div>
+                        <div class="text-truncate head_btn--text">{{getDate(item.settlement_at)}}</div>
+                    </div>
+                    <template v-if="item.bet_detail_url == 1">
+                        <div class="line mt-2 mx-3"></div>
+                        <div @click="handlerDetailLink(item)" class="cursor-pointer d-flex justify-end mt-2 mx-3 mb-2 py-1">
+                            <svg-icon icon="arrow_next"></svg-icon>
+                        </div>
+                    </template>
+                    <!-- <div class="line mt-2" v-if="true || item.vendor_id == GameConfig.config.SportVendorId"></div>
+                    <div class="d-flex justify-end mt-2" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                        <v-btn
+                            text
+                            class="text-decoration-underline pa-0 font-weight-regular text-14 btn textYellow--text"
+                            @click="handlerDetail(item)"
+                        >
+                            {{LangUtil("查看详情")}}>>
+                        </v-btn>
+                    </div>
+                    <div v-if="item.vendor_id == GameConfig.config.SportVendorId" class="line mt-2"></div> -->
+                    <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.SportVendorId">
+                        <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="football"></svg-icon>
+                        <div>
+                            <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                                {{item.game_info.home_name}} vs {{item.game_info.away_name}}
+                            </div>
+
+                            <div>
+                                <span class="mr-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                                    <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
+                                </span>
+                                <div class="mr-2 div-block">{{item.game_info.market_type_text}}</div>
+                            </div>
+                            <div>
+                                <span class="mr-2 div-block font-weight-bold">{{getOrderTitle(item.game_info)}} </span>
+                                <!-- <span class="mr-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
+                                <span class="div-block">@{{item.game_info.odds }}</span>
+                            </div>
+                        </div>
+                        <v-spacer />
+                        <div @click="handlerDetail(item)">
+                            <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                        </div>
+                    </div>
+                    <div class="detail mt-1 d-flex black--text" v-if="item.vendor_id == GameConfig.config.CricketVendorId">
+                        <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="cricket_1"></svg-icon>
+                        <div style="width: 100%">
+                            <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                                {{item.game_info.marketName}}
+                            </div>
+                            <div>
+                                <span class="mr-2 div-block">
+                                    {{LangUtil("板球选项:")}} <span class="font-weight-bold">{{item.game_info.stakeName}}</span>
+                                </span>
+                                <span class="mr-2 div-block" v-if="item.game_info.type == 2">
+                                    {{LangUtil("板球类型:")}} <span class="font-weight-bold">{{item.game_info.side}}</span>
+                                </span>
+
+                                <span class="mr-2 div-block" v-if="item.game_info.resultType == 'Line'">
+                                    {{LangUtil("板球line:")}}
+                                    <span class="font-weight-bold">{{item.game_info.handicap }}</span>
+                                </span>
+
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between">
+                                    <div>
+                                        <template v-if="item.game_info.priceMatched == 0">
+                                            {{LangUtil("板球订单价格:")}}
+                                            <span class="font-weight-bold">{{item.game_info.price}}</span>
+                                        </template>
+
+                                        <template v-else>
+                                            {{LangUtil("板球成交价格:")}}
+                                            <span class="font-weight-bold">{{item.game_info.priceMatched}}</span>
+                                        </template>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="mr-2 font-weight-bold">
+                                            {{item.game_info.type == 1 ? cricketFixedStatus[item.game_info.status] :
+                                            cricketSwapStatus[item.game_info.status]}}
+                                        </span>
+                                        <v-sheet
+                                            v-if="isCanCancle(item)"
+                                            class="mr-2 font-weight-bold cancle_btn_line"
+                                            color="transparent"
+                                            @click="onCancleClick(item)"
+                                        >
+                                            {{LangUtil("取消")}}
+                                        </v-sheet>
+                                    </div>
+                                </v-sheet>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="detail mt-1 d-flex black--text"
+                        v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
+                    >
+                        <template v-if="!isChuanDan(item)">
+                            <svg-icon class="mr-2 ml-1" style="margin-top: 3px" :icon="fb_icon_name(item)"></svg-icon>
+                            <div>
+                                <div
+                                    class=""
+                                    :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                    @click="onClickFootballName(item)"
+                                >
+                                    {{item.game_info.betList[0].matchName}}
+                                </div>
+                                <div>
+                                    <span
+                                        class="mr-2 div-block"
+                                        v-if="item.game_info.betList[0].isInplay && item.game_info.betList[0].betScore"
+                                    >
+                                        <span class="font-weight-bold">
+                                            {{LangUtil("足球滚球")}}({{item.game_info.betList[0].betScore.split(": ")[1]}})
+                                        </span>
+                                    </span>
+                                    <div class="mr-2 div-block">{{item.game_info.betList[0].marketName}}</div>
+                                </div>
+                                <div>
+                                    <span class="mr-2 div-block font-weight-bold">{{item.game_info.betList[0].optionName}} </span>
+                                    <span class="div-block">@{{item.game_info.betList[0].odds }}</span>
+                                </div>
+                                <v-spacer />
+                                <div @click="handlerDetail(item)" class="cursor-pointer">
+                                    <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <span
+                                class="mr-2"
+                                :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
+                                @click="onClickFootballName(item)"
+                                >{{item.vendor_name}}
+                            </span>
+                            <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+                            <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
+                        </template>
+                    </div>
+                    <div class="detail mt-1 d-flex align-start black--text" v-if="item.vendor_id == GameConfig.config.ExchangeVendorId">
+                        <div>
+                            <div>
+                                <span class="ml-2 div-block font-weight-bold">{{item.game_info.event_type_name}}</span>
+                            </div>
+                            <div>
+                                <span class="ml-2 div-block">{{item.game_info.event_name}}</span>
+                            </div>
+                            <div>
+                                <span class="ml-2 div-block">[{{item.game_info.market_name}}]</span>
+                                <span class="ml-2 div-block font-weight-bold"> {{item.game_info.selection_name}} </span>
+                                <span class="ml-2 div-block">{{item.game_info.price}}</span>
+                            </div>
+                        </div>
+                        <v-spacer />
+                        <div @click="handlerDetail(item)" class="d-flex align-center cursor-pointer">
+                            <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
+                            <svg-icon class="mr-1" icon="arrow_next"></svg-icon>
+                        </div>
+                    </div>
+                </v-sheet>
+            </template>
+        </LoadMore1>
+    </v-card>
+</v-dialog>

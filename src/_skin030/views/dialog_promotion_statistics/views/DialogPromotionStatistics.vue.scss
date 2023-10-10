@@ -1,0 +1,32 @@
+.search {
+    width: 207px;
+    ::v-deep .v-btn__content {
+        color: #98acd3;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.text-green {
+    color: #26a17b;
+}
+
+.text-yellow {
+    color: #e59408;
+}
+
+.text-red {
+    color: #dc5552;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.w-280 {
+    width: 280px;
+}
+
+.w-200 {
+    width: 200px;
+}

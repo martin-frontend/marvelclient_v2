@@ -1,0 +1,15 @@
+.title {
+    max-width: 90%;
+    justify-self: center;
+}
+
+.grid {
+    display: grid;
+}
+
+.close {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}

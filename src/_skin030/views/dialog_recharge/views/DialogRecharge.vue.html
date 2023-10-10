@@ -1,0 +1,165 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="550"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <!-- pc显示方式 -->
+    <template v-if="!$mobile">
+        <v-card class="rounded-15 d-flex flex-column" height="100%" color="dialog_bg">
+            <v-card-title class="d-flex justify-start">
+                <svg-icon class="text-24 mr-2" icon="ky_wallet_green"></svg-icon>
+                <div class="text-20 font-weight-bold title">{{LangUtil('钱包')}}</div>
+
+                <v-btn class="ml-auto" icon @click="onClose">
+                    <v-icon color="navIcon" large>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <!-- <com-dialog-title :title="LangUtil('钱包')" @onClose="onClose" /> -->
+            <!-- <v-divider class="mb-2" /> -->
+            <v-sheet color="transparent" class="d-flex justify-center">
+                <v-sheet class="d-flex align-center rounded-pill" color="bgBanner" :height="55">
+                    <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" class="">
+                        <v-btn class="rounded-pill mr-2" height="47" min-width="159" value="0">
+                            <span class="text-14"> {{LangUtil("充值")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill mr-2" height="47" min-width="159" value="1">
+                            <span class="text-14"> {{LangUtil("兑换")}} </span>
+                        </v-btn>
+                        <v-btn
+                            v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
+                            class="rounded-pill mr-2"
+                            height="36"
+                            min_width="110"
+                            value="11"
+                        >
+                            <v-icon class="mr-1">mdi-transfer</v-icon>
+                            <span class="text-14"> {{LangUtil("划转")}} </span>
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-sheet>
+            </v-sheet>
+            <v-sheet color="transparent" class="px-5 mt-4 d-flex" width="100%">
+                <v-spacer />
+                <v-sheet
+                    v-if="pageData.tabIndex==1"
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class mx-2"
+                    min-width="120"
+                    min-height="30"
+                    @click.native="openGoldWater"
+                >
+                    <svg-icon class="text-20 ml-3 mr-1" icon="ky_history"></svg-icon>
+                    <span class="mr-3">{{ LangUtil("流水审核") }}</span>
+                </v-sheet>
+
+                <v-sheet
+                    v-if="pageData.tabIndex !== 2"
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class"
+                    min-width="120"
+                    min-height="30"
+                    @click.native="goRecord"
+                >
+                    <svg-icon class="text-20 ml-3 mr-1" icon="ky_history"></svg-icon>
+                    <span class="mr-3">{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }}</span>
+                </v-sheet>
+
+                <v-sheet
+                    v-else
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class"
+                    min-width="120"
+                    min-height="30"
+                    @click.native="viewDetail"
+                >
+                    <svg-icon class="text-20 mr-2" icon="ky_history"></svg-icon>
+                    <span>{{ LangUtil("账目明细") }}</span>
+                </v-sheet>
+            </v-sheet>
+
+            <!-- <v-divider class="mx-5" /> -->
+
+            <TabRecharge v-if="pageData.tabIndex == 0" />
+            <TabExchange v-else-if="pageData.tabIndex == 1" />
+            <TabTransfer v-else-if="pageData.tabIndex == 2" />
+        </v-card>
+    </template>
+
+    <!-- 手机显示方式 -->
+    <template v-else>
+        <v-card class="rounded10 d-flex flex-column" height="100%" color="dialog_bg">
+            <com-dialog-title :title="LangUtil('钱包')" @onClose="onClose" />
+            <!-- <v-divider class="mb-2" /> -->
+            <v-sheet color="transparent" class="d-flex justify-center">
+                <v-sheet class="d-flex align-center rounded-pill" color="bgBanner">
+                    <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex" class="">
+                        <v-btn class="rounded-pill mr-2" height="32" min-width="90" value="0">
+                            <span class="text-14"> {{LangUtil("充值")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill mr-2" height="32" min-width="90" value="1">
+                            <span class="text-14"> {{LangUtil("兑换")}} </span>
+                        </v-btn>
+                        <v-btn
+                            v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
+                            class="rounded-pill mr-2"
+                            height="36"
+                            min-width="90"
+                            value="11"
+                        >
+                            <v-icon class="mr-1">mdi-transfer</v-icon>
+                            <span class="text-14"> {{LangUtil("划转")}} </span>
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-sheet>
+            </v-sheet>
+            <v-sheet color="transparent" class="px-4 my-2 d-flex" width="100%">
+                <v-spacer />
+                <v-sheet
+                    v-if="pageData.tabIndex==1"
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class mx-2 px-2"
+                    min-width="90"
+                    min-height="30"
+                    @click.native="openGoldWater"
+                >
+                    <svg-icon class="text-18 mr-2" icon="ky_history"></svg-icon>
+                    <span class="text-12">{{ LangUtil("流水审核") }}</span>
+                </v-sheet>
+
+                <v-sheet
+                    v-if="pageData.tabIndex !== 2"
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class px-2"
+                    min-width="90"
+                    min-height="30"
+                    @click.native="goRecord"
+                >
+                    <svg-icon class="text-18 mr-2" icon="ky_history"></svg-icon>
+                    <span class="text-12">{{ pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录") }}</span>
+                </v-sheet>
+
+                <v-sheet
+                    v-else
+                    color="transparent"
+                    class="d-flex align-center rounded-pill justify-center text-14 cursor-pointer btn_class"
+                    min-width="120"
+                    min-height="30"
+                    @click.native="viewDetail"
+                >
+                    <svg-icon class="text-20 mr-2" icon="ky_history"></svg-icon>
+                    <span>{{ LangUtil("账目明细") }}</span>
+                </v-sheet>
+            </v-sheet>
+
+            <!-- <v-divider class="mx-5" /> -->
+
+            <TabRecharge v-if="pageData.tabIndex == 0" />
+            <TabExchange v-else-if="pageData.tabIndex == 1" />
+            <TabTransfer v-else-if="pageData.tabIndex == 2" />
+        </v-card>
+    </template>
+</v-dialog>

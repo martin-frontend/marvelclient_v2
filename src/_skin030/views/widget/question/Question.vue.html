@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-center pb-5">
+    <div class="font-weight-bold" v-if="isCanShow" :class="$mobile ? 'text-16 mt-4 mb-3' : 'text-20 my-7'">
+        {{LangUtil("常见问题解答")}}
+    </div>
+    <v-row no-gutters class="d-flex flex-row mt-2">
+        <v-col cols="12" md="6" class="mb-2 pr-sm-2" v-for="(item, index) of questions" :key="index">
+            <v-expansion-panels :class="{'btninfo-light': !$vuetify.theme.dark, 'btninfo-dark': $vuetify.theme.dark}" flat>
+                <v-expansion-panel :class="$mobile ? 'text_mob': ''">
+                    <v-expansion-panel-header class=""> {{ item.name }} </v-expansion-panel-header>
+                    <v-expansion-panel-content
+                        class="white--text test_bg pt-2"
+                        :class="$mobile ? 'text-14': 'text-14'"
+                        style="white-space: pre-line"
+                    >
+                        {{ item.content }}
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+            </v-expansion-panels>
+        </v-col>
+    </v-row>
+</div>

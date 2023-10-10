@@ -1,0 +1,927 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    class="regular_text"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" color="dialog_bg" class="d-flex rounded10">
+        <AdvertiseInLogin :height="723" :width="337" class="d-none d-md-flex" />
+        <v-card color="transparent" width="430" class="">
+            <com-dialog-title title="注册" @onClose="onClose" />
+            <v-divider class="mb-2" />
+            <v-card-text class="px-5">
+                <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex mb-5">
+                    <template v-slot="{data}">
+                        <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                            <template v-for="(item, key) of registerTypes">
+                                <template v-if="item == 1">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="1" :key="key">
+                                        <span class="text-14"> {{LangUtil("账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 2">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="2" :key="key">
+                                        <span class="text-14"> {{LangUtil("邮箱注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 4">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="4" :key="key">
+                                        <span class="text-14"> {{LangUtil("手机注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 8">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="8" :key="key">
+                                        <span class="text-14"> {{LangUtil("手机账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 16">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="16" :key="key">
+                                        <span class="text-14"> {{LangUtil("邮箱账号注册")}} </span>
+                                    </v-btn>
+                                </template>
+                                <template v-else-if="item == 32">
+                                    <v-btn class="rounded-pill mr-2" :height="btn_height" :min-width="btn_width" value="32" :key="key">
+                                        <span class="text-14"> {{LangUtil("手机号码")}} </span>
+                                    </v-btn>
+                                </template>
+                            </template>
+                        </v-btn-toggle>
+                    </template>
+                </horizontal_scroll>
+
+                <CustomInput
+                    v-if="!IsShow_HideRegisterInvite"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入推荐人（选填）')"
+                    v-model="form.invite_user_id"
+                    :disabled="hasInviteUser()"
+                />
+                <CustomInput
+                    v-if="form.register_type==1"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.username"
+                    @blur="onUsernameBlur"
+                />
+                <CustomInput
+                    v-if="form.register_type==16"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.email_username"
+                    @blur="onMobileUsernameBlur"
+                />
+                <CustomInput
+                    v-if="form.register_type==32"
+                    class="mb-6"
+                    icon="mdi-phone"
+                    :isOnlyInt="true"
+                    :placeholder="LangUtil('请输入手机号')"
+                    :maxlength="phoneLength"
+                    v-model="form.username"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
+                    </template>
+                </CustomInput>
+
+                <CustomInput
+                    v-if="registerOption && registerOption.email "
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    v-model="form.email_username"
+                />
+
+                <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-6 mt-n2" v-model="form.birth_date" width="100%">
+                    <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
+                    <v-sheet color="transparent" class="d-flex">
+                        <CustomInput
+                            :placeholder="LangUtil('日')"
+                            v-model="myProxy.dateObj.day"
+                            :isOnlyInt="true"
+                            :isNeedCloseBtn="false"
+                            @blur="onBirthdateInput"
+                        >
+                            <template v-slot:default>
+                                <div class="mr-2 d-flex flex-column">
+                                    <div class="" @click="onBtnDateUp('day')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                    </div>
+                                    <div @click="onBtnDateDown('day')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                    </div>
+                                </div>
+                            </template>
+                        </CustomInput>
+
+                        <CustomInput
+                            :placeholder="LangUtil('月')"
+                            v-model="myProxy.dateObj.month"
+                            class="mx-2"
+                            :isOnlyInt="true"
+                            :isNeedCloseBtn="false"
+                            @blur="onBirthdateInput"
+                        >
+                            <template v-slot:default>
+                                <div class="mr-2 d-flex flex-column">
+                                    <div class="" @click="onBtnDateUp('month')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                    </div>
+                                    <div @click="onBtnDateDown('month')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                    </div>
+                                </div>
+                            </template>
+                        </CustomInput>
+                        <CustomInput
+                            :placeholder="LangUtil('年')"
+                            v-model="myProxy.dateObj.year"
+                            :isOnlyInt="true"
+                            :isNeedCloseBtn="false"
+                            @blur="onBirthdateInput"
+                        >
+                            <template v-slot:default>
+                                <div class="mr-2 d-flex flex-column">
+                                    <div class="" @click="onBtnDateUp('year')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                    </div>
+                                    <div @click="onBtnDateDown('year')">
+                                        <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                    </div>
+                                </div>
+                            </template>
+                        </CustomInput>
+                    </v-sheet>
+                    <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
+                </v-sheet>
+
+                <CustomInput
+                    v-if="registerOption && registerOption.phone "
+                    class="mb-6"
+                    icon="mdi-phone"
+                    :isOnlyInt="true"
+                    :placeholder="LangUtil('请输入手机号')"
+                    :maxlength="phoneLength"
+                    v-model="form.mobile_username"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
+                    </template>
+                </CustomInput>
+
+                <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="mb-6">
+                    <CustomInput icon="mdi-account" :placeholder="LangUtil('请输入邮箱')" v-model="form.username" @blur="onBlurInput()">
+                        <btn-yellow
+                            class="mr-n4 text-14"
+                            min_width="80"
+                            height="36"
+                            :btn_type="4"
+                            :disabled="!checkMail(form.username) || isdeisable"
+                            @click.native="sendVerithMail"
+                            >{{verityString}}</btn-yellow
+                        >
+                    </CustomInput>
+                    <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+                </v-sheet>
+                <CustomInput
+                    v-if="form.register_type==8"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                    maxlength="20"
+                    v-model="form.mobile_username"
+                    @blur="onMobileUsernameBlur"
+                />
+
+                <CustomInput
+                    v-if="form.register_type==4 || form.register_type==8"
+                    class="mb-6"
+                    icon="mdi-phone"
+                    :isOnlyInt="true"
+                    :placeholder="LangUtil('请输入手机号')"
+                    :maxlength="phoneLength"
+                    v-model="form.username"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="curShowCode"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between text-14 ">
+                                        <div class="black--text">{{data.item.area_code}}</div>
+                                        <div class="black--text">{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
+                        <v-menu
+                            v-if="false"
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            nudge-bottom="20"
+                            nudge-left="38"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="d-flex" v-bind="attrs" v-on="on">
+                                    <div class="textYellow--text mx-2">+{{form.area_code}}</div>
+                                    <div
+                                        class="icon-box iconfont text-18 mr-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div>
+                                    <div class="text-20">|</div>
+                                </div>
+                            </template>
+                            <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" width="400">
+                                <v-text-field
+                                    class="rounded-pill"
+                                    outlined
+                                    dense
+                                    prepend-inner-icon="mdi-database-search-outline"
+                                    hide-details
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></v-text-field>
+
+                                <v-list dense color="colorPanelTitleBg">
+                                    <v-list-item-group>
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="colorText2--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                        </v-menu>
+                    </template>
+                    <btn-yellow
+                        class="mr-n4 text-14"
+                        min_width="80"
+                        height="36"
+                        :btn_type="4"
+                        :disabled="!checkPhone(form.username) || isdeisable"
+                        @click.native="sendVerithMobile"
+                        >{{verityString}}</btn-yellow
+                    >
+                </CustomInput>
+
+                <CustomInput
+                    class="mb-6"
+                    v-if="form.register_type != 1 && form.register_type != 32"
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码（6位）')"
+                    maxlength="6"
+                    v-model="form.verify_code"
+                />
+                <!-- <v-btn @click="show = !show">
+                    toggle
+                  </v-btn>
+
+                <v-tooltip v-model="show" bottom content-class="tip_main_class" absolute attach>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div>asdasd</div>
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <v-sheet color="transparent" class=""> {{LangUtil("密码必须符合以下规则")}} </v-sheet>
+                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip> -->
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach :disabled="!passwordTipsHaveError">
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                :placeholder="LangUtil('请输入密码（6-20位）')"
+                                v-model="form.password"
+                                @blur="onPasswordBlur"
+                                @input="onPasswordInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordTips"
+                                :key="item.id"
+                            >
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+                <v-sheet color="transparent">
+                    <v-tooltip bottom content-class="tip_main_class" attach :disabled="!passwordConfirmTipsHaveError">
+                        <template v-slot:activator="{ on, attrs }">
+                            <CustomPassword
+                                v-bind="attrs"
+                                v-on="on"
+                                icon="mdi-lock"
+                                class="my-6"
+                                :placeholder="LangUtil('确认密码（6-20位）')"
+                                v-model="form.password_confirm"
+                                @blur="onPasswordConfirmBlur"
+                                @input="onPasswordConfirmInput"
+                            />
+                        </template>
+                        <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                            <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex my-1 align-center"
+                                v-for="(item, key) of passwordConfirmTips"
+                                :key="item.id"
+                            >
+                                <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                                <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                                <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                    >{{LangUtil(item.title)}}</span
+                                >
+                            </v-sheet>
+                        </v-card>
+                    </v-tooltip>
+                </v-sheet>
+                <!-- <CustomPassword
+                    class="my-6"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('确认密码（6-20位）')"
+                    v-model="form.password_confirm"
+                    @blur="onPasswordConfirmBlur"
+                /> -->
+                <v-sheet
+                    v-if="!isDragAuth && (form.register_type == 1 || form.register_type == 32)"
+                    color="transparent"
+                    width="100%"
+                    class="d-flex mb-6 align-center"
+                >
+                    <CustomInput
+                        icon="mdi-shield-check"
+                        :placeholder="LangUtil('请输入验证码（4位）')"
+                        maxlength="4"
+                        v-model="form.verify_code"
+                    >
+                    </CustomInput>
+                    <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
+                </v-sheet>
+
+                <!-- <v-btn class="rounded-lg" color="#6fa9fa" height="48" :disabled="!isCheck" block @click="onRegister"
+                    >{{LangUtil("注册")}}</v-btn > -->
+
+                <!-- 未成年勾选框 -->
+                <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-6">
+                    <v-checkbox
+                        v-model="checkbox"
+                        :label="LangUtil('我确认我已满18周岁')"
+                        color="wallet_btn"
+                        dense
+                        hide-details
+                    ></v-checkbox>
+                </v-sheet>
+                <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onRegister"
+                    >{{LangUtil("注册")}}</btn-yellow
+                >
+
+                <v-sheet color="transparent" class="d-flex align-center justify-center flex-column mt-2">
+                    <div class="text-14 textGray--text mt-1">
+                        {{LangUtil("注册即代表您已阅读并同意")}}
+                        <button class="wallet_btn--text" type="button" @click="goService">{{LangUtil("《服务协议》")}}</button>
+                    </div>
+
+                    <div class="textGray--text mt-1">
+                        {{LangUtil("已有账户?")}}<button class="wallet_btn--text" @click="goLogin">{{LangUtil("去登录")}}</button>
+                    </div>
+                </v-sheet>
+            </v-card-text>
+        </v-card>
+    </v-card>
+
+    <!-- 手机版 -->
+    <v-card v-else color="dialog_bg" class="rounded-0 shadow-0">
+        <com-dialog-title title="注册" @onClose="onClose" />
+        <horizontal_scroll v-if="registerTypes.length > 1" class="d-flex my-3 px-2">
+            <template v-slot="{data}">
+                <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                    <template v-for="(item, key) of registerTypes">
+                        <template v-if="item == 1">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="1">
+                                <span :class="typechange=='1'?'font-weight-bold':''" class="text-14"> {{LangUtil("账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 2">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="2">
+                                <span :class="typechange=='2'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 4">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="4">
+                                <span :class="typechange=='4'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 8">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="8">
+                                <span :class="typechange=='8'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 16">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="16">
+                                <span :class="typechange=='16'?'font-weight-bold':''" class="text-14"> {{LangUtil("邮箱账号注册")}} </span>
+                            </v-btn>
+                        </template>
+                        <template v-else-if="item == 32">
+                            <v-btn :key="key" class="rounded-pill" :height="btn_height" :min-width="btn_width" value="32">
+                                <span :class="typechange=='32'?'font-weight-bold':''" class="text-14"> {{LangUtil("手机号码")}} </span>
+                            </v-btn>
+                        </template>
+                    </template>
+                </v-btn-toggle>
+            </template>
+        </horizontal_scroll>
+
+        <v-sheet class="px-4 mx-3 py-4 mt-2 rounded10" color="bgBanner">
+            <CustomInput
+                v-if="!IsShow_HideRegisterInvite"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入推荐人（选填）')"
+                v-model="form.invite_user_id"
+                :disabled="hasInviteUser()"
+            />
+            <CustomInput
+                v-if="form.register_type==1"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                maxlength="20"
+                v-model="form.username"
+                @blur="onUsernameBlur"
+            />
+
+            <CustomInput
+                v-if="registerOption && registerOption.email "
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入邮箱')"
+                v-model="form.email_username"
+            />
+
+            <CustomInput
+                v-if="form.register_type==16"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                maxlength="20"
+                v-model="form.email_username"
+                @blur="onMobileUsernameBlur"
+            />
+            <CustomInput
+                v-if="form.register_type==32 "
+                class="mb-4"
+                icon="mdi-phone"
+                :isOnlyInt="true"
+                :placeholder="LangUtil('请输入手机号')"
+                :maxlength="phoneLength"
+                v-model="form.username"
+            >
+                <template v-slot:pre>
+                    <v-sheet color="transparent" class="codeSelect">
+                        <v-autocomplete
+                            class="ml-1"
+                            v-model="tempSelectCode"
+                            :items="areaCodeArr"
+                            item-text="area_code"
+                            :label="curShowCode"
+                            hide-details
+                            solo
+                            flat
+                            background-color="transparent"
+                            attach
+                            return-object
+                            :no-data-text="LangUtil('没有更多数据')"
+                            :filter="customFilter"
+                        >
+                            <template v-slot:item="data">
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                    <div>{{data.item.area_code}}</div>
+                                    <div>{{data.item.name}}</div>
+                                </v-sheet>
+                            </template>
+                        </v-autocomplete>
+                    </v-sheet>
+                </template>
+            </CustomInput>
+
+            <v-sheet v-if="isNeedBirthday" color="transparent" class="mb-4 mt-n2 date_select" width="100%">
+                <div class="textGray--text">{{LangUtil('请输入生日')}}</div>
+                <v-sheet color="transparent" class="d-flex">
+                    <CustomInput
+                        :placeholder="LangUtil('日')"
+                        v-model="myProxy.dateObj.day"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('day')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('day')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+
+                    <CustomInput
+                        :placeholder="LangUtil('月')"
+                        v-model="myProxy.dateObj.month"
+                        class="mx-2"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('month')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('month')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+                    <CustomInput
+                        :placeholder="LangUtil('年')"
+                        v-model="myProxy.dateObj.year"
+                        :isOnlyInt="true"
+                        :isNeedCloseBtn="false"
+                        @blur="onBirthdateInput"
+                    >
+                        <template v-slot:default>
+                            <div class="mr-2 d-flex flex-column">
+                                <div class="" @click="onBtnDateUp('year')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_up"></svg-icon>
+                                </div>
+                                <div @click="onBtnDateDown('year')">
+                                    <svg-icon class="text-12 disable_text--text" icon="arrow_down"></svg-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </CustomInput>
+                </v-sheet>
+                <v-sheet class="text-12 red--text" color="transparent"> {{birthday_error_info}} </v-sheet>
+            </v-sheet>
+            <CustomInput
+                v-if="registerOption && registerOption.phone "
+                class="mb-4"
+                icon="mdi-phone"
+                :isOnlyInt="true"
+                :placeholder="LangUtil('请输入手机号')"
+                :maxlength="phoneLength"
+                v-model="form.mobile_username"
+            >
+                <template v-slot:pre>
+                    <v-sheet color="transparent" class="codeSelect">
+                        <v-autocomplete
+                            class="ml-1"
+                            v-model="tempSelectCode"
+                            :items="areaCodeArr"
+                            item-text="area_code"
+                            :label="curShowCode"
+                            hide-details
+                            solo
+                            flat
+                            background-color="transparent"
+                            attach
+                            return-object
+                            :no-data-text="LangUtil('没有更多数据')"
+                            :filter="customFilter"
+                        >
+                            <template v-slot:item="data">
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                    <div>{{data.item.area_code}}</div>
+                                    <div>{{data.item.name}}</div>
+                                </v-sheet>
+                            </template>
+                        </v-autocomplete>
+                    </v-sheet>
+                </template>
+            </CustomInput>
+            <v-sheet v-if="form.register_type==2 || form.register_type==16" color="transparent" class="">
+                <CustomInput icon="mdi-account" :placeholder="LangUtil('请输入邮箱')" v-model="form.username" @blur="onBlurInput()">
+                    <btn-yellow
+                        class="ml-auto text-14"
+                        min_width="80"
+                        height="36"
+                        :btn_type="4"
+                        :disabled="!checkMail(form.username) || isdeisable"
+                        @click.native="sendVerithMail"
+                        >{{verityString}}</btn-yellow
+                    >
+                </CustomInput>
+                <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+            </v-sheet>
+            <CustomInput
+                v-if="form.register_type==8"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入注册账号（4-20位）')"
+                maxlength="20"
+                v-model="form.mobile_username"
+                @blur="onMobileUsernameBlur"
+            />
+
+            <CustomInput
+                v-if="form.register_type==4 || form.register_type==8"
+                class="mb-4"
+                icon="mdi-phone"
+                :isOnlyInt="true"
+                :placeholder="LangUtil('请输入手机号')"
+                :maxlength="phoneLength"
+                v-model="form.username"
+            >
+                <template v-slot:pre>
+                    <v-sheet color="transparent" class="codeSelect">
+                        <v-autocomplete
+                            class="ml-1"
+                            v-model="tempSelectCode"
+                            :items="areaCodeArr"
+                            item-text="area_code"
+                            :label="curShowCode"
+                            hide-details
+                            solo
+                            flat
+                            background-color="transparent"
+                            attach
+                            return-object
+                            :no-data-text="LangUtil('没有更多数据')"
+                            :filter="customFilter"
+                        >
+                            <template v-slot:item="data">
+                                <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                    <div>{{data.item.area_code}}</div>
+                                    <div>{{data.item.name}}</div>
+                                </v-sheet>
+                            </template>
+                        </v-autocomplete>
+                    </v-sheet>
+                    <v-menu v-if="false" v-model="areaCodeMenu" offset-y :close-on-content-click="false" nudge-bottom="20" nudge-left="38">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div class="d-flex" v-bind="attrs" v-on="on">
+                                <div class="textYellow--text mx-2">+{{form.area_code}}</div>
+                                <div
+                                    class="icon-box iconfont text-18 mr-2"
+                                    :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                >
+                                    
+                                </div>
+                                <div class="text-20">|</div>
+                            </div>
+                        </template>
+                        <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" width="400">
+                            <v-text-field
+                                class="rounded-pill"
+                                outlined
+                                dense
+                                prepend-inner-icon="mdi-database-search-outline"
+                                hide-details
+                                v-model="areaCodeSearch"
+                                @input="onAreaCodeInput"
+                            ></v-text-field>
+
+                            <v-list dense color="colorPanelTitleBg">
+                                <v-list-item-group>
+                                    <v-list-item
+                                        v-for="(item, index) of areaCodeList"
+                                        :key="index"
+                                        class="colorText2--text"
+                                        @click="onItemAreaCode(item)"
+                                    >
+                                        <div>{{item.name}}</div>
+                                        <v-spacer />
+                                        <div>+{{item.area_code}}</div>
+                                    </v-list-item>
+                                </v-list-item-group>
+                            </v-list>
+                        </v-sheet>
+                    </v-menu>
+                </template>
+                <btn-yellow
+                    class="ml-auto text-14"
+                    min_width="80"
+                    height="36"
+                    :btn_type="4"
+                    :disabled="!checkPhone(form.username) || isdeisable"
+                    @click.native="sendVerithMobile"
+                    >{{verityString}}</btn-yellow
+                >
+            </CustomInput>
+
+            <CustomInput
+                class="mb-4 mt-4"
+                v-if="form.register_type != 1 && form.register_type != 32"
+                icon="mdi-shield-check"
+                :placeholder="LangUtil('请输入验证码（6位）')"
+                maxlength="6"
+                v-model="form.verify_code"
+            />
+            <v-sheet color="transparent">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50" :disabled="!passwordTipsHaveError">
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('请输入密码（6-20位）')"
+                            v-model="form.password"
+                            @blur="onPasswordBlur"
+                            @input="onPasswordInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+            </v-sheet>
+            <v-sheet color="transparent">
+                <v-tooltip bottom content-class="tip_main_class" attach nudge-bottom="50" :disabled="!passwordConfirmTipsHaveError">
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            class="my-4"
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('确认密码（6-20位）')"
+                            v-model="form.password_confirm"
+                            @blur="onPasswordConfirmBlur"
+                            @input="onPasswordConfirmInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex my-1 align-center"
+                            v-for="(item, key) of passwordConfirmTips"
+                            :key="item.id"
+                        >
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+            </v-sheet>
+            <!-- <CustomPassword
+                icon="mdi-lock"
+                :placeholder="LangUtil('请输入密码（6-20位）')"
+                v-model="form.password"
+                @blur="onPasswordBlur"
+            /> -->
+            <!-- <v-sheet class="text-12 red--text" color="transparent" style="position: absolute"> {{password_error_info}} </v-sheet>
+            <CustomPassword
+                class="my-4"
+                icon="mdi-lock"
+                :placeholder="LangUtil('确认密码（6-20位）')"
+                v-model="form.password_confirm"
+                @blur="onPasswordConfirmBlur"
+            /> -->
+            <v-sheet
+                v-if="!isDragAuth && (form.register_type == 1 || form.register_type == 32)"
+                color="transparent"
+                width="100%"
+                class="d-flex mb-4 align-center"
+            >
+                <CustomInput
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码（4位）')"
+                    maxlength="4"
+                    v-model="form.verify_code"
+                >
+                </CustomInput>
+                <v-img class="ml-3 rounded" :src="pageData.auth_image" max-width="75" height="30" @click="getImageVerity"></v-img>
+            </v-sheet>
+
+            <!-- 未成年勾选框 -->
+            <v-sheet v-if="ModulesHelper.IsShow_register18yearsOld()" color="transparent" class="d-flex mt-n2 mb-4">
+                <v-checkbox v-model="checkbox" :label="LangUtil('我确认我已满18周岁')" color="textYellow" dense hide-details></v-checkbox>
+            </v-sheet>
+
+            <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onRegister"
+                >{{LangUtil("注册")}}</btn-yellow
+            >
+
+            <v-sheet color="transparent" class="d-flex align-center justify-center flex-column mt-2">
+                <div class="text-12 copy_icon--text mt-1">
+                    {{LangUtil("注册即代表您已阅读并同意")}}
+                    <span class="textYellow--text cursor-pointer" @click="goService">{{LangUtil("《服务协议》")}}</span>
+                    <!-- <button class="textYellow--text" type="button" @click="goService">{{LangUtil("《服务协议》")}}</button> -->
+                </div>
+
+                <div class="copy_icon--text mt-1 text-12">
+                    {{LangUtil("已有账户?")}}<button class="textYellow--text ml-4" @click="goLogin">{{LangUtil("去登录")}}</button>
+                </div>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

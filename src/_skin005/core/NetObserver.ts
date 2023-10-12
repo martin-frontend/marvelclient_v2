@@ -32,6 +32,8 @@ import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 import CoinTransformHelper from "./CoinTransformHelper";
 import ActivityConfig from "@/core/config/ActivityConfig";
+import Cookies from "js-cookie";
+import { clearOrbitExchangeCookie, setOrbitExchangeCookie } from "./special/orbit_exchange";
 import { js_utils } from "custer-js-utils";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
@@ -214,6 +216,8 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_logout:
                 PanelUtil.showAppLoading(false);
                 this.selfProxy.loginout();
+                //退出登录时，清除巴西交易所的token
+                clearOrbitExchangeCookie();
 
                 PanelUtil.message_alert({
                     message: LangUtil("您的帐号已经退出"),
@@ -264,6 +268,12 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     PanelUtil.showAppLoading(false);
+                    /**---设置 巴西交易所 token---- */
+                    if (body.token) {
+                        setOrbitExchangeCookie(body);
+                    } else {
+                        clearOrbitExchangeCookie();
+                    }
 
                     //检测返回的游戏 是不是在 head game中的
                     let headitem;
@@ -507,14 +517,6 @@ export default class NetObserver extends AbstractMediator {
                 }
             } else {
                 isNeetConfig = true;
-            }
-            if (body.token) {
-                console.warn("---设置 token----");
-                if (process.env.VUE_APP_ENV == "production") {
-                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
-                } else {
-                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.testjj9.com; path=/; Secure`;
-                }
             }
 
             const message_obj = <any>{

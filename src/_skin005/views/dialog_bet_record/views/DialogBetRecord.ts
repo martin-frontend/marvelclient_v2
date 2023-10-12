@@ -82,6 +82,26 @@ export default class DialogBetRecord extends AbstractView {
         };
     }
 
+    get brazilExchangeStatus() {
+        return {
+            0: LangUtil("巴西交易所订单状态0"),
+            1: LangUtil("巴西交易所订单状态1"),
+            2: LangUtil("巴西交易所订单状态2"),
+            3: LangUtil("巴西交易所订单状态3"),
+            4: LangUtil("巴西交易所订单状态4"),
+            5: LangUtil("巴西交易所订单状态5"),
+            6: LangUtil("巴西交易所订单状态6"),
+            7: LangUtil("巴西交易所订单状态7"),
+            8: LangUtil("巴西交易所订单状态8"),
+            9: LangUtil("巴西交易所订单状态9"),
+            10: LangUtil("巴西交易所订单状态10"),
+        };
+    }
+
+    isBrazilExchangeNoStatus(item: any) {
+        return item.vendor_id == GameConfig.config.ExchangeVendorId && !item.game_info.state;
+    }
+
     transformMoney(item: any, key: string, ismoney: boolean = false, donotTrans: boolean = false) {
         let val; //
         if (donotTrans) {
@@ -482,6 +502,23 @@ export default class DialogBetRecord extends AbstractView {
         }
         return false;
     }
+
+    onClickBrazilExchange(item: any) {
+        console.log("onClickBrazilExchange");
+
+        if (!item || !item.vendor_id) return false;
+
+        const headGameConfig = GameConfig.config.head_game_config;
+        for (let index = 0; index < headGameConfig.length; index++) {
+            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
+                this.onHeadgameClick(headGameConfig[index]);
+                this.onClose();
+                return true;
+            }
+        }
+        return false;
+    }
+
     onHeadgameClick(item: any) {
         console.log("收到点击", item);
 

@@ -28,9 +28,13 @@ export default class PageGameSoccer extends AbstractView {
     get isCricket() {
         const curPath = this.$router.app.$route.path;
         if (!this.myProxy.pageData.other_data) {
-            return curPath.includes("cricket");
+            return curPath.includes("cricket") || curPath.includes("orbit_exchange");
         } else {
-            return curPath.includes("cricket") || (this.myProxy.pageData.other_data && this.myProxy.pageData.other_data.is_show_head === 1);
+            return (
+                curPath.includes("cricket") ||
+                curPath.includes("orbit_exchange") ||
+                (this.myProxy.pageData.other_data && this.myProxy.pageData.other_data.is_show_head === 1)
+            );
             // return this.myProxy.pageData.other_data ;
         }
     }
@@ -91,10 +95,9 @@ export default class PageGameSoccer extends AbstractView {
         const ifr: any = document.getElementById("gameFrame");
         if (ifr) {
             ifr.contentWindow.postMessage({ action: "sportbookLogin", params: this.pageData.token }, "*");
-            ifr.src =  this.pageData.url;
+            ifr.src = this.pageData.url;
             console.warn("刷新");
         }
-        
     }
 
     mounted() {

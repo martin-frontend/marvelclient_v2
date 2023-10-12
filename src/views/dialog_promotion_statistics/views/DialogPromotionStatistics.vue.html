@@ -17,17 +17,18 @@
                         :class="$vuetify.breakpoint.xsOnly? 'mb-2' : 'mr-2'"
                         class="w-280"
                     >
-                        <v-btn class="rounded-lg" :color="pageData.idButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.idButtonActive" min-width="61" height="30" @click="onQuery">
+                        <v-btn
+                            class="rounded-lg"
+                            :color="pageData.idButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                            :disabled="!pageData.idButtonActive"
+                            min-width="61"
+                            height="30"
+                            @click="onQuery"
+                        >
                             <span :class="pageData.idButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
                         </v-btn>
                     </CustomInput>
-                    <v-menu
-                        ref="menu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                    >
+                    <v-menu ref="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
                         <template v-slot:activator="{ on, attrs }">
                             <CustomDatePick
                                 height="41"
@@ -38,22 +39,28 @@
                                 readonly
                                 class="w-280"
                             >
-                                <v-btn class="rounded-lg" :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'" :disabled="!pageData.dateButtonActive" min-width="61" height="30" @click="onQuery">
+                                <v-btn
+                                    class="rounded-lg"
+                                    :color="pageData.dateButtonActive ? 'colorBtnBg' : 'colorExtensionBtn'"
+                                    :disabled="!pageData.dateButtonActive"
+                                    min-width="61"
+                                    height="30"
+                                    @click="onQuery"
+                                >
                                     <span :class="pageData.dateButtonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
                                 </v-btn>
                             </CustomDatePick>
                         </template>
-                        <v-date-picker
-                            v-model="pageData.search.dateArr"
-                            range
-                            no-title
-                            scrollable
-                        ></v-date-picker>
+                        <v-date-picker v-model="pageData.search.dateArr" range no-title scrollable></v-date-picker>
                     </v-menu>
                 </div>
                 <div class="colorText6--text text-body-2 my-3">
-                    <span v-if="pageData.listQuery.agent_user_id" class="mr-2">{{`${LangUtil("ID")}  ${pageData.listQuery.agent_user_id} `}}</span>
-                    <span v-if="pageData.listQuery.from_date && pageData.listQuery.to_date">{{`${pageData.listQuery.from_date} ${LangUtil("至")} ${pageData.listQuery.to_date} ${LangUtil("统计")}`}}</span>
+                    <span v-if="pageData.listQuery.agent_user_id" class="mr-2"
+                        >{{`${LangUtil("ID")} ${pageData.listQuery.agent_user_id} `}}</span
+                    >
+                    <span v-if="pageData.listQuery.from_date && pageData.listQuery.to_date"
+                        >{{`${pageData.listQuery.from_date} ${LangUtil("至")} ${pageData.listQuery.to_date} ${LangUtil("统计")}`}}</span
+                    >
                 </div>
             </div>
             <div class="overflow-auto" :style="{'height': $vuetify.breakpoint.xsOnly?'calc(100vh - 250px)':'650px'}">
@@ -62,11 +69,28 @@
                     color="colorPanelBg2"
                     class="rounded-lg px-4 py-3 colorText6--text font-weight-bold"
                 >
-                    <div>
-                        {{ `${LangUtil('净亏损(总团队)')} = ${pageData.formulaString}` }}
-                    </div>
+                    <div>{{ `${LangUtil('净亏损(总团队)')} = ${pageData.formulaString}` }}</div>
+                    <div class="mt-2">{{LangUtil('bonusString')}}</div>
                     <v-divider class="my-3"></v-divider>
-                    <div class="d-flex justify-space-around text-center">
+                    <div v-if="$vuetify.breakpoint.xsOnly" class="d-flex justify-space-around text-center text-10">
+                        <div class="d-flex flex-column flex-2">
+                            <span>{{ LangUtil("净亏损(总团队)") }}</span>
+                            <span class="text-green">{{ transformMoney(pageData.formulaData.user_loss) }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("分红比例") }}</span>
+                            <span class="text-yellow">{{ pageData.formulaData.bonus_ratio }}%</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("我的分红") }}</span>
+                            <span class="text-red">{{ transformMoney(pageData.formulaData.bonus) }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("下级总分红") }}</span>
+                            <span class="text-red">{{ transformMoney(pageData.formulaData.net_bonus) }}</span>
+                        </div>
+                    </div>
+                    <div v-else class="d-flex justify-space-around text-center">
                         <div class="d-flex flex-column flex-1">
                             <span>{{ LangUtil("净亏损(总团队)") }}</span>
                             <span class="text-green">{{ transformMoney(pageData.formulaData.user_loss) }}</span>
@@ -76,8 +100,12 @@
                             <span class="text-yellow">{{ pageData.formulaData.bonus_ratio }}%</span>
                         </div>
                         <div class="d-flex flex-column flex-1">
-                            <span>{{ LangUtil("分红") }}</span>
+                            <span>{{ LangUtil("我的分红") }}</span>
                             <span class="text-red">{{ transformMoney(pageData.formulaData.bonus) }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-1">
+                            <span>{{ LangUtil("下级总分红") }}</span>
+                            <span class="text-red">{{ transformMoney(pageData.formulaData.net_bonus) }}</span>
                         </div>
                     </div>
                 </v-sheet>
@@ -85,42 +113,33 @@
                 <div class="py-2">
                     <v-card color="colorPanelBg2" height="40" class="d-flex align-center rounded-lg">
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 colorText5--text">
-                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
-                                {{ LangUtil("统计类型") }}
-                            </v-col>
-                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
-                                {{ LangUtil("直属统计") }}
-                            </v-col>
-                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
-                                {{ LangUtil("团队统计") }}
-                            </v-col>
-                            <v-col class="d-flex justify-center align-center custom_skin-blue-text">
-                                {{ LangUtil("总团队统计") }}
-                            </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text"> {{ LangUtil("统计类型") }} </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text"> {{ LangUtil("直属统计") }} </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text"> {{ LangUtil("团队统计") }} </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-blue-text"> {{ LangUtil("总团队统计") }} </v-col>
                         </v-row>
                     </v-card>
 
-                    <v-card v-for="{ name, directly, group, all } of pageData.tableData" :key="name" color="colorPanelTitleBg" height="40" class="d-flex align-center rounded-lg mt-2">
+                    <v-card
+                        v-for="{ name, directly, group, all } of pageData.tableData"
+                        :key="name"
+                        color="colorPanelTitleBg"
+                        height="40"
+                        class="d-flex align-center rounded-lg mt-2"
+                    >
                         <v-row no-gutters class="d-flex flex-row text-caption text-sm-body-1 text-white">
-                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
-                                {{ LangUtil(name) }}
-                            </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text"> {{ LangUtil(name) }} </v-col>
                             <v-col class="d-flex justify-center align-center custom_skin-black-text">
                                 {{ transformMoney(directly) }}
                             </v-col>
-                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
-                                {{ transformMoney(group) }}
-                            </v-col>
-                            <v-col class="d-flex justify-center align-center custom_skin-black-text">
-                                {{ transformMoney(all) }}
-                            </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text"> {{ transformMoney(group) }} </v-col>
+                            <v-col class="d-flex justify-center align-center custom_skin-black-text"> {{ transformMoney(all) }} </v-col>
                         </v-row>
                     </v-card>
                 </div>
-                <ListNodata :height="$vuetify.breakpoint.xsOnly ? 200:300" v-if="pageData.tableData.length == 0"/>
-
+                <ListNodata :height="$vuetify.breakpoint.xsOnly ? 200:300" v-if="pageData.tableData.length == 0" />
             </div>
         </v-card-text>
     </v-card>
-    <Overlay v-model="pageData.loading"/>
+    <Overlay v-model="pageData.loading" />
 </v-dialog>

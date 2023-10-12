@@ -141,6 +141,19 @@ const skinMap = {
             },
         },
     },
+    /** */
+    skin004_6: {
+        public_dir: "public_skin004_6",
+        pages: {
+            skin004_6: {
+                entry: "src/_skin004_6/main.ts",
+                template: "public_skin004_6/skin004_6.html",
+                filename: "index.html",
+                title: "69娱乐",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**96in */
     skin005: {
         public_dir: "public_skin005",
@@ -377,7 +390,7 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin004_2","skin004_5","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
+            ["skin004_2","skin004_5","skin004_6","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
                 process.env.VUE_APP_SKIN
             )
         ) {

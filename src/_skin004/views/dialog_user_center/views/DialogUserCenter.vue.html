@@ -185,7 +185,7 @@
                     </span>
                 </div>
             </v-card-text>
-            <v-card-actions class="px-10 d-flex align-end">
+            <v-card-actions class="px-10 d-flex align-end" v-if="SkinVariable.isShowLogout">
                 <v-btn block class="text-sm-subtitle-1" color="colorBtnBg" @click="onLoginOut" height="50">{{LangUtil('退出登录')}}</v-btn>
             </v-card-actions>
         </v-card>

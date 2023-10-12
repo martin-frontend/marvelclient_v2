@@ -1,0 +1,84 @@
+<v-app-bar
+    :height="60"
+    elevation="0"
+    width="100%"
+    color="colorMobileHeaderBg"
+    class="pa-0 barbg pl-4"
+    :app="routerPath != '/page_game_play'"
+>
+    <!-- <v-sheet class="logo rounded-b-lg d-flex align-center justify-center" height="56" width="64">
+        <img :src="require(`@/_skin004/assets/logo.png`)" height="25" alt="" />
+    </v-sheet> -->
+    <v-sheet class="d-flex flex-column justify-center" width="100%" height="100%" color="transparent">
+        <v-sheet v-if="false" class="d-flex align-center ml-n4 mt-n4 mb-2 pt-4" height="70" color="#191919">
+            <v-sheet class="d-flex justify-start align-center" color="transparent">
+                <v-btn class="" icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-sheet class="d-flex flex-column" color="transparent">
+                    <img class="logo-mob" :src="SkinVariable.pageHead_logo_mob" height="25" width="130" alt="" />
+                    <!-- <div class="text-no-wrap">
+                        {{LangUtil("Magic Of The Game")}}
+                    </div> -->
+                    <div class="text-no-wrap">{{LangUtil("世界手游在你手中")}}</div>
+                </v-sheet>
+            </v-sheet>
+            <v-sheet class="d-flex justify-end mr-4" width="100%" color="transparent">
+                <v-btn small color="#FFFFFF" class="rounded-pill accent--text" @click="onGuide()">{{guideText}}</v-btn>
+            </v-sheet>
+        </v-sheet>
+
+        <div class="d-flex align-center my-2">
+            <v-sheet v-if="core.user_id" color="transparent" @click="showUserPanel">
+                <svg-icon icon="menu" class="text-22 mr-2"></svg-icon>
+            </v-sheet>
+            <img @click="$router.push('/')" class="header-logo" :src="SkinVariable.pageHead_logo_mob" width="auto" alt="" style="object-fit: contain;" />
+
+            <!-- 语言 -->
+            <!-- <div v-if="LangConfig.language" class="mr-4 d-flex align-center">
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn color="primary" dark v-bind="attrs" v-on="on" x-small icon>
+                                <img :src="LangConfig.language[core.lang].icon" width="20" />
+                            </v-btn>
+                        </template>
+                        <v-list color="colorPanelTitleBg">
+                            <v-list-item v-for="(item, key) in LangConfig.language" :key="key" @click="onLangChange(key)">
+                                <v-list-item-title class="d-flex align-center">
+                                    <img :src="item.icon" width="20" />
+                                    <div class="ml-2 custom_skin-black-text">{{item.name}}</div>
+                                </v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </div> -->
+
+            <!-- 没有登录的情况 -->
+            <template v-if="core.user_id == 0">
+                <v-spacer></v-spacer>
+                <v-btn small class="text-14 white--text gradient-blue" @click="handlerLogin" elevation="0">
+                    <span class="px-1 font-weight-bold">{{LangUtil("登录")}}</span>
+                </v-btn>
+                <v-btn small color="white" class="text-14 mx-3 colorBlueBtn--text" @click="handlerRegister" elevation="0">
+                    <span class="px-1 font-weight-bold">{{LangUtil("注册")}}</span>
+                </v-btn>
+            </template>
+
+            <!-- 登录过了 -->
+            <template v-if="core.user_id">
+                <Wallet class="ml-1 ml-2" nudgeLeft="70" />
+                <!-- <v-btn color="#EE1C25" class="rounded-pill white--text mx-1" x-small @click="onCoinIn" elevation="0">
+                    {{LangUtil("充值")}}
+                </v-btn> -->
+                <v-spacer></v-spacer>
+                <User class="mx-1" />
+                <!-- <v-spacer></v-spacer>
+                <v-btn icon small size="20" style="margin-right: 2px" @click.stop="openMail()">
+                    <v-badge color="red" dot overlap :value="red_dot_tips.is_user_mail>0">
+                        <v-icon size="25" style="margin-top: 2.5px">mdi-email</v-icon>
+                    </v-badge>
+                </v-btn> -->
+            </template>
+        </div>
+    </v-sheet>
+</v-app-bar>

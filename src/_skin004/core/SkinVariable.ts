@@ -44,4 +44,6 @@ export default class SkinVariable {
     public static bannerImageRatio: null | number = null;
     /**显示全部厂商 */
     public static isShowAllVendor = false;
+    /**隐藏登出 */
+    public static isShowLogout = true;
 }

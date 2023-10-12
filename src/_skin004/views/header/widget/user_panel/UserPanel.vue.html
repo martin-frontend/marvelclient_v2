@@ -51,6 +51,7 @@
     </v-sheet>
 
     <div
+        v-if="SkinVariable.isShowLogout"
         class="d-flex mt-3 ml-1 cursor-pointer"
         :class="$vuetify.breakpoint.xsOnly ? 'white--text' : 'colorBlue--text'"
         @click="onLoginOut"

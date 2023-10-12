@@ -34,6 +34,7 @@ import HeaderProxy from "../views/header/proxy/HeaderProxy";
 import dialog_notice from "@/_skin004/views/dialog_notice";
 import page_game_list from "@/_skin004/views/page_game_list";
 import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
+import { js_utils } from "custer-js-utils";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -56,6 +57,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
             net.EventType.api_plat_var_game_search,
+            net.EventType.api_user_third_login,
         ];
     }
 
@@ -133,6 +135,18 @@ export default class NetObserver extends AbstractMediator {
                 {
                     //@ts-ignore
                     window["vm"].$mount("#app");
+
+                    /**69登录 */
+                    const token69 = js_utils.getQueryVariable("69token");
+                    if (token69) {
+                        this.sendNotification(net.HttpType.api_user_third_login, {
+                            plat_id: core.plat_id,
+                            channel_id: core.channel_id,
+                            code: token69,
+                            invite_user_id: core.invite_user_id,
+                            vendor_unique_name: "Game69",
+                        });
+                    }
 
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
@@ -269,6 +283,10 @@ export default class NetObserver extends AbstractMediator {
                     this.gameProxy.setSearchResult(body);
                 }
                 break;
+            // bet2dream登录
+            case net.EventType.api_user_third_login:
+                this.loginSuccess(body);
+                break;
         }
     }
 
@@ -322,5 +340,17 @@ export default class NetObserver extends AbstractMediator {
 
         const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
         audioProxy.isBackgroundPlaying = false;
+    }
+
+    private loginSuccess(body: any) {
+        core.token = body.token;
+        core.user_id = body.user_id;
+
+        window.localStorage.setItem("token", core.token);
+        window.localStorage.setItem("user_id", core.user_id.toString());
+        window.localStorage.setItem("username", body.username);
+
+        const selfProxy: SelfProxy = this.getProxy(SelfProxy);
+        selfProxy.api_user_show_var([2, 3, 6]);
     }
 }

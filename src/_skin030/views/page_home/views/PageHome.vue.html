@@ -9,7 +9,10 @@
                             class="d-flex align-center white--text font-weight-bold mt-4"
                             :class="!$mobile ? 'text-20' : 'text-14'"
                         >
-                            <span> {{LangUtil("欢迎回来,{0}",selfProxy.userInfo.username | selfProxy.userInfo.user_id)}}</span>
+                            <span>
+                                {{LangUtil("欢迎回来,{0}",selfProxy.userInfo.username ? selfProxy.userInfo.username:
+                                selfProxy.userInfo.user_id)}}</span
+                            >
                         </v-sheet>
                         <v-sheet color="transparent" class="mt-4 mb-3 d-flex flex-column align-start justify-center">
                             <v-sheet

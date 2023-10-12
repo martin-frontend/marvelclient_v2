@@ -11,6 +11,7 @@ export default class PageCasinoList extends AbstractView {
     LangUtil = LangUtil;
     myProxy: PageCasinoListProxy = this.getProxy(PageCasinoListProxy);
     pageData = this.myProxy.pageData;
+    onClearHistory = this.myProxy.onClearHistory;
 
     menu = false;
     constructor() {
@@ -63,7 +64,7 @@ export default class PageCasinoList extends AbstractView {
         if (!this.myProxy.listQuery.vendor_type) {
             return require(`@/_skin030/assets/pagehome/category_vendor.png`);
         }
-        return require(`@/_skin030/assets/pagehome/category_${this.myProxy.listQuery.vendor_type}.png`);
+        // return require(`@/_skin030/assets/pagehome/category_${this.myProxy.listQuery.vendor_type}.png`);
     }
 
     /**显示的游戏列表 */

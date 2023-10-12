@@ -1,4 +1,5 @@
 import PanelUtil from "@/_skin030/core/PanelUtil";
+import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 export default class PageCasinoListProxy extends puremvc.Proxy {
     static NAME = "PageCasinoListProxy";
@@ -73,7 +74,6 @@ export default class PageCasinoListProxy extends puremvc.Proxy {
             }
         }
         this.filterVenderArr = [];
-        //console.log(" 当前的所有的 厂商", this.gameMenuData);
         for (let index = 0; index < this.curVendorData.length; index++) {
             const element = this.curVendorData[index];
             if (element.vendor_id) {
@@ -83,6 +83,10 @@ export default class PageCasinoListProxy extends puremvc.Proxy {
 
         this.api_plat_var_game_all_index();
         window.scrollTo(0, 0);
+    }
+    get gameHistoryList() {
+        const gameProxy = PanelUtil.getProxy_gameproxy;
+        return gameProxy.gameHistoryList;
     }
     /**获取当前页面的 厂商信息 */
     get curVendorData() {
@@ -113,5 +117,16 @@ export default class PageCasinoListProxy extends puremvc.Proxy {
 
         console.warn("发送 列表数据");
         this.sendNotification(net.HttpType.api_plat_var_game_all_index, sendobj);
+    }
+
+    onClearHistory() {
+        const gameProxy = PanelUtil.getProxy_gameproxy;
+        PanelUtil.message_confirm({
+            message: LangUtil("是否清除游戏记录"),
+            okFun: () => {
+                gameProxy.deleteGameHistoryAll();
+            },
+            okTxt: LangUtil("清除"),
+        });
     }
 }

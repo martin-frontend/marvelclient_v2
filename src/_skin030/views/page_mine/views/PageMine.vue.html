@@ -3,7 +3,7 @@
         <v-container class="pb-0 pt-0">
             <v-sheet width="100%" color="transparent" class="panel-bouns d-flex justify-space-between">
                 <v-card flat color="transparent" class="" width="100%">
-                    <v-sheet v-if="core.user_id" color="transparent" width="100%" height="100%" class="py-4">
+                    <v-sheet color="transparent" width="100%" height="100%" class="py-4">
                         <v-sheet
                             color="transparent"
                             class="d-flex align-center white--text font-weight-bold mt-4"
@@ -73,8 +73,9 @@
                                 >{{LangUtil("Check-in")}}</btn-yellow
                             >
                         </v-sheet>
+                        <MaskTool />
                     </v-sheet>
-                    <v-sheet
+                    <!-- <v-sheet
                         v-else
                         color="transparent"
                         width="100%"
@@ -112,7 +113,7 @@
                                 </v-btn>
                             </v-btn-toggle>
                         </v-sheet>
-                    </v-sheet>
+                    </v-sheet> -->
                 </v-card>
                 <template v-if="!$mobile">
                     <v-card flat color="transparent" width="20%"></v-card>
@@ -131,78 +132,85 @@
             <!-- pc端 -->
             <template v-if="!$mobile">
                 <v-card flat color="transparent" width="100%" class="d-flex flex-column align-center my-4">
-                    <v-card flat color="transparent" class="d-flex flex-column align-center">
-                        <v-sheet color="transparent" class="text-20 font-weight-bold white--text"> {{LangUtil('游戏挖矿')}} </v-sheet>
-                        <v-sheet color="transparent" class="textGray--text text-14"> {{LangUtil('游戏挖矿标题说明')}} </v-sheet>
-                    </v-card>
-                    <v-card flat color="wallet_bg" class="d-flex pa-2 px-8 align-center border_box mt-4">
-                        <div class="text-14 mr-4">
-                            <div class="white--text font-weight-bold">{{LangUtil('今日挖矿待领取收益')}}</div>
-                            <div class="white--text font-weight-bold">{{ pageData.trial.date }} 00:00:00～23:59:59</div>
-                        </div>
+                    <v-card flat color="transparent" width="100%" class="d-flex flex-column align-center">
+                        <v-card flat color="transparent" class="d-flex flex-column align-center">
+                            <v-sheet color="transparent" class="text-20 font-weight-bold white--text"> {{LangUtil('游戏挖矿')}} </v-sheet>
+                            <v-sheet color="transparent" class="textGray--text text-14"> {{LangUtil('游戏挖矿标题说明')}} </v-sheet>
+                        </v-card>
+                        <v-card flat color="wallet_bg" class="d-flex pa-2 px-8 align-center border_box mt-4">
+                            <div class="text-14 mr-4">
+                                <div class="white--text font-weight-bold">{{LangUtil('今日挖矿待领取收益')}}</div>
+                                <div class="white--text font-weight-bold">{{ pageData.trial.date }} 00:00:00～23:59:59</div>
+                            </div>
 
-                        <v-sheet color="transparent" class="d-flex flex-column mx-2" min-width="345">
-                            <!-- 主币 -->
-                            <v-sheet width="100%" color="dialog_bg" v-if="pageData.trial.main" class="d-flex align-center py-2 rounded10">
-                                <v-img
+                            <v-sheet color="transparent" class="d-flex flex-column mx-2" min-width="345">
+                                <!-- 主币 -->
+                                <v-sheet
+                                    width="100%"
+                                    color="dialog_bg"
                                     v-if="pageData.trial.main"
-                                    :max-width="mobileChange('coinIcon')"
-                                    :height="mobileChange('coinIcon')"
-                                    contain
-                                    :src="pageData.trial.mainIconSrc"
-                                    class="ml-2"
+                                    class="d-flex align-center py-2 rounded10"
                                 >
-                                </v-img>
-                                <div v-if="pageData.trial.main" class="white--text text-14 ml-2 font-weight-bold">
-                                    {{ amountFormat(pageData.trial.main) }}
-                                </div>
+                                    <v-img
+                                        v-if="pageData.trial.main"
+                                        :max-width="mobileChange('coinIcon')"
+                                        :height="mobileChange('coinIcon')"
+                                        contain
+                                        :src="pageData.trial.mainIconSrc"
+                                        class="ml-2"
+                                    >
+                                    </v-img>
+                                    <div v-if="pageData.trial.main" class="white--text text-14 ml-2 font-weight-bold">
+                                        {{ amountFormat(pageData.trial.main) }}
+                                    </div>
 
-                                <btn-yellow
-                                    id="animbtn"
-                                    class="ml-auto mr-2 text-14"
-                                    min_width="120"
-                                    height="30"
-                                    @click.native="handlerAward"
-                                    >{{LangUtil("领取奖励")}}</btn-yellow
-                                >
+                                    <btn-yellow
+                                        id="animbtn"
+                                        class="ml-auto mr-2 text-14"
+                                        min_width="120"
+                                        height="30"
+                                        @click.native="handlerAward"
+                                        >{{LangUtil("领取奖励")}}</btn-yellow
+                                    >
+                                </v-sheet>
+
+                                <!-- 奖励币 -->
+                                <v-sheet width="100%" color="dialog_bg" v-if="pageData.trial.reward" class="d-flex align-center mt-2 py-2">
+                                    <v-img
+                                        v-if="pageData.trial.reward"
+                                        :max-width="mobileChange('coinIcon')"
+                                        :height="mobileChange('coinIcon')"
+                                        contain
+                                        :src="pageData.trial.rewardIconSrc"
+                                        class="ml-2"
+                                    >
+                                    </v-img>
+                                    <div class="white--text text-14 ml-2 font-weight-bold">{{ amountFormat(pageData.trial.reward) }}</div>
+
+                                    <btn-yellow
+                                        id="animbtn"
+                                        class="ml-auto mr-2 text-14"
+                                        min_width="120"
+                                        height="30"
+                                        @click.native="handlerAward"
+                                        >{{LangUtil("领取奖励")}}</btn-yellow
+                                    >
+                                </v-sheet>
                             </v-sheet>
 
-                            <!-- 奖励币 -->
-                            <v-sheet width="100%" color="dialog_bg" v-if="pageData.trial.reward" class="d-flex align-center mt-2 py-2">
-                                <v-img
-                                    v-if="pageData.trial.reward"
-                                    :max-width="mobileChange('coinIcon')"
-                                    :height="mobileChange('coinIcon')"
-                                    contain
-                                    :src="pageData.trial.rewardIconSrc"
-                                    class="ml-2"
-                                >
-                                </v-img>
-                                <div class="white--text text-14 ml-2 font-weight-bold">{{ amountFormat(pageData.trial.reward) }}</div>
-
+                            <div class="d-flex">
                                 <btn-yellow
-                                    id="animbtn"
-                                    class="ml-auto mr-2 text-14"
-                                    min_width="120"
-                                    height="30"
-                                    @click.native="handlerAward"
-                                    >{{LangUtil("领取奖励")}}</btn-yellow
+                                    class="text-16 ml-2 mr-2"
+                                    min_width="166"
+                                    height="36"
+                                    :btn_type="3"
+                                    @click.native="handlerMineRecord"
+                                    >{{LangUtil("奖励记录")}}</btn-yellow
                                 >
-                            </v-sheet>
-                        </v-sheet>
-
-                        <div class="d-flex">
-                            <btn-yellow
-                                class="text-16 ml-2 mr-2"
-                                min_width="166"
-                                height="36"
-                                :btn_type="3"
-                                @click.native="handlerMineRecord"
-                                >{{LangUtil("奖励记录")}}</btn-yellow
-                            >
-                        </div>
+                            </div>
+                        </v-card>
+                        <MaskTool />
                     </v-card>
-
                     <v-card flat color="transparent" width="100%" height="100%" class="d-flex align-center justify-center my-4">
                         <v-sheet color="transparent" width="30" class="d-flex align-center justify-center" @click.native="onBtnLast">
                             <svg-icon class="text-30 navIcon--text" icon="arrow_top" style="transform: rotate(-90deg)"></svg-icon>
@@ -479,6 +487,7 @@
                             >
                         </div>
                     </v-card>
+                    <MaskTool />
                 </v-card>
 
                 <v-card flat color="transparent" width="100%" class="d-flex align-center justify-center my-4">

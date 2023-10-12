@@ -81,6 +81,12 @@ function IsShow_GameHistory() {
     return _isValueTrue("gamehistory", false);
 }
 /**
+ * 是否显示 挑战
+ */
+function IsShow_Challenge() {
+    return _isValueTrue("challenge", false);
+}
+/**
  * 是否显示 精彩活动
  */
 function IsShow_ActivityDisplay() {
@@ -311,6 +317,7 @@ export default {
     IsShow_HideSafeCenter,
     IsShow_HideEmail,
     isShow_PartnerKefu,
+    IsShow_Challenge,
     IsShow_CoinTaskDisplay,
     IsShow_TelegramButton,
     IsShow_NoticeBtn,

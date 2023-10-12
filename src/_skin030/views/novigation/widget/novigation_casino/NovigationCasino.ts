@@ -42,10 +42,12 @@ export default class NovigationCasino extends AbstractView {
 
     /**游戏中的几个按钮 */
     get novigation_game_menu_history() {
+        const recents = { 7: { name: "近期游戏", id: 7, icon: "ky_recents", action: "opencasino_history" } };
+        const challenge = { 8: { name: "挑战", id: 8, icon: "ky_challenges", action: "" } };
         const list = {
             // 6: { name: "收藏夹", id: 6, icon: "ky_levle_none", action: "opencasino_history" },
-            7: { name: "近期游戏", id: 7, icon: "ky_recents", action: "opencasino_history" },
-            8: { name: "挑战", id: 8, icon: "ky_challenges", action: "" },
+            ...(ModulesHelper.IsShow_GameHistory() ? recents : {}),
+            ...(ModulesHelper.IsShow_Challenge() ? challenge : {}),
         };
 
         return list;

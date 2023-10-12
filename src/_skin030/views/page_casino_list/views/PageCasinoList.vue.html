@@ -16,7 +16,7 @@
     <v-container class="d-flex flex-column">
         <GameSearch v-if="!$mobile" class="my-6" />
 
-        <v-card v-if="!myProxy.isVendor && !isVendorPage && myProxy.curVendorData.length>0" flat color="transparent" class="d-flex mb-4">
+        <!-- <v-card v-if="!myProxy.isVendor && !isVendorPage && myProxy.curVendorData.length>0" flat color="transparent" class="d-flex mb-4">
             <v-menu v-model="menu" :close-on-content-click="false" nudge-bottom="2" :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on, attrs }">
                     <v-sheet color="bgBanner" class="d-flex pa-2 rounded align-center" v-bind="attrs" v-on="on">
@@ -33,24 +33,49 @@
                                     class="text-14"
                                     :class="myProxy.filterVenderArr.includes(item.vendor_id) ? 'wallet_btn--text' : 'navIcon--text'"
                                 >
-                                    {{item.alias}}
+                                    {{item.vendor_product_name}}
                                 </div>
                             </template>
                         </v-checkbox>
                     </v-sheet>
                 </v-card>
             </v-menu>
-        </v-card>
+        </v-card> -->
         <template v-if="!myProxy.isVendor">
-            <!-- <VendorList class="mt-0" :data="myProxy.curVendorData"  :isSingle="false" :isNeedTitle="true"></VendorList> -->
-            <GameList
-                :data="listData"
-                @getMore="getMore"
-                :pageInfo="myProxy.pageData.pageInfo"
-                :isSingle="true"
-                :isNeedTitle="false"
-            ></GameList>
-            <ListNodata v-if="listData.length == 0" height="411" />
+            <template v-if="myProxy.listQuery.vendor_type != 3">
+                <GameList
+                    :data="listData"
+                    @getMore="getMore"
+                    :pageInfo="myProxy.pageData.pageInfo"
+                    :isSingle="true"
+                    :isNeedTitle="false"
+                ></GameList>
+                <ListNodata v-if="listData.length == 0" height="411" />
+            </template>
+            <template v-if="myProxy.listQuery.vendor_type == 3">
+                <GameList
+                    :data="myProxy.gameHistoryList"
+                    @getMore="getMore"
+                    :pageInfo="myProxy.pageData.pageInfo"
+                    :isSingle="true"
+                    :isNeedTitle="false"
+                ></GameList>
+                <ListNodata v-if="myProxy.gameHistoryList.length == 0" height="411" />
+                <div class="d-flex justify-center pt-2">
+                    <v-sheet class="d-flex flex-column justify-center align-center" width="100%" color="transparent">
+                        <v-sheet
+                            v-if="myProxy.gameHistoryList.length > 0"
+                            class="d-flex justify-end align-center"
+                            width="100%"
+                            color="transparent"
+                        >
+                            <btn-yellow class="text-12 my-5" min_width="90" height="30" @click.native="onClearHistory" btn_type="2"
+                                >{{LangUtil("清除记录")}}</btn-yellow
+                            >
+                        </v-sheet>
+                    </v-sheet>
+                </div>
+            </template>
             <VendorList class="mt-5" :data="vendorData"></VendorList>
         </template>
         <VendorList class="px-3" v-else :data="vendorData" :isSingle="true" :isNeedTitle="false"></VendorList>

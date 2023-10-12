@@ -365,7 +365,9 @@ export default class PanelUtil {
     /**打开 足球 界面  */
     static openpage_sport(url: string, isCricket: boolean = false) {
         //Vue.router.push("/page_game_soccer");
-        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        if (!window.$mobile) {
+            PanelUtil.getProxy_novigation.setMiniMenu(true);
+        }
         console.log("  进入 体育", url);
         page_game_soccer.show(url, isCricket);
     }

@@ -12,9 +12,11 @@
         border-radius: 6px !important;
     }
 }
+::v-deep.v-carousel .v-carousel__controls {
+    height: 20px !important;
+}
 ::v-deep.v-carousel .v-carousel__controls .v-item-group .v-carousel__controls__item {
-    margin: -5px;
-    margin-top: 25px;
+    margin: -3px;
     transform: scale(0.5);
 }
 
@@ -103,4 +105,11 @@
             }
         }
     }
+}
+.z-10 {
+    z-index: 10;
+}
+
+.h-20 {
+    height: 20px;
 }

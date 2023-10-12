@@ -18,20 +18,20 @@ export default class NoticeCard extends AbstractView {
     noticeDataList = [
         {
             model_type: 1,
-            activity_name: "1-Daily Races",
-            activity_desc: "Daily RacesDaily Races every",
+            activity_name: "活动1标题",
+            activity_desc: "活动1说明",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_1.png`),
         },
         {
             model_type: 2,
-            activity_name: "2-Weekly Giveaway",
-            activity_desc: "Daily RacesDaily Races every",
+            activity_name: "活动2标题",
+            activity_desc: "活动2说明",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_2.png`),
         },
         {
             model_type: 3,
-            activity_name: "3-Conquer the Sports",
-            activity_desc: "Daily RacesDaily Races every",
+            activity_name: "活动3标题",
+            activity_desc: "活动3说明",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_3.png`),
         },
     ];
@@ -40,11 +40,12 @@ export default class NoticeCard extends AbstractView {
     }
 
     getImgbg(item: any) {
-        console.warn('item--img', item);
+        console.warn("item--img", item);
         return require(`@/_skin030/assets/casino_lobby/card_bg_${item.model_type}.png`);
     }
     onPlay(item: any) {
         console.log("------点击---onPlay", item);
+        this.goActivity();
     }
     get carouselHeight() {
         const offset = 20;
@@ -109,6 +110,9 @@ export default class NoticeCard extends AbstractView {
     }
 
     goActivity() {
-        NovigationCommonData.Instance.goCategory({ name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" }, { name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" })
+        NovigationCommonData.Instance.goCategory(
+            { name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" },
+            { name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" }
+        );
     }
 }

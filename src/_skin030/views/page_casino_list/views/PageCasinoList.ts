@@ -6,12 +6,19 @@ import LangUtil from "@/core/global/LangUtil";
 import Constant from "@/core/global/Constant";
 import PanelUtil from "@/_skin030/core/PanelUtil";
 
+const challengeImages = [
+    require("@/_skin030/assets/challenges/challenges_1.png"),
+    require("@/_skin030/assets/challenges/challenges_2.png"),
+    require("@/_skin030/assets/challenges/challenges_3.png"),
+    require("@/_skin030/assets/challenges/challenges_4.png"),
+];
 @Component
 export default class PageCasinoList extends AbstractView {
     LangUtil = LangUtil;
     myProxy: PageCasinoListProxy = this.getProxy(PageCasinoListProxy);
     pageData = this.myProxy.pageData;
     onClearHistory = this.myProxy.onClearHistory;
+    challengeImages = challengeImages;
 
     menu = false;
     constructor() {
@@ -64,7 +71,7 @@ export default class PageCasinoList extends AbstractView {
         if (!this.myProxy.listQuery.vendor_type) {
             return require(`@/_skin030/assets/pagehome/category_vendor.png`);
         }
-        // return require(`@/_skin030/assets/pagehome/category_${this.myProxy.listQuery.vendor_type}.png`);
+        return require(`@/_skin030/assets/pagehome/category_${this.myProxy.listQuery.vendor_type}.png`);
     }
 
     /**显示的游戏列表 */
@@ -87,6 +94,11 @@ export default class PageCasinoList extends AbstractView {
             return !this.$mobile ? 388 : 317;
         }
         return !this.$mobile ? 388 : 317;
+    }
+    challengeImageHeight = 755;
+    get mobileChallengesHeight() {
+        const rowGap = 16;
+        return this.challengeImages.length * (this.challengeImageHeight + rowGap);
     }
     @Watch("menu")
     onWatchFitleMenu() {

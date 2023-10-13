@@ -1402,6 +1402,12 @@ export default class PanelUtil {
                     },
                 },
                 {
+                    key: "opencasino_challenges",
+                    fun: () => {
+                        PanelUtil.openpanel_gamelist(256);
+                    },
+                },
+                {
                     key: "opencasino_vendor",
                     fun: () => {
                         PanelUtil.openpanel_gamelist(0);

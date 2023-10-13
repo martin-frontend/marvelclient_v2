@@ -14,9 +14,9 @@
         </v-container>
     </v-sheet>
     <v-container class="d-flex flex-column">
-        <GameSearch v-if="!$mobile" class="my-6" />
+        <GameSearch v-if="!$mobile && myProxy.listQuery.vendor_type != 256" class="my-6" />
 
-        <!-- <v-card v-if="!myProxy.isVendor && !isVendorPage && myProxy.curVendorData.length>0" flat color="transparent" class="d-flex mb-4">
+        <v-card v-if="!myProxy.isVendor && !isVendorPage && myProxy.curVendorData.length>0" flat color="transparent" class="d-flex mb-4">
             <v-menu v-model="menu" :close-on-content-click="false" nudge-bottom="2" :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on, attrs }">
                     <v-sheet color="bgBanner" class="d-flex pa-2 rounded align-center" v-bind="attrs" v-on="on">
@@ -26,23 +26,23 @@
                 </template>
 
                 <v-card flat color="bgBanner" class="d-flex flex-column pa-2">
-                    <v-sheet color="transparent" class="checkbox_class" v-for="(item , key) of myProxy.curVendorData" :key="key">
+                    <v-sheet color="transparent" class="checkbox_class" v-for="(item, key) of myProxy.curVendorData" :key="key">
                         <v-checkbox v-model="myProxy.filterVenderArr" :value="item.vendor_id" color="wallet_btn" class="mt-0" hide-details>
                             <template v-slot:label>
                                 <div
                                     class="text-14"
                                     :class="myProxy.filterVenderArr.includes(item.vendor_id) ? 'wallet_btn--text' : 'navIcon--text'"
                                 >
-                                    {{item.vendor_product_name}}
+                                    {{item.alias}}
                                 </div>
                             </template>
                         </v-checkbox>
                     </v-sheet>
                 </v-card>
             </v-menu>
-        </v-card> -->
+        </v-card>
         <template v-if="!myProxy.isVendor">
-            <template v-if="myProxy.listQuery.vendor_type != 3">
+            <template v-if="![3, 256].includes(myProxy.listQuery.vendor_type)">
                 <GameList
                     :data="listData"
                     @getMore="getMore"
@@ -75,6 +75,21 @@
                         </v-sheet>
                     </v-sheet>
                 </div>
+            </template>
+            <template v-if="myProxy.listQuery.vendor_type == 256">
+                <v-sheet v-if="!$mobile" color="transparent" class="d-flex">
+                    <v-sheet color="transparent" class="mr-4" width="188" height="420" v-for="(item, key) of challengeImages" :key="key">
+                        <v-img :src="item" />
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet
+                    :height="mobileChallengesHeight"
+                    v-else
+                    color="transparent"
+                    class="d-flex flex-column justify-space-between align-center gap-y-4"
+                >
+                    <v-img v-for="(item, key) of challengeImages" :key="key" width="338" :height="challengeImageHeight" :src="item" />
+                </v-sheet>
             </template>
             <VendorList class="mt-5" :data="vendorData"></VendorList>
         </template>

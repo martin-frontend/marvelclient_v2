@@ -37,6 +37,9 @@ export default class Constant {
             case "128":
                 str = "链游";
                 break;
+            case "256":
+                str = "挑战";
+                break;
             default:
                 str = gametype;
                 break;
@@ -45,7 +48,7 @@ export default class Constant {
     }
 
     static SportRouterList() {
-        return ["page_game_soccer", "cricket","sports"];
+        return ["page_game_soccer", "cricket", "sports"];
     }
     /**检测传入路径 是否 包含有 体育 以及分类的 路径 */
     static isIncludeSportRouter(path: string): boolean {
@@ -70,6 +73,7 @@ export default class Constant {
             "lottery-games",
             "cards-games",
             "game-history",
+            "challenges",
             "page_casino_lobby",
             "vendor",
         ];
@@ -104,6 +108,8 @@ export default class Constant {
                 return "sports"; // 64	体育电竞
             case 128:
                 return "blockchain-games"; // 128	链游
+            case 256:
+                return "challenges"; // 256 挑战
         }
         return "";
     }
@@ -125,6 +131,8 @@ export default class Constant {
             return 3;
         } else if (path.includes("cards-games")) {
             return 2;
+        } else if (path.includes("challenges")) {
+            return 256;
         }
         return -1;
     }

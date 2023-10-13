@@ -71,6 +71,11 @@ export const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "skin030_page_game_list" */ "@/_skin030/views/page_casino_list/views/PageCasinoList.vue"),
     },
     {
+        path: "/challenges",
+        name: "challenges",
+        component: () => import(/* webpackChunkName: "skin030_page_casino_list" */ "@/_skin030/views/page_casino_list/views/PageCasinoList.vue"),
+    },
+    {
         path: "/page_game_list_chess/",
         name: "page_game_list_chess",
         component: () =>

@@ -60,7 +60,8 @@ export default class GameConfig {
                 this.onGetAddressFail();
             }
         } else {
-            core.app_type = core.EnumAppType.WEB;
+            const app_type = core.getQueryVariable("app_type");
+            core.app_type = app_type ? parseInt(app_type) : core.EnumAppType.WEB;
         }
 
         core.host = this.getApiUrl();

@@ -146,10 +146,11 @@ export default class NetObserver extends AbstractMediator {
                             invite_user_id: core.invite_user_id,
                             vendor_unique_name: "Game69",
                         });
+                    } else if (core.user_id) {
+                        //获取用户信息
+                        this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
                     }
 
-                    //获取用户信息
-                    this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
                     //添加客服

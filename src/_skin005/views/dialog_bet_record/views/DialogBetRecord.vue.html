@@ -301,7 +301,7 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-sheet v-bind="attrs" v-on="on" color="transparent">
                                             <v-sheet color="transparent" class="primary--text text-truncate">
-                                                <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                                <span v-if="item.is_multi">{{LangUtil('-')}}</span>
                                                 <span v-else>
                                                     {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name
                                                     :item.game_info.cpn || item.vendor_product_name}}</span
@@ -310,7 +310,7 @@
                                         </v-sheet>
                                     </template>
                                     <div class="">
-                                        <span v-if="isChuanDan(item)">{{LangUtil('-')}}</span>
+                                        <span v-if="item.is_multi">{{LangUtil('-')}}</span>
                                         <span v-else>
                                             {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
                                             item.vendor_product_name}}</span
@@ -423,7 +423,7 @@
                             <template v-else>
                                 <svg-icon class="mx-1" icon="football"></svg-icon>
                                 <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
-                                <span class="ml-2"> {{item.league}} </span>
+                                <span class="font-weight-bold ml-2"> {{item.league}} </span>
                             </template>
                             <v-spacer />
                             <v-sheet
@@ -476,7 +476,7 @@
                             class="detail mt-1 d-flex align-center black--text"
                             v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
                         >
-                            <template v-if="!isChuanDan(item)">
+                            <template v-if="!item.is_multi">
                                 <svg-icon class="mx-1" :icon="fb_icon_name(item)"></svg-icon>
                                 <span
                                     class="ml-2"
@@ -510,7 +510,7 @@
                                     >{{item.vendor_name}}
                                 </span>
                                 <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
-                                <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
+                                <span class="font-weight-bold ml-2">{{item.league}}</span>
                                 <v-spacer />
                                 <v-sheet
                                     @click="handlerDetail(item)"
@@ -846,7 +846,7 @@
                         v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.vendor_product_name"
                     >
                         <div class="leftText--text">{{LangUtil("游戏名称")}}</div>
-                        <div v-if="!isChuanDan(item)" class="head_btn--text">
+                        <div v-if="!item.is_multi" class="head_btn--text">
                             {{ item.vendor_id == GameConfig.config.FBVendorId? item.tournament_name :item.game_info.cpn ||
                             item.vendor_product_name}}
                         </div>
@@ -1025,7 +1025,7 @@
                         class="detail mt-1 d-flex black--text"
                         v-if="item.vendor_id == GameConfig.config.FBVendorId && item.game_info.betList && item.game_info.betList[0]"
                     >
-                        <template v-if="!isChuanDan(item)">
+                        <template v-if="!item.is_multi">
                             <svg-icon class="mr-2 ml-1" style="margin-top: 3px" :icon="fb_icon_name(item)"></svg-icon>
                             <div>
                                 <div

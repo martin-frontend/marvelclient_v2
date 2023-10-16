@@ -17,7 +17,7 @@
             <div v-if="!isChuanDan(item)" style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">
                 {{item.tournament_name}}
             </div>
-            <div v-else style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">{{item.bet_type}}</div>
+            <div v-else style="margin-left: 8px; margin-top: 5px" class="text-14 font-weight-bold">{{replaceTitle(item.bet_type)}}</div>
         </div>
         <div
             v-if="!isChuanDan(item)"

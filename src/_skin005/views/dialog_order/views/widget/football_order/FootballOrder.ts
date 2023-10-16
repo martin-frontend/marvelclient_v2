@@ -168,4 +168,7 @@ export default class FootballOrder extends AbstractView {
                 return LangUtil("取消");
         }
     }
+    replaceTitle(str: string) {
+        return str.replace("x", LangUtil("串"));
+    }
 }

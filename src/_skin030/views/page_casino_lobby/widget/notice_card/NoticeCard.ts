@@ -20,18 +20,21 @@ export default class NoticeCard extends AbstractView {
             model_type: 1,
             activity_name: "活动1标题",
             activity_desc: "活动1说明",
+            btn_text: "活动1按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_1.png`),
         },
         {
             model_type: 2,
             activity_name: "活动2标题",
             activity_desc: "活动2说明",
+            btn_text: "活动2按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_2.png`),
         },
         {
             model_type: 3,
             activity_name: "活动3标题",
             activity_desc: "活动3说明",
+            btn_text: "活动3按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_3.png`),
         },
     ];

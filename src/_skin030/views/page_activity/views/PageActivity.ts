@@ -59,17 +59,22 @@ export default class PageActivity extends AbstractView {
     }
     getCategoryColor(index: number) {
         switch (index) {
-            case 1: return "#3ac167";
-            case 2: return "#6f3ac1";
-            case 3: return "#f00";
+            case 1:
+                return "#3ac167";
+            case 2:
+                return "#6f3ac1";
+            case 3:
+                return "#f00";
         }
     }
     getCategoryImg(index: number) {
         switch (index) {
-            case 0: return require("@/_skin030/assets/activity/catagory_game.png");
-            case 1: return require("@/_skin030/assets/activity/catagory_game.png");
-            case 2: return require("@/_skin030/assets/activity/catagory_sport.png");
-            case 3: return require("@/_skin030/assets/activity/catagory_sport.png");
+            case 1:
+                return require("@/_skin030/assets/activity/catagory_sport.png");
+            case 2:
+                return require("@/_skin030/assets/activity/catagory_game.png");
+            default:
+                return "";
         }
     }
     onCategoryChange(index: number) {

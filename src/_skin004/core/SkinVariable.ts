@@ -46,4 +46,6 @@ export default class SkinVariable {
     public static isShowAllVendor = false;
     /**隐藏登出 */
     public static isShowLogout = true;
+    /**使用 page_game_play 打开体育 */
+    public static isUsePageGamePlayShowSport = false;
 }

@@ -22,17 +22,19 @@ import dialog_directly_backwater from "@/_skin001/views/dialog_directly_backwate
 import dialog_notice from "@/_skin004/views/dialog_notice";
 import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import ServiceUtil from "@/_skin004/core/global/ServiceUtil";
 
 @Component
 export default class UserPanel extends AbstractView {
     LangUtil = LangUtil;
     menuList = [
-        { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
-        { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
+        // { id: 0, name: LangUtil("个人中心"), icon: "mdi-account-circle" },
+        // { id: 1, name: LangUtil("安全中心"), icon: "mdi-shield-check" },
         { id: 2, name: LangUtil("平台钱包"), icon: "mdi-wallet" },
         { id: 3, name: LangUtil("我的投注"), icon: "mdi-text-box" },
         { id: 4, name: LangUtil("消息中心"), icon: "mdi-bell" },
         { id: 5, name: LangUtil("公告中心"), icon: "mdi-message-bulleted" },
+        { id: 6, name: LangUtil("客服"), icon: "mdi-contacts" },
     ];
     // menuList1 = [
     //     { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
@@ -44,7 +46,7 @@ export default class UserPanel extends AbstractView {
 
     get menuList1() {
         const list = [
-            { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
+            // { id: 10, name: LangUtil("推广赚钱"), icon: "mdi-hand-extended" },
             //{ id: 11, name: LangUtil("终身分红"), icon: "mdi-equalizer" },
             { id: 12, name: LangUtil("游戏挖矿"), icon: "mdi-mine" },
             { id: 13, name: LangUtil("精彩活动"), icon: "mdi-gift" },
@@ -108,6 +110,9 @@ export default class UserPanel extends AbstractView {
                 break;
             case 5:
                 LoginEnter(dialog_notice.show);
+                break;
+            case 6:
+                ServiceUtil();;
                 break;
             case 10:
                 // if (this.isShowDirectly == 2) {

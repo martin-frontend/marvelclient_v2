@@ -1,0 +1,77 @@
+@import "@/style/params.scss";
+.bg {
+    background-color: transparent;
+    background-image: unset;
+    text-align: center;
+}
+
+::v-deep.v-icon.v-icon {
+    color: #9db1d8;
+}
+
+.item {
+    cursor: pointer;
+    font-weight: 600;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+}
+.item:hover {
+    color: white;
+    i {
+        color: white;
+    }
+}
+
+.mob_item_class {
+    ::v-deep.v-icon.v-icon {
+        color: #fff;
+    }
+
+    .item {
+        cursor: pointer;
+        font-weight: 600;
+        height: 38px;
+        width: 100%;
+        color: #fff;
+    }
+    .item:hover {
+        color: white;
+        i {
+            color: white;
+        }
+    }
+}
+
+.item-group-title {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+    .arrow {
+        font-weight: 600;
+    }
+}
+.item1 {
+    cursor: pointer;
+    height: 38px;
+    width: 100%;
+    color: $colorBlue;
+}
+.circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #9db1d8;
+    box-sizing: border-box;
+    position: relative;
+    .img {
+        display: none;
+    }
+}
+.circle-active {
+    border: 0px solid #9db1d8;
+    .img {
+        display: block;
+    }
+}

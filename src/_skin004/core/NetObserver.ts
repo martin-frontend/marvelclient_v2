@@ -35,6 +35,7 @@ import dialog_notice from "@/_skin004/views/dialog_notice";
 import page_game_list from "@/_skin004/views/page_game_list";
 import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 import { js_utils } from "custer-js-utils";
+import SkinVariable from "./SkinVariable";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -220,11 +221,12 @@ export default class NetObserver extends AbstractMediator {
                         this.gameProxy.currGame.ori_product_id == 1
                     ) {
                         const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
+                        const page = SkinVariable.isUsePageGamePlayShowSport ? page_game_play : page_game_soccer;
                         if (homeProxy.pageData.event_id) {
-                            page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                            page.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                             homeProxy.pageData.event_id = 0;
                         } else {
-                            page_game_soccer.show(body.url);
+                            page.show(body.url);
                         }
                         return;
                     }

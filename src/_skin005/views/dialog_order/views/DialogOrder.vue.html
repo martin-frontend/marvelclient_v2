@@ -11,7 +11,7 @@
         <com-dialog-title title="注单记录" @onClose="onClose" />
 
         <v-card-text v-if="pageData.url || !pageData.isHaveData" class="px-5 mt-2">
-            <iframe height="275" width="100%" frameborder="0" :src="pageData.url"> </iframe>
+            <iframe width="100%" frameborder="0" :src="pageData.url" :style="{'height': $mobile?'70vh':'275px'}"> </iframe>
         </v-card-text>
         <v-card-text v-if="!pageData.url && pageData.isHaveData && pageData.itemData">
             <ExchangeOrder v-if="isExchangeVendor" />

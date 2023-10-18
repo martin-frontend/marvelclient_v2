@@ -108,7 +108,10 @@ export default class PageGameListProxy extends puremvc.Proxy {
             plat_id: core.plat_id,
             coin_name_unique: this.gameProxy.coin_name_unique,
         });
-        this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_game_menu, {
+            plat_id: core.plat_id,
+            coin_name_unique: this.gameProxy.coin_name_unique,
+        });
     }
 
     // api_plat_var_game_menu() {

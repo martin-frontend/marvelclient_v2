@@ -250,9 +250,9 @@ export default class GameProxy extends AbstractProxy {
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
     api_plat_var_lobby_index() {
-        this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
-        this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/

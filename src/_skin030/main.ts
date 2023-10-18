@@ -39,6 +39,8 @@ import Header from "./views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
 import SlideVerify from "@/_skin030/views/widget/slide_verify/SlideVerify.vue";
+
+GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();
 //@ts-ignore

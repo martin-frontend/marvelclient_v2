@@ -1,5 +1,5 @@
 {
     "background_color": "#ffffff",
-    "start_url": "https://ky.game/",
+    "start_url": "/",
     "display": "standalone"
 }

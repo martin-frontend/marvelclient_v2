@@ -790,3 +790,7 @@ export function urlAddParams(uri: string, params: any): string {
         return uri + "?" + addParamsStr + hash;
     }
 }
+//发送消息(69平台需要)
+export function sendPostMessage(data: any) {
+    if (window.parent) window.parent.postMessage(data, "*");
+}

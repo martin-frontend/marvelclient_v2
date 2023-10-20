@@ -93,7 +93,6 @@ export default class PageGamePlay extends AbstractView {
                     //点击
                     console.log("click");
                     that.onBack();
-                    sendPostMessage({ methodName: "showTab" });
                 }
             });
         });
@@ -147,6 +146,7 @@ export default class PageGamePlay extends AbstractView {
         dialog_message_box.confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
+                sendPostMessage({ methodName: "showTab" });
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 //如果不是游戏，就直接返回到首页, 这是成人影院
                 if (!gameProxy.currGame) {

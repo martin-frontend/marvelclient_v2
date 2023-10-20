@@ -343,7 +343,7 @@ export default class NetObserver extends AbstractMediator {
 
         const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
         audioProxy.isBackgroundPlaying = false;
-        sendPostMessage("hideTab");
+        sendPostMessage({ methodName: "hideTab" });
     }
 
     private loginSuccess(body: any) {

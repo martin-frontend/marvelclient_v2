@@ -69,7 +69,7 @@ export default class WebViewBridge extends puremvc.Proxy {
                 //也没有必要处理返回按钮消息
                 // WebViewBridge.getInstance().sendNotification(NativeEventType.ANDROID_BACK);
                 router.back();
-                sendPostMessage("showTab");
+                sendPostMessage({ methodName: "showTab" });
                 break;
             case N2HType.APP_PAUSE:
                 audioProxy.isBackgroundPlaying = false;

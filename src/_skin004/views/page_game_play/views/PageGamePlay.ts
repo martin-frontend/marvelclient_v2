@@ -1,5 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import { judgeClient } from "@/core/global/Functions";
+import { judgeClient, sendPostMessage } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
@@ -93,6 +93,7 @@ export default class PageGamePlay extends AbstractView {
                     //点击
                     console.log("click");
                     that.onBack();
+                    sendPostMessage({ methodName: "showTab" });
                 }
             });
         });

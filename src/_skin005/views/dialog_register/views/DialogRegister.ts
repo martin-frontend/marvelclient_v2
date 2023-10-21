@@ -622,4 +622,22 @@ export default class DialogRegister extends AbstractView {
         }
         this.chickYears();
     }
+
+    getAreaNameClass(name: string) {
+        const len = name.length;
+        if (this.core.lang.startsWith("zh")) {
+            return {
+                nowrap: len < 11,
+                "text-12": len > 7,
+            };
+        }
+        if (this.core.lang.startsWith("en")) {
+            return {
+                "text-12": len > 12,
+            };
+        }
+        return {
+            "text-12": len > 10,
+        };
+    }
 }

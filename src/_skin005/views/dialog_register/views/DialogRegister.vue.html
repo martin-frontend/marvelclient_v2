@@ -438,6 +438,13 @@
                     v-model="form.invite_user_id"
                     :disabled="hasInviteUser()"
                 />
+                <CustomInput
+                    v-if="IsShow_inviteCode"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邀请码（选填）')"
+                    v-model="form.invite_code"
+                />
                 <!-- <CustomPassword
                     class="my-6"
                     icon="mdi-lock"
@@ -887,6 +894,13 @@
                 :placeholder="LangUtil('请输入推荐人（选填）')"
                 v-model="form.invite_user_id"
                 :disabled="hasInviteUser()"
+            />
+            <CustomInput
+                v-if="IsShow_inviteCode"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入邀请码（选填）')"
+                v-model="form.invite_code"
             />
             <!-- <CustomPassword
                 icon="mdi-lock"

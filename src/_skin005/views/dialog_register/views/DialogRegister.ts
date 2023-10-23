@@ -26,6 +26,7 @@ export default class DialogRegister extends AbstractView {
     SkinVariable = SkinVariable;
     IsShow_HideRegisterInvite = ModulesHelper.IsShow_HideRegisterInvite();
     IsShow_DownRegisterInvite = ModulesHelper.IsShow_DownRegisterInvite();
+    IsShow_inviteCode = ModulesHelper.IsShow_inviteCode();
     email_error_info = "";
     password_error_info = "";
     constructor() {

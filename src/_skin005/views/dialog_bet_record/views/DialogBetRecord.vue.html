@@ -344,7 +344,10 @@
                                 class="primary--text"
                                 width="120"
                             >
-                                <span>{{ isBrazilExchangeNoStatus(item) ? "-" : transformMoney(item,"valid_bet_gold",false,true)}}</span>
+                                <span
+                                    >{{ (isBrazilExchangeNoStatus(item) || item.settlement_status != 11) ? "-" :
+                                    transformMoney(item,"valid_bet_gold",false,true)}}</span
+                                >
                             </v-sheet>
 
                             <v-sheet
@@ -532,6 +535,7 @@
                                     <span>{{item.odds}}</span>
                                 </span>
                                 <span v-else>{{item.game_info.description}}</span>
+                                <span class="font-weight-bold"> &nbsp;&nbsp;{{item.game_info.side?"Back":"Lay"}} </span>
                             </span>
 
                             <v-spacer />
@@ -886,7 +890,8 @@
                     >
                         <div class="leftText--text">{{LangUtil("有效投注")}}</div>
                         <div class="head_btn--text">
-                            {{ isBrazilExchangeNoStatus(item) ? "-" : transformMoney(item,"valid_bet_gold",false,true)}}
+                            {{ (isBrazilExchangeNoStatus(item) ||item.settlement_status != 11) ? "-" :
+                            transformMoney(item,"valid_bet_gold",false,true)}}
                         </div>
                     </div>
                     <div v-if="GameConfig.config.mybet_title && GameConfig.config.mybet_title.valid_bet_gold" class="line mt-2 mx-3"></div>
@@ -1116,6 +1121,7 @@
                                 </div>
                             </span>
                             <span v-else class="text-decoration-underline">{{item.game_info.description}}</span>
+                            <span class="ml-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
                         </div>
                         <v-spacer />
                         <!-- <div @click="handlerDetail(item)" class="d-flex align-center cursor-pointer">

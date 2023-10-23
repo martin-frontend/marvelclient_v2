@@ -6,6 +6,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 export default class DialogBetRecordProxy extends puremvc.Proxy {
     static NAME = "DialogBetRecordProxy";
@@ -119,7 +120,7 @@ export default class DialogBetRecordProxy extends puremvc.Proxy {
             const moneyKeys = Object.keys(GamePlatConfig.config.plat_display_coins);
             const options: any = { 0: LangUtil("全部币种") };
             for (let index = 0; index < moneyKeys.length; index++) {
-                options[moneyKeys[index]] = moneyKeys[index];
+                options[moneyKeys[index]] = CoinTransformHelper.GetCoinAlias(moneyKeys[index]);
             }
             return options;
         },

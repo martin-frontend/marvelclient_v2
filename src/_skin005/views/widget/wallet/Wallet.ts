@@ -9,6 +9,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import PageGameListProxy from "../../page_game_list/proxy/PageGameListProxy";
 
 @Component
@@ -22,6 +23,7 @@ export default class Wallet extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     coinTaskProxy = PanelUtil.getProxy_get_pageCoinTaskProxy;
     tId = <any>null;
+    getCoinAlias = CoinTransformHelper.GetCoinAlias;
 
     waterOptions = ["water_2", "water_4", "water_8", "water_16", "water_32", "water_64", "water_128"];
     waterNeedOptions = [
@@ -120,8 +122,12 @@ export default class Wallet extends AbstractView {
         return this.selfProxy.coinTaskData.list.filter((item: any) => item.status == 2);
     }
 
-    convertCoinName(coinStr: any) {
-        return coinStr.substring(coinStr.indexOf("-") + 1);
+    convertCoinName(coinStr: any, isUseCoinAlias: boolean = false) {
+        const coinKey = coinStr.substring(coinStr.indexOf("-") + 1);
+        if(isUseCoinAlias) {
+            return this.getCoinAlias(coinKey);
+        }
+        return coinKey;
         // return coinStr.split("-")[0];
     }
 

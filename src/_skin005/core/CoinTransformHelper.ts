@@ -195,4 +195,8 @@ export default class CoinTransformHelper {
         }
         return this.platCoins.mainCoin == GameConfig.config.SettlementCurrency;
     }
+    /**获取币种别名 */
+    static GetCoinAlias(coinname: string) {
+        return GamePlatConfig.config.plat_coins[coinname]?.coin_alias ?? coinname;
+    }
 }

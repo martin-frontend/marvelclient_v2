@@ -23,6 +23,7 @@ export default class PageCoinTask extends AbstractView {
     core = core;
     GlobalVar = GlobalVar;
     amountFormat = amountFormat;
+    getCoinAlias = CoinTransformHelper.GetCoinAlias;
     tabIndex = "all"; //用于  切换标签的
     tabOptions = <any>[
         { status: "all", title: LangUtil("全部任务") },
@@ -88,8 +89,12 @@ export default class PageCoinTask extends AbstractView {
         return arr;
     }
 
-    convertCoinName(coinStr: any) {
-        return coinStr.substring(coinStr.indexOf("-") + 1);
+    convertCoinName(coinStr: any, isUseCoinAlias: boolean = false) {
+        const coinKey = coinStr.substring(coinStr.indexOf("-") + 1);
+        if(isUseCoinAlias) {
+            return this.getCoinAlias(coinKey);
+        }
+        return coinKey;
         // return coinStr.split("-")[0];
     }
 

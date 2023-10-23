@@ -54,7 +54,7 @@
                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                     </div>
                     <div class="ml-3">
-                        <div class="font-weight-bold nomal_text_1--text">{{ key }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
+                        <div class="font-weight-bold nomal_text_1--text">{{ getCoinAlias(key) }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
                         <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div> -->
                         <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
                         <div v-if="key == 'CNY'" class="primary--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
@@ -80,7 +80,7 @@
                     </div>
                     <div>{{item.activity_name}}</div>
                     <div>
-                        {{convertCoinName(item.task_coin_name_unique)}} {{LangUtil("余额")}}： <span class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</span>
+                        {{convertCoinName(item.task_coin_name_unique, true)}} {{LangUtil("余额")}}： <span class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</span>
                     </div>
                     <div class="d-flex align-center">
                         <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="5">
@@ -149,7 +149,7 @@
                         <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                     </div>
                     <div class="ml-3">
-                        <div class="font-weight-bold nomal_text_1--text">{{ key }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
+                        <div class="font-weight-bold nomal_text_1--text">{{ getCoinAlias(key) }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
                         <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{ item.sum_money }}</div> -->
                         <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
                         <div v-if="key == 'CNY'" class="primary--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
@@ -177,7 +177,7 @@
                         >
                     </div>
                     <div>{{item.activity_name}}</div>
-                    <div>{{convertCoinName(item.task_coin_name_unique)}} {{LangUtil("余额")}}：</div>
+                    <div>{{convertCoinName(item.task_coin_name_unique, true)}} {{LangUtil("余额")}}：</div>
                     <div>{{amountFormat(item.task_coin_amount, true)}}</div>
                     <div class="d-flex align-center mt-1">
                         <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="12">

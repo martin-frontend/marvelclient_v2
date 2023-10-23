@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogWalletProxy from "../../proxy/DialogWalletProxy";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 @Component
 export default class TabAccountDetail extends AbstractView {
     LangUtil = LangUtil;
@@ -13,7 +14,6 @@ export default class TabAccountDetail extends AbstractView {
     pageData = this.myProxy.pageData;
     listQuery = this.pageData.listQuery;
     listOptions = this.pageData.listOptions;
-
     commonIcon = Assets.commonIcon;
     amountFormat(nub: any, isb = true) {
         return amountFormat(nub, isb);
@@ -69,7 +69,7 @@ export default class TabAccountDetail extends AbstractView {
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
-            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect];
+            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect].key;
         }
         this.myProxy.api_user_show_var_gold();
     }
@@ -89,5 +89,9 @@ export default class TabAccountDetail extends AbstractView {
     }
     onBtnClickRemark(item: any) {
         PanelUtil.message_alert(item.remark);
+    }
+    getCoinAlias(str: string) {
+        const key = str.replace("COIN-", "");
+        return CoinTransformHelper.GetCoinAlias(key)
     }
 }

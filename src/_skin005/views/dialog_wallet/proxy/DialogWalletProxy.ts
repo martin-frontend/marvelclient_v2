@@ -2,7 +2,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import Constant from "@/core/global/Constant";
 import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
-
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 export default class DialogWalletProxy extends puremvc.Proxy {
     static NAME = "DialogWalletProxy";
 
@@ -40,8 +40,14 @@ export default class DialogWalletProxy extends puremvc.Proxy {
             },
             coinOptions: () => {
                 const keys = Object.keys(GamePlatConfig.config.plat_display_coins);
-                keys.unshift(LangUtil("全部币种"));
-                return keys;
+                const options = keys.map((key) => {
+                    return {
+                        name: CoinTransformHelper.GetCoinAlias(key),
+                        key,
+                    };
+                });
+                options.unshift({ name: LangUtil("全部币种"), key: "all" });
+                return options;
             },
             typeOptions: () => {
                 const types = {

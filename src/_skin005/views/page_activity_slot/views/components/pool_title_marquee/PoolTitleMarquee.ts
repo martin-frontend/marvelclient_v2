@@ -41,9 +41,7 @@ export default class PoolTitleMarquee extends AbstractView {
     }
 
     public get poolstrarr() {
-        let prize_pool_amount = this.ball_award_detail && this.ball_award_detail.prize_pool_amount;
-        prize_pool_amount = prize_pool_amount || 0;
-        const scale = CoinTransformHelper.GetMainCoinScale;
+        const prize_pool_amount = this.ball_award_detail?.prize_pool_amount ?? 0;
         const str = CoinTransformHelper.TransformMoney(
             prize_pool_amount,
             2,
@@ -54,39 +52,13 @@ export default class PoolTitleMarquee extends AbstractView {
             false,
             false
         );
-        const arr = (str + "").split("");
-        // const arr = ["R", "$", "3", "4", "5", "6", "7", "8", "9"];
-        const arr_length = arr.length;
-
-        // R$ 符號移至最前面
-        switch (arr_length) {
-            case 6:
-                for (let i = 0; i < 3; i++) {
-                    arr.splice(2, 0, "0");
-                }
-                break;
-            case 7:
-                for (let i = 0; i < 2; i++) {
-                    arr.splice(2, 0, "0");
-                }
-                break;
-            case 8:
-                for (let i = 0; i < 1; i++) {
-                    arr.splice(2, 0, "0");
-                }
-                break;
-            default:
-                break;
-        }
-
-        // const neetItem = 9 - arr.length;
-        // for (let index = 0; index < neetItem; index++) {
-        //     arr.unshift("0");
-        // }
-
-        console.log("----解锁之后的数组为", arr);
+        const coinName = CoinTransformHelper.platCoins.mainCoin.name;
+        const coinSymbolLen = CoinTransformHelper.GetCoinSymbol(coinName).length;
+        const firstPart = str.slice(0, coinSymbolLen).split("");
+        const zeros = Array(9 - str.length).fill("0");
+        const lastPart = str.slice(coinSymbolLen).split("");
+        const arr = [...firstPart, ...zeros, ...lastPart];
         return arr;
-        // return ["R", "$", 0, 0, 0, 0, 0, 0, 0];
     }
     @Watch("$vuetify.breakpoint.width")
     onWatchScreen() {

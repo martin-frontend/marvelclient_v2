@@ -190,7 +190,12 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
         }
-        Vue.vuetify.framework.theme.dark = isDark;
+        const theme = localStorage.getItem("theme");
+        if (SkinVariable.autoTheme && theme) {
+            Vue.vuetify.framework.theme.dark = theme == "dark";
+        } else {
+            Vue.vuetify.framework.theme.dark = isDark;
+        }
     }
     /**
      * 常规页面的打开，一般是路由

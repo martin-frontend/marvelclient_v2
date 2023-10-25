@@ -131,8 +131,9 @@ window.onload = function () {
     });
 };
 // PanelUtil.getThemeDark();
-PanelUtil.setThemeDark(true);
 SkinVariable.autoTheme = false;
+PanelUtil.setThemeDark(true);
+
 // setInterval(() => {
 //     //@ts-ignore
 //     if (window["vm"]) {

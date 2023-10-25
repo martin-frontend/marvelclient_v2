@@ -169,13 +169,18 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
             if (SkinVariable.autoTheme) {
-                //获取设备当前时间
-                const timenow_hour = new Date().getHours();
-                //白天
-                if (timenow_hour > 5 && timenow_hour < 18) {
-                    Vue.vuetify.framework.theme.dark = false;
+                const theme = localStorage.getItem("theme");
+                if (theme) {
+                    Vue.vuetify.framework.theme.dark = theme == "dark";
                 } else {
-                    Vue.vuetify.framework.theme.dark = true;
+                    //获取设备当前时间
+                    const timenow_hour = new Date().getHours();
+                    //白天
+                    if (timenow_hour > 5 && timenow_hour < 18) {
+                        Vue.vuetify.framework.theme.dark = false;
+                    } else {
+                        Vue.vuetify.framework.theme.dark = true;
+                    }
                 }
             }
         }

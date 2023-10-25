@@ -123,6 +123,7 @@ window.onload = function () {
 };
 // PanelUtil.getThemeDark();
 PanelUtil.setThemeDark(true);
+SkinVariable.autoTheme = false;
 function addRouter() {
     if (!GameConfig.config.head_game_config) {
         GameConfig.config.head_game_config = <any>[];

@@ -2,6 +2,7 @@ import ModulesHelper from "@/_skin030/core/ModulesHelper";
 import PanelUtil from "@/_skin030/core/PanelUtil";
 import GameConfig from "@/core/config/GameConfig";
 import LangUtil from "@/core/global/LangUtil";
+import ServiceUtil from "../../core/global/ServiceUtil";
 
 /**
  * 导航的通用数据
@@ -48,7 +49,7 @@ export default class NovigationCommonData {
         const newlist = <any>[];
         const list = {
             // 6: { name: "负责任博彩", id: 7, icon: "ky_promotion", action: "openpanel_contract" },
-            7: { name: "在线支持", id: 9, icon: "ky_support", action: "openpanel_contract" },
+            7: { name: "在线支持", id: 9, icon: "ky_support", action: "openpanel_contactUtil" },
         };
         return list;
     }

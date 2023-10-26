@@ -385,16 +385,6 @@
                             >
                                 {{getDate(item.settlement_at)}}
                             </v-sheet>
-                            <v-sheet color="transparent" class="primary--text" width="30">
-                                <v-btn
-                                    v-if="item.vendor_id == GameConfig.config.SportVendorId"
-                                    text
-                                    class="font-weight-regular text-14 btn mb-n3"
-                                    @click="handlerDetail(item)"
-                                >
-                                    <span class="mb-3 textGray--text">></span>
-                                </v-btn>
-                            </v-sheet>
                             <v-sheet color="transparent" width="15">
                                 <!-- <v-sheet
                                     v-if="item.bet_detail_url == 1 && item.vendor_id != GameConfig.config.SportVendorId"
@@ -1064,14 +1054,17 @@
                                 </div>
                             </div>
                             <v-spacer />
-                            <!-- <v-sheet
-                                @click="handlerDetail(item)"
-                                class="cursor-pointer rounded-pill px-2 record_border d-flex align-center"
-                                color="transparent"
-                            >
-                                <span class="text-12 ma-1 black--text">{{LangUtil("查看投注详情")}}</span>
-                                <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
-                            </v-sheet> -->
+                            <v-sheet color="transparent" class="d-flex align-center">
+                                <v-sheet
+                                    @click="handlerDetail(item)"
+                                    class="cursor-pointer rounded-pill px-2 record_border d-flex align-center"
+                                    color="transparent"
+                                    height="30px"
+                                >
+                                    <span class="text-12 ma-1 black--text" style="text-wrap: nowrap">{{LangUtil("查看投注详情")}}</span>
+                                    <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
+                                </v-sheet>
+                            </v-sheet>
                             <!-- <div @click="handlerDetail(item)" class="cursor-pointer">
                                 <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div> -->
@@ -1088,14 +1081,14 @@
                                 <span class="font-weight-bold ml-2">{{item.bet_type}}</span>
                             </div>
                             <v-spacer />
-                            <!-- <v-sheet
+                            <v-sheet
                                 @click="handlerDetail(item)"
                                 class="cursor-pointer rounded-pill px-2 record_border d-flex align-center"
                                 color="transparent"
                             >
                                 <span class="text-12 ma-1 black--text">{{LangUtil("查看投注详情")}}</span>
                                 <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
-                            </v-sheet> -->
+                            </v-sheet>
                             <!-- <div @click="handlerDetail(item)" class="cursor-pointer">
                                 <svg-icon class="mr-1" icon="bet_record"></svg-icon>
                             </div> -->

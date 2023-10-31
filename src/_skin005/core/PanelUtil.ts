@@ -276,6 +276,14 @@ export default class PanelUtil {
         page_game_play.show(url);
     }
 
+    //打开 orbit_exchange
+    static openpage_orbit_exchange() {
+        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
+        page_game_play.openOrbitExchange();
+    }
+
     //打开 质押分红 界面
     static openpage_bonus() {
         this._openpage_base("page_bonus");

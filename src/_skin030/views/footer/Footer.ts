@@ -10,6 +10,10 @@ import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class Footer extends AbstractView {
+    mounted() {
+        const apg: any = (window as any).apg_70a616ed_d190_41c6_ab5d_9a87fa8baf6c;
+        apg.init();
+    }
     LangUtil = LangUtil;
     getVersion = getVersion;
     SkinVariable = SkinVariable;

@@ -42,7 +42,7 @@ export function getVuetify(): Vuetify {
                         colorExtensionBtn3: "#37619A", //used
                         colorBonusBtn: "#6EAAFA", //used
                         colorReceive: "#5E2E2E", //used
-                        colorBlue2Bg: "#121E36", //used
+                        colorBlue2Bg: "#ffffff", //used
                         colorYellowBg: "#F2A81C",
                         colorGoldBg: "#ffb01b",
                         colorBlueBtn: "3A66BA",

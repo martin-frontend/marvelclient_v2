@@ -151,6 +151,7 @@ import dialog_limited_bonus from "@/_skin030/views/dialog_limited_bonus";
 import PageCasinoLobbyProxy from "@/_skin030/views/page_casino_lobby/proxy/PageCasinoLobbyProxy";
 import page_casino_list from "../views/page_casino_list";
 import page_casino_sport from "../views/page_casino_sport";
+import ContactUtil from "./global/ContactUtil";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -169,13 +170,18 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
             if (SkinVariable.autoTheme) {
-                //获取设备当前时间
-                const timenow_hour = new Date().getHours();
-                //白天
-                if (timenow_hour > 5 && timenow_hour < 18) {
-                    Vue.vuetify.framework.theme.dark = false;
+                const theme = localStorage.getItem("theme");
+                if (theme) {
+                    Vue.vuetify.framework.theme.dark = theme == "dark";
                 } else {
-                    Vue.vuetify.framework.theme.dark = true;
+                    //获取设备当前时间
+                    const timenow_hour = new Date().getHours();
+                    //白天
+                    if (timenow_hour > 5 && timenow_hour < 18) {
+                        Vue.vuetify.framework.theme.dark = false;
+                    } else {
+                        Vue.vuetify.framework.theme.dark = true;
+                    }
                 }
             }
         }
@@ -549,6 +555,10 @@ export default class PanelUtil {
     static openpanel_service() {
         MultDialogManager.onOpenPanel(dialog_service);
         dialog_service.show();
+    }
+    //打开 TG
+    static openpanel_contactUtil() {
+        ContactUtil();
     }
     //打开 联系我们 窗口
     static openpanel_contract() {
@@ -1213,6 +1223,12 @@ export default class PanelUtil {
                     key: "openpanel_service",
                     fun: () => {
                         PanelUtil.openpanel_service();
+                    },
+                },
+                {
+                    key: "openpanel_contactUtil",
+                    fun: () => {
+                        PanelUtil.openpanel_contactUtil();
                     },
                 },
                 {

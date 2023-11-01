@@ -189,6 +189,7 @@ window.onload = function () {
 };
 //只要黑夜主题
 //Vue.vuetify.framework.theme.dark = true;
+SkinVariable.autoTheme = false;
 PanelUtil.setThemeDark(true);
 
 function onWhisperLogin(code: any, type: number = 1) {

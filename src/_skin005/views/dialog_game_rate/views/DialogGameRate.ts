@@ -6,13 +6,13 @@ import DialogGameRateProxy from "../proxy/DialogGameRateProxy";
 import LangUtil from "@/core/global/LangUtil";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 
 @Component
 export default class DialogGameRate extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogGameRateProxy = this.getProxy(DialogGameRateProxy);
     pageData = this.myProxy.pageData;
-
     GamePlatConfig = GamePlatConfig;
 
     constructor() {
@@ -36,5 +36,14 @@ export default class DialogGameRate extends AbstractView {
         //const count = 1 / item.scale
 
         return (1 / item.scale).toFixed(2);
+    }
+
+    getCoinNameUnique(coin_name_unique_show: string) {
+        return coin_name_unique_show.replace("COIN-", "");
+    }
+
+    getCoinAlias(coin_name_unique_show: string) {
+        const key = this.getCoinNameUnique(coin_name_unique_show);
+        return CoinTransformHelper.GetCoinAlias(key);
     }
 }

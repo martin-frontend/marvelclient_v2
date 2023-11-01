@@ -363,7 +363,7 @@ export default class NetObserver extends AbstractMediator {
                         );
                         msgstr = LangUtil(
                             "当前币种余额{0}:{1},将会折算成{2}:{3}进入游戏",
-                            coin_name_unique,
+                            CoinTransformHelper.GetCoinAlias(coin_name_unique),
                             sum_money,
                             settle_coin_name_unique,
                             sum_money_2
@@ -372,7 +372,12 @@ export default class NetObserver extends AbstractMediator {
                         //msgstr = LangUtil("当前余额为{0}:{2}",coin_name_unique,this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money);
                         isShowConfig = true;
                     } else {
-                        if (coin_name_unique) msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, amountFormat(sum_money, true));
+                        if (coin_name_unique)
+                            msgstr = LangUtil(
+                                "当前余额为{0}:{1}",
+                                CoinTransformHelper.GetCoinAlias(coin_name_unique),
+                                amountFormat(sum_money, true)
+                            );
                     }
 
                     this.openGameUrl(body, msgstr, isShowConfig);

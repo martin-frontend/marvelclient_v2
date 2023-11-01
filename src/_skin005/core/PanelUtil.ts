@@ -169,13 +169,18 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
             if (SkinVariable.autoTheme) {
-                //获取设备当前时间
-                const timenow_hour = new Date().getHours();
-                //白天
-                if (timenow_hour > 5 && timenow_hour < 18) {
-                    Vue.vuetify.framework.theme.dark = false;
+                const theme = localStorage.getItem("theme");
+                if (theme) {
+                    Vue.vuetify.framework.theme.dark = theme == "dark";
                 } else {
-                    Vue.vuetify.framework.theme.dark = true;
+                    //获取设备当前时间
+                    const timenow_hour = new Date().getHours();
+                    //白天
+                    if (timenow_hour > 5 && timenow_hour < 18) {
+                        Vue.vuetify.framework.theme.dark = false;
+                    } else {
+                        Vue.vuetify.framework.theme.dark = true;
+                    }
                 }
             }
         }
@@ -185,7 +190,12 @@ export default class PanelUtil {
         if (!this._isSetThem) {
             this._isSetThem = true;
         }
-        Vue.vuetify.framework.theme.dark = isDark;
+        const theme = localStorage.getItem("theme");
+        if (SkinVariable.autoTheme && theme) {
+            Vue.vuetify.framework.theme.dark = theme == "dark";
+        } else {
+            Vue.vuetify.framework.theme.dark = isDark;
+        }
     }
     /**
      * 常规页面的打开，一般是路由
@@ -264,6 +274,14 @@ export default class PanelUtil {
         PageBlur.blur_force_close();
         MultDialogManager.forceClosePanel();
         page_game_play.show(url);
+    }
+
+    //打开 orbit_exchange
+    static openpage_orbit_exchange() {
+        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
+        page_game_play.openOrbitExchange();
     }
 
     //打开 质押分红 界面

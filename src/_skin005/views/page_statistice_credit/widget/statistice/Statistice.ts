@@ -8,6 +8,7 @@ import DialogStatisticsCreditMediator from "@/_skin005/views/dialog_statistics_c
 import PageBlur from "@/_skin005/core/PageBlur";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
+import Timezone from "@/core/Timezone";
 
 @Component
 export default class Statistice extends AbstractView {
@@ -75,14 +76,11 @@ export default class Statistice extends AbstractView {
     setDatePiker() {
         // const keyNode = document.querySelectorAll(".el-date-editor");
         // if (!keyNode || keyNode.length < 1) return;
-
         // for (let index = 0; index < keyNode.length; index++) {
         //     const element = keyNode[index];
-
         //     const iNode = document.createElement("i");
         //     iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
         //     element.appendChild(iNode);
-
         //     iNode.style.position = "absolute";
         //     iNode.style.top = "13px";
         //     iNode.style.right = "12px";
@@ -118,12 +116,14 @@ export default class Statistice extends AbstractView {
             const startDate: any = this.timeRange[0];
             const endDate: any = this.timeRange[1];
             if (startDate) {
-                this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+                // this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+                this.pageData.listQuery.start_date = Timezone.Instance.convertTime_to_Beijing(dateFormat(startDate, "yyyy-MM-dd hh:mm:ss"));
             } else {
                 this.pageData.listQuery.start_date = "";
             }
             if (endDate) {
-                this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
+                // this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
+                this.pageData.listQuery.end_date = Timezone.Instance.convertTime_to_Beijing(dateFormat(endDate, "yyyy-MM-dd hh:mm:ss"));
             } else {
                 this.pageData.listQuery.end_date = "";
             }

@@ -25,6 +25,7 @@ export default class PageMyInfo extends AbstractView {
     ModulesHelper = ModulesHelper;
     GlobalVar = GlobalVar;
     SkinVariable = SkinVariable;
+    getCoinAlias = CoinTransformHelper.GetCoinAlias;
     constructor() {
         super(PageMyInfoMediator);
     }

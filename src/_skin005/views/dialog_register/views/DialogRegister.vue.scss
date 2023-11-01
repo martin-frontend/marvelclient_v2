@@ -78,7 +78,15 @@
     }
 
     ::v-deep .v-menu__content {
-        min-width: 120px !important;
+        min-width: 162px !important;
+    }
+
+    ::v-deep .v-menu__content .v-list-item .v-sheet>div:last-child {
+        text-align: right;
+        max-width: 110px;
+        &.nowrap {
+            white-space: nowrap;
+        }
     }
 
     ::v-deep .v-autocomplete.v-select.v-input--is-focused input {

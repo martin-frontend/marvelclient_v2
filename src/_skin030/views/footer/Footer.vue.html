@@ -164,16 +164,18 @@
                 </v-col>
             </v-row>
         </v-sheet>
-        <v-sheet color="transparent" class="d-flex justify-center align-center gap-x-36" width="100%">
+        <v-sheet color="transparent" class="d-flex justify-center align-center" :class="$mobile ? 'gap-x-10' : 'gap-x-36'" width="100%">
             <v-sheet color="transparent" class="d-flex flex-column align-center" max-height="58">
                 <v-img :src="commonIcon.logo" width="132"></v-img>
                 <div class="text-14 foot_text_color" v-html="LangUtil('logo描述信息')"></div>
             </v-sheet>
+            <!-- antillephone licence -->
             <div
                 id="apg-70a616ed-d190-41c6-ab5d-9a87fa8baf6c"
                 data-apg-seal-id="70a616ed-d190-41c6-ab5d-9a87fa8baf6c"
                 data-apg-41c6-ab5d-9a87fa8baf6c
                 data--image-type="basic-light-large"
+                :class="$mobile ? 'mt-3' : ''"
                 style="max-width: 90px"
             ></div>
         </v-sheet>
